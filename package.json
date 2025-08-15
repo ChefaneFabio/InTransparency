@@ -1,0 +1,33 @@
+{
+  "name": "intransparency",
+  "version": "1.0.0",
+  "description": "AI-powered academic project showcase platform",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend/api",
+    "backend/ai-service",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:api\" \"npm run dev:ai\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:api": "cd backend/api && npm run dev",
+    "dev:ai": "cd backend/ai-service && python main.py",
+    "build": "npm run build:frontend && npm run build:api",
+    "build:frontend": "cd frontend && npm run build",
+    "build:api": "cd backend/api && npm run build",
+    "test": "npm run test:frontend && npm run test:api",
+    "test:frontend": "cd frontend && npm test",
+    "test:api": "cd backend/api && npm test",
+    "deploy:frontend": "cd frontend && vercel --prod",
+    "deploy:backend": "echo 'Backend deployment handled by Render'"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}

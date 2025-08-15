@@ -1,0 +1,82 @@
+# Set the default behavior for all files
+* text=auto eol=lf
+
+# Explicitly declare files that should always have UNIX line endings
+*.sh text eol=lf
+*.py text eol=lf
+*.js text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.jsx text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.xml text eol=lf
+*.sql text eol=lf
+
+# Explicitly declare files that should always have Windows line endings
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Denote all files that are truly binary and should not be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.eot binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
+*.zip binary
+*.tar.gz binary
+
+# Archives
+*.7z binary
+*.gz binary
+*.tar binary
+*.zip binary
+
+# Fonts
+*.ttf binary
+*.eot binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+
+# Executables
+*.exe binary
+*.pyc binary
+
+# RC files (like .babelrc or .eslintrc)
+.*rc text
+
+# Ignore files (like .gitignore or .dockerignore)
+.*ignore text
+
+# Node.js
+package-lock.json linguist-generated=true
+yarn.lock linguist-generated=true
+
+# Python
+*.py linguist-language=Python
+
+# TypeScript
+*.ts linguist-language=TypeScript
+*.tsx linguist-language=TypeScript
+
+# JavaScript
+*.js linguist-language=JavaScript
+*.jsx linguist-language=JavaScript
+
+# Documentation
+*.md linguist-documentation=true
+docs/* linguist-documentation=true
+
+# Config files
+*.json linguist-language=JSON
+*.yml linguist-language=YAML
+*.yaml linguist-language=YAML
