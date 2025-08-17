@@ -59,7 +59,7 @@ if errorlevel 1 (
 )
 
 REM Create environment files from examples
-echo 📝 Creating environment files...
+echo 🔧 Creating environment files...
 if not exist frontend\.env.local (
     copy frontend\.env.example frontend\.env.local
     echo ✅ Created frontend\.env.local
@@ -84,12 +84,12 @@ if not exist backend\ai-service\.env (
 echo.
 echo ✅ Setup complete!
 echo.
-echo 🔑 IMPORTANT: Add your OpenAI API key to these files:
+echo ⚠️ IMPORTANT: Add your OpenAI API key to these files:
 echo    - frontend\.env.local
 echo    - backend\api\.env
 echo    - backend\ai-service\.env
 echo.
-echo 📊 Next steps:
+echo 📋 Next steps:
 echo 1. Get OpenAI API key from: https://platform.openai.com/api-keys
 echo 2. Edit the .env files with your API key
 echo 3. Start databases: docker-compose up postgres redis -d
