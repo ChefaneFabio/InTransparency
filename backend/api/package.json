@@ -4,7 +4,7 @@
   "description": "InTransparency Backend API",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "nodemon src/server.ts",
+    "dev": "nodemon src/server-basic.ts",
     "build": "tsc && npm run copy-files",
     "start": "node dist/server.js",
     "copy-files": "cp -r src/public dist/ || echo 'No public files to copy'",

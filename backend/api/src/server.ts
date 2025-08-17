@@ -10,12 +10,7 @@ import dotenv from 'dotenv'
 
 import { errorHandler, notFound } from './middleware/error'
 import { requestLogger } from './middleware/logger'
-const authRoutes = require('./routes/auth')
-const userRoutes = require('./routes/users')
-const projectRoutes = require('./routes/projects')
-const jobRoutes = require('./routes/jobs')
-const analyticsRoutes = require('./routes/analytics')
-const notificationRoutes = require('./routes/notifications')
+import authRoutes from './routes/auth'
 
 dotenv.config()
 
@@ -49,7 +44,7 @@ app.use(cors({
     'http://localhost:3000',
     'https://intransparency.vercel.app',
     process.env.FRONTEND_URL
-  ].filter(Boolean),
+  ].filter((url): url is string => Boolean(url)),
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
