@@ -40,9 +40,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 export default function RecruiterDashboard() {
   const { user } = useAuth()
   const [stats, setStats] = useState<any>(null)
-  const [candidates, setCandidates] = useState([])
-  const [jobPostings, setJobPostings] = useState([])
-  const [recentActivity, setRecentActivity] = useState([])
+  const [candidates, setCandidates] = useState<any[]>([])
+  const [jobPostings, setJobPostings] = useState<any[]>([])
+  const [recentActivity, setRecentActivity] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -212,7 +212,7 @@ export default function RecruiterDashboard() {
       <div className="space-y-8 animate-pulse">
         <div className="h-8 bg-gray-200 rounded w-1/3"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[...Array(4)].map((_, i) => (
+          {[...Array(4)].map((_: any, i: number) => (
             <div key={i} className="h-32 bg-gray-200 rounded"></div>
           ))}
         </div>
@@ -348,7 +348,7 @@ export default function RecruiterDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {candidates.slice(0, 3).map((candidate) => (
+                {candidates.slice(0, 3).map((candidate: any) => (
                   <div key={candidate.id} className="flex items-center space-x-4 p-4 border rounded-lg hover:bg-gray-50 transition-colors">
                     <Avatar className="h-12 w-12">
                       <AvatarImage src={candidate.avatar} />
@@ -400,7 +400,7 @@ export default function RecruiterDashboard() {
                       
                       <div className="flex items-center justify-between">
                         <div className="flex flex-wrap gap-1">
-                          {candidate.skills.slice(0, 3).map((skill) => (
+                          {candidate.skills.slice(0, 3).map((skill: any) => (
                             <Badge key={skill} variant="secondary" className="text-xs">
                               {skill}
                             </Badge>
@@ -441,7 +441,7 @@ export default function RecruiterDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {jobPostings.map((job) => (
+                {jobPostings.map((job: any) => (
                   <div key={job.id} className="flex items-center justify-between p-4 border rounded-lg">
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900">{job.title}</h3>
@@ -520,7 +520,7 @@ export default function RecruiterDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {recentActivity.map((activity, index) => (
+                {recentActivity.map((activity: any, index: number) => (
                   <div key={index} className="flex items-start space-x-3">
                     <div className="text-lg">{activity.icon}</div>
                     <div className="flex-1 min-w-0">
@@ -543,7 +543,7 @@ export default function RecruiterDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {stats.topSkillsInDemand.map((item, index) => (
+                {stats.topSkillsInDemand.map((item: any, index: number) => (
                   <div key={index} className="flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-900">{item.skill}</span>
                     <div className="flex items-center space-x-2">

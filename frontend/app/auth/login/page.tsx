@@ -52,7 +52,7 @@ export default function LoginPage() {
     setFormData(prev => ({ ...prev, [field]: value }))
     // Clear error when user starts typing
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: null }))
+      setErrors((prev: any) => ({ ...prev, [field]: null }))
     }
     if (loginError) {
       setLoginError('')
@@ -89,13 +89,8 @@ export default function LoginPage() {
     setLoginError('')
 
     try {
-      const result = await login(formData.email, formData.password)
-      
-      if (result.success) {
-        // Redirect is handled by the auth context
-      } else {
-        setLoginError(result.error || 'Login failed')
-      }
+      await login(formData.email, formData.password)
+      // Redirect is handled by the auth context
     } catch (error: any) {
       setLoginError(error.message || 'An unexpected error occurred')
     } finally {

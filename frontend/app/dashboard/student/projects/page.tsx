@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useAuth } from '@/lib/auth/AuthContext'
 import { ProjectCard } from '@/components/dashboard/student/ProjectCard'
-import { ProjectGrid } from '@/components/dashboard/student/ProjectGrid'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -30,8 +29,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 
 export default function ProjectsPage() {
   const { user } = useAuth()
-  const [projects, setProjects] = useState([])
-  const [filteredProjects, setFilteredProjects] = useState([])
+  const [projects, setProjects] = useState<any[]>([])
+  const [filteredProjects, setFilteredProjects] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [searchQuery, setSearchQuery] = useState('')
@@ -66,10 +65,10 @@ export default function ProjectsPage() {
 
     // Search filter
     if (searchQuery) {
-      filtered = filtered.filter(project =>
+      filtered = filtered.filter((project: any) =>
         project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.technologies.some(tech => 
+        project.technologies.some((tech: any) => 
           tech.toLowerCase().includes(searchQuery.toLowerCase())
         )
       )
@@ -77,16 +76,16 @@ export default function ProjectsPage() {
 
     // Category filter
     if (categoryFilter !== 'all') {
-      filtered = filtered.filter(project => project.category === categoryFilter)
+      filtered = filtered.filter((project: any) => project.category === categoryFilter)
     }
 
     // Status filter
     if (statusFilter !== 'all') {
-      filtered = filtered.filter(project => project.status === statusFilter)
+      filtered = filtered.filter((project: any) => project.status === statusFilter)
     }
 
     // Sort
-    filtered.sort((a, b) => {
+    filtered.sort((a: any, b: any) => {
       let aVal, bVal
 
       switch (sortBy) {
@@ -99,7 +98,7 @@ export default function ProjectsPage() {
           bVal = b.innovationScore || 0
           break
         case 'complexity_level':
-          const complexityOrder = { 'Beginner': 1, 'Intermediate': 2, 'Advanced': 3, 'Expert': 4 }
+          const complexityOrder: any = { 'Beginner': 1, 'Intermediate': 2, 'Advanced': 3, 'Expert': 4 }
           aVal = complexityOrder[a.complexityLevel] || 0
           bVal = complexityOrder[b.complexityLevel] || 0
           break
@@ -196,7 +195,7 @@ export default function ProjectsPage() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(6)].map((_: any, i: number) => (
             <Card key={i} className="animate-pulse">
               <CardContent className="p-6">
                 <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
@@ -415,7 +414,7 @@ export default function ProjectsPage() {
         <div>
           {viewMode === 'grid' ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProjects.map((project) => (
+              {filteredProjects.map((project: any) => (
                 <div key={project.id} className="relative group">
                   <ProjectCard project={project} />
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -426,7 +425,7 @@ export default function ProjectsPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {filteredProjects.map((project) => (
+              {filteredProjects.map((project: any) => (
                 <Card key={project.id} className="hover:shadow-md transition-shadow">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between">
@@ -455,7 +454,7 @@ export default function ProjectsPage() {
                               <Badge variant="outline" className="text-xs">
                                 {project.complexityLevel}
                               </Badge>
-                              {project.technologies.slice(0, 3).map((tech, index) => (
+                              {project.technologies.slice(0, 3).map((tech: any, index: number) => (
                                 <Badge key={index} variant="secondary" className="text-xs">
                                   {tech}
                                 </Badge>

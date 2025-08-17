@@ -45,9 +45,9 @@ import {
 export default function UniversityDashboard() {
   const { user } = useAuth()
   const [stats, setStats] = useState<any>(null)
-  const [students, setStudents] = useState([])
-  const [recruiters, setRecruiters] = useState([])
-  const [placements, setPlacements] = useState([])
+  const [students, setStudents] = useState<any[]>([])
+  const [recruiters, setRecruiters] = useState<any[]>([])
+  const [placements, setPlacements] = useState<any[]>([])
   const [analytics, setAnalytics] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 

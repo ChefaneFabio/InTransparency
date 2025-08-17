@@ -16,9 +16,9 @@ import Link from 'next/link'
 
 export default function StudentDashboard() {
   const { user } = useAuth()
-  const [projects, setProjects] = useState([])
-  const [matches, setMatches] = useState([])
-  const [analytics, setAnalytics] = useState(null)
+  const [projects, setProjects] = useState<any[]>([])
+  const [matches, setMatches] = useState<any[]>([])
+  const [analytics, setAnalytics] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -91,7 +91,13 @@ export default function StudentDashboard() {
     }
   ]
 
-  const quickActions = [
+  const quickActions: Array<{
+    title: string;
+    description: string;
+    href: string;
+    icon: any;
+    color: 'blue' | 'green' | 'purple' | 'orange' | 'red' | 'gray';
+  }> = [
     {
       title: 'Upload New Project',
       description: 'Share your latest work',

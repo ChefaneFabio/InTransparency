@@ -42,8 +42,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 
 export default function CandidatesPage() {
   const { user } = useAuth()
-  const [candidates, setCandidates] = useState([])
-  const [filteredCandidates, setFilteredCandidates] = useState([])
+  const [candidates, setCandidates] = useState<any[]>([])
+  const [filteredCandidates, setFilteredCandidates] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
   const [universityFilter, setUniversityFilter] = useState('all')
@@ -364,10 +364,10 @@ export default function CandidatesPage() {
       filtered = filtered.filter(candidate =>
         `${candidate.firstName} ${candidate.lastName}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
         candidate.university.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        candidate.skills.some(skill => skill.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        candidate.topProjects.some(project => 
+        candidate.skills.some((skill: any) => skill.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        candidate.topProjects.some((project: any) => 
           project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          project.technologies.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()))
+          project.technologies.some((tech: any) => tech.toLowerCase().includes(searchQuery.toLowerCase()))
         )
       )
     }
@@ -380,7 +380,7 @@ export default function CandidatesPage() {
     // Skill filter
     if (skillFilter !== 'all') {
       filtered = filtered.filter(candidate => 
-        candidate.skills.some(skill => skill.name === skillFilter)
+        candidate.skills.some((skill: any) => skill.name === skillFilter)
       )
     }
 
@@ -393,7 +393,7 @@ export default function CandidatesPage() {
     if (locationFilter !== 'all') {
       filtered = filtered.filter(candidate => 
         candidate.location.includes(locationFilter) ||
-        candidate.jobPreferences.locations.some(loc => loc.includes(locationFilter))
+        candidate.jobPreferences.locations.some((loc: any) => loc.includes(locationFilter))
       )
     }
 
@@ -437,21 +437,21 @@ export default function CandidatesPage() {
   }
 
   const getUniversities = () => {
-    const universities = [...new Set(candidates.map(c => c.university))]
+    const universities = Array.from(new Set(candidates.map(c => c.university)))
     return universities.sort()
   }
 
   const getTopSkills = () => {
-    const skillCounts = {}
-    candidates.forEach(candidate => {
-      candidate.skills.forEach(skill => {
+    const skillCounts: any = {}
+    candidates.forEach((candidate: any) => {
+      candidate.skills.forEach((skill: any) => {
         skillCounts[skill.name] = (skillCounts[skill.name] || 0) + 1
       })
     })
     return Object.entries(skillCounts)
-      .sort(([,a], [,b]) => b - a)
+      .sort(([,a]: any, [,b]: any) => b - a)
       .slice(0, 10)
-      .map(([skill]) => skill)
+      .map(([skill]: any) => skill)
   }
 
   if (loading) {
@@ -465,7 +465,7 @@ export default function CandidatesPage() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(6)].map((_: any, i: number) => (
             <Card key={i} className="animate-pulse">
               <CardContent className="p-6">
                 <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
@@ -588,7 +588,7 @@ export default function CandidatesPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Universities</SelectItem>
-                  {getUniversities().map((university) => (
+                  {getUniversities().map((university: any) => (
                     <SelectItem key={university} value={university}>
                       {university}
                     </SelectItem>
@@ -602,7 +602,7 @@ export default function CandidatesPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Skills</SelectItem>
-                  {getTopSkills().map((skill) => (
+                  {getTopSkills().map((skill: any) => (
                     <SelectItem key={skill} value={skill}>
                       {skill}
                     </SelectItem>
@@ -700,7 +700,7 @@ export default function CandidatesPage() {
         <div>
           {viewMode === 'grid' ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredCandidates.map((candidate) => (
+              {filteredCandidates.map((candidate: any) => (
                 <Card key={candidate.id} className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
@@ -754,7 +754,7 @@ export default function CandidatesPage() {
                     </div>
 
                     <div className="flex flex-wrap gap-1 mb-4">
-                      {candidate.skills.slice(0, 3).map((skill) => (
+                      {candidate.skills.slice(0, 3).map((skill: any) => (
                         <Badge key={skill.name} variant="secondary" className="text-xs">
                           {skill.name}
                         </Badge>
@@ -794,7 +794,7 @@ export default function CandidatesPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {filteredCandidates.map((candidate) => (
+              {filteredCandidates.map((candidate: any) => (
                 <Card key={candidate.id} className="hover:shadow-md transition-shadow">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between">
@@ -839,7 +839,7 @@ export default function CandidatesPage() {
                           <p className="text-gray-700 mb-4 line-clamp-2">{candidate.bio}</p>
                           
                           <div className="flex flex-wrap gap-2 mb-4">
-                            {candidate.skills.slice(0, 6).map((skill) => (
+                            {candidate.skills.slice(0, 6).map((skill: any) => (
                               <Badge key={skill.name} variant="secondary" className="text-xs">
                                 {skill.name} ({skill.level}%)
                               </Badge>
@@ -852,7 +852,7 @@ export default function CandidatesPage() {
                           </div>
                           
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {candidate.topProjects.slice(0, 2).map((project, index) => (
+                            {candidate.topProjects.slice(0, 2).map((project: any, index: number) => (
                               <div key={index} className="p-3 bg-gray-50 rounded-lg">
                                 <h4 className="font-medium text-gray-900 text-sm mb-1">{project.title}</h4>
                                 <p className="text-xs text-gray-600 mb-2 line-clamp-2">{project.description}</p>

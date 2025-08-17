@@ -373,7 +373,7 @@ export default function ProjectDetailPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {project.images.map((image, index) => (
+                      {project.images.map((image: any, index: number) => (
                         <div key={index} className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
                           <img 
                             src={image} 
@@ -394,7 +394,7 @@ export default function ProjectDetailPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
+                    {project.technologies.map((tech: any) => (
                       <Badge key={tech} variant="secondary">
                         {tech}
                       </Badge>
@@ -411,7 +411,7 @@ export default function ProjectDetailPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
+                      {project.tags.map((tag: any) => (
                         <Badge key={tag} variant="outline">
                           {tag}
                         </Badge>
@@ -429,12 +429,12 @@ export default function ProjectDetailPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3">
-                      {project.collaborators.map((collab, index) => (
+                      {project.collaborators.map((collab: any, index: number) => (
                         <div key={index} className="flex items-center space-x-3">
                           <Avatar>
                             <AvatarImage src={`/api/placeholder/32/32`} />
                             <AvatarFallback>
-                              {collab.name.split(' ').map(n => n[0]).join('')}
+                              {collab.name.split(' ').map((n: any) => n[0]).join('')}
                             </AvatarFallback>
                           </Avatar>
                           <div>
@@ -483,7 +483,7 @@ export default function ProjectDetailPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 gap-2">
-                    {project.aiAnalysis.skillsIdentified.map((skill) => (
+                    {project.aiAnalysis.skillsIdentified.map((skill: any) => (
                       <Badge key={skill} variant="outline" className="justify-center">
                         {skill}
                       </Badge>
@@ -502,7 +502,7 @@ export default function ProjectDetailPage() {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    {project.aiAnalysis.keyInsights.map((insight, index) => (
+                    {project.aiAnalysis.keyInsights.map((insight: any, index: number) => (
                       <li key={index} className="flex items-start space-x-2">
                         <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                         <span className="text-gray-700">{insight}</span>
@@ -522,7 +522,7 @@ export default function ProjectDetailPage() {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    {project.aiAnalysis.improvementSuggestions.map((suggestion, index) => (
+                    {project.aiAnalysis.improvementSuggestions.map((suggestion: any, index: number) => (
                       <li key={index} className="flex items-start space-x-2">
                         <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                         <span className="text-gray-700">{suggestion}</span>
@@ -590,7 +590,7 @@ export default function ProjectDetailPage() {
             <TabsContent value="jobs" className="space-y-6">
               {/* Job Matches */}
               <div className="space-y-4">
-                {project.jobMatches.map((job) => (
+                {project.jobMatches.map((job: any) => (
                   <Card key={job.id} className="hover:shadow-md transition-shadow">
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between">
@@ -607,7 +607,7 @@ export default function ProjectDetailPage() {
                             <p className="text-sm font-medium text-green-600 mt-1">{job.salary}</p>
                             
                             <div className="flex flex-wrap gap-1 mt-2">
-                              {job.skills.map((skill) => (
+                              {job.skills.map((skill: any) => (
                                 <Badge key={skill} variant="secondary" className="text-xs">
                                   {skill}
                                 </Badge>
@@ -684,7 +684,7 @@ export default function ProjectDetailPage() {
               <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-600">Difficulty Rating</span>
                 <div className="flex items-center">
-                  {[...Array(5)].map((_, i) => (
+                  {[...Array(5)].map((_: any, i: number) => (
                     <Star 
                       key={i} 
                       className={`h-4 w-4 ${

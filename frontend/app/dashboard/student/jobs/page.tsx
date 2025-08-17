@@ -29,8 +29,8 @@ import {
 
 export default function JobsPage() {
   const { user } = useAuth()
-  const [jobs, setJobs] = useState([])
-  const [filteredJobs, setFilteredJobs] = useState([])
+  const [jobs, setJobs] = useState<any[]>([])
+  const [filteredJobs, setFilteredJobs] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
   const [locationFilter, setLocationFilter] = useState('all')
@@ -184,7 +184,7 @@ export default function JobsPage() {
       filtered = filtered.filter(job =>
         job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        job.skills.some(skill => skill.toLowerCase().includes(searchQuery.toLowerCase()))
+        job.skills.some((skill: any) => skill.toLowerCase().includes(searchQuery.toLowerCase()))
       )
     }
 
@@ -274,7 +274,7 @@ export default function JobsPage() {
         </div>
         
         <div className="grid grid-cols-1 gap-6">
-          {[...Array(5)].map((_, i) => (
+          {[...Array(5)].map((_: any, i: number) => (
             <Card key={i} className="animate-pulse">
               <CardContent className="p-6">
                 <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
@@ -457,7 +457,7 @@ export default function JobsPage() {
             </Card>
           ) : (
             <div className="space-y-6">
-              {filteredJobs.map((job) => (
+              {filteredJobs.map((job: any) => (
                 <Card key={job.id} className="hover:shadow-md transition-shadow">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between">
@@ -513,7 +513,7 @@ export default function JobsPage() {
                           </p>
                           
                           <div className="flex flex-wrap gap-2 mb-4">
-                            {job.skills.slice(0, 4).map((skill) => (
+                            {job.skills.slice(0, 4).map((skill: any) => (
                               <Badge key={skill} variant="secondary" className="text-xs">
                                 {skill}
                               </Badge>
@@ -529,7 +529,7 @@ export default function JobsPage() {
                             <div className="mb-4">
                               <p className="text-xs text-gray-500 mb-1">Matching your projects:</p>
                               <div className="flex flex-wrap gap-1">
-                                {job.matchingProjects.map((project) => (
+                                {job.matchingProjects.map((project: any) => (
                                   <Badge key={project} variant="outline" className="text-xs">
                                     <Target className="h-3 w-3 mr-1" />
                                     {project}
@@ -586,7 +586,7 @@ export default function JobsPage() {
 
         <TabsContent value="recommended">
           <div className="space-y-6">
-            {filteredJobs.filter(job => job.match >= 85).map((job) => (
+            {filteredJobs.filter((job: any) => job.match >= 85).map((job: any) => (
               <Card key={job.id} className="border-2 border-blue-200 bg-blue-50/50">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
@@ -609,7 +609,7 @@ export default function JobsPage() {
                         <p className="text-gray-600 font-medium mb-3">{job.company}</p>
                         
                         <div className="flex flex-wrap gap-2 mb-4">
-                          {job.skills.map((skill) => (
+                          {job.skills.map((skill: any) => (
                             <Badge key={skill} variant="secondary" className="text-xs">
                               {skill}
                             </Badge>
@@ -640,7 +640,7 @@ export default function JobsPage() {
 
         <TabsContent value="applied">
           <div className="space-y-6">
-            {jobs.filter(job => job.isApplied).map((job) => (
+            {jobs.filter((job: any) => job.isApplied).map((job: any) => (
               <Card key={job.id}>
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
@@ -677,7 +677,7 @@ export default function JobsPage() {
 
         <TabsContent value="bookmarked">
           <div className="space-y-6">
-            {jobs.filter(job => job.isBookmarked).map((job) => (
+            {jobs.filter((job: any) => job.isBookmarked).map((job: any) => (
               <Card key={job.id}>
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">

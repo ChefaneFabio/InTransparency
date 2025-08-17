@@ -115,11 +115,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const refreshToken = async () => {
     try {
-      const response = await authApi.refreshToken()
-      const newToken = response.data.token
-
-      setToken(newToken)
-      localStorage.setItem('token', newToken)
+      // TODO: Implement refresh token endpoint
+      // For now, just log out the user when token expires
+      logout()
     } catch (error) {
       // Refresh failed, log out user
       logout()

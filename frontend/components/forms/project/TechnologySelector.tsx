@@ -228,7 +228,7 @@ export function TechnologySelector({ selected, onChange, error }: TechnologySele
               size="sm"
               onClick={() => {
                 const combo = ['React', 'TypeScript', 'Node.js', 'PostgreSQL']
-                const newSelected = [...new Set([...selected, ...combo])]
+                const newSelected = Array.from(new Set([...selected, ...combo]))
                 onChange(newSelected)
               }}
               className="text-xs"
@@ -241,7 +241,7 @@ export function TechnologySelector({ selected, onChange, error }: TechnologySele
               size="sm"
               onClick={() => {
                 const combo = ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel']
-                const newSelected = [...new Set([...selected, ...combo])]
+                const newSelected = Array.from(new Set([...selected, ...combo]))
                 onChange(newSelected)
               }}
               className="text-xs"
@@ -254,7 +254,7 @@ export function TechnologySelector({ selected, onChange, error }: TechnologySele
               size="sm"
               onClick={() => {
                 const combo = ['Python', 'Django', 'PostgreSQL', 'Redis']
-                const newSelected = [...new Set([...selected, ...combo])]
+                const newSelected = Array.from(new Set([...selected, ...combo]))
                 onChange(newSelected)
               }}
               className="text-xs"
@@ -267,7 +267,7 @@ export function TechnologySelector({ selected, onChange, error }: TechnologySele
               size="sm"
               onClick={() => {
                 const combo = ['React Native', 'TypeScript', 'Firebase', 'Expo']
-                const newSelected = [...new Set([...selected, ...combo])]
+                const newSelected = Array.from(new Set([...selected, ...combo]))
                 onChange(newSelected)
               }}
               className="text-xs"

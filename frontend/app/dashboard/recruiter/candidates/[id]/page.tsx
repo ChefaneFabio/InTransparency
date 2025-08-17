@@ -94,7 +94,7 @@ export default function CandidateProfilePage() {
           "Salary expectations align with budget"
         ],
         avgInnovationScore: 87,
-        projects: 5,
+        projectsCount: 5,
         totalProjectViews: 1847,
         
         // Comprehensive Skills
@@ -459,7 +459,7 @@ export default function CandidateProfilePage() {
                     <div className="text-sm text-gray-500">Innovation</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">{candidate.projects}</div>
+                    <div className="text-2xl font-bold text-purple-600">{candidate.projectsCount}</div>
                     <div className="text-sm text-gray-500">Projects</div>
                   </div>
                 </div>

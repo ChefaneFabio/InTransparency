@@ -155,37 +155,37 @@ export default function PostJobPage() {
     setFormData(prev => ({ ...prev, [field]: value }))
     // Clear error when user starts typing
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: null }))
+      setErrors((prev: any) => ({ ...prev, [field]: null }))
     }
   }
 
   const addArrayItem = (field: string) => {
     setFormData(prev => ({
       ...prev,
-      [field]: [...prev[field], '']
+      [field]: [...(prev as any)[field], '']
     }))
   }
 
   const updateArrayItem = (field: string, index: number, value: string) => {
     setFormData(prev => ({
       ...prev,
-      [field]: prev[field].map((item, i) => i === index ? value : item)
+      [field]: (prev as any)[field].map((item: any, i: number) => i === index ? value : item)
     }))
   }
 
   const removeArrayItem = (field: string, index: number) => {
     setFormData(prev => ({
       ...prev,
-      [field]: prev[field].filter((_, i) => i !== index)
+      [field]: (prev as any)[field].filter((_: any, i: number) => i !== index)
     }))
   }
 
   const toggleArrayValue = (field: string, value: string) => {
     setFormData(prev => ({
       ...prev,
-      [field]: prev[field].includes(value)
-        ? prev[field].filter(item => item !== value)
-        : [...prev[field], value]
+      [field]: (prev as any)[field].includes(value)
+        ? (prev as any)[field].filter((item: any) => item !== value)
+        : [...(prev as any)[field], value]
     }))
   }
 
@@ -529,7 +529,7 @@ export default function PostJobPage() {
                 {benefits.map((benefit) => (
                   <label key={benefit} className="flex items-center space-x-2 cursor-pointer">
                     <Checkbox
-                      checked={formData.benefits.includes(benefit)}
+                      checked={(formData as any).benefits.includes(benefit)}
                       onCheckedChange={() => toggleArrayValue('benefits', benefit)}
                     />
                     <span className="text-sm">{benefit}</span>
@@ -598,7 +598,7 @@ export default function PostJobPage() {
                 {universities.map((university) => (
                   <label key={university} className="flex items-center space-x-2 cursor-pointer">
                     <Checkbox
-                      checked={formData.targetUniversities.includes(university)}
+                      checked={(formData as any).targetUniversities.includes(university)}
                       onCheckedChange={() => toggleArrayValue('targetUniversities', university)}
                     />
                     <span className="text-sm">{university}</span>
@@ -615,7 +615,7 @@ export default function PostJobPage() {
                 {majors.map((major) => (
                   <label key={major} className="flex items-center space-x-2 cursor-pointer">
                     <Checkbox
-                      checked={formData.targetMajors.includes(major)}
+                      checked={(formData as any).targetMajors.includes(major)}
                       onCheckedChange={() => toggleArrayValue('targetMajors', major)}
                     />
                     <span className="text-sm">{major}</span>
@@ -631,7 +631,7 @@ export default function PostJobPage() {
                 {skills.slice(0, 20).map((skill) => (
                   <label key={skill} className="flex items-center space-x-2 cursor-pointer">
                     <Checkbox
-                      checked={formData.targetSkills.includes(skill)}
+                      checked={(formData as any).targetSkills.includes(skill)}
                       onCheckedChange={() => toggleArrayValue('targetSkills', skill)}
                     />
                     <span className="text-sm">{skill}</span>
@@ -678,7 +678,7 @@ export default function PostJobPage() {
                 {['2024', '2025', '2026', '2027'].map((year) => (
                   <label key={year} className="flex items-center space-x-2 cursor-pointer">
                     <Checkbox
-                      checked={formData.graduationYears.includes(year)}
+                      checked={(formData as any).graduationYears.includes(year)}
                       onCheckedChange={() => toggleArrayValue('graduationYears', year)}
                     />
                     <span className="text-sm">{year}</span>

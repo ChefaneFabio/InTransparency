@@ -114,7 +114,7 @@ export default function RegisterPage() {
     setFormData(prev => ({ ...prev, [field]: value }))
     // Clear error when user starts typing
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: null }))
+      setErrors((prev: any) => ({ ...prev, [field]: null }))
     }
     if (registrationError) {
       setRegistrationError('')
@@ -218,13 +218,8 @@ export default function RegisterPage() {
         graduationYear: formData.graduationYear
       }
 
-      const result = await register(userData)
-      
-      if (result.success) {
-        setRegistrationSuccess(true)
-      } else {
-        setRegistrationError(result.error || 'Registration failed')
-      }
+      await register(userData)
+      setRegistrationSuccess(true)
     } catch (error: any) {
       setRegistrationError(error.message || 'An unexpected error occurred')
     } finally {
