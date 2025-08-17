@@ -17,7 +17,8 @@
       "Bash(npm run dev:*)",
       "Bash(node:*)",
       "Bash(touch:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(cp:*)"
     ],
     "defaultMode": "acceptEdits"
   }
