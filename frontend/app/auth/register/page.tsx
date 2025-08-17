@@ -218,8 +218,32 @@ export default function RegisterPage() {
         graduationYear: formData.graduationYear
       }
 
-      await register(userData)
+      const response = await register(userData)
       setRegistrationSuccess(true)
+      
+      // Redirect based on user role after successful registration
+      setTimeout(() => {
+        if (response.data?.user?.role) {
+          const role = response.data.user.role
+          switch (role) {
+            case 'student':
+              router.push('/dashboard/student')
+              break
+            case 'recruiter':
+              router.push('/dashboard/recruiter')
+              break
+            case 'university':
+              router.push('/dashboard/university')
+              break
+            default:
+              router.push('/dashboard')
+              break
+          }
+        } else {
+          // Fallback redirect
+          router.push('/dashboard')
+        }
+      }, 2000) // Wait 2 seconds to show success message
     } catch (error: any) {
       setRegistrationError(error.message || 'An unexpected error occurred')
     } finally {

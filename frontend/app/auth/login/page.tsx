@@ -89,8 +89,29 @@ export default function LoginPage() {
     setLoginError('')
 
     try {
-      await login(formData.email, formData.password)
-      // Redirect is handled by the auth context
+      const response = await login(formData.email, formData.password)
+      
+      // Redirect based on user role after successful login
+      if (response.data?.user?.role) {
+        const role = response.data.user.role
+        switch (role) {
+          case 'student':
+            router.push('/dashboard/student')
+            break
+          case 'recruiter':
+            router.push('/dashboard/recruiter')
+            break
+          case 'university':
+            router.push('/dashboard/university')
+            break
+          default:
+            router.push('/dashboard')
+            break
+        }
+      } else {
+        // Fallback redirect
+        router.push('/dashboard')
+      }
     } catch (error: any) {
       setLoginError(error.message || 'An unexpected error occurred')
     } finally {
