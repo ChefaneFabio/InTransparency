@@ -27,7 +27,11 @@
       "Bash(source:*)",
       "Bash(pip install:*)",
       "Bash(. venv/bin/activate)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(for i in {1..3})",
+      "Bash(do echo \"Attempt $i\")",
+      "Bash(break)",
+      "Bash(done)"
     ],
     "defaultMode": "acceptEdits"
   }
