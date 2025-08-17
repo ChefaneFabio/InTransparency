@@ -92,8 +92,8 @@ export default function LoginPage() {
       const response = await login(formData.email, formData.password)
       
       // Redirect based on user role after successful login
-      if (response.data?.user?.role) {
-        const role = response.data.user.role
+      if (response?.user?.role) {
+        const role = response.user.role
         switch (role) {
           case 'student':
             router.push('/dashboard/student')

@@ -223,8 +223,8 @@ export default function RegisterPage() {
       
       // Redirect based on user role after successful registration
       setTimeout(() => {
-        if (response.data?.user?.role) {
-          const role = response.data.user.role
+        if (response?.user?.role) {
+          const role = response.user.role
           switch (role) {
             case 'student':
               router.push('/dashboard/student')
