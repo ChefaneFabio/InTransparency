@@ -26,7 +26,8 @@
       "Bash(pip3 install:*)",
       "Bash(source:*)",
       "Bash(pip install:*)",
-      "Bash(. venv/bin/activate)"
+      "Bash(. venv/bin/activate)",
+      "Bash(curl:*)"
     ],
     "defaultMode": "acceptEdits"
   }
