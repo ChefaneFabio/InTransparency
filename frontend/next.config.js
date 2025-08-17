@@ -46,7 +46,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://api-intransparency.onrender.com/api/:path*',
+        destination: 'https://intransparency.onrender.com/api/:path*',
       },
     ]
   },

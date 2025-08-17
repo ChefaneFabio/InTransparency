@@ -24,6 +24,7 @@ app.use(cors({
     'http://localhost:3000',
     'https://in-transparency-9visdfu70-chefanefabios-projects.vercel.app',
     'https://in-transparency-m5krpwb5s-chefanefabios-projects.vercel.app',
+    'https://in-transparency-git-main-chefanefabios-projects.vercel.app',
     'https://intransparency.vercel.app',
     process.env.FRONTEND_URL
   ].filter(url => Boolean(url)),
