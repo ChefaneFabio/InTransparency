@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://intransparency.onrender.com'
 
 export const api = axios.create({
   baseURL: API_URL,
@@ -76,6 +76,69 @@ export const matchesApi = {
   
   getMatches: (userId: string) =>
     api.get(`/api/matches/user/${userId}`),
+}
+
+export const coursesApi = {
+  getAll: (params?: any) =>
+    api.get('/api/courses', { params }),
+  
+  getById: (id: string) =>
+    api.get(`/api/courses/${id}`),
+  
+  create: (courseData: any) =>
+    api.post('/api/courses', courseData),
+  
+  update: (id: string, courseData: any) =>
+    api.put(`/api/courses/${id}`, courseData),
+  
+  delete: (id: string) =>
+    api.delete(`/api/courses/${id}`),
+  
+  bulkCreate: (courses: any[]) =>
+    api.post('/api/courses/bulk', { courses }),
+  
+  getAnalytics: (id: string) =>
+    api.get(`/api/courses/${id}/analytics`),
+}
+
+export const filesApi = {
+  upload: (file: File, type: string) => {
+    const formData = new FormData()
+    formData.append('file', file)
+    return api.post(`/api/files/upload/${type}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+  },
+  
+  uploadMultiple: (files: File[], type: string) => {
+    const formData = new FormData()
+    files.forEach(file => formData.append('files', file))
+    return api.post(`/api/files/upload-multiple/${type}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+  },
+  
+  parseTranscript: (file: File) => {
+    const formData = new FormData()
+    formData.append('transcript', file)
+    return api.post('/api/files/parse-transcript', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+  },
+  
+  download: (filename: string) =>
+    api.get(`/api/files/download/${filename}`, {
+      responseType: 'blob',
+    }),
+  
+  delete: (filename: string) =>
+    api.delete(`/api/files/${filename}`),
 }
 
 export const uploadApi = {

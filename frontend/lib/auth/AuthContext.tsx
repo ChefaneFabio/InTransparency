@@ -39,7 +39,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           // Verify token is still valid
           try {
             const response = await authApi.me()
-            setUser(response.data.user)
+            setUser(response.data.data.user)
           } catch (error) {
             // Token is invalid, clear auth state
             localStorage.removeItem('token')
@@ -62,7 +62,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       setIsLoading(true)
       const response = await authApi.login(email, password)
-      const { token: newToken, user: newUser } = response.data
+      const { token: newToken, user: newUser } = response.data.data
 
       setToken(newToken)
       setUser(newUser)
@@ -82,7 +82,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       setIsLoading(true)
       const response = await authApi.register(userData)
-      const { token: newToken, user: newUser } = response.data
+      const { token: newToken, user: newUser } = response.data.data
 
       setToken(newToken)
       setUser(newUser)
