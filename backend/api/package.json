@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/server-basic.ts",
     "build": "echo 'Using JavaScript directly'",
-    "start": "node server.js",
+    "start": "node server-full.js",
     "copy-files": "cp -r src/public dist/ || echo 'No public files to copy'",
     "test": "jest",
     "test:watch": "jest --watch",
