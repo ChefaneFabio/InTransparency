@@ -20,7 +20,13 @@
       "Bash(npx tsc:*)",
       "Bash(cp:*)",
       "Bash(vercel:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(VERCEL_ORG_ID=\"team_XKTJhf2UOYU4STcNS25vS3LO\" VERCEL_PROJECT_ID=\"prj_o9KOoBeO9PdTcKU9koYsT3XZ5r9r\" vercel --prod --yes --force)",
+      "Bash(python:*)",
+      "Bash(pip3 install:*)",
+      "Bash(source:*)",
+      "Bash(pip install:*)",
+      "Bash(. venv/bin/activate)"
     ],
     "defaultMode": "acceptEdits"
   }

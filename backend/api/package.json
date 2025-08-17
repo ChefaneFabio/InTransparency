@@ -5,8 +5,8 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "nodemon src/server-basic.ts",
-    "build": "tsc && npm run copy-files",
-    "start": "node dist/server.js",
+    "build": "echo 'Using JavaScript directly'",
+    "start": "node server.js",
     "copy-files": "cp -r src/public dist/ || echo 'No public files to copy'",
     "test": "jest",
     "test:watch": "jest --watch",

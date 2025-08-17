@@ -11,6 +11,11 @@ import dotenv from 'dotenv'
 import { errorHandler, notFound } from './middleware/error'
 import { requestLogger } from './middleware/logger'
 import authRoutes from './routes/auth'
+import userRoutes from './routes/users'
+import projectRoutes from './routes/projects'
+import jobRoutes from './routes/jobs'
+import analyticsRoutes from './routes/analytics'
+import notificationRoutes from './routes/notifications'
 
 dotenv.config()
 
