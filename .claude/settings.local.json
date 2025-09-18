@@ -35,7 +35,9 @@
       "Bash(pkill:*)",
       "Bash(fuser:*)",
       "Bash(npm start)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(npx shadcn-ui@latest add:*)",
+      "Bash(npx shadcn@latest add:*)"
     ],
     "defaultMode": "acceptEdits"
   }

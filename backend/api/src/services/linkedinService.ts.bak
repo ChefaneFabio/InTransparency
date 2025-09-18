@@ -1,0 +1,380 @@
+import axios from 'axios';
+import { logger } from '../utils/logger';
+
+export interface LinkedInProfile {
+  id: string;
+  firstName: string;
+  lastName: string;
+  headline?: string;
+  pictureUrl?: string;
+  profileUrl: string;
+  location?: string;
+  industry?: string;
+  positions?: LinkedInPosition[];
+  educations?: LinkedInEducation[];
+  skills?: string[];
+  connections?: number;
+}
+
+export interface LinkedInPosition {
+  title: string;
+  company: string;
+  location?: string;
+  startDate: Date;
+  endDate?: Date;
+  description?: string;
+  current: boolean;
+}
+
+export interface LinkedInEducation {
+  school: string;
+  degree?: string;
+  fieldOfStudy?: string;
+  startDate?: Date;
+  endDate?: Date;
+  description?: string;
+}
+
+export interface LinkedInAuthTokens {
+  accessToken: string;
+  refreshToken?: string;
+  expiresIn: number;
+  tokenType: string;
+}
+
+export interface LinkedInConnection {
+  id: string;
+  firstName: string;
+  lastName: string;
+  headline?: string;
+  pictureUrl?: string;
+  connectionType: 'first' | 'second' | 'third';
+  mutualConnections?: number;
+}
+
+class LinkedInService {
+  private baseUrl = 'https://api.linkedin.com/v2';
+  private authUrl = 'https://www.linkedin.com/oauth/v2';
+  private clientId: string;
+  private clientSecret: string;
+  private redirectUri: string;
+
+  constructor() {
+    this.clientId = process.env.LINKEDIN_CLIENT_ID || '';
+    this.clientSecret = process.env.LINKEDIN_CLIENT_SECRET || '';
+    this.redirectUri = process.env.LINKEDIN_REDIRECT_URI || 'http://localhost:3000/auth/linkedin/callback';
+  }
+
+  /**
+   * Generate LinkedIn OAuth authorization URL
+   */
+  generateAuthUrl(state: string, scopes: string[] = ['r_liteprofile', 'r_emailaddress', 'w_member_social']): string {
+    const scopeString = scopes.join(' ');
+    const params = new URLSearchParams({
+      response_type: 'code',
+      client_id: this.clientId,
+      redirect_uri: this.redirectUri,
+      state,
+      scope: scopeString
+    });
+
+    return `${this.authUrl}/authorization?${params.toString()}`;
+  }
+
+  /**
+   * Exchange authorization code for access tokens
+   */
+  async exchangeCodeForTokens(code: string): Promise<LinkedInAuthTokens> {
+    try {
+      const response = await axios.post(`${this.authUrl}/accessToken`, {
+        grant_type: 'authorization_code',
+        code,
+        client_id: this.clientId,
+        client_secret: this.clientSecret,
+        redirect_uri: this.redirectUri
+      }, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+
+      return {
+        accessToken: response.data.access_token,
+        refreshToken: response.data.refresh_token,
+        expiresIn: response.data.expires_in,
+        tokenType: response.data.token_type
+      };
+    } catch (error) {
+      logger.error('Failed to exchange LinkedIn code for tokens:', error);
+      throw new Error('LinkedIn authentication failed');
+    }
+  }
+
+  /**
+   * Get user's LinkedIn profile
+   */
+  async getProfile(accessToken: string): Promise<LinkedInProfile> {
+    try {
+      const [profileResponse, emailResponse] = await Promise.all([
+        axios.get(`${this.baseUrl}/people/~:(id,first-name,last-name,headline,picture-url,public-profile-url,location,industry,positions,educations)`, {
+          headers: { Authorization: `Bearer ${accessToken}` }
+        }),
+        axios.get(`${this.baseUrl}/emailAddress?q=members&projection=(elements*(handle~))`, {
+          headers: { Authorization: `Bearer ${accessToken}` }
+        })
+      ]);
+
+      const profile = profileResponse.data;
+      const email = emailResponse.data.elements?.[0]?.['handle~']?.emailAddress;
+
+      return {
+        id: profile.id,
+        firstName: profile.firstName,
+        lastName: profile.lastName,
+        headline: profile.headline,
+        pictureUrl: profile.pictureUrl,
+        profileUrl: profile.publicProfileUrl,
+        location: profile.location?.name,
+        industry: profile.industry,
+        positions: profile.positions?.values?.map((pos: any) => ({
+          title: pos.title,
+          company: pos.company?.name,
+          location: pos.location?.name,
+          startDate: new Date(pos.startDate?.year, pos.startDate?.month - 1),
+          endDate: pos.endDate ? new Date(pos.endDate.year, pos.endDate.month - 1) : undefined,
+          description: pos.summary,
+          current: pos.isCurrent
+        })) || [],
+        educations: profile.educations?.values?.map((edu: any) => ({
+          school: edu.schoolName,
+          degree: edu.degree,
+          fieldOfStudy: edu.fieldOfStudy,
+          startDate: edu.startDate ? new Date(edu.startDate.year, edu.startDate.month - 1) : undefined,
+          endDate: edu.endDate ? new Date(edu.endDate.year, edu.endDate.month - 1) : undefined,
+          description: edu.notes
+        })) || [],
+        skills: [], // Will be populated separately
+        connections: 0 // Will be populated separately
+      };
+    } catch (error) {
+      logger.error('Failed to get LinkedIn profile:', error);
+      throw new Error('Failed to retrieve LinkedIn profile');
+    }
+  }
+
+  /**
+   * Get user's LinkedIn connections
+   */
+  async getConnections(accessToken: string, start: number = 0, count: number = 100): Promise<LinkedInConnection[]> {
+    try {
+      const response = await axios.get(`${this.baseUrl}/people/~/connections`, {
+        params: { start, count },
+        headers: { Authorization: `Bearer ${accessToken}` }
+      });
+
+      return response.data.values?.map((connection: any) => ({
+        id: connection.id,
+        firstName: connection.firstName,
+        lastName: connection.lastName,
+        headline: connection.headline,
+        pictureUrl: connection.pictureUrl,
+        connectionType: 'first' as const,
+        mutualConnections: 0
+      })) || [];
+    } catch (error) {
+      logger.error('Failed to get LinkedIn connections:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Search LinkedIn network for potential connections
+   */
+  async searchPeople(accessToken: string, keywords: string, filters?: {
+    school?: string;
+    company?: string;
+    location?: string;
+    industry?: string;
+  }): Promise<LinkedInConnection[]> {
+    try {
+      const params: any = {
+        keywords,
+        count: 25
+      };
+
+      if (filters?.school) params.school = filters.school;
+      if (filters?.company) params.company = filters.company;
+      if (filters?.location) params.location = filters.location;
+      if (filters?.industry) params.industry = filters.industry;
+
+      const response = await axios.get(`${this.baseUrl}/people-search`, {
+        params,
+        headers: { Authorization: `Bearer ${accessToken}` }
+      });
+
+      return response.data.people?.values?.map((person: any) => ({
+        id: person.id,
+        firstName: person.firstName,
+        lastName: person.lastName,
+        headline: person.headline,
+        pictureUrl: person.pictureUrl,
+        connectionType: person.relation?.distance === 1 ? 'first' :
+                      person.relation?.distance === 2 ? 'second' : 'third',
+        mutualConnections: person.relation?.mutualConnections || 0
+      })) || [];
+    } catch (error) {
+      logger.error('Failed to search LinkedIn people:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Send connection request
+   */
+  async sendConnectionRequest(accessToken: string, personId: string, message?: string): Promise<boolean> {
+    try {
+      await axios.post(`${this.baseUrl}/people/~/mailbox`, {
+        recipients: {
+          values: [{
+            person: {
+              _path: `/people/${personId}`
+            }
+          }]
+        },
+        subject: 'I would like to connect with you',
+        body: message || 'I would like to add you to my professional network.'
+      }, {
+        headers: { Authorization: `Bearer ${accessToken}` }
+      });
+
+      return true;
+    } catch (error) {
+      logger.error('Failed to send LinkedIn connection request:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Post update to LinkedIn feed
+   */
+  async postUpdate(accessToken: string, content: string, visibility: 'anyone' | 'connections-only' = 'anyone'): Promise<boolean> {
+    try {
+      await axios.post(`${this.baseUrl}/people/~/shares`, {
+        comment: content,
+        visibility: {
+          code: visibility
+        }
+      }, {
+        headers: { Authorization: `Bearer ${accessToken}` }
+      });
+
+      return true;
+    } catch (error) {
+      logger.error('Failed to post LinkedIn update:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Get company information
+   */
+  async getCompany(accessToken: string, companyId: string): Promise<any> {
+    try {
+      const response = await axios.get(`${this.baseUrl}/companies/${companyId}`, {
+        headers: { Authorization: `Bearer ${accessToken}` }
+      });
+
+      return response.data;
+    } catch (error) {
+      logger.error('Failed to get LinkedIn company:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Refresh access token
+   */
+  async refreshAccessToken(refreshToken: string): Promise<LinkedInAuthTokens> {
+    try {
+      const response = await axios.post(`${this.authUrl}/accessToken`, {
+        grant_type: 'refresh_token',
+        refresh_token: refreshToken,
+        client_id: this.clientId,
+        client_secret: this.clientSecret
+      }, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+
+      return {
+        accessToken: response.data.access_token,
+        refreshToken: response.data.refresh_token,
+        expiresIn: response.data.expires_in,
+        tokenType: response.data.token_type
+      };
+    } catch (error) {
+      logger.error('Failed to refresh LinkedIn token:', error);
+      throw new Error('LinkedIn token refresh failed');
+    }
+  }
+
+  /**
+   * Validate access token
+   */
+  async validateToken(accessToken: string): Promise<boolean> {
+    try {
+      await axios.get(`${this.baseUrl}/people/~`, {
+        headers: { Authorization: `Bearer ${accessToken}` }
+      });
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  /**
+   * Sync InTransparency profile with LinkedIn
+   */
+  async syncProfileWithInTransparency(accessToken: string, userId: string, userType: 'student' | 'recruiter'): Promise<void> {
+    try {
+      const linkedInProfile = await this.getProfile(accessToken);
+
+      // Update user profile in InTransparency database
+      // This would integrate with your existing user service
+      logger.info(`Syncing LinkedIn profile for ${userType} ${userId}:`, linkedInProfile);
+
+      // Implementation would depend on your database schema
+      // await this.userService.updateLinkedInProfile(userId, linkedInProfile);
+    } catch (error) {
+      logger.error('Failed to sync LinkedIn profile:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Find mutual connections between two LinkedIn users
+   */
+  async findMutualConnections(accessToken: string, personId: string): Promise<LinkedInConnection[]> {
+    try {
+      const response = await axios.get(`${this.baseUrl}/people/${personId}/relation-to-viewer/mutual-connections`, {
+        headers: { Authorization: `Bearer ${accessToken}` }
+      });
+
+      return response.data.values?.map((connection: any) => ({
+        id: connection.id,
+        firstName: connection.firstName,
+        lastName: connection.lastName,
+        headline: connection.headline,
+        pictureUrl: connection.pictureUrl,
+        connectionType: 'first' as const,
+        mutualConnections: 0
+      })) || [];
+    } catch (error) {
+      logger.error('Failed to find mutual connections:', error);
+      return [];
+    }
+  }
+}
+
+export const linkedinService = new LinkedInService();

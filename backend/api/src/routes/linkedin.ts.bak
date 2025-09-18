@@ -1,0 +1,494 @@
+import { Router, Request, Response } from 'express';
+import { linkedinService } from '../services/linkedinService';
+import { authenticate } from '../middleware/auth';
+import { logger } from '../utils/logger';
+import crypto from 'crypto';
+
+const router = Router();
+
+// In-memory state storage (in production, use Redis)
+const authStates = new Map<string, { userId: string; userType: string; timestamp: number }>();
+
+/**
+ * @route POST /api/linkedin/auth/initiate
+ * @desc Initiate LinkedIn OAuth flow
+ * @access Private
+ */
+router.post('/auth/initiate', authenticate, async (req: Request, res: Response) => {
+  try {
+    const { userType } = req.body; // 'student', 'recruiter', or 'university'
+    const userId = (req as any).user.id;
+
+    // Generate secure state parameter
+    const state = crypto.randomBytes(32).toString('hex');
+
+    // Store state with user info (expires in 10 minutes)
+    authStates.set(state, {
+      userId,
+      userType,
+      timestamp: Date.now()
+    });
+
+    // Define scopes based on user type
+    const scopes = userType === 'recruiter'
+      ? ['r_liteprofile', 'r_emailaddress', 'w_member_social', 'r_1st_connections_size']
+      : ['r_liteprofile', 'r_emailaddress', 'w_member_social'];
+
+    const authUrl = linkedinService.generateAuthUrl(state, scopes);
+
+    res.json({
+      authUrl,
+      state,
+      message: 'LinkedIn authentication initiated'
+    });
+  } catch (error) {
+    logger.error('LinkedIn auth initiation failed:', error);
+    res.status(500).json({ error: 'Failed to initiate LinkedIn authentication' });
+  }
+});
+
+/**
+ * @route POST /api/linkedin/auth/callback
+ * @desc Handle LinkedIn OAuth callback
+ * @access Public
+ */
+router.post('/auth/callback', async (req: Request, res: Response) => {
+  try {
+    const { code, state } = req.body;
+
+    if (!code || !state) {
+      return res.status(400).json({ error: 'Missing authorization code or state' });
+    }
+
+    // Validate state
+    const stateInfo = authStates.get(state);
+    if (!stateInfo) {
+      return res.status(400).json({ error: 'Invalid or expired state parameter' });
+    }
+
+    // Check if state is expired (10 minutes)
+    if (Date.now() - stateInfo.timestamp > 10 * 60 * 1000) {
+      authStates.delete(state);
+      return res.status(400).json({ error: 'State parameter expired' });
+    }
+
+    // Exchange code for tokens
+    const tokens = await linkedinService.exchangeCodeForTokens(code);
+
+    // Get LinkedIn profile
+    const linkedinProfile = await linkedinService.getProfile(tokens.accessToken);
+
+    // Store tokens and profile in database
+    // This would integrate with your user service
+    logger.info(`LinkedIn authentication successful for user ${stateInfo.userId}`);
+
+    // Clean up state
+    authStates.delete(state);
+
+    res.json({
+      success: true,
+      profile: linkedinProfile,
+      message: 'LinkedIn account connected successfully'
+    });
+  } catch (error) {
+    logger.error('LinkedIn auth callback failed:', error);
+    res.status(500).json({ error: 'LinkedIn authentication failed' });
+  }
+});
+
+/**
+ * @route GET /api/linkedin/profile
+ * @desc Get user's LinkedIn profile
+ * @access Private
+ */
+router.get('/profile', authenticate, async (req: Request, res: Response) => {
+  try {
+    const userId = (req as any).user.id;
+
+    // Get stored LinkedIn access token
+    // const accessToken = await getUserLinkedInToken(userId);
+    const accessToken = req.headers['linkedin-token'] as string; // Temporary
+
+    if (!accessToken) {
+      return res.status(404).json({ error: 'LinkedIn account not connected' });
+    }
+
+    const profile = await linkedinService.getProfile(accessToken);
+
+    res.json({
+      profile,
+      message: 'LinkedIn profile retrieved successfully'
+    });
+  } catch (error) {
+    logger.error('Failed to get LinkedIn profile:', error);
+    res.status(500).json({ error: 'Failed to retrieve LinkedIn profile' });
+  }
+});
+
+/**
+ * @route GET /api/linkedin/connections
+ * @desc Get user's LinkedIn connections
+ * @access Private
+ */
+router.get('/connections', authenticate, async (req: Request, res: Response) => {
+  try {
+    const userId = (req as any).user.id;
+    const { start = 0, count = 100 } = req.query;
+
+    const accessToken = req.headers['linkedin-token'] as string;
+
+    if (!accessToken) {
+      return res.status(404).json({ error: 'LinkedIn account not connected' });
+    }
+
+    const connections = await linkedinService.getConnections(
+      accessToken,
+      parseInt(start as string),
+      parseInt(count as string)
+    );
+
+    res.json({
+      connections,
+      total: connections.length,
+      start: parseInt(start as string),
+      count: parseInt(count as string),
+      message: 'LinkedIn connections retrieved successfully'
+    });
+  } catch (error) {
+    logger.error('Failed to get LinkedIn connections:', error);
+    res.status(500).json({ error: 'Failed to retrieve LinkedIn connections' });
+  }
+});
+
+/**
+ * @route POST /api/linkedin/search/people
+ * @desc Search LinkedIn network for people
+ * @access Private
+ */
+router.post('/search/people', authenticate, async (req: Request, res: Response) => {
+  try {
+    const { keywords, filters } = req.body;
+    const accessToken = req.headers['linkedin-token'] as string;
+
+    if (!accessToken) {
+      return res.status(404).json({ error: 'LinkedIn account not connected' });
+    }
+
+    if (!keywords) {
+      return res.status(400).json({ error: 'Search keywords are required' });
+    }
+
+    const results = await linkedinService.searchPeople(accessToken, keywords, filters);
+
+    res.json({
+      results,
+      total: results.length,
+      keywords,
+      filters,
+      message: 'LinkedIn people search completed'
+    });
+  } catch (error) {
+    logger.error('LinkedIn people search failed:', error);
+    res.status(500).json({ error: 'Failed to search LinkedIn network' });
+  }
+});
+
+/**
+ * @route POST /api/linkedin/connect
+ * @desc Send LinkedIn connection request
+ * @access Private
+ */
+router.post('/connect', authenticate, async (req: Request, res: Response) => {
+  try {
+    const { personId, message } = req.body;
+    const accessToken = req.headers['linkedin-token'] as string;
+
+    if (!accessToken) {
+      return res.status(404).json({ error: 'LinkedIn account not connected' });
+    }
+
+    if (!personId) {
+      return res.status(400).json({ error: 'Person ID is required' });
+    }
+
+    const success = await linkedinService.sendConnectionRequest(accessToken, personId, message);
+
+    if (success) {
+      res.json({
+        success: true,
+        message: 'Connection request sent successfully'
+      });
+    } else {
+      res.status(400).json({ error: 'Failed to send connection request' });
+    }
+  } catch (error) {
+    logger.error('Failed to send LinkedIn connection request:', error);
+    res.status(500).json({ error: 'Failed to send connection request' });
+  }
+});
+
+/**
+ * @route POST /api/linkedin/post
+ * @desc Post update to LinkedIn feed
+ * @access Private
+ */
+router.post('/post', authenticate, async (req: Request, res: Response) => {
+  try {
+    const { content, visibility = 'anyone' } = req.body;
+    const accessToken = req.headers['linkedin-token'] as string;
+
+    if (!accessToken) {
+      return res.status(404).json({ error: 'LinkedIn account not connected' });
+    }
+
+    if (!content) {
+      return res.status(400).json({ error: 'Post content is required' });
+    }
+
+    const success = await linkedinService.postUpdate(accessToken, content, visibility);
+
+    if (success) {
+      res.json({
+        success: true,
+        message: 'Post shared on LinkedIn successfully'
+      });
+    } else {
+      res.status(400).json({ error: 'Failed to post on LinkedIn' });
+    }
+  } catch (error) {
+    logger.error('Failed to post on LinkedIn:', error);
+    res.status(500).json({ error: 'Failed to post on LinkedIn' });
+  }
+});
+
+/**
+ * @route POST /api/linkedin/sync/profile
+ * @desc Sync LinkedIn profile with InTransparency
+ * @access Private
+ */
+router.post('/sync/profile', authenticate, async (req: Request, res: Response) => {
+  try {
+    const userId = (req as any).user.id;
+    const userType = (req as any).user.type;
+    const accessToken = req.headers['linkedin-token'] as string;
+
+    if (!accessToken) {
+      return res.status(404).json({ error: 'LinkedIn account not connected' });
+    }
+
+    await linkedinService.syncProfileWithInTransparency(accessToken, userId, userType);
+
+    res.json({
+      success: true,
+      message: 'Profile synced with LinkedIn successfully'
+    });
+  } catch (error) {
+    logger.error('Failed to sync LinkedIn profile:', error);
+    res.status(500).json({ error: 'Failed to sync profile' });
+  }
+});
+
+/**
+ * @route GET /api/linkedin/mutual-connections/:personId
+ * @desc Find mutual connections with a LinkedIn user
+ * @access Private
+ */
+router.get('/mutual-connections/:personId', authenticate, async (req: Request, res: Response) => {
+  try {
+    const { personId } = req.params;
+    const accessToken = req.headers['linkedin-token'] as string;
+
+    if (!accessToken) {
+      return res.status(404).json({ error: 'LinkedIn account not connected' });
+    }
+
+    const mutualConnections = await linkedinService.findMutualConnections(accessToken, personId);
+
+    res.json({
+      mutualConnections,
+      total: mutualConnections.length,
+      personId,
+      message: 'Mutual connections retrieved successfully'
+    });
+  } catch (error) {
+    logger.error('Failed to find mutual connections:', error);
+    res.status(500).json({ error: 'Failed to find mutual connections' });
+  }
+});
+
+/**
+ * @route POST /api/linkedin/validate-token
+ * @desc Validate LinkedIn access token
+ * @access Private
+ */
+router.post('/validate-token', authenticate, async (req: Request, res: Response) => {
+  try {
+    const accessToken = req.headers['linkedin-token'] as string;
+
+    if (!accessToken) {
+      return res.status(404).json({ error: 'LinkedIn access token not provided' });
+    }
+
+    const isValid = await linkedinService.validateToken(accessToken);
+
+    res.json({
+      valid: isValid,
+      message: isValid ? 'LinkedIn token is valid' : 'LinkedIn token is invalid or expired'
+    });
+  } catch (error) {
+    logger.error('Failed to validate LinkedIn token:', error);
+    res.status(500).json({ error: 'Failed to validate token' });
+  }
+});
+
+/**
+ * @route POST /api/linkedin/refresh-token
+ * @desc Refresh LinkedIn access token
+ * @access Private
+ */
+router.post('/refresh-token', authenticate, async (req: Request, res: Response) => {
+  try {
+    const { refreshToken } = req.body;
+
+    if (!refreshToken) {
+      return res.status(400).json({ error: 'Refresh token is required' });
+    }
+
+    const newTokens = await linkedinService.refreshAccessToken(refreshToken);
+
+    res.json({
+      tokens: newTokens,
+      message: 'LinkedIn tokens refreshed successfully'
+    });
+  } catch (error) {
+    logger.error('Failed to refresh LinkedIn token:', error);
+    res.status(500).json({ error: 'Failed to refresh tokens' });
+  }
+});
+
+/**
+ * @route DELETE /api/linkedin/disconnect
+ * @desc Disconnect LinkedIn account
+ * @access Private
+ */
+router.delete('/disconnect', authenticate, async (req: Request, res: Response) => {
+  try {
+    const userId = (req as any).user.id;
+
+    // Remove LinkedIn tokens and profile data from database
+    // await removeLinkedInConnection(userId);
+
+    res.json({
+      success: true,
+      message: 'LinkedIn account disconnected successfully'
+    });
+  } catch (error) {
+    logger.error('Failed to disconnect LinkedIn account:', error);
+    res.status(500).json({ error: 'Failed to disconnect LinkedIn account' });
+  }
+});
+
+/**
+ * @route GET /api/linkedin/company/:companyId
+ * @desc Get LinkedIn company information
+ * @access Private
+ */
+router.get('/company/:companyId', authenticate, async (req: Request, res: Response) => {
+  try {
+    const { companyId } = req.params;
+    const accessToken = req.headers['linkedin-token'] as string;
+
+    if (!accessToken) {
+      return res.status(404).json({ error: 'LinkedIn account not connected' });
+    }
+
+    const company = await linkedinService.getCompany(accessToken, companyId);
+
+    if (!company) {
+      return res.status(404).json({ error: 'Company not found' });
+    }
+
+    res.json({
+      company,
+      message: 'Company information retrieved successfully'
+    });
+  } catch (error) {
+    logger.error('Failed to get LinkedIn company:', error);
+    res.status(500).json({ error: 'Failed to retrieve company information' });
+  }
+});
+
+/**
+ * @route POST /api/linkedin/intransparency/match-connections
+ * @desc Find InTransparency users in LinkedIn connections
+ * @access Private
+ */
+router.post('/intransparency/match-connections', authenticate, async (req: Request, res: Response) => {
+  try {
+    const userId = (req as any).user.id;
+    const accessToken = req.headers['linkedin-token'] as string;
+
+    if (!accessToken) {
+      return res.status(404).json({ error: 'LinkedIn account not connected' });
+    }
+
+    // Get LinkedIn connections
+    const connections = await linkedinService.getConnections(accessToken, 0, 500);
+
+    // Match with InTransparency users
+    // This would query your database to find users with matching LinkedIn profiles
+    const matches = []; // Implementation depends on your database schema
+
+    res.json({
+      matches,
+      totalConnections: connections.length,
+      matchedConnections: matches.length,
+      message: 'LinkedIn connections matched with InTransparency users'
+    });
+  } catch (error) {
+    logger.error('Failed to match LinkedIn connections:', error);
+    res.status(500).json({ error: 'Failed to match connections' });
+  }
+});
+
+/**
+ * @route POST /api/linkedin/intransparency/invite-connections
+ * @desc Invite LinkedIn connections to InTransparency
+ * @access Private
+ */
+router.post('/intransparency/invite-connections', authenticate, async (req: Request, res: Response) => {
+  try {
+    const { connectionIds, inviteMessage } = req.body;
+    const accessToken = req.headers['linkedin-token'] as string;
+
+    if (!accessToken) {
+      return res.status(404).json({ error: 'LinkedIn account not connected' });
+    }
+
+    if (!connectionIds || !Array.isArray(connectionIds)) {
+      return res.status(400).json({ error: 'Connection IDs array is required' });
+    }
+
+    // Send InTransparency invites via LinkedIn messages
+    const results = [];
+    for (const connectionId of connectionIds) {
+      const message = inviteMessage || `Hi! I'm using InTransparency to showcase my academic projects and connect with professionals. Check it out: ${process.env.FRONTEND_URL}`;
+      const success = await linkedinService.sendConnectionRequest(accessToken, connectionId, message);
+      results.push({ connectionId, success });
+    }
+
+    const successCount = results.filter(r => r.success).length;
+
+    res.json({
+      results,
+      totalSent: connectionIds.length,
+      successfulSent: successCount,
+      message: `${successCount} InTransparency invites sent successfully`
+    });
+  } catch (error) {
+    logger.error('Failed to invite LinkedIn connections:', error);
+    res.status(500).json({ error: 'Failed to send invites' });
+  }
+});
+
+export default router;

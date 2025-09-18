@@ -13,17 +13,20 @@ app.use(cors({
 }))
 app.use(express.json())
 
+// LinkedIn Integration Routes (temporarily disabled due to TypeScript errors)
+// app.use('/api/linkedin', linkedinRoutes)
+
 // Routes
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   console.log('Health check requested')
-  res.json({ 
+  res.json({
     status: 'healthy',
     message: 'InTransparency API is running!',
     timestamp: new Date().toISOString()
   })
 })
 
-app.get('/api/auth/me', (req, res) => {
+app.get('/api/auth/me', (_req, res) => {
   console.log('Auth me requested')
   res.status(401).json({ error: 'Not authenticated (demo mode)' })
 })
