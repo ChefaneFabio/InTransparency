@@ -125,8 +125,8 @@ export const TargetingPreview = ({ jobRequirements, location, remoteOptions }: T
               <div key={area} className="flex items-center justify-between">
                 <span className="text-sm font-medium">{area}</span>
                 <div className="flex items-center gap-2">
-                  <Progress value={(count as number / targeting.totalReach) * 100} className="w-20 h-2" />
-                  <span className="text-sm w-8">{count}</span>
+                  <Progress value={(Number(count) / targeting.totalReach) * 100} className="w-20 h-2" />
+                  <span className="text-sm w-8">{String(count)}</span>
                 </div>
               </div>
             ))}
@@ -147,7 +147,7 @@ export const TargetingPreview = ({ jobRequirements, location, remoteOptions }: T
             {Object.entries(targeting.universityBreakdown).map(([university, count]) => (
               <div key={university} className="flex justify-between items-center p-3 bg-gray-50 rounded">
                 <span className="font-medium text-sm">{university}</span>
-                <Badge variant="secondary">{count} students</Badge>
+                <Badge variant="secondary">{String(count)} students</Badge>
               </div>
             ))}
           </div>
@@ -165,8 +165,8 @@ export const TargetingPreview = ({ jobRequirements, location, remoteOptions }: T
               <div key={program} className="flex justify-between items-center">
                 <span className="text-sm">{program}</span>
                 <div className="flex items-center gap-2">
-                  <Progress value={(count as number / targeting.totalReach) * 100} className="w-16 h-2" />
-                  <span className="text-sm w-6">{count}</span>
+                  <Progress value={(Number(count) / targeting.totalReach) * 100} className="w-16 h-2" />
+                  <span className="text-sm w-6">{String(count)}</span>
                 </div>
               </div>
             ))}

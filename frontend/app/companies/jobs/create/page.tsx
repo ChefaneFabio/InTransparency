@@ -30,7 +30,7 @@ export default function SmartJobPosting() {
   const [courseRequirements, setCourseRequirements] = useState<CourseRequirement[]>([])
   const [projectRequirements, setProjectRequirements] = useState<ProjectRequirement[]>([])
   const [currentCourse, setCurrentCourse] = useState({ name: '', minGrade: 25, required: true })
-  const [currentProject, setCurrentProject] = useState({ type: '', technologies: [], description: '' })
+  const [currentProject, setCurrentProject] = useState<{ type: string; technologies: string[]; description: string }>({ type: '', technologies: [], description: '' })
   const [matchPreview, setMatchPreview] = useState<number | null>(null)
 
   const addCourseRequirement = () => {

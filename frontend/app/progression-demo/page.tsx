@@ -264,16 +264,16 @@ export default function ProgressionDemo() {
     }
   }
 
-  const currentStudent = studentProgressions[selectedStudent]
+  const currentStudent = studentProgressions[selectedStudent as keyof typeof studentProgressions]
 
   // Course Equivalence Component
   const CourseEquivalenceDemo = () => {
-    const [equivalences, setEquivalences] = useState([])
-    const [matchingJobs, setMatchingJobs] = useState([])
+    const [equivalences, setEquivalences] = useState<any[]>([])
+    const [matchingJobs, setMatchingJobs] = useState<any[]>([])
 
     const handleCourseSelect = (courseName: string) => {
       setSelectedCourse(courseName)
-      const courseData = courseEquivalenceDB[courseName]
+      const courseData = courseEquivalenceDB[courseName as keyof typeof courseEquivalenceDB]
       if (courseData) {
         setEquivalences(courseData.equivalentCourses)
         setMatchingJobs(courseData.jobsRequiring)
@@ -431,7 +431,7 @@ export default function ProgressionDemo() {
         {/* Timeline View */}
         {progressionView === 'timeline' && (
           <div className="space-y-6">
-            {currentStudent.yearlyProgression.map((year, idx) => (
+            {currentStudent.yearlyProgression.map((year: any, idx: number) => (
               <Card key={idx} className="relative">
                 <div className="absolute -left-4 top-6 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center z-10">
                   <span className="text-white text-sm font-bold">{idx + 1}</span>
@@ -456,7 +456,7 @@ export default function ProgressionDemo() {
                     <div>
                       <h4 className="font-medium mb-3">Courses Completed</h4>
                       <div className="space-y-2">
-                        {year.courses.map((course, courseIdx) => (
+                        {year.courses.map((course: any, courseIdx: number) => (
                           <div key={courseIdx} className="flex items-center justify-between p-2 bg-gray-50 rounded text-sm">
                             <div>
                               <span className="font-medium">{course.name}</span>
@@ -474,7 +474,7 @@ export default function ProgressionDemo() {
                       <h4 className="font-medium mb-3">Projects & Developments</h4>
                       {year.projects.length > 0 && (
                         <div className="mb-3">
-                          {year.projects.map((project, projIdx) => (
+                          {year.projects.map((project: any, projIdx: number) => (
                             <div key={projIdx} className="p-2 bg-green-50 rounded text-sm mb-2">
                               <div className="font-medium">{project.title}</div>
                               <div className="text-gray-600">{project.description}</div>
@@ -489,7 +489,7 @@ export default function ProgressionDemo() {
                         </div>
                       )}
                       <div className="space-y-1">
-                        {year.keyDevelopments.map((dev, devIdx) => (
+                        {year.keyDevelopments.map((dev: string, devIdx: number) => (
                           <div key={devIdx} className="flex items-start text-sm">
                             <CheckCircle2 className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                             <span>{dev}</span>
@@ -516,8 +516,8 @@ export default function ProgressionDemo() {
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    {evolution.map((stage, idx) => {
-                      const isActive = idx === evolution.length - 1
+                    {(evolution as any[]).map((stage: any, idx: number) => {
+                      const isActive = idx === (evolution as any[]).length - 1
                       const levelColors = {
                         'Beginner': 'bg-red-100 text-red-800 border-red-200',
                         'Intermediate': 'bg-yellow-100 text-yellow-800 border-yellow-200',
@@ -528,13 +528,13 @@ export default function ProgressionDemo() {
                       return (
                         <div key={idx} className={`text-center p-4 rounded-lg border-2 ${
                           isActive ? 'ring-2 ring-blue-500' : ''
-                        } ${levelColors[stage.level] || 'bg-gray-100'}`}>
+                        } ${levelColors[stage.level as keyof typeof levelColors] || 'bg-gray-100'}`}>
                           <div className="mb-2">
                             <div className="text-sm font-medium text-gray-600 mb-1">{stage.year}</div>
                             <div className="text-lg font-bold">{stage.level}</div>
                           </div>
                           <div className="text-xs space-y-1">
-                            {stage.evidence.map((ev, evIdx) => (
+                            {stage.evidence.map((ev: string, evIdx: number) => (
                               <div key={evIdx} className="truncate">{ev}</div>
                             ))}
                           </div>
@@ -566,16 +566,16 @@ export default function ProgressionDemo() {
                     </CardTitle>
                     <div className="flex items-center gap-2">
                       <div className={`text-3xl font-bold ${
-                        readiness.currentMatch >= 85 ? 'text-green-600' :
-                        readiness.currentMatch >= 70 ? 'text-blue-600' :
+                        (readiness as any).currentMatch >= 85 ? 'text-green-600' :
+                        (readiness as any).currentMatch >= 70 ? 'text-blue-600' :
                         'text-yellow-600'
                       }`}>
-                        {readiness.currentMatch}%
+                        {(readiness as any).currentMatch}%
                       </div>
                       <div className="text-sm text-gray-500">Ready</div>
                     </div>
                   </div>
-                  <CardDescription>{readiness.timeline}</CardDescription>
+                  <CardDescription>{(readiness as any).timeline}</CardDescription>
                 </CardHeader>
                 
                 <CardContent>
@@ -587,7 +587,7 @@ export default function ProgressionDemo() {
                         Skills You Have
                       </h4>
                       <div className="space-y-2">
-                        {readiness.presentSkills.map((skill, idx) => (
+                        {(readiness as any).presentSkills.map((skill: any, idx: number) => (
                           <div key={idx} className="p-3 bg-green-50 rounded-lg">
                             <div className="flex items-center justify-between mb-1">
                               <span className="font-medium text-sm">{skill.skill}</span>
@@ -608,7 +608,7 @@ export default function ProgressionDemo() {
                         Areas for Development
                       </h4>
                       <div className="space-y-2">
-                        {readiness.missingSkills.map((skill, idx) => (
+                        {(readiness as any).missingSkills.map((skill: any, idx: number) => (
                           <div key={idx} className="p-3 bg-orange-50 rounded-lg">
                             <div className="flex items-center justify-between mb-1">
                               <span className="font-medium text-sm">{skill.skill}</span>
@@ -632,7 +632,7 @@ export default function ProgressionDemo() {
                       Relevant Project Experience
                     </h4>
                     <div className="grid md:grid-cols-2 gap-3">
-                      {readiness.projectEvidence.map((project, idx) => (
+                      {(readiness as any).projectEvidence.map((project: any, idx: number) => (
                         <div key={idx} className="p-3 bg-purple-50 rounded-lg">
                           <div className="font-medium text-sm">{project.title}</div>
                           <div className="text-xs text-purple-700 mt-1">{project.relevance}</div>
@@ -643,12 +643,12 @@ export default function ProgressionDemo() {
 
                   {/* Action Button */}
                   <div className="mt-6 pt-4 border-t">
-                    {readiness.currentMatch >= 85 ? (
+                    {(readiness as any).currentMatch >= 85 ? (
                       <Button className="w-full bg-green-600 hover:bg-green-700">
                         <Zap className="w-4 h-4 mr-2" />
                         Start Applying for {jobTitle} Roles
                       </Button>
-                    ) : readiness.currentMatch >= 70 ? (
+                    ) : (readiness as any).currentMatch >= 70 ? (
                       <Button variant="outline" className="w-full">
                         <Target className="w-4 h-4 mr-2" />
                         Focus on Missing Skills

@@ -93,7 +93,7 @@ export default function LoginPage() {
       
       // Redirect based on user role after successful login
       if (response?.user?.role) {
-        const role = response.user.role
+        const role = response.user.role as 'student' | 'recruiter' | 'university' | 'admin'
         switch (role) {
           case 'student':
             router.push('/dashboard/student')
@@ -103,6 +103,9 @@ export default function LoginPage() {
             break
           case 'university':
             router.push('/dashboard/university')
+            break
+          case 'admin':
+            router.push('/dashboard/admin')
             break
           default:
             router.push('/dashboard')

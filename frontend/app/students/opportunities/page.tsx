@@ -119,6 +119,10 @@ export default function StudentOpportunities() {
       missingRequirements: [
         'Consider adding a finance-related project',
         'Finance course grade slightly below preferred (22/30 vs 24/30)'
+      ],
+      yourAdvantages: [
+        'Strong mathematical foundation',
+        'Data visualization project demonstrates analytical skills'
       ]
     }
   ]
