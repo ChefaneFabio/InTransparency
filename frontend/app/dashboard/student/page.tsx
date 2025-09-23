@@ -3,15 +3,18 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '@/lib/auth/AuthContext'
 import { ProjectCard } from '@/components/dashboard/student/ProjectCard'
+import { EnhancedProjectCard } from '@/components/dashboard/student/EnhancedProjectCard'
+import { SmartRecommendations } from '@/components/dashboard/student/SmartRecommendations'
 import { ProfileCard } from '@/components/dashboard/student/ProfileCard'
 import { JobMatches } from '@/components/dashboard/student/JobMatches'
 import { ActivityFeed } from '@/components/dashboard/student/ActivityFeed'
 import { StatsCard } from '@/components/dashboard/shared/StatsCard'
 import { QuickActions } from '@/components/dashboard/shared/QuickActions'
+import { UniversityIntegration } from '@/components/dashboard/UniversityIntegration'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Plus, TrendingUp, Users, Briefcase, Eye } from 'lucide-react'
+import { Plus, TrendingUp, Users, Briefcase, Eye, Star, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 export default function StudentDashboard() {
@@ -130,28 +133,100 @@ export default function StudentDashboard() {
 
   return (
     <div className="space-y-8">
-      {/* Welcome Section */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">
-            Welcome back, {user?.firstName}! 👋
-          </h1>
-          <p className="text-gray-600 mt-1">
-            Here's what's happening with your projects and career journey.
-          </p>
+      {/* Enhanced Welcome Section */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-2xl p-8 mb-8">
+        <div className="relative z-10">
+          <div className="flex items-center justify-between">
+            <div className="space-y-4">
+              <div>
+                <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Welcome back, {user?.firstName}! 🚀
+                </h1>
+                <p className="text-lg text-gray-700 mt-2">
+                  Your academic excellence meets professional opportunities
+                </p>
+              </div>
+
+              {/* Career Readiness Score */}
+              <div className="flex items-center space-x-4">
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg">
+                  <div className="flex items-center space-x-2">
+                    <div className="text-2xl font-bold text-green-600">87%</div>
+                    <div className="text-sm text-gray-600">Career Ready</div>
+                  </div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg">
+                  <div className="flex items-center space-x-2">
+                    <TrendingUp className="h-5 w-5 text-blue-600" />
+                    <div className="text-sm text-gray-600">+5% this month</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col space-y-3">
+              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg" asChild>
+                <Link href="/dashboard/student/projects/new">
+                  <Plus className="mr-2 h-5 w-5" />
+                  Upload Project
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" className="bg-white/80 backdrop-blur-sm hover:bg-white shadow-lg" asChild>
+                <Link href="/linkedin-integration">
+                  <Users className="mr-2 h-5 w-5" />
+                  Connect LinkedIn
+                </Link>
+              </Button>
+            </div>
+          </div>
         </div>
-        <Button asChild>
-          <Link href="/dashboard/student/projects/new">
-            <Plus className="mr-2 h-4 w-4" />
-            New Project
-          </Link>
-        </Button>
+
+        {/* Background decoration */}
+        <div className="absolute top-0 right-0 -translate-y-4 translate-x-4 opacity-20">
+          <div className="w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full blur-xl"></div>
+        </div>
+        <div className="absolute bottom-0 left-0 translate-y-4 -translate-x-4 opacity-20">
+          <div className="w-24 h-24 bg-gradient-to-br from-indigo-400 to-pink-400 rounded-full blur-xl"></div>
+        </div>
       </div>
 
-      {/* Stats Cards */}
+      {/* Enhanced Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
-          <StatsCard key={index} {...stat} />
+          <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-gradient-to-br from-white to-gray-50 overflow-hidden">
+            <CardContent className="p-6 relative">
+              <div className="flex items-center justify-between mb-4">
+                <div className={`p-3 rounded-xl bg-gradient-to-br ${
+                  index === 0 ? 'from-blue-500 to-blue-600' :
+                  index === 1 ? 'from-green-500 to-green-600' :
+                  index === 2 ? 'from-purple-500 to-purple-600' :
+                  'from-orange-500 to-orange-600'
+                } shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <stat.icon className="h-6 w-6 text-white" />
+                </div>
+                <div className="text-right">
+                  <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+                  <div className="text-xs text-green-600 font-medium">{stat.trend}</div>
+                </div>
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-1">{stat.title}</h3>
+                <p className="text-sm text-gray-600">{stat.description}</p>
+              </div>
+
+              {/* Progress bar for visual enhancement */}
+              <div className="mt-4 bg-gray-200 rounded-full h-2 overflow-hidden">
+                <div
+                  className={`h-full rounded-full bg-gradient-to-r transition-all duration-1000 ${
+                    index === 0 ? 'from-blue-500 to-blue-600 w-4/5' :
+                    index === 1 ? 'from-green-500 to-green-600 w-3/4' :
+                    index === 2 ? 'from-purple-500 to-purple-600 w-full' :
+                    'from-orange-500 to-orange-600 w-2/3'
+                  }`}
+                ></div>
+              </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
 
@@ -159,91 +234,226 @@ export default function StudentDashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Column */}
         <div className="lg:col-span-2 space-y-8">
-          {/* Quick Actions */}
-          <Card>
+          {/* Smart Actions */}
+          <Card className="border-0 bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 shadow-xl">
             <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
-              <CardDescription>
-                Get started with these common tasks
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <QuickActions actions={quickActions} />
-            </CardContent>
-          </Card>
-
-          {/* Projects Overview */}
-          <Card>
-            <CardHeader>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <div className="p-2 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-lg">
+                  <TrendingUp className="h-5 w-5 text-white" />
+                </div>
                 <div>
-                  <CardTitle>Your Projects</CardTitle>
+                  <CardTitle className="text-xl">AI-Powered Recommendations</CardTitle>
                   <CardDescription>
-                    Recent projects and their performance
+                    Personalized actions to boost your career readiness
                   </CardDescription>
                 </div>
-                <Button variant="outline" asChild>
-                  <Link href="/dashboard/student/projects">
-                    View All
-                  </Link>
-                </Button>
               </div>
             </CardHeader>
-            <CardContent>
-              {projects.length > 0 ? (
-                <div className="space-y-4">
-                  {projects.slice(0, 3).map((project: any) => (
-                    <ProjectCard key={project.id} project={project} />
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-8">
-                  <div className="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                    <Plus className="h-8 w-8 text-gray-400" />
+            <CardContent className="space-y-4">
+              {/* Priority Action */}
+              <div className="p-4 bg-gradient-to-r from-amber-100 to-orange-100 border border-amber-200 rounded-xl">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-2 bg-amber-500 rounded-lg">
+                      <Star className="h-4 w-4 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-amber-800">Priority Action</h4>
+                      <p className="text-sm text-amber-700">Add a Machine Learning project to match 87% of AI jobs</p>
+                    </div>
                   </div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">
-                    No projects yet
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    Upload your first project to get started with AI analysis and job matching.
-                  </p>
-                  <Button asChild>
-                    <Link href="/dashboard/student/projects/new">
-                      Upload First Project
-                    </Link>
+                  <Button size="sm" className="bg-amber-500 hover:bg-amber-600">
+                    Start Now
                   </Button>
                 </div>
-              )}
+              </div>
+
+              {/* Smart Actions Grid */}
+              <div className="grid grid-cols-2 gap-4">
+                {quickActions.map((action, index) => (
+                  <Link key={index} href={action.href} className="group">
+                    <div className="p-4 bg-white/80 backdrop-blur-sm border border-white/40 rounded-xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className={`p-2 rounded-lg bg-gradient-to-br ${
+                          action.color === 'blue' ? 'from-blue-500 to-blue-600' :
+                          action.color === 'green' ? 'from-green-500 to-green-600' :
+                          action.color === 'purple' ? 'from-purple-500 to-purple-600' :
+                          'from-orange-500 to-orange-600'
+                        } group-hover:scale-110 transition-transform duration-300`}>
+                          <action.icon className="h-4 w-4 text-white" />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-medium text-gray-900 text-sm">{action.title}</h4>
+                          <p className="text-xs text-gray-600">{action.description}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-green-600 font-medium">
+                          {action.color === 'blue' ? '+15% job matches' :
+                           action.color === 'green' ? '+12% profile views' :
+                           action.color === 'purple' ? '+8 new opportunities' :
+                           '+20% career readiness'}
+                        </span>
+                        <ArrowRight className="h-3 w-3 text-gray-400 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </CardContent>
           </Card>
 
-          {/* Job Matches */}
-          <Card>
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle>Recommended Jobs</CardTitle>
-                  <CardDescription>
-                    Opportunities matched to your skills
-                  </CardDescription>
-                </div>
-                <Button variant="outline" asChild>
-                  <Link href="/dashboard/student/jobs">
-                    View All
-                  </Link>
-                </Button>
+          {/* Enhanced Projects Showcase */}
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">Your Projects</h2>
+                <p className="text-gray-600">
+                  AI-analyzed projects with career impact insights
+                </p>
               </div>
-            </CardHeader>
-            <CardContent>
-              <JobMatches matches={matches.slice(0, 3)} />
-            </CardContent>
-          </Card>
+              <Button variant="outline" asChild>
+                <Link href="/dashboard/student/projects">
+                  View All Projects
+                </Link>
+              </Button>
+            </div>
+
+            {projects.length > 0 ? (
+              <div className="space-y-6">
+                {/* Mock enhanced projects with AI analysis */}
+                {[
+                  {
+                    id: '1',
+                    title: 'E-commerce Platform',
+                    description: 'Full-stack e-commerce platform with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and inventory management.',
+                    technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Redis', 'Docker'],
+                    category: 'Full-Stack Development',
+                    githubUrl: 'https://github.com/user/ecommerce',
+                    liveUrl: 'https://ecommerce-demo.vercel.app',
+                    imageUrl: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop',
+                    featured: true,
+                    aiAnalysis: {
+                      complexityScore: 85,
+                      skillsDetected: ['Full-Stack Development', 'Database Design', 'API Development', 'Payment Integration'],
+                      industryRelevance: ['E-commerce', 'Fintech', 'SaaS'],
+                      improvementSuggestions: ['Add microservices architecture', 'Implement advanced search with Elasticsearch'],
+                      careerImpact: 'This project demonstrates enterprise-level development skills and could lead to senior developer roles in e-commerce or fintech companies.'
+                    },
+                    metrics: {
+                      views: 234,
+                      likes: 45,
+                      recruiterInterest: 12,
+                      similarityToJobs: 92
+                    },
+                    collaborators: ['John Doe', 'Jane Smith']
+                  },
+                  {
+                    id: '2',
+                    title: 'Machine Learning Classifier',
+                    description: 'Image classification model using TensorFlow and CNN architecture. Achieves 94% accuracy on test dataset with data augmentation techniques.',
+                    technologies: ['Python', 'TensorFlow', 'OpenCV', 'Jupyter', 'NumPy'],
+                    category: 'Machine Learning',
+                    githubUrl: 'https://github.com/user/ml-classifier',
+                    imageUrl: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=500&h=300&fit=crop',
+                    aiAnalysis: {
+                      complexityScore: 78,
+                      skillsDetected: ['Machine Learning', 'Computer Vision', 'Data Science', 'Python'],
+                      industryRelevance: ['AI/ML', 'Healthcare', 'Automotive'],
+                      improvementSuggestions: ['Deploy model with FastAPI', 'Add real-time inference capabilities'],
+                      careerImpact: 'Strong foundation for ML engineer roles at tech companies focusing on AI applications.'
+                    },
+                    metrics: {
+                      views: 187,
+                      likes: 32,
+                      recruiterInterest: 8,
+                      similarityToJobs: 87
+                    }
+                  }
+                ].map((project) => (
+                  <EnhancedProjectCard
+                    key={project.id}
+                    project={project}
+                    interactive={true}
+                    onViewProject={(id) => console.log('View project', id)}
+                  />
+                ))}
+              </div>
+            ) : (
+              <Card className="border-2 border-dashed border-gray-200 hover:border-blue-300 transition-colors">
+                <CardContent className="text-center py-12">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center mb-6">
+                    <Plus className="h-10 w-10 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    Upload Your First Project
+                  </h3>
+                  <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                    Get AI-powered analysis, career impact insights, and connect with recruiters who value real work over just grades.
+                  </p>
+                  <div className="space-y-3">
+                    <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" asChild>
+                      <Link href="/dashboard/student/projects/new">
+                        <Plus className="mr-2 h-5 w-5" />
+                        Upload Project
+                      </Link>
+                    </Button>
+                    <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
+                      <div className="flex items-center">
+                        <Star className="h-4 w-4 mr-1 text-yellow-500" />
+                        AI Analysis
+                      </div>
+                      <div className="flex items-center">
+                        <TrendingUp className="h-4 w-4 mr-1 text-green-500" />
+                        Career Impact
+                      </div>
+                      <div className="flex items-center">
+                        <Users className="h-4 w-4 mr-1 text-blue-500" />
+                        Recruiter Visibility
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+
+          {/* Smart AI-Powered Job Recommendations */}
+          <div>
+            <SmartRecommendations
+              studentProfile={{
+                courses: [
+                  { name: 'Machine Learning', grade: 29 },
+                  { name: 'Web Development', grade: 28 },
+                  { name: 'Statistics', grade: 30 },
+                  { name: 'Data Mining', grade: 30 },
+                  { name: 'Computer Vision', grade: 27 }
+                ],
+                projects: [
+                  { title: 'E-commerce Platform', technologies: ['React', 'Node.js', 'PostgreSQL'], category: 'Full-Stack' },
+                  { title: 'ML Classifier', technologies: ['Python', 'TensorFlow', 'OpenCV'], category: 'Machine Learning' },
+                  { title: 'Financial Analysis Tool', technologies: ['Python', 'Pandas', 'Plotly'], category: 'Data Science' }
+                ],
+                skills: ['JavaScript', 'Python', 'React', 'TensorFlow', 'SQL', 'Docker'],
+                preferences: {
+                  jobTypes: ['Full-time', 'Internship'],
+                  locations: ['Milano', 'Remote'],
+                  industries: ['Tech', 'AI/ML', 'Fintech']
+                }
+              }}
+            />
+          </div>
         </div>
 
         {/* Right Column */}
         <div className="space-y-8">
           {/* Profile Card */}
           <ProfileCard user={user} />
+
+          {/* University Integration */}
+          <UniversityIntegration
+            userId={user?.id?.toString()}
+          />
 
           {/* Activity Feed */}
           <Card>

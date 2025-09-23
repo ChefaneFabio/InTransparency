@@ -5,75 +5,107 @@ import { Check, X, Star, Users, Building, GraduationCap, ArrowRight, Zap } from 
 
 const plans = [
   {
-    name: 'Student',
+    name: 'Graduate',
     price: 'Free',
     period: 'forever',
-    description: 'Perfect for individual students building their career portfolios',
-    icon: Users,
-    popular: false,
-    features: [
-      'AI-powered project analysis',
-      'Professional story generation',
-      'Skills assessment',
-      'Job matching algorithm',
-      'Resume optimization',
-      'Up to 10 projects',
-      'Basic analytics dashboard',
-      'Email support'
-    ],
-    limitations: [
-      'Limited to 5 AI analyses per month',
-      'Basic story templates only',
-      'Standard matching algorithm'
-    ],
-    cta: 'Get Started Free',
-    color: 'bg-blue-500'
-  },
-  {
-    name: 'University',
-    price: '$2,500',
-    period: 'per month',
-    description: 'Comprehensive solution for educational institutions',
+    description: 'Everything you need to launch your career - completely free for graduates',
     icon: GraduationCap,
     popular: true,
     features: [
-      'Everything in Student plan',
-      'Unlimited students',
-      'Advanced analytics dashboard',
-      'Placement tracking',
-      'Employer partnership tools',
-      'Custom branding',
-      'API access',
-      'Dedicated account manager',
-      'Priority support',
-      'Custom integrations',
-      'Bulk export capabilities',
-      'Advanced reporting'
+      'Unlimited project portfolio',
+      'AI-powered CV optimization',
+      'University transcript integration',
+      'Basic job matching',
+      'Profile visibility to recruiters',
+      'Direct messaging (receive only)',
+      'Basic analytics dashboard',
+      'CV templates library',
+      'Skills assessment',
+      'Email support'
     ],
-    limitations: [],
-    cta: 'Start Free Trial',
+    limitations: [
+      'Cannot initiate contact with recruiters',
+      'Basic search filters only',
+      'Standard matching algorithm',
+      'Limited premium insights'
+    ],
+    cta: 'Join Free - Always',
+    color: 'bg-green-500'
+  },
+  {
+    name: 'Recruiter Basic',
+    price: '€97',
+    period: 'per month',
+    description: 'Essential tools for talent acquisition professionals',
+    icon: Users,
+    popular: false,
+    features: [
+      'Search 500,000+ verified student profiles',
+      'Basic filters (university, skills, GPA)',
+      'Send 50 messages per month',
+      'View basic project portfolios',
+      'Contact information access',
+      'Basic candidate tracking',
+      'Standard analytics',
+      'Email support'
+    ],
+    limitations: [
+      'Limited to 50 messages/month',
+      'Basic search filters only',
+      'No advanced matching insights',
+      'Standard response rates'
+    ],
+    cta: 'Start 7-Day Free Trial',
+    color: 'bg-blue-500'
+  },
+  {
+    name: 'Recruiter Pro',
+    price: '€297',
+    period: 'per month',
+    description: 'Advanced recruiting with AI insights and premium features',
+    icon: Building,
+    popular: true,
+    features: [
+      'Everything in Recruiter Basic',
+      'Unlimited messaging',
+      'Advanced AI matching algorithms',
+      'Detailed project code analysis',
+      'University GPA verification',
+      'InMail priority delivery',
+      'Advanced search filters (50+)',
+      'Bulk candidate operations',
+      'Advanced analytics & insights',
+      'Candidate comparison tools',
+      'Pipeline management',
+      'Priority support'
+    ],
+    limitations: [
+      'Limited to 3 team members',
+      'Standard integrations only'
+    ],
+    cta: 'Upgrade to Pro',
     color: 'bg-purple-500'
   },
   {
     name: 'Enterprise',
     price: 'Custom',
     period: 'pricing',
-    description: 'Tailored solutions for large organizations and employers',
+    description: 'Complete talent acquisition platform for large organizations',
     icon: Building,
     popular: false,
     features: [
-      'Everything in University plan',
+      'Everything in Recruiter Pro',
+      'Unlimited team members',
       'Custom AI model training',
       'White-label solution',
-      'Advanced security features',
-      'SSO integration',
-      'Custom workflows',
-      'Dedicated infrastructure',
-      '24/7 support',
-      'On-premise deployment option',
-      'Custom analytics',
-      'Training and onboarding',
-      'SLA guarantees'
+      'ATS integrations',
+      'SSO & advanced security',
+      'Custom workflows & approval processes',
+      'Dedicated customer success manager',
+      'SLA guarantees',
+      'Custom reporting & APIs',
+      'Onboarding & training',
+      '24/7 priority support'
     ],
     limitations: [],
     cta: 'Contact Sales',
@@ -83,49 +115,53 @@ const plans = [
 
 const faqs = [
   {
-    question: 'How does the AI project analysis work?',
-    answer: 'Our AI analyzes your project code, documentation, and descriptions to assess technical complexity, innovation level, and market relevance. It provides detailed insights and suggestions for improvement.'
+    question: 'Why is InTransparency free for graduates?',
+    answer: 'We believe every graduate deserves equal access to career opportunities. Our revenue comes from companies who pay to access our verified talent pool, similar to LinkedIn\'s model.'
   },
   {
-    question: 'Can I upgrade or downgrade my plan at any time?',
-    answer: 'Yes, you can change your plan at any time. Upgrades take effect immediately, while downgrades take effect at the next billing cycle.'
+    question: 'What\'s the difference between Recruiter Basic and Pro?',
+    answer: 'Basic limits you to 50 messages per month and basic search filters. Pro offers unlimited messaging, advanced AI matching, detailed project analysis, and priority InMail delivery.'
   },
   {
-    question: 'Do you offer discounts for educational institutions?',
-    answer: 'Yes, we offer special pricing for educational institutions. Contact our sales team to discuss volume discounts and academic pricing.'
+    question: 'How does messaging work for free graduate accounts?',
+    answer: 'Graduates can receive unlimited messages from recruiters but cannot initiate contact. To message recruiters first, graduates would need a premium account (coming soon).'
   },
   {
-    question: 'Is my data secure and private?',
-    answer: 'Absolutely. We use enterprise-grade security measures and never share your personal data. All projects and profiles remain private unless you choose to make them public.'
+    question: 'Can graduates see who viewed their profile?',
+    answer: 'Yes! All graduates get basic profile analytics showing view counts and company interest. Detailed analytics (like specific viewer names) are available in our upcoming Graduate Premium plan.'
   },
   {
-    question: 'How accurate is the job matching algorithm?',
-    answer: 'Our AI-powered matching algorithm has a 92% accuracy rate in identifying relevant opportunities. It continuously learns from successful placements to improve recommendations.'
+    question: 'Do you verify university transcripts and GPAs?',
+    answer: 'Yes, we integrate directly with university systems to verify academic records. This ensures companies can trust the academic achievements they see on student profiles.'
   },
   {
-    question: 'Can I cancel my subscription at any time?',
-    answer: 'Yes, you can cancel your subscription at any time. You\'ll continue to have access to premium features until the end of your current billing period.'
+    question: 'Can I try Recruiter Pro before committing?',
+    answer: 'Absolutely! We offer a 7-day free trial of Recruiter Pro with no credit card required. You can downgrade to Basic or cancel anytime.'
+  },
+  {
+    question: 'How does InTransparency compare to LinkedIn Recruiter?',
+    answer: 'We specialize in new graduates with verified academic records and project portfolios. Unlike LinkedIn, we offer direct university integration and focus on demonstrable skills over connections.'
   }
 ]
 
 const addOns = [
   {
-    name: 'Premium Analytics',
-    price: '$500/month',
-    description: 'Advanced reporting and custom dashboards',
-    features: ['Custom reports', 'Real-time analytics', 'Data export']
+    name: 'Advanced Search & Filters',
+    price: '€97/month',
+    description: 'Unlock 50+ advanced search filters and saved searches',
+    features: ['Project complexity filters', 'University ranking filters', 'Graduation date precision', 'Saved search alerts']
   },
   {
-    name: 'AI Story Generation Plus',
-    price: '$200/month',
-    description: 'Unlimited AI-generated professional stories',
-    features: ['Unlimited generations', 'Premium templates', 'Multi-format export']
+    name: 'Bulk Operations Suite',
+    price: '€197/month',
+    description: 'Streamline high-volume recruiting workflows',
+    features: ['Bulk message campaigns', 'CSV exports', 'Automated follow-ups', 'Template management']
   },
   {
-    name: 'Employer Network Access',
-    price: '$1,000/month',
-    description: 'Direct access to our premium employer network',
-    features: ['Priority job matching', 'Exclusive opportunities', 'Dedicated recruiter support']
+    name: 'University Partnership API',
+    price: '€497/month',
+    description: 'Direct integration with university career services',
+    features: ['Real-time graduate data', 'Campus recruiting tools', 'Event management', 'Custom branding']
   }
 ]
 
@@ -133,24 +169,60 @@ export default function Pricing() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl font-bold mb-6">
-              Simple, Transparent Pricing
+              🎓 FREE for Graduates, Paid by Companies
             </h1>
             <p className="text-xl mb-8 opacity-90">
-              Choose the plan that fits your needs. All plans include our core AI-powered features.
+              Just like LinkedIn: graduates access everything for free, companies pay to find top talent.
             </p>
-            <div className="flex items-center justify-center gap-2 text-lg">
-              <Check className="h-5 w-5" />
-              <span>30-day free trial</span>
-              <span className="mx-2">•</span>
-              <Check className="h-5 w-5" />
-              <span>No setup fees</span>
-              <span className="mx-2">•</span>
-              <Check className="h-5 w-5" />
-              <span>Cancel anytime</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                <h2 className="text-2xl font-bold mb-4">👨‍🎓 For Graduates</h2>
+                <div className="space-y-2 text-left">
+                  <div className="flex items-center">
+                    <Check className="h-5 w-5 mr-2" />
+                    <span>Unlimited profile & projects</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Check className="h-5 w-5 mr-2" />
+                    <span>AI-powered CV optimization</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Check className="h-5 w-5 mr-2" />
+                    <span>Direct messages from recruiters</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Check className="h-5 w-5 mr-2" />
+                    <span>University transcript verification</span>
+                  </div>
+                </div>
+                <div className="mt-4 text-2xl font-bold text-green-300">FREE FOREVER</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                <h2 className="text-2xl font-bold mb-4">🏢 For Companies</h2>
+                <div className="space-y-2 text-left">
+                  <div className="flex items-center">
+                    <Check className="h-5 w-5 mr-2" />
+                    <span>Search 500k+ verified graduates</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Check className="h-5 w-5 mr-2" />
+                    <span>Advanced AI matching & filters</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Check className="h-5 w-5 mr-2" />
+                    <span>Direct messaging & InMail</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Check className="h-5 w-5 mr-2" />
+                    <span>Project portfolio analysis</span>
+                  </div>
+                </div>
+                <div className="mt-4 text-2xl font-bold text-blue-300">From €97/month</div>
+              </div>
             </div>
           </div>
         </div>

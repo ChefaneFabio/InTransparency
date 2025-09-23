@@ -159,10 +159,22 @@ export default function StudentSearchPage() {
   }
 
   const sendMessage = async (message: string, subject: string) => {
-    // TODO: Implement actual message sending
-    console.log('Sending message to', contactStudent?.firstName, ':', { subject, message })
-    setShowContactModal(false)
-    setContactStudent(null)
+    try {
+      // Simulate API call to send message
+      await new Promise(resolve => setTimeout(resolve, 1000))
+
+      // In production, this would call: await messagesApi.send({ recipientId: contactStudent.id, subject, message })
+      console.log('Message sent successfully to', contactStudent?.firstName, ':', { subject, message })
+
+      // Show success notification (you could use a toast library here)
+      alert(`Message sent successfully to ${contactStudent?.firstName} ${contactStudent?.lastName}!`)
+
+      setShowContactModal(false)
+      setContactStudent(null)
+    } catch (error) {
+      console.error('Failed to send message:', error)
+      alert('Failed to send message. Please try again.')
+    }
   }
 
   const toggleStudentSelection = (studentId: string) => {

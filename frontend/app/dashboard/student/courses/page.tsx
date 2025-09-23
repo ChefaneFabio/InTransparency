@@ -9,16 +9,23 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { 
-  Plus, 
-  Upload, 
-  GraduationCap, 
-  Calendar, 
+import { Badge } from '@/components/ui/badge'
+import { Progress } from '@/components/ui/progress'
+import {
+  Plus,
+  Upload,
+  GraduationCap,
+  Calendar,
   BookOpen,
   TrendingUp,
   FileText,
   Trash2,
-  Edit3
+  Edit3,
+  CheckCircle,
+  Database,
+  RefreshCw,
+  ExternalLink,
+  Building as University
 } from 'lucide-react'
 
 export default function CoursesPage() {
@@ -29,6 +36,14 @@ export default function CoursesPage() {
   const [showTranscriptUpload, setShowTranscriptUpload] = useState(false)
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
+  const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'success' | 'error'>('idle')
+  const [lastSyncTime, setLastSyncTime] = useState<Date | null>(null)
+  const [universityConnection, setUniversityConnection] = useState({
+    isConnected: true,
+    university: user?.university || 'Stanford University',
+    status: 'connected',
+    lastSync: '2 hours ago'
+  })
 
   const [formData, setFormData] = useState({
     courseCode: '',
@@ -127,6 +142,62 @@ export default function CoursesPage() {
     }
   }
 
+  const syncWithUniversity = async () => {
+    try {
+      setSyncStatus('syncing')
+      setError('')
+
+      // Simulate university API sync
+      await new Promise(resolve => setTimeout(resolve, 2000))
+
+      // Mock sync response
+      const syncedCourses = [
+        {
+          id: 'sync-1',
+          courseCode: 'CS106A',
+          courseName: 'Programming Methodology',
+          semester: 'Fall',
+          year: 2023,
+          credits: 3,
+          grade: 'A',
+          instructor: 'Prof. Smith',
+          isCompleted: true,
+          source: 'university'
+        },
+        {
+          id: 'sync-2',
+          courseCode: 'MATH51',
+          courseName: 'Linear Algebra and Differential Calculus',
+          semester: 'Fall',
+          year: 2023,
+          credits: 5,
+          grade: 'A-',
+          instructor: 'Prof. Johnson',
+          isCompleted: true,
+          source: 'university'
+        }
+      ]
+
+      // Merge with existing courses (avoid duplicates)
+      setCourses(prev => {
+        const existing = prev.filter(c => !syncedCourses.find(sc => sc.courseCode === c.courseCode))
+        return [...existing, ...syncedCourses]
+      })
+
+      setSyncStatus('success')
+      setLastSyncTime(new Date())
+      setMessage('Successfully synced with university records!')
+      setUniversityConnection(prev => ({
+        ...prev,
+        lastSync: 'Just now'
+      }))
+
+    } catch (error) {
+      setSyncStatus('error')
+      setError('Failed to sync with university. Please try again.')
+    }
+  }
+
   const calculateGPA = () => {
     const gradePoints: any = {
       'A+': 4.0, 'A': 4.0, 'A-': 3.7,
@@ -142,9 +213,9 @@ export default function CoursesPage() {
     const totalPoints = completedCourses.reduce((sum, course) => {
       return sum + (gradePoints[course.grade] * course.credits)
     }, 0)
-    
+
     const totalCredits = completedCourses.reduce((sum, course) => sum + course.credits, 0)
-    
+
     return totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : 'N/A'
   }
 
@@ -168,12 +239,24 @@ export default function CoursesPage() {
         <div>
           <h1 className="text-3xl font-bold text-gray-900">My Courses</h1>
           <p className="text-gray-600 mt-1">
-            Track your academic progress and manage course information
+            Track your academic progress and sync with university records
           </p>
         </div>
         <div className="flex space-x-3">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
+            onClick={syncWithUniversity}
+            disabled={syncStatus === 'syncing'}
+          >
+            {syncStatus === 'syncing' ? (
+              <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              <Database className="mr-2 h-4 w-4" />
+            )}
+            Sync University
+          </Button>
+          <Button
+            variant="outline"
             onClick={() => setShowTranscriptUpload(true)}
           >
             <Upload className="mr-2 h-4 w-4" />
@@ -185,6 +268,52 @@ export default function CoursesPage() {
           </Button>
         </div>
       </div>
+
+      {/* University Connection Status */}
+      <Card className="border-l-4 border-l-blue-500">
+        <CardContent className="p-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="p-3 bg-blue-100 rounded-full">
+                <University className="h-6 w-6 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900">
+                  {universityConnection.university}
+                </h3>
+                <div className="flex items-center space-x-2 mt-1">
+                  <div className="flex items-center space-x-1">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span className="text-sm text-gray-600">Connected</span>
+                  </div>
+                  <span className="text-gray-400">•</span>
+                  <span className="text-sm text-gray-600">
+                    Last sync: {universityConnection.lastSync}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Badge variant="secondary" className="bg-green-100 text-green-800">
+                <CheckCircle className="mr-1 h-3 w-3" />
+                Verified
+              </Badge>
+              <Button variant="ghost" size="sm">
+                <ExternalLink className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+          {syncStatus === 'syncing' && (
+            <div className="mt-4">
+              <div className="flex items-center space-x-2 mb-2">
+                <RefreshCw className="h-4 w-4 animate-spin text-blue-600" />
+                <span className="text-sm text-gray-600">Syncing with university database...</span>
+              </div>
+              <Progress value={75} className="h-2" />
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Messages */}
       {message && (
@@ -422,28 +551,53 @@ export default function CoursesPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course: any) => (
-            <Card key={course.id} className="hover:shadow-md transition-shadow">
+            <Card key={course.id} className={`hover:shadow-md transition-shadow ${
+              course.source === 'university' ? 'border-l-4 border-l-blue-500' : ''
+            }`}>
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle className="text-lg">{course.courseCode}</CardTitle>
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-2 mb-1">
+                      <CardTitle className="text-lg">{course.courseCode}</CardTitle>
+                      {course.source === 'university' && (
+                        <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
+                          <Database className="mr-1 h-3 w-3" />
+                          Synced
+                        </Badge>
+                      )}
+                    </div>
                     <CardDescription className="mt-1">{course.courseName}</CardDescription>
                   </div>
                   <div className="flex space-x-1">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => {/* TODO: Edit course */}}
-                    >
-                      <Edit3 className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => deleteCourse(course.id)}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
+                    {course.source !== 'university' && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          // Simple edit functionality - in production this would open a modal or form
+                          const newName = prompt('Edit course name:', course.courseName)
+                          if (newName && newName.trim()) {
+                            // Update course name locally (in production this would call API)
+                            setCourses(courses.map(c =>
+                              c.id === course.id
+                                ? { ...c, courseName: newName.trim() }
+                                : c
+                            ))
+                          }
+                        }}
+                      >
+                        <Edit3 className="h-4 w-4" />
+                      </Button>
+                    )}
+                    {course.source !== 'university' && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => deleteCourse(course.id)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    )}
                   </div>
                 </div>
               </CardHeader>

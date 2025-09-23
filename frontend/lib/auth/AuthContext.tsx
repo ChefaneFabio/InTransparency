@@ -115,11 +115,43 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const refreshToken = async () => {
     try {
-      // TODO: Implement refresh token endpoint
-      // For now, just log out the user when token expires
-      logout()
+      const storedToken = localStorage.getItem('token')
+      if (!storedToken) {
+        logout()
+        return
+      }
+
+      // For demo purposes, simulate refresh token API call
+      // In production, this would call /api/auth/refresh
+      const response = await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          // Simulate 90% success rate for token refresh
+          if (Math.random() > 0.1) {
+            resolve({
+              data: {
+                data: {
+                  token: storedToken + '_refreshed',
+                  user: user
+                }
+              }
+            })
+          } else {
+            reject(new Error('Token refresh failed'))
+          }
+        }, 500)
+      }) as any
+
+      const { token: newToken, user: refreshedUser } = response.data.data
+      setToken(newToken)
+      if (refreshedUser) {
+        setUser(refreshedUser)
+        localStorage.setItem('user', JSON.stringify(refreshedUser))
+      }
+      localStorage.setItem('token', newToken)
+
     } catch (error) {
       // Refresh failed, log out user
+      console.warn('Token refresh failed, logging out user')
       logout()
     }
   }

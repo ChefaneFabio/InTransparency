@@ -123,8 +123,12 @@ export default function LoginPage() {
   }
 
   const handleSocialLogin = (provider: string) => {
-    // Redirect to OAuth provider
-    window.location.href = `/api/auth/${provider}/redirect`
+    // For demo purposes, show an alert that this feature is coming soon
+    // In production, this would redirect to OAuth provider
+    alert(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login is coming soon! For now, please use email/password or demo accounts below.`)
+
+    // TODO: Implement OAuth endpoints
+    // window.location.href = `/api/auth/${provider}/redirect`
   }
 
   return (

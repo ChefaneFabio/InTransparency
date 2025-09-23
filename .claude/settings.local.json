@@ -37,7 +37,8 @@
       "Bash(npm start)",
       "Bash(grep:*)",
       "Bash(npx shadcn-ui@latest add:*)",
-      "Bash(npx shadcn@latest add:*)"
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(find:*)"
     ],
     "defaultMode": "acceptEdits"
   }
