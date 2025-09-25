@@ -148,41 +148,83 @@ interface MarkerProps {
 }
 
 export function MapMarker({ position, map, title, icon, onClick, zIndex }: MarkerProps) {
-  const [marker, setMarker] = useState<google.maps.Marker>()
+  const [marker, setMarker] = useState<google.maps.marker.AdvancedMarkerElement | google.maps.Marker>()
 
   useEffect(() => {
-    if (!marker) {
-      const newMarker = new google.maps.Marker({
-        position,
-        map,
-        title,
-        icon,
-        zIndex,
-      })
+    if (!marker && map) {
+      // Try to use AdvancedMarkerElement first, fallback to regular Marker
+      if (window.google?.maps?.marker?.AdvancedMarkerElement) {
+        const newMarker = new google.maps.marker.AdvancedMarkerElement({
+          position,
+          map,
+          title,
+          zIndex,
+        })
 
-      if (onClick) {
-        newMarker.addListener('click', onClick)
+        // Handle custom icons for AdvancedMarkerElement
+        if (icon && typeof icon === 'object' && 'path' in icon && icon.scale) {
+          // For custom symbols, create a custom element
+          const markerElement = document.createElement('div')
+          markerElement.style.width = `${icon.scale * 2}px`
+          markerElement.style.height = `${icon.scale * 2}px`
+          markerElement.style.borderRadius = '50%'
+          markerElement.style.backgroundColor = icon.fillColor || '#4285f4'
+          markerElement.style.border = `${icon.strokeWeight || 2}px solid ${icon.strokeColor || '#ffffff'}`
+          markerElement.style.opacity = `${icon.fillOpacity || 1}`
+          newMarker.content = markerElement
+        }
+
+        if (onClick) {
+          newMarker.addListener('click', onClick)
+        }
+
+        setMarker(newMarker)
+      } else {
+        // Fallback to regular Marker for compatibility
+        const newMarker = new google.maps.Marker({
+          position,
+          map,
+          title,
+          icon,
+          zIndex,
+        })
+
+        if (onClick) {
+          newMarker.addListener('click', onClick)
+        }
+
+        setMarker(newMarker)
       }
-
-      setMarker(newMarker)
     }
 
     return () => {
       if (marker) {
-        marker.setMap(null)
+        if ('map' in marker) {
+          marker.map = null
+        } else {
+          marker.setMap(null)
+        }
       }
     }
   }, [marker, position, map, title, icon, onClick, zIndex])
 
   useEffect(() => {
     if (marker) {
-      marker.setPosition(position)
+      if ('position' in marker) {
+        marker.position = position
+      } else {
+        marker.setPosition(position)
+      }
     }
   }, [marker, position])
 
   useEffect(() => {
     if (marker && title) {
-      marker.setTitle(title)
+      if ('title' in marker) {
+        marker.title = title
+      } else {
+        marker.setTitle(title)
+      }
     }
   }, [marker, title])
 

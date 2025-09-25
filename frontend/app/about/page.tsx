@@ -1,3 +1,5 @@
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -96,6 +98,8 @@ const stats = [
 export default function About() {
   return (
     <div className="min-h-screen">
+      <Header />
+      <main className="pt-24">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-sky-50 via-white to-emerald-50 py-20">
         <div className="container mx-auto px-4">
@@ -289,6 +293,8 @@ export default function About() {
           </div>
         </div>
       </section>
+      </main>
+      <Footer />
     </div>
   )
 }

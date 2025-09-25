@@ -1,3 +1,5 @@
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -168,6 +170,8 @@ const addOns = [
 export default function Pricing() {
   return (
     <div className="min-h-screen">
+      <Header />
+      <main className="pt-24">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
         <div className="container mx-auto px-4">
@@ -392,6 +396,8 @@ export default function Pricing() {
           </div>
         </div>
       </section>
+      </main>
+      <Footer />
     </div>
   )
 }

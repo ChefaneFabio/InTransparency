@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -476,6 +478,8 @@ export default function CVSamplesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Header />
+      <main className="pt-24">
       {/* Header */}
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 py-8">
@@ -632,6 +636,8 @@ export default function CVSamplesPage() {
           </div>
         </div>
       </div>
+      </main>
+      <Footer />
     </div>
   )
 }
