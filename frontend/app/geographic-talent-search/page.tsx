@@ -7,6 +7,8 @@ import { Badge } from '@/components/ui/badge'
 import { Switch } from '@/components/ui/switch'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { GoogleMapComponent, MapMarker, MapCircle, MapPolyline } from '@/components/maps/GoogleMapComponent'
+import { PlacesAutocomplete } from '@/components/maps/PlacesAutocomplete'
 import {
   MapPin,
   Search,
@@ -67,6 +69,8 @@ export default function GeographicTalentSearchPage() {
   const [showMeasurement, setShowMeasurement] = useState(false)
   const [measurementPoints, setMeasurementPoints] = useState<Array<{lat: number, lng: number}>>([])
   const [searchRadius, setSearchRadius] = useState(0)
+  const [googleMap, setGoogleMap] = useState<google.maps.Map | null>(null)
+  const [mapClickListener, setMapClickListener] = useState(false)
 
   const universityLocations = [
     {
@@ -253,11 +257,21 @@ export default function GeographicTalentSearchPage() {
   }
 
   const handleZoomIn = () => {
-    setMapZoom(Math.min(mapZoom + 1, 18))
+    if (googleMap) {
+      const currentZoom = googleMap.getZoom() || 1
+      googleMap.setZoom(Math.min(currentZoom + 1, 18))
+    } else {
+      setMapZoom(Math.min(mapZoom + 1, 18))
+    }
   }
 
   const handleZoomOut = () => {
-    setMapZoom(Math.max(mapZoom - 1, 2))
+    if (googleMap) {
+      const currentZoom = googleMap.getZoom() || 1
+      googleMap.setZoom(Math.max(currentZoom - 1, 2))
+    } else {
+      setMapZoom(Math.max(mapZoom - 1, 2))
+    }
   }
 
   const handleRegionFocus = (region: string) => {
@@ -274,18 +288,33 @@ export default function GeographicTalentSearchPage() {
 
     const coords = regionCoords[region as keyof typeof regionCoords]
     if (coords) {
-      setMapCenter({ lat: coords.lat, lng: coords.lng })
+      const newCenter = { lat: coords.lat, lng: coords.lng }
+      setMapCenter(newCenter)
       setMapZoom(coords.zoom)
+
+      if (googleMap) {
+        googleMap.panTo(newCenter)
+        googleMap.setZoom(coords.zoom)
+      }
     }
 
     setTimeout(() => setIsLoading(false), 800)
   }
 
   const resetMapView = () => {
-    setMapCenter({ lat: 40.7128, lng: -74.0060 })
-    setMapZoom(6)
+    const defaultCenter = { lat: 40.7128, lng: -74.0060 }
+    const defaultZoom = 6
+
+    setMapCenter(defaultCenter)
+    setMapZoom(defaultZoom)
     setSelectedRegion(null)
     setSelectedLocation(null)
+    clearMeasurement()
+
+    if (googleMap) {
+      googleMap.panTo(defaultCenter)
+      googleMap.setZoom(defaultZoom)
+    }
   }
 
   const applyMapFilters = (newFilters: any) => {
@@ -338,6 +367,51 @@ export default function GeographicTalentSearchPage() {
     })
   }
 
+  const handleMapLoad = (map: google.maps.Map) => {
+    setGoogleMap(map)
+  }
+
+  const handleMapCenterChanged = (center: google.maps.LatLngLiteral) => {
+    setMapCenter(center)
+  }
+
+  const handleMapZoomChanged = (zoom: number) => {
+    setMapZoom(zoom)
+  }
+
+  const handleMapClick = (event: google.maps.MapMouseEvent) => {
+    if (showMeasurement && event.latLng) {
+      const lat = event.latLng.lat()
+      const lng = event.latLng.lng()
+      addMeasurementPoint(lat, lng)
+    }
+  }
+
+  const getMapTypeId = () => {
+    switch (mapView) {
+      case 'satellite': return google.maps.MapTypeId.SATELLITE
+      case 'street': return google.maps.MapTypeId.ROADMAP
+      case 'terrain': return google.maps.MapTypeId.TERRAIN
+      default: return google.maps.MapTypeId.SATELLITE
+    }
+  }
+
+  const createUniversityIcon = (university: any) => {
+    const size = Math.min(Math.max(getTalentCount(university) / 1000, 12), 40)
+    const color = university.talentDensity === 'very-high' ? '#EF4444' :
+                  university.talentDensity === 'high' ? '#F97316' :
+                  university.talentDensity === 'medium' ? '#EAB308' : '#10B981'
+
+    return {
+      path: google.maps.SymbolPath.CIRCLE,
+      fillColor: color,
+      fillOpacity: 0.8,
+      strokeColor: '#ffffff',
+      strokeWeight: 2,
+      scale: size / 2,
+    }
+  }
+
   const filteredUniversities = universityLocations.filter(uni => {
     const matchesSearch = searchQuery === '' ||
       uni.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -369,17 +443,41 @@ export default function GeographicTalentSearchPage() {
       <Card className="bg-white shadow-sm border border-gray-200">
         <CardContent className="p-6">
           <div className="space-y-6">
-            {/* Search Bar */}
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search universities, locations, or skills..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
+            {/* Enhanced Search Bar with Places Autocomplete */}
+            <PlacesAutocomplete
+              map={googleMap || undefined}
+              placeholder="Search universities, cities, or locations..."
+              searchTypes={['university', 'school', 'geocode']}
+              onPlaceSelect={(place) => {
+                if (place.geometry?.location) {
+                  const lat = place.geometry.location.lat()
+                  const lng = place.geometry.location.lng()
+                  setMapCenter({ lat, lng })
+                  setMapZoom(12)
+
+                  // If university, add as selected location
+                  if (place.types?.includes('university') || place.types?.includes('school')) {
+                    setSelectedLocation({
+                      id: Date.now(),
+                      name: place.name || 'Unknown',
+                      location: place.formatted_address || '',
+                      coordinates: { lat, lng },
+                      country: '',
+                      students: 0,
+                      graduates: 0,
+                      researchers: 0,
+                      faculty: 0,
+                      topSkills: [],
+                      ranking: 0,
+                      recentGraduates: 0,
+                      activeResearchers: 0,
+                      talentDensity: 'medium'
+                    })
+                  }
+                }
+              }}
+              className="w-full"
+            />
 
             {/* Talent Category Filters */}
             <div>
@@ -575,8 +673,116 @@ export default function GeographicTalentSearchPage() {
           </div>
         </CardHeader>
         <CardContent>
-          {/* Map Container */}
-          <div className="relative bg-gradient-to-br from-blue-100 via-green-50 to-blue-50 rounded-lg overflow-hidden border-2 border-gray-200" style={{ height: '600px' }}>
+          {/* Real Google Maps Container */}
+          <div className="relative rounded-lg overflow-hidden border-2 border-gray-200" style={{ height: '600px' }}>
+            {/* Places Autocomplete Search Box */}
+            <div className="absolute top-4 left-4 z-10 w-80">
+              <PlacesAutocomplete
+                map={googleMap || undefined}
+                placeholder="Search universities, cities, or locations..."
+                searchTypes={['university', 'establishment', 'geocode']}
+                onPlaceSelect={(place) => {
+                  if (place.geometry?.location) {
+                    const lat = place.geometry.location.lat()
+                    const lng = place.geometry.location.lng()
+                    setMapCenter({ lat, lng })
+                    if (place.types?.includes('university')) {
+                      // If it's a university, add to selected location
+                      setSelectedLocation({
+                        id: 999,
+                        name: place.name || 'Unknown',
+                        location: place.formatted_address || '',
+                        coordinates: { lat, lng },
+                        country: '',
+                        students: 0,
+                        graduates: 0,
+                        researchers: 0,
+                        faculty: 0,
+                        topSkills: [],
+                        ranking: 0,
+                        recentGraduates: 0,
+                        activeResearchers: 0,
+                        talentDensity: 'medium'
+                      })
+                    }
+                  }
+                }}
+                className="shadow-lg"
+              />
+            </div>
+
+            <GoogleMapComponent
+              apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'demo-key'}
+              center={mapCenter}
+              zoom={mapZoom}
+              mapTypeId={getMapTypeId()}
+              onMapLoad={handleMapLoad}
+              onCenterChanged={handleMapCenterChanged}
+              onZoomChanged={handleMapZoomChanged}
+              onMapClick={handleMapClick}
+              className="w-full h-full"
+            >
+              {/* University Markers */}
+              {mapFilters.showUniversities && filteredUniversities
+                .filter(uni => {
+                  const talentFilter = getTalentCount(uni) >= mapFilters.minTalentSize
+                  if (searchRadius === 0) return talentFilter
+                  const distance = calculateDistance(mapCenter, uni.coordinates)
+                  return talentFilter && distance <= searchRadius
+                })
+                .map((university) => (
+                  <MapMarker
+                    key={university.id}
+                    position={university.coordinates}
+                    icon={createUniversityIcon(university)}
+                    title={`${university.name} - ${getTalentCount(university).toLocaleString()} ${selectedFilters.category}`}
+                    onClick={() => handleLocationClick(university)}
+                    zIndex={university.talentDensity === 'very-high' ? 100 : 50}
+                  />
+                ))}
+
+              {/* Search Radius Circle */}
+              {searchRadius > 0 && (
+                <MapCircle
+                  center={mapCenter}
+                  radius={searchRadius * 1000} // Convert km to meters
+                  fillColor="#3B82F6"
+                  strokeColor="#1D4ED8"
+                  fillOpacity={0.1}
+                  strokeOpacity={0.6}
+                  strokeWeight={2}
+                />
+              )}
+
+              {/* Measurement Lines */}
+              {measurementPoints.length > 1 && (
+                <MapPolyline
+                  path={measurementPoints}
+                  strokeColor="#3B82F6"
+                  strokeOpacity={0.8}
+                  strokeWeight={3}
+                />
+              )}
+
+              {/* Measurement Point Markers */}
+              {measurementPoints.map((point, index) => (
+                <MapMarker
+                  key={`measurement-${index}`}
+                  position={point}
+                  icon={{
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: '#3B82F6',
+                    fillOpacity: 1,
+                    strokeColor: '#ffffff',
+                    strokeWeight: 2,
+                    scale: 6,
+                  }}
+                  title={`Measurement Point ${index + 1}`}
+                  zIndex={200}
+                />
+              ))}
+            </GoogleMapComponent>
+
             {/* Loading Overlay */}
             {isLoading && (
               <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-30">
