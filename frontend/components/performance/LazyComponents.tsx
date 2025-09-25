@@ -119,10 +119,8 @@ export function LazyImage({
   )
 }
 
-// Code splitting utilities
-export const LazyDashboard = lazy(() => import('@/app/dashboard/student/page'))
-export const LazyAdvancedSearch = lazy(() => import('@/components/search/AdvancedSearch'))
-export const LazyMessageCenter = lazy(() => import('@/components/messaging/MessageCenter'))
+// Code splitting utilities - only for components with default exports
+// Note: Components with named exports need to be converted to default exports for lazy loading
 
 // Performance monitoring component
 export function PerformanceMonitor() {
