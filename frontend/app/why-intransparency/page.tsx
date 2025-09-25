@@ -193,12 +193,12 @@ export default function WhyInTransparencyPage() {
 
   const getFeatureColor = (color: string) => {
     const colors = {
-      blue: 'bg-blue-100 text-blue-600',
-      purple: 'bg-purple-100 text-purple-600',
-      green: 'bg-green-100 text-green-600',
-      orange: 'bg-orange-100 text-orange-600',
-      red: 'bg-red-100 text-red-600',
-      yellow: 'bg-yellow-100 text-yellow-600'
+      blue: 'bg-blue-50 text-blue-500 border border-blue-100',
+      purple: 'bg-purple-50 text-purple-500 border border-purple-100',
+      green: 'bg-green-50 text-green-500 border border-green-100',
+      orange: 'bg-orange-50 text-orange-500 border border-orange-100',
+      red: 'bg-red-50 text-red-500 border border-red-100',
+      yellow: 'bg-yellow-50 text-yellow-500 border border-yellow-100'
     }
     return colors[color as keyof typeof colors] || colors.blue
   }
@@ -236,7 +236,7 @@ export default function WhyInTransparencyPage() {
           </div>
 
       {/* Success Metrics */}
-      <Card>
+      <Card className="bg-white shadow-sm border border-gray-200">
         <CardContent className="p-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Proven Results</h2>
@@ -271,7 +271,7 @@ export default function WhyInTransparencyPage() {
           {uniqueFeatures.map((feature, index) => {
             const Icon = feature.icon
             return (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card key={index} className="bg-white shadow-sm border border-gray-200 hover:shadow-lg hover:border-gray-300 transition-all">
                 <CardContent className="p-6">
                   <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${getFeatureColor(feature.color)}`}>
                     <Icon className="h-6 w-6" />
@@ -322,7 +322,7 @@ export default function WhyInTransparencyPage() {
         </div>
 
         {/* Comparison Table */}
-        <Card>
+        <Card className="bg-white shadow-sm border border-gray-200">
           <CardContent className="p-0">
             <div className="grid grid-cols-2 divide-x divide-gray-200">
               {/* InTransparency Side */}
@@ -367,7 +367,7 @@ export default function WhyInTransparencyPage() {
         </Card>
 
         {/* Key Differentiators */}
-        <Card>
+        <Card className="bg-white shadow-sm border border-gray-200">
           <CardHeader>
             <CardTitle className="text-center">
               Key Differentiators vs {(competitorComparisons as any)[activeComparison].name}

@@ -32,7 +32,8 @@ import {
   Maximize,
   Minimize,
   Plus,
-  Minus
+  Minus,
+  X
 } from 'lucide-react'
 
 export default function GeographicTalentSearchPage() {
@@ -49,6 +50,15 @@ export default function GeographicTalentSearchPage() {
   const [heatmapEnabled, setHeatmapEnabled] = useState(true)
   const [selectedLocation, setSelectedLocation] = useState<any>(null)
   const [mapZoom, setMapZoom] = useState(6)
+  const [mapCenter, setMapCenter] = useState({ lat: 40.7128, lng: -74.0060 }) // Default to NYC
+  const [isLoading, setIsLoading] = useState(false)
+  const [selectedRegion, setSelectedRegion] = useState<string | null>(null)
+  const [mapFilters, setMapFilters] = useState({
+    showUniversities: true,
+    showTalentClusters: true,
+    showHeatmap: true,
+    minTalentSize: 1000
+  })
 
   const universityLocations = [
     {
@@ -229,6 +239,49 @@ export default function GeographicTalentSearchPage() {
 
   const handleLocationClick = (location: any) => {
     setSelectedLocation(location)
+    // Center map on selected location
+    setMapCenter({ lat: location.coordinates.lat, lng: location.coordinates.lng })
+    setMapZoom(Math.max(mapZoom, 8))
+  }
+
+  const handleZoomIn = () => {
+    setMapZoom(Math.min(mapZoom + 1, 18))
+  }
+
+  const handleZoomOut = () => {
+    setMapZoom(Math.max(mapZoom - 1, 2))
+  }
+
+  const handleRegionFocus = (region: string) => {
+    setIsLoading(true)
+    setSelectedRegion(region)
+
+    // Regional coordinates
+    const regionCoords = {
+      'North America': { lat: 45.0, lng: -100.0, zoom: 4 },
+      'Europe': { lat: 54.5, lng: 15.2, zoom: 4 },
+      'Asia Pacific': { lat: 35.0, lng: 103.0, zoom: 3 },
+      'Rest of World': { lat: 0.0, lng: 0.0, zoom: 2 }
+    }
+
+    const coords = regionCoords[region as keyof typeof regionCoords]
+    if (coords) {
+      setMapCenter({ lat: coords.lat, lng: coords.lng })
+      setMapZoom(coords.zoom)
+    }
+
+    setTimeout(() => setIsLoading(false), 800)
+  }
+
+  const resetMapView = () => {
+    setMapCenter({ lat: 40.7128, lng: -74.0060 })
+    setMapZoom(6)
+    setSelectedRegion(null)
+    setSelectedLocation(null)
+  }
+
+  const applyMapFilters = (newFilters: any) => {
+    setMapFilters(prev => ({ ...prev, ...newFilters }))
   }
 
   const filteredUniversities = universityLocations.filter(uni => {
@@ -259,7 +312,7 @@ export default function GeographicTalentSearchPage() {
           </div>
 
       {/* Search and Filters */}
-      <Card>
+      <Card className="bg-white shadow-sm border border-gray-200">
         <CardContent className="p-6">
           <div className="space-y-6">
             {/* Search Bar */}
@@ -374,14 +427,25 @@ export default function GeographicTalentSearchPage() {
       {/* Regional Overview */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {mapRegions.map((region, index) => (
-          <Card key={index}>
+          <Card
+            key={index}
+            className={`bg-white shadow-sm border border-gray-200 cursor-pointer transition-all hover:shadow-lg hover:border-gray-300 ${
+              selectedRegion === region.name ? 'ring-2 ring-blue-400 bg-blue-50 border-blue-200' : ''
+            }`}
+            onClick={() => handleRegionFocus(region.name)}
+          >
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="font-medium text-gray-900">{region.name}</h3>
-                <div
-                  className="w-4 h-4 rounded-full"
-                  style={{ backgroundColor: region.color }}
-                />
+                <div className="flex items-center space-x-2">
+                  <div
+                    className="w-4 h-4 rounded-full"
+                    style={{ backgroundColor: region.color }}
+                  />
+                  {selectedRegion === region.name && (
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                  )}
+                </div>
               </div>
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
@@ -393,13 +457,25 @@ export default function GeographicTalentSearchPage() {
                   <span className="text-sm font-medium">{region.graduates.toLocaleString()}</span>
                 </div>
               </div>
+              <Button
+                size="sm"
+                variant="outline"
+                className="w-full mt-3 text-xs"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  handleRegionFocus(region.name)
+                }}
+              >
+                <MapPin className="h-3 w-3 mr-1" />
+                Focus Region
+              </Button>
             </CardContent>
           </Card>
         ))}
       </div>
 
       {/* Interactive Map */}
-      <Card>
+      <Card className="bg-white shadow-sm border border-gray-200">
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center">
@@ -407,16 +483,35 @@ export default function GeographicTalentSearchPage() {
               Global Talent Map
             </CardTitle>
             <div className="flex items-center space-x-3">
-              <div className="flex items-center space-x-2">
-                <Switch
-                  checked={heatmapEnabled}
-                  onCheckedChange={setHeatmapEnabled}
-                />
-                <span className="text-sm text-gray-600">Heatmap</span>
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    checked={mapFilters.showHeatmap}
+                    onCheckedChange={(checked) => applyMapFilters({ showHeatmap: checked })}
+                  />
+                  <span className="text-sm text-gray-600">Heatmap</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    checked={mapFilters.showUniversities}
+                    onCheckedChange={(checked) => applyMapFilters({ showUniversities: checked })}
+                  />
+                  <span className="text-sm text-gray-600">Universities</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    checked={mapFilters.showTalentClusters}
+                    onCheckedChange={(checked) => applyMapFilters({ showTalentClusters: checked })}
+                  />
+                  <span className="text-sm text-gray-600">Clusters</span>
+                </div>
               </div>
-              <Button variant="outline" size="sm">
-                <Settings className="h-4 w-4 mr-2" />
-                Map Settings
+              <div className="text-sm text-gray-600">
+                Zoom: {mapZoom}x
+              </div>
+              <Button variant="outline" size="sm" onClick={resetMapView}>
+                <RefreshCw className="h-4 w-4 mr-2" />
+                Reset View
               </Button>
               <Button variant="outline" size="sm">
                 <Download className="h-4 w-4 mr-2" />
@@ -427,18 +522,50 @@ export default function GeographicTalentSearchPage() {
         </CardHeader>
         <CardContent>
           {/* Map Container */}
-          <div className="relative bg-gradient-to-br from-blue-100 to-green-100 rounded-lg overflow-hidden" style={{ height: '500px' }}>
+          <div className="relative bg-gradient-to-br from-blue-100 via-green-50 to-blue-50 rounded-lg overflow-hidden border-2 border-gray-200" style={{ height: '600px' }}>
+            {/* Loading Overlay */}
+            {isLoading && (
+              <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-30">
+                <div className="text-center">
+                  <RefreshCw className="h-8 w-8 animate-spin text-blue-600 mx-auto mb-2" />
+                  <p className="text-sm text-gray-600">Updating map view...</p>
+                </div>
+              </div>
+            )}
+
             {/* Map Controls */}
             <div className="absolute top-4 right-4 z-10 flex flex-col space-y-2">
-              <Button size="sm" variant="outline" className="w-8 h-8 p-0">
+              <Button
+                size="sm"
+                variant="outline"
+                className="w-10 h-10 p-0 bg-white/90 hover:bg-white"
+                onClick={handleZoomIn}
+                disabled={mapZoom >= 18}
+              >
                 <Plus className="h-4 w-4" />
               </Button>
-              <Button size="sm" variant="outline" className="w-8 h-8 p-0">
+              <Button
+                size="sm"
+                variant="outline"
+                className="w-10 h-10 p-0 bg-white/90 hover:bg-white"
+                onClick={handleZoomOut}
+                disabled={mapZoom <= 2}
+              >
                 <Minus className="h-4 w-4" />
               </Button>
-              <Button size="sm" variant="outline" className="w-8 h-8 p-0">
-                <Layers className="h-4 w-4" />
+              <Button
+                size="sm"
+                variant="outline"
+                className="w-10 h-10 p-0 bg-white/90 hover:bg-white"
+                onClick={() => setSelectedLocation(null)}
+              >
+                <X className="h-4 w-4" />
               </Button>
+            </div>
+
+            {/* Map Scale Indicator */}
+            <div className="absolute bottom-4 left-4 bg-white/90 rounded-lg px-2 py-1 text-xs text-gray-600">
+              Scale: {mapZoom <= 4 ? 'Continental' : mapZoom <= 8 ? 'Regional' : 'City'}
             </div>
 
             {/* Map View Toggle */}
@@ -470,9 +597,11 @@ export default function GeographicTalentSearchPage() {
             </div>
 
             {/* University Markers */}
-            {filteredUniversities.map((university, index) => {
+            {mapFilters.showUniversities && filteredUniversities
+              .filter(uni => getTalentCount(uni) >= mapFilters.minTalentSize)
+              .map((university, index) => {
               const talentCount = getTalentCount(university)
-              const markerSize = Math.min(Math.max(talentCount / 1000, 8), 24)
+              const markerSize = Math.min(Math.max(talentCount / (1000 / Math.max(mapZoom / 6, 1)), 8), Math.min(32, mapZoom * 4))
 
               return (
                 <div
@@ -505,7 +634,7 @@ export default function GeographicTalentSearchPage() {
                   </div>
 
                   {/* Ripple Effect for High Density */}
-                  {university.talentDensity === 'very-high' && heatmapEnabled && (
+                  {university.talentDensity === 'very-high' && mapFilters.showHeatmap && (
                     <div
                       className="absolute rounded-full bg-red-300 opacity-30 animate-ping"
                       style={{
@@ -554,9 +683,136 @@ export default function GeographicTalentSearchPage() {
         </CardContent>
       </Card>
 
+      {/* Advanced Map Filters */}
+      <Card className="bg-white shadow-sm border border-gray-200">
+        <CardHeader>
+          <CardTitle className="flex items-center">
+            <Filter className="h-5 w-5 mr-2" />
+            Map Filters & Controls
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Minimum Talent Size
+              </label>
+              <select
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                value={mapFilters.minTalentSize}
+                onChange={(e) => applyMapFilters({ minTalentSize: parseInt(e.target.value) })}
+              >
+                <option value={500}>500+ people</option>
+                <option value={1000}>1,000+ people</option>
+                <option value={5000}>5,000+ people</option>
+                <option value={10000}>10,000+ people</option>
+                <option value={20000}>20,000+ people</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Map Center
+              </label>
+              <div className="text-sm text-gray-600 bg-gray-50 px-3 py-2 rounded-lg">
+                {mapCenter.lat.toFixed(2)}°N, {Math.abs(mapCenter.lng).toFixed(2)}°{mapCenter.lng < 0 ? 'W' : 'E'}
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Quick Regions
+              </label>
+              <select
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                value={selectedRegion || ''}
+                onChange={(e) => e.target.value ? handleRegionFocus(e.target.value) : resetMapView()}
+              >
+                <option value="">Global View</option>
+                <option value="North America">North America</option>
+                <option value="Europe">Europe</option>
+                <option value="Asia Pacific">Asia Pacific</option>
+                <option value="Rest of World">Rest of World</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                View Type
+              </label>
+              <select
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                value={mapView}
+                onChange={(e) => setMapView(e.target.value as 'satellite' | 'street' | 'terrain')}
+              >
+                <option value="satellite">Satellite</option>
+                <option value="street">Street Map</option>
+                <option value="terrain">Terrain</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Map Actions
+              </label>
+              <div className="space-y-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full"
+                  onClick={resetMapView}
+                >
+                  <RefreshCw className="h-3 w-3 mr-1" />
+                  Reset View
+                </Button>
+                <div className="flex space-x-1">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="flex-1"
+                    onClick={handleZoomIn}
+                    disabled={mapZoom >= 18}
+                  >
+                    <Plus className="h-3 w-3" />
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="flex-1"
+                    onClick={handleZoomOut}
+                    disabled={mapZoom <= 2}
+                  >
+                    <Minus className="h-3 w-3" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Filter Status */}
+          <div className="mt-6 pt-6 border-t border-gray-200">
+            <div className="flex items-center justify-between text-sm">
+              <div className="flex items-center space-x-4">
+                <span className="text-gray-600">
+                  Showing: {filteredUniversities.filter(uni => getTalentCount(uni) >= mapFilters.minTalentSize).length} universities
+                </span>
+                <span className="text-gray-600">
+                  Zoom: {mapZoom}x ({mapZoom <= 4 ? 'Continental' : mapZoom <= 8 ? 'Regional' : 'City'} view)
+                </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                {mapFilters.showUniversities && <Badge variant="secondary">Universities</Badge>}
+                {mapFilters.showTalentClusters && <Badge variant="secondary">Clusters</Badge>}
+                {mapFilters.showHeatmap && <Badge variant="secondary">Heatmap</Badge>}
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Selected Location Details */}
       {selectedLocation && (
-        <Card>
+        <Card className="bg-white shadow-sm border border-gray-200">
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center">
@@ -653,7 +909,7 @@ export default function GeographicTalentSearchPage() {
       )}
 
       {/* University List View */}
-      <Card>
+      <Card className="bg-white shadow-sm border border-gray-200">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
             <span className="flex items-center">
@@ -669,7 +925,7 @@ export default function GeographicTalentSearchPage() {
         <CardContent>
           <div className="space-y-4">
             {filteredUniversities.map((university) => (
-              <div key={university.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+              <div key={university.id} className="bg-gray-50 border border-gray-200 rounded-lg p-4 hover:shadow-md hover:bg-white transition-all">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
                     <div className={`w-3 h-3 rounded-full ${getTalentDensityColor(university.talentDensity)}`} />
