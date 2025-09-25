@@ -1,6 +1,9 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+
+// Force dynamic rendering to prevent SSR issues with Google Maps
+export const dynamic = 'force-dynamic'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -388,6 +391,9 @@ export default function GeographicTalentSearchPage() {
   }
 
   const getMapTypeId = () => {
+    if (typeof window === 'undefined' || !window.google) {
+      return undefined // Fallback for SSR
+    }
     switch (mapView) {
       case 'satellite': return google.maps.MapTypeId.SATELLITE
       case 'street': return google.maps.MapTypeId.ROADMAP
@@ -397,6 +403,9 @@ export default function GeographicTalentSearchPage() {
   }
 
   const createUniversityIcon = (university: any) => {
+    if (typeof window === 'undefined' || !window.google) {
+      return undefined // Fallback for SSR
+    }
     const size = Math.min(Math.max(getTalentCount(university) / 1000, 12), 40)
     const color = university.talentDensity === 'very-high' ? '#EF4444' :
                   university.talentDensity === 'high' ? '#F97316' :
@@ -765,7 +774,7 @@ export default function GeographicTalentSearchPage() {
               )}
 
               {/* Measurement Point Markers */}
-              {measurementPoints.map((point, index) => (
+              {typeof window !== 'undefined' && window.google && measurementPoints.map((point, index) => (
                 <MapMarker
                   key={`measurement-${index}`}
                   position={point}
