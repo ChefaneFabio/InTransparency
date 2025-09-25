@@ -57,8 +57,16 @@ export default function GeographicTalentSearchPage() {
     showUniversities: true,
     showTalentClusters: true,
     showHeatmap: true,
-    minTalentSize: 1000
+    minTalentSize: 1000,
+    showConnections: false,
+    showPaths: false,
+    showStatistics: true,
+    clusterRadius: 50
   })
+  const [animationSpeed, setAnimationSpeed] = useState(1)
+  const [showMeasurement, setShowMeasurement] = useState(false)
+  const [measurementPoints, setMeasurementPoints] = useState<Array<{lat: number, lng: number}>>([])
+  const [searchRadius, setSearchRadius] = useState(0)
 
   const universityLocations = [
     {
@@ -282,6 +290,52 @@ export default function GeographicTalentSearchPage() {
 
   const applyMapFilters = (newFilters: any) => {
     setMapFilters(prev => ({ ...prev, ...newFilters }))
+  }
+
+  const startMeasurement = () => {
+    setShowMeasurement(true)
+    setMeasurementPoints([])
+  }
+
+  const addMeasurementPoint = (lat: number, lng: number) => {
+    if (showMeasurement) {
+      setMeasurementPoints(prev => [...prev, { lat, lng }])
+    }
+  }
+
+  const clearMeasurement = () => {
+    setShowMeasurement(false)
+    setMeasurementPoints([])
+  }
+
+  const calculateDistance = (point1: {lat: number, lng: number}, point2: {lat: number, lng: number}) => {
+    const R = 6371 // Earth's radius in km
+    const dLat = (point2.lat - point1.lat) * Math.PI / 180
+    const dLng = (point2.lng - point1.lng) * Math.PI / 180
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos(point1.lat * Math.PI / 180) * Math.cos(point2.lat * Math.PI / 180) *
+              Math.sin(dLng/2) * Math.sin(dLng/2)
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+    return R * c
+  }
+
+  const getTotalDistance = () => {
+    if (measurementPoints.length < 2) return 0
+    let total = 0
+    for (let i = 1; i < measurementPoints.length; i++) {
+      total += calculateDistance(measurementPoints[i-1], measurementPoints[i])
+    }
+    return total
+  }
+
+  const searchNearby = (centerLat: number, centerLng: number, radius: number) => {
+    return universityLocations.filter(uni => {
+      const distance = calculateDistance(
+        { lat: centerLat, lng: centerLng },
+        { lat: uni.coordinates.lat, lng: uni.coordinates.lng }
+      )
+      return distance <= radius
+    })
   }
 
   const filteredUniversities = universityLocations.filter(uni => {
@@ -533,34 +587,90 @@ export default function GeographicTalentSearchPage() {
               </div>
             )}
 
-            {/* Map Controls */}
+            {/* Advanced Map Tools */}
             <div className="absolute top-4 right-4 z-10 flex flex-col space-y-2">
-              <Button
-                size="sm"
-                variant="outline"
-                className="w-10 h-10 p-0 bg-white/90 hover:bg-white"
-                onClick={handleZoomIn}
-                disabled={mapZoom >= 18}
-              >
-                <Plus className="h-4 w-4" />
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                className="w-10 h-10 p-0 bg-white/90 hover:bg-white"
-                onClick={handleZoomOut}
-                disabled={mapZoom <= 2}
-              >
-                <Minus className="h-4 w-4" />
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                className="w-10 h-10 p-0 bg-white/90 hover:bg-white"
-                onClick={() => setSelectedLocation(null)}
-              >
-                <X className="h-4 w-4" />
-              </Button>
+              {/* Zoom Controls */}
+              <div className="bg-white/95 rounded-lg shadow-lg p-1 space-y-1">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-8 h-8 p-0 hover:bg-blue-50"
+                  onClick={handleZoomIn}
+                  disabled={mapZoom >= 18}
+                  title="Zoom In"
+                >
+                  <Plus className="h-3 w-3" />
+                </Button>
+                <div className="text-xs text-center text-gray-600 px-1">{mapZoom}x</div>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-8 h-8 p-0 hover:bg-blue-50"
+                  onClick={handleZoomOut}
+                  disabled={mapZoom <= 2}
+                  title="Zoom Out"
+                >
+                  <Minus className="h-3 w-3" />
+                </Button>
+              </div>
+
+              {/* Measurement Tools */}
+              <div className="bg-white/95 rounded-lg shadow-lg p-1 space-y-1">
+                <Button
+                  size="sm"
+                  variant={showMeasurement ? "default" : "outline"}
+                  className="w-8 h-8 p-0 hover:bg-blue-50"
+                  onClick={showMeasurement ? clearMeasurement : startMeasurement}
+                  title={showMeasurement ? "Clear Measurement" : "Measure Distance"}
+                >
+                  <Target className="h-3 w-3" />
+                </Button>
+                {measurementPoints.length > 1 && (
+                  <div className="text-xs text-center text-gray-600 px-1 whitespace-nowrap">
+                    {getTotalDistance().toFixed(1)}km
+                  </div>
+                )}
+              </div>
+
+              {/* Search Radius Tool */}
+              <div className="bg-white/95 rounded-lg shadow-lg p-1 space-y-1">
+                <Button
+                  size="sm"
+                  variant={searchRadius > 0 ? "default" : "outline"}
+                  className="w-8 h-8 p-0 hover:bg-blue-50"
+                  onClick={() => setSearchRadius(searchRadius > 0 ? 0 : 100)}
+                  title="Radius Search"
+                >
+                  <Search className="h-3 w-3" />
+                </Button>
+                {searchRadius > 0 && (
+                  <div className="text-xs text-center text-gray-600 px-1">
+                    {searchRadius}km
+                  </div>
+                )}
+              </div>
+
+              {/* Quick Actions */}
+              <div className="bg-white/95 rounded-lg shadow-lg p-1 space-y-1">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-8 h-8 p-0 hover:bg-blue-50"
+                  onClick={() => setSelectedLocation(null)}
+                  title="Clear Selection"
+                >
+                  <X className="h-3 w-3" />
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-8 h-8 p-0 hover:bg-blue-50"
+                  onClick={resetMapView}
+                  title="Reset View"
+                >
+                  <RefreshCw className="h-3 w-3" />
+                </Button>
+              </div>
             </div>
 
             {/* Map Scale Indicator */}
@@ -596,9 +706,70 @@ export default function GeographicTalentSearchPage() {
               </button>
             </div>
 
+            {/* Search Radius Visualization */}
+            {searchRadius > 0 && (
+              <div
+                className="absolute rounded-full border-2 border-blue-400 border-dashed bg-blue-100 opacity-30"
+                style={{
+                  width: `${searchRadius * 2}px`,
+                  height: `${searchRadius * 2}px`,
+                  left: '50%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  animation: 'pulse 2s infinite'
+                }}
+              />
+            )}
+
+            {/* Measurement Lines */}
+            {measurementPoints.length > 1 && (
+              <svg className="absolute inset-0 pointer-events-none">
+                {measurementPoints.slice(1).map((point, index) => {
+                  const prevPoint = measurementPoints[index]
+                  return (
+                    <line
+                      key={index}
+                      x1={`${20 + (index % 6) * 13}%`}
+                      y1={`${20 + Math.floor(index / 6) * 25}%`}
+                      x2={`${20 + ((index + 1) % 6) * 13}%`}
+                      y2={`${20 + Math.floor((index + 1) / 6) * 25}%`}
+                      stroke="#3B82F6"
+                      strokeWidth="2"
+                      strokeDasharray="5,5"
+                      className="animate-pulse"
+                    />
+                  )
+                })}
+              </svg>
+            )}
+
+            {/* Measurement Points */}
+            {measurementPoints.map((point, index) => (
+              <div
+                key={index}
+                className="absolute w-3 h-3 bg-blue-500 rounded-full border-2 border-white shadow-lg"
+                style={{
+                  left: `${20 + (index % 6) * 13}%`,
+                  top: `${20 + Math.floor(index / 6) * 25}%`,
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 20
+                }}
+              >
+                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs bg-blue-500 text-white rounded px-1">
+                  {index + 1}
+                </div>
+              </div>
+            ))}
+
             {/* University Markers */}
             {mapFilters.showUniversities && filteredUniversities
-              .filter(uni => getTalentCount(uni) >= mapFilters.minTalentSize)
+              .filter(uni => {
+                const talentFilter = getTalentCount(uni) >= mapFilters.minTalentSize
+                if (searchRadius === 0) return talentFilter
+
+                const distance = calculateDistance(mapCenter, uni.coordinates)
+                return talentFilter && distance <= searchRadius
+              })
               .map((university, index) => {
               const talentCount = getTalentCount(university)
               const markerSize = Math.min(Math.max(talentCount / (1000 / Math.max(mapZoom / 6, 1)), 8), Math.min(32, mapZoom * 4))
@@ -692,7 +863,7 @@ export default function GeographicTalentSearchPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Minimum Talent Size
@@ -753,9 +924,46 @@ export default function GeographicTalentSearchPage() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Map Actions
+                Search Radius
+              </label>
+              <select
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                value={searchRadius}
+                onChange={(e) => setSearchRadius(parseInt(e.target.value))}
+              >
+                <option value={0}>No Radius</option>
+                <option value={50}>50 km</option>
+                <option value={100}>100 km</option>
+                <option value={200}>200 km</option>
+                <option value={500}>500 km</option>
+                <option value={1000}>1000 km</option>
+              </select>
+              {searchRadius > 0 && (
+                <div className="text-xs text-gray-600 mt-1">
+                  Showing universities within {searchRadius}km of map center
+                </div>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Map Tools
               </label>
               <div className="space-y-2">
+                <Button
+                  size="sm"
+                  variant={showMeasurement ? "default" : "outline"}
+                  className="w-full"
+                  onClick={showMeasurement ? clearMeasurement : startMeasurement}
+                >
+                  <Target className="h-3 w-3 mr-1" />
+                  {showMeasurement ? 'Stop Measuring' : 'Measure Distance'}
+                </Button>
+                {measurementPoints.length > 1 && (
+                  <div className="text-xs text-gray-600 bg-blue-50 px-2 py-1 rounded">
+                    Total: {getTotalDistance().toFixed(1)} km
+                  </div>
+                )}
                 <Button
                   size="sm"
                   variant="outline"
@@ -765,26 +973,6 @@ export default function GeographicTalentSearchPage() {
                   <RefreshCw className="h-3 w-3 mr-1" />
                   Reset View
                 </Button>
-                <div className="flex space-x-1">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1"
-                    onClick={handleZoomIn}
-                    disabled={mapZoom >= 18}
-                  >
-                    <Plus className="h-3 w-3" />
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1"
-                    onClick={handleZoomOut}
-                    disabled={mapZoom <= 2}
-                  >
-                    <Minus className="h-3 w-3" />
-                  </Button>
-                </div>
               </div>
             </div>
           </div>
@@ -792,18 +980,36 @@ export default function GeographicTalentSearchPage() {
           {/* Filter Status */}
           <div className="mt-6 pt-6 border-t border-gray-200">
             <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 flex-wrap">
                 <span className="text-gray-600">
-                  Showing: {filteredUniversities.filter(uni => getTalentCount(uni) >= mapFilters.minTalentSize).length} universities
+                  Showing: {filteredUniversities
+                    .filter(uni => {
+                      const talentFilter = getTalentCount(uni) >= mapFilters.minTalentSize
+                      if (searchRadius === 0) return talentFilter
+                      const distance = calculateDistance(mapCenter, uni.coordinates)
+                      return talentFilter && distance <= searchRadius
+                    }).length} universities
                 </span>
                 <span className="text-gray-600">
                   Zoom: {mapZoom}x ({mapZoom <= 4 ? 'Continental' : mapZoom <= 8 ? 'Regional' : 'City'} view)
                 </span>
+                {searchRadius > 0 && (
+                  <span className="text-blue-600 bg-blue-50 px-2 py-1 rounded text-xs">
+                    Radius: {searchRadius}km
+                  </span>
+                )}
+                {showMeasurement && (
+                  <span className="text-green-600 bg-green-50 px-2 py-1 rounded text-xs">
+                    Measuring: {measurementPoints.length} points
+                  </span>
+                )}
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 flex-wrap">
                 {mapFilters.showUniversities && <Badge variant="secondary">Universities</Badge>}
                 {mapFilters.showTalentClusters && <Badge variant="secondary">Clusters</Badge>}
                 {mapFilters.showHeatmap && <Badge variant="secondary">Heatmap</Badge>}
+                {searchRadius > 0 && <Badge variant="outline" className="text-blue-600">Radius Search</Badge>}
+                {showMeasurement && <Badge variant="outline" className="text-green-600">Measurement Mode</Badge>}
               </div>
             </div>
           </div>
