@@ -66,25 +66,25 @@ export function CTA() {
         <div className="text-center mb-24">
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">
             Transform your projects into
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> career opportunities</span>
+            <span className="bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent"> career opportunities</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Join thousands of students who are already using InTransparency to showcase 
-            their work, connect with opportunities, and advance their careers.
+            Use InTransparency to showcase your work, connect with opportunities,
+            and advance your career.
           </p>
 
           {/* Benefits Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto mb-8">
             {benefits.map((benefit, index) => (
               <div key={index} className="flex items-center text-left">
-                <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
+                <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
                 <span className="text-gray-700">{benefit}</span>
               </div>
             ))}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
+            <Button asChild size="lg" className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700">
               <Link href="/auth/register">
                 Get Started Free
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -98,7 +98,7 @@ export function CTA() {
           </div>
 
           <p className="text-sm text-gray-500 mt-4">
-            No credit card required • Start showcasing in minutes • Join 50,000+ students
+            No credit card required • Start showcasing in minutes • Get started today
           </p>
         </div>
 
@@ -119,13 +119,13 @@ export function CTA() {
                 key={tier.name}
                 className={`relative rounded-2xl border-2 p-8 ${
                   tier.popular
-                    ? 'border-blue-500 shadow-xl scale-105'
+                    ? 'border-teal-500 shadow-xl scale-105'
                     : 'border-gray-200'
                 }`}
               >
                 {tier.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">
                       Most Popular
                     </span>
                   </div>
@@ -147,7 +147,7 @@ export function CTA() {
                 <ul className="space-y-4 mb-8">
                   {tier.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{feature}</span>
                     </li>
                   ))}
@@ -156,7 +156,7 @@ export function CTA() {
                 <Button
                   className={`w-full ${
                     tier.popular
-                      ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                      ? 'bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white'
                       : 'border border-gray-300 bg-white hover:bg-gray-50 text-gray-900'
                   }`}
                   asChild
@@ -177,7 +177,7 @@ export function CTA() {
         </div>
 
         {/* Final CTA Banner */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-center text-white">
+        <div className="bg-gradient-to-r from-teal-600 to-blue-600 rounded-3xl p-12 text-center text-white">
           <h3 className="text-3xl font-bold mb-4">
             Ready to unlock your potential?
           </h3>
@@ -228,16 +228,8 @@ export function CTA() {
         {/* Trust Indicators */}
         <div className="mt-16 text-center">
           <p className="text-sm text-gray-500 mb-6">
-            Trusted by leading universities and companies worldwide
+            Connect with top universities and companies
           </p>
-          <div className="flex items-center justify-center space-x-12 opacity-60">
-            {/* University Logos */}
-            <div className="text-2xl font-bold text-gray-400">Stanford</div>
-            <div className="text-2xl font-bold text-gray-400">MIT</div>
-            <div className="text-2xl font-bold text-gray-400">Berkeley</div>
-            <div className="text-2xl font-bold text-gray-400">Harvard</div>
-            <div className="text-2xl font-bold text-gray-400">CMU</div>
-          </div>
         </div>
       </div>
     </section>

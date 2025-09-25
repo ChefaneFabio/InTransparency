@@ -117,7 +117,7 @@ export function EnhancedProjectCard({
           <div className="absolute top-4 right-4">
             <Button
               size="sm"
-              className="bg-black/70 hover:bg-black/90 backdrop-blur-sm text-white shadow-lg"
+              className="bg-blue-600/90 hover:bg-blue-700 backdrop-blur-sm text-white shadow-lg"
               asChild
             >
               <Link href={project.liveUrl} target="_blank">

@@ -320,8 +320,8 @@ export function InstitutionalVerification({
                 <span className="text-sm font-medium text-blue-900">Database Integration</span>
               </div>
               <p className="text-sm text-blue-800">
-                InTransparency is connected to 500+ universities worldwide. We'll automatically verify your
-                academic credentials and import your official transcripts.
+                InTransparency connects with universities worldwide. We'll help verify your
+                academic credentials and showcase your achievements.
               </p>
             </div>
 

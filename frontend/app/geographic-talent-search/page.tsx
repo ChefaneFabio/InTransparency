@@ -492,11 +492,11 @@ export default function GeographicTalentSearchPage() {
                   </div>
 
                   {/* Tooltip */}
-                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black text-white text-xs rounded py-2 px-3 whitespace-nowrap z-20">
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-800 text-white text-xs rounded-lg py-2 px-3 whitespace-nowrap z-20 shadow-xl">
                     <div className="font-semibold">{university.name}</div>
                     <div>{university.location}</div>
                     <div>{talentCount.toLocaleString()} {selectedFilters.category}</div>
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-black"></div>
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-gray-800"></div>
                   </div>
 
                   {/* Ripple Effect for High Density */}

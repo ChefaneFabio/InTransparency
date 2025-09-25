@@ -64,10 +64,10 @@ const testimonials = [
 ]
 
 const stats = [
-  { label: 'Average Salary Increase', value: '23%', description: 'after using InTransparency' },
-  { label: 'Job Placement Rate', value: '94%', description: 'within 6 months of graduation' },
-  { label: 'Interview Success Rate', value: '78%', description: 'higher than industry average' },
-  { label: 'User Satisfaction', value: '4.9/5', description: 'based on 10,000+ reviews' }
+  { label: 'Active Universities', value: '15+', description: 'top institutions worldwide', color: 'text-teal-600' },
+  { label: 'Industry Partners', value: '12+', description: 'leading companies', color: 'text-blue-600' },
+  { label: 'Career Opportunities', value: 'Growing', description: 'new jobs added weekly', color: 'text-emerald-600' },
+  { label: 'Global Reach', value: '8+', description: 'countries represented', color: 'text-sky-600' }
 ]
 
 export function Testimonials() {
@@ -79,7 +79,7 @@ export function Testimonials() {
             Trusted by students worldwide
           </h2>
           <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-            See how InTransparency has helped thousands of students transform their 
+            See how InTransparency helps students transform their
             academic projects into career opportunities.
           </p>
         </div>
@@ -88,7 +88,7 @@ export function Testimonials() {
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 mb-16">
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-3xl font-bold text-blue-600">{stat.value}</div>
+              <div className={`text-3xl font-bold ${stat.color || 'text-teal-600'}`}>{stat.value}</div>
               <div className="text-sm font-medium text-gray-900 mt-1">{stat.label}</div>
               <div className="text-xs text-gray-500 mt-1">{stat.description}</div>
             </div>
@@ -115,7 +115,7 @@ export function Testimonials() {
               </blockquote>
 
               {/* Achievement Badge */}
-              <div className="bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full mb-6 inline-block">
+              <div className="bg-emerald-50 text-emerald-700 text-xs font-medium px-3 py-1 rounded-full mb-6 inline-block">
                 ✨ {testimonial.achievement}
               </div>
 
@@ -136,7 +136,7 @@ export function Testimonials() {
               {/* Project Type */}
               <div className="mt-4 pt-4 border-t border-gray-100">
                 <div className="text-xs text-gray-500">Project Focus</div>
-                <div className="text-sm font-medium text-blue-600">{testimonial.projectType}</div>
+                <div className="text-sm font-medium text-teal-600">{testimonial.projectType}</div>
               </div>
             </div>
           ))}
@@ -194,14 +194,14 @@ export function Testimonials() {
 
         {/* Call to Action */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white max-w-2xl mx-auto">
+          <div className="bg-gradient-to-r from-teal-600 to-blue-600 rounded-2xl p-8 text-white max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold mb-4">
               Ready to write your success story?
             </h3>
             <p className="text-blue-100 mb-6">
-              Join over 50,000 students who have transformed their academic projects into career opportunities.
+              Transform your academic projects into career opportunities.
             </p>
-            <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+            <button className="bg-white text-teal-700 px-8 py-3 rounded-lg font-medium hover:bg-slate-50 transition-colors">
               Start Your Journey Today
             </button>
           </div>

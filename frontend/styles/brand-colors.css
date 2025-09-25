@@ -1,0 +1,63 @@
+/* InTransparency Brand Colors - Talent & Education Platform */
+
+:root {
+  /* Primary Colors - Trust & Professional */
+  --primary-navy: #1e3a5f;      /* Deep trustworthy navy */
+  --primary-blue: #2563eb;      /* Professional bright blue */
+  --primary-teal: #0891b2;      /* Fresh teal for innovation */
+  --primary-sky: #0ea5e9;       /* Sky blue for opportunity */
+
+  /* Secondary Colors - Growth & Success */
+  --success-emerald: #10b981;   /* Growth and achievement */
+  --success-green: #22c55e;     /* Success and progress */
+  --accent-amber: #f59e0b;      /* Highlighting achievements */
+  --accent-orange: #fb923c;     /* Energy and enthusiasm */
+
+  /* Neutral Professional Tones */
+  --neutral-slate-900: #0f172a; /* Text headers */
+  --neutral-slate-700: #334155; /* Body text */
+  --neutral-slate-500: #64748b; /* Secondary text */
+  --neutral-slate-300: #cbd5e1; /* Borders */
+  --neutral-slate-100: #f1f5f9; /* Backgrounds */
+  --neutral-slate-50: #f8fafc;  /* Light backgrounds */
+
+  /* Gradient Combinations */
+  --gradient-professional: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+  --gradient-success: linear-gradient(135deg, #0891b2 0%, #10b981 100%);
+  --gradient-opportunity: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+  --gradient-warm: linear-gradient(135deg, #fb923c 0%, #f59e0b 100%);
+
+  /* Semantic Colors */
+  --color-trust: var(--primary-navy);
+  --color-growth: var(--success-emerald);
+  --color-innovation: var(--primary-teal);
+  --color-opportunity: var(--primary-sky);
+  --color-achievement: var(--accent-amber);
+
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: var(--neutral-slate-50);
+  --bg-tertiary: var(--neutral-slate-100);
+  --bg-accent: linear-gradient(135deg, #f0f9ff 0%, #f0fdf4 100%);
+}
+
+/* Professional Color Classes */
+.bg-trust {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+}
+
+.bg-growth {
+  background: linear-gradient(135deg, #10b981 0%, #22c55e 100%);
+}
+
+.bg-opportunity {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0891b2 100%);
+}
+
+.text-professional {
+  color: var(--neutral-slate-700);
+}
+
+.border-professional {
+  border-color: var(--neutral-slate-300);
+}

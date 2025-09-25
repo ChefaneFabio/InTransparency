@@ -34,7 +34,7 @@ export default function ValidationPage() {
           <Card className="max-w-md mx-auto">
             <CardHeader>
               <CardTitle>Get Early Access</CardTitle>
-              <CardDescription>Join 500+ companies already on the waitlist</CardDescription>
+              <CardDescription>Join companies on the waitlist for early access</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>

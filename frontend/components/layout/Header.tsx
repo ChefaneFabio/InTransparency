@@ -13,6 +13,7 @@ export function Header() {
   const navigation = [
     { name: 'Features', href: '#features' },
     { name: 'How It Works', href: '#how-it-works' },
+    { name: 'Talent Map', href: '/geographic-talent-search' },
     { name: 'Why InTransparency', href: '/why-intransparency' },
     { name: 'CV Samples', href: '/cv-samples' },
     { name: 'Pricing', href: '/pricing' },
@@ -24,7 +25,7 @@ export function Header() {
       <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
-            <span className="text-2xl font-bold text-blue-600">InTransparency</span>
+            <span className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">InTransparency</span>
           </Link>
         </div>
         
@@ -43,7 +44,7 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors"
+              className="text-sm font-semibold leading-6 text-slate-700 hover:text-teal-600 transition-colors"
             >
               {item.name}
             </Link>

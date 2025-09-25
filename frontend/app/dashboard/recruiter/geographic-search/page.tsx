@@ -475,7 +475,7 @@ export default function RecruiterGeographicSearchPage() {
                   </div>
 
                   {/* Detailed Tooltip */}
-                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity bg-black text-white text-xs rounded-lg py-3 px-4 whitespace-nowrap z-20 max-w-xs">
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-800 text-white text-xs rounded-lg py-3 px-4 whitespace-nowrap z-20 max-w-xs shadow-xl">
                     <div className="font-semibold text-sm mb-1">{location.city}</div>
                     <div className="text-gray-300 mb-2">{location.country}</div>
 
