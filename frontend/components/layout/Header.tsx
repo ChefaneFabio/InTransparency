@@ -12,7 +12,7 @@ export function Header() {
 
   const navigation = [
     { name: 'Features', href: '#features' },
-    { name: 'How It Works', href: '#how-it-works' },
+    { name: 'How It Works', href: '/how-it-works' },
     { name: 'Talent Map', href: '/geographic-talent-search' },
     { name: 'Why InTransparency', href: '/why-intransparency' },
     { name: 'CV Samples', href: '/cv-samples' },

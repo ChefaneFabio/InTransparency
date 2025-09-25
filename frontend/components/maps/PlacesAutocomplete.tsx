@@ -34,9 +34,13 @@ export function PlacesAutocomplete({
 
   useEffect(() => {
     if (window.google && !autocompleteService.current) {
+      // Using legacy AutocompleteService (deprecated March 2025)
+      // TODO: Migrate to google.maps.places.AutocompleteSuggestion when stable
       autocompleteService.current = new google.maps.places.AutocompleteService()
     }
     if (map && !placesService.current) {
+      // Using legacy PlacesService (deprecated March 2025)
+      // TODO: Migrate to google.maps.places.Place when stable
       placesService.current = new google.maps.places.PlacesService(map)
     }
   }, [map])
@@ -62,6 +66,7 @@ export function PlacesAutocomplete({
     }
 
     setIsSearching(true)
+    // Using legacy API - will migrate to AutocompleteSuggestion in future
     autocompleteService.current.getPlacePredictions(request, (predictions, status) => {
       setIsSearching(false)
       if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
@@ -103,6 +108,7 @@ export function PlacesAutocomplete({
       ]
     }
 
+    // Using legacy API - will migrate to Place in future
     placesService.current.getDetails(request, (place, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK && place) {
         setValue(place.name || '')
