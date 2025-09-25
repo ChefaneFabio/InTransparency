@@ -121,7 +121,7 @@ export function LazyImage({
 
 // Code splitting utilities
 export const LazyDashboard = lazy(() => import('@/app/dashboard/student/page'))
-export const LazyProjectForm = lazy(() => import('@/components/dashboard/student/ProjectForm'))
+export const LazyProjectForm = lazy(() => import('@/components/forms/project/ProjectForm'))
 export const LazyAdvancedSearch = lazy(() => import('@/components/search/AdvancedSearch'))
 export const LazyMessageCenter = lazy(() => import('@/components/messaging/MessageCenter'))
 
