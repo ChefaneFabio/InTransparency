@@ -10,6 +10,7 @@ import { studentsApi } from '@/lib/api'
 import { Loader2 } from 'lucide-react'
 import {
   User,
+  Users,
   MapPin,
   Calendar,
   Star,
