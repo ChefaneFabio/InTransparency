@@ -138,7 +138,7 @@ export function PerformanceMonitor() {
             console.log({
               loadComplete: navEntry.loadEventEnd - navEntry.loadEventStart,
               domContentLoaded: navEntry.domContentLoadedEventEnd - navEntry.domContentLoadedEventStart,
-              totalLoadTime: navEntry.loadEventEnd - navEntry.navigationStart
+              totalLoadTime: navEntry.loadEventEnd - navEntry.loadEventStart
             })
           }
         }

@@ -43,12 +43,14 @@ export function useTouchGestures() {
 
       // Add visual feedback for touch interactions
       const addTouchFeedback = (e: TouchEvent) => {
-        e.currentTarget?.classList.add('touch-active')
+        const target = e.currentTarget as HTMLElement
+        target?.classList.add('touch-active')
       }
 
       const removeTouchFeedback = (e: TouchEvent) => {
         setTimeout(() => {
-          e.currentTarget?.classList.remove('touch-active')
+          const target = e.currentTarget as HTMLElement
+          target?.classList.remove('touch-active')
         }, 150)
       }
 

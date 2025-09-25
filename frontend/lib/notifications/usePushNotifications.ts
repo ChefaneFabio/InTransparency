@@ -115,7 +115,7 @@ export function usePushNotifications(): UsePushNotificationsReturn {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user?.token}`
+          'Authorization': `Bearer ${user?.id}`
         },
         body: JSON.stringify({
           subscription,
@@ -151,7 +151,7 @@ export function usePushNotifications(): UsePushNotificationsReturn {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${user?.token}`
+            'Authorization': `Bearer ${user?.id}`
           },
           body: JSON.stringify({
             userId: user?.id
@@ -226,7 +226,7 @@ export function usePushNotifications(): UsePushNotificationsReturn {
 }
 
 // Helper function to convert VAPID key
-function urlBase64ToUint8Array(base64String: string): Uint8Array {
+function urlBase64ToUint8Array(base64String: string): ArrayBuffer {
   const padding = '='.repeat((4 - base64String.length % 4) % 4)
   const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/')
 
@@ -236,7 +236,7 @@ function urlBase64ToUint8Array(base64String: string): Uint8Array {
   for (let i = 0; i < rawData.length; ++i) {
     outputArray[i] = rawData.charCodeAt(i)
   }
-  return outputArray
+  return outputArray.buffer
 }
 
 // Notification types for the platform

@@ -50,7 +50,7 @@ export function useWebSocket(url: string, options: UseWebSocketOptions = {}) {
 
     try {
       const wsUrl = isAuthenticated && user
-        ? `${url}?userId=${user.id}&token=${user.token || ''}`
+        ? `${url}?userId=${user.id}`
         : url
 
       ws.current = new WebSocket(wsUrl)
