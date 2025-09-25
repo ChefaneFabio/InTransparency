@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Switch } from '@/components/ui/switch'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 import {
   MapPin,
   Search,
@@ -245,13 +247,16 @@ export default function GeographicTalentSearchPage() {
   })
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900">Geographic Talent Search</h1>
-        <p className="text-gray-600 mt-2">
-          Discover talent across universities worldwide with interactive geographic mapping and advanced filtering
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+      <Header />
+      <main className="pt-24 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-gray-900">Geographic Talent Search</h1>
+            <p className="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
+              Discover talent across universities worldwide with interactive geographic mapping and advanced filtering
+            </p>
+          </div>
 
       {/* Search and Filters */}
       <Card>
@@ -723,6 +728,9 @@ export default function GeographicTalentSearchPage() {
           </div>
         </CardContent>
       </Card>
+        </div>
+      </main>
+      <Footer />
     </div>
   )
 }
