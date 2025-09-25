@@ -11,7 +11,7 @@ interface MapProps {
   onCenterChanged?: (center: google.maps.LatLngLiteral) => void
   onZoomChanged?: (zoom: number) => void
   onMapClick?: (event: google.maps.MapMouseEvent) => void
-  children?: React.ReactElement[]
+  children?: React.ReactNode
   className?: string
   style?: React.CSSProperties
 }
@@ -105,7 +105,7 @@ function GoogleMapInner({
   return (
     <>
       <div ref={ref} className={className} style={style} />
-      {children?.map((child, i) => {
+      {React.Children.map(children, (child, i) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child, { map, key: i })
         }
