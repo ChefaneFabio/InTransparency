@@ -723,7 +723,7 @@ export default function GeographicTalentSearchPage() {
               className="w-full h-full"
             >
               {/* University Markers */}
-              {mapFilters.showUniversities && filteredUniversities
+              {mapFilters.showUniversities ? filteredUniversities
                 .filter(uni => {
                   const talentFilter = getTalentCount(uni) >= mapFilters.minTalentSize
                   if (searchRadius === 0) return talentFilter
@@ -739,7 +739,7 @@ export default function GeographicTalentSearchPage() {
                     onClick={() => handleLocationClick(university)}
                     zIndex={university.talentDensity === 'very-high' ? 100 : 50}
                   />
-                ))}
+                )) : null}
 
               {/* Search Radius Circle */}
               {searchRadius > 0 && (
