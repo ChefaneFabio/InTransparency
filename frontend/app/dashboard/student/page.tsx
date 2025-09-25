@@ -14,6 +14,8 @@ import { UniversityIntegration } from '@/components/dashboard/UniversityIntegrat
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { MessageCenter } from '@/components/messaging/MessageCenter'
+import { NotificationCenter } from '@/components/notifications/NotificationCenter'
 import { Plus, TrendingUp, Users, Briefcase, Eye, Star, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
@@ -571,6 +573,8 @@ export default function StudentDashboard() {
           </Tabs>
         </CardContent>
       </Card>
+      <MessageCenter />
+      <NotificationCenter />
     </div>
   )
 }

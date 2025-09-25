@@ -13,6 +13,13 @@ export const metadata: Metadata = {
   keywords: ['academic projects', 'AI matching', 'student portfolio', 'professional networking'],
   authors: [{ name: 'InTransparency Team' }],
   viewport: 'width=device-width, initial-scale=1',
+  manifest: '/manifest.json',
+  themeColor: '#0891b2',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'InTransparency',
+  },
 }
 
 export default function RootLayout({
@@ -22,12 +29,36 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#0891b2" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="InTransparency" />
+      </head>
       <body className={inter.className}>
         <Providers>
           <BreadcrumbWrapper />
           {children}
           <Toaster />
         </Providers>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                      console.log('[SW] Registration successful with scope: ', registration.scope);
+                    })
+                    .catch(function(err) {
+                      console.log('[SW] Registration failed: ', err);
+                    });
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   )

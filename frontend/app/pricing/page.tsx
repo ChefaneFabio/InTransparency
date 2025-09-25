@@ -369,24 +369,24 @@ export default function Pricing() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-sky-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6">Ready to Get Started?</h2>
-            <p className="text-xl mb-8 opacity-90">
-              Join thousands of students and hundreds of universities already using InTransparency 
+          <div className="max-w-4xl mx-auto text-center bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-xl border border-slate-200">
+            <h2 className="text-4xl font-bold mb-6 text-gray-900">Ready to Get Started?</h2>
+            <p className="text-xl mb-8 text-gray-600">
+              Join thousands of students and hundreds of universities already using InTransparency
               to achieve better career outcomes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="gap-2">
+              <Button size="lg" className="gap-2 bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700">
                 Start Free Trial
                 <ArrowRight className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
+              <Button variant="outline" size="lg" className="border-gray-300 text-gray-700 hover:bg-gray-50">
                 Schedule Demo
               </Button>
             </div>
-            <p className="text-sm opacity-75 mt-4">
+            <p className="text-sm text-gray-500 mt-4">
               No credit card required • 30-day free trial • Cancel anytime
             </p>
           </div>

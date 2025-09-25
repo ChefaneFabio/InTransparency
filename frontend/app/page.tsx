@@ -5,6 +5,7 @@ import { Testimonials } from '@/components/sections/Testimonials'
 import { CTA } from '@/components/sections/CTA'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { PWAInstallBanner } from '@/components/ui/pwa-install-banner'
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <CTA />
       </main>
       <Footer />
+      <PWAInstallBanner />
     </div>
   )
 }

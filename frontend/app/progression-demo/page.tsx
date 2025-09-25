@@ -705,22 +705,22 @@ export default function ProgressionDemo() {
         </Tabs>
 
         {/* Key Features Summary */}
-        <Card className="mt-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <Card className="mt-12 bg-gradient-to-br from-slate-50 to-sky-50 border border-slate-200 shadow-lg">
           <CardContent className="pt-8">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold mb-4">How the Algorithms Work</h2>
-              <p className="text-blue-100 max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold mb-4 text-gray-900">How the Algorithms Work</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
                 InTransparency uses advanced algorithms to create the most intelligent academic-career matching platform
               </p>
             </div>
             
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white/10 rounded-lg p-6">
-                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                  <Brain className="h-5 w-5" />
+              <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-slate-200">
+                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-gray-900">
+                  <Brain className="h-5 w-5 text-teal-600" />
                   Course Equivalence Algorithm
                 </h3>
-                <ul className="space-y-2 text-sm text-blue-100">
+                <ul className="space-y-2 text-sm text-gray-600">
                   <li>• <strong>Semantic Analysis:</strong> AI understands course content regardless of naming</li>
                   <li>• <strong>Skill Mapping:</strong> Maps courses to specific technical skills</li>
                   <li>• <strong>University Calibration:</strong> Accounts for different university standards</li>
@@ -729,12 +729,12 @@ export default function ProgressionDemo() {
                 </ul>
               </div>
               
-              <div className="bg-white/10 rounded-lg p-6">
-                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                  <TrendingUp className="h-5 w-5" />
+              <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-slate-200">
+                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-gray-900">
+                  <TrendingUp className="h-5 w-5 text-teal-600" />
                   Academic Progression System
                 </h3>
-                <ul className="space-y-2 text-sm text-blue-100">
+                <ul className="space-y-2 text-sm text-gray-600">
                   <li>• <strong>Trajectory Analysis:</strong> Tracks academic improvement over time</li>
                   <li>• <strong>Skill Evolution:</strong> Maps how abilities develop through coursework</li>
                   <li>• <strong>Context Awareness:</strong> Considers personal circumstances affecting performance</li>

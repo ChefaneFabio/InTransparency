@@ -97,21 +97,21 @@ export default function About() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <section className="bg-gradient-to-br from-sky-50 via-white to-emerald-50 py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl font-bold mb-6">
+            <h1 className="text-5xl font-bold mb-6 text-gray-900">
               Transforming How Students Launch Their Careers
             </h1>
-            <p className="text-xl mb-8 opacity-90">
-              We use AI to bridge the gap between student potential and career opportunities, 
+            <p className="text-xl mb-8 text-gray-600">
+              We use AI to bridge the gap between student potential and career opportunities,
               creating transparent pathways to professional success.
             </p>
             <div className="flex flex-wrap justify-center gap-8 mt-12">
               {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="text-3xl font-bold">{stat.value}</div>
-                  <div className="text-lg opacity-80">{stat.label}</div>
+                <div key={stat.label} className="text-center bg-white/80 backdrop-blur-sm rounded-xl px-6 py-4 shadow-lg">
+                  <div className="text-3xl font-bold text-teal-600">{stat.value}</div>
+                  <div className="text-lg text-gray-600">{stat.label}</div>
                 </div>
               ))}
             </div>

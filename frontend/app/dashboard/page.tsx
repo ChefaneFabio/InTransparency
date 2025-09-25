@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/auth/AuthContext'
+import { MessageCenter } from '@/components/messaging/MessageCenter'
 import { Loader2 } from 'lucide-react'
 
 export default function DashboardPage() {
@@ -52,6 +53,7 @@ export default function DashboardPage() {
         <Loader2 className="h-8 w-8 animate-spin mx-auto text-blue-600 mb-4" />
         <p className="text-gray-600">Redirecting to your dashboard...</p>
       </div>
+      <MessageCenter />
     </div>
   )
 }
