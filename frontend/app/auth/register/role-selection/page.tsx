@@ -44,7 +44,7 @@ const userTypes: UserType[] = [
     subtitle: 'Launch your career with verified credentials',
     description: 'Connect your university profile, showcase your projects, and get discovered by top companies with complete transparency.',
     icon: GraduationCap,
-    color: 'bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600',
+    color: 'bg-gradient-to-br from-teal-400 via-teal-500 to-blue-500',
     features: [
       'Free forever - no hidden costs',
       'University transcript integration',
@@ -64,7 +64,7 @@ const userTypes: UserType[] = [
     subtitle: 'Find verified talent from any university',
     description: 'Access 500,000+ verified graduates with real project portfolios and academic credentials through our transparent platform.',
     icon: Building2,
-    color: 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800',
+    color: 'bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600',
     features: [
       '7-day free trial',
       'Search verified student profiles',
@@ -83,7 +83,7 @@ const userTypes: UserType[] = [
     subtitle: 'Enhance your students\' career outcomes',
     description: 'Integrate with our platform to boost student placement rates and build stronger industry partnerships through transparent career services.',
     icon: School,
-    color: 'bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700',
+    color: 'bg-gradient-to-br from-emerald-400 via-teal-500 to-blue-500',
     features: [
       'Free trial for universities',
       'Student placement tracking',

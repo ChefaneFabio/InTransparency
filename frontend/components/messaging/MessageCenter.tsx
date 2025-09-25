@@ -137,7 +137,7 @@ export function MessageCenter() {
         conversationId: activeConversation,
         content: newMessage.trim(),
         senderId: user?.id,
-        senderName: user?.name || 'Unknown',
+        senderName: user ? `${user.firstName} ${user.lastName}` : 'Unknown',
         senderType: user?.role || 'student'
       }
     }
