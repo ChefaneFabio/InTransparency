@@ -1,38 +1,141 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
-  Search,
+  Play,
+  Pause,
+  ArrowRight,
+  CheckCircle,
   Users,
-  MessageCircle,
-  Briefcase,
-  TrendingUp,
+  Brain,
+  Target,
+  Sparkles,
+  Upload,
+  BarChart3,
+  MessageSquare,
   GraduationCap,
   Building2,
   Star,
+  Clock,
+  Zap,
+  TrendingUp,
+  Search,
+  MessageCircle,
+  Briefcase,
   Code,
   Eye,
   Send,
   Calendar,
-  BarChart3,
   Globe,
   Shield,
-  Zap,
   Heart,
   Award,
-  Target,
   BookOpen,
-  CheckCircle2,
-  ArrowRight
+  CheckCircle2
 } from 'lucide-react'
 
 export default function DemoPage() {
-  const [activeUserType, setActiveUserType] = useState('recruiter')
+  const [activeUserType, setActiveUserType] = useState('video')
   const [demoStep, setDemoStep] = useState(0)
+  const [currentDemo, setCurrentDemo] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [progress, setProgress] = useState(0)
+
+  const demoSections = [
+    {
+      id: 'upload',
+      title: '1. Upload Your Project',
+      description: 'Simply upload your academic projects, code repositories, or documentation',
+      icon: Upload,
+      color: 'bg-blue-500',
+      features: ['Drag & drop interface', 'Multiple file formats', 'GitHub integration'],
+      mockData: {
+        projectName: 'E-Commerce AI Recommendation System',
+        files: ['README.md', 'main.py', 'requirements.txt', 'screenshots/'],
+        technologies: ['Python', 'TensorFlow', 'Flask', 'PostgreSQL']
+      }
+    },
+    {
+      id: 'analysis',
+      title: '2. AI Analysis',
+      description: 'Our AI analyzes your code, documentation, and project complexity',
+      icon: Brain,
+      color: 'bg-purple-500',
+      features: ['Code quality assessment', 'Innovation scoring', 'Skill extraction'],
+      mockData: {
+        innovationScore: 85,
+        complexityLevel: 'Advanced',
+        skillsDetected: ['Machine Learning', 'Web Development', 'Database Design', 'API Development'],
+        codeQuality: 92
+      }
+    },
+    {
+      id: 'story',
+      title: '3. Story Generation',
+      description: 'Transform technical details into compelling professional narratives',
+      icon: MessageSquare,
+      color: 'bg-green-500',
+      features: ['Professional storytelling', 'Industry terminology', 'Impact highlighting'],
+      mockData: {
+        story: "Developed an intelligent e-commerce recommendation system that increased user engagement by 40%. Leveraged machine learning algorithms to analyze customer behavior patterns and deliver personalized product suggestions. Built a scalable web application with RESTful APIs, demonstrating strong full-stack development skills and business impact awareness."
+      }
+    },
+    {
+      id: 'matching',
+      title: '4. Smart Matching',
+      description: 'Get matched with relevant job opportunities and collaboration requests',
+      icon: Target,
+      color: 'bg-orange-500',
+      features: ['Skills-based matching', 'Industry preferences', 'Real-time opportunities'],
+      mockData: {
+        matches: [
+          { company: 'TechCorp', role: 'ML Engineer Intern', match: 94 },
+          { company: 'DataFlow', role: 'Full Stack Developer', match: 89 },
+          { company: 'InnovateLab', role: 'Software Engineer', match: 87 }
+        ]
+      }
+    }
+  ]
+
+  const stats = [
+    { label: 'Students Helped', value: '50,000+', icon: GraduationCap },
+    { label: 'Projects Analyzed', value: '125,000+', icon: Brain },
+    { label: 'Job Matches Made', value: '8,500+', icon: Target },
+    { label: 'Companies Partnered', value: '1,200+', icon: Building2 }
+  ]
+
+  // Auto-progress demo
+  useEffect(() => {
+    let interval: NodeJS.Timeout
+    if (isPlaying) {
+      interval = setInterval(() => {
+        setProgress(prev => {
+          if (prev >= 100) {
+            setCurrentDemo(curr => (curr + 1) % demoSections.length)
+            return 0
+          }
+          return prev + 2
+        })
+      }, 100)
+    }
+    return () => clearInterval(interval)
+  }, [isPlaying, demoSections.length])
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying)
+  }
+
+  const goToSection = (index: number) => {
+    setCurrentDemo(index)
+    setProgress(0)
+  }
+
+  const currentSection = demoSections[currentDemo]
 
   // Demo data
   const demoStudents = [
@@ -74,6 +177,299 @@ export default function DemoPage() {
       matches: 67
     }
   ]
+
+  const VideoDemo = () => (
+    <div className="space-y-16">
+      {/* Video Demo Section */}
+      <div className="text-center">
+        <h2 className="text-4xl font-bold text-gray-900 mb-6">
+          Watch InTransparency in Action
+        </h2>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          See how our platform transforms your academic projects into professional success stories
+        </p>
+
+        {/* Mock Video Player */}
+        <div className="relative max-w-4xl mx-auto mb-8">
+          <div className="aspect-video bg-gradient-to-br from-blue-900 to-purple-900 rounded-2xl shadow-2xl overflow-hidden relative">
+            {/* Video Overlay */}
+            <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+              <div className="text-center text-white">
+                <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto backdrop-blur-sm">
+                  {isPlaying ? (
+                    <Pause className="h-8 w-8 ml-1" />
+                  ) : (
+                    <Play className="h-8 w-8 ml-1" />
+                  )}
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Platform Walkthrough</h3>
+                <p className="text-blue-100">5 minute comprehensive demo</p>
+              </div>
+            </div>
+
+            {/* Demo Content Visualization */}
+            <div className="absolute inset-0 p-8">
+              <div className="grid grid-cols-2 gap-4 h-full opacity-30">
+                <div className="bg-white/10 rounded-lg p-4">
+                  <div className="w-full h-4 bg-white/20 rounded mb-2"></div>
+                  <div className="w-3/4 h-4 bg-white/20 rounded mb-2"></div>
+                  <div className="w-1/2 h-4 bg-white/20 rounded"></div>
+                </div>
+                <div className="bg-white/10 rounded-lg p-4">
+                  <div className="grid grid-cols-3 gap-2">
+                    <div className="h-8 bg-white/20 rounded"></div>
+                    <div className="h-8 bg-white/20 rounded"></div>
+                    <div className="h-8 bg-white/20 rounded"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Play Button Overlay */}
+            <button
+              onClick={togglePlay}
+              className="absolute inset-0 flex items-center justify-center group"
+            >
+              <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:bg-white/30 transition-all duration-300 group-hover:scale-110">
+                {isPlaying ? (
+                  <Pause className="h-10 w-10 text-white" />
+                ) : (
+                  <Play className="h-10 w-10 text-white ml-1" />
+                )}
+              </div>
+            </button>
+
+            {/* Progress Bar */}
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
+              <div
+                className="h-full bg-white transition-all duration-100"
+                style={{ width: `${progress}%` }}
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex justify-center space-x-4">
+          <Button onClick={togglePlay} size="lg">
+            {isPlaying ? (
+              <>
+                <Pause className="mr-2 h-5 w-5" />
+                Pause Demo
+              </>
+            ) : (
+              <>
+                <Play className="mr-2 h-5 w-5" />
+                Watch Full Demo
+              </>
+            )}
+          </Button>
+          <Button variant="outline" size="lg" asChild>
+            <Link href="/auth/register">
+              Skip to Sign Up
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
+        </div>
+      </div>
+
+      {/* Interactive Step-by-Step Demo */}
+      <div>
+        <h3 className="text-3xl font-bold text-center mb-8">Interactive Platform Tour</h3>
+
+        {/* Step Navigation */}
+        <div className="flex justify-center mb-8 overflow-x-auto">
+          <div className="flex space-x-4 p-2">
+            {demoSections.map((section, index) => {
+              const Icon = section.icon
+              return (
+                <button
+                  key={section.id}
+                  onClick={() => goToSection(index)}
+                  className={`flex items-center px-4 py-3 rounded-lg transition-all duration-300 whitespace-nowrap ${
+                    currentDemo === index
+                      ? 'bg-blue-600 text-white shadow-lg'
+                      : 'bg-white text-gray-600 hover:bg-blue-50 shadow'
+                  }`}
+                >
+                  <Icon className="h-5 w-5 mr-2" />
+                  <span className="font-medium">{section.title}</span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Current Step Display */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left: Description */}
+          <div>
+            <div className="flex items-center mb-4">
+              <div className={`w-12 h-12 ${currentSection.color} rounded-xl flex items-center justify-center mr-4 shadow-lg`}>
+                <currentSection.icon className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h4 className="text-2xl font-bold text-gray-900">{currentSection.title}</h4>
+                <p className="text-gray-600">{currentSection.description}</p>
+              </div>
+            </div>
+
+            <div className="space-y-3 mb-6">
+              {currentSection.features.map((feature, index) => (
+                <div key={index} className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">{feature}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex space-x-4">
+              <Button
+                onClick={() => goToSection((currentDemo + 1) % demoSections.length)}
+                className="bg-blue-600 hover:bg-blue-700"
+              >
+                Next Step
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+              <Button variant="outline" asChild>
+                <Link href="/auth/register">
+                  Try It Now
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          {/* Right: Mock Interface */}
+          <div className="relative">
+            <Card className="p-6 shadow-xl border-0 bg-gradient-to-br from-white to-blue-50/50">
+              <CardContent className="p-0">
+                {currentDemo === 0 && (
+                  <div className="space-y-4">
+                    <div className="border-2 border-dashed border-blue-300 rounded-lg p-8 text-center bg-blue-50/50">
+                      <Upload className="h-12 w-12 text-blue-500 mx-auto mb-4" />
+                      <h5 className="font-semibold text-gray-900 mb-2">{currentSection.mockData.projectName}</h5>
+                      <div className="space-y-2">
+                        {currentSection.mockData.files?.map((file, index) => (
+                          <div key={index} className="bg-white rounded p-2 text-sm text-gray-600">
+                            📄 {file}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {currentSection.mockData.technologies?.map((tech, index) => (
+                        <Badge key={index} variant="secondary">{tech}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {currentDemo === 1 && (
+                  <div className="space-y-6">
+                    <div className="text-center">
+                      <div className="relative w-32 h-32 mx-auto mb-4">
+                        <div className="absolute inset-0 rounded-full border-8 border-blue-100"></div>
+                        <div className="absolute inset-0 rounded-full border-8 border-blue-500 border-t-transparent animate-spin"></div>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <Brain className="h-8 w-8 text-blue-600" />
+                        </div>
+                      </div>
+                      <h5 className="font-semibold text-gray-900">Analyzing Project...</h5>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-blue-50 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-blue-600">{currentSection.mockData.innovationScore}</div>
+                        <div className="text-sm text-gray-600">Innovation Score</div>
+                      </div>
+                      <div className="bg-purple-50 rounded-lg p-4 text-center">
+                        <div className="text-lg font-bold text-purple-600">{currentSection.mockData.complexityLevel}</div>
+                        <div className="text-sm text-gray-600">Complexity</div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h6 className="font-medium text-gray-900 mb-2">Skills Detected:</h6>
+                      <div className="flex flex-wrap gap-2">
+                        {currentSection.mockData.skillsDetected?.map((skill, index) => (
+                          <Badge key={index} className="bg-green-100 text-green-800">{skill}</Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {currentDemo === 2 && (
+                  <div className="space-y-4">
+                    <div className="flex items-center mb-4">
+                      <Sparkles className="h-6 w-6 text-yellow-500 mr-2" />
+                      <h5 className="font-semibold text-gray-900">Professional Story Generated</h5>
+                    </div>
+                    <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-4 border border-yellow-200">
+                      <p className="text-gray-700 leading-relaxed text-sm">
+                        {currentSection.mockData.story}
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between text-sm text-gray-500">
+                      <span>✨ AI-optimized for ATS systems</span>
+                      <span>📊 Industry-relevant keywords</span>
+                    </div>
+                  </div>
+                )}
+
+                {currentDemo === 3 && (
+                  <div className="space-y-4">
+                    <div className="flex items-center mb-4">
+                      <Target className="h-6 w-6 text-green-500 mr-2" />
+                      <h5 className="font-semibold text-gray-900">Job Matches Found</h5>
+                    </div>
+                    <div className="space-y-3">
+                      {currentSection.mockData.matches?.map((match, index) => (
+                        <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h6 className="font-semibold text-gray-900">{match.role}</h6>
+                              <p className="text-sm text-gray-600">{match.company}</p>
+                            </div>
+                            <div className="text-right">
+                              <div className="text-lg font-bold text-green-600">{match.match}%</div>
+                              <div className="text-xs text-gray-500">match</div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Floating Animation Elements */}
+            <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full animate-bounce"></div>
+            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-purple-500 rounded-full animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats Section */}
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-center text-white">
+        <h3 className="text-3xl font-bold mb-8">Platform Impact</h3>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon
+            return (
+              <div key={index} className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Icon className="h-8 w-8 text-white" />
+                </div>
+                <div className="text-3xl font-bold mb-2">{stat.value}</div>
+                <div className="text-blue-100">{stat.label}</div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
 
   const RecruiterDemo = () => (
     <div className="space-y-6">
@@ -691,17 +1087,29 @@ export default function DemoPage() {
   )
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-purple-50/30">
       {/* Header */}
-      <div className="bg-white border-b">
+      <div className="bg-white/90 backdrop-blur-md border-b border-blue-100/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
-              🚀 InTransparency Demo Completa
-            </h1>
-            <p className="text-xl text-gray-600">
-              Scopri tutte le funzionalità per recruiters, studenti e career services
-            </p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                InTransparency Platform Demo
+              </h1>
+              <p className="text-gray-600 mt-2">See how we transform academic projects into career opportunities</p>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Button variant="outline" asChild>
+                <Link href="/">
+                  ← Back to Home
+                </Link>
+              </Button>
+              <Button asChild>
+                <Link href="/auth/register">
+                  Start Free Trial
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -710,7 +1118,10 @@ export default function DemoPage() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <Tabs value={activeUserType} onValueChange={setActiveUserType} className="space-y-6">
           <div className="flex justify-center">
-            <TabsList className="grid w-full max-w-md grid-cols-4">
+            <TabsList className="grid w-full max-w-2xl grid-cols-5">
+              <TabsTrigger value="video" className="text-sm">
+                🎬 Video Demo
+              </TabsTrigger>
               <TabsTrigger value="recruiter" className="text-sm">
                 👔 Recruiter
               </TabsTrigger>
@@ -725,6 +1136,10 @@ export default function DemoPage() {
               </TabsTrigger>
             </TabsList>
           </div>
+
+          <TabsContent value="video">
+            <VideoDemo />
+          </TabsContent>
 
           <TabsContent value="recruiter">
             <RecruiterDemo />
@@ -744,7 +1159,7 @@ export default function DemoPage() {
         </Tabs>
 
         {/* Action Buttons */}
-        <div className="mt-12 text-center space-y-4">
+        <div className="mt-12 text-center space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
             <Button
               size="lg"
@@ -752,7 +1167,7 @@ export default function DemoPage() {
               onClick={() => setActiveUserType('recruiter')}
             >
               <Search className="h-5 w-5 mr-2" />
-              Prova da Recruiter
+              Try Recruiter View
             </Button>
             <Button
               size="lg"
@@ -760,7 +1175,7 @@ export default function DemoPage() {
               onClick={() => setActiveUserType('student')}
             >
               <GraduationCap className="h-5 w-5 mr-2" />
-              Prova da Student
+              Try Student View
             </Button>
             <Button
               size="lg"
@@ -768,20 +1183,31 @@ export default function DemoPage() {
               onClick={() => setActiveUserType('career')}
             >
               <Building2 className="h-5 w-5 mr-2" />
-              Prova da University
+              Try University View
             </Button>
           </div>
 
-          <div className="flex justify-center space-x-4 mt-6">
-            <Button variant="outline" size="lg">
-              📚 Documentazione API
-            </Button>
-            <Button variant="outline" size="lg">
-              💼 Registra la tua Azienda
-            </Button>
-            <Button variant="outline" size="lg">
-              🎓 Registra la tua Università
-            </Button>
+          {/* Final CTA */}
+          <div className="text-center">
+            <h3 className="text-3xl font-bold text-gray-900 mb-6">
+              Ready to Transform Your Projects?
+            </h3>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+              Join thousands of students who are already using InTransparency to showcase their work and advance their careers.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700" asChild>
+                <Link href="/auth/register">
+                  Start Free Today
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link href="/pricing">
+                  View Pricing
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>

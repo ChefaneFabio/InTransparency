@@ -13,6 +13,7 @@ export function Header() {
   const navigation = [
     { name: 'Features', href: '#features' },
     { name: 'How It Works', href: '#how-it-works' },
+    { name: 'Why InTransparency', href: '/why-intransparency' },
     { name: 'CV Samples', href: '/cv-samples' },
     { name: 'Pricing', href: '/pricing' },
     { name: 'About', href: '/about' },

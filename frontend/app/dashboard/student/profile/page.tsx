@@ -36,7 +36,9 @@ import {
   Brain,
   Users,
   Eye,
-  Download
+  Download,
+  FileText,
+  Sparkles
 } from 'lucide-react'
 
 export default function ProfilePage() {
@@ -45,6 +47,7 @@ export default function ProfilePage() {
   const [editing, setEditing] = useState(false)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+  const [generatingCV, setGeneratingCV] = useState(false)
 
   useEffect(() => {
     fetchProfile()
@@ -162,6 +165,54 @@ export default function ProfilePage() {
     }
   }
 
+  const generateCV = async () => {
+    setGeneratingCV(true)
+    try {
+      // Mock CV generation - in production, this would call the API
+      await new Promise(resolve => setTimeout(resolve, 2000))
+
+      // Mock success notification
+      console.log('CV generated successfully!')
+
+      // In production, this would download the generated CV
+      const cvData = {
+        personal: {
+          name: `${profile.firstName} ${profile.lastName}`,
+          email: profile.email,
+          phone: profile.phone,
+          location: profile.location,
+          linkedin: profile.linkedinUrl,
+          github: profile.githubUrl,
+          portfolio: profile.portfolioUrl
+        },
+        education: {
+          university: profile.university,
+          degree: profile.degree,
+          graduationYear: profile.graduationYear,
+          gpa: profile.gpa,
+          major: profile.major,
+          minor: profile.minor
+        },
+        skills: profile.skills,
+        achievements: profile.achievements,
+        stats: profile.stats
+      }
+
+      // Create and download JSON (in production, this would be PDF)
+      const blob = new Blob([JSON.stringify(cvData, null, 2)], { type: 'application/json' })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `CV_${profile.firstName}_${profile.lastName}.json`
+      a.click()
+      URL.revokeObjectURL(url)
+    } catch (error) {
+      console.error('Failed to generate CV:', error)
+    } finally {
+      setGeneratingCV(false)
+    }
+  }
+
   const getSkillColor = (level: number) => {
     if (level >= 90) return "bg-green-500"
     if (level >= 75) return "bg-blue-500"
@@ -257,9 +308,22 @@ export default function ProfilePage() {
                     {editing ? 'Save Changes' : 'Edit Profile'}
                   </Button>
                   
-                  <Button variant="outline">
-                    <Download className="mr-2 h-4 w-4" />
-                    Export Resume
+                  <Button
+                    variant="outline"
+                    onClick={generateCV}
+                    disabled={generatingCV}
+                  >
+                    {generatingCV ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-900 mr-2"></div>
+                        Generating...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="mr-2 h-4 w-4" />
+                        Generate CV
+                      </>
+                    )}
                   </Button>
                 </div>
               </div>
@@ -688,9 +752,14 @@ export default function ProfilePage() {
                 <Eye className="mr-2 h-4 w-4" />
                 Preview Public Profile
               </Button>
-              <Button variant="outline" className="w-full justify-start">
-                <Download className="mr-2 h-4 w-4" />
-                Download Resume
+              <Button
+                variant="outline"
+                className="w-full justify-start"
+                onClick={generateCV}
+                disabled={generatingCV}
+              >
+                <FileText className="mr-2 h-4 w-4" />
+                {generatingCV ? 'Generating CV...' : 'Generate Academic CV'}
               </Button>
               <Button variant="outline" className="w-full justify-start">
                 <Target className="mr-2 h-4 w-4" />

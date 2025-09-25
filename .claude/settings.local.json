@@ -38,7 +38,14 @@
       "Bash(grep:*)",
       "Bash(npx shadcn-ui@latest add:*)",
       "Bash(npx shadcn@latest add:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(npx next lint:*)",
+      "Bash(timeout 30s npm run dev)",
+      "Bash(timeout 20s npm run dev)",
+      "WebFetch(domain:intransparency.onrender.com)",
+      "Bash(python3:*)",
+      "WebSearch",
+      "WebFetch(domain:www.topuniversities.com)"
     ],
     "defaultMode": "acceptEdits"
   }

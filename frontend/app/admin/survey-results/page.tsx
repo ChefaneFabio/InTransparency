@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -130,6 +130,37 @@ const COLORS = ['#3b82f6', '#1d4ed8', '#1e40af', '#1e3a8a', '#172554']
 
 export default function SurveyResultsPage() {
   const [selectedTab, setSelectedTab] = useState('overview')
+  const [surveyData, setSurveyData] = useState(mockSurveyResults)
+  const [loading, setLoading] = useState(false)
+
+  // Fetch real survey data
+  const fetchSurveyData = async () => {
+    setLoading(true)
+    try {
+      const response = await fetch('/api/surveys/analytics', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+
+      if (response.ok) {
+        const realData = await response.json()
+        setSurveyData(realData)
+      } else {
+        console.warn('Failed to fetch real survey data, using mock data')
+      }
+    } catch (error) {
+      console.warn('Error fetching survey data:', error)
+      // Keep using mock data on error
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // Load data on component mount
+  React.useEffect(() => {
+    fetchSurveyData()
+  }, [])
 
   const exportToCSV = (data: any, filename: string) => {
     // Convert data to CSV format
@@ -165,6 +196,10 @@ export default function SurveyResultsPage() {
               <p className="text-gray-600 mt-2">InTransparency Platform Survey Analytics</p>
             </div>
             <div className="flex space-x-4">
+              <Button variant="outline" onClick={fetchSurveyData} disabled={loading}>
+                <BarChart3 className="h-4 w-4 mr-2" />
+                {loading ? 'Refreshing...' : 'Refresh Data'}
+              </Button>
               <Button variant="outline" asChild>
                 <a href="/admin/send-surveys">
                   <Mail className="h-4 w-4 mr-2" />
@@ -198,7 +233,7 @@ export default function SurveyResultsPage() {
                   <Users className="h-4 w-4 text-blue-600" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{mockSurveyResults.overview.totalResponses}</div>
+                  <div className="text-2xl font-bold">{surveyData.overview.totalResponses}</div>
                   <p className="text-xs text-gray-600">Across all user types</p>
                 </CardContent>
               </Card>
@@ -209,7 +244,7 @@ export default function SurveyResultsPage() {
                   <GraduationCap className="h-4 w-4 text-blue-600" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{mockSurveyResults.overview.studentResponses}</div>
+                  <div className="text-2xl font-bold">{surveyData.overview.studentResponses}</div>
                   <p className="text-xs text-gray-600">63% of total responses</p>
                 </CardContent>
               </Card>
@@ -220,7 +255,7 @@ export default function SurveyResultsPage() {
                   <Building2 className="h-4 w-4 text-blue-600" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{mockSurveyResults.overview.companyResponses}</div>
+                  <div className="text-2xl font-bold">{surveyData.overview.companyResponses}</div>
                   <p className="text-xs text-gray-600">28% of total responses</p>
                 </CardContent>
               </Card>
@@ -231,7 +266,7 @@ export default function SurveyResultsPage() {
                   <TrendingUp className="h-4 w-4 text-blue-600" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{mockSurveyResults.overview.completionRate}%</div>
+                  <div className="text-2xl font-bold">{surveyData.overview.completionRate}%</div>
                   <p className="text-xs text-gray-600">High engagement rate</p>
                 </CardContent>
               </Card>

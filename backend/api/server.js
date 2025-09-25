@@ -2,6 +2,18 @@ const express = require('express')
 const cors = require('cors')
 const path = require('path')
 
+// Import routes
+const universitiesRoutes = require('./routes/universities')
+const jobsRoutes = require('./routes/jobs')
+const companiesRoutes = require('./routes/companies')
+const studentsRoutes = require('./routes/students')
+const applicationsRoutes = require('./routes/applications')
+const searchRoutes = require('./routes/search')
+const matchingRoutes = require('./routes/matching')
+const usersRoutes = require('./routes/users')
+const analyticsRoutes = require('./routes/analytics')
+const dataSeedingRoutes = require('./routes/data-seeding')
+
 const app = express()
 const PORT = process.env.PORT || 3001
 
@@ -9,6 +21,8 @@ const PORT = process.env.PORT || 3001
 app.use(cors({
   origin: [
     'http://localhost:3000',
+    'http://localhost:3001',
+    'http://localhost:3002',
     'https://in-transparency-9visdfu70-chefanefabios-projects.vercel.app',
     'https://in-transparency-m5krpwb5s-chefanefabios-projects.vercel.app',
     process.env.FRONTEND_URL
@@ -66,12 +80,40 @@ app.get('/api/projects', (req, res) => {
   })
 })
 
+// Mount new API routes
+app.use('/api/universities', universitiesRoutes)
+app.use('/api/jobs', jobsRoutes)
+app.use('/api/companies', companiesRoutes)
+app.use('/api/students', studentsRoutes)
+app.use('/api/applications', applicationsRoutes)
+app.use('/api/search', searchRoutes)
+app.use('/api/matching', matchingRoutes)
+app.use('/api/users', usersRoutes)
+app.use('/api/analytics', analyticsRoutes)
+app.use('/api/data-seeding', dataSeedingRoutes)
+
 // Catch-all for undefined routes
 app.get('*', (req, res) => {
   res.json({
     message: 'InTransparency API',
-    version: '1.0.0',
-    endpoints: ['/health', '/api/health', '/api/auth/login', '/api/auth/register', '/api/projects']
+    version: '2.0.0',
+    endpoints: [
+      '/health',
+      '/api/health',
+      '/api/auth/login',
+      '/api/auth/register',
+      '/api/projects',
+      '/api/universities',
+      '/api/jobs',
+      '/api/companies',
+      '/api/students',
+      '/api/applications',
+      '/api/search',
+      '/api/matching',
+      '/api/users',
+      '/api/analytics',
+      '/api/data-seeding'
+    ]
   })
 })
 

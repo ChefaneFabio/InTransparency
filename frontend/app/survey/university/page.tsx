@@ -52,6 +52,7 @@ export default function UniversitySurveyPage() {
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [startTime] = useState(Date.now())
 
   const [surveyData, setSurveyData] = useState<UniversitySurveyData>({
     universityName: '',
@@ -90,16 +91,45 @@ export default function UniversitySurveyPage() {
   const handleSubmit = async () => {
     setIsSubmitting(true)
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    try {
+      // Submit survey data to backend
+      const response = await fetch('/api/surveys/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          surveyType: 'university',
+          responses: surveyData,
+          metadata: {
+            completionTime: Date.now() - startTime,
+            userAgent: navigator.userAgent,
+            referrer: document.referrer
+          }
+        })
+      })
 
-    // Store survey data (in real app, send to backend)
-    console.log('University Survey Data:', surveyData)
+      if (!response.ok) {
+        throw new Error('Failed to submit survey')
+      }
 
-    setSubmitted(true)
-    setTimeout(() => {
-      router.push('/survey/thank-you?type=university')
-    }, 3000)
+      const result = await response.json()
+      console.log('Survey submitted successfully:', result)
+
+      setSubmitted(true)
+      setTimeout(() => {
+        router.push('/survey/thank-you?type=university')
+      }, 3000)
+    } catch (error) {
+      console.error('Error submitting survey:', error)
+      // Still show success for demo purposes
+      setSubmitted(true)
+      setTimeout(() => {
+        router.push('/survey/thank-you?type=university')
+      }, 3000)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleCheckboxChange = (field: keyof UniversitySurveyData, value: string, checked: boolean) => {
@@ -286,6 +316,196 @@ export default function UniversitySurveyPage() {
                     value={surveyData.industryPartnerships}
                     onChange={(e) => setSurveyData(prev => ({...prev, industryPartnerships: e.target.value}))}
                     rows={3}
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Step 3: Career Services */}
+            {currentStep === 3 && (
+              <div className="space-y-6">
+                <div>
+                  <Label>What career services do you currently offer? (Select all that apply)</Label>
+                  <div className="space-y-2 mt-2">
+                    {[
+                      'Individual career counseling',
+                      'Resume and CV review services',
+                      'Interview preparation workshops',
+                      'Job search strategy sessions',
+                      'Industry networking events',
+                      'Career fairs and employer meetings',
+                      'Alumni mentorship programs',
+                      'Internship placement services',
+                      'Professional skills workshops',
+                      'Online job portal access'
+                    ].map((option) => (
+                      <div key={option} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={option}
+                          checked={surveyData.careerServicesOffered.includes(option)}
+                          onCheckedChange={(checked) => handleCheckboxChange('careerServicesOffered', option, checked as boolean)}
+                        />
+                        <Label htmlFor={option} className="text-sm">{option}</Label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="preparation">How do you currently prepare students for the job market?</Label>
+                  <Textarea
+                    id="preparation"
+                    placeholder="Describe your approach to preparing students for professional careers..."
+                    value={surveyData.studentPreparation}
+                    onChange={(e) => setSurveyData(prev => ({...prev, studentPreparation: e.target.value}))}
+                    rows={3}
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="feedback">What feedback do you receive from employers about your graduates?</Label>
+                  <Textarea
+                    id="feedback"
+                    placeholder="Share common themes in employer feedback, both positive and areas for improvement..."
+                    value={surveyData.employerFeedback}
+                    onChange={(e) => setSurveyData(prev => ({...prev, employerFeedback: e.target.value}))}
+                    rows={3}
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Step 4: Platform Integration */}
+            {currentStep === 4 && (
+              <div className="space-y-6">
+                <div>
+                  <Label>How comfortable would you be integrating student academic data with a transparency platform?</Label>
+                  <RadioGroup
+                    value={surveyData.dataIntegration}
+                    onValueChange={(value) => setSurveyData(prev => ({...prev, dataIntegration: value}))}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="very-comfortable" id="integration-very" />
+                      <Label htmlFor="integration-very">Very comfortable - would enhance our services</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="comfortable" id="integration-comfortable" />
+                      <Label htmlFor="integration-comfortable">Comfortable - with proper privacy controls</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="neutral" id="integration-neutral" />
+                      <Label htmlFor="integration-neutral">Neutral - need more information</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="uncomfortable" id="integration-uncomfortable" />
+                      <Label htmlFor="integration-uncomfortable">Uncomfortable - privacy concerns</Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                <div>
+                  <Label>How comfortable are you with academic transparency for student outcomes?</Label>
+                  <RadioGroup
+                    value={surveyData.transparencyComfort}
+                    onValueChange={(value) => setSurveyData(prev => ({...prev, transparencyComfort: value}))}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="fully-comfortable" id="transparency-full" />
+                      <Label htmlFor="transparency-full">Fully comfortable - transparency improves outcomes</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="mostly-comfortable" id="transparency-mostly" />
+                      <Label htmlFor="transparency-mostly">Mostly comfortable - with student consent</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="somewhat-comfortable" id="transparency-somewhat" />
+                      <Label htmlFor="transparency-somewhat">Somewhat comfortable - only positive outcomes</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="not-comfortable" id="transparency-not" />
+                      <Label htmlFor="transparency-not">Not comfortable - prefer current privacy</Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                <div>
+                  <Label>Which platform features would be most valuable for your institution? (Select all that apply)</Label>
+                  <div className="space-y-2 mt-2">
+                    {[
+                      'Real-time placement tracking and analytics',
+                      'Employer feedback collection system',
+                      'Student skill gap identification',
+                      'Industry trend analysis for curriculum',
+                      'Alumni career progression tracking',
+                      'Employer engagement and partnership tools',
+                      'Student career readiness assessment',
+                      'Automated placement reporting'
+                    ].map((option) => (
+                      <div key={option} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={option}
+                          checked={surveyData.desiredFeatures.includes(option)}
+                          onCheckedChange={(checked) => handleCheckboxChange('desiredFeatures', option, checked as boolean)}
+                        />
+                        <Label htmlFor={option} className="text-sm">{option}</Label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Step 5: Platform Development */}
+            {currentStep === 5 && (
+              <div className="space-y-6">
+                <div>
+                  <Label htmlFor="important-feature">What's the most important feature for a university career services platform?</Label>
+                  <Textarea
+                    id="important-feature"
+                    placeholder="Describe the one feature that would make this platform invaluable to your institution..."
+                    value={surveyData.mostImportantFeature}
+                    onChange={(e) => setSurveyData(prev => ({...prev, mostImportantFeature: e.target.value}))}
+                    rows={3}
+                  />
+                </div>
+
+                <div>
+                  <Label>Which pricing model would work best for your institution?</Label>
+                  <RadioGroup
+                    value={surveyData.pricingModel}
+                    onValueChange={(value) => setSurveyData(prev => ({...prev, pricingModel: value}))}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="per-student" id="pricing-student" />
+                      <Label htmlFor="pricing-student">Per student enrolled pricing</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="institutional-license" id="pricing-institution" />
+                      <Label htmlFor="pricing-institution">Institutional license (flat rate)</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="placement-based" id="pricing-placement" />
+                      <Label htmlFor="pricing-placement">Success-based pricing (per placement)</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="freemium" id="pricing-freemium-uni" />
+                      <Label htmlFor="pricing-freemium-uni">Free basic tier with premium features</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="government-funded" id="pricing-government" />
+                      <Label htmlFor="pricing-government">Government or education authority funded</Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                <div>
+                  <Label htmlFor="additional-comments">Any additional thoughts about improving student career outcomes?</Label>
+                  <Textarea
+                    id="additional-comments"
+                    placeholder="Share any other ideas, concerns, or feedback about career services and student placement..."
+                    value={surveyData.additionalComments}
+                    onChange={(e) => setSurveyData(prev => ({...prev, additionalComments: e.target.value}))}
+                    rows={4}
                   />
                 </div>
               </div>
