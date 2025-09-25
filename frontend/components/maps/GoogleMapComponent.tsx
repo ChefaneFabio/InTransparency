@@ -199,10 +199,10 @@ export function MapMarker({ position, map, title, icon, onClick, zIndex }: Marke
 
     return () => {
       if (marker) {
-        if ('map' in marker) {
-          marker.map = null
-        } else {
+        if ('setMap' in marker) {
           marker.setMap(null)
+        } else {
+          marker.map = null
         }
       }
     }
@@ -210,20 +210,20 @@ export function MapMarker({ position, map, title, icon, onClick, zIndex }: Marke
 
   useEffect(() => {
     if (marker) {
-      if ('position' in marker) {
-        marker.position = position
-      } else {
+      if ('setPosition' in marker) {
         marker.setPosition(position)
+      } else {
+        marker.position = position
       }
     }
   }, [marker, position])
 
   useEffect(() => {
     if (marker && title) {
-      if ('title' in marker) {
-        marker.title = title
-      } else {
+      if ('setTitle' in marker) {
         marker.setTitle(title)
+      } else {
+        marker.title = title
       }
     }
   }, [marker, title])
