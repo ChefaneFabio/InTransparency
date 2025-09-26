@@ -11,7 +11,7 @@ export function Header() {
   const { user, isAuthenticated, logout } = useAuth()
 
   const navigation = [
-    { name: 'Features', href: '#features' },
+    { name: 'Features', href: '/features' },
     { name: 'How It Works', href: '/how-it-works' },
     { name: 'Talent Map', href: '/geographic-talent-search' },
     { name: 'Why InTransparency', href: '/why-intransparency' },

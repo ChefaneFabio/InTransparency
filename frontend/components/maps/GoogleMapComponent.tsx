@@ -109,7 +109,7 @@ function GoogleMapInner({
         if (React.isValidElement(child)) {
           return React.cloneElement(child, { map, key: i })
         }
-        return child
+        return null
       })}
     </>
   )

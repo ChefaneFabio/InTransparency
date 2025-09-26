@@ -732,7 +732,7 @@ export default function GeographicTalentSearchPage() {
               className="w-full h-full"
             >
               {/* University Markers */}
-              {mapFilters.showUniversities ? filteredUniversities
+              {mapFilters.showUniversities && filteredUniversities ? filteredUniversities
                 .filter(uni => {
                   const talentFilter = getTalentCount(uni) >= mapFilters.minTalentSize
                   if (searchRadius === 0) return talentFilter
