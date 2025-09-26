@@ -305,10 +305,10 @@ interface VideoGalleryProps {
 export function VideoGallery({ videos, onVideoSelect }: VideoGalleryProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
-  const categories = ['all', ...Array.from(new Set(videos.map(v => v.category)))]
+  const categories = ['all', ...Array.from(new Set((videos || []).map(v => v.category)))]
   const filteredVideos = selectedCategory === 'all'
-    ? videos
-    : videos.filter(v => v.category === selectedCategory)
+    ? (videos || [])
+    : (videos || []).filter(v => v.category === selectedCategory)
 
   return (
     <div className="space-y-6">
@@ -329,7 +329,7 @@ export function VideoGallery({ videos, onVideoSelect }: VideoGalleryProps) {
 
       {/* Video Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredVideos.map(video => (
+        {(filteredVideos || []).map(video => (
           <Card
             key={video.id}
             className="cursor-pointer hover:shadow-lg transition-shadow"

@@ -50,7 +50,8 @@
       "Bash(npx prisma:*)",
       "Bash(npm run prisma:generate:*)",
       "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_LTt2zFdkgs1N@ep-still-glitter-agaesk7h-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" npx prisma db push)",
-      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_LTt2zFdkgs1N@ep-still-glitter-agaesk7h-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" npx prisma generate)"
+      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_LTt2zFdkgs1N@ep-still-glitter-agaesk7h-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" npx prisma generate)",
+      "Bash(rg:*)"
     ],
     "defaultMode": "acceptEdits"
   }
