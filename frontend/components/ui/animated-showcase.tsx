@@ -163,7 +163,7 @@ export function AnimatedShowcase({
       case 'progress':
         return (
           <div className="space-y-4">
-            {animation.data.map((metric: any, index: number) => (
+            {(animation.data || []).map((metric: any, index: number) => (
               <ProgressBar key={`${animationKey}-${index}`} {...metric} />
             ))}
           </div>
@@ -269,7 +269,7 @@ export function AnimatedShowcase({
             {/* Stats */}
             {activeItem.stats && (
               <div className="grid grid-cols-3 gap-4">
-                {activeItem.stats.map((stat, index) => (
+                {(activeItem.stats || []).map((stat, index) => (
                   <div key={index} className="text-center p-4 bg-gray-50 rounded-lg">
                     <div className="text-xl font-bold text-gray-900">{stat.value}</div>
                     <div className="text-sm text-gray-500">{stat.label}</div>
@@ -371,7 +371,7 @@ function MatchSlideshow({ matches }: { matches: any[] }) {
       </div>
 
       <div className="space-y-3">
-        {matches.map((match, index) => (
+        {(matches || []).map((match, index) => (
           <div
             key={index}
             className={`p-4 rounded-lg border transition-all duration-500 ${
@@ -427,7 +427,7 @@ function CounterGrid({ counters }: { counters: any[] }) {
 
   return (
     <div className="grid grid-cols-2 gap-4">
-      {counters.map((counter, index) => (
+      {(counters || []).map((counter, index) => (
         <div key={index} className="text-center p-4 bg-blue-50 rounded-lg">
           <div className="text-2xl font-bold text-blue-600">
             {animatedValues[index]}{counter.suffix}
