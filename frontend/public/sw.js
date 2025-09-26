@@ -1,5 +1,5 @@
 // InTransparency Service Worker
-const CACHE_NAME = 'intransparency-v1';
+const CACHE_NAME = 'intransparency-v2';
 const OFFLINE_URL = '/offline';
 
 // Resources to cache for offline functionality
@@ -7,9 +7,9 @@ const urlsToCache = [
   '/',
   '/offline',
   '/dashboard',
-  '/geographic-talent-search',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
+  '/features',
+  '/about',
+  '/pricing',
   '/manifest.json'
 ];
 
