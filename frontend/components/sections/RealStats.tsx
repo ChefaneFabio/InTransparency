@@ -40,7 +40,7 @@ export function RealStats() {
 
       // Count unique industries from companies
       const companiesResponse = await api.get('/api/companies')
-      const industries = new Set(companiesResponse.data.map((c: any) => c.industry)).size
+      const industries = new Set(Array.isArray(companiesResponse.data) ? companiesResponse.data.map((c: any) => c.industry) : []).size
 
       setStats({
         universities: data.universities?.total || 0,
