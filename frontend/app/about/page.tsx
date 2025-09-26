@@ -69,12 +69,12 @@ const milestones = [
   {
     year: '2023',
     title: 'University Partnerships',
-    description: 'Partnered with 25 leading universities to pilot our platform.'
+    description: 'Began partnering with leading universities to pilot our platform.'
   },
   {
     year: '2023',
-    title: 'Series A Funding',
-    description: 'Raised $15M Series A to accelerate product development and expansion.'
+    title: 'Platform Development',
+    description: 'Accelerated product development and platform expansion.'
   },
   {
     year: '2024',
@@ -84,15 +84,15 @@ const milestones = [
   {
     year: '2024',
     title: 'Enterprise Launch',
-    description: 'Full platform launch with 100+ university partners and 500+ employer partners.'
+    description: 'Full platform launch with growing university and employer partnerships.'
   }
 ]
 
-const stats = [
-  { label: 'Universities', value: '100+' },
-  { label: 'Students Helped', value: '50,000+' },
-  { label: 'Employer Partners', value: '500+' },
-  { label: 'Successful Placements', value: '25,000+' }
+const values_stats = [
+  { label: 'Mission', value: 'Bridge the gap between student potential and career opportunities' },
+  { label: 'Focus', value: 'AI-powered transparency in career development' },
+  { label: 'Vision', value: 'Every student\'s potential recognized and connected' },
+  { label: 'Approach', value: 'Data-driven insights for better career outcomes' }
 ]
 
 export default function About() {
@@ -111,11 +111,11 @@ export default function About() {
               We use AI to bridge the gap between student potential and career opportunities,
               creating transparent pathways to professional success.
             </p>
-            <div className="flex flex-wrap justify-center gap-8 mt-12">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center bg-white/80 backdrop-blur-sm rounded-xl px-6 py-4 shadow-lg">
-                  <div className="text-3xl font-bold text-teal-600">{stat.value}</div>
-                  <div className="text-lg text-gray-600">{stat.label}</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-4xl mx-auto">
+              {values_stats.map((item) => (
+                <div key={item.label} className="text-center bg-white/80 backdrop-blur-sm rounded-xl px-6 py-4 shadow-lg">
+                  <div className="text-lg font-semibold text-teal-600 mb-2">{item.label}</div>
+                  <div className="text-sm text-gray-700">{item.value}</div>
                 </div>
               ))}
             </div>

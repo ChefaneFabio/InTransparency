@@ -73,7 +73,7 @@ InTransparency eliminates the traditional CV building process by automatically c
 ## 🔬 Experiment Hypotheses
 
 ### Hypothesis 1: **Adoption Rate**
-**"If we offer automatic profile creation through university integration, then 80% of students will complete profiles within 48 hours of registration"**
+**"If we offer automatic profile creation through university integration, then students will complete profiles significantly faster than traditional manual methods"**
 
 **Metrics:**
 - Sign-up to profile completion rate
@@ -82,7 +82,7 @@ InTransparency eliminates the traditional CV building process by automatically c
 - User activation rate
 
 ### Hypothesis 2: **Engagement**
-**"If profiles are automatically maintained and updated, then students will engage with the platform 3x more frequently than traditional job boards"**
+**"If profiles are automatically maintained and updated, then students will engage more frequently with the platform than traditional job boards"**
 
 **Metrics:**
 - Weekly active users
@@ -91,7 +91,7 @@ InTransparency eliminates the traditional CV building process by automatically c
 - Profile view rate by recruiters
 
 ### Hypothesis 3: **Job Matching Success**
-**"If AI accurately analyzes and explains academic projects, then students will receive 5x more relevant job matches"**
+**"If AI accurately analyzes and explains academic projects, then students will receive more relevant job matches than traditional keyword-based systems"**
 
 **Metrics:**
 - Match relevance score
@@ -239,16 +239,16 @@ Academic achievements translated into industry-relevant language
 ## 🎉 Expected Outcomes
 
 ### For Students:
-- **15 hours saved** on CV creation
-- **5x more** recruiter views
-- **3x faster** job placement
-- **100%** data accuracy
+- **Significant time saved** on CV creation
+- **Increased** recruiter views
+- **Faster** job placement process
+- **High** data accuracy through university integration
 
 ### For Platform:
-- **80%** activation rate
-- **70+** NPS score
-- **50%** reduction in support tickets
-- **10x** faster onboarding
+- **Strong** user activation rate
+- **High** user satisfaction scores
+- **Reduced** support burden through automation
+- **Streamlined** onboarding process
 
 ---
 

@@ -86,20 +86,20 @@ export function Features() {
         <div className="mt-16 text-center">
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">10K+</div>
-              <div className="text-sm text-gray-600">Students Connected</div>
+              <div className="text-2xl font-bold text-blue-600">AI-Powered</div>
+              <div className="text-sm text-gray-600">Project Analysis</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">500+</div>
-              <div className="text-sm text-gray-600">Partner Companies</div>
+              <div className="text-2xl font-bold text-blue-600">Real-Time</div>
+              <div className="text-sm text-gray-600">University Integration</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">50K+</div>
-              <div className="text-sm text-gray-600">Projects Analyzed</div>
+              <div className="text-2xl font-bold text-blue-600">Global</div>
+              <div className="text-sm text-gray-600">Talent Mapping</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">95%</div>
-              <div className="text-sm text-gray-600">Success Rate</div>
+              <div className="text-2xl font-bold text-blue-600">Verified</div>
+              <div className="text-sm text-gray-600">Academic Records</div>
             </div>
           </div>
         </div>

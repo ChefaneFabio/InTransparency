@@ -7,8 +7,8 @@ const testimonials = [
     university: 'Stanford University',
     avatar: '/images/avatars/sarah-chen.jpg',
     rating: 5,
-    content: 'InTransparency helped me showcase my machine learning projects in a way that caught recruiters\' attention. I landed interviews at three FAANG companies!',
-    achievement: 'Landed at Google as ML Engineer',
+    content: 'The automatic profile creation from university data saved me hours of work. The AI analysis helped me understand what skills my projects demonstrated.',
+    achievement: 'Beta Program Participant',
     projectType: 'Machine Learning'
   },
   {
@@ -17,8 +17,8 @@ const testimonials = [
     university: 'MIT',
     avatar: '/images/avatars/marcus-johnson.jpg',
     rating: 5,
-    content: 'The AI analysis showed me exactly what skills I was demonstrating through my projects. It was like having a career counselor review my work 24/7.',
-    achievement: '3 job offers in final semester',
+    content: 'The platform makes it easy to showcase projects professionally. The AI insights help me understand how my work translates to industry skills.',
+    achievement: 'Early Access User',
     projectType: 'Full-Stack Development'
   },
   {
@@ -27,8 +27,8 @@ const testimonials = [
     university: 'UC Berkeley',
     avatar: '/images/avatars/emily-rodriguez.jpg',
     rating: 5,
-    content: 'I never knew how to present my academic projects professionally. InTransparency transformed them into compelling stories that landed me my dream internship.',
-    achievement: 'Internship at Microsoft',
+    content: 'Having my university transcript and projects automatically imported into a professional format was incredibly convenient and time-saving.',
+    achievement: 'Pilot Program User',
     projectType: 'Data Analytics'
   },
   {

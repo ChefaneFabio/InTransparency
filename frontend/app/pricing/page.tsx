@@ -42,7 +42,7 @@ const plans = [
     icon: Users,
     popular: false,
     features: [
-      'Search 500,000+ verified student profiles',
+      'Search our growing database of verified student profiles',
       'Basic filters (university, skills, GPA)',
       'Send 50 messages per month',
       'View basic project portfolios',
@@ -210,7 +210,7 @@ export default function Pricing() {
                 <div className="space-y-2 text-left">
                   <div className="flex items-center text-gray-700">
                     <Check className="h-5 w-5 mr-2 text-blue-600" />
-                    <span>Search 500k+ verified graduates</span>
+                    <span>Search verified graduate profiles</span>
                   </div>
                   <div className="flex items-center text-gray-700">
                     <Check className="h-5 w-5 mr-2 text-blue-600" />
@@ -378,7 +378,7 @@ export default function Pricing() {
           <div className="max-w-4xl mx-auto text-center bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-xl border border-slate-200">
             <h2 className="text-4xl font-bold mb-6 text-gray-900">Ready to Get Started?</h2>
             <p className="text-xl mb-8 text-gray-600">
-              Join thousands of students and hundreds of universities already using InTransparency
+              Join the growing community of students, universities, and employers using InTransparency
               to achieve better career outcomes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
