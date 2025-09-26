@@ -26,7 +26,7 @@ const Steps = ({ currentStep, children }: StepsProps) => {
             ...child.props
           })
         }
-        return child
+        return null
       })}
     </div>
   )

@@ -586,7 +586,7 @@ export default function JobsPage() {
 
         <TabsContent value="recommended">
           <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
-            {filteredJobs.filter((job: any) => job.match >= 85).map((job: any) => (
+            {filteredJobs?.filter((job: any) => job.match >= 85).map((job: any) => (
               <Card key={job.id} className="border-2 border-blue-200 bg-blue-50/50">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
@@ -640,7 +640,7 @@ export default function JobsPage() {
 
         <TabsContent value="applied">
           <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
-            {jobs.filter((job: any) => job.isApplied).map((job: any) => (
+            {jobs?.filter((job: any) => job.isApplied).map((job: any) => (
               <Card key={job.id}>
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
@@ -677,7 +677,7 @@ export default function JobsPage() {
 
         <TabsContent value="bookmarked">
           <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
-            {jobs.filter((job: any) => job.isBookmarked).map((job: any) => (
+            {jobs?.filter((job: any) => job.isBookmarked).map((job: any) => (
               <Card key={job.id}>
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">

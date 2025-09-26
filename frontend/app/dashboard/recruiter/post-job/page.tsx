@@ -819,7 +819,7 @@ export default function PostJobPage() {
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">Key Responsibilities</h4>
                     <ul className="list-disc list-inside space-y-1">
-                      {formData.responsibilities.filter(r => r.trim()).map((responsibility, index) => (
+                      {formData.responsibilities?.filter(r => r.trim()).map((responsibility, index) => (
                         <li key={index} className="text-gray-700">{responsibility}</li>
                       ))}
                     </ul>
@@ -828,17 +828,17 @@ export default function PostJobPage() {
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">Required Qualifications</h4>
                     <ul className="list-disc list-inside space-y-1">
-                      {formData.requirements.filter(r => r.trim()).map((requirement, index) => (
+                      {formData.requirements?.filter(r => r.trim()).map((requirement, index) => (
                         <li key={index} className="text-gray-700">{requirement}</li>
                       ))}
                     </ul>
                   </div>
 
-                  {formData.preferredQualifications.filter(q => q.trim()).length > 0 && (
+                  {formData.preferredQualifications?.filter(q => q.trim()).length > 0 && (
                     <div>
                       <h4 className="font-medium text-gray-900 mb-2">Preferred Qualifications</h4>
                       <ul className="list-disc list-inside space-y-1">
-                        {formData.preferredQualifications.filter(q => q.trim()).map((qualification, index) => (
+                        {formData.preferredQualifications?.filter(q => q.trim()).map((qualification, index) => (
                           <li key={index} className="text-gray-700">{qualification}</li>
                         ))}
                       </ul>
