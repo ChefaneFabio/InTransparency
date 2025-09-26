@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Icons</title>
+</head>
+<body>
+    <canvas id="canvas" style="border: 1px solid black;"></canvas>
+    <script>
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+
+        sizes.forEach(size => {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+
+            // Blue gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#3B82F6');
+            gradient.addColorStop(1, '#1D4ED8');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+
+            // White text "IT"
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = `bold ${Math.floor(size / 4)}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('IT', size / 2, size / 2);
+
+            // Download
+            const link = document.createElement('a');
+            link.download = `icon-${size}x${size}.png`;
+            link.href = canvas.toDataURL();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        document.body.innerHTML += '<p>Icons generated! Check your downloads folder.</p>';
+    </script>
+</body>
+</html>

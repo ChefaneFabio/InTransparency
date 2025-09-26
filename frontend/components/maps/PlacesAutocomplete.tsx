@@ -34,13 +34,17 @@ export function PlacesAutocomplete({
 
   useEffect(() => {
     if (window.google && !autocompleteService.current) {
-      // Using legacy AutocompleteService (deprecated March 2025)
-      // TODO: Migrate to google.maps.places.AutocompleteSuggestion when stable
+      // DEPRECATION NOTICE: google.maps.places.AutocompleteService deprecated March 1, 2025
+      // Migration to google.maps.places.AutocompleteSuggestion planned but API not yet stable
+      // See: https://developers.google.com/maps/documentation/javascript/places-migration-overview
+      // Current implementation continues to work with bug fixes for major regressions
       autocompleteService.current = new google.maps.places.AutocompleteService()
     }
     if (map && !placesService.current) {
-      // Using legacy PlacesService (deprecated March 2025)
-      // TODO: Migrate to google.maps.places.Place when stable
+      // DEPRECATION NOTICE: google.maps.places.PlacesService deprecated March 1, 2025
+      // Migration to google.maps.places.Place planned but API not yet stable
+      // See: https://developers.google.com/maps/documentation/javascript/places-migration-overview
+      // Current implementation continues to work with bug fixes for major regressions
       placesService.current = new google.maps.places.PlacesService(map)
     }
   }, [map])
@@ -66,7 +70,8 @@ export function PlacesAutocomplete({
     }
 
     setIsSearching(true)
-    // Using legacy API - will migrate to AutocompleteSuggestion in future
+    // LEGACY API USAGE: getPlacePredictions deprecated March 1, 2025
+    // This API continues to receive bug fixes but will migrate when replacement is stable
     autocompleteService.current.getPlacePredictions(request, (predictions, status) => {
       setIsSearching(false)
       if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
@@ -108,7 +113,8 @@ export function PlacesAutocomplete({
       ]
     }
 
-    // Using legacy API - will migrate to Place in future
+    // LEGACY API USAGE: getDetails deprecated March 1, 2025
+    // This API continues to receive bug fixes but will migrate when replacement is stable
     placesService.current.getDetails(request, (place, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK && place) {
         setValue(place.name || '')

@@ -774,7 +774,7 @@ export default function GeographicTalentSearchPage() {
               )}
 
               {/* Measurement Point Markers */}
-              {typeof window !== 'undefined' && window.google && measurementPoints.map((point, index) => (
+              {typeof window !== 'undefined' && window.google ? measurementPoints.map((point, index) => (
                 <MapMarker
                   key={`measurement-${index}`}
                   position={point}
@@ -789,7 +789,7 @@ export default function GeographicTalentSearchPage() {
                   title={`Measurement Point ${index + 1}`}
                   zIndex={200}
                 />
-              ))}
+              )) : null}
             </GoogleMapComponent>
 
             {/* Loading Overlay */}
