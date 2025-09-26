@@ -454,7 +454,7 @@ export default function ProjectsPage() {
                               <Badge variant="outline" className="text-xs">
                                 {project.complexityLevel}
                               </Badge>
-                              {project.technologies.slice(0, 3).map((tech: any, index: number) => (
+                              {(project.technologies || []).slice(0, 3).map((tech: any, index: number) => (
                                 <Badge key={index} variant="secondary" className="text-xs">
                                   {tech}
                                 </Badge>

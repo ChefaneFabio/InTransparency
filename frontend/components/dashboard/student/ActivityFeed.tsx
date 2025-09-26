@@ -269,7 +269,7 @@ export function ActivityFeed({ userId, limit = 10 }: ActivityFeedProps) {
                 <Avatar className="h-8 w-8">
                   <AvatarImage src={activity.user.avatar} alt={activity.user.name} />
                   <AvatarFallback className="text-xs">
-                    {activity.user.name.split(' ').map(n => n[0]).join('')}
+                    {(activity.user?.name || '').split(' ').map(n => n[0]).join('')}
                   </AvatarFallback>
                 </Avatar>
               ) : (

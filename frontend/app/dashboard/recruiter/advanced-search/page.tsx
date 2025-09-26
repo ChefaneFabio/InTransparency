@@ -374,7 +374,7 @@ export default function AdvancedSearchPage() {
                   <div key={group}>
                     <h4 className="text-sm font-medium mb-2">{group}</h4>
                     <div className="space-y-1">
-                      {locations.slice(0, 3).map(location => (
+                      {(locations || []).slice(0, 3).map(location => (
                         <label key={location} className="flex items-center text-sm">
                           <input
                             type="checkbox"

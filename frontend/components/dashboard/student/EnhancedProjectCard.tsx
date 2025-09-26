@@ -194,7 +194,7 @@ export function EnhancedProjectCard({
 
           {/* Technologies */}
           <div className="flex flex-wrap gap-2">
-            {project.technologies.slice(0, 4).map((tech, index) => (
+            {(project.technologies || []).slice(0, 4).map((tech, index) => (
               <Badge
                 key={index}
                 variant="secondary"
@@ -242,7 +242,7 @@ export function EnhancedProjectCard({
                   <div>
                     <h4 className="text-sm font-medium text-gray-800 mb-2">Collaborators</h4>
                     <div className="flex flex-wrap gap-1">
-                      {project.collaborators.map((collaborator, index) => (
+                      {(project.collaborators || []).map((collaborator, index) => (
                         <Badge key={index} variant="outline" className="text-xs">
                           {collaborator}
                         </Badge>
@@ -261,7 +261,7 @@ export function EnhancedProjectCard({
                         Skills Detected
                       </h4>
                       <div className="flex flex-wrap gap-1">
-                        {project.aiAnalysis.skillsDetected.slice(0, 6).map((skill, index) => (
+                        {(project.aiAnalysis?.skillsDetected || []).slice(0, 6).map((skill, index) => (
                           <Badge key={index} variant="secondary" className="text-xs">
                             {skill}
                           </Badge>
@@ -275,7 +275,7 @@ export function EnhancedProjectCard({
                         Industry Relevance
                       </h4>
                       <div className="flex flex-wrap gap-1">
-                        {project.aiAnalysis.industryRelevance.map((industry, index) => (
+                        {(project.aiAnalysis?.industryRelevance || []).map((industry, index) => (
                           <Badge key={index} className="bg-blue-100 text-blue-800 text-xs">
                             {industry}
                           </Badge>
@@ -303,7 +303,7 @@ export function EnhancedProjectCard({
                         Improvement Suggestions
                       </h4>
                       <ul className="space-y-1">
-                        {project.aiAnalysis.improvementSuggestions.slice(0, 2).map((suggestion, index) => (
+                        {(project.aiAnalysis?.improvementSuggestions || []).slice(0, 2).map((suggestion, index) => (
                           <li key={index} className="text-xs text-gray-700 flex items-start">
                             <ChevronRight className="w-3 h-3 mr-1 mt-0.5 text-orange-500 flex-shrink-0" />
                             {suggestion}
