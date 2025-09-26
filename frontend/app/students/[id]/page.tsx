@@ -184,7 +184,7 @@ export default function StudentPage({ params }: StudentPageProps) {
           <div className="flex items-start justify-between">
             <div className="flex items-center space-x-6">
               <div className="w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full flex items-center justify-center text-white text-4xl font-bold">
-                {student.name.split(' ').map((n: string) => n[0]).join('')}
+                {(student.name || '').split(' ').map((n: string) => n[0]).join('')}
               </div>
               <div>
                 <h1 className="text-4xl font-bold text-gray-900 mb-2">{student.name}</h1>
@@ -249,7 +249,7 @@ export default function StudentPage({ params }: StudentPageProps) {
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">
-                  {student.projects.filter((p: any) => p.featured).map((project: any) => (
+                  {(student.projects || []).filter((p: any) => p.featured).map((project: any) => (
                     <div key={project.id} className="border rounded-lg p-6 hover:shadow-md transition-shadow">
                       <div className="flex items-start justify-between mb-4">
                         <div>
@@ -260,7 +260,7 @@ export default function StudentPage({ params }: StudentPageProps) {
                       </div>
 
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.map((tech: string, index: number) => (
+                        {(project.technologies || []).map((tech: string, index: number) => (
                           <Badge key={index} variant="outline" className="text-xs">
                             {tech}
                           </Badge>

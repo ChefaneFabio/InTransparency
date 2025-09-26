@@ -435,7 +435,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {Object.entries(connection.dataTypes).map(([type, enabled]) => (
+                {Object.entries(connection.dataTypes || {}).map(([type, enabled]) => (
                   <div key={type} className="flex items-center gap-3 p-3 border rounded-lg">
                     {enabled ? (
                       <CheckCircle className="h-5 w-5 text-green-600" />
@@ -462,7 +462,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {activities.map((activity) => (
+                {(activities || []).map((activity) => (
                   <div key={activity.id} className="flex items-start gap-3 p-3 border rounded-lg">
                     <div className="mt-0.5">
                       {getActivityIcon(activity.type)}

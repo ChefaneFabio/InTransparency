@@ -125,7 +125,7 @@ export const TargetingPreview = ({ jobRequirements, location, remoteOptions }: T
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
-            {Object.entries(targeting.geographicBreakdown).map(([area, count]) => (
+            {Object.entries(targeting.geographicBreakdown || {}).map(([area, count]) => (
               <div key={area} className="flex items-center justify-between">
                 <span className="text-sm font-medium">{area}</span>
                 <div className="flex items-center gap-2">
@@ -148,7 +148,7 @@ export const TargetingPreview = ({ jobRequirements, location, remoteOptions }: T
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 gap-4">
-            {Object.entries(targeting.universityBreakdown).map(([university, count]) => (
+            {Object.entries(targeting.universityBreakdown || {}).map(([university, count]) => (
               <div key={university} className="flex justify-between items-center p-3 bg-gray-50 rounded">
                 <span className="font-medium text-sm">{university}</span>
                 <Badge variant="secondary">{String(count)} students</Badge>
@@ -165,7 +165,7 @@ export const TargetingPreview = ({ jobRequirements, location, remoteOptions }: T
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
-            {Object.entries(targeting.programBreakdown).map(([program, count]) => (
+            {Object.entries(targeting.programBreakdown || {}).map(([program, count]) => (
               <div key={program} className="flex justify-between items-center">
                 <span className="text-sm">{program}</span>
                 <div className="flex items-center gap-2">

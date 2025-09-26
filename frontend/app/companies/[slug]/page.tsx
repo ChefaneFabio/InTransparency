@@ -235,7 +235,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {company.values.map((value: any, index: number) => (
+                  {(company.values || []).map((value: any, index: number) => (
                     <div key={index} className="p-4 bg-gray-50 rounded-lg">
                       <h3 className="font-semibold text-gray-900 mb-2">{value.name}</h3>
                       <p className="text-gray-600 text-sm">{value.description}</p>
@@ -255,7 +255,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {company.benefits.map((benefit: string, index: number) => (
+                  {(company.benefits || []).map((benefit: string, index: number) => (
                     <div key={index} className="flex items-start">
                       <Shield className="h-4 w-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
                       <span className="text-gray-700">{benefit}</span>
@@ -275,7 +275,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {company.techStack.map((tech: string, index: number) => (
+                  {(company.techStack || []).map((tech: string, index: number) => (
                     <Badge key={index} variant="outline" className="text-sm py-1 px-3">
                       {tech}
                     </Badge>
@@ -340,7 +340,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {company.recentNews.map((news: any, index: number) => (
+                  {(company.recentNews || []).map((news: any, index: number) => (
                     <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                       <div>
                         <h3 className="font-medium text-gray-900">{news.title}</h3>

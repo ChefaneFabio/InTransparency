@@ -265,7 +265,7 @@ export default function UniversityDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {students
+                    {(students || [])
                       .filter(s => s.profileStatus === 'verified')
                       .sort((a, b) => b.companyViews - a.companyViews)
                       .slice(0, 3)
@@ -326,7 +326,7 @@ export default function UniversityDashboard() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {students.map((student) => (
+                    {(students || []).map((student) => (
                       <TableRow key={student.id}>
                         <TableCell>
                           <div>
