@@ -358,10 +358,10 @@ export function StudentDataImportComponent() {
               <div>
                 <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
                   <BookOpen className="h-4 w-4 mr-2" />
-                  Courses ({importedData?.courses.length})
+                  Courses ({importedData?.courses?.length || 0})
                 </h4>
                 <div className="space-y-2">
-                  {importedData?.courses.slice(0, 3).map((course, index) => (
+                  {importedData?.courses?.slice(0, 3).map((course, index) => (
                     <div key={index} className="text-sm bg-gray-50 p-2 rounded">
                       <div className="font-medium">{course.name}</div>
                       <div className="text-gray-600">{course.code} - Grade: {course.grade}</div>
@@ -373,10 +373,10 @@ export function StudentDataImportComponent() {
               <div>
                 <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
                   <Code className="h-4 w-4 mr-2" />
-                  Skills ({importedData?.skills.length})
+                  Skills ({importedData?.skills?.length || 0})
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {importedData?.skills.slice(0, 6).map((skill, index) => (
+                  {importedData?.skills?.slice(0, 6).map((skill, index) => (
                     <Badge key={index} variant="secondary" className="text-xs">
                       {skill.name}
                       {skill.verified && <CheckCircle className="h-3 w-3 ml-1 text-green-600" />}
