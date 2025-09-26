@@ -218,7 +218,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                     <div className="text-sm text-gray-600">Company Rating</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">{company.locations.length}</div>
+                    <div className="text-2xl font-bold text-purple-600">{company.locations?.length || 0}</div>
                     <div className="text-sm text-gray-600">Global Offices</div>
                   </div>
                 </div>
@@ -402,7 +402,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">Global Offices</span>
-                  <span className="font-semibold">{company.locations.length}</span>
+                  <span className="font-semibold">{company.locations?.length || 0}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">Company Size</span>
@@ -418,7 +418,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {company.locations.map((location: string, index: number) => (
+                  {company.locations?.map((location: string, index: number) => (
                     <Badge key={index} variant="secondary">{location}</Badge>
                   ))}
                 </div>

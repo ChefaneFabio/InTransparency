@@ -244,11 +244,11 @@ export default function GeographicTalentSearchPage() {
 
   const getTalentCount = (university: any) => {
     switch (selectedFilters.category) {
-      case 'students': return university.students
-      case 'graduates': return university.graduates
-      case 'researchers': return university.researchers
-      case 'faculty': return university.faculty
-      default: return university.students + university.graduates + university.researchers + university.faculty
+      case 'students': return university?.students || 0
+      case 'graduates': return university?.graduates || 0
+      case 'researchers': return university?.researchers || 0
+      case 'faculty': return university?.faculty || 0
+      default: return (university?.students || 0) + (university?.graduates || 0) + (university?.researchers || 0) + (university?.faculty || 0)
     }
   }
 
@@ -1062,7 +1062,7 @@ export default function GeographicTalentSearchPage() {
             {/* Results Counter */}
             <div className="absolute bottom-4 right-4 bg-white rounded-lg px-3 py-2 shadow-sm">
               <span className="text-sm font-medium text-gray-900">
-                {filteredUniversities.length} universities found
+                {filteredUniversities?.length || 0} universities found
               </span>
             </div>
           </div>
@@ -1198,12 +1198,12 @@ export default function GeographicTalentSearchPage() {
               <div className="flex items-center space-x-4 flex-wrap">
                 <span className="text-gray-600">
                   Showing: {filteredUniversities
-                    .filter(uni => {
+                    ?.filter(uni => {
                       const talentFilter = getTalentCount(uni) >= mapFilters.minTalentSize
                       if (searchRadius === 0) return talentFilter
-                      const distance = calculateDistance(mapCenter, uni.coordinates)
+                      const distance = calculateDistance(mapCenter, uni?.coordinates)
                       return talentFilter && distance <= searchRadius
-                    }).length} universities
+                    })?.length || 0} universities
                 </span>
                 <span className="text-gray-600">
                   Zoom: {mapZoom}x ({mapZoom <= 4 ? 'Continental' : mapZoom <= 8 ? 'Regional' : 'City'} view)
@@ -1215,7 +1215,7 @@ export default function GeographicTalentSearchPage() {
                 )}
                 {showMeasurement && (
                   <span className="text-green-600 bg-green-50 px-2 py-1 rounded text-xs">
-                    Measuring: {measurementPoints.length} points
+                    Measuring: {measurementPoints?.length || 0} points
                   </span>
                 )}
               </div>
@@ -1345,7 +1345,7 @@ export default function GeographicTalentSearchPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {filteredUniversities.map((university) => (
+            {filteredUniversities?.map((university) => (
               <div key={university.id} className="bg-gray-50 border border-gray-200 rounded-lg p-4 hover:shadow-md hover:bg-white transition-all">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
