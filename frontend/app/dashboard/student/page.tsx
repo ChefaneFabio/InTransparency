@@ -134,7 +134,7 @@ export default function StudentDashboard() {
   ]
 
   return (
-    <div className="space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
       {/* Enhanced Welcome Section */}
       <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-2xl p-8 mb-8">
         <div className="relative z-10">

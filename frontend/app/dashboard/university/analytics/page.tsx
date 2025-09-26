@@ -65,7 +65,7 @@ export default function UniversityAnalytics() {
   const [timeRange, setTimeRange] = useState('1year')
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">University Analytics</h1>
@@ -287,7 +287,7 @@ export default function UniversityAnalytics() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-6">
+              <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
                 {skillsInDemand.map((skill) => (
                   <div key={skill.skill} className="space-y-3">
                     <div className="flex items-center justify-between">

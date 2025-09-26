@@ -53,7 +53,7 @@ export default function RecruiterAnalytics() {
   const [timeRange, setTimeRange] = useState('6months')
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Recruitment Analytics</h1>
@@ -262,7 +262,7 @@ export default function RecruiterAnalytics() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-6">
+              <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
                 {sourcingData.map((source) => (
                   <div key={source.source} className="space-y-3 p-4 border rounded-lg">
                     <div className="flex items-center justify-between">
@@ -367,7 +367,7 @@ export default function RecruiterAnalytics() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-6">
+              <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span>Underrepresented Minorities</span>
@@ -402,7 +402,7 @@ export default function RecruiterAnalytics() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-6">
+              <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
                 {topSkills.map((skill) => (
                   <div key={skill.skill} className="space-y-3">
                     <div className="flex items-center justify-between">

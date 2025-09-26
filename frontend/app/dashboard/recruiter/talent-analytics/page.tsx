@@ -173,7 +173,7 @@ export default function TalentAnalyticsPage() {
   ]
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -490,7 +490,7 @@ export default function TalentAnalyticsPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-6">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
               <div>
                 <h4 className="text-sm font-semibold text-gray-700 mb-3">Gender Distribution</h4>
                 <div className="space-y-2">

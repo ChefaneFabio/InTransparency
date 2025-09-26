@@ -172,7 +172,7 @@ export default function ProfileOptimizerPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Profile Optimizer</h1>
         <p className="text-gray-600 mt-2">
@@ -408,7 +408,7 @@ export default function ProfileOptimizerPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-6">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
               {optimizationSuggestions.map((suggestion, index) => (
                 <div key={index} className={`p-6 rounded-lg border-2 ${
                   suggestion.completed ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-white'
@@ -471,7 +471,7 @@ export default function ProfileOptimizerPage() {
       )}
 
       {activeTab === 'cv-generator' && (
-        <div className="space-y-6">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">

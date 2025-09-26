@@ -8,7 +8,7 @@ export default function AdminDashboard() {
   const { user } = useAuth()
 
   return (
-    <div className="space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
         <p className="text-gray-600 mt-1">

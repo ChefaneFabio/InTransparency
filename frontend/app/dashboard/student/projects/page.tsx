@@ -182,7 +182,7 @@ export default function ProjectsPage() {
 
   if (loading) {
     return (
-      <div className="space-y-8">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold">Projects</h1>
@@ -210,7 +210,7 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>

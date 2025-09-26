@@ -209,7 +209,7 @@ export default function RecruiterDashboard() {
 
   if (loading) {
     return (
-      <div className="space-y-8 animate-pulse">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8 animate-pulse">
         <div className="h-8 bg-gray-200 rounded w-1/3"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[...Array(4)].map((_: any, i: number) => (
@@ -221,7 +221,7 @@ export default function RecruiterDashboard() {
             <div className="h-64 bg-gray-200 rounded"></div>
             <div className="h-48 bg-gray-200 rounded"></div>
           </div>
-          <div className="space-y-6">
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div className="h-48 bg-gray-200 rounded"></div>
             <div className="h-32 bg-gray-200 rounded"></div>
           </div>
@@ -231,7 +231,7 @@ export default function RecruiterDashboard() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -479,7 +479,7 @@ export default function RecruiterDashboard() {
         </div>
 
         {/* Right Column - Sidebar */}
-        <div className="space-y-6">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
           {/* Quick Actions */}
           <Card>
             <CardHeader>

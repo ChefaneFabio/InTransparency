@@ -285,7 +285,7 @@ export default function PostJobPage() {
     switch (currentStep) {
       case 0:
         return (
-          <div className="space-y-6">
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div>
               <Label htmlFor="title">Job Title *</Label>
               <Input
@@ -372,7 +372,7 @@ export default function PostJobPage() {
 
       case 1:
         return (
-          <div className="space-y-6">
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div>
               <Label htmlFor="description">Job Description *</Label>
               <Textarea
@@ -480,7 +480,7 @@ export default function PostJobPage() {
 
       case 2:
         return (
-          <div className="space-y-6">
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <Label htmlFor="salaryMin">Minimum Salary *</Label>
@@ -589,7 +589,7 @@ export default function PostJobPage() {
 
       case 3:
         return (
-          <div className="space-y-6">
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div>
               <Label>Target Universities *</Label>
               {errors.targetUniversities && <p className="text-sm text-red-600 mb-2">{errors.targetUniversities}</p>}
@@ -691,7 +691,7 @@ export default function PostJobPage() {
 
       case 4:
         return (
-          <div className="space-y-6">
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div>
               <Label htmlFor="applicationProcess">Application Process *</Label>
               <Textarea
@@ -782,7 +782,7 @@ export default function PostJobPage() {
 
       case 5:
         return (
-          <div className="space-y-6">
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <Alert>
               <CheckCircle className="h-4 w-4" />
               <AlertDescription>

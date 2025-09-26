@@ -265,7 +265,7 @@ export default function JobsPage() {
 
   if (loading) {
     return (
-      <div className="space-y-8">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold">Job Opportunities</h1>
@@ -289,7 +289,7 @@ export default function JobsPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Job Opportunities</h1>
@@ -456,7 +456,7 @@ export default function JobsPage() {
               </CardContent>
             </Card>
           ) : (
-            <div className="space-y-6">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
               {filteredJobs.map((job: any) => (
                 <Card key={job.id} className="hover:shadow-md transition-shadow">
                   <CardContent className="p-6">
@@ -585,7 +585,7 @@ export default function JobsPage() {
         </TabsContent>
 
         <TabsContent value="recommended">
-          <div className="space-y-6">
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             {filteredJobs.filter((job: any) => job.match >= 85).map((job: any) => (
               <Card key={job.id} className="border-2 border-blue-200 bg-blue-50/50">
                 <CardContent className="p-6">
@@ -639,7 +639,7 @@ export default function JobsPage() {
         </TabsContent>
 
         <TabsContent value="applied">
-          <div className="space-y-6">
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             {jobs.filter((job: any) => job.isApplied).map((job: any) => (
               <Card key={job.id}>
                 <CardContent className="p-6">
@@ -676,7 +676,7 @@ export default function JobsPage() {
         </TabsContent>
 
         <TabsContent value="bookmarked">
-          <div className="space-y-6">
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             {jobs.filter((job: any) => job.isBookmarked).map((job: any) => (
               <Card key={job.id}>
                 <CardContent className="p-6">

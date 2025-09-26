@@ -301,7 +301,7 @@ export default function UniversityDashboard() {
             <div className="h-64 bg-gray-200 rounded"></div>
             <div className="h-48 bg-gray-200 rounded"></div>
           </div>
-          <div className="space-y-6">
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div className="h-48 bg-gray-200 rounded"></div>
             <div className="h-32 bg-gray-200 rounded"></div>
           </div>
@@ -311,7 +311,7 @@ export default function UniversityDashboard() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -603,7 +603,7 @@ export default function UniversityDashboard() {
         </div>
 
         {/* Right Column - Sidebar */}
-        <div className="space-y-6">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
           {/* Monthly Analytics */}
           <Card>
             <CardHeader>

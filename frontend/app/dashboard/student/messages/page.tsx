@@ -120,7 +120,7 @@ export default function StudentMessages() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Messages</h1>
         <p className="text-muted-foreground">

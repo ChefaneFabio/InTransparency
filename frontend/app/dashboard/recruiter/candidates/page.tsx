@@ -456,7 +456,7 @@ export default function CandidatesPage() {
 
   if (loading) {
     return (
-      <div className="space-y-8">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold">Candidate Search</h1>
@@ -480,7 +480,7 @@ export default function CandidatesPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>

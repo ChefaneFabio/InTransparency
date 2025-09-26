@@ -238,7 +238,7 @@ export default function ProfilePage() {
             <div className="h-48 bg-gray-200 rounded"></div>
             <div className="h-64 bg-gray-200 rounded"></div>
           </div>
-          <div className="space-y-6">
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div className="h-48 bg-gray-200 rounded"></div>
             <div className="h-32 bg-gray-200 rounded"></div>
           </div>
@@ -681,7 +681,7 @@ export default function ProfilePage() {
         </div>
         
         {/* Right Column - Sidebar */}
-        <div className="space-y-6">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
           {/* Profile Stats */}
           <Card>
             <CardHeader>

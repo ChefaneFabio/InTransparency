@@ -182,7 +182,7 @@ export default function SavedSearchesPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Saved Searches & Alerts</h1>
         <p className="text-gray-600 mt-2">
@@ -298,7 +298,7 @@ export default function SavedSearchesPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="space-y-6">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
               {savedSearches.map((search) => (
                 <Card key={search.id} className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
@@ -421,7 +421,7 @@ export default function SavedSearchesPage() {
       )}
 
       {activeTab === 'alerts' && (
-        <div className="space-y-6">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
           {/* Alert Settings */}
           <Card>
             <CardHeader>

@@ -369,7 +369,7 @@ export default function StudentSearchPage() {
   )
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>

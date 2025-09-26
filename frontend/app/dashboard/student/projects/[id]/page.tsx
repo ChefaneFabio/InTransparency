@@ -209,7 +209,7 @@ export default function ProjectDetailPage() {
             <div className="h-64 bg-gray-200 rounded"></div>
             <div className="h-32 bg-gray-200 rounded"></div>
           </div>
-          <div className="space-y-6">
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div className="h-48 bg-gray-200 rounded"></div>
             <div className="h-32 bg-gray-200 rounded"></div>
           </div>
@@ -281,7 +281,7 @@ export default function ProjectDetailPage() {
       </div>
 
       {/* Project Header */}
-      <div className="space-y-6">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
         <div>
           <div className="flex items-center space-x-3 mb-4">
             <h1 className="text-3xl font-bold text-gray-900">{project.title}</h1>
@@ -633,7 +633,7 @@ export default function ProjectDetailPage() {
         </div>
         
         {/* Right Column - Sidebar */}
-        <div className="space-y-6">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
           {/* Quick Actions */}
           <Card>
             <CardHeader>

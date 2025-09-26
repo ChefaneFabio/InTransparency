@@ -202,7 +202,7 @@ export default function JobApplicationsPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Job Applications</h1>
         <p className="text-gray-600 mt-2">
@@ -348,7 +348,7 @@ export default function JobApplicationsPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="space-y-6">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
               {externalJobs.map((job) => (
                 <Card key={job.id} className="hover:shadow-lg transition-shadow border-l-4 border-blue-500">
                   <CardContent className="p-6">

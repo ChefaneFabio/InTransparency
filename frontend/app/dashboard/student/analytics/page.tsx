@@ -36,7 +36,7 @@ export default function StudentAnalytics() {
   const [activeTab, setActiveTab] = useState('overview')
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Analytics</h1>
         <p className="text-muted-foreground">
@@ -162,7 +162,7 @@ export default function StudentAnalytics() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-6">
+              <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
                 {skillsData.map((skill) => (
                   <div key={skill.skill} className="space-y-2">
                     <div className="flex items-center justify-between">
