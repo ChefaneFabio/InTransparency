@@ -169,63 +169,63 @@ const addOns = [
 
 export default function Pricing() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
       <Header />
       <main className="pt-24">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-green-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl font-bold mb-6">
-              🎓 FREE for Graduates, Paid by Companies
+            <h1 className="text-5xl font-bold mb-6 text-gray-900">
+              FREE for Graduates, Paid by Companies
             </h1>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-8 text-gray-600">
               Just like LinkedIn: graduates access everything for free, companies pay to find top talent.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                <h2 className="text-2xl font-bold mb-4">👨‍🎓 For Graduates</h2>
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-lg p-6">
+                <h2 className="text-2xl font-bold mb-4 text-gray-900">For Graduates</h2>
                 <div className="space-y-2 text-left">
-                  <div className="flex items-center">
-                    <Check className="h-5 w-5 mr-2" />
+                  <div className="flex items-center text-gray-700">
+                    <Check className="h-5 w-5 mr-2 text-green-600" />
                     <span>Unlimited profile & projects</span>
                   </div>
-                  <div className="flex items-center">
-                    <Check className="h-5 w-5 mr-2" />
+                  <div className="flex items-center text-gray-700">
+                    <Check className="h-5 w-5 mr-2 text-green-600" />
                     <span>AI-powered CV optimization</span>
                   </div>
-                  <div className="flex items-center">
-                    <Check className="h-5 w-5 mr-2" />
+                  <div className="flex items-center text-gray-700">
+                    <Check className="h-5 w-5 mr-2 text-green-600" />
                     <span>Direct messages from recruiters</span>
                   </div>
-                  <div className="flex items-center">
-                    <Check className="h-5 w-5 mr-2" />
+                  <div className="flex items-center text-gray-700">
+                    <Check className="h-5 w-5 mr-2 text-green-600" />
                     <span>University transcript verification</span>
                   </div>
                 </div>
-                <div className="mt-4 text-2xl font-bold text-green-300">FREE FOREVER</div>
+                <div className="mt-4 text-2xl font-bold text-green-600">FREE FOREVER</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                <h2 className="text-2xl font-bold mb-4">🏢 For Companies</h2>
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6">
+                <h2 className="text-2xl font-bold mb-4 text-gray-900">For Companies</h2>
                 <div className="space-y-2 text-left">
-                  <div className="flex items-center">
-                    <Check className="h-5 w-5 mr-2" />
+                  <div className="flex items-center text-gray-700">
+                    <Check className="h-5 w-5 mr-2 text-blue-600" />
                     <span>Search 500k+ verified graduates</span>
                   </div>
-                  <div className="flex items-center">
-                    <Check className="h-5 w-5 mr-2" />
+                  <div className="flex items-center text-gray-700">
+                    <Check className="h-5 w-5 mr-2 text-blue-600" />
                     <span>Advanced AI matching & filters</span>
                   </div>
-                  <div className="flex items-center">
-                    <Check className="h-5 w-5 mr-2" />
+                  <div className="flex items-center text-gray-700">
+                    <Check className="h-5 w-5 mr-2 text-blue-600" />
                     <span>Direct messaging & InMail</span>
                   </div>
-                  <div className="flex items-center">
-                    <Check className="h-5 w-5 mr-2" />
+                  <div className="flex items-center text-gray-700">
+                    <Check className="h-5 w-5 mr-2 text-blue-600" />
                     <span>Project portfolio analysis</span>
                   </div>
                 </div>
-                <div className="mt-4 text-2xl font-bold text-blue-300">From €97/month</div>
+                <div className="mt-4 text-2xl font-bold text-blue-600">From €97/month</div>
               </div>
             </div>
           </div>
@@ -304,7 +304,7 @@ export default function Pricing() {
       </section>
 
       {/* Add-ons Section */}
-      <section className="py-20 bg-muted/50">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-slate-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">

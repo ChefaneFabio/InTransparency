@@ -97,7 +97,7 @@ const stats = [
 
 export default function About() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
       <Header />
       <main className="pt-24">
       {/* Hero Section */}
@@ -173,7 +173,7 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-muted/50">
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -237,7 +237,7 @@ export default function About() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-20 bg-muted/50">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-slate-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
