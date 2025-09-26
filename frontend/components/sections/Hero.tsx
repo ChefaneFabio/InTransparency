@@ -40,7 +40,7 @@ export function Hero() {
             </Button>
             
             <Button variant="outline" size="lg" asChild>
-              <Link href="#demo">
+              <Link href="/demo">
                 Watch Demo
               </Link>
             </Button>

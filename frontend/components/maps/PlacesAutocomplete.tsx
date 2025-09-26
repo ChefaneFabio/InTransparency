@@ -147,7 +147,7 @@ export function PlacesAutocomplete({
 
   const highlightMatch = (text: string, query: string) => {
     const parts = text.split(new RegExp(`(${query})`, 'gi'))
-    return parts.map((part, i) =>
+    return (parts || []).map((part, i) =>
       part.toLowerCase() === query.toLowerCase() ? (
         <strong key={i} className="text-blue-600">{part}</strong>
       ) : (
@@ -188,7 +188,7 @@ export function PlacesAutocomplete({
       {/* Suggestions Dropdown */}
       {showSuggestions && suggestions.length > 0 && (
         <div className="absolute z-50 w-full mt-1 bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-y-auto">
-          {suggestions.map((suggestion) => (
+          {(suggestions || []).map((suggestion) => (
             <button
               key={suggestion.place_id}
               onClick={() => handleSelectPlace(suggestion.place_id)}
@@ -205,7 +205,7 @@ export function PlacesAutocomplete({
                   </div>
                   {suggestion.types && (
                     <div className="flex flex-wrap gap-1 mt-1">
-                      {suggestion.types.slice(0, 3).map((type) => (
+                      {(suggestion.types || []).slice(0, 3).map((type) => (
                         <span
                           key={type}
                           className="inline-block px-2 py-0.5 text-xs bg-gray-100 text-gray-600 rounded"

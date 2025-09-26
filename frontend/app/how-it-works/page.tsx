@@ -249,7 +249,7 @@ export default function HowItWorksPage() {
           <div className="flex justify-center mb-12">
             <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-200">
               <div className="flex space-x-2">
-                {userTypes.map((type) => {
+                {(userTypes || []).map((type) => {
                   const Icon = type.icon
                   return (
                     <button
@@ -315,7 +315,7 @@ export default function HowItWorksPage() {
 
           {/* Dynamic Steps */}
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {getCurrentSteps().map((step, index) => {
+            {(getCurrentSteps() || []).map((step, index) => {
               const Icon = step.icon
               return (
                 <Card key={step.id} className={`${step.color} transition-all hover:shadow-lg`}>
