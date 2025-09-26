@@ -17,6 +17,7 @@ export function Header() {
     { name: 'Why InTransparency', href: '/why-intransparency' },
     { name: 'CV Samples', href: '/cv-samples' },
     { name: 'Pricing', href: '/pricing' },
+    { name: 'Feedback', href: '/feedback' },
     { name: 'About', href: '/about' },
   ]
 

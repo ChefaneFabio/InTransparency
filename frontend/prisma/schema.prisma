@@ -1,0 +1,171 @@
+// This is your Prisma schema file
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Survey Response Models
+model SurveyResponse {
+  id           String   @id @default(cuid())
+  surveyType   String   // 'student', 'company', 'university'
+  responses    Json     // Store all survey data as JSON
+  metadata     Json?    // Store metadata like completion time, user agent, etc.
+  ipAddress    String?
+  userAgent    String?
+  referrer     String?
+  completionTime Int?   // Time taken to complete in milliseconds
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([surveyType])
+  @@index([createdAt])
+}
+
+// Optional: Structured storage for student surveys
+model StudentSurvey {
+  id           String   @id @default(cuid())
+
+  // Demographics
+  university   String
+  degree       String
+  graduationYear String
+  currentStatus String
+
+  // Academic Showcase
+  proudestAchievement String?
+  projectPreferences Json?
+  gradeImportance String?
+  skillDemonstration String?
+
+  // Platform Features
+  profilePriorities Json?
+  transparencyComfort String?
+  professorEndorsements String?
+
+  // Job Search
+  jobSearchChallenges Json?
+  idealEmployerConnection String?
+  platformFeatures Json?
+
+  // Transparency & Privacy
+  transparencyMeaning String?
+  informationSharing Json?
+  privacyPreferences String?
+
+  // Platform Development
+  additionalFeatures String?
+  betaParticipation Boolean @default(false)
+  emailAddress String?
+
+  // Metadata
+  ipAddress    String?
+  userAgent    String?
+  referrer     String?
+  completionTime Int?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([university])
+  @@index([createdAt])
+  @@index([emailAddress])
+}
+
+// Optional: Structured storage for company surveys
+model CompanySurvey {
+  id           String   @id @default(cuid())
+
+  // Company Info
+  companyName  String
+  industry     String
+  companySize  String
+  hiringVolume String
+
+  // Current Recruitment
+  currentMethods Json?
+  biggestChallenges Json?
+  timeToHire String?
+  importantFactors String?
+
+  // Candidate Evaluation
+  projectsImportance String?
+  technicalEvaluation String?
+  softSkills Json?
+  dealBreakers String?
+
+  // Platform Features
+  valuableFeatures Json?
+  missingCredentials Json?
+  transparencyLevel String?
+
+  // Recruitment Tools & Costs
+  currentTools Json?
+  monthlyBudget String?
+  decisionMakers String?
+
+  // Platform Development
+  additionalFeatures String?
+  pilotParticipation Boolean @default(false)
+  contactEmail String?
+
+  // Metadata
+  ipAddress    String?
+  userAgent    String?
+  referrer     String?
+  completionTime Int?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([companyName])
+  @@index([createdAt])
+  @@index([contactEmail])
+}
+
+// Optional: Structured storage for university surveys
+model UniversitySurvey {
+  id           String   @id @default(cuid())
+
+  // Institution Info
+  universityName String
+  studentCount String
+  primaryPrograms Json?
+  region String
+
+  // Placement Challenges
+  placementRate String?
+  biggestChallenges Json?
+  industryGaps String?
+
+  // Career Services
+  currentServices Json?
+  toolsUsed Json?
+  successMetrics String?
+
+  // Platform Integration
+  dataIntegration String?
+  studentAdoption Json?
+  privacyConcerns String?
+  administrativeNeeds Json?
+
+  // Platform Development
+  additionalFeatures String?
+  pilotParticipation Boolean @default(false)
+  contactEmail String?
+
+  // Metadata
+  ipAddress    String?
+  userAgent    String?
+  referrer     String?
+  completionTime Int?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([universityName])
+  @@index([createdAt])
+  @@index([contactEmail])
+}
