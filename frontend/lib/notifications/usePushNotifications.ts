@@ -184,7 +184,7 @@ export function usePushNotifications(): UsePushNotificationsReturn {
 
   const markAsRead = (id: string) => {
     setNotifications(prev => {
-      const updated = prev.map(n => n.id === id ? { ...n, read: true } : n)
+      const updated = (prev || []).map(n => n.id === id ? { ...n, read: true } : n)
       localStorage.setItem('intransparency-notifications', JSON.stringify(updated))
       return updated
     })
