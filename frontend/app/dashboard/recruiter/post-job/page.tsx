@@ -169,7 +169,7 @@ export default function PostJobPage() {
   const updateArrayItem = (field: string, index: number, value: string) => {
     setFormData(prev => ({
       ...prev,
-      [field]: (prev as any)[field].map((item: any, i: number) => i === index ? value : item)
+      [field]: ((prev as any)[field] || []).map((item: any, i: number) => i === index ? value : item)
     }))
   }
 
@@ -389,7 +389,7 @@ export default function PostJobPage() {
             <div>
               <Label>Key Responsibilities *</Label>
               {errors.responsibilities && <p className="text-sm text-red-600 mb-2">{errors.responsibilities}</p>}
-              {formData.responsibilities.map((responsibility, index) => (
+              {(formData.responsibilities || []).map((responsibility, index) => (
                 <div key={index} className="flex gap-2 mb-2">
                   <Input
                     placeholder="Add a key responsibility..."
@@ -420,7 +420,7 @@ export default function PostJobPage() {
             <div>
               <Label>Required Qualifications *</Label>
               {errors.requirements && <p className="text-sm text-red-600 mb-2">{errors.requirements}</p>}
-              {formData.requirements.map((requirement, index) => (
+              {(formData.requirements || []).map((requirement, index) => (
                 <div key={index} className="flex gap-2 mb-2">
                   <Input
                     placeholder="Add a required qualification..."
@@ -450,7 +450,7 @@ export default function PostJobPage() {
 
             <div>
               <Label>Preferred Qualifications</Label>
-              {formData.preferredQualifications.map((qualification, index) => (
+              {(formData.preferredQualifications || []).map((qualification, index) => (
                 <div key={index} className="flex gap-2 mb-2">
                   <Input
                     placeholder="Add a preferred qualification..."
@@ -526,7 +526,7 @@ export default function PostJobPage() {
               <Label>Benefits & Perks</Label>
               <p className="text-sm text-gray-500 mb-3">Select all benefits that apply</p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {benefits.map((benefit) => (
+                {(benefits || []).map((benefit) => (
                   <label key={benefit} className="flex items-center space-x-2 cursor-pointer">
                     <Checkbox
                       checked={(formData as any).benefits.includes(benefit)}

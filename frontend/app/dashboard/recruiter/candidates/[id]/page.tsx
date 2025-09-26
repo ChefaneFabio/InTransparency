@@ -479,7 +479,7 @@ export default function CandidateProfilePage() {
         </CardHeader>
         <CardContent>
           <ul className="space-y-2">
-            {candidate.matchReasons.map((reason: string, index: number) => (
+            {(candidate.matchReasons || []).map((reason: string, index: number) => (
               <li key={index} className="flex items-start space-x-2">
                 <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
                 <span className="text-blue-900">{reason}</span>
@@ -594,7 +594,7 @@ export default function CandidateProfilePage() {
                     <div>
                       <h4 className="font-medium text-gray-900 mb-2">Relevant Coursework</h4>
                       <div className="flex flex-wrap gap-1">
-                        {candidate.education.coursework.map((course: string) => (
+                        {(candidate.education?.coursework || []).map((course: string) => (
                           <Badge key={course} variant="secondary" className="text-xs">
                             {course}
                           </Badge>
@@ -605,7 +605,7 @@ export default function CandidateProfilePage() {
                     <div>
                       <h4 className="font-medium text-gray-900 mb-2">Academic Achievements</h4>
                       <ul className="space-y-1">
-                        {candidate.education.achievements.map((achievement: string, index: number) => (
+                        {(candidate.education?.achievements || []).map((achievement: string, index: number) => (
                           <li key={index} className="flex items-center space-x-2">
                             <Award className="h-4 w-4 text-yellow-500" />
                             <span className="text-gray-700">{achievement}</span>
@@ -619,7 +619,7 @@ export default function CandidateProfilePage() {
             </TabsContent>
             
             <TabsContent value="projects" className="space-y-6">
-              {candidate.projects.map((project: any) => (
+              {(candidate.projects || []).map((project: any) => (
                 <Card key={project.id}>
                   <CardHeader>
                     <div className="flex items-start justify-between">
@@ -660,7 +660,7 @@ export default function CandidateProfilePage() {
                       <div>
                         <h4 className="font-medium text-gray-900 mb-2">Technologies</h4>
                         <div className="flex flex-wrap gap-1">
-                          {project.technologies.map((tech: string) => (
+                          {(project.technologies || []).map((tech: string) => (
                             <Badge key={tech} variant="secondary" className="text-xs">
                               {tech}
                             </Badge>
@@ -696,7 +696,7 @@ export default function CandidateProfilePage() {
                         <div>
                           <h4 className="font-medium text-gray-900 mb-2">Screenshots</h4>
                           <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                            {project.images.map((image: string, index: number) => (
+                            {(project.images || []).map((image: string, index: number) => (
                               <img 
                                 key={index}
                                 src={image} 
@@ -712,7 +712,7 @@ export default function CandidateProfilePage() {
                         <div>
                           <h4 className="font-medium text-gray-900 mb-2">Key Challenges</h4>
                           <ul className="space-y-1">
-                            {project.challenges.map((challenge: string, index: number) => (
+                            {(project.challenges || []).map((challenge: string, index: number) => (
                               <li key={index} className="flex items-start space-x-2">
                                 <div className="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
                                 <span className="text-sm text-gray-600">{challenge}</span>
@@ -723,7 +723,7 @@ export default function CandidateProfilePage() {
                         <div>
                           <h4 className="font-medium text-gray-900 mb-2">Key Learnings</h4>
                           <ul className="space-y-1">
-                            {project.learnings.map((learning: string, index: number) => (
+                            {(project.learnings || []).map((learning: string, index: number) => (
                               <li key={index} className="flex items-start space-x-2">
                                 <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                                 <span className="text-sm text-gray-600">{learning}</span>
@@ -739,7 +739,7 @@ export default function CandidateProfilePage() {
             </TabsContent>
             
             <TabsContent value="experience" className="space-y-6">
-              {candidate.experience.map((exp: any, index: number) => (
+              {(candidate.experience || []).map((exp: any, index: number) => (
                 <Card key={index}>
                   <CardHeader>
                     <div className="flex items-start justify-between">
@@ -766,7 +766,7 @@ export default function CandidateProfilePage() {
                       <div>
                         <h4 className="font-medium text-gray-900 mb-2">Key Achievements</h4>
                         <ul className="space-y-2">
-                          {exp.achievements.map((achievement: string, achIndex: number) => (
+                          {(exp.achievements || []).map((achievement: string, achIndex: number) => (
                             <li key={achIndex} className="flex items-start space-x-2">
                               <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
                               <span className="text-gray-700">{achievement}</span>
@@ -778,7 +778,7 @@ export default function CandidateProfilePage() {
                       <div>
                         <h4 className="font-medium text-gray-900 mb-2">Technologies Used</h4>
                         <div className="flex flex-wrap gap-1">
-                          {exp.technologies.map((tech: string) => (
+                          {(exp.technologies || []).map((tech: string) => (
                             <Badge key={tech} variant="secondary" className="text-xs">
                               {tech}
                             </Badge>
@@ -792,14 +792,14 @@ export default function CandidateProfilePage() {
             </TabsContent>
             
             <TabsContent value="skills" className="space-y-6">
-              {Object.entries(getSkillsByCategory()).map(([category, skills]: [string, any]) => (
+              {Object.entries(getSkillsByCategory() || {}).map(([category, skills]: [string, any]) => (
                 <Card key={category}>
                   <CardHeader>
                     <CardTitle>{category}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {skills.map((skill: any) => (
+                      {(skills || []).map((skill: any) => (
                         <div key={skill.name} className="space-y-2">
                           <div className="flex justify-between items-center">
                             <div className="flex items-center space-x-3">
@@ -855,7 +855,7 @@ export default function CandidateProfilePage() {
                   <div>
                     <h4 className="font-medium text-gray-900 mb-3">Search Keywords</h4>
                     <div className="flex flex-wrap gap-2">
-                      {candidate.analytics.searchKeywords.map((keyword: string) => (
+                      {(candidate.analytics?.searchKeywords || []).map((keyword: string) => (
                         <Badge key={keyword} variant="outline" className="text-xs">
                           {keyword}
                         </Badge>
@@ -874,7 +874,7 @@ export default function CandidateProfilePage() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {candidate.analytics.similarCandidates.map((similar: any) => (
+                    {(candidate.analytics?.similarCandidates || []).map((similar: any) => (
                       <div key={similar.id} className="flex items-center justify-between p-3 border rounded-lg">
                         <span className="font-medium text-gray-900">{similar.name}</span>
                         <div className="flex items-center space-x-2">
@@ -930,7 +930,7 @@ export default function CandidateProfilePage() {
               <div>
                 <h4 className="font-medium text-gray-900 mb-2">Desired Roles</h4>
                 <div className="flex flex-wrap gap-1">
-                  {candidate.jobPreferences.roles.map((role: string) => (
+                  {(candidate.jobPreferences?.roles || []).map((role: string) => (
                     <Badge key={role} variant="outline" className="text-xs">
                       {role}
                     </Badge>
@@ -941,7 +941,7 @@ export default function CandidateProfilePage() {
               <div>
                 <h4 className="font-medium text-gray-900 mb-2">Preferred Locations</h4>
                 <div className="flex flex-wrap gap-1">
-                  {candidate.jobPreferences.locations.map((location: string) => (
+                  {(candidate.jobPreferences?.locations || []).map((location: string) => (
                     <Badge key={location} variant="outline" className="text-xs">
                       <MapPin className="h-3 w-3 mr-1" />
                       {location}
@@ -978,7 +978,7 @@ export default function CandidateProfilePage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {candidate.achievements.map((achievement: any, index: number) => (
+                {(candidate.achievements || []).map((achievement: any, index: number) => (
                   <div key={index} className="p-3 bg-gray-50 rounded-lg">
                     <h4 className="font-medium text-gray-900 text-sm">{achievement.title}</h4>
                     <p className="text-xs text-gray-600 mt-1">{achievement.description}</p>
@@ -998,7 +998,7 @@ export default function CandidateProfilePage() {
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-2">
-                {candidate.tags.map((tag: string) => (
+                {(candidate.tags || []).map((tag: string) => (
                   <Badge key={tag} variant="default" className="text-xs">
                     {tag}
                   </Badge>

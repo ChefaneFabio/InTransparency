@@ -95,8 +95,19 @@ self.addEventListener('fetch', (event) => {
           .catch(() => {
             // If both cache and network fail, show offline page for navigation requests
             if (event.request.mode === 'navigate') {
-              return caches.match(OFFLINE_URL);
+              return caches.match(OFFLINE_URL).then(response => {
+                return response || new Response('Offline', {
+                  status: 200,
+                  statusText: 'OK',
+                  headers: { 'Content-Type': 'text/html' }
+                });
+              });
             }
+            // For non-navigation requests, return a simple error response
+            return new Response('Network error', {
+              status: 408,
+              statusText: 'Request timeout'
+            });
           });
       })
   );
