@@ -171,7 +171,7 @@ function TourSelector({ onSelect, onClose }: { onSelect: (id: string) => void; o
           </div>
 
           <div className="grid gap-4">
-            {tourOptions.map((tour) => {
+            {(tourOptions || []).map((tour) => {
               const Icon = tour.icon
               return (
                 <Card

@@ -364,7 +364,7 @@ export function InstitutionalVerification({
             </div>
 
             <div className="space-y-3 max-h-96 overflow-y-auto">
-              {universities.map((university) => (
+              {(universities || []).map((university) => (
                 <Card
                   key={university.id}
                   className="cursor-pointer hover:shadow-md transition-shadow border"

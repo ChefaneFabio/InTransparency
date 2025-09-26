@@ -390,7 +390,7 @@ export default function LinkedInBridge({ userType, userId, onSyncComplete }: Lin
                 {userType === 'student' ? '🎓 Student' : userType === 'recruiter' ? '💼 Recruiter' : '🏫 University'} Sync Tips
               </h4>
               <ul className="space-y-2">
-                {getSyncRecommendations().map((tip, index) => (
+                {(getSyncRecommendations() || []).map((tip, index) => (
                   <li key={index} className="flex items-start space-x-2 text-sm text-blue-700">
                     <FaCheck className="text-blue-600 mt-1 flex-shrink-0" />
                     <span>{tip}</span>

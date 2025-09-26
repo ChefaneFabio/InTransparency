@@ -258,7 +258,7 @@ export default function HowItWorksPage() {
                       className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                         selectedUserType === type.id
                           ? type.color
-                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                          : 'text-gray-600 hover:text-gray-900 hover:bg-slate-100'
                       }`}
                     >
                       <Icon className="h-4 w-4 mr-2" />

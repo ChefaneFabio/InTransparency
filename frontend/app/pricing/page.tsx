@@ -386,7 +386,7 @@ export default function Pricing() {
                 Start Free Trial
                 <ArrowRight className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg" className="border-gray-300 text-gray-700 hover:bg-gray-50">
+              <Button variant="outline" size="lg" className="border-gray-300 text-gray-700 hover:bg-slate-100">
                 Schedule Demo
               </Button>
             </div>

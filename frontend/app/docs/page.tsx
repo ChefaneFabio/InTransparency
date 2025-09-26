@@ -251,7 +251,7 @@ export default function DocsPage() {
   const currentDocs = documentation[selectedCategory as keyof typeof documentation] || []
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       <Header />
 
       <main className="pt-20">
@@ -327,8 +327,8 @@ export default function DocsPage() {
                           onClick={() => setSelectedCategory(category.id)}
                           className={`w-full flex items-center px-3 py-2 text-left rounded-lg transition-colors ${
                             selectedCategory === category.id
-                              ? 'bg-blue-100 text-blue-700'
-                              : 'text-gray-600 hover:bg-gray-100'
+                              ? 'bg-blue-50 text-blue-700'
+                              : 'text-gray-600 hover:bg-slate-100'
                           }`}
                         >
                           <Icon className="h-4 w-4 mr-2" />
@@ -387,7 +387,7 @@ export default function DocsPage() {
         </section>
 
         {/* Resources */}
-        <section className="py-16 bg-gray-100">
+        <section className="py-16 bg-blue-50/30">
           <div className="container max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -404,7 +404,7 @@ export default function DocsPage() {
                 return (
                   <Card key={index} className="hover:shadow-lg transition-shadow cursor-pointer">
                     <CardContent className="p-6 text-center">
-                      <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Icon className="h-8 w-8 text-blue-600" />
                       </div>
                       <h3 className="font-semibold text-gray-900 mb-2">{resource.title}</h3>

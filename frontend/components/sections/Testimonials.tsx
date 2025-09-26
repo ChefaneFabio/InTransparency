@@ -72,7 +72,7 @@ const stats = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 bg-gray-50">
+    <section id="testimonials" className="py-24 bg-slate-50">
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -121,7 +121,7 @@ export function Testimonials() {
 
               {/* Author */}
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+                <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center mr-4">
                   <span className="text-gray-600 font-medium text-sm">
                     {testimonial.name.split(' ').map(n => n[0]).join('')}
                   </span>
@@ -154,7 +154,7 @@ export function Testimonials() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="relative bg-gray-100 rounded-lg aspect-video cursor-pointer group hover:bg-gray-200 transition-colors">
+            <div className="relative bg-slate-100 rounded-lg aspect-video cursor-pointer group hover:bg-slate-200 transition-colors">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                   <div className="w-0 h-0 border-l-[12px] border-l-blue-600 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>
@@ -166,7 +166,7 @@ export function Testimonials() {
               </div>
             </div>
 
-            <div className="relative bg-gray-100 rounded-lg aspect-video cursor-pointer group hover:bg-gray-200 transition-colors">
+            <div className="relative bg-slate-100 rounded-lg aspect-video cursor-pointer group hover:bg-slate-200 transition-colors">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                   <div className="w-0 h-0 border-l-[12px] border-l-blue-600 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>
@@ -178,7 +178,7 @@ export function Testimonials() {
               </div>
             </div>
 
-            <div className="relative bg-gray-100 rounded-lg aspect-video cursor-pointer group hover:bg-gray-200 transition-colors">
+            <div className="relative bg-slate-100 rounded-lg aspect-video cursor-pointer group hover:bg-slate-200 transition-colors">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                   <div className="w-0 h-0 border-l-[12px] border-l-blue-600 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>

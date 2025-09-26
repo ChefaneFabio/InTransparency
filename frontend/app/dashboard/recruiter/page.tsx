@@ -200,7 +200,7 @@ export default function RecruiterDashboard() {
   }
 
   const toggleBookmark = async (candidateId: number) => {
-    setCandidates(candidates.map(candidate => 
+    setCandidates((candidates || []).map(candidate => 
       candidate.id === candidateId 
         ? { ...candidate, isBookmarked: !candidate.isBookmarked } 
         : candidate
@@ -348,7 +348,7 @@ export default function RecruiterDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {candidates.slice(0, 3).map((candidate: any) => (
+                {(candidates || []).slice(0, 3).map((candidate: any) => (
                   <div key={candidate.id} className="flex items-center space-x-4 p-4 border rounded-lg hover:bg-gray-50 transition-colors">
                     <Avatar className="h-12 w-12">
                       <AvatarImage src={candidate.avatar} />
@@ -400,7 +400,7 @@ export default function RecruiterDashboard() {
                       
                       <div className="flex items-center justify-between">
                         <div className="flex flex-wrap gap-1">
-                          {candidate.skills.slice(0, 3).map((skill: any) => (
+                          {(candidate.skills || []).slice(0, 3).map((skill: any) => (
                             <Badge key={skill} variant="secondary" className="text-xs">
                               {skill}
                             </Badge>
@@ -441,7 +441,7 @@ export default function RecruiterDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {jobPostings.map((job: any) => (
+                {(jobPostings || []).map((job: any) => (
                   <div key={job.id} className="flex items-center justify-between p-4 border rounded-lg">
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900">{job.title}</h3>

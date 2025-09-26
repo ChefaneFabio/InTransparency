@@ -349,7 +349,7 @@ export default function LinkedInPlugin({
                     </button>
 
                     <div className="space-y-2 max-h-96 overflow-y-auto">
-                      {connections.map((connection) => (
+                      {(connections || []).map((connection) => (
                         <div key={connection.id} className="flex items-center justify-between p-2 border rounded-lg">
                           <div className="flex items-center space-x-2">
                             {connection.pictureUrl && (
@@ -400,7 +400,7 @@ export default function LinkedInPlugin({
                     </div>
 
                     <div className="space-y-2 max-h-96 overflow-y-auto">
-                      {searchResults.map((person) => (
+                      {(searchResults || []).map((person) => (
                         <div key={person.id} className="flex items-center justify-between p-2 border rounded-lg">
                           <div className="flex items-center space-x-2">
                             {person.pictureUrl && (
@@ -449,7 +449,7 @@ export default function LinkedInPlugin({
                     )}
 
                     <div className="space-y-2 max-h-80 overflow-y-auto">
-                      {connections.map((connection) => (
+                      {(connections || []).map((connection) => (
                         <div key={connection.id} className="flex items-center space-x-2 p-2 border rounded-lg">
                           <input
                             type="checkbox"

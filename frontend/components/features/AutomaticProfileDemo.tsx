@@ -228,7 +228,7 @@ export function AutomaticProfileDemo() {
 
               {/* Section Status */}
               <div className="grid md:grid-cols-2 gap-4">
-                {profileSections.map((section) => {
+                {(profileSections || []).map((section) => {
                   const Icon = section.icon
                   return (
                     <div

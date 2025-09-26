@@ -335,7 +335,7 @@ export default function WhyInTransparencyPage() {
                   <p className="text-gray-600">The AI-Powered Future</p>
                 </div>
                 <div className="space-y-3">
-                  {(competitorComparisons as any)[activeComparison].ourAdvantages.map((advantage: string, index: number) => (
+                  {((competitorComparisons as any)[activeComparison]?.ourAdvantages || []).map((advantage: string, index: number) => (
                     <div key={index} className="flex items-start">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                       <span className="text-sm text-gray-700">{advantage}</span>
@@ -354,7 +354,7 @@ export default function WhyInTransparencyPage() {
                   <p className="text-gray-600">Traditional Approach</p>
                 </div>
                 <div className="space-y-3">
-                  {(competitorComparisons as any)[activeComparison].theirLimitations.map((limitation: string, index: number) => (
+                  {((competitorComparisons as any)[activeComparison]?.theirLimitations || []).map((limitation: string, index: number) => (
                     <div key={index} className="flex items-start">
                       <XCircle className="h-5 w-5 text-red-400 mr-3 mt-0.5 flex-shrink-0" />
                       <span className="text-sm text-gray-600">{limitation}</span>
@@ -375,7 +375,7 @@ export default function WhyInTransparencyPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
-              {(competitorComparisons as any)[activeComparison].keyDifferentiators.map((differentiator: string, index: number) => {
+              {((competitorComparisons as any)[activeComparison]?.keyDifferentiators || []).map((differentiator: string, index: number) => {
                 const [title, description] = differentiator.split(': ')
                 return (
                   <div key={index} className="flex items-start">

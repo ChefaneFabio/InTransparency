@@ -55,7 +55,7 @@ export function MessageCenter() {
   // WebSocket connection for real-time messaging
   const { isConnected, sendMessage, lastMessage } = useWebSocket(
     process.env.NODE_ENV === 'production'
-      ? 'wss://intransparency.onrender.com/ws'
+      ? 'wss://api-intransparency.onrender.com/ws'
       : 'ws://localhost:3001/ws',
     {
       onMessage: handleWebSocketMessage,
