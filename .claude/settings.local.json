@@ -45,7 +45,8 @@
       "WebFetch(domain:intransparency.onrender.com)",
       "Bash(python3:*)",
       "WebSearch",
-      "WebFetch(domain:www.topuniversities.com)"
+      "WebFetch(domain:www.topuniversities.com)",
+      "WebFetch(domain:localhost)"
     ],
     "defaultMode": "acceptEdits"
   }

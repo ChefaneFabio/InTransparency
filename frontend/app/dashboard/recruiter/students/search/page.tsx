@@ -260,16 +260,16 @@ export default function StudentSearchPage() {
             <Label className="text-sm font-medium">Top Project</Label>
             <div className="mt-1 p-2 bg-gray-50 rounded">
               <div className="flex items-center justify-between">
-                <span className="font-medium text-sm">{student.projects[0].title}</span>
+                <span className="font-medium text-sm">{student.projects[0]?.title}</span>
                 <div className="flex items-center space-x-1">
                   <TrendingUp className="h-3 w-3 text-green-500" />
                   <span className="text-xs text-green-600">
-                    {student.projects[0].complexity}/10
+                    {student.projects[0]?.complexity}/10
                   </span>
                 </div>
               </div>
               <div className="flex flex-wrap gap-1 mt-1">
-                {student.projects[0].tech.map(tech => (
+                {student.projects[0]?.tech?.map(tech => (
                   <Badge key={tech} variant="secondary" className="text-xs">
                     {tech}
                   </Badge>
@@ -341,7 +341,7 @@ export default function StudentSearchPage() {
                 id="message"
                 rows={6}
                 placeholder={`Hi ${contactStudent.firstName}! I came across your ${contactStudent.projects[0]?.title} project and was impressed by your skills. We have an exciting role that would be perfect for your background...`}
-                defaultValue={`Hi ${contactStudent.firstName}! I came across your ${contactStudent.projects[0]?.title} project and was impressed by your ${contactStudent.skills[0]} skills. We have an exciting opportunity at ${user?.company || 'our company'} that would be perfect for your background. Would you be interested in learning more?`}
+                defaultValue={`Hi ${contactStudent.firstName}! I came across your ${contactStudent.projects[0]?.title} project and was impressed by your ${contactStudent.skills?.[0] || 'technical'} skills. We have an exciting opportunity at ${user?.company || 'our company'} that would be perfect for your background. Would you be interested in learning more?`}
               />
             </div>
             <div className="flex items-center justify-between">
