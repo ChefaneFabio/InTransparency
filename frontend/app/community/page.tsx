@@ -37,10 +37,10 @@ export default function CommunityPage() {
   ]
 
   const stats = [
-    { label: 'Community Members', value: '12,500+', icon: Users },
-    { label: 'Posts This Month', value: '1,200+', icon: MessageSquare },
-    { label: 'Questions Answered', value: '4,800+', icon: HelpCircle },
-    { label: 'Expert Contributors', value: '150+', icon: Award }
+    { label: 'Community Members', value: 'Growing', icon: Users },
+    { label: 'Posts This Month', value: 'Active', icon: MessageSquare },
+    { label: 'Questions Answered', value: 'Daily', icon: HelpCircle },
+    { label: 'Expert Contributors', value: 'Available', icon: Award }
   ]
 
   const featuredPosts = [

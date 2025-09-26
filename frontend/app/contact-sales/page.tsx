@@ -88,10 +88,10 @@ export default function ContactSalesPage() {
   ]
 
   const stats = [
-    { label: 'Universities', value: '200+' },
-    { label: 'Companies', value: '500+' },
-    { label: 'Students Served', value: '100K+' },
-    { label: 'Placement Rate', value: '78%' }
+    { label: 'Universities', value: 'Partners' },
+    { label: 'Companies', value: 'Network' },
+    { label: 'Students Served', value: 'Growing' },
+    { label: 'Placement Rate', value: 'Improving' }
   ]
 
   const handleSubmit = async (e: React.FormEvent) => {

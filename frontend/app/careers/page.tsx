@@ -191,19 +191,19 @@ export default function CareersPage() {
           <div className="container max-w-6xl mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2">50+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2">Growing</div>
                 <div className="text-gray-600">Team Members</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-green-600 mb-2">$25M</div>
-                <div className="text-gray-600">Series A Funding</div>
+                <div className="text-3xl font-bold text-green-600 mb-2">Funded</div>
+                <div className="text-gray-600">Well Supported</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-purple-600 mb-2">100k+</div>
+                <div className="text-3xl font-bold text-purple-600 mb-2">Building</div>
                 <div className="text-gray-600">Students Served</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-orange-600 mb-2">500+</div>
+                <div className="text-3xl font-bold text-orange-600 mb-2">Growing</div>
                 <div className="text-gray-600">Partner Companies</div>
               </div>
             </div>

@@ -62,7 +62,7 @@ const userTypes: UserType[] = [
     id: 'recruiter',
     title: 'Company / Recruiter',
     subtitle: 'Find verified talent from any university',
-    description: 'Access 500,000+ verified graduates with real project portfolios and academic credentials through our transparent platform.',
+    description: 'Access verified graduates with real project portfolios and academic credentials through our transparent platform.',
     icon: Building2,
     color: 'bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600',
     features: [
@@ -147,7 +147,7 @@ export default function RoleSelectionPage() {
           <div className="mb-8">
             <Badge className="bg-blue-100 text-blue-800 border-blue-200 mb-6">
               <Shield className="h-3 w-3 mr-1" />
-              Trusted by 150+ Universities Worldwide
+              Trusted by Universities Worldwide
             </Badge>
           </div>
 
@@ -165,7 +165,7 @@ export default function RoleSelectionPage() {
           <div className="flex flex-wrap items-center justify-center gap-8 text-base text-gray-600 mb-8">
             <div className="flex items-center bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
               <Check className="h-5 w-5 mr-3 text-blue-500" />
-              <span className="font-medium">500,000+ verified students</span>
+              <span className="font-medium">Verified student profiles</span>
             </div>
             <div className="flex items-center bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
               <Check className="h-5 w-5 mr-3 text-blue-500" />
@@ -312,15 +312,15 @@ export default function RoleSelectionPage() {
           <div className="flex flex-wrap items-center justify-center gap-8 text-lg">
             <div className="flex items-center bg-blue-50 px-6 py-3 rounded-full">
               <Users className="h-6 w-6 mr-3 text-blue-600" />
-              <span className="font-bold text-blue-700">500k+ Students</span>
+              <span className="font-bold text-blue-700">Student Network</span>
             </div>
             <div className="flex items-center bg-blue-50 px-6 py-3 rounded-full">
               <Briefcase className="h-6 w-6 mr-3 text-blue-600" />
-              <span className="font-bold text-blue-700">10k+ Companies</span>
+              <span className="font-bold text-blue-700">Partner Companies</span>
             </div>
             <div className="flex items-center bg-blue-50 px-6 py-3 rounded-full">
               <Globe className="h-6 w-6 mr-3 text-blue-600" />
-              <span className="font-bold text-blue-700">150+ Universities</span>
+              <span className="font-bold text-blue-700">Partner Universities</span>
             </div>
           </div>
         </div>
