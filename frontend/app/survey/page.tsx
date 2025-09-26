@@ -79,7 +79,7 @@ export default function SurveySelectionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-blue-50/50 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-50">
         <div className="absolute inset-0 bg-blue-50/20"></div>

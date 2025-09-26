@@ -19,9 +19,9 @@ export function Hero() {
           </div>
           
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Transform Your Academic{' '}
+            Transform your{' '}
             <span className="bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">
-              Projects Into Stories
+              studies into your job
             </span>
           </h1>
           

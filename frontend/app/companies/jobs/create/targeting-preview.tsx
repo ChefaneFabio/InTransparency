@@ -59,6 +59,10 @@ export const TargetingPreview = ({ jobRequirements, location, remoteOptions }: T
     )
   }
 
+  if (!targeting) {
+    return null
+  }
+
   return (
     <div className="space-y-6">
       {/* Targeting Overview */}
@@ -187,7 +191,7 @@ export const TargetingPreview = ({ jobRequirements, location, remoteOptions }: T
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
-            {targeting.topMatches.map((candidate: any, i: number) => (
+            {targeting.topMatches?.map((candidate: any, i: number) => (
               <div key={i} className="flex items-center justify-between p-3 border rounded">
                 <div>
                   <div className="font-medium">{candidate.name}</div>
@@ -220,7 +224,7 @@ export const TargetingPreview = ({ jobRequirements, location, remoteOptions }: T
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              {targeting.suggestions.map((suggestion: string, i: number) => (
+              {targeting.suggestions?.map((suggestion: string, i: number) => (
                 <div key={i} className="flex items-start gap-2">
                   <CheckCircle2 className="h-4 w-4 text-blue-600 mt-0.5" />
                   <span className="text-sm">{suggestion}</span>

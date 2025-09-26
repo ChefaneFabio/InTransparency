@@ -171,16 +171,16 @@ export default function StudentSurveyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-blue-50/50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
       {/* Header */}
-      <div className="bg-white/90 backdrop-blur-md border-b border-blue-100/50 shadow-sm">
+      <div className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/survey" className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
                 <GraduationCap className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-blue-600">Student Survey</span>
+              <span className="text-xl font-bold text-gray-900">Student Survey</span>
             </Link>
             <div className="text-sm text-gray-600">
               Step {currentStep} of {totalSteps}
@@ -193,7 +193,7 @@ export default function StudentSurveyPage() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <Card className="bg-white/80 backdrop-blur-sm">
+        <Card className="bg-white shadow-lg border border-gray-200">
           <CardHeader>
             <CardTitle className="text-2xl text-center">
               {currentStep === 1 && "About You"}
