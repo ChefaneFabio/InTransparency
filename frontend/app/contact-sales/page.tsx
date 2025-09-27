@@ -386,31 +386,26 @@ export default function ContactSalesPage() {
                   </div>
                 </div>
 
-                {/* Testimonials */}
+                {/* Contact Information */}
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                    What Our Partners Say
+                    Ready to Get Started?
                   </h3>
-                  <div className="space-y-6">
-                    {(testimonials || []).map((testimonial, index) => (
-                      <Card key={index}>
-                        <CardContent className="p-6">
-                          <div className="flex items-center mb-4">
-                            {Array.from({ length: testimonial.rating }).map((_, i) => (
-                              <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                            ))}
-                          </div>
-                          <blockquote className="text-gray-700 italic mb-4">
-                            "{testimonial.quote}"
-                          </blockquote>
-                          <div>
-                            <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                            <div className="text-sm text-gray-600">{testimonial.title}</div>
-                            <div className="text-sm text-gray-600">{testimonial.company}</div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
+                  <div className="space-y-4">
+                    <p className="text-gray-700">
+                      Join the growing network of universities and companies building transparent career connections.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="text-sm text-gray-600">
+                        📧 <strong>Email:</strong> enterprise@intransparency.com
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        📅 <strong>Schedule a demo:</strong> We'll show you how InTransparency can benefit your institution
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        💬 <strong>Custom solutions:</strong> We work with you to create the perfect integration
+                      </div>
+                    </div>
                   </div>
                 </div>
 
