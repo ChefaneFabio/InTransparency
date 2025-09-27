@@ -245,41 +245,41 @@ export default function GeographicTalentSearchPage() {
                       {searchResults.map(talent => (
                         <div
                           key={talent.id}
-                          className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow cursor-pointer"
+                          className="p-4 border border-gray-300 rounded-lg hover:shadow-lg hover:border-blue-300 transition-all cursor-pointer bg-white"
                           onClick={() => setSelectedTalent(talent)}
                         >
-                          <h3 className="font-semibold text-gray-900">{talent.name}</h3>
-                          <p className="text-sm text-gray-600 flex items-center mt-1">
-                            <GraduationCap className="h-3 w-3 mr-1" />
+                          <h3 className="font-semibold text-gray-900 text-base">{talent.name}</h3>
+                          <p className="text-sm text-gray-800 flex items-center mt-1">
+                            <GraduationCap className="h-4 w-4 mr-1 text-blue-600" />
                             {talent.university}
                           </p>
-                          <p className="text-sm text-gray-600">{talent.degree} • {talent.year}</p>
+                          <p className="text-sm text-gray-800">{talent.degree} • {talent.year}</p>
 
-                          <div className="flex flex-wrap gap-1 mt-2">
+                          <div className="flex flex-wrap gap-1 mt-3">
                             {talent.skills.slice(0, 2).map(skill => (
-                              <Badge key={skill} variant="secondary" className="text-xs">
+                              <Badge key={skill} variant="secondary" className="text-xs bg-blue-100 text-blue-800 border-blue-200">
                                 {skill}
                               </Badge>
                             ))}
                             {talent.skills.length > 2 && (
-                              <Badge variant="outline" className="text-xs">
+                              <Badge variant="outline" className="text-xs border-gray-400 text-gray-700">
                                 +{talent.skills.length - 2} more
                               </Badge>
                             )}
                           </div>
 
                           <div className="flex items-center justify-between mt-3">
-                            <div className="flex items-center text-sm">
-                              <Star className="h-3 w-3 text-yellow-500 mr-1" />
-                              <span>{talent.rating}</span>
+                            <div className="flex items-center text-sm text-gray-800">
+                              <Star className="h-4 w-4 text-yellow-500 mr-1" />
+                              <span className="font-medium">{talent.rating}</span>
                             </div>
-                            <div className="text-sm text-gray-500">
+                            <div className="text-sm text-gray-700 font-medium">
                               {talent.projects} projects
                             </div>
                           </div>
 
-                          <p className="text-xs text-gray-500 mt-2 flex items-center">
-                            <MapPin className="h-3 w-3 mr-1" />
+                          <p className="text-sm text-gray-700 mt-2 flex items-center">
+                            <MapPin className="h-4 w-4 mr-1 text-gray-600" />
                             {talent.location.city}, {talent.location.country}
                           </p>
                         </div>

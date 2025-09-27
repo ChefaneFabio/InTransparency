@@ -174,7 +174,7 @@ export default function FeedbackPage() {
                 {recentResponses.map((response, index) => (
                   <div
                     key={response.id}
-                    className="flex items-center justify-between p-4 border border-gray-200 rounded-lg bg-gray-50/50 hover:bg-gray-50 transition-colors"
+                    className="flex items-center justify-between p-4 border border-gray-300 rounded-lg bg-white hover:bg-blue-50 hover:border-blue-300 transition-all shadow-sm"
                   >
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-2">
@@ -183,17 +183,17 @@ export default function FeedbackPage() {
                           {response.surveyType}
                         </Badge>
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-gray-800 font-medium">
                         Response #{index + 1}
                       </div>
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-gray-500">
+                    <div className="flex items-center gap-4 text-sm text-gray-700">
                       <div className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
+                        <Calendar className="h-4 w-4 text-gray-600" />
                         {format(new Date(response.createdAt), 'MMM d, yyyy')}
                       </div>
                       {response.completionTime && (
-                        <div className="text-xs">
+                        <div className="text-xs font-medium">
                           {Math.round(response.completionTime / 1000)}s completion
                         </div>
                       )}

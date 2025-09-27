@@ -180,19 +180,19 @@ export default function DemoPage() {
 
   const VideoDemo = () => (
     <div className="space-y-16">
-      {/* Video Demo Section */}
+      {/* Interactive Platform Demo */}
       <div className="text-center">
         <h2 className="text-4xl font-bold text-gray-900 mb-6">
-          Watch InTransparency in Action
+          Experience InTransparency Live
         </h2>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-          See how our platform transforms your academic projects into professional success stories
+          Explore our interactive demo to see how quickly students get matched with perfect job opportunities
         </p>
 
-        {/* Mock Video Player */}
+        {/* Live Demo Visualization */}
         <div className="relative max-w-4xl mx-auto mb-8">
           <div className="aspect-video bg-gradient-to-br from-blue-900 to-purple-900 rounded-2xl shadow-2xl overflow-hidden relative">
-            {/* Video Overlay */}
+            {/* Interactive Demo Overlay */}
             <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
               <div className="text-center text-white">
                 <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto backdrop-blur-sm">
@@ -202,8 +202,8 @@ export default function DemoPage() {
                     <Play className="h-8 w-8 ml-1" />
                   )}
                 </div>
-                <h3 className="text-2xl font-bold mb-2">Platform Walkthrough</h3>
-                <p className="text-blue-100">5 minute comprehensive demo</p>
+                <h3 className="text-2xl font-bold mb-2">Interactive Platform Tour</h3>
+                <p className="text-blue-100">Click below to explore each feature step-by-step</p>
               </div>
             </div>
 
@@ -254,18 +254,18 @@ export default function DemoPage() {
             {isPlaying ? (
               <>
                 <Pause className="mr-2 h-5 w-5" />
-                Pause Demo
+                Pause Tour
               </>
             ) : (
               <>
                 <Play className="mr-2 h-5 w-5" />
-                Watch Full Demo
+                Start Interactive Tour
               </>
             )}
           </Button>
           <Button variant="outline" size="lg" asChild>
             <Link href="/auth/register">
-              Skip to Sign Up
+              Try It Yourself
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
