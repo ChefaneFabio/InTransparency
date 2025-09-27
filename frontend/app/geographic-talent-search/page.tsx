@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
-import { GoogleMapComponent } from '@/components/maps/GoogleMapComponent'
+import { GoogleMapComponent, MapMarker } from '@/components/maps/GoogleMapComponent'
 import { PlacesAutocomplete } from '@/components/maps/PlacesAutocomplete'
 import {
   MapPin,
@@ -89,31 +89,6 @@ export default function GeographicTalentSearchPage() {
     console.log('Searching for talent with:', { selectedLocation, selectedSkill, selectedDegree })
   }
 
-  const markers = searchResults.map(talent => ({
-    id: talent.id,
-    position: { lat: talent.location.lat, lng: talent.location.lng },
-    title: talent.name,
-    content: (
-      <div className="p-2 max-w-xs">
-        <h3 className="font-semibold">{talent.name}</h3>
-        <p className="text-sm text-gray-600">{talent.university}</p>
-        <p className="text-sm">{talent.degree} • {talent.year}</p>
-        <div className="flex flex-wrap gap-1 mt-2">
-          {talent.skills.slice(0, 3).map(skill => (
-            <Badge key={skill} variant="secondary" className="text-xs">
-              {skill}
-            </Badge>
-          ))}
-        </div>
-        <div className="flex items-center mt-2 text-sm">
-          <Star className="h-3 w-3 text-yellow-500 mr-1" />
-          <span>{talent.rating}</span>
-          <span className="mx-2">•</span>
-          <span>{talent.projects} projects</span>
-        </div>
-      </div>
-    )
-  }))
 
   const skillOptions = ['React', 'TypeScript', 'Python', 'Node.js', 'Machine Learning', 'Docker', 'Java', 'C++']
   const degreeOptions = [
@@ -237,11 +212,20 @@ export default function GeographicTalentSearchPage() {
                   <CardContent className="p-0">
                     <div className="h-96 w-full">
                       <GoogleMapComponent
+                        apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''}
                         center={mapCenter}
                         zoom={4}
-                        markers={markers}
                         className="w-full h-full rounded-b-lg"
-                      />
+                      >
+                        {searchResults.map(talent => (
+                          <MapMarker
+                            key={talent.id}
+                            position={{ lat: talent.location.lat, lng: talent.location.lng }}
+                            title={talent.name}
+                            onClick={() => setSelectedTalent(talent)}
+                          />
+                        ))}
+                      </GoogleMapComponent>
                     </div>
                   </CardContent>
                 </Card>
