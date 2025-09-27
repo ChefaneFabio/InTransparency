@@ -96,7 +96,7 @@ export function TechnologySelector({ selected, onChange, error }: TechnologySele
             Selected Technologies ({selected.length})
           </h4>
           <div className="flex flex-wrap gap-2">
-            {selected.map((tech) => (
+            {(selected || []).map((tech) => (
               <Badge key={tech} variant="default" className="flex items-center gap-1">
                 {tech}
                 <Button

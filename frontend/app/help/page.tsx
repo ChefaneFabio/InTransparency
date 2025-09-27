@@ -221,7 +221,7 @@ export default function HelpPage() {
                         </div>
                         <h3 className="font-semibold text-gray-900 mb-3">{category.title}</h3>
                         <ul className="space-y-2">
-                          {category.articles.map((article, articleIndex) => (
+                          {(category.articles || []).map((article, articleIndex) => (
                             <li key={articleIndex} className="text-sm text-gray-600 hover:text-blue-600 cursor-pointer flex items-center">
                               <ChevronRight className="h-3 w-3 mr-1" />
                               {article}
@@ -239,7 +239,7 @@ export default function HelpPage() {
             <div className="mb-16">
               <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Popular Articles</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {popularArticles.map((article, index) => (
+                {(popularArticles || []).map((article, index) => (
                   <Card key={index} className="hover:shadow-lg transition-shadow cursor-pointer">
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between mb-4">
@@ -269,7 +269,7 @@ export default function HelpPage() {
                 Frequently Asked Questions
               </h2>
               <div className="max-w-4xl mx-auto space-y-4">
-                {faqs.map((faq, index) => (
+                {(faqs || []).map((faq, index) => (
                   <Card key={index}>
                     <CardContent className="p-0">
                       <button

@@ -387,15 +387,15 @@ export default function LinkedInIntegrationPage() {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-sm text-gray-600">Students</span>
-                  <span className="font-semibold">45%</span>
+                  <span className="font-semibold">Active</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-sm text-gray-600">Recruiters</span>
-                  <span className="font-semibold">30%</span>
+                  <span className="font-semibold">Growing</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-sm text-gray-600">Professionals</span>
-                  <span className="font-semibold">25%</span>
+                  <span className="font-semibold">Engaged</span>
                 </div>
               </div>
             </div>

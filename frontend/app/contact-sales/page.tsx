@@ -14,7 +14,6 @@ import {
   Phone,
   Mail,
   ArrowRight,
-  Star,
   Award,
   Shield,
   TrendingUp,
@@ -70,22 +69,7 @@ export default function ContactSalesPage() {
     }
   ]
 
-  const testimonials = [
-    {
-      name: 'Dr. Sarah Johnson',
-      title: 'Director of Career Services',
-      company: 'Stanford University',
-      quote: 'InTransparency has transformed how our students showcase their work. We\'ve seen a 40% increase in successful job placements.',
-      rating: 5
-    },
-    {
-      name: 'Michael Chen',
-      title: 'Head of Talent Acquisition',
-      company: 'TechCorp',
-      quote: 'The quality of candidates we find through InTransparency is exceptional. Their AI analysis saves us countless hours in screening.',
-      rating: 5
-    }
-  ]
+  // Testimonials removed - no fake data
 
   const stats = [
     { label: 'Universities', value: 'Partners' },

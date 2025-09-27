@@ -135,7 +135,7 @@ export function HowItWorks() {
     }, 4000)
 
     return () => clearInterval(interval)
-  }, [isAutoPlaying, steps.length])
+  }, [isAutoPlaying]) // Removed steps.length dependency to prevent infinite loop
 
   const currentStep = steps[activeStep]
 

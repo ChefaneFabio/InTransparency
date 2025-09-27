@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -82,8 +84,10 @@ export default function FeedbackPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 shadow-sm">
+      <Header />
+
+      {/* Hero Header */}
+      <div className="bg-white border-b border-gray-200 shadow-sm pt-20">
         <div className="max-w-6xl mx-auto px-4 py-8">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -199,15 +203,26 @@ export default function FeedbackPage() {
               </div>
             ) : (
               <div className="text-center py-12">
-                <MessageSquare className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No responses yet</h3>
-                <p className="text-gray-600 mb-6">Be the first to share your feedback with us!</p>
-                <Button asChild>
-                  <Link href="/survey">
-                    Take Survey
-                    <ArrowRight className="h-4 w-4 ml-2" />
-                  </Link>
-                </Button>
+                <div className="mb-6">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center mb-4">
+                    <MessageSquare className="h-10 w-10 text-blue-600" />
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">Ready for Your Voice</h3>
+                  <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                    As a new platform, we're eager to hear from our community. Your feedback will directly shape how InTransparency evolves to serve students, employers, and universities better.
+                  </p>
+                </div>
+                <div className="space-y-4">
+                  <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    <Link href="/survey">
+                      Share Your Thoughts
+                      <ArrowRight className="h-4 w-4 ml-2" />
+                    </Link>
+                  </Button>
+                  <div className="text-sm text-gray-500">
+                    📝 Quick surveys • 💡 Shape our features • 🚀 Help us grow
+                  </div>
+                </div>
               </div>
             )}
           </CardContent>
@@ -217,28 +232,27 @@ export default function FeedbackPage() {
         <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
           <CardContent className="p-8 text-center">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Share Your Voice
+              Help Build the Future of Academic-Career Connections
             </h2>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Help us improve InTransparency by sharing your thoughts and experiences.
-              Your feedback directly influences our platform development.
+              InTransparency is being built with community input at its core. Your perspectives on academic achievement, skill demonstration, and career development help us create a platform that truly serves everyone.
             </p>
-            <div className="flex gap-4 justify-center">
-              <Button asChild size="lg">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
                 <Link href="/survey">
-                  Take Survey
+                  Join Our Community Survey
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" asChild>
-                <Link href="/admin/surveys">
-                  View Detailed Analytics
-                </Link>
-              </Button>
+              <div className="text-sm text-gray-500">
+                🎯 5-8 minutes • 🎁 Early access opportunities
+              </div>
             </div>
           </CardContent>
         </Card>
       </div>
+
+      <Footer />
     </div>
   )
 }

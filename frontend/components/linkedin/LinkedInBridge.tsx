@@ -45,12 +45,17 @@ export default function LinkedInBridge({ userType, userId, onSyncComplete }: Lin
   const [lastSyncTime, setLastSyncTime] = useState<Date | null>(null);
   const [isSyncing, setIsSyncing] = useState(false);
 
+  // Check connection on mount
   useEffect(() => {
     checkLinkedInConnection();
+  }, []); // Only run on mount
+
+  // Handle auto-sync when connection status or auto-sync preference changes
+  useEffect(() => {
     if (autoSync && isConnected) {
       startPeriodicSync();
     }
-  }, [isConnected, autoSync]);
+  }, [isConnected, autoSync]); // Keep this separate to avoid infinite loop
 
   const checkLinkedInConnection = async () => {
     try {

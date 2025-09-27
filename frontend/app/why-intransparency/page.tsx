@@ -174,12 +174,12 @@ export default function WhyInTransparencyPage() {
   ]
 
   const successMetrics = [
-    { metric: '94%', label: 'Average Job Match Accuracy', icon: Target },
-    { metric: '3x', label: 'Faster Hiring Process', icon: TrendingUp },
-    { metric: '89%', label: 'Recruiter Satisfaction Rate', icon: Heart },
-    { metric: '127k+', label: 'Verified Student Profiles', icon: Users },
-    { metric: '300+', label: 'University Partnerships', icon: Award },
-    { metric: '15k+', label: 'Successful Placements', icon: Rocket }
+    { metric: 'AI-Powered', label: 'Job Match Technology', icon: Target },
+    { metric: 'Streamlined', label: 'Hiring Process', icon: TrendingUp },
+    { metric: 'Growing', label: 'Recruiter Network', icon: Heart },
+    { metric: 'Verified', label: 'Student Profiles', icon: Users },
+    { metric: 'Partner', label: 'University Network', icon: Award },
+    { metric: 'Successful', label: 'Career Connections', icon: Rocket }
   ]
 
   const getCompetitorColor = (color: string) => {

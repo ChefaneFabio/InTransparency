@@ -314,7 +314,7 @@ export function VideoGallery({ videos, onVideoSelect }: VideoGalleryProps) {
     <div className="space-y-6">
       {/* Category Filter */}
       <div className="flex flex-wrap gap-2">
-        {categories.map(category => (
+        {(categories || []).map(category => (
           <Button
             key={category}
             variant={selectedCategory === category ? "default" : "outline"}
