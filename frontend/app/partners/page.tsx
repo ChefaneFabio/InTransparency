@@ -3,7 +3,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Building, GraduationCap, Users, Handshake, ArrowRight, Star } from 'lucide-react'
+import { Building, GraduationCap, Users, ArrowRight, Star, Heart } from 'lucide-react'
 
 const partnerCategories = [
   {
@@ -92,7 +92,7 @@ export default function PartnersPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-teal-600 hover:bg-gray-100">
-                <Handshake className="h-5 w-5 mr-2" />
+                <Heart className="h-5 w-5 mr-2" />
                 Become a Partner
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">

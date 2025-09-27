@@ -225,19 +225,19 @@ export default function BugsPage() {
                     <ul className="space-y-3">
                       <li className="flex items-center">
                         <Badge className="bg-red-600 mr-3">Critical</Badge>
-                        <span className="text-gray-700">< 2 hours</span>
+                        <span className="text-gray-700">&lt; 2 hours</span>
                       </li>
                       <li className="flex items-center">
                         <Badge className="bg-orange-600 mr-3">High</Badge>
-                        <span className="text-gray-700">< 24 hours</span>
+                        <span className="text-gray-700">&lt; 24 hours</span>
                       </li>
                       <li className="flex items-center">
                         <Badge className="bg-yellow-600 mr-3">Medium</Badge>
-                        <span className="text-gray-700">< 3 days</span>
+                        <span className="text-gray-700">&lt; 3 days</span>
                       </li>
                       <li className="flex items-center">
                         <Badge className="bg-gray-600 mr-3">Low</Badge>
-                        <span className="text-gray-700">< 1 week</span>
+                        <span className="text-gray-700">&lt; 1 week</span>
                       </li>
                     </ul>
                   </div>

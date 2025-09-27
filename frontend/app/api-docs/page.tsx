@@ -105,8 +105,8 @@ export default function ApiDocsPage() {
                   <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
                     <div>{`{`}</div>
                     <div>  "status": "success",</div>
-                    <div>  "data": {...},</div>
-                    <div>  "pagination": {...}</div>
+                    <div>  "data": {"{...}"},</div>
+                    <div>  "pagination": {"{...}"}</div>
                     <div>{`}`}</div>
                   </div>
                 </div>
