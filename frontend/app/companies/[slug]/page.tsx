@@ -432,17 +432,17 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center">
-                  <Mail className="h-4 w-4 text-gray-400 mr-2" />
+                  <Mail className="h-4 w-4 text-gray-600 mr-2" />
                   <p className="text-sm text-gray-900">{company.contact.email}</p>
                 </div>
                 {company.contact.phone && (
                   <div className="flex items-center">
-                    <Phone className="h-4 w-4 text-gray-400 mr-2" />
+                    <Phone className="h-4 w-4 text-gray-600 mr-2" />
                     <p className="text-sm text-gray-900">{company.contact.phone}</p>
                   </div>
                 )}
                 <div className="flex items-center">
-                  <Globe className="h-4 w-4 text-gray-400 mr-2" />
+                  <Globe className="h-4 w-4 text-gray-600 mr-2" />
                   <a href={company.website} className="text-sm text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">
                     {company.website}
                   </a>

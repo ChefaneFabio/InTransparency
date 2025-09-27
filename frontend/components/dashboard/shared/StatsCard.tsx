@@ -96,7 +96,7 @@ export function StatsCard({
             {(description || trend) && (
               <div className="mt-4 space-y-1">
                 {description && (
-                  <p className="text-sm text-gray-500">{description}</p>
+                  <p className="text-sm text-gray-700">{description}</p>
                 )}
                 {trend && (
                   <p className={`text-sm font-medium ${colorClasses.trend}`}>

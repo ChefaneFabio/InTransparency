@@ -198,7 +198,7 @@ function TourSelector({ onSelect, onClose }: { onSelect: (id: string) => void; o
 
                         <p className="text-gray-600 text-sm mb-3">{tour.description}</p>
 
-                        <div className="flex items-center space-x-4 text-xs text-gray-500">
+                        <div className="flex items-center space-x-4 text-xs text-gray-700">
                           <div className="flex items-center">
                             <Clock className="h-3 w-3 mr-1" />
                             {tour.duration}

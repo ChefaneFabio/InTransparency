@@ -455,7 +455,7 @@ export default function UniversityDashboard() {
                   <div key={dept.department} className="flex items-center justify-between p-4 border rounded-lg">
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900">{dept.department}</h3>
-                      <div className="flex items-center space-x-4 text-sm text-gray-500 mt-1">
+                      <div className="flex items-center space-x-4 text-sm text-gray-700 mt-1">
                         <span>{dept.students} students</span>
                         <span>Avg Score: {dept.avgScore}</span>
                         <span>{dept.placements} placements</span>
@@ -465,7 +465,7 @@ export default function UniversityDashboard() {
                       <div className="text-lg font-bold text-green-600">
                         {Math.round((dept.placements / dept.students) * 100)}%
                       </div>
-                      <div className="text-xs text-gray-500">Placement Rate</div>
+                      <div className="text-xs text-gray-700">Placement Rate</div>
                     </div>
                   </div>
                 ))}
@@ -502,7 +502,7 @@ export default function UniversityDashboard() {
                     <div className="flex-1 min-w-0">
                       <h3 className="font-semibold text-gray-900">{placement.studentName}</h3>
                       <p className="text-gray-600">{placement.position} at {placement.company}</p>
-                      <div className="flex items-center space-x-4 text-sm text-gray-500 mt-1">
+                      <div className="flex items-center space-x-4 text-sm text-gray-700 mt-1">
                         <span>{placement.major}</span>
                         <span>GPA: {placement.gpa}</span>
                         <span>{placement.projects} projects</span>
@@ -517,7 +517,7 @@ export default function UniversityDashboard() {
                       <div className="text-lg font-bold text-green-600">
                         ${(placement.salary / 1000).toFixed(0)}k
                       </div>
-                      <div className="text-xs text-gray-500">
+                      <div className="text-xs text-gray-700">
                         {new Date(placement.startDate).toLocaleDateString()}
                       </div>
                       <Badge variant="default" className="mt-1">
@@ -554,7 +554,7 @@ export default function UniversityDashboard() {
                         {student.firstName} {student.lastName}
                       </h3>
                       <p className="text-gray-600">{student.major} • {student.year}</p>
-                      <div className="flex items-center space-x-4 text-sm text-gray-500 mt-1">
+                      <div className="flex items-center space-x-4 text-sm text-gray-700 mt-1">
                         <span>GPA: {student.gpa}</span>
                         <span>{student.projects} projects</span>
                         <span className="flex items-center">
@@ -580,7 +580,7 @@ export default function UniversityDashboard() {
                       <div className="text-lg font-bold text-blue-600">
                         {student.avgInnovationScore}
                       </div>
-                      <div className="text-xs text-gray-500 mb-2">Innovation</div>
+                      <div className="text-xs text-gray-700 mb-2">Innovation</div>
                       
                       <Badge 
                         variant={student.isEmployed ? "default" : "secondary"}
@@ -665,11 +665,11 @@ export default function UniversityDashboard() {
                   <div key={index} className="flex items-center justify-between">
                     <div>
                       <p className="font-medium text-gray-900">{company.company}</p>
-                      <p className="text-xs text-gray-500">${(company.avgSalary / 1000).toFixed(0)}k avg</p>
+                      <p className="text-xs text-gray-700">${(company.avgSalary / 1000).toFixed(0)}k avg</p>
                     </div>
                     <div className="text-right">
                       <div className="font-semibold text-blue-600">{company.hires}</div>
-                      <div className="text-xs text-gray-500">hires</div>
+                      <div className="text-xs text-gray-700">hires</div>
                     </div>
                   </div>
                 ))}
@@ -691,7 +691,7 @@ export default function UniversityDashboard() {
                   <div key={industry.industry} className="space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="text-sm font-medium text-gray-900">{industry.industry}</span>
-                      <span className="text-sm text-gray-500">{industry.percentage}%</span>
+                      <span className="text-sm text-gray-700">{industry.percentage}%</span>
                     </div>
                     <Progress value={industry.percentage} className="h-2" />
                   </div>
@@ -718,7 +718,7 @@ export default function UniversityDashboard() {
                     </div>
                     <div className="text-right">
                       <div className="font-semibold text-gray-700">{skill.count}</div>
-                      <div className="text-xs text-gray-500">students</div>
+                      <div className="text-xs text-gray-700">students</div>
                     </div>
                   </div>
                 ))}

@@ -281,7 +281,7 @@ export default function RecruiterDashboard() {
               <div>
                 <p className="text-sm font-medium text-gray-600">Active Job Posts</p>
                 <p className="text-3xl font-bold text-gray-900">{stats.activeJobPostings}</p>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-gray-700 mt-1">
                   {stats.totalJobPostings} total posts
                 </p>
               </div>
@@ -370,20 +370,20 @@ export default function RecruiterDashboard() {
                             variant="ghost"
                             size="sm"
                             onClick={() => toggleBookmark(candidate.id)}
-                            className={candidate.isBookmarked ? 'text-yellow-500' : 'text-gray-400'}
+                            className={candidate.isBookmarked ? 'text-yellow-500' : 'text-gray-600'}
                           >
                             <Star className={`h-4 w-4 ${candidate.isBookmarked ? 'fill-current' : ''}`} />
                           </Button>
                         </div>
                       </div>
                       
-                      <div className="flex items-center space-x-4 text-sm text-gray-500 mb-2">
+                      <div className="flex items-center space-x-4 text-sm text-gray-700 mb-2">
                         <span>{candidate.degree} • {candidate.university}</span>
                         <span>Class of {candidate.graduationYear}</span>
                         <span>GPA: {candidate.gpa}</span>
                       </div>
                       
-                      <div className="flex items-center space-x-4 text-sm text-gray-500 mb-3">
+                      <div className="flex items-center space-x-4 text-sm text-gray-700 mb-3">
                         <span className="flex items-center">
                           <MapPin className="h-3 w-3 mr-1" />
                           {candidate.location}
@@ -445,7 +445,7 @@ export default function RecruiterDashboard() {
                   <div key={job.id} className="flex items-center justify-between p-4 border rounded-lg">
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900">{job.title}</h3>
-                      <div className="flex items-center space-x-4 text-sm text-gray-500 mt-1">
+                      <div className="flex items-center space-x-4 text-sm text-gray-700 mt-1">
                         <span>{job.department}</span>
                         <span>{job.location}</span>
                         <span>{job.salary}</span>
@@ -458,11 +458,11 @@ export default function RecruiterDashboard() {
                     <div className="flex items-center space-x-8 text-center">
                       <div>
                         <div className="text-2xl font-bold text-blue-600">{job.applications}</div>
-                        <div className="text-xs text-gray-500">Applications</div>
+                        <div className="text-xs text-gray-700">Applications</div>
                       </div>
                       <div>
                         <div className="text-2xl font-bold text-purple-600">{job.views}</div>
-                        <div className="text-xs text-gray-500">Views</div>
+                        <div className="text-xs text-gray-700">Views</div>
                       </div>
                       <Button variant="outline" size="sm" asChild>
                         <Link href={`/dashboard/recruiter/jobs/${job.id}`}>
@@ -525,7 +525,7 @@ export default function RecruiterDashboard() {
                     <div className="text-lg">{activity.icon}</div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm text-gray-900">{activity.description}</p>
-                      <p className="text-xs text-gray-500">{activity.time}</p>
+                      <p className="text-xs text-gray-700">{activity.time}</p>
                     </div>
                   </div>
                 ))}
@@ -553,7 +553,7 @@ export default function RecruiterDashboard() {
                           style={{ width: `${(item.count / 250) * 100}%` }}
                         ></div>
                       </div>
-                      <span className="text-xs text-gray-500 w-8">{item.count}</span>
+                      <span className="text-xs text-gray-700 w-8">{item.count}</span>
                     </div>
                   </div>
                 ))}

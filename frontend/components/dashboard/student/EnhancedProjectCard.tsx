@@ -174,7 +174,7 @@ export function EnhancedProjectCard({
             </div>
 
             {project.metrics && (
-              <div className="flex items-center space-x-3 text-sm text-gray-500">
+              <div className="flex items-center space-x-3 text-sm text-gray-700">
                 <div className="flex items-center space-x-1">
                   <Eye className="w-4 h-4" />
                   <span>{project.metrics.views}</span>
@@ -204,7 +204,7 @@ export function EnhancedProjectCard({
               </Badge>
             ))}
             {project.technologies.length > 4 && (
-              <Badge variant="outline" className="text-gray-500">
+              <Badge variant="outline" className="text-gray-700">
                 +{project.technologies.length - 4} more
               </Badge>
             )}
@@ -340,7 +340,7 @@ export function EnhancedProjectCard({
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-gray-500 hover:text-blue-600"
+                className="text-gray-700 hover:text-blue-600"
               >
                 <MessageCircle className="w-4 h-4 mr-1" />
                 Comment
@@ -348,7 +348,7 @@ export function EnhancedProjectCard({
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-gray-500 hover:text-green-600"
+                className="text-gray-700 hover:text-green-600"
               >
                 <Share2 className="w-4 h-4 mr-1" />
                 Share

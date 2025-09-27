@@ -233,7 +233,7 @@ export default function RecruiterRegisterPage() {
             <p className="text-gray-600 mb-4">
               Your recruiter account has been created. Your 7-day free trial starts now!
             </p>
-            <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
+            <div className="flex items-center justify-center space-x-2 text-sm text-gray-700">
               <Loader2 className="h-4 w-4 animate-spin" />
               <span>Setting up your dashboard...</span>
             </div>
@@ -594,7 +594,7 @@ export default function RecruiterRegisterPage() {
           <div className="flex justify-between mt-2">
             {steps.map((step, index) => (
               <div key={index} className="text-center">
-                <div className={`text-xs ${index <= currentStep ? 'text-blue-600 font-medium' : 'text-gray-400'}`}>
+                <div className={`text-xs ${index <= currentStep ? 'text-blue-600 font-medium' : 'text-gray-600'}`}>
                   {step.title}
                 </div>
               </div>

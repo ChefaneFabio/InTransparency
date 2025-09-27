@@ -347,7 +347,7 @@ export default function CareersPage() {
                         </div>
                       </div>
                       <div className="ml-6 text-right">
-                        <div className="text-sm text-gray-500 mb-4">Posted {job.posted}</div>
+                        <div className="text-sm text-gray-700 mb-4">Posted {job.posted}</div>
                         <Button>
                           Apply Now
                           <ArrowRight className="ml-2 h-4 w-4" />
@@ -361,7 +361,7 @@ export default function CareersPage() {
 
             {filteredJobs.length === 0 && (
               <div className="text-center py-12">
-                <Briefcase className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <Briefcase className="h-12 w-12 text-gray-600 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">No positions found</h3>
                 <p className="text-gray-600">Try selecting a different department</p>
               </div>

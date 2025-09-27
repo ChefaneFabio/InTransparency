@@ -362,7 +362,7 @@ export default function JobsPage() {
               {/* Search */}
               <div className="md:col-span-2">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
                   <Input
                     placeholder="Search jobs, companies, skills..."
                     value={searchQuery}
@@ -433,7 +433,7 @@ export default function JobsPage() {
             <Card>
               <CardContent className="p-12 text-center">
                 <div className="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                  <Search className="h-8 w-8 text-gray-400" />
+                  <Search className="h-8 w-8 text-gray-600" />
                 </div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
                   No jobs found
@@ -482,14 +482,14 @@ export default function JobsPage() {
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => toggleBookmark(job.id)}
-                                className={job.isBookmarked ? 'text-blue-600' : 'text-gray-400'}
+                                className={job.isBookmarked ? 'text-blue-600' : 'text-gray-600'}
                               >
                                 <Bookmark className={`h-4 w-4 ${job.isBookmarked ? 'fill-current' : ''}`} />
                               </Button>
                             </div>
                           </div>
                           
-                          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-3">
+                          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-700 mb-3">
                             <span className="flex items-center">
                               <span className="mr-1">{getLocationIcon(job.locationType)}</span>
                               {job.location}
@@ -527,7 +527,7 @@ export default function JobsPage() {
                           
                           {job.matchingProjects.length > 0 && (
                             <div className="mb-4">
-                              <p className="text-xs text-gray-500 mb-1">Matching your projects:</p>
+                              <p className="text-xs text-gray-700 mb-1">Matching your projects:</p>
                               <div className="flex flex-wrap gap-1">
                                 {job.matchingProjects.map((project: any) => (
                                   <Badge key={project} variant="outline" className="text-xs">
@@ -540,7 +540,7 @@ export default function JobsPage() {
                           )}
                           
                           <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-4 text-xs text-gray-500">
+                            <div className="flex items-center space-x-4 text-xs text-gray-700">
                               <span className="flex items-center">
                                 <Users className="h-3 w-3 mr-1" />
                                 {job.applicants} applicants
@@ -557,7 +557,7 @@ export default function JobsPage() {
                       <div className="flex flex-col items-end space-y-3 ml-4">
                         <div className="text-center">
                           <div className="text-2xl font-bold text-blue-600">{job.match}%</div>
-                          <div className="text-xs text-gray-500">Match</div>
+                          <div className="text-xs text-gray-700">Match</div>
                         </div>
                         
                         {job.isApplied ? (
@@ -618,7 +618,7 @@ export default function JobsPage() {
                         
                         <p className="text-gray-700 mb-4">{job.description}</p>
                         
-                        <div className="flex items-center space-x-4 text-sm text-gray-500">
+                        <div className="flex items-center space-x-4 text-sm text-gray-700">
                           <span>{job.location}</span>
                           <span>{job.salary}</span>
                           <span>{getDaysAgo(job.postedDate)}</span>
@@ -646,7 +646,7 @@ export default function JobsPage() {
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-2">
                       <Badge variant="default">Applied</Badge>
-                      <span className="text-sm text-gray-500">
+                      <span className="text-sm text-gray-700">
                         Applied on {new Date().toLocaleDateString()}
                       </span>
                     </div>
@@ -662,11 +662,11 @@ export default function JobsPage() {
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold text-gray-900">{job.title}</h3>
                       <p className="text-gray-600">{job.company}</p>
-                      <p className="text-sm text-gray-500 mt-2">{job.location} • {job.salary}</p>
+                      <p className="text-sm text-gray-700 mt-2">{job.location} • {job.salary}</p>
                     </div>
                     <div className="text-right">
                       <div className="text-lg font-bold text-blue-600">{job.match}%</div>
-                      <div className="text-xs text-gray-500">Match</div>
+                      <div className="text-xs text-gray-700">Match</div>
                     </div>
                   </div>
                 </CardContent>
@@ -690,7 +690,7 @@ export default function JobsPage() {
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold text-gray-900">{job.title}</h3>
                         <p className="text-gray-600">{job.company}</p>
-                        <p className="text-sm text-gray-500 mt-1">{job.location} • {job.salary}</p>
+                        <p className="text-sm text-gray-700 mt-1">{job.location} • {job.salary}</p>
                         <p className="text-gray-700 mt-3">{job.description}</p>
                       </div>
                     </div>
@@ -705,7 +705,7 @@ export default function JobsPage() {
                       </Button>
                       <div className="text-center">
                         <div className="text-lg font-bold text-blue-600">{job.match}%</div>
-                        <div className="text-xs text-gray-500">Match</div>
+                        <div className="text-xs text-gray-700">Match</div>
                       </div>
                       <Button size="sm">Apply Now</Button>
                     </div>

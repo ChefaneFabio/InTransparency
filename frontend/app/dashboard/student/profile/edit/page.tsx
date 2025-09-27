@@ -279,7 +279,7 @@ export default function EditProfilePage() {
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <User className="h-16 w-16 text-gray-400" />
+                        <User className="h-16 w-16 text-gray-600" />
                       )}
                     </div>
                     <div className="text-center">
@@ -298,7 +298,7 @@ export default function EditProfilePage() {
                         onChange={handleImageChange}
                         className="hidden"
                       />
-                      <p className="text-xs text-gray-500 mt-2">
+                      <p className="text-xs text-gray-700 mt-2">
                         Max 5MB, JPG or PNG
                       </p>
                     </div>
@@ -350,7 +350,7 @@ export default function EditProfilePage() {
                     <div className="space-y-2">
                       <Label htmlFor="location">Location</Label>
                       <div className="relative">
-                        <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                        <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
                         <Input
                           id="location"
                           placeholder="e.g. Milano, Italy"
@@ -374,7 +374,7 @@ export default function EditProfilePage() {
                     rows={4}
                     maxLength={500}
                   />
-                  <p className="text-xs text-gray-500 text-right">
+                  <p className="text-xs text-gray-700 text-right">
                     {formData.bio.length}/500 characters
                   </p>
                 </div>
@@ -484,7 +484,7 @@ export default function EditProfilePage() {
                       ))}
                     </div>
 
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-700">
                       {formData.skills.length}/20 skills added
                     </p>
                   </div>
@@ -532,7 +532,7 @@ export default function EditProfilePage() {
                       ))}
                     </div>
 
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-700">
                       {formData.interests.length}/10 interests added
                     </p>
                   </div>
@@ -557,7 +557,7 @@ export default function EditProfilePage() {
                 <div className="space-y-2">
                   <Label htmlFor="linkedinUrl">LinkedIn Profile</Label>
                   <div className="relative">
-                    <Linkedin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                    <Linkedin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
                     <Input
                       id="linkedinUrl"
                       placeholder="https://linkedin.com/in/yourname"
@@ -574,7 +574,7 @@ export default function EditProfilePage() {
                 <div className="space-y-2">
                   <Label htmlFor="githubUrl">GitHub Profile</Label>
                   <div className="relative">
-                    <Github className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                    <Github className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
                     <Input
                       id="githubUrl"
                       placeholder="https://github.com/yourusername"
@@ -591,7 +591,7 @@ export default function EditProfilePage() {
                 <div className="space-y-2">
                   <Label htmlFor="portfolioUrl">Portfolio Website</Label>
                   <div className="relative">
-                    <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                    <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
                     <Input
                       id="portfolioUrl"
                       placeholder="https://yourportfolio.com"

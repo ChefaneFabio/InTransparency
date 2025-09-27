@@ -129,7 +129,7 @@ export default function BugsPage() {
                     <label htmlFor="file-upload" className="cursor-pointer">
                       <div className="text-gray-600">
                         <p>Click to upload screenshots or drag and drop</p>
-                        <p className="text-sm text-gray-500 mt-1">PNG, JPG, GIF up to 10MB</p>
+                        <p className="text-sm text-gray-700 mt-1">PNG, JPG, GIF up to 10MB</p>
                       </div>
                     </label>
                   </div>

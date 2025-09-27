@@ -165,7 +165,7 @@ export default function StatusPage() {
       case 'outage':
         return 'text-red-500'
       default:
-        return 'text-gray-500'
+        return 'text-gray-700'
     }
   }
 
@@ -241,7 +241,7 @@ export default function StatusPage() {
                        'Major System Outage'}
                     </span>
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-sm text-gray-700">
                     Refreshes every 30 seconds
                   </div>
                 </div>
@@ -302,11 +302,11 @@ export default function StatusPage() {
                         <div className="flex items-center space-x-6">
                           <div className="text-center">
                             <div className="text-sm font-medium text-gray-900">{service.uptime}</div>
-                            <div className="text-xs text-gray-500">30-day uptime</div>
+                            <div className="text-xs text-gray-700">30-day uptime</div>
                           </div>
                           <div className="text-center">
                             <div className="text-sm font-medium text-gray-900">{service.responseTime}</div>
-                            <div className="text-xs text-gray-500">Avg response</div>
+                            <div className="text-xs text-gray-700">Avg response</div>
                           </div>
                           <div className="flex items-center space-x-2">
                             <StatusIcon className={`h-5 w-5 ${getStatusColor(service.status)}`} />
@@ -341,7 +341,7 @@ export default function StatusPage() {
                           <Badge variant={incident.status === 'resolved' ? 'default' : 'outline'}>
                             {incident.status}
                           </Badge>
-                          <span className="text-sm text-gray-500">{incident.impact}</span>
+                          <span className="text-sm text-gray-700">{incident.impact}</span>
                         </div>
                       </div>
                     </CardHeader>
@@ -367,7 +367,7 @@ export default function StatusPage() {
                               <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                               <div>
                                 <div className="text-sm text-gray-600">{update.message}</div>
-                                <div className="text-xs text-gray-500">{update.time}</div>
+                                <div className="text-xs text-gray-700">{update.time}</div>
                               </div>
                             </div>
                           ))}

@@ -162,7 +162,7 @@ export function HowItWorks() {
             >
               {isAutoPlaying ? 'Pause' : 'Play'} Demo
             </Button>
-            <span className="text-sm text-gray-500">Auto-advancing every 4 seconds</span>
+            <span className="text-sm text-gray-700">Auto-advancing every 4 seconds</span>
           </div>
         </div>
 
@@ -201,7 +201,7 @@ export function HowItWorks() {
                 <currentStep.icon className="h-8 w-8 text-white" />
               </div>
               <div>
-                <div className="text-sm font-medium text-gray-500 mb-1">Step {currentStep.id}</div>
+                <div className="text-sm font-medium text-gray-700 mb-1">Step {currentStep.id}</div>
                 <h3 className="text-3xl font-bold text-gray-900">{currentStep.title}</h3>
               </div>
             </div>
@@ -223,7 +223,7 @@ export function HowItWorks() {
               {Object.entries(currentStep.stats).map(([key, value]) => (
                 <div key={key} className="text-center">
                   <div className="text-2xl font-bold text-gray-900">{value}</div>
-                  <div className="text-sm text-gray-500 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</div>
+                  <div className="text-sm text-gray-700 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</div>
                 </div>
               ))}
             </div>
@@ -339,7 +339,7 @@ export function HowItWorks() {
                             </div>
                             <div className="text-right">
                               <div className="text-lg font-bold text-green-600">{match.match}%</div>
-                              <div className="text-xs text-gray-500">match</div>
+                              <div className="text-xs text-gray-700">match</div>
                             </div>
                           </div>
                         </div>

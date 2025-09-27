@@ -141,7 +141,7 @@ export function CollaboratorInput({ collaborators, onChange }: CollaboratorInput
                           <p className="text-sm font-medium text-gray-900">
                             {collab.name || 'Unknown User'}
                           </p>
-                          <p className="text-xs text-gray-500 truncate">
+                          <p className="text-xs text-gray-700 truncate">
                             {collab.email}
                           </p>
                         </div>
@@ -207,7 +207,7 @@ export function CollaboratorInput({ collaborators, onChange }: CollaboratorInput
       <div className="space-y-2">
         <h4 className="text-sm font-medium text-gray-700">Find Collaborators</h4>
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
           <Input
             placeholder="Search by name or email..."
             value={searchQuery}
@@ -241,7 +241,7 @@ export function CollaboratorInput({ collaborators, onChange }: CollaboratorInput
                       <p className="text-sm font-medium text-gray-900">
                         {collab.name}
                       </p>
-                      <p className="text-xs text-gray-500 truncate">
+                      <p className="text-xs text-gray-700 truncate">
                         {collab.email}
                       </p>
                     </div>
@@ -266,7 +266,7 @@ export function CollaboratorInput({ collaborators, onChange }: CollaboratorInput
           ))}
           
           {getFilteredSuggestions().length === 0 && searchQuery && (
-            <p className="text-sm text-gray-500 text-center py-4">
+            <p className="text-sm text-gray-700 text-center py-4">
               No collaborators found matching "{searchQuery}"
             </p>
           )}

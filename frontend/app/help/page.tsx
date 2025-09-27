@@ -151,7 +151,7 @@ export default function HelpPage() {
 
             {/* Search Bar */}
             <div className="max-w-xl mx-auto relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600" />
               <input
                 type="text"
                 placeholder="Search for help articles, guides, and FAQs..."
@@ -244,13 +244,13 @@ export default function HelpPage() {
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between mb-4">
                         <Badge variant="outline">{article.category}</Badge>
-                        <div className="flex items-center text-sm text-gray-500">
+                        <div className="flex items-center text-sm text-gray-700">
                           <Star className="h-4 w-4 text-yellow-500 mr-1" />
                           {article.rating}
                         </div>
                       </div>
                       <h3 className="font-semibold text-gray-900 mb-2">{article.title}</h3>
-                      <div className="flex items-center text-sm text-gray-500 space-x-4">
+                      <div className="flex items-center text-sm text-gray-700 space-x-4">
                         <div className="flex items-center">
                           <Clock className="h-4 w-4 mr-1" />
                           {article.readTime}
@@ -278,9 +278,9 @@ export default function HelpPage() {
                       >
                         <span className="font-medium text-gray-900">{faq.question}</span>
                         {expandedFaq === index ? (
-                          <ChevronDown className="h-5 w-5 text-gray-500" />
+                          <ChevronDown className="h-5 w-5 text-gray-700" />
                         ) : (
-                          <ChevronRight className="h-5 w-5 text-gray-500" />
+                          <ChevronRight className="h-5 w-5 text-gray-700" />
                         )}
                       </button>
                       {expandedFaq === index && (

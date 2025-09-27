@@ -227,7 +227,7 @@ export function MessageCenter() {
             {/* Conversations List */}
             <div className={`${activeConversation ? 'w-1/3' : 'w-full'} border-r overflow-y-auto`}>
               {conversations.length === 0 ? (
-                <div className="p-4 text-center text-gray-500 text-sm">
+                <div className="p-4 text-center text-gray-700 text-sm">
                   No conversations yet
                 </div>
               ) : (
@@ -253,7 +253,7 @@ export function MessageCenter() {
                       )}
                     </div>
                     {conv.lastMessage && (
-                      <p className="text-xs text-gray-500 truncate">
+                      <p className="text-xs text-gray-700 truncate">
                         {conv.lastMessage.content}
                       </p>
                     )}

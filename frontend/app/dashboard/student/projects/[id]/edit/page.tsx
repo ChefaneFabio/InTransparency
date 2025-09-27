@@ -159,7 +159,7 @@ export default function EditProjectPage() {
               You'll be redirected to the project page shortly.
             </p>
             
-            <div className="flex items-center justify-center space-x-2 text-sm text-gray-500 mb-8">
+            <div className="flex items-center justify-center space-x-2 text-sm text-gray-700 mb-8">
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
               <span>Updating project analysis...</span>
             </div>
@@ -334,14 +334,14 @@ export default function EditProjectPage() {
             <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
               <div>
                 <p className="font-medium text-gray-900">Current Version</p>
-                <p className="text-sm text-gray-500">Last updated today at 2:30 PM</p>
+                <p className="text-sm text-gray-700">Last updated today at 2:30 PM</p>
               </div>
               <Badge variant="default">Active</Badge>
             </div>
             <div className="flex items-center justify-between p-3 border rounded-lg">
               <div>
                 <p className="font-medium text-gray-900">Previous Version</p>
-                <p className="text-sm text-gray-500">Updated 3 days ago - Innovation Score: 82</p>
+                <p className="text-sm text-gray-700">Updated 3 days ago - Innovation Score: 82</p>
               </div>
               <Button variant="outline" size="sm">
                 View Diff
@@ -350,7 +350,7 @@ export default function EditProjectPage() {
             <div className="flex items-center justify-between p-3 border rounded-lg">
               <div>
                 <p className="font-medium text-gray-900">Initial Version</p>
-                <p className="text-sm text-gray-500">Created 1 week ago - Innovation Score: 75</p>
+                <p className="text-sm text-gray-700">Created 1 week ago - Innovation Score: 75</p>
               </div>
               <Button variant="outline" size="sm">
                 View Original

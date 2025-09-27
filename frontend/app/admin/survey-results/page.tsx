@@ -600,7 +600,7 @@ export default function SurveyResultsPage() {
                           {response.type === 'University' && response.name}
                         </span>
                       </div>
-                      <span className="text-sm text-gray-500">{response.timestamp}</span>
+                      <span className="text-sm text-gray-700">{response.timestamp}</span>
                     </div>
                   ))}
                 </div>

@@ -177,7 +177,7 @@ export default function RoleSelectionPage() {
             </div>
           </div>
 
-          <div className="text-lg text-gray-500">
+          <div className="text-lg text-gray-700">
             Choose your path and experience complete transparency in your journey.
           </div>
         </div>

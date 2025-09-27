@@ -91,7 +91,7 @@ export function LazyImage({
   return (
     <div ref={imgRef} className={`relative overflow-hidden ${className}`}>
       {hasError ? (
-        <div className="flex items-center justify-center bg-gray-100 text-gray-400 h-full">
+        <div className="flex items-center justify-center bg-gray-100 text-gray-600 h-full">
           <span className="text-sm">Failed to load image</span>
         </div>
       ) : (

@@ -287,7 +287,7 @@ export default function RecruiterGeographicSearchPage() {
           <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             {/* Search Bar */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
               <input
                 type="text"
                 placeholder="Search cities, countries, skills, or universities..."
@@ -477,7 +477,7 @@ export default function RecruiterGeographicSearchPage() {
                   {/* Detailed Tooltip */}
                   <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-800 text-white text-xs rounded-lg py-3 px-4 whitespace-nowrap z-20 max-w-xs shadow-xl">
                     <div className="font-semibold text-sm mb-1">{location.city}</div>
-                    <div className="text-gray-300 mb-2">{location.country}</div>
+                    <div className="text-gray-600 mb-2">{location.country}</div>
 
                     <div className="space-y-1">
                       <div className="flex justify-between">
@@ -544,28 +544,28 @@ export default function RecruiterGeographicSearchPage() {
                     <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
                     <span>Very High Density</span>
                   </div>
-                  <span className="text-gray-500">50k+</span>
+                  <span className="text-gray-700">50k+</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <div className="w-3 h-3 bg-orange-500 rounded-full mr-2"></div>
                     <span>High Density</span>
                   </div>
-                  <span className="text-gray-500">20k-50k</span>
+                  <span className="text-gray-700">20k-50k</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
                     <span>Medium Density</span>
                   </div>
-                  <span className="text-gray-500">5k-20k</span>
+                  <span className="text-gray-700">5k-20k</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
                     <span>Low Density</span>
                   </div>
-                  <span className="text-gray-500">&lt; 5k</span>
+                  <span className="text-gray-700">&lt; 5k</span>
                 </div>
               </div>
             </div>

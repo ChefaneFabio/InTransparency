@@ -295,7 +295,7 @@ export default function ProjectDetailPage() {
             {project.description}
           </p>
           
-          <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+          <div className="flex flex-wrap gap-4 text-sm text-gray-700">
             <span className="flex items-center">
               <Calendar className="h-4 w-4 mr-1" />
               Created {new Date(project.createdAt).toLocaleDateString()}
@@ -316,37 +316,37 @@ export default function ProjectDetailPage() {
           <Card>
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-blue-600">{project.stats.views}</div>
-              <div className="text-xs text-gray-500">Views</div>
+              <div className="text-xs text-gray-700">Views</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-red-600">{project.stats.likes}</div>
-              <div className="text-xs text-gray-500">Likes</div>
+              <div className="text-xs text-gray-700">Likes</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-green-600">{project.stats.shares}</div>
-              <div className="text-xs text-gray-500">Shares</div>
+              <div className="text-xs text-gray-700">Shares</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-purple-600">{project.stats.repositoryStars}</div>
-              <div className="text-xs text-gray-500">Stars</div>
+              <div className="text-xs text-gray-700">Stars</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-orange-600">{project.stats.commits}</div>
-              <div className="text-xs text-gray-500">Commits</div>
+              <div className="text-xs text-gray-700">Commits</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-indigo-600">{project.aiAnalysis.innovationScore}</div>
-              <div className="text-xs text-gray-500">AI Score</div>
+              <div className="text-xs text-gray-700">AI Score</div>
             </CardContent>
           </Card>
         </div>
@@ -439,7 +439,7 @@ export default function ProjectDetailPage() {
                           </Avatar>
                           <div>
                             <p className="font-medium text-gray-900">{collab.name}</p>
-                            <p className="text-sm text-gray-500">{collab.role}</p>
+                            <p className="text-sm text-gray-700">{collab.role}</p>
                           </div>
                         </div>
                       ))}
@@ -465,7 +465,7 @@ export default function ProjectDetailPage() {
                     </div>
                     <div className="flex-1">
                       <Progress value={project.aiAnalysis.innovationScore} className="h-3" />
-                      <p className="text-sm text-gray-500 mt-1">
+                      <p className="text-sm text-gray-700 mt-1">
                         {project.aiAnalysis.complexityLevel} Level
                       </p>
                     </div>
@@ -603,7 +603,7 @@ export default function ProjectDetailPage() {
                           <div className="flex-1">
                             <h3 className="font-semibold text-gray-900">{job.title}</h3>
                             <p className="text-gray-600">{job.company}</p>
-                            <p className="text-sm text-gray-500">{job.location} • {job.type}</p>
+                            <p className="text-sm text-gray-700">{job.location} • {job.type}</p>
                             <p className="text-sm font-medium text-green-600 mt-1">{job.salary}</p>
                             
                             <div className="flex flex-wrap gap-1 mt-2">
@@ -618,7 +618,7 @@ export default function ProjectDetailPage() {
                         
                         <div className="text-right">
                           <div className="text-2xl font-bold text-blue-600">{job.match}%</div>
-                          <div className="text-xs text-gray-500">Match</div>
+                          <div className="text-xs text-gray-700">Match</div>
                           <Button size="sm" className="mt-3">
                             Apply Now
                           </Button>
@@ -690,7 +690,7 @@ export default function ProjectDetailPage() {
                       className={`h-4 w-4 ${
                         i < Math.floor(project.aiAnalysis.difficultyRating) 
                           ? 'text-yellow-400 fill-current' 
-                          : 'text-gray-300'
+                          : 'text-gray-600'
                       }`} 
                     />
                   ))}
@@ -711,17 +711,17 @@ export default function ProjectDetailPage() {
               <div className="flex items-center space-x-3 text-sm">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                 <span className="text-gray-600">AI analysis completed</span>
-                <span className="text-gray-400">2h ago</span>
+                <span className="text-gray-600">2h ago</span>
               </div>
               <div className="flex items-center space-x-3 text-sm">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                 <span className="text-gray-600">15 new job matches found</span>
-                <span className="text-gray-400">1d ago</span>
+                <span className="text-gray-600">1d ago</span>
               </div>
               <div className="flex items-center space-x-3 text-sm">
                 <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                 <span className="text-gray-600">Project viewed by recruiter</span>
-                <span className="text-gray-400">2d ago</span>
+                <span className="text-gray-600">2d ago</span>
               </div>
             </CardContent>
           </Card>

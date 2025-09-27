@@ -420,7 +420,7 @@ export function StudentDataImportComponent() {
             <span>Course history</span>
             <Loader className="h-4 w-4 animate-spin text-blue-600" />
           </div>
-          <div className="flex justify-between text-sm text-gray-400">
+          <div className="flex justify-between text-sm text-gray-600">
             <span>Projects & achievements</span>
             <div className="h-4 w-4 border border-gray-300 rounded"></div>
           </div>

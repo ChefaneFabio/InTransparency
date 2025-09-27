@@ -163,7 +163,7 @@ export function PlacesAutocomplete({
           {isSearching ? (
             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
           ) : (
-            <Search className="h-4 w-4 text-gray-400" />
+            <Search className="h-4 w-4 text-gray-600" />
           )}
         </div>
         <input
@@ -178,7 +178,7 @@ export function PlacesAutocomplete({
         {value && (
           <button
             onClick={clearSearch}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-600"
           >
             <X className="h-4 w-4" />
           </button>
@@ -195,12 +195,12 @@ export function PlacesAutocomplete({
               className="w-full px-4 py-3 text-left hover:bg-gray-50 focus:bg-gray-50 focus:outline-none border-b border-gray-100 last:border-0"
             >
               <div className="flex items-start space-x-3">
-                <MapPin className="h-4 w-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                <MapPin className="h-4 w-4 text-gray-600 mt-0.5 flex-shrink-0" />
                 <div className="flex-1">
                   <div className="text-sm font-medium text-gray-900">
                     {highlightMatch(suggestion.structured_formatting.main_text, value)}
                   </div>
-                  <div className="text-xs text-gray-500 mt-0.5">
+                  <div className="text-xs text-gray-700 mt-0.5">
                     {suggestion.structured_formatting.secondary_text}
                   </div>
                   {suggestion.types && (

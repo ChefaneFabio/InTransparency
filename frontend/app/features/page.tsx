@@ -738,7 +738,7 @@ export default function FeaturesPage() {
                           </li>
                         ))}
                         {feature.benefits.length > 3 && (
-                          <li className="text-xs text-gray-500">
+                          <li className="text-xs text-gray-700">
                             +{feature.benefits.length - 3} more benefits
                           </li>
                         )}

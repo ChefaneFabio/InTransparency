@@ -353,7 +353,7 @@ export default function ContactSalesPage() {
                           )}
                         </Button>
 
-                        <p className="text-xs text-gray-500 text-center">
+                        <p className="text-xs text-gray-700 text-center">
                           By submitting this form, you agree to our privacy policy and terms of service.
                         </p>
                       </form>
@@ -440,11 +440,11 @@ export default function ContactSalesPage() {
               Trusted by Leading Institutions
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center opacity-60">
-              <div className="text-xl font-bold text-gray-400">Stanford</div>
-              <div className="text-xl font-bold text-gray-400">MIT</div>
-              <div className="text-xl font-bold text-gray-400">Berkeley</div>
-              <div className="text-xl font-bold text-gray-400">Harvard</div>
-              <div className="text-xl font-bold text-gray-400">CMU</div>
+              <div className="text-xl font-bold text-gray-600">Stanford</div>
+              <div className="text-xl font-bold text-gray-600">MIT</div>
+              <div className="text-xl font-bold text-gray-600">Berkeley</div>
+              <div className="text-xl font-bold text-gray-600">Harvard</div>
+              <div className="text-xl font-bold text-gray-600">CMU</div>
             </div>
           </div>
         </section>

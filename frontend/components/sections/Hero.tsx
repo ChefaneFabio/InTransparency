@@ -80,7 +80,7 @@ export function Hero() {
 
           {/* Real Statistics */}
           <div className="mt-20 pt-8 border-t border-gray-200">
-            <h3 className="text-center text-sm font-medium text-gray-500 mb-6">
+            <h3 className="text-center text-sm font-medium text-gray-700 mb-6">
               Connect with top institutions and companies globally
             </h3>
             <RealStats />

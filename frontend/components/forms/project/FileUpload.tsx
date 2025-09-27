@@ -141,7 +141,7 @@ export function FileUpload({
     if (file.type.startsWith('image/')) {
       return <ImageIcon className="h-8 w-8 text-blue-500" />
     }
-    return <File className="h-8 w-8 text-gray-500" />
+    return <File className="h-8 w-8 text-gray-700" />
   }
 
   const formatFileSize = (bytes: number) => {
@@ -167,21 +167,21 @@ export function FileUpload({
       >
         <input {...getInputProps()} disabled={uploadFiles.length >= maxFiles} />
         
-        <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+        <Upload className="h-12 w-12 text-gray-600 mx-auto mb-4" />
         
         {isDragActive ? (
           <p className="text-blue-600 font-medium">Drop the files here...</p>
         ) : uploadFiles.length >= maxFiles ? (
-          <p className="text-gray-500">Maximum files reached ({maxFiles})</p>
+          <p className="text-gray-700">Maximum files reached ({maxFiles})</p>
         ) : (
           <div>
             <p className="text-gray-600 font-medium mb-2">
               Drag & drop files here, or click to select
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-700">
               {acceptedFileTypes.join(', ')} up to {formatFileSize(maxFileSize)} each
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-700">
               Maximum {maxFiles} files
             </p>
           </div>
@@ -225,7 +225,7 @@ export function FileUpload({
                       </div>
                     </div>
                     
-                    <div className="flex items-center justify-between text-xs text-gray-500 mb-2">
+                    <div className="flex items-center justify-between text-xs text-gray-700 mb-2">
                       <span>{formatFileSize(fileObj.file.size)}</span>
                       <span>
                         {fileObj.status === 'completed' && 'Completed'}
@@ -297,7 +297,7 @@ export function FileUpload({
 
       {/* Upload Summary */}
       {(uploadFiles.length > 0 || existingFiles.length > 0) && (
-        <div className="text-xs text-gray-500 text-center">
+        <div className="text-xs text-gray-700 text-center">
           {uploadedUrls.length} of {maxFiles} files uploaded
         </div>
       )}

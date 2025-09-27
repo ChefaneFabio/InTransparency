@@ -88,7 +88,7 @@ export default function NewProjectPage() {
               You'll be redirected to your project page shortly.
             </p>
             
-            <div className="flex items-center justify-center space-x-2 text-sm text-gray-500 mb-8">
+            <div className="flex items-center justify-center space-x-2 text-sm text-gray-700 mb-8">
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
               <span>Analyzing your project...</span>
             </div>
@@ -102,11 +102,11 @@ export default function NewProjectPage() {
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
                 <span>AI analysis in progress</span>
               </div>
-              <div className="flex items-center space-x-3 text-sm text-gray-500">
+              <div className="flex items-center space-x-3 text-sm text-gray-700">
                 <div className="h-4 w-4 rounded-full border-2 border-gray-300"></div>
                 <span>Generating insights and recommendations</span>
               </div>
-              <div className="flex items-center space-x-3 text-sm text-gray-500">
+              <div className="flex items-center space-x-3 text-sm text-gray-700">
                 <div className="h-4 w-4 rounded-full border-2 border-gray-300"></div>
                 <span>Finding relevant job matches</span>
               </div>

@@ -267,7 +267,7 @@ export default function DocsPage() {
 
             {/* Search Bar */}
             <div className="max-w-xl mx-auto relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600" />
               <input
                 type="text"
                 placeholder="Search documentation..."
@@ -370,12 +370,12 @@ export default function DocsPage() {
                               </Badge>
                             </div>
                             <p className="text-gray-600 text-sm mb-2">{doc.description}</p>
-                            <div className="flex items-center text-xs text-gray-500">
+                            <div className="flex items-center text-xs text-gray-700">
                               <FileText className="h-3 w-3 mr-1" />
                               {doc.readTime}
                             </div>
                           </div>
-                          <ChevronRight className="h-5 w-5 text-gray-400" />
+                          <ChevronRight className="h-5 w-5 text-gray-600" />
                         </div>
                       </CardContent>
                     </Card>

@@ -211,7 +211,7 @@ export function NotificationCenter() {
                   </Button>
                 )}
                 {permission === 'denied' && (
-                  <div className="text-xs text-gray-500 bg-gray-50 p-2 rounded">
+                  <div className="text-xs text-gray-700 bg-gray-50 p-2 rounded">
                     Notifications are blocked. Please enable them in your browser settings.
                   </div>
                 )}
@@ -258,7 +258,7 @@ export function NotificationCenter() {
             ) : (
               <div className="max-h-80 overflow-y-auto">
                 {notifications.length === 0 ? (
-                  <div className="p-4 text-center text-gray-500 text-sm">
+                  <div className="p-4 text-center text-gray-700 text-sm">
                     No notifications yet
                   </div>
                 ) : (
@@ -305,7 +305,7 @@ export function NotificationCenter() {
                               <h4 className="text-sm font-medium truncate">
                                 {notification.title}
                               </h4>
-                              <span className="text-xs text-gray-500">
+                              <span className="text-xs text-gray-700">
                                 {new Date(notification.timestamp).toLocaleDateString()}
                               </span>
                             </div>

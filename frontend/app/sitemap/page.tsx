@@ -178,7 +178,7 @@ export default function SitemapPage() {
                               {page.name}
                             </a>
                             <p className="text-sm text-gray-600 mt-1">{page.description}</p>
-                            <code className="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">
+                            <code className="text-xs text-gray-700 bg-gray-100 px-2 py-1 rounded border">
                               {page.url}
                             </code>
                           </div>

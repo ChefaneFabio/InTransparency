@@ -250,7 +250,7 @@ export default function SavedCandidatesPage() {
 
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
                 <input
                   type="text"
                   placeholder="Search candidates..."
@@ -395,7 +395,7 @@ export default function SavedCandidatesPage() {
                           <button className="p-2 text-red-500 hover:bg-red-50 rounded-full transition-colors">
                             <Heart className="h-4 w-4" />
                           </button>
-                          <button className="p-2 text-gray-400 hover:bg-gray-50 rounded-full transition-colors">
+                          <button className="p-2 text-gray-600 hover:bg-gray-50 rounded-full transition-colors">
                             <Trash2 className="h-4 w-4" />
                           </button>
                         </div>
@@ -407,7 +407,7 @@ export default function SavedCandidatesPage() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <Bookmark className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <Bookmark className="h-12 w-12 text-gray-600 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">No saved candidates found</h3>
               <p className="text-gray-600 mb-4">
                 {searchQuery ? 'Try adjusting your search criteria' : 'Start saving candidates you\'re interested in'}

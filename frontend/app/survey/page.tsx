@@ -165,7 +165,7 @@ export default function SurveySelectionPage() {
                       <Badge variant="secondary" className="bg-blue-100 text-blue-800">
                         {survey.estimatedTime}
                       </Badge>
-                      <span className="text-sm text-gray-500">{survey.questions} questions</span>
+                      <span className="text-sm text-gray-700">{survey.questions} questions</span>
                     </div>
                     <p className="text-sm text-blue-600 font-medium">{survey.targetUsers}</p>
                   </div>

@@ -94,7 +94,7 @@ export default function ContactPage() {
                         <div>
                           <h3 className="font-semibold text-gray-900">Email Us</h3>
                           <p className="text-gray-600">hello@intransparency.com</p>
-                          <p className="text-sm text-gray-500">We typically respond within 24 hours</p>
+                          <p className="text-sm text-gray-700">We typically respond within 24 hours</p>
                         </div>
                       </div>
                     </CardContent>
@@ -109,7 +109,7 @@ export default function ContactPage() {
                         <div>
                           <h3 className="font-semibold text-gray-900">Call Us</h3>
                           <p className="text-gray-600">+1 (555) 123-4567</p>
-                          <p className="text-sm text-gray-500">Mon-Fri, 9AM-6PM PST</p>
+                          <p className="text-sm text-gray-700">Mon-Fri, 9AM-6PM PST</p>
                         </div>
                       </div>
                     </CardContent>

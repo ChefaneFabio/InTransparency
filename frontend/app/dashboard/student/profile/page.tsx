@@ -291,7 +291,7 @@ export default function ProfilePage() {
                     {profile.firstName} {profile.lastName}
                   </h1>
                   <p className="text-gray-600">{profile.degree} • {profile.university}</p>
-                  <p className="text-gray-500 text-sm">Class of {profile.graduationYear}</p>
+                  <p className="text-gray-700 text-sm">Class of {profile.graduationYear}</p>
                 </div>
                 
                 <div className="flex items-center space-x-2 mt-4 sm:mt-0">
@@ -409,15 +409,15 @@ export default function ProfilePage() {
                     <>
                       <div className="space-y-3">
                         <div className="flex items-center space-x-3">
-                          <Mail className="h-4 w-4 text-gray-400" />
+                          <Mail className="h-4 w-4 text-gray-600" />
                           <span>{profile.email}</span>
                         </div>
                         <div className="flex items-center space-x-3">
-                          <Phone className="h-4 w-4 text-gray-400" />
+                          <Phone className="h-4 w-4 text-gray-600" />
                           <span>{profile.phone}</span>
                         </div>
                         <div className="flex items-center space-x-3">
-                          <MapPin className="h-4 w-4 text-gray-400" />
+                          <MapPin className="h-4 w-4 text-gray-600" />
                           <span>{profile.location}</span>
                         </div>
                       </div>
@@ -444,7 +444,7 @@ export default function ProfilePage() {
                     <div>
                       <h3 className="font-semibold text-gray-900">{profile.degree}</h3>
                       <p className="text-gray-600">{profile.university}</p>
-                      <div className="flex items-center space-x-4 text-sm text-gray-500 mt-2">
+                      <div className="flex items-center space-x-4 text-sm text-gray-700 mt-2">
                         <span>Class of {profile.graduationYear}</span>
                         <span>GPA: {profile.gpa}</span>
                         <span>Major: {profile.major}</span>
@@ -536,7 +536,7 @@ export default function ProfilePage() {
                         <div key={skill.name}>
                           <div className="flex justify-between items-center mb-2">
                             <span className="font-medium text-gray-900">{skill.name}</span>
-                            <span className="text-sm text-gray-500">{skill.level}%</span>
+                            <span className="text-sm text-gray-700">{skill.level}%</span>
                           </div>
                           <Progress value={skill.level} className="h-2" />
                         </div>
@@ -643,7 +643,7 @@ export default function ProfilePage() {
                           <p className="text-sm text-gray-900">
                             {activity.action} <span className="font-medium">{activity.target}</span>
                           </p>
-                          <p className="text-xs text-gray-500">{activity.date}</p>
+                          <p className="text-xs text-gray-700">{activity.date}</p>
                         </div>
                       </div>
                     ))}
@@ -667,7 +667,7 @@ export default function ProfilePage() {
                         <div className="flex-1">
                           <h4 className="font-semibold text-gray-900">{achievement.title}</h4>
                           <p className="text-sm text-gray-600">{achievement.description}</p>
-                          <p className="text-xs text-gray-500 mt-1">
+                          <p className="text-xs text-gray-700 mt-1">
                             Earned on {new Date(achievement.date).toLocaleDateString()}
                           </p>
                         </div>
@@ -735,7 +735,7 @@ export default function ProfilePage() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-                    <span className="text-gray-400">Add portfolio projects</span>
+                    <span className="text-gray-600">Add portfolio projects</span>
                   </div>
                 </div>
               </div>

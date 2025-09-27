@@ -147,7 +147,7 @@ export default function UniversityDashboard() {
               </div>
               <div className="mt-4">
                 <Progress value={82} className="h-2" />
-                <p className="text-xs text-gray-500 mt-1">82% with complete profiles</p>
+                <p className="text-xs text-gray-700 mt-1">82% with complete profiles</p>
               </div>
             </CardContent>
           </Card>
@@ -236,21 +236,21 @@ export default function UniversityDashboard() {
                       <div className="w-2 h-2 bg-green-600 rounded-full"></div>
                       <div className="flex-1">
                         <p className="text-sm font-medium">Microsoft interviewed Sofia Romano</p>
-                        <p className="text-xs text-gray-500">2 hours ago</p>
+                        <p className="text-xs text-gray-700">2 hours ago</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                       <div className="flex-1">
                         <p className="text-sm font-medium">New company partner: Tech Startup Inc.</p>
-                        <p className="text-xs text-gray-500">1 day ago</p>
+                        <p className="text-xs text-gray-700">1 day ago</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-yellow-600 rounded-full"></div>
                       <div className="flex-1">
                         <p className="text-sm font-medium">5 students completed their profiles</p>
-                        <p className="text-xs text-gray-500">2 days ago</p>
+                        <p className="text-xs text-gray-700">2 days ago</p>
                       </div>
                     </div>
                   </div>
@@ -277,7 +277,7 @@ export default function UniversityDashboard() {
                           </div>
                           <div className="text-right">
                             <p className="text-sm font-medium">{student.companyViews} views</p>
-                            <p className="text-xs text-gray-500">{student.interviewInvites} interviews</p>
+                            <p className="text-xs text-gray-700">{student.interviewInvites} interviews</p>
                           </div>
                         </div>
                       ))}
@@ -347,7 +347,7 @@ export default function UniversityDashboard() {
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center gap-2">
-                            <Eye className="h-4 w-4 text-gray-400" />
+                            <Eye className="h-4 w-4 text-gray-600" />
                             <span>{student.companyViews}</span>
                           </div>
                         </TableCell>
@@ -433,7 +433,7 @@ export default function UniversityDashboard() {
                         <div>
                           <h4 className="font-medium">{student.name}</h4>
                           <p className="text-sm text-gray-600">{student.degree} • GPA: {student.gpa}/30</p>
-                          <p className="text-sm text-gray-500">Submitted: 2 days ago</p>
+                          <p className="text-sm text-gray-700">Submitted: 2 days ago</p>
                         </div>
                         <div className="flex gap-2">
                           <Button variant="outline" size="sm">

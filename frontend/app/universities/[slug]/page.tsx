@@ -264,7 +264,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                           <Star className="h-4 w-4 mr-1" />
                           <span className="font-semibold">#{program.ranking}</span>
                         </div>
-                        <p className="text-xs text-gray-500">National Ranking</p>
+                        <p className="text-xs text-gray-700">National Ranking</p>
                       </div>
                     </div>
                   ))}
@@ -344,21 +344,21 @@ export default function UniversityPage({ params }: UniversityPageProps) {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-start">
-                  <MapPin className="h-4 w-4 text-gray-400 mr-2 mt-1" />
+                  <MapPin className="h-4 w-4 text-gray-600 mr-2 mt-1" />
                   <div>
                     <p className="text-sm text-gray-900">{university.contact.address}</p>
                   </div>
                 </div>
                 <div className="flex items-center">
-                  <Phone className="h-4 w-4 text-gray-400 mr-2" />
+                  <Phone className="h-4 w-4 text-gray-600 mr-2" />
                   <p className="text-sm text-gray-900">{university.contact.phone}</p>
                 </div>
                 <div className="flex items-center">
-                  <Mail className="h-4 w-4 text-gray-400 mr-2" />
+                  <Mail className="h-4 w-4 text-gray-600 mr-2" />
                   <p className="text-sm text-gray-900">{university.contact.email}</p>
                 </div>
                 <div className="flex items-center">
-                  <Globe className="h-4 w-4 text-gray-400 mr-2" />
+                  <Globe className="h-4 w-4 text-gray-600 mr-2" />
                   <a href={university.website} className="text-sm text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">
                     Official Website
                   </a>

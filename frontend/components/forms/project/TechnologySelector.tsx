@@ -116,7 +116,7 @@ export function TechnologySelector({ selected, onChange, error }: TechnologySele
 
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
         <Input
           placeholder="Search technologies..."
           value={searchTerm}
@@ -148,7 +148,7 @@ export function TechnologySelector({ selected, onChange, error }: TechnologySele
                 ))}
               </div>
               {getAllFilteredTechnologies().length === 0 && (
-                <p className="text-sm text-gray-500 text-center py-4">
+                <p className="text-sm text-gray-700 text-center py-4">
                   No technologies found. Try adding it as a custom technology below.
                 </p>
               )}
@@ -279,7 +279,7 @@ export function TechnologySelector({ selected, onChange, error }: TechnologySele
       </div>
 
       {/* Technology Count */}
-      <div className="text-xs text-gray-500 text-center">
+      <div className="text-xs text-gray-700 text-center">
         {selected.length === 0 
           ? 'Select at least one technology'
           : `${selected.length} technolog${selected.length === 1 ? 'y' : 'ies'} selected`

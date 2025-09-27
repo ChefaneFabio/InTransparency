@@ -179,7 +179,7 @@ export default function WebinarsPage() {
                 <Card key={index} className="hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <div className="aspect-video bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
-                      <Play className="h-12 w-12 text-gray-400" />
+                      <Play className="h-12 w-12 text-gray-600" />
                     </div>
                     <CardTitle className="text-lg">{webinar.title}</CardTitle>
                   </CardHeader>

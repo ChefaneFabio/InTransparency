@@ -220,19 +220,19 @@ export default function StudentSearchPage() {
         {/* Basic Info */}
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div className="flex items-center space-x-2">
-            <GraduationCap className="h-4 w-4 text-gray-500" />
+            <GraduationCap className="h-4 w-4 text-gray-700" />
             <span>{student.major}</span>
           </div>
           <div className="flex items-center space-x-2">
-            <Calendar className="h-4 w-4 text-gray-500" />
+            <Calendar className="h-4 w-4 text-gray-700" />
             <span>Grad {student.graduationYear}</span>
           </div>
           <div className="flex items-center space-x-2">
-            <Star className="h-4 w-4 text-gray-500" />
+            <Star className="h-4 w-4 text-gray-700" />
             <span>GPA: {student.gpa}</span>
           </div>
           <div className="flex items-center space-x-2">
-            <MapPin className="h-4 w-4 text-gray-500" />
+            <MapPin className="h-4 w-4 text-gray-700" />
             <span>{student.location}</span>
           </div>
         </div>

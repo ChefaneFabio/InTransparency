@@ -187,7 +187,7 @@ export function ProjectForm({
             {errors.title && (
               <p className="text-sm text-red-600">{errors.title.message}</p>
             )}
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-700">
               A clear, descriptive title that explains what your project does
             </p>
           </div>
@@ -207,7 +207,7 @@ export function ProjectForm({
             {errors.description && (
               <p className="text-sm text-red-600">{errors.description.message}</p>
             )}
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-700">
               Explain the problem you solved, your approach, key features, and any challenges you overcame. 
               This helps our AI provide better analysis.
             </p>
@@ -239,7 +239,7 @@ export function ProjectForm({
             {errors.category && (
               <p className="text-sm text-red-600">{errors.category.message}</p>
             )}
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-700">
               Choose the category that best describes your project
             </p>
           </div>
@@ -268,7 +268,7 @@ export function ProjectForm({
             {errors.technologies && (
               <p className="text-sm text-red-600">{errors.technologies.message}</p>
             )}
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-700">
               Select all technologies, frameworks, and tools you used in this project
             </p>
           </div>
@@ -277,7 +277,7 @@ export function ProjectForm({
           <div className="space-y-2">
             <Label htmlFor="repositoryUrl">Repository URL</Label>
             <div className="relative">
-              <Github className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Github className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
               <Input
                 id="repositoryUrl"
                 type="url"
@@ -289,7 +289,7 @@ export function ProjectForm({
             {errors.repositoryUrl && (
               <p className="text-sm text-red-600">{errors.repositoryUrl.message}</p>
             )}
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-700">
               Link to your GitHub repository (helps with AI analysis)
             </p>
           </div>
@@ -298,7 +298,7 @@ export function ProjectForm({
           <div className="space-y-2">
             <Label htmlFor="liveUrl">Live Demo URL</Label>
             <div className="relative">
-              <ExternalLink className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <ExternalLink className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
               <Input
                 id="liveUrl"
                 type="url"
@@ -310,7 +310,7 @@ export function ProjectForm({
             {errors.liveUrl && (
               <p className="text-sm text-red-600">{errors.liveUrl.message}</p>
             )}
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-700">
               Link to live demo or deployed version (optional but recommended)
             </p>
           </div>
@@ -352,7 +352,7 @@ export function ProjectForm({
                 ))}
               </div>
             )}
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-700">
               Add keywords that describe your project (e.g., responsive, real-time, API)
             </p>
           </div>
@@ -366,7 +366,7 @@ export function ProjectForm({
               maxFiles={5}
               maxFileSize={5 * 1024 * 1024} // 5MB
             />
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-700">
               Upload screenshots or images of your project (up to 5 images, max 5MB each)
             </p>
           </div>
@@ -389,7 +389,7 @@ export function ProjectForm({
                 />
               )}
             />
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-700">
               Add email addresses of people who worked on this project with you
             </p>
           </div>
@@ -413,7 +413,7 @@ export function ProjectForm({
                 <Label htmlFor="isPublic" className="text-sm font-normal cursor-pointer">
                   Make this project public
                 </Label>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-700">
                   Public projects can be viewed by recruiters and other users. 
                   Private projects are only visible to you.
                 </p>
@@ -446,7 +446,7 @@ export function ProjectForm({
                         </Badge>
                       ))
                     ) : (
-                      <span className="text-gray-500">None selected</span>
+                      <span className="text-gray-700">None selected</span>
                     )}
                   </div>
                 </div>
@@ -491,7 +491,7 @@ export function ProjectForm({
               }`}
             />
           ))}
-          <span className="text-sm text-gray-500 ml-2">
+          <span className="text-sm text-gray-700 ml-2">
             Step {currentStep + 1} of 3
           </span>
         </div>

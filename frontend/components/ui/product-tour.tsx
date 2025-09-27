@@ -163,7 +163,7 @@ export function ProductTour({ isOpen, onClose, steps, autoPlay = false }: Produc
 
           {/* Progress */}
           <div className="mb-6">
-            <div className="flex items-center justify-between text-sm text-gray-500 mb-2">
+            <div className="flex items-center justify-between text-sm text-gray-700 mb-2">
               <span>Progress</span>
               <span>{Math.round(((currentStep + 1) / steps.length) * 100)}%</span>
             </div>

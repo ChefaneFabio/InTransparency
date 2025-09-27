@@ -108,12 +108,12 @@ export default function FeedbackPage() {
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-sm font-medium text-gray-600">Total Responses</CardTitle>
-                <MessageSquare className="h-4 w-4 text-gray-400" />
+                <MessageSquare className="h-4 w-4 text-gray-600" />
               </div>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-gray-900">{stats?.total || 0}</div>
-              <p className="text-xs text-gray-500 mt-1">Community voices heard</p>
+              <p className="text-xs text-gray-700 mt-1">Community voices heard</p>
             </CardContent>
           </Card>
 
@@ -126,7 +126,7 @@ export default function FeedbackPage() {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-blue-600">{stats?.byType?.student || 0}</div>
-              <p className="text-xs text-gray-500 mt-1">Future professionals</p>
+              <p className="text-xs text-gray-700 mt-1">Future professionals</p>
             </CardContent>
           </Card>
 
@@ -139,7 +139,7 @@ export default function FeedbackPage() {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-green-600">{stats?.byType?.company || 0}</div>
-              <p className="text-xs text-gray-500 mt-1">Hiring partners</p>
+              <p className="text-xs text-gray-700 mt-1">Hiring partners</p>
             </CardContent>
           </Card>
 
@@ -152,7 +152,7 @@ export default function FeedbackPage() {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-purple-600">{stats?.byType?.university || 0}</div>
-              <p className="text-xs text-gray-500 mt-1">Education partners</p>
+              <p className="text-xs text-gray-700 mt-1">Education partners</p>
             </CardContent>
           </Card>
         </div>
@@ -219,7 +219,7 @@ export default function FeedbackPage() {
                       <ArrowRight className="h-4 w-4 ml-2" />
                     </Link>
                   </Button>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-sm text-gray-700">
                     📝 Quick surveys • 💡 Shape our features • 🚀 Help us grow
                   </div>
                 </div>
@@ -244,7 +244,7 @@ export default function FeedbackPage() {
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Link>
               </Button>
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-gray-700">
                 🎯 5-8 minutes • 🎁 Early access opportunities
               </div>
             </div>

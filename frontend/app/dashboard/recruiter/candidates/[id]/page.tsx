@@ -436,8 +436,8 @@ export default function CandidateProfilePage() {
                     {candidate.firstName} {candidate.lastName}
                   </h1>
                   <p className="text-lg text-gray-600">{candidate.degree}</p>
-                  <p className="text-gray-500">{candidate.university} • Class of {candidate.graduationYear}</p>
-                  <div className="flex items-center space-x-4 mt-2 text-sm text-gray-500">
+                  <p className="text-gray-700">{candidate.university} • Class of {candidate.graduationYear}</p>
+                  <div className="flex items-center space-x-4 mt-2 text-sm text-gray-700">
                     <span className="flex items-center">
                       <MapPin className="h-4 w-4 mr-1" />
                       {candidate.location}
@@ -452,15 +452,15 @@ export default function CandidateProfilePage() {
                 <div className="flex items-center space-x-6">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-blue-600">{candidate.matchScore}%</div>
-                    <div className="text-sm text-gray-500">Match Score</div>
+                    <div className="text-sm text-gray-700">Match Score</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-green-600">{candidate.avgInnovationScore}</div>
-                    <div className="text-sm text-gray-500">Innovation</div>
+                    <div className="text-sm text-gray-700">Innovation</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-purple-600">{candidate.projectsCount}</div>
-                    <div className="text-sm text-gray-500">Projects</div>
+                    <div className="text-sm text-gray-700">Projects</div>
                   </div>
                 </div>
               </div>
@@ -525,7 +525,7 @@ export default function CandidateProfilePage() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="flex items-center space-x-3">
-                    <Mail className="h-4 w-4 text-gray-400" />
+                    <Mail className="h-4 w-4 text-gray-600" />
                     <span>{candidate.email}</span>
                     <Button size="sm" variant="outline">
                       <Mail className="h-4 w-4 mr-1" />
@@ -533,7 +533,7 @@ export default function CandidateProfilePage() {
                     </Button>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Phone className="h-4 w-4 text-gray-400" />
+                    <Phone className="h-4 w-4 text-gray-600" />
                     <span>{candidate.phone}</span>
                     <Button size="sm" variant="outline">
                       <Phone className="h-4 w-4 mr-1" />
@@ -583,7 +583,7 @@ export default function CandidateProfilePage() {
                     <div>
                       <h3 className="font-semibold text-gray-900">{candidate.education.degree}</h3>
                       <p className="text-gray-600">{candidate.education.university}</p>
-                      <div className="flex items-center space-x-4 text-sm text-gray-500 mt-2">
+                      <div className="flex items-center space-x-4 text-sm text-gray-700 mt-2">
                         <span>Class of {candidate.education.graduationYear}</span>
                         <span>GPA: {candidate.education.gpa}</span>
                         <span>Major: {candidate.education.major}</span>
@@ -675,7 +675,7 @@ export default function CandidateProfilePage() {
                         </div>
                         <div>
                           <h4 className="font-medium text-gray-900 mb-2">Project Stats</h4>
-                          <div className="flex space-x-4 text-sm text-gray-500">
+                          <div className="flex space-x-4 text-sm text-gray-700">
                             <span className="flex items-center">
                               <Eye className="h-4 w-4 mr-1" />
                               {project.stats.views} views
@@ -748,7 +748,7 @@ export default function CandidateProfilePage() {
                         <CardDescription>
                           {exp.company} • {exp.location}
                         </CardDescription>
-                        <p className="text-sm text-gray-500 mt-1">
+                        <p className="text-sm text-gray-700 mt-1">
                           {new Date(exp.startDate).toLocaleDateString()} - {
                             exp.current ? 'Present' : new Date(exp.endDate).toLocaleDateString()
                           }
@@ -809,7 +809,7 @@ export default function CandidateProfilePage() {
                                   Endorsed
                                 </Badge>
                               )}
-                              <span className="text-sm text-gray-500">
+                              <span className="text-sm text-gray-700">
                                 {skill.yearsExperience} years
                               </span>
                             </div>
@@ -836,19 +836,19 @@ export default function CandidateProfilePage() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-blue-600">{candidate.profileViews}</div>
-                      <div className="text-sm text-gray-500">Profile Views</div>
+                      <div className="text-sm text-gray-700">Profile Views</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-green-600">{candidate.recruiterViews}</div>
-                      <div className="text-sm text-gray-500">Recruiter Views</div>
+                      <div className="text-sm text-gray-700">Recruiter Views</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-purple-600">{candidate.responseRate}%</div>
-                      <div className="text-sm text-gray-500">Response Rate</div>
+                      <div className="text-sm text-gray-700">Response Rate</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-orange-600">{candidate.avgResponseTime}</div>
-                      <div className="text-sm text-gray-500">Avg Response</div>
+                      <div className="text-sm text-gray-700">Avg Response</div>
                     </div>
                   </div>
                   
@@ -878,7 +878,7 @@ export default function CandidateProfilePage() {
                       <div key={similar.id} className="flex items-center justify-between p-3 border rounded-lg">
                         <span className="font-medium text-gray-900">{similar.name}</span>
                         <div className="flex items-center space-x-2">
-                          <span className="text-sm text-gray-500">{similar.similarity}% similar</span>
+                          <span className="text-sm text-gray-700">{similar.similarity}% similar</span>
                           <Button variant="outline" size="sm" asChild>
                             <Link href={`/dashboard/recruiter/candidates/${similar.id}`}>
                               View
@@ -982,7 +982,7 @@ export default function CandidateProfilePage() {
                   <div key={index} className="p-3 bg-gray-50 rounded-lg">
                     <h4 className="font-medium text-gray-900 text-sm">{achievement.title}</h4>
                     <p className="text-xs text-gray-600 mt-1">{achievement.description}</p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-gray-700 mt-1">
                       {new Date(achievement.date).toLocaleDateString()}
                     </p>
                   </div>

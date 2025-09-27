@@ -202,7 +202,7 @@ export function AdvancedSearch() {
       {/* Search Input */}
       <div className="relative">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-5 w-5" />
           <input
             ref={searchInputRef}
             type="text"
@@ -245,15 +245,15 @@ export function AdvancedSearch() {
                         {getIconForType(suggestion.type)}
                         <div>
                           <div className="font-medium">{suggestion.value}</div>
-                          <div className="text-sm text-gray-500 capitalize">{suggestion.type}</div>
+                          <div className="text-sm text-gray-700 capitalize">{suggestion.type}</div>
                         </div>
                       </div>
-                      <div className="text-sm text-gray-500">{suggestion.count}</div>
+                      <div className="text-sm text-gray-700">{suggestion.count}</div>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="p-6 text-center text-gray-500">
+                <div className="p-6 text-center text-gray-700">
                   No suggestions found
                 </div>
               )}
@@ -327,7 +327,7 @@ export function AdvancedSearch() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold">Search Results ({results.length})</h3>
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-gray-700">
               Sorted by relevance
             </div>
           </div>
@@ -372,7 +372,7 @@ export function AdvancedSearch() {
                         )}
                       </div>
 
-                      <div className="flex items-center space-x-4 text-sm text-gray-500">
+                      <div className="flex items-center space-x-4 text-sm text-gray-700">
                         {result.location && (
                           <div className="flex items-center space-x-1">
                             <MapPin className="h-3 w-3" />

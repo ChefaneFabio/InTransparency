@@ -336,7 +336,7 @@ export default function ProgressionDemo() {
                           }`}>
                             {equiv.similarity}%
                           </div>
-                          <div className="text-sm text-gray-500">similarity</div>
+                          <div className="text-sm text-gray-700">similarity</div>
                         </div>
                       </div>
                     ))}
@@ -388,7 +388,7 @@ export default function ProgressionDemo() {
               <div>
                 <h3 className="text-xl font-bold">{currentStudent.name}</h3>
                 <p className="text-gray-600">{currentStudent.degree} • {currentStudent.university}</p>
-                <p className="text-sm text-gray-500">{currentStudent.currentYear} • Overall GPA: {currentStudent.yearlyProgression[currentStudent.yearlyProgression.length - 1].gpa}/30</p>
+                <p className="text-sm text-gray-700">{currentStudent.currentYear} • Overall GPA: {currentStudent.yearlyProgression[currentStudent.yearlyProgression.length - 1].gpa}/30</p>
               </div>
               <div className="text-right">
                 <div className="text-3xl font-bold text-green-600">
@@ -572,7 +572,7 @@ export default function ProgressionDemo() {
                       }`}>
                         {(readiness as any).currentMatch}%
                       </div>
-                      <div className="text-sm text-gray-500">Ready</div>
+                      <div className="text-sm text-gray-700">Ready</div>
                     </div>
                   </div>
                   <CardDescription>{(readiness as any).timeline}</CardDescription>

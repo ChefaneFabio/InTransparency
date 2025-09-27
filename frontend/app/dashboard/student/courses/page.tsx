@@ -286,7 +286,7 @@ export default function CoursesPage() {
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                     <span className="text-sm text-gray-600">Connected</span>
                   </div>
-                  <span className="text-gray-400">•</span>
+                  <span className="text-gray-600">•</span>
                   <span className="text-sm text-gray-600">
                     Last sync: {universityConnection.lastSync}
                   </span>
@@ -537,7 +537,7 @@ export default function CoursesPage() {
       {courses.length === 0 ? (
         <Card>
           <CardContent className="p-12 text-center">
-            <BookOpen className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+            <BookOpen className="h-16 w-16 mx-auto text-gray-600 mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">No courses yet</h3>
             <p className="text-gray-600 mb-6">
               Start by adding your courses or uploading your transcript.

@@ -294,19 +294,19 @@ export default function JobPage({ params }: JobPageProps) {
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="flex items-center">
-                        <CheckCircle className={`h-4 w-4 mr-2 ${job.applicationRequirements.cvRequired ? 'text-green-500' : 'text-gray-400'}`} />
+                        <CheckCircle className={`h-4 w-4 mr-2 ${job.applicationRequirements.cvRequired ? 'text-green-500' : 'text-gray-600'}`} />
                         <span className={job.applicationRequirements.cvRequired ? 'text-green-700' : 'text-gray-600'}>
                           CV {job.applicationRequirements.cvRequired ? 'Required' : 'Optional'}
                         </span>
                       </div>
                       <div className="flex items-center">
-                        <CheckCircle className={`h-4 w-4 mr-2 ${job.applicationRequirements.portfolioRequired ? 'text-green-500' : 'text-gray-400'}`} />
+                        <CheckCircle className={`h-4 w-4 mr-2 ${job.applicationRequirements.portfolioRequired ? 'text-green-500' : 'text-gray-600'}`} />
                         <span className={job.applicationRequirements.portfolioRequired ? 'text-green-700' : 'text-gray-600'}>
                           Portfolio {job.applicationRequirements.portfolioRequired ? 'Required' : 'Optional'}
                         </span>
                       </div>
                       <div className="flex items-center">
-                        <CheckCircle className={`h-4 w-4 mr-2 ${job.applicationRequirements.coverLetterRequired ? 'text-green-500' : 'text-gray-400'}`} />
+                        <CheckCircle className={`h-4 w-4 mr-2 ${job.applicationRequirements.coverLetterRequired ? 'text-green-500' : 'text-gray-600'}`} />
                         <span className={job.applicationRequirements.coverLetterRequired ? 'text-green-700' : 'text-gray-600'}>
                           Cover Letter {job.applicationRequirements.coverLetterRequired ? 'Required' : 'Optional'}
                         </span>
@@ -351,7 +351,7 @@ export default function JobPage({ params }: JobPageProps) {
                   </a>
                 </Button>
                 <div className="text-center">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-700">
                     Your AI-generated CV will be used
                   </p>
                 </div>
@@ -378,13 +378,13 @@ export default function JobPage({ params }: JobPageProps) {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">Remote Work</span>
-                  <span className={`font-semibold ${job.remote ? 'text-green-600' : 'text-gray-500'}`}>
+                  <span className={`font-semibold ${job.remote ? 'text-green-600' : 'text-gray-700'}`}>
                     {job.remote ? 'Available' : 'Not Available'}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">Visa Sponsorship</span>
-                  <span className={`font-semibold ${job.visa ? 'text-green-600' : 'text-gray-500'}`}>
+                  <span className={`font-semibold ${job.visa ? 'text-green-600' : 'text-gray-700'}`}>
                     {job.visa ? 'Available' : 'Not Available'}
                   </span>
                 </div>
@@ -448,14 +448,14 @@ export default function JobPage({ params }: JobPageProps) {
               <CardContent className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Users className="h-4 w-4 text-gray-400 mr-2" />
+                    <Users className="h-4 w-4 text-gray-600 mr-2" />
                     <span className="text-gray-600">Applicants</span>
                   </div>
                   <span className="font-semibold">{job.applicants}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Eye className="h-4 w-4 text-gray-400 mr-2" />
+                    <Eye className="h-4 w-4 text-gray-600 mr-2" />
                     <span className="text-gray-600">Views</span>
                   </div>
                   <span className="font-semibold">{job.views.toLocaleString()}</span>

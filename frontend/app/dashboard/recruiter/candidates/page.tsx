@@ -554,7 +554,7 @@ export default function CandidatesPage() {
             {/* Search Bar */}
             <div className="flex gap-4">
               <div className="flex-1 relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
                 <Input
                   placeholder="Search by name, university, skills, or projects..."
                   value={searchQuery}
@@ -674,7 +674,7 @@ export default function CandidatesPage() {
         <Card>
           <CardContent className="p-12 text-center">
             <div className="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
-              <Search className="h-8 w-8 text-gray-400" />
+              <Search className="h-8 w-8 text-gray-600" />
             </div>
             <h3 className="text-lg font-medium text-gray-900 mb-2">
               No candidates found
@@ -715,7 +715,7 @@ export default function CandidatesPage() {
                           <h3 className="font-semibold text-gray-900">
                             {candidate.firstName} {candidate.lastName}
                           </h3>
-                          <p className="text-sm text-gray-500">{candidate.university}</p>
+                          <p className="text-sm text-gray-700">{candidate.university}</p>
                         </div>
                       </div>
                       
@@ -727,7 +727,7 @@ export default function CandidatesPage() {
                           variant="ghost"
                           size="sm"
                           onClick={() => toggleBookmark(candidate.id)}
-                          className={candidate.isBookmarked ? 'text-yellow-500' : 'text-gray-400'}
+                          className={candidate.isBookmarked ? 'text-yellow-500' : 'text-gray-600'}
                         >
                           <Star className={`h-4 w-4 ${candidate.isBookmarked ? 'fill-current' : ''}`} />
                         </Button>
@@ -735,15 +735,15 @@ export default function CandidatesPage() {
                     </div>
 
                     <div className="space-y-3 mb-4">
-                      <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center text-sm text-gray-700">
                         <School className="h-4 w-4 mr-2" />
                         {candidate.degree} • Class of {candidate.graduationYear}
                       </div>
-                      <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center text-sm text-gray-700">
                         <MapPin className="h-4 w-4 mr-2" />
                         {candidate.location}
                       </div>
-                      <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center text-sm text-gray-700">
                         <Zap className="h-4 w-4 mr-2" />
                         {candidate.avgInnovationScore} avg innovation • {candidate.projects} projects
                       </div>
@@ -813,11 +813,11 @@ export default function CandidatesPage() {
                                 {candidate.firstName} {candidate.lastName}
                               </h3>
                               <p className="text-gray-600">{candidate.degree}</p>
-                              <p className="text-sm text-gray-500">{candidate.university} • Class of {candidate.graduationYear}</p>
+                              <p className="text-sm text-gray-700">{candidate.university} • Class of {candidate.graduationYear}</p>
                             </div>
                           </div>
                           
-                          <div className="flex items-center space-x-6 text-sm text-gray-500 mb-3">
+                          <div className="flex items-center space-x-6 text-sm text-gray-700 mb-3">
                             <span className="flex items-center">
                               <MapPin className="h-4 w-4 mr-1" />
                               {candidate.location}
@@ -875,7 +875,7 @@ export default function CandidatesPage() {
                       <div className="flex flex-col items-end space-y-3 ml-6">
                         <div className="text-center">
                           <div className="text-3xl font-bold text-blue-600">{candidate.matchScore}%</div>
-                          <div className="text-xs text-gray-500">Match Score</div>
+                          <div className="text-xs text-gray-700">Match Score</div>
                           <div className="text-sm font-medium text-green-600 mt-1">
                             {candidate.avgInnovationScore} Innovation
                           </div>
@@ -886,7 +886,7 @@ export default function CandidatesPage() {
                             variant="ghost"
                             size="sm"
                             onClick={() => toggleBookmark(candidate.id)}
-                            className={candidate.isBookmarked ? 'text-yellow-500' : 'text-gray-400'}
+                            className={candidate.isBookmarked ? 'text-yellow-500' : 'text-gray-600'}
                           >
                             <Star className={`h-4 w-4 ${candidate.isBookmarked ? 'fill-current' : ''}`} />
                           </Button>

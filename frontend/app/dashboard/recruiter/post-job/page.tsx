@@ -524,7 +524,7 @@ export default function PostJobPage() {
 
             <div>
               <Label>Benefits & Perks</Label>
-              <p className="text-sm text-gray-500 mb-3">Select all benefits that apply</p>
+              <p className="text-sm text-gray-700 mb-3">Select all benefits that apply</p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {(benefits || []).map((benefit) => (
                   <label key={benefit} className="flex items-center space-x-2 cursor-pointer">
@@ -593,7 +593,7 @@ export default function PostJobPage() {
             <div>
               <Label>Target Universities *</Label>
               {errors.targetUniversities && <p className="text-sm text-red-600 mb-2">{errors.targetUniversities}</p>}
-              <p className="text-sm text-gray-500 mb-3">Select universities you want to target for this role</p>
+              <p className="text-sm text-gray-700 mb-3">Select universities you want to target for this role</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {universities.map((university) => (
                   <label key={university} className="flex items-center space-x-2 cursor-pointer">
@@ -610,7 +610,7 @@ export default function PostJobPage() {
             <div>
               <Label>Target Majors *</Label>
               {errors.targetMajors && <p className="text-sm text-red-600 mb-2">{errors.targetMajors}</p>}
-              <p className="text-sm text-gray-500 mb-3">Select relevant academic majors</p>
+              <p className="text-sm text-gray-700 mb-3">Select relevant academic majors</p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {majors.map((major) => (
                   <label key={major} className="flex items-center space-x-2 cursor-pointer">
@@ -626,7 +626,7 @@ export default function PostJobPage() {
 
             <div>
               <Label>Required Skills</Label>
-              <p className="text-sm text-gray-500 mb-3">Select technical skills that are important for this role</p>
+              <p className="text-sm text-gray-700 mb-3">Select technical skills that are important for this role</p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                 {skills.slice(0, 20).map((skill) => (
                   <label key={skill} className="flex items-center space-x-2 cursor-pointer">
@@ -673,7 +673,7 @@ export default function PostJobPage() {
 
             <div>
               <Label>Target Graduation Years</Label>
-              <p className="text-sm text-gray-500 mb-3">Select graduation years for candidates</p>
+              <p className="text-sm text-gray-700 mb-3">Select graduation years for candidates</p>
               <div className="flex gap-2">
                 {['2024', '2025', '2026', '2027'].map((year) => (
                   <label key={year} className="flex items-center space-x-2 cursor-pointer">
@@ -866,7 +866,7 @@ export default function PostJobPage() {
                           <p key={university} className="text-sm text-gray-600">{university}</p>
                         ))}
                         {formData.targetUniversities.length > 3 && (
-                          <p className="text-sm text-gray-500">+{formData.targetUniversities.length - 3} more</p>
+                          <p className="text-sm text-gray-700">+{formData.targetUniversities.length - 3} more</p>
                         )}
                       </div>
                     </div>
@@ -926,19 +926,19 @@ export default function PostJobPage() {
                   className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors ${
                     index <= currentStep
                       ? 'bg-blue-600 border-blue-600 text-white'
-                      : 'border-gray-300 text-gray-500'
+                      : 'border-gray-300 text-gray-700'
                   }`}
                 >
                   <step.icon className="h-5 w-5" />
                 </div>
                 <div className="text-center mt-2">
                   <p className={`text-sm font-medium ${
-                    index <= currentStep ? 'text-gray-900' : 'text-gray-500'
+                    index <= currentStep ? 'text-gray-900' : 'text-gray-700'
                   }`}>
                     {step.title}
                   </p>
                   <p className={`text-xs ${
-                    index <= currentStep ? 'text-gray-600' : 'text-gray-400'
+                    index <= currentStep ? 'text-gray-600' : 'text-gray-600'
                   }`}>
                     {step.description}
                   </p>

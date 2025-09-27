@@ -128,12 +128,12 @@ export default function SurveyAdminDashboard() {
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-sm font-medium text-gray-600">Total Responses</CardTitle>
-                <BarChart className="h-4 w-4 text-gray-400" />
+                <BarChart className="h-4 w-4 text-gray-600" />
               </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-gray-900">{stats?.total || 0}</div>
-              <p className="text-xs text-gray-500 mt-1">All time</p>
+              <p className="text-xs text-gray-700 mt-1">All time</p>
             </CardContent>
           </Card>
 
@@ -146,7 +146,7 @@ export default function SurveyAdminDashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-blue-600">{stats?.byType?.student || 0}</div>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-700 mt-1">
                 {stats?.total > 0
                   ? `${Math.round((stats.byType.student / stats.total) * 100)}% of total`
                   : 'No data'
@@ -164,7 +164,7 @@ export default function SurveyAdminDashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-600">{stats?.byType?.company || 0}</div>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-700 mt-1">
                 {stats?.total > 0
                   ? `${Math.round((stats.byType.company / stats.total) * 100)}% of total`
                   : 'No data'
@@ -184,7 +184,7 @@ export default function SurveyAdminDashboard() {
               <div className="text-2xl font-bold text-orange-600">
                 {stats?.averageCompletionTime ? `${stats.averageCompletionTime}s` : 'N/A'}
               </div>
-              <p className="text-xs text-gray-500 mt-1">Average time</p>
+              <p className="text-xs text-gray-700 mt-1">Average time</p>
             </CardContent>
           </Card>
         </div>
@@ -261,7 +261,7 @@ export default function SurveyAdminDashboard() {
                     </TableBody>
                   </Table>
                 ) : (
-                  <div className="text-center py-8 text-gray-500">
+                  <div className="text-center py-8 text-gray-700">
                     No survey responses yet
                   </div>
                 )}
@@ -301,7 +301,7 @@ export default function SurveyAdminDashboard() {
                   <CardDescription>Last 30 days</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center justify-center py-8 text-gray-500">
+                  <div className="flex items-center justify-center py-8 text-gray-700">
                     <TrendingUp className="h-8 w-8 mr-2" />
                     <span>Chart visualization coming soon</span>
                   </div>

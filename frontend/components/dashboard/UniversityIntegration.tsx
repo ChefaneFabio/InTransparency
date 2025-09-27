@@ -279,7 +279,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
       <Card>
         <CardContent className="pt-6">
           <div className="text-center py-8">
-            <School className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <School className="h-12 w-12 text-gray-600 mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No University Connected</h3>
             <p className="text-gray-600 mb-4">
               Connect your university account to automatically sync your academic records
@@ -440,9 +440,9 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
                     {enabled ? (
                       <CheckCircle className="h-5 w-5 text-green-600" />
                     ) : (
-                      <AlertCircle className="h-5 w-5 text-gray-400" />
+                      <AlertCircle className="h-5 w-5 text-gray-600" />
                     )}
-                    <span className={`capitalize ${enabled ? 'text-gray-900' : 'text-gray-500'}`}>
+                    <span className={`capitalize ${enabled ? 'text-gray-900' : 'text-gray-700'}`}>
                       {type.replace('_', ' ')}
                     </span>
                   </div>
@@ -479,7 +479,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
                         </Badge>
                       </div>
                       <p className="text-sm text-gray-600 mb-1">{activity.details}</p>
-                      <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <div className="flex items-center gap-2 text-xs text-gray-700">
                         <Clock className="h-3 w-3" />
                         {formatTimeAgo(activity.timestamp)}
                       </div>

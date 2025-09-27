@@ -390,7 +390,7 @@ export default function Pricing() {
                 Schedule Demo
               </Button>
             </div>
-            <p className="text-sm text-gray-500 mt-4">
+            <p className="text-sm text-gray-700 mt-4">
               No credit card required • 30-day free trial • Cancel anytime
             </p>
           </div>

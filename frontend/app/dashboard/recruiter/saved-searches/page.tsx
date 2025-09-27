@@ -536,7 +536,7 @@ export default function SavedSearchesPage() {
                             {!alert.isRead && (
                               <Badge className="bg-blue-100 text-blue-800">New</Badge>
                             )}
-                            <span className="text-sm text-gray-500 flex items-center">
+                            <span className="text-sm text-gray-700 flex items-center">
                               <Clock className="h-3 w-3 mr-1" />
                               {alert.timestamp}
                             </span>
@@ -547,7 +547,7 @@ export default function SavedSearchesPage() {
 
                         {alert.candidates && (
                           <div className="flex items-center space-x-2 mb-2">
-                            <p className="text-xs text-gray-500">Top matches:</p>
+                            <p className="text-xs text-gray-700">Top matches:</p>
                             {alert.candidates.slice(0, 3).map((candidate, index) => (
                               <Badge key={index} variant="outline" className="text-xs">
                                 {candidate}

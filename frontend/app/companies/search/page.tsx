@@ -109,7 +109,7 @@ export default function CompanySearchInterface() {
           <CardContent className="pt-6">
             <div className="flex gap-3">
               <div className="flex-1 relative">
-                <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                <Search className="absolute left-3 top-3 h-5 w-5 text-gray-600" />
                 <Input
                   className="pl-10 h-12 text-lg"
                   placeholder='Try: "Python developer with ML background and healthcare projects"'

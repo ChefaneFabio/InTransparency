@@ -208,7 +208,7 @@ export default function StudentRegisterPage() {
             <p className="text-gray-600 mb-4">
               Your student account has been created successfully. You'll be redirected to your dashboard shortly.
             </p>
-            <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
+            <div className="flex items-center justify-center space-x-2 text-sm text-gray-700">
               <Loader2 className="h-4 w-4 animate-spin" />
               <span>Setting up your profile...</span>
             </div>
@@ -259,7 +259,7 @@ export default function StudentRegisterPage() {
                 className={errors.email ? 'border-red-500' : ''}
               />
               {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email}</p>}
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-700 mt-1">
                 Use your university email for automatic verification
               </p>
             </div>
@@ -488,7 +488,7 @@ export default function StudentRegisterPage() {
           <div className="flex justify-between mt-2">
             {steps.map((step, index) => (
               <div key={index} className="text-center">
-                <div className={`text-xs ${index <= currentStep ? 'text-blue-600 font-medium' : 'text-gray-400'}`}>
+                <div className={`text-xs ${index <= currentStep ? 'text-blue-600 font-medium' : 'text-gray-600'}`}>
                   {step.title}
                 </div>
               </div>

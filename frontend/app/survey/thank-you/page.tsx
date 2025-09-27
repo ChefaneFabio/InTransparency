@@ -158,7 +158,7 @@ export default function SurveyThankYouPage() {
             </div>
 
             {/* Footer Note */}
-            <p className="text-sm text-gray-500 mt-8">
+            <p className="text-sm text-gray-700 mt-8">
               Your responses are confidential and will only be used to improve our platform development.
             </p>
           </CardContent>

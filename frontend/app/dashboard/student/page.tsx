@@ -296,7 +296,7 @@ export default function StudentDashboard() {
                            action.color === 'purple' ? '+8 new opportunities' :
                            '+20% career readiness'}
                         </span>
-                        <ArrowRight className="h-3 w-3 text-gray-400 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="h-3 w-3 text-gray-600 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
                   </Link>
@@ -400,7 +400,7 @@ export default function StudentDashboard() {
                         Upload Project
                       </Link>
                     </Button>
-                    <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
+                    <div className="flex items-center justify-center space-x-4 text-sm text-gray-700">
                       <div className="flex items-center">
                         <Star className="h-4 w-4 mr-1 text-yellow-500" />
                         AI Analysis

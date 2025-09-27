@@ -97,7 +97,7 @@ export function CTA() {
             </Button>
           </div>
 
-          <p className="text-sm text-gray-500 mt-4">
+          <p className="text-sm text-gray-700 mt-4">
             No credit card required • Start showcasing in minutes • Get started today
           </p>
         </div>
@@ -139,7 +139,7 @@ export function CTA() {
                   <div className="text-4xl font-bold text-gray-900">
                     {tier.price}
                     {tier.price !== 'Free' && tier.price !== 'Custom' && (
-                      <span className="text-lg text-gray-500 font-normal">/month</span>
+                      <span className="text-lg text-gray-700 font-normal">/month</span>
                     )}
                   </div>
                 </div>
@@ -170,7 +170,7 @@ export function CTA() {
           </div>
 
           <div className="text-center mt-8">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-700">
               All plans include SSL security, data backups, and GDPR compliance
             </p>
           </div>
@@ -227,7 +227,7 @@ export function CTA() {
 
         {/* Trust Indicators */}
         <div className="mt-16 text-center">
-          <p className="text-sm text-gray-500 mb-6">
+          <p className="text-sm text-gray-700 mb-6">
             Connect with top universities and companies
           </p>
         </div>

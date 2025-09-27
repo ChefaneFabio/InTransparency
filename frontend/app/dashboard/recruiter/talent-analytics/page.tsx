@@ -331,7 +331,7 @@ export default function TalentAnalyticsPage() {
                       <Badge variant="outline" className="text-xs">#{index + 1}</Badge>
                     </div>
                     <p className="text-sm text-gray-600">{uni.students} students</p>
-                    <p className="text-xs text-gray-500">GPA {uni.avgGPA} • {uni.topSkill}</p>
+                    <p className="text-xs text-gray-700">GPA {uni.avgGPA} • {uni.topSkill}</p>
                   </div>
                   <div className="text-right">
                     <div className={`flex items-center text-sm ${uni.growth > 0 ? 'text-green-600' : 'text-red-600'}`}>
@@ -379,7 +379,7 @@ export default function TalentAnalyticsPage() {
                         style={{ width: `${skill.demand}%` }}
                       />
                     </div>
-                    <div className="flex justify-between text-xs text-gray-500 mt-1">
+                    <div className="flex justify-between text-xs text-gray-700 mt-1">
                       <span>Demand Score</span>
                       <span>{skill.demand}/100</span>
                     </div>
@@ -430,7 +430,7 @@ export default function TalentAnalyticsPage() {
                 </div>
 
                 <div className="mt-3 pt-3 border-t">
-                  <p className="text-xs text-gray-500 mb-1">Top Universities:</p>
+                  <p className="text-xs text-gray-700 mb-1">Top Universities:</p>
                   <div className="flex flex-wrap gap-1">
                     {location.topUniversities.map(uni => (
                       <Badge key={uni} variant="outline" className="text-xs">
@@ -563,7 +563,7 @@ export default function TalentAnalyticsPage() {
                     <p className="text-sm font-semibold text-gray-900">
                       ${competitor.avgSalary.toLocaleString()}
                     </p>
-                    <p className="text-xs text-gray-500">avg salary</p>
+                    <p className="text-xs text-gray-700">avg salary</p>
                   </div>
                 </div>
               ))}

@@ -172,7 +172,7 @@ export default function StudentPage({ params }: StudentPageProps) {
       case 'award': return <Award className="h-4 w-4 text-yellow-500" />
       case 'competition': return <Target className="h-4 w-4 text-green-500" />
       case 'publication': return <BookOpen className="h-4 w-4 text-purple-500" />
-      default: return <Star className="h-4 w-4 text-gray-500" />
+      default: return <Star className="h-4 w-4 text-gray-700" />
     }
   }
 
@@ -497,21 +497,21 @@ export default function StudentPage({ params }: StudentPageProps) {
               <CardContent className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Eye className="h-4 w-4 text-gray-400 mr-2" />
+                    <Eye className="h-4 w-4 text-gray-600 mr-2" />
                     <span className="text-gray-600">Profile Views</span>
                   </div>
                   <span className="font-semibold">{student.profileViews}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Users className="h-4 w-4 text-gray-400 mr-2" />
+                    <Users className="h-4 w-4 text-gray-600 mr-2" />
                     <span className="text-gray-600">Connections</span>
                   </div>
                   <span className="font-semibold">{student.connections}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <TrendingUp className="h-4 w-4 text-gray-400 mr-2" />
+                    <TrendingUp className="h-4 w-4 text-gray-600 mr-2" />
                     <span className="text-gray-600">AI Score</span>
                   </div>
                   <span className="font-semibold text-green-600">{student.aiScore}</span>
@@ -526,29 +526,29 @@ export default function StudentPage({ params }: StudentPageProps) {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center">
-                  <Mail className="h-4 w-4 text-gray-400 mr-2" />
+                  <Mail className="h-4 w-4 text-gray-600 mr-2" />
                   <a href={`mailto:${student.contact.email}`} className="text-sm text-blue-600 hover:text-blue-800">
                     {student.contact.email}
                   </a>
                 </div>
                 <div className="flex items-center">
-                  <Phone className="h-4 w-4 text-gray-400 mr-2" />
+                  <Phone className="h-4 w-4 text-gray-600 mr-2" />
                   <span className="text-sm text-gray-900">{student.contact.phone}</span>
                 </div>
                 <div className="flex items-center">
-                  <Linkedin className="h-4 w-4 text-gray-400 mr-2" />
+                  <Linkedin className="h-4 w-4 text-gray-600 mr-2" />
                   <a href={student.contact.linkedin} className="text-sm text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">
                     LinkedIn Profile
                   </a>
                 </div>
                 <div className="flex items-center">
-                  <Github className="h-4 w-4 text-gray-400 mr-2" />
+                  <Github className="h-4 w-4 text-gray-600 mr-2" />
                   <a href={student.contact.github} className="text-sm text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">
                     GitHub Profile
                   </a>
                 </div>
                 <div className="flex items-center">
-                  <Globe className="h-4 w-4 text-gray-400 mr-2" />
+                  <Globe className="h-4 w-4 text-gray-600 mr-2" />
                   <a href={student.contact.website} className="text-sm text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">
                     Personal Website
                   </a>

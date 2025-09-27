@@ -89,7 +89,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
               {user.role}
             </p>
             {user.location && (
-              <p className="text-sm text-gray-500 flex items-center mt-1">
+              <p className="text-sm text-gray-700 flex items-center mt-1">
                 <MapPin className="h-3 w-3 mr-1" />
                 {user.location}
               </p>
@@ -114,7 +114,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
         <div className="mt-4 space-y-2">
           {user.university && (
             <div className="flex items-center text-sm text-gray-600">
-              <GraduationCap className="h-4 w-4 mr-2 text-gray-400" />
+              <GraduationCap className="h-4 w-4 mr-2 text-gray-600" />
               <span>
                 {user.major ? `${user.major} at ` : ''}{user.university}
                 {user.graduationYear && ` • Class of ${user.graduationYear}`}
@@ -124,7 +124,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
           
           {user.company && (
             <div className="flex items-center text-sm text-gray-600">
-              <Building2 className="h-4 w-4 mr-2 text-gray-400" />
+              <Building2 className="h-4 w-4 mr-2 text-gray-600" />
               <span>
                 {user.position ? `${user.position} at ` : ''}{user.company}
               </span>
@@ -132,7 +132,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
           )}
           
           <div className="flex items-center text-sm text-gray-600">
-            <Calendar className="h-4 w-4 mr-2 text-gray-400" />
+            <Calendar className="h-4 w-4 mr-2 text-gray-600" />
             <span>Member since {memberSince}</span>
           </div>
         </div>
@@ -147,7 +147,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
           </div>
           <Progress value={completeness} className="h-2" />
           {completeness < 100 && (
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-gray-700 mt-1">
               Complete your profile to attract more opportunities
             </p>
           )}
@@ -186,21 +186,21 @@ export function ProfileCard({ user }: ProfileCardProps) {
               <Star className="h-4 w-4 text-yellow-500" />
             </div>
             <div className="text-lg font-semibold text-gray-900">4.8</div>
-            <div className="text-xs text-gray-500">Rating</div>
+            <div className="text-xs text-gray-700">Rating</div>
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center mb-1">
               <Award className="h-4 w-4 text-blue-500" />
             </div>
             <div className="text-lg font-semibold text-gray-900">12</div>
-            <div className="text-xs text-gray-500">Projects</div>
+            <div className="text-xs text-gray-700">Projects</div>
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center mb-1">
               <Target className="h-4 w-4 text-green-500" />
             </div>
             <div className="text-lg font-semibold text-gray-900">86%</div>
-            <div className="text-xs text-gray-500">Match Rate</div>
+            <div className="text-xs text-gray-700">Match Rate</div>
           </div>
         </div>
 

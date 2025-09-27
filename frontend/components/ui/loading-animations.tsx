@@ -169,7 +169,7 @@ export function LoadingAnimation({
 
           {/* Progress Bar */}
           <div className="space-y-2">
-            <div className="flex justify-between text-sm text-gray-500">
+            <div className="flex justify-between text-sm text-gray-700">
               <span>Progress</span>
               <span>{Math.round(progress ?? animatedProgress)}%</span>
             </div>
@@ -197,7 +197,7 @@ export function LoadingAnimation({
 
           {/* Additional Info */}
           {type === 'analysis' && (
-            <div className="grid grid-cols-3 gap-2 text-xs text-gray-500">
+            <div className="grid grid-cols-3 gap-2 text-xs text-gray-700">
               <div className="text-center">
                 <div className="font-medium">Files</div>
                 <div>{Math.floor(Math.random() * 20) + 5}</div>

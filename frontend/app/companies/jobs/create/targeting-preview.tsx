@@ -203,7 +203,7 @@ export const TargetingPreview = ({ jobRequirements, location, remoteOptions }: T
                   <Badge className="bg-green-100 text-green-800">
                     {candidate.matchScore}% match
                   </Badge>
-                  <div className="text-xs text-gray-500 mt-1">
+                  <div className="text-xs text-gray-700 mt-1">
                     {candidate.distance}km away
                   </div>
                 </div>

@@ -340,19 +340,19 @@ export default function CVSamplesPage() {
 
         <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
           <div className="flex items-center">
-            <Mail className="h-4 w-4 mr-2 text-gray-500" />
+            <Mail className="h-4 w-4 mr-2 text-gray-700" />
             <span>{cv.name.toLowerCase().replace(' ', '.')}@email.com</span>
           </div>
           <div className="flex items-center">
-            <Phone className="h-4 w-4 mr-2 text-gray-500" />
+            <Phone className="h-4 w-4 mr-2 text-gray-700" />
             <span>+39 123 456 7890</span>
           </div>
           <div className="flex items-center">
-            <MapPin className="h-4 w-4 mr-2 text-gray-500" />
+            <MapPin className="h-4 w-4 mr-2 text-gray-700" />
             <span>Milano, Italy</span>
           </div>
           <div className="flex items-center">
-            <Globe className="h-4 w-4 mr-2 text-gray-500" />
+            <Globe className="h-4 w-4 mr-2 text-gray-700" />
             <span>portfolio.{cv.name.toLowerCase().replace(' ', '')}.com</span>
           </div>
         </div>
@@ -368,8 +368,8 @@ export default function CVSamplesPage() {
           <h3 className="font-semibold">{cv.degree}</h3>
           <p className="text-gray-600">{cv.university}</p>
           <div className="flex justify-between mt-2">
-            <span className="text-sm text-gray-500">GPA: {cv.gpa}/4.0</span>
-            <span className="text-sm text-gray-500">Graduated: {cv.graduationDate}</span>
+            <span className="text-sm text-gray-700">GPA: {cv.gpa}/4.0</span>
+            <span className="text-sm text-gray-700">Graduated: {cv.graduationDate}</span>
           </div>
         </div>
       </div>
@@ -437,7 +437,7 @@ export default function CVSamplesPage() {
                   <h3 className="font-semibold">{internship.role}</h3>
                   <p className="text-gray-600">{internship.company}</p>
                 </div>
-                <span className="text-sm text-gray-500">{internship.duration}</span>
+                <span className="text-sm text-gray-700">{internship.duration}</span>
               </div>
               <p className="text-sm text-gray-700 mt-1">{internship.description}</p>
             </div>

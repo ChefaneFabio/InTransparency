@@ -153,7 +153,7 @@ export default function SupportPage() {
 
             {/* Search Bar */}
             <div className="max-w-xl mx-auto relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600" />
               <input
                 type="text"
                 placeholder="Search for help..."
@@ -193,11 +193,11 @@ export default function SupportPage() {
                       <p className="text-gray-600 text-sm mb-4">{option.description}</p>
 
                       <div className="space-y-2 mb-4">
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-gray-700">
                           <Clock className="inline h-3 w-3 mr-1" />
                           {option.availability}
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-gray-700">
                           Response: {option.responseTime}
                         </div>
                       </div>
@@ -233,7 +233,7 @@ export default function SupportPage() {
                           <h3 className="font-semibold text-gray-900 mb-1">{action.title}</h3>
                           <p className="text-gray-600 text-sm">{action.description}</p>
                         </div>
-                        <ArrowRight className="h-5 w-5 text-gray-400" />
+                        <ArrowRight className="h-5 w-5 text-gray-600" />
                       </div>
                     </CardContent>
                   </Card>

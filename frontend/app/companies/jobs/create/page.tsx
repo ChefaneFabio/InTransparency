@@ -169,8 +169,8 @@ export default function SmartJobPosting() {
                     </div>
                   ) : (
                     <div className="text-center py-8 border-2 border-dashed rounded-lg">
-                      <BookOpen className="h-8 w-8 mx-auto mb-2 text-gray-400" />
-                      <p className="text-gray-500">No course requirements added yet</p>
+                      <BookOpen className="h-8 w-8 mx-auto mb-2 text-gray-600" />
+                      <p className="text-gray-700">No course requirements added yet</p>
                     </div>
                   )}
                 </div>
@@ -288,8 +288,8 @@ export default function SmartJobPosting() {
                     </div>
                   ) : (
                     <div className="text-center py-8 border-2 border-dashed rounded-lg">
-                      <Code className="h-8 w-8 mx-auto mb-2 text-gray-400" />
-                      <p className="text-gray-500">No project requirements added yet</p>
+                      <Code className="h-8 w-8 mx-auto mb-2 text-gray-600" />
+                      <p className="text-gray-700">No project requirements added yet</p>
                     </div>
                   )}
                 </div>

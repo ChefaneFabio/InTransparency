@@ -197,7 +197,7 @@ export function ActivityFeed({ userId, limit = 10 }: ActivityFeedProps) {
       case 'application':
         return <CheckCircle className="h-4 w-4 text-green-600" />
       default:
-        return <AlertCircle className="h-4 w-4 text-gray-400" />
+        return <AlertCircle className="h-4 w-4 text-gray-600" />
     }
   }
 
@@ -246,12 +246,12 @@ export function ActivityFeed({ userId, limit = 10 }: ActivityFeedProps) {
     return (
       <div className="text-center py-8">
         <div className="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
-          <Calendar className="h-8 w-8 text-gray-400" />
+          <Calendar className="h-8 w-8 text-gray-600" />
         </div>
         <h3 className="text-sm font-medium text-gray-900 mb-1">
           No recent activity
         </h3>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-700">
           Your recent interactions will appear here
         </p>
       </div>
@@ -297,7 +297,7 @@ export function ActivityFeed({ userId, limit = 10 }: ActivityFeedProps) {
 
                   {/* Additional Info */}
                   <div className="flex items-center space-x-4 mt-2">
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-gray-700">
                       {formatDistanceToNow(new Date(activity.timestamp), { addSuffix: true })}
                     </span>
 

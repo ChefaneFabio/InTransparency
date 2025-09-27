@@ -272,7 +272,7 @@ export default function LinkedInBridge({ userType, userId, onSyncComplete }: Lin
       <div className="p-6">
         {!isConnected ? (
           <div className="text-center py-8">
-            <FaLinkedin className="text-6xl text-gray-300 mx-auto mb-4" />
+            <FaLinkedin className="text-6xl text-gray-600 mx-auto mb-4" />
             <h3 className="text-lg font-semibold mb-2">Connect LinkedIn First</h3>
             <p className="text-gray-600 mb-4">
               Connect your LinkedIn account to enable smart synchronization
@@ -294,7 +294,7 @@ export default function LinkedInBridge({ userType, userId, onSyncComplete }: Lin
                   disabled={isSyncing}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                     isSyncing
-                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      ? 'bg-gray-300 text-gray-700 cursor-not-allowed'
                       : 'bg-blue-600 text-white hover:bg-blue-700'
                   }`}
                 >
@@ -323,7 +323,7 @@ export default function LinkedInBridge({ userType, userId, onSyncComplete }: Lin
               </div>
 
               {lastSyncTime && (
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-gray-700">
                   Last sync: {lastSyncTime.toLocaleTimeString()}
                 </div>
               )}

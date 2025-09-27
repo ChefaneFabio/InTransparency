@@ -500,7 +500,7 @@ export default function ProfileOptimizerPage() {
                   <Card key={template.id} className="hover:shadow-lg transition-shadow">
                     <CardContent className="p-6">
                       <div className="aspect-[3/4] bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
-                        <FileText className="h-12 w-12 text-gray-400" />
+                        <FileText className="h-12 w-12 text-gray-600" />
                       </div>
 
                       <h3 className="font-semibold text-gray-900 mb-2">{template.name}</h3>
@@ -508,7 +508,7 @@ export default function ProfileOptimizerPage() {
 
                       <div className="space-y-2 mb-4">
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-500">Popularity</span>
+                          <span className="text-sm text-gray-700">Popularity</span>
                           <span className="text-sm font-medium text-gray-900">{template.popularity}%</span>
                         </div>
                         <Progress value={template.popularity} className="h-1" />

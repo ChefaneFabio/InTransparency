@@ -86,7 +86,7 @@ export function JobMatches({ matches }: JobMatchesProps) {
     return (
       <div className="text-center py-8">
         <div className="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
-          <Building2 className="h-8 w-8 text-gray-400" />
+          <Building2 className="h-8 w-8 text-gray-600" />
         </div>
         <h3 className="text-lg font-medium text-gray-900 mb-2">
           No job matches yet
@@ -119,7 +119,7 @@ export function JobMatches({ matches }: JobMatchesProps) {
                       className="w-8 h-8 object-contain"
                     />
                   ) : (
-                    <Building2 className="h-6 w-6 text-gray-400" />
+                    <Building2 className="h-6 w-6 text-gray-600" />
                   )}
                 </div>
 
@@ -146,7 +146,7 @@ export function JobMatches({ matches }: JobMatchesProps) {
                   </div>
 
                   {/* Job Details */}
-                  <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-gray-500">
+                  <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-gray-700">
                     <span className="flex items-center">
                       <MapPin className="h-4 w-4 mr-1" />
                       {job.location}

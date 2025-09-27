@@ -160,7 +160,7 @@ export default function PressPage() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-600 text-sm mb-4">{asset.description}</p>
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                    <div className="flex items-center justify-between text-sm text-gray-700 mb-4">
                       <span>{asset.type}</span>
                       <span>{asset.size}</span>
                     </div>

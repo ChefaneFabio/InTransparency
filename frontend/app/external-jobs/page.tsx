@@ -285,7 +285,7 @@ Requirements:
         <CardContent className="p-6">
           <div className="flex flex-col lg:flex-row lg:items-center space-y-4 lg:space-y-0 lg:space-x-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
               <input
                 type="text"
                 placeholder="Search jobs, companies, or skills..."
@@ -376,19 +376,19 @@ Requirements:
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                   <div className="space-y-1">
                     <div className="flex items-center">
-                      <CheckCircle className={`h-3 w-3 mr-2 ${job.applicationRequirements.cvRequired ? 'text-green-500' : 'text-gray-400'}`} />
+                      <CheckCircle className={`h-3 w-3 mr-2 ${job.applicationRequirements.cvRequired ? 'text-green-500' : 'text-gray-600'}`} />
                       <span className={job.applicationRequirements.cvRequired ? 'text-green-700' : 'text-gray-600'}>
                         CV {job.applicationRequirements.cvRequired ? 'Required' : 'Optional'}
                       </span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className={`h-3 w-3 mr-2 ${job.applicationRequirements.portfolioRequired ? 'text-green-500' : 'text-gray-400'}`} />
+                      <CheckCircle className={`h-3 w-3 mr-2 ${job.applicationRequirements.portfolioRequired ? 'text-green-500' : 'text-gray-600'}`} />
                       <span className={job.applicationRequirements.portfolioRequired ? 'text-green-700' : 'text-gray-600'}>
                         Portfolio {job.applicationRequirements.portfolioRequired ? 'Required' : 'Optional'}
                       </span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className={`h-3 w-3 mr-2 ${job.applicationRequirements.coverLetterRequired ? 'text-green-500' : 'text-gray-400'}`} />
+                      <CheckCircle className={`h-3 w-3 mr-2 ${job.applicationRequirements.coverLetterRequired ? 'text-green-500' : 'text-gray-600'}`} />
                       <span className={job.applicationRequirements.coverLetterRequired ? 'text-green-700' : 'text-gray-600'}>
                         Cover Letter {job.applicationRequirements.coverLetterRequired ? 'Required' : 'Optional'}
                       </span>
@@ -499,7 +499,7 @@ Requirements:
                     </label>
                     {field.type === 'file' && (
                       <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                        <Upload className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+                        <Upload className="h-8 w-8 text-gray-600 mx-auto mb-2" />
                         <p className="text-sm text-gray-600">Upload your project, demo, video, or tool</p>
                         <Button variant="outline" size="sm" className="mt-2">
                           Choose File

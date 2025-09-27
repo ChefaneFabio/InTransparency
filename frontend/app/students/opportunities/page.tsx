@@ -328,7 +328,7 @@ export default function StudentOpportunities() {
         {filteredOpportunities.length === 0 && (
           <Card className="text-center py-12">
             <CardContent>
-              <BookOpen className="h-12 w-12 mx-auto mb-4 text-gray-400" />
+              <BookOpen className="h-12 w-12 mx-auto mb-4 text-gray-600" />
               <h3 className="text-lg font-medium mb-2">No opportunities in this category</h3>
               <p className="text-gray-600 mb-4">
                 Try adjusting your filters or complete your profile for more matches

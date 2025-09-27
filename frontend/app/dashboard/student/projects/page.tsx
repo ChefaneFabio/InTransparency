@@ -276,7 +276,7 @@ export default function ProjectsPage() {
             {/* Search */}
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
                 <Input
                   placeholder="Search projects..."
                   value={searchQuery}
@@ -370,7 +370,7 @@ export default function ProjectsPage() {
             {projects.length === 0 ? (
               <div>
                 <div className="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                  <Plus className="h-8 w-8 text-gray-400" />
+                  <Plus className="h-8 w-8 text-gray-600" />
                 </div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
                   No projects yet
@@ -388,7 +388,7 @@ export default function ProjectsPage() {
             ) : (
               <div>
                 <div className="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                  <Search className="h-8 w-8 text-gray-400" />
+                  <Search className="h-8 w-8 text-gray-600" />
                 </div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
                   No projects found
@@ -466,7 +466,7 @@ export default function ProjectsPage() {
                               )}
                             </div>
 
-                            <div className="flex items-center space-x-4 mt-3 text-sm text-gray-500">
+                            <div className="flex items-center space-x-4 mt-3 text-sm text-gray-700">
                               <span className="flex items-center">
                                 <Eye className="h-4 w-4 mr-1" />
                                 {project.stats?.views || 0}
@@ -489,7 +489,7 @@ export default function ProjectsPage() {
                           <div className="text-lg font-semibold text-blue-600">
                             {project.innovationScore}/100
                           </div>
-                          <div className="text-xs text-gray-500">Innovation</div>
+                          <div className="text-xs text-gray-700">Innovation</div>
                         </div>
                         <ProjectActions project={project} />
                       </div>

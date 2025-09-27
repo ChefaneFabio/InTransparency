@@ -120,7 +120,7 @@ export function AutomaticProfileDemo() {
       case 'complete':
         return <CheckCircle className="h-4 w-4 text-green-600" />
       default:
-        return <Clock className="h-4 w-4 text-gray-400" />
+        return <Clock className="h-4 w-4 text-gray-600" />
     }
   }
 
@@ -147,7 +147,7 @@ export function AutomaticProfileDemo() {
         <p className="text-lg text-gray-600 mb-2">
           No manual CV building. No data entry. Just connect and go.
         </p>
-        <div className="flex justify-center items-center space-x-6 text-sm text-gray-500">
+        <div className="flex justify-center items-center space-x-6 text-sm text-gray-700">
           <div className="flex items-center">
             <Zap className="h-4 w-4 mr-1 text-yellow-500" />
             30 seconds to complete profile
@@ -201,7 +201,7 @@ export function AutomaticProfileDemo() {
                 Connect University & Import Data
                 <ArrowRight className="h-5 w-5 ml-2" />
               </Button>
-              <p className="text-xs text-gray-500 mt-3">
+              <p className="text-xs text-gray-700 mt-3">
                 Demo: Simulates importing {totalItems} data points from university systems
               </p>
             </div>
@@ -249,7 +249,7 @@ export function AutomaticProfileDemo() {
                             section.status === 'complete' ? 'text-green-600' :
                             section.status === 'importing' ? 'text-blue-600' :
                             section.status === 'analyzing' ? 'text-purple-600' :
-                            'text-gray-400'
+                            'text-gray-600'
                           }`} />
                           <div>
                             <p className="font-medium text-gray-900">{section.name}</p>
@@ -281,7 +281,7 @@ export function AutomaticProfileDemo() {
                       </h3>
                       <div className="grid md:grid-cols-2 gap-4 mb-4">
                         <div className="flex items-center text-sm text-gray-700">
-                          <FileText className="h-4 w-4 mr-2 text-gray-500" />
+                          <FileText className="h-4 w-4 mr-2 text-gray-700" />
                           <span>{totalItems} data points imported</span>
                         </div>
                         <div className="flex items-center text-sm text-gray-700">

@@ -114,7 +114,7 @@ export default function StudentProfileCreation() {
                 <span className="text-sm font-medium">{profileCompletion}%</span>
               </div>
               <Progress value={profileCompletion} className="h-2" />
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-gray-700 mt-2">
                 Complete your profile to increase visibility to companies
               </p>
             </CardContent>
@@ -188,9 +188,9 @@ export default function StudentProfileCreation() {
                 <div>
                   <Label htmlFor="transcript">Upload Transcript</Label>
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                    <Upload className="h-8 w-8 mx-auto mb-2 text-gray-400" />
+                    <Upload className="h-8 w-8 mx-auto mb-2 text-gray-600" />
                     <p className="text-sm text-gray-600">Click to upload or drag and drop</p>
-                    <p className="text-xs text-gray-500">PDF, JPG or PNG (max 10MB)</p>
+                    <p className="text-xs text-gray-700">PDF, JPG or PNG (max 10MB)</p>
                   </div>
                 </div>
               </CardContent>
@@ -217,7 +217,7 @@ export default function StudentProfileCreation() {
                           <p className="text-sm text-gray-600">
                             Grade: {course.grade}/30 • {course.credits} credits • {course.semester}
                           </p>
-                          <p className="text-sm text-gray-500">Prof. {course.professor}</p>
+                          <p className="text-sm text-gray-700">Prof. {course.professor}</p>
                           {course.linkedProjects.length > 0 && (
                             <div className="mt-2">
                               <Badge variant="secondary" className="text-xs">
@@ -419,7 +419,7 @@ export default function StudentProfileCreation() {
                           <h4 className="font-semibold">{course.name}</h4>
                           <p className="text-sm text-gray-600">Grade: {course.grade}/30</p>
                         </div>
-                        <BookOpen className="h-5 w-5 text-gray-400" />
+                        <BookOpen className="h-5 w-5 text-gray-600" />
                       </div>
                       
                       <div className="space-y-2">
@@ -454,8 +454,8 @@ export default function StudentProfileCreation() {
                   ))}
                   
                   {courses.length === 0 && (
-                    <div className="text-center py-8 text-gray-500">
-                      <BookOpen className="h-12 w-12 mx-auto mb-3 text-gray-300" />
+                    <div className="text-center py-8 text-gray-700">
+                      <BookOpen className="h-12 w-12 mx-auto mb-3 text-gray-600" />
                       <p>Add courses and projects first to connect them</p>
                     </div>
                   )}

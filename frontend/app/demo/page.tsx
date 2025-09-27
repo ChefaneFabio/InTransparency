@@ -409,7 +409,7 @@ export default function DemoPage() {
                         {currentSection.mockData.story}
                       </p>
                     </div>
-                    <div className="flex items-center justify-between text-sm text-gray-500">
+                    <div className="flex items-center justify-between text-sm text-gray-700">
                       <span>✨ AI-optimized for ATS systems</span>
                       <span>📊 Industry-relevant keywords</span>
                     </div>
@@ -432,7 +432,7 @@ export default function DemoPage() {
                             </div>
                             <div className="text-right">
                               <div className="text-lg font-bold text-green-600">{match.match}%</div>
-                              <div className="text-xs text-gray-500">match</div>
+                              <div className="text-xs text-gray-700">match</div>
                             </div>
                           </div>
                         </div>
@@ -514,9 +514,9 @@ export default function DemoPage() {
               Invia messaggi personalizzati agli studenti
             </p>
             <div className="space-y-2">
-              <div className="text-xs text-gray-500">Response Rate</div>
+              <div className="text-xs text-gray-700">Response Rate</div>
               <div className="text-2xl font-bold text-green-600">67%</div>
-              <div className="text-xs text-gray-500">247 messaggi inviati</div>
+              <div className="text-xs text-gray-700">247 messaggi inviati</div>
             </div>
             <Button size="sm" className="w-full mt-3">
               <Send className="h-4 w-4 mr-1" />
@@ -709,7 +709,7 @@ export default function DemoPage() {
                 <Badge variant="outline">MongoDB</Badge>
               </div>
               <div className="flex items-center justify-between">
-                <div className="text-sm text-gray-500">127 recruiters hanno visto</div>
+                <div className="text-sm text-gray-700">127 recruiters hanno visto</div>
                 <Button size="sm" variant="outline">
                   <Eye className="h-4 w-4 mr-1" />
                   Dettagli
@@ -731,7 +731,7 @@ export default function DemoPage() {
                 <Badge variant="outline">NLP</Badge>
               </div>
               <div className="flex items-center justify-between">
-                <div className="text-sm text-gray-500">89 recruiters hanno visto</div>
+                <div className="text-sm text-gray-700">89 recruiters hanno visto</div>
                 <Button size="sm" variant="outline">
                   <Eye className="h-4 w-4 mr-1" />
                   Dettagli
@@ -758,7 +758,7 @@ export default function DemoPage() {
                 </p>
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-sm font-medium text-green-600">{job.salary}</span>
-                  <span className="text-sm text-gray-500">{job.applicants} candidati</span>
+                  <span className="text-sm text-gray-700">{job.applicants} candidati</span>
                 </div>
                 <div className="flex space-x-2">
                   <Button size="sm" className="flex-1">
@@ -901,12 +901,12 @@ export default function DemoPage() {
                   <div className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center text-white text-sm font-bold">T</div>
                   <div>
                     <div className="font-medium">TechCorp</div>
-                    <div className="text-sm text-gray-500">Technology</div>
+                    <div className="text-sm text-gray-700">Technology</div>
                   </div>
                 </div>
                 <div className="text-right">
                   <div className="text-sm font-medium">23 assunzioni</div>
-                  <div className="text-xs text-gray-500">Ultimo anno</div>
+                  <div className="text-xs text-gray-700">Ultimo anno</div>
                 </div>
               </div>
 
@@ -915,12 +915,12 @@ export default function DemoPage() {
                   <div className="w-8 h-8 bg-green-500 rounded flex items-center justify-center text-white text-sm font-bold">D</div>
                   <div>
                     <div className="font-medium">DataFlow Inc</div>
-                    <div className="text-sm text-gray-500">Data Science</div>
+                    <div className="text-sm text-gray-700">Data Science</div>
                   </div>
                 </div>
                 <div className="text-right">
                   <div className="text-sm font-medium">15 assunzioni</div>
-                  <div className="text-xs text-gray-500">Ultimo anno</div>
+                  <div className="text-xs text-gray-700">Ultimo anno</div>
                 </div>
               </div>
 
@@ -929,12 +929,12 @@ export default function DemoPage() {
                   <div className="w-8 h-8 bg-purple-500 rounded flex items-center justify-center text-white text-sm font-bold">F</div>
                   <div>
                     <div className="font-medium">FinTech Solutions</div>
-                    <div className="text-sm text-gray-500">Financial Tech</div>
+                    <div className="text-sm text-gray-700">Financial Tech</div>
                   </div>
                 </div>
                 <div className="text-right">
                   <div className="text-sm font-medium">11 assunzioni</div>
-                  <div className="text-xs text-gray-500">Ultimo anno</div>
+                  <div className="text-xs text-gray-700">Ultimo anno</div>
                 </div>
               </div>
             </div>

@@ -43,7 +43,7 @@ const Step = ({ title, description, icon: Icon, isActive, isCompleted }: StepPro
               ? "bg-green-500 border-green-500 text-white"
               : isActive
               ? "bg-blue-500 border-blue-500 text-white"
-              : "bg-white border-gray-300 text-gray-500"
+              : "bg-white border-gray-300 text-gray-700"
           )}
         >
           {isCompleted ? (
@@ -72,7 +72,7 @@ const Step = ({ title, description, icon: Icon, isActive, isCompleted }: StepPro
         <h3
           className={cn(
             "text-sm font-medium transition-colors",
-            isActive || isCompleted ? "text-gray-900" : "text-gray-500"
+            isActive || isCompleted ? "text-gray-900" : "text-gray-700"
           )}
         >
           {title}
@@ -81,7 +81,7 @@ const Step = ({ title, description, icon: Icon, isActive, isCompleted }: StepPro
           <p
             className={cn(
               "text-xs transition-colors",
-              isActive || isCompleted ? "text-gray-600" : "text-gray-400"
+              isActive || isCompleted ? "text-gray-600" : "text-gray-600"
             )}
           >
             {description}

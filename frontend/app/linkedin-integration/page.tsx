@@ -333,7 +333,7 @@ export default function LinkedInIntegrationPage() {
                       </span>
                     ))}
                     {opportunity.skills.length > 3 && (
-                      <span className="text-gray-500 text-xs">+{opportunity.skills.length - 3} more</span>
+                      <span className="text-gray-700 text-xs">+{opportunity.skills.length - 3} more</span>
                     )}
                   </div>
 
@@ -425,9 +425,9 @@ export default function LinkedInIntegrationPage() {
         <div className="mt-8">
           <h3 className="font-semibold text-gray-800 mb-4">Engagement Trends</h3>
           <div className="bg-gray-50 p-8 rounded-lg text-center">
-            <FaChartLine className="text-4xl text-gray-400 mx-auto mb-4" />
+            <FaChartLine className="text-4xl text-gray-600 mx-auto mb-4" />
             <p className="text-gray-600">Detailed analytics charts would appear here</p>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-sm text-gray-700 mt-2">
               Track connection requests, message responses, job referrals, and network growth over time
             </p>
           </div>

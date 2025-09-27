@@ -78,7 +78,7 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-gray-900 truncate">{title}</h3>
                 <p className="text-sm text-gray-600 mt-1 line-clamp-2">{description}</p>
-                <div className="flex items-center mt-2 space-x-4 text-sm text-gray-500">
+                <div className="flex items-center mt-2 space-x-4 text-sm text-gray-700">
                   <span className="flex items-center">
                     <Eye className="h-4 w-4 mr-1" />
                     {stats.views}
@@ -189,7 +189,7 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
 
           {/* Stats and Actions */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4 text-sm text-gray-500">
+            <div className="flex items-center space-x-4 text-sm text-gray-700">
               <span className="flex items-center">
                 <Eye className="h-4 w-4 mr-1" />
                 {stats.views}
@@ -231,7 +231,7 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
           </div>
 
           {/* Last Updated */}
-          <div className="mt-3 text-xs text-gray-500">
+          <div className="mt-3 text-xs text-gray-700">
             Updated {formatDistanceToNow(new Date(updatedAt), { addSuffix: true })}
           </div>
         </CardContent>

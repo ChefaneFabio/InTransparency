@@ -212,10 +212,10 @@ export default function AdvancedSearchPage() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <button className="p-2 hover:bg-gray-100 rounded">
-                    <Bell className="h-4 w-4 text-gray-500" />
+                    <Bell className="h-4 w-4 text-gray-700" />
                   </button>
                   <button className="p-2 hover:bg-gray-100 rounded">
-                    <ChevronRight className="h-4 w-4 text-gray-500" />
+                    <ChevronRight className="h-4 w-4 text-gray-700" />
                   </button>
                 </div>
               </div>
@@ -271,7 +271,7 @@ export default function AdvancedSearchPage() {
                       onChange={(e) => setFilters(prev => ({ ...prev, minGPA: parseFloat(e.target.value) }))}
                       className="w-20 px-2 py-1 border rounded"
                     />
-                    <span className="text-gray-500">to</span>
+                    <span className="text-gray-700">to</span>
                     <input
                       type="number"
                       step="0.1"

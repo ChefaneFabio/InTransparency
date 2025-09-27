@@ -282,7 +282,7 @@ export default function StudentActivityPage() {
                         {activity.unread && (
                           <Badge className="bg-blue-100 text-blue-800">New</Badge>
                         )}
-                        <span className="text-sm text-gray-500 flex items-center">
+                        <span className="text-sm text-gray-700 flex items-center">
                           <Clock className="h-3 w-3 mr-1" />
                           {activity.timestamp}
                         </span>
@@ -292,7 +292,7 @@ export default function StudentActivityPage() {
                     <p className="text-gray-600 text-sm mt-1">{activity.description}</p>
 
                     {activity.details && (
-                      <p className="text-gray-500 text-xs mt-2 italic">{activity.details}</p>
+                      <p className="text-gray-700 text-xs mt-2 italic">{activity.details}</p>
                     )}
 
                     {activity.status && (
@@ -340,7 +340,7 @@ export default function StudentActivityPage() {
 
           {filteredActivities.length === 0 && (
             <div className="text-center py-12">
-              <Activity className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <Activity className="h-12 w-12 text-gray-600 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">No activities found</h3>
               <p className="text-gray-600">Try adjusting your filter or check back later for new activity.</p>
             </div>

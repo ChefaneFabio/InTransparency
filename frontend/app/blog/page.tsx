@@ -147,7 +147,7 @@ export default function BlogPage() {
 
             {/* Search Bar */}
             <div className="max-w-xl mx-auto relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600" />
               <input
                 type="text"
                 placeholder="Search articles..."
@@ -197,10 +197,10 @@ export default function BlogPage() {
                         </div>
                         <div>
                           <p className="font-medium text-gray-900">{featuredPost.author}</p>
-                          <p className="text-sm text-gray-500">{featuredPost.authorRole}</p>
+                          <p className="text-sm text-gray-700">{featuredPost.authorRole}</p>
                         </div>
                       </div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-gray-700">
                         <div className="flex items-center mb-1">
                           <Calendar className="h-4 w-4 mr-1" />
                           {new Date(featuredPost.date).toLocaleDateString()}
@@ -260,7 +260,7 @@ export default function BlogPage() {
                 <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
                   <CardContent className="p-0">
                     <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                      <BookOpen className="h-12 w-12 text-gray-400" />
+                      <BookOpen className="h-12 w-12 text-gray-600" />
                     </div>
 
                     <div className="p-6">
@@ -268,7 +268,7 @@ export default function BlogPage() {
                         <Badge variant="outline" className="text-xs">
                           {post.category}
                         </Badge>
-                        <div className="flex items-center text-xs text-gray-500">
+                        <div className="flex items-center text-xs text-gray-700">
                           <Clock className="h-3 w-3 mr-1" />
                           {post.readTime}
                         </div>
@@ -297,7 +297,7 @@ export default function BlogPage() {
                           </div>
                           <div>
                             <p className="text-sm font-medium text-gray-900">{post.author}</p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-gray-700">
                               {new Date(post.date).toLocaleDateString()}
                             </p>
                           </div>
@@ -315,7 +315,7 @@ export default function BlogPage() {
 
             {filteredPosts.length === 0 && (
               <div className="text-center py-12">
-                <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <Search className="h-12 w-12 text-gray-600 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">No articles found</h3>
                 <p className="text-gray-600">Try adjusting your search or filter criteria</p>
               </div>

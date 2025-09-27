@@ -262,9 +262,9 @@ export default function CommunityPage() {
                               <p className="font-medium text-gray-900 text-sm">{expert.name}</p>
                               <p className="text-xs text-gray-600">{expert.title}</p>
                               <div className="flex items-center space-x-2 mt-1">
-                                <span className="text-xs text-gray-500">{expert.posts} posts</span>
-                                <span className="text-xs text-gray-500">•</span>
-                                <span className="text-xs text-gray-500">{expert.reputation} rep</span>
+                                <span className="text-xs text-gray-700">{expert.posts} posts</span>
+                                <span className="text-xs text-gray-700">•</span>
+                                <span className="text-xs text-gray-700">{expert.reputation} rep</span>
                               </div>
                             </div>
                           </div>
@@ -288,7 +288,7 @@ export default function CommunityPage() {
                               <Badge variant="outline" className="text-xs">
                                 {event.type}
                               </Badge>
-                              <span className="text-xs text-gray-500">{event.participants} joining</span>
+                              <span className="text-xs text-gray-700">{event.participants} joining</span>
                             </div>
                           </div>
                         ))}
@@ -303,7 +303,7 @@ export default function CommunityPage() {
                 {/* Search and Filters */}
                 <div className="flex flex-col md:flex-row gap-4 mb-8">
                   <div className="flex-1 relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
                     <input
                       type="text"
                       placeholder="Search discussions..."
@@ -334,7 +334,7 @@ export default function CommunityPage() {
                               <Badge className="bg-yellow-100 text-yellow-800">Featured</Badge>
                               <Badge variant="outline">{post.category}</Badge>
                             </div>
-                            <span className="text-sm text-gray-500">{post.timeAgo}</span>
+                            <span className="text-sm text-gray-700">{post.timeAgo}</span>
                           </div>
 
                           <h3 className="text-lg font-semibold text-gray-900 mb-2 cursor-pointer hover:text-blue-600">
@@ -358,7 +358,7 @@ export default function CommunityPage() {
                               </div>
                             </div>
 
-                            <div className="flex items-center space-x-4 text-sm text-gray-500">
+                            <div className="flex items-center space-x-4 text-sm text-gray-700">
                               <div className="flex items-center">
                                 <ThumbsUp className="h-4 w-4 mr-1" />
                                 {post.likes}
@@ -384,7 +384,7 @@ export default function CommunityPage() {
                         <CardContent className="p-6">
                           <div className="flex items-start justify-between mb-3">
                             <Badge variant="outline">{post.category}</Badge>
-                            <span className="text-sm text-gray-500">{post.timeAgo}</span>
+                            <span className="text-sm text-gray-700">{post.timeAgo}</span>
                           </div>
 
                           <h3 className="text-lg font-semibold text-gray-900 mb-2 hover:text-blue-600">
@@ -406,7 +406,7 @@ export default function CommunityPage() {
                               </div>
                             </div>
 
-                            <div className="flex items-center space-x-4 text-sm text-gray-500">
+                            <div className="flex items-center space-x-4 text-sm text-gray-700">
                               <div className="flex items-center">
                                 <ThumbsUp className="h-4 w-4 mr-1" />
                                 {post.likes}
