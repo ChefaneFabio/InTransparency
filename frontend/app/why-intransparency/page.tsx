@@ -243,7 +243,7 @@ export default function WhyInTransparencyPage() {
             <p className="text-gray-600">Numbers that speak for themselves</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {successMetrics.map((item, index) => {
+            {(successMetrics || []).map((item, index) => {
               const Icon = item.icon
               return (
                 <div key={index} className="text-center">
@@ -268,7 +268,7 @@ export default function WhyInTransparencyPage() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {uniqueFeatures.map((feature, index) => {
+          {(uniqueFeatures || []).map((feature, index) => {
             const Icon = feature.icon
             return (
               <Card key={index} className="bg-white shadow-sm border border-gray-200 hover:shadow-lg hover:border-gray-300 transition-all">
@@ -301,7 +301,7 @@ export default function WhyInTransparencyPage() {
         {/* Competitor Selection */}
         <div className="flex justify-center">
           <div className="flex space-x-2 bg-gray-100 p-1 rounded-lg">
-            {Object.entries(competitorComparisons).map(([key, competitor]) => {
+            {Object.entries(competitorComparisons || {}).map(([key, competitor]) => {
               const Icon = competitor.icon
               return (
                 <button

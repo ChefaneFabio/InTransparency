@@ -171,7 +171,7 @@ export default function StudentSurveyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-4xl mx-auto px-4 py-4">
@@ -193,7 +193,7 @@ export default function StudentSurveyPage() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <Card className="bg-white shadow-lg border border-gray-200">
+        <Card className="bg-white shadow-lg border border-gray-300">
           <CardHeader>
             <CardTitle className="text-2xl text-center">
               {currentStep === 1 && "About You"}
@@ -205,7 +205,7 @@ export default function StudentSurveyPage() {
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-6 text-gray-900">
             {/* Step 1: Demographics */}
             {currentStep === 1 && (
               <div className="space-y-6">

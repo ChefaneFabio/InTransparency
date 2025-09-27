@@ -185,7 +185,7 @@ export default function CompanySurveyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-4xl mx-auto px-4 py-4">
@@ -207,7 +207,7 @@ export default function CompanySurveyPage() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <Card className="bg-white shadow-lg border border-gray-200">
+        <Card className="bg-white shadow-lg border border-gray-300">
           <CardHeader>
             <CardTitle className="text-2xl text-center">
               {currentStep === 1 && "Company Information"}
@@ -220,12 +220,12 @@ export default function CompanySurveyPage() {
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-6 text-gray-900">
             {/* Step 1: Company Information */}
             {currentStep === 1 && (
               <div className="space-y-6">
                 <div>
-                  <Label htmlFor="company">Company Name</Label>
+                  <Label htmlFor="company" className="text-gray-900 font-semibold">Company Name</Label>
                   <Input
                     id="company"
                     placeholder="e.g., Evoca Group"
@@ -235,7 +235,7 @@ export default function CompanySurveyPage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="industry">Industry</Label>
+                  <Label htmlFor="industry" className="text-gray-900 font-semibold">Industry</Label>
                   <Input
                     id="industry"
                     placeholder="e.g., Food & Beverage, Technology, Finance"
@@ -245,18 +245,18 @@ export default function CompanySurveyPage() {
                 </div>
 
                 <div>
-                  <Label>Company Size</Label>
+                  <Label className="text-gray-900 font-semibold">Company Size</Label>
                   <RadioGroup
                     value={surveyData.companySize}
                     onValueChange={(value) => setSurveyData(prev => ({...prev, companySize: value}))}
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="startup" id="startup" />
-                      <Label htmlFor="startup">Startup (1-50 employees)</Label>
+                      <Label htmlFor="startup" className="text-gray-800">Startup (1-50 employees)</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="small" id="small" />
-                      <Label htmlFor="small">Small (51-200 employees)</Label>
+                      <Label htmlFor="small" className="text-gray-800">Small (51-200 employees)</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="medium" id="medium" />

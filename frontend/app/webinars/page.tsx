@@ -104,7 +104,7 @@ export default function WebinarsPage() {
             </div>
 
             <div className="space-y-6">
-              {upcomingWebinars.map((webinar, index) => (
+              {(upcomingWebinars || []).map((webinar, index) => (
                 <Card key={index} className="hover:shadow-lg transition-shadow border-l-4 border-l-emerald-500">
                   <CardContent className="p-6">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -175,7 +175,7 @@ export default function WebinarsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {pastWebinars.map((webinar, index) => (
+              {(pastWebinars || []).map((webinar, index) => (
                 <Card key={index} className="hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <div className="aspect-video bg-gray-100 rounded-lg mb-4 flex items-center justify-center">

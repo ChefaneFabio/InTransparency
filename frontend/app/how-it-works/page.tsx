@@ -333,7 +333,7 @@ export default function HowItWorksPage() {
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
-                      {step.features.map((feature, featureIndex) => (
+                      {(step.features || []).map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-center text-sm text-gray-700">
                           <CheckCircle className="h-4 w-4 text-green-600 mr-2 flex-shrink-0" />
                           {feature}

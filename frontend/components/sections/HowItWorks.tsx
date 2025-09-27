@@ -377,7 +377,7 @@ export function HowItWorks() {
                     <h4 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h4>
                     <p className="text-gray-600 mb-4">{benefit.description}</p>
                     <div className="space-y-2">
-                      {benefit.features.map((feature, featureIndex) => (
+                      {(benefit.features || []).map((feature, featureIndex) => (
                         <div key={featureIndex} className="flex items-center text-sm text-gray-600">
                           <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
                           {feature}

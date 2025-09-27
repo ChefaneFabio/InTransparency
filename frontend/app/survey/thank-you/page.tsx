@@ -47,7 +47,7 @@ export default function SurveyThankYouPage() {
   const Icon = getSurveyIcon()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-blue-50/50 flex items-center justify-center">
+    <div className="min-h-screen bg-white flex items-center justify-center">
       <div className="max-w-2xl mx-auto px-4">
         <Card className="bg-white/80 backdrop-blur-sm shadow-xl border border-blue-100/50">
           <CardContent className="p-12 text-center">

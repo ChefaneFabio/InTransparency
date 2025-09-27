@@ -316,13 +316,13 @@ export default function ProgressionDemo() {
                     Equivalent Courses Across Universities
                   </h3>
                   <div className="grid gap-3">
-                    {equivalences.map((equiv, idx) => (
+                    {(equivalences || []).map((equiv, idx) => (
                       <div key={idx} className="border rounded-lg p-4 flex items-center justify-between hover:bg-gray-50">
                         <div className="flex-1">
                           <h4 className="font-medium">{equiv.name}</h4>
                           <p className="text-sm text-gray-600 mb-2">{equiv.university}</p>
                           <div className="flex flex-wrap gap-1">
-                            {equiv.skillOverlap.map((skill: string, skillIdx: number) => (
+                            {(equiv.skillOverlap || []).map((skill: string, skillIdx: number) => (
                               <Badge key={skillIdx} variant="secondary" className="text-xs">
                                 {skill.replace(/_/g, ' ')}
                               </Badge>
@@ -350,7 +350,7 @@ export default function ProgressionDemo() {
                     Jobs Requiring This Course
                   </h3>
                   <div className="grid gap-3">
-                    {matchingJobs.map((job, idx) => (
+                    {(matchingJobs || []).map((job, idx) => (
                       <div key={idx} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
                         <div className="flex items-start justify-between mb-3">
                           <div>
@@ -431,7 +431,7 @@ export default function ProgressionDemo() {
         {/* Timeline View */}
         {progressionView === 'timeline' && (
           <div className="space-y-6">
-            {currentStudent.yearlyProgression.map((year: any, idx: number) => (
+            {(currentStudent.yearlyProgression || []).map((year: any, idx: number) => (
               <Card key={idx} className="relative">
                 <div className="absolute -left-4 top-6 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center z-10">
                   <span className="text-white text-sm font-bold">{idx + 1}</span>
@@ -456,7 +456,7 @@ export default function ProgressionDemo() {
                     <div>
                       <h4 className="font-medium mb-3">Courses Completed</h4>
                       <div className="space-y-2">
-                        {year.courses.map((course: any, courseIdx: number) => (
+                        {(year.courses || []).map((course: any, courseIdx: number) => (
                           <div key={courseIdx} className="flex items-center justify-between p-2 bg-gray-50 rounded text-sm">
                             <div>
                               <span className="font-medium">{course.name}</span>
@@ -474,7 +474,7 @@ export default function ProgressionDemo() {
                       <h4 className="font-medium mb-3">Projects & Developments</h4>
                       {year.projects.length > 0 && (
                         <div className="mb-3">
-                          {year.projects.map((project: any, projIdx: number) => (
+                          {(year.projects || []).map((project: any, projIdx: number) => (
                             <div key={projIdx} className="p-2 bg-green-50 rounded text-sm mb-2">
                               <div className="font-medium">{project.title}</div>
                               <div className="text-gray-600">{project.description}</div>
@@ -489,7 +489,7 @@ export default function ProgressionDemo() {
                         </div>
                       )}
                       <div className="space-y-1">
-                        {year.keyDevelopments.map((dev: string, devIdx: number) => (
+                        {(year.keyDevelopments || []).map((dev: string, devIdx: number) => (
                           <div key={devIdx} className="flex items-start text-sm">
                             <CheckCircle2 className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                             <span>{dev}</span>
@@ -507,7 +507,7 @@ export default function ProgressionDemo() {
         {/* Skills Evolution View */}
         {progressionView === 'skills' && (
           <div className="space-y-6">
-            {Object.entries(currentStudent.skillEvolution).map(([skillName, evolution]) => (
+            {Object.entries(currentStudent.skillEvolution || {}).map(([skillName, evolution]) => (
               <Card key={skillName}>
                 <CardHeader>
                   <CardTitle className="capitalize">
@@ -516,7 +516,7 @@ export default function ProgressionDemo() {
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    {(evolution as any[]).map((stage: any, idx: number) => {
+                    {((evolution as any[]) || []).map((stage: any, idx: number) => {
                       const isActive = idx === (evolution as any[]).length - 1
                       const levelColors = {
                         'Beginner': 'bg-red-100 text-red-800 border-red-200',
@@ -534,7 +534,7 @@ export default function ProgressionDemo() {
                             <div className="text-lg font-bold">{stage.level}</div>
                           </div>
                           <div className="text-xs space-y-1">
-                            {stage.evidence.map((ev: string, evIdx: number) => (
+                            {(stage.evidence || []).map((ev: string, evIdx: number) => (
                               <div key={evIdx} className="truncate">{ev}</div>
                             ))}
                           </div>
@@ -556,7 +556,7 @@ export default function ProgressionDemo() {
         {/* Job Readiness View */}
         {progressionView === 'readiness' && (
           <div className="space-y-4">
-            {Object.entries(currentStudent.jobReadiness).map(([jobTitle, readiness]) => (
+            {Object.entries(currentStudent.jobReadiness || {}).map(([jobTitle, readiness]) => (
               <Card key={jobTitle} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <div className="flex items-center justify-between">
@@ -587,7 +587,7 @@ export default function ProgressionDemo() {
                         Skills You Have
                       </h4>
                       <div className="space-y-2">
-                        {(readiness as any).presentSkills.map((skill: any, idx: number) => (
+                        {((readiness as any).presentSkills || []).map((skill: any, idx: number) => (
                           <div key={idx} className="p-3 bg-green-50 rounded-lg">
                             <div className="flex items-center justify-between mb-1">
                               <span className="font-medium text-sm">{skill.skill}</span>
@@ -608,7 +608,7 @@ export default function ProgressionDemo() {
                         Areas for Development
                       </h4>
                       <div className="space-y-2">
-                        {(readiness as any).missingSkills.map((skill: any, idx: number) => (
+                        {((readiness as any).missingSkills || []).map((skill: any, idx: number) => (
                           <div key={idx} className="p-3 bg-orange-50 rounded-lg">
                             <div className="flex items-center justify-between mb-1">
                               <span className="font-medium text-sm">{skill.skill}</span>
@@ -632,7 +632,7 @@ export default function ProgressionDemo() {
                       Relevant Project Experience
                     </h4>
                     <div className="grid md:grid-cols-2 gap-3">
-                      {(readiness as any).projectEvidence.map((project: any, idx: number) => (
+                      {((readiness as any).projectEvidence || []).map((project: any, idx: number) => (
                         <div key={idx} className="p-3 bg-purple-50 rounded-lg">
                           <div className="font-medium text-sm">{project.title}</div>
                           <div className="text-xs text-purple-700 mt-1">{project.relevance}</div>

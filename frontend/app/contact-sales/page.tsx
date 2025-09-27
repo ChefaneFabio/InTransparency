@@ -142,7 +142,7 @@ export default function ContactSalesPage() {
         <section className="py-16">
           <div className="container max-w-6xl mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {stats.map((stat, index) => (
+              {(stats || []).map((stat, index) => (
                 <div key={index}>
                   <div className="text-3xl font-bold text-blue-600 mb-2">{stat.value}</div>
                   <div className="text-gray-600">{stat.label}</div>
@@ -385,7 +385,7 @@ export default function ContactSalesPage() {
                     Enterprise Features
                   </h2>
                   <div className="space-y-6">
-                    {enterpriseFeatures.map((feature, index) => {
+                    {(enterpriseFeatures || []).map((feature, index) => {
                       const Icon = feature.icon
                       return (
                         <div key={index} className="flex items-start space-x-4">
@@ -408,7 +408,7 @@ export default function ContactSalesPage() {
                     What Our Partners Say
                   </h3>
                   <div className="space-y-6">
-                    {testimonials.map((testimonial, index) => (
+                    {(testimonials || []).map((testimonial, index) => (
                       <Card key={index}>
                         <CardContent className="p-6">
                           <div className="flex items-center mb-4">

@@ -104,7 +104,7 @@ export function RealStats() {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-      {statItems.map((stat, index) => (
+      {(statItems || []).map((stat, index) => (
         <div key={index} className="text-center">
           <div className="text-2xl font-bold text-blue-600">
             {stat.value}{stat.suffix}
