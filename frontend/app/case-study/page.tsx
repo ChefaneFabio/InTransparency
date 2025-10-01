@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
@@ -152,6 +152,7 @@ export default function CaseStudyPage() {
 
       // GPA filter
       const hasMinGPA = candidate.education.some(edu => {
+        if (!edu.maxGPA || edu.maxGPA === 0) return false
         const normalizedGPA = (edu.gpa / edu.maxGPA) * 30 // Normalize to 30 scale
         return normalizedGPA >= activeSearchCriteria.minGPA
       })
@@ -180,7 +181,7 @@ export default function CaseStudyPage() {
   }, [searchQuery, activeSearchCriteria, allCandidates])
 
   // Calculate match score for a candidate
-  const calculateMatchScore = (candidate: Candidate) => {
+  const calculateMatchScore = useCallback((candidate: Candidate) => {
     let score = 0
     let maxScore = 0
 
@@ -212,13 +213,13 @@ export default function CaseStudyPage() {
 
     // GPA (15 points)
     maxScore += 15
-    const normalizedGPA = candidate.education.length > 0
+    const normalizedGPA = candidate.education.length > 0 && candidate.education[0].maxGPA > 0
       ? (candidate.education[0].gpa / candidate.education[0].maxGPA) * 30
       : 0
-    score += Math.min(15, ((normalizedGPA - 24) / 6) * 15)
+    score += Math.min(15, Math.max(0, ((normalizedGPA - 24) / 6) * 15))
 
     return Math.round((score / maxScore) * 100)
-  }
+  }, [activeSearchCriteria])
 
   // Sort candidates by match score
   const rankedCandidates = useMemo(() => {
@@ -228,7 +229,7 @@ export default function CaseStudyPage() {
         matchScore: calculateMatchScore(candidate)
       }))
       .sort((a, b) => b.matchScore - a.matchScore)
-  }, [filteredCandidates])
+  }, [filteredCandidates, calculateMatchScore])
 
   const topCandidate = rankedCandidates.length > 0 ? rankedCandidates[0] : null
 
@@ -241,14 +242,16 @@ export default function CaseStudyPage() {
   }
 
   const addCustomCourse = (course: string) => {
-    if (course && !customCourses.includes(course)) {
-      setCustomCourses([...customCourses, course])
+    const trimmedCourse = course.trim()
+    if (trimmedCourse && !customCourses.includes(trimmedCourse)) {
+      setCustomCourses([...customCourses, trimmedCourse])
     }
   }
 
   const addCustomSkill = (skill: string) => {
-    if (skill && !customSkills.includes(skill)) {
-      setCustomSkills([...customSkills, skill])
+    const trimmedSkill = skill.trim()
+    if (trimmedSkill && !customSkills.includes(trimmedSkill)) {
+      setCustomSkills([...customSkills, trimmedSkill])
     }
   }
 
@@ -618,7 +621,7 @@ export default function CaseStudyPage() {
                       <div>
                         <div className="text-sm font-semibold text-green-900 mb-2">Matching Courses</div>
                         <div className="space-y-1">
-                          {topCandidate.candidate.education[0]?.courses
+                          {(topCandidate.candidate.education[0]?.courses || [])
                             .filter(course =>
                               activeSearchCriteria.courses.some(req =>
                                 course.name.toLowerCase().includes(req.toLowerCase()) ||
