@@ -64,7 +64,8 @@
       "Bash(./node_modules/.bin/next build:*)",
       "Read(//mnt/c/Users/chefa/**)",
       "Bash(../node_modules/.bin/next build:*)",
-      "Bash(npx:*)"
+      "Bash(npx:*)",
+      "Bash(npm cache clean:*)"
     ],
     "defaultMode": "acceptEdits"
   }

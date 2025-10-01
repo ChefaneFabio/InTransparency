@@ -41,8 +41,8 @@ logs/
 .env.local.example
 .env.example
 
-# Build artifacts
-.next/
+# Build artifacts (DO NOT exclude .next/ - Vercel needs it!)
+# .next/ is needed for deployment
 out/
 dist/
 build/
