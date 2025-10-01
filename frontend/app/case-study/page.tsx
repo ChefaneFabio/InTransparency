@@ -270,21 +270,21 @@ export default function CaseStudyPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               How a Banking Firm Found 3 Perfect Junior Candidates Across Italy
             </h1>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
+            <p className="text-xl text-gray-700 max-w-4xl mx-auto mb-8">
               A leading Italian bank needed to hire three junior specialists with very specific knowledge and skills for positions in Milan, Rome, and Turin. Instead of posting jobs and waiting for applications, they <strong>proactively searched</strong> InTransparency's candidate database and found perfect matches in just 12 days.
             </p>
             <div className="flex justify-center space-x-8">
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-600">3</div>
-                <div className="text-sm text-gray-600">Positions Filled</div>
+                <div className="text-sm text-gray-800 font-medium">Positions Filled</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-600">12</div>
-                <div className="text-sm text-gray-600">Days to Hire</div>
+                <div className="text-sm text-gray-800 font-medium">Days to Hire</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-600">{filteredCandidates.length}</div>
-                <div className="text-sm text-gray-600">Candidates Found</div>
+                <div className="text-sm text-gray-800 font-medium">Candidates Found</div>
               </div>
             </div>
           </div>
@@ -430,7 +430,7 @@ export default function CaseStudyPage() {
           <div className="mb-16">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Try It Yourself: Search for Candidates</h2>
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-gray-700">
                 Select a position and see how InTransparency finds perfect candidates in real-time
               </p>
             </div>
@@ -577,7 +577,7 @@ export default function CaseStudyPage() {
                     <div className="pt-4 border-t">
                       <div className="text-center">
                         <div className="text-3xl font-bold text-blue-600">{filteredCandidates.length}</div>
-                        <div className="text-sm text-gray-600">Candidates Found</div>
+                        <div className="text-sm text-gray-800 font-medium">Candidates Found</div>
                       </div>
                     </div>
                   </CardContent>
@@ -663,7 +663,7 @@ export default function CaseStudyPage() {
                                   AI: {project.aiScore}
                                 </Badge>
                               </div>
-                              <p className="text-xs text-gray-600 mb-2">{project.description}</p>
+                              <p className="text-xs text-gray-700 mb-2">{project.description}</p>
                               <div className="flex flex-wrap gap-1">
                                 {project.technologies.slice(0, 5).map((tech, techIdx) => (
                                   <Badge key={techIdx} variant="outline" className="text-xs">{tech}</Badge>
@@ -687,7 +687,7 @@ export default function CaseStudyPage() {
                     <CardContent className="py-16 text-center">
                       <Search className="h-16 w-16 mx-auto text-gray-400 mb-4" />
                       <h3 className="text-xl font-semibold text-gray-900 mb-2">No candidates found</h3>
-                      <p className="text-gray-600">Try adjusting your search criteria</p>
+                      <p className="text-gray-700">Try adjusting your search criteria</p>
                     </CardContent>
                   </Card>
                 )}
@@ -705,13 +705,13 @@ export default function CaseStudyPage() {
                                 <div className="font-semibold text-gray-900">
                                   {result.candidate.firstName} {result.candidate.lastName}
                                 </div>
-                                <div className="text-xs text-gray-600">{result.candidate.education[0]?.university}</div>
+                                <div className="text-xs text-gray-700">{result.candidate.education[0]?.university}</div>
                               </div>
-                              <Badge variant="outline" className="text-xs">
+                              <Badge variant="outline" className="text-xs font-medium">
                                 {result.matchScore}%
                               </Badge>
                             </div>
-                            <div className="text-xs text-gray-600 flex items-center">
+                            <div className="text-xs text-gray-700 flex items-center">
                               <MapPin className="h-3 w-3 mr-1" />
                               {result.candidate.location.city}
                             </div>
@@ -741,7 +741,7 @@ export default function CaseStudyPage() {
                       </div>
                       <div className="text-2xl font-bold text-blue-600 mb-2">{benefit.stat}</div>
                       <h4 className="font-semibold text-gray-900 mb-2">{benefit.title}</h4>
-                      <p className="text-sm text-gray-600">{benefit.description}</p>
+                      <p className="text-sm text-gray-700">{benefit.description}</p>
                     </CardContent>
                   </Card>
                 )
@@ -761,18 +761,18 @@ export default function CaseStudyPage() {
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-lg shadow-sm">
                   <div className="text-3xl font-bold text-blue-600 mb-2">73%</div>
-                  <div className="text-sm text-gray-600 mb-1">Faster Hiring</div>
-                  <p className="text-xs text-gray-500">From 45 days to just 12 days</p>
+                  <div className="text-sm text-gray-800 mb-1 font-medium">Faster Hiring</div>
+                  <p className="text-xs text-gray-700">From 45 days to just 12 days</p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm">
                   <div className="text-3xl font-bold text-green-600 mb-2">94%</div>
-                  <div className="text-sm text-gray-600 mb-1">Average Match Score</div>
-                  <p className="text-xs text-gray-500">All three candidates were perfect fits</p>
+                  <div className="text-sm text-gray-800 mb-1 font-medium">Average Match Score</div>
+                  <p className="text-xs text-gray-700">All three candidates were perfect fits</p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm">
                   <div className="text-3xl font-bold text-purple-600 mb-2">€45K</div>
-                  <div className="text-sm text-gray-600 mb-1">Recruitment Cost Savings</div>
-                  <p className="text-xs text-gray-500">Compared to traditional agency fees</p>
+                  <div className="text-sm text-gray-800 mb-1 font-medium">Recruitment Cost Savings</div>
+                  <p className="text-xs text-gray-700">Compared to traditional agency fees</p>
                 </div>
               </div>
               <div className="mt-6 p-4 bg-white rounded-lg border border-blue-200">
@@ -797,7 +797,7 @@ export default function CaseStudyPage() {
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Ready to Find Your Perfect Candidates?
             </h3>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
               Join leading companies using InTransparency to hire faster and smarter with AI-powered candidate matching
             </p>
             <div className="flex justify-center space-x-4">
