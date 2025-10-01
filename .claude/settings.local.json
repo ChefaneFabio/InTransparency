@@ -65,7 +65,8 @@
       "Read(//mnt/c/Users/chefa/**)",
       "Bash(../node_modules/.bin/next build:*)",
       "Bash(npx:*)",
-      "Bash(npm cache clean:*)"
+      "Bash(npm cache clean:*)",
+      "WebFetch(domain:in-transparency.vercel.app)"
     ],
     "defaultMode": "acceptEdits"
   }
