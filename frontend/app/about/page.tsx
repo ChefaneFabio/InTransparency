@@ -55,39 +55,6 @@ const values = [
   }
 ]
 
-const milestones = [
-  {
-    year: '2022',
-    title: 'Company Founded',
-    description: 'InTransparency was founded with the mission to bridge the gap between student potential and career opportunities.'
-  },
-  {
-    year: '2022',
-    title: 'First AI Models',
-    description: 'Developed our proprietary project analysis and skill assessment algorithms.'
-  },
-  {
-    year: '2023',
-    title: 'University Partnerships',
-    description: 'Began partnering with leading universities to pilot our platform.'
-  },
-  {
-    year: '2023',
-    title: 'Platform Development',
-    description: 'Accelerated product development and platform expansion.'
-  },
-  {
-    year: '2024',
-    title: 'AI Story Generation',
-    description: 'Launched revolutionary AI-powered professional story generation.'
-  },
-  {
-    year: '2024',
-    title: 'Enterprise Launch',
-    description: 'Full platform launch with growing university and employer partnerships.'
-  }
-]
-
 const values_stats = [
   { label: 'Mission', value: 'Bridge the gap between student potential and career opportunities' },
   { label: 'Focus', value: 'AI-powered transparency in career development' },
@@ -236,41 +203,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Timeline Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-slate-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-6">Our Journey</h2>
-              <p className="text-xl text-muted-foreground">
-                Key milestones in building the future of career development
-              </p>
-            </div>
-
-            <div className="space-y-8">
-              {milestones.map((milestone, index) => (
-                <div key={milestone.year} className="flex gap-6">
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">
-                      {milestone.year.slice(-2)}
-                    </div>
-                    {index < milestones.length - 1 && (
-                      <div className="w-0.5 h-16 bg-border mt-4"></div>
-                    )}
-                  </div>
-                  <div className="flex-1 pb-8">
-                    <div className="flex items-center gap-2 mb-2">
-                      <h3 className="text-xl font-bold">{milestone.title}</h3>
-                      <Badge variant="outline">{milestone.year}</Badge>
-                    </div>
-                    <p className="text-muted-foreground">{milestone.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-20">
