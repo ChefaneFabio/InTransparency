@@ -51,14 +51,10 @@ export default function RootLayout({
                 window.addEventListener('load', function() {
                   navigator.serviceWorker.register('/sw.js')
                     .then(function(registration) {
-                      if (process.env.NODE_ENV === 'development') {
-                        console.log('[SW] Registration successful with scope: ', registration.scope);
-                      }
+                      ${process.env.NODE_ENV === 'development' ? "console.log('[SW] Registration successful with scope: ', registration.scope);" : ''}
                     })
                     .catch(function(err) {
-                      if (process.env.NODE_ENV === 'development') {
-                        console.error('[SW] Registration failed: ', err);
-                      }
+                      ${process.env.NODE_ENV === 'development' ? "console.error('[SW] Registration failed: ', err);" : ''}
                     });
                 });
               }
