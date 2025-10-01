@@ -226,8 +226,8 @@ export const mockCandidates: Candidate[] = [
         stars: 342,
         highlights: [
           'Achieved 99.99% uptime in production testing',
-          'Handles automatic failover in < 2 seconds',
-          'Featured in MIT's Systems Lab showcase'
+          'Handles automatic failover in less than 2 seconds',
+          'Featured in MIT\'s Systems Lab showcase'
         ],
         aiScore: 94
       },

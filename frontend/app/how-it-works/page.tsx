@@ -106,44 +106,44 @@ const studentSteps = [
 const recruiterSteps = [
   {
     id: 1,
-    title: 'Post Opportunities',
-    description: 'Create detailed job postings and internship opportunities',
-    icon: Briefcase,
-    color: 'bg-green-50 border-green-200',
+    title: 'Proactive Candidate Discovery',
+    description: 'Search for candidates even if they haven\'t applied to your jobs. Find talent based on skills, education, and experience',
+    icon: Search,
+    color: 'bg-blue-50 border-blue-200',
     features: [
-      'Job descriptions',
-      'Skill requirements',
-      'Company information',
-      'Application tracking',
-      'Automated matching'
+      'Search candidates without applications',
+      'Filter by universities, courses, grades',
+      'Find by projects and technologies',
+      '250+ customizable search filters',
+      'Geographic talent mapping'
     ]
   },
   {
     id: 2,
-    title: 'Discover Talent',
-    description: 'Use advanced search and geographic mapping to find candidates',
-    icon: Globe,
-    color: 'bg-blue-50 border-blue-200',
+    title: 'AI-Powered Matching',
+    description: 'Intelligent AI analyzes industry knowledge and finds common ground between your company profile and candidates',
+    icon: Target,
+    color: 'bg-green-50 border-green-200',
     features: [
-      'Geographic talent search',
-      'Skills-based filtering',
-      'University partnerships',
-      'Real-time availability',
-      'Candidate analytics'
+      'AI RAG for intelligent candidate matching',
+      'Industry knowledge compatibility',
+      'Profile alignment scoring',
+      'Skills and culture fit analysis',
+      'Automated compatibility reports'
     ]
   },
   {
     id: 3,
     title: 'Engage & Hire',
-    description: 'Connect directly with candidates and manage the hiring process',
+    description: 'Connect directly with matched candidates and manage the hiring process efficiently',
     icon: MessageSquare,
     color: 'bg-purple-50 border-purple-200',
     features: [
-      'Direct messaging',
+      'Direct messaging with AI insights',
       'Interview scheduling',
-      'Application management',
-      'Background checks',
-      'Offer management'
+      'Application tracking',
+      'Offer management',
+      'Hiring analytics'
     ]
   }
 ]
@@ -216,7 +216,7 @@ export default function HowItWorksPage() {
       case 'recruiter':
         return {
           title: 'How Recruiters Use InTransparency',
-          subtitle: 'Discover talent globally, post opportunities, and hire the best candidates'
+          subtitle: 'Proactively search for candidates, leverage AI matching to find perfect fits, and hire based on industry knowledge and profile compatibility'
         }
       case 'university':
         return {
@@ -365,8 +365,8 @@ export default function HowItWorksPage() {
                 },
                 {
                   icon: Zap,
-                  title: 'AI-Powered Matching',
-                  description: 'Intelligent algorithms match candidates with perfect opportunities'
+                  title: 'AI-Powered Matching & RAG',
+                  description: 'AI analyzes profiles to find common ground between companies and candidates based on industry knowledge and compatibility'
                 },
                 {
                   icon: Clock,
