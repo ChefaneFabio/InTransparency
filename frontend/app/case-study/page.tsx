@@ -551,7 +551,7 @@ export default function CaseStudyPage() {
                       <Label className="text-sm font-semibold mb-2">Required Skills</Label>
                       <div className="flex flex-wrap gap-2 mb-2">
                         {activeSearchCriteria.skills.map((skill, idx) => (
-                          <Badge key={idx} className="text-xs bg-blue-100 text-blue-900 border border-blue-300">
+                          <Badge key={idx} className="text-xs bg-blue-100 text-blue-900 border border-blue-300 font-semibold">
                             {skill}
                             {customSkills.includes(skill) && (
                               <X
@@ -785,7 +785,7 @@ export default function CaseStudyPage() {
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900">Maria Lombardi</div>
-                    <div className="text-sm text-gray-700">Head of Talent Acquisition, Istituto Bancario</div>
+                    <div className="text-sm text-gray-800">Head of Talent Acquisition, Leading Banking Firm</div>
                   </div>
                 </div>
               </div>
