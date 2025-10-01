@@ -3,7 +3,7 @@
 const isDev = process.env.NODE_ENV === 'development'
 const isVercel = process.env.VERCEL === '1'
 
-// Content Security Policy optimized for Next.js
+// Content Security Policy optimized for Next.js - Updated for Google Maps
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' https://vercel.live https://*.vercel.app https://vitals.vercel-insights.com https://maps.googleapis.com https://*.gstatic.com ${isDev ? "http://localhost:* ws://localhost:*" : ''};
