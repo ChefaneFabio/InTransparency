@@ -268,7 +268,7 @@ export default function CaseStudyPage() {
               Interactive Case Study
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              How Banca Nazionale Found 3 Perfect Junior Candidates Across Italy
+              How a Banking Firm Found 3 Perfect Junior Candidates Across Italy
             </h1>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
               A leading Italian bank needed to hire three junior specialists with very specific knowledge and skills for positions in Milan, Rome, and Turin. Instead of posting jobs and waiting for applications, they <strong>proactively searched</strong> InTransparency's candidate database and found perfect matches in just 12 days.
@@ -300,12 +300,12 @@ export default function CaseStudyPage() {
             <CardContent>
               <div className="space-y-4">
                 <p className="text-gray-700 text-lg">
-                  Banca Nazionale needed to hire three junior professionals for critical roles across different Italian cities. Each position required very specific domain knowledge, relevant coursework, and practical project experience.
+                  A leading banking firm needed to hire three junior professionals for critical roles across different Italian cities. Each position required very specific domain knowledge, relevant coursework, and practical project experience.
                 </p>
                 <div className="grid md:grid-cols-3 gap-4 mt-6">
-                  <div className="bg-red-50 p-4 rounded-lg border border-red-200">
-                    <h4 className="font-semibold text-red-900 mb-2">❌ Traditional Approach Issues</h4>
-                    <ul className="text-sm text-red-700 space-y-1">
+                  <div className="bg-red-50 p-4 rounded-lg border border-red-300">
+                    <h4 className="font-bold text-red-950 mb-2">❌ Traditional Approach Issues</h4>
+                    <ul className="text-sm text-red-900 space-y-1">
                       <li>• Post jobs and wait for candidates to apply</li>
                       <li>• Sift through 500+ generic CVs manually</li>
                       <li>• No way to verify course-specific knowledge</li>
@@ -313,18 +313,18 @@ export default function CaseStudyPage() {
                       <li>• 45+ days average time-to-hire</li>
                     </ul>
                   </div>
-                  <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                    <h4 className="font-semibold text-yellow-900 mb-2">⚠️ Specific Requirements</h4>
-                    <ul className="text-sm text-yellow-700 space-y-1">
+                  <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-400">
+                    <h4 className="font-bold text-yellow-950 mb-2">⚠️ Specific Requirements</h4>
+                    <ul className="text-sm text-yellow-900 space-y-1">
                       <li>• Must have completed specific courses</li>
                       <li>• Need proven projects in banking domain</li>
                       <li>• Location-specific (Milan/Rome/Turin)</li>
                       <li>• Fluent in Italian and English</li>
                     </ul>
                   </div>
-                  <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                    <h4 className="font-semibold text-green-900 mb-2">✅ InTransparency Solution</h4>
-                    <ul className="text-sm text-green-700 space-y-1">
+                  <div className="bg-green-50 p-4 rounded-lg border border-green-400">
+                    <h4 className="font-bold text-green-950 mb-2">✅ InTransparency Solution</h4>
+                    <ul className="text-sm text-green-900 space-y-1">
                       <li>• Proactively search for candidates (no waiting)</li>
                       <li>• Filter by specific courses and grades</li>
                       <li>• Find candidates who haven't applied yet</li>
@@ -416,9 +416,9 @@ export default function CaseStudyPage() {
                     </div>
                   </div>
 
-                  <div className="mt-6 p-4 bg-purple-100 rounded-lg border-2 border-purple-300">
-                    <p className="text-sm text-purple-900">
-                      <strong>For Banca Nazionale:</strong> Instead of posting three jobs and waiting weeks for applications, they immediately searched for candidates who had taken "Financial Risk Management", "Applied Cryptography", and "Machine Learning for Finance" courses, found three perfect matches in their target cities within hours, and made offers within 12 days.
+                  <div className="mt-6 p-4 bg-purple-100 rounded-lg border-2 border-purple-400">
+                    <p className="text-sm text-purple-950 font-medium">
+                      <strong>For this banking firm:</strong> Instead of posting three jobs and waiting weeks for applications, they immediately searched for candidates who had taken "Financial Risk Management", "Applied Cryptography", and "Machine Learning for Finance" courses, found three perfect matches in their target cities within hours, and made offers within 12 days.
                     </p>
                   </div>
                 </div>
@@ -551,7 +551,7 @@ export default function CaseStudyPage() {
                       <Label className="text-sm font-semibold mb-2">Required Skills</Label>
                       <div className="flex flex-wrap gap-2 mb-2">
                         {activeSearchCriteria.skills.map((skill, idx) => (
-                          <Badge key={idx} className="text-xs bg-blue-100 text-blue-700">
+                          <Badge key={idx} className="text-xs bg-blue-100 text-blue-900 border border-blue-300">
                             {skill}
                             {customSkills.includes(skill) && (
                               <X
@@ -606,11 +606,11 @@ export default function CaseStudyPage() {
                           <div className="font-bold text-2xl text-green-900">
                             {topCandidate.candidate.firstName} {topCandidate.candidate.lastName}
                           </div>
-                          <div className="text-sm text-green-700 flex items-center">
+                          <div className="text-sm text-green-800 flex items-center">
                             <GraduationCap className="h-4 w-4 mr-1" />
                             {topCandidate.candidate.education[0]?.degree} • {topCandidate.candidate.education[0]?.university}
                           </div>
-                          <div className="text-sm text-green-700 flex items-center">
+                          <div className="text-sm text-green-800 flex items-center">
                             <MapPin className="h-4 w-4 mr-1" />
                             {topCandidate.candidate.location.city} • GPA: {topCandidate.candidate.education[0]?.gpa}/{topCandidate.candidate.education[0]?.maxGPA}
                           </div>
@@ -632,7 +632,7 @@ export default function CaseStudyPage() {
                             .map((course, idx) => (
                               <div key={idx} className="bg-white p-2 rounded border border-green-200 text-xs flex justify-between items-center">
                                 <span><strong>{course.code}:</strong> {course.name}</span>
-                                <Badge className="bg-green-100 text-green-700 border-green-300">{course.grade}</Badge>
+                                <Badge className="bg-green-100 text-green-800 border-green-300 font-semibold">{course.grade}</Badge>
                               </div>
                             ))}
                         </div>
@@ -647,7 +647,7 @@ export default function CaseStudyPage() {
                             )
                             .slice(0, 8)
                             .map((skill, idx) => (
-                              <Badge key={idx} className="bg-blue-100 text-blue-700 text-xs">{skill}</Badge>
+                              <Badge key={idx} className="bg-blue-100 text-blue-800 text-xs font-semibold">{skill}</Badge>
                             ))}
                         </div>
                       </div>
@@ -659,7 +659,7 @@ export default function CaseStudyPage() {
                             <div key={idx} className="bg-white p-3 rounded border border-green-200">
                               <div className="flex justify-between items-start mb-1">
                                 <div className="font-medium text-sm text-green-900">{project.title}</div>
-                                <Badge className="bg-purple-100 text-purple-700 border-purple-300 text-xs">
+                                <Badge className="bg-purple-100 text-purple-800 border-purple-300 text-xs font-semibold">
                                   AI: {project.aiScore}
                                 </Badge>
                               </div>
@@ -785,7 +785,7 @@ export default function CaseStudyPage() {
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900">Maria Lombardi</div>
-                    <div className="text-sm text-gray-600">Head of Talent Acquisition, Banca Nazionale</div>
+                    <div className="text-sm text-gray-700">Head of Talent Acquisition, Istituto Bancario</div>
                   </div>
                 </div>
               </div>
