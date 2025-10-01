@@ -1,11 +1,14 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Slider } from '@/components/ui/slider'
 import {
   Building2,
   MapPin,
@@ -24,8 +27,12 @@ import {
   GraduationCap,
   Briefcase,
   Database,
-  BarChart3
+  BarChart3,
+  Filter,
+  X,
+  RefreshCw
 } from 'lucide-react'
+import { allCandidates, type Candidate } from '@/lib/mock-candidates'
 
 const positions = [
   {
@@ -35,48 +42,12 @@ const positions = [
     department: 'Risk Management',
     icon: BarChart3,
     color: 'bg-blue-50 border-blue-200',
-    requirements: {
-      education: ['Economics', 'Finance', 'Statistics', 'Mathematics'],
-      skills: ['Risk Assessment', 'Financial Modeling', 'Data Analysis', 'Excel', 'Python', 'SQL'],
-      courses: ['Financial Risk Management', 'Econometrics', 'Corporate Finance', 'Probability Theory'],
-      certifications: ['FRM Level 1 (preferred)', 'CFA Level 1 (preferred)'],
-      languages: ['Italian (Native)', 'English (B2+)']
-    },
-    candidate: {
-      name: 'Marco Rossi',
-      university: 'Bocconi University',
-      degree: 'MSc in Finance',
-      gpa: '28.5/30',
-      location: 'Milan',
-      relevantCourses: [
-        { name: 'Financial Risk Management', grade: 'A', code: 'FIN-402' },
-        { name: 'Quantitative Methods for Finance', grade: 'A-', code: 'FIN-308' },
-        { name: 'Corporate Finance', grade: 'A', code: 'FIN-301' },
-        { name: 'Advanced Econometrics', grade: 'B+', code: 'ECO-405' }
-      ],
-      projects: [
-        {
-          title: 'Credit Risk Model for SME Lending',
-          description: 'Built predictive model using logistic regression to assess default probability',
-          technologies: ['Python', 'Scikit-learn', 'Pandas', 'SQL'],
-          aiScore: 92
-        },
-        {
-          title: 'Portfolio Risk Analysis Dashboard',
-          description: 'Interactive dashboard for VaR and CVaR calculations',
-          technologies: ['Excel VBA', 'Python', 'Tableau'],
-          aiScore: 88
-        }
-      ],
-      skills: ['Python', 'R', 'SQL', 'Excel VBA', 'Financial Modeling', 'Statistical Analysis'],
-      matchScore: 94,
-      whyPerfectFit: [
-        'Strong academic background in finance and quantitative methods',
-        'Completed specialized courses in risk management and econometrics',
-        'Built practical risk assessment models with real-world applications',
-        'Based in Milan - no relocation needed',
-        'Fluent in Italian and English'
-      ]
+    searchCriteria: {
+      courses: ['Financial Risk Management', 'Econometrics', 'Corporate Finance'],
+      skills: ['Python', 'R', 'Risk Assessment', 'Financial Modeling'],
+      majors: ['Finance', 'Economics', 'Statistics'],
+      minGPA: 27,
+      location: 'Milan'
     }
   },
   {
@@ -86,49 +57,12 @@ const positions = [
     department: 'IT Security',
     icon: Database,
     color: 'bg-green-50 border-green-200',
-    requirements: {
-      education: ['Computer Science', 'Cybersecurity', 'Information Technology', 'Engineering'],
-      skills: ['Network Security', 'Penetration Testing', 'SIEM Tools', 'Linux', 'Python', 'Ethical Hacking'],
-      courses: ['Network Security', 'Cryptography', 'Cyber Threat Analysis', 'Secure Software Development'],
-      certifications: ['CEH (preferred)', 'CompTIA Security+', 'OSCP (preferred)'],
-      languages: ['Italian (Native)', 'English (B2+)']
-    },
-    candidate: {
-      name: 'Sofia Bianchi',
-      university: 'Sapienza University of Rome',
-      degree: 'MSc in Cybersecurity',
-      gpa: '29/30',
-      location: 'Rome',
-      relevantCourses: [
-        { name: 'Advanced Network Security', grade: 'A+', code: 'CS-501' },
-        { name: 'Applied Cryptography', grade: 'A', code: 'CS-502' },
-        { name: 'Digital Forensics', grade: 'A', code: 'CS-505' },
-        { name: 'Secure Banking Systems', grade: 'A-', code: 'CS-510' }
-      ],
-      projects: [
-        {
-          title: 'Banking API Security Audit',
-          description: 'Comprehensive security assessment of RESTful banking APIs, identified 12 vulnerabilities',
-          technologies: ['Burp Suite', 'OWASP ZAP', 'Python', 'Metasploit'],
-          aiScore: 95
-        },
-        {
-          title: 'Real-time Threat Detection System',
-          description: 'ML-based intrusion detection system for financial transactions',
-          technologies: ['Python', 'TensorFlow', 'Splunk', 'ELK Stack'],
-          aiScore: 91
-        }
-      ],
-      skills: ['Penetration Testing', 'SIEM (Splunk)', 'Python', 'Linux', 'Network Security', 'Ethical Hacking'],
-      certifications: ['CEH Certified', 'CompTIA Security+'],
-      matchScore: 96,
-      whyPerfectFit: [
-        'Specialized degree in Cybersecurity from top Italian university',
-        'Completed banking-specific security course',
-        'Hands-on experience auditing financial systems',
-        'Already certified in ethical hacking (CEH)',
-        'Based in Rome - perfect for headquarters role'
-      ]
+    searchCriteria: {
+      courses: ['Network Security', 'Cryptography', 'Cyber Threat Analysis'],
+      skills: ['Network Security', 'Penetration Testing', 'Python', 'Linux'],
+      majors: ['Computer Science', 'Cybersecurity', 'Information Technology'],
+      minGPA: 27,
+      location: 'Rome'
     }
   },
   {
@@ -138,49 +72,12 @@ const positions = [
     department: 'Analytics & Innovation',
     icon: Brain,
     color: 'bg-purple-50 border-purple-200',
-    requirements: {
-      education: ['Data Science', 'Computer Science', 'Statistics', 'Mathematics', 'Physics'],
-      skills: ['Machine Learning', 'Python', 'TensorFlow', 'SQL', 'Data Visualization', 'Statistical Modeling'],
-      courses: ['Machine Learning', 'Deep Learning', 'Big Data Analytics', 'Time Series Analysis'],
-      certifications: ['TensorFlow Developer Certificate (preferred)', 'AWS ML Specialty (preferred)'],
-      languages: ['Italian (Native)', 'English (B2+)']
-    },
-    candidate: {
-      name: 'Alessandro Ferrari',
-      university: 'Politecnico di Torino',
-      degree: 'MSc in Data Science',
-      gpa: '27.8/30',
-      location: 'Turin',
-      relevantCourses: [
-        { name: 'Machine Learning for Finance', grade: 'A', code: 'DS-401' },
-        { name: 'Deep Learning Applications', grade: 'A-', code: 'DS-403' },
-        { name: 'Time Series Forecasting', grade: 'A', code: 'DS-410' },
-        { name: 'Financial Data Analytics', grade: 'B+', code: 'DS-405' }
-      ],
-      projects: [
-        {
-          title: 'Customer Churn Prediction Model',
-          description: 'Built LSTM model to predict bank customer churn with 87% accuracy',
-          technologies: ['Python', 'TensorFlow', 'Keras', 'Pandas', 'PostgreSQL'],
-          aiScore: 93
-        },
-        {
-          title: 'Fraud Detection System',
-          description: 'Real-time fraud detection using Random Forest and XGBoost for transaction data',
-          technologies: ['Python', 'Scikit-learn', 'Apache Kafka', 'Docker'],
-          aiScore: 90
-        }
-      ],
-      skills: ['Python', 'TensorFlow', 'PyTorch', 'SQL', 'Tableau', 'Machine Learning', 'Deep Learning'],
-      certifications: ['TensorFlow Developer Certificate'],
-      matchScore: 93,
-      whyPerfectFit: [
-        'Specialized in ML applications for financial services',
-        'Built banking-specific projects (churn prediction, fraud detection)',
-        'Already TensorFlow certified',
-        'Strong background in time series and financial data analytics',
-        'Based in Turin - ready to start immediately'
-      ]
+    searchCriteria: {
+      courses: ['Machine Learning', 'Deep Learning', 'Big Data Analytics'],
+      skills: ['Python', 'TensorFlow', 'Machine Learning', 'SQL'],
+      majors: ['Data Science', 'Computer Science', 'Statistics'],
+      minGPA: 27,
+      location: 'Turin'
     }
   }
 ]
@@ -214,8 +111,146 @@ const platformBenefits = [
 
 export default function CaseStudyPage() {
   const [selectedPosition, setSelectedPosition] = useState(1)
+  const [customCourses, setCustomCourses] = useState<string[]>([])
+  const [customSkills, setCustomSkills] = useState<string[]>([])
+  const [customLocation, setCustomLocation] = useState('')
+  const [minGPA, setMinGPA] = useState(27)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [showFilters, setShowFilters] = useState(false)
+  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null)
+
   const currentPosition = positions.find(p => p.id === selectedPosition) || positions[0]
   const PositionIcon = currentPosition.icon
+
+  // Get active search criteria (custom or position default)
+  const activeSearchCriteria = useMemo(() => {
+    return {
+      courses: customCourses.length > 0 ? customCourses : currentPosition.searchCriteria.courses,
+      skills: customSkills.length > 0 ? customSkills : currentPosition.searchCriteria.skills,
+      location: customLocation || currentPosition.searchCriteria.location,
+      minGPA: minGPA
+    }
+  }, [customCourses, customSkills, customLocation, minGPA, currentPosition])
+
+  // Dynamic candidate filtering
+  const filteredCandidates = useMemo(() => {
+    return allCandidates.filter(candidate => {
+      // Search query filter
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase()
+        const matchesName = `${candidate.firstName} ${candidate.lastName}`.toLowerCase().includes(query)
+        const matchesUniversity = candidate.education.some(edu => edu.university.toLowerCase().includes(query))
+        if (!(matchesName || matchesUniversity)) return false
+      }
+
+      // Location filter
+      if (activeSearchCriteria.location) {
+        if (!candidate.location.city.toLowerCase().includes(activeSearchCriteria.location.toLowerCase())) {
+          return false
+        }
+      }
+
+      // GPA filter
+      const hasMinGPA = candidate.education.some(edu => {
+        const normalizedGPA = (edu.gpa / edu.maxGPA) * 30 // Normalize to 30 scale
+        return normalizedGPA >= activeSearchCriteria.minGPA
+      })
+      if (!hasMinGPA) return false
+
+      // Course filter - check if candidate took any of the required courses
+      const hasCourse = candidate.education.some(edu =>
+        edu.courses.some(course =>
+          activeSearchCriteria.courses.some(requiredCourse =>
+            course.name.toLowerCase().includes(requiredCourse.toLowerCase()) ||
+            requiredCourse.toLowerCase().includes(course.name.toLowerCase())
+          )
+        )
+      )
+      if (!hasCourse) return false
+
+      // Skills filter - check if candidate has any of the required skills
+      const hasSkill = activeSearchCriteria.skills.some(skill =>
+        [...candidate.skills.programming, ...candidate.skills.frameworks, ...candidate.skills.databases, ...candidate.skills.tools]
+          .some(candidateSkill => candidateSkill.toLowerCase().includes(skill.toLowerCase()))
+      )
+      if (!hasSkill) return false
+
+      return true
+    })
+  }, [searchQuery, activeSearchCriteria, allCandidates])
+
+  // Calculate match score for a candidate
+  const calculateMatchScore = (candidate: Candidate) => {
+    let score = 0
+    let maxScore = 0
+
+    // Course matching (40 points)
+    maxScore += 40
+    const matchedCourses = candidate.education.reduce((acc, edu) => {
+      return acc + edu.courses.filter(course =>
+        activeSearchCriteria.courses.some(req =>
+          course.name.toLowerCase().includes(req.toLowerCase()) ||
+          req.toLowerCase().includes(course.name.toLowerCase())
+        )
+      ).length
+    }, 0)
+    score += Math.min(40, matchedCourses * 13)
+
+    // Skills matching (30 points)
+    maxScore += 30
+    const candidateSkills = [...candidate.skills.programming, ...candidate.skills.frameworks, ...candidate.skills.databases, ...candidate.skills.tools]
+    const matchedSkills = activeSearchCriteria.skills.filter(skill =>
+      candidateSkills.some(cs => cs.toLowerCase().includes(skill.toLowerCase()))
+    ).length
+    score += Math.min(30, matchedSkills * 7)
+
+    // Location match (15 points)
+    maxScore += 15
+    if (candidate.location.city.toLowerCase().includes(activeSearchCriteria.location.toLowerCase())) {
+      score += 15
+    }
+
+    // GPA (15 points)
+    maxScore += 15
+    const normalizedGPA = candidate.education.length > 0
+      ? (candidate.education[0].gpa / candidate.education[0].maxGPA) * 30
+      : 0
+    score += Math.min(15, ((normalizedGPA - 24) / 6) * 15)
+
+    return Math.round((score / maxScore) * 100)
+  }
+
+  // Sort candidates by match score
+  const rankedCandidates = useMemo(() => {
+    return filteredCandidates
+      .map(candidate => ({
+        candidate,
+        matchScore: calculateMatchScore(candidate)
+      }))
+      .sort((a, b) => b.matchScore - a.matchScore)
+  }, [filteredCandidates])
+
+  const topCandidate = rankedCandidates.length > 0 ? rankedCandidates[0] : null
+
+  const resetFilters = () => {
+    setCustomCourses([])
+    setCustomSkills([])
+    setCustomLocation('')
+    setMinGPA(27)
+    setSearchQuery('')
+  }
+
+  const addCustomCourse = (course: string) => {
+    if (course && !customCourses.includes(course)) {
+      setCustomCourses([...customCourses, course])
+    }
+  }
+
+  const addCustomSkill = (skill: string) => {
+    if (skill && !customSkills.includes(skill)) {
+      setCustomSkills([...customSkills, skill])
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
@@ -227,13 +262,13 @@ export default function CaseStudyPage() {
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-blue-100 text-blue-700 border-blue-200">
               <Building2 className="h-3 w-3 mr-1" />
-              Case Study
+              Interactive Case Study
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               How Banca Nazionale Found 3 Perfect Junior Candidates Across Italy
             </h1>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
-              A leading Italian bank needed to hire three junior specialists with very specific knowledge and skills for positions in Milan, Rome, and Turin. Here's how InTransparency's AI-powered platform matched them with the perfect candidates in just 12 days.
+              A leading Italian bank needed to hire three junior specialists with very specific knowledge and skills for positions in Milan, Rome, and Turin. Instead of posting jobs and waiting for applications, they <strong>proactively searched</strong> InTransparency's candidate database and found perfect matches in just 12 days.
             </p>
             <div className="flex justify-center space-x-8">
               <div className="text-center">
@@ -245,8 +280,8 @@ export default function CaseStudyPage() {
                 <div className="text-sm text-gray-600">Days to Hire</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600">94%</div>
-                <div className="text-sm text-gray-600">Average Match Score</div>
+                <div className="text-3xl font-bold text-purple-600">{filteredCandidates.length}</div>
+                <div className="text-sm text-gray-600">Candidates Found</div>
               </div>
             </div>
           </div>
@@ -268,9 +303,10 @@ export default function CaseStudyPage() {
                   <div className="bg-red-50 p-4 rounded-lg border border-red-200">
                     <h4 className="font-semibold text-red-900 mb-2">❌ Traditional Approach Issues</h4>
                     <ul className="text-sm text-red-700 space-y-1">
-                      <li>• Generic job boards with keyword matching</li>
-                      <li>• 500+ applications to review manually</li>
+                      <li>• Post jobs and wait for candidates to apply</li>
+                      <li>• Sift through 500+ generic CVs manually</li>
                       <li>• No way to verify course-specific knowledge</li>
+                      <li>• Passive approach - can't search for candidates</li>
                       <li>• 45+ days average time-to-hire</li>
                     </ul>
                   </div>
@@ -286,8 +322,9 @@ export default function CaseStudyPage() {
                   <div className="bg-green-50 p-4 rounded-lg border border-green-200">
                     <h4 className="font-semibold text-green-900 mb-2">✅ InTransparency Solution</h4>
                     <ul className="text-sm text-green-700 space-y-1">
-                      <li>• Search by specific courses and grades</li>
-                      <li>• Filter by project technologies and domains</li>
+                      <li>• Proactively search for candidates (no waiting)</li>
+                      <li>• Filter by specific courses and grades</li>
+                      <li>• Find candidates who haven't applied yet</li>
                       <li>• Geographic mapping across Italy</li>
                       <li>• AI-powered relevance matching</li>
                     </ul>
@@ -297,161 +334,105 @@ export default function CaseStudyPage() {
             </CardContent>
           </Card>
 
-          {/* The Problem with Traditional CVs for Juniors */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
-              Why Traditional CVs Fail for Junior Positions
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Traditional CV Example */}
-              <Card className="border-2 border-red-200 bg-red-50">
-                <CardHeader>
-                  <CardTitle className="flex items-center text-red-900">
-                    <FileText className="h-5 w-5 mr-2" />
-                    Traditional CV (Sterile & Generic)
-                  </CardTitle>
-                  <CardDescription>What recruiters usually see</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="bg-white p-6 rounded-lg shadow-inner space-y-4">
-                    <div>
-                      <h4 className="font-bold text-gray-900">Marco Rossi</h4>
-                      <p className="text-sm text-gray-600">Recent Graduate • Milan, Italy</p>
-                    </div>
-                    <div>
-                      <h5 className="font-semibold text-gray-700 text-sm mb-1">Education</h5>
-                      <p className="text-sm text-gray-600">MSc in Finance - Bocconi University</p>
-                      <p className="text-xs text-gray-500">Graduated 2024</p>
-                    </div>
-                    <div>
-                      <h5 className="font-semibold text-gray-700 text-sm mb-1">Skills</h5>
-                      <p className="text-sm text-gray-600">Python, Excel, Risk Management, Financial Analysis</p>
-                    </div>
-                    <div>
-                      <h5 className="font-semibold text-gray-700 text-sm mb-1">Experience</h5>
-                      <p className="text-sm text-gray-600 italic">None or limited internships</p>
-                    </div>
-                    <div className="pt-4 border-t border-gray-200">
-                      <h5 className="font-semibold text-red-700 text-sm mb-2">❌ What's Missing?</h5>
-                      <ul className="text-xs text-red-600 space-y-1">
-                        <li>• Which specific courses did they take?</li>
-                        <li>• What grades did they get?</li>
-                        <li>• What projects did they actually build?</li>
-                        <li>• Do they have domain knowledge in banking?</li>
-                        <li>• Can they apply theory to practice?</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="mt-4 p-3 bg-red-100 rounded-lg border border-red-300">
-                    <p className="text-xs text-red-800">
-                      <strong>The Problem:</strong> For junior candidates with little work experience, traditional CVs are essentially empty. They all look the same: education + skills list. There's no way to differentiate truly qualified candidates from those who just list keywords.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+          {/* Proactive Search - Game Changer */}
+          <Card className="mb-16 bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-300">
+            <CardContent className="pt-6">
+              <div className="flex items-start space-x-4">
+                <div className="bg-purple-600 rounded-full p-4 flex-shrink-0">
+                  <Search className="h-8 w-8 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-purple-900 mb-3">The Game Changer: Proactive Candidate Search</h3>
+                  <p className="text-gray-700 text-lg mb-4">
+                    Unlike traditional job boards where companies post jobs and passively wait for applications, <strong>InTransparency lets companies actively search for and discover candidates</strong> - even those who haven't applied to their jobs yet.
+                  </p>
 
-              {/* InTransparency Profile Example */}
-              <Card className="border-2 border-green-200 bg-green-50">
-                <CardHeader>
-                  <CardTitle className="flex items-center text-green-900">
-                    <Star className="h-5 w-5 mr-2" />
-                    InTransparency Profile (Rich & Detailed)
-                  </CardTitle>
-                  <CardDescription>What our platform reveals</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="bg-white p-6 rounded-lg shadow-inner space-y-4">
-                    <div>
-                      <h4 className="font-bold text-gray-900">Marco Rossi</h4>
-                      <p className="text-sm text-gray-600">MSc Finance • Bocconi • GPA: 28.5/30</p>
-                    </div>
-                    <div>
-                      <h5 className="font-semibold text-gray-700 text-sm mb-2">Relevant Courses with Grades</h5>
-                      <div className="space-y-1">
-                        <div className="flex justify-between text-xs bg-green-50 p-2 rounded border border-green-200">
-                          <span><strong>FIN-402:</strong> Financial Risk Management</span>
-                          <Badge className="bg-green-600 text-white text-xs">A</Badge>
-                        </div>
-                        <div className="flex justify-between text-xs bg-green-50 p-2 rounded border border-green-200">
-                          <span><strong>FIN-308:</strong> Quantitative Methods</span>
-                          <Badge className="bg-green-600 text-white text-xs">A-</Badge>
-                        </div>
-                        <div className="flex justify-between text-xs bg-green-50 p-2 rounded border border-green-200">
-                          <span><strong>ECO-405:</strong> Advanced Econometrics</span>
-                          <Badge className="bg-green-600 text-white text-xs">B+</Badge>
-                        </div>
+                  <div className="grid md:grid-cols-2 gap-6 mt-6">
+                    <div className="bg-white p-5 rounded-lg shadow-sm border border-purple-200">
+                      <h4 className="font-bold text-red-900 mb-3 flex items-center">
+                        <Clock className="h-5 w-5 mr-2" />
+                        Traditional Hiring (Passive & Slow)
+                      </h4>
+                      <ol className="text-sm text-gray-700 space-y-2">
+                        <li className="flex items-start">
+                          <span className="font-bold mr-2">1.</span>
+                          <span>Post job opening on job boards</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="font-bold mr-2">2.</span>
+                          <span>Wait days/weeks for candidates to find your posting</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="font-bold mr-2">3.</span>
+                          <span>Hope the right candidates actually apply</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="font-bold mr-2">4.</span>
+                          <span>Manually review hundreds of generic CVs</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="font-bold mr-2">5.</span>
+                          <span>Discover most applicants don't meet requirements</span>
+                        </li>
+                      </ol>
+                      <div className="mt-4 p-3 bg-red-50 rounded border border-red-200">
+                        <p className="text-xs font-semibold text-red-800">⏰ Result: 45+ days, mostly unqualified candidates</p>
                       </div>
                     </div>
-                    <div>
-                      <h5 className="font-semibold text-gray-700 text-sm mb-2">Verified Projects</h5>
-                      <div className="bg-purple-50 p-3 rounded border border-purple-200">
-                        <div className="flex justify-between items-start mb-1">
-                          <p className="text-xs font-medium">Credit Risk Model for SME Lending</p>
-                          <Badge className="bg-purple-600 text-white text-xs">AI: 92</Badge>
-                        </div>
-                        <p className="text-xs text-gray-600 mb-1">Built predictive model for default probability</p>
-                        <div className="flex flex-wrap gap-1">
-                          <Badge variant="outline" className="text-xs">Python</Badge>
-                          <Badge variant="outline" className="text-xs">Scikit-learn</Badge>
-                          <Badge variant="outline" className="text-xs">SQL</Badge>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="pt-4 border-t border-gray-200">
-                      <h5 className="font-semibold text-green-700 text-sm mb-2">✅ Why This Works</h5>
-                      <ul className="text-xs text-green-700 space-y-1">
-                        <li>• See exactly which courses they excelled in</li>
-                        <li>• Verify they learned the specific topics you need</li>
-                        <li>• Review actual projects with technical details</li>
-                        <li>• AI scores show project quality and relevance</li>
-                        <li>• Proof of applied knowledge, not just theory</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="mt-4 p-3 bg-green-100 rounded-lg border border-green-300">
-                    <p className="text-xs text-green-800">
-                      <strong>The Solution:</strong> InTransparency shows what junior candidates actually learned and built. For students with no work experience, their courses, grades, and academic projects become their portfolio - proving they have the knowledge and skills to succeed.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
 
-            {/* Key Insight */}
-            <Card className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-300">
-              <CardContent className="pt-6">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-blue-600 rounded-full p-3 flex-shrink-0">
-                    <Brain className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-blue-900 mb-2">The Key Insight for Junior Hiring</h4>
-                    <p className="text-gray-700 mb-3">
-                      When candidates have little to no work experience, their <strong>academic coursework and projects</strong> are the best indicators of their capabilities. A student who took "Financial Risk Management" and built a credit risk model has more relevant experience than someone with a generic CV listing "risk management" as a skill.
-                    </p>
-                    <div className="grid md:grid-cols-3 gap-4 mt-4">
-                      <div className="bg-white p-3 rounded-lg shadow-sm">
-                        <div className="font-semibold text-blue-900 text-sm mb-1">Courses = Knowledge</div>
-                        <p className="text-xs text-gray-600">Specific courses prove they learned exactly what you need</p>
-                      </div>
-                      <div className="bg-white p-3 rounded-lg shadow-sm">
-                        <div className="font-semibold text-blue-900 text-sm mb-1">Grades = Mastery</div>
-                        <p className="text-xs text-gray-600">High grades show they didn't just pass - they excelled</p>
-                      </div>
-                      <div className="bg-white p-3 rounded-lg shadow-sm">
-                        <div className="font-semibold text-blue-900 text-sm mb-1">Projects = Application</div>
-                        <p className="text-xs text-gray-600">Real projects prove they can apply theory to practice</p>
+                    <div className="bg-white p-5 rounded-lg shadow-sm border-2 border-green-400">
+                      <h4 className="font-bold text-green-900 mb-3 flex items-center">
+                        <Zap className="h-5 w-5 mr-2" />
+                        InTransparency (Proactive & Fast)
+                      </h4>
+                      <ol className="text-sm text-gray-700 space-y-2">
+                        <li className="flex items-start">
+                          <span className="font-bold mr-2">1.</span>
+                          <span>Search candidate database with 250+ filters</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="font-bold mr-2">2.</span>
+                          <span>Filter by specific courses, grades, and projects</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="font-bold mr-2">3.</span>
+                          <span>Find candidates instantly - no waiting for applications</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="font-bold mr-2">4.</span>
+                          <span>AI shows relevance scores and course-job match</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="font-bold mr-2">5.</span>
+                          <span>Directly reach out to pre-qualified candidates</span>
+                        </li>
+                      </ol>
+                      <div className="mt-4 p-3 bg-green-50 rounded border border-green-300">
+                        <p className="text-xs font-semibold text-green-800">⚡ Result: 12 days, perfect-fit candidates</p>
                       </div>
                     </div>
+                  </div>
+
+                  <div className="mt-6 p-4 bg-purple-100 rounded-lg border-2 border-purple-300">
+                    <p className="text-sm text-purple-900">
+                      <strong>For Banca Nazionale:</strong> Instead of posting three jobs and waiting weeks for applications, they immediately searched for candidates who had taken "Financial Risk Management", "Applied Cryptography", and "Machine Learning for Finance" courses, found three perfect matches in their target cities within hours, and made offers within 12 days.
+                    </p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+            </CardContent>
+          </Card>
 
-          {/* Position Selector */}
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">The Three Positions</h2>
+          {/* Interactive Search Demo */}
+          <div className="mb-16">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Try It Yourself: Search for Candidates</h2>
+              <p className="text-lg text-gray-600">
+                Select a position and see how InTransparency finds perfect candidates in real-time
+              </p>
+            </div>
+
+            {/* Position Selector */}
             <div className="flex justify-center mb-8">
               <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-200">
                 <div className="flex space-x-2">
@@ -460,7 +441,10 @@ export default function CaseStudyPage() {
                     return (
                       <button
                         key={position.id}
-                        onClick={() => setSelectedPosition(position.id)}
+                        onClick={() => {
+                          setSelectedPosition(position.id)
+                          resetFilters()
+                        }}
                         className={`flex items-center px-4 py-3 rounded-md text-sm font-medium transition-all ${
                           selectedPosition === position.id
                             ? position.color + ' shadow-sm'
@@ -479,145 +463,262 @@ export default function CaseStudyPage() {
               </div>
             </div>
 
-            {/* Position Details */}
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Requirements */}
-              <Card className={currentPosition.color}>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <PositionIcon className="h-5 w-5 mr-2" />
-                    {currentPosition.title}
-                  </CardTitle>
-                  <CardDescription className="flex items-center mt-2">
-                    <MapPin className="h-4 w-4 mr-1" />
-                    {currentPosition.location} • {currentPosition.department}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <h4 className="font-semibold mb-3 flex items-center">
-                    <FileText className="h-4 w-4 mr-2" />
-                    Position Requirements
-                  </h4>
-
-                  <div className="space-y-4">
-                    <div>
-                      <div className="text-sm font-medium text-gray-700 mb-2">Education Background</div>
-                      <div className="flex flex-wrap gap-2">
-                        {currentPosition.requirements.education.map((edu, idx) => (
-                          <Badge key={idx} variant="outline" className="text-xs">{edu}</Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <div className="text-sm font-medium text-gray-700 mb-2">Required Courses</div>
-                      <div className="flex flex-wrap gap-2">
-                        {currentPosition.requirements.courses.map((course, idx) => (
-                          <Badge key={idx} variant="outline" className="text-xs bg-white">{course}</Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <div className="text-sm font-medium text-gray-700 mb-2">Technical Skills</div>
-                      <div className="flex flex-wrap gap-2">
-                        {currentPosition.requirements.skills.map((skill, idx) => (
-                          <Badge key={idx} className="text-xs bg-blue-100 text-blue-700 border-blue-200">{skill}</Badge>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <div className="text-sm font-medium text-gray-700 mb-2">Languages</div>
-                      <div className="flex flex-wrap gap-2">
-                        {currentPosition.requirements.languages.map((lang, idx) => (
-                          <Badge key={idx} variant="outline" className="text-xs">{lang}</Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Candidate Match */}
-              <Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-emerald-50">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <CardTitle className="flex items-center text-green-900">
-                      <Award className="h-5 w-5 mr-2" />
-                      Perfect Match Found
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Search Filters */}
+              <div className="lg:col-span-1">
+                <Card className={currentPosition.color}>
+                  <CardHeader>
+                    <CardTitle className="flex items-center justify-between">
+                      <span className="flex items-center">
+                        <Filter className="h-5 w-5 mr-2" />
+                        Search Criteria
+                      </span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={resetFilters}
+                        className="text-xs"
+                      >
+                        <RefreshCw className="h-3 w-3 mr-1" />
+                        Reset
+                      </Button>
                     </CardTitle>
-                    <Badge className="bg-green-600 text-white">
-                      {currentPosition.candidate.matchScore}% Match
-                    </Badge>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-green-100 rounded-full h-12 w-12 flex items-center justify-center">
-                      <Users className="h-6 w-6 text-green-700" />
-                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
                     <div>
-                      <div className="font-bold text-lg text-green-900">{currentPosition.candidate.name}</div>
-                      <div className="text-sm text-green-700 flex items-center">
-                        <GraduationCap className="h-3 w-3 mr-1" />
-                        {currentPosition.candidate.degree} • {currentPosition.candidate.university}
-                      </div>
-                      <div className="text-sm text-green-700 flex items-center">
-                        <MapPin className="h-3 w-3 mr-1" />
-                        {currentPosition.candidate.location} • GPA: {currentPosition.candidate.gpa}
-                      </div>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div>
-                      <div className="text-sm font-semibold text-green-900 mb-2">Relevant Courses (Verified)</div>
-                      <div className="space-y-1">
-                        {currentPosition.candidate.relevantCourses.map((course, idx) => (
-                          <div key={idx} className="bg-white p-2 rounded border border-green-200 text-xs flex justify-between items-center">
-                            <span><strong>{course.code}:</strong> {course.name}</span>
-                            <Badge className="bg-green-100 text-green-700 border-green-300">{course.grade}</Badge>
-                          </div>
-                        ))}
-                      </div>
+                      <Label className="text-sm font-semibold mb-2">Search Query</Label>
+                      <Input
+                        placeholder="Search by name, university..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="text-sm"
+                      />
                     </div>
 
                     <div>
-                      <div className="text-sm font-semibold text-green-900 mb-2">Relevant Projects</div>
-                      <div className="space-y-2">
-                        {currentPosition.candidate.projects.map((project, idx) => (
-                          <div key={idx} className="bg-white p-3 rounded border border-green-200">
-                            <div className="flex justify-between items-start mb-1">
-                              <div className="font-medium text-xs text-green-900">{project.title}</div>
-                              <Badge className="bg-purple-100 text-purple-700 border-purple-300 text-xs">
-                                AI Score: {project.aiScore}
+                      <Label className="text-sm font-semibold mb-2">Location</Label>
+                      <Input
+                        placeholder={currentPosition.location}
+                        value={customLocation}
+                        onChange={(e) => setCustomLocation(e.target.value)}
+                        className="text-sm"
+                      />
+                    </div>
+
+                    <div>
+                      <Label className="text-sm font-semibold mb-2">Minimum GPA: {minGPA}/30</Label>
+                      <Slider
+                        value={[minGPA]}
+                        onValueChange={(value) => setMinGPA(value[0])}
+                        min={24}
+                        max={30}
+                        step={0.5}
+                        className="mt-2"
+                      />
+                    </div>
+
+                    <div>
+                      <Label className="text-sm font-semibold mb-2">Required Courses</Label>
+                      <div className="flex flex-wrap gap-2 mb-2">
+                        {activeSearchCriteria.courses.map((course, idx) => (
+                          <Badge key={idx} variant="outline" className="text-xs">
+                            {course}
+                            {customCourses.includes(course) && (
+                              <X
+                                className="h-3 w-3 ml-1 cursor-pointer"
+                                onClick={() => setCustomCourses(customCourses.filter(c => c !== course))}
+                              />
+                            )}
+                          </Badge>
+                        ))}
+                      </div>
+                      <Input
+                        placeholder="Add custom course..."
+                        onKeyPress={(e) => {
+                          if (e.key === 'Enter') {
+                            addCustomCourse((e.target as HTMLInputElement).value)
+                            ;(e.target as HTMLInputElement).value = ''
+                          }
+                        }}
+                        className="text-xs"
+                      />
+                    </div>
+
+                    <div>
+                      <Label className="text-sm font-semibold mb-2">Required Skills</Label>
+                      <div className="flex flex-wrap gap-2 mb-2">
+                        {activeSearchCriteria.skills.map((skill, idx) => (
+                          <Badge key={idx} className="text-xs bg-blue-100 text-blue-700">
+                            {skill}
+                            {customSkills.includes(skill) && (
+                              <X
+                                className="h-3 w-3 ml-1 cursor-pointer"
+                                onClick={() => setCustomSkills(customSkills.filter(s => s !== skill))}
+                              />
+                            )}
+                          </Badge>
+                        ))}
+                      </div>
+                      <Input
+                        placeholder="Add custom skill..."
+                        onKeyPress={(e) => {
+                          if (e.key === 'Enter') {
+                            addCustomSkill((e.target as HTMLInputElement).value)
+                            ;(e.target as HTMLInputElement).value = ''
+                          }
+                        }}
+                        className="text-xs"
+                      />
+                    </div>
+
+                    <div className="pt-4 border-t">
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-blue-600">{filteredCandidates.length}</div>
+                        <div className="text-sm text-gray-600">Candidates Found</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Results */}
+              <div className="lg:col-span-2">
+                {topCandidate ? (
+                  <Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-emerald-50">
+                    <CardHeader>
+                      <div className="flex items-center justify-between mb-2">
+                        <CardTitle className="flex items-center text-green-900">
+                          <Award className="h-5 w-5 mr-2" />
+                          Top Match
+                        </CardTitle>
+                        <Badge className="bg-green-600 text-white text-lg px-4 py-1">
+                          {topCandidate.matchScore}% Match
+                        </Badge>
+                      </div>
+                      <div className="flex items-center space-x-4">
+                        <div className="bg-green-100 rounded-full h-16 w-16 flex items-center justify-center">
+                          <Users className="h-8 w-8 text-green-700" />
+                        </div>
+                        <div>
+                          <div className="font-bold text-2xl text-green-900">
+                            {topCandidate.candidate.firstName} {topCandidate.candidate.lastName}
+                          </div>
+                          <div className="text-sm text-green-700 flex items-center">
+                            <GraduationCap className="h-4 w-4 mr-1" />
+                            {topCandidate.candidate.education[0]?.degree} • {topCandidate.candidate.education[0]?.university}
+                          </div>
+                          <div className="text-sm text-green-700 flex items-center">
+                            <MapPin className="h-4 w-4 mr-1" />
+                            {topCandidate.candidate.location.city} • GPA: {topCandidate.candidate.education[0]?.gpa}/{topCandidate.candidate.education[0]?.maxGPA}
+                          </div>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div>
+                        <div className="text-sm font-semibold text-green-900 mb-2">Matching Courses</div>
+                        <div className="space-y-1">
+                          {topCandidate.candidate.education[0]?.courses
+                            .filter(course =>
+                              activeSearchCriteria.courses.some(req =>
+                                course.name.toLowerCase().includes(req.toLowerCase()) ||
+                                req.toLowerCase().includes(course.name.toLowerCase())
+                              )
+                            )
+                            .slice(0, 4)
+                            .map((course, idx) => (
+                              <div key={idx} className="bg-white p-2 rounded border border-green-200 text-xs flex justify-between items-center">
+                                <span><strong>{course.code}:</strong> {course.name}</span>
+                                <Badge className="bg-green-100 text-green-700 border-green-300">{course.grade}</Badge>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="text-sm font-semibold text-green-900 mb-2">Matching Skills</div>
+                        <div className="flex flex-wrap gap-2">
+                          {[...topCandidate.candidate.skills.programming, ...topCandidate.candidate.skills.frameworks, ...topCandidate.candidate.skills.databases]
+                            .filter(skill =>
+                              activeSearchCriteria.skills.some(req => skill.toLowerCase().includes(req.toLowerCase()))
+                            )
+                            .slice(0, 8)
+                            .map((skill, idx) => (
+                              <Badge key={idx} className="bg-blue-100 text-blue-700 text-xs">{skill}</Badge>
+                            ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="text-sm font-semibold text-green-900 mb-2">Top Projects</div>
+                        <div className="space-y-2">
+                          {topCandidate.candidate.projects.slice(0, 2).map((project, idx) => (
+                            <div key={idx} className="bg-white p-3 rounded border border-green-200">
+                              <div className="flex justify-between items-start mb-1">
+                                <div className="font-medium text-sm text-green-900">{project.title}</div>
+                                <Badge className="bg-purple-100 text-purple-700 border-purple-300 text-xs">
+                                  AI: {project.aiScore}
+                                </Badge>
+                              </div>
+                              <p className="text-xs text-gray-600 mb-2">{project.description}</p>
+                              <div className="flex flex-wrap gap-1">
+                                {project.technologies.slice(0, 5).map((tech, techIdx) => (
+                                  <Badge key={techIdx} variant="outline" className="text-xs">{tech}</Badge>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="pt-4 border-t">
+                        <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                          <Users className="h-4 w-4 mr-2" />
+                          Contact Candidate
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  <Card className="border-2 border-gray-200">
+                    <CardContent className="py-16 text-center">
+                      <Search className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">No candidates found</h3>
+                      <p className="text-gray-600">Try adjusting your search criteria</p>
+                    </CardContent>
+                  </Card>
+                )}
+
+                {/* Other Matches */}
+                {rankedCandidates.length > 1 && (
+                  <div className="mt-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Other Strong Matches ({rankedCandidates.length - 1})</h3>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {rankedCandidates.slice(1, 5).map((result, idx) => (
+                        <Card key={idx} className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setSelectedCandidate(result.candidate)}>
+                          <CardContent className="p-4">
+                            <div className="flex justify-between items-start mb-2">
+                              <div>
+                                <div className="font-semibold text-gray-900">
+                                  {result.candidate.firstName} {result.candidate.lastName}
+                                </div>
+                                <div className="text-xs text-gray-600">{result.candidate.education[0]?.university}</div>
+                              </div>
+                              <Badge variant="outline" className="text-xs">
+                                {result.matchScore}%
                               </Badge>
                             </div>
-                            <p className="text-xs text-gray-600 mb-2">{project.description}</p>
-                            <div className="flex flex-wrap gap-1">
-                              {project.technologies.map((tech, techIdx) => (
-                                <Badge key={techIdx} variant="outline" className="text-xs">{tech}</Badge>
-                              ))}
+                            <div className="text-xs text-gray-600 flex items-center">
+                              <MapPin className="h-3 w-3 mr-1" />
+                              {result.candidate.location.city}
                             </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <div className="text-sm font-semibold text-green-900 mb-2">Why This Is a Perfect Fit</div>
-                      <ul className="space-y-1">
-                        {currentPosition.candidate.whyPerfectFit.map((reason, idx) => (
-                          <li key={idx} className="flex items-start text-xs text-green-800">
-                            <CheckCircle className="h-3 w-3 mr-2 mt-0.5 flex-shrink-0 text-green-600" />
-                            {reason}
-                          </li>
-                        ))}
-                      </ul>
+                          </CardContent>
+                        </Card>
+                      ))}
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                )}
+              </div>
             </div>
           </div>
 
@@ -673,7 +774,7 @@ export default function CaseStudyPage() {
               </div>
               <div className="mt-6 p-4 bg-white rounded-lg border border-blue-200">
                 <p className="text-gray-700 italic">
-                  "InTransparency transformed our hiring process. Instead of sorting through hundreds of generic CVs, we could search for candidates who actually took the specific courses we needed and built relevant projects. The AI matching gave us confidence that these weren't just keyword matches - these candidates truly understood the banking domain. All three hires are now exceeding expectations."
+                  "InTransparency completely changed how we hire. We didn't have to post jobs and wait for people to send us CVs. We proactively searched for candidates who had taken specific courses like 'Financial Risk Management' and 'Applied Cryptography', and found them instantly across different Italian cities. The AI matching showed us their actual projects and grades - proof they had the knowledge we needed. We contacted candidates who hadn't even applied to us yet, and all three accepted our offers. This is the future of recruiting."
                 </p>
                 <div className="mt-3 flex items-center">
                   <div className="bg-blue-100 rounded-full h-10 w-10 flex items-center justify-center mr-3">

@@ -101,13 +101,10 @@ class SecureStorage {
     if (!this.storageAvailable) return null
 
     try {
-      // Try to get from httpOnly cookie first (production)
-      if (process.env.NODE_ENV === 'production') {
-        const cookieData = this.getSecureCookie()
-        if (cookieData) return cookieData
-      }
+      // Note: httpOnly cookies are handled separately via async methods
+      // This method only reads from localStorage for client-side access
 
-      // Fallback to encrypted localStorage
+      // Get from encrypted localStorage
       const encryptedData = localStorage.getItem(STORAGE_KEY)
       if (!encryptedData) return null
 
