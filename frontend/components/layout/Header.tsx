@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Menu, X, User, Search } from 'lucide-react'
+import { Menu, X, User } from 'lucide-react'
 import { useAuth } from '@/lib/auth/AuthContext'
 
 export function Header() {
@@ -14,6 +14,7 @@ export function Header() {
     { name: 'Features', href: '/features' },
     { name: 'How It Works', href: '/how-it-works' },
     { name: 'Case Study', href: '/case-study' },
+    { name: 'Milestones', href: '/milestones' },
     { name: 'Talent Map', href: '/geographic-talent-search' },
     { name: 'Why InTransparency', href: '/why-intransparency' },
     { name: 'CV Samples', href: '/cv-samples' },
@@ -51,15 +52,6 @@ export function Header() {
               {item.name}
             </Link>
           ))}
-
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
-            <input
-              type="text"
-              placeholder="Quick search..."
-              className="w-64 pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-            />
-          </div>
         </div>
         
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
