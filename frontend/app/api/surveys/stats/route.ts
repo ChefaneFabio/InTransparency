@@ -101,7 +101,7 @@ export async function GET(request: NextRequest) {
         averageCompletionTime: averageCompletionTime._avg.completionTime
           ? Math.round(averageCompletionTime._avg.completionTime / 1000)
           : null, // Convert to seconds
-        responsesByType: responsesByDate.map(item => ({
+        responsesByType: responsesByDate.map((item: any) => ({
           type: item.surveyType,
           count: item._count._all
         }))

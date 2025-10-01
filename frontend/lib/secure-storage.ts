@@ -2,15 +2,8 @@
  * Secure token storage using httpOnly cookies and encrypted localStorage fallback
  */
 
-// Dynamic import for crypto-js to handle missing dependency during build
-let CryptoJS: any = null
-if (typeof window !== 'undefined') {
-  try {
-    CryptoJS = require('crypto-js')
-  } catch (error) {
-    console.warn('crypto-js not available, using basic encoding fallback')
-  }
-}
+// Use built-in crypto instead of external dependency
+const CryptoJS: any = null // Disabled - using fallback encoding
 
 const STORAGE_KEY = 'intransparency_auth'
 const ENCRYPTION_KEY = process.env.NEXT_PUBLIC_ENCRYPTION_KEY || 'default-key-change-in-production'

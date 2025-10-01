@@ -41,14 +41,73 @@ import {
 export default function RecruiterGeographicSearchPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedFilters, setSelectedFilters] = useState({
+    // Basic Filters
     category: 'all', // all, students, graduates, researchers, faculty
     skills: [] as string[],
     universities: [] as string[],
     countries: [] as string[],
-    experience: 'all',
-    availability: 'all',
-    visaStatus: 'all',
-    salaryRange: 'all'
+
+    // Experience & Career
+    minExperience: 0,
+    maxExperience: 20,
+    seniority: [] as string[], // intern, junior, mid, senior, lead, principal
+    industries: [] as string[],
+    companySize: [] as string[], // startup, small, medium, large, enterprise
+
+    // Education
+    degrees: [] as string[], // bachelors, masters, phd, bootcamp
+    majors: [] as string[],
+    minGPA: 0,
+    graduationYears: [] as number[],
+    certifications: [] as string[],
+
+    // Technical Skills
+    programmingLanguages: [] as string[],
+    frameworks: [] as string[],
+    databases: [] as string[],
+    cloudPlatforms: [] as string[],
+    tools: [] as string[],
+    skillLevel: 'any', // any, beginner, intermediate, advanced, expert
+
+    // Projects & Portfolio
+    minProjects: 0,
+    githubRequired: false,
+    minGithubStars: 0,
+    portfolioRequired: false,
+    openSource: false,
+
+    // Work Preferences
+    availability: 'all', // all, immediate, 2weeks, 1month, 3months
+    workType: [] as string[], // remote, hybrid, onsite
+    willingToRelocate: 'any', // any, yes, no
+    timeZone: [] as string[],
+
+    // Legal & Visa
+    visaStatus: [] as string[], // citizen, permanent_resident, work_visa, needs_sponsorship
+    requiresSponsorship: 'any',
+    securityClearance: [] as string[],
+
+    // Compensation
+    minSalary: 0,
+    maxSalary: 500000,
+    currency: 'USD',
+    equityAccepted: 'any',
+
+    // Languages
+    spokenLanguages: [] as string[],
+    languageProficiency: 'any', // any, basic, professional, native
+
+    // Diversity & Inclusion
+    diversityFilters: {
+      underrepresented: false,
+      firstGeneration: false,
+      veteran: false,
+      disabilities: false
+    },
+
+    // Distance & Location
+    maxDistance: 0, // 0 = no limit, or in km
+    specificCities: [] as string[]
   })
   const [mapView, setMapView] = useState<'satellite' | 'street' | 'terrain' | 'density'>('density')
   const [heatmapEnabled, setHeatmapEnabled] = useState(true)
@@ -220,6 +279,100 @@ export default function RecruiterGeographicSearchPage() {
   const countries = [
     'USA', 'UK', 'Germany', 'Canada', 'Australia', 'Singapore', 'Switzerland',
     'Netherlands', 'France', 'Sweden', 'Norway', 'Denmark', 'Japan', 'South Korea'
+  ]
+
+  // Comprehensive Filter Options
+  const seniorityLevels = [
+    'Intern', 'Entry Level', 'Junior (1-2 years)', 'Mid Level (3-5 years)',
+    'Senior (5-8 years)', 'Lead (8-12 years)', 'Principal/Staff (12+ years)', 'Executive'
+  ]
+
+  const industries = [
+    'FinTech', 'Healthcare/Biotech', 'E-Commerce', 'SaaS', 'Enterprise Software',
+    'Gaming', 'EdTech', 'Automotive', 'Aerospace', 'Robotics', 'IoT', 'Blockchain/Crypto',
+    'Cybersecurity', 'AI/ML Research', 'Consulting', 'Government/Defense', 'Non-Profit'
+  ]
+
+  const companySizes = [
+    'Startup (1-10)', 'Small (11-50)', 'Medium (51-250)',
+    'Large (251-1000)', 'Enterprise (1000+)', 'Fortune 500'
+  ]
+
+  const degrees = [
+    'High School', 'Associate', 'Bachelors', 'Masters', 'MBA', 'PhD',
+    'Bootcamp Graduate', 'Self-Taught', 'Online Certification'
+  ]
+
+  const majors = [
+    'Computer Science', 'Software Engineering', 'Data Science', 'Information Systems',
+    'Computer Engineering', 'Electrical Engineering', 'Mathematics', 'Statistics',
+    'Physics', 'Artificial Intelligence', 'Machine Learning', 'Cybersecurity',
+    'Business Administration', 'Economics', 'Design', 'Other Engineering'
+  ]
+
+  const certifications = [
+    'AWS Certified', 'Azure Certified', 'GCP Certified', 'PMP', 'Scrum Master',
+    'Security+', 'CISSP', 'OSCP', 'CKA (Kubernetes)', 'Terraform Associate',
+    'Google Analytics', 'Salesforce Admin', 'Six Sigma', 'ITIL'
+  ]
+
+  const programmingLanguages = [
+    'JavaScript/TypeScript', 'Python', 'Java', 'C++', 'C#', 'Go', 'Rust',
+    'Swift', 'Kotlin', 'PHP', 'Ruby', 'Scala', 'R', 'MATLAB', 'SQL'
+  ]
+
+  const frameworks = [
+    'React', 'Angular', 'Vue.js', 'Next.js', 'Node.js', 'Django', 'Flask',
+    'Spring Boot', 'ASP.NET', 'Ruby on Rails', 'Laravel', 'Express.js',
+    'FastAPI', 'Svelte', 'Flutter', 'React Native', 'TensorFlow', 'PyTorch'
+  ]
+
+  const databases = [
+    'PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Elasticsearch', 'Cassandra',
+    'DynamoDB', 'Oracle', 'SQL Server', 'Neo4j', 'CouchDB', 'Firebase'
+  ]
+
+  const cloudPlatforms = [
+    'AWS', 'Microsoft Azure', 'Google Cloud (GCP)', 'DigitalOcean', 'Heroku',
+    'Vercel', 'Netlify', 'IBM Cloud', 'Oracle Cloud', 'Alibaba Cloud'
+  ]
+
+  const tools = [
+    'Docker', 'Kubernetes', 'Git', 'Jenkins', 'CircleCI', 'GitHub Actions',
+    'Terraform', 'Ansible', 'Grafana', 'Prometheus', 'Datadog', 'New Relic',
+    'Jira', 'Confluence', 'Figma', 'Adobe XD', 'Postman', 'VS Code'
+  ]
+
+  const workTypes = ['Remote Only', 'Hybrid', 'On-Site', 'Flexible']
+
+  const timeZones = [
+    'PST/PDT (UTC-8/-7)', 'MST/MDT (UTC-7/-6)', 'CST/CDT (UTC-6/-5)', 'EST/EDT (UTC-5/-4)',
+    'GMT/BST (UTC+0/+1)', 'CET/CEST (UTC+1/+2)', 'IST (UTC+5:30)', 'CST China (UTC+8)',
+    'JST (UTC+9)', 'AEST/AEDT (UTC+10/+11)'
+  ]
+
+  const visaStatuses = [
+    'US Citizen', 'US Permanent Resident (Green Card)', 'Canadian Citizen',
+    'EU Citizen', 'UK Citizen', 'H1-B Visa', 'TN Visa', 'OPT/CPT',
+    'Requires H1-B Sponsorship', 'Requires Work Permit'
+  ]
+
+  const securityClearances = [
+    'None Required', 'Public Trust', 'Confidential', 'Secret', 'Top Secret', 'TS/SCI'
+  ]
+
+  const spokenLanguages = [
+    'English', 'Spanish', 'Mandarin', 'French', 'German', 'Arabic', 'Hindi',
+    'Portuguese', 'Russian', 'Japanese', 'Korean', 'Italian', 'Dutch'
+  ]
+
+  const currencies = ['USD', 'EUR', 'GBP', 'CAD', 'AUD', 'CHF', 'SGD', 'JPY']
+
+  const cities = [
+    'San Francisco Bay Area', 'New York City', 'Seattle', 'Austin', 'Boston',
+    'Los Angeles', 'Chicago', 'Denver', 'Atlanta', 'London', 'Berlin',
+    'Amsterdam', 'Paris', 'Toronto', 'Vancouver', 'Singapore', 'Tokyo',
+    'Sydney', 'Melbourne', 'Tel Aviv', 'Bangalore', 'Dublin', 'Stockholm'
   ]
 
   const getTalentDensityColor = (density: string) => {
