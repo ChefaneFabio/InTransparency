@@ -659,7 +659,7 @@ export default function FeaturesPage() {
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
               Complete Feature Overview
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
               Discover all the powerful features that make InTransparency the most comprehensive talent discovery platform
             </p>
 
@@ -667,19 +667,19 @@ export default function FeaturesPage() {
             <div className="flex justify-center space-x-8 mb-8">
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-600">{features.length}</div>
-                <div className="text-sm text-gray-600">Total Features</div>
+                <div className="text-sm text-gray-700">Total Features</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-600">{features.filter(f => f.status === 'live').length}</div>
-                <div className="text-sm text-gray-600">Live Features</div>
+                <div className="text-sm text-gray-700">Live Features</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-600">{features.filter(f => f.status === 'beta').length}</div>
-                <div className="text-sm text-gray-600">Beta Features</div>
+                <div className="text-sm text-gray-700">Beta Features</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-600">{featureCategories.length - 1}</div>
-                <div className="text-sm text-gray-600">Categories</div>
+                <div className="text-sm text-gray-700">Categories</div>
               </div>
             </div>
           </div>
@@ -696,7 +696,7 @@ export default function FeaturesPage() {
                     className={`flex items-center px-6 py-3 rounded-lg text-sm font-medium transition-all ${
                       selectedCategory === category.id
                         ? 'bg-blue-100 text-blue-700 border border-blue-200 shadow-sm'
-                        : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-gray-300'
+                        : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 hover:border-gray-300'
                     }`}
                   >
                     <Icon className="h-4 w-4 mr-2" />
@@ -786,7 +786,7 @@ export default function FeaturesPage() {
                       </div>
                       <div>
                         <CardTitle className="text-xl">{selectedFeature.title}</CardTitle>
-                        <p className="text-gray-600 mt-1">{selectedFeature.description}</p>
+                        <p className="text-gray-700 mt-1">{selectedFeature.description}</p>
                       </div>
                     </div>
                     <Button
@@ -840,7 +840,7 @@ export default function FeaturesPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   Ready to Experience All These Features?
                 </h3>
-                <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
                   Get started with InTransparency today and unlock the power of AI-driven talent discovery
                 </p>
                 <div className="flex justify-center space-x-4">

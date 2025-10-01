@@ -185,8 +185,8 @@ export default function ProjectsPage() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold">Projects</h1>
-            <p className="text-gray-600">Manage and showcase your work</p>
+            <h1 className="text-3xl font-bold text-gray-900">Projects</h1>
+            <p className="text-gray-700">Manage and showcase your work</p>
           </div>
           <Button disabled>
             <Plus className="mr-2 h-4 w-4" />
@@ -215,7 +215,7 @@ export default function ProjectsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Your Projects</h1>
-          <p className="text-gray-600 mt-1">
+          <p className="text-gray-700 mt-1">
             Manage and showcase your academic and personal projects
           </p>
         </div>
@@ -233,7 +233,7 @@ export default function ProjectsPage() {
           <CardContent className="p-6">
             <div className="flex items-center">
               <div className="text-2xl font-bold text-gray-900">{projects.length}</div>
-              <div className="ml-2 text-sm text-gray-600">Total Projects</div>
+              <div className="ml-2 text-sm text-gray-700 font-medium">Total Projects</div>
             </div>
           </CardContent>
         </Card>
@@ -243,7 +243,7 @@ export default function ProjectsPage() {
               <div className="text-2xl font-bold text-green-600">
                 {projects.filter(p => p.status === 'analyzed').length}
               </div>
-              <div className="ml-2 text-sm text-gray-600">Analyzed</div>
+              <div className="ml-2 text-sm text-gray-700 font-medium">Analyzed</div>
             </div>
           </CardContent>
         </Card>
@@ -253,7 +253,7 @@ export default function ProjectsPage() {
               <div className="text-2xl font-bold text-blue-600">
                 {Math.round(projects.reduce((acc, p) => acc + (p.innovationScore || 0), 0) / projects.length) || 0}
               </div>
-              <div className="ml-2 text-sm text-gray-600">Avg Score</div>
+              <div className="ml-2 text-sm text-gray-700 font-medium">Avg Score</div>
             </div>
           </CardContent>
         </Card>
@@ -263,7 +263,7 @@ export default function ProjectsPage() {
               <div className="text-2xl font-bold text-purple-600">
                 {projects.reduce((acc, p) => acc + (p.stats?.views || 0), 0)}
               </div>
-              <div className="ml-2 text-sm text-gray-600">Total Views</div>
+              <div className="ml-2 text-sm text-gray-700 font-medium">Total Views</div>
             </div>
           </CardContent>
         </Card>
@@ -276,7 +276,7 @@ export default function ProjectsPage() {
             {/* Search */}
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
                 <Input
                   placeholder="Search projects..."
                   value={searchQuery}
@@ -375,7 +375,7 @@ export default function ProjectsPage() {
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
                   No projects yet
                 </h3>
-                <p className="text-gray-600 mb-6">
+                <p className="text-gray-700 mb-6">
                   Start showcasing your work by uploading your first project.
                 </p>
                 <Button asChild>
@@ -393,7 +393,7 @@ export default function ProjectsPage() {
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
                   No projects found
                 </h3>
-                <p className="text-gray-600 mb-6">
+                <p className="text-gray-700 mb-6">
                   Try adjusting your search or filter criteria.
                 </p>
                 <Button 
@@ -443,7 +443,7 @@ export default function ProjectsPage() {
                                 {project.title}
                               </Link>
                             </h3>
-                            <p className="text-gray-600 mt-1 line-clamp-2">
+                            <p className="text-gray-700 mt-1 line-clamp-2">
                               {project.description}
                             </p>
                             
@@ -466,7 +466,7 @@ export default function ProjectsPage() {
                               )}
                             </div>
 
-                            <div className="flex items-center space-x-4 mt-3 text-sm text-gray-700">
+                            <div className="flex items-center space-x-4 mt-3 text-sm text-gray-800 font-medium">
                               <span className="flex items-center">
                                 <Eye className="h-4 w-4 mr-1" />
                                 {project.stats?.views || 0}
@@ -489,7 +489,7 @@ export default function ProjectsPage() {
                           <div className="text-lg font-semibold text-blue-600">
                             {project.innovationScore}/100
                           </div>
-                          <div className="text-xs text-gray-700">Innovation</div>
+                          <div className="text-xs text-gray-800 font-medium">Innovation</div>
                         </div>
                         <ProjectActions project={project} />
                       </div>
