@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Switch } from '@/components/ui/switch'
+import { allCandidates, type Candidate } from '@/lib/mock-candidates'
 import {
   MapPin,
   Search,
@@ -35,7 +36,10 @@ import {
   Compass,
   MapIcon,
   Satellite,
-  Route
+  Route,
+  Code,
+  BookOpen,
+  Briefcase
 } from 'lucide-react'
 
 export default function RecruiterGeographicSearchPage() {
@@ -114,6 +118,8 @@ export default function RecruiterGeographicSearchPage() {
   const [selectedLocation, setSelectedLocation] = useState<any>(null)
   const [mapZoom, setMapZoom] = useState(6)
   const [showTalentDetails, setShowTalentDetails] = useState(false)
+  const [showCandidates, setShowCandidates] = useState(true)
+  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null)
 
   const globalTalentHubs = [
     {
@@ -424,6 +430,200 @@ export default function RecruiterGeographicSearchPage() {
 
     return matchesSearch && matchesSkills && matchesCountries
   })
+
+  // Dynamic candidate filtering based on comprehensive criteria
+  const filteredCandidates = allCandidates.filter(candidate => {
+    // Search query matching
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase()
+      const matchesName = `${candidate.firstName} ${candidate.lastName}`.toLowerCase().includes(query)
+      const matchesUniversity = candidate.education.some(edu => edu.university.toLowerCase().includes(query))
+      const matchesMajor = candidate.education.some(edu => edu.major.toLowerCase().includes(query))
+      const matchesSkill = [
+        ...candidate.skills.programming,
+        ...candidate.skills.frameworks,
+        ...candidate.skills.databases,
+        ...candidate.skills.tools
+      ].some(skill => skill.toLowerCase().includes(query))
+      const matchesProject = candidate.projects.some(p =>
+        p.title.toLowerCase().includes(query) ||
+        p.description.toLowerCase().includes(query) ||
+        p.technologies.some(t => t.toLowerCase().includes(query))
+      )
+      const matchesCourse = candidate.education.some(edu =>
+        edu.courses.some(course =>
+          course.name.toLowerCase().includes(query) ||
+          course.code.toLowerCase().includes(query)
+        )
+      )
+
+      if (!(matchesName || matchesUniversity || matchesMajor || matchesSkill || matchesProject || matchesCourse)) {
+        return false
+      }
+    }
+
+    // University filter
+    if (selectedFilters.universities.length > 0) {
+      const hasUniversity = candidate.education.some(edu =>
+        selectedFilters.universities.includes(edu.university)
+      )
+      if (!hasUniversity) return false
+    }
+
+    // Major filter
+    if (selectedFilters.majors.length > 0) {
+      const hasMajor = candidate.education.some(edu =>
+        selectedFilters.majors.includes(edu.major)
+      )
+      if (!hasMajor) return false
+    }
+
+    // Degree filter
+    if (selectedFilters.degrees.length > 0) {
+      const hasDegree = candidate.education.some(edu =>
+        selectedFilters.degrees.includes(edu.degree)
+      )
+      if (!hasDegree) return false
+    }
+
+    // GPA filter
+    if (selectedFilters.minGPA > 0) {
+      const hasMinGPA = candidate.education.some(edu => edu.gpa >= selectedFilters.minGPA)
+      if (!hasMinGPA) return false
+    }
+
+    // Graduation year filter
+    if (selectedFilters.graduationYears.length > 0) {
+      const hasGradYear = candidate.education.some(edu =>
+        selectedFilters.graduationYears.includes(edu.graduationYear)
+      )
+      if (!hasGradYear) return false
+    }
+
+    // Experience filter
+    if (selectedFilters.minExperience > 0 || selectedFilters.maxExperience < 20) {
+      const yearsOfExperience = candidate.experience.length * 1.5 // Rough approximation
+      if (yearsOfExperience < selectedFilters.minExperience || yearsOfExperience > selectedFilters.maxExperience) {
+        return false
+      }
+    }
+
+    // Skills filter - Programming Languages
+    if (selectedFilters.programmingLanguages.length > 0) {
+      const hasLanguage = selectedFilters.programmingLanguages.some(lang =>
+        candidate.skills.programming.some(skill => skill.includes(lang))
+      )
+      if (!hasLanguage) return false
+    }
+
+    // Skills filter - Frameworks
+    if (selectedFilters.frameworks.length > 0) {
+      const hasFramework = selectedFilters.frameworks.some(fw =>
+        candidate.skills.frameworks.some(skill => skill.includes(fw))
+      )
+      if (!hasFramework) return false
+    }
+
+    // Skills filter - Databases
+    if (selectedFilters.databases.length > 0) {
+      const hasDatabase = selectedFilters.databases.some(db =>
+        candidate.skills.databases.some(skill => skill.includes(db))
+      )
+      if (!hasDatabase) return false
+    }
+
+    // Skills filter - Cloud Platforms
+    if (selectedFilters.cloudPlatforms.length > 0) {
+      const hasCloud = selectedFilters.cloudPlatforms.some(cloud =>
+        candidate.skills.tools.some(tool => tool.includes(cloud))
+      )
+      if (!hasCloud) return false
+    }
+
+    // Projects filter
+    if (selectedFilters.minProjects > 0) {
+      if (candidate.projects.length < selectedFilters.minProjects) return false
+    }
+
+    // GitHub filter
+    if (selectedFilters.githubRequired && !candidate.githubUrl) {
+      return false
+    }
+
+    if (selectedFilters.minGithubStars > 0) {
+      const totalStars = candidate.projects.reduce((sum, p) => sum + (p.stars || 0), 0)
+      if (totalStars < selectedFilters.minGithubStars) return false
+    }
+
+    // Portfolio filter
+    if (selectedFilters.portfolioRequired && !candidate.portfolioUrl) {
+      return false
+    }
+
+    // Location filter - Countries
+    if (selectedFilters.countries.length > 0) {
+      if (!selectedFilters.countries.includes(candidate.location.country)) {
+        return false
+      }
+    }
+
+    // Location filter - Cities
+    if (selectedFilters.specificCities.length > 0) {
+      if (!selectedFilters.specificCities.includes(candidate.location.city)) {
+        return false
+      }
+    }
+
+    // Work type filter
+    if (selectedFilters.workType.length > 0) {
+      const hasWorkType = selectedFilters.workType.some(type =>
+        candidate.lookingFor.workTypes.includes(type)
+      )
+      if (!hasWorkType) return false
+    }
+
+    // Relocation filter
+    if (selectedFilters.willingToRelocate !== 'any') {
+      const willing = selectedFilters.willingToRelocate === 'yes'
+      if (candidate.lookingFor.willingToRelocate !== willing) return false
+    }
+
+    // Visa status filter
+    if (selectedFilters.visaStatus.length > 0) {
+      const matchesVisa = selectedFilters.visaStatus.some(status =>
+        candidate.visaStatus.includes(status)
+      )
+      if (!matchesVisa) return false
+    }
+
+    // Sponsorship filter
+    if (selectedFilters.requiresSponsorship !== 'any') {
+      const needsSponsorship = selectedFilters.requiresSponsorship === 'yes'
+      if (candidate.requiresSponsorship !== needsSponsorship) return false
+    }
+
+    // Salary filter
+    if (selectedFilters.minSalary > 0 || selectedFilters.maxSalary < 500000) {
+      const candidateSalary = candidate.lookingFor.salaryExpectation
+      if (candidateSalary.currency === selectedFilters.currency) {
+        if (candidateSalary.min > selectedFilters.maxSalary || candidateSalary.max < selectedFilters.minSalary) {
+          return false
+        }
+      }
+    }
+
+    // Languages filter
+    if (selectedFilters.spokenLanguages.length > 0) {
+      const hasLanguage = selectedFilters.spokenLanguages.some(lang =>
+        candidate.skills.languages.some(candidateLang => candidateLang.includes(lang))
+      )
+      if (!hasLanguage) return false
+    }
+
+    return true
+  })
+
+  const candidateCount = filteredCandidates.length
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
