@@ -52,7 +52,19 @@
       "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_LTt2zFdkgs1N@ep-still-glitter-agaesk7h-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" npx prisma db push)",
       "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_LTt2zFdkgs1N@ep-still-glitter-agaesk7h-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" npx prisma generate)",
       "Bash(rg:*)",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(tree:*)",
+      "Bash(npm audit:*)",
+      "Bash(chmod:*)",
+      "Bash(bash:*)",
+      "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_LTt2zFdkgs1N@ep-still-glitter-agaesk7h-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" npm run build)",
+      "Bash(next build)",
+      "Bash(timeout 300s npx next build)",
+      "Bash(cat:*)",
+      "Bash(./node_modules/.bin/next build:*)",
+      "Read(//mnt/c/Users/chefa/**)",
+      "Bash(../node_modules/.bin/next build:*)",
+      "Bash(npx:*)"
     ],
     "defaultMode": "acceptEdits"
   }

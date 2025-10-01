@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 import { Toaster } from '@/components/ui/toaster'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -37,10 +38,12 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="InTransparency" />
       </head>
       <body className={inter.className}>
-        <Providers>
-          {children}
-          <Toaster />
-        </Providers>
+        <ErrorBoundary>
+          <Providers>
+            {children}
+            <Toaster />
+          </Providers>
+        </ErrorBoundary>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -48,10 +51,14 @@ export default function RootLayout({
                 window.addEventListener('load', function() {
                   navigator.serviceWorker.register('/sw.js')
                     .then(function(registration) {
-                      console.log('[SW] Registration successful with scope: ', registration.scope);
+                      if (process.env.NODE_ENV === 'development') {
+                        console.log('[SW] Registration successful with scope: ', registration.scope);
+                      }
                     })
                     .catch(function(err) {
-                      console.log('[SW] Registration failed: ', err);
+                      if (process.env.NODE_ENV === 'development') {
+                        console.error('[SW] Registration failed: ', err);
+                      }
                     });
                 });
               }

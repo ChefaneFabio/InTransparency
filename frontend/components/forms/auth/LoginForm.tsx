@@ -171,7 +171,7 @@ export function LoginForm({ redirectTo = '/dashboard' }: LoginFormProps) {
             disabled={isLoading}
             onClick={() => {
               // Handle Google OAuth
-              console.log('Google OAuth not implemented yet')
+              // TODO: Implement Google OAuth integration
             }}
           >
             <svg className="h-4 w-4 mr-2" viewBox="0 0 24 24">
@@ -200,7 +200,7 @@ export function LoginForm({ redirectTo = '/dashboard' }: LoginFormProps) {
             disabled={isLoading}
             onClick={() => {
               // Handle LinkedIn OAuth
-              console.log('LinkedIn OAuth not implemented yet')
+              // TODO: Implement LinkedIn OAuth integration
             }}
           >
             <svg className="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24">

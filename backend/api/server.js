@@ -1,8 +1,10 @@
 const express = require('express')
 const cors = require('cors')
 const path = require('path')
+const config = require('./config/environment')
 
 // Import routes
+const authRoutes = require('./routes/auth')
 const universitiesRoutes = require('./routes/universities')
 const jobsRoutes = require('./routes/jobs')
 const companiesRoutes = require('./routes/companies')
@@ -13,26 +15,50 @@ const matchingRoutes = require('./routes/matching')
 const usersRoutes = require('./routes/users')
 const analyticsRoutes = require('./routes/analytics')
 const dataSeedingRoutes = require('./routes/data-seeding')
+const { authenticate } = require('./middleware/auth')
+const { preventSQLInjection, rateLimit } = require('./middleware/validation')
+const { createSecurityStack } = require('./middleware/security')
 
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = config.getConfig().port
 
-// Enable CORS
-app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:3001',
-    'http://localhost:3002',
-    'https://in-transparency-9visdfu70-chefanefabios-projects.vercel.app',
-    'https://in-transparency-m5krpwb5s-chefanefabios-projects.vercel.app',
-    process.env.FRONTEND_URL
-  ].filter(url => Boolean(url)),
-  credentials: true
-}))
+// Configure CORS with dynamic origin validation
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or Postman)
+    if (!origin && config.isDevelopment()) {
+      return callback(null, true)
+    }
+
+    const allowedOrigins = config.getCorsOrigins()
+
+    // Check if origin is in allowed list
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else if (config.isDevelopment()) {
+      // In development, log unrecognized origins but allow them
+      console.warn(`⚠️  CORS: Unrecognized origin ${origin}`)
+      callback(null, true)
+    } else {
+      // In production, reject unrecognized origins
+      callback(new Error(`Origin ${origin} not allowed by CORS`))
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  maxAge: 86400 // Cache preflight requests for 24 hours
+}
+
+app.use(cors(corsOptions))
+
+// Security middleware (apply early)
+const securityStack = createSecurityStack()
+securityStack.forEach(middleware => app.use(middleware))
 
 // Middleware
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json({ limit: '10mb' }))
+app.use(express.urlencoded({ extended: true, limit: '10mb' }))
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -40,7 +66,7 @@ app.get('/health', (req, res) => {
     status: 'healthy',
     message: 'InTransparency API is running!',
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: config.getConfig().nodeEnv
   })
 })
 
@@ -53,44 +79,61 @@ app.get('/api/health', (req, res) => {
   })
 })
 
-// Mock auth endpoints for testing
-app.post('/api/auth/login', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Login endpoint working',
-    token: 'mock-token',
-    user: { id: 1, email: 'test@example.com', role: 'student' }
+// Remove mock endpoints in production
+if (config.isDevelopment()) {
+  // Mock auth endpoints for testing (development only)
+  app.post('/api/auth/login', (req, res) => {
+    res.json({
+      success: true,
+      message: 'Login endpoint working (MOCK)',
+      token: 'mock-token-dev-only',
+      user: { id: 1, email: 'test@example.com', role: 'student' }
+    })
   })
-})
 
-app.post('/api/auth/register', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Register endpoint working',
-    token: 'mock-token',
-    user: { id: 1, email: 'test@example.com', role: 'student' }
+  app.post('/api/auth/register', (req, res) => {
+    res.json({
+      success: true,
+      message: 'Register endpoint working (MOCK)',
+      token: 'mock-token-dev-only',
+      user: { id: 1, email: 'test@example.com', role: 'student' }
+    })
   })
-})
 
-// Mock projects endpoint
-app.get('/api/projects', (req, res) => {
-  res.json({
-    success: true,
-    projects: []
+  // Mock projects endpoint
+  app.get('/api/projects', (req, res) => {
+    res.json({
+      success: true,
+      projects: [],
+      message: 'Mock endpoint - development only'
+    })
   })
-})
+}
 
-// Mount new API routes
+// Mount authentication routes (public)
+app.use('/api/auth', authRoutes)
+
+// Add global middleware for protected routes
+app.use('/api', preventSQLInjection)
+app.use('/api', rateLimit('ip'))
+
+// Mount protected API routes
+app.use('/api/users', authenticate, usersRoutes)
+app.use('/api/applications', authenticate, applicationsRoutes)
+app.use('/api/matching', authenticate, matchingRoutes)
+app.use('/api/analytics', authenticate, analyticsRoutes)
+
+// Mount semi-protected routes (some endpoints public, some protected)
 app.use('/api/universities', universitiesRoutes)
 app.use('/api/jobs', jobsRoutes)
 app.use('/api/companies', companiesRoutes)
 app.use('/api/students', studentsRoutes)
-app.use('/api/applications', applicationsRoutes)
 app.use('/api/search', searchRoutes)
-app.use('/api/matching', matchingRoutes)
-app.use('/api/users', usersRoutes)
-app.use('/api/analytics', analyticsRoutes)
-app.use('/api/data-seeding', dataSeedingRoutes)
+
+// Data seeding routes (development only)
+if (config.isDevelopment()) {
+  app.use('/api/data-seeding', authenticate, dataSeedingRoutes)
+}
 
 // Catch-all for undefined routes
 app.get('*', (req, res) => {
@@ -119,10 +162,20 @@ app.get('*', (req, res) => {
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error('Error:', err.message)
-  res.status(500).json({
+  // Log errors in development only
+  if (config.isDevelopment()) {
+    console.error('Error:', err.stack)
+  }
+
+  // Don't leak error details in production
+  const message = config.isProduction()
+    ? 'Internal Server Error'
+    : err.message
+
+  res.status(err.status || 500).json({
     error: 'Internal Server Error',
-    message: err.message
+    message: message,
+    ...(config.isDevelopment() && { stack: err.stack })
   })
 })
 
@@ -130,7 +183,13 @@ app.use((err, req, res, next) => {
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 InTransparency API running on port ${PORT}`)
   console.log(`📊 Health check: http://localhost:${PORT}/health`)
-  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`)
+  console.log(`🌍 Environment: ${config.getConfig().nodeEnv}`)
+  console.log(`🔒 CORS Origins: ${config.getCorsOrigins().join(', ')}`)
+
+  // Warn about mock endpoints in development
+  if (config.isDevelopment()) {
+    console.log('⚠️  Warning: Mock endpoints are enabled (development mode)')
+  }
 })
 
 module.exports = app

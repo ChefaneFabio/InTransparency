@@ -1,10 +1,73 @@
 const express = require('express')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const { body, validationResult } = require('express-validator')
 const database = require('../database/Database')
+const config = require('../config/environment')
 const { authenticate } = require('../middleware/auth')
+const { validateInput, preventSQLInjection, rateLimit } = require('../middleware/validation')
+const { passwordResetService } = require('../services/passwordReset')
 const router = express.Router()
 
-// Register new user
-router.post('/register', async (req, res) => {
+// Input validation middleware
+const handleValidationErrors = (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      success: false,
+      errors: errors.array().map(err => ({
+        field: err.param,
+        message: err.msg
+      }))
+    })
+  }
+  next()
+}
+
+// Validation rules for registration
+const validateRegistration = [
+  body('email')
+    .isEmail()
+    .normalizeEmail()
+    .withMessage('Please provide a valid email'),
+  body('password')
+    .isLength({ min: 8 })
+    .withMessage('Password must be at least 8 characters')
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
+    .withMessage('Password must contain uppercase, lowercase, and number'),
+  body('firstName')
+    .trim()
+    .isLength({ min: 1, max: 50 })
+    .escape()
+    .withMessage('First name is required (max 50 characters)'),
+  body('lastName')
+    .trim()
+    .isLength({ min: 1, max: 50 })
+    .escape()
+    .withMessage('Last name is required (max 50 characters)'),
+  body('role')
+    .isIn(['student', 'company', 'university'])
+    .withMessage('Invalid role specified')
+]
+
+// Validation rules for login
+const validateLogin = [
+  body('email')
+    .isEmail()
+    .normalizeEmail()
+    .withMessage('Please provide a valid email'),
+  body('password')
+    .notEmpty()
+    .withMessage('Password is required')
+]
+
+// Register new user with validation
+router.post('/register',
+  rateLimit('ip'),
+  preventSQLInjection,
+  validateRegistration,
+  handleValidationErrors,
+  async (req, res) => {
   try {
     const {
       firstName,
@@ -46,8 +109,10 @@ router.post('/register', async (req, res) => {
       }
     })
   } catch (error) {
-    console.error('Registration error:', error.message)
-    
+    if (config.isDevelopment()) {
+      console.error('Registration error:', error.message)
+    }
+
     res.status(400).json({
       success: false,
       error: error.message
@@ -55,8 +120,13 @@ router.post('/register', async (req, res) => {
   }
 })
 
-// Login user
-router.post('/login', async (req, res) => {
+// Login user with validation
+router.post('/login',
+  rateLimit('ip'),
+  preventSQLInjection,
+  validateLogin,
+  handleValidationErrors,
+  async (req, res) => {
   try {
     const { email, password } = req.body
 
@@ -104,8 +174,10 @@ router.post('/login', async (req, res) => {
       }
     })
   } catch (error) {
-    console.error('Login error:', error.message)
-    
+    if (config.isDevelopment()) {
+      console.error('Login error:', error.message)
+    }
+
     res.status(500).json({
       success: false,
       error: 'Login failed'
@@ -129,8 +201,10 @@ router.get('/me', authenticate, async (req, res) => {
       }
     })
   } catch (error) {
-    console.error('Get user error:', error.message)
-    
+    if (config.isDevelopment()) {
+      console.error('Get user error:', error.message)
+    }
+
     res.status(500).json({
       success: false,
       error: 'Failed to get user information'
@@ -161,8 +235,10 @@ router.put('/profile', authenticate, async (req, res) => {
       }
     })
   } catch (error) {
-    console.error('Update profile error:', error.message)
-    
+    if (config.isDevelopment()) {
+      console.error('Update profile error:', error.message)
+    }
+
     res.status(400).json({
       success: false,
       error: error.message
@@ -181,8 +257,10 @@ router.post('/logout', authenticate, async (req, res) => {
       message: 'Logout successful'
     })
   } catch (error) {
-    console.error('Logout error:', error.message)
-    
+    if (config.isDevelopment()) {
+      console.error('Logout error:', error.message)
+    }
+
     res.status(500).json({
       success: false,
       error: 'Logout failed'
@@ -203,8 +281,10 @@ router.post('/verify-email', async (req, res) => {
       message: 'Email verified successfully'
     })
   } catch (error) {
-    console.error('Email verification error:', error.message)
-    
+    if (config.isDevelopment()) {
+      console.error('Email verification error:', error.message)
+    }
+
     res.status(400).json({
       success: false,
       error: 'Email verification failed'
@@ -212,33 +292,100 @@ router.post('/verify-email', async (req, res) => {
   }
 })
 
-// Request password reset (placeholder)
-router.post('/forgot-password', async (req, res) => {
-  try {
-    const { email } = req.body
-    
-    if (!email) {
-      return res.status(400).json({
+// Request password reset
+router.post('/forgot-password',
+  rateLimit('ip'),
+  preventSQLInjection,
+  [
+    body('email')
+      .isEmail()
+      .normalizeEmail()
+      .withMessage('Please provide a valid email')
+  ],
+  handleValidationErrors,
+  async (req, res) => {
+    try {
+      const { email } = req.body
+      const result = await passwordResetService.requestPasswordReset(email, req)
+
+      const statusCode = result.success ? 200 : 400
+      res.status(statusCode).json(result)
+    } catch (error) {
+      if (config.isDevelopment()) {
+        console.error('Password reset error:', error.message)
+      }
+
+      res.status(500).json({
         success: false,
-        error: 'Email is required'
+        error: 'Password reset failed'
       })
     }
-
-    // In a real implementation, you would send a password reset email
-    // For now, return success
-    
-    res.json({
-      success: true,
-      message: 'Password reset instructions sent to your email'
-    })
-  } catch (error) {
-    console.error('Password reset error:', error.message)
-    
-    res.status(500).json({
-      success: false,
-      error: 'Password reset failed'
-    })
   }
-})
+)
+
+// Verify password reset token
+router.post('/verify-reset-token',
+  rateLimit('ip'),
+  preventSQLInjection,
+  [
+    body('token')
+      .isLength({ min: 32 })
+      .withMessage('Invalid token format')
+  ],
+  handleValidationErrors,
+  async (req, res) => {
+    try {
+      const { token } = req.body
+      const result = await passwordResetService.verifyResetToken(token, req)
+
+      const statusCode = result.success ? 200 : 400
+      res.status(statusCode).json(result)
+    } catch (error) {
+      if (config.isDevelopment()) {
+        console.error('Token verification error:', error.message)
+      }
+
+      res.status(500).json({
+        success: false,
+        error: 'Token verification failed'
+      })
+    }
+  }
+)
+
+// Reset password with token
+router.post('/reset-password',
+  rateLimit('ip'),
+  preventSQLInjection,
+  [
+    body('token')
+      .isLength({ min: 32 })
+      .withMessage('Invalid token format'),
+    body('password')
+      .isLength({ min: 8 })
+      .withMessage('Password must be at least 8 characters')
+      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
+      .withMessage('Password must contain uppercase, lowercase, and number')
+  ],
+  handleValidationErrors,
+  async (req, res) => {
+    try {
+      const { token, password } = req.body
+      const result = await passwordResetService.resetPassword(token, password, req)
+
+      const statusCode = result.success ? 200 : 400
+      res.status(statusCode).json(result)
+    } catch (error) {
+      if (config.isDevelopment()) {
+        console.error('Password reset error:', error.message)
+      }
+
+      res.status(500).json({
+        success: false,
+        error: 'Password reset failed'
+      })
+    }
+  }
+)
 
 module.exports = router

@@ -1,35 +1,115 @@
 /** @type {import('next').NextConfig} */
+
+const isDev = process.env.NODE_ENV === 'development'
+const isVercel = process.env.VERCEL === '1'
+
+// Content Security Policy optimized for Next.js
+const ContentSecurityPolicy = `
+  default-src 'self';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://vercel.live https://*.vercel.app https://vitals.vercel-insights.com ${isDev ? "http://localhost:* ws://localhost:*" : ''};
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  font-src 'self' https://fonts.gstatic.com data:;
+  img-src 'self' data: blob: https: https://*.vercel.app https://*.amazonaws.com;
+  connect-src 'self' https://vitals.vercel-insights.com https://*.vercel.app https://api-intransparency.onrender.com ${isDev ? 'http://localhost:* ws://localhost:* wss://localhost:*' : ''};
+  frame-src 'none';
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self';
+  frame-ancestors 'none';
+  worker-src 'self' blob:;
+  child-src 'self' blob:;
+  ${!isDev ? 'upgrade-insecure-requests;' : ''}
+`
+
 const nextConfig = {
+  // Disable x-powered-by header
+  poweredByHeader: false,
+
+  // Enable React strict mode
+  reactStrictMode: true,
+
+  // Enable SWC minifier for better performance
+  swcMinify: true,
+
+  // Image optimization
   images: {
     domains: [
       's3.amazonaws.com',
       'intransparency-files.s3.eu-west-1.amazonaws.com',
-      'localhost'
+      'localhost',
+      'vercel.app',
+      'vercel.com'
     ],
     formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384]
   },
-  
+
+  // Enable compression
   compress: true,
-  
+
+  // Compiler optimizations
+  compiler: {
+    // Remove console.logs in production (keep errors)
+    removeConsole: !isDev ? {
+      exclude: ['error', 'warn']
+    } : false
+  },
+
+  // Experimental features
+  experimental: {
+    // Enable modern JavaScript output
+    esmExternals: true,
+    // Server components
+    serverComponentsExternalPackages: ['@prisma/client']
+  },
+
+  // Security headers
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: '/:path*',
         headers: [
           {
             key: 'X-Frame-Options',
-            value: 'DENY',
+            value: 'SAMEORIGIN', // Changed from DENY to allow same-origin frames
           },
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
           },
           {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin',
           },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: ContentSecurityPolicy.replace(/\s{2,}/g, ' ').trim()
+          }
         ],
       },
+      // Specific headers for static assets
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          },
+          {
+            key: 'Content-Type',
+            value: 'application/javascript; charset=utf-8'
+          }
+        ]
+      }
     ]
   },
   

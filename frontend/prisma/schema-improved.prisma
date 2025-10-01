@@ -1,0 +1,493 @@
+// Improved Prisma Schema with proper constraints, indexes, and relationships
+// This schema includes security enhancements and performance optimizations
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Management
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique @db.VarChar(255)
+  emailVerified   Boolean  @default(false)
+  password        String   // Hashed password
+  firstName       String   @db.VarChar(50)
+  lastName        String   @db.VarChar(50)
+  role            UserRole
+  status          UserStatus @default(PENDING)
+
+  // Profile Information
+  profilePicture  String?  @db.VarChar(500)
+  bio             String?  @db.Text
+  phone           String?  @db.VarChar(20)
+
+  // Security
+  twoFactorEnabled Boolean @default(false)
+  twoFactorSecret  String?
+  lastLoginAt      DateTime?
+  lastLoginIp      String?  @db.VarChar(45) // Support IPv6
+  failedAttempts   Int      @default(0)
+  lockedUntil      DateTime?
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  deletedAt       DateTime? // Soft delete
+
+  // Relations
+  sessions        Session[]
+  refreshTokens   RefreshToken[]
+  studentProfile  StudentProfile?
+  companyProfile  CompanyProfile?
+  universityProfile UniversityProfile?
+  projects        Project[]
+  applications    Application[]
+  notifications   Notification[]
+  activityLogs    ActivityLog[]
+
+  @@index([email])
+  @@index([role])
+  @@index([status])
+  @@index([createdAt])
+  @@map("users")
+}
+
+enum UserRole {
+  STUDENT
+  COMPANY
+  UNIVERSITY
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum UserStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  DELETED
+}
+
+// Session Management
+model Session {
+  id          String   @id @default(cuid())
+  userId      String
+  token       String   @unique @db.VarChar(500)
+  ipAddress   String   @db.VarChar(45)
+  userAgent   String?  @db.Text
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([token])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+// Refresh Token Management
+model RefreshToken {
+  id          String   @id @default(cuid())
+  userId      String
+  token       String   @unique @db.VarChar(500)
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([token])
+  @@index([expiresAt])
+  @@map("refresh_tokens")
+}
+
+// Student Profile
+model StudentProfile {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+
+  // Academic Information
+  universityId    String
+  degree          String   @db.VarChar(100)
+  major           String   @db.VarChar(100)
+  minor           String?  @db.VarChar(100)
+  gpa             Float?   @db.Real
+  graduationYear  Int      @db.Integer
+  currentYear     Int      @db.Integer
+
+  // Skills and Interests
+  skills          String[] @db.VarChar(50)
+  interests       String[] @db.VarChar(50)
+  languages       String[] @db.VarChar(50)
+
+  // Portfolio
+  portfolioUrl    String?  @db.VarChar(500)
+  githubUrl       String?  @db.VarChar(500)
+  linkedinUrl     String?  @db.VarChar(500)
+  resume          String?  @db.VarChar(500)
+
+  // Preferences
+  lookingForJob   Boolean  @default(true)
+  availableDate   DateTime?
+  preferredLocations String[] @db.VarChar(100)
+  salaryExpectation Int?   @db.Integer
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  university      University @relation(fields: [universityId], references: [id])
+
+  @@index([userId])
+  @@index([universityId])
+  @@index([graduationYear])
+  @@index([lookingForJob])
+  @@map("student_profiles")
+}
+
+// Company Profile
+model CompanyProfile {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+
+  // Company Information
+  companyName     String   @db.VarChar(100)
+  industry        String   @db.VarChar(100)
+  companySize     CompanySize
+  founded         Int?     @db.Integer
+  website         String?  @db.VarChar(500)
+  logo            String?  @db.VarChar(500)
+
+  // Location
+  headquarters    String   @db.VarChar(100)
+  locations       String[] @db.VarChar(100)
+
+  // Hiring Information
+  hiringActive    Boolean  @default(true)
+  hiringVolume    Int?     @db.Integer
+  benefits        String[] @db.VarChar(100)
+  culture         String?  @db.Text
+
+  // Verification
+  verified        Boolean  @default(false)
+  verifiedAt      DateTime?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobPostings     JobPosting[]
+
+  @@index([userId])
+  @@index([companyName])
+  @@index([industry])
+  @@index([hiringActive])
+  @@map("company_profiles")
+}
+
+enum CompanySize {
+  STARTUP
+  SMALL
+  MEDIUM
+  LARGE
+  ENTERPRISE
+}
+
+// University Profile
+model UniversityProfile {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+
+  universityId    String
+  department      String   @db.VarChar(100)
+  position        String   @db.VarChar(100)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  university      University @relation(fields: [universityId], references: [id])
+
+  @@index([userId])
+  @@index([universityId])
+  @@map("university_profiles")
+}
+
+// University
+model University {
+  id              String   @id @default(cuid())
+  name            String   @unique @db.VarChar(200)
+  country         String   @db.VarChar(100)
+  city            String   @db.VarChar(100)
+  website         String?  @db.VarChar(500)
+  logo            String?  @db.VarChar(500)
+  ranking         Int?     @db.Integer
+  studentCount    Int?     @db.Integer
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  students        StudentProfile[]
+  universityStaff UniversityProfile[]
+
+  @@index([name])
+  @@index([country])
+  @@index([ranking])
+  @@map("universities")
+}
+
+// Project
+model Project {
+  id              String   @id @default(cuid())
+  userId          String
+
+  title           String   @db.VarChar(200)
+  description     String   @db.Text
+  category        String   @db.VarChar(50)
+  tags            String[] @db.VarChar(30)
+
+  // Project Details
+  startDate       DateTime
+  endDate         DateTime?
+  status          ProjectStatus @default(IN_PROGRESS)
+  teamSize        Int?     @db.Integer
+  role            String?  @db.VarChar(100)
+
+  // Links and Media
+  projectUrl      String?  @db.VarChar(500)
+  githubUrl       String?  @db.VarChar(500)
+  images          String[] @db.VarChar(500)
+  documents       String[] @db.VarChar(500)
+
+  // Metrics
+  views           Int      @default(0)
+  likes           Int      @default(0)
+
+  // AI Analysis
+  aiScore         Float?   @db.Real
+  aiInsights      Json?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@index([category])
+  @@index([createdAt])
+  @@index([aiScore])
+  @@map("projects")
+}
+
+enum ProjectStatus {
+  PLANNING
+  IN_PROGRESS
+  COMPLETED
+  ON_HOLD
+}
+
+// Job Posting
+model JobPosting {
+  id              String   @id @default(cuid())
+  companyId       String
+
+  title           String   @db.VarChar(200)
+  description     String   @db.Text
+  requirements    String[] @db.VarChar(200)
+  responsibilities String[] @db.VarChar(200)
+
+  // Job Details
+  type            JobType
+  experience      ExperienceLevel
+  location        String   @db.VarChar(100)
+  remote          RemoteType
+  salary          Json?    // {min: number, max: number, currency: string}
+
+  // Application
+  applicationDeadline DateTime?
+  status          JobStatus @default(ACTIVE)
+
+  // Metrics
+  views           Int      @default(0)
+  applications    Application[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  company         CompanyProfile @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([companyId])
+  @@index([status])
+  @@index([type])
+  @@index([createdAt])
+  @@map("job_postings")
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  INTERNSHIP
+  FREELANCE
+}
+
+enum ExperienceLevel {
+  ENTRY
+  MID
+  SENIOR
+  LEAD
+  EXECUTIVE
+}
+
+enum RemoteType {
+  ONSITE
+  REMOTE
+  HYBRID
+}
+
+enum JobStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  CLOSED
+  FILLED
+}
+
+// Application
+model Application {
+  id              String   @id @default(cuid())
+  userId          String
+  jobId           String
+
+  coverLetter     String?  @db.Text
+  resume          String?  @db.VarChar(500)
+  status          ApplicationStatus @default(PENDING)
+
+  // AI Matching
+  matchScore      Float?   @db.Real
+  matchReasons    Json?
+
+  // Timeline
+  appliedAt       DateTime @default(now())
+  reviewedAt      DateTime?
+  interviewedAt   DateTime?
+  decidedAt       DateTime?
+
+  // Relations
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  job             JobPosting @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, jobId])
+  @@index([userId])
+  @@index([jobId])
+  @@index([status])
+  @@index([matchScore])
+  @@map("applications")
+}
+
+enum ApplicationStatus {
+  PENDING
+  REVIEWING
+  INTERVIEW
+  OFFER
+  ACCEPTED
+  REJECTED
+  WITHDRAWN
+}
+
+// Notification
+model Notification {
+  id              String   @id @default(cuid())
+  userId          String
+
+  type            NotificationType
+  title           String   @db.VarChar(200)
+  message         String   @db.Text
+  data            Json?
+
+  read            Boolean  @default(false)
+  readAt          DateTime?
+
+  createdAt       DateTime @default(now())
+
+  // Relations
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([read])
+  @@index([type])
+  @@index([createdAt])
+  @@map("notifications")
+}
+
+enum NotificationType {
+  SYSTEM
+  APPLICATION
+  MESSAGE
+  MATCH
+  REMINDER
+}
+
+// Activity Log for Audit Trail
+model ActivityLog {
+  id              String   @id @default(cuid())
+  userId          String?
+
+  action          String   @db.VarChar(100)
+  entity          String   @db.VarChar(50)
+  entityId        String?  @db.VarChar(50)
+  data            Json?
+
+  ipAddress       String   @db.VarChar(45)
+  userAgent       String?  @db.Text
+
+  createdAt       DateTime @default(now())
+
+  // Relations
+  user            User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([action])
+  @@index([entity])
+  @@index([createdAt])
+  @@map("activity_logs")
+}
+
+// Survey Responses (keeping original structure but improved)
+model SurveyResponse {
+  id              String   @id @default(cuid())
+  surveyType      SurveyType
+  responses       Json     @db.JsonB // Use JSONB for better performance
+  metadata        Json?    @db.JsonB
+
+  // Enhanced tracking
+  ipAddress       String?  @db.VarChar(45)
+  userAgent       String?  @db.Text
+  referrer        String?  @db.VarChar(500)
+  completionTime  Int?     @db.Integer
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([surveyType])
+  @@index([createdAt])
+  @@map("survey_responses")
+}
+
+enum SurveyType {
+  STUDENT
+  COMPANY
+  UNIVERSITY
+}

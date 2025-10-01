@@ -1,6 +1,16 @@
 const jwt = require('jsonwebtoken')
 const database = require('../database/Database')
 
+// Validate JWT_SECRET at module load time
+if (!process.env.JWT_SECRET) {
+  throw new Error('CRITICAL: JWT_SECRET environment variable is required. Please set it before starting the application.')
+}
+
+// Validate JWT_SECRET strength
+if (process.env.JWT_SECRET.length < 32) {
+  console.warn('WARNING: JWT_SECRET should be at least 32 characters for security')
+}
+
 // Authenticate JWT token
 const authenticate = async (req, res, next) => {
   try {
@@ -23,7 +33,7 @@ const authenticate = async (req, res, next) => {
     }
 
     // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key')
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
     
     // Get user from database
     const user = await database.findUserById(decoded.userId)
@@ -41,7 +51,10 @@ const authenticate = async (req, res, next) => {
     
     next()
   } catch (error) {
-    console.error('Authentication error:', error.message)
+    // Log authentication errors securely (avoid exposing sensitive details)
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Authentication error:', error.message)
+    }
     
     if (error.name === 'JsonWebTokenError') {
       return res.status(401).json({
@@ -79,7 +92,7 @@ const optionalAuth = async (req, res, next) => {
       return next()
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key')
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
     const user = await database.findUserById(decoded.userId)
     
     if (user) {
@@ -156,7 +169,10 @@ const checkOwnership = (resourceType) => {
       req.resource = resource
       next()
     } catch (error) {
-      console.error('Ownership check error:', error.message)
+      // Log ownership check errors securely
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Ownership check error:', error.message)
+      }
       return res.status(500).json({
         success: false,
         error: 'Authorization check failed'

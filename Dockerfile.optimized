@@ -1,0 +1,165 @@
+# Optimized multi-stage Dockerfile for InTransparency platform
+# This Dockerfile includes security improvements and performance optimizations
+
+# Stage 1: Base image with security updates
+FROM node:18-alpine AS base
+
+# Install security updates and required packages
+RUN apk update && apk upgrade && apk add --no-cache \
+    curl \
+    dumb-init \
+    && rm -rf /var/cache/apk/*
+
+# Create app directory with proper permissions
+RUN mkdir -p /app && chown node:node /app
+WORKDIR /app
+
+# Stage 2: Dependencies installation
+FROM base AS deps
+
+# Copy package files first for better layer caching
+COPY --chown=node:node frontend/package*.json ./frontend/
+COPY --chown=node:node backend/api/package*.json ./backend/api/
+
+# Switch to non-root user early
+USER node
+
+# Install frontend dependencies
+WORKDIR /app/frontend
+RUN npm ci --only=production --no-audit --no-fund
+
+# Install backend dependencies
+WORKDIR /app/backend/api
+RUN npm ci --only=production --no-audit --no-fund
+
+# Stage 3: Build frontend
+FROM base AS frontend-builder
+
+# Copy dependencies from deps stage
+COPY --from=deps --chown=node:node /app/frontend/node_modules ./frontend/node_modules
+
+# Copy frontend source
+COPY --chown=node:node frontend/ ./frontend/
+
+USER node
+WORKDIR /app/frontend
+
+# Build frontend with optimizations
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN npm run build
+
+# Stage 4: Build backend (if needed)
+FROM base AS backend-builder
+
+# Copy dependencies from deps stage
+COPY --from=deps --chown=node:node /app/backend/api/node_modules ./backend/api/node_modules
+
+# Copy backend source
+COPY --chown=node:node backend/api/ ./backend/api/
+
+USER node
+WORKDIR /app/backend/api
+
+# Build backend if TypeScript or compilation needed
+ENV NODE_ENV=production
+RUN npm run build 2>/dev/null || echo "No build step required"
+
+# Stage 5: Python AI Service
+FROM python:3.11-slim AS ai-service
+
+# Install system dependencies with minimal footprint
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        gcc \
+        g++ \
+        curl \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+
+# Create non-root user for Python service
+RUN groupadd -r aiuser && useradd -r -g aiuser aiuser
+
+WORKDIR /app/ai-service
+
+# Copy requirements first for better caching
+COPY backend/ai-service/requirements.txt ./
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+# Copy AI service source
+COPY --chown=aiuser:aiuser backend/ai-service/ ./
+
+USER aiuser
+
+# Stage 6: Production image
+FROM base AS production
+
+# Install curl for health checks
+RUN apk add --no-cache curl python3 py3-pip
+
+# Install PM2 globally
+RUN npm install -g pm2@latest
+
+# Create application directory structure
+RUN mkdir -p /app/frontend /app/backend/api /app/ai-service /app/logs \
+    && chown -R node:node /app
+
+# Copy built frontend
+COPY --from=frontend-builder --chown=node:node /app/frontend/.next ./frontend/.next
+COPY --from=frontend-builder --chown=node:node /app/frontend/public ./frontend/public
+COPY --from=frontend-builder --chown=node:node /app/frontend/package.json ./frontend/
+COPY --from=frontend-builder --chown=node:node /app/frontend/next.config.js ./frontend/
+
+# Copy backend
+COPY --from=backend-builder --chown=node:node /app/backend/api ./backend/api
+
+# Copy AI service
+COPY --from=ai-service --chown=node:node /app/ai-service ./ai-service
+
+# Copy process configuration
+COPY --chown=node:node ecosystem.config.js ./
+
+# Copy dependencies for production
+COPY --from=deps --chown=node:node /app/frontend/node_modules ./frontend/node_modules
+COPY --from=deps --chown=node:node /app/backend/api/node_modules ./backend/api/node_modules
+
+# Create .env template file
+RUN echo "# Environment variables template" > .env.template \
+    && echo "NODE_ENV=production" >> .env.template \
+    && echo "JWT_SECRET=" >> .env.template \
+    && echo "DATABASE_URL=" >> .env.template \
+    && echo "FRONTEND_URL=" >> .env.template \
+    && chown node:node .env.template
+
+# Switch to non-root user
+USER node
+
+# Set working directory
+WORKDIR /app
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PORT=3001
+ENV FRONTEND_PORT=3000
+ENV AI_SERVICE_PORT=8000
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# Expose ports
+EXPOSE 3000 3001 8000
+
+# Health check with improved reliability
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:${PORT}/health \
+        && curl -f http://localhost:${FRONTEND_PORT}/api/health \
+        || exit 1
+
+# Use dumb-init to handle signals properly
+ENTRYPOINT ["dumb-init", "--"]
+
+# Start command with PM2
+CMD ["pm2-runtime", "start", "ecosystem.config.js", "--env", "production"]
+
+# Metadata
+LABEL maintainer="InTransparency Team"
+LABEL version="2.0.0"
+LABEL description="InTransparency platform with AI-powered academic showcase"

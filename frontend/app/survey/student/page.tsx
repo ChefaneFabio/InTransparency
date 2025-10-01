@@ -86,8 +86,52 @@ export default function StudentSurveyPage() {
   const totalSteps = 6
   const progress = (currentStep / totalSteps) * 100
 
+  // Validate current step before moving forward
+  const validateStep = (step: number): boolean => {
+    switch(step) {
+      case 1: // Demographics
+        return Boolean(
+          surveyData.university.trim() &&
+          surveyData.degree.trim() &&
+          surveyData.graduationYear &&
+          surveyData.currentStatus
+        )
+      case 2: // Academic Showcase
+        return Boolean(
+          surveyData.proudestAchievement.trim().length >= 10 &&
+          surveyData.projectPreferences.length > 0 &&
+          surveyData.gradeImportance &&
+          surveyData.skillDemonstration
+        )
+      case 3: // Platform Features
+        return Boolean(
+          surveyData.profilePriorities.length > 0 &&
+          surveyData.transparencyComfort &&
+          surveyData.professorEndorsements
+        )
+      case 4: // Job Search
+        return Boolean(
+          surveyData.jobSearchChallenges.length > 0 &&
+          surveyData.idealEmployerConnection &&
+          surveyData.platformFeatures.length > 0
+        )
+      case 5: // Transparency & Privacy
+        return Boolean(
+          surveyData.transparencyMeaning &&
+          surveyData.informationSharing.length > 0 &&
+          surveyData.privacyPreferences
+        )
+      case 6: // Platform Development
+        return Boolean(surveyData.mostImportantFeature)
+      default:
+        return true
+    }
+  }
+
+  const isCurrentStepValid = validateStep(currentStep)
+
   const handleNext = () => {
-    if (currentStep < totalSteps) {
+    if (currentStep < totalSteps && validateStep(currentStep)) {
       setCurrentStep(currentStep + 1)
     }
   }
@@ -654,7 +698,9 @@ export default function StudentSurveyPage() {
               ) : (
                 <Button
                   onClick={handleNext}
-                  className="bg-blue-600 hover:bg-blue-700 flex items-center"
+                  disabled={!isCurrentStepValid}
+                  className="bg-blue-600 hover:bg-blue-700 flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
+                  title={!isCurrentStepValid ? 'Please complete all required fields' : ''}
                 >
                   Next
                   <ArrowRight className="h-4 w-4 ml-2" />
