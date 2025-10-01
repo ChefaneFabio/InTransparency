@@ -42,6 +42,34 @@ export default function WhyInTransparencyPage() {
   const [activeComparison, setActiveComparison] = useState('linkedin')
 
   const competitorComparisons = {
+    almalaurea: {
+      name: 'AlmaLaurea',
+      icon: GraduationCap,
+      color: 'orange',
+      ourAdvantages: [
+        'AI-powered job matching beyond basic skills',
+        'Real-time project portfolio analysis and validation',
+        'Automated CV generation for each application',
+        'Interactive geographic talent mapping',
+        'Direct application to external job postings',
+        'Comprehensive recruiter analytics dashboard',
+        'Multi-language support and global reach'
+      ],
+      theirLimitations: [
+        'Static profile database without AI matching',
+        'Limited project showcase capabilities',
+        'Manual CV creation required',
+        'Basic search functionality',
+        'No external job application integration',
+        'Limited analytics for recruiters',
+        'Primarily Italy-focused'
+      ],
+      keyDifferentiators: [
+        'AI-First Approach: Smart matching and automated CV generation vs. static database',
+        'Dynamic Portfolios: Live project analysis vs. basic profile information',
+        'Global Integration: Connect to jobs worldwide vs. Italy-centric platform'
+      ]
+    },
     linkedin: {
       name: 'LinkedIn',
       icon: Linkedin,
@@ -186,7 +214,8 @@ export default function WhyInTransparencyPage() {
     const colors = {
       blue: 'bg-blue-100 text-blue-800 border-blue-200',
       green: 'bg-green-100 text-green-800 border-green-200',
-      purple: 'bg-purple-100 text-purple-800 border-purple-200'
+      purple: 'bg-purple-100 text-purple-800 border-purple-200',
+      orange: 'bg-orange-100 text-orange-800 border-orange-200'
     }
     return colors[color as keyof typeof colors] || colors.blue
   }
