@@ -263,7 +263,7 @@ export default function CaseStudyPage() {
 
           {/* Hero Section */}
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-blue-100 text-blue-700 border-blue-200">
+            <Badge className="mb-4 bg-blue-100 text-blue-800 border-blue-200">
               <Building2 className="h-3 w-3 mr-1" />
               Interactive Case Study
             </Badge>
@@ -450,8 +450,8 @@ export default function CaseStudyPage() {
                         }}
                         className={`flex items-center px-4 py-3 rounded-md text-sm font-medium transition-all ${
                           selectedPosition === position.id
-                            ? position.color + ' shadow-sm'
-                            : 'text-gray-600 hover:text-gray-900 hover:bg-slate-100'
+                            ? position.color + ' shadow-sm text-gray-900'
+                            : 'text-gray-700 hover:text-gray-900 hover:bg-slate-100'
                         }`}
                       >
                         <Icon className="h-4 w-4 mr-2" />
@@ -781,7 +781,7 @@ export default function CaseStudyPage() {
                 </p>
                 <div className="mt-3 flex items-center">
                   <div className="bg-blue-100 rounded-full h-10 w-10 flex items-center justify-center mr-3">
-                    <Building2 className="h-5 w-5 text-blue-700" />
+                    <Building2 className="h-5 w-5 text-blue-800" />
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900">Maria Lombardi</div>
