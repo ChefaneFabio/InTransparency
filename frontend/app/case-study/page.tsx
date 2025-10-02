@@ -46,7 +46,7 @@ const positions = [
       courses: ['Financial Risk Management', 'Econometrics', 'Corporate Finance'],
       skills: ['Python', 'R', 'Risk Assessment', 'Financial Modeling'],
       majors: ['Finance', 'Economics', 'Statistics'],
-      minGPA: 27,
+      minGrade: 90,
       location: 'Milan'
     }
   },
@@ -61,7 +61,7 @@ const positions = [
       courses: ['Network Security', 'Cryptography', 'Cyber Threat Analysis'],
       skills: ['Network Security', 'Penetration Testing', 'Python', 'Linux'],
       majors: ['Computer Science', 'Cybersecurity', 'Information Technology'],
-      minGPA: 27,
+      minGrade: 90,
       location: 'Rome'
     }
   },
@@ -76,7 +76,7 @@ const positions = [
       courses: ['Machine Learning', 'Deep Learning', 'Big Data Analytics'],
       skills: ['Python', 'TensorFlow', 'Machine Learning', 'SQL'],
       majors: ['Data Science', 'Computer Science', 'Statistics'],
-      minGPA: 27,
+      minGrade: 90,
       location: 'Turin'
     }
   }
@@ -114,7 +114,7 @@ export default function CaseStudyPage() {
   const [customCourses, setCustomCourses] = useState<string[]>([])
   const [customSkills, setCustomSkills] = useState<string[]>([])
   const [customLocation, setCustomLocation] = useState('')
-  const [minGPA, setMinGPA] = useState(27)
+  const [minGrade, setMinGrade] = useState(90)
   const [searchQuery, setSearchQuery] = useState('')
   const [showFilters, setShowFilters] = useState(false)
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null)
@@ -128,9 +128,9 @@ export default function CaseStudyPage() {
       courses: customCourses.length > 0 ? customCourses : currentPosition.searchCriteria.courses,
       skills: customSkills.length > 0 ? customSkills : currentPosition.searchCriteria.skills,
       location: customLocation || currentPosition.searchCriteria.location,
-      minGPA: minGPA
+      minGrade: minGrade
     }
-  }, [customCourses, customSkills, customLocation, minGPA, currentPosition])
+  }, [customCourses, customSkills, customLocation, minGrade, currentPosition])
 
   // Dynamic candidate filtering
   const filteredCandidates = useMemo(() => {
@@ -150,13 +150,13 @@ export default function CaseStudyPage() {
         }
       }
 
-      // GPA filter
-      const hasMinGPA = candidate.education.some(edu => {
+      // Grade filter (60-110 Italian scale)
+      const hasMinGrade = candidate.education.some(edu => {
         if (!edu.maxGPA || edu.maxGPA === 0) return false
-        const normalizedGPA = (edu.gpa / edu.maxGPA) * 30 // Normalize to 30 scale
-        return normalizedGPA >= activeSearchCriteria.minGPA
+        const normalizedGrade = (edu.gpa / edu.maxGPA) * 110 // Normalize to 110 scale
+        return normalizedGrade >= activeSearchCriteria.minGrade
       })
-      if (!hasMinGPA) return false
+      if (!hasMinGrade) return false
 
       // Course filter - check if candidate took any of the required courses
       const hasCourse = candidate.education.some(edu =>
@@ -237,7 +237,7 @@ export default function CaseStudyPage() {
     setCustomCourses([])
     setCustomSkills([])
     setCustomLocation('')
-    setMinGPA(27)
+    setMinGrade(90)
     setSearchQuery('')
   }
 
@@ -509,13 +509,13 @@ export default function CaseStudyPage() {
                     </div>
 
                     <div>
-                      <Label className="text-sm font-semibold text-gray-900 mb-2">Minimum GPA: {minGPA}/30</Label>
+                      <Label className="text-sm font-semibold text-gray-900 mb-2">Minimum Grade: {minGrade}/110</Label>
                       <Slider
-                        value={[minGPA]}
-                        onValueChange={(value) => setMinGPA(value[0])}
-                        min={24}
-                        max={30}
-                        step={0.5}
+                        value={[minGrade]}
+                        onValueChange={(value) => setMinGrade(value[0])}
+                        min={60}
+                        max={110}
+                        step={1}
                         className="mt-2"
                       />
                     </div>

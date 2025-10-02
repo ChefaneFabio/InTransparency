@@ -142,8 +142,17 @@ export default function GeographicTalentSearchPage() {
     return R * c
   }
 
+  // Check if any filter is active
+  const hasActiveFilters = selectedLocation || selectedSkills.length > 0 || selectedCourses.length > 0 ||
+    selectedDegree !== 'all' || selectedMajor !== 'all' || minGrade
+
   // Filter candidates based on search criteria
   const searchResults = useMemo(() => {
+    // Return empty array if no filters are active
+    if (!hasActiveFilters) {
+      return []
+    }
+
     let filtered = allCandidates.map(candidateToTalentData)
 
     // Filter by location radius
@@ -209,7 +218,7 @@ export default function GeographicTalentSearchPage() {
     }
 
     return filtered
-  }, [selectedLocation, selectedSkills, selectedCourses, selectedDegree, selectedMajor, minGrade, searchRadius, mapCenter])
+  }, [selectedLocation, selectedSkills, selectedCourses, selectedDegree, selectedMajor, minGrade, searchRadius, mapCenter, hasActiveFilters])
 
   const handleLocationSelect = (place: google.maps.places.PlaceResult) => {
     if (place.geometry?.location) {
@@ -294,7 +303,7 @@ export default function GeographicTalentSearchPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {/* Location Search */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-800 mb-2">
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">
                         Location
                       </label>
                       <PlacesAutocomplete
@@ -310,7 +319,7 @@ export default function GeographicTalentSearchPage() {
                     {/* Search Radius */}
                     {selectedLocation && (
                       <div>
-                        <label className="block text-sm font-medium text-gray-800 mb-2">
+                        <label className="block text-sm font-semibold text-gray-900 mb-2">
                           Search Radius (km)
                         </label>
                         <Input
@@ -326,7 +335,7 @@ export default function GeographicTalentSearchPage() {
 
                     {/* Degree Filter */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-800 mb-2">
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">
                         Degree Level
                       </label>
                       <select
@@ -343,7 +352,7 @@ export default function GeographicTalentSearchPage() {
 
                     {/* Major Filter */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-800 mb-2">
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">
                         Major / Field of Study
                       </label>
                       <select
@@ -360,7 +369,7 @@ export default function GeographicTalentSearchPage() {
 
                     {/* Min Grade Filter */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-800 mb-2">
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">
                         Minimum Grade (out of 30)
                       </label>
                       <Input
@@ -377,7 +386,7 @@ export default function GeographicTalentSearchPage() {
 
                     {/* Skills Filter */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-800 mb-2">
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">
                         Add Skills
                       </label>
                       <select
@@ -396,7 +405,7 @@ export default function GeographicTalentSearchPage() {
 
                     {/* Courses Filter */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-800 mb-2">
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">
                         Add Courses
                       </label>
                       <select
@@ -417,7 +426,7 @@ export default function GeographicTalentSearchPage() {
                   {/* Selected Skills Display */}
                   {selectedSkills.length > 0 && (
                     <div className="mt-4">
-                      <label className="block text-sm font-medium text-gray-800 mb-2">
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">
                         Selected Skills:
                       </label>
                       <div className="flex flex-wrap gap-2">
@@ -440,7 +449,7 @@ export default function GeographicTalentSearchPage() {
                   {/* Selected Courses Display */}
                   {selectedCourses.length > 0 && (
                     <div className="mt-4">
-                      <label className="block text-sm font-medium text-gray-800 mb-2">
+                      <label className="block text-sm font-semibold text-gray-900 mb-2">
                         Selected Courses:
                       </label>
                       <div className="flex flex-wrap gap-2">
@@ -515,51 +524,69 @@ export default function GeographicTalentSearchPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">
-                      {searchResults.map(talent => (
-                        <div
-                          key={talent.id}
-                          className="p-4 border border-gray-300 rounded-lg hover:shadow-lg hover:border-blue-300 transition-all cursor-pointer bg-white"
-                          onClick={() => setSelectedTalent(talent)}
-                        >
-                          <h3 className="font-semibold text-gray-900 text-base">{talent.name}</h3>
-                          <p className="text-sm text-gray-800 flex items-center mt-1">
-                            <GraduationCap className="h-4 w-4 mr-1 text-blue-600" />
-                            {talent.university}
-                          </p>
-                          <p className="text-sm text-gray-800">{talent.degree} in {talent.major} • {talent.year}</p>
-                          <p className="text-sm text-gray-700 font-medium mt-1">GPA: {talent.gpa.toFixed(2)}</p>
+                    {!hasActiveFilters ? (
+                      <div className="text-center py-12">
+                        <Search className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Start Your Search</h3>
+                        <p className="text-gray-600 max-w-sm mx-auto">
+                          Apply filters to find candidates that match your requirements. Try selecting a location, skills, or courses.
+                        </p>
+                      </div>
+                    ) : searchResults.length === 0 ? (
+                      <div className="text-center py-12">
+                        <Users className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">No Candidates Found</h3>
+                        <p className="text-gray-600 max-w-sm mx-auto">
+                          Try adjusting your filters or expanding the search radius to find more candidates.
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="space-y-4">
+                        {searchResults.map(talent => (
+                          <div
+                            key={talent.id}
+                            className="p-4 border border-gray-300 rounded-lg hover:shadow-lg hover:border-blue-300 transition-all cursor-pointer bg-white"
+                            onClick={() => setSelectedTalent(talent)}
+                          >
+                            <h3 className="font-semibold text-gray-900 text-base">{talent.name}</h3>
+                            <p className="text-sm text-gray-800 flex items-center mt-1">
+                              <GraduationCap className="h-4 w-4 mr-1 text-blue-600" />
+                              {talent.university}
+                            </p>
+                            <p className="text-sm text-gray-800">{talent.degree} in {talent.major} • {talent.year}</p>
+                            <p className="text-sm text-gray-700 font-medium mt-1">GPA: {talent.gpa.toFixed(2)}</p>
 
-                          <div className="flex flex-wrap gap-1 mt-3">
-                            {talent.skills.slice(0, 3).map(skill => (
-                              <Badge key={skill} variant="secondary" className="text-xs bg-blue-100 text-blue-800 border-blue-200">
-                                {skill}
-                              </Badge>
-                            ))}
-                            {talent.skills.length > 3 && (
-                              <Badge variant="outline" className="text-xs border-gray-400 text-gray-700">
-                                +{talent.skills.length - 3} more
-                              </Badge>
-                            )}
-                          </div>
-
-                          <div className="flex items-center justify-between mt-3">
-                            <div className="flex items-center text-sm text-gray-800">
-                              <Star className="h-4 w-4 text-yellow-500 mr-1" />
-                              <span className="font-medium">{talent.rating.toFixed(1)}</span>
+                            <div className="flex flex-wrap gap-1 mt-3">
+                              {talent.skills.slice(0, 3).map(skill => (
+                                <Badge key={skill} variant="secondary" className="text-xs bg-blue-100 text-blue-800 border-blue-200">
+                                  {skill}
+                                </Badge>
+                              ))}
+                              {talent.skills.length > 3 && (
+                                <Badge variant="outline" className="text-xs border-gray-400 text-gray-700">
+                                  +{talent.skills.length - 3} more
+                                </Badge>
+                              )}
                             </div>
-                            <div className="text-sm text-gray-700 font-medium">
-                              {talent.projects} projects
-                            </div>
-                          </div>
 
-                          <p className="text-sm text-gray-700 mt-2 flex items-center">
-                            <MapPin className="h-4 w-4 mr-1 text-gray-600" />
-                            {talent.location.city}, {talent.location.country}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
+                            <div className="flex items-center justify-between mt-3">
+                              <div className="flex items-center text-sm text-gray-800">
+                                <Star className="h-4 w-4 text-yellow-500 mr-1" />
+                                <span className="font-medium">{talent.rating.toFixed(1)}</span>
+                              </div>
+                              <div className="text-sm text-gray-700 font-medium">
+                                {talent.projects} projects
+                              </div>
+                            </div>
+
+                            <p className="text-sm text-gray-700 mt-2 flex items-center">
+                              <MapPin className="h-4 w-4 mr-1 text-gray-600" />
+                              {talent.location.city}, {talent.location.country}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </div>
