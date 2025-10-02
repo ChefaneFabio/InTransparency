@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
+import { PlacesAutocomplete } from '@/components/maps/PlacesAutocomplete'
 import {
   Building2,
   MapPin,
@@ -489,7 +490,7 @@ export default function CaseStudyPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
-                      <Label className="text-sm font-semibold text-gray-900 mb-2">Search Query</Label>
+                      <Label className="text-sm font-semibold text-gray-900 mb-2">Role</Label>
                       <Input
                         placeholder="Search by name, university..."
                         value={searchQuery}
@@ -500,11 +501,14 @@ export default function CaseStudyPage() {
 
                     <div>
                       <Label className="text-sm font-semibold text-gray-900 mb-2">Location</Label>
-                      <Input
+                      <PlacesAutocomplete
                         placeholder={currentPosition.location}
-                        value={customLocation}
-                        onChange={(e) => setCustomLocation(e.target.value)}
-                        className="text-sm"
+                        defaultValue={customLocation}
+                        onPlaceSelect={(place) => {
+                          setCustomLocation(place.name || place.formatted_address || '')
+                        }}
+                        searchTypes={['locality', 'administrative_area_level_1', 'country']}
+                        className="w-full"
                       />
                     </div>
 

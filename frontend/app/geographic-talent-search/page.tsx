@@ -148,14 +148,10 @@ export default function GeographicTalentSearchPage() {
 
   // Filter candidates based on search criteria
   const searchResults = useMemo(() => {
-    // Return empty array if no filters are active
-    if (!hasActiveFilters) {
-      return []
-    }
-
+    // Show all candidates if no filters are active (changed from returning empty)
     let filtered = allCandidates.map(candidateToTalentData)
 
-    // Filter by location radius
+    // Filter by location radius (only if location is selected)
     if (selectedLocation) {
       filtered = filtered.filter(talent => {
         const distance = calculateDistance(
@@ -168,7 +164,7 @@ export default function GeographicTalentSearchPage() {
       })
     }
 
-    // Filter by skills
+    // Filter by skills (if any skills selected, candidate must have at least one)
     if (selectedSkills.length > 0) {
       filtered = filtered.filter(talent =>
         selectedSkills.some(skill =>
@@ -177,13 +173,13 @@ export default function GeographicTalentSearchPage() {
       )
     }
 
-    // Filter by courses
+    // Filter by courses (if any courses selected, candidate must have at least one)
     if (selectedCourses.length > 0) {
       filtered = filtered.filter(talent => {
         const candidate = allCandidates.find(c => `${c.firstName} ${c.lastName}` === talent.name)
         if (!candidate) return false
 
-        return selectedCourses.every(courseName =>
+        return selectedCourses.some(courseName =>
           candidate.education.some(edu =>
             edu.courses.some(course =>
               course.name.toLowerCase().includes(courseName.toLowerCase())
@@ -207,18 +203,18 @@ export default function GeographicTalentSearchPage() {
       )
     }
 
-    // Filter by minimum grade (convert GPA scale appropriately)
+    // Filter by minimum grade
     if (minGrade) {
       const gradeThreshold = parseFloat(minGrade)
+      // Convert to 30 scale: assuming 4.0 GPA = 30
       filtered = filtered.filter(talent => {
-        // Convert 4.0 scale to 30 scale for display
-        const grade30Scale = (talent.gpa / talent.gpa) * 30 // Simplified conversion
-        return talent.gpa >= gradeThreshold
+        const normalizedGrade = (talent.gpa / 4.0) * 30
+        return normalizedGrade >= gradeThreshold
       })
     }
 
     return filtered
-  }, [selectedLocation, selectedSkills, selectedCourses, selectedDegree, selectedMajor, minGrade, searchRadius, mapCenter, hasActiveFilters])
+  }, [selectedLocation, selectedSkills, selectedCourses, selectedDegree, selectedMajor, minGrade, searchRadius, mapCenter])
 
   const handleLocationSelect = (place: google.maps.places.PlaceResult) => {
     if (place.geometry?.location) {
@@ -524,15 +520,7 @@ export default function GeographicTalentSearchPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    {!hasActiveFilters ? (
-                      <div className="text-center py-12">
-                        <Search className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Start Your Search</h3>
-                        <p className="text-gray-600 max-w-sm mx-auto">
-                          Apply filters to find candidates that match your requirements. Try selecting a location, skills, or courses.
-                        </p>
-                      </div>
-                    ) : searchResults.length === 0 ? (
+                    {searchResults.length === 0 ? (
                       <div className="text-center py-12">
                         <Users className="h-16 w-16 text-gray-400 mx-auto mb-4" />
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">No Candidates Found</h3>
