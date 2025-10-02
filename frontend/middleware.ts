@@ -20,14 +20,14 @@ export function middleware(request: NextRequest) {
   const isVercel = process.env.VERCEL === '1'
 
   if (!isDev) {
-    // Production CSP - more permissive for Next.js requirements
+    // Production CSP - includes Google Maps support
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://vercel.live https://*.vercel.app https://vitals.vercel-insights.com",
+      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://vercel.live https://*.vercel.app https://vitals.vercel-insights.com https://maps.googleapis.com https://*.gstatic.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
-      "img-src 'self' data: blob: https: https://*.vercel.app",
-      "connect-src 'self' https://vitals.vercel-insights.com https://*.vercel.app https://api-intransparency.onrender.com",
+      "img-src 'self' data: blob: https: https://*.vercel.app https://maps.googleapis.com https://*.gstatic.com",
+      "connect-src 'self' https://vitals.vercel-insights.com https://*.vercel.app https://intransparency-api.onrender.com https://maps.googleapis.com",
       "frame-src 'none'",
       "object-src 'none'",
       "base-uri 'self'",
