@@ -267,21 +267,21 @@ export default function MilestonesPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Our Journey to Transform Recruitment
             </h1>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
+            <p className="text-xl text-gray-700 max-w-4xl mx-auto mb-8">
               Follow our path as we build the future of transparent, skill-based hiring. Each milestone brings us closer to connecting talent with opportunity.
             </p>
             <div className="flex justify-center space-x-8">
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-600">{completedMilestones.length}</div>
-                <div className="text-sm text-gray-600">Completed</div>
+                <div className="text-sm text-gray-800 font-medium">Completed</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-600">{inProgressMilestones.length}</div>
-                <div className="text-sm text-gray-600">In Progress</div>
+                <div className="text-sm text-gray-800 font-medium">In Progress</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-600">{plannedMilestones.length}</div>
-                <div className="text-sm text-gray-600">Planned</div>
+                <div className="text-sm text-gray-800 font-medium">Planned</div>
               </div>
             </div>
           </div>
@@ -358,18 +358,18 @@ export default function MilestonesPage() {
                               </div>
                             </div>
                             <div className="flex flex-row md:flex-col items-start md:items-end gap-2 flex-shrink-0">
-                              <Badge className={`${
-                                milestone.status === 'completed' ? 'bg-green-100 text-green-700 border-green-300' :
-                                milestone.status === 'in-progress' ? 'bg-blue-100 text-blue-700 border-blue-300' :
-                                'bg-purple-100 text-purple-700 border-purple-300'
+                              <Badge className={`font-semibold ${
+                                milestone.status === 'completed' ? 'bg-green-100 text-green-800 border-green-300' :
+                                milestone.status === 'in-progress' ? 'bg-blue-100 text-blue-800 border-blue-300' :
+                                'bg-purple-100 text-purple-800 border-purple-300'
                               }`}>
                                 {milestone.status === 'completed' ? '✓ Completed' :
                                  milestone.status === 'in-progress' ? '⏳ In Progress' :
                                  '📋 Planned'}
                               </Badge>
-                              <span className="text-sm text-gray-600 whitespace-nowrap">{milestone.quarter}</span>
+                              <span className="text-sm text-gray-800 font-medium whitespace-nowrap">{milestone.quarter}</span>
                               {milestone.releaseDate && (
-                                <span className="text-xs text-gray-500 whitespace-nowrap">{milestone.releaseDate}</span>
+                                <span className="text-xs text-gray-700 font-medium whitespace-nowrap">{milestone.releaseDate}</span>
                               )}
                             </div>
                           </div>
@@ -425,7 +425,7 @@ export default function MilestonesPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Completed</h4>
-                    <p className="text-sm text-gray-600">Features live in production and available to all users</p>
+                    <p className="text-sm text-gray-700">Features live in production and available to all users</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -434,7 +434,7 @@ export default function MilestonesPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">In Progress</h4>
-                    <p className="text-sm text-gray-600">Currently being developed and tested by our team</p>
+                    <p className="text-sm text-gray-700">Currently being developed and tested by our team</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -443,7 +443,7 @@ export default function MilestonesPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Planned</h4>
-                    <p className="text-sm text-gray-600">Scheduled for future development and release</p>
+                    <p className="text-sm text-gray-700">Scheduled for future development and release</p>
                   </div>
                 </div>
               </div>
@@ -456,7 +456,7 @@ export default function MilestonesPage() {
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Join Us on This Journey
             </h3>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
               Be part of the revolution in transparent hiring. Get early access to new features and help shape the future of recruitment.
             </p>
             <div className="flex justify-center space-x-4">
