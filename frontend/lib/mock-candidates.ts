@@ -141,6 +141,13 @@ export const universities = {
   'TU Munich': { rank: 37, country: 'Germany', city: 'Munich', type: 'Public' },
   'EPFL': { rank: 36, country: 'Switzerland', city: 'Lausanne', type: 'Public' },
 
+  // Italy
+  'Politecnico di Milano': { rank: 123, country: 'Italy', city: 'Milan', type: 'Public' },
+  'Università Bocconi': { rank: 465, country: 'Italy', city: 'Milan', type: 'Private' },
+  'Sapienza University of Rome': { rank: 134, country: 'Italy', city: 'Rome', type: 'Public' },
+  'Università di Bologna': { rank: 154, country: 'Italy', city: 'Bologna', type: 'Public' },
+  'Politecnico di Torino': { rank: 252, country: 'Italy', city: 'Turin', type: 'Public' },
+
   // Asia
   'NUS': { rank: 11, country: 'Singapore', city: 'Singapore', type: 'Public' },
   'Tsinghua': { rank: 17, country: 'China', city: 'Beijing', type: 'Public' },
@@ -604,12 +611,47 @@ export const mockCandidates: Candidate[] = [
   }
 ]
 
+// City coordinates mapping
+const cityCoordinates: { [key: string]: { lat: number; lng: number } } = {
+  'Cambridge, MA': { lat: 42.3736, lng: -71.1097 },
+  'Stanford, CA': { lat: 37.4275, lng: -122.1697 },
+  'Pasadena, CA': { lat: 34.1478, lng: -118.1445 },
+  'Berkeley, CA': { lat: 37.8715, lng: -122.2730 },
+  'Pittsburgh, PA': { lat: 40.4406, lng: -79.9959 },
+  'Oxford': { lat: 51.7520, lng: -1.2577 },
+  'Cambridge': { lat: 52.2053, lng: 0.1218 },
+  'London': { lat: 51.5074, lng: -0.1278 },
+  'Zurich': { lat: 47.3769, lng: 8.5417 },
+  'Munich': { lat: 48.1351, lng: 11.5820 },
+  'Lausanne': { lat: 46.5197, lng: 6.6323 },
+  'Milan': { lat: 45.4642, lng: 9.1900 },
+  'Rome': { lat: 41.9028, lng: 12.4964 },
+  'Bologna': { lat: 44.4949, lng: 11.3426 },
+  'Turin': { lat: 45.0703, lng: 7.6869 },
+  'Singapore': { lat: 1.3521, lng: 103.8198 },
+  'Beijing': { lat: 39.9042, lng: 116.4074 },
+  'Tokyo': { lat: 35.6762, lng: 139.6503 },
+  'Toronto': { lat: 43.6532, lng: -79.3832 },
+  'Vancouver': { lat: 49.2827, lng: -123.1207 },
+  'Canberra': { lat: -35.2809, lng: 149.1300 },
+  'Melbourne': { lat: -37.8136, lng: 144.9631 }
+}
+
 // Helper function to generate more mock candidates
 export function generateMockCandidates(count: number): Candidate[] {
-  const firstNames = ['John', 'Maria', 'David', 'Sophie', 'Michael', 'Lisa', 'James', 'Anna', 'Robert', 'Emily']
-  const lastNames = ['Smith', 'Garcia', 'Johnson', 'Lee', 'Williams', 'Brown', 'Jones', 'Miller', 'Davis', 'Martinez']
+  const firstNames = ['Marco', 'Giulia', 'Alessandro', 'Francesca', 'Luca', 'Sofia', 'Matteo', 'Chiara', 'Andrea', 'Elena', 'John', 'Maria', 'David', 'Sophie', 'Michael', 'Lisa']
+  const lastNames = ['Rossi', 'Ferrari', 'Russo', 'Bianchi', 'Romano', 'Colombo', 'Ricci', 'Marino', 'Greco', 'Bruno', 'Smith', 'Garcia', 'Johnson', 'Lee']
 
   const candidates: Candidate[] = []
+
+  const skillSets = [
+    { programming: ['Python', 'JavaScript', 'Java'], frameworks: ['React', 'Node.js', 'Spring'], databases: ['PostgreSQL', 'MongoDB'], tools: ['Git', 'Docker', 'Kubernetes'] },
+    { programming: ['Python', 'C++', 'Go'], frameworks: ['PyTorch', 'TensorFlow', 'FastAPI'], databases: ['PostgreSQL', 'Redis'], tools: ['Docker', 'GCP', 'Git'] },
+    { programming: ['Java', 'Kotlin', 'JavaScript'], frameworks: ['Spring Boot', 'React', 'Vue'], databases: ['MySQL', 'MongoDB'], tools: ['Maven', 'Jenkins', 'AWS'] },
+    { programming: ['Python', 'R', 'SQL'], frameworks: ['Pandas', 'Scikit-learn', 'Django'], databases: ['PostgreSQL', 'BigQuery'], tools: ['Jupyter', 'Git', 'Tableau'] },
+  ]
+
+  const majors = ['Computer Science', 'Data Science', 'Artificial Intelligence', 'Software Engineering', 'Information Technology']
 
   for (let i = 0; i < count; i++) {
     const firstName = firstNames[Math.floor(Math.random() * firstNames.length)]
@@ -617,6 +659,8 @@ export function generateMockCandidates(count: number): Candidate[] {
     const universityKeys = Object.keys(universities)
     const university = universityKeys[Math.floor(Math.random() * universityKeys.length)]
     const univData = universities[university as keyof typeof universities]
+    const skillSet = skillSets[Math.floor(Math.random() * skillSets.length)]
+    const coords = cityCoordinates[univData.city] || { lat: 0, lng: 0 }
 
     candidates.push({
       id: `gen-${i + 4}`,
@@ -626,13 +670,13 @@ export function generateMockCandidates(count: number): Candidate[] {
       location: {
         city: univData.city,
         country: univData.country,
-        coordinates: { lat: 0, lng: 0 } // Would need real coordinates
+        coordinates: coords
       },
       education: [{
         university,
         universityRank: univData.rank,
         degree: ['Bachelors', 'Masters', 'PhD'][Math.floor(Math.random() * 3)],
-        major: ['Computer Science', 'Data Science', 'AI'][Math.floor(Math.random() * 3)],
+        major: majors[Math.floor(Math.random() * majors.length)],
         gpa: 3.5 + Math.random() * 0.5,
         maxGPA: 4.0,
         graduationYear: 2024 + Math.floor(Math.random() * 2),
@@ -643,10 +687,10 @@ export function generateMockCandidates(count: number): Candidate[] {
       projects: [],
       experience: [],
       skills: {
-        programming: ['Python', 'JavaScript'],
-        frameworks: ['React', 'Node.js'],
-        databases: ['PostgreSQL'],
-        tools: ['Git', 'Docker'],
+        programming: skillSet.programming,
+        frameworks: skillSet.frameworks,
+        databases: skillSet.databases,
+        tools: skillSet.tools,
         languages: ['English']
       },
       bio: `${university} student specializing in software engineering.`,

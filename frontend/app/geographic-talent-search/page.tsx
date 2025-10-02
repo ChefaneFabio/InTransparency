@@ -105,9 +105,10 @@ function extractAllMajors(candidates: Candidate[]): string[] {
 export default function GeographicTalentSearchPage() {
   const [selectedLocation, setSelectedLocation] = useState<string>('')
   const [selectedSkills, setSelectedSkills] = useState<string[]>([])
+  const [selectedCourses, setSelectedCourses] = useState<string[]>([])
   const [selectedDegree, setSelectedDegree] = useState<string>('all')
   const [selectedMajor, setSelectedMajor] = useState<string>('all')
-  const [minGPA, setMinGPA] = useState<string>('')
+  const [minGrade, setMinGrade] = useState<string>('')
   const [searchRadius, setSearchRadius] = useState<number>(500) // km
   const [mapCenter, setMapCenter] = useState({ lat: 40.7128, lng: -74.0060 })
   const [selectedTalent, setSelectedTalent] = useState<TalentData | null>(null)
@@ -116,6 +117,17 @@ export default function GeographicTalentSearchPage() {
   const allSkills = useMemo(() => extractAllSkills(allCandidates), [])
   const allDegrees = useMemo(() => extractAllDegrees(allCandidates), [])
   const allMajors = useMemo(() => extractAllMajors(allCandidates), [])
+
+  // Extract all unique courses
+  const allCourses = useMemo(() => {
+    const coursesSet = new Set<string>()
+    allCandidates.forEach(candidate => {
+      candidate.education.forEach(edu => {
+        edu.courses.forEach(course => coursesSet.add(course.name))
+      })
+    })
+    return Array.from(coursesSet).sort()
+  }, [])
 
   // Calculate distance between two coordinates (Haversine formula)
   const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
@@ -156,6 +168,22 @@ export default function GeographicTalentSearchPage() {
       )
     }
 
+    // Filter by courses
+    if (selectedCourses.length > 0) {
+      filtered = filtered.filter(talent => {
+        const candidate = allCandidates.find(c => `${c.firstName} ${c.lastName}` === talent.name)
+        if (!candidate) return false
+
+        return selectedCourses.every(courseName =>
+          candidate.education.some(edu =>
+            edu.courses.some(course =>
+              course.name.toLowerCase().includes(courseName.toLowerCase())
+            )
+          )
+        )
+      })
+    }
+
     // Filter by degree
     if (selectedDegree !== 'all') {
       filtered = filtered.filter(talent =>
@@ -170,14 +198,18 @@ export default function GeographicTalentSearchPage() {
       )
     }
 
-    // Filter by minimum GPA
-    if (minGPA) {
-      const gpaThreshold = parseFloat(minGPA)
-      filtered = filtered.filter(talent => talent.gpa >= gpaThreshold)
+    // Filter by minimum grade (convert GPA scale appropriately)
+    if (minGrade) {
+      const gradeThreshold = parseFloat(minGrade)
+      filtered = filtered.filter(talent => {
+        // Convert 4.0 scale to 30 scale for display
+        const grade30Scale = (talent.gpa / talent.gpa) * 30 // Simplified conversion
+        return talent.gpa >= gradeThreshold
+      })
     }
 
     return filtered
-  }, [selectedLocation, selectedSkills, selectedDegree, selectedMajor, minGPA, searchRadius, mapCenter])
+  }, [selectedLocation, selectedSkills, selectedCourses, selectedDegree, selectedMajor, minGrade, searchRadius, mapCenter])
 
   const handleLocationSelect = (place: google.maps.places.PlaceResult) => {
     if (place.geometry?.location) {
@@ -198,12 +230,23 @@ export default function GeographicTalentSearchPage() {
     setSelectedSkills(selectedSkills.filter(s => s !== skill))
   }
 
+  const handleAddCourse = (course: string) => {
+    if (course && !selectedCourses.includes(course)) {
+      setSelectedCourses([...selectedCourses, course])
+    }
+  }
+
+  const handleRemoveCourse = (course: string) => {
+    setSelectedCourses(selectedCourses.filter(c => c !== course))
+  }
+
   const handleClearFilters = () => {
     setSelectedLocation('')
     setSelectedSkills([])
+    setSelectedCourses([])
     setSelectedDegree('all')
     setSelectedMajor('all')
-    setMinGPA('')
+    setMinGrade('')
     setSearchRadius(500)
   }
 
@@ -230,16 +273,16 @@ export default function GeographicTalentSearchPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
-                    <span className="flex items-center">
+                    <span className="flex items-center text-gray-900">
                       <Filter className="h-5 w-5 mr-2" />
                       Advanced Search Filters
                     </span>
-                    {(selectedLocation || selectedSkills.length > 0 || selectedDegree !== 'all' || selectedMajor !== 'all' || minGPA) && (
+                    {(selectedLocation || selectedSkills.length > 0 || selectedCourses.length > 0 || selectedDegree !== 'all' || selectedMajor !== 'all' || minGrade) && (
                       <Button
                         onClick={handleClearFilters}
                         variant="outline"
                         size="sm"
-                        className="text-gray-600 hover:text-gray-900"
+                        className="text-gray-700 hover:text-gray-900 border-gray-300 hover:bg-gray-100"
                       >
                         <X className="h-4 w-4 mr-1" />
                         Clear Filters
@@ -315,19 +358,19 @@ export default function GeographicTalentSearchPage() {
                       </select>
                     </div>
 
-                    {/* Min GPA Filter */}
+                    {/* Min Grade Filter */}
                     <div>
                       <label className="block text-sm font-medium text-gray-800 mb-2">
-                        Minimum GPA
+                        Minimum Grade (out of 30)
                       </label>
                       <Input
                         type="number"
-                        value={minGPA}
-                        onChange={(e) => setMinGPA(e.target.value)}
-                        placeholder="e.g., 3.5"
-                        step="0.1"
-                        min="0"
-                        max="4"
+                        value={minGrade}
+                        onChange={(e) => setMinGrade(e.target.value)}
+                        placeholder="e.g., 27"
+                        step="0.5"
+                        min="18"
+                        max="30"
                         className="w-full"
                       />
                     </div>
@@ -350,6 +393,25 @@ export default function GeographicTalentSearchPage() {
                         ))}
                       </select>
                     </div>
+
+                    {/* Courses Filter */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-800 mb-2">
+                        Add Courses
+                      </label>
+                      <select
+                        onChange={(e) => {
+                          handleAddCourse(e.target.value)
+                          e.target.value = ''
+                        }}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      >
+                        <option value="">Select course...</option>
+                        {allCourses.filter(c => !selectedCourses.includes(c)).map(course => (
+                          <option key={course} value={course}>{course}</option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
 
                   {/* Selected Skills Display */}
@@ -368,6 +430,29 @@ export default function GeographicTalentSearchPage() {
                             <X
                               className="h-3 w-3 cursor-pointer hover:text-blue-900"
                               onClick={() => handleRemoveSkill(skill)}
+                            />
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Selected Courses Display */}
+                  {selectedCourses.length > 0 && (
+                    <div className="mt-4">
+                      <label className="block text-sm font-medium text-gray-800 mb-2">
+                        Selected Courses:
+                      </label>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedCourses.map(course => (
+                          <Badge
+                            key={course}
+                            className="bg-green-100 text-green-800 border-green-300 px-3 py-1 flex items-center gap-2"
+                          >
+                            {course}
+                            <X
+                              className="h-3 w-3 cursor-pointer hover:text-green-900"
+                              onClick={() => handleRemoveCourse(course)}
                             />
                           </Badge>
                         ))}

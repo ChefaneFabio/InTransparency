@@ -472,7 +472,7 @@ export default function CaseStudyPage() {
                 <Card className={currentPosition.color}>
                   <CardHeader>
                     <CardTitle className="flex items-center justify-between">
-                      <span className="flex items-center">
+                      <span className="flex items-center text-gray-900">
                         <Filter className="h-5 w-5 mr-2" />
                         Search Criteria
                       </span>
@@ -480,7 +480,7 @@ export default function CaseStudyPage() {
                         variant="ghost"
                         size="sm"
                         onClick={resetFilters}
-                        className="text-xs"
+                        className="text-xs text-gray-700 hover:text-gray-900 hover:bg-gray-100"
                       >
                         <RefreshCw className="h-3 w-3 mr-1" />
                         Reset
