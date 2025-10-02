@@ -653,6 +653,37 @@ export function generateMockCandidates(count: number): Candidate[] {
 
   const majors = ['Computer Science', 'Data Science', 'Artificial Intelligence', 'Software Engineering', 'Information Technology']
 
+  const courseSets = [
+    // Computer Science courses
+    [
+      { id: 'cs1', code: 'CS101', name: 'Introduction to Algorithms', grade: 'A', gpa: 4.0, credits: 6, semester: 'Fall', year: 2022, relevantSkills: ['Algorithms', 'Python'] },
+      { id: 'cs2', code: 'CS201', name: 'Data Structures', grade: 'A-', gpa: 3.7, credits: 6, semester: 'Spring', year: 2023, relevantSkills: ['Data Structures', 'Java'] },
+      { id: 'cs3', code: 'CS301', name: 'Network Security', grade: 'A', gpa: 4.0, credits: 6, semester: 'Fall', year: 2023, relevantSkills: ['Security', 'Networks'] },
+      { id: 'cs4', code: 'CS401', name: 'Cryptography', grade: 'B+', gpa: 3.3, credits: 6, semester: 'Spring', year: 2024, relevantSkills: ['Cryptography', 'Math'] }
+    ],
+    // Data Science courses
+    [
+      { id: 'ds1', code: 'DS101', name: 'Machine Learning', grade: 'A', gpa: 4.0, credits: 6, semester: 'Fall', year: 2022, relevantSkills: ['ML', 'Python'] },
+      { id: 'ds2', code: 'DS201', name: 'Deep Learning', grade: 'A', gpa: 4.0, credits: 6, semester: 'Spring', year: 2023, relevantSkills: ['Deep Learning', 'TensorFlow'] },
+      { id: 'ds3', code: 'DS301', name: 'Big Data Analytics', grade: 'A-', gpa: 3.7, credits: 6, semester: 'Fall', year: 2023, relevantSkills: ['Big Data', 'Spark'] },
+      { id: 'ds4', code: 'STAT201', name: 'Statistical Analysis', grade: 'A', gpa: 4.0, credits: 6, semester: 'Spring', year: 2024, relevantSkills: ['Statistics', 'R'] }
+    ],
+    // Finance/Economics courses (for banking)
+    [
+      { id: 'fin1', code: 'FIN101', name: 'Financial Risk Management', grade: 'A', gpa: 4.0, credits: 6, semester: 'Fall', year: 2022, relevantSkills: ['Risk Analysis', 'Finance'] },
+      { id: 'fin2', code: 'ECON201', name: 'Econometrics', grade: 'A-', gpa: 3.7, credits: 6, semester: 'Spring', year: 2023, relevantSkills: ['Econometrics', 'R'] },
+      { id: 'fin3', code: 'FIN301', name: 'Corporate Finance', grade: 'A', gpa: 4.0, credits: 6, semester: 'Fall', year: 2023, relevantSkills: ['Finance', 'Analysis'] },
+      { id: 'fin4', code: 'FIN401', name: 'Financial Modeling', grade: 'A', gpa: 4.0, credits: 6, semester: 'Spring', year: 2024, relevantSkills: ['Modeling', 'Excel'] }
+    ],
+    // Security courses
+    [
+      { id: 'sec1', code: 'SEC101', name: 'Network Security', grade: 'A', gpa: 4.0, credits: 6, semester: 'Fall', year: 2022, relevantSkills: ['Networks', 'Security'] },
+      { id: 'sec2', code: 'SEC201', name: 'Cryptography', grade: 'A', gpa: 4.0, credits: 6, semester: 'Spring', year: 2023, relevantSkills: ['Cryptography', 'Math'] },
+      { id: 'sec3', code: 'SEC301', name: 'Cyber Threat Analysis', grade: 'A-', gpa: 3.7, credits: 6, semester: 'Fall', year: 2023, relevantSkills: ['Security', 'Analysis'] },
+      { id: 'sec4', code: 'SEC401', name: 'Penetration Testing', grade: 'A', gpa: 4.0, credits: 6, semester: 'Spring', year: 2024, relevantSkills: ['Pen Testing', 'Linux'] }
+    ]
+  ]
+
   for (let i = 0; i < count; i++) {
     const firstName = firstNames[Math.floor(Math.random() * firstNames.length)]
     const lastName = lastNames[Math.floor(Math.random() * lastNames.length)]
@@ -660,6 +691,7 @@ export function generateMockCandidates(count: number): Candidate[] {
     const university = universityKeys[Math.floor(Math.random() * universityKeys.length)]
     const univData = universities[university as keyof typeof universities]
     const skillSet = skillSets[Math.floor(Math.random() * skillSets.length)]
+    const courseSet = courseSets[Math.floor(Math.random() * courseSets.length)]
     const coords = cityCoordinates[univData.city] || { lat: 0, lng: 0 }
 
     candidates.push({
@@ -682,7 +714,7 @@ export function generateMockCandidates(count: number): Candidate[] {
         graduationYear: 2024 + Math.floor(Math.random() * 2),
         startYear: 2020 + Math.floor(Math.random() * 2),
         honors: [],
-        courses: []
+        courses: courseSet
       }],
       projects: [],
       experience: [],

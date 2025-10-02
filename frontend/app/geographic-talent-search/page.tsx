@@ -279,10 +279,10 @@ export default function GeographicTalentSearchPage() {
 
             {/* Search Controls */}
             <div className="max-w-6xl mx-auto">
-              <Card>
+              <Card className="bg-gradient-to-br from-blue-600 to-blue-700 border-none">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
-                    <span className="flex items-center text-gray-900">
+                    <span className="flex items-center text-white">
                       <Filter className="h-5 w-5 mr-2" />
                       Advanced Search Filters
                     </span>
@@ -291,7 +291,7 @@ export default function GeographicTalentSearchPage() {
                         onClick={handleClearFilters}
                         variant="outline"
                         size="sm"
-                        className="text-gray-700 hover:text-gray-900 border-gray-300 hover:bg-gray-100"
+                        className="text-white border-white hover:bg-white hover:text-blue-700"
                       >
                         <X className="h-4 w-4 mr-1" />
                         Clear Filters
@@ -303,7 +303,7 @@ export default function GeographicTalentSearchPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {/* Location Search */}
                     <div>
-                      <label className="block text-sm font-semibold text-gray-900 mb-2">
+                      <label className="block text-sm font-semibold text-white mb-2">
                         Location
                       </label>
                       <PlacesAutocomplete
@@ -319,7 +319,7 @@ export default function GeographicTalentSearchPage() {
                     {/* Search Radius */}
                     {selectedLocation && (
                       <div>
-                        <label className="block text-sm font-semibold text-gray-900 mb-2">
+                        <label className="block text-sm font-semibold text-white mb-2">
                           Search Radius (km)
                         </label>
                         <Input
@@ -335,7 +335,7 @@ export default function GeographicTalentSearchPage() {
 
                     {/* Degree Filter */}
                     <div>
-                      <label className="block text-sm font-semibold text-gray-900 mb-2">
+                      <label className="block text-sm font-semibold text-white mb-2">
                         Degree Level
                       </label>
                       <select
@@ -352,7 +352,7 @@ export default function GeographicTalentSearchPage() {
 
                     {/* Major Filter */}
                     <div>
-                      <label className="block text-sm font-semibold text-gray-900 mb-2">
+                      <label className="block text-sm font-semibold text-white mb-2">
                         Major / Field of Study
                       </label>
                       <select
@@ -369,7 +369,7 @@ export default function GeographicTalentSearchPage() {
 
                     {/* Min Grade Filter */}
                     <div>
-                      <label className="block text-sm font-semibold text-gray-900 mb-2">
+                      <label className="block text-sm font-semibold text-white mb-2">
                         Minimum Grade (out of 30)
                       </label>
                       <Input
@@ -386,7 +386,7 @@ export default function GeographicTalentSearchPage() {
 
                     {/* Skills Filter */}
                     <div>
-                      <label className="block text-sm font-semibold text-gray-900 mb-2">
+                      <label className="block text-sm font-semibold text-white mb-2">
                         Add Skills
                       </label>
                       <select
@@ -405,7 +405,7 @@ export default function GeographicTalentSearchPage() {
 
                     {/* Courses Filter */}
                     <div>
-                      <label className="block text-sm font-semibold text-gray-900 mb-2">
+                      <label className="block text-sm font-semibold text-white mb-2">
                         Add Courses
                       </label>
                       <select
@@ -426,7 +426,7 @@ export default function GeographicTalentSearchPage() {
                   {/* Selected Skills Display */}
                   {selectedSkills.length > 0 && (
                     <div className="mt-4">
-                      <label className="block text-sm font-semibold text-gray-900 mb-2">
+                      <label className="block text-sm font-semibold text-white mb-2">
                         Selected Skills:
                       </label>
                       <div className="flex flex-wrap gap-2">
@@ -449,7 +449,7 @@ export default function GeographicTalentSearchPage() {
                   {/* Selected Courses Display */}
                   {selectedCourses.length > 0 && (
                     <div className="mt-4">
-                      <label className="block text-sm font-semibold text-gray-900 mb-2">
+                      <label className="block text-sm font-semibold text-white mb-2">
                         Selected Courses:
                       </label>
                       <div className="flex flex-wrap gap-2">
