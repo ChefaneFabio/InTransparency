@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useMemo, useCallback } from 'react'
+import dynamic from 'next/dynamic'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
@@ -33,6 +34,12 @@ import {
   RefreshCw
 } from 'lucide-react'
 import { allCandidates, type Candidate } from '@/lib/mock-candidates'
+
+// Dynamically import Google Maps to avoid SSR issues
+const GoogleMapComponent = dynamic(
+  () => import('@/components/maps/GoogleMapComponent').then(mod => mod.GoogleMapComponent),
+  { ssr: false, loading: () => <div className="h-[500px] bg-gray-100 animate-pulse rounded-lg" /> }
+)
 
 const positions = [
   {
@@ -724,6 +731,54 @@ export default function CaseStudyPage() {
               </div>
             </div>
           </div>
+
+          {/* Geographic Distribution Map */}
+          <Card className="mb-16 border-2 border-blue-200">
+            <CardHeader>
+              <CardTitle className="flex items-center text-2xl">
+                <MapPin className="h-6 w-6 mr-2 text-blue-600" />
+                Geographic Talent Distribution
+              </CardTitle>
+              <CardDescription>
+                Interactive map showing {filteredCandidates.length} candidates across Italy matching your search criteria
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="h-[500px] rounded-lg overflow-hidden border border-gray-200">
+                <GoogleMapComponent
+                  center={{ lat: 42.5, lng: 12.5 }}
+                  zoom={6}
+                  markers={filteredCandidates.slice(0, 20).map((candidate, idx) => ({
+                    id: `candidate-${idx}`,
+                    position: candidate.location,
+                    title: `${candidate.firstName} ${candidate.lastName}`,
+                    content: `
+                      <div class="p-2">
+                        <h3 class="font-bold text-gray-900">${candidate.firstName} ${candidate.lastName}</h3>
+                        <p class="text-sm text-gray-700">${candidate.education[0]?.university || 'University'}</p>
+                        <p class="text-sm text-gray-700">${candidate.education[0]?.degree || 'Degree'}</p>
+                        <p class="text-sm text-blue-600">GPA: ${candidate.education[0]?.gpa || 'N/A'}/${candidate.education[0]?.maxGPA || 30}</p>
+                      </div>
+                    `
+                  }))}
+                />
+              </div>
+              <div className="mt-4 flex items-center justify-center gap-6 text-sm">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-blue-600"></div>
+                  <span className="text-gray-700">Milan ({filteredCandidates.filter(c => c.location.city.includes('Milan')).length})</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-green-600"></div>
+                  <span className="text-gray-700">Rome ({filteredCandidates.filter(c => c.location.city.includes('Rome')).length})</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-purple-600"></div>
+                  <span className="text-gray-700">Turin ({filteredCandidates.filter(c => c.location.city.includes('Turin')).length})</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Platform Benefits */}
           <div className="mb-16">
