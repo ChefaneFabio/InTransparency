@@ -112,6 +112,7 @@ const platformBenefits = [
 
 export default function CaseStudyPage() {
   const [selectedPosition, setSelectedPosition] = useState(1)
+  const [isInitialized, setIsInitialized] = useState(false)
   const [customCourses, setCustomCourses] = useState<string[]>([])
   const [customSkills, setCustomSkills] = useState<string[]>([])
   const [customLocation, setCustomLocation] = useState('')
@@ -119,22 +120,47 @@ export default function CaseStudyPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [showFilters, setShowFilters] = useState(false)
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null)
+  const [isSearching, setIsSearching] = useState(false)
+  const [hasSearched, setHasSearched] = useState(false)
 
   const currentPosition = positions.find(p => p.id === selectedPosition) || positions[0]
   const PositionIcon = currentPosition.icon
 
-  // Get active search criteria (custom or position default)
+  // Initialize with first position's criteria only on first load
+  React.useEffect(() => {
+    if (!isInitialized) {
+      setCustomCourses(currentPosition.searchCriteria.courses)
+      setCustomSkills(currentPosition.searchCriteria.skills)
+      setCustomLocation(currentPosition.searchCriteria.location)
+      setMinGrade(currentPosition.searchCriteria.minGrade)
+      setIsInitialized(true)
+    }
+  }, [isInitialized, currentPosition])
+
+  // Get active search criteria - always use the current state values
   const activeSearchCriteria = useMemo(() => {
     return {
-      courses: customCourses.length > 0 ? customCourses : currentPosition.searchCriteria.courses,
-      skills: customSkills.length > 0 ? customSkills : currentPosition.searchCriteria.skills,
-      location: customLocation || currentPosition.searchCriteria.location,
+      courses: customCourses,
+      skills: customSkills,
+      location: customLocation,
       minGrade: minGrade
     }
-  }, [customCourses, customSkills, customLocation, minGrade, currentPosition])
+  }, [customCourses, customSkills, customLocation, minGrade])
 
-  // Dynamic candidate filtering
+  // Search handler
+  const handleSearch = () => {
+    setIsSearching(true)
+    // Simulate search delay for better UX
+    setTimeout(() => {
+      setIsSearching(false)
+      setHasSearched(true)
+    }, 800)
+  }
+
+  // Dynamic candidate filtering (only show results after search)
   const filteredCandidates = useMemo(() => {
+    if (!hasSearched) return []
+
     return allCandidates.filter(candidate => {
       // Search query filter
       if (searchQuery) {
@@ -179,7 +205,7 @@ export default function CaseStudyPage() {
 
       return true
     })
-  }, [searchQuery, activeSearchCriteria, allCandidates])
+  }, [searchQuery, activeSearchCriteria, allCandidates, hasSearched])
 
   // Calculate match score for a candidate
   const calculateMatchScore = useCallback((candidate: Candidate) => {
@@ -240,6 +266,7 @@ export default function CaseStudyPage() {
     setCustomLocation('')
     setMinGrade(90)
     setSearchQuery('')
+    setHasSearched(false)
   }
 
   const addCustomCourse = (course: string) => {
@@ -284,7 +311,7 @@ export default function CaseStudyPage() {
                 <div className="text-sm text-gray-800 font-medium">Days to Hire</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600">{filteredCandidates.length}</div>
+                <div className="text-3xl font-bold text-purple-600">{hasSearched ? filteredCandidates.length : '?'}</div>
                 <div className="text-sm text-gray-800 font-medium">Candidates Found</div>
               </div>
             </div>
@@ -578,11 +605,31 @@ export default function CaseStudyPage() {
                       />
                     </div>
 
-                    <div className="pt-4 border-t">
-                      <div className="text-center">
-                        <div className="text-3xl font-bold text-blue-600">{filteredCandidates.length}</div>
-                        <div className="text-sm text-gray-900 font-medium">Candidates Found</div>
-                      </div>
+                    <div className="pt-4 border-t space-y-3">
+                      <Button
+                        onClick={handleSearch}
+                        disabled={isSearching}
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-6 text-base shadow-lg"
+                      >
+                        {isSearching ? (
+                          <>
+                            <RefreshCw className="h-5 w-5 mr-2 animate-spin" />
+                            Searching...
+                          </>
+                        ) : (
+                          <>
+                            <Search className="h-5 w-5 mr-2" />
+                            Search for Candidates
+                          </>
+                        )}
+                      </Button>
+
+                      {hasSearched && (
+                        <div className="text-center">
+                          <div className="text-3xl font-bold text-blue-600">{filteredCandidates.length}</div>
+                          <div className="text-sm text-gray-900 font-medium">Candidates Found</div>
+                        </div>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -590,7 +637,15 @@ export default function CaseStudyPage() {
 
               {/* Results */}
               <div className="lg:col-span-2">
-                {topCandidate ? (
+                {!hasSearched ? (
+                  <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50">
+                    <CardContent className="py-16 text-center">
+                      <Search className="h-16 w-16 mx-auto text-blue-400 mb-4" />
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Ready to Find Candidates?</h3>
+                      <p className="text-gray-700">Click "Search for Candidates" to find matching profiles</p>
+                    </CardContent>
+                  </Card>
+                ) : topCandidate ? (
                   <Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-emerald-50">
                     <CardHeader>
                       <div className="flex items-center justify-between mb-2">
