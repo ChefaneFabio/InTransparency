@@ -353,8 +353,8 @@ export default function MilestonesPage() {
                                 }`} />
                               </div>
                               <div className="flex-1">
-                                <CardTitle className="text-lg md:text-xl">{milestone.title}</CardTitle>
-                                <CardDescription className="mt-1">{milestone.description}</CardDescription>
+                                <CardTitle className="text-lg md:text-xl text-gray-900">{milestone.title}</CardTitle>
+                                <CardDescription className="mt-1 text-gray-700">{milestone.description}</CardDescription>
                               </div>
                             </div>
                             <div className="flex flex-row md:flex-col items-start md:items-end gap-2 flex-shrink-0">

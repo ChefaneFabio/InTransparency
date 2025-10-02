@@ -489,7 +489,7 @@ export default function CaseStudyPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
-                      <Label className="text-sm font-semibold mb-2">Search Query</Label>
+                      <Label className="text-sm font-semibold text-gray-900 mb-2">Search Query</Label>
                       <Input
                         placeholder="Search by name, university..."
                         value={searchQuery}
@@ -499,7 +499,7 @@ export default function CaseStudyPage() {
                     </div>
 
                     <div>
-                      <Label className="text-sm font-semibold mb-2">Location</Label>
+                      <Label className="text-sm font-semibold text-gray-900 mb-2">Location</Label>
                       <Input
                         placeholder={currentPosition.location}
                         value={customLocation}
@@ -509,7 +509,7 @@ export default function CaseStudyPage() {
                     </div>
 
                     <div>
-                      <Label className="text-sm font-semibold mb-2">Minimum GPA: {minGPA}/30</Label>
+                      <Label className="text-sm font-semibold text-gray-900 mb-2">Minimum GPA: {minGPA}/30</Label>
                       <Slider
                         value={[minGPA]}
                         onValueChange={(value) => setMinGPA(value[0])}
@@ -521,10 +521,10 @@ export default function CaseStudyPage() {
                     </div>
 
                     <div>
-                      <Label className="text-sm font-semibold mb-2">Required Courses</Label>
+                      <Label className="text-sm font-semibold text-gray-900 mb-2">Required Courses</Label>
                       <div className="flex flex-wrap gap-2 mb-2">
                         {activeSearchCriteria.courses.map((course, idx) => (
-                          <Badge key={idx} variant="outline" className="text-xs">
+                          <Badge key={idx} variant="outline" className="text-xs border-gray-400 text-gray-800">
                             {course}
                             {customCourses.includes(course) && (
                               <X
@@ -548,7 +548,7 @@ export default function CaseStudyPage() {
                     </div>
 
                     <div>
-                      <Label className="text-sm font-semibold mb-2">Required Skills</Label>
+                      <Label className="text-sm font-semibold text-gray-900 mb-2">Required Skills</Label>
                       <div className="flex flex-wrap gap-2 mb-2">
                         {activeSearchCriteria.skills.map((skill, idx) => (
                           <Badge key={idx} className="text-xs bg-blue-100 text-blue-900 border border-blue-300 font-semibold">
@@ -577,7 +577,7 @@ export default function CaseStudyPage() {
                     <div className="pt-4 border-t">
                       <div className="text-center">
                         <div className="text-3xl font-bold text-blue-600">{filteredCandidates.length}</div>
-                        <div className="text-sm text-gray-800 font-medium">Candidates Found</div>
+                        <div className="text-sm text-gray-900 font-medium">Candidates Found</div>
                       </div>
                     </div>
                   </CardContent>
@@ -773,20 +773,6 @@ export default function CaseStudyPage() {
                   <div className="text-3xl font-bold text-purple-600 mb-2">€45K</div>
                   <div className="text-sm text-gray-800 mb-1 font-medium">Recruitment Cost Savings</div>
                   <p className="text-xs text-gray-700">Compared to traditional agency fees</p>
-                </div>
-              </div>
-              <div className="mt-6 p-4 bg-white rounded-lg border border-blue-200">
-                <p className="text-gray-700 italic">
-                  "InTransparency completely changed how we hire. We didn't have to post jobs and wait for people to send us CVs. We proactively searched for candidates who had taken specific courses like 'Financial Risk Management' and 'Applied Cryptography', and found them instantly across different Italian cities. The AI matching showed us their actual projects and grades - proof they had the knowledge we needed. We contacted candidates who hadn't even applied to us yet, and all three accepted our offers. This is the future of recruiting."
-                </p>
-                <div className="mt-3 flex items-center">
-                  <div className="bg-blue-100 rounded-full h-10 w-10 flex items-center justify-center mr-3">
-                    <Building2 className="h-5 w-5 text-blue-800" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">Maria Lombardi</div>
-                    <div className="text-sm text-gray-800">Head of Talent Acquisition, Leading Banking Firm</div>
-                  </div>
                 </div>
               </div>
             </CardContent>

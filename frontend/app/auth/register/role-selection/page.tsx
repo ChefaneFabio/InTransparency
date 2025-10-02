@@ -298,33 +298,6 @@ export default function RoleSelectionPage() {
           </div>
         </div>
 
-        {/* Social Proof */}
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-12 text-center shadow-xl border border-blue-100/50 mb-16">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-8">
-            Trusted by Leading Institutions Worldwide
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-            <div className="text-lg font-bold text-blue-600 hover:text-blue-700 transition-colors">Università Bocconi</div>
-            <div className="text-lg font-bold text-blue-600 hover:text-blue-700 transition-colors">Politecnico Milano</div>
-            <div className="text-lg font-bold text-blue-600 hover:text-blue-700 transition-colors">Stanford University</div>
-            <div className="text-lg font-bold text-blue-600 hover:text-blue-700 transition-colors">MIT</div>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-8 text-lg">
-            <div className="flex items-center bg-blue-50 px-6 py-3 rounded-full">
-              <Users className="h-6 w-6 mr-3 text-blue-600" />
-              <span className="font-bold text-blue-700">Student Network</span>
-            </div>
-            <div className="flex items-center bg-blue-50 px-6 py-3 rounded-full">
-              <Briefcase className="h-6 w-6 mr-3 text-blue-600" />
-              <span className="font-bold text-blue-700">Partner Companies</span>
-            </div>
-            <div className="flex items-center bg-blue-50 px-6 py-3 rounded-full">
-              <Globe className="h-6 w-6 mr-3 text-blue-600" />
-              <span className="font-bold text-blue-700">Partner Universities</span>
-            </div>
-          </div>
-        </div>
-
         {/* Universal Survey Section */}
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl p-12 text-white shadow-2xl">
           <div className="max-w-5xl mx-auto text-center">
