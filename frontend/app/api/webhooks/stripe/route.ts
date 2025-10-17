@@ -122,7 +122,9 @@ async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
       status: subscription.status === 'trialing' ? 'TRIALING' : 'ACTIVE',
       stripeSubscriptionId: subscription.id,
       stripePriceId: price?.id,
-      stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
+      stripeCurrentPeriodEnd: subscription.current_period_end
+        ? new Date(subscription.current_period_end * 1000)
+        : undefined,
       amount,
       currency: price?.currency || 'eur',
       interval,
@@ -138,7 +140,9 @@ async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
     data: {
       subscriptionStatus: subscription.status === 'trialing' ? 'TRIALING' : 'ACTIVE',
       subscriptionTier: tier as any,
-      premiumUntil: new Date(subscription.current_period_end * 1000)
+      premiumUntil: subscription.current_period_end
+        ? new Date(subscription.current_period_end * 1000)
+        : undefined
     }
   })
 }
@@ -168,7 +172,9 @@ async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
     },
     data: {
       subscriptionStatus: status,
-      premiumUntil: new Date(subscription.current_period_end * 1000)
+      premiumUntil: subscription.current_period_end
+        ? new Date(subscription.current_period_end * 1000)
+        : undefined
     }
   })
 
@@ -180,7 +186,9 @@ async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
     },
     data: {
       status,
-      stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000)
+      stripeCurrentPeriodEnd: subscription.current_period_end
+        ? new Date(subscription.current_period_end * 1000)
+        : undefined
     }
   })
 }
@@ -256,7 +264,9 @@ async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
     },
     data: {
       subscriptionStatus: 'ACTIVE',
-      premiumUntil: new Date(subscription.current_period_end * 1000)
+      premiumUntil: subscription.current_period_end
+        ? new Date(subscription.current_period_end * 1000)
+        : undefined
     }
   })
 }
