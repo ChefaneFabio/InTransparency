@@ -938,7 +938,7 @@ export default function CandidatesPageEnhanced() {
                                   {DISCIPLINES.find(d => d.value === candidate.discipline)?.label}
                                 </Badge>
                                 {candidate.topProject?.universityVerified && (
-                                  <CheckCircle className="h-4 w-4 text-green-600" title="University Verified" />
+                                  <CheckCircle className="h-4 w-4 text-green-600" />
                                 )}
                               </div>
                               <p className="text-gray-600">{candidate.degree}</p>

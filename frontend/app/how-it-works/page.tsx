@@ -116,6 +116,8 @@ const recruiterSteps = [
     description: 'Search for candidates even if they haven\'t applied to your jobs. Find talent based on skills, education, and experience',
     icon: Search,
     color: 'bg-blue-50 border-blue-200',
+    duration: undefined,
+    example: undefined,
     features: [
       'Search candidates without applications',
       'Filter by universities, courses, grades',
@@ -130,6 +132,8 @@ const recruiterSteps = [
     description: 'Intelligent AI analyzes industry knowledge and finds common ground between your company profile and candidates',
     icon: Target,
     color: 'bg-green-50 border-green-200',
+    duration: undefined,
+    example: undefined,
     features: [
       'AI RAG for intelligent candidate matching',
       'Industry knowledge compatibility',
@@ -144,6 +148,8 @@ const recruiterSteps = [
     description: 'Connect directly with matched candidates and manage the hiring process efficiently',
     icon: MessageSquare,
     color: 'bg-purple-50 border-purple-200',
+    duration: undefined,
+    example: undefined,
     features: [
       'Direct messaging with AI insights',
       'Interview scheduling',
@@ -161,6 +167,8 @@ const universitySteps = [
     description: 'Enable students to import their academic data seamlessly',
     icon: Link,
     color: 'bg-purple-50 border-purple-200',
+    duration: undefined,
+    example: undefined,
     features: [
       'API integration',
       'Student data sync',
@@ -175,6 +183,8 @@ const universitySteps = [
     description: 'Monitor student career outcomes and placement rates',
     icon: TrendingUp,
     color: 'bg-green-50 border-green-200',
+    duration: undefined,
+    example: undefined,
     features: [
       'Employment analytics',
       'Salary insights',
@@ -189,6 +199,8 @@ const universitySteps = [
     description: 'Establish relationships with top employers and industry partners',
     icon: Award,
     color: 'bg-blue-50 border-blue-200',
+    duration: undefined,
+    example: undefined,
     features: [
       'Recruiter network',
       'Job fair coordination',
