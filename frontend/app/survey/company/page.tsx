@@ -260,17 +260,17 @@ export default function CompanySurveyPage() {
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="medium" id="medium" />
-                      <Label htmlFor="medium">Medium (201-1000 employees)</Label>
+                      <Label htmlFor="medium" className="text-gray-900">Medium (201-1000 employees)</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="large" id="large" />
-                      <Label htmlFor="large">Large (1000+ employees)</Label>
+                      <Label htmlFor="large" className="text-gray-900">Large (1000+ employees)</Label>
                     </div>
                   </RadioGroup>
                 </div>
 
                 <div>
-                  <Label htmlFor="role">Your Role</Label>
+                  <Label htmlFor="role" className="text-gray-900 font-semibold">Your Role</Label>
                   <Input
                     id="role"
                     placeholder="e.g., HR Manager, Talent Acquisition, Recruiter"
@@ -280,26 +280,26 @@ export default function CompanySurveyPage() {
                 </div>
 
                 <div>
-                  <Label>How many graduates do you hire per year?</Label>
+                  <Label className="text-gray-900 font-semibold">How many graduates do you hire per year?</Label>
                   <RadioGroup
                     value={surveyData.hiringVolume}
                     onValueChange={(value) => setSurveyData(prev => ({...prev, hiringVolume: value}))}
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="1-5" id="1-5" />
-                      <Label htmlFor="1-5">1-5 graduates</Label>
+                      <Label htmlFor="1-5" className="text-gray-900">1-5 graduates</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="6-20" id="6-20" />
-                      <Label htmlFor="6-20">6-20 graduates</Label>
+                      <Label htmlFor="6-20" className="text-gray-900">6-20 graduates</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="21-50" id="21-50" />
-                      <Label htmlFor="21-50">21-50 graduates</Label>
+                      <Label htmlFor="21-50" className="text-gray-900">21-50 graduates</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="50+" id="50+" />
-                      <Label htmlFor="50+">50+ graduates</Label>
+                      <Label htmlFor="50+" className="text-gray-900">50+ graduates</Label>
                     </div>
                   </RadioGroup>
                 </div>
@@ -310,7 +310,7 @@ export default function CompanySurveyPage() {
             {currentStep === 2 && (
               <div className="space-y-6">
                 <div>
-                  <Label>What are your biggest recruitment pain points? (Select all that apply)</Label>
+                  <Label className="text-gray-900 font-semibold">What are your biggest recruitment pain points? (Select all that apply)</Label>
                   <div className="space-y-2 mt-2">
                     {[
                       'Too many unqualified applications',
@@ -328,14 +328,14 @@ export default function CompanySurveyPage() {
                           checked={surveyData.currentPainPoints.includes(option)}
                           onCheckedChange={(checked) => handleCheckboxChange('currentPainPoints', option, checked as boolean)}
                         />
-                        <Label htmlFor={option} className="text-sm">{option}</Label>
+                        <Label htmlFor={option} className="text-sm text-gray-900">{option}</Label>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="challenges">What makes evaluating graduates particularly challenging?</Label>
+                  <Label htmlFor="challenges" className="text-gray-900 font-semibold">What makes evaluating graduates particularly challenging?</Label>
                   <Textarea
                     id="challenges"
                     placeholder="Describe specific challenges you face when hiring recent graduates..."
@@ -346,51 +346,51 @@ export default function CompanySurveyPage() {
                 </div>
 
                 <div>
-                  <Label>How much time do you spend on initial CV screening per position?</Label>
+                  <Label className="text-gray-900 font-semibold">How much time do you spend on initial CV screening per position?</Label>
                   <RadioGroup
                     value={surveyData.screeningTime}
                     onValueChange={(value) => setSurveyData(prev => ({...prev, screeningTime: value}))}
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="1-5 hours" id="1-5-hours" />
-                      <Label htmlFor="1-5-hours">1-5 hours</Label>
+                      <Label htmlFor="1-5-hours" className="text-gray-900">1-5 hours</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="6-15 hours" id="6-15-hours" />
-                      <Label htmlFor="6-15-hours">6-15 hours</Label>
+                      <Label htmlFor="6-15-hours" className="text-gray-900">6-15 hours</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="16-30 hours" id="16-30-hours" />
-                      <Label htmlFor="16-30-hours">16-30 hours</Label>
+                      <Label htmlFor="16-30-hours" className="text-gray-900">16-30 hours</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="30+ hours" id="30-hours" />
-                      <Label htmlFor="30-hours">30+ hours</Label>
+                      <Label htmlFor="30-hours" className="text-gray-900">30+ hours</Label>
                     </div>
                   </RadioGroup>
                 </div>
 
                 <div>
-                  <Label>What's your average cost per graduate hire (including agency fees, time, etc.)?</Label>
+                  <Label className="text-gray-900 font-semibold">What's your average cost per graduate hire (including agency fees, time, etc.)?</Label>
                   <RadioGroup
                     value={surveyData.averageCostPerHire}
                     onValueChange={(value) => setSurveyData(prev => ({...prev, averageCostPerHire: value}))}
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="€500-2000" id="500-2000" />
-                      <Label htmlFor="500-2000">€500-2,000</Label>
+                      <Label htmlFor="500-2000" className="text-gray-900">€500-2,000</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="€2000-5000" id="2000-5000" />
-                      <Label htmlFor="2000-5000">€2,000-5,000</Label>
+                      <Label htmlFor="2000-5000" className="text-gray-900">€2,000-5,000</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="€5000-10000" id="5000-10000" />
-                      <Label htmlFor="5000-10000">€5,000-10,000</Label>
+                      <Label htmlFor="5000-10000" className="text-gray-900">€5,000-10,000</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="€10000+" id="10000+" />
-                      <Label htmlFor="10000+">€10,000+</Label>
+                      <Label htmlFor="10000+" className="text-gray-900">€10,000+</Label>
                     </div>
                   </RadioGroup>
                 </div>
@@ -419,7 +419,7 @@ export default function CompanySurveyPage() {
                           checked={surveyData.evaluationCriteria.includes(option)}
                           onCheckedChange={(checked) => handleCheckboxChange('evaluationCriteria', option, checked as boolean)}
                         />
-                        <Label htmlFor={option} className="text-sm">{option}</Label>
+                        <Label htmlFor={option} className="text-sm text-gray-900">{option}</Label>
                       </div>
                     ))}
                   </div>
@@ -444,7 +444,7 @@ export default function CompanySurveyPage() {
                           checked={surveyData.skillVerificationMethods.includes(option)}
                           onCheckedChange={(checked) => handleCheckboxChange('skillVerificationMethods', option, checked as boolean)}
                         />
-                        <Label htmlFor={option} className="text-sm">{option}</Label>
+                        <Label htmlFor={option} className="text-sm text-gray-900">{option}</Label>
                       </div>
                     ))}
                   </div>
@@ -535,7 +535,7 @@ export default function CompanySurveyPage() {
                           checked={surveyData.desiredFeatures.includes(option)}
                           onCheckedChange={(checked) => handleCheckboxChange('desiredFeatures', option, checked as boolean)}
                         />
-                        <Label htmlFor={option} className="text-sm">{option}</Label>
+                        <Label htmlFor={option} className="text-sm text-gray-900">{option}</Label>
                       </div>
                     ))}
                   </div>
@@ -590,7 +590,7 @@ export default function CompanySurveyPage() {
                           checked={surveyData.currentTools.includes(option)}
                           onCheckedChange={(checked) => handleCheckboxChange('currentTools', option, checked as boolean)}
                         />
-                        <Label htmlFor={option} className="text-sm">{option}</Label>
+                        <Label htmlFor={option} className="text-sm text-gray-900">{option}</Label>
                       </div>
                     ))}
                   </div>
@@ -670,7 +670,7 @@ export default function CompanySurveyPage() {
                           checked={surveyData.academicDataValue.includes(option)}
                           onCheckedChange={(checked) => handleCheckboxChange('academicDataValue', option, checked as boolean)}
                         />
-                        <Label htmlFor={option} className="text-sm">{option}</Label>
+                        <Label htmlFor={option} className="text-sm text-gray-900">{option}</Label>
                       </div>
                     ))}
                   </div>

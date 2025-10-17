@@ -1,231 +1,263 @@
+'use client'
+
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Users, Target, Lightbulb, Award, ArrowRight, Heart, Star, TrendingUp } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
+import { FileX2, Code2, TrendingUp, Users, Shield, Zap, Target, Heart } from 'lucide-react'
+import Link from 'next/link'
 
-const team = [
-  {
-    name: 'Sarah Johnson',
-    role: 'CEO & Co-Founder',
-    bio: 'Former VP of Engineering at TechCorp with 15+ years in talent acquisition and AI.',
-    image: 'SJ'
-  },
-  {
-    name: 'Michael Chen',
-    role: 'CTO & Co-Founder',
-    bio: 'Machine Learning PhD and former Principal Engineer at Google, specializing in AI-powered matching.',
-    image: 'MC'
-  },
-  {
-    name: 'Emily Rodriguez',
-    role: 'Head of Product',
-    bio: 'Former Product Manager at LinkedIn with expertise in career platforms and user experience.',
-    image: 'ER'
-  },
-  {
-    name: 'David Kim',
-    role: 'Head of AI Research',
-    bio: 'PhD in Computer Science from MIT, published researcher in NLP and recommendation systems.',
-    image: 'DK'
-  }
-]
-
-const values = [
-  {
-    icon: Users,
-    title: 'Student-Centric',
-    description: 'Every decision we make puts student success and career outcomes first.'
-  },
-  {
-    icon: Target,
-    title: 'Data-Driven',
-    description: 'We use AI and analytics to provide actionable insights, not just pretty charts.'
-  },
-  {
-    icon: Lightbulb,
-    title: 'Innovation',
-    description: 'We continuously push the boundaries of what\'s possible in career development.'
-  },
-  {
-    icon: Award,
-    title: 'Excellence',
-    description: 'We maintain the highest standards in everything we build and deliver.'
-  }
-]
-
-const values_stats = [
-  { label: 'Mission', value: 'Bridge the gap between student potential and career opportunities' },
-  { label: 'Focus', value: 'AI-powered transparency in career development' },
-  { label: 'Vision', value: 'Every student\'s potential recognized and connected' },
-  { label: 'Approach', value: 'Data-driven insights for better career outcomes' }
-]
-
-export default function About() {
+export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+    <div className="min-h-screen bg-white">
       <Header />
-      <main className="pt-24">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-sky-50 via-white to-emerald-50 py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl font-bold mb-6 text-gray-900">
-              Transforming How Students Launch Their Careers
-            </h1>
-            <p className="text-xl mb-8 text-gray-600">
-              We use AI to bridge the gap between student potential and career opportunities,
-              creating transparent pathways to professional success.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-4xl mx-auto">
-              {values_stats.map((item) => (
-                <div key={item.label} className="text-center bg-white/80 backdrop-blur-sm rounded-xl px-6 py-4 shadow-lg">
-                  <div className="text-lg font-semibold text-teal-600 mb-2">{item.label}</div>
-                  <div className="text-sm text-gray-700">{item.value}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Mission Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-6">Our Mission</h2>
-              <p className="text-xl text-muted-foreground">
-                To create a world where every student's potential is recognized, 
-                nurtured, and connected to the right opportunities.
+      <main className="pt-24 pb-16">
+        {/* Hero Section - The Problem */}
+        <section className="bg-gradient-to-br from-red-50 to-orange-50 py-20">
+          <div className="container max-w-4xl">
+            <div className="text-center mb-12">
+              <div className="inline-block bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                The Problem We're Solving
+              </div>
+              <h1 className="text-5xl font-bold text-gray-900 mb-6">
+                Resumes Are Broken.
+              </h1>
+              <p className="text-xl text-gray-700 leading-relaxed">
+                Anyone can claim "Proficient in React" or "Expert in Python" on a resume. <br />
+                Recruiters waste time interviewing unqualified candidates. <br />
+                <strong>Students with real skills get overlooked</strong> because they don't have fancy internships.
               </p>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Heart className="h-6 w-6 text-red-500" />
-                    The Problem We Solve
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Talented students struggle to showcase their potential beyond GPA and resumes. 
-                    Employers miss out on hidden gems. Universities lack insights into career outcomes. 
-                    Traditional recruitment is broken.
-                  </p>
+            <div className="grid md:grid-cols-2 gap-8">
+              <Card className="bg-white">
+                <CardContent className="p-8">
+                  <FileX2 className="h-12 w-12 text-red-600 mb-4" />
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">The Resume Problem</h3>
+                  <ul className="space-y-2 text-gray-700">
+                    <li>❌ Unverified skills (anyone can lie)</li>
+                    <li>❌ No proof of ability</li>
+                    <li>❌ Rewards good writers, not good builders</li>
+                    <li>❌ Favors pedigree over talent</li>
+                    <li>❌ Companies waste $4,000+ per bad hire</li>
+                  </ul>
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Star className="h-6 w-6 text-yellow-500" />
-                    Our Solution
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    AI-powered project analysis reveals true potential. Intelligent matching connects 
-                    students with ideal opportunities. Data-driven insights help universities improve 
-                    outcomes. We make talent transparent.
-                  </p>
+              <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-200">
+                <CardContent className="p-8">
+                  <Code2 className="h-12 w-12 text-green-600 mb-4" />
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">The InTransparency Way</h3>
+                  <ul className="space-y-2 text-gray-700">
+                    <li>✅ University-verified projects</li>
+                    <li>✅ GitHub commit history validation</li>
+                    <li>✅ AI-powered skill analysis</li>
+                    <li>✅ Proof of work beats claims</li>
+                    <li>✅ Find hidden talent 2x faster</li>
+                  </ul>
                 </CardContent>
               </Card>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Values Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
+        {/* Our Mission */}
+        <section className="py-20 bg-white">
+          <div className="container max-w-4xl">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-6">Our Values</h2>
-              <p className="text-xl text-muted-foreground">
-                The principles that guide everything we do
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Our Mission
+              </h2>
+              <p className="text-xl text-gray-700 leading-relaxed">
+                We're building the world's first <strong>verified project portfolio platform</strong> where students prove their skills through what they've actually built, not what they claim they can do.
               </p>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {values.map((value) => {
+            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-white text-center mb-16">
+              <blockquote className="text-2xl font-medium italic mb-4">
+                "Projects speak louder than resumes."
+              </blockquote>
+              <p className="text-blue-50">
+                — The InTransparency Philosophy
+              </p>
+            </div>
+
+            {/* Our Story */}
+            <div className="prose prose-lg max-w-none">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">How We Started</h3>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                InTransparency was born from frustration. Our founders watched talented students with incredible university projects get rejected from jobs because their resumes didn't list "2+ years experience" or a FAANG internship.
+              </p>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Meanwhile, companies complained about hiring candidates who looked great on paper but couldn't code. The disconnect was obvious: <strong>resumes reward good storytelling, not good building.</strong>
+              </p>
+              <p className="text-gray-700 leading-relaxed mb-8">
+                We asked a simple question: What if students could show their work instead of just listing it? What if recruiters could see verified projects with AI analysis, commit histories, and university endorsements?
+              </p>
+              <p className="text-gray-700 leading-relaxed font-semibold">
+                InTransparency was our answer.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Our Values */}
+        <section className="py-20 bg-gray-50">
+          <div className="container max-w-6xl">
+            <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">
+              What We Believe
+            </h2>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                {
+                  icon: Shield,
+                  title: 'Verification Over Claims',
+                  description: 'University-backed projects, GitHub validation, and professor endorsements prove skills are real.'
+                },
+                {
+                  icon: Target,
+                  title: 'Proof of Work',
+                  description: 'Show what you\'ve built, not what you say you can build. Code speaks louder than bullet points.'
+                },
+                {
+                  icon: Users,
+                  title: 'Talent Over Pedigree',
+                  description: 'A brilliant project from a state school beats a mediocre resume from an Ivy League.'
+                },
+                {
+                  icon: Heart,
+                  title: 'Transparency Always',
+                  description: 'No hidden algorithms. Students see who viewed their profile. Companies see verified data.'
+                }
+              ].map((value, idx) => {
                 const Icon = value.icon
                 return (
-                  <Card key={value.title} className="text-center">
-                    <CardHeader>
-                      <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <Icon className="h-6 w-6 text-primary" />
+                  <Card key={idx} className="text-center hover:shadow-lg transition-shadow">
+                    <CardContent className="p-8">
+                      <div className="inline-block bg-blue-100 rounded-full p-4 mb-4">
+                        <Icon className="h-8 w-8 text-blue-600" />
                       </div>
-                      <CardTitle>{value.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">{value.description}</p>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        {value.title}
+                      </h3>
+                      <p className="text-gray-700 leading-relaxed">
+                        {value.description}
+                      </p>
                     </CardContent>
                   </Card>
                 )
               })}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Team Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-6">Meet Our Team</h2>
-              <p className="text-xl text-muted-foreground">
-                Experienced leaders from top tech companies and universities
-              </p>
-            </div>
+        {/* Our Impact */}
+        <section className="py-20 bg-white">
+          <div className="container max-w-4xl">
+            <h2 className="text-4xl font-bold text-gray-900 text-center mb-4">
+              The Impact So Far
+            </h2>
+            <p className="text-xl text-gray-700 text-center mb-16">
+              Real results from students who chose proof over polish
+            </p>
 
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {team.map((member) => (
-                <Card key={member.name} className="text-center">
-                  <CardHeader>
-                    <div className="mx-auto w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4">
-                      <span className="text-white font-bold text-xl">{member.image}</span>
-                    </div>
-                    <CardTitle>{member.name}</CardTitle>
-                    <CardDescription>{member.role}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">{member.bio}</p>
-                  </CardContent>
-                </Card>
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              {[
+                { value: '1,247', label: 'Students Hired', sublabel: 'In the last 30 days' },
+                { value: '87%', label: 'Get Interviews', sublabel: 'Within 30 days of joining' },
+                { value: '2x Faster', label: 'Time to Hire', sublabel: 'vs traditional applications' }
+              ].map((stat, idx) => (
+                <div key={idx} className="text-center">
+                  <div className="text-5xl font-bold text-blue-600 mb-2">{stat.value}</div>
+                  <div className="text-lg font-semibold text-gray-900 mb-1">{stat.label}</div>
+                  <div className="text-sm text-gray-700">{stat.sublabel}</div>
+                </div>
               ))}
             </div>
+
+            {/* Quote */}
+            <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200">
+              <CardContent className="p-8">
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                    AJ
+                  </div>
+                  <div>
+                    <p className="text-gray-800 italic mb-4 leading-relaxed">
+                      "I had a 3.2 GPA and no internships. My resume got auto-rejected everywhere. But when I uploaded my ML trading bot to InTransparency and got an 92 innovation score, recruiters started messaging me. Got hired by a fintech startup in 3 weeks."
+                    </p>
+                    <div className="font-semibold text-gray-900">Alex Johnson</div>
+                    <div className="text-sm text-gray-800">MIT Computer Science → Hired at TechCorp</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        </div>
-      </section>
+        </section>
 
-
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6">Join Our Mission</h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              Whether you're a student, university, or employer, we'd love to help you 
-              achieve better career outcomes through AI-powered transparency.
+        {/* The Enemy: Resumes */}
+        <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+          <div className="container max-w-4xl text-center">
+            <h2 className="text-4xl font-bold mb-6">
+              It's Time to Kill the Resume
+            </h2>
+            <p className="text-xl text-gray-100 leading-relaxed mb-8 max-w-2xl mx-auto">
+              Resumes were invented in 1482. We have GitHub, AI, and university verification now. Why are we still using a 500-year-old tool to hire for 21st-century jobs?
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="gap-2">
-                Get Started Today
-                <ArrowRight className="h-4 w-4" />
+
+            <div className="bg-white bg-opacity-10 rounded-xl p-8 backdrop-blur-sm mb-8">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <div className="text-red-400 text-4xl font-bold mb-2">1482</div>
+                  <div className="text-gray-100">Year resumes were invented</div>
+                </div>
+                <div>
+                  <div className="text-green-400 text-4xl font-bold mb-2">2025</div>
+                  <div className="text-gray-100">Time for verified project portfolios</div>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-lg text-gray-100 mb-8">
+              Students deserve to be judged on what they've built, not how well they write bullet points. Companies deserve to hire based on verified skills, not polished claims.
+            </p>
+
+            <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100" asChild>
+              <Link href="/auth/register/student">
+                Show Your Work, Not Your Resume
+              </Link>
+            </Button>
+          </div>
+        </section>
+
+        {/* Join Us */}
+        <section className="py-20 bg-white">
+          <div className="container max-w-4xl text-center">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Join the Movement
+            </h2>
+            <p className="text-xl text-gray-700 mb-12 max-w-2xl mx-auto">
+              We're just getting started. Help us build a world where talent beats pedigree, and proof beats promises.
+            </p>
+
+            <div className="flex justify-center gap-4 flex-wrap">
+              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" asChild>
+                <Link href="/auth/register/student">Create Free Portfolio</Link>
               </Button>
-              <Button variant="outline" size="lg">
-                Contact Our Team
+              <Button size="lg" variant="outline" asChild>
+                <Link href="/how-it-works">See How It Works</Link>
               </Button>
             </div>
+
+            <p className="mt-8 text-sm text-gray-700">
+              For recruiters: <Link href="/auth/register/recruiter" className="text-blue-600 hover:underline font-medium">Start finding verified talent →</Link>
+            </p>
           </div>
-        </div>
-      </section>
+        </section>
       </main>
+
       <Footer />
     </div>
   )

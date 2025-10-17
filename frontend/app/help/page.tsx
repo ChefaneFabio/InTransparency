@@ -145,7 +145,7 @@ export default function HelpPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Help Center
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-blue-50 mb-8">
               Find answers, get support, and learn how to make the most of InTransparency
             </p>
 
@@ -157,7 +157,7 @@ export default function HelpPage() {
                 placeholder="Search for help articles, guides, and FAQs..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                className="w-full pl-12 pr-4 py-4 rounded-lg text-gray-900 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
               />
             </div>
           </div>
@@ -173,7 +173,7 @@ export default function HelpPage() {
                     <MessageSquare className="h-8 w-8 text-blue-600" />
                   </div>
                   <h3 className="font-semibold text-gray-900 mb-2">Contact Support</h3>
-                  <p className="text-gray-600 text-sm mb-4">Get personalized help from our support team</p>
+                  <p className="text-gray-700 text-sm mb-4">Get personalized help from our support team</p>
                   <Button variant="outline" size="sm">
                     Start Chat
                   </Button>
@@ -186,7 +186,7 @@ export default function HelpPage() {
                     <Video className="h-8 w-8 text-green-600" />
                   </div>
                   <h3 className="font-semibold text-gray-900 mb-2">Video Tutorials</h3>
-                  <p className="text-gray-600 text-sm mb-4">Watch step-by-step video guides</p>
+                  <p className="text-gray-700 text-sm mb-4">Watch step-by-step video guides</p>
                   <Button variant="outline" size="sm">
                     Watch Videos
                   </Button>
@@ -199,7 +199,7 @@ export default function HelpPage() {
                     <Users className="h-8 w-8 text-purple-600" />
                   </div>
                   <h3 className="font-semibold text-gray-900 mb-2">Community</h3>
-                  <p className="text-gray-600 text-sm mb-4">Connect with other users and experts</p>
+                  <p className="text-gray-700 text-sm mb-4">Connect with other users and experts</p>
                   <Button variant="outline" size="sm">
                     Join Community
                   </Button>
@@ -222,7 +222,7 @@ export default function HelpPage() {
                         <h3 className="font-semibold text-gray-900 mb-3">{category.title}</h3>
                         <ul className="space-y-2">
                           {(category.articles || []).map((article, articleIndex) => (
-                            <li key={articleIndex} className="text-sm text-gray-600 hover:text-blue-600 cursor-pointer flex items-center">
+                            <li key={articleIndex} className="text-sm text-gray-700 hover:text-blue-600 cursor-pointer flex items-center font-medium">
                               <ChevronRight className="h-3 w-3 mr-1" />
                               {article}
                             </li>
@@ -250,7 +250,7 @@ export default function HelpPage() {
                         </div>
                       </div>
                       <h3 className="font-semibold text-gray-900 mb-2">{article.title}</h3>
-                      <div className="flex items-center text-sm text-gray-700 space-x-4">
+                      <div className="flex items-center text-sm text-gray-800 space-x-4 font-medium">
                         <div className="flex items-center">
                           <Clock className="h-4 w-4 mr-1" />
                           {article.readTime}
@@ -285,7 +285,7 @@ export default function HelpPage() {
                       </button>
                       {expandedFaq === index && (
                         <div className="px-6 pb-4">
-                          <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                          <p className="text-gray-800 leading-relaxed">{faq.answer}</p>
                         </div>
                       )}
                     </CardContent>
@@ -302,7 +302,7 @@ export default function HelpPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Still Need Help?
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-lg text-gray-700 mb-8">
               Can't find what you're looking for? Our support team is here to help.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
