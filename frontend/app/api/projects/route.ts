@@ -290,25 +290,25 @@ async function runAIAnalysis(projectId: string, projectData: ProjectData) {
     await prisma.project.update({
       where: { id: projectId },
       data: {
-        // AI Scores
+        // AI Scores (using schema fields)
         innovationScore: analysis.innovationScore,
         complexityScore: analysis.complexityScore,
-        relevanceScore: analysis.relevanceScore,
-        qualityScore: analysis.qualityScore,
-        overallScore: analysis.overallScore,
+        marketRelevance: analysis.relevanceScore || analysis.marketRelevance,
 
-        // AI Insights
-        aiSummary: analysis.summary,
-        aiStrengths: analysis.strengths,
-        aiImprovements: analysis.improvements,
-        aiHighlights: analysis.highlights,
-
-        // Detected competencies (merge with user-provided ones)
-        // detectedCompetencies: analysis.detectedCompetencies,
+        // AI Insights (store all analysis data in JSON field)
+        aiInsights: {
+          summary: analysis.summary,
+          strengths: analysis.strengths,
+          improvements: analysis.improvements,
+          highlights: analysis.highlights,
+          qualityScore: analysis.qualityScore,
+          overallScore: analysis.overallScore,
+          detectedCompetencies: analysis.detectedCompetencies,
+          analyzedAt: new Date().toISOString()
+        },
 
         // Mark as analyzed
-        aiAnalyzed: true,
-        aiAnalyzedAt: new Date()
+        aiAnalyzed: true
       }
     })
 
