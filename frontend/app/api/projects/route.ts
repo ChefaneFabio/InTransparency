@@ -293,7 +293,7 @@ async function runAIAnalysis(projectId: string, projectData: ProjectData) {
         // AI Scores (using schema fields)
         innovationScore: analysis.innovationScore,
         complexityScore: analysis.complexityScore,
-        marketRelevance: analysis.relevanceScore || analysis.marketRelevance,
+        marketRelevance: analysis.relevanceScore,
 
         // AI Insights (store all analysis data in JSON field)
         aiInsights: {
