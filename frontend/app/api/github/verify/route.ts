@@ -119,15 +119,24 @@ export async function POST(request: NextRequest) {
       topics: repoData.topics || []
     }
 
+    // Get existing project data to preserve aiInsights
+    const existingProject = await prisma.project.findUnique({
+      where: { id: projectId },
+      select: { aiInsights: true }
+    })
+
     // Update project with verification data
     await prisma.project.update({
       where: { id: projectId },
       data: {
         githubUrl,
-        // Add verification metadata to aiInsights
+        // Merge verification data with existing aiInsights
         aiInsights: {
-          ...verification,
-          verifiedAt: new Date().toISOString()
+          ...(existingProject?.aiInsights as object || {}),
+          githubVerification: {
+            ...verification,
+            verifiedAt: new Date().toISOString()
+          }
         }
       }
     })
