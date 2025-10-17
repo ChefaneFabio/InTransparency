@@ -8,11 +8,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Progress } from '@/components/ui/progress'
-import { 
-  Users, 
-  TrendingUp, 
-  Search, 
-  Eye, 
+import {
+  Users,
+  TrendingUp,
+  Search,
+  Eye,
   Heart,
   MessageSquare,
   Calendar,
@@ -33,9 +33,11 @@ import {
   ExternalLink,
   ChevronRight,
   Activity,
-  Zap
+  Zap,
+  Download
 } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { exportCandidatesToCsv, exportJobPostingsToCsv } from '@/lib/export-csv'
 
 export default function RecruiterDashboard() {
   const { user } = useAuth()
@@ -339,12 +341,23 @@ export default function RecruiterDashboard() {
                   Candidates with highest match scores for your requirements
                 </CardDescription>
               </div>
-              <Button variant="outline" size="sm" asChild>
-                <Link href="/dashboard/recruiter/candidates">
-                  View All
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => exportCandidatesToCsv(candidates)}
+                  className="flex items-center gap-2"
+                >
+                  <Download className="h-4 w-4" />
+                  Export
+                </Button>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/dashboard/recruiter/candidates">
+                    View All
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -433,11 +446,22 @@ export default function RecruiterDashboard() {
 
           {/* Job Postings Performance */}
           <Card>
-            <CardHeader>
-              <CardTitle>Job Postings Performance</CardTitle>
-              <CardDescription>
-                Track how your job postings are performing
-              </CardDescription>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+              <div>
+                <CardTitle>Job Postings Performance</CardTitle>
+                <CardDescription>
+                  Track how your job postings are performing
+                </CardDescription>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => exportJobPostingsToCsv(jobPostings)}
+                className="flex items-center gap-2"
+              >
+                <Download className="h-4 w-4" />
+                Export CSV
+              </Button>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">

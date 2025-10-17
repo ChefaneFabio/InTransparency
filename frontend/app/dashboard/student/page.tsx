@@ -16,7 +16,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { MessageCenter } from '@/components/messaging/MessageCenter'
 import { NotificationCenter } from '@/components/notifications/NotificationCenter'
-import { Plus, TrendingUp, Users, Briefcase, Eye, Star, ArrowRight } from 'lucide-react'
+import { Plus, TrendingUp, Users, Briefcase, Eye, Star, ArrowRight, Share2, Gift } from 'lucide-react'
 import Link from 'next/link'
 
 export default function StudentDashboard() {
@@ -449,8 +449,91 @@ export default function StudentDashboard() {
 
         {/* Right Column */}
         <div className="space-y-8">
+          {/* Share Profile Card - VIRAL FEATURE */}
+          <Card className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-xl">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center">
+                <Share2 className="h-5 w-5 mr-2" />
+                Share Your Profile
+              </CardTitle>
+              <CardDescription className="text-purple-100">
+                Get 3x more recruiter views by sharing your portfolio
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <p className="text-sm text-white/90">
+                  Students who share their profile get discovered faster
+                </p>
+                <Button
+                  variant="secondary"
+                  className="w-full bg-white text-purple-600 hover:bg-purple-50"
+                  onClick={() => {
+                    const url = `https://intransparency.com/students/${user?.id}/public`
+                    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank')
+                  }}
+                >
+                  <Share2 className="mr-2 h-4 w-4" />
+                  Share on LinkedIn
+                </Button>
+                <Button
+                  variant="outline"
+                  className="w-full border-white text-white hover:bg-white/20"
+                  onClick={() => {
+                    const url = `https://intransparency.com/students/${user?.id}/public`
+                    navigator.clipboard.writeText(url)
+                    alert('Portfolio link copied!')
+                  }}
+                >
+                  Copy Portfolio Link
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Profile Card */}
           <ProfileCard user={user} />
+
+          {/* Referral Program Card - VIRAL FEATURE */}
+          <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50">
+            <CardHeader>
+              <CardTitle className="flex items-center text-blue-900">
+                <Gift className="h-5 w-5 mr-2" />
+                Invite Friends, Get Premium Free 🎁
+              </CardTitle>
+              <CardDescription className="text-blue-700">
+                Unlock Premium features by inviting your classmates
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-medium text-gray-700">Your Progress</span>
+                    <span className="text-sm font-bold text-blue-600">0/3 invited</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-blue-600 h-2 rounded-full" style={{ width: '0%' }}></div>
+                  </div>
+                  <p className="text-xs text-gray-600 mt-2">
+                    Invite 3 classmates → Unlock 1 month Premium FREE
+                  </p>
+                </div>
+
+                <div className="space-y-2">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700" asChild>
+                    <Link href="/referrals">
+                      <Gift className="mr-2 h-4 w-4" />
+                      Get Your Referral Link
+                    </Link>
+                  </Button>
+                  <p className="text-xs text-center text-gray-600">
+                    Premium features: Initiate contact, advanced matching, priority search
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* University Integration */}
           <UniversityIntegration

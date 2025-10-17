@@ -67,7 +67,16 @@
       "Bash(npx:*)",
       "Bash(npm cache clean:*)",
       "WebFetch(domain:in-transparency.vercel.app)",
-      "Bash(git revert:*)"
+      "Bash(git revert:*)",
+      "Bash(./node_modules/.bin/prisma:*)",
+      "Bash(node_modules/.bin/prisma:*)",
+      "Bash(/mnt/c/Users/chefa/InTransparency/node_modules/.bin/prisma --version)",
+      "Bash(npm ci:*)",
+      "Bash(npm:*)",
+      "Bash(yarn install)",
+      "Bash(./node_modules/.bin/next:*)",
+      "Bash(for:*)",
+      "Bash(do head -5 \"$file\")"
     ],
     "defaultMode": "acceptEdits"
   }

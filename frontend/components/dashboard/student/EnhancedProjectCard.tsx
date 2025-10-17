@@ -364,6 +364,13 @@ export function EnhancedProjectCard({
               <ChevronRight className="w-4 h-4 ml-1" />
             </Button>
           </div>
+
+          {/* Powered by InTransparency - Viral Branding */}
+          <div className="text-center mt-4 pt-4 border-t border-gray-100">
+            <p className="text-xs text-gray-500">
+              Analyzed by <a href="/" className="text-blue-600 hover:text-blue-700 hover:underline font-medium">InTransparency AI</a>
+            </p>
+          </div>
         </div>
       </CardContent>
     </Card>

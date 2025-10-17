@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
+import prisma from '@/lib/prisma'
 
-// Initialize Prisma Client
-const prisma = new PrismaClient()
 
 // Rate limiting map (simple in-memory solution)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>()

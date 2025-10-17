@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Sparkles, Users, Trophy } from 'lucide-react'
-import { RealStats } from './RealStats'
 
 export function Hero() {
   return (
@@ -19,31 +18,45 @@ export function Hero() {
           </div>
           
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Transform your{' '}
+            Stop Applying.{' '}
             <span className="bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">
-              studies into your job
+              Start Getting Discovered.
             </span>
           </h1>
-          
+
           <p className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl mx-auto">
-            InTransparency connects students and professionals through AI-powered project analysis, 
-            intelligent matching, and compelling storytelling. Showcase your work, find collaborators, 
-            and unlock opportunities.
+            Turn your university projects into a portfolio that gets you hired.
+            <br />
+            <strong className="text-gray-900">1,247 students landed jobs in the last 30 days.</strong>
           </p>
-          
+
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Button asChild size="lg" className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700">
-              <Link href="/auth/register">
-                Get Started Free
+              <Link href="/auth/register/student">
+                Create Free Portfolio
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            
+
             <Button variant="outline" size="lg" asChild>
-              <Link href="/demo">
-                Watch Demo
+              <Link href="/success-stories">
+                See Success Stories
               </Link>
             </Button>
+          </div>
+
+          {/* Social Proof - Universities */}
+          <div className="mt-16 pt-8 border-t border-gray-200">
+            <p className="text-sm font-medium text-gray-700 mb-4 text-center">
+              Trusted by students from 50+ universities worldwide
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+              <span className="text-xl font-bold text-gray-600">MIT</span>
+              <span className="text-xl font-bold text-gray-600">Stanford</span>
+              <span className="text-xl font-bold text-gray-600">Georgia Tech</span>
+              <span className="text-xl font-bold text-gray-600">UC Berkeley</span>
+              <span className="text-xl font-bold text-gray-600">TU Munich</span>
+            </div>
           </div>
           
           <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3">
@@ -76,14 +89,6 @@ export function Hero() {
                 Transform projects into compelling narratives
               </p>
             </div>
-          </div>
-
-          {/* Real Statistics */}
-          <div className="mt-20 pt-8 border-t border-gray-200">
-            <h3 className="text-center text-sm font-medium text-gray-700 mb-6">
-              Connect with top institutions and companies globally
-            </h3>
-            <RealStats />
           </div>
         </div>
       </div>

@@ -169,3 +169,598 @@ model UniversitySurvey {
   @@index([createdAt])
   @@index([contactEmail])
 }
+
+// ============================================
+// CORE PLATFORM MODELS
+// ============================================
+
+// User Model
+model User {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  username          String?   @unique
+  passwordHash      String
+  role              UserRole  @default(STUDENT)
+
+  // Profile
+  firstName         String?
+  lastName          String?
+  photo             String?
+  bio               String?
+  tagline           String?
+
+  // University Info (for students)
+  university        String?
+  degree            String?
+  graduationYear    String?
+  gpa               String?
+  gpaPublic         Boolean   @default(false)
+
+  // Company Info (for recruiters)
+  company           String?
+  jobTitle          String?
+
+  // Premium & Subscription
+  subscriptionTier  SubscriptionTier @default(FREE)
+  subscriptionStatus SubscriptionStatus @default(INACTIVE)
+  stripeCustomerId  String?   @unique
+  stripeSubscriptionId String? @unique
+  premiumUntil      DateTime?
+
+  // Referral Info
+  referralCode      String    @unique @default(cuid())
+  referredBy        String?   // referralCode of referrer
+  referralCount     Int       @default(0)
+  referralTier      ReferralTier @default(BRONZE)
+  premiumMonthsEarned Int     @default(0)
+
+  // Settings
+  emailVerified     Boolean   @default(false)
+  emailVerifiedAt   DateTime?
+  profilePublic     Boolean   @default(false)
+  portfolioUrl      String?   @unique // custom subdomain
+
+  // Privacy Settings
+  showLocation      Boolean   @default(true)
+  showEmail         Boolean   @default(false)
+  showPhone         Boolean   @default(false)
+  showLastActive    Boolean   @default(true)
+  anonymousBrowsing Boolean   @default(false)
+  allowMessagesFrom String    @default("verified") // 'all', 'verified', 'none'
+  indexInSearchEngines Boolean @default(true)
+  showProjects      String    @default("all") // 'all', 'featured', 'none'
+  blockedCompanies  String[]  @default([]) // Array of company IDs/names to hide profile from
+
+  // Timestamps
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  lastLoginAt       DateTime?
+
+  // Relations
+  projects          Project[]
+  subscriptionHistory Subscription[]
+  referrals         Referral[]       @relation("ReferredUsers")
+  referrer          Referral?        @relation("Referrer")
+  analytics         Analytics[]
+  messages          Message[]
+  endorsements      ProfessorEndorsement[] @relation("StudentEndorsements")
+
+  @@index([email])
+  @@index([username])
+  @@index([referralCode])
+  @@index([subscriptionTier])
+  @@index([role])
+}
+
+enum UserRole {
+  STUDENT
+  RECRUITER
+  UNIVERSITY
+  ADMIN
+}
+
+enum SubscriptionTier {
+  FREE
+  STUDENT_PRO
+  RECRUITER_FREE
+  RECRUITER_STARTER
+  RECRUITER_GROWTH
+  RECRUITER_PRO
+  ENTERPRISE
+}
+
+enum SubscriptionStatus {
+  INACTIVE
+  ACTIVE
+  TRIALING
+  PAST_DUE
+  CANCELED
+  EXPIRED
+}
+
+enum ReferralTier {
+  BRONZE   // 0-2 referrals
+  SILVER   // 3-9 referrals
+  GOLD     // 10-49 referrals
+  PLATINUM // 50+ referrals
+}
+
+// Project Model - Multi-Discipline Support
+model Project {
+  id                String    @id @default(cuid())
+  userId            String
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Discipline & Type
+  discipline        ProjectDiscipline @default(TECHNOLOGY)
+  projectType       String?   // "Web App", "Case Study", "UX Design", "Research Paper", etc.
+  category          String?   // Legacy field, keep for backwards compatibility
+
+  // Basic Info
+  title             String
+  description       String    @db.Text
+
+  // Tech-specific fields (for TECHNOLOGY discipline)
+  technologies      String[]  @default([])  // Array of tech stack
+  githubUrl         String?
+  liveUrl           String?
+
+  // Universal fields (all disciplines)
+  skills            String[]  @default([])  // "React", "Financial Modeling", "Patient Care"
+  tools             String[]  @default([])  // "Excel", "SolidWorks", "Figma", "Adobe Suite"
+
+  // Media & Files
+  imageUrl          String?   // Primary project image/thumbnail
+  images            String[]  @default([])  // Additional images
+  videos            String[]  @default([])  // Video URLs
+  files             ProjectFile[]  // PDFs, CAD files, etc.
+
+  // Project Context
+  duration          String?   // "3 months", "1 semester"
+  teamSize          Int?      // Number of team members
+  role              String?   // "Lead Developer", "Analyst", "Designer"
+  client            String?   // "Company X", "University", "Personal"
+  outcome           String?   @db.Text // Results achieved
+
+  // Academic Context (Course-based verification)
+  courseName        String?   // "Financial Modeling 401"
+  courseCode        String?   // "FIN401"
+  semester          String?   // "Fall 2024"
+  academicYear      String?   // "2023-2024"
+  grade             String?   // "A", "A-", "95%"
+  professor         String?   // Professor name
+  universityVerified Boolean  @default(false)  // Did university verify this?
+  courseId          String?   // Link to Course model
+  course            Course?   @relation(fields: [courseId], references: [id])
+
+  // Competencies Demonstrated
+  competencies      String[]  @default([])  // Verified competencies from this project
+  competencyRecords ProjectCompetency[]
+
+  // Certifications (for trades, healthcare, technical fields)
+  certifications    String[]  @default([])  // "AWS Certified", "OSHA 30", "CPR Certified"
+
+  // Featured & Visibility
+  featured          Boolean   @default(false)
+  isPublic          Boolean   @default(true)
+  views             Int       @default(0)
+  recruiterViews    Int       @default(0)
+
+  // AI Analysis (discipline-specific)
+  aiAnalyzed        Boolean   @default(false)
+  complexityScore   Int?      // Technical complexity, research rigor, design quality
+  innovationScore   Int?      // Creativity, originality
+  marketRelevance   Int?      // Industry demand, practical application
+  aiInsights        Json?     // Store detailed discipline-specific AI analysis
+
+  // Relations
+  endorsements      ProfessorEndorsement[]
+
+  // Timestamps
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([discipline])
+  @@index([featured])
+  @@index([isPublic])
+  @@index([courseId])
+  @@index([courseName])
+}
+
+// Subscription History
+model Subscription {
+  id                String    @id @default(cuid())
+  userId            String
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  tier              SubscriptionTier
+  status            SubscriptionStatus
+
+  // Stripe
+  stripeSubscriptionId String?
+  stripePriceId     String?
+  stripeCurrentPeriodEnd DateTime?
+
+  // Billing
+  amount            Int?      // in cents
+  currency          String    @default("eur")
+  interval          String?   // monthly, annual
+
+  // Trial
+  trialStart        DateTime?
+  trialEnd          DateTime?
+
+  // Timestamps
+  startedAt         DateTime  @default(now())
+  endedAt           DateTime?
+  canceledAt        DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([stripeSubscriptionId])
+}
+
+// Referral Tracking
+model Referral {
+  id                String    @id @default(cuid())
+
+  // Referrer Info
+  referrerId        String    @unique
+  referrer          User      @relation("Referrer", fields: [referrerId], references: [id], onDelete: Cascade)
+  referralCode      String    @unique
+
+  // Referred Users
+  referredUsers     User[]    @relation("ReferredUsers")
+
+  // Stats
+  totalReferrals    Int       @default(0)
+  completedReferrals Int      @default(0) // Users who completed profile
+
+  // Rewards
+  rewardTier        ReferralTier @default(BRONZE)
+  premiumMonthsEarned Int     @default(0)
+  cashRewardEarned  Int       @default(0) // in cents
+  rewardsClaimed    Boolean   @default(false)
+
+  // Timestamps
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([referralCode])
+  @@index([referrerId])
+}
+
+// Analytics & Tracking
+model Analytics {
+  id                String    @id @default(cuid())
+  userId            String?
+  user              User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Event Info
+  eventType         AnalyticsEventType
+  eventName         String
+
+  // Event Data
+  properties        Json?     // Store event-specific data
+
+  // Session Info
+  sessionId         String?
+  ipAddress         String?
+  userAgent         String?
+  referrer          String?
+
+  // Page Info
+  pageUrl           String?
+  pagePath          String?
+
+  // UTM Parameters
+  utmSource         String?
+  utmMedium         String?
+  utmCampaign       String?
+  utmTerm           String?
+  utmContent        String?
+
+  // Timestamps
+  createdAt         DateTime  @default(now())
+
+  @@index([userId])
+  @@index([eventType])
+  @@index([eventName])
+  @@index([createdAt])
+  @@index([sessionId])
+}
+
+enum AnalyticsEventType {
+  PAGE_VIEW
+  PROFILE_VIEW
+  PROJECT_VIEW
+  SHARE_EVENT
+  REFERRAL_CLICK
+  REFERRAL_SIGNUP
+  SUBSCRIPTION_STARTED
+  SUBSCRIPTION_CANCELED
+  MESSAGE_SENT
+  JOB_APPLICATION
+  SEARCH_PERFORMED
+  BUTTON_CLICK
+  CUSTOM
+}
+
+// Profile Views (Detailed tracking)
+model ProfileView {
+  id                String    @id @default(cuid())
+
+  // Profile Being Viewed
+  profileUserId     String
+  profileUsername   String?
+
+  // Viewer Info
+  viewerId          String?   // null if anonymous
+  viewerRole        UserRole?
+  viewerCompany     String?   // for recruiters
+
+  // View Details
+  viewDuration      Int?      // in seconds
+  projectsViewed    String[]  // Array of project IDs
+
+  // Session
+  sessionId         String?
+  ipAddress         String?
+  userAgent         String?
+  referrer          String?
+
+  // Timestamps
+  createdAt         DateTime  @default(now())
+
+  @@index([profileUserId])
+  @@index([viewerId])
+  @@index([createdAt])
+}
+
+// Messages (for recruiter-student communication)
+model Message {
+  id                String    @id @default(cuid())
+
+  senderId          String
+  sender            User      @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+  recipientEmail    String    // Can message by email if not in platform
+  recipientId       String?   // If recipient is a user
+
+  subject           String?
+  content           String    @db.Text
+
+  // Status
+  read              Boolean   @default(false)
+  readAt            DateTime?
+  replied           Boolean   @default(false)
+
+  // Thread
+  threadId          String?
+  replyToId         String?
+
+  // Timestamps
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([senderId])
+  @@index([recipientId])
+  @@index([threadId])
+  @@index([createdAt])
+}
+
+// Professor Endorsements
+model ProfessorEndorsement {
+  id                String    @id @default(cuid())
+
+  // Student & Project
+  studentId         String
+  student           User      @relation("StudentEndorsements", fields: [studentId], references: [id], onDelete: Cascade)
+  projectId         String
+  project           Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  // Professor Info
+  professorName     String
+  professorEmail    String
+  professorTitle    String?   // e.g., "Associate Professor"
+  department        String?
+  university        String
+
+  // Course Info
+  courseName        String?
+  courseCode        String?
+  semester          String?   // e.g., "Fall 2024"
+  grade             String?   // e.g., "A", "A-"
+
+  // Endorsement
+  endorsementText   String?   @db.Text
+  skills            String[]  // Skills professor endorses
+  rating            Int?      // 1-5 rating
+
+  // Verification
+  verified          Boolean   @default(false)
+  verificationToken String?   @unique
+  verifiedAt        DateTime?
+
+  // Status
+  status            EndorsementStatus @default(PENDING)
+
+  // Timestamps
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([studentId])
+  @@index([projectId])
+  @@index([professorEmail])
+  @@index([status])
+}
+
+enum EndorsementStatus {
+  PENDING       // Awaiting professor confirmation
+  VERIFIED      // Professor confirmed
+  DECLINED      // Professor declined
+  EXPIRED       // Verification link expired
+}
+
+// ============================================
+// MULTI-DISCIPLINE SUPPORT MODELS
+// ============================================
+
+// Project Disciplines
+enum ProjectDiscipline {
+  TECHNOLOGY        // Software, web dev, data science, etc.
+  BUSINESS          // Case studies, business plans, market analysis
+  DESIGN            // UX/UI, graphic design, product design
+  HEALTHCARE        // Clinical cases, research, patient care
+  ENGINEERING       // Mechanical, civil, electrical projects
+  TRADES            // Construction, plumbing, electrical work
+  ARCHITECTURE      // Building design, CAD models
+  MEDIA             // Film, video, photography, audio
+  WRITING           // Articles, research papers, creative writing
+  SOCIAL_SCIENCES   // Research, case studies, field work
+  ARTS              // Fine arts, performance, music
+  LAW               // Legal research, case analysis, moot court
+  EDUCATION         // Lesson plans, teaching portfolios
+  SCIENCE           // Lab work, research, experiments
+  OTHER
+}
+
+// Project File Attachments (PDFs, images, videos, CAD files)
+model ProjectFile {
+  id          String   @id @default(cuid())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  // File Info
+  fileName    String
+  fileType    FileType
+  fileUrl     String   // S3/Cloudflare URL
+  fileSize    Int      // in bytes
+  mimeType    String
+
+  // Optional metadata
+  thumbnail   String?  // Thumbnail URL for images/videos
+  duration    Int?     // Video duration in seconds
+  dimensions  Json?    // Width/height for images
+
+  // Timestamps
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([projectId])
+  @@index([fileType])
+}
+
+enum FileType {
+  PDF
+  IMAGE
+  VIDEO
+  CAD           // AutoCAD, SolidWorks, etc.
+  DOCUMENT      // Word, Excel, etc.
+  ARCHIVE       // ZIP, RAR
+  CODE          // Code files
+  OTHER
+}
+
+// Course Model (Academic Context)
+model Course {
+  id              String   @id @default(cuid())
+
+  // Course Info
+  courseName      String
+  courseCode      String
+  department      String?
+  university      String
+  semester        String   // "Fall 2024"
+  academicYear    String   // "2023-2024"
+
+  // Instructor
+  professorName   String?
+  professorEmail  String?
+
+  // Course Description
+  description     String?  @db.Text
+  syllabus        String?  // URL to syllabus
+  credits         Int?
+  level           CourseLevel?
+
+  // Competencies taught in this course
+  competencies    String[]  @default([])
+  learningOutcomes String[] @default([])
+
+  // University Verification
+  universityVerified Boolean @default(false)
+  verifiedAt      DateTime?
+
+  // Relations
+  projects        Project[]
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([courseCode, university, semester])
+  @@index([university])
+  @@index([courseCode])
+  @@index([department])
+}
+
+enum CourseLevel {
+  UNDERGRADUATE_100  // 100-level
+  UNDERGRADUATE_200  // 200-level
+  UNDERGRADUATE_300  // 300-level
+  UNDERGRADUATE_400  // 400-level
+  GRADUATE           // Graduate level
+  DOCTORAL           // PhD level
+}
+
+// Competency Model (Skills verified through courses/projects)
+model Competency {
+  id              String   @id @default(cuid())
+
+  // Competency Info
+  name            String   @unique  // "Data Analysis", "Financial Modeling"
+  discipline      ProjectDiscipline
+  category        String?  // "Technical", "Soft Skills", "Domain Knowledge"
+  description     String?  @db.Text
+
+  // Industry Alignment
+  industryDemand  Int?     // 1-100 score
+  relatedJobs     String[] @default([])  // Job titles that require this
+
+  // Relations
+  projectRecords  ProjectCompetency[]
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([discipline])
+  @@index([name])
+}
+
+// Project-Competency Junction (Many-to-Many with metadata)
+model ProjectCompetency {
+  id              String   @id @default(cuid())
+
+  projectId       String
+  project         Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  competencyId    String
+  competency      Competency @relation(fields: [competencyId], references: [id], onDelete: Cascade)
+
+  // Verification
+  proficiencyLevel String? // "Beginner", "Intermediate", "Advanced", "Expert"
+  verifiedBy      String?  // "Professor", "AI Analysis", "Peer Review"
+  evidence        String?  @db.Text // How this competency was demonstrated
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+
+  @@unique([projectId, competencyId])
+  @@index([projectId])
+  @@index([competencyId])
+}

@@ -1,4 +1,8 @@
 import { Hero } from '@/components/sections/Hero'
+import { CompetitiveAdvantage } from '@/components/sections/CompetitiveAdvantage'
+import { SocialProof } from '@/components/sections/SocialProof'
+import { CompanyLogos } from '@/components/sections/CompanyLogos'
+import { SuccessMetrics } from '@/components/sections/SuccessMetrics'
 import { Features } from '@/components/sections/Features'
 import { HowItWorks } from '@/components/sections/HowItWorks'
 import { Testimonials } from '@/components/sections/Testimonials'
@@ -13,6 +17,10 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <CompetitiveAdvantage />
+        <SocialProof />
+        <CompanyLogos />
+        <SuccessMetrics />
         <Features />
         <HowItWorks />
         <Testimonials />
