@@ -257,9 +257,10 @@ async function handleTrialWillEnd(subscription: Stripe.Subscription) {
 
 // Handle successful payment
 async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
-  if (!invoice.subscription) return
+  const invoiceData = invoice as any
+  if (!invoiceData.subscription) return
 
-  const subscription = await stripe.subscriptions.retrieve(invoice.subscription as string)
+  const subscription = await stripe.subscriptions.retrieve(invoiceData.subscription as string)
   const subData = subscription as any
 
   await prisma.user.update({
@@ -277,11 +278,12 @@ async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
 
 // Handle failed payment
 async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
-  if (!invoice.subscription) return
+  const invoiceData = invoice as any
+  if (!invoiceData.subscription) return
 
   await prisma.user.update({
     where: {
-      stripeSubscriptionId: invoice.subscription as string
+      stripeSubscriptionId: invoiceData.subscription as string
     },
     data: {
       subscriptionStatus: 'PAST_DUE'
