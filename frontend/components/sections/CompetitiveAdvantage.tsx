@@ -163,7 +163,7 @@ export function CompetitiveAdvantage() {
             <h3 className="text-3xl md:text-4xl font-bold mb-4">
               The InTransparency Advantage
             </h3>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl text-white max-w-3xl mx-auto">
               The only platform with triple-layer verification that proves what you actually built and learned
             </p>
           </div>
@@ -175,7 +175,7 @@ export function CompetitiveAdvantage() {
                 <FileText className="text-white" size={32} />
               </div>
               <h4 className="text-xl font-bold mb-2">1. Real Projects</h4>
-              <p className="text-blue-100">
+              <p className="text-white">
                 Upload actual work: code, case studies, designs, research papers—not just descriptions
               </p>
             </div>
@@ -186,7 +186,7 @@ export function CompetitiveAdvantage() {
                 <GraduationCap className="text-white" size={32} />
               </div>
               <h4 className="text-xl font-bold mb-2">2. Verified Grades</h4>
-              <p className="text-blue-100">
+              <p className="text-white">
                 Link projects to courses, professors, and grades—show where you learned it
               </p>
             </div>
@@ -197,7 +197,7 @@ export function CompetitiveAdvantage() {
                 <Shield className="text-white" size={32} />
               </div>
               <h4 className="text-xl font-bold mb-2">3. University Verified</h4>
-              <p className="text-blue-100">
+              <p className="text-white">
                 Professors and universities confirm your work is real—highest credibility possible
               </p>
             </div>
@@ -209,7 +209,7 @@ export function CompetitiveAdvantage() {
                 <CheckCircle className="text-green-300" size={32} />
                 <div className="text-left">
                   <p className="font-semibold text-lg">More credible than LinkedIn</p>
-                  <p className="text-blue-100 text-sm">Verified grades vs self-reported skills</p>
+                  <p className="text-white text-sm">Verified grades vs self-reported skills</p>
                 </div>
               </div>
               <div className="hidden sm:block w-px h-12 bg-white/30"></div>
@@ -217,7 +217,7 @@ export function CompetitiveAdvantage() {
                 <CheckCircle className="text-green-300" size={32} />
                 <div className="text-left">
                   <p className="font-semibold text-lg">More accessible than GitHub</p>
-                  <p className="text-blue-100 text-sm">All disciplines vs tech-only</p>
+                  <p className="text-white text-sm">All disciplines vs tech-only</p>
                 </div>
               </div>
               <div className="hidden sm:block w-px h-12 bg-white/30"></div>
@@ -225,7 +225,7 @@ export function CompetitiveAdvantage() {
                 <CheckCircle className="text-green-300" size={32} />
                 <div className="text-left">
                   <p className="font-semibold text-lg">More complete than resumes</p>
-                  <p className="text-blue-100 text-sm">Projects + grades + courses</p>
+                  <p className="text-white text-sm">Projects + grades + courses</p>
                 </div>
               </div>
             </div>

@@ -172,7 +172,7 @@ export default function CareersPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Join Our Mission
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white mb-8">
               Help us transform education and create equal opportunities for students worldwide
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -312,7 +312,7 @@ export default function CareersPage() {
                         <div className="flex items-center space-x-3 mb-2">
                           <h3 className="text-xl font-semibold text-gray-900">{job.title}</h3>
                           {job.featured && (
-                            <Badge className="bg-yellow-100 text-yellow-800">Featured</Badge>
+                            <Badge className="bg-yellow-400 text-gray-900">Featured</Badge>
                           )}
                         </div>
                         <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-3">
@@ -347,7 +347,7 @@ export default function CareersPage() {
                         </div>
                       </div>
                       <div className="ml-6 text-right">
-                        <div className="text-sm text-gray-700 mb-4">Posted {job.posted}</div>
+                        <div className="text-sm text-gray-900 mb-4">Posted {job.posted}</div>
                         <Button>
                           Apply Now
                           <ArrowRight className="ml-2 h-4 w-4" />
@@ -375,7 +375,7 @@ export default function CareersPage() {
             <h2 className="text-3xl font-bold mb-4">
               Don't See the Perfect Role?
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white mb-8">
               We're always looking for exceptional talent. Send us your resume and let's talk!
             </p>
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">

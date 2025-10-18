@@ -202,7 +202,7 @@ export default function StudentOpportunities() {
                             ? 'bg-green-100 text-green-800'
                             : opportunity.matchScore >= 80
                             ? 'bg-blue-100 text-blue-800'
-                            : 'bg-yellow-100 text-yellow-800'
+                            : 'bg-yellow-400 text-gray-900'
                         }
                       >
                         {opportunity.matchScore}% Match

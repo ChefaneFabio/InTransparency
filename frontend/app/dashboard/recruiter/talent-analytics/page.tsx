@@ -461,7 +461,7 @@ export default function TalentAnalyticsPage() {
                   <h4 className="font-semibold text-gray-900">{insight.title}</h4>
                   <Badge className={`${
                     insight.impact === 'high' ? 'bg-red-100 text-red-800' :
-                    insight.impact === 'medium' ? 'bg-yellow-100 text-yellow-800' :
+                    insight.impact === 'medium' ? 'bg-yellow-400 text-gray-900' :
                     'bg-green-100 text-green-800'
                   }`}>
                     {insight.impact} impact

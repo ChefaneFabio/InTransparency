@@ -637,7 +637,7 @@ export default function FeaturesPage() {
     const statusConfig: { [key: string]: { label: string; color: string } } = {
       'live': { label: 'Live', color: 'bg-green-100 text-green-800' },
       'beta': { label: 'Beta', color: 'bg-blue-100 text-blue-800' },
-      'coming-soon': { label: 'Coming Soon', color: 'bg-yellow-100 text-yellow-800' },
+      'coming-soon': { label: 'Coming Soon', color: 'bg-yellow-400 text-gray-900' },
       'enterprise': { label: 'Enterprise', color: 'bg-purple-100 text-purple-800' }
     }
     const config = statusConfig[status] || statusConfig.live

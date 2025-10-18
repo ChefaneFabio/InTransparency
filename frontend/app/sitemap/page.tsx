@@ -139,7 +139,7 @@ export default function SitemapPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Site Map
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white mb-8">
               Navigate through all {totalPages} pages of the InTransparency platform
             </p>
             <Badge className="bg-white text-blue-600 px-4 py-2">

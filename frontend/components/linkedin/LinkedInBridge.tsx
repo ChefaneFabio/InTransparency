@@ -257,7 +257,7 @@ export default function LinkedInBridge({ userType, userId, onSyncComplete }: Lin
             <FaLinkedin className="text-2xl" />
             <div>
               <h3 className="font-semibold text-lg">LinkedIn Bridge</h3>
-              <p className="text-blue-100 text-sm">Smart synchronization with your professional network</p>
+              <p className="text-white text-sm">Smart synchronization with your professional network</p>
             </div>
           </div>
           {isConnected && (

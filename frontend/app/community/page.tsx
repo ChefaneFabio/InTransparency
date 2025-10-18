@@ -176,7 +176,7 @@ export default function CommunityPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               InTransparency Community
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white mb-8">
               Connect, learn, and grow with students, recruiters, and industry experts
             </p>
 
@@ -331,7 +331,7 @@ export default function CommunityPage() {
                         <CardContent className="p-6">
                           <div className="flex items-start justify-between mb-4">
                             <div className="flex items-center space-x-2">
-                              <Badge className="bg-yellow-100 text-yellow-800">Featured</Badge>
+                              <Badge className="bg-yellow-400 text-gray-900">Featured</Badge>
                               <Badge variant="outline">{post.category}</Badge>
                             </div>
                             <span className="text-sm text-gray-700">{post.timeAgo}</span>

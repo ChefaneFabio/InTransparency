@@ -203,7 +203,7 @@ export default function DemoPage() {
                   )}
                 </div>
                 <h3 className="text-2xl font-bold mb-2">Interactive Platform Tour</h3>
-                <p className="text-blue-100">Click below to explore each feature step-by-step</p>
+                <p className="text-white">Click below to explore each feature step-by-step</p>
               </div>
             </div>
 

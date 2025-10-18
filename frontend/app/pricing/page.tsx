@@ -586,7 +586,7 @@ export default function PricingPage() {
                     </Link>
                   </Button>
                 </div>
-                <p className="text-sm text-blue-100 mt-6">
+                <p className="text-sm text-white mt-6">
                   ✓ No credit card required  ✓ 7-day free trial  ✓ Cancel anytime
                 </p>
               </CardContent>

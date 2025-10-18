@@ -61,7 +61,7 @@ export default function ContactPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Get in Touch
             </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            <p className="text-xl text-white max-w-2xl mx-auto">
               Have questions about InTransparency? We're here to help you transform your academic journey into career success.
             </p>
           </div>

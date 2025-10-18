@@ -51,7 +51,7 @@ export function Testimonials() {
             <h3 className="text-2xl font-bold mb-4">
               Ready to get started?
             </h3>
-            <p className="text-blue-100 mb-6">
+            <p className="text-white mb-6">
               Join the platform that values authenticity and transparency in career development.
             </p>
             <button className="bg-white text-teal-700 px-8 py-3 rounded-lg font-medium hover:bg-slate-50 transition-colors">

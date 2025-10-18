@@ -306,7 +306,7 @@ export default function RoleSelectionPage() {
                 <Target className="h-8 w-8 text-white" />
               </div>
               <h2 className="text-3xl font-bold mb-4">Help Us Build the Perfect Platform</h2>
-              <p className="text-xl text-blue-100 leading-relaxed">
+              <p className="text-xl text-white leading-relaxed">
                 Shape the future of transparent education-to-career connections.
                 Your insights drive our development for students, companies, and universities.
               </p>
@@ -318,21 +318,21 @@ export default function RoleSelectionPage() {
                   <GraduationCap className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Students & Graduates</h3>
-                <p className="text-blue-100">Share how you want to showcase your academic achievements and find opportunities</p>
+                <p className="text-white">Share how you want to showcase your academic achievements and find opportunities</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center group hover:bg-white/15 transition-colors">
                 <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <Building2 className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Companies & Recruiters</h3>
-                <p className="text-blue-100">Tell us your recruitment challenges and ideal candidate discovery process</p>
+                <p className="text-white">Tell us your recruitment challenges and ideal candidate discovery process</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center group hover:bg-white/15 transition-colors">
                 <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <School className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Universities & Career Services</h3>
-                <p className="text-blue-100">Help us understand how to best support student placement and industry partnerships</p>
+                <p className="text-white">Help us understand how to best support student placement and industry partnerships</p>
               </div>
             </div>
 
@@ -342,36 +342,36 @@ export default function RoleSelectionPage() {
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
                     <Check className="h-5 w-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-blue-100">Current challenges in your field</span>
+                    <span className="text-white">Current challenges in your field</span>
                   </div>
                   <div className="flex items-start space-x-3">
                     <Check className="h-5 w-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-blue-100">Most important features for your needs</span>
+                    <span className="text-white">Most important features for your needs</span>
                   </div>
                   <div className="flex items-start space-x-3">
                     <Check className="h-5 w-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-blue-100">How you currently solve problems</span>
+                    <span className="text-white">How you currently solve problems</span>
                   </div>
                 </div>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
                     <Check className="h-5 w-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-blue-100">What transparency means to you</span>
+                    <span className="text-white">What transparency means to you</span>
                   </div>
                   <div className="flex items-start space-x-3">
                     <Check className="h-5 w-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-blue-100">Ideal platform experience</span>
+                    <span className="text-white">Ideal platform experience</span>
                   </div>
                   <div className="flex items-start space-x-3">
                     <Check className="h-5 w-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-blue-100">Features you'd pay for vs expect free</span>
+                    <span className="text-white">Features you'd pay for vs expect free</span>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="space-y-4">
-              <p className="text-lg text-blue-100">
+              <p className="text-lg text-white">
                 <strong>7-minute survey</strong> • Early access to platform • Influence feature development • Beta testing opportunities
               </p>
               <Button

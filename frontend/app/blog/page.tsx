@@ -141,7 +141,7 @@ export default function BlogPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               InTransparency Blog
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white mb-8">
               Insights, tips, and stories about the future of education and career development
             </p>
 
@@ -165,7 +165,7 @@ export default function BlogPage() {
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-2xl font-bold text-gray-900">Featured Article</h2>
-                <Badge className="bg-yellow-100 text-yellow-800">Featured</Badge>
+                <Badge className="bg-yellow-400 text-gray-900">Featured</Badge>
               </div>
             </div>
 
@@ -181,7 +181,7 @@ export default function BlogPage() {
                   <div className="p-8">
                     <div className="flex items-center space-x-2 mb-4">
                       <Badge variant="outline">{featuredPost.category}</Badge>
-                      <Badge className="bg-yellow-100 text-yellow-800">Featured</Badge>
+                      <Badge className="bg-yellow-400 text-gray-900">Featured</Badge>
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">
                       {featuredPost.title}

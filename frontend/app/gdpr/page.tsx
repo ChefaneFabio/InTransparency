@@ -56,7 +56,7 @@ export default function GDPRPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               GDPR Compliance
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white mb-8">
               Your data protection rights under the General Data Protection Regulation
             </p>
 

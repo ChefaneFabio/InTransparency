@@ -189,7 +189,7 @@ function TourSelector({ onSelect, onClose }: { onSelect: (id: string) => void; o
                         <div className="flex items-center space-x-2 mb-2">
                           <h4 className="font-semibold text-gray-900">{tour.title}</h4>
                           {tour.recommended && (
-                            <Badge className="bg-yellow-100 text-yellow-800 flex items-center">
+                            <Badge className="bg-yellow-400 text-gray-900 flex items-center">
                               <Star className="h-3 w-3 mr-1" />
                               Recommended
                             </Badge>

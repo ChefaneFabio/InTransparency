@@ -101,7 +101,7 @@ export default function LinkedInIntegrationPage() {
           <FaLinkedin className="text-4xl" />
           <div>
             <h1 className="text-3xl font-bold">LinkedIn Integration</h1>
-            <p className="text-blue-100">Bridge your professional network with academic excellence</p>
+            <p className="text-white">Bridge your professional network with academic excellence</p>
           </div>
         </div>
 
@@ -109,17 +109,17 @@ export default function LinkedInIntegrationPage() {
           <div className="bg-white/10 p-4 rounded-lg">
             <FaUsers className="text-2xl mb-2" />
             <h3 className="font-semibold">Smart Networking</h3>
-            <p className="text-sm text-blue-100">Find relevant connections across universities and companies</p>
+            <p className="text-sm text-white">Find relevant connections across universities and companies</p>
           </div>
           <div className="bg-white/10 p-4 rounded-lg">
             <FaHandshake className="text-2xl mb-2" />
             <h3 className="font-semibold">Bridge Builder</h3>
-            <p className="text-sm text-blue-100">Connect students with industry professionals seamlessly</p>
+            <p className="text-sm text-white">Connect students with industry professionals seamlessly</p>
           </div>
           <div className="bg-white/10 p-4 rounded-lg">
             <FaBullhorn className="text-2xl mb-2" />
             <h3 className="font-semibold">Opportunity Engine</h3>
-            <p className="text-sm text-blue-100">Discover and share career opportunities through your network</p>
+            <p className="text-sm text-white">Discover and share career opportunities through your network</p>
           </div>
         </div>
       </div>

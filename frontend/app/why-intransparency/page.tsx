@@ -501,7 +501,7 @@ export default function WhyInTransparencyPage() {
       <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <CardContent className="p-12 text-center">
           <h2 className="text-4xl font-bold mb-4">Ready to Experience the Difference?</h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
             Join thousands of universities, students, and companies already using InTransparency
             to revolutionize talent discovery.
           </p>

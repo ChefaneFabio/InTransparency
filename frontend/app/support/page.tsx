@@ -147,7 +147,7 @@ export default function SupportPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Support Center
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white mb-8">
               We're here to help you succeed. Get the support you need, when you need it.
             </p>
 

@@ -187,7 +187,7 @@ export default function StatusPage() {
       case 'operational':
         return <Badge className="bg-green-100 text-green-800">Operational</Badge>
       case 'degraded':
-        return <Badge className="bg-yellow-100 text-yellow-800">Degraded</Badge>
+        return <Badge className="bg-yellow-400 text-gray-900">Degraded</Badge>
       case 'outage':
         return <Badge className="bg-red-100 text-red-800">Outage</Badge>
       default:
@@ -206,7 +206,7 @@ export default function StatusPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               System Status
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white mb-8">
               Real-time status and performance metrics for InTransparency services
             </p>
 
@@ -215,7 +215,7 @@ export default function StatusPage() {
               <span className="text-lg font-medium">All Systems Operational</span>
             </div>
 
-            <div className="text-sm text-blue-100 mt-2">
+            <div className="text-sm text-white mt-2">
               Last updated: {currentTime.toLocaleString()}
             </div>
           </div>

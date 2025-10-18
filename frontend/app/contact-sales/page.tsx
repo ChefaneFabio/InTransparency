@@ -107,7 +107,7 @@ export default function ContactSalesPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Enterprise Solutions for Universities
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white mb-8">
               Empower your institution with AI-powered career services and industry connections
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

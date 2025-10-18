@@ -628,7 +628,7 @@ export default function CoursesPage() {
                     <span className={`px-2 py-1 rounded-full text-xs ${
                       course.isCompleted 
                         ? 'bg-green-100 text-green-800' 
-                        : 'bg-yellow-100 text-yellow-800'
+                        : 'bg-yellow-400 text-gray-900'
                     }`}>
                       {course.isCompleted ? 'Completed' : 'In Progress'}
                     </span>

@@ -181,7 +181,7 @@ export function CTA() {
           <h3 className="text-3xl font-bold mb-4">
             Ready to unlock your potential?
           </h3>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
             Transform your academic projects into compelling career stories. 
             Start your journey with InTransparency today.
           </p>
@@ -209,7 +209,7 @@ export function CTA() {
             </Button>
           </div>
 
-          <div className="mt-8 flex items-center justify-center space-x-8 text-blue-100">
+          <div className="mt-8 flex items-center justify-center space-x-8 text-white">
             <div className="flex items-center">
               <CheckCircle className="h-5 w-5 mr-2" />
               <span>Free forever plan</span>

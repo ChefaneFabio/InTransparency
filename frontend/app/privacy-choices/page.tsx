@@ -172,7 +172,7 @@ export default function PrivacyChoicesPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Privacy Choices
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white mb-8">
               Control how your data is used and customize your privacy settings
             </p>
             <Badge className="bg-green-100 text-green-800 px-4 py-2">

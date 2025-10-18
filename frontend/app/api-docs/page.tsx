@@ -17,7 +17,7 @@ export default function ApiDocsPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               API Documentation
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white mb-8">
               Integrate InTransparency's powerful features into your applications with our comprehensive REST API
             </p>
 

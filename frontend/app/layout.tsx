@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   viewport: 'width=device-width, initial-scale=1',
   manifest: '/manifest.json',
   themeColor: '#0891b2',
+  icons: {
+    icon: '/favicon.png',
+    apple: '/logo.png',
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',

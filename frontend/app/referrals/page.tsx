@@ -420,7 +420,7 @@ export default function ReferralsPage() {
                           <Badge className={
                             referral.status === 'completed'
                               ? 'bg-green-100 text-green-800'
-                              : 'bg-yellow-100 text-yellow-800'
+                              : 'bg-yellow-400 text-gray-900'
                           }>
                             {referral.status === 'completed' ? 'Completed' : 'Pending'}
                           </Badge>

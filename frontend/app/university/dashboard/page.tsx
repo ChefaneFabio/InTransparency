@@ -117,7 +117,7 @@ export default function UniversityDashboard() {
       case 'verified':
         return <Badge className="bg-green-100 text-green-800">Verified</Badge>
       case 'pending':
-        return <Badge className="bg-yellow-100 text-yellow-800">Pending Review</Badge>
+        return <Badge className="bg-yellow-400 text-gray-900">Pending Review</Badge>
       case 'published':
         return <Badge className="bg-blue-100 text-blue-800">Published</Badge>
       default:

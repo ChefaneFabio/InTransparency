@@ -429,7 +429,7 @@ export default function PublicPortfolioPage() {
                   <h2 className="text-4xl font-bold mb-4">
                     Build Your Own Portfolio
                   </h2>
-                  <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+                  <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
                     Join {student.firstName} and thousands of other students on InTransparency.
                     Showcase your projects, get discovered by recruiters, and land your dream job.
                   </p>
@@ -452,7 +452,7 @@ export default function PublicPortfolioPage() {
 
                   {/* Powered by InTransparency */}
                   <div className="mt-8 pt-8 border-t border-white/20">
-                    <p className="text-sm text-blue-100">
+                    <p className="text-sm text-white">
                       Powered by <a href="/" className="text-white font-bold hover:underline">InTransparency</a>
                     </p>
                   </div>

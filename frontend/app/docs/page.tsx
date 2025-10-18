@@ -261,7 +261,7 @@ export default function DocsPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Documentation
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white mb-8">
               Everything you need to build, integrate, and succeed with InTransparency
             </p>
 

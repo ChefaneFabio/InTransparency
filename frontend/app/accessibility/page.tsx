@@ -140,7 +140,7 @@ export default function AccessibilityPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Accessibility Statement
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white mb-8">
               InTransparency is committed to providing an inclusive digital experience for all users, regardless of ability
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -267,7 +267,7 @@ export default function AccessibilityPage() {
                         className={
                           standard.status === 'Compliant'
                             ? 'bg-green-100 text-green-800'
-                            : 'bg-yellow-100 text-yellow-800'
+                            : 'bg-yellow-400 text-gray-900'
                         }
                       >
                         {standard.status}
