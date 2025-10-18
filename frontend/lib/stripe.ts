@@ -1,13 +1,12 @@
 import Stripe from 'stripe'
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('STRIPE_SECRET_KEY is not set in environment variables')
-}
-
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2025-09-30.clover',
-  typescript: true
-})
+// Initialize Stripe only if the key is provided (optional for now)
+export const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2025-09-30.clover',
+      typescript: true
+    })
+  : null
 
 // Product Price IDs (set these in your .env file)
 export const STRIPE_PRICES = {

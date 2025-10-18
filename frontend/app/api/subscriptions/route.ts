@@ -5,6 +5,11 @@ import { stripe, STRIPE_PRICES } from '@/lib/stripe'
 // GET /api/subscriptions - Get user's subscription details
 export async function GET(request: NextRequest) {
   try {
+    // Check if Stripe is configured
+    if (!stripe) {
+      return NextResponse.json({ error: 'Stripe not configured' }, { status: 503 })
+    }
+
     const userId = request.headers.get('x-user-id')
 
     if (!userId) {
@@ -60,6 +65,11 @@ export async function GET(request: NextRequest) {
 // POST /api/subscriptions/create - Create a new subscription
 export async function POST(request: NextRequest) {
   try {
+    // Check if Stripe is configured
+    if (!stripe) {
+      return NextResponse.json({ error: 'Stripe not configured' }, { status: 503 })
+    }
+
     const userId = request.headers.get('x-user-id')
 
     if (!userId) {

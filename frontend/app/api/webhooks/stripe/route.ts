@@ -8,6 +8,12 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || ''
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if Stripe is configured
+    if (!stripe) {
+      console.warn('Stripe webhook called but STRIPE_SECRET_KEY is not configured')
+      return NextResponse.json({ error: 'Stripe not configured' }, { status: 503 })
+    }
+
     const body = await request.text()
     const signature = request.headers.get('stripe-signature')
 
@@ -259,6 +265,8 @@ async function handleTrialWillEnd(subscription: Stripe.Subscription) {
 async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
   const invoiceData = invoice as any
   if (!invoiceData.subscription) return
+
+  if (!stripe) return
 
   const subscription = await stripe.subscriptions.retrieve(invoiceData.subscription as string)
   const subData = subscription as any
