@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
 
 // Cancel subscription at period end
 async function cancelSubscription(subscriptionId: string, userId: string) {
-  const subscription = await stripe.subscriptions.update(subscriptionId, {
+  const subscription = await stripe!.subscriptions.update(subscriptionId, {
     cancel_at_period_end: true
   })
 
@@ -100,7 +100,7 @@ async function updateSubscription(
   newInterval: string
 ) {
   // Get current subscription
-  const currentSubscription = await stripe.subscriptions.retrieve(subscriptionId)
+  const currentSubscription = await stripe!.subscriptions.retrieve(subscriptionId)
 
   // Get new price ID
   const newPriceId = getPriceId(newTier, newInterval)
@@ -109,7 +109,7 @@ async function updateSubscription(
   }
 
   // Update subscription
-  const updatedSubscription = await stripe.subscriptions.update(subscriptionId, {
+  const updatedSubscription = await stripe!.subscriptions.update(subscriptionId, {
     items: [
       {
         id: currentSubscription.items.data[0].id,
@@ -137,7 +137,7 @@ async function updateSubscription(
 
 // Reactivate a canceled subscription
 async function reactivateSubscription(subscriptionId: string, userId: string) {
-  const subscription = await stripe.subscriptions.update(subscriptionId, {
+  const subscription = await stripe!.subscriptions.update(subscriptionId, {
     cancel_at_period_end: false
   })
 
