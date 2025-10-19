@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   Search,
   MapPin,
@@ -655,7 +656,12 @@ export default function FeaturesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Hero Section */}
-          <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
               Complete Feature Overview
             </h1>
@@ -682,10 +688,15 @@ export default function FeaturesPage() {
                 <div className="text-sm text-gray-700">Categories</div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Category Filter */}
-          <div className="mb-12">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-12"
+          >
             <div className="flex flex-wrap justify-center gap-4">
               {featureCategories.map((category) => {
                 const Icon = category.icon
@@ -708,14 +719,23 @@ export default function FeaturesPage() {
                 )
               })}
             </div>
-          </div>
+          </motion.div>
 
           {/* Features Grid */}
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
-            {filteredFeatures.map((feature) => {
-              const Icon = feature.icon
-              return (
-                <Card key={feature.id} className={`${feature.color} transition-all hover:shadow-lg cursor-pointer`}>
+            <AnimatePresence>
+              {filteredFeatures.map((feature, index) => {
+                const Icon = feature.icon
+                return (
+                  <motion.div
+                    key={feature.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    whileHover={{ scale: 1.03 }}
+                  >
+                    <Card className={`${feature.color} transition-all hover:shadow-lg cursor-pointer h-full`}>
                   <CardHeader>
                     <div className="flex items-start justify-between mb-4">
                       <div className={`p-3 rounded-full bg-white shadow-sm`}>
@@ -770,14 +790,30 @@ export default function FeaturesPage() {
                     </div>
                   </CardContent>
                 </Card>
-              )
-            })}
+              </motion.div>
+                )
+              })}
+            </AnimatePresence>
           </div>
 
           {/* Feature Detail Modal/Section */}
-          {selectedFeature && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-              <Card className="max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+          <AnimatePresence>
+            {selectedFeature && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+                onClick={() => setSelectedFeature(null)}
+              >
+                <motion.div
+                  initial={{ scale: 0.9, y: 20 }}
+                  animate={{ scale: 1, y: 0 }}
+                  exit={{ scale: 0.9, y: 20 }}
+                  transition={{ type: "spring", duration: 0.5 }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Card className="max-w-2xl w-full max-h-[80vh] overflow-y-auto">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="flex items-start space-x-4">
@@ -830,11 +866,19 @@ export default function FeaturesPage() {
                   </div>
                 </CardContent>
               </Card>
-            </div>
-          )}
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Call to Action */}
-          <div className="text-center mt-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mt-16"
+          >
             <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
               <CardContent className="py-12">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -863,7 +907,7 @@ export default function FeaturesPage() {
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
         </div>
       </main>
