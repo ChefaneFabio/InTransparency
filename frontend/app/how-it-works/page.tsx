@@ -6,6 +6,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   Users,
   Building2,
@@ -256,15 +257,25 @@ export default function HowItWorksPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Header Section */}
-          <div className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
             <h1 className="text-4xl font-bold text-gray-900 mb-4">How InTransparency Works</h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               A transparent platform connecting students, recruiters, and universities worldwide
             </p>
-          </div>
+          </motion.div>
 
           {/* User Type Selector */}
-          <div className="flex justify-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex justify-center mb-12"
+          >
             <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-200">
               <div className="flex space-x-2">
                 {(userTypes || []).map((type) => {
@@ -286,17 +297,23 @@ export default function HowItWorksPage() {
                 })}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Dynamic Header */}
-          <div className="text-center mb-16">
+          <motion.div
+            key={selectedUserType}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               {getHeaderContent().title}
             </h2>
             <p className="text-lg text-gray-700 max-w-2xl mx-auto">
               {getHeaderContent().subtitle}
             </p>
-          </div>
+          </motion.div>
 
           {/* Student Data Import Feature (only for students) */}
           {selectedUserType === 'student' && (
@@ -333,10 +350,19 @@ export default function HowItWorksPage() {
 
           {/* Dynamic Steps */}
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {(getCurrentSteps() || []).map((step, index) => {
-              const Icon = step.icon
-              return (
-                <Card key={step.id} className={`${step.color} transition-all hover:shadow-lg relative overflow-hidden`}>
+            <AnimatePresence mode="wait">
+              {(getCurrentSteps() || []).map((step, index) => {
+                const Icon = step.icon
+                return (
+                  <motion.div
+                    key={`${selectedUserType}-${step.id}`}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -30 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                  >
+                    <Card className={`${step.color} transition-all hover:shadow-lg relative overflow-hidden h-full`}>
                   {/* Step Number Badge */}
                   <div className="absolute top-4 right-4 bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-md">
                     <span className="text-2xl font-bold text-gray-700">{step.id}</span>
@@ -384,8 +410,10 @@ export default function HowItWorksPage() {
                     )}
                   </CardContent>
                 </Card>
-              )
-            })}
+              </motion.div>
+                )
+              })}
+            </AnimatePresence>
           </div>
 
           {/* Platform Benefits */}
