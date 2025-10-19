@@ -286,7 +286,7 @@ export default function TalentDiscoveryPage() {
               <div>
                 <p className="text-sm text-gray-600">Universities</p>
                 <p className="text-2xl font-bold text-gray-900">156</p>
-                <p className="text-xs text-gray-700">Top tier</p>
+                <p className="text-xs text-gray-900">Top tier</p>
               </div>
               <GraduationCap className="h-8 w-8 text-purple-500" />
             </div>
@@ -367,7 +367,7 @@ export default function TalentDiscoveryPage() {
                         </Badge>
                       ))
                     ) : (
-                      <p className="text-sm text-gray-700">Click on map to select</p>
+                      <p className="text-sm text-gray-600">Click on map to select</p>
                     )}
                   </div>
                 </div>
@@ -407,7 +407,7 @@ export default function TalentDiscoveryPage() {
                       onChange={(e) => setGradeFilter(prev => ({ ...prev, min: parseFloat(e.target.value) }))}
                       className="w-20 px-2 py-1 border rounded"
                     />
-                    <span className="text-gray-700">to</span>
+                    <span className="text-gray-900">to</span>
                     <input
                       type="number"
                       step="0.1"
@@ -606,7 +606,7 @@ export default function TalentDiscoveryPage() {
                         <p className="text-sm font-medium text-green-600">
                           AI Score: {candidate.aiScore}
                         </p>
-                        <p className="text-xs text-gray-700">
+                        <p className="text-xs text-gray-900">
                           {candidate.projects} projects
                         </p>
                       </div>
