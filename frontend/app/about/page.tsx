@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { FileX2, Code2, TrendingUp, Users, Shield, Zap, Target, Heart } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { IMAGES } from '@/lib/images'
 
 export default function AboutPage() {
   return (
@@ -181,9 +183,13 @@ export default function AboutPage() {
             <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200">
               <CardContent className="p-8">
                 <div className="flex items-start gap-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
-                    AJ
-                  </div>
+                  <Image
+                    src={IMAGES.students.student1}
+                    alt="Alex Johnson"
+                    width={64}
+                    height={64}
+                    className="rounded-full object-cover flex-shrink-0"
+                  />
                   <div>
                     <p className="text-gray-800 italic mb-4 leading-relaxed">
                       "I had a 3.2 GPA and no internships. My resume got auto-rejected everywhere. But when I uploaded my ML trading bot to InTransparency and got an 92 innovation score, recruiters started messaging me. Got hired by a fintech startup in 3 weeks."

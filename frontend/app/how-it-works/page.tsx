@@ -1,12 +1,14 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { motion, AnimatePresence } from 'framer-motion'
+import { IMAGES, getAvatarUrl } from '@/lib/images'
 import {
   Users,
   Building2,
@@ -473,15 +475,19 @@ export default function HowItWorksPage() {
                 <CardContent>
                   <div className="grid md:grid-cols-3 gap-4">
                     {[
-                      { name: 'Alex Chen', uni: 'MIT', views: '1,234', projects: 7, hired: 'Google' },
-                      { name: 'Sarah Kim', uni: 'Stanford', views: '892', projects: 5, hired: 'Meta' },
-                      { name: 'Mike Torres', uni: 'Berkeley', views: '2,103', projects: 9, hired: 'Stripe' }
+                      { name: 'Alex Chen', uni: 'MIT', views: '1,234', projects: 7, hired: 'Google', image: IMAGES.students.student1 },
+                      { name: 'Sarah Kim', uni: 'Stanford', views: '892', projects: 5, hired: 'Meta', image: IMAGES.students.student2 },
+                      { name: 'Mike Torres', uni: 'Berkeley', views: '2,103', projects: 9, hired: 'Stripe', image: IMAGES.students.student5 }
                     ].map((student, idx) => (
                       <div key={idx} className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                         <div className="flex items-center mb-3">
-                          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
-                            {student.name.split(' ').map(n => n[0]).join('')}
-                          </div>
+                          <Image
+                            src={student.image}
+                            alt={student.name}
+                            width={48}
+                            height={48}
+                            className="rounded-full object-cover"
+                          />
                           <div className="ml-3">
                             <div className="font-semibold text-gray-900">{student.name}</div>
                             <div className="text-xs text-gray-800">{student.uni}</div>

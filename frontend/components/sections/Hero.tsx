@@ -1,13 +1,27 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Sparkles, Users, Trophy, Star, CheckCircle2 } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { IMAGES } from '@/lib/images'
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-sky-50 via-white to-emerald-50 py-20 sm:py-32">
+      {/* Background image with overlay */}
+      <div className="absolute inset-0 overflow-hidden">
+        <Image
+          src={IMAGES.hero.students}
+          alt="Students collaborating"
+          fill
+          className="object-cover opacity-5"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-sky-50/90 via-white/95 to-emerald-50/90"></div>
+      </div>
+
       {/* Animated background pattern */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-300/20 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>

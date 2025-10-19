@@ -76,7 +76,9 @@
       "Bash(yarn install)",
       "Bash(./node_modules/.bin/next:*)",
       "Bash(for:*)",
-      "Bash(do head -5 \"$file\")"
+      "Bash(do head -5 \"$file\")",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)"
     ],
     "defaultMode": "acceptEdits"
   }
