@@ -1,262 +1,198 @@
 'use client'
 
+import { useState } from 'react'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Check, X, Star, Users, Building, GraduationCap, ArrowRight, Zap, Crown, Gift, Sparkles } from 'lucide-react'
+import { Check, X, Star, Users, Building2, GraduationCap, ArrowRight, Zap, Crown, Sparkles, School } from 'lucide-react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+
+type PricingSegment = 'students' | 'companies' | 'universities'
 
 const studentPlans = [
   {
     name: 'Free Student',
     price: 'Free',
     period: 'forever',
-    description: 'Everything you need to start building your career portfolio',
+    description: 'Perfect for building your first portfolio',
     icon: GraduationCap,
     popular: false,
     features: [
-      '3 project uploads',
-      'Basic AI project analysis',
-      'Profile visibility to recruiters',
+      'Create your portfolio',
+      'Add up to 3 projects',
+      'Basic profile visibility',
       'Receive messages from recruiters',
-      'Basic job matching',
-      'Public portfolio page (basic)',
-      'CV templates library',
-      'Email support'
+      'Public portfolio page'
     ],
-    limitations: [
-      'Cannot initiate contact with recruiters',
-      'Limited to 3 projects',
-      'Basic matching algorithm',
-      'Standard profile visibility'
-    ],
-    cta: 'Get Started Free',
-    ctaLink: '/auth/register/student',
-    color: 'bg-green-500'
+    cta: 'Start Free',
+    ctaLink: '/auth/register/role-selection'
   },
   {
     name: 'Student Pro',
     price: '€9',
     period: 'per month',
-    description: 'Premium features to get hired 2x faster',
+    description: 'Get discovered faster with premium features',
     icon: Crown,
     popular: true,
-    badge: 'Most Popular',
+    badge: '🚀 Early Access',
     features: [
       'Everything in Free',
-      '✨ Unlimited project uploads',
-      '✨ Initiate contact with recruiters',
-      '✨ Advanced AI matching',
-      '✨ Priority in search results (3x more views)',
-      '✨ Public portfolio with custom URL',
-      '✨ Detailed analytics (who viewed, from which companies)',
-      '✨ AI resume optimizer (download per job)',
-      '✨ 2x referral rewards',
-      '✨ Premium member badge',
-      '✨ Priority email support'
+      'Unlimited projects',
+      'Priority in search results',
+      'Advanced analytics',
+      'Custom portfolio URL',
+      'Contact recruiters directly',
+      'AI-powered insights',
+      'Priority support'
     ],
-    limitations: [],
-    cta: 'Start 7-Day Free Trial',
-    ctaLink: '/student-premium',
-    color: 'bg-purple-500',
-    highlight: true,
-    savings: 'Save €18 with annual plan'
+    cta: 'Start 7-Day Trial',
+    ctaLink: '/auth/register/role-selection',
+    highlight: true
   }
 ]
 
-const recruiterPlans = [
-  {
-    name: 'Free Recruiter',
-    price: 'Free',
-    period: 'forever',
-    description: 'Explore the platform and discover student talent',
-    icon: Users,
-    popular: false,
-    features: [
-      'Browse student profiles (read-only)',
-      'Save up to 10 candidates',
-      'View basic project information',
-      'See university and skills',
-      'Basic search filters'
-    ],
-    limitations: [
-      'No messaging',
-      'Cannot post jobs',
-      'No contact information access',
-      'Limited search capabilities'
-    ],
-    cta: 'Browse Talent',
-    ctaLink: '/auth/register/recruiter',
-    color: 'bg-gray-500'
-  },
+const companyPlans = [
   {
     name: 'Starter',
     price: '€49',
     period: 'per month',
-    description: 'Perfect for startups and small teams hiring occasionally',
+    description: 'For startups hiring occasionally',
     icon: Zap,
     popular: false,
     features: [
-      'Everything in Free',
+      'Search verified portfolios',
       'Post 3 active jobs',
-      'Send 25 messages/month',
-      'Basic search filters',
-      'Contact information access',
-      'Basic analytics',
+      'Contact 25 students/month',
+      'Basic filters',
       'Email support'
     ],
-    limitations: [
-      'Limited messaging (25/month)',
-      'Basic matching only',
-      'No advanced filters'
-    ],
-    cta: 'Start Free Trial',
-    ctaLink: '/auth/register/recruiter',
-    color: 'bg-blue-500'
+    cta: 'Start 7-Day Trial',
+    ctaLink: '/auth/register/role-selection'
   },
   {
     name: 'Growth',
     price: '€149',
     period: 'per month',
-    description: 'Advanced recruiting for growing companies',
-    icon: Building,
+    description: 'For growing teams hiring regularly',
+    icon: Building2,
     popular: true,
-    badge: 'Best Value',
+    badge: 'Most Popular',
     features: [
       'Everything in Starter',
       'Post 10 active jobs',
-      'Send 100 messages/month',
+      'Contact 100 students/month',
       'AI-powered matching',
-      'Advanced search filters (50+)',
-      'Detailed project code analysis',
+      'Advanced filters (50+)',
       'Analytics dashboard',
       'Priority support'
     ],
-    limitations: [
-      'Limited to 100 messages/month'
-    ],
-    cta: 'Start Free Trial',
-    ctaLink: '/auth/register/recruiter',
-    color: 'bg-indigo-500',
+    cta: 'Start 7-Day Trial',
+    ctaLink: '/auth/register/role-selection',
     highlight: true
-  },
-  {
-    name: 'Pro',
-    price: '€297',
-    period: 'per month',
-    description: 'Full-featured recruiting for serious hiring teams',
-    icon: Building,
-    popular: false,
-    features: [
-      'Everything in Growth',
-      'Unlimited job posts',
-      'Unlimited messaging',
-      'AI RAG matching (industry knowledge)',
-      'GPA verification',
-      'InMail priority delivery',
-      'Bulk candidate operations',
-      'Pipeline management',
-      'Advanced analytics',
-      'Candidate comparison tools',
-      'Priority support'
-    ],
-    limitations: [
-      'Limited to 3 team members'
-    ],
-    cta: 'Start Free Trial',
-    ctaLink: '/auth/register/recruiter',
-    color: 'bg-purple-500'
   },
   {
     name: 'Enterprise',
     price: 'Custom',
-    period: 'pricing',
-    description: 'Complete talent acquisition platform for large organizations',
-    icon: Building,
+    period: 'contact us',
+    description: 'For large organizations with complex needs',
+    icon: Building2,
     popular: false,
     features: [
-      'Everything in Pro',
-      'Unlimited team members',
-      'Custom AI model training',
-      'White-label solution',
-      'ATS integrations (Greenhouse, Lever)',
-      'SSO & advanced security',
-      'Custom workflows',
-      'Dedicated customer success manager',
-      'SLA guarantees',
-      'Custom reporting & APIs',
-      'Onboarding & training',
-      '24/7 priority support'
+      'Everything in Growth',
+      'Unlimited jobs',
+      'Unlimited contacts',
+      'Dedicated account manager',
+      'Custom integrations',
+      'API access',
+      'White-label options',
+      'SLA guarantee'
     ],
-    limitations: [],
     cta: 'Contact Sales',
-    ctaLink: '/contact-sales',
-    color: 'bg-gradient-to-r from-yellow-500 to-orange-500'
+    ctaLink: '/contact'
   }
 ]
 
-const faqs = [
+const universityPlans = [
   {
-    question: 'Why is the basic plan free for students?',
-    answer: 'We believe every student deserves access to career opportunities. Our revenue comes from companies who pay to access our verified talent pool. Students can upgrade to Premium for advanced features like initiating contact with recruiters.'
+    name: 'Free Partner',
+    price: 'Free',
+    period: 'forever',
+    description: 'Get started with basic career services integration',
+    icon: School,
+    popular: false,
+    features: [
+      'Student portfolio hub',
+      'Basic analytics',
+      'Up to 100 active students',
+      'Email support',
+      'Standard branding'
+    ],
+    cta: 'Become a Partner',
+    ctaLink: '/contact'
   },
   {
-    question: 'What\'s the difference between Free and Student Pro?',
-    answer: 'Student Pro gives you 3 key advantages: 1) Initiate contact with recruiters (don\'t wait to be discovered), 2) Priority in search results (3x more profile views), 3) Unlimited projects and advanced AI matching. Plus you get detailed analytics and a custom portfolio URL.'
-  },
-  {
-    question: 'How does the Student Pro free trial work?',
-    answer: '7-day free trial, no credit card required. Try all Premium features risk-free. If you like it, you\'ll be charged €9/month after the trial. Cancel anytime during the trial and you won\'t pay anything.'
-  },
-  {
-    question: 'What\'s the difference between Starter, Growth, and Pro for recruiters?',
-    answer: 'Starter (€49/mo): 25 messages, 3 jobs, basic filters. Growth (€149/mo): 100 messages, 10 jobs, AI matching, advanced filters. Pro (€297/mo): Unlimited messages, unlimited jobs, priority delivery, full analytics.'
-  },
-  {
-    question: 'Why should I choose InTransparency over LinkedIn Recruiter?',
-    answer: 'LinkedIn Recruiter costs €8,000+/year and shows unverified skills. InTransparency starts at €49/month, specializes in verified university talent with real project portfolios, and offers AI-powered matching. Perfect for hiring new grads and junior talent.'
-  },
-  {
-    question: 'Can recruiters try the platform for free?',
-    answer: 'Yes! Free Recruiter tier lets you browse student profiles and see project info. To message candidates or post jobs, upgrade to Starter (€49/mo) with a 7-day free trial.'
-  },
-  {
-    question: 'Do you verify university transcripts and projects?',
-    answer: 'Yes! We integrate directly with universities to verify academic records. Projects are analyzed by AI and can be linked to GitHub for verification. This ensures companies can trust what they see.'
-  },
-  {
-    question: 'Can I cancel anytime?',
-    answer: 'Absolutely. All plans can be canceled anytime from your dashboard. You\'ll continue to have access until the end of your billing period. No long-term contracts or cancellation fees.'
-  },
-  {
-    question: 'Do you offer annual discounts?',
-    answer: 'Yes! Student Pro annual plan: €90/year (save €18). Recruiter annual plans: 20% discount. Contact sales for enterprise annual contracts.'
-  }
-]
-
-const comparisonHighlights = [
-  {
-    feature: 'LinkedIn Recruiter',
-    price: '€8,000+/year',
-    messaging: 'Limited InMails',
-    verification: 'Unverified skills',
-    matching: 'Keyword-based'
-  },
-  {
-    feature: 'InTransparency Pro',
-    price: '€297/month (€3,564/year)',
-    messaging: 'Unlimited messages',
-    verification: 'University-verified',
-    matching: 'AI-powered + RAG'
+    name: 'University Pro',
+    price: 'Custom',
+    period: 'per year',
+    description: 'Complete career services solution',
+    icon: School,
+    popular: true,
+    badge: 'Recommended',
+    features: [
+      'Everything in Free',
+      'Unlimited students',
+      'Advanced career analytics',
+      'Employer network access',
+      'Custom university branding',
+      'Verification system',
+      'Dedicated support',
+      'Quarterly strategy sessions'
+    ],
+    cta: 'Schedule Demo',
+    ctaLink: '/contact',
+    highlight: true
   }
 ]
 
 export default function PricingPage() {
+  const [selectedSegment, setSelectedSegment] = useState<PricingSegment>('students')
+
+  const getPlans = () => {
+    switch (selectedSegment) {
+      case 'students': return studentPlans
+      case 'companies': return companyPlans
+      case 'universities': return universityPlans
+    }
+  }
+
+  const getHeaderContent = () => {
+    switch (selectedSegment) {
+      case 'students': return {
+        badge: 'For Students',
+        title: 'Start Free, Upgrade When Ready',
+        subtitle: 'Build your portfolio for free. Upgrade to get discovered 2x faster.'
+      }
+      case 'companies': return {
+        badge: 'For Companies',
+        title: 'Find Verified Talent, Fast',
+        subtitle: 'Access university-verified portfolios. Plans for teams of all sizes.'
+      }
+      case 'universities': return {
+        badge: 'For Universities',
+        title: 'Empower Your Students',
+        subtitle: 'Help students showcase their work and track career outcomes.'
+      }
+    }
+  }
+
+  const plans = getPlans()
+  const headerContent = getHeaderContent()
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+    <div className="min-h-screen bg-gray-50">
       <Header />
 
       <main className="pt-24 pb-16">
@@ -272,220 +208,114 @@ export default function PricingPage() {
             <h1 className="text-5xl font-bold text-gray-900 mb-6">
               Simple, Transparent Pricing
             </h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              Choose the plan that fits your needs. Always free for students to get started,
-              with premium options for faster results. Affordable plans for recruiters of all sizes.
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-12">
+              Choose the plan that fits your needs. Always free for students to start.
             </p>
+
+            {/* Segment Selector */}
+            <div className="inline-flex bg-white rounded-full p-1.5 shadow-lg border border-gray-200">
+              {(['students', 'companies', 'universities'] as PricingSegment[]).map((segment) => {
+                const Icon = segment === 'students' ? GraduationCap : segment === 'companies' ? Building2 : School
+                return (
+                  <button
+                    key={segment}
+                    onClick={() => setSelectedSegment(segment)}
+                    className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                      selectedSegment === segment
+                        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-md'
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                    }`}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {segment === 'students' && 'Students'}
+                    {segment === 'companies' && 'Companies'}
+                    {segment === 'universities' && 'Universities'}
+                  </button>
+                )
+              })}
+            </div>
           </motion.div>
 
-          {/* Student Plans Section */}
+          {/* Dynamic Pricing Section */}
           <div className="mb-20">
             <motion.div
+              key={selectedSegment}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.5 }}
               className="text-center mb-12"
             >
               <Badge className="mb-4 bg-blue-100 text-blue-800 text-sm px-4 py-2">
-                <GraduationCap className="h-4 w-4 mr-2 inline" />
-                For Students
+                {headerContent.badge}
               </Badge>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Start Free, Upgrade When Ready
+                {headerContent.title}
               </h2>
               <p className="text-lg text-gray-700">
-                Build your portfolio for free. Upgrade to Premium to get hired 2x faster.
+                {headerContent.subtitle}
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {studentPlans.map((plan, index) => {
+            <div className={`grid gap-8 max-w-6xl mx-auto ${
+              plans.length === 2 ? 'md:grid-cols-2 max-w-5xl' :
+              plans.length === 3 ? 'md:grid-cols-3' :
+              'md:grid-cols-2 lg:grid-cols-4'
+            }`}>
+              {plans.map((plan, index) => {
                 const Icon = plan.icon
                 return (
                   <motion.div
                     key={plan.name}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
                     whileHover={{ y: -5 }}
                   >
                   <Card
-                    className={`relative ${plan.highlight ? 'border-2 border-purple-500 shadow-2xl transform scale-105' : 'border-gray-200'} h-full`}
+                    className={`relative ${plan.highlight ? 'border-2 border-blue-500 shadow-xl' : 'border-gray-200'} h-full flex flex-col`}
                   >
                     {plan.badge && (
                       <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <Badge className="bg-purple-600 text-white px-4 py-1">
+                        <Badge className="bg-blue-600 text-white px-4 py-1 shadow-lg">
                           {plan.badge}
                         </Badge>
                       </div>
                     )}
 
                     <CardHeader className="text-center pb-8 pt-8">
-                      <div className={`w-16 h-16 ${plan.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                        <Icon className="h-8 w-8 text-white" />
+                      <div className={`mx-auto mb-4 rounded-full p-4 ${plan.highlight ? 'bg-blue-100' : 'bg-gray-100'}`}>
+                        <Icon className={`h-8 w-8 ${plan.highlight ? 'text-blue-600' : 'text-gray-600'}`} />
                       </div>
                       <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
-                      <CardDescription className="text-gray-700 mb-4">{plan.description}</CardDescription>
-
                       <div className="mb-4">
-                        <span className="text-5xl font-bold text-gray-900">{plan.price}</span>
-                        {plan.period !== 'forever' && (
-                          <span className="text-gray-700 ml-2">/{plan.period}</span>
-                        )}
-                        {plan.period === 'forever' && (
-                          <span className="text-gray-700 ml-2">{plan.period}</span>
+                        <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
+                        {plan.period && (
+                          <span className="text-gray-600 ml-2">/ {plan.period}</span>
                         )}
                       </div>
-
-                      {plan.savings && (
-                        <p className="text-sm text-green-600 font-medium">{plan.savings}</p>
-                      )}
+                      <p className="text-gray-600 text-sm">{plan.description}</p>
                     </CardHeader>
 
-                    <CardContent>
+                    <CardContent className="flex-1 flex flex-col">
+                      <ul className="space-y-3 mb-8 flex-1">
+                        {plan.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-start">
+                            <Check className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                            <span className="text-gray-700 text-sm">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+
                       <Button
-                        className={`w-full mb-6 ${plan.highlight ? plan.color + ' text-white hover:opacity-90' : 'bg-gray-900 hover:bg-gray-800 text-white'}`}
-                        size="lg"
                         asChild
+                        className={`w-full ${plan.highlight ? 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700' : ''}`}
+                        variant={plan.highlight ? 'default' : 'outline'}
                       >
                         <Link href={plan.ctaLink}>
                           {plan.cta}
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>
-
-                      <div className="space-y-3 mb-6">
-                        <p className="font-semibold text-gray-900 text-sm">Includes:</p>
-                        {plan.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-start">
-                            <Check className="h-5 w-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
-                            <span className="text-sm text-gray-700">{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      {plan.limitations.length > 0 && (
-                        <div className="space-y-2 pt-6 border-t border-gray-200">
-                          <p className="font-semibold text-gray-700 text-sm">Limitations:</p>
-                          {plan.limitations.map((limitation, idx) => (
-                            <div key={idx} className="flex items-start">
-                              <X className="h-5 w-5 text-gray-400 mr-3 flex-shrink-0 mt-0.5" />
-                              <span className="text-sm text-gray-700">{limitation}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
-                  </motion.div>
-                )
-              })}
-            </div>
-
-            <div className="text-center mt-8">
-              <Link href="/student-premium" className="text-purple-600 hover:text-purple-700 font-medium inline-flex items-center">
-                See detailed Premium comparison
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Recruiter Plans Section */}
-          <div className="mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <Badge className="mb-4 bg-green-100 text-green-800 text-sm px-4 py-2">
-                <Users className="h-4 w-4 mr-2 inline" />
-                For Recruiters & Companies
-              </Badge>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Find Verified Talent, Fast
-              </h2>
-              <p className="text-lg text-gray-700">
-                From startups to enterprises, we have a plan for every hiring need.
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
-              {recruiterPlans.map((plan, index) => {
-                const Icon = plan.icon
-                return (
-                  <motion.div
-                    key={plan.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.08 }}
-                    whileHover={{ y: -5, scale: 1.02 }}
-                  >
-                  <Card
-                    className={`relative ${plan.highlight ? 'border-2 border-indigo-500 shadow-xl' : 'border-gray-200'} h-full`}
-                  >
-                    {plan.badge && (
-                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                        <Badge className="bg-indigo-600 text-white px-3 py-1 text-xs">
-                          {plan.badge}
-                        </Badge>
-                      </div>
-                    )}
-
-                    <CardHeader className="text-center pb-6">
-                      <div className={`w-12 h-12 ${plan.color} rounded-full flex items-center justify-center mx-auto mb-3`}>
-                        <Icon className="h-6 w-6 text-white" />
-                      </div>
-                      <CardTitle className="text-lg mb-2">{plan.name}</CardTitle>
-                      <CardDescription className="text-xs text-gray-700 mb-3 h-12">{plan.description}</CardDescription>
-
-
-                      <div className="mb-2">
-                        <div className="text-3xl font-bold text-gray-900">{plan.price}</div>
-                        {plan.period !== 'pricing' && (
-                          <div className="text-xs text-gray-700">/{plan.period}</div>
-                        )}
-                      </div>
-                    </CardHeader>
-
-                    <CardContent>
-                      <Button
-                        className={`w-full mb-4 text-sm ${plan.highlight ? 'bg-indigo-600 hover:bg-indigo-700' : ''}`}
-                        size="sm"
-                        variant={plan.highlight ? 'default' : 'outline'}
-                        asChild
-                      >
-                        <Link href={plan.ctaLink}>
-                          {plan.cta}
-                        </Link>
-                      </Button>
-
-                      <div className="space-y-2 mb-4">
-                        {plan.features.slice(0, 6).map((feature, idx) => (
-                          <div key={idx} className="flex items-start">
-                            <Check className="h-4 w-4 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                            <span className="text-xs text-gray-700">{feature}</span>
-                          </div>
-                        ))}
-                        {plan.features.length > 6 && (
-                          <p className="text-xs text-gray-500 italic">
-                            +{plan.features.length - 6} more features
-                          </p>
-                        )}
-                      </div>
-
-                      {plan.limitations.length > 0 && (
-                        <div className="space-y-1 pt-4 border-t border-gray-200">
-                          {plan.limitations.slice(0, 2).map((limitation, idx) => (
-                            <div key={idx} className="flex items-start">
-                              <X className="h-4 w-4 text-gray-400 mr-2 flex-shrink-0 mt-0.5" />
-                              <span className="text-xs text-gray-700">{limitation}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
                     </CardContent>
                   </Card>
                   </motion.div>
@@ -494,7 +324,7 @@ export default function PricingPage() {
             </div>
           </div>
 
-          {/* Comparison vs LinkedIn */}
+          {/* FAQ Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -502,89 +332,31 @@ export default function PricingPage() {
             transition={{ duration: 0.6 }}
             className="mb-20"
           >
-            <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
-              <CardHeader className="text-center">
-                <CardTitle className="text-2xl">Why Choose InTransparency?</CardTitle>
-                <CardDescription className="text-gray-700">
-                  Compare us to LinkedIn Recruiter
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead className="border-b-2 border-gray-300">
-                      <tr>
-                        <th className="text-left p-4 font-semibold">Feature</th>
-                        <th className="text-center p-4 font-semibold text-gray-800">LinkedIn Recruiter</th>
-                        <th className="text-center p-4 font-semibold text-purple-600">InTransparency Pro</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                      <tr>
-                        <td className="p-4 font-medium">Annual Cost</td>
-                        <td className="p-4 text-center text-gray-700">€8,000+</td>
-                        <td className="p-4 text-center font-bold text-purple-600">€3,564</td>
-                      </tr>
-                      <tr>
-                        <td className="p-4 font-medium">Messaging</td>
-                        <td className="p-4 text-center text-gray-700">Limited InMails</td>
-                        <td className="p-4 text-center font-bold text-purple-600">Unlimited</td>
-                      </tr>
-                      <tr>
-                        <td className="p-4 font-medium">Skill Verification</td>
-                        <td className="p-4 text-center text-gray-700">Self-reported</td>
-                        <td className="p-4 text-center font-bold text-purple-600">University-verified</td>
-                      </tr>
-                      <tr>
-                        <td className="p-4 font-medium">Project Portfolios</td>
-                        <td className="p-4 text-center"><X className="h-5 w-5 text-gray-400 mx-auto" /></td>
-                        <td className="p-4 text-center"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                      </tr>
-                      <tr>
-                        <td className="p-4 font-medium">AI Matching</td>
-                        <td className="p-4 text-center text-gray-700">Keyword-based</td>
-                        <td className="p-4 text-center font-bold text-purple-600">AI + RAG (contextual)</td>
-                      </tr>
-                      <tr>
-                        <td className="p-4 font-medium">Free Trial</td>
-                        <td className="p-4 text-center"><X className="h-5 w-5 text-gray-400 mx-auto" /></td>
-                        <td className="p-4 text-center"><Check className="h-5 w-5 text-green-600 mx-auto" /></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <div className="text-center mt-8">
-                  <p className="text-lg font-semibold text-gray-900 mb-4">
-                    Save 55% compared to LinkedIn Recruiter
-                  </p>
-                  <Button size="lg" className="bg-purple-600 hover:bg-purple-700" asChild>
-                    <Link href="/auth/register/recruiter">
-                      Start Free Trial
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* FAQ Section */}
-          <div className="mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
+            <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Frequently Asked Questions
               </h2>
-            </motion.div>
+            </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {faqs.map((faq, idx) => (
+              {[
+                {
+                  question: 'Is there really a free plan?',
+                  answer: 'Yes! Students can create portfolios and get discovered by recruiters 100% free, forever.'
+                },
+                {
+                  question: 'Can I cancel anytime?',
+                  answer: 'Absolutely. No contracts, no commitments. Cancel with one click from your dashboard.'
+                },
+                {
+                  question: 'Do you offer student discounts?',
+                  answer: 'All student plans are already heavily discounted. Plus, the free plan has everything you need to get started.'
+                },
+                {
+                  question: 'What payment methods do you accept?',
+                  answer: 'We accept all major credit cards, debit cards, and SEPA direct debit for European customers.'
+                }
+              ].map((faq, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
@@ -592,7 +364,7 @@ export default function PricingPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
                 >
-                <Card className="hover:shadow-lg transition-shadow">
+                <Card className="hover:shadow-lg transition-shadow h-full">
                   <CardHeader>
                     <CardTitle className="text-lg">{faq.question}</CardTitle>
                   </CardHeader>
@@ -603,7 +375,7 @@ export default function PricingPage() {
                 </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Final CTA */}
           <motion.div
@@ -617,31 +389,19 @@ export default function PricingPage() {
                 <h2 className="text-4xl font-bold mb-4">
                   Ready to Get Started?
                 </h2>
-                <p className="text-xl text-blue-50 mb-8 max-w-2xl mx-auto">
-                  Join thousands of students and companies already using InTransparency.
-                  Start free, upgrade when ready.
+                <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
+                  Join early access and be among the first to transform how students connect with opportunities.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button
-                    size="lg"
-                    variant="secondary"
-                    className="bg-white text-blue-600 hover:bg-blue-50 text-lg"
-                    asChild
-                  >
-                    <Link href="/auth/register/student">
-                      <GraduationCap className="mr-2 h-5 w-5" />
-                      I'm a Student
+                  <Button size="lg" variant="secondary" asChild>
+                    <Link href="/auth/register/role-selection">
+                      Get Started Free
+                      <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-white text-white hover:bg-white/20 text-lg"
-                    asChild
-                  >
-                    <Link href="/auth/register/recruiter">
-                      <Users className="mr-2 h-5 w-5" />
-                      I'm a Recruiter
+                  <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
+                    <Link href="/contact">
+                      Contact Sales
                     </Link>
                   </Button>
                 </div>

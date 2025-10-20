@@ -27,7 +27,7 @@ const segmentContent = {
       <>
         Turn your university projects into a portfolio that gets you hired.
         <br />
-        <strong className="text-gray-900">1,247 students landed jobs in the last 30 days.</strong>
+        <strong className="text-gray-900">🚀 Early Access - Join students building their portfolios now.</strong>
       </>
     ),
     primaryCTA: {
@@ -84,7 +84,7 @@ const segmentContent = {
       <>
         Help your students showcase their work and track career outcomes.
         <br />
-        <strong className="text-gray-900">87% placement rate for partner universities.</strong>
+        <strong className="text-gray-900">🚀 Early Access - Partner with us to launch in 2025.</strong>
       </>
     ),
     primaryCTA: {
@@ -117,7 +117,7 @@ const segmentContent = {
       {
         icon: Users,
         title: 'Industry Network',
-        description: 'Connect students with 423+ hiring companies',
+        description: 'Connect students with our growing network of hiring companies',
         color: 'indigo'
       }
     ],
@@ -142,7 +142,7 @@ const segmentContent = {
       <>
         Access university-verified portfolios and hire based on real skills.
         <br />
-        <strong className="text-gray-900">423 companies finding talent 2x faster.</strong>
+        <strong className="text-gray-900">🚀 Early Access - Be among the first companies to find hidden talent.</strong>
       </>
     ),
     primaryCTA: {

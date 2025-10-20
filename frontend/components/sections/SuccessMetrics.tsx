@@ -8,29 +8,29 @@ export function SuccessMetrics() {
       icon: CheckCircle2,
       title: 'Portfolio > Resume',
       description: 'Show what you\'ve built, not just what you claim you can do',
-      stat: '3.5x',
-      statLabel: 'more interviews than resume-only applicants'
+      stat: '🚀',
+      statLabel: 'Early Access: Build your portfolio first, get discovered faster'
     },
     {
       icon: Zap,
-      title: 'Get Hired Faster',
-      description: 'Recruiters message you first based on your verified projects',
-      stat: '21 days',
-      statLabel: 'average time to first interview'
+      title: 'Get Discovered',
+      description: 'Recruiters find you based on your verified projects, not keywords',
+      stat: '✨',
+      statLabel: 'Be among the first to showcase real academic work'
     },
     {
       icon: Star,
       title: 'Stand Out',
-      description: 'AI analyzes your projects and matches you with relevant opportunities',
-      stat: '87%',
-      statLabel: 'of students get interviews within 30 days'
+      description: 'AI analyzes your projects and highlights your unique skills',
+      stat: '🎯',
+      statLabel: 'Turn your university projects into career opportunities'
     },
     {
       icon: Award,
       title: 'Verified Skills',
       description: 'University-backed projects prove your abilities are real',
-      stat: '5.2',
-      statLabel: 'average recruiter messages per month'
+      stat: '🔒',
+      statLabel: 'Authentic portfolios that build recruiter trust'
     }
   ]
 
