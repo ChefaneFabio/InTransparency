@@ -22,6 +22,8 @@ import {
   Zap,
   Shield
 } from 'lucide-react'
+import Image from 'next/image'
+import { IMAGES } from '@/lib/images'
 
 export default function SupportPage() {
   const [ticketType, setTicketType] = useState('')
@@ -142,8 +144,17 @@ export default function SupportPage() {
 
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
-          <div className="container max-w-4xl mx-auto px-4 text-center">
+        <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-700 text-white relative overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 opacity-10">
+            <Image
+              src={IMAGES.universities.library}
+              alt="Background pattern"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="container max-w-4xl mx-auto px-4 text-center relative z-10">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Support Center
             </h1>

@@ -1,5 +1,5 @@
 export function CompanyLogos() {
-  const companies = [
+  const targetCompanies = [
     { name: 'Google', category: 'Tech Giants' },
     { name: 'Microsoft', category: 'Tech Giants' },
     { name: 'Meta', category: 'Tech Giants' },
@@ -18,41 +18,41 @@ export function CompanyLogos() {
     <section className="py-16 bg-white border-y border-gray-100">
       <div className="container">
         <div className="text-center mb-12">
-          <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-4">
-            Companies Hiring on InTransparency
-          </p>
+          <div className="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+            🚀 Building Our Network
+          </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Join Students Getting Hired by Top Companies
+            Where Our Students Want to Work
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            From tech giants to innovative startups, 400+ companies use InTransparency to find verified talent.
+            We're building partnerships with top companies. Join early access to help shape our recruiter network.
           </p>
         </div>
 
         {/* Company Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-          {companies.map((company, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center opacity-60">
+          {targetCompanies.map((company, index) => (
             <div
               key={index}
-              className="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex items-center justify-center p-4 rounded-lg"
             >
-              <span className="text-lg font-bold text-gray-400 hover:text-gray-600 transition-colors">
+              <span className="text-lg font-bold text-gray-400">
                 {company.name}
               </span>
             </div>
           ))}
         </div>
 
-        {/* Categories */}
+        {/* Value Proposition for Companies */}
         <div className="mt-12 flex flex-wrap justify-center gap-4">
           <div className="px-4 py-2 bg-blue-50 rounded-full text-sm text-blue-700 font-medium">
-            🏢 150+ Tech Companies
+            💼 Verified Portfolios
           </div>
           <div className="px-4 py-2 bg-purple-50 rounded-full text-sm text-purple-700 font-medium">
-            🚀 200+ Startups
+            🎓 University-Backed Skills
           </div>
           <div className="px-4 py-2 bg-green-50 rounded-full text-sm text-green-700 font-medium">
-            🤖 50+ AI Companies
+            🤝 Early Partner Program
           </div>
         </div>
       </div>

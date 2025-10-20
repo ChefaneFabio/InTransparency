@@ -19,6 +19,8 @@ import {
   Building2
 } from 'lucide-react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { IMAGES } from '@/lib/images'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -57,8 +59,17 @@ export default function ContactPage() {
 
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
-          <div className="container max-w-4xl mx-auto px-4 text-center">
+        <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-700 text-white relative overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 opacity-10">
+            <Image
+              src={IMAGES.companies.team}
+              alt="Background pattern"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="container max-w-4xl mx-auto px-4 text-center relative z-10">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

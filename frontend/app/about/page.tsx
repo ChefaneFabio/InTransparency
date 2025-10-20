@@ -17,8 +17,17 @@ export default function AboutPage() {
 
       <main className="pt-24 pb-16">
         {/* Hero Section - The Problem */}
-        <section className="bg-gradient-to-br from-red-50 to-orange-50 py-20">
-          <div className="container max-w-4xl">
+        <section className="bg-gradient-to-br from-red-50 to-orange-50 py-20 relative overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 opacity-5">
+            <Image
+              src={IMAGES.students.student2}
+              alt="Background pattern"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="container max-w-4xl relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -83,8 +92,17 @@ export default function AboutPage() {
         </section>
 
         {/* Our Mission */}
-        <section className="py-20 bg-white">
-          <div className="container max-w-4xl">
+        <section className="py-20 bg-white relative overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 opacity-5">
+            <Image
+              src={IMAGES.hero.students}
+              alt="Background pattern"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="container max-w-4xl relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -188,7 +206,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Our Impact */}
+        {/* Our Vision */}
         <section className="py-20 bg-white">
           <div className="container max-w-4xl">
             <motion.div
@@ -198,18 +216,18 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
             >
             <h2 className="text-4xl font-bold text-gray-900 text-center mb-4">
-              The Impact So Far
+              Join Us in Early Access
             </h2>
             <p className="text-xl text-gray-700 text-center mb-16">
-              Real results from students who chose proof over polish
+              We're building the future of student recruitment - be among the first to shape it
             </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               {[
-                { value: '1,247', label: 'Students Hired', sublabel: 'In the last 30 days' },
-                { value: '87%', label: 'Get Interviews', sublabel: 'Within 30 days of joining' },
-                { value: '2x Faster', label: 'Time to Hire', sublabel: 'vs traditional applications' }
+                { emoji: '🚀', label: 'Launch in 2025', sublabel: 'Be among the first users' },
+                { emoji: '🎓', label: 'Students First', sublabel: 'Free forever for students' },
+                { emoji: '🤝', label: 'Build Together', sublabel: 'Shape features with us' }
               ].map((stat, idx) => (
                 <motion.div
                   key={idx}
@@ -219,14 +237,14 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className="text-center"
                 >
-                  <div className="text-5xl font-bold text-blue-600 mb-2">{stat.value}</div>
+                  <div className="text-5xl mb-4">{stat.emoji}</div>
                   <div className="text-lg font-semibold text-gray-900 mb-1">{stat.label}</div>
                   <div className="text-sm text-gray-700">{stat.sublabel}</div>
                 </motion.div>
               ))}
             </div>
 
-            {/* Quote */}
+            {/* Early Access CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -234,22 +252,21 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
             >
             <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200 hover:shadow-lg transition-shadow">
-              <CardContent className="p-8">
-                <div className="flex items-start gap-4">
-                  <Image
-                    src={IMAGES.students.student1}
-                    alt="Alex Johnson"
-                    width={64}
-                    height={64}
-                    className="rounded-full object-cover flex-shrink-0"
-                  />
-                  <div>
-                    <p className="text-gray-800 italic mb-4 leading-relaxed">
-                      "I had a 3.2 GPA and no internships. My resume got auto-rejected everywhere. But when I uploaded my ML trading bot to InTransparency and got an 92 innovation score, recruiters started messaging me. Got hired by a fintech startup in 3 weeks."
-                    </p>
-                    <div className="font-semibold text-gray-900">Alex Johnson</div>
-                    <div className="text-sm text-gray-800">MIT Computer Science → Hired at TechCorp</div>
-                  </div>
+              <CardContent className="p-8 text-center">
+                <div className="text-5xl mb-4">🎯</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Help Us Build the Platform
+                </h3>
+                <p className="text-gray-800 mb-6 leading-relaxed max-w-2xl mx-auto">
+                  We're in early development and looking for students, universities, and companies to help shape the platform. Your feedback will directly influence what we build.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" asChild>
+                    <Link href="/auth/register/student">Join Early Access</Link>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link href="/contact">Partner With Us</Link>
+                  </Button>
                 </div>
               </CardContent>
             </Card>
