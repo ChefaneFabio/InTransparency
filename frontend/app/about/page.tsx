@@ -8,6 +8,7 @@ import { FileX2, Code2, TrendingUp, Users, Shield, Zap, Target, Heart } from 'lu
 import Link from 'next/link'
 import Image from 'next/image'
 import { IMAGES } from '@/lib/images'
+import { motion } from 'framer-motion'
 
 export default function AboutPage() {
   return (
@@ -18,7 +19,12 @@ export default function AboutPage() {
         {/* Hero Section - The Problem */}
         <section className="bg-gradient-to-br from-red-50 to-orange-50 py-20">
           <div className="container max-w-4xl">
-            <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
               <div className="inline-block bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 The Problem We're Solving
               </div>
@@ -30,10 +36,15 @@ export default function AboutPage() {
                 Recruiters waste time interviewing unqualified candidates. <br />
                 <strong>Students with real skills get overlooked</strong> because they don't have fancy internships.
               </p>
-            </div>
+            </motion.div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <Card className="bg-white">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+              <Card className="bg-white hover:shadow-lg transition-shadow h-full">
                 <CardContent className="p-8">
                   <FileX2 className="h-12 w-12 text-red-600 mb-4" />
                   <h3 className="text-xl font-bold text-gray-900 mb-3">The Resume Problem</h3>
@@ -46,8 +57,14 @@ export default function AboutPage() {
                   </ul>
                 </CardContent>
               </Card>
+              </motion.div>
 
-              <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-200">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+              <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-200 hover:shadow-lg transition-shadow h-full">
                 <CardContent className="p-8">
                   <Code2 className="h-12 w-12 text-green-600 mb-4" />
                   <h3 className="text-xl font-bold text-gray-900 mb-3">The InTransparency Way</h3>
@@ -60,6 +77,7 @@ export default function AboutPage() {
                   </ul>
                 </CardContent>
               </Card>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -67,14 +85,20 @@ export default function AboutPage() {
         {/* Our Mission */}
         <section className="py-20 bg-white">
           <div className="container max-w-4xl">
-            <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Our Mission
               </h2>
               <p className="text-xl text-gray-700 leading-relaxed">
                 We're building the world's first <strong>verified project portfolio platform</strong> where students prove their skills through what they've actually built, not what they claim they can do.
               </p>
-            </div>
+            </motion.div>
 
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-white text-center mb-16">
               <blockquote className="text-2xl font-medium italic mb-4">
@@ -136,7 +160,15 @@ export default function AboutPage() {
               ].map((value, idx) => {
                 const Icon = value.icon
                 return (
-                  <Card key={idx} className="text-center hover:shadow-lg transition-shadow">
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    whileHover={{ y: -5 }}
+                  >
+                  <Card className="text-center hover:shadow-lg transition-shadow h-full">
                     <CardContent className="p-8">
                       <div className="inline-block bg-blue-100 rounded-full p-4 mb-4">
                         <Icon className="h-8 w-8 text-blue-600" />
@@ -149,6 +181,7 @@ export default function AboutPage() {
                       </p>
                     </CardContent>
                   </Card>
+                  </motion.div>
                 )
               })}
             </div>
@@ -158,12 +191,19 @@ export default function AboutPage() {
         {/* Our Impact */}
         <section className="py-20 bg-white">
           <div className="container max-w-4xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
             <h2 className="text-4xl font-bold text-gray-900 text-center mb-4">
               The Impact So Far
             </h2>
             <p className="text-xl text-gray-700 text-center mb-16">
               Real results from students who chose proof over polish
             </p>
+            </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               {[
@@ -171,16 +211,29 @@ export default function AboutPage() {
                 { value: '87%', label: 'Get Interviews', sublabel: 'Within 30 days of joining' },
                 { value: '2x Faster', label: 'Time to Hire', sublabel: 'vs traditional applications' }
               ].map((stat, idx) => (
-                <div key={idx} className="text-center">
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="text-center"
+                >
                   <div className="text-5xl font-bold text-blue-600 mb-2">{stat.value}</div>
                   <div className="text-lg font-semibold text-gray-900 mb-1">{stat.label}</div>
                   <div className="text-sm text-gray-700">{stat.sublabel}</div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
             {/* Quote */}
-            <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+            <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200 hover:shadow-lg transition-shadow">
               <CardContent className="p-8">
                 <div className="flex items-start gap-4">
                   <Image
@@ -200,6 +253,7 @@ export default function AboutPage() {
                 </div>
               </CardContent>
             </Card>
+            </motion.div>
           </div>
         </section>
 

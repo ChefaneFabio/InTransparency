@@ -17,6 +17,7 @@ import {
   Tag,
   Filter
 } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -138,15 +139,30 @@ export default function BlogPage() {
         {/* Hero Section */}
         <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
           <div className="container max-w-4xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl md:text-5xl font-bold mb-6"
+            >
               InTransparency Blog
-            </h1>
-            <p className="text-xl text-white mb-8">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-xl text-white mb-8"
+            >
               Insights, tips, and stories about the future of education and career development
-            </p>
+            </motion.p>
 
             {/* Search Bar */}
-            <div className="max-w-xl mx-auto relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="max-w-xl mx-auto relative"
+            >
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600" />
               <input
                 type="text"
@@ -155,21 +171,33 @@ export default function BlogPage() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
               />
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Featured Post */}
         <section className="py-16">
           <div className="container max-w-6xl mx-auto px-4">
-            <div className="mb-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-8"
+            >
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-2xl font-bold text-gray-900">Featured Article</h2>
                 <Badge className="bg-yellow-400 text-gray-900">Featured</Badge>
               </div>
-            </div>
+            </motion.div>
 
-            <Card className="overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
               <CardContent className="p-0">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                   <div className="aspect-video lg:aspect-auto bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
@@ -228,6 +256,7 @@ export default function BlogPage() {
                 </div>
               </CardContent>
             </Card>
+            </motion.div>
           </div>
         </section>
 
@@ -256,8 +285,16 @@ export default function BlogPage() {
 
             {/* Blog Posts Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPosts.map((post) => (
-                <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+              {filteredPosts.map((post, index) => (
+                <motion.div
+                  key={post.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  whileHover={{ y: -5 }}
+                >
+                <Card className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer h-full">
                   <CardContent className="p-0">
                     <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
                       <BookOpen className="h-12 w-12 text-gray-600" />
@@ -310,6 +347,7 @@ export default function BlogPage() {
                     </div>
                   </CardContent>
                 </Card>
+                </motion.div>
               ))}
             </div>
 
@@ -326,6 +364,12 @@ export default function BlogPage() {
         {/* Newsletter Signup */}
         <section className="py-16 bg-gray-100">
           <div className="container max-w-4xl mx-auto px-4 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Stay Updated
             </h2>
@@ -342,6 +386,7 @@ export default function BlogPage() {
                 Subscribe
               </Button>
             </div>
+            </motion.div>
           </div>
         </section>
       </main>

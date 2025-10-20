@@ -14,14 +14,11 @@ export function Header() {
   const navigation = [
     { name: 'Features', href: '/features' },
     { name: 'How It Works', href: '/how-it-works' },
-    { name: 'Case Study', href: '/case-study' },
-    { name: 'Milestones', href: '/milestones' },
-    { name: 'Talent Map', href: '/geographic-talent-search' },
-    { name: 'Why InTransparency', href: '/why-intransparency' },
-    { name: 'CV Samples', href: '/cv-samples' },
     { name: 'Pricing', href: '/pricing' },
-    { name: 'Feedback', href: '/feedback' },
     { name: 'About', href: '/about' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/contact' },
+    { name: 'Support', href: '/support' },
   ]
 
   return (

@@ -3,39 +3,21 @@ import { Facebook, Twitter, Linkedin, Github, Instagram, Mail, MapPin, Phone } f
 
 const navigation = {
   product: [
-    { name: 'Features', href: '#features' },
-    { name: 'How it Works', href: '#how-it-works' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'API', href: '/api-docs' },
-    { name: 'Integrations', href: '/integrations' },
+    { name: 'Features', href: '/features' },
+    { name: 'How it Works', href: '/how-it-works' },
+    { name: 'Pricing', href: '/pricing' },
   ],
   company: [
     { name: 'About', href: '/about' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Careers', href: '/careers' },
-    { name: 'Press', href: '/press' },
-    { name: 'Partners', href: '/partners' },
-  ],
-  resources: [
-    { name: 'Documentation', href: '/docs' },
-    { name: 'Help Center', href: '/help' },
-    { name: 'Community', href: '/community' },
-    { name: 'Webinars', href: '/webinars' },
-    { name: 'Status', href: '/status' },
+    { name: 'Contact', href: '/contact' },
   ],
   legal: [
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
-    { name: 'Cookie Policy', href: '/cookies' },
-    { name: 'GDPR', href: '/gdpr' },
-    { name: 'Security', href: '/security' },
+    { name: 'Legal & Privacy', href: '/legal' },
   ],
   support: [
-    { name: 'Contact Us', href: '/contact' },
     { name: 'Support Center', href: '/support' },
-    { name: 'Bug Reports', href: '/bugs' },
-    { name: 'Feature Requests', href: '/feature-requests' },
-    { name: 'System Status', href: '/status' },
+    { name: 'Contact Us', href: '/contact' },
   ]
 }
 
@@ -72,7 +54,7 @@ export function Footer() {
     <footer className="bg-gradient-to-b from-slate-50 to-sky-50 text-slate-700 border-t border-slate-200">
       <div className="container py-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center mb-4">
@@ -133,10 +115,10 @@ export function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-4">
-              Resources
+              Support
             </h3>
             <ul className="space-y-3">
-              {navigation.resources.map((item) => (
+              {navigation.support.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
@@ -203,14 +185,11 @@ export function Footer() {
               
               {/* Additional Links */}
               <div className="flex items-center space-x-6 text-sm">
-                <Link href="/sitemap" className="text-gray-600 hover:text-blue-600">
-                  Sitemap
+                <Link href="/legal" className="text-gray-600 hover:text-blue-600">
+                  Legal
                 </Link>
-                <Link href="/accessibility" className="text-gray-600 hover:text-blue-600">
-                  Accessibility
-                </Link>
-                <Link href="/privacy-choices" className="text-gray-600 hover:text-blue-600">
-                  Privacy Choices
+                <Link href="/support" className="text-gray-600 hover:text-blue-600">
+                  Support
                 </Link>
               </div>
             </div>

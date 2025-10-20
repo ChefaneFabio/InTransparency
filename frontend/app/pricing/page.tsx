@@ -1,3 +1,5 @@
+'use client'
+
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -5,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Check, X, Star, Users, Building, GraduationCap, ArrowRight, Zap, Crown, Gift, Sparkles } from 'lucide-react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 const studentPlans = [
   {
@@ -260,7 +263,12 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Hero Section */}
-          <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
             <h1 className="text-5xl font-bold text-gray-900 mb-6">
               Simple, Transparent Pricing
             </h1>
@@ -268,11 +276,16 @@ export default function PricingPage() {
               Choose the plan that fits your needs. Always free for students to get started,
               with premium options for faster results. Affordable plans for recruiters of all sizes.
             </p>
-          </div>
+          </motion.div>
 
           {/* Student Plans Section */}
           <div className="mb-20">
-            <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-center mb-12"
+            >
               <Badge className="mb-4 bg-blue-100 text-blue-800 text-sm px-4 py-2">
                 <GraduationCap className="h-4 w-4 mr-2 inline" />
                 For Students
@@ -283,15 +296,21 @@ export default function PricingPage() {
               <p className="text-lg text-gray-700">
                 Build your portfolio for free. Upgrade to Premium to get hired 2x faster.
               </p>
-            </div>
+            </motion.div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {studentPlans.map((plan) => {
+              {studentPlans.map((plan, index) => {
                 const Icon = plan.icon
                 return (
-                  <Card
+                  <motion.div
                     key={plan.name}
-                    className={`relative ${plan.highlight ? 'border-2 border-purple-500 shadow-2xl transform scale-105' : 'border-gray-200'}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                    whileHover={{ y: -5 }}
+                  >
+                  <Card
+                    className={`relative ${plan.highlight ? 'border-2 border-purple-500 shadow-2xl transform scale-105' : 'border-gray-200'} h-full`}
                   >
                     {plan.badge && (
                       <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -358,6 +377,7 @@ export default function PricingPage() {
                       )}
                     </CardContent>
                   </Card>
+                  </motion.div>
                 )
               })}
             </div>
@@ -372,7 +392,13 @@ export default function PricingPage() {
 
           {/* Recruiter Plans Section */}
           <div className="mb-20">
-            <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
               <Badge className="mb-4 bg-green-100 text-green-800 text-sm px-4 py-2">
                 <Users className="h-4 w-4 mr-2 inline" />
                 For Recruiters & Companies
@@ -383,15 +409,22 @@ export default function PricingPage() {
               <p className="text-lg text-gray-700">
                 From startups to enterprises, we have a plan for every hiring need.
               </p>
-            </div>
+            </motion.div>
 
             <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
-              {recruiterPlans.map((plan) => {
+              {recruiterPlans.map((plan, index) => {
                 const Icon = plan.icon
                 return (
-                  <Card
+                  <motion.div
                     key={plan.name}
-                    className={`relative ${plan.highlight ? 'border-2 border-indigo-500 shadow-xl' : 'border-gray-200'}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.08 }}
+                    whileHover={{ y: -5, scale: 1.02 }}
+                  >
+                  <Card
+                    className={`relative ${plan.highlight ? 'border-2 border-indigo-500 shadow-xl' : 'border-gray-200'} h-full`}
                   >
                     {plan.badge && (
                       <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
@@ -455,13 +488,20 @@ export default function PricingPage() {
                       )}
                     </CardContent>
                   </Card>
+                  </motion.div>
                 )
               })}
             </div>
           </div>
 
           {/* Comparison vs LinkedIn */}
-          <div className="mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-20"
+          >
             <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
               <CardHeader className="text-center">
                 <CardTitle className="text-2xl">Why Choose InTransparency?</CardTitle>
@@ -527,19 +567,32 @@ export default function PricingPage() {
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
           {/* FAQ Section */}
           <div className="mb-20">
-            <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Frequently Asked Questions
               </h2>
-            </div>
+            </motion.div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {faqs.map((faq, idx) => (
-                <Card key={idx}>
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.05 }}
+                >
+                <Card className="hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <CardTitle className="text-lg">{faq.question}</CardTitle>
                   </CardHeader>
@@ -547,12 +600,18 @@ export default function PricingPage() {
                     <p className="text-gray-800">{faq.answer}</p>
                   </CardContent>
                 </Card>
+                </motion.div>
               ))}
             </div>
           </div>
 
           {/* Final CTA */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0 shadow-2xl">
               <CardContent className="p-12 text-center">
                 <h2 className="text-4xl font-bold mb-4">
@@ -591,7 +650,7 @@ export default function PricingPage() {
                 </p>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
         </div>
       </main>

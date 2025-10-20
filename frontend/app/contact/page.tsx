@@ -18,6 +18,7 @@ import {
   User,
   Building2
 } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -58,12 +59,22 @@ export default function ContactPage() {
         {/* Hero Section */}
         <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
           <div className="container max-w-4xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl md:text-5xl font-bold mb-6"
+            >
               Get in Touch
-            </h1>
-            <p className="text-xl text-white max-w-2xl mx-auto">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-xl text-white max-w-2xl mx-auto"
+            >
               Have questions about InTransparency? We're here to help you transform your academic journey into career success.
-            </p>
+            </motion.p>
           </div>
         </section>
 

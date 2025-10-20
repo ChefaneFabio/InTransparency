@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { FileText, Shield } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 export default function LegalPage() {
   const [activeTab, setActiveTab] = useState('privacy')
@@ -19,6 +20,11 @@ export default function LegalPage() {
         {/* Hero Section */}
         <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
           <div className="container max-w-4xl mx-auto px-4 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
             <FileText className="h-16 w-16 mx-auto mb-4" />
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Terms & Privacy
@@ -26,12 +32,18 @@ export default function LegalPage() {
             <p className="text-xl text-white">
               Your privacy and trust are our top priorities
             </p>
+            </motion.div>
           </div>
         </section>
 
         {/* Legal Content */}
         <section className="py-16">
           <div className="container max-w-4xl mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-8">
                 <TabsTrigger value="privacy" className="text-lg">
@@ -240,6 +252,7 @@ export default function LegalPage() {
                 </Card>
               </TabsContent>
             </Tabs>
+            </motion.div>
           </div>
         </section>
       </main>
