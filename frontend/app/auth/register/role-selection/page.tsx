@@ -42,12 +42,12 @@ const userTypes: UserType[] = [
     id: 'student',
     title: 'Student / New Graduate',
     subtitle: 'Launch your career with verified credentials',
-    description: 'Connect your university profile, showcase your projects, and get discovered by top companies with complete transparency.',
+    description: 'Connect your institution profile, showcase your projects, and get discovered by top companies with complete transparency.',
     icon: GraduationCap,
     color: 'bg-gradient-to-br from-teal-400 via-teal-500 to-blue-500',
     features: [
       'Free forever - no hidden costs',
-      'University transcript integration',
+      'Institution transcript integration',
       'AI-powered project portfolio',
       'Direct messages from recruiters',
       'CV optimization and templates',
@@ -59,9 +59,28 @@ const userTypes: UserType[] = [
     registrationPath: '/auth/register/student'
   },
   {
+    id: 'institute',
+    title: 'Institute / Career Services',
+    subtitle: 'Enhance your students\' career outcomes',
+    description: 'Integrate with our platform to boost student placement rates and build stronger industry partnerships. Perfect for universities, ITS, and all higher education institutions.',
+    icon: School,
+    color: 'bg-gradient-to-br from-emerald-400 via-teal-500 to-blue-500',
+    features: [
+      'Free trial for institutions',
+      'Student placement tracking',
+      'Industry partnership tools',
+      'Real-time employment analytics',
+      'Career outcome measurement',
+      'Custom institution branding',
+      'API integration with SIS'
+    ],
+    pricing: 'Custom pricing',
+    registrationPath: '/auth/register/university'
+  },
+  {
     id: 'recruiter',
     title: 'Company / Recruiter',
-    subtitle: 'Find verified talent from any university',
+    subtitle: 'Find verified talent from any institution',
     description: 'Access verified graduates with real project portfolios and academic credentials through our transparent platform.',
     icon: Building2,
     color: 'bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600',
@@ -71,30 +90,11 @@ const userTypes: UserType[] = [
       'Advanced AI matching algorithms',
       'Direct messaging and InMail',
       'Project portfolio analysis',
-      'University GPA verification',
+      'Institution GPA verification',
       'Advanced analytics & reporting'
     ],
     pricing: 'From €97/month',
     registrationPath: '/auth/register/recruiter'
-  },
-  {
-    id: 'university',
-    title: 'University / Career Services',
-    subtitle: 'Enhance your students\' career outcomes',
-    description: 'Integrate with our platform to boost student placement rates and build stronger industry partnerships through transparent career services.',
-    icon: School,
-    color: 'bg-gradient-to-br from-emerald-400 via-teal-500 to-blue-500',
-    features: [
-      'Free trial for universities',
-      'Student placement tracking',
-      'Industry partnership tools',
-      'Real-time employment analytics',
-      'Career outcome measurement',
-      'Custom university branding',
-      'API integration with SIS'
-    ],
-    pricing: 'Custom pricing',
-    registrationPath: '/auth/register/university'
   }
 ]
 
@@ -147,7 +147,7 @@ export default function RoleSelectionPage() {
           <div className="mb-8">
             <Badge className="bg-blue-100 text-blue-800 border-blue-200 mb-6">
               <Shield className="h-3 w-3 mr-1" />
-              Trusted by Universities Worldwide
+              Trusted by Institutions Worldwide
             </Badge>
           </div>
 
@@ -158,7 +158,7 @@ export default function RoleSelectionPage() {
           </h1>
 
           <p className="text-2xl text-gray-700 max-w-4xl mx-auto mb-10 leading-relaxed">
-            The bridge between universities and industry.
+            The bridge between educational institutions and industry.
             <span className="text-blue-600 font-semibold"> Complete transparency</span> in connecting talent with opportunity.
           </p>
 
@@ -169,7 +169,7 @@ export default function RoleSelectionPage() {
             </div>
             <div className="flex items-center bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
               <Check className="h-5 w-5 mr-3 text-blue-500" />
-              <span className="font-medium">Direct university integration</span>
+              <span className="font-medium">Direct institution integration</span>
             </div>
             <div className="flex items-center bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
               <Check className="h-5 w-5 mr-3 text-blue-500" />
@@ -275,7 +275,7 @@ export default function RoleSelectionPage() {
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Complete Transparency</h3>
             <p className="text-gray-600 leading-relaxed">
-              Direct university integration ensures all academic records are authentic and verified with complete transparency.
+              Direct institution integration ensures all academic records are authentic and verified with complete transparency.
             </p>
           </div>
           <div className="text-center group">
@@ -308,7 +308,7 @@ export default function RoleSelectionPage() {
               <h2 className="text-3xl font-bold mb-4">Help Us Build the Perfect Platform</h2>
               <p className="text-xl text-white leading-relaxed">
                 Shape the future of transparent education-to-career connections.
-                Your insights drive our development for students, companies, and universities.
+                Your insights drive our development for students, companies, and institutions.
               </p>
             </div>
 
@@ -331,7 +331,7 @@ export default function RoleSelectionPage() {
                 <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <School className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Universities & Career Services</h3>
+                <h3 className="text-lg font-semibold mb-2">Institutes & Career Services</h3>
                 <p className="text-white">Help us understand how to best support student placement and industry partnerships</p>
               </div>
             </div>

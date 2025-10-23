@@ -46,18 +46,18 @@ const userTypes = [
     description: 'Create profile, showcase skills, find opportunities'
   },
   {
+    id: 'institute',
+    label: 'Institute',
+    icon: Building2,
+    color: 'bg-purple-100 text-purple-700',
+    description: 'Connect students with opportunities, track alumni'
+  },
+  {
     id: 'recruiter',
     label: 'Recruiter',
     icon: Users,
     color: 'bg-green-100 text-green-700',
     description: 'Discover talent, post jobs, track applications'
-  },
-  {
-    id: 'university',
-    label: 'University',
-    icon: Building2,
-    color: 'bg-purple-100 text-purple-700',
-    description: 'Connect students with opportunities, track alumni'
   }
 ]
 
@@ -163,7 +163,7 @@ const recruiterSteps = [
   }
 ]
 
-const universitySteps = [
+const instituteSteps = [
   {
     id: 1,
     title: 'Connect Students',
@@ -221,8 +221,8 @@ export default function HowItWorksPage() {
   const getCurrentSteps = () => {
     switch (selectedUserType) {
       case 'student': return studentSteps
+      case 'institute': return instituteSteps
       case 'recruiter': return recruiterSteps
-      case 'university': return universitySteps
       default: return studentSteps
     }
   }
@@ -232,22 +232,22 @@ export default function HowItWorksPage() {
       case 'student':
         return {
           title: 'How Students Use InTransparency',
-          subtitle: 'Import your university data, build your profile, and get discovered by top employers'
+          subtitle: 'Import your academic data, build your profile, and get discovered by top employers'
+        }
+      case 'institute':
+        return {
+          title: 'How Institutes Use InTransparency',
+          subtitle: 'Connect students with opportunities and track career outcomes across universities, ITS, and higher education institutions'
         }
       case 'recruiter':
         return {
           title: 'How Recruiters Use InTransparency',
           subtitle: 'Proactively search for candidates, leverage AI matching to find perfect fits, and hire based on industry knowledge and profile compatibility'
         }
-      case 'university':
-        return {
-          title: 'How Universities Use InTransparency',
-          subtitle: 'Connect students with opportunities and track career outcomes'
-        }
       default:
         return {
           title: 'How Students Use InTransparency',
-          subtitle: 'Import your university data, build your profile, and get discovered by top employers'
+          subtitle: 'Import your academic data, build your profile, and get discovered by top employers'
         }
     }
   }
@@ -327,7 +327,7 @@ export default function HowItWorksPage() {
                     Automatic Profile Creation
                   </CardTitle>
                   <p className="text-blue-700">
-                    Import all your academic data from your university profile to create a complete CV instantly
+                    Import all your academic data from your institution profile to create a complete CV instantly
                   </p>
                 </CardHeader>
                 <CardContent className="text-center">
@@ -467,8 +467,8 @@ export default function HowItWorksPage() {
             </h3>
             <p className="text-lg text-blue-50 mb-8 max-w-2xl mx-auto">
               {selectedUserType === 'student' && 'Build your profile, showcase your work, and get discovered by top companies.'}
+              {selectedUserType === 'institute' && 'Connect your students with career opportunities and track their success across all higher education institutions.'}
               {selectedUserType === 'recruiter' && 'Find verified talent based on real skills and projects, not resumes.'}
-              {selectedUserType === 'university' && 'Connect your students with career opportunities and track their success.'}
             </p>
             <div className="flex justify-center space-x-4">
               <Button

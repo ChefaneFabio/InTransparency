@@ -10,7 +10,7 @@ import { Check, X, Star, Users, Building2, GraduationCap, ArrowRight, Zap, Crown
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-type PricingSegment = 'students' | 'companies' | 'universities'
+type PricingSegment = 'students' | 'companies' | 'institutes'
 
 const studentPlans = [
   {
@@ -66,7 +66,7 @@ const companyPlans = [
       'Free registration (no credit card)',
       'Unlimited database exploration',
       'See all profiles (initials only)',
-      'Advanced filters by university, courses, grades',
+      'Advanced filters by institution, courses, grades',
       'AI-verified skills from projects',
       'Location and availability filters',
       'Save searches and candidates'
@@ -118,7 +118,7 @@ const companyPlans = [
   }
 ]
 
-const universityPlans = [
+const institutePlans = [
   {
     name: 'First Year Free',
     price: 'Free',
@@ -133,7 +133,7 @@ const universityPlans = [
       'Full platform access',
       'Career outcome analytics',
       'Employer network access',
-      'Custom university branding',
+      'Custom institution branding',
       'Verification system',
       'Dedicated support'
     ],
@@ -145,7 +145,7 @@ const universityPlans = [
     name: 'Year 2+',
     price: 'Custom',
     period: 'per year',
-    description: 'Flexible pricing based on university size',
+    description: 'Flexible pricing based on institution size',
     icon: School,
     popular: false,
     features: [
@@ -169,8 +169,8 @@ export default function PricingPage() {
   const getPlans = () => {
     switch (selectedSegment) {
       case 'students': return studentPlans
+      case 'institutes': return institutePlans
       case 'companies': return companyPlans
-      case 'universities': return universityPlans
     }
   }
 
@@ -181,15 +181,15 @@ export default function PricingPage() {
         title: 'Always Free for Students',
         subtitle: 'Build your portfolio, get discovered by top companies. No credit card, no limits, forever.'
       }
+      case 'institutes': return {
+        badge: 'For Institutes',
+        title: 'First Year Completely Free',
+        subtitle: 'Launch with zero cost. Help your students get hired while tracking career outcomes across all higher education institutions.'
+      }
       case 'companies': return {
         badge: 'For Companies',
         title: 'Browse Free, Pay Only for Contacts',
         subtitle: 'Explore the entire database for free. Only pay €10 when you find the perfect candidate.'
-      }
-      case 'universities': return {
-        badge: 'For Universities',
-        title: 'First Year Completely Free',
-        subtitle: 'Launch with zero cost. Help your students get hired while tracking career outcomes.'
       }
     }
   }
@@ -254,8 +254,8 @@ export default function PricingPage() {
 
             {/* Segment Selector */}
             <div className="inline-flex bg-white rounded-full p-1.5 shadow-lg border border-gray-200">
-              {(['students', 'companies', 'universities'] as PricingSegment[]).map((segment) => {
-                const Icon = segment === 'students' ? GraduationCap : segment === 'companies' ? Building2 : School
+              {(['students', 'institutes', 'companies'] as PricingSegment[]).map((segment) => {
+                const Icon = segment === 'students' ? GraduationCap : segment === 'institutes' ? School : Building2
                 return (
                   <button
                     key={segment}
@@ -268,8 +268,8 @@ export default function PricingPage() {
                   >
                     <Icon className="h-4 w-4" />
                     {segment === 'students' && 'Students'}
+                    {segment === 'institutes' && 'Institutes'}
                     {segment === 'companies' && 'Companies'}
-                    {segment === 'universities' && 'Universities'}
                   </button>
                 )
               })}
@@ -401,7 +401,7 @@ export default function PricingPage() {
               {[
                 {
                   question: 'Is browsing really unlimited and free?',
-                  answer: 'Yes! Companies can explore the entire database for free. See all profiles (with initials only), filter by university, courses, grades, and skills. Only pay €10 when you unlock a contact.'
+                  answer: 'Yes! Companies can explore the entire database for free. See all profiles (with initials only), filter by institution, courses, grades, and skills. Only pay €10 when you unlock a contact.'
                 },
                 {
                   question: 'Do credits expire?',
@@ -413,7 +413,7 @@ export default function PricingPage() {
                 },
                 {
                   question: 'Are students really free forever?',
-                  answer: 'Absolutely! Students never pay. Create your portfolio, get verified by your university, and get discovered by top companies - all 100% free, forever.'
+                  answer: 'Absolutely! Students never pay. Create your portfolio, get verified by your institution, and get discovered by top companies - all 100% free, forever.'
                 }
               ].map((faq, idx) => (
                 <motion.div
