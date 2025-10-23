@@ -55,7 +55,15 @@ export default function AboutPage() {
               >
               <Card className="bg-white hover:shadow-lg transition-shadow h-full">
                 <CardContent className="p-8">
-                  <FileX2 className="h-12 w-12 text-red-600 mb-4" />
+                  <div className="relative w-16 h-16 mb-4 rounded-lg overflow-hidden shadow-md">
+                    <Image
+                      src={IMAGES.students.student3}
+                      alt="Resume Problem"
+                      width={64}
+                      height={64}
+                      className="object-cover"
+                    />
+                  </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">The Resume Problem</h3>
                   <ul className="space-y-2 text-gray-700">
                     <li>❌ Unverified skills (anyone can lie)</li>
@@ -75,7 +83,15 @@ export default function AboutPage() {
               >
               <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-200 hover:shadow-lg transition-shadow h-full">
                 <CardContent className="p-8">
-                  <Code2 className="h-12 w-12 text-green-600 mb-4" />
+                  <div className="relative w-16 h-16 mb-4 rounded-lg overflow-hidden shadow-md">
+                    <Image
+                      src={IMAGES.features.aiAnalysis}
+                      alt="InTransparency Way"
+                      width={64}
+                      height={64}
+                      className="object-cover"
+                    />
+                  </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">The InTransparency Way</h3>
                   <ul className="space-y-2 text-gray-700">
                     <li>✅ Institution-verified projects (all formats)</li>
@@ -156,27 +172,26 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 {
-                  icon: Shield,
+                  image: IMAGES.students.student5,
                   title: 'Verification Over Claims',
                   description: 'Institution-backed projects in all formats, complete skill analysis, and endorsements prove skills are real.'
                 },
                 {
-                  icon: Target,
+                  image: IMAGES.companies.office2,
                   title: 'Proof of Work',
                   description: 'Show what you\'ve built, not what you say you can build. Code speaks louder than bullet points.'
                 },
                 {
-                  icon: Users,
+                  image: IMAGES.features.collaboration,
                   title: 'Talent Over Pedigree',
                   description: 'A brilliant project from a state school beats a mediocre resume from an Ivy League.'
                 },
                 {
-                  icon: Heart,
+                  image: IMAGES.success.handshake,
                   title: 'Transparency Always',
                   description: 'No hidden algorithms. Students see who viewed their profile. Companies see verified data.'
                 }
               ].map((value, idx) => {
-                const Icon = value.icon
                 return (
                   <motion.div
                     key={idx}
@@ -188,8 +203,14 @@ export default function AboutPage() {
                   >
                   <Card className="text-center hover:shadow-lg transition-shadow h-full">
                     <CardContent className="p-8">
-                      <div className="inline-block bg-blue-100 rounded-full p-4 mb-4">
-                        <Icon className="h-8 w-8 text-blue-600" />
+                      <div className="relative w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
+                        <Image
+                          src={value.image}
+                          alt={value.title}
+                          width={64}
+                          height={64}
+                          className="object-cover"
+                        />
                       </div>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">
                         {value.title}

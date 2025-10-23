@@ -1,40 +1,41 @@
-import { Brain, Users, Trophy, BarChart3, MessageSquare, Shield } from 'lucide-react'
+import Image from 'next/image'
+import { IMAGES } from '@/lib/images'
 
 const features = [
   {
     name: 'AI-Powered Analysis',
     description: 'Advanced AI analyzes your projects to identify strengths, complexity levels, and improvement opportunities.',
-    icon: Brain,
+    image: IMAGES.features.aiAnalysis,
     benefits: ['Smart project scoring', 'Skill assessment', 'Innovation metrics', 'Quality feedback']
   },
   {
     name: 'Intelligent Matching',
     description: 'Connect with the right opportunities and people based on your skills, interests, and career goals.',
-    icon: Users,
+    image: IMAGES.features.matching,
     benefits: ['Relevant job matches', 'Collaboration opportunities', 'Mentor connections', 'Peer networking']
   },
   {
     name: 'Professional Stories',
     description: 'Transform your projects into compelling narratives that showcase your abilities to recruiters.',
-    icon: Trophy,
+    image: IMAGES.success.celebration,
     benefits: ['Automated storytelling', 'Multiple formats', 'Industry-specific', 'Impact-focused']
   },
   {
     name: 'Advanced Analytics',
     description: 'Track your progress, engagement, and career growth with comprehensive analytics and insights.',
-    icon: BarChart3,
+    image: IMAGES.features.dataAnalytics,
     benefits: ['Performance metrics', 'Engagement tracking', 'Growth insights', 'Trend analysis']
   },
   {
     name: 'Seamless Communication',
     description: 'Built-in messaging, video calls, and collaboration tools to connect with your network.',
-    icon: MessageSquare,
+    image: IMAGES.features.collaboration,
     benefits: ['Direct messaging', 'Video interviews', 'File sharing', 'Real-time notifications']
   },
   {
     name: 'Enterprise Security',
     description: 'Bank-level security with data encryption, privacy controls, and GDPR compliance.',
-    icon: Shield,
+    image: IMAGES.students.student6,
     benefits: ['Data encryption', 'Privacy controls', 'Secure authentication', 'Compliance ready']
   }
 ]
@@ -59,10 +60,16 @@ export function Features() {
               key={feature.name}
               className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 hover:shadow-md transition-shadow duration-300"
             >
-              <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-blue-100 mb-6">
-                <feature.icon className="h-6 w-6 text-blue-600" />
+              <div className="relative w-16 h-16 rounded-lg overflow-hidden shadow-md mb-6">
+                <Image
+                  src={feature.image}
+                  alt={feature.name}
+                  width={64}
+                  height={64}
+                  className="object-cover"
+                />
               </div>
-              
+
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
                 {feature.name}
               </h3>

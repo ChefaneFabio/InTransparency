@@ -372,8 +372,18 @@ export default function HowItWorksPage() {
 
                   <CardHeader>
                     <div className="flex items-center mb-4">
-                      <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-full p-3 mr-4 shadow-md">
-                        <Icon className="h-6 w-6 text-white" />
+                      <div className="relative w-16 h-16 mr-4 rounded-lg overflow-hidden shadow-md">
+                        <Image
+                          src={
+                            step.id === 1 ? (selectedUserType === 'student' ? IMAGES.companies.office1 : selectedUserType === 'recruiter' ? IMAGES.features.search : IMAGES.universities.campus1) :
+                            step.id === 2 ? (selectedUserType === 'student' ? IMAGES.features.aiAnalysis : selectedUserType === 'recruiter' ? IMAGES.features.matching : IMAGES.features.dataAnalytics) :
+                            selectedUserType === 'student' ? IMAGES.success.handshake : selectedUserType === 'recruiter' ? IMAGES.features.collaboration : IMAGES.companies.team
+                          }
+                          alt={step.title}
+                          width={64}
+                          height={64}
+                          className="object-cover"
+                        />
                       </div>
                       {step.duration && (
                         <Badge variant="secondary" className="text-xs">
@@ -426,31 +436,36 @@ export default function HowItWorksPage() {
             <div className="grid md:grid-cols-4 gap-6">
               {[
                 {
-                  icon: Shield,
+                  image: IMAGES.students.student4,
                   title: 'Transparent Process',
                   description: 'Complete visibility into hiring and application processes'
                 },
                 {
-                  icon: Globe,
+                  image: IMAGES.universities.campus1,
                   title: 'Global Reach',
                   description: 'Connect with opportunities and talent worldwide'
                 },
                 {
-                  icon: Zap,
+                  image: IMAGES.features.aiAnalysis,
                   title: 'AI-Powered Matching & RAG',
                   description: 'AI analyzes profiles to find common ground between companies and candidates based on industry knowledge and compatibility'
                 },
                 {
-                  icon: Clock,
+                  image: IMAGES.features.collaboration,
                   title: 'Real-time Updates',
                   description: 'Get instant notifications about applications and opportunities'
                 }
               ].map((benefit, index) => {
-                const Icon = benefit.icon
                 return (
                   <div key={index} className="text-center">
-                    <div className="bg-blue-50 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                      <Icon className="h-8 w-8 text-blue-600" />
+                    <div className="relative w-16 h-16 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
+                      <Image
+                        src={benefit.image}
+                        alt={benefit.title}
+                        width={64}
+                        height={64}
+                        className="object-cover"
+                      />
                     </div>
                     <h4 className="font-semibold text-gray-900 mb-2">{benefit.title}</h4>
                     <p className="text-sm text-gray-700">{benefit.description}</p>
