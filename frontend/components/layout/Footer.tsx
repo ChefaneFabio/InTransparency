@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Facebook, Twitter, Linkedin, Github, Instagram, Mail, MapPin, Phone, Shield } from 'lucide-react'
 
 const navigation = {
@@ -59,8 +60,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center mb-4">
-              <span className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">InTransparency</span>
+            <Link href="/" className="flex items-center mb-6">
+              <Image
+                src="/logo.png"
+                alt="InTransparency Logo"
+                width={220}
+                height={70}
+                className="h-16 w-auto"
+              />
             </Link>
             <p className="text-slate-600 mb-6 max-w-sm">
               Transform your academic projects into career opportunities with 
