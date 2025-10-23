@@ -34,7 +34,8 @@ import {
   ChevronRight,
   Activity,
   Zap,
-  Download
+  Download,
+  Sparkles
 } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { exportCandidatesToCsv, exportJobPostingsToCsv } from '@/lib/export-csv'
@@ -510,6 +511,12 @@ export default function RecruiterDashboard() {
               <CardTitle>Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
+              <Button className="w-full justify-start bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" asChild>
+                <Link href="/dashboard/recruiter/ai-search">
+                  <Sparkles className="mr-2 h-4 w-4" />
+                  AI Candidate Search (NEW!)
+                </Link>
+              </Button>
               <Button className="w-full justify-start" asChild>
                 <Link href="/dashboard/recruiter/post-job">
                   <Plus className="mr-2 h-4 w-4" />
