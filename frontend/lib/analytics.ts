@@ -13,6 +13,10 @@ export type AnalyticsEventType =
   | 'JOB_APPLICATION'
   | 'SEARCH_PERFORMED'
   | 'BUTTON_CLICK'
+  | 'FAKE_DOOR_CLICK'
+  | 'WAITLIST_SIGNUP'
+  | 'INTERVIEW_SIGNUP'
+  | 'PRICING_SURVEY'
   | 'CUSTOM'
 
 interface AnalyticsEvent {
@@ -159,4 +163,164 @@ export function trackMessageSent(recipientId: string, messageType: 'direct' | 'a
       messageType
     }
   })
+}
+
+// ==========================================
+// VALIDATION EXPERIMENT TRACKING
+// ==========================================
+
+/**
+ * Track fake door click (user clicked on feature that doesn't exist yet)
+ */
+export function trackFakeDoorClick(page: string, price: number, variant?: 'A' | 'B' | 'C' | 'D') {
+  // Store in localStorage for validation analysis
+  const clicks = JSON.parse(localStorage.getItem('fake_door_clicks') || '[]')
+  clicks.push({
+    timestamp: new Date().toISOString(),
+    page,
+    price,
+    variant
+  })
+  localStorage.setItem('fake_door_clicks', JSON.stringify(clicks))
+
+  // Also track via standard analytics
+  trackEvent({
+    eventType: 'FAKE_DOOR_CLICK',
+    eventName: 'fake_door_click',
+    properties: {
+      page,
+      price,
+      variant
+    }
+  })
+}
+
+/**
+ * Track waitlist signup
+ */
+export function trackWaitlistSignup(email: string, source: string, price: number, variant?: 'A' | 'B' | 'C' | 'D') {
+  const signups = JSON.parse(localStorage.getItem('waitlist_signups') || '[]')
+  signups.push({
+    timestamp: new Date().toISOString(),
+    email,
+    source,
+    price,
+    variant
+  })
+  localStorage.setItem('waitlist_signups', JSON.stringify(signups))
+
+  trackEvent({
+    eventType: 'WAITLIST_SIGNUP',
+    eventName: 'waitlist_signup',
+    properties: {
+      source,
+      price,
+      variant
+    }
+  })
+}
+
+/**
+ * Track interview participant signup
+ */
+export function trackInterviewSignup(email: string, participantType: 'student' | 'recruiter') {
+  const signups = JSON.parse(localStorage.getItem('interview_signups') || '[]')
+  signups.push({
+    timestamp: new Date().toISOString(),
+    email,
+    participantType
+  })
+  localStorage.setItem('interview_signups', JSON.stringify(signups))
+
+  trackEvent({
+    eventType: 'INTERVIEW_SIGNUP',
+    eventName: 'interview_signup',
+    properties: {
+      participantType
+    }
+  })
+}
+
+/**
+ * Track pricing survey completion
+ */
+export function trackPricingSurveyComplete(data: {
+  email: string
+  tooExpensive: number
+  expensive: number
+  bargain: number
+  tooCheap: number
+  willingToPay: string
+  paymentPreference: string
+}) {
+  const surveys = JSON.parse(localStorage.getItem('pricing_surveys') || '[]')
+  surveys.push({
+    timestamp: new Date().toISOString(),
+    ...data
+  })
+  localStorage.setItem('pricing_surveys', JSON.stringify(surveys))
+
+  trackEvent({
+    eventType: 'PRICING_SURVEY',
+    eventName: 'pricing_survey_complete',
+    properties: data
+  })
+}
+
+/**
+ * Get validation analytics summary
+ */
+export function getValidationAnalytics() {
+  const clicks = JSON.parse(localStorage.getItem('fake_door_clicks') || '[]')
+  const signups = JSON.parse(localStorage.getItem('waitlist_signups') || '[]')
+  const interviews = JSON.parse(localStorage.getItem('interview_signups') || '[]')
+  const surveys = JSON.parse(localStorage.getItem('pricing_surveys') || '[]')
+
+  const conversionRate = clicks.length > 0 ? (signups.length / clicks.length) * 100 : 0
+
+  return {
+    fakeDoorClicks: clicks.length,
+    waitlistSignups: signups.length,
+    interviewSignups: interviews.length,
+    pricingSurveys: surveys.length,
+    conversionRate: conversionRate.toFixed(2) + '%',
+    clicks,
+    signups,
+    interviews,
+    surveys
+  }
+}
+
+/**
+ * Assign A/B test variant
+ */
+export function getABTestVariant(): 'A' | 'B' | 'C' | 'D' {
+  if (typeof window === 'undefined') return 'A'
+
+  let variant = localStorage.getItem('ab_test_variant') as 'A' | 'B' | 'C' | 'D' | null
+
+  if (!variant) {
+    const random = Math.random()
+    if (random < 0.25) variant = 'A'
+    else if (random < 0.5) variant = 'B'
+    else if (random < 0.75) variant = 'C'
+    else variant = 'D'
+
+    localStorage.setItem('ab_test_variant', variant)
+  }
+
+  return variant
+}
+
+/**
+ * Get pricing config for A/B test variant
+ */
+export function getVariantPricing(variant: 'A' | 'B' | 'C' | 'D') {
+  const configs = {
+    A: { price: 99, model: 'one-time', label: '€99 One-Time' },
+    B: { price: 49, model: 'one-time', label: '€49 One-Time' },
+    C: { price: 9, model: 'subscription', label: '€9/month' },
+    D: { price: 149, model: 'one-time', label: '€149 One-Time' }
+  }
+  return configs[variant]
 }

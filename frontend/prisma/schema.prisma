@@ -764,3 +764,300 @@ model ProjectCompetency {
   @@index([projectId])
   @@index([competencyId])
 }
+
+// ============================================
+// SOFT SKILLS CERTIFICATION MODELS
+// ============================================
+
+// Main Soft Skills Assessment Model
+model SoftSkillAssessment {
+  id                String   @id @default(cuid())
+  userId            String
+
+  // Assessment Type
+  assessmentType    AssessmentType
+  status            AssessmentStatus @default(PENDING)
+
+  // Progress
+  currentQuestion   Int      @default(0)
+  totalQuestions    Int
+  timeStarted       DateTime @default(now())
+  timeCompleted     DateTime?
+  durationSeconds   Int?     // Total time taken
+
+  // Responses
+  responses         Json     // Map of questionId -> response value
+
+  // Scores (after completion)
+  scores            Json?    // Raw scores
+  percentiles       Json?    // Percentile rankings vs. peer group
+  interpretation    String?  @db.Text // AI-generated interpretation
+
+  // Certification
+  isCertified       Boolean  @default(false)
+  certificateId     String?  @unique
+  certificateUrl    String?  // PDF URL
+  certificateIssuedAt DateTime?
+
+  // Payment
+  paymentId         String?  @unique
+  paymentAmount     Int?     // in cents (€99 = 9900)
+  paymentStatus     PaymentStatus @default(PENDING)
+
+  // Relations
+  payment           AssessmentPayment?  @relation(fields: [paymentId], references: [id])
+  bigFiveProfile    BigFiveProfile?
+  discProfile       DISCProfile?
+  competencyProfile CompetencyProfile?
+
+  // Metadata
+  ipAddress         String?
+  userAgent         String?
+
+  // Timestamps
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([userId])
+  @@index([assessmentType])
+  @@index([status])
+  @@index([isCertified])
+  @@index([createdAt])
+}
+
+enum AssessmentType {
+  BIG_FIVE        // Big Five Personality (OCEAN)
+  DISC            // DISC Behavioral Assessment
+  COMPETENCY      // Soft Skills Competencies
+  FULL            // All three assessments (€99 package)
+}
+
+enum AssessmentStatus {
+  PENDING         // Payment pending
+  PAID            // Payment received
+  IN_PROGRESS     // Currently taking assessment
+  COMPLETED       // Assessment finished
+  CERTIFIED       // Certificate issued
+  EXPIRED         // Payment expired without completion
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+// Big Five Personality Profile (OCEAN)
+model BigFiveProfile {
+  id                  String   @id @default(cuid())
+  assessmentId        String   @unique
+  assessment          SoftSkillAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+
+  // Raw Scores (0-100)
+  openness            Float    // Openness to Experience
+  conscientiousness   Float    // Conscientiousness
+  extraversion        Float    // Extraversion
+  agreeableness       Float    // Agreeableness
+  neuroticism         Float    // Emotional Stability (inverse)
+
+  // Percentiles (vs. university peer group)
+  opennessPercentile        Int
+  conscientiousnessPercentile Int
+  extraversionPercentile    Int
+  agreeablenessPercentile   Int
+  neuroticismPercentile     Int
+
+  // Facets (sub-dimensions)
+  facets              Json?    // Detailed sub-scores
+
+  // Interpretation
+  personality         String?  // "Innovator", "Organizer", "Social Leader", etc.
+  strengths           String[] @default([])
+  developmentAreas    String[] @default([])
+  careerFit           String[] @default([]) // Recommended career paths
+
+  // Timestamps
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([assessmentId])
+}
+
+// DISC Behavioral Profile
+model DISCProfile {
+  id                String   @id @default(cuid())
+  assessmentId      String   @unique
+  assessment        SoftSkillAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+
+  // Raw Scores (0-100)
+  dominance         Float    // D: Direct, Results-oriented
+  influence         Float    // I: Sociable, Enthusiastic
+  steadiness        Float    // S: Patient, Cooperative
+  compliance        Float    // C: Analytical, Precise
+
+  // Percentiles
+  dominancePercentile   Int
+  influencePercentile   Int
+  steadinessPercentile  Int
+  compliancePercentile  Int
+
+  // Primary Style
+  primaryStyle      DISCStyle
+  secondaryStyle    DISCStyle?
+
+  // Interpretation
+  workStyle         String?  @db.Text
+  communicationStyle String? @db.Text
+  motivators        String[] @default([])
+  stressors         String[] @default([])
+  idealTeamRole     String?
+
+  // Timestamps
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([assessmentId])
+  @@index([primaryStyle])
+}
+
+enum DISCStyle {
+  DOMINANCE         // D
+  INFLUENCE         // I
+  STEADINESS        // S
+  COMPLIANCE        // C
+  DI                // Combinations
+  DC
+  IS
+  IC
+  DS
+  SC
+}
+
+// Soft Skills Competency Profile
+model CompetencyProfile {
+  id                    String   @id @default(cuid())
+  assessmentId          String   @unique
+  assessment            SoftSkillAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+
+  // Core Competency Scores (0-100)
+  communication         Float    // Verbal & written communication
+  teamwork              Float    // Collaboration & cooperation
+  leadership            Float    // Initiative & influence
+  problemSolving        Float    // Critical thinking & creativity
+  adaptability          Float    // Flexibility & resilience
+  emotionalIntelligence Float    // Self-awareness & empathy
+  timeManagement        Float    // Organization & prioritization
+  conflictResolution    Float    // Negotiation & mediation
+
+  // Percentiles
+  communicationPercentile         Int
+  teamworkPercentile              Int
+  leadershipPercentile            Int
+  problemSolvingPercentile        Int
+  adaptabilityPercentile          Int
+  emotionalIntelligencePercentile Int
+  timeManagementPercentile        Int
+  conflictResolutionPercentile    Int
+
+  // Overall Score
+  overallScore          Float
+  overallPercentile     Int
+
+  // Top Strengths
+  topStrengths          String[] @default([]) // Top 3-5 competencies
+  developmentAreas      String[] @default([]) // Bottom 3 competencies
+
+  // Recommendations
+  trainingRecommendations String[] @default([])
+  careerSuitability     Json?    // Best-fit roles based on profile
+
+  // Timestamps
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([assessmentId])
+}
+
+// Assessment Payment Tracking
+model AssessmentPayment {
+  id                  String   @id @default(cuid())
+
+  // User Info
+  userId              String
+  email               String
+
+  // Payment Details
+  amount              Int      // in cents (€99 = 9900)
+  currency            String   @default("eur")
+
+  // Stripe
+  stripePaymentIntentId String? @unique
+  stripeSessionId     String?  @unique
+  stripeCustomerId    String?
+
+  // Status
+  status              PaymentStatus @default(PENDING)
+
+  // Assessment Access
+  assessmentType      AssessmentType
+  accessGranted       Boolean  @default(false)
+  accessExpiresAt     DateTime? // Optional expiry (e.g., 30 days to complete)
+
+  // Relations
+  assessments         SoftSkillAssessment[]
+
+  // Metadata
+  metadata            Json?    // Stripe metadata, promo codes, etc.
+
+  // Timestamps
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  paidAt              DateTime?
+
+  @@index([userId])
+  @@index([email])
+  @@index([status])
+  @@index([stripePaymentIntentId])
+}
+
+// Psychometric Question Bank
+model PsychometricQuestion {
+  id                String   @id @default(cuid())
+
+  // Question Content
+  questionText      String   @db.Text
+  questionType      AssessmentType
+
+  // Dimension measured
+  dimension         String   // "openness", "dominance", "communication", etc.
+  facet             String?  // Sub-dimension
+
+  // Scoring
+  isReverseCoded    Boolean  @default(false) // Some questions are reverse-scored
+  weight            Float    @default(1.0)
+
+  // Display
+  orderIndex        Int      // Question order in assessment
+  category          String?  // Group questions into sections
+
+  // Response Options (Likert scale)
+  responseType      String   @default("likert_5") // "likert_5", "likert_7", "binary"
+  minValue          Int      @default(1)
+  maxValue          Int      @default(5)
+  minLabel          String   @default("Strongly Disagree")
+  maxLabel          String   @default("Strongly Agree")
+
+  // Active/Inactive
+  isActive          Boolean  @default(true)
+
+  // Timestamps
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([questionType])
+  @@index([dimension])
+  @@index([isActive])
+  @@index([orderIndex])
+}
