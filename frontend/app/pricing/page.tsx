@@ -56,104 +56,110 @@ const studentPlans = [
 
 const companyPlans = [
   {
-    name: 'Starter',
-    price: '€49',
-    period: 'per month',
-    description: 'For startups hiring occasionally',
+    name: 'Explore Free',
+    price: '€0',
+    period: 'forever',
+    description: 'Browse the entire database for free',
     icon: Zap,
     popular: false,
     features: [
-      'Search verified portfolios',
-      'Post 3 active jobs',
-      'Contact 25 students/month',
-      'Basic filters',
-      'Email support'
+      'Free registration (no credit card)',
+      'Unlimited database exploration',
+      'See all profiles (initials only)',
+      'Advanced filters by university, courses, grades',
+      'AI-verified skills from projects',
+      'Location and availability filters',
+      'Save searches and candidates'
     ],
-    cta: 'Start 7-Day Trial',
+    cta: 'Start Exploring Free',
     ctaLink: '/auth/register/role-selection'
   },
   {
-    name: 'Growth',
-    price: '€149',
-    period: 'per month',
-    description: 'For growing teams hiring regularly',
+    name: 'Pay Per Contact',
+    price: '€10',
+    period: 'per contact',
+    description: 'Only pay when you find the right candidate',
     icon: Building2,
     popular: true,
     badge: 'Most Popular',
     features: [
-      'Everything in Starter',
-      'Post 10 active jobs',
-      'Contact 100 students/month',
-      'AI-powered matching',
-      'Advanced filters (50+)',
-      'Analytics dashboard',
-      'Priority support'
+      'Everything in Free',
+      '10 credits = €10 per contact unlock',
+      'Get full name, email, phone, LinkedIn',
+      'AI-generated CV for your position',
+      'Buy credits as needed',
+      'Volume discounts up to 40%',
+      'No monthly commitment',
+      'Credits never expire'
     ],
-    cta: 'Start 7-Day Trial',
+    cta: 'Get Started',
     ctaLink: '/auth/register/role-selection',
     highlight: true
   },
   {
-    name: 'Enterprise',
-    price: 'Custom',
-    period: 'contact us',
-    description: 'For large organizations with complex needs',
+    name: 'Credit Packages',
+    price: 'From €50',
+    period: 'volume discounts',
+    description: 'Buy credits in bulk and save more',
     icon: Building2,
     popular: false,
     features: [
-      'Everything in Growth',
-      'Unlimited jobs',
-      'Unlimited contacts',
-      'Dedicated account manager',
-      'Custom integrations',
-      'API access',
-      'White-label options',
-      'SLA guarantee'
+      '50 credits (5 contacts) = €50',
+      '200 credits (20 contacts) = €180 (10% off)',
+      '500 credits (50 contacts) = €400 (20% off)',
+      '1000+ credits = 40% discount',
+      'Monthly or annual billing',
+      'Custom enterprise packages',
+      'Dedicated account manager (1000+)',
+      'API access (enterprise)'
     ],
-    cta: 'Contact Sales',
+    cta: 'View Packages',
     ctaLink: '/contact'
   }
 ]
 
 const universityPlans = [
   {
-    name: 'Free Partner',
+    name: 'First Year Free',
     price: 'Free',
-    period: 'forever',
-    description: 'Get started with basic career services integration',
-    icon: School,
-    popular: false,
-    features: [
-      'Student portfolio hub',
-      'Basic analytics',
-      'Up to 100 active students',
-      'Email support',
-      'Standard branding'
-    ],
-    cta: 'Become a Partner',
-    ctaLink: '/contact'
-  },
-  {
-    name: 'University Pro',
-    price: 'Custom',
-    period: 'per year',
-    description: 'Complete career services solution',
+    period: 'first year',
+    description: 'Launch with zero cost for the first year',
     icon: School,
     popular: true,
-    badge: 'Recommended',
+    badge: 'Launch Offer',
     features: [
-      'Everything in Free',
-      'Unlimited students',
-      'Advanced career analytics',
+      'Free for entire first year',
+      'Unlimited student portfolios',
+      'Full platform access',
+      'Career outcome analytics',
       'Employer network access',
       'Custom university branding',
       'Verification system',
-      'Dedicated support',
-      'Quarterly strategy sessions'
+      'Dedicated support'
     ],
-    cta: 'Schedule Demo',
+    cta: 'Become a Partner',
     ctaLink: '/contact',
     highlight: true
+  },
+  {
+    name: 'Year 2+',
+    price: 'Custom',
+    period: 'per year',
+    description: 'Flexible pricing based on university size',
+    icon: School,
+    popular: false,
+    features: [
+      'Everything in First Year',
+      'Pricing based on student count',
+      'Advanced analytics dashboard',
+      'Priority employer matching',
+      'API access for integration',
+      'White-label options',
+      'Quarterly strategy sessions',
+      'Custom reporting'
+    ],
+    cta: 'Schedule Demo',
+    ctaLink: '/contact'
   }
 ]
 
@@ -172,18 +178,18 @@ export default function PricingPage() {
     switch (selectedSegment) {
       case 'students': return {
         badge: 'For Students',
-        title: 'Start Free, Upgrade When Ready',
-        subtitle: 'Build your portfolio for free. Upgrade to get discovered 2x faster.'
+        title: 'Always Free for Students',
+        subtitle: 'Build your portfolio, get discovered by top companies. No credit card, no limits, forever.'
       }
       case 'companies': return {
         badge: 'For Companies',
-        title: 'Find Verified Talent, Fast',
-        subtitle: 'Access university-verified portfolios. Plans for teams of all sizes.'
+        title: 'Browse Free, Pay Only for Contacts',
+        subtitle: 'Explore the entire database for free. Only pay €10 when you find the perfect candidate.'
       }
       case 'universities': return {
         badge: 'For Universities',
-        title: 'Empower Your Students',
-        subtitle: 'Help students showcase their work and track career outcomes.'
+        title: 'First Year Completely Free',
+        subtitle: 'Launch with zero cost. Help your students get hired while tracking career outcomes.'
       }
     }
   }
@@ -198,19 +204,53 @@ export default function PricingPage() {
       <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Hero Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              Simple, Transparent Pricing
-            </h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-12">
-              Choose the plan that fits your needs. Always free for students to start.
-            </p>
+          {/* Hero Section with Animated Background */}
+          <div className="relative">
+            {/* Animated Background Blobs */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <motion.div
+                className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+                animate={{
+                  x: [0, 50, 0],
+                  y: [0, 30, 0],
+                }}
+                transition={{
+                  duration: 15,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              <motion.div
+                className="absolute top-20 right-1/4 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+                animate={{
+                  x: [0, -50, 0],
+                  y: [0, 50, 0],
+                }}
+                transition={{
+                  duration: 18,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16 relative z-10"
+            >
+              <motion.h1
+                className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+              >
+                Simple, Transparent Pricing
+              </motion.h1>
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-12">
+                Choose the plan that fits your needs. Always free for students to start.
+              </p>
 
             {/* Segment Selector */}
             <div className="inline-flex bg-white rounded-full p-1.5 shadow-lg border border-gray-200">
@@ -234,7 +274,8 @@ export default function PricingPage() {
                 )
               })}
             </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
           {/* Dynamic Pricing Section */}
           <div className="mb-20">
@@ -269,10 +310,10 @@ export default function PricingPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ y: -5 }}
+                    whileHover={{ y: -10, scale: 1.02 }}
                   >
                   <Card
-                    className={`relative ${plan.highlight ? 'border-2 border-blue-500 shadow-xl' : 'border-gray-200'} h-full flex flex-col`}
+                    className={`relative ${plan.highlight ? 'border-2 border-blue-500 shadow-xl bg-gradient-to-br from-blue-50/50 to-purple-50/50 backdrop-blur-sm' : 'border-gray-200 bg-white/80 backdrop-blur-sm'} h-full flex flex-col hover:shadow-2xl transition-all duration-300`}
                   >
                     {plan.badge && (
                       <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -283,9 +324,13 @@ export default function PricingPage() {
                     )}
 
                     <CardHeader className="text-center pb-8 pt-8">
-                      <div className={`mx-auto mb-4 rounded-full p-4 ${plan.highlight ? 'bg-blue-100' : 'bg-gray-100'}`}>
+                      <motion.div
+                        className={`mx-auto mb-4 rounded-full p-4 ${plan.highlight ? 'bg-blue-100' : 'bg-gray-100'}`}
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.6 }}
+                      >
                         <Icon className={`h-8 w-8 ${plan.highlight ? 'text-blue-600' : 'text-gray-600'}`} />
-                      </div>
+                      </motion.div>
                       <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
                       <div className="mb-4">
                         <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
@@ -299,10 +344,24 @@ export default function PricingPage() {
                     <CardContent className="flex-1 flex flex-col">
                       <ul className="space-y-3 mb-8 flex-1">
                         {plan.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-start">
-                            <Check className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                          <motion.li
+                            key={idx}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.3, delay: idx * 0.1 }}
+                            className="flex items-start"
+                          >
+                            <motion.div
+                              initial={{ scale: 0 }}
+                              whileInView={{ scale: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.3, delay: idx * 0.1 + 0.2, type: "spring" }}
+                            >
+                              <Check className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                            </motion.div>
                             <span className="text-gray-700 text-sm">{feature}</span>
-                          </li>
+                          </motion.li>
                         ))}
                       </ul>
 
@@ -341,20 +400,20 @@ export default function PricingPage() {
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {[
                 {
-                  question: 'Is there really a free plan?',
-                  answer: 'Yes! Students can create portfolios and get discovered by recruiters 100% free, forever.'
+                  question: 'Is browsing really unlimited and free?',
+                  answer: 'Yes! Companies can explore the entire database for free. See all profiles (with initials only), filter by university, courses, grades, and skills. Only pay €10 when you unlock a contact.'
                 },
                 {
-                  question: 'Can I cancel anytime?',
-                  answer: 'Absolutely. No contracts, no commitments. Cancel with one click from your dashboard.'
+                  question: 'Do credits expire?',
+                  answer: 'No! Credits never expire. Buy them when you need them, use them whenever you want. No monthly subscriptions or commitments.'
                 },
                 {
-                  question: 'Do you offer student discounts?',
-                  answer: 'All student plans are already heavily discounted. Plus, the free plan has everything you need to get started.'
+                  question: 'How do volume discounts work?',
+                  answer: 'The more credits you buy, the more you save: 200 credits get 10% off, 500 credits get 20% off, and 1000+ credits get 40% off. Perfect for companies hiring multiple candidates.'
                 },
                 {
-                  question: 'What payment methods do you accept?',
-                  answer: 'We accept all major credit cards, debit cards, and SEPA direct debit for European customers.'
+                  question: 'Are students really free forever?',
+                  answer: 'Absolutely! Students never pay. Create your portfolio, get verified by your university, and get discovered by top companies - all 100% free, forever.'
                 }
               ].map((faq, idx) => (
                 <motion.div
@@ -390,23 +449,23 @@ export default function PricingPage() {
                   Ready to Get Started?
                 </h2>
                 <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
-                  Join early access and be among the first to transform how students connect with opportunities.
+                  Start exploring for free. Only pay when you find the perfect candidate.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" variant="secondary" asChild>
                     <Link href="/auth/register/role-selection">
-                      Get Started Free
+                      Start Exploring Free
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
                   <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
                     <Link href="/contact">
-                      Contact Sales
+                      Talk to Sales
                     </Link>
                   </Button>
                 </div>
                 <p className="text-sm text-white mt-6">
-                  ✓ No credit card required  ✓ 7-day free trial  ✓ Cancel anytime
+                  ✓ No credit card required  ✓ Unlimited free browsing  ✓ Only pay for contacts you unlock
                 </p>
               </CardContent>
             </Card>

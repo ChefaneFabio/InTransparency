@@ -655,16 +655,21 @@ export default function FeaturesPage() {
       <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Hero Section */}
+          {/* Hero Section with Gradient */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 bg-clip-text text-transparent"
+            >
               Complete Feature Overview
-            </h1>
+            </motion.h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
               Discover all the powerful features that make InTransparency the most comprehensive talent discovery platform
             </p>
@@ -733,14 +738,18 @@ export default function FeaturesPage() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.4, delay: index * 0.05 }}
-                    whileHover={{ scale: 1.03 }}
+                    whileHover={{ scale: 1.03, y: -8 }}
                   >
-                    <Card className={`${feature.color} transition-all hover:shadow-lg cursor-pointer h-full`}>
+                    <Card className={`${feature.color} transition-all hover:shadow-2xl cursor-pointer h-full bg-white/90 backdrop-blur-sm`}>
                   <CardHeader>
                     <div className="flex items-start justify-between mb-4">
-                      <div className={`p-3 rounded-full bg-white shadow-sm`}>
+                      <motion.div
+                        className={`p-3 rounded-full bg-white shadow-sm`}
+                        whileHover={{ rotate: 360, scale: 1.2 }}
+                        transition={{ duration: 0.6 }}
+                      >
                         <Icon className="h-6 w-6 text-gray-700" />
-                      </div>
+                      </motion.div>
                       {getStatusBadge(feature.status)}
                     </div>
                     <CardTitle className="text-gray-900 text-lg">{feature.title}</CardTitle>

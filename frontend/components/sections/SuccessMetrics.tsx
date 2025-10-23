@@ -1,6 +1,9 @@
+'use client'
+
 import { CheckCircle2, Star, Award, Zap } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { motion } from 'framer-motion'
 
 export function SuccessMetrics() {
   const metrics = [
@@ -50,9 +53,14 @@ export function SuccessMetrics() {
           {metrics.map((metric, index) => {
             const Icon = metric.icon
             return (
-              <div
+              <motion.div
                 key={index}
-                className="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-shadow"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="bg-white rounded-xl p-8 shadow-sm hover:shadow-2xl transition-all"
               >
                 <div className="flex items-start gap-4">
                   <div className="rounded-full bg-blue-100 p-3 flex-shrink-0">
@@ -75,22 +83,46 @@ export function SuccessMetrics() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )
           })}
         </div>
 
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-            <Link href="/auth/register/student">
-              Create Your Free Portfolio Now
-            </Link>
-          </Button>
+        {/* CTA with Pulse Animation */}
+        <motion.div
+          className="mt-12 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-block"
+          >
+            <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-2xl transition-all relative">
+              <Link href="/auth/register/student" className="relative">
+                <motion.span
+                  className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400 opacity-0"
+                  animate={{
+                    opacity: [0, 0.5, 0],
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <span className="relative z-10">Create Your Free Portfolio Now</span>
+              </Link>
+            </Button>
+          </motion.div>
           <p className="mt-4 text-sm text-gray-600">
             No credit card required • 2 minutes to set up • Free forever
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

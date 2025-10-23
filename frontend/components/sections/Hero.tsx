@@ -253,13 +253,23 @@ export function Hero() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
             >
-              {/* Badge */}
-              <div className="mb-6 flex justify-center">
-                <Badge className="bg-white/60 backdrop-blur-sm text-gray-700 px-4 py-1.5 text-sm shadow-sm">
+              {/* Floating Badge */}
+              <motion.div
+                className="mb-6 flex justify-center"
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <Badge className="bg-white/60 backdrop-blur-sm text-gray-700 px-4 py-1.5 text-sm shadow-lg border border-gray-200">
                   <BadgeIcon className="inline h-4 w-4 mr-1.5" />
                   {content.badge}
                 </Badge>
-              </div>
+              </motion.div>
 
               {/* Main heading */}
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
@@ -339,12 +349,16 @@ export function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
                   className="flex flex-col items-center group"
                 >
-                  <div className={`rounded-full bg-${feature.color}-100 p-3 group-hover:bg-${feature.color}-200 transition-all duration-300 shadow-md group-hover:shadow-lg`}>
+                  <motion.div
+                    className={`rounded-full bg-${feature.color}-100 p-3 group-hover:bg-${feature.color}-200 transition-all duration-300 shadow-md group-hover:shadow-lg`}
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
                     <feature.icon className={`h-6 w-6 text-${feature.color}-600`} />
-                  </div>
+                  </motion.div>
                   <h3 className="mt-4 text-lg font-semibold text-gray-900">{feature.title}</h3>
                   <p className="text-sm text-gray-600 text-center">
                     {feature.description}
