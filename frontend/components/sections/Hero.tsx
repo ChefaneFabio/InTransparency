@@ -25,9 +25,9 @@ const segmentContent = {
     ),
     description: (
       <>
-        Turn your university projects into a portfolio that gets you hired.
+        Turn your academic projects into a complete portfolio showcasing both your hard skills and soft skills. All project formats accepted.
         <br />
-        <strong className="text-gray-900">🚀 Early Access - Join students building their portfolios now.</strong>
+        <strong className="text-gray-900">🚀 Early Access - Join students building verified portfolios now.</strong>
       </>
     ),
     primaryCTA: {
@@ -47,20 +47,20 @@ const segmentContent = {
     features: [
       {
         icon: Sparkles,
-        title: 'AI Project Analysis',
-        description: 'Smart evaluation of your academic work and skills',
+        title: 'Complete Skill Profile',
+        description: 'Hard skills + soft skills automatically detected from your projects',
         color: 'teal'
       },
       {
         icon: Users,
-        title: 'Get Discovered',
-        description: 'Recruiters find you based on your projects',
+        title: 'All Project Formats',
+        description: 'Code, documents, presentations, videos - we analyze everything',
         color: 'blue'
       },
       {
         icon: Trophy,
-        title: 'Verified Portfolio',
-        description: 'University-backed project verification',
+        title: 'Institution-Verified',
+        description: 'Collaborate with your institution for verified, complete profiles',
         color: 'emerald'
       }
     ],

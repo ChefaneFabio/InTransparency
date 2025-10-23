@@ -47,12 +47,12 @@ const userTypes: UserType[] = [
     color: 'bg-gradient-to-br from-teal-400 via-teal-500 to-blue-500',
     features: [
       'Free forever - no hidden costs',
-      'Institution transcript integration',
-      'AI-powered project portfolio',
+      'Upload projects in ANY format',
+      'Complete profile: hard skills + soft skills',
+      'Institution collaboration for verified data',
       'Direct messages from recruiters',
       'CV optimization and templates',
-      'Job matching algorithm',
-      'Analytics dashboard'
+      'Job matching algorithm'
     ],
     pricing: 'FREE',
     popular: true,
@@ -282,9 +282,9 @@ export default function RoleSelectionPage() {
             <div className="bg-gradient-to-br from-blue-100 to-blue-200/80 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
               <Award className="h-10 w-10 text-blue-600" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Project-Based Assessment</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-3">Complete Skill Profiles</h3>
             <p className="text-gray-600 leading-relaxed">
-              Go beyond grades with real project portfolios that demonstrate actual skills and capabilities with full transparency.
+              All project formats accepted. AI analyzes both hard skills (technical) and soft skills (teamwork, leadership) from your work with full transparency.
             </p>
           </div>
           <div className="text-center group">

@@ -65,34 +65,34 @@ const studentSteps = [
   {
     id: 1,
     title: 'Upload Your Projects',
-    description: 'Import projects from GitHub or upload directly. Our AI analyzes what you\'ve built.',
+    description: 'Upload projects in any format - code, documents, presentations, reports. Our AI analyzes everything you\'ve built.',
     icon: Upload,
     color: 'bg-blue-50 border-blue-200',
     duration: '2 minutes',
     features: [
-      'GitHub integration (auto-import)',
+      'All formats accepted (code, PDFs, docs, videos)',
+      'Institution collaboration for verified data',
       'AI project analysis & scoring',
       'Complexity & innovation metrics',
-      'Technology stack detection',
-      'Verified commit history'
+      'Technology and skill detection'
     ],
-    example: '→ Example: Upload your ML Trading Bot, get 92/100 innovation score'
+    example: '→ Example: Upload your thesis, capstone project, or group work'
   },
   {
     id: 2,
     title: 'Get AI-Powered Analysis',
-    description: 'Our AI analyzes your projects and creates a verified skill profile',
+    description: 'Our AI analyzes your projects and creates a complete profile with both hard skills and soft skills',
     icon: Zap,
     color: 'bg-purple-50 border-purple-200',
     duration: '30 seconds',
     features: [
+      'Hard skills: Technical abilities & tools',
+      'Soft skills: Teamwork, leadership, communication',
       'Project complexity scoring',
       'Market relevance analysis',
-      'Skills extracted automatically',
-      'Career readiness score',
-      'Benchmark vs peers'
+      'Career readiness score & benchmarking'
     ],
-    example: '→ Example: "Your React skills are highly competitive"'
+    example: '→ Example: "Strong Python + Excellent team collaboration skills"'
   },
   {
     id: 3,

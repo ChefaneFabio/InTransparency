@@ -21,9 +21,9 @@ const studentPlans = [
     icon: GraduationCap,
     popular: false,
     features: [
-      'Create your portfolio',
+      'Create your portfolio (all formats)',
       'Add up to 3 projects',
-      'Basic profile visibility',
+      'Hard skills + soft skills profile',
       'Receive messages from recruiters',
       'Public portfolio page'
     ],
@@ -40,13 +40,13 @@ const studentPlans = [
     badge: '🚀 Early Access',
     features: [
       'Everything in Free',
-      'Unlimited projects',
+      'Unlimited projects (any format)',
+      'Complete hard + soft skills analysis',
       'Priority in search results',
       'Advanced analytics',
       'Custom portfolio URL',
       'Contact recruiters directly',
-      'AI-powered insights',
-      'Priority support'
+      'AI-powered career insights'
     ],
     cta: 'Start 7-Day Trial',
     ctaLink: '/auth/register/role-selection',
@@ -67,7 +67,7 @@ const companyPlans = [
       'Unlimited database exploration',
       'See all profiles (initials only)',
       'Advanced filters by institution, courses, grades',
-      'AI-verified skills from projects',
+      'AI-verified skills from all project types',
       'Location and availability filters',
       'Save searches and candidates'
     ],

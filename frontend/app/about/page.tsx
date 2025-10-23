@@ -78,9 +78,9 @@ export default function AboutPage() {
                   <Code2 className="h-12 w-12 text-green-600 mb-4" />
                   <h3 className="text-xl font-bold text-gray-900 mb-3">The InTransparency Way</h3>
                   <ul className="space-y-2 text-gray-700">
-                    <li>✅ University-verified projects</li>
-                    <li>✅ GitHub commit history validation</li>
-                    <li>✅ AI-powered skill analysis</li>
+                    <li>✅ Institution-verified projects (all formats)</li>
+                    <li>✅ Hard skills + soft skills analysis</li>
+                    <li>✅ AI-powered complete profile building</li>
                     <li>✅ Proof of work beats claims</li>
                     <li>✅ Find hidden talent 2x faster</li>
                   </ul>
@@ -137,7 +137,7 @@ export default function AboutPage() {
                 Meanwhile, companies complained about hiring candidates who looked great on paper but couldn't code. The disconnect was obvious: <strong>resumes reward good storytelling, not good building.</strong>
               </p>
               <p className="text-gray-700 leading-relaxed mb-8">
-                We asked a simple question: What if students could show their work instead of just listing it? What if recruiters could see verified projects with AI analysis, commit histories, and university endorsements?
+                We asked a simple question: What if students could show their work instead of just listing it? What if recruiters could see verified projects with complete skill analysis (hard + soft), and institution endorsements?
               </p>
               <p className="text-gray-700 leading-relaxed font-semibold">
                 InTransparency was our answer.
@@ -158,7 +158,7 @@ export default function AboutPage() {
                 {
                   icon: Shield,
                   title: 'Verification Over Claims',
-                  description: 'University-backed projects, GitHub validation, and professor endorsements prove skills are real.'
+                  description: 'Institution-backed projects in all formats, complete skill analysis, and endorsements prove skills are real.'
                 },
                 {
                   icon: Target,
@@ -281,7 +281,7 @@ export default function AboutPage() {
               It's Time to Kill the Resume
             </h2>
             <p className="text-xl text-gray-100 leading-relaxed mb-8 max-w-2xl mx-auto">
-              Resumes were invented in 1482. We have GitHub, AI, and university verification now. Why are we still using a 500-year-old tool to hire for 21st-century jobs?
+              Resumes were invented in 1482. We have AI, complete skill analysis, and institution verification now. Why are we still using a 500-year-old tool to hire for 21st-century jobs?
             </p>
 
             <div className="bg-white bg-opacity-10 rounded-xl p-8 backdrop-blur-sm mb-8">
