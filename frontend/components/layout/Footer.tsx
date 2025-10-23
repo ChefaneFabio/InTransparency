@@ -10,17 +10,12 @@ const navigation = {
   ],
   company: [
     { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Contact & Support', href: '/contact' },
   ],
   legal: [
     { name: 'Privacy & GDPR', href: '/privacy' },
     { name: 'Terms of Service', href: '/legal' },
     { name: 'Cookie Policy', href: '/legal#cookies' },
-  ],
-  support: [
-    { name: 'Support Center', href: '/support' },
-    { name: 'Contact Us', href: '/contact' },
   ]
 }
 
@@ -110,24 +105,6 @@ export function Footer() {
             </h3>
             <ul className="space-y-3">
               {navigation.company.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-slate-600 hover:text-teal-600 transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-4">
-              Support
-            </h3>
-            <ul className="space-y-3">
-              {navigation.support.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}

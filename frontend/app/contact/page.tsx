@@ -76,7 +76,7 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-5xl font-bold mb-6"
             >
-              Get in Touch
+              Contact & Support
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -84,7 +84,7 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-xl text-white max-w-2xl mx-auto"
             >
-              Have questions about InTransparency? We're here to help you transform your academic journey into career success.
+              Have questions about InTransparency? Need technical support? We're here to help you transform your academic journey into career success.
             </motion.p>
           </div>
         </section>
@@ -153,25 +153,33 @@ export default function ContactPage() {
                   </Card>
                 </div>
 
-                {/* FAQ Quick Links */}
-                <Card>
+                {/* Support Resources */}
+                <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <HelpCircle className="h-5 w-5 mr-2" />
-                      Quick Help
+                      Support Resources
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-3">
-                      <a href="/help" className="block text-blue-600 hover:text-blue-800 transition-colors">
-                        → Help Center & FAQ
-                      </a>
-                      <a href="/docs" className="block text-blue-600 hover:text-blue-800 transition-colors">
-                        → Documentation
-                      </a>
-                      <a href="/support" className="block text-blue-600 hover:text-blue-800 transition-colors">
-                        → Technical Support
-                      </a>
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Common Questions</h4>
+                        <ul className="space-y-2 text-sm text-gray-700">
+                          <li>• How do I upload my projects?</li>
+                          <li>• How does AI analysis work?</li>
+                          <li>• How to access AI conversational search?</li>
+                          <li>• What formats are supported?</li>
+                        </ul>
+                      </div>
+                      <div className="pt-4 border-t border-blue-200">
+                        <p className="text-sm text-gray-700 mb-3">
+                          <strong>Students:</strong> Access AI Job Search from your dashboard
+                        </p>
+                        <p className="text-sm text-gray-700">
+                          <strong>Recruiters:</strong> Access AI Candidate Search from your dashboard
+                        </p>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -332,6 +340,100 @@ export default function ContactPage() {
                   </CardContent>
                 </Card>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* AI Conversational Search - How to Access */}
+        <section className="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+          <div className="container max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                AI Conversational Search
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Use natural language to find exactly what you need - jobs for students, candidates for recruiters
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              {/* For Students */}
+              <Card className="bg-white border-2 border-blue-200 hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="flex items-center text-blue-900">
+                    <User className="h-6 w-6 mr-2" />
+                    For Students: AI Job Search
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-gray-700">
+                    Search for jobs using natural language. Ask things like:
+                  </p>
+                  <div className="bg-blue-50 rounded-lg p-4 space-y-2 text-sm">
+                    <p className="font-mono text-gray-800">"Find me frontend jobs in San Francisco"</p>
+                    <p className="font-mono text-gray-800">"Show me entry-level ML positions"</p>
+                    <p className="font-mono text-gray-800">"Remote React jobs with good work-life balance"</p>
+                  </div>
+                  <div className="pt-4 border-t border-blue-100">
+                    <h4 className="font-semibold text-gray-900 mb-2">How to Access:</h4>
+                    <ol className="space-y-2 text-sm text-gray-700">
+                      <li>1. Log in to your student account</li>
+                      <li>2. Go to your Dashboard</li>
+                      <li>3. Click <strong>"AI Job Search"</strong> in the Quick Actions menu</li>
+                      <li>4. Start chatting with our AI to find perfect job matches</li>
+                    </ol>
+                  </div>
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700" asChild>
+                    <a href="/dashboard/student/ai-job-search">
+                      Try AI Job Search →
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* For Recruiters */}
+              <Card className="bg-white border-2 border-purple-200 hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="flex items-center text-purple-900">
+                    <Building2 className="h-6 w-6 mr-2" />
+                    For Recruiters: AI Candidate Search
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-gray-700">
+                    Find candidates using conversational queries like:
+                  </p>
+                  <div className="bg-purple-50 rounded-lg p-4 space-y-2 text-sm">
+                    <p className="font-mono text-gray-800">"Find Python developers from top universities"</p>
+                    <p className="font-mono text-gray-800">"Show me ML engineers with 3.5+ GPA"</p>
+                    <p className="font-mono text-gray-800">"Recent grads with leadership skills in NYC"</p>
+                  </div>
+                  <div className="pt-4 border-t border-purple-100">
+                    <h4 className="font-semibold text-gray-900 mb-2">How to Access:</h4>
+                    <ol className="space-y-2 text-sm text-gray-700">
+                      <li>1. Log in to your recruiter account</li>
+                      <li>2. Go to your Dashboard</li>
+                      <li>3. Click <strong>"AI Candidate Search (NEW!)"</strong> at the top of Quick Actions</li>
+                      <li>4. Start conversing with AI to discover perfect candidates</li>
+                    </ol>
+                  </div>
+                  <Button className="w-full bg-purple-600 hover:bg-purple-700" asChild>
+                    <a href="/dashboard/recruiter/ai-search">
+                      Try AI Candidate Search →
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="text-center">
+              <Card className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                <CardContent className="p-6">
+                  <p className="text-lg">
+                    💡 <strong>Pro Tip:</strong> The AI understands natural language - just describe what you're looking for as if talking to a person!
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>

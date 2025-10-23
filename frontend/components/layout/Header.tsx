@@ -16,9 +16,7 @@ export function Header() {
     { name: 'How It Works', href: '/how-it-works' },
     { name: 'Pricing', href: '/pricing' },
     { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'Support', href: '/support' },
+    { name: 'Contact & Support', href: '/contact' },
   ]
 
   return (
