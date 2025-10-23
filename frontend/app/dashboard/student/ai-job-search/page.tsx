@@ -80,7 +80,7 @@ const mockJobs: Job[] = [
     postedDate: '2 days ago',
     applicants: 45,
     matchScore: 94,
-    description: 'We're looking for a passionate junior engineer to join our growing team...',
+    description: "We're looking for a passionate junior engineer to join our growing team...",
     requirements: ['Python', 'React', 'Problem-solving', 'Team collaboration'],
     benefits: ['Health insurance', 'Stock options', 'Flexible hours', 'Remote work']
   },
