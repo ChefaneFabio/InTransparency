@@ -1,8 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { useAuth } from '@/lib/auth/AuthContext'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -13,23 +11,12 @@ import { TrendingUp, Users, MessageCircle, DollarSign, Download, RefreshCw } fro
 import { motion } from 'framer-motion'
 
 export default function ValidationAnalyticsPage() {
-  const router = useRouter()
-  const { user, isLoading: authLoading } = useAuth()
   const [analytics, setAnalytics] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
-  // Protect this page - admin only
   useEffect(() => {
-    if (!authLoading && (!user || user.role !== 'admin')) {
-      router.push('/')
-    }
-  }, [user, authLoading, router])
-
-  useEffect(() => {
-    if (user && user.role === 'admin') {
-      loadAnalytics()
-    }
-  }, [user])
+    loadAnalytics()
+  }, [])
 
   const loadAnalytics = () => {
     setLoading(true)
@@ -70,23 +57,6 @@ export default function ValidationAnalyticsPage() {
       avgBargain,
       avgTooCheap
     }
-  }
-
-  // Show loading while checking auth
-  if (authLoading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      </div>
-    )
-  }
-
-  // Don't render if not admin
-  if (!user || user.role !== 'admin') {
-    return null
   }
 
   if (loading) {

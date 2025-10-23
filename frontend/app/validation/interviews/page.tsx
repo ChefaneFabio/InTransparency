@@ -1,8 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { useAuth } from '@/lib/auth/AuthContext'
+import { useState } from 'react'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -18,8 +16,6 @@ import { motion } from 'framer-motion'
 type ParticipantType = 'student' | 'recruiter' | ''
 
 export default function InterviewRecruitmentPage() {
-  const router = useRouter()
-  const { user, isLoading } = useAuth()
   const [participantType, setParticipantType] = useState<ParticipantType>('')
   const [formData, setFormData] = useState({
     firstName: '',
@@ -35,30 +31,6 @@ export default function InterviewRecruitmentPage() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-
-  // Protect this page - admin only
-  useEffect(() => {
-    if (!isLoading && (!user || user.role !== 'admin')) {
-      router.push('/')
-    }
-  }, [user, isLoading, router])
-
-  // Show loading while checking auth
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      </div>
-    )
-  }
-
-  // Don't render if not admin
-  if (!user || user.role !== 'admin') {
-    return null
-  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
