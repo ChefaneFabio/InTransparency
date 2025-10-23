@@ -92,7 +92,7 @@ const studentSteps = [
       'Career readiness score',
       'Benchmark vs peers'
     ],
-    example: '→ "Your React skills rank in top 15% at Stanford"'
+    example: '→ Example: "Your React skills are highly competitive"'
   },
   {
     id: 3,
@@ -103,12 +103,12 @@ const studentSteps = [
     duration: 'Ongoing',
     features: [
       'Appear in recruiter searches',
-      'Get matched to 5.2 jobs/month avg',
+      'Get matched to relevant opportunities',
       'Direct messages from companies',
-      '87% get interviews within 30 days',
+      'Receive interview invitations',
       'Share portfolio on LinkedIn'
     ],
-    example: '→ "Google recruiter wants to chat about your AI project"'
+    example: '→ Example: "Recruiter wants to chat about your AI project"'
   }
 ]
 
@@ -460,78 +460,15 @@ export default function HowItWorksPage() {
             </div>
           </div>
 
-          {/* See It In Action */}
-          {selectedUserType === 'student' && (
-            <div className="mb-16">
-              <Card className="bg-gradient-to-br from-purple-50 to-blue-50 border-purple-200">
-                <CardHeader className="text-center">
-                  <CardTitle className="text-2xl text-gray-900 mb-2">
-                    See Real Student Portfolios
-                  </CardTitle>
-                  <p className="text-gray-700">
-                    Check out how other students are showcasing their work and getting hired
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    {[
-                      { name: 'Alex Chen', uni: 'MIT', views: '1,234', projects: 7, hired: 'Google', image: IMAGES.students.student1 },
-                      { name: 'Sarah Kim', uni: 'Stanford', views: '892', projects: 5, hired: 'Meta', image: IMAGES.students.student2 },
-                      { name: 'Mike Torres', uni: 'Berkeley', views: '2,103', projects: 9, hired: 'Stripe', image: IMAGES.students.student5 }
-                    ].map((student, idx) => (
-                      <div key={idx} className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-                        <div className="flex items-center mb-3">
-                          <Image
-                            src={student.image}
-                            alt={student.name}
-                            width={48}
-                            height={48}
-                            className="rounded-full object-cover"
-                          />
-                          <div className="ml-3">
-                            <div className="font-semibold text-gray-900">{student.name}</div>
-                            <div className="text-xs text-gray-800">{student.uni}</div>
-                          </div>
-                        </div>
-                        <div className="space-y-2 text-sm">
-                          <div className="flex justify-between">
-                            <span className="text-gray-700">Profile views:</span>
-                            <span className="font-semibold">{student.views}</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-gray-700">Projects:</span>
-                            <span className="font-semibold">{student.projects}</span>
-                          </div>
-                          <div className="pt-2 border-t border-gray-200">
-                            <div className="flex items-center justify-between">
-                              <span className="text-xs text-gray-800">Hired by:</span>
-                              <Badge className="bg-green-100 text-green-800 border-green-200">{student.hired}</Badge>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="text-center mt-6">
-                    <Button variant="outline" onClick={() => window.location.href = '/students/explore'}>
-                      Browse More Portfolios
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
-
           {/* Viral CTA Section */}
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-center text-white mb-16">
             <h3 className="text-3xl font-bold mb-4">
               Stop Applying. Start Getting Discovered.
             </h3>
             <p className="text-lg text-blue-50 mb-8 max-w-2xl mx-auto">
-              {selectedUserType === 'student' && '1,247 students got hired in the last 30 days. Your turn.'}
-              {selectedUserType === 'recruiter' && 'Join 423 companies finding verified talent on InTransparency.'}
-              {selectedUserType === 'university' && 'Partner with 50+ universities improving student placement rates.'}
+              {selectedUserType === 'student' && 'Build your profile, showcase your work, and get discovered by top companies.'}
+              {selectedUserType === 'recruiter' && 'Find verified talent based on real skills and projects, not resumes.'}
+              {selectedUserType === 'university' && 'Connect your students with career opportunities and track their success.'}
             </p>
             <div className="flex justify-center space-x-4">
               <Button
@@ -556,24 +493,6 @@ export default function HowItWorksPage() {
             </div>
           </div>
 
-          {/* Social Proof Stats */}
-          <div className="grid md:grid-cols-4 gap-6 text-center">
-            {[
-              { value: '15,247', label: 'Active Students', icon: Users },
-              { value: '87%', label: 'Get Interviews', icon: Target },
-              { value: '423', label: 'Companies Hiring', icon: Briefcase },
-              { value: '2x', label: 'Faster Hiring', icon: Clock }
-            ].map((stat, idx) => {
-              const Icon = stat.icon
-              return (
-                <div key={idx} className="bg-white rounded-lg p-6 shadow-sm">
-                  <Icon className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                  <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                  <div className="text-sm text-gray-700">{stat.label}</div>
-                </div>
-              )
-            })}
-          </div>
         </div>
       </main>
       <Footer />
