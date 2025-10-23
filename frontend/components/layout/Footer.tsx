@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Facebook, Twitter, Linkedin, Github, Instagram, Mail, MapPin, Phone } from 'lucide-react'
+import { Facebook, Twitter, Linkedin, Github, Instagram, Mail, MapPin, Phone, Shield } from 'lucide-react'
 
 const navigation = {
   product: [
@@ -13,7 +13,9 @@ const navigation = {
     { name: 'Contact', href: '/contact' },
   ],
   legal: [
-    { name: 'Legal & Privacy', href: '/legal' },
+    { name: 'Privacy & GDPR', href: '/privacy' },
+    { name: 'Terms of Service', href: '/legal' },
+    { name: 'Cookie Policy', href: '/legal#cookies' },
   ],
   support: [
     { name: 'Support Center', href: '/support' },
@@ -132,15 +134,16 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-4">
-              Legal
+            <h3 className="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-4 flex items-center gap-2">
+              <Shield className="h-4 w-4 text-green-600" />
+              Legal & Privacy
             </h3>
             <ul className="space-y-3">
               {navigation.legal.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-slate-600 hover:text-teal-600 transition-colors"
+                    className={`${item.name.includes('GDPR') ? 'text-slate-800 font-semibold' : 'text-slate-600'} hover:text-teal-600 transition-colors`}
                   >
                     {item.name}
                   </Link>
@@ -185,8 +188,11 @@ export function Footer() {
               
               {/* Additional Links */}
               <div className="flex items-center space-x-6 text-sm">
+                <Link href="/privacy" className="text-gray-600 hover:text-blue-600 font-semibold">
+                  Privacy & GDPR
+                </Link>
                 <Link href="/legal" className="text-gray-600 hover:text-blue-600">
-                  Legal
+                  Terms
                 </Link>
                 <Link href="/support" className="text-gray-600 hover:text-blue-600">
                   Support
@@ -219,11 +225,15 @@ export function Footer() {
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                   <span>All systems operational</span>
                 </div>
+                <Link href="/privacy" className="text-xs text-gray-600 hover:text-green-600 font-semibold flex items-center gap-1">
+                  <Shield className="h-3 w-3 text-green-600" />
+                  GDPR Compliant
+                </Link>
                 <div className="text-xs text-gray-600">
-                  SOC 2 Compliant
+                  SOC 2 Type II
                 </div>
                 <div className="text-xs text-gray-600">
-                  GDPR Ready
+                  ISO 27001
                 </div>
               </div>
 
