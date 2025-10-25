@@ -3,26 +3,23 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import {
   GraduationCap,
   Building2,
   School,
-  Users,
   ArrowRight,
   Check,
   Star,
-  Target,
-  Briefcase,
-  Award,
-  Globe,
-  TrendingUp,
   Sparkles,
   Shield,
-  Zap
+  Zap,
+  ChevronRight,
+  Play
 } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 interface UserType {
   id: string
@@ -30,7 +27,7 @@ interface UserType {
   subtitle: string
   description: string
   icon: any
-  color: string
+  gradient: string
   features: string[]
   pricing: string
   popular?: boolean
@@ -40,18 +37,17 @@ interface UserType {
 const userTypes: UserType[] = [
   {
     id: 'student',
-    title: 'Student / New Graduate',
+    title: 'Student',
     subtitle: 'Launch your career with verified credentials',
-    description: 'Connect your institution profile, showcase your projects, and get discovered by top companies with complete transparency.',
+    description: 'Upload projects in 2 min → AI analyzes skills → Companies find YOU → Zero endless applications',
     icon: GraduationCap,
-    color: 'bg-gradient-to-br from-teal-400 via-teal-500 to-blue-500',
+    gradient: 'from-teal-500 to-blue-600',
     features: [
-      'Free forever - no hidden costs',
-      'Upload projects in ANY format',
-      'Complete profile: hard skills + soft skills',
-      '🆕 AI Job Search: "Find me frontend jobs in Milan startup"',
-      'Companies find YOU - zero endless applications',
-      'Institution collaboration for verified data',
+      'Free forever - all features included',
+      'AI Job Search: "Find frontend jobs Milan startup"',
+      'Companies find YOU - passive discovery',
+      'Complete hard + soft skills analysis',
+      'University verification (if partnered)',
       'Direct messages from recruiters'
     ],
     pricing: 'FREE',
@@ -59,80 +55,74 @@ const userTypes: UserType[] = [
     registrationPath: '/auth/register/student'
   },
   {
-    id: 'institute',
-    title: 'Institute / Career Services',
-    subtitle: 'Enhance your students\' career outcomes',
-    description: 'Integrate with us → Automatic student profiles → Companies search autonomously → Save 40h/month. Zero manual work.',
-    icon: School,
-    color: 'bg-gradient-to-br from-emerald-400 via-teal-500 to-blue-500',
+    id: 'recruiter',
+    title: 'Company',
+    subtitle: 'Find verified talent instantly',
+    description: 'AI search → "Cybersecurity Roma 30/30" → 8 verified matches → €10 per contact → Zero screening CVs',
+    icon: Building2,
+    gradient: 'from-blue-600 to-purple-600',
     features: [
-      'Always free - pay only for customizations',
-      '🆕 AI Search Hub: Search students AND jobs',
-      'Automatic student profile creation (if partnered)',
-      'Student placement tracking & analytics',
-      'Save 40+ hours/month on manual matching',
-      'Real-time employment analytics',
-      'Industry partnership tools'
+      'Browse database FREE - unlimited',
+      'AI Candidate Search with examples',
+      'Verified projects + AI-analyzed soft skills',
+      'Pay €10 only per contact',
+      'No subscriptions, credits never expire',
+      'University-verified grades & courses'
     ],
-    pricing: 'Custom pricing',
-    registrationPath: '/auth/register/university'
+    pricing: 'Browse Free → €10/contact',
+    registrationPath: '/auth/register/recruiter'
   },
   {
-    id: 'recruiter',
-    title: 'Company / Recruiter',
-    subtitle: 'Find verified talent from any institution',
-    description: 'AI search: "Data engineer Python Spark 27+ GPA Milan" → See 5-10 verified matches → Pay €10 per contact. Zero screening 500 CVs.',
-    icon: Building2,
-    color: 'bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600',
+    id: 'institute',
+    title: 'University',
+    subtitle: 'Enhance student placement outcomes',
+    description: 'Partner → Automatic profiles → Companies search autonomously → Save 40h/month → Zero manual work',
+    icon: School,
+    gradient: 'from-indigo-500 to-purple-600',
     features: [
-      'Browse database FREE - pay €10 per contact only',
-      '🆕 AI Candidate Search: "Cybersecurity Roma 30/30"',
-      'See verified projects + AI-analyzed soft skills',
-      'Zero screening hundreds of CVs',
-      'Direct messaging to matched candidates',
-      'Institution GPA & grade verification',
-      'Advanced analytics & reporting'
+      'Always free - pay only for customizations',
+      'AI Search Hub: students AND jobs',
+      'Automatic profile creation from data',
+      'Save 40+ hours/month on matching',
+      'Real-time placement analytics',
+      'Industry partnership tools'
     ],
-    pricing: 'Browse Free → €10 per contact',
-    registrationPath: '/auth/register/recruiter'
+    pricing: 'Always Free',
+    registrationPath: '/auth/register/university'
   }
 ]
 
 export default function RoleSelectionPage() {
   const router = useRouter()
-  const [selectedRole, setSelectedRole] = useState<string | null>(null)
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null)
 
   const handleRoleSelect = (userType: UserType) => {
-    setSelectedRole(userType.id)
-    // Navigate to role-specific registration
     router.push(userType.registrationPath)
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-blue-50/50 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-50">
-        <div className="absolute inset-0 bg-blue-50/20"></div>
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}></div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 relative">
+      {/* Animated Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-br from-blue-100/20 via-transparent to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-1/2 -left-1/2 w-full h-full bg-gradient-to-tr from-purple-100/20 via-transparent to-transparent rounded-full blur-3xl"></div>
       </div>
 
       {/* Header */}
-      <div className="relative bg-white/90 backdrop-blur-md border-b border-blue-100/50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-6">
+      <div className="relative border-b border-white/50 backdrop-blur-xl bg-white/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                <Sparkles className="h-6 w-6 text-white" />
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
+                <Sparkles className="h-5 w-5 text-white" />
               </div>
-              <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                 InTransparency
               </span>
             </Link>
-            <div className="flex items-center space-x-4">
-              <span className="text-gray-600">Already have an account?</span>
-              <Button variant="outline" className="border-blue-200 text-blue-700 hover:bg-blue-50" asChild>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-gray-600 hidden sm:block">Already have an account?</span>
+              <Button variant="outline" size="sm" asChild>
                 <Link href="/auth/login">Sign In</Link>
               </Button>
             </div>
@@ -141,293 +131,238 @@ export default function RoleSelectionPage() {
       </div>
 
       {/* Main Content */}
-      <div className="relative max-w-7xl mx-auto px-4 py-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
         {/* Hero Section */}
-        <div className="text-center mb-20">
-          <div className="mb-8">
-            <Badge className="bg-blue-100 text-blue-800 border-blue-200 mb-6">
-              <Shield className="h-3 w-3 mr-1" />
-              Trusted by Institutions Worldwide
-            </Badge>
-          </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <Badge className="mb-6 bg-white/80 backdrop-blur-sm text-blue-700 border-blue-200 shadow-sm">
+            <Shield className="h-3 w-3 mr-1" />
+            Trusted by 50+ universities worldwide
+          </Badge>
 
-          <h1 className="text-6xl md:text-7xl font-bold mb-8">
-            <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent">
-              Join InTransparency
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
+              Choose Your Path
             </span>
           </h1>
 
-          <p className="text-2xl text-gray-700 max-w-4xl mx-auto mb-10 leading-relaxed">
-            The bridge between educational institutions and industry.
-            <span className="text-blue-600 font-semibold"> Complete transparency</span> in connecting talent with opportunity.
+          <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
+            Complete transparency in connecting talent with opportunity
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-8 text-base text-gray-600 mb-8">
-            <div className="flex items-center bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
-              <Check className="h-5 w-5 mr-3 text-blue-500" />
-              <span className="font-medium">Verified student profiles</span>
-            </div>
-            <div className="flex items-center bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
-              <Check className="h-5 w-5 mr-3 text-blue-500" />
-              <span className="font-medium">Direct institution integration</span>
-            </div>
-            <div className="flex items-center bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
-              <Check className="h-5 w-5 mr-3 text-blue-500" />
-              <span className="font-medium">AI-powered matching</span>
-            </div>
-          </div>
-
-          <div className="text-lg text-gray-700 mb-4">
-            Choose your path and experience complete transparency in your journey.
-          </div>
-
-          <Link href="/demo/ai-search" className="inline-block">
-            <div className="bg-gradient-to-r from-purple-100 to-blue-100 border-2 border-purple-300 rounded-2xl px-8 py-4 shadow-lg hover:shadow-xl hover:scale-105 transition-all cursor-pointer">
-              <div className="flex items-center justify-center gap-3 mb-2">
-                <Sparkles className="h-6 w-6 text-purple-600" />
-                <span className="text-2xl font-bold text-purple-900">NEW: AI Conversational Search</span>
-                <Sparkles className="h-6 w-6 text-purple-600" />
+          {/* Quick Stats */}
+          <div className="flex flex-wrap items-center justify-center gap-6 mb-10">
+            {[
+              { icon: Check, text: 'University-verified' },
+              { icon: Zap, text: 'AI-powered search' },
+              { icon: Shield, text: 'Complete transparency' }
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-200/50">
+                <item.icon className="h-4 w-4 text-blue-600" />
+                <span className="text-sm font-medium text-gray-700">{item.text}</span>
               </div>
-              <p className="text-purple-800 font-medium">
-                Try our AI search demos NOW - no login required! Ask in plain English what you need.
-              </p>
-            </div>
-          </Link>
-        </div>
+            ))}
+          </div>
 
-        {/* User Type Selection */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-          {userTypes.map((userType) => {
+          {/* AI Demo Banner */}
+          <Link href="/demo/ai-search">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-block"
+            >
+              <div className="relative overflow-hidden bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 bg-[length:200%_100%] animate-gradient rounded-2xl p-[2px] shadow-xl hover:shadow-2xl transition-all">
+                <div className="bg-white rounded-2xl px-8 py-6">
+                  <div className="flex items-center justify-center gap-3 mb-2">
+                    <Play className="h-6 w-6 text-purple-600" />
+                    <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                      Try AI Search Demo
+                    </span>
+                  </div>
+                  <p className="text-gray-700 font-medium">
+                    No login required • Ask in plain English • See results instantly
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </Link>
+        </motion.div>
+
+        {/* Role Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
+          {userTypes.map((userType, index) => {
             const Icon = userType.icon
             return (
-              <Card
+              <motion.div
                 key={userType.id}
-                className={`relative overflow-hidden border transition-all duration-500 hover:shadow-2xl hover:scale-105 cursor-pointer group bg-white/70 backdrop-blur-sm ${
-                  userType.popular
-                    ? 'border-blue-400 shadow-xl ring-2 ring-blue-200/50'
-                    : 'border-blue-100 hover:border-blue-300 hover:shadow-blue-100/50'
-                }`}
-                onClick={() => handleRoleSelect(userType)}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                onMouseEnter={() => setHoveredCard(userType.id)}
+                onMouseLeave={() => setHoveredCard(null)}
+                className="relative"
               >
-                {userType.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg px-4 py-1">
-                      <Star className="h-3 w-3 mr-1 fill-current" />
-                      Most Popular
-                    </Badge>
-                  </div>
-                )}
-
-                <div className="absolute top-0 right-0 w-32 h-32 transform translate-x-16 -translate-y-16">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-100/20 to-transparent rounded-full transform rotate-45"></div>
-                </div>
-
-                <CardHeader className="pb-6 pt-8">
-                  <div className={`w-18 h-18 rounded-2xl ${userType.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="h-9 w-9 text-white" />
-                  </div>
-                  <CardTitle className="text-2xl text-gray-900 mb-2">{userType.title}</CardTitle>
-                  <CardDescription className="text-lg text-gray-600 leading-relaxed">{userType.subtitle}</CardDescription>
-                  <div className="mt-6">
-                    <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                      {userType.pricing}
+                <Card
+                  className={`relative h-full overflow-hidden border-2 transition-all duration-300 cursor-pointer group ${
+                    userType.popular
+                      ? 'border-blue-300 shadow-xl'
+                      : 'border-gray-200 hover:border-blue-200'
+                  } ${hoveredCard === userType.id ? 'shadow-2xl scale-105' : 'shadow-lg'}`}
+                  onClick={() => handleRoleSelect(userType)}
+                >
+                  {/* Popular Badge */}
+                  {userType.popular && (
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                      <Badge className={`bg-gradient-to-r ${userType.gradient} text-white shadow-lg px-4 py-1`}>
+                        <Star className="h-3 w-3 mr-1 fill-current" />
+                        Most Popular
+                      </Badge>
                     </div>
-                    {userType.id === 'student' && (
-                      <p className="text-sm text-blue-600 font-semibold mt-1">Always free • Complete transparency</p>
-                    )}
-                  </div>
-                </CardHeader>
+                  )}
 
-                <CardContent className="space-y-6">
-                  <p className="text-gray-700 leading-relaxed">{userType.description}</p>
+                  {/* Gradient Background Effect */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${userType.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
 
-                  {/* Features */}
-                  <div className="space-y-4">
-                    <h4 className="font-bold text-gray-900 text-lg">What you get:</h4>
+                  <CardHeader className="pb-4 pt-8 space-y-4">
+                    {/* Icon */}
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${userType.gradient} flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
+                      <Icon className="h-8 w-8 text-white" />
+                    </div>
+
+                    {/* Title & Subtitle */}
+                    <div>
+                      <CardTitle className="text-2xl text-gray-900 mb-2">{userType.title}</CardTitle>
+                      <p className="text-sm text-gray-600">{userType.subtitle}</p>
+                    </div>
+
+                    {/* Pricing */}
+                    <div className="pt-2">
+                      <div className={`text-3xl font-bold bg-gradient-to-r ${userType.gradient} bg-clip-text text-transparent`}>
+                        {userType.pricing}
+                      </div>
+                    </div>
+                  </CardHeader>
+
+                  <CardContent className="space-y-6">
+                    {/* Description */}
+                    <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 rounded-lg p-4">
+                      {userType.description}
+                    </p>
+
+                    {/* Features */}
                     <div className="space-y-3">
-                      {userType.features.map((feature, index) => (
-                        <div key={index} className="flex items-start space-x-3">
-                          <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center mt-0.5 flex-shrink-0">
-                            <Check className="h-3 w-3 text-blue-600" />
+                      {userType.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start gap-3">
+                          <div className={`w-5 h-5 rounded-full bg-gradient-to-br ${userType.gradient} flex items-center justify-center mt-0.5 flex-shrink-0`}>
+                            <Check className="h-3 w-3 text-white" />
                           </div>
-                          <span className="text-gray-700 leading-relaxed">{feature}</span>
+                          <span className="text-sm text-gray-700 leading-relaxed">{feature}</span>
                         </div>
                       ))}
                     </div>
-                  </div>
 
-                  {/* CTA Buttons */}
-                  <div className="space-y-3">
-                    <Button
-                      className={`w-full group text-lg py-6 shadow-lg ${
-                        userType.popular
-                          ? 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800'
-                          : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700'
-                      }`}
-                      size="lg"
-                    >
-                      Get Started as {userType.title.split(' /')[0]}
-                      <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
+                    {/* CTA Buttons */}
+                    <div className="space-y-3 pt-4">
+                      <Button
+                        className={`w-full group bg-gradient-to-r ${userType.gradient} hover:shadow-lg text-base py-6`}
+                        size="lg"
+                      >
+                        Get Started
+                        <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
 
-                    <Button
-                      variant="outline"
-                      className="w-full group border-2 border-purple-300 text-purple-700 hover:bg-purple-50"
-                      size="lg"
-                      asChild
-                    >
-                      <Link href={`/demo/ai-search${userType.id === 'student' ? '' : userType.id === 'recruiter' ? '?tab=company' : '?tab=university'}`}>
-                        <Sparkles className="h-4 w-4 mr-2" />
-                        Try AI Search Demo First
-                      </Link>
-                    </Button>
-                  </div>
+                      <Button
+                        variant="outline"
+                        className="w-full group border-2 hover:bg-gray-50"
+                        size="lg"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          router.push(`/demo/ai-search${userType.id === 'student' ? '' : userType.id === 'recruiter' ? '?tab=company' : '?tab=university'}`)
+                        }}
+                      >
+                        <Play className="h-4 w-4 mr-2" />
+                        Try Demo First
+                      </Button>
+                    </div>
 
-                  {userType.id === 'student' && (
-                    <p className="text-sm text-center text-blue-600 font-medium">
-                      No credit card required • Set up in 2 minutes • Try AI Job Search demo
+                    {/* Footer Note */}
+                    <p className="text-xs text-center text-gray-500 pt-2">
+                      {userType.id === 'student' && 'No credit card • 2 min setup'}
+                      {userType.id === 'recruiter' && 'No subscription • Pay per result'}
+                      {userType.id === 'institute' && 'Always free • Optional add-ons'}
                     </p>
-                  )}
-                  {userType.id === 'recruiter' && (
-                    <p className="text-sm text-center text-blue-600 font-medium">
-                      Try AI Candidate Search demo • No subscriptions • Pay only for results
-                    </p>
-                  )}
-                  {userType.id === 'institute' && (
-                    <p className="text-sm text-center text-blue-600 font-medium">
-                      Try AI Search Hub demo • Search students & jobs • Always free
-                    </p>
-                  )}
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </motion.div>
             )
           })}
         </div>
 
-        {/* Value Propositions */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="text-center group">
-            <div className="bg-gradient-to-br from-blue-100 to-blue-200/80 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <Shield className="h-10 w-10 text-blue-600" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Complete Transparency</h3>
-            <p className="text-gray-600 leading-relaxed">
-              Direct institution integration ensures all academic records are authentic and verified with complete transparency.
-            </p>
-          </div>
-          <div className="text-center group">
-            <div className="bg-gradient-to-br from-blue-100 to-blue-200/80 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <Award className="h-10 w-10 text-blue-600" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Complete Skill Profiles</h3>
-            <p className="text-gray-600 leading-relaxed">
-              All project formats accepted. AI analyzes both hard skills (technical) and soft skills (teamwork, leadership) from your work with full transparency.
-            </p>
-          </div>
-          <div className="text-center group">
-            <div className="bg-gradient-to-br from-blue-100 to-blue-200/80 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-              <Zap className="h-10 w-10 text-blue-600" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">AI-Powered Matching</h3>
-            <p className="text-gray-600 leading-relaxed">
-              Advanced algorithms ensure the best fits between student skills and company needs through transparent matching processes.
-            </p>
-          </div>
-        </div>
-
-        {/* Universal Survey Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl p-12 text-white shadow-2xl">
-          <div className="max-w-5xl mx-auto text-center">
-            <div className="mb-8">
-              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Target className="h-8 w-8 text-white" />
+        {/* Bottom CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center"
+        >
+          <div className="bg-white/60 backdrop-blur-sm border border-gray-200 rounded-3xl p-8 sm:p-12 shadow-xl">
+            <div className="max-w-3xl mx-auto">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Sparkles className="h-8 w-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold mb-4">Help Us Build the Perfect Platform</h2>
-              <p className="text-xl text-white leading-relaxed">
-                Shape the future of transparent education-to-career connections.
-                Your insights drive our development for students, companies, and institutions.
+
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                Not sure which path to choose?
+              </h2>
+
+              <p className="text-lg text-gray-600 mb-8">
+                Try our AI search demo to see the platform in action, or contact us for a personalized walkthrough
               </p>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center group hover:bg-white/15 transition-colors">
-                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <GraduationCap className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Students & Graduates</h3>
-                <p className="text-white">Share how you want to showcase your academic achievements and find opportunities</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg" asChild>
+                  <Link href="/demo/ai-search">
+                    <Play className="h-5 w-5 mr-2" />
+                    Try Interactive Demo
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <Link href="/contact">
+                    Contact Us
+                    <ChevronRight className="h-5 w-5 ml-2" />
+                  </Link>
+                </Button>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center group hover:bg-white/15 transition-colors">
-                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <Building2 className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Companies & Recruiters</h3>
-                <p className="text-white">Tell us your recruitment challenges and ideal candidate discovery process</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center group hover:bg-white/15 transition-colors">
-                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <School className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Institutes & Career Services</h3>
-                <p className="text-white">Help us understand how to best support student placement and industry partnerships</p>
-              </div>
-            </div>
 
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8">
-              <h3 className="text-xl font-bold mb-4">What We Want to Learn From You:</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <Check className="h-5 w-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-white">Current challenges in your field</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Check className="h-5 w-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-white">Most important features for your needs</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Check className="h-5 w-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-white">How you currently solve problems</span>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <Check className="h-5 w-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-white">What transparency means to you</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Check className="h-5 w-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-white">Ideal platform experience</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Check className="h-5 w-5 text-white mt-0.5 flex-shrink-0" />
-                    <span className="text-white">Features you'd pay for vs expect free</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <p className="text-lg text-white">
-                <strong>7-minute survey</strong> • Early access to platform • Influence feature development • Beta testing opportunities
-              </p>
-              <Button
-                size="lg"
-                className="bg-white text-blue-600 hover:bg-blue-50 shadow-lg text-lg px-8 py-4 group"
-                asChild
-              >
-                <Link href="/survey">
-                  Take Platform Survey
-                  <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-              <p className="text-sm text-blue-200">
-                Survey responses from all user types help us build a platform that works perfectly for everyone
+              <p className="text-sm text-gray-500 mt-6">
+                Join 50+ universities and 1,200+ students already on the platform
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
+
+      <style jsx global>{`
+        @keyframes gradient {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+
+        .animate-gradient {
+          animation: gradient 3s ease infinite;
+        }
+      `}</style>
     </div>
   )
 }
