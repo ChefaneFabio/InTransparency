@@ -1,11 +1,23 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Fraunces, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 import { Toaster } from '@/components/ui/toaster'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 
-const inter = Inter({ subsets: ['latin'] })
+// Distinctive display serif for headlines
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap'
+})
+
+// Clean but unique sans for body text
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap'
+})
 
 export const metadata: Metadata = {
   title: 'InTransparency - AI-Powered Academic Showcase',
@@ -41,7 +53,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="InTransparency" />
       </head>
-      <body className={inter.className}>
+      <body className={`${dmSans.variable} ${fraunces.variable} font-sans antialiased`}>
         <ErrorBoundary>
           <Providers>
             {children}

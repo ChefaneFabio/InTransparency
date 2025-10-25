@@ -18,7 +18,7 @@ const segmentContent = {
     headline: (
       <>
         Stop Applying.{' '}
-        <span className="bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
           Start Getting Discovered.
         </span>
       </>
@@ -48,20 +48,17 @@ const segmentContent = {
       {
         icon: Sparkles,
         title: 'Complete Skill Profile',
-        description: 'Hard skills + soft skills automatically detected from your projects across ANY field',
-        color: 'teal'
+        description: 'Hard skills + soft skills automatically detected from your projects across ANY field'
       },
       {
         icon: Users,
         title: 'All Disciplines Welcome',
-        description: 'Tech, Business, Law, Engineering, Architecture, Design, Psychology, Fashion - we analyze everything',
-        color: 'blue'
+        description: 'Tech, Business, Law, Engineering, Architecture, Design, Psychology, Fashion - we analyze everything'
       },
       {
         icon: Trophy,
         title: 'Two Ways to Join',
-        description: 'University partner = automatic profile. Independent = upload projects + select courses',
-        color: 'emerald'
+        description: 'University partner = automatic profile. Independent = upload projects + select courses'
       }
     ],
     stats: {
@@ -75,7 +72,7 @@ const segmentContent = {
     headline: (
       <>
         Turn Career Services into a{' '}
-        <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
           Strategic Intelligence Hub.
         </span>
       </>
@@ -105,20 +102,17 @@ const segmentContent = {
       {
         icon: TrendingUp,
         title: 'Company Search Intelligence',
-        description: 'See which companies view your students → "Deloitte viewed 31 Economics students" = warm outreach opportunity',
-        color: 'purple'
+        description: 'See which companies view your students → "Deloitte viewed 31 Economics students" = warm outreach opportunity'
       },
       {
         icon: Shield,
         title: 'Data-Driven Counseling',
-        description: 'Show students what skills are trending → "Excel searched 89x this month" = tell Business students to learn it',
-        color: 'blue'
+        description: 'Show students what skills are trending → "Excel searched 89x this month" = tell Business students to learn it'
       },
       {
         icon: Users,
         title: 'Early Intervention Alerts',
-        description: 'Flag at-risk students → "87 seniors graduating in 60 days with zero views" = proactive career support',
-        color: 'indigo'
+        description: 'Flag at-risk students → "87 seniors graduating in 60 days with zero views" = proactive career support'
       }
     ],
     stats: {
@@ -132,7 +126,7 @@ const segmentContent = {
     headline: (
       <>
         Hire{' '}
-        <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
           Verified Talent,
         </span>{' '}
         Not Resumes.
@@ -163,20 +157,17 @@ const segmentContent = {
       {
         icon: Zap,
         title: 'AI Matching',
-        description: 'Find candidates based on verified project work',
-        color: 'cyan'
+        description: 'Find candidates based on verified project work'
       },
       {
         icon: Shield,
         title: 'Verified Skills',
-        description: 'University-authenticated portfolios and grades',
-        color: 'blue'
+        description: 'University-authenticated portfolios and grades'
       },
       {
         icon: TrendingUp,
         title: 'Hire 2x Faster',
-        description: 'Reduce time-to-hire with project-based assessment',
-        color: 'teal'
+        description: 'Reduce time-to-hire with project-based assessment'
       }
     ],
     stats: {
@@ -192,24 +183,11 @@ export function Hero() {
   const BadgeIcon = content.badgeIcon
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-sky-50 via-white to-emerald-50 py-20 sm:py-32">
-      {/* Background image with overlay */}
+    <section className="relative overflow-hidden hero-bg py-20 sm:py-32">
+      {/* Atmospheric orbs - teal and amber */}
       <div className="absolute inset-0 overflow-hidden">
-        <Image
-          src={IMAGES.hero.students}
-          alt="InTransparency platform"
-          fill
-          className="object-cover opacity-5"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-sky-50/90 via-white/95 to-emerald-50/90"></div>
-      </div>
-
-      {/* Animated background pattern */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-300/20 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-teal-300/20 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-emerald-300/20 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/10 rounded-full mix-blend-multiply filter blur-3xl"></div>
       </div>
 
       <div className="container relative z-10">
@@ -230,7 +208,7 @@ export function Hero() {
                     onClick={() => setSelectedSegment(segment)}
                     className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                       selectedSegment === segment
-                        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-md'
+                        ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                     }`}
                   >
@@ -271,21 +249,21 @@ export function Hero() {
                 </Badge>
               </motion.div>
 
-              {/* Main heading */}
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+              {/* Main heading with display font */}
+              <h1 className="text-4xl font-display font-bold tracking-tight text-foreground sm:text-6xl animate-fade-in">
                 {content.headline}
               </h1>
 
-              <p className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl mx-auto">
+              <p className="mt-6 text-lg leading-8 text-foreground/80 max-w-3xl mx-auto animate-fade-in animate-delay-200">
                 {content.description}
               </p>
 
-              {/* CTA Buttons */}
-              <div className="mt-10 flex items-center justify-center gap-x-6">
+              {/* CTA Buttons - teal/amber theme */}
+              <div className="mt-10 flex items-center justify-center gap-x-6 animate-fade-in animate-delay-400">
                 <Button
                   asChild
                   size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 >
                   <Link href={content.primaryCTA.href}>
                     {content.primaryCTA.text}
@@ -293,7 +271,7 @@ export function Hero() {
                   </Link>
                 </Button>
 
-                <Button variant="outline" size="lg" asChild className="hover:bg-gray-50">
+                <Button variant="outline" size="lg" asChild className="border-2">
                   <Link href={content.secondaryCTA.href}>
                     {content.secondaryCTA.text}
                   </Link>
@@ -301,11 +279,11 @@ export function Hero() {
               </div>
 
               {/* Quick benefits */}
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm">
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm animate-fade-in animate-delay-500">
                 {content.benefits.map((benefit, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm"
+                    className="flex items-center gap-2 bg-card/60 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm border border-border"
                   >
                     <benefit.icon className="h-4 w-4 text-green-600" />
                     <span className="text-gray-700">{benefit.text}</span>
@@ -342,11 +320,11 @@ export function Hero() {
                   className="flex flex-col items-center group"
                 >
                   <motion.div
-                    className={`rounded-full bg-${feature.color}-100 p-3 group-hover:bg-${feature.color}-200 transition-all duration-300 shadow-md group-hover:shadow-lg`}
+                    className="rounded-full bg-primary/10 p-3 group-hover:bg-primary/20 transition-all duration-300 shadow-md group-hover:shadow-lg"
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
                   >
-                    <feature.icon className={`h-6 w-6 text-${feature.color}-600`} />
+                    <feature.icon className="h-6 w-6 text-primary" />
                   </motion.div>
                   <h3 className="mt-4 text-lg font-semibold text-gray-900">{feature.title}</h3>
                   <p className="text-sm text-gray-600 text-center">
