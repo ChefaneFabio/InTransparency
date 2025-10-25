@@ -1,25 +1,18 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import {
-  Upload,
-  Brain,
-  MessageSquare,
-  Target,
   Users,
   Building2,
   GraduationCap,
   ArrowRight,
-  CheckCircle,
-  Sparkles,
-  TrendingUp,
-  Zap,
-  Clock,
-  Award
+  CheckCircle
 } from 'lucide-react'
+import { IMAGES } from '@/lib/images'
 
 export function HowItWorks() {
   const [activeStep, setActiveStep] = useState(0)
@@ -30,7 +23,7 @@ export function HowItWorks() {
       id: 1,
       title: 'Create Your Profile',
       description: 'Two ways: University partner = automatic profile. Independent = upload projects + select courses for instant profile',
-      icon: Upload,
+      image: IMAGES.students.student1,
       color: 'from-primary to-secondary',
       details: [
         'University Integrated: Profile created automatically from university data',
@@ -49,7 +42,7 @@ export function HowItWorks() {
       id: 2,
       title: 'AI Analysis & Scoring',
       description: 'Our advanced AI analyzes code quality, innovation level, complexity, and extracts relevant skills',
-      icon: Brain,
+      image: IMAGES.features.aiAnalysis,
       color: 'from-primary to-secondary',
       details: [
         'Code quality assessment using industry standards',
@@ -68,7 +61,7 @@ export function HowItWorks() {
       id: 3,
       title: 'Story Generation',
       description: 'Transform technical projects into compelling professional narratives that recruiters understand',
-      icon: MessageSquare,
+      image: IMAGES.companies.team,
       color: 'from-primary to-secondary',
       details: [
         'AI-powered professional storytelling',
@@ -86,7 +79,7 @@ export function HowItWorks() {
       id: 4,
       title: 'Smart Matching',
       description: 'Connect students with relevant opportunities and enable recruiters to find the perfect candidates',
-      icon: Target,
+      image: IMAGES.success.handshake,
       color: 'from-primary to-secondary',
       details: [
         'AI-powered skill and project matching',
@@ -176,7 +169,6 @@ export function HowItWorks() {
         <div className="flex justify-center mb-12 overflow-x-auto">
           <div className="flex space-x-2 p-2">
             {steps.map((step, index) => {
-              const Icon = step.icon
               return (
                 <button
                   key={step.id}
@@ -190,7 +182,14 @@ export function HowItWorks() {
                       : 'bg-white text-gray-600 hover:bg-gray-50 shadow border'
                   }`}
                 >
-                  <Icon className="h-5 w-5 mr-2" />
+                  <div className="relative w-5 h-5 mr-2 rounded-full overflow-hidden">
+                    <Image
+                      src={step.image}
+                      alt={step.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                   <span className="font-medium">{step.title}</span>
                 </button>
               )
@@ -203,8 +202,13 @@ export function HowItWorks() {
           {/* Left: Step Details */}
           <div className="space-y-6">
             <div className="flex items-center space-x-4">
-              <div className={`w-16 h-16 bg-gradient-to-r ${currentStep.color} rounded-2xl flex items-center justify-center shadow-lg`}>
-                <currentStep.icon className="h-8 w-8 text-white" />
+              <div className="relative w-16 h-16 rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src={currentStep.image}
+                  alt={currentStep.title}
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div>
                 <div className="text-sm font-medium text-gray-700 mb-1">Step {currentStep.id}</div>

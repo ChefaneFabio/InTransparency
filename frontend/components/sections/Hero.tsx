@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { ArrowRight, Sparkles, Users, Trophy, Star, CheckCircle2, GraduationCap, Building2, Briefcase, TrendingUp, Shield, Zap } from 'lucide-react'
+import { ArrowRight, Star, CheckCircle2, GraduationCap, Building2, Briefcase } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { IMAGES } from '@/lib/images'
 
@@ -46,17 +46,17 @@ const segmentContent = {
     ],
     features: [
       {
-        icon: Sparkles,
+        image: IMAGES.features.aiAnalysis,
         title: 'Complete Skill Profile',
         description: 'Hard skills + soft skills automatically detected from your projects across ANY field'
       },
       {
-        icon: Users,
+        image: IMAGES.students.student4,
         title: 'All Disciplines Welcome',
         description: 'Tech, Business, Law, Engineering, Architecture, Design, Psychology, Fashion - we analyze everything'
       },
       {
-        icon: Trophy,
+        image: IMAGES.universities.graduation,
         title: 'Two Ways to Join',
         description: 'University partner = automatic profile. Independent = upload projects + select courses'
       }
@@ -100,17 +100,17 @@ const segmentContent = {
     ],
     features: [
       {
-        icon: TrendingUp,
+        image: IMAGES.features.dataAnalytics,
         title: 'Company Search Intelligence',
         description: 'See which companies view your students → "Deloitte viewed 31 Economics students" = warm outreach opportunity'
       },
       {
-        icon: Shield,
+        image: IMAGES.recruiters.recruiter2,
         title: 'Data-Driven Counseling',
         description: 'Show students what skills are trending → "Excel searched 89x this month" = tell Business students to learn it'
       },
       {
-        icon: Users,
+        image: IMAGES.universities.campus,
         title: 'Early Intervention Alerts',
         description: 'Flag at-risk students → "87 seniors graduating in 60 days with zero views" = proactive career support'
       }
@@ -155,17 +155,17 @@ const segmentContent = {
     ],
     features: [
       {
-        icon: Zap,
+        image: IMAGES.features.search,
         title: 'AI Matching',
         description: 'Find candidates based on verified project work'
       },
       {
-        icon: Shield,
+        image: IMAGES.universities.library,
         title: 'Verified Skills',
         description: 'University-authenticated portfolios and grades'
       },
       {
-        icon: TrendingUp,
+        image: IMAGES.success.handshake,
         title: 'Hire 2x Faster',
         description: 'Reduce time-to-hire with project-based assessment'
       }
@@ -320,11 +320,16 @@ export function Hero() {
                   className="flex flex-col items-center group"
                 >
                   <motion.div
-                    className="rounded-full bg-primary/10 p-3 group-hover:bg-primary/20 transition-all duration-300 shadow-md group-hover:shadow-lg"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
+                    className="relative rounded-full overflow-hidden w-16 h-16 shadow-md group-hover:shadow-lg transition-all duration-300"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <feature.icon className="h-6 w-6 text-primary" />
+                    <Image
+                      src={feature.image}
+                      alt={feature.title}
+                      fill
+                      className="object-cover"
+                    />
                   </motion.div>
                   <h3 className="mt-4 text-lg font-semibold text-gray-900">{feature.title}</h3>
                   <p className="text-sm text-gray-600 text-center">
