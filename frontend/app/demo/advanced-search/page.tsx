@@ -33,11 +33,29 @@ type DemoType = 'student' | 'company' | 'university'
 
 // Mock data
 const mockJobs = [
+  // Italy
   { id: '1', title: 'Frontend Developer', company: 'TechStartup', location: 'Milan, IT', salary: '€35,000 - €45,000', type: 'Full-time', match: 94, posted: '2 days ago', applicants: 45 },
   { id: '2', title: 'Junior Software Engineer', company: 'InnovateCo', location: 'Remote', salary: '€30,000 - €40,000', type: 'Full-time', match: 89, posted: '1 week ago', applicants: 120 },
   { id: '101', title: 'Stage Curriculare - Software Development', company: 'Microsoft Italia', location: 'Milan, IT', salary: '€800/month', type: 'Internship', duration: '6 months', match: 96, posted: '3 days ago', applicants: 89, validForDegree: true },
   { id: '102', title: 'Tirocinio Data Science', company: 'IBM Rome', location: 'Rome, IT', salary: '€900/month', type: 'Internship', duration: '6 months', match: 93, posted: '5 days ago', applicants: 67, validForDegree: true },
   { id: '3', title: 'React Developer', company: 'StartupHub', location: 'Rome, IT', salary: '€32,000 - €42,000', type: 'Full-time', match: 87, posted: '1 week ago', applicants: 78 },
+
+  // Germany
+  { id: '201', title: 'Software Engineer', company: 'SAP Berlin', location: 'Berlin, DE', salary: '€50,000 - €65,000', type: 'Full-time', match: 92, posted: '4 days ago', applicants: 156 },
+  { id: '202', title: 'Data Analyst', company: 'BMW Munich', location: 'Munich, DE', salary: '€48,000 - €60,000', type: 'Full-time', match: 88, posted: '1 week ago', applicants: 89 },
+
+  // France
+  { id: '301', title: 'Full Stack Developer', company: 'BlaBlaCar', location: 'Paris, FR', salary: '€42,000 - €55,000', type: 'Full-time', match: 91, posted: '5 days ago', applicants: 203 },
+  { id: '302', title: 'Machine Learning Engineer', company: 'Criteo', location: 'Paris, FR', salary: '€50,000 - €70,000', type: 'Full-time', match: 95, posted: '3 days ago', applicants: 178 },
+
+  // Netherlands
+  { id: '401', title: 'Backend Developer', company: 'Booking.com', location: 'Amsterdam, NL', salary: '€55,000 - €70,000', type: 'Full-time', match: 93, posted: '2 days ago', applicants: 234 },
+
+  // Spain
+  { id: '501', title: 'UX Designer', company: 'Glovo', location: 'Barcelona, ES', salary: '€35,000 - €45,000', type: 'Full-time', match: 86, posted: '1 week ago', applicants: 67 },
+
+  // UK
+  { id: '601', title: 'DevOps Engineer', company: 'Revolut', location: 'London, UK', salary: '£50,000 - £65,000', type: 'Full-time', match: 90, posted: '6 days ago', applicants: 312 },
 ]
 
 const mockCandidates = [
@@ -68,7 +86,14 @@ const universities = [
   'Università di Pisa'
 ]
 
-const cities = ['Milan', 'Rome', 'Turin', 'Florence', 'Bologna', 'Naples']
+const cities = [
+  // Italy
+  'Milan', 'Rome', 'Turin', 'Florence', 'Bologna', 'Naples',
+  // Europe
+  'Berlin', 'Munich', 'Paris', 'Lyon', 'Amsterdam', 'Rotterdam',
+  'Barcelona', 'Madrid', 'London', 'Manchester', 'Vienna', 'Brussels',
+  'Dublin', 'Lisbon', 'Prague', 'Copenhagen', 'Stockholm', 'Remote'
+]
 
 const fields = [
   'STEM',
@@ -207,6 +232,7 @@ export default function AdvancedSearchPage() {
   const [activeDemo, setActiveDemo] = useState<DemoType>('student')
   const [searchQuery, setSearchQuery] = useState('')
   const [showFilters, setShowFilters] = useState(true)
+  const [universitySearchType, setUniversitySearchType] = useState<'students' | 'companies'>('students')
 
   // Student filters
   const [jobType, setJobType] = useState<string[]>([])
@@ -240,12 +266,14 @@ export default function AdvancedSearchPage() {
       totalCount: '12,847'
     },
     university: {
-      title: 'Advanced Search Hub',
-      subtitle: 'Search students and opportunities',
+      title: universitySearchType === 'students' ? 'Search Your Students' : 'Search Job Opportunities',
+      subtitle: universitySearchType === 'students'
+        ? 'Filter students by skills, courses, projects, and more'
+        : 'Find European job opportunities for your students',
       color: 'from-indigo-600 to-purple-600',
       icon: Users,
-      results: mockJobs,
-      totalCount: '8,934'
+      results: universitySearchType === 'students' ? mockCandidates : mockJobs,
+      totalCount: universitySearchType === 'students' ? '12,847' : '18,934'
     }
   }
 
@@ -318,6 +346,28 @@ export default function AdvancedSearchPage() {
           </TabsList>
         </Tabs>
 
+        {/* University Search Type Toggle */}
+        {activeDemo === 'university' && (
+          <div className="mb-6 flex justify-center gap-4">
+            <Button
+              variant={universitySearchType === 'students' ? 'default' : 'outline'}
+              onClick={() => setUniversitySearchType('students')}
+              className={universitySearchType === 'students' ? 'bg-gradient-to-r from-primary to-secondary' : ''}
+            >
+              <Users className="h-4 w-4 mr-2" />
+              Search Students
+            </Button>
+            <Button
+              variant={universitySearchType === 'companies' ? 'default' : 'outline'}
+              onClick={() => setUniversitySearchType('companies')}
+              className={universitySearchType === 'companies' ? 'bg-gradient-to-r from-primary to-secondary' : ''}
+            >
+              <Briefcase className="h-4 w-4 mr-2" />
+              Search Companies/Jobs
+            </Button>
+          </div>
+        )}
+
         {/* Search Bar */}
         <Card className="mb-6 shadow-lg">
           <CardContent className="p-4">
@@ -332,7 +382,9 @@ export default function AdvancedSearchPage() {
                       ? 'Search by job title, company, or keywords...'
                       : activeDemo === 'company'
                       ? 'Search by skills, major, or university...'
-                      : 'Search students or jobs...'
+                      : universitySearchType === 'students'
+                      ? 'Search your students by skills, courses, major...'
+                      : 'Search job opportunities across Europe...'
                   }
                   className="pl-10 h-12 text-base"
                 />
@@ -595,6 +647,208 @@ export default function AdvancedSearchPage() {
                         </div>
                         <p className="text-xs text-gray-500 mt-2">{projectTypes.length} project types</p>
                       </div>
+                    </>
+                  )}
+
+                  {/* University Filters */}
+                  {activeDemo === 'university' && (
+                    <>
+                      {universitySearchType === 'students' ? (
+                        <>
+                          {/* Same filters as company search */}
+                          {/* Field/Discipline */}
+                          <div>
+                            <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                              <Briefcase className="h-4 w-4" />
+                              Field/Discipline
+                            </h3>
+                            <div className="space-y-2">
+                              {fields.map((field) => (
+                                <label key={field} className="flex items-center gap-2 cursor-pointer">
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedFields.includes(field)}
+                                    onChange={() => toggleFilter(selectedFields, field, setSelectedFields)}
+                                    className="rounded border-gray-300"
+                                  />
+                                  <span className="text-sm">{field}</span>
+                                </label>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Major */}
+                          <div>
+                            <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                              <Star className="h-4 w-4" />
+                              Major
+                            </h3>
+                            <div className="space-y-2 max-h-48 overflow-y-auto">
+                              {majors.map((major) => (
+                                <label key={major} className="flex items-center gap-2 cursor-pointer">
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedMajors.includes(major)}
+                                    onChange={() => toggleFilter(selectedMajors, major, setSelectedMajors)}
+                                    className="rounded border-gray-300"
+                                  />
+                                  <span className="text-sm text-gray-700">{major}</span>
+                                </label>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* GPA */}
+                          <div>
+                            <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                              <TrendingUp className="h-4 w-4" />
+                              Minimum GPA
+                            </h3>
+                            <p className="text-sm text-gray-600 mb-2">{gpaMin}/30</p>
+                            <input
+                              type="range"
+                              min="18"
+                              max="30"
+                              value={gpaMin}
+                              onChange={(e) => setGpaMin(parseInt(e.target.value))}
+                              className="w-full"
+                            />
+                          </div>
+
+                          {/* Skills */}
+                          <div>
+                            <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                              <Filter className="h-4 w-4" />
+                              Skills & Competencies
+                            </h3>
+                            <p className="text-xs text-gray-500 mb-2">Tech, Business, Creative, Legal & more</p>
+                            <div className="space-y-2 max-h-48 overflow-y-auto">
+                              {allSkills.slice(0, 20).map((skill) => (
+                                <label key={skill} className="flex items-center gap-2 cursor-pointer">
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedSkills.includes(skill)}
+                                    onChange={() => toggleFilter(selectedSkills, skill, setSelectedSkills)}
+                                    className="rounded border-gray-300"
+                                  />
+                                  <span className="text-sm text-gray-700">{skill}</span>
+                                </label>
+                              ))}
+                            </div>
+                            <p className="text-xs text-gray-500 mt-2">{allSkills.length}+ skills available</p>
+                          </div>
+
+                          {/* Courses */}
+                          <div>
+                            <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                              <GraduationCap className="h-4 w-4" />
+                              Specific Courses
+                            </h3>
+                            <p className="text-xs text-gray-500 mb-2">Filter by individual courses taken</p>
+                            <div className="space-y-2 max-h-48 overflow-y-auto">
+                              {courses.map((course) => (
+                                <label key={course} className="flex items-center gap-2 cursor-pointer">
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedCourses.includes(course)}
+                                    onChange={() => toggleFilter(selectedCourses, course, setSelectedCourses)}
+                                    className="rounded border-gray-300"
+                                  />
+                                  <span className="text-sm text-gray-700">{course}</span>
+                                </label>
+                              ))}
+                            </div>
+                            <p className="text-xs text-gray-500 mt-2">{courses.length} courses available</p>
+                          </div>
+
+                          {/* Project Types */}
+                          <div>
+                            <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                              <Briefcase className="h-4 w-4" />
+                              Project Types
+                            </h3>
+                            <p className="text-xs text-gray-500 mb-2">Filter by project experience</p>
+                            <div className="space-y-2 max-h-48 overflow-y-auto">
+                              {projectTypes.map((projectType) => (
+                                <label key={projectType} className="flex items-center gap-2 cursor-pointer">
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedProjectTypes.includes(projectType)}
+                                    onChange={() => toggleFilter(selectedProjectTypes, projectType, setSelectedProjectTypes)}
+                                    className="rounded border-gray-300"
+                                  />
+                                  <span className="text-sm text-gray-700">{projectType}</span>
+                                </label>
+                              ))}
+                            </div>
+                            <p className="text-xs text-gray-500 mt-2">{projectTypes.length} project types</p>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          {/* Job Type */}
+                          <div>
+                            <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                              <Briefcase className="h-4 w-4" />
+                              Job Type
+                            </h3>
+                            <div className="space-y-2">
+                              {['Full-time', 'Internship', 'Part-time', 'Remote'].map((type) => (
+                                <label key={type} className="flex items-center gap-2 cursor-pointer">
+                                  <input
+                                    type="checkbox"
+                                    checked={jobType.includes(type)}
+                                    onChange={() => toggleFilter(jobType, type, setJobType)}
+                                    className="rounded border-gray-300"
+                                  />
+                                  <span className="text-sm">{type}</span>
+                                </label>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Location */}
+                          <div>
+                            <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                              <MapPin className="h-4 w-4" />
+                              Location (Europe)
+                            </h3>
+                            <div className="space-y-2 max-h-64 overflow-y-auto">
+                              {cities.map((city) => (
+                                <label key={city} className="flex items-center gap-2 cursor-pointer">
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedCities.includes(city)}
+                                    onChange={() => toggleFilter(selectedCities, city, setSelectedCities)}
+                                    className="rounded border-gray-300"
+                                  />
+                                  <span className="text-sm">{city}</span>
+                                </label>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Salary Range */}
+                          <div>
+                            <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                              <DollarSign className="h-4 w-4" />
+                              Salary Range
+                            </h3>
+                            <p className="text-sm text-gray-600 mb-2">
+                              €{salaryRange[0].toLocaleString()} - €{salaryRange[1].toLocaleString()}
+                            </p>
+                            <input
+                              type="range"
+                              min="0"
+                              max="100000"
+                              step="5000"
+                              value={salaryRange[1]}
+                              onChange={(e) => setSalaryRange([0, parseInt(e.target.value)])}
+                              className="w-full"
+                            />
+                          </div>
+                        </>
+                      )}
                     </>
                   )}
                 </CardContent>
