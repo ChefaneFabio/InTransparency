@@ -469,7 +469,7 @@ export default function CareerCentersPage() {
           <div className="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-white">
             <h2 className="text-3xl font-bold mb-4">Ready to Transform Career Services?</h2>
             <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-              Join 50+ universities using data-driven career guidance across ALL disciplines
+              Enable data-driven career guidance across ALL disciplines with zero cost and zero burden
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8" asChild>

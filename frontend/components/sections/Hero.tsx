@@ -27,7 +27,7 @@ const segmentContent = {
       <>
         Upload projects in 2 minutes → AI analyzes hard + soft skills → Companies find YOU for specific competencies. Zero endless applications.
         <br />
-        <strong className="text-gray-900">🚀 Works for ALL fields: Tech, Business, Law, Engineering, Architecture, Psychology, Fashion & more. University partner? Automatic profile. No university? Upload projects + select courses = instant profile.</strong>
+        <strong className="text-gray-900">🚀 Works for ALL fields: Tech, Business, Law, Engineering, Architecture, Psychology, Fashion & more. Upload projects + select courses = instant verified profile.</strong>
       </>
     ),
     primaryCTA: {
@@ -65,8 +65,8 @@ const segmentContent = {
       }
     ],
     stats: {
-      label: 'Trusted by students from',
-      value: '50+ universities worldwide'
+      label: 'Join students building verified portfolios',
+      value: 'across all disciplines and fields'
     }
   },
   universities: {
@@ -122,8 +122,8 @@ const segmentContent = {
       }
     ],
     stats: {
-      label: 'Trusted by',
-      value: '50+ universities worldwide'
+      label: 'Seamless integration with',
+      value: 'university data systems (Esse3, Moodle, etc.)'
     }
   },
   companies: {
@@ -180,8 +180,8 @@ const segmentContent = {
       }
     ],
     stats: {
-      label: 'Finding talent from',
-      value: '50+ top universities'
+      label: 'Access verified talent',
+      value: 'with projects, grades, and skills analysis'
     }
   }
 }
@@ -315,28 +315,17 @@ export function Hero() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Universities/Stats */}
+          {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-16 pt-8 border-t border-gray-200"
           >
-            <p className="text-sm font-medium text-gray-700 mb-4 text-center flex items-center justify-center gap-2">
+            <p className="text-sm font-medium text-gray-700 text-center flex items-center justify-center gap-2">
               <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
               {content.stats.label} {content.stats.value}
             </p>
-            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-              {['MIT', 'Stanford', 'Georgia Tech', 'UC Berkeley', 'TU Munich'].map((uni) => (
-                <motion.span
-                  key={uni}
-                  whileHover={{ scale: 1.1, opacity: 1 }}
-                  className="text-xl font-bold text-gray-600 cursor-default"
-                >
-                  {uni}
-                </motion.span>
-              ))}
-            </div>
           </motion.div>
 
           {/* Feature cards - Dynamic based on segment */}

@@ -22,10 +22,10 @@ const studentPlans = [
     popular: true,
     badge: '🎓 Always Free',
     features: [
-      'Two onboarding paths: University partner = automatic profile OR Independent = upload + select courses',
+      'Simple onboarding: Upload projects + select courses = instant verified profile',
       'Unlimited projects (all formats)',
       'Complete AI analysis (hard + soft skills)',
-      'Institution verification (when university is partner)',
+      'University integration available for institutions',
       'AI Job Search',
       'Job matching & recommendations',
       'Direct messaging with recruiters',
@@ -192,7 +192,7 @@ export default function PricingPage() {
       case 'students': return {
         badge: 'For Students',
         title: 'Complete Platform Access - Free Forever',
-        subtitle: 'University partner? Automatic profile. No university? Upload projects + select courses = instant profile. All features free, no paywalls.'
+        subtitle: 'Upload projects + select courses = instant verified profile. All features free, no paywalls, no limits.'
       }
       case 'institutes': return {
         badge: 'For Universities/ITS',
@@ -414,7 +414,7 @@ export default function PricingPage() {
               {[
                 {
                   question: 'How do students create profiles?',
-                  answer: 'Two ways: (1) If your university is a partner, your profile is created AUTOMATICALLY from university data. (2) If not, you upload projects + select courses, and we identify them to create your complete profile. Both ways: 100% free, < 5 minutes.'
+                  answer: 'Simple! Upload your projects (code, documents, presentations, etc.) + select your courses, and our AI analyzes everything to create your complete verified profile. 100% free, takes < 5 minutes. Universities can also integrate to automatically create student profiles.'
                 },
                 {
                   question: 'Do universities have to pay?',

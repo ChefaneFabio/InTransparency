@@ -130,8 +130,8 @@ export default function ContactPage() {
                         </div>
                         <div>
                           <h3 className="font-semibold text-gray-900">Call Us</h3>
-                          <p className="text-gray-600">+1 (555) 123-4567</p>
-                          <p className="text-sm text-gray-700">Mon-Fri, 9AM-6PM PST</p>
+                          <p className="text-gray-600">+39 348 170 1615</p>
+                          <p className="text-sm text-gray-700">Mon-Fri, 9AM-6PM CET</p>
                         </div>
                       </div>
                     </CardContent>
@@ -144,9 +144,8 @@ export default function ContactPage() {
                           <MapPin className="h-6 w-6 text-purple-600" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900">Visit Us</h3>
-                          <p className="text-gray-600">123 Innovation Street</p>
-                          <p className="text-gray-600">San Francisco, CA 94102</p>
+                          <h3 className="font-semibold text-gray-900">Based in</h3>
+                          <p className="text-gray-600">Bergamo, Italy</p>
                         </div>
                       </div>
                     </CardContent>
@@ -452,8 +451,8 @@ export default function ContactPage() {
                 <CardContent className="p-6">
                   <Clock className="h-8 w-8 text-blue-600 mx-auto mb-4" />
                   <h3 className="font-semibold text-gray-900 mb-2">Support Hours</h3>
-                  <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM PST</p>
-                  <p className="text-gray-600">Saturday: 10:00 AM - 4:00 PM PST</p>
+                  <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM CET</p>
+                  <p className="text-gray-600">Saturday: 10:00 AM - 4:00 PM CET</p>
                   <p className="text-gray-600">Sunday: Closed</p>
                 </CardContent>
               </Card>

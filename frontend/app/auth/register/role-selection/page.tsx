@@ -48,7 +48,7 @@ const userTypes: UserType[] = [
       'AI Job Search: "Find frontend jobs Milan startup"',
       'Companies find YOU - passive discovery',
       'Complete hard + soft skills analysis',
-      'University verification (if partnered)',
+      'Projects + grades verified profile',
       'Direct messages from recruiters'
     ],
     pricing: 'FREE',
@@ -68,7 +68,7 @@ const userTypes: UserType[] = [
       'Verified projects + AI-analyzed soft skills',
       'Pay €10 only per contact',
       'No subscriptions, credits never expire',
-      'University-verified grades & courses'
+      'See grades, courses & project portfolios'
     ],
     pricing: 'Browse Free → €10/contact',
     registrationPath: '/auth/register/recruiter'
@@ -142,7 +142,7 @@ export default function RoleSelectionPage() {
         >
           <Badge className="mb-6 bg-white/80 backdrop-blur-sm text-blue-700 border-blue-200 shadow-sm">
             <Shield className="h-3 w-3 mr-1" />
-            Trusted by 50+ universities worldwide
+            Verified projects across all disciplines
           </Badge>
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
@@ -364,7 +364,7 @@ export default function RoleSelectionPage() {
               </div>
 
               <p className="text-sm text-gray-500 mt-6">
-                Join 50+ universities and 1,200+ students already on the platform
+                Join students building verified portfolios across all disciplines
               </p>
             </div>
           </div>
