@@ -49,10 +49,10 @@ const userTypes: UserType[] = [
       'Free forever - no hidden costs',
       'Upload projects in ANY format',
       'Complete profile: hard skills + soft skills',
+      '🆕 AI Job Search: "Find me frontend jobs in Milan startup"',
+      'Companies find YOU - zero endless applications',
       'Institution collaboration for verified data',
-      'Direct messages from recruiters',
-      'CV optimization and templates',
-      'Job matching algorithm'
+      'Direct messages from recruiters'
     ],
     pricing: 'FREE',
     popular: true,
@@ -62,17 +62,17 @@ const userTypes: UserType[] = [
     id: 'institute',
     title: 'Institute / Career Services',
     subtitle: 'Enhance your students\' career outcomes',
-    description: 'Integrate with our platform to boost student placement rates and build stronger industry partnerships. Perfect for universities, ITS, and all higher education institutions.',
+    description: 'Integrate with us → Automatic student profiles → Companies search autonomously → Save 40h/month. Zero manual work.',
     icon: School,
     color: 'bg-gradient-to-br from-emerald-400 via-teal-500 to-blue-500',
     features: [
-      'Free trial for institutions',
-      'Student placement tracking',
-      'Industry partnership tools',
+      'Always free - pay only for customizations',
+      '🆕 AI Search Hub: Search students AND jobs',
+      'Automatic student profile creation (if partnered)',
+      'Student placement tracking & analytics',
+      'Save 40+ hours/month on manual matching',
       'Real-time employment analytics',
-      'Career outcome measurement',
-      'Custom institution branding',
-      'API integration with SIS'
+      'Industry partnership tools'
     ],
     pricing: 'Custom pricing',
     registrationPath: '/auth/register/university'
@@ -81,19 +81,19 @@ const userTypes: UserType[] = [
     id: 'recruiter',
     title: 'Company / Recruiter',
     subtitle: 'Find verified talent from any institution',
-    description: 'Access verified graduates with real project portfolios and academic credentials through our transparent platform.',
+    description: 'AI search: "Data engineer Python Spark 27+ GPA Milan" → See 5-10 verified matches → Pay €10 per contact. Zero screening 500 CVs.',
     icon: Building2,
     color: 'bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600',
     features: [
-      '7-day free trial',
-      'Search verified student profiles',
-      'Advanced AI matching algorithms',
-      'Direct messaging and InMail',
-      'Project portfolio analysis',
-      'Institution GPA verification',
+      'Browse database FREE - pay €10 per contact only',
+      '🆕 AI Candidate Search: "Cybersecurity Roma 30/30"',
+      'See verified projects + AI-analyzed soft skills',
+      'Zero screening hundreds of CVs',
+      'Direct messaging to matched candidates',
+      'Institution GPA & grade verification',
       'Advanced analytics & reporting'
     ],
-    pricing: 'From €97/month',
+    pricing: 'Browse Free → €10 per contact',
     registrationPath: '/auth/register/recruiter'
   }
 ]
@@ -177,8 +177,19 @@ export default function RoleSelectionPage() {
             </div>
           </div>
 
-          <div className="text-lg text-gray-700">
+          <div className="text-lg text-gray-700 mb-4">
             Choose your path and experience complete transparency in your journey.
+          </div>
+
+          <div className="inline-block bg-gradient-to-r from-purple-100 to-blue-100 border-2 border-purple-300 rounded-2xl px-8 py-4 shadow-lg">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <Sparkles className="h-6 w-6 text-purple-600" />
+              <span className="text-2xl font-bold text-purple-900">NEW: AI Conversational Search</span>
+              <Sparkles className="h-6 w-6 text-purple-600" />
+            </div>
+            <p className="text-purple-800 font-medium">
+              Try our AI search demos after registration - ask in plain English what you need!
+            </p>
           </div>
         </div>
 
@@ -258,7 +269,17 @@ export default function RoleSelectionPage() {
 
                   {userType.id === 'student' && (
                     <p className="text-sm text-center text-blue-600 font-medium">
-                      No credit card required • Set up in 2 minutes
+                      No credit card required • Set up in 2 minutes • Try AI Job Search demo
+                    </p>
+                  )}
+                  {userType.id === 'recruiter' && (
+                    <p className="text-sm text-center text-blue-600 font-medium">
+                      Try AI Candidate Search demo • No subscriptions • Pay only for results
+                    </p>
+                  )}
+                  {userType.id === 'institute' && (
+                    <p className="text-sm text-center text-blue-600 font-medium">
+                      Try AI Search Hub demo • Search students & jobs • Always free
                     </p>
                   )}
                 </CardContent>
