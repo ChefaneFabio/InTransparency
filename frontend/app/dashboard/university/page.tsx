@@ -9,11 +9,11 @@ import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Progress } from '@/components/ui/progress'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { 
-  Users, 
-  TrendingUp, 
-  Award, 
-  Eye, 
+import {
+  Users,
+  TrendingUp,
+  Award,
+  Eye,
   GraduationCap,
   Building,
   Star,
@@ -39,7 +39,8 @@ import {
   Activity,
   Clock,
   DollarSign,
-  UserPlus
+  UserPlus,
+  Sparkles
 } from 'lucide-react'
 
 export default function UniversityDashboard() {
@@ -321,22 +322,22 @@ export default function UniversityDashboard() {
           </p>
         </div>
         <div className="flex space-x-3">
+          <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700" asChild>
+            <Link href="/dashboard/university/ai-search">
+              <Sparkles className="mr-2 h-4 w-4" />
+              AI Search (NEW!)
+            </Link>
+          </Button>
           <Button variant="outline" asChild>
             <Link href="/dashboard/university/analytics">
               <BarChart3 className="mr-2 h-4 w-4" />
-              Advanced Analytics
+              Analytics
             </Link>
           </Button>
           <Button variant="outline" asChild>
-            <Link href="/dashboard/university/reports">
-              <Download className="mr-2 h-4 w-4" />
-              Generate Report
-            </Link>
-          </Button>
-          <Button asChild>
             <Link href="/dashboard/university/students">
               <Users className="mr-2 h-4 w-4" />
-              Manage Students
+              Students
             </Link>
           </Button>
         </div>
@@ -732,7 +733,13 @@ export default function UniversityDashboard() {
               <CardTitle>Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <Button className="w-full justify-start" asChild>
+              <Button className="w-full justify-start bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700" asChild>
+                <Link href="/dashboard/university/ai-search">
+                  <Sparkles className="mr-2 h-4 w-4" />
+                  AI Search Hub (NEW!)
+                </Link>
+              </Button>
+              <Button variant="outline" className="w-full justify-start" asChild>
                 <Link href="/dashboard/university/students/add">
                   <UserPlus className="mr-2 h-4 w-4" />
                   Add Student
