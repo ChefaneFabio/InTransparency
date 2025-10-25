@@ -121,8 +121,14 @@ export function HowItWorks() {
     {
       icon: GraduationCap,
       title: 'For Universities',
-      description: 'Track student outcomes and strengthen industry partnerships',
-      features: ['Placement analytics', 'Industry insights', 'Partnership management', 'Student success tracking']
+      description: 'Turn your Career Center into a strategic intelligence hub. Stop guessing. Start knowing.',
+      features: [
+        'See which companies search your students (Deloitte viewed 31 Economics students → time for outreach?)',
+        'Data-driven career advice (Excel searched 89x → tell students to learn it)',
+        'Fix at-risk profiles before graduation (87 seniors with zero views = early intervention)',
+        'Give departments curriculum feedback (Add Docker → hired 60% faster)',
+        'Prove your impact (Dashboard: 156 contacts → 23 hires → 47 days avg)'
+      ]
     }
   ]
 

@@ -103,7 +103,7 @@ export function Testimonials() {
             </div>
             <div className="p-6">
               <p className="text-gray-600">
-                Connect your students with career opportunities while tracking outcomes and building industry partnerships.
+                Turn Career Services into an intelligence hub. See which companies search your students, give data-driven career advice, fix at-risk profiles before graduation. Always free.
               </p>
             </div>
           </motion.div>

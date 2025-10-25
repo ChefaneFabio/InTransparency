@@ -74,17 +74,17 @@ const segmentContent = {
     badgeIcon: Building2,
     headline: (
       <>
-        Connect Students with{' '}
+        Turn Career Services into a{' '}
         <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-          Career Opportunities.
+          Strategic Intelligence Hub.
         </span>
       </>
     ),
     description: (
       <>
-        Partner with us → Automatic student profile creation across ALL departments (STEM, Business, Law, Engineering, Creative, etc.) → Companies search autonomously → Real-time placement dashboard → Save 40h/month. Zero manual work.
+        Stop guessing. Start knowing. See which companies search your students (Deloitte viewed 31 Economics → time for outreach?). Provide data-driven career advice (Excel searched 89x → tell students to learn it). Fix at-risk profiles before graduation (87 seniors with zero views). Save 40h/month on manual CV collection and matching.
         <br />
-        <strong className="text-gray-900">🚀 Always Free - Works for every discipline from Computer Science to Fashion Design.</strong>
+        <strong className="text-gray-900">🚀 Always Free - Works for ALL disciplines from Computer Science to Fashion Design.</strong>
       </>
     ),
     primaryCTA: {
@@ -97,27 +97,27 @@ const segmentContent = {
       href: '/pricing'
     },
     benefits: [
-      { icon: CheckCircle2, text: 'Save 40h/month' },
-      { icon: CheckCircle2, text: 'Real-time placement tracking' },
-      { icon: CheckCircle2, text: 'Zero manual matching' }
+      { icon: CheckCircle2, text: 'See which companies search your students' },
+      { icon: CheckCircle2, text: 'Give data-driven career advice' },
+      { icon: CheckCircle2, text: 'Fix at-risk profiles before graduation' }
     ],
     features: [
       {
         icon: TrendingUp,
-        title: 'Career Analytics',
-        description: 'Track student employment outcomes and salary data',
+        title: 'Company Search Intelligence',
+        description: 'See which companies view your students → "Deloitte viewed 31 Economics students" = warm outreach opportunity',
         color: 'purple'
       },
       {
         icon: Shield,
-        title: 'Verified Credentials',
-        description: 'Authenticate academic records and projects',
+        title: 'Data-Driven Counseling',
+        description: 'Show students what skills are trending → "Excel searched 89x this month" = tell Business students to learn it',
         color: 'blue'
       },
       {
         icon: Users,
-        title: 'Automatic Profile Creation',
-        description: 'Integrate with us → student profiles created automatically from university data',
+        title: 'Early Intervention Alerts',
+        description: 'Flag at-risk students → "87 seniors graduating in 60 days with zero views" = proactive career support',
         color: 'indigo'
       }
     ],
