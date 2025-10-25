@@ -98,12 +98,12 @@ export function Testimonials() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               <div className="absolute bottom-4 left-4 right-4">
-                <h3 className="text-xl font-semibold text-white mb-1">For Universities</h3>
+                <h3 className="text-xl font-semibold text-white mb-1">For Institutes</h3>
               </div>
             </div>
             <div className="p-6">
               <p className="text-gray-600">
-                Turn Career Services into an intelligence hub. See which companies search your students, give data-driven career advice, fix at-risk profiles before graduation. Always free.
+                Turn Career Services into an intelligence hub. See which companies search your students, give data-driven career advice, fix at-risk profiles before graduation. Always free for universities & ITS.
               </p>
             </div>
           </motion.div>

@@ -70,7 +70,7 @@ const segmentContent = {
     }
   },
   universities: {
-    badge: 'For Universities - All Disciplines',
+    badge: 'For Institutes - Universities & ITS',
     badgeIcon: Building2,
     headline: (
       <>
@@ -236,7 +236,7 @@ export function Hero() {
                   >
                     <Icon className="h-4 w-4" />
                     {segment === 'students' && 'Students'}
-                    {segment === 'universities' && 'Universities'}
+                    {segment === 'universities' && 'Institutes'}
                     {segment === 'companies' && 'Companies'}
                   </button>
                 )

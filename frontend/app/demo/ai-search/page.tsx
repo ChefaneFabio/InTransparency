@@ -86,11 +86,11 @@ const demoConfigs = {
   },
   university: {
     title: 'AI Search Hub Demo',
-    subtitle: 'For Universities',
+    subtitle: 'For Institutes (Universities & ITS)',
     color: 'from-indigo-600 to-purple-600',
     icon: Users,
     placeholder: 'Search students or jobs...',
-    initialMessage: "👋 Hi! I'm Transparenty, your university AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Show me CS students with 3.8+ GPA\" or \"Find tech companies hiring\"",
+    initialMessage: "👋 Hi! I'm Transparenty, your institute AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Show me CS students with 3.8+ GPA\" or \"Find tech companies hiring\"",
     registrationLink: '/auth/register/university'
   }
 }

@@ -120,7 +120,7 @@ export function HowItWorks() {
     },
     {
       icon: GraduationCap,
-      title: 'For Universities',
+      title: 'For Institutes (Universities & ITS)',
       description: 'Turn your Career Center into a strategic intelligence hub. Stop guessing. Start knowing.',
       features: [
         'See which companies search your students (Deloitte viewed 31 Economics students → time for outreach?)',

@@ -195,9 +195,9 @@ export default function PricingPage() {
         subtitle: 'University partner? Automatic profile. No university? Upload projects + select courses = instant profile. All features free, no paywalls.'
       }
       case 'institutes': return {
-        badge: 'For Universities/ITS',
+        badge: 'For Institutes (Universities & ITS)',
         title: 'You Supply Talent. We Handle Everything Else.',
-        subtitle: 'Universities are talent SUPPLIERS, not platform users. Zero cost. Zero burden. Better placement statistics. Modern reputation. Better than AlmaLaurea (€2,500/year) or headhunters (only top 5%).'
+        subtitle: 'Institutes are talent SUPPLIERS, not platform users. Zero cost. Zero burden. Better placement statistics. Modern reputation. Better than AlmaLaurea (€2,500/year) or headhunters (only top 5%).'
       }
       case 'companies': return {
         badge: 'For Companies',
@@ -417,8 +417,8 @@ export default function PricingPage() {
                   answer: 'Two ways: (1) If your university is a partner, your profile is created AUTOMATICALLY from university data. (2) If not, you upload projects + select courses, and we identify them to create your complete profile. Both ways: 100% free, < 5 minutes.'
                 },
                 {
-                  question: 'Do universities have to pay?',
-                  answer: 'No! The core platform is always free - not just "year 1 free." Universities are talent SUPPLIERS, not platform users. You supply talent, we handle everything else: profile creation, company search, analytics. Zero cost, zero burden. You only pay for optional customizations (API, white-label).'
+                  question: 'Do institutes (universities/ITS) have to pay?',
+                  answer: 'No! The core platform is always free - not just "year 1 free." Institutes are talent SUPPLIERS, not platform users. You supply talent, we handle everything else: profile creation, company search, analytics. Zero cost, zero burden. You only pay for optional customizations (API, white-label).'
                 },
                 {
                   question: 'How is this better than AlmaLaurea?',
