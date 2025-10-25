@@ -49,7 +49,7 @@ const features: Feature[] = [
     title: 'Two Ways to Join',
     description: 'University partner = automatic profile from university data. No university = upload projects + select courses for instant profile.',
     icon: Upload,
-    image: IMAGES.universities.graduation,
+    image: IMAGES.universityCampuses.graduation,
     targets: ['students'],
     benefits: [
       'University partners get automatic profiles',
@@ -171,7 +171,7 @@ const features: Feature[] = [
     title: 'Verified Skills & Projects',
     description: 'See actual verified projects, not self-reported CVs. University-authenticated portfolios and grades.',
     icon: Shield,
-    image: IMAGES.universities.campus,
+    image: IMAGES.universityCampuses.campus,
     targets: ['companies'],
     benefits: [
       'View real project work',
@@ -233,7 +233,7 @@ const features: Feature[] = [
     title: 'Early Intervention Alerts',
     description: 'Flag at-risk students: "87 seniors graduating in 60 days with zero views" = proactive career support needed.',
     icon: Users,
-    image: IMAGES.universities.campus,
+    image: IMAGES.universityCampuses.campus,
     targets: ['institutes'],
     benefits: [
       'Identify students with low visibility',
