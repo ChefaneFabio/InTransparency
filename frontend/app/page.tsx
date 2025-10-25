@@ -1,5 +1,4 @@
 import { Hero } from '@/components/sections/Hero'
-import { CompanyLogos } from '@/components/sections/CompanyLogos'
 import { HowItWorks } from '@/components/sections/HowItWorks'
 import { CTA } from '@/components/sections/CTA'
 import { Header } from '@/components/layout/Header'
@@ -12,7 +11,6 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <CompanyLogos />
         <HowItWorks />
         <CTA />
       </main>
