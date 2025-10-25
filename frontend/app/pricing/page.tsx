@@ -211,7 +211,7 @@ export default function PricingPage() {
   const headerContent = getHeaderContent()
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen hero-bg">
       <Header />
 
       <main className="pt-24 pb-16">
@@ -222,7 +222,7 @@ export default function PricingPage() {
             {/* Animated Background Blobs */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
               <motion.div
-                className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+                className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
                 animate={{
                   x: [0, 50, 0],
                   y: [0, 30, 0],
@@ -234,7 +234,7 @@ export default function PricingPage() {
                 }}
               />
               <motion.div
-                className="absolute top-20 right-1/4 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
+                className="absolute top-20 right-1/4 w-96 h-96 bg-secondary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
                 animate={{
                   x: [0, -50, 0],
                   y: [0, 50, 0],
@@ -254,7 +254,7 @@ export default function PricingPage() {
               className="text-center mb-16 relative z-10"
             >
               <motion.h1
-                className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
+                className="text-5xl font-display font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
@@ -275,7 +275,7 @@ export default function PricingPage() {
                     onClick={() => setSelectedSegment(segment)}
                     className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                       selectedSegment === segment
-                        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-md'
+                        ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                     }`}
                   >
@@ -299,10 +299,10 @@ export default function PricingPage() {
               transition={{ duration: 0.5 }}
               className="text-center mb-12"
             >
-              <Badge className="mb-4 bg-blue-100 text-blue-800 text-sm px-4 py-2">
+              <Badge className="mb-4 bg-primary/10 text-primary text-sm px-4 py-2">
                 {headerContent.badge}
               </Badge>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-display font-bold text-foreground mb-4">
                 {headerContent.title}
               </h2>
               <p className="text-lg text-gray-700">
@@ -326,11 +326,11 @@ export default function PricingPage() {
                     whileHover={{ y: -10, scale: 1.02 }}
                   >
                   <Card
-                    className={`relative ${plan.highlight ? 'border-2 border-blue-500 shadow-xl bg-gradient-to-br from-blue-50/50 to-purple-50/50 backdrop-blur-sm' : 'border-gray-200 bg-white/80 backdrop-blur-sm'} h-full flex flex-col hover:shadow-2xl transition-all duration-300`}
+                    className={`relative ${plan.highlight ? 'border-2 border-primary shadow-xl bg-gradient-to-br from-primary/5 to-secondary/5 backdrop-blur-sm' : 'border-gray-200 bg-white/80 backdrop-blur-sm'} h-full flex flex-col hover:shadow-2xl transition-all duration-300`}
                   >
                     {plan.badge && (
                       <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <Badge className="bg-blue-600 text-white px-4 py-1 shadow-lg">
+                        <Badge className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 shadow-lg">
                           {plan.badge}
                         </Badge>
                       </div>
@@ -338,11 +338,11 @@ export default function PricingPage() {
 
                     <CardHeader className="text-center pb-8 pt-8">
                       <motion.div
-                        className={`mx-auto mb-4 rounded-full p-4 ${plan.highlight ? 'bg-blue-100' : 'bg-gray-100'}`}
+                        className={`mx-auto mb-4 rounded-full p-4 ${plan.highlight ? 'bg-primary/10' : 'bg-gray-100'}`}
                         whileHover={{ rotate: 360, scale: 1.1 }}
                         transition={{ duration: 0.6 }}
                       >
-                        <Icon className={`h-8 w-8 ${plan.highlight ? 'text-blue-600' : 'text-gray-600'}`} />
+                        <Icon className={`h-8 w-8 ${plan.highlight ? 'text-primary' : 'text-gray-600'}`} />
                       </motion.div>
                       <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
                       <div className="mb-4">
@@ -380,7 +380,7 @@ export default function PricingPage() {
 
                       <Button
                         asChild
-                        className={`w-full ${plan.highlight ? 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700' : ''}`}
+                        className={`w-full ${plan.highlight ? 'bg-gradient-to-r from-primary to-secondary hover:opacity-90' : ''}`}
                         variant={plan.highlight ? 'default' : 'outline'}
                       >
                         <Link href={plan.ctaLink}>
@@ -405,7 +405,7 @@ export default function PricingPage() {
             className="mb-20"
           >
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-display font-bold text-foreground mb-4">
                 Frequently Asked Questions
               </h2>
             </div>
@@ -464,9 +464,9 @@ export default function PricingPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0 shadow-2xl">
+            <Card className="bg-gradient-to-r from-primary to-secondary text-white border-0 shadow-2xl">
               <CardContent className="p-12 text-center">
-                <h2 className="text-4xl font-bold mb-4">
+                <h2 className="text-4xl font-display font-bold mb-4">
                   Ready to Get Started?
                 </h2>
                 <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
