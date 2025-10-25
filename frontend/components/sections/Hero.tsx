@@ -25,9 +25,9 @@ const segmentContent = {
     ),
     description: (
       <>
-        Upload projects in 2 minutes → AI analyzes hard + soft skills → Companies find YOU for specific competencies. Zero endless applications.
+        Upload projects in 2 minutes. AI analyzes hard and soft skills. Companies find YOU for specific competencies. Zero endless applications.
         <br />
-        <strong className="text-gray-900">🚀 Works for ALL fields: Tech, Business, Law, Engineering, Architecture, Psychology, Fashion & more. University partner? Automatic profile. No university? Upload projects + select courses = instant profile.</strong>
+        <strong className="text-gray-900">🚀 Works for ALL fields: Tech, Business, Law, Engineering, Design & more.</strong>
       </>
     ),
     primaryCTA: {
@@ -79,9 +79,9 @@ const segmentContent = {
     ),
     description: (
       <>
-        Stop guessing. Start knowing. See which companies search your students (Deloitte viewed 31 Economics → time for outreach?). Provide data-driven career advice (Excel searched 89x → tell students to learn it). Fix at-risk profiles before graduation (87 seniors with zero views). Save 40h/month on manual CV collection and matching.
+        See which companies search your students. Give data-driven career advice. Fix at-risk profiles before graduation. Save 40h/month on manual work.
         <br />
-        <strong className="text-gray-900">🚀 Always Free - Works for ALL disciplines from Computer Science to Fashion Design.</strong>
+        <strong className="text-gray-900">🚀 Always Free for all disciplines and institutions.</strong>
       </>
     ),
     primaryCTA: {
@@ -134,9 +134,9 @@ const segmentContent = {
     ),
     description: (
       <>
-        AI search across ALL fields: "Marketing intern Milan creative portfolio" or "Civil Engineer Rome AutoCAD 28/30" → See verified matches with projects + soft skills → Pay €10 per contact. Zero screening 500 CVs.
+        AI search across ALL fields. See verified matches with projects and soft skills. Pay €10 per contact. Zero screening hundreds of CVs.
         <br />
-        <strong className="text-gray-900">🚀 Browse Free - Find talent from Tech, Business, Law, Engineering, Design & more. Pay €10 only when you contact.</strong>
+        <strong className="text-gray-900">🚀 Browse Free - Pay €10 only when you contact.</strong>
       </>
     ),
     primaryCTA: {
