@@ -68,7 +68,7 @@ export const IMAGES = {
   universityCampuses: {
     library: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80',
     campus: 'https://images.unsplash.com/photo-1562774053-701939374585?w=800&q=80',
-    graduation: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80',
+    graduation: 'https://images.unsplash.com/photo-1627556704302-624286467c65?w=800&q=80',
   },
 }
 
