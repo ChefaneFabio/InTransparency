@@ -80,27 +80,27 @@ interface UniversityProfile {
 
 const mockUniversityData: UniversityProfile = {
   personalInfo: {
-    firstName: 'Sarah',
-    lastName: 'Johnson',
-    email: 'sarah.johnson@university.edu',
-    phone: '+1 (555) 123-4567',
-    address: '123 University Ave, College Town, ST 12345',
+    firstName: 'Marco',
+    lastName: 'Rossi',
+    email: 'marco.rossi@polimi.it',
+    phone: '+39 02 1234 5678',
+    address: 'Via Leonardo da Vinci 32, 20133 Milano, Italia',
     dateOfBirth: '2001-03-15'
   },
   academic: {
-    university: 'Stanford University',
-    degree: 'Bachelor of Science',
-    major: 'Computer Science',
-    gpa: 3.85,
-    graduationDate: '2024-06-15',
-    semester: 'Spring 2024',
-    studentId: 'SU123456789'
+    university: 'Politecnico di Milano',
+    degree: 'Laurea Magistrale',
+    major: 'Ingegneria Informatica',
+    gpa: 28.5,
+    graduationDate: '2024-07-15',
+    semester: 'Secondo Semestre 2024',
+    studentId: 'S123456'
   },
   courses: [
-    { name: 'Data Structures & Algorithms', code: 'CS106B', credits: 4, grade: 'A', semester: 'Fall 2023' },
-    { name: 'Machine Learning', code: 'CS229', credits: 3, grade: 'A-', semester: 'Spring 2023' },
-    { name: 'Database Systems', code: 'CS145', credits: 3, grade: 'B+', semester: 'Winter 2023' },
-    { name: 'Software Engineering', code: 'CS140E', credits: 4, grade: 'A', semester: 'Fall 2022' }
+    { name: 'Algoritmi e Strutture Dati', code: 'INFO-01', credits: 10, grade: '30/30', semester: '1° Sem 2023' },
+    { name: 'Machine Learning', code: 'INFO-ML', credits: 8, grade: '28/30', semester: '2° Sem 2023' },
+    { name: 'Basi di Dati', code: 'INFO-02', credits: 8, grade: '27/30', semester: '1° Sem 2023' },
+    { name: 'Ingegneria del Software', code: 'INFO-SE', credits: 10, grade: '30/30 e Lode', semester: '1° Sem 2022' }
   ],
   projects: [
     {
@@ -129,27 +129,27 @@ const mockUniversityData: UniversityProfile = {
   ],
   achievements: [
     {
-      title: 'Dean\'s List',
-      issuer: 'Stanford University',
+      title: 'Borsa di Studio per Merito',
+      issuer: 'Politecnico di Milano',
       date: '2023-12-15',
-      description: 'Achieved GPA above 3.5 for Fall 2023 semester'
+      description: 'Scholarship awarded for academic excellence with average grade above 28/30'
     },
     {
-      title: 'Best Project Award - CS229',
-      issuer: 'Computer Science Department',
+      title: 'Miglior Progetto - Machine Learning',
+      issuer: 'Dipartimento di Informatica',
       date: '2023-06-10',
-      description: 'Winner of best machine learning project for predictive analytics application'
+      description: 'Best machine learning project award for predictive analytics application'
     }
   ]
 }
 
 const supportedUniversities = [
-  { name: 'Stanford University', logo: '🏛️', status: 'active' },
-  { name: 'MIT', logo: '🎓', status: 'active' },
-  { name: 'UC Berkeley', logo: '🐻', status: 'active' },
-  { name: 'Harvard University', logo: '🏫', status: 'coming_soon' },
-  { name: 'Carnegie Mellon', logo: '🤖', status: 'active' },
-  { name: 'University of Oxford', logo: '🇬🇧', status: 'coming_soon' }
+  { name: 'Politecnico di Milano', logo: '🏛️', status: 'active' },
+  { name: 'Università di Bologna', logo: '📚', status: 'active' },
+  { name: 'Sapienza Università di Roma', logo: '🎓', status: 'active' },
+  { name: 'Università degli Studi di Milano', logo: '🏫', status: 'coming_soon' },
+  { name: 'Politecnico di Torino', logo: '⚙️', status: 'active' },
+  { name: 'Università di Padova', logo: '🇮🇹', status: 'coming_soon' }
 ]
 
 export function StudentDataImportComponent() {
