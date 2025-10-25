@@ -41,18 +41,18 @@ const mockJobs = [
 ]
 
 const mockCandidates = [
-  { id: '1', initials: 'M.R.', university: 'Politecnico di Milano', major: 'Cybersecurity', gpa: 30, field: 'STEM', skills: ['Network Security', 'Python', 'Cryptography'], softSkills: ['Problem-solving', 'Teamwork'], match: 96, available: true },
-  { id: '2', initials: 'S.B.', university: 'Sapienza Roma', major: 'Computer Science', gpa: 29, field: 'STEM', skills: ['Cybersecurity', 'Linux', 'Ethical Hacking'], softSkills: ['Leadership', 'Communication'], match: 92, available: true },
-  { id: '3', initials: 'L.V.', university: 'Politecnico di Torino', major: 'Software Engineering', gpa: 29, field: 'STEM', skills: ['Network Security', 'Java', 'Cloud'], softSkills: ['Analytical', 'Detail-oriented'], match: 89, available: true },
-  { id: '4', initials: 'G.M.', university: 'Bocconi Milano', major: 'Business Administration', gpa: 28, field: 'Business', skills: ['Financial Analysis', 'Market Research', 'Excel', 'PowerPoint'], softSkills: ['Strategic Thinking', 'Negotiation'], match: 94, available: true },
-  { id: '5', initials: 'A.F.', university: 'Sapienza Roma', major: 'Law', gpa: 29, field: 'Legal', skills: ['Contract Law', 'Corporate Law', 'Legal Research', 'Compliance'], softSkills: ['Attention to Detail', 'Critical Thinking'], match: 91, available: true },
-  { id: '6', initials: 'E.C.', university: 'Università di Bologna', major: 'Economics & Finance', gpa: 28, field: 'Business', skills: ['Financial Modeling', 'Data Analysis', 'Bloomberg Terminal', 'Risk Management'], softSkills: ['Analytical', 'Decision-making'], match: 93, available: true },
-  { id: '7', initials: 'F.P.', university: 'Politecnico di Milano', major: 'Mechanical Engineering', gpa: 27, field: 'Engineering', skills: ['CAD', 'SolidWorks', 'Simulation', 'Manufacturing'], softSkills: ['Problem-solving', 'Innovation'], match: 88, available: true },
-  { id: '8', initials: 'C.R.', university: 'Università di Firenze', major: 'Marketing & Communications', gpa: 28, field: 'Business', skills: ['Digital Marketing', 'SEO', 'Social Media', 'Content Strategy'], softSkills: ['Creativity', 'Communication'], match: 90, available: true },
-  { id: '9', initials: 'D.S.', university: 'Università di Padova', major: 'Psychology', gpa: 29, field: 'Humanities', skills: ['Clinical Assessment', 'Research Methods', 'SPSS', 'Counseling'], softSkills: ['Empathy', 'Active Listening'], match: 87, available: true },
-  { id: '10', initials: 'M.T.', university: 'Politecnico di Torino', major: 'Civil Engineering', gpa: 27, field: 'Engineering', skills: ['AutoCAD', 'Project Management', 'Structural Analysis', 'BIM'], softSkills: ['Teamwork', 'Leadership'], match: 86, available: true },
-  { id: '11', initials: 'L.B.', university: 'IULM Milano', major: 'Graphic Design', gpa: 28, field: 'Creative', skills: ['Adobe Creative Suite', 'UI/UX', 'Branding', 'Typography'], softSkills: ['Creativity', 'Attention to Detail'], match: 92, available: true },
-  { id: '12', initials: 'P.G.', university: 'Università di Bologna', major: 'International Relations', gpa: 29, field: 'Humanities', skills: ['Geopolitical Analysis', 'Policy Research', 'Multilingual', 'Diplomacy'], softSkills: ['Cross-cultural Communication', 'Negotiation'], match: 85, available: true },
+  { id: '1', initials: 'M.R.', university: 'Politecnico di Milano', major: 'Cybersecurity', gpa: 30, field: 'STEM', skills: ['Network Security', 'Python', 'Cryptography'], softSkills: ['Problem-solving', 'Teamwork'], courses: ['Cybersecurity', 'Algorithms & Data Structures', 'Computer Networks'], projects: ['Machine Learning Model', 'Capstone Project'], match: 96, available: true },
+  { id: '2', initials: 'S.B.', university: 'Sapienza Roma', major: 'Computer Science', gpa: 29, field: 'STEM', skills: ['Cybersecurity', 'Linux', 'Ethical Hacking'], softSkills: ['Leadership', 'Communication'], courses: ['Operating Systems', 'Database Systems', 'Software Engineering'], projects: ['Web Application', 'Thesis'], match: 92, available: true },
+  { id: '3', initials: 'L.V.', university: 'Politecnico di Torino', major: 'Software Engineering', gpa: 29, field: 'STEM', skills: ['Network Security', 'Java', 'Cloud'], softSkills: ['Analytical', 'Detail-oriented'], courses: ['Software Engineering', 'Mobile App Development', 'Web Development'], projects: ['Mobile App', 'API/Backend Service'], match: 89, available: true },
+  { id: '4', initials: 'G.M.', university: 'Bocconi Milano', major: 'Business Administration', gpa: 28, field: 'Business', skills: ['Financial Analysis', 'Market Research', 'Excel', 'PowerPoint'], softSkills: ['Strategic Thinking', 'Negotiation'], courses: ['Business Strategy', 'Financial Accounting', 'Marketing Management'], projects: ['Business Plan', 'Market Research'], match: 94, available: true },
+  { id: '5', initials: 'A.F.', university: 'Sapienza Roma', major: 'Law', gpa: 29, field: 'Legal', skills: ['Contract Law', 'Corporate Law', 'Legal Research', 'Compliance'], softSkills: ['Attention to Detail', 'Critical Thinking'], courses: ['Contract Law', 'Constitutional Law', 'International Relations'], projects: ['Legal Research', 'Thesis'], match: 91, available: true },
+  { id: '6', initials: 'E.C.', university: 'Università di Bologna', major: 'Economics & Finance', gpa: 28, field: 'Business', skills: ['Financial Modeling', 'Data Analysis', 'Bloomberg Terminal', 'Risk Management'], softSkills: ['Analytical', 'Decision-making'], courses: ['Corporate Finance', 'Statistics', 'Financial Accounting'], projects: ['Financial Model', 'Data Analysis'], match: 93, available: true },
+  { id: '7', initials: 'F.P.', university: 'Politecnico di Milano', major: 'Mechanical Engineering', gpa: 27, field: 'Engineering', skills: ['CAD', 'SolidWorks', 'Simulation', 'Manufacturing'], softSkills: ['Problem-solving', 'Innovation'], courses: ['CAD/CAM', 'Thermodynamics', 'Fluid Mechanics'], projects: ['Engineering Design', 'Capstone Project'], match: 88, available: true },
+  { id: '8', initials: 'C.R.', university: 'Università di Firenze', major: 'Marketing & Communications', gpa: 28, field: 'Business', skills: ['Digital Marketing', 'SEO', 'Social Media', 'Content Strategy'], softSkills: ['Creativity', 'Communication'], courses: ['Marketing Management', 'Business Strategy', 'Entrepreneurship'], projects: ['Market Research', 'Social Impact'], match: 90, available: true },
+  { id: '9', initials: 'D.S.', university: 'Università di Padova', major: 'Psychology', gpa: 29, field: 'Humanities', skills: ['Clinical Assessment', 'Research Methods', 'SPSS', 'Counseling'], softSkills: ['Empathy', 'Active Listening'], courses: ['Research Methods', 'Statistics', 'Public Policy'], projects: ['Scientific Research', 'Thesis'], match: 87, available: true },
+  { id: '10', initials: 'M.T.', university: 'Politecnico di Torino', major: 'Civil Engineering', gpa: 27, field: 'Engineering', skills: ['AutoCAD', 'Project Management', 'Structural Analysis', 'BIM'], softSkills: ['Teamwork', 'Leadership'], courses: ['Structural Engineering', 'Project Management', 'CAD/CAM'], projects: ['Engineering Design', 'Group Project'], match: 86, available: true },
+  { id: '11', initials: 'L.B.', university: 'IULM Milano', major: 'Graphic Design', gpa: 28, field: 'Creative', skills: ['Adobe Creative Suite', 'UI/UX', 'Branding', 'Typography'], softSkills: ['Creativity', 'Attention to Detail'], courses: ['Web Development', 'Marketing Management'], projects: ['UI/UX Design', 'Web Application'], match: 92, available: true },
+  { id: '12', initials: 'P.G.', university: 'Università di Bologna', major: 'International Relations', gpa: 29, field: 'Humanities', skills: ['Geopolitical Analysis', 'Policy Research', 'Multilingual', 'Diplomacy'], softSkills: ['Cross-cultural Communication', 'Negotiation'], courses: ['International Relations', 'Public Policy', 'Research Methods'], projects: ['Scientific Research', 'Thesis'], match: 85, available: true },
 ]
 
 const universities = [
@@ -126,6 +126,69 @@ const majors = [
   'Communication Studies'
 ]
 
+const courses = [
+  // STEM Courses
+  'Algorithms & Data Structures',
+  'Machine Learning',
+  'Database Systems',
+  'Software Engineering',
+  'Computer Networks',
+  'Operating Systems',
+  'Artificial Intelligence',
+  'Web Development',
+  'Mobile App Development',
+  'Cybersecurity',
+
+  // Business Courses
+  'Financial Accounting',
+  'Corporate Finance',
+  'Marketing Management',
+  'Business Strategy',
+  'Organizational Behavior',
+  'Operations Management',
+  'International Business',
+  'Entrepreneurship',
+
+  // Engineering Courses
+  'Structural Engineering',
+  'Thermodynamics',
+  'Fluid Mechanics',
+  'Control Systems',
+  'CAD/CAM',
+  'Project Management',
+
+  // Legal & Humanities
+  'Contract Law',
+  'Constitutional Law',
+  'International Relations',
+  'Research Methods',
+  'Statistics',
+  'Public Policy'
+]
+
+const projectTypes = [
+  'Web Application',
+  'Mobile App',
+  'Machine Learning Model',
+  'Data Analysis',
+  'Desktop Software',
+  'Blockchain/DeFi',
+  'IoT System',
+  'Game Development',
+  'API/Backend Service',
+  'UI/UX Design',
+  'Business Plan',
+  'Market Research',
+  'Financial Model',
+  'Legal Research',
+  'Engineering Design',
+  'Scientific Research',
+  'Social Impact',
+  'Capstone Project',
+  'Thesis',
+  'Group Project'
+]
+
 const skillsByField = {
   'STEM': ['JavaScript', 'Python', 'Java', 'C++', 'React', 'Node.js', 'SQL', 'Machine Learning', 'Data Analysis', 'R'],
   'Business': ['Financial Analysis', 'Market Research', 'Excel', 'PowerPoint', 'Financial Modeling', 'Business Strategy', 'SAP', 'CRM', 'Project Management', 'Budgeting'],
@@ -156,6 +219,8 @@ export default function AdvancedSearchPage() {
   const [selectedMajors, setSelectedMajors] = useState<string[]>([])
   const [gpaMin, setGpaMin] = useState(24)
   const [selectedSkills, setSelectedSkills] = useState<string[]>([])
+  const [selectedCourses, setSelectedCourses] = useState<string[]>([])
+  const [selectedProjectTypes, setSelectedProjectTypes] = useState<string[]>([])
 
   const demoConfig = {
     student: {
@@ -204,11 +269,14 @@ export default function AdvancedSearchPage() {
     setSelectedMajors([])
     setGpaMin(24)
     setSelectedSkills([])
+    setSelectedCourses([])
+    setSelectedProjectTypes([])
     setSearchQuery('')
   }
 
   const activeFiltersCount = jobType.length + selectedCities.length +
-    selectedUniversities.length + selectedFields.length + selectedMajors.length + selectedSkills.length
+    selectedUniversities.length + selectedFields.length + selectedMajors.length +
+    selectedSkills.length + selectedCourses.length + selectedProjectTypes.length
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -478,6 +546,52 @@ export default function AdvancedSearchPage() {
                         </div>
                         <p className="text-xs text-gray-500 mt-2">{allSkills.length}+ skills available</p>
                       </div>
+
+                      {/* Courses */}
+                      <div>
+                        <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                          <GraduationCap className="h-4 w-4" />
+                          Specific Courses
+                        </h3>
+                        <p className="text-xs text-gray-500 mb-2">Filter by individual courses taken</p>
+                        <div className="space-y-2 max-h-48 overflow-y-auto">
+                          {courses.map((course) => (
+                            <label key={course} className="flex items-center gap-2 cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={selectedCourses.includes(course)}
+                                onChange={() => toggleFilter(selectedCourses, course, setSelectedCourses)}
+                                className="rounded border-gray-300"
+                              />
+                              <span className="text-sm text-gray-700">{course}</span>
+                            </label>
+                          ))}
+                        </div>
+                        <p className="text-xs text-gray-500 mt-2">{courses.length} courses available</p>
+                      </div>
+
+                      {/* Project Types */}
+                      <div>
+                        <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                          <Briefcase className="h-4 w-4" />
+                          Project Types
+                        </h3>
+                        <p className="text-xs text-gray-500 mb-2">Filter by project experience</p>
+                        <div className="space-y-2 max-h-48 overflow-y-auto">
+                          {projectTypes.map((projectType) => (
+                            <label key={projectType} className="flex items-center gap-2 cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={selectedProjectTypes.includes(projectType)}
+                                onChange={() => toggleFilter(selectedProjectTypes, projectType, setSelectedProjectTypes)}
+                                className="rounded border-gray-300"
+                              />
+                              <span className="text-sm text-gray-700">{projectType}</span>
+                            </label>
+                          ))}
+                        </div>
+                        <p className="text-xs text-gray-500 mt-2">{projectTypes.length} project types</p>
+                      </div>
                     </>
                   )}
                 </CardContent>
@@ -584,7 +698,7 @@ export default function AdvancedSearchPage() {
                                   ))}
                                 </div>
                               </div>
-                              <div>
+                              <div className="mb-2">
                                 <p className="text-sm font-semibold text-gray-700 mb-1">Soft Skills:</p>
                                 <div className="flex flex-wrap gap-1">
                                   {result.softSkills.map((skill: string) => (
@@ -594,6 +708,30 @@ export default function AdvancedSearchPage() {
                                   ))}
                                 </div>
                               </div>
+                              {result.courses && (
+                                <div className="mb-2">
+                                  <p className="text-sm font-semibold text-gray-700 mb-1">Relevant Courses:</p>
+                                  <div className="flex flex-wrap gap-1">
+                                    {result.courses.map((course: string) => (
+                                      <Badge key={course} className="bg-green-100 text-green-800 text-xs">
+                                        {course}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                              {result.projects && (
+                                <div>
+                                  <p className="text-sm font-semibold text-gray-700 mb-1">Project Experience:</p>
+                                  <div className="flex flex-wrap gap-1">
+                                    {result.projects.map((project: string) => (
+                                      <Badge key={project} className="bg-orange-100 text-orange-800 text-xs">
+                                        {project}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
                             </div>
                           </div>
                           <div className="ml-4 flex flex-col items-end justify-between">
