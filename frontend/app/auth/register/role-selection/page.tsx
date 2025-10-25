@@ -181,16 +181,18 @@ export default function RoleSelectionPage() {
             Choose your path and experience complete transparency in your journey.
           </div>
 
-          <div className="inline-block bg-gradient-to-r from-purple-100 to-blue-100 border-2 border-purple-300 rounded-2xl px-8 py-4 shadow-lg">
-            <div className="flex items-center justify-center gap-3 mb-2">
-              <Sparkles className="h-6 w-6 text-purple-600" />
-              <span className="text-2xl font-bold text-purple-900">NEW: AI Conversational Search</span>
-              <Sparkles className="h-6 w-6 text-purple-600" />
+          <Link href="/demo/ai-search" className="inline-block">
+            <div className="bg-gradient-to-r from-purple-100 to-blue-100 border-2 border-purple-300 rounded-2xl px-8 py-4 shadow-lg hover:shadow-xl hover:scale-105 transition-all cursor-pointer">
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <Sparkles className="h-6 w-6 text-purple-600" />
+                <span className="text-2xl font-bold text-purple-900">NEW: AI Conversational Search</span>
+                <Sparkles className="h-6 w-6 text-purple-600" />
+              </div>
+              <p className="text-purple-800 font-medium">
+                Try our AI search demos NOW - no login required! Ask in plain English what you need.
+              </p>
             </div>
-            <p className="text-purple-800 font-medium">
-              Try our AI search demos after registration - ask in plain English what you need!
-            </p>
-          </div>
+          </Link>
         </div>
 
         {/* User Type Selection */}
@@ -254,18 +256,32 @@ export default function RoleSelectionPage() {
                     </div>
                   </div>
 
-                  {/* CTA Button */}
-                  <Button
-                    className={`w-full group text-lg py-6 shadow-lg ${
-                      userType.popular
-                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800'
-                        : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700'
-                    }`}
-                    size="lg"
-                  >
-                    Get Started as {userType.title.split(' /')[0]}
-                    <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
+                  {/* CTA Buttons */}
+                  <div className="space-y-3">
+                    <Button
+                      className={`w-full group text-lg py-6 shadow-lg ${
+                        userType.popular
+                          ? 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800'
+                          : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700'
+                      }`}
+                      size="lg"
+                    >
+                      Get Started as {userType.title.split(' /')[0]}
+                      <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+
+                    <Button
+                      variant="outline"
+                      className="w-full group border-2 border-purple-300 text-purple-700 hover:bg-purple-50"
+                      size="lg"
+                      asChild
+                    >
+                      <Link href={`/demo/ai-search${userType.id === 'student' ? '' : userType.id === 'recruiter' ? '?tab=company' : '?tab=university'}`}>
+                        <Sparkles className="h-4 w-4 mr-2" />
+                        Try AI Search Demo First
+                      </Link>
+                    </Button>
+                  </div>
 
                   {userType.id === 'student' && (
                     <p className="text-sm text-center text-blue-600 font-medium">
