@@ -56,7 +56,7 @@ const segmentContent = {
         description: 'Tech, Business, Law, Engineering, Architecture, Design, Psychology, Fashion - we analyze everything'
       },
       {
-        image: IMAGES.universities.graduation,
+        image: IMAGES.universityCampuses.graduation,
         title: 'Two Ways to Join',
         description: 'University partner = automatic profile. Independent = upload projects + select courses'
       }
@@ -110,7 +110,7 @@ const segmentContent = {
         description: 'Show students what skills are trending → "Excel searched 89x this month" = tell Business students to learn it'
       },
       {
-        image: IMAGES.universities.campus,
+        image: IMAGES.universityCampuses.campus,
         title: 'Early Intervention Alerts',
         description: 'Flag at-risk students → "87 seniors graduating in 60 days with zero views" = proactive career support'
       }
@@ -160,7 +160,7 @@ const segmentContent = {
         description: 'Find candidates based on verified project work'
       },
       {
-        image: IMAGES.universities.library,
+        image: IMAGES.universityCampuses.library,
         title: 'Verified Skills',
         description: 'University-authenticated portfolios and grades'
       },
