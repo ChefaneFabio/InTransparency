@@ -17,7 +17,8 @@ import {
   Shield,
   Zap,
   ChevronRight,
-  Play
+  Play,
+  SlidersHorizontal
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -168,28 +169,52 @@ export default function RoleSelectionPage() {
             ))}
           </div>
 
-          {/* AI Demo Banner */}
-          <Link href="/demo/ai-search">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-block"
-            >
-              <div className="relative overflow-hidden bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 bg-[length:200%_100%] animate-gradient rounded-2xl p-[2px] shadow-xl hover:shadow-2xl transition-all">
-                <div className="bg-white rounded-2xl px-8 py-6">
-                  <div className="flex items-center justify-center gap-3 mb-2">
-                    <Play className="h-6 w-6 text-purple-600" />
-                    <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                      Try AI Search Demo
-                    </span>
+          {/* Demo Options */}
+          <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            {/* AI Demo */}
+            <Link href="/demo/ai-search">
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="relative overflow-hidden bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 bg-[length:200%_100%] animate-gradient rounded-2xl p-[2px] shadow-xl hover:shadow-2xl transition-all h-full">
+                  <div className="bg-white rounded-2xl px-6 py-5 h-full">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Sparkles className="h-6 w-6 text-purple-600" />
+                      <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                        AI Search Demo
+                      </span>
+                    </div>
+                    <p className="text-gray-700 text-sm">
+                      Ask in plain English • Conversational • Instant results
+                    </p>
                   </div>
-                  <p className="text-gray-700 font-medium">
-                    No login required • Ask in plain English • See results instantly
-                  </p>
                 </div>
-              </div>
-            </motion.div>
-          </Link>
+              </motion.div>
+            </Link>
+
+            {/* Advanced Search */}
+            <Link href="/demo/advanced-search">
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="relative overflow-hidden bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 bg-[length:200%_100%] animate-gradient rounded-2xl p-[2px] shadow-xl hover:shadow-2xl transition-all h-full">
+                  <div className="bg-white rounded-2xl px-6 py-5 h-full">
+                    <div className="flex items-center gap-2 mb-2">
+                      <SlidersHorizontal className="h-6 w-6 text-blue-600" />
+                      <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                        Advanced Search
+                      </span>
+                    </div>
+                    <p className="text-gray-700 text-sm">
+                      Manual filters • Traditional search • 12,000+ results
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </Link>
+          </div>
         </motion.div>
 
         {/* Role Cards */}

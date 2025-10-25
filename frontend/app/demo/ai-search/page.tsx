@@ -29,7 +29,8 @@ import {
   Target,
   Shield,
   Map as MapIcon,
-  List
+  List,
+  SlidersHorizontal
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { GoogleMapComponent, MapMarker } from '@/components/maps/GoogleMapComponent'
@@ -351,6 +352,12 @@ export default function AISearchDemoPage() {
               </div>
             </Link>
             <div className="flex items-center gap-3">
+              <Button variant="outline" size="sm" asChild>
+                <Link href="/demo/advanced-search">
+                  <SlidersHorizontal className="h-4 w-4 mr-2" />
+                  Advanced Search
+                </Link>
+              </Button>
               <Button variant="outline" asChild>
                 <Link href="/auth/login">Sign In</Link>
               </Button>
@@ -372,9 +379,32 @@ export default function AISearchDemoPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Experience AI-Powered Search
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
             Ask in plain English what you need. Our AI understands and finds exactly what you're looking for.
           </p>
+
+          {/* Alternative Search Banner */}
+          <div className="max-w-2xl mx-auto mt-6">
+            <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <SlidersHorizontal className="h-6 w-6 text-blue-600" />
+                    <div className="text-left">
+                      <p className="font-semibold text-gray-900">Prefer traditional filters?</p>
+                      <p className="text-sm text-gray-600">Try our Advanced Search with manual filters</p>
+                    </div>
+                  </div>
+                  <Button variant="outline" className="border-blue-300 hover:bg-blue-100" asChild>
+                    <Link href="/demo/advanced-search">
+                      Try Advanced Search
+                      <ArrowRight className="h-4 w-4 ml-2" />
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         {/* Demo Selector */}
