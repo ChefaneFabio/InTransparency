@@ -227,6 +227,89 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Our Business Model */}
+        <section className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+          <div className="container max-w-4xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+            <h2 className="text-4xl font-bold text-gray-900 text-center mb-4">
+              Why Is Everything Free?
+            </h2>
+            <p className="text-xl text-gray-700 text-center mb-12">
+              We believe talent shouldn't be locked behind paywalls
+            </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <Card className="bg-white">
+                <CardContent className="p-8 text-center">
+                  <div className="text-5xl mb-4">🎓</div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    Students: 100% Free
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Every feature. Unlimited projects. No credit card ever required.
+                  </p>
+                  <div className="text-sm text-gray-600 bg-green-50 rounded-lg p-3">
+                    <strong>€9 optional:</strong> Personal career coaching with HR experts (human service, not software)
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white">
+                <CardContent className="p-8 text-center">
+                  <div className="text-5xl mb-4">🏫</div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    Universities: Always Free
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Companies autonomously search your students. Save 40h/month. Zero manual matching.
+                  </p>
+                  <div className="text-sm text-gray-600 bg-blue-50 rounded-lg p-3">
+                    <strong>Optional:</strong> Customizations (API integrations, white-label, custom features)
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white">
+                <CardContent className="p-8 text-center">
+                  <div className="text-5xl mb-4">💼</div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    Companies: Pay for Results
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Browse free. Pay €10 only when you contact a candidate.
+                  </p>
+                  <div className="text-sm text-gray-600 bg-purple-50 rounded-lg p-3">
+                    <strong>No subscriptions:</strong> Only pay for actual results, credits never expire
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold mb-4 text-center">The Philosophy</h3>
+                <div className="space-y-4 text-white">
+                  <p className="leading-relaxed">
+                    <strong>Students shouldn't pay to get hired.</strong> Traditional platforms charge students for premium features to be visible. We believe that's backwards. Students create the value—they should access everything for free.
+                  </p>
+                  <p className="leading-relaxed">
+                    <strong>Universities shouldn't pay to help students.</strong> Institutions want to support their students' career success. Our core platform is always free—not "year 1 free." Save 40+ hours/month on manual matching. Pay only for optional customizations (API, white-label, custom features).
+                  </p>
+                  <p className="leading-relaxed">
+                    <strong>Companies should pay only for results.</strong> No more $8,000/year subscriptions before finding anyone. Browse our entire database free. Pay €10 only when you find someone worth contacting. Fair, transparent, performance-based.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
         {/* Our Vision */}
         <section className="py-20 bg-white">
           <div className="container max-w-4xl">
@@ -283,7 +366,7 @@ export default function AboutPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" asChild>
-                    <Link href="/auth/register/student">Join Early Access</Link>
+                    <Link href="/auth/register/role-selection">Get Started Free</Link>
                   </Button>
                   <Button variant="outline" asChild>
                     <Link href="/contact">Partner With Us</Link>
@@ -323,8 +406,8 @@ export default function AboutPage() {
             </p>
 
             <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100" asChild>
-              <Link href="/auth/register/student">
-                Show Your Work, Not Your Resume
+              <Link href="/auth/register/role-selection">
+                Get Started Free - Show Your Work
               </Link>
             </Button>
           </div>
@@ -342,7 +425,7 @@ export default function AboutPage() {
 
             <div className="flex justify-center gap-4 flex-wrap">
               <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" asChild>
-                <Link href="/auth/register/student">Create Free Portfolio</Link>
+                <Link href="/auth/register/role-selection">Get Started Free</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link href="/how-it-works">See How It Works</Link>
@@ -350,7 +433,7 @@ export default function AboutPage() {
             </div>
 
             <p className="mt-8 text-sm text-gray-700">
-              For recruiters: <Link href="/auth/register/recruiter" className="text-blue-600 hover:underline font-medium">Start finding verified talent →</Link>
+              For companies: <Link href="/auth/register/role-selection" className="text-blue-600 hover:underline font-medium">Browse free, pay only for contacts →</Link>
             </p>
           </div>
         </section>

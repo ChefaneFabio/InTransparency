@@ -367,12 +367,12 @@ export default function ContactPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-gray-700">
-                    Search for jobs using natural language. Ask things like:
+                    Search for jobs using natural language. Companies find YOU for specific competencies:
                   </p>
                   <div className="bg-blue-50 rounded-lg p-4 space-y-2 text-sm">
-                    <p className="font-mono text-gray-800">"Find me frontend jobs in San Francisco"</p>
-                    <p className="font-mono text-gray-800">"Show me entry-level ML positions"</p>
-                    <p className="font-mono text-gray-800">"Remote React jobs with good work-life balance"</p>
+                    <p className="font-mono text-gray-800">"Frontend developer React 2 years Milan startup"</p>
+                    <p className="font-mono text-gray-800">"Data science Python remote entry-level"</p>
+                    <p className="font-mono text-gray-800">"UX designer portfolio healthcare remote"</p>
                   </div>
                   <div className="pt-4 border-t border-blue-100">
                     <h4 className="font-semibold text-gray-900 mb-2">How to Access:</h4>
@@ -401,20 +401,25 @@ export default function ContactPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-gray-700">
-                    Find candidates using conversational queries like:
+                    Find verified candidates with natural language. Zero screening CVs:
                   </p>
                   <div className="bg-purple-50 rounded-lg p-4 space-y-2 text-sm">
-                    <p className="font-mono text-gray-800">"Find Python developers from top universities"</p>
-                    <p className="font-mono text-gray-800">"Show me ML engineers with 3.5+ GPA"</p>
-                    <p className="font-mono text-gray-800">"Recent grads with leadership skills in NYC"</p>
+                    <p className="font-mono text-gray-800">"Cybersecurity Roma Network Security 30/30"</p>
+                    <p className="font-mono text-gray-800">"Data engineer Python Spark 27+ GPA Milan"</p>
+                    <p className="font-mono text-gray-800">"Frontend React TypeScript leadership Berlin"</p>
+                  </div>
+                  <div className="mt-4 bg-purple-100 rounded-lg p-3 text-sm">
+                    <p className="text-purple-900">
+                      <strong>Result:</strong> See 5-10 verified matches with actual projects + AI-analyzed soft skills → Pay €10 only per contact
+                    </p>
                   </div>
                   <div className="pt-4 border-t border-purple-100">
                     <h4 className="font-semibold text-gray-900 mb-2">How to Access:</h4>
                     <ol className="space-y-2 text-sm text-gray-700">
-                      <li>1. Log in to your recruiter account</li>
+                      <li>1. Register free (no credit card)</li>
                       <li>2. Go to your Dashboard</li>
-                      <li>3. Click <strong>"AI Candidate Search (NEW!)"</strong> at the top of Quick Actions</li>
-                      <li>4. Start conversing with AI to discover perfect candidates</li>
+                      <li>3. Click <strong>"AI Candidate Search"</strong> in Quick Actions</li>
+                      <li>4. Type natural search, see verified matches, pay €10 only per contact</li>
                     </ol>
                   </div>
                   <Button className="w-full bg-purple-600 hover:bg-purple-700" asChild>

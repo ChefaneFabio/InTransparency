@@ -118,9 +118,9 @@ export function Testimonials() {
             <p className="text-white mb-6">
               Join the platform that values authenticity and transparency in career development.
             </p>
-            <button className="bg-white text-teal-700 px-8 py-3 rounded-lg font-medium hover:bg-slate-50 transition-colors">
-              Start Your Journey Today
-            </button>
+            <a href="/auth/register/role-selection" className="bg-white text-teal-700 px-8 py-3 rounded-lg font-medium hover:bg-slate-50 transition-colors inline-block">
+              Get Started Free
+            </a>
           </div>
         </div>
       </div>

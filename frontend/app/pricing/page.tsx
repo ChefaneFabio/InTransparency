@@ -14,62 +14,72 @@ type PricingSegment = 'students' | 'companies' | 'institutes'
 
 const studentPlans = [
   {
-    name: 'Free Student',
+    name: 'Platform Access',
     price: 'Free',
     period: 'forever',
-    description: 'Perfect for building your first portfolio',
+    description: 'Complete platform access - no paywalls, no limits',
     icon: GraduationCap,
-    popular: false,
+    popular: true,
+    badge: '🎓 Always Free',
     features: [
-      'Create your portfolio (all formats)',
-      'Add up to 3 projects',
-      'Hard skills + soft skills profile',
-      'Receive messages from recruiters',
+      'Two onboarding paths: University partner = automatic profile OR Independent = upload + select courses',
+      'Unlimited projects (all formats)',
+      'Complete AI analysis (hard + soft skills)',
+      'Institution verification (when university is partner)',
+      'AI Job Search',
+      'Job matching & recommendations',
+      'Direct messaging with recruiters',
+      'Career analytics & insights',
+      'Custom portfolio URL',
       'Public portfolio page'
     ],
-    cta: 'Start Free',
-    ctaLink: '/auth/register/role-selection'
-  },
-  {
-    name: 'Student Pro',
-    price: '€9',
-    period: 'per month',
-    description: 'Get discovered faster with premium features',
-    icon: Crown,
-    popular: true,
-    badge: '🚀 Early Access',
-    features: [
-      'Everything in Free',
-      'Unlimited projects (any format)',
-      'Complete hard + soft skills analysis',
-      'Priority in search results',
-      'Advanced analytics',
-      'Custom portfolio URL',
-      'Contact recruiters directly',
-      'AI-powered career insights'
-    ],
-    cta: 'Start 7-Day Trial',
+    cta: 'Get Started Free',
     ctaLink: '/auth/register/role-selection',
     highlight: true
+  },
+  {
+    name: 'Career Coaching',
+    price: '€9',
+    period: 'per session',
+    description: 'Optional 1-on-1 consultations with HR experts',
+    icon: Crown,
+    popular: false,
+    badge: '👥 Human Service',
+    features: [
+      'Platform access remains free',
+      '1-on-1 session with HR professionals',
+      'Personalized career strategy',
+      'Skills discovery & assessment',
+      'Portfolio & resume review',
+      'Interview preparation',
+      'Industry-specific advice',
+      'Career path guidance',
+      'Book sessions as needed'
+    ],
+    cta: 'Book a Session',
+    ctaLink: '/contact'
   }
 ]
 
 const companyPlans = [
   {
-    name: 'Explore Free',
+    name: 'Browse Free',
     price: '€0',
-    period: 'forever',
-    description: 'Browse the entire database for free',
+    period: 'no subscription',
+    description: 'Unlimited browsing - pay only when you contact',
     icon: Zap,
     popular: false,
+    badge: '🔍 Always Free',
     features: [
       'Free registration (no credit card)',
       'Unlimited database exploration',
-      'See all profiles (initials only)',
+      'See all profiles (anonymized)',
       'Advanced filters by institution, courses, grades',
+      'AI Candidate Search',
       'AI-verified skills from all project types',
       'Location and availability filters',
-      'Save searches and candidates'
+      'Save searches and candidates',
+      'No monthly fees ever'
     ],
     cta: 'Start Exploring Free',
     ctaLink: '/auth/register/role-selection'
@@ -120,45 +130,46 @@ const companyPlans = [
 
 const institutePlans = [
   {
-    name: 'First Year Free',
+    name: 'Core Platform',
     price: 'Free',
-    period: 'first year',
-    description: 'Launch with zero cost for the first year',
+    period: 'forever',
+    description: 'Automatic student profile creation from university data',
     icon: School,
     popular: true,
-    badge: 'Launch Offer',
+    badge: '🎓 Always Free',
     features: [
-      'Free for entire first year',
+      'Automatic profile creation (integrate university data)',
       'Unlimited student portfolios',
-      'Full platform access',
-      'Career outcome analytics',
-      'Employer network access',
-      'Custom institution branding',
-      'Verification system',
-      'Dedicated support'
+      'Autonomous company search (no manual matching)',
+      'Real-time placement dashboard',
+      'Student verification system',
+      'Career outcome tracking',
+      'Save 40+ hours/month on manual work',
+      'Strengthen institution reputation'
     ],
     cta: 'Become a Partner',
     ctaLink: '/contact',
     highlight: true
   },
   {
-    name: 'Year 2+',
+    name: 'Customizations',
     price: 'Custom',
-    period: 'per year',
-    description: 'Flexible pricing based on institution size',
+    period: 'optional',
+    description: 'Custom features for specific institutional needs',
     icon: School,
     popular: false,
+    badge: '⚙️ Optional',
     features: [
-      'Everything in First Year',
-      'Pricing based on student count',
-      'Advanced analytics dashboard',
-      'Priority employer matching',
-      'API access for integration',
-      'White-label options',
-      'Quarterly strategy sessions',
-      'Custom reporting'
+      'Core platform always remains free',
+      'API access & custom integrations',
+      'White-label branding',
+      'Custom analytics & reporting tools',
+      'Priority employer partnerships',
+      'Dedicated account manager',
+      'Custom feature development',
+      'Quarterly strategy sessions'
     ],
-    cta: 'Schedule Demo',
+    cta: 'Contact Sales',
     ctaLink: '/contact'
   }
 ]
@@ -178,18 +189,18 @@ export default function PricingPage() {
     switch (selectedSegment) {
       case 'students': return {
         badge: 'For Students',
-        title: 'Always Free for Students',
-        subtitle: 'Build your portfolio, get discovered by top companies. No credit card, no limits, forever.'
+        title: 'Complete Platform Access - Free Forever',
+        subtitle: 'University partner? Automatic profile. No university? Upload projects + select courses = instant profile. All features free, no paywalls.'
       }
       case 'institutes': return {
         badge: 'For Institutes',
-        title: 'First Year Completely Free',
-        subtitle: 'Launch with zero cost. Help your students get hired while tracking career outcomes across all higher education institutions.'
+        title: 'Always Free - Automatic Profile Creation',
+        subtitle: 'Integrate university data → Student profiles created automatically → Companies search autonomously → Save 40h/month. Pay only for customizations (API, white-label).'
       }
       case 'companies': return {
         badge: 'For Companies',
-        title: 'Browse Free, Pay Only for Contacts',
-        subtitle: 'Explore the entire database for free. Only pay €10 when you find the perfect candidate.'
+        title: 'Browse Free, Pay Only When You Contact',
+        subtitle: 'No subscriptions, no monthly fees. Explore unlimited profiles for free. Pay €10 only when you find the perfect candidate.'
       }
     }
   }
@@ -400,20 +411,20 @@ export default function PricingPage() {
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {[
                 {
-                  question: 'Is browsing really unlimited and free?',
-                  answer: 'Yes! Companies can explore the entire database for free. See all profiles (with initials only), filter by institution, courses, grades, and skills. Only pay €10 when you unlock a contact.'
+                  question: 'How do students create profiles?',
+                  answer: 'Two ways: (1) If your university is a partner, your profile is created AUTOMATICALLY from university data. (2) If not, you upload projects + select courses, and we identify them to create your complete profile. Both ways: 100% free, < 5 minutes.'
                 },
                 {
-                  question: 'Do credits expire?',
-                  answer: 'No! Credits never expire. Buy them when you need them, use them whenever you want. No monthly subscriptions or commitments.'
+                  question: 'Do universities have to pay?',
+                  answer: 'No! The core platform is always free - not just "year 1 free." You only pay if you want optional customizations like API integrations, white-label branding, or custom feature development.'
                 },
                 {
-                  question: 'How do volume discounts work?',
-                  answer: 'The more credits you buy, the more you save: 200 credits get 10% off, 500 credits get 20% off, and 1000+ credits get 40% off. Perfect for companies hiring multiple candidates.'
+                  question: 'How does company pricing work?',
+                  answer: 'Companies browse the entire database for free - unlimited searching, filtering, and AI candidate search. You only pay €10 when you decide to contact a specific candidate. No subscriptions, no monthly fees, credits never expire.'
                 },
                 {
-                  question: 'Are students really free forever?',
-                  answer: 'Absolutely! Students never pay. Create your portfolio, get verified by your institution, and get discovered by top companies - all 100% free, forever.'
+                  question: 'What is the €9 career coaching service?',
+                  answer: 'This is an optional 1-on-1 consultation with HR professionals and career consultants. It\'s a human service, not a software feature. You get personalized career advice, skills assessment, interview prep, and portfolio review.'
                 }
               ].map((faq, idx) => (
                 <motion.div

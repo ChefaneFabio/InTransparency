@@ -28,17 +28,17 @@ export function HowItWorks() {
   const steps = [
     {
       id: 1,
-      title: 'Upload Your Projects',
-      description: 'Students upload their academic projects, code repositories, and documentation to our secure platform',
+      title: 'Create Your Profile',
+      description: 'Two ways: University partner = automatic profile. Independent = upload projects + select courses for instant profile',
       icon: Upload,
       color: 'from-blue-500 to-blue-600',
       details: [
-        'Drag & drop interface for easy uploads',
-        'Support for GitHub, GitLab, and direct file uploads',
-        'Automatic file organization and parsing',
-        'Secure cloud storage with privacy controls'
+        'University Integrated: Profile created automatically from university data',
+        'Independent: Upload projects (code, docs, presentations) + select courses',
+        'AI identifies courses and creates complete profile',
+        'Both paths: Full platform access in < 5 minutes'
       ],
-      stats: { projects: '125,000+', time: '< 5 min' },
+      stats: { students: '125,000+', time: '< 5 min' },
       visual: {
         type: 'upload',
         files: ['main.py', 'README.md', 'requirements.txt', 'docs/'],
@@ -400,12 +400,16 @@ export function HowItWorks() {
             Join thousands of students and hundreds of companies already using InTransparency
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-              Start Your Journey
-              <ArrowRight className="ml-2 h-5 w-5" />
+            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" asChild>
+              <a href="/auth/register/role-selection">
+                Get Started Free
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
             </Button>
-            <Button size="lg" variant="outline">
-              Watch Full Demo
+            <Button size="lg" variant="outline" asChild>
+              <a href="/pricing">
+                View Pricing
+              </a>
             </Button>
           </div>
         </div>

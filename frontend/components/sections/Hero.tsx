@@ -25,24 +25,24 @@ const segmentContent = {
     ),
     description: (
       <>
-        Turn your academic projects into a complete portfolio showcasing both your hard skills and soft skills. All project formats accepted.
+        Upload projects in 2 minutes → AI analyzes hard + soft skills → Companies find YOU for specific competencies. Zero endless applications.
         <br />
-        <strong className="text-gray-900">🚀 Early Access - Join students building verified portfolios now.</strong>
+        <strong className="text-gray-900">🚀 University partner? Automatic profile. No university? Upload projects + select courses = instant profile.</strong>
       </>
     ),
     primaryCTA: {
-      text: 'Create Free Portfolio',
+      text: 'Get Started Free',
       href: '/auth/register/role-selection',
       icon: ArrowRight
     },
     secondaryCTA: {
-      text: 'See Success Stories',
-      href: '/blog'
+      text: 'See How It Works',
+      href: '/how-it-works'
     },
     benefits: [
-      { icon: CheckCircle2, text: 'Free forever' },
-      { icon: CheckCircle2, text: 'No credit card needed' },
-      { icon: CheckCircle2, text: '2-minute setup' }
+      { icon: CheckCircle2, text: '2-minute setup' },
+      { icon: CheckCircle2, text: 'Companies find you' },
+      { icon: CheckCircle2, text: 'Zero endless applications' }
     ],
     features: [
       {
@@ -59,8 +59,8 @@ const segmentContent = {
       },
       {
         icon: Trophy,
-        title: 'Institution-Verified',
-        description: 'Collaborate with your institution for verified, complete profiles',
+        title: 'Two Ways to Join',
+        description: 'University partner = automatic profile. Independent = upload projects + select courses',
         color: 'emerald'
       }
     ],
@@ -82,24 +82,24 @@ const segmentContent = {
     ),
     description: (
       <>
-        Help your students showcase their work and track career outcomes.
+        Partner with us → Automatic student profile creation → Companies search autonomously → Real-time placement dashboard → Save 40h/month. Zero manual work.
         <br />
-        <strong className="text-gray-900">🚀 Early Access - Partner with us to launch in 2025.</strong>
+        <strong className="text-gray-900">🚀 Always Free - Pay only for customizations (API, white-label, etc.).</strong>
       </>
     ),
     primaryCTA: {
-      text: 'Partner With Us',
+      text: 'Become a Partner',
       href: '/auth/register/role-selection',
       icon: ArrowRight
     },
     secondaryCTA: {
-      text: 'View Case Studies',
-      href: '/about'
+      text: 'View Pricing',
+      href: '/pricing'
     },
     benefits: [
-      { icon: CheckCircle2, text: 'Free for universities' },
-      { icon: CheckCircle2, text: 'Easy integration' },
-      { icon: CheckCircle2, text: 'Track alumni success' }
+      { icon: CheckCircle2, text: 'Save 40h/month' },
+      { icon: CheckCircle2, text: 'Real-time placement tracking' },
+      { icon: CheckCircle2, text: 'Zero manual matching' }
     ],
     features: [
       {
@@ -116,8 +116,8 @@ const segmentContent = {
       },
       {
         icon: Users,
-        title: 'Industry Network',
-        description: 'Connect students with our growing network of hiring companies',
+        title: 'Automatic Profile Creation',
+        description: 'Integrate with us → student profiles created automatically from university data',
         color: 'indigo'
       }
     ],
@@ -140,24 +140,24 @@ const segmentContent = {
     ),
     description: (
       <>
-        Access university-verified portfolios and hire based on real skills.
+        AI search: "Cybersecurity Roma Network Security 30/30" → See 8 verified matches with projects + soft skills → Pay €10 per contact. Zero screening 500 CVs.
         <br />
-        <strong className="text-gray-900">🚀 Early Access - Be among the first companies to find hidden talent.</strong>
+        <strong className="text-gray-900">🚀 Browse Free - Pay €10 only when you contact a candidate.</strong>
       </>
     ),
     primaryCTA: {
-      text: 'Find Talent Now',
+      text: 'Start Exploring Free',
       href: '/auth/register/role-selection',
       icon: ArrowRight
     },
     secondaryCTA: {
-      text: 'Compare to LinkedIn',
+      text: 'View Pricing',
       href: '/pricing'
     },
     benefits: [
-      { icon: CheckCircle2, text: 'Start at €49/month' },
-      { icon: CheckCircle2, text: '7-day free trial' },
-      { icon: CheckCircle2, text: 'No contracts' }
+      { icon: CheckCircle2, text: 'AI conversational search' },
+      { icon: CheckCircle2, text: 'See verified projects + soft skills' },
+      { icon: CheckCircle2, text: 'Zero screening hundreds of CVs' }
     ],
     features: [
       {
