@@ -49,8 +49,8 @@ const social = [
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-slate-50 to-sky-50 text-slate-700 border-t border-slate-200">
-      <div className="container py-12">
+    <footer className="relative overflow-hidden hero-bg text-foreground/80 border-t border-border">
+      <div className="container py-12 relative z-10">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Brand Section */}
@@ -73,7 +73,7 @@ export function Footer() {
             <div className="space-y-2 text-sm text-slate-600">
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-2" />
-                <a href="mailto:hello@intransparency.com" className="hover:text-teal-600 transition-colors">
+                <a href="mailto:hello@intransparency.com" className="hover:text-primary transition-colors">
                   hello@intransparency.com
                 </a>
               </div>
@@ -90,7 +90,7 @@ export function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-slate-600 hover:text-teal-600 transition-colors"
+                    className="text-slate-600 hover:text-primary transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -108,7 +108,7 @@ export function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-slate-600 hover:text-teal-600 transition-colors"
+                    className="text-slate-600 hover:text-primary transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -127,7 +127,7 @@ export function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className={`${item.name.includes('GDPR') ? 'text-slate-800 font-semibold' : 'text-slate-600'} hover:text-teal-600 transition-colors`}
+                    className={`${item.name.includes('GDPR') ? 'text-slate-800 font-semibold' : 'text-slate-600'} hover:text-primary transition-colors`}
                   >
                     {item.name}
                   </Link>
@@ -153,9 +153,9 @@ export function Footer() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                className="flex-1 px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
-              <button className="px-6 py-2 bg-gradient-to-r from-teal-600 to-blue-600 text-white rounded-lg hover:from-teal-700 hover:to-blue-700 transition-all whitespace-nowrap">
+              <button className="px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-all whitespace-nowrap">
                 Subscribe
               </button>
             </div>
@@ -172,13 +172,13 @@ export function Footer() {
               
               {/* Additional Links */}
               <div className="flex items-center space-x-6 text-sm">
-                <Link href="/privacy" className="text-gray-600 hover:text-blue-600 font-semibold">
+                <Link href="/privacy" className="text-gray-600 hover:text-primary font-semibold">
                   Privacy & GDPR
                 </Link>
-                <Link href="/legal" className="text-gray-600 hover:text-blue-600">
+                <Link href="/legal" className="text-gray-600 hover:text-primary">
                   Terms
                 </Link>
-                <Link href="/support" className="text-gray-600 hover:text-blue-600">
+                <Link href="/support" className="text-gray-600 hover:text-primary">
                   Support
                 </Link>
               </div>
@@ -192,7 +192,7 @@ export function Footer() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                  className="text-gray-600 hover:text-primary transition-colors"
                 >
                   <span className="sr-only">{item.name}</span>
                   <item.icon className="h-5 w-5" />
