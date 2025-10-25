@@ -130,40 +130,42 @@ const companyPlans = [
 
 const institutePlans = [
   {
-    name: 'Core Platform',
+    name: 'Talent Supply Partnership',
     price: 'Free',
     period: 'forever',
-    description: 'Automatic student profile creation from university data',
+    description: 'You supply talent. We handle everything else. Zero cost, zero burden.',
     icon: School,
     popular: true,
     badge: '🎓 Always Free',
     features: [
-      'Automatic profile creation (integrate university data)',
-      'Unlimited student portfolios',
-      'Autonomous company search (no manual matching)',
-      'Real-time placement dashboard',
-      'Student verification system',
-      'Career outcome tracking',
-      'Save 40+ hours/month on manual work',
-      'Strengthen institution reputation'
+      '✅ Zero cost (vs AlmaLaurea €2,500/year)',
+      '✅ Zero operational burden - automatic profile creation',
+      '✅ ALL students get exposure (not just top 5% like headhunters)',
+      '✅ AI verifies skills via projects (not self-reported CVs)',
+      '📊 Real-time placement statistics dashboard',
+      '📈 Better placement rates = Better reputation',
+      '🤖 Modern image: "AI-powered career services"',
+      '⏱️ Save 40+ hours/month - no manual matching',
+      '🎓 Students stay connected to alma mater',
+      '🔗 Transparent analytics - see what companies want'
     ],
-    cta: 'Become a Partner',
+    cta: 'Partner With Us',
     ctaLink: '/contact',
     highlight: true
   },
   {
-    name: 'Customizations',
+    name: 'Enterprise Add-Ons',
     price: 'Custom',
     period: 'optional',
-    description: 'Custom features for specific institutional needs',
+    description: 'Optional customizations - core platform stays free forever',
     icon: School,
     popular: false,
     badge: '⚙️ Optional',
     features: [
-      'Core platform always remains free',
-      'API access & custom integrations',
-      'White-label branding',
-      'Custom analytics & reporting tools',
+      'Core platform always free (no catch)',
+      'API integration with Esse3/university systems',
+      'White-label branding for career portal',
+      'Custom analytics & KPI dashboards',
       'Priority employer partnerships',
       'Dedicated account manager',
       'Custom feature development',
@@ -193,9 +195,9 @@ export default function PricingPage() {
         subtitle: 'University partner? Automatic profile. No university? Upload projects + select courses = instant profile. All features free, no paywalls.'
       }
       case 'institutes': return {
-        badge: 'For Institutes',
-        title: 'Always Free - Automatic Profile Creation',
-        subtitle: 'Integrate university data → Student profiles created automatically → Companies search autonomously → Save 40h/month. Pay only for customizations (API, white-label).'
+        badge: 'For Universities/ITS',
+        title: 'You Supply Talent. We Handle Everything Else.',
+        subtitle: 'Universities are talent SUPPLIERS, not platform users. Zero cost. Zero burden. Better placement statistics. Modern reputation. Better than AlmaLaurea (€2,500/year) or headhunters (only top 5%).'
       }
       case 'companies': return {
         badge: 'For Companies',
@@ -416,7 +418,15 @@ export default function PricingPage() {
                 },
                 {
                   question: 'Do universities have to pay?',
-                  answer: 'No! The core platform is always free - not just "year 1 free." You only pay if you want optional customizations like API integrations, white-label branding, or custom feature development.'
+                  answer: 'No! The core platform is always free - not just "year 1 free." Universities are talent SUPPLIERS, not platform users. You supply talent, we handle everything else: profile creation, company search, analytics. Zero cost, zero burden. You only pay for optional customizations (API, white-label).'
+                },
+                {
+                  question: 'How is this better than AlmaLaurea?',
+                  answer: 'AlmaLaurea charges universities €2,500/year and just collects self-reported CVs. InTransparency is FREE forever and verifies skills via AI + actual projects. Plus ALL students get exposure (not just those who update their CV), and companies get better data (verified portfolios vs self-reported).'
+                },
+                {
+                  question: 'Do ALL students get exposure or just top performers?',
+                  answer: 'ALL students. Traditional headhunters only contact the top 5%. We give EVERY student a profile that companies can discover. This dramatically improves placement rates across your entire graduating class, not just the stars.'
                 },
                 {
                   question: 'How does company pricing work?',
