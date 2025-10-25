@@ -13,7 +13,7 @@ type Segment = 'students' | 'universities' | 'companies'
 
 const segmentContent = {
   students: {
-    badge: 'For Students',
+    badge: 'For Students - All Disciplines',
     badgeIcon: GraduationCap,
     headline: (
       <>
@@ -27,7 +27,7 @@ const segmentContent = {
       <>
         Upload projects in 2 minutes → AI analyzes hard + soft skills → Companies find YOU for specific competencies. Zero endless applications.
         <br />
-        <strong className="text-gray-900">🚀 University partner? Automatic profile. No university? Upload projects + select courses = instant profile.</strong>
+        <strong className="text-gray-900">🚀 Works for ALL fields: Tech, Business, Law, Engineering, Architecture, Psychology, Fashion & more. University partner? Automatic profile. No university? Upload projects + select courses = instant profile.</strong>
       </>
     ),
     primaryCTA: {
@@ -48,13 +48,13 @@ const segmentContent = {
       {
         icon: Sparkles,
         title: 'Complete Skill Profile',
-        description: 'Hard skills + soft skills automatically detected from your projects',
+        description: 'Hard skills + soft skills automatically detected from your projects across ANY field',
         color: 'teal'
       },
       {
         icon: Users,
-        title: 'All Project Formats',
-        description: 'Code, documents, presentations, videos - we analyze everything',
+        title: 'All Disciplines Welcome',
+        description: 'Tech, Business, Law, Engineering, Architecture, Design, Psychology, Fashion - we analyze everything',
         color: 'blue'
       },
       {
@@ -70,7 +70,7 @@ const segmentContent = {
     }
   },
   universities: {
-    badge: 'For Universities',
+    badge: 'For Universities - All Disciplines',
     badgeIcon: Building2,
     headline: (
       <>
@@ -82,9 +82,9 @@ const segmentContent = {
     ),
     description: (
       <>
-        Partner with us → Automatic student profile creation → Companies search autonomously → Real-time placement dashboard → Save 40h/month. Zero manual work.
+        Partner with us → Automatic student profile creation across ALL departments (STEM, Business, Law, Engineering, Creative, etc.) → Companies search autonomously → Real-time placement dashboard → Save 40h/month. Zero manual work.
         <br />
-        <strong className="text-gray-900">🚀 Always Free - Pay only for customizations (API, white-label, etc.).</strong>
+        <strong className="text-gray-900">🚀 Always Free - Works for every discipline from Computer Science to Fashion Design.</strong>
       </>
     ),
     primaryCTA: {
@@ -127,7 +127,7 @@ const segmentContent = {
     }
   },
   companies: {
-    badge: 'For Companies',
+    badge: 'For Companies - All Talent',
     badgeIcon: Briefcase,
     headline: (
       <>
@@ -140,9 +140,9 @@ const segmentContent = {
     ),
     description: (
       <>
-        AI search: "Cybersecurity Roma Network Security 30/30" → See 8 verified matches with projects + soft skills → Pay €10 per contact. Zero screening 500 CVs.
+        AI search across ALL fields: "Marketing intern Milan creative portfolio" or "Civil Engineer Rome AutoCAD 28/30" → See verified matches with projects + soft skills → Pay €10 per contact. Zero screening 500 CVs.
         <br />
-        <strong className="text-gray-900">🚀 Browse Free - Pay €10 only when you contact a candidate.</strong>
+        <strong className="text-gray-900">🚀 Browse Free - Find talent from Tech, Business, Law, Engineering, Design & more. Pay €10 only when you contact.</strong>
       </>
     ),
     primaryCTA: {
