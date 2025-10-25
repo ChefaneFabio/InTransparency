@@ -27,9 +27,12 @@ import {
   DollarSign,
   Clock,
   Target,
-  Shield
+  Shield,
+  Map as MapIcon,
+  List
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { GoogleMapComponent, MapMarker } from '@/components/maps/GoogleMapComponent'
 
 type DemoType = 'student' | 'company' | 'university'
 
@@ -91,20 +94,27 @@ const demoConfigs = {
 
 const mockResults = {
   studentJobs: [
-    { id: '1', title: 'Frontend Developer', company: 'TechStartup', location: 'Milan, IT', salary: '€35,000 - €45,000', type: 'Full-time', match: 94 },
-    { id: '2', title: 'Junior Software Engineer', company: 'InnovateCo', location: 'Remote', salary: '€30,000 - €40,000', type: 'Full-time', match: 89 }
+    { id: '1', title: 'Frontend Developer', company: 'TechStartup', location: 'Milan, IT', salary: '€35,000 - €45,000', type: 'Full-time', match: 94, coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '2', title: 'Junior Software Engineer', company: 'InnovateCo', location: 'Remote', salary: '€30,000 - €40,000', type: 'Full-time', match: 89, coordinates: { lat: 41.9028, lng: 12.4964 } },
+    { id: '3', title: 'React Developer', company: 'StartupHub', location: 'Rome, IT', salary: '€32,000 - €42,000', type: 'Full-time', match: 87, coordinates: { lat: 41.9028, lng: 12.4964 } },
+    { id: '4', title: 'Full Stack Developer', company: 'TechCo', location: 'Turin, IT', salary: '€38,000 - €48,000', type: 'Full-time', match: 91, coordinates: { lat: 45.0703, lng: 7.6869 } },
+    { id: '5', title: 'Backend Engineer', company: 'DevShop', location: 'Florence, IT', salary: '€35,000 - €45,000', type: 'Full-time', match: 85, coordinates: { lat: 43.7696, lng: 11.2558 } }
   ],
   companyResults: [
-    { id: '1', initials: 'M.R.', university: 'Politecnico di Milano', major: 'Cybersecurity', gpa: 30, skills: ['Network Security', 'Python', 'Cryptography'], softSkills: ['Problem-solving', 'Teamwork'], match: 96 },
-    { id: '2', initials: 'S.B.', university: 'Sapienza Roma', major: 'Computer Science', gpa: 29, skills: ['Cybersecurity', 'Linux', 'Ethical Hacking'], softSkills: ['Leadership', 'Communication'], match: 92 }
+    { id: '1', initials: 'M.R.', university: 'Politecnico di Milano', major: 'Cybersecurity', gpa: 30, skills: ['Network Security', 'Python', 'Cryptography'], softSkills: ['Problem-solving', 'Teamwork'], match: 96, coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '2', initials: 'S.B.', university: 'Sapienza Roma', major: 'Computer Science', gpa: 29, skills: ['Cybersecurity', 'Linux', 'Ethical Hacking'], softSkills: ['Leadership', 'Communication'], match: 92, coordinates: { lat: 41.9028, lng: 12.4964 } },
+    { id: '3', initials: 'L.V.', university: 'Politecnico di Torino', major: 'Software Engineering', gpa: 29, skills: ['Network Security', 'Java', 'Cloud'], softSkills: ['Analytical', 'Detail-oriented'], match: 89, coordinates: { lat: 45.0703, lng: 7.6869 } },
+    { id: '4', initials: 'G.M.', university: 'Università di Bologna', major: 'Cybersecurity', gpa: 28, skills: ['Security', 'Python', 'Penetration Testing'], softSkills: ['Problem-solving', 'Communication'], match: 88, coordinates: { lat: 44.4949, lng: 11.3426 } }
   ],
   universityStudents: [
-    { id: '1', name: 'Marco Rossi', major: 'Computer Science', gpa: 3.85, contacted: 2, hired: false },
-    { id: '2', name: 'Sofia Bianchi', major: 'Data Science', gpa: 3.92, contacted: 8, hired: true, company: 'TechCorp' }
+    { id: '1', name: 'Marco Rossi', major: 'Computer Science', gpa: 3.85, contacted: 2, hired: false, coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '2', name: 'Sofia Bianchi', major: 'Data Science', gpa: 3.92, contacted: 8, hired: true, company: 'TechCorp', coordinates: { lat: 41.9028, lng: 12.4964 } },
+    { id: '3', name: 'Luca Verdi', major: 'Software Engineering', gpa: 3.78, contacted: 5, hired: false, coordinates: { lat: 45.0703, lng: 7.6869 } }
   ],
   universityJobs: [
-    { id: '1', title: 'ML Engineer', company: 'TechCorp Italy', location: 'Milan', salary: '€45,000 - €60,000', matchedStudents: 12 },
-    { id: '2', title: 'Data Analyst', company: 'DataCo', location: 'Rome', salary: '€35,000 - €45,000', matchedStudents: 8 }
+    { id: '1', title: 'ML Engineer', company: 'TechCorp Italy', location: 'Milan', salary: '€45,000 - €60,000', matchedStudents: 12, coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '2', title: 'Data Analyst', company: 'DataCo', location: 'Rome', salary: '€35,000 - €45,000', matchedStudents: 8, coordinates: { lat: 41.9028, lng: 12.4964 } },
+    { id: '3', title: 'Software Engineer', company: 'DevHub', location: 'Turin', salary: '€40,000 - €55,000', matchedStudents: 15, coordinates: { lat: 45.0703, lng: 7.6869 } }
   ]
 }
 
@@ -113,7 +123,11 @@ export default function AISearchDemoPage() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
+  const [viewMode, setViewMode] = useState<'list' | 'map'>('list')
+  const [selectedMarker, setSelectedMarker] = useState<string | null>(null)
+  const [mapCenter, setMapCenter] = useState({ lat: 42.5, lng: 12.5 }) // Center of Italy
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''
 
   const config = demoConfigs[activeDemo]
 
@@ -151,18 +165,18 @@ export default function AISearchDemoPage() {
 
       if (activeDemo === 'student') {
         results = mockResults.studentJobs
-        responseContent = `Perfect! I found **${results.length} jobs** matching your search:\n\n💼 Frontend Developer at TechStartup - €35k-45k\n💼 Junior Software Engineer at InnovateCo - €30k-40k\n\n✨ Register free to apply and get more matches!`
+        responseContent = `Perfect! I found **${results.length} jobs** matching your search across Italy!\n\n💼 Frontend Developer at TechStartup - Milan - €35k-45k\n💼 Junior Software Engineer at InnovateCo - Remote - €30k-40k\n💼 React Developer at StartupHub - Rome - €32k-42k\n...and ${results.length - 3} more!\n\n✨ Switch to Map View to see locations!`
       } else if (activeDemo === 'company') {
         results = mockResults.companyResults
-        responseContent = `Great! I found **${results.length} verified candidates** matching your requirements:\n\n🎓 M.R. - Politecnico di Milano, Cybersecurity, 30/30 GPA\n🎓 S.B. - Sapienza Roma, Computer Science, 29/30 GPA\n\nBoth have Network Security skills + AI-analyzed soft skills.\n\n💡 Register to unlock contacts for €10 each!`
+        responseContent = `Great! I found **${results.length} verified candidates** matching your requirements:\n\n🎓 M.R. - Politecnico di Milano, Cybersecurity, 30/30 GPA\n🎓 S.B. - Sapienza Roma, Computer Science, 29/30 GPA\n🎓 L.V. - Politecnico di Torino, Software Eng, 29/30 GPA\n...and ${results.length - 3} more!\n\n💡 View on map to see geographic distribution!`
       } else {
         const isStudentQuery = input.toLowerCase().includes('student') || input.toLowerCase().includes('gpa')
         if (isStudentQuery) {
           results = mockResults.universityStudents
-          responseContent = `📊 Found **${results.length} students** matching your criteria:\n\n👤 Marco Rossi - CS, 3.85 GPA, 2 contacts\n👤 Sofia Bianchi - Data Science, 3.92 GPA, hired at TechCorp\n\n✨ Register free to see full details!`
+          responseContent = `📊 Found **${results.length} students** matching your criteria:\n\n👤 Marco Rossi - CS, 3.85 GPA, 2 contacts\n👤 Sofia Bianchi - Data Science, 3.92 GPA, hired at TechCorp\n👤 Luca Verdi - Software Eng, 3.78 GPA, 5 contacts\n\n✨ View locations on the map!`
         } else {
           results = mockResults.universityJobs
-          responseContent = `💼 Found **${results.length} job opportunities** for your students:\n\n🏢 ML Engineer at TechCorp - 12 students match\n🏢 Data Analyst at DataCo - 8 students match\n\n✨ Register free to connect students!`
+          responseContent = `💼 Found **${results.length} job opportunities** for your students:\n\n🏢 ML Engineer at TechCorp - Milan - 12 students match\n🏢 Data Analyst at DataCo - Rome - 8 students match\n🏢 Software Engineer at DevHub - Turin - 15 students match\n\n✨ See geographic distribution on map!`
         }
       }
 
@@ -171,12 +185,17 @@ export default function AISearchDemoPage() {
         role: 'assistant',
         content: responseContent,
         timestamp: new Date(),
-        results: results.slice(0, 2)
+        results: results
       }
 
       setMessages(prev => [...prev, assistantMessage])
       setIsTyping(false)
     }, 1500)
+  }
+
+  const getCurrentResults = () => {
+    const lastMessage = messages[messages.length - 1]
+    return lastMessage?.results || []
   }
 
   const handleExampleClick = (example: string) => {
@@ -230,7 +249,7 @@ export default function AISearchDemoPage() {
         </div>
 
         {/* Demo Selector */}
-        <Tabs value={activeDemo} onValueChange={(v) => setActiveDemo(v as DemoType)} className="mb-8">
+        <Tabs value={activeDemo} onValueChange={(v) => setActiveDemo(v as DemoType)} className="mb-6">
           <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3">
             <TabsTrigger value="student" className="flex items-center gap-2">
               <GraduationCap className="h-4 w-4" />
@@ -247,19 +266,50 @@ export default function AISearchDemoPage() {
           </TabsList>
         </Tabs>
 
+        {/* View Toggle */}
+        {getCurrentResults().length > 0 && (
+          <div className="flex justify-center mb-6">
+            <div className="inline-flex items-center bg-white border-2 border-gray-200 rounded-lg p-1 shadow-sm">
+              <button
+                onClick={() => setViewMode('list')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-all ${
+                  viewMode === 'list'
+                    ? `bg-gradient-to-r ${config.color} text-white shadow-sm`
+                    : 'text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                <List className="h-4 w-4" />
+                <span className="font-medium">Chat View</span>
+              </button>
+              <button
+                onClick={() => setViewMode('map')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-md transition-all ${
+                  viewMode === 'map'
+                    ? `bg-gradient-to-r ${config.color} text-white shadow-sm`
+                    : 'text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                <MapIcon className="h-4 w-4" />
+                <span className="font-medium">Map View</span>
+              </button>
+            </div>
+          </div>
+        )}
+
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Chat Interface */}
-          <div className="lg:col-span-2">
-            <Card className="shadow-xl">
-              <CardHeader className={`bg-gradient-to-r ${config.color} text-white`}>
-                <div className="flex items-center gap-3">
-                  <Icon className="h-6 w-6" />
-                  <div>
-                    <CardTitle>{config.title}</CardTitle>
-                    <p className="text-sm text-white/90">{config.subtitle}</p>
+          {viewMode === 'list' && (
+            <div className="lg:col-span-2">
+              <Card className="shadow-xl">
+                <CardHeader className={`bg-gradient-to-r ${config.color} text-white`}>
+                  <div className="flex items-center gap-3">
+                    <Icon className="h-6 w-6" />
+                    <div>
+                      <CardTitle>{config.title}</CardTitle>
+                      <p className="text-sm text-white/90">{config.subtitle}</p>
+                    </div>
                   </div>
-                </div>
-              </CardHeader>
+                </CardHeader>
 
               <CardContent className="h-[500px] flex flex-col p-0">
                 {/* Messages */}
@@ -381,6 +431,209 @@ export default function AISearchDemoPage() {
               </CardContent>
             </Card>
           </div>
+          )}
+
+          {/* Map View */}
+          {viewMode === 'map' && (
+            <div className="lg:col-span-2">
+              <Card className="shadow-xl">
+                <CardHeader className={`bg-gradient-to-r ${config.color} text-white`}>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <MapPin className="h-6 w-6" />
+                      <div>
+                        <CardTitle>Geographic View</CardTitle>
+                        <p className="text-sm text-white/90">
+                          {getCurrentResults().length} results on map
+                        </p>
+                      </div>
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="bg-white/10 hover:bg-white/20 text-white border-white/30"
+                      onClick={() => setViewMode('list')}
+                    >
+                      <List className="h-4 w-4 mr-2" />
+                      Back to Chat
+                    </Button>
+                  </div>
+                </CardHeader>
+
+                <CardContent className="p-0">
+                  <div className="h-[600px] relative">
+                    {apiKey ? (
+                      <GoogleMapComponent
+                        apiKey={apiKey}
+                        center={mapCenter}
+                        zoom={7}
+                        mapTypeId={google.maps.MapTypeId.ROADMAP}
+                        className="h-full w-full"
+                      >
+                        {getCurrentResults().map((result: any) => {
+                          if (!result.coordinates) return null
+
+                          const isStudent = activeDemo === 'student' || (activeDemo === 'university' && result.name)
+                          const isCandidate = activeDemo === 'company'
+                          const isJob = result.title && (activeDemo === 'student' || activeDemo === 'university')
+
+                          let markerColor = '#3B82F6' // default blue
+                          if (isStudent || isCandidate) markerColor = '#10B981' // green for students/candidates
+                          if (isJob) markerColor = '#8B5CF6' // purple for jobs
+
+                          return (
+                            <MapMarker
+                              key={result.id}
+                              position={result.coordinates}
+                              title={result.title || result.name || result.initials}
+                              icon={{
+                                path: google.maps.SymbolPath.CIRCLE,
+                                scale: 12,
+                                fillColor: markerColor,
+                                fillOpacity: 0.9,
+                                strokeColor: '#ffffff',
+                                strokeWeight: 3,
+                              }}
+                              onClick={() => setSelectedMarker(result.id)}
+                              zIndex={selectedMarker === result.id ? 1000 : 1}
+                            />
+                          )
+                        })}
+                      </GoogleMapComponent>
+                    ) : (
+                      <div className="h-full flex items-center justify-center bg-gray-100">
+                        <div className="text-center">
+                          <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                          <p className="text-gray-600">Google Maps API key not configured</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Selected Marker Info Overlay */}
+                    {selectedMarker && (
+                      <div className="absolute bottom-4 left-4 right-4 max-w-md">
+                        <Card className="shadow-2xl">
+                          <CardContent className="p-4">
+                            {(() => {
+                              const selected = getCurrentResults().find((r: any) => r.id === selectedMarker)
+                              if (!selected) return null
+
+                              if (selected.title) {
+                                // Job result
+                                return (
+                                  <div>
+                                    <div className="flex items-start justify-between mb-2">
+                                      <div>
+                                        <h3 className="font-bold text-lg">{selected.title}</h3>
+                                        <p className="text-gray-600">{selected.company}</p>
+                                      </div>
+                                      <button
+                                        onClick={() => setSelectedMarker(null)}
+                                        className="text-gray-500 hover:text-gray-700"
+                                      >
+                                        ✕
+                                      </button>
+                                    </div>
+                                    <div className="space-y-1 text-sm">
+                                      <p className="flex items-center gap-2">
+                                        <MapPin className="h-4 w-4" />
+                                        {selected.location}
+                                      </p>
+                                      <p className="flex items-center gap-2">
+                                        <DollarSign className="h-4 w-4" />
+                                        {selected.salary}
+                                      </p>
+                                      {selected.match && (
+                                        <Badge className="bg-green-100 text-green-800 mt-2">
+                                          {selected.match}% Match
+                                        </Badge>
+                                      )}
+                                      {selected.matchedStudents && (
+                                        <Badge className="bg-blue-100 text-blue-800 mt-2">
+                                          {selected.matchedStudents} students match
+                                        </Badge>
+                                      )}
+                                    </div>
+                                    <Button className={`w-full mt-3 bg-gradient-to-r ${config.color}`} size="sm" asChild>
+                                      <Link href={config.registrationLink}>Register to Apply</Link>
+                                    </Button>
+                                  </div>
+                                )
+                              } else if (selected.initials) {
+                                // Candidate result
+                                return (
+                                  <div>
+                                    <div className="flex items-start justify-between mb-2">
+                                      <div className="flex items-center gap-3">
+                                        <div className="w-12 h-12 rounded-full bg-gradient-to-r from-teal-400 to-blue-500 flex items-center justify-center text-white font-bold">
+                                          {selected.initials}
+                                        </div>
+                                        <div>
+                                          <p className="font-bold">Contact Locked</p>
+                                          <p className="text-sm text-gray-600">{selected.university}</p>
+                                        </div>
+                                      </div>
+                                      <button
+                                        onClick={() => setSelectedMarker(null)}
+                                        className="text-gray-500 hover:text-gray-700"
+                                      >
+                                        ✕
+                                      </button>
+                                    </div>
+                                    <div className="space-y-2 text-sm">
+                                      <p><strong>Major:</strong> {selected.major}</p>
+                                      <p><strong>GPA:</strong> {selected.gpa}/30</p>
+                                      <p><strong>Skills:</strong> {selected.skills?.slice(0, 3).join(', ')}</p>
+                                      <Badge className="bg-green-100 text-green-800 mt-2">
+                                        {selected.match}% Match
+                                      </Badge>
+                                    </div>
+                                    <Button className={`w-full mt-3 bg-gradient-to-r ${config.color}`} size="sm" asChild>
+                                      <Link href={config.registrationLink}>Unlock for €10</Link>
+                                    </Button>
+                                  </div>
+                                )
+                              } else {
+                                // Student result
+                                return (
+                                  <div>
+                                    <div className="flex items-start justify-between mb-2">
+                                      <div>
+                                        <h3 className="font-bold text-lg">{selected.name}</h3>
+                                        <p className="text-gray-600">{selected.major}</p>
+                                      </div>
+                                      <button
+                                        onClick={() => setSelectedMarker(null)}
+                                        className="text-gray-500 hover:text-gray-700"
+                                      >
+                                        ✕
+                                      </button>
+                                    </div>
+                                    <div className="space-y-1 text-sm">
+                                      <p><strong>GPA:</strong> {selected.gpa}/4.0</p>
+                                      <p><strong>Contacted:</strong> {selected.contacted} times</p>
+                                      {selected.hired && (
+                                        <Badge className="bg-green-100 text-green-800 mt-2">
+                                          Hired at {selected.company}
+                                        </Badge>
+                                      )}
+                                    </div>
+                                    <Button className={`w-full mt-3 bg-gradient-to-r ${config.color}`} size="sm" asChild>
+                                      <Link href={config.registrationLink}>View Full Profile</Link>
+                                    </Button>
+                                  </div>
+                                )
+                              }
+                            })()}
+                          </CardContent>
+                        </Card>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
 
           {/* Sidebar */}
           <div className="space-y-6">
