@@ -69,7 +69,7 @@ const demoConfigs = {
   student: {
     title: 'AI Job Search Demo',
     subtitle: 'For Students',
-    color: 'from-teal-600 to-blue-600',
+    color: 'from-primary to-secondary',
     icon: GraduationCap,
     placeholder: 'Describe your ideal job...',
     initialMessage: "👋 Hi! I'm Transparenty, your AI job search assistant. Tell me what kind of job you're looking for in plain English!\n\nTry: \"Find me frontend developer jobs in Milan at startups\" or \"Stage curriculare in data science\"",
@@ -78,7 +78,7 @@ const demoConfigs = {
   company: {
     title: 'AI Candidate Search Demo',
     subtitle: 'For Companies',
-    color: 'from-blue-600 to-purple-600',
+    color: 'from-primary to-secondary',
     icon: Building2,
     placeholder: 'Describe who you\'re looking for...',
     initialMessage: "👋 Hi! I'm Transparenty, your AI recruiting assistant. Describe the candidate you need in plain English!\n\nTry: \"Cybersecurity students Roma Network Security 30/30\"",
@@ -87,7 +87,7 @@ const demoConfigs = {
   university: {
     title: 'AI Search Hub Demo',
     subtitle: 'For Institutes (Universities & ITS)',
-    color: 'from-indigo-600 to-purple-600',
+    color: 'from-primary to-secondary',
     icon: Users,
     placeholder: 'Search students or jobs...',
     initialMessage: "👋 Hi! I'm Transparenty, your institute AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Show me CS students with 3.8+ GPA\" or \"Find tech companies hiring\"",
@@ -337,18 +337,21 @@ export default function AISearchDemoPage() {
   const Icon = config.icon
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen hero-bg">
       <Header />
 
       <div className="max-w-7xl mx-auto px-4 py-8 pt-24">
         {/* Hero Banner */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-100 to-blue-100 border-2 border-purple-300 rounded-full px-6 py-2 mb-4">
-            <Sparkles className="h-5 w-5 text-purple-600" />
-            <span className="font-bold text-purple-900">Try AI Conversational Search - No Login Required</span>
+          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border-2 border-primary/30 rounded-full px-6 py-2 mb-4 shadow-sm">
+            <Sparkles className="h-5 w-5 text-primary" />
+            <span className="font-bold text-foreground">Try AI Conversational Search - No Login Required</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Experience AI-Powered Search
+          <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
+            Experience{' '}
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              AI-Powered Search
+            </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
             Ask in plain English what you need. Our AI understands and finds exactly what you're looking for.
@@ -356,17 +359,17 @@ export default function AISearchDemoPage() {
 
           {/* Alternative Search Banner */}
           <div className="max-w-2xl mx-auto mt-6">
-            <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200">
+            <Card className="bg-white/80 backdrop-blur-sm border-2 border-primary/20 shadow-lg">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <SlidersHorizontal className="h-6 w-6 text-blue-600" />
+                    <SlidersHorizontal className="h-6 w-6 text-primary" />
                     <div className="text-left">
                       <p className="font-semibold text-gray-900">Prefer traditional filters?</p>
                       <p className="text-sm text-gray-600">Try our Advanced Search with manual filters</p>
                     </div>
                   </div>
-                  <Button variant="outline" className="border-blue-300 hover:bg-blue-100" asChild>
+                  <Button variant="outline" className="border-primary/30 hover:bg-primary/10 hover:text-primary" asChild>
                     <Link href="/demo/advanced-search">
                       Try Advanced Search
                       <ArrowRight className="h-4 w-4 ml-2" />
@@ -487,7 +490,7 @@ export default function AISearchDemoPage() {
                                       {result.name && <p className="font-semibold text-gray-900">{result.name}</p>}
                                       {result.initials && (
                                         <div className="flex items-center gap-2">
-                                          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-teal-400 to-blue-500 flex items-center justify-center text-white font-bold text-xs">
+                                          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold text-xs">
                                             {result.initials}
                                           </div>
                                           <span className="text-gray-600">Contact Locked</span>
@@ -724,7 +727,7 @@ export default function AISearchDemoPage() {
                                   <div>
                                     <div className="flex items-start justify-between mb-2">
                                       <div className="flex items-center gap-3">
-                                        <div className="w-12 h-12 rounded-full bg-gradient-to-r from-teal-400 to-blue-500 flex items-center justify-center text-white font-bold">
+                                        <div className="w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold">
                                           {selected.initials}
                                         </div>
                                         <div>

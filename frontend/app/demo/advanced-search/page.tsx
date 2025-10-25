@@ -279,18 +279,21 @@ export default function AdvancedSearchPage() {
     selectedSkills.length + selectedCourses.length + selectedProjectTypes.length
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen hero-bg">
       <Header />
 
       <div className="max-w-7xl mx-auto px-4 py-8 pt-24">
         {/* Hero Banner */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 border-2 border-blue-300 rounded-full px-6 py-2 mb-4">
-            <SlidersHorizontal className="h-5 w-5 text-blue-600" />
-            <span className="font-bold text-blue-900">Advanced Search - Filter & Find Exactly What You Need</span>
+          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border-2 border-primary/30 rounded-full px-6 py-2 mb-4 shadow-sm">
+            <SlidersHorizontal className="h-5 w-5 text-primary" />
+            <span className="font-bold text-foreground">Advanced Search - Filter & Find Exactly What You Need</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            {config.totalCount} Verified Results
+          <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
+            {config.totalCount}{' '}
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Verified Results
+            </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Use filters to narrow down and find your perfect match. No AI needed - just traditional search.
@@ -342,7 +345,7 @@ export default function AdvancedSearchPage() {
                 <SlidersHorizontal className="h-5 w-5 mr-2" />
                 Filters
                 {activeFiltersCount > 0 && (
-                  <Badge className="ml-2 bg-blue-600 text-white">{activeFiltersCount}</Badge>
+                  <Badge className="ml-2 bg-gradient-to-r from-primary to-secondary text-white">{activeFiltersCount}</Badge>
                 )}
               </Button>
             </div>
@@ -366,7 +369,7 @@ export default function AdvancedSearchPage() {
                         variant="ghost"
                         size="sm"
                         onClick={clearAllFilters}
-                        className="text-blue-600 hover:text-blue-700"
+                        className="text-primary hover:text-primary/80"
                       >
                         Clear all
                       </Button>
@@ -605,7 +608,7 @@ export default function AdvancedSearchPage() {
               <p className="text-gray-600">
                 <span className="font-bold text-gray-900">{config.results.length}</span> results found
                 {activeFiltersCount > 0 && ` with ${activeFiltersCount} filters applied`}
-                {activeDemo === 'company' && <span className="text-blue-600 ml-2">• All Disciplines</span>}
+                {activeDemo === 'company' && <span className="text-primary ml-2">• All Disciplines</span>}
               </p>
               <Button variant="outline" size="sm">
                 <Clock className="h-4 w-4 mr-2" />
