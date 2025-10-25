@@ -180,7 +180,7 @@ export default function CareerCentersPage() {
   const [selectedDiscipline, setSelectedDiscipline] = useState(disciplines[0])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen hero-bg">
       <Header />
 
       <main className="pt-24 pb-16">
@@ -191,12 +191,12 @@ export default function CareerCentersPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <Badge className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0 px-6 py-2 text-base">
+            <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white border-0 px-6 py-2 text-base">
               <Shield className="h-4 w-4 mr-2" />
               For Career Centers & Universities
             </Badge>
 
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl font-display font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Strategic Career Services
               <br />
               Across ALL Disciplines
@@ -209,11 +209,11 @@ export default function CareerCentersPage() {
 
             <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
               <div className="flex items-center gap-2 bg-white px-6 py-3 rounded-full shadow-md">
-                <Users className="h-5 w-5 text-blue-600" />
+                <Users className="h-5 w-5 text-primary" />
                 <span className="font-semibold">16,000+ Students</span>
               </div>
               <div className="flex items-center gap-2 bg-white px-6 py-3 rounded-full shadow-md">
-                <GraduationCap className="h-5 w-5 text-purple-600" />
+                <GraduationCap className="h-5 w-5 text-primary" />
                 <span className="font-semibold">All Disciplines</span>
               </div>
               <div className="flex items-center gap-2 bg-white px-6 py-3 rounded-full shadow-md">
@@ -223,7 +223,7 @@ export default function CareerCentersPage() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg text-lg px-8" asChild>
+              <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg text-lg px-8" asChild>
                 <Link href="/contact">
                   Partner With Us
                   <Zap className="ml-2 h-5 w-5" />
@@ -239,7 +239,7 @@ export default function CareerCentersPage() {
 
           {/* All Disciplines Grid */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-4">Works For Every Department</h2>
+            <h2 className="text-3xl font-display font-bold text-foreground text-center mb-4">Works For Every Department</h2>
             <p className="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
               Each discipline gets tailored guidance based on what companies actually search for
             </p>
@@ -257,7 +257,7 @@ export default function CareerCentersPage() {
                 >
                   <Card className={`h-full transition-all ${
                     selectedDiscipline.name === discipline.name
-                      ? 'ring-2 ring-blue-500 shadow-lg'
+                      ? 'ring-2 ring-primary shadow-lg'
                       : 'hover:shadow-md'
                   }`}>
                     <CardContent className="p-6">
@@ -268,7 +268,7 @@ export default function CareerCentersPage() {
                       <div className="space-y-2 text-sm text-gray-600">
                         <div className="flex items-center justify-between">
                           <span>Searches:</span>
-                          <Badge className="bg-blue-100 text-blue-800">{discipline.searchVolume}</Badge>
+                          <Badge className="bg-primary/10 text-primary">{discipline.searchVolume}</Badge>
                         </div>
                         <div className="flex items-center justify-between">
                           <span>Placement:</span>
@@ -297,7 +297,7 @@ export default function CareerCentersPage() {
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
-                    <FileText className="h-5 w-5 text-blue-600" />
+                    <FileText className="h-5 w-5 text-primary" />
                     Student Onboarding
                   </h3>
                   <p className="text-gray-700 mb-4 italic">"{selectedDiscipline.onboarding}"</p>
@@ -317,21 +317,21 @@ export default function CareerCentersPage() {
 
                 <div>
                   <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
-                    <Building2 className="h-5 w-5 text-purple-600" />
+                    <Building2 className="h-5 w-5 text-primary" />
                     Companies Searching
                   </h3>
                   <div className="space-y-2 mb-6">
                     {selectedDiscipline.companies.map(company => (
-                      <div key={company} className="flex items-center justify-between bg-purple-50 px-4 py-2 rounded-lg">
+                      <div key={company} className="flex items-center justify-between bg-primary/10 px-4 py-2 rounded-lg">
                         <span className="font-medium">{company}</span>
-                        <CheckCircle className="h-4 w-4 text-purple-600" />
+                        <CheckCircle className="h-4 w-4 text-primary" />
                       </div>
                     ))}
                   </div>
 
                   <div className="grid grid-cols-2 gap-4 mt-6">
-                    <div className="bg-blue-50 p-4 rounded-lg text-center">
-                      <div className="text-3xl font-bold text-blue-600">{selectedDiscipline.searchVolume}</div>
+                    <div className="bg-primary/10 p-4 rounded-lg text-center">
+                      <div className="text-3xl font-bold text-primary">{selectedDiscipline.searchVolume}</div>
                       <div className="text-sm text-gray-600">Monthly Searches</div>
                     </div>
                     <div className="bg-green-50 p-4 rounded-lg text-center">
@@ -346,7 +346,7 @@ export default function CareerCentersPage() {
 
           {/* 7 Use Cases */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-4">7 Ways Career Centers Use InTransparency</h2>
+            <h2 className="text-3xl font-display font-bold text-foreground text-center mb-4">7 Ways Career Centers Use InTransparency</h2>
             <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
               From onboarding to placement reporting - every step backed by data
             </p>
@@ -362,7 +362,7 @@ export default function CareerCentersPage() {
                   <Card className="h-full hover:shadow-lg transition-shadow">
                     <CardHeader>
                       <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center flex-shrink-0">
                           <useCase.icon className="h-5 w-5 text-white" />
                         </div>
                         <div>
@@ -372,7 +372,7 @@ export default function CareerCentersPage() {
                     </CardHeader>
                     <CardContent>
                       <p className="text-sm text-gray-700 mb-3">{useCase.description}</p>
-                      <div className="bg-blue-50 border-l-4 border-blue-500 p-3 rounded">
+                      <div className="bg-primary/10 border-l-4 border-primary p-3 rounded">
                         <p className="text-sm italic text-gray-700">{useCase.example}</p>
                       </div>
                     </CardContent>
@@ -384,28 +384,28 @@ export default function CareerCentersPage() {
 
           {/* Dashboard Preview */}
           <Card className="mb-16 shadow-xl">
-            <CardHeader className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
-              <CardTitle className="text-2xl flex items-center gap-3">
+            <CardHeader className="bg-gradient-to-r from-primary to-secondary text-white">
+              <CardTitle className="text-2xl font-display flex items-center gap-3">
                 <BarChart3 className="h-8 w-8" />
                 Sample Dashboard: Economics Department
               </CardTitle>
             </CardHeader>
             <CardContent className="p-8">
               <div className="grid md:grid-cols-4 gap-4 mb-8">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
-                  <div className="text-4xl font-bold text-blue-600 mb-2">2,400</div>
+                <div className="bg-gradient-to-br from-primary/10 to-primary/20 p-6 rounded-xl">
+                  <div className="text-4xl font-bold text-primary mb-2">2,400</div>
                   <div className="text-sm text-gray-600">Total Students</div>
                 </div>
                 <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl">
                   <div className="text-4xl font-bold text-green-600 mb-2">327</div>
                   <div className="text-sm text-gray-600">Company Views</div>
                 </div>
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl">
-                  <div className="text-4xl font-bold text-purple-600 mb-2">54</div>
+                <div className="bg-gradient-to-br from-primary/10 to-primary/20 p-6 rounded-xl">
+                  <div className="text-4xl font-bold text-primary mb-2">54</div>
                   <div className="text-sm text-gray-600">Contacts Made</div>
                 </div>
-                <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-xl">
-                  <div className="text-4xl font-bold text-pink-600 mb-2">19</div>
+                <div className="bg-gradient-to-br from-secondary/10 to-secondary/20 p-6 rounded-xl">
+                  <div className="text-4xl font-bold text-secondary mb-2">19</div>
                   <div className="text-sm text-gray-600">Hires This Month</div>
                 </div>
               </div>
@@ -425,7 +425,7 @@ export default function CareerCentersPage() {
                         <div className="flex items-center gap-2">
                           <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
                             <div
-                              className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
+                              className="h-full bg-gradient-to-r from-primary to-secondary"
                               style={{ width: `${(item.count / 89) * 100}%` }}
                             />
                           </div>
@@ -447,7 +447,7 @@ export default function CareerCentersPage() {
                     ].map(item => (
                       <div key={item.company} className="flex items-center justify-between bg-gray-50 px-4 py-3 rounded-lg">
                         <span className="font-medium">{item.company}</span>
-                        <Badge className="bg-blue-100 text-blue-800">{item.views} views</Badge>
+                        <Badge className="bg-primary/10 text-primary">{item.views} views</Badge>
                       </div>
                     ))}
                   </div>
@@ -467,13 +467,13 @@ export default function CareerCentersPage() {
           </Card>
 
           {/* CTA Section */}
-          <div className="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-white">
-            <h2 className="text-3xl font-bold mb-4">Ready to Transform Career Services?</h2>
+          <div className="text-center bg-gradient-to-r from-primary to-secondary rounded-3xl p-12 text-white">
+            <h2 className="text-3xl font-display font-bold mb-4">Ready to Transform Career Services?</h2>
             <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
               Enable data-driven career guidance across ALL disciplines with zero cost and zero burden
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8" asChild>
+              <Button size="lg" className="bg-white text-primary hover:bg-gray-100 text-lg px-8" asChild>
                 <Link href="/contact">
                   Schedule Demo
                 </Link>

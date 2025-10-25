@@ -12,12 +12,12 @@ import { motion } from 'framer-motion'
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen hero-bg">
       <Header />
 
       <main className="pt-24 pb-16">
         {/* Hero Section - The Problem */}
-        <section className="bg-gradient-to-br from-red-50 to-orange-50 py-20 relative overflow-hidden">
+        <section className="hero-bg py-20 relative overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 opacity-5">
             <Image
@@ -37,7 +37,7 @@ export default function AboutPage() {
               <div className="inline-block bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 The Problem We're Solving
               </div>
-              <h1 className="text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-5xl font-display font-bold text-foreground mb-6">
                 Resumes Are Broken.
               </h1>
               <p className="text-xl text-gray-700 leading-relaxed">
@@ -108,7 +108,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Mission */}
-        <section className="py-20 bg-white relative overflow-hidden">
+        <section className="py-20 hero-bg relative overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 opacity-5">
             <Image
@@ -126,7 +126,7 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-display font-bold text-foreground mb-4">
                 Our Mission
               </h2>
               <p className="text-xl text-gray-700 leading-relaxed">
@@ -134,18 +134,18 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-white text-center mb-16">
+            <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-12 text-white text-center mb-16">
               <blockquote className="text-2xl font-medium italic mb-4">
                 "Projects speak louder than resumes."
               </blockquote>
-              <p className="text-blue-50">
+              <p className="text-white/80">
                 — The InTransparency Philosophy
               </p>
             </div>
 
             {/* Our Story */}
             <div className="prose prose-lg max-w-none">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">How We Started</h3>
+              <h3 className="text-2xl font-display font-bold text-foreground mb-4">How We Started</h3>
               <p className="text-gray-700 leading-relaxed mb-4">
                 InTransparency was born from frustration. Our founders watched talented students with incredible university projects get rejected from jobs because their resumes didn't list "2+ years experience" or a FAANG internship.
               </p>
@@ -163,9 +163,9 @@ export default function AboutPage() {
         </section>
 
         {/* Our Values */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 hero-bg">
           <div className="container max-w-6xl">
-            <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">
+            <h2 className="text-4xl font-display font-bold text-foreground text-center mb-16">
               What We Believe
             </h2>
 
@@ -228,7 +228,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Business Model */}
-        <section className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+        <section className="py-20 hero-bg">
           <div className="container max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -236,7 +236,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-            <h2 className="text-4xl font-bold text-gray-900 text-center mb-4">
+            <h2 className="text-4xl font-display font-bold text-foreground text-center mb-4">
               Why Is Everything Free?
             </h2>
             <p className="text-xl text-gray-700 text-center mb-12">
@@ -291,9 +291,9 @@ export default function AboutPage() {
               </Card>
             </div>
 
-            <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+            <Card className="bg-gradient-to-r from-primary to-secondary text-white">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4 text-center">The Philosophy</h3>
+                <h3 className="text-2xl font-display font-bold mb-4 text-center">The Philosophy</h3>
                 <div className="space-y-4 text-white">
                   <p className="leading-relaxed">
                     <strong>Students shouldn't pay to get hired.</strong> Traditional platforms charge students for premium features to be visible. We believe that's backwards. Students create the value—they should access everything for free.
@@ -311,7 +311,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Vision */}
-        <section className="py-20 bg-white">
+        <section className="py-20 hero-bg">
           <div className="container max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -319,7 +319,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-            <h2 className="text-4xl font-bold text-gray-900 text-center mb-4">
+            <h2 className="text-4xl font-display font-bold text-foreground text-center mb-4">
               Join Us in Early Access
             </h2>
             <p className="text-xl text-gray-700 text-center mb-16">
@@ -355,17 +355,17 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-            <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200 hover:shadow-lg transition-shadow">
+            <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20 hover:shadow-lg transition-shadow">
               <CardContent className="p-8 text-center">
                 <div className="text-5xl mb-4">🎯</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-display font-bold text-foreground mb-4">
                   Help Us Build the Platform
                 </h3>
                 <p className="text-gray-800 mb-6 leading-relaxed max-w-2xl mx-auto">
                   We're in early development and looking for students, universities, and companies to help shape the platform. Your feedback will directly influence what we build.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" asChild>
+                  <Button className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
                     <Link href="/auth/register/role-selection">Get Started Free</Link>
                   </Button>
                   <Button variant="outline" asChild>
@@ -414,9 +414,9 @@ export default function AboutPage() {
         </section>
 
         {/* Join Us */}
-        <section className="py-20 bg-white">
+        <section className="py-20 hero-bg">
           <div className="container max-w-4xl text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl font-display font-bold text-foreground mb-6">
               Join the Movement
             </h2>
             <p className="text-xl text-gray-700 mb-12 max-w-2xl mx-auto">
@@ -424,7 +424,7 @@ export default function AboutPage() {
             </p>
 
             <div className="flex justify-center gap-4 flex-wrap">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" asChild>
+              <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
                 <Link href="/auth/register/role-selection">Get Started Free</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
@@ -433,7 +433,7 @@ export default function AboutPage() {
             </div>
 
             <p className="mt-8 text-sm text-gray-700">
-              For companies: <Link href="/auth/register/role-selection" className="text-blue-600 hover:underline font-medium">Browse free, pay only for contacts →</Link>
+              For companies: <Link href="/auth/register/role-selection" className="text-primary hover:underline font-medium">Browse free, pay only for contacts →</Link>
             </p>
           </div>
         </section>

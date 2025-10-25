@@ -54,12 +54,12 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen hero-bg">
       <Header />
 
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-700 text-white relative overflow-hidden">
+        <section className="py-16 bg-gradient-to-br from-primary to-secondary text-white relative overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 opacity-10">
             <Image
@@ -74,7 +74,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-bold mb-6"
+              className="text-4xl md:text-5xl font-display font-bold mb-6"
             >
               Contact & Support
             </motion.h1>
@@ -97,7 +97,7 @@ export default function ContactPage() {
               {/* Contact Information */}
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-3xl font-display font-bold text-foreground mb-6">
                     Let's Start a Conversation
                   </h2>
                   <p className="text-lg text-gray-600 mb-8">
@@ -110,8 +110,8 @@ export default function ContactPage() {
                   <Card>
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                          <Mail className="h-6 w-6 text-blue-600" />
+                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                          <Mail className="h-6 w-6 text-primary" />
                         </div>
                         <div>
                           <h3 className="font-semibold text-gray-900">Email Us</h3>
@@ -140,8 +140,8 @@ export default function ContactPage() {
                   <Card>
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                          <MapPin className="h-6 w-6 text-purple-600" />
+                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                          <MapPin className="h-6 w-6 text-primary" />
                         </div>
                         <div>
                           <h3 className="font-semibold text-gray-900">Based in</h3>
@@ -153,7 +153,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Support Resources */}
-                <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200">
+                <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <HelpCircle className="h-5 w-5 mr-2" />
@@ -171,7 +171,7 @@ export default function ContactPage() {
                           <li>• What formats are supported?</li>
                         </ul>
                       </div>
-                      <div className="pt-4 border-t border-blue-200">
+                      <div className="pt-4 border-t border-primary/20">
                         <p className="text-sm text-gray-700 mb-3">
                           <strong>Students:</strong> Access AI Job Search from your dashboard
                         </p>
@@ -217,7 +217,7 @@ export default function ContactPage() {
                               required
                               value={formData.name}
                               onChange={handleInputChange}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                               placeholder="Your full name"
                             />
                           </div>
@@ -344,10 +344,10 @@ export default function ContactPage() {
         </section>
 
         {/* AI Conversational Search - How to Access */}
-        <section className="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+        <section className="py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
           <div className="container max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-display font-bold text-foreground mb-4">
                 AI Conversational Search
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -357,9 +357,9 @@ export default function ContactPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               {/* For Students */}
-              <Card className="bg-white border-2 border-blue-200 hover:shadow-lg transition-shadow">
+              <Card className="bg-white border-2 border-primary/20 hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-blue-900">
+                  <CardTitle className="flex items-center text-primary">
                     <User className="h-6 w-6 mr-2" />
                     For Students: AI Job Search
                   </CardTitle>
@@ -368,12 +368,12 @@ export default function ContactPage() {
                   <p className="text-gray-700">
                     Search for jobs using natural language. Companies find YOU for specific competencies:
                   </p>
-                  <div className="bg-blue-50 rounded-lg p-4 space-y-2 text-sm">
+                  <div className="bg-primary/10 rounded-lg p-4 space-y-2 text-sm">
                     <p className="font-mono text-gray-800">"Frontend developer React 2 years Milan startup"</p>
                     <p className="font-mono text-gray-800">"Data science Python remote entry-level"</p>
                     <p className="font-mono text-gray-800">"UX designer portfolio healthcare remote"</p>
                   </div>
-                  <div className="pt-4 border-t border-blue-100">
+                  <div className="pt-4 border-t border-primary/10">
                     <h4 className="font-semibold text-gray-900 mb-2">How to Access:</h4>
                     <ol className="space-y-2 text-sm text-gray-700">
                       <li>1. Log in to your student account</li>
@@ -382,7 +382,7 @@ export default function ContactPage() {
                       <li>4. Start chatting with our AI to find perfect job matches</li>
                     </ol>
                   </div>
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700" asChild>
+                  <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
                     <a href="/dashboard/student/ai-job-search">
                       Try AI Job Search →
                     </a>
@@ -391,9 +391,9 @@ export default function ContactPage() {
               </Card>
 
               {/* For Recruiters */}
-              <Card className="bg-white border-2 border-purple-200 hover:shadow-lg transition-shadow">
+              <Card className="bg-white border-2 border-primary/20 hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-purple-900">
+                  <CardTitle className="flex items-center text-primary">
                     <Building2 className="h-6 w-6 mr-2" />
                     For Recruiters: AI Candidate Search
                   </CardTitle>
@@ -402,17 +402,17 @@ export default function ContactPage() {
                   <p className="text-gray-700">
                     Find verified candidates with natural language. Zero screening CVs:
                   </p>
-                  <div className="bg-purple-50 rounded-lg p-4 space-y-2 text-sm">
+                  <div className="bg-primary/10 rounded-lg p-4 space-y-2 text-sm">
                     <p className="font-mono text-gray-800">"Cybersecurity Roma Network Security 30/30"</p>
                     <p className="font-mono text-gray-800">"Data engineer Python Spark 27+ GPA Milan"</p>
                     <p className="font-mono text-gray-800">"Frontend React TypeScript leadership Berlin"</p>
                   </div>
-                  <div className="mt-4 bg-purple-100 rounded-lg p-3 text-sm">
-                    <p className="text-purple-900">
+                  <div className="mt-4 bg-primary/20 rounded-lg p-3 text-sm">
+                    <p className="text-primary">
                       <strong>Result:</strong> See 5-10 verified matches with actual projects + AI-analyzed soft skills → Pay €10 only per contact
                     </p>
                   </div>
-                  <div className="pt-4 border-t border-purple-100">
+                  <div className="pt-4 border-t border-primary/10">
                     <h4 className="font-semibold text-gray-900 mb-2">How to Access:</h4>
                     <ol className="space-y-2 text-sm text-gray-700">
                       <li>1. Register free (no credit card)</li>
@@ -421,7 +421,7 @@ export default function ContactPage() {
                       <li>4. Type natural search, see verified matches, pay €10 only per contact</li>
                     </ol>
                   </div>
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700" asChild>
+                  <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
                     <a href="/dashboard/recruiter/ai-search">
                       Try AI Candidate Search →
                     </a>
@@ -431,7 +431,7 @@ export default function ContactPage() {
             </div>
 
             <div className="text-center">
-              <Card className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+              <Card className="inline-block bg-gradient-to-r from-primary to-secondary text-white">
                 <CardContent className="p-6">
                   <p className="text-lg">
                     💡 <strong>Pro Tip:</strong> The AI understands natural language - just describe what you're looking for as if talking to a person!
@@ -443,13 +443,13 @@ export default function ContactPage() {
         </section>
 
         {/* Office Hours */}
-        <section className="py-16 bg-gray-100">
+        <section className="py-16 hero-bg">
           <div className="container max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Office Hours</h2>
+            <h2 className="text-3xl font-display font-bold text-foreground mb-8">Office Hours</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card>
                 <CardContent className="p-6">
-                  <Clock className="h-8 w-8 text-blue-600 mx-auto mb-4" />
+                  <Clock className="h-8 w-8 text-primary mx-auto mb-4" />
                   <h3 className="font-semibold text-gray-900 mb-2">Support Hours</h3>
                   <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM CET</p>
                   <p className="text-gray-600">Saturday: 10:00 AM - 4:00 PM CET</p>

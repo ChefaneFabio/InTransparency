@@ -253,7 +253,7 @@ export default function HowItWorksPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+    <div className="min-h-screen hero-bg">
       <Header />
       <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -265,7 +265,7 @@ export default function HowItWorksPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">How InTransparency Works</h1>
+            <h1 className="text-4xl font-display font-bold text-foreground mb-4">How InTransparency Works</h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               A transparent platform connecting students, recruiters, and universities worldwide
             </p>
@@ -309,7 +309,7 @@ export default function HowItWorksPage() {
             transition={{ duration: 0.5 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-display font-bold text-foreground mb-4">
               {getHeaderContent().title}
             </h2>
             <p className="text-lg text-gray-700 max-w-2xl mx-auto">
@@ -320,20 +320,20 @@ export default function HowItWorksPage() {
           {/* Student Data Import Feature (only for students) */}
           {selectedUserType === 'student' && (
             <div className="mb-16">
-              <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
+              <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
                 <CardHeader className="text-center">
-                  <CardTitle className="flex items-center justify-center text-blue-900 mb-2">
+                  <CardTitle className="flex items-center justify-center text-primary mb-2">
                     <Database className="h-6 w-6 mr-2" />
                     Automatic Profile Creation
                   </CardTitle>
-                  <p className="text-blue-700">
+                  <p className="text-gray-700">
                     Import all your academic data from your institution profile to create a complete CV instantly
                   </p>
                 </CardHeader>
                 <CardContent className="text-center">
                   <Button
                     onClick={() => setShowDataImport(!showDataImport)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                    className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg text-white"
                   >
                     {showDataImport ? 'Hide' : 'Try'} Data Import Demo
                     <ArrowRight className="h-4 w-4 ml-2" />
@@ -430,7 +430,7 @@ export default function HowItWorksPage() {
 
           {/* Platform Benefits */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">
+            <h3 className="text-2xl font-display font-bold text-foreground text-center mb-8">
               Why Choose InTransparency?
             </h3>
             <div className="grid md:grid-cols-4 gap-6">
@@ -476,11 +476,11 @@ export default function HowItWorksPage() {
           </div>
 
           {/* Viral CTA Section */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-center text-white mb-16">
-            <h3 className="text-3xl font-bold mb-4">
+          <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-12 text-center text-white mb-16">
+            <h3 className="text-3xl font-display font-bold mb-4">
               Stop Applying. Start Getting Discovered.
             </h3>
-            <p className="text-lg text-blue-50 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
               {selectedUserType === 'student' && 'Build your profile, showcase your work, and get discovered by top companies.'}
               {selectedUserType === 'institute' && 'Connect your students with career opportunities and track their success across all higher education institutions.'}
               {selectedUserType === 'recruiter' && 'Find verified talent based on real skills and projects, not resumes.'}
@@ -488,7 +488,7 @@ export default function HowItWorksPage() {
             <div className="flex justify-center space-x-4">
               <Button
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-blue-50"
+                className="bg-white text-primary hover:bg-gray-100"
                 onClick={() => window.location.href = '/auth/register/role-selection'}
               >
                 Get Started Free
@@ -498,7 +498,7 @@ export default function HowItWorksPage() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white hover:text-blue-600"
+                  className="border-white text-white hover:bg-white hover:text-primary"
                   onClick={() => window.location.href = '/students/explore'}
                 >
                   See Portfolios
