@@ -27,7 +27,7 @@ const segmentContent = {
       <>
         Upload projects in 2 minutes → AI analyzes hard + soft skills → Companies find YOU for specific competencies. Zero endless applications.
         <br />
-        <strong className="text-gray-900">🚀 Works for ALL fields: Tech, Business, Law, Engineering, Architecture, Psychology, Fashion & more. Upload projects + select courses = instant verified profile.</strong>
+        <strong className="text-gray-900">🚀 Works for ALL fields: Tech, Business, Law, Engineering, Architecture, Psychology, Fashion & more. University partner? Automatic profile. No university? Upload projects + select courses = instant profile.</strong>
       </>
     ),
     primaryCTA: {
