@@ -10,7 +10,14 @@ import {
   Building2,
   GraduationCap,
   ArrowRight,
-  CheckCircle
+  CheckCircle,
+  Upload,
+  Brain,
+  Sparkles,
+  Zap,
+  TrendingUp,
+  Target,
+  Clock
 } from 'lucide-react'
 import { IMAGES } from '@/lib/images'
 
