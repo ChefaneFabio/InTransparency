@@ -31,7 +31,7 @@ export function HowItWorks() {
       title: 'Create Your Profile',
       description: 'Two ways: University partner = automatic profile. Independent = upload projects + select courses for instant profile',
       icon: Upload,
-      color: 'from-blue-500 to-blue-600',
+      color: 'from-primary to-secondary',
       details: [
         'University Integrated: Profile created automatically from university data',
         'Independent: Upload projects (code, docs, presentations) + select courses',
@@ -50,7 +50,7 @@ export function HowItWorks() {
       title: 'AI Analysis & Scoring',
       description: 'Our advanced AI analyzes code quality, innovation level, complexity, and extracts relevant skills',
       icon: Brain,
-      color: 'from-purple-500 to-purple-600',
+      color: 'from-primary to-secondary',
       details: [
         'Code quality assessment using industry standards',
         'Innovation scoring based on uniqueness and creativity',
@@ -69,7 +69,7 @@ export function HowItWorks() {
       title: 'Story Generation',
       description: 'Transform technical projects into compelling professional narratives that recruiters understand',
       icon: MessageSquare,
-      color: 'from-green-500 to-green-600',
+      color: 'from-primary to-secondary',
       details: [
         'AI-powered professional storytelling',
         'Industry-specific terminology and keywords',
@@ -87,7 +87,7 @@ export function HowItWorks() {
       title: 'Smart Matching',
       description: 'Connect students with relevant opportunities and enable recruiters to find the perfect candidates',
       icon: Target,
-      color: 'from-orange-500 to-orange-600',
+      color: 'from-primary to-secondary',
       details: [
         'AI-powered skill and project matching',
         'Real-time opportunity notifications',
@@ -146,13 +146,13 @@ export function HowItWorks() {
   const currentStep = steps[activeStep]
 
   return (
-    <section id="how-it-works" className="py-24 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/30">
-      <div className="container max-w-7xl mx-auto px-4">
+    <section id="how-it-works" className="relative py-24 overflow-hidden hero-bg">
+      <div className="container max-w-7xl mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl font-display font-bold text-foreground mb-6">
             How InTransparency{' '}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Works
             </span>
           </h2>
@@ -361,14 +361,14 @@ export function HowItWorks() {
             </Card>
 
             {/* Animated Elements */}
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-bounce"></div>
-            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-green-500 to-blue-500 rounded-full animate-pulse"></div>
+            <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full animate-bounce"></div>
+            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-secondary to-primary rounded-full animate-pulse"></div>
           </div>
         </div>
 
         {/* Benefits Grid */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">
+          <h3 className="text-3xl font-display font-bold text-center text-foreground mb-12">
             Benefits for Everyone
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -377,7 +377,7 @@ export function HowItWorks() {
               return (
                 <Card key={index} className="p-6 text-center border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50">
                   <CardContent className="p-0">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <div className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-6">
                       <Icon className="h-8 w-8 text-white" />
                     </div>
                     <h4 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h4>
@@ -399,14 +399,14 @@ export function HowItWorks() {
 
         {/* Final CTA */}
         <div className="text-center">
-          <h3 className="text-3xl font-bold text-gray-900 mb-6">
+          <h3 className="text-3xl font-display font-bold text-foreground mb-6">
             Ready to Get Started?
           </h3>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+          <p className="text-xl text-foreground/80 max-w-2xl mx-auto mb-8">
             Join thousands of students and hundreds of companies already using InTransparency
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" asChild>
+            <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" asChild>
               <a href="/auth/register/role-selection">
                 Get Started Free
                 <ArrowRight className="ml-2 h-5 w-5" />

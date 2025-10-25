@@ -60,13 +60,13 @@ const pricingTiers = [
 
 export function CTA() {
   return (
-    <section className="py-24 bg-white">
-      <div className="container">
+    <section className="relative py-24 overflow-hidden hero-bg">
+      <div className="container relative z-10">
         {/* Main CTA */}
         <div className="text-center mb-24">
-          <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">
+          <h2 className="text-4xl font-display font-bold tracking-tight text-foreground sm:text-5xl mb-6">
             Transform your projects into
-            <span className="bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent"> career opportunities</span>
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"> career opportunities</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Use InTransparency to showcase your work, connect with opportunities,
@@ -77,14 +77,14 @@ export function CTA() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto mb-8">
             {benefits.map((benefit, index) => (
               <div key={index} className="flex items-center text-left">
-                <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0" />
+                <CheckCircle className="h-5 w-5 text-green-600 mr-3 flex-shrink-0" />
                 <span className="text-gray-700">{benefit}</span>
               </div>
             ))}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button asChild size="lg" className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700">
+            <Button asChild size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               <Link href="/auth/register">
                 Get Started Free
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -105,7 +105,7 @@ export function CTA() {
         {/* Pricing Section */}
         <div className="mb-24">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+            <h3 className="text-3xl font-display font-bold text-foreground mb-4">
               Choose your plan
             </h3>
             <p className="text-xl text-gray-600">
@@ -119,13 +119,13 @@ export function CTA() {
                 key={tier.name}
                 className={`relative rounded-2xl border-2 p-8 ${
                   tier.popular
-                    ? 'border-teal-500 shadow-xl scale-105'
+                    ? 'border-primary shadow-xl scale-105'
                     : 'border-gray-200'
                 }`}
               >
                 {tier.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-teal-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 rounded-full text-sm font-medium">
                       Most Popular
                     </span>
                   </div>
@@ -147,7 +147,7 @@ export function CTA() {
                 <ul className="space-y-4 mb-8">
                   {(tier.features || []).map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-emerald-500 mr-3 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="h-5 w-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{feature}</span>
                     </li>
                   ))}
@@ -156,7 +156,7 @@ export function CTA() {
                 <Button
                   className={`w-full ${
                     tier.popular
-                      ? 'bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 text-white'
+                      ? 'bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white'
                       : 'border border-gray-300 bg-white hover:bg-gray-50 text-gray-900'
                   }`}
                   asChild
@@ -177,8 +177,8 @@ export function CTA() {
         </div>
 
         {/* Final CTA Banner */}
-        <div className="bg-gradient-to-r from-teal-600 to-blue-600 rounded-3xl p-12 text-center text-white">
-          <h3 className="text-3xl font-bold mb-4">
+        <div className="bg-gradient-to-r from-primary to-secondary rounded-3xl p-12 text-center text-white">
+          <h3 className="text-3xl font-display font-bold mb-4">
             Ready to unlock your potential?
           </h3>
           <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
@@ -187,9 +187,9 @@ export function CTA() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              className="bg-white text-blue-600 hover:bg-gray-100"
+            <Button
+              size="lg"
+              className="bg-white text-primary hover:bg-gray-100"
               asChild
             >
               <Link href="/auth/register">
@@ -197,10 +197,10 @@ export function CTA() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-blue-600"
+              className="border-white text-white hover:bg-white hover:text-primary"
               asChild
             >
               <Link href="/contact">
