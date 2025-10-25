@@ -46,9 +46,9 @@ type Message = {
 
 const exampleQueries = {
   student: [
-    "Find me entry-level frontend developer jobs in Milan",
-    "Remote data science internships with good mentorship",
-    "Startup jobs in Rome with React and Node.js"
+    "Stage curriculare for computer science in Milan",
+    "Tirocinio data science for my university degree",
+    "Entry-level frontend developer jobs in Milan"
   ],
   company: [
     "Cybersecurity students from Politecnico with Network Security 30/30",
@@ -69,7 +69,7 @@ const demoConfigs = {
     color: 'from-teal-600 to-blue-600',
     icon: GraduationCap,
     placeholder: 'Describe your ideal job...',
-    initialMessage: "👋 Hi! I'm your AI job search assistant. Tell me what kind of job you're looking for in plain English!\n\nTry: \"Find me frontend developer jobs in Milan at startups\"",
+    initialMessage: "👋 Hi! I'm Transparenty, your AI job search assistant. Tell me what kind of job you're looking for in plain English!\n\nTry: \"Find me frontend developer jobs in Milan at startups\" or \"Stage curriculare in data science\"",
     registrationLink: '/auth/register/student'
   },
   company: {
@@ -78,7 +78,7 @@ const demoConfigs = {
     color: 'from-blue-600 to-purple-600',
     icon: Building2,
     placeholder: 'Describe who you\'re looking for...',
-    initialMessage: "👋 Hi! I'm your AI recruiting assistant. Describe the candidate you need in plain English!\n\nTry: \"Cybersecurity students Roma Network Security 30/30\"",
+    initialMessage: "👋 Hi! I'm Transparenty, your AI recruiting assistant. Describe the candidate you need in plain English!\n\nTry: \"Cybersecurity students Roma Network Security 30/30\"",
     registrationLink: '/auth/register/recruiter'
   },
   university: {
@@ -87,7 +87,7 @@ const demoConfigs = {
     color: 'from-indigo-600 to-purple-600',
     icon: Users,
     placeholder: 'Search students or jobs...',
-    initialMessage: "👋 Hi! I'm your university AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Show me CS students with 3.8+ GPA\" or \"Find tech companies hiring\"",
+    initialMessage: "👋 Hi! I'm Transparenty, your university AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Show me CS students with 3.8+ GPA\" or \"Find tech companies hiring\"",
     registrationLink: '/auth/register/university'
   }
 }
@@ -99,6 +99,14 @@ const mockResults = {
     { id: '3', title: 'React Developer', company: 'StartupHub', location: 'Rome, IT', salary: '€32,000 - €42,000', type: 'Full-time', match: 87, coordinates: { lat: 41.9028, lng: 12.4964 } },
     { id: '4', title: 'Full Stack Developer', company: 'TechCo', location: 'Turin, IT', salary: '€38,000 - €48,000', type: 'Full-time', match: 91, coordinates: { lat: 45.0703, lng: 7.6869 } },
     { id: '5', title: 'Backend Engineer', company: 'DevShop', location: 'Florence, IT', salary: '€35,000 - €45,000', type: 'Full-time', match: 85, coordinates: { lat: 43.7696, lng: 11.2558 } }
+  ],
+  internships: [
+    { id: '101', title: 'Stage Curriculare - Software Development', company: 'Microsoft Italia', location: 'Milan, IT', salary: '€800/month', type: 'Internship', duration: '6 months', match: 96, coordinates: { lat: 45.4642, lng: 9.1900 }, validForDegree: true },
+    { id: '102', title: 'Tirocinio Data Science', company: 'IBM Rome', location: 'Rome, IT', salary: '€900/month', type: 'Internship', duration: '6 months', match: 93, coordinates: { lat: 41.9028, lng: 12.4964 }, validForDegree: true },
+    { id: '103', title: 'Stage in AI/Machine Learning', company: 'Accenture', location: 'Turin, IT', salary: '€850/month', type: 'Internship', duration: '6 months', match: 91, coordinates: { lat: 45.0703, lng: 7.6869 }, validForDegree: true },
+    { id: '104', title: 'Internship - Frontend Development', company: 'Deloitte Digital', location: 'Milan, IT', salary: '€900/month', type: 'Internship', duration: '6 months', match: 89, coordinates: { lat: 45.4642, lng: 9.1900 }, validForDegree: true },
+    { id: '105', title: 'Stage Curriculare - Cybersecurity', company: 'Leonardo SpA', location: 'Rome, IT', salary: '€1000/month', type: 'Internship', duration: '6 months', match: 94, coordinates: { lat: 41.9028, lng: 12.4964 }, validForDegree: true },
+    { id: '106', title: 'Tirocinio Full Stack', company: 'Reply', location: 'Turin, IT', salary: '€800/month', type: 'Internship', duration: '3-6 months', match: 88, coordinates: { lat: 45.0703, lng: 7.6869 }, validForDegree: true }
   ],
   companyResults: [
     { id: '1', initials: 'M.R.', university: 'Politecnico di Milano', major: 'Cybersecurity', gpa: 30, skills: ['Network Security', 'Python', 'Cryptography'], softSkills: ['Problem-solving', 'Teamwork'], match: 96, coordinates: { lat: 45.4642, lng: 9.1900 } },
@@ -145,6 +153,35 @@ export default function AISearchDemoPage() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
+  const parseQuery = (query: string) => {
+    const lowerQuery = query.toLowerCase()
+
+    // Detect job type
+    const isInternship = lowerQuery.includes('stage') || lowerQuery.includes('tirocinio') ||
+                        lowerQuery.includes('internship') || lowerQuery.includes('curriculare')
+    const isRemote = lowerQuery.includes('remote') || lowerQuery.includes('da remoto')
+    const isFullTime = lowerQuery.includes('full time') || lowerQuery.includes('full-time')
+
+    // Detect location
+    const locations = {
+      milan: lowerQuery.includes('milan') || lowerQuery.includes('milano'),
+      rome: lowerQuery.includes('rome') || lowerQuery.includes('roma'),
+      turin: lowerQuery.includes('turin') || lowerQuery.includes('torino'),
+      florence: lowerQuery.includes('florence') || lowerQuery.includes('firenze')
+    }
+
+    // Detect skills/fields
+    const fields = {
+      frontend: lowerQuery.includes('frontend') || lowerQuery.includes('react') || lowerQuery.includes('vue'),
+      backend: lowerQuery.includes('backend') || lowerQuery.includes('node') || lowerQuery.includes('python'),
+      dataScience: lowerQuery.includes('data science') || lowerQuery.includes('data') || lowerQuery.includes('ml') || lowerQuery.includes('machine learning'),
+      cybersecurity: lowerQuery.includes('cybersecurity') || lowerQuery.includes('security'),
+      fullstack: lowerQuery.includes('full stack') || lowerQuery.includes('fullstack')
+    }
+
+    return { isInternship, isRemote, isFullTime, locations, fields, originalQuery: query }
+  }
+
   const handleSend = () => {
     if (!input.trim()) return
 
@@ -156,27 +193,119 @@ export default function AISearchDemoPage() {
     }
 
     setMessages(prev => [...prev, userMessage])
+    const currentInput = input
     setInput('')
     setIsTyping(true)
 
     setTimeout(() => {
       let results: any[] = []
       let responseContent = ''
+      const parsed = parseQuery(currentInput)
 
       if (activeDemo === 'student') {
-        results = mockResults.studentJobs
-        responseContent = `Perfect! I found **${results.length} jobs** matching your search across Italy!\n\n💼 Frontend Developer at TechStartup - Milan - €35k-45k\n💼 Junior Software Engineer at InnovateCo - Remote - €30k-40k\n💼 React Developer at StartupHub - Rome - €32k-42k\n...and ${results.length - 3} more!\n\n✨ Switch to Map View to see locations!`
+        // Intelligent job search
+        if (parsed.isInternship) {
+          results = mockResults.internships
+
+          // Filter by location if specified
+          if (parsed.locations.milan) {
+            results = results.filter((r: any) => r.location.includes('Milan'))
+          } else if (parsed.locations.rome) {
+            results = results.filter((r: any) => r.location.includes('Rome'))
+          } else if (parsed.locations.turin) {
+            results = results.filter((r: any) => r.location.includes('Turin'))
+          }
+
+          // Filter by field if specified
+          if (parsed.fields.dataScience) {
+            results = results.filter((r: any) => r.title.toLowerCase().includes('data'))
+          } else if (parsed.fields.cybersecurity) {
+            results = results.filter((r: any) => r.title.toLowerCase().includes('cybersecurity'))
+          } else if (parsed.fields.frontend) {
+            results = results.filter((r: any) => r.title.toLowerCase().includes('frontend'))
+          }
+
+          if (results.length === 0) results = mockResults.internships.slice(0, 3)
+
+          const topResults = results.slice(0, 3)
+          responseContent = `Perfect! I found **${results.length} stage curriculare** positions valid for your university degree:\n\n`
+          topResults.forEach((r: any) => {
+            responseContent += `🎓 ${r.title} at ${r.company} - ${r.location} - ${r.salary}\n   ✓ Valid for degree | ${r.duration}\n\n`
+          })
+          if (results.length > 3) {
+            responseContent += `...and ${results.length - 3} more internships!\n\n`
+          }
+          responseContent += `✨ All positions are recognized as valid "stage curriculare" by universities!\n💡 Switch to Map View to see locations!`
+        } else {
+          // Full-time jobs
+          results = mockResults.studentJobs
+
+          // Filter by location
+          if (parsed.locations.milan) {
+            results = results.filter((r: any) => r.location.includes('Milan'))
+          } else if (parsed.locations.rome) {
+            results = results.filter((r: any) => r.location.includes('Rome'))
+          }
+
+          // Filter by field
+          if (parsed.fields.frontend) {
+            results = results.filter((r: any) => r.title.toLowerCase().includes('frontend') || r.title.toLowerCase().includes('react'))
+          }
+
+          if (results.length === 0) results = mockResults.studentJobs.slice(0, 3)
+
+          const topResults = results.slice(0, 3)
+          responseContent = `Perfect! I found **${results.length} jobs** matching "${currentInput}":\n\n`
+          topResults.forEach((r: any) => {
+            responseContent += `💼 ${r.title} at ${r.company} - ${r.location} - ${r.salary}\n`
+          })
+          if (results.length > 3) {
+            responseContent += `\n...and ${results.length - 3} more!\n`
+          }
+          responseContent += `\n✨ Switch to Map View to see locations!`
+        }
       } else if (activeDemo === 'company') {
         results = mockResults.companyResults
-        responseContent = `Great! I found **${results.length} verified candidates** matching your requirements:\n\n🎓 M.R. - Politecnico di Milano, Cybersecurity, 30/30 GPA\n🎓 S.B. - Sapienza Roma, Computer Science, 29/30 GPA\n🎓 L.V. - Politecnico di Torino, Software Eng, 29/30 GPA\n...and ${results.length - 3} more!\n\n💡 View on map to see geographic distribution!`
+
+        // Filter by location
+        if (parsed.locations.milan) {
+          results = results.filter((r: any) => r.university.includes('Milano'))
+        } else if (parsed.locations.rome || parsed.locations.turin) {
+          results = results.filter((r: any) => r.university.includes('Roma') || r.university.includes('Torino'))
+        }
+
+        // Filter by field
+        if (parsed.fields.cybersecurity) {
+          results = results.filter((r: any) => r.major.includes('Cybersecurity') || r.skills.some((s: string) => s.toLowerCase().includes('security')))
+        }
+
+        if (results.length === 0) results = mockResults.companyResults
+
+        const topResults = results.slice(0, 3)
+        responseContent = `Great! I found **${results.length} verified candidates** matching "${currentInput}":\n\n`
+        topResults.forEach((r: any) => {
+          responseContent += `🎓 ${r.initials} - ${r.university}, ${r.major}, ${r.gpa}/30 GPA\n   Skills: ${r.skills.slice(0, 2).join(', ')}\n\n`
+        })
+        if (results.length > 3) {
+          responseContent += `...and ${results.length - 3} more!\n\n`
+        }
+        responseContent += `💡 View on map to see geographic distribution!\n✨ Register to unlock contacts for €10 each!`
       } else {
-        const isStudentQuery = input.toLowerCase().includes('student') || input.toLowerCase().includes('gpa')
+        const isStudentQuery = currentInput.toLowerCase().includes('student') || currentInput.toLowerCase().includes('gpa')
         if (isStudentQuery) {
           results = mockResults.universityStudents
-          responseContent = `📊 Found **${results.length} students** matching your criteria:\n\n👤 Marco Rossi - CS, 3.85 GPA, 2 contacts\n👤 Sofia Bianchi - Data Science, 3.92 GPA, hired at TechCorp\n👤 Luca Verdi - Software Eng, 3.78 GPA, 5 contacts\n\n✨ View locations on the map!`
+          responseContent = `📊 Found **${results.length} students** matching "${currentInput}":\n\n`
+          results.forEach((r: any) => {
+            responseContent += `👤 ${r.name} - ${r.major}, ${r.gpa} GPA, ${r.contacted} contacts${r.hired ? `, hired at ${r.company}` : ''}\n`
+          })
+          responseContent += `\n✨ View locations on the map!`
         } else {
           results = mockResults.universityJobs
-          responseContent = `💼 Found **${results.length} job opportunities** for your students:\n\n🏢 ML Engineer at TechCorp - Milan - 12 students match\n🏢 Data Analyst at DataCo - Rome - 8 students match\n🏢 Software Engineer at DevHub - Turin - 15 students match\n\n✨ See geographic distribution on map!`
+          responseContent = `💼 Found **${results.length} job opportunities** for your students:\n\n`
+          results.forEach((r: any) => {
+            responseContent += `🏢 ${r.title} at ${r.company} - ${r.location} - ${r.matchedStudents} students match\n`
+          })
+          responseContent += `\n✨ See geographic distribution on map!`
         }
       }
 
@@ -340,11 +469,20 @@ export default function AISearchDemoPage() {
                           {/* Show preview results */}
                           {message.results && message.results.length > 0 && (
                             <div className="mt-3 space-y-2 w-full">
-                              {message.results.map((result: any) => (
+                              {message.results.slice(0, 3).map((result: any) => (
                                 <div key={result.id} className="bg-white border border-gray-200 rounded-lg p-3 text-sm">
                                   <div className="flex items-start justify-between">
                                     <div className="flex-1">
-                                      {result.title && <p className="font-semibold text-gray-900">{result.title}</p>}
+                                      {result.title && (
+                                        <div>
+                                          <p className="font-semibold text-gray-900">{result.title}</p>
+                                          {result.type === 'Internship' && result.validForDegree && (
+                                            <Badge className="bg-purple-100 text-purple-800 text-xs mt-1">
+                                              ✓ Valid for Degree
+                                            </Badge>
+                                          )}
+                                        </div>
+                                      )}
                                       {result.name && <p className="font-semibold text-gray-900">{result.name}</p>}
                                       {result.initials && (
                                         <div className="flex items-center gap-2">
@@ -359,6 +497,7 @@ export default function AISearchDemoPage() {
                                         {result.university && `${result.university} • `}
                                         {result.location}
                                         {result.major && ` • ${result.major}`}
+                                        {result.duration && ` • ${result.duration}`}
                                       </p>
                                     </div>
                                     {result.match && (
@@ -519,13 +658,19 @@ export default function AISearchDemoPage() {
                               if (!selected) return null
 
                               if (selected.title) {
-                                // Job result
+                                // Job or Internship result
+                                const isInternship = selected.type === 'Internship'
                                 return (
                                   <div>
                                     <div className="flex items-start justify-between mb-2">
                                       <div>
                                         <h3 className="font-bold text-lg">{selected.title}</h3>
                                         <p className="text-gray-600">{selected.company}</p>
+                                        {isInternship && selected.validForDegree && (
+                                          <Badge className="bg-purple-100 text-purple-800 mt-1 text-xs">
+                                            ✓ Valid for University Degree
+                                          </Badge>
+                                        )}
                                       </div>
                                       <button
                                         onClick={() => setSelectedMarker(null)}
@@ -543,6 +688,17 @@ export default function AISearchDemoPage() {
                                         <DollarSign className="h-4 w-4" />
                                         {selected.salary}
                                       </p>
+                                      {selected.duration && (
+                                        <p className="flex items-center gap-2">
+                                          <Clock className="h-4 w-4" />
+                                          {selected.duration}
+                                        </p>
+                                      )}
+                                      {selected.type && (
+                                        <Badge className="bg-blue-100 text-blue-800 mt-2">
+                                          {selected.type}
+                                        </Badge>
+                                      )}
                                       {selected.match && (
                                         <Badge className="bg-green-100 text-green-800 mt-2">
                                           {selected.match}% Match
@@ -555,7 +711,9 @@ export default function AISearchDemoPage() {
                                       )}
                                     </div>
                                     <Button className={`w-full mt-3 bg-gradient-to-r ${config.color}`} size="sm" asChild>
-                                      <Link href={config.registrationLink}>Register to Apply</Link>
+                                      <Link href={config.registrationLink}>
+                                        {isInternship ? 'Apply for Stage' : 'Register to Apply'}
+                                      </Link>
                                     </Button>
                                   </div>
                                 )
