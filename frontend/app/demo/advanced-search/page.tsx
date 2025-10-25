@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -210,40 +212,9 @@ export default function AdvancedSearchPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      {/* Header */}
-      <div className="bg-white/90 backdrop-blur-md border-b border-blue-100/50 shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                <Sparkles className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                  InTransparency
-                </span>
-                <Badge className="ml-2 bg-purple-100 text-purple-800 border-purple-300">DEMO</Badge>
-              </div>
-            </Link>
-            <div className="flex items-center gap-3">
-              <Button variant="outline" size="sm" asChild>
-                <Link href="/demo/ai-search">
-                  <Sparkles className="h-4 w-4 mr-2" />
-                  AI Search
-                </Link>
-              </Button>
-              <Button variant="outline" asChild>
-                <Link href="/auth/login">Sign In</Link>
-              </Button>
-              <Button className={`bg-gradient-to-r ${config.color}`} asChild>
-                <Link href="/auth/register/role-selection">Register Free</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Header />
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 py-8 pt-24">
         {/* Hero Banner */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 border-2 border-blue-300 rounded-full px-6 py-2 mb-4">
@@ -656,6 +627,8 @@ export default function AdvancedSearchPage() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   )
 }
