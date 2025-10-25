@@ -39,9 +39,18 @@ const mockJobs = [
 ]
 
 const mockCandidates = [
-  { id: '1', initials: 'M.R.', university: 'Politecnico di Milano', major: 'Cybersecurity', gpa: 30, skills: ['Network Security', 'Python', 'Cryptography'], softSkills: ['Problem-solving', 'Teamwork'], match: 96, available: true },
-  { id: '2', initials: 'S.B.', university: 'Sapienza Roma', major: 'Computer Science', gpa: 29, skills: ['Cybersecurity', 'Linux', 'Ethical Hacking'], softSkills: ['Leadership', 'Communication'], match: 92, available: true },
-  { id: '3', initials: 'L.V.', university: 'Politecnico di Torino', major: 'Software Engineering', gpa: 29, skills: ['Network Security', 'Java', 'Cloud'], softSkills: ['Analytical', 'Detail-oriented'], match: 89, available: true },
+  { id: '1', initials: 'M.R.', university: 'Politecnico di Milano', major: 'Cybersecurity', gpa: 30, field: 'STEM', skills: ['Network Security', 'Python', 'Cryptography'], softSkills: ['Problem-solving', 'Teamwork'], match: 96, available: true },
+  { id: '2', initials: 'S.B.', university: 'Sapienza Roma', major: 'Computer Science', gpa: 29, field: 'STEM', skills: ['Cybersecurity', 'Linux', 'Ethical Hacking'], softSkills: ['Leadership', 'Communication'], match: 92, available: true },
+  { id: '3', initials: 'L.V.', university: 'Politecnico di Torino', major: 'Software Engineering', gpa: 29, field: 'STEM', skills: ['Network Security', 'Java', 'Cloud'], softSkills: ['Analytical', 'Detail-oriented'], match: 89, available: true },
+  { id: '4', initials: 'G.M.', university: 'Bocconi Milano', major: 'Business Administration', gpa: 28, field: 'Business', skills: ['Financial Analysis', 'Market Research', 'Excel', 'PowerPoint'], softSkills: ['Strategic Thinking', 'Negotiation'], match: 94, available: true },
+  { id: '5', initials: 'A.F.', university: 'Sapienza Roma', major: 'Law', gpa: 29, field: 'Legal', skills: ['Contract Law', 'Corporate Law', 'Legal Research', 'Compliance'], softSkills: ['Attention to Detail', 'Critical Thinking'], match: 91, available: true },
+  { id: '6', initials: 'E.C.', university: 'Università di Bologna', major: 'Economics & Finance', gpa: 28, field: 'Business', skills: ['Financial Modeling', 'Data Analysis', 'Bloomberg Terminal', 'Risk Management'], softSkills: ['Analytical', 'Decision-making'], match: 93, available: true },
+  { id: '7', initials: 'F.P.', university: 'Politecnico di Milano', major: 'Mechanical Engineering', gpa: 27, field: 'Engineering', skills: ['CAD', 'SolidWorks', 'Simulation', 'Manufacturing'], softSkills: ['Problem-solving', 'Innovation'], match: 88, available: true },
+  { id: '8', initials: 'C.R.', university: 'Università di Firenze', major: 'Marketing & Communications', gpa: 28, field: 'Business', skills: ['Digital Marketing', 'SEO', 'Social Media', 'Content Strategy'], softSkills: ['Creativity', 'Communication'], match: 90, available: true },
+  { id: '9', initials: 'D.S.', university: 'Università di Padova', major: 'Psychology', gpa: 29, field: 'Humanities', skills: ['Clinical Assessment', 'Research Methods', 'SPSS', 'Counseling'], softSkills: ['Empathy', 'Active Listening'], match: 87, available: true },
+  { id: '10', initials: 'M.T.', university: 'Politecnico di Torino', major: 'Civil Engineering', gpa: 27, field: 'Engineering', skills: ['AutoCAD', 'Project Management', 'Structural Analysis', 'BIM'], softSkills: ['Teamwork', 'Leadership'], match: 86, available: true },
+  { id: '11', initials: 'L.B.', university: 'IULM Milano', major: 'Graphic Design', gpa: 28, field: 'Creative', skills: ['Adobe Creative Suite', 'UI/UX', 'Branding', 'Typography'], softSkills: ['Creativity', 'Attention to Detail'], match: 92, available: true },
+  { id: '12', initials: 'P.G.', university: 'Università di Bologna', major: 'International Relations', gpa: 29, field: 'Humanities', skills: ['Geopolitical Analysis', 'Policy Research', 'Multilingual', 'Diplomacy'], softSkills: ['Cross-cultural Communication', 'Negotiation'], match: 85, available: true },
 ]
 
 const universities = [
@@ -50,24 +59,84 @@ const universities = [
   'Università di Bologna',
   'Politecnico di Torino',
   'Università degli Studi di Padova',
-  'Università degli Studi di Firenze'
+  'Università degli Studi di Firenze',
+  'Bocconi Milano',
+  'IULM Milano',
+  'Università Cattolica',
+  'Università di Pisa'
 ]
 
 const cities = ['Milan', 'Rome', 'Turin', 'Florence', 'Bologna', 'Naples']
 
+const fields = [
+  'STEM',
+  'Business',
+  'Engineering',
+  'Legal',
+  'Humanities',
+  'Creative',
+  'Medical',
+  'Social Sciences'
+]
+
 const majors = [
+  // STEM
   'Computer Science',
   'Software Engineering',
   'Data Science',
   'Cybersecurity',
   'Artificial Intelligence',
-  'Information Systems'
+  'Mathematics',
+  'Physics',
+  'Chemistry',
+  'Biology',
+
+  // Business
+  'Business Administration',
+  'Economics & Finance',
+  'Marketing & Communications',
+  'Management',
+  'Accounting',
+  'International Business',
+
+  // Engineering
+  'Mechanical Engineering',
+  'Civil Engineering',
+  'Electrical Engineering',
+  'Chemical Engineering',
+  'Industrial Engineering',
+  'Aerospace Engineering',
+
+  // Legal & Humanities
+  'Law',
+  'Political Science',
+  'International Relations',
+  'Philosophy',
+  'History',
+  'Literature',
+
+  // Creative & Social
+  'Graphic Design',
+  'Architecture',
+  'Psychology',
+  'Sociology',
+  'Education',
+  'Communication Studies'
 ]
 
-const skills = [
-  'JavaScript', 'React', 'Python', 'Java', 'Node.js',
-  'TypeScript', 'SQL', 'AWS', 'Docker', 'Kubernetes'
-]
+const skillsByField = {
+  'STEM': ['JavaScript', 'Python', 'Java', 'C++', 'React', 'Node.js', 'SQL', 'Machine Learning', 'Data Analysis', 'R'],
+  'Business': ['Financial Analysis', 'Market Research', 'Excel', 'PowerPoint', 'Financial Modeling', 'Business Strategy', 'SAP', 'CRM', 'Project Management', 'Budgeting'],
+  'Engineering': ['CAD', 'SolidWorks', 'AutoCAD', 'MATLAB', 'Simulation', 'Manufacturing', 'BIM', 'Structural Analysis', '3D Modeling', 'Technical Drawing'],
+  'Legal': ['Contract Law', 'Corporate Law', 'Legal Research', 'Compliance', 'Litigation', 'IP Law', 'Tax Law', 'Labor Law', 'Legal Writing', 'Case Analysis'],
+  'Creative': ['Adobe Creative Suite', 'UI/UX', 'Branding', 'Typography', 'Figma', 'Illustration', 'Video Editing', '3D Design', 'Photography', 'Motion Graphics'],
+  'Humanities': ['Research Methods', 'Academic Writing', 'Critical Thinking', 'Policy Analysis', 'Geopolitical Analysis', 'Multilingual', 'Archival Research', 'Public Speaking', 'Teaching', 'Content Creation'],
+  'Medical': ['Clinical Assessment', 'Patient Care', 'Medical Research', 'Diagnostics', 'Pharmacology', 'Surgery', 'EMR Systems', 'Anatomy', 'Pathology', 'Medical Ethics'],
+  'Social Sciences': ['SPSS', 'Qualitative Research', 'Survey Design', 'Statistical Analysis', 'Counseling', 'Social Work', 'Community Outreach', 'Grant Writing', 'Program Evaluation', 'Ethnography']
+}
+
+// Flatten all skills for display
+const allSkills = Object.values(skillsByField).flat()
 
 export default function AdvancedSearchPage() {
   const [activeDemo, setActiveDemo] = useState<DemoType>('student')
@@ -81,6 +150,7 @@ export default function AdvancedSearchPage() {
 
   // Company filters
   const [selectedUniversities, setSelectedUniversities] = useState<string[]>([])
+  const [selectedFields, setSelectedFields] = useState<string[]>([])
   const [selectedMajors, setSelectedMajors] = useState<string[]>([])
   const [gpaMin, setGpaMin] = useState(24)
   const [selectedSkills, setSelectedSkills] = useState<string[]>([])
@@ -96,7 +166,7 @@ export default function AdvancedSearchPage() {
     },
     company: {
       title: 'Advanced Candidate Search',
-      subtitle: 'Filter by university, skills, GPA, and more',
+      subtitle: 'All disciplines: Business, Engineering, STEM, Law, Creative, Humanities & more',
       color: 'from-blue-600 to-purple-600',
       icon: Building2,
       results: mockCandidates,
@@ -128,6 +198,7 @@ export default function AdvancedSearchPage() {
     setSelectedCities([])
     setSalaryRange([0, 100000])
     setSelectedUniversities([])
+    setSelectedFields([])
     setSelectedMajors([])
     setGpaMin(24)
     setSelectedSkills([])
@@ -135,7 +206,7 @@ export default function AdvancedSearchPage() {
   }
 
   const activeFiltersCount = jobType.length + selectedCities.length +
-    selectedUniversities.length + selectedMajors.length + selectedSkills.length
+    selectedUniversities.length + selectedFields.length + selectedMajors.length + selectedSkills.length
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -334,6 +405,27 @@ export default function AdvancedSearchPage() {
                   {/* Company Filters */}
                   {activeDemo === 'company' && (
                     <>
+                      {/* Field/Discipline */}
+                      <div>
+                        <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                          <Briefcase className="h-4 w-4" />
+                          Field/Discipline
+                        </h3>
+                        <div className="space-y-2">
+                          {fields.map((field) => (
+                            <label key={field} className="flex items-center gap-2 cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={selectedFields.includes(field)}
+                                onChange={() => toggleFilter(selectedFields, field, setSelectedFields)}
+                                className="rounded border-gray-300"
+                              />
+                              <span className="text-sm">{field}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+
                       {/* University */}
                       <div>
                         <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
@@ -361,7 +453,7 @@ export default function AdvancedSearchPage() {
                           <Star className="h-4 w-4" />
                           Major
                         </h3>
-                        <div className="space-y-2">
+                        <div className="space-y-2 max-h-48 overflow-y-auto">
                           {majors.map((major) => (
                             <label key={major} className="flex items-center gap-2 cursor-pointer">
                               <input
@@ -370,7 +462,7 @@ export default function AdvancedSearchPage() {
                                 onChange={() => toggleFilter(selectedMajors, major, setSelectedMajors)}
                                 className="rounded border-gray-300"
                               />
-                              <span className="text-sm">{major}</span>
+                              <span className="text-sm text-gray-700">{major}</span>
                             </label>
                           ))}
                         </div>
@@ -397,10 +489,11 @@ export default function AdvancedSearchPage() {
                       <div>
                         <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                           <Filter className="h-4 w-4" />
-                          Skills
+                          Skills & Competencies
                         </h3>
+                        <p className="text-xs text-gray-500 mb-2">Tech, Business, Creative, Legal & more</p>
                         <div className="space-y-2 max-h-48 overflow-y-auto">
-                          {skills.map((skill) => (
+                          {allSkills.slice(0, 20).map((skill) => (
                             <label key={skill} className="flex items-center gap-2 cursor-pointer">
                               <input
                                 type="checkbox"
@@ -408,10 +501,11 @@ export default function AdvancedSearchPage() {
                                 onChange={() => toggleFilter(selectedSkills, skill, setSelectedSkills)}
                                 className="rounded border-gray-300"
                               />
-                              <span className="text-sm">{skill}</span>
+                              <span className="text-sm text-gray-700">{skill}</span>
                             </label>
                           ))}
                         </div>
+                        <p className="text-xs text-gray-500 mt-2">{allSkills.length}+ skills available</p>
                       </div>
                     </>
                   )}
@@ -426,6 +520,7 @@ export default function AdvancedSearchPage() {
               <p className="text-gray-600">
                 <span className="font-bold text-gray-900">{config.results.length}</span> results found
                 {activeFiltersCount > 0 && ` with ${activeFiltersCount} filters applied`}
+                {activeDemo === 'company' && <span className="text-blue-600 ml-2">• All Disciplines</span>}
               </p>
               <Button variant="outline" size="sm">
                 <Clock className="h-4 w-4 mr-2" />
