@@ -73,8 +73,8 @@ export function Footer() {
             <div className="space-y-2 text-sm text-slate-600">
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-2" />
-                <a href="mailto:hello@intransparency.com" className="hover:text-primary transition-colors">
-                  hello@intransparency.com
+                <a href="mailto:in.transparency.job@gmail.com" className="hover:text-primary transition-colors">
+                  in.transparency.job@gmail.com
                 </a>
               </div>
             </div>

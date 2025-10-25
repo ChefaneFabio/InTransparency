@@ -246,7 +246,7 @@ export default function ForgotPasswordPage() {
                 If you're unable to reset your password, please contact our support team for assistance.
               </p>
               <Button variant="outline" size="sm" asChild>
-                <Link href="mailto:support@intransparency.com">
+                <Link href="mailto:in.transparency.job@gmail.com">
                   Contact Support
                 </Link>
               </Button>

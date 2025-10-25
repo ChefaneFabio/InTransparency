@@ -115,7 +115,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                           <h3 className="font-semibold text-gray-900">Email Us</h3>
-                          <p className="text-gray-600">hello@intransparency.com</p>
+                          <p className="text-gray-600">in.transparency.job@gmail.com</p>
                           <p className="text-sm text-gray-700">We typically respond within 24 hours</p>
                         </div>
                       </div>
