@@ -282,6 +282,135 @@ export default function CareerCentersPage() {
             </div>
           </div>
 
+          {/* Company Search Intelligence - Key Feature */}
+          <section className="mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                Strategic Intelligence Hub
+              </div>
+              <h2 className="text-4xl font-display font-bold text-foreground mb-4">
+                See Which Companies{' '}
+                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  Search Your Students
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Stop guessing. Start knowing. Full visibility into company behavior and hiring patterns.
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
+                      <TrendingUp className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="font-bold text-lg">Track Company Interest</h3>
+                  </div>
+                  <p className="text-gray-700 mb-4">
+                    See exactly which companies view your students and when.
+                  </p>
+                  <div className="bg-white p-4 rounded-lg border border-blue-200">
+                    <p className="text-sm text-gray-800">
+                      <strong className="text-blue-900">"Deloitte viewed 31 Economics students"</strong>
+                      <br />
+                      <span className="text-gray-600">→ Time for warm outreach!</span>
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                      <BarChart3 className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="font-bold text-lg">Skill Demand Data</h3>
+                  </div>
+                  <p className="text-gray-700 mb-4">
+                    Know what skills companies actually search for.
+                  </p>
+                  <div className="bg-white p-4 rounded-lg border border-green-200">
+                    <p className="text-sm text-gray-800">
+                      <strong className="text-green-900">"Excel searched 89 times"</strong>
+                      <br />
+                      <span className="text-gray-600">→ Tell Business students to add data viz!</span>
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-orange-50 to-red-50 border-2 border-orange-200">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center">
+                      <AlertTriangle className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="font-bold text-lg">Early Intervention</h3>
+                  </div>
+                  <p className="text-gray-700 mb-4">
+                    Identify at-risk students before graduation.
+                  </p>
+                  <div className="bg-white p-4 rounded-lg border border-orange-200">
+                    <p className="text-sm text-gray-800">
+                      <strong className="text-orange-900">"87 seniors with zero views"</strong>
+                      <br />
+                      <span className="text-gray-600">→ Fix profiles before they graduate!</span>
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card className="bg-gradient-to-r from-primary to-secondary text-white">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-display font-bold mb-6 text-center">Transparency in Action</h3>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
+                      <CheckCircle className="h-5 w-5" />
+                      What You See
+                    </h4>
+                    <ul className="space-y-2 text-white/90">
+                      <li>• Which companies viewed which students</li>
+                      <li>• Most-searched skills by discipline</li>
+                      <li>• Hiring patterns and trends</li>
+                      <li>• Geographic demand (Milan vs Rome vs Europe)</li>
+                      <li>• Students with zero/low visibility</li>
+                      <li>• Time-to-hire averages by field</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
+                      <Target className="h-5 w-5" />
+                      Actions You Can Take
+                    </h4>
+                    <ul className="space-y-2 text-white/90">
+                      <li>• Proactive company outreach (warm leads)</li>
+                      <li>• Data-driven career counseling</li>
+                      <li>• Curriculum feedback to departments</li>
+                      <li>• Targeted event planning (right companies)</li>
+                      <li>• Early intervention for at-risk students</li>
+                      <li>• ROI reporting to administration</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-6 text-center">
+                  <p className="text-xl font-semibold">
+                    Result: <span className="underline">20-30% boost in placements</span> via data-driven decisions
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
           {/* Selected Discipline Detail */}
           <Card className="mb-16 shadow-xl">
             <CardHeader className={`bg-gradient-to-r ${selectedDiscipline.color} text-white`}>
