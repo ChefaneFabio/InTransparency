@@ -28,7 +28,9 @@ import {
   Award,
   Lightbulb,
   Lock,
-  FileCheck
+  FileCheck,
+  Bot,
+  Sparkles
 } from 'lucide-react'
 import { IMAGES } from '@/lib/images'
 
@@ -356,6 +358,59 @@ const features: Feature[] = [
       'Full audit trail of profile views',
       'Revoke access anytime',
       'GDPR Article 15 compliant'
+    ],
+    status: 'live'
+  },
+
+  // AI Chatbot Features
+  {
+    id: 'student-ai-assistant',
+    title: '24/7 AI Career Assistant',
+    description: 'Conversational chatbot helps build your profile, find jobs, and get personalized career advice - all while gathering data transparently.',
+    icon: Bot,
+    image: IMAGES.features.aiAnalysis,
+    targets: ['students'],
+    benefits: [
+      'Profile building guidance (projects, skills, courses)',
+      'Job recommendations based on your verified skills',
+      'Career advice specific to your discipline',
+      'Skill demand insights ("Excel searched 89x this month")',
+      '30% reduction in onboarding drop-offs',
+      'Transparent data collection with GDPR compliance'
+    ],
+    status: 'live'
+  },
+  {
+    id: 'company-recruiting-assistant',
+    title: 'AI Recruiting Assistant',
+    description: 'Intelligent chatbot helps source candidates, explains match scores, and provides transparent recruiting guidance 24/7.',
+    icon: Sparkles,
+    image: IMAGES.features.matching,
+    targets: ['companies'],
+    benefits: [
+      'Candidate sourcing tips across all disciplines',
+      'Match score explanations (why 92% match?)',
+      'Job description optimization guidance',
+      'Skill demand trend insights',
+      '40% higher engagement vs traditional search',
+      'Transparent AI that shows reasoning'
+    ],
+    status: 'live'
+  },
+  {
+    id: 'institution-partnership-assistant',
+    title: 'AI Partnership Assistant',
+    description: 'Institutional chatbot guides setup, explains analytics, and helps universities maximize student placements through data insights.',
+    icon: MessageSquare,
+    image: IMAGES.features.dataAnalytics,
+    targets: ['institutes'],
+    benefits: [
+      'Free partnership onboarding guidance',
+      'Dashboard analytics explanations',
+      'Early intervention alert management',
+      'European job opportunities search help',
+      '20-30% more data gathered vs static forms',
+      'Transparent conversation logging (GDPR compliant)'
     ],
     status: 'live'
   }
