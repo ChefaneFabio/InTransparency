@@ -14,28 +14,26 @@ type PricingSegment = 'students' | 'companies' | 'institutes'
 
 const studentPlans = [
   {
-    name: 'Platform Access',
+    name: 'Verified Talent Discovery Service',
     price: 'Free',
     period: 'forever',
-    description: 'Complete platform access - no paywalls, no limits',
+    description: 'Upload projects → Institution verifies → Companies discover YOU (no applications)',
     icon: GraduationCap,
     popular: true,
-    badge: '🎓 Always Free',
+    badge: '🎓 Always Free - No Subscriptions',
     features: [
-      'Two onboarding paths: University partner = opt-in streamlined profile OR Independent = upload + select courses',
-      'Unlimited projects (all formats)',
-      'Complete AI analysis (hard + soft skills)',
-      'University integration available for institutions',
-      '🤖 24/7 AI Career Assistant for profile building & job search',
-      '💬 Personalized career advice from AI chatbot',
-      '📊 Skill demand insights from company requirements',
-      '📝 See company notes and feedback on your profile',
-      'AI Job Search',
-      'Job matching & recommendations',
-      'Direct messaging with recruiters',
-      'Career analytics & insights',
-      'Custom portfolio URL',
-      'Public portfolio page'
+      '✅ VERIFICATION SERVICE: Upload projects (theses, stage curriculare, code)',
+      '✅ Institution authenticates via Esse3/Moodle integration',
+      '✅ MATCHING SERVICE: AI connects you to opportunities (92% verified accuracy)',
+      '✅ DISCOVERY SERVICE: Companies find YOU - zero applications needed',
+      '✅ Transparent explanations: "92% fit because Python thesis matches ML req"',
+      '🤖 24/7 AI Career Assistant for profile building & guidance',
+      '📊 Skill demand insights ("Excel searched 89x this month")',
+      '📝 See company requirements and match reasoning (bidirectional transparency)',
+      'All disciplines: Tech, Business, Law, Engineering, Design, Fashion',
+      '25% higher response rates via institution-backed profiles',
+      'Custom portfolio URL with verification badges',
+      'EU/Italian support: 30/30 grading, tirocini, stage curriculare'
     ],
     cta: 'Get Started Free',
     ctaLink: '/auth/register/role-selection',
@@ -89,31 +87,30 @@ const companyPlans = [
     ctaLink: '/auth/register/role-selection'
   },
   {
-    name: 'Pay Per Contact',
+    name: 'Transparent Talent Sourcing Service',
     price: '€10',
-    period: 'per contact',
-    description: 'Only pay when you find the right candidate',
+    period: 'per contact (no subscriptions)',
+    description: 'Browse 100% verified profiles FREE → Pay €10 only when you contact the right candidate',
     icon: Building2,
     popular: true,
-    badge: 'Most Popular',
+    badge: 'Most Popular - Pay As You Use',
     features: [
-      'Everything in Free',
-      '10 credits = €10 per contact unlock',
-      'Get full name, email, phone, LinkedIn',
-      'AI-generated CV for your position',
-      '🤖 24/7 AI Recruiting Assistant for candidate sourcing',
-      '💬 Get match explanations and job description tips via chat',
-      '📊 40% higher engagement with conversational search',
-      '🔍 Explainable AI matching (see WHY each match)',
-      '✅ Institution-verified hard and soft skills',
-      '📊 Transparent match scores with reasoning',
-      '📝 Leave notes on profiles with feedback and requirements',
-      'Buy credits as needed',
-      'Volume discounts up to 40%',
-      'No monthly commitment',
+      '✅ DISCOVERY SERVICE: FREE unlimited browsing of verified profiles',
+      '✅ Search institution-authenticated competencies: "AutoCAD, 28/30 by ITS Rizzoli"',
+      '✅ View project excerpts with institutional stamps (no self-reported CVs)',
+      '✅ MATCHING SERVICE: AI shows "92% fit because Python thesis matches ML req"',
+      '✅ Transparency Panel: See exact skill mappings and verification dates',
+      '✅ Bidirectional visibility: Define your requirements, see exact matches',
+      '€10 unlocks: Full name, email, phone, LinkedIn + verified project details',
+      '🤖 24/7 AI Recruiting Assistant for candidate sourcing guidance',
+      '📊 80% faster screening with verifiable data (vs Manatal resume parsing)',
+      '✅ 92% match accuracy with institution-verified competencies',
+      '📝 EU AI Act compliant: Every match explained, traceable to source',
+      'Buy credits as needed - no monthly commitment',
+      'Volume discounts up to 40% (bulk packages available)',
       'Credits never expire'
     ],
-    cta: 'Get Started',
+    cta: 'Start Browsing Free',
     ctaLink: '/auth/register/role-selection',
     highlight: true
   },
@@ -141,31 +138,29 @@ const companyPlans = [
 
 const institutePlans = [
   {
-    name: 'Talent Supply Partnership',
+    name: 'Free Career Intelligence Service',
     price: 'Free',
-    period: 'forever',
-    description: 'You supply talent. We handle everything else. Zero cost, zero burden.',
+    period: 'forever - no subscriptions',
+    description: 'FREE Verification + Analytics services. Auto-import from Esse3/Moodle. You authenticate competencies, we deliver insights.',
     icon: School,
     popular: true,
-    badge: '🎓 Always Free',
+    badge: '🎓 100% Free Core Services',
     features: [
-      '✅ Zero cost (vs AlmaLaurea €2,500/year)',
-      '✅ Streamlined onboarding - students consent via email, profiles created with verified data',
-      '✅ ALL students get exposure (not just top 5% like headhunters)',
-      '✅ AI verifies skills via projects (not self-reported CVs)',
-      '🤖 24/7 AI Partnership Assistant for onboarding & analytics',
-      '💬 Conversational support for setup and troubleshooting',
-      '📊 20-30% more data gathered with AI-guided onboarding',
-      '📊 Real-time placement statistics dashboard',
-      '📈 Better placement rates = Better reputation',
-      '🔍 Company notes and feedback on student profiles',
-      '🎯 Bidirectional transparency (see what companies need)',
-      '📉 Early intervention alerts (at-risk students)',
-      '🤖 Modern image: "AI-powered career services"',
-      '⏱️ Projected 40+ hours/month time savings with automated matching',
-      '🌍 European job opportunities search for students'
+      '✅ VERIFICATION SERVICE: FREE Esse3/Moodle/CRM integration',
+      '✅ Auto-import grades/projects → You endorse → Student profile goes live',
+      '✅ Batch approval: "Endorse 50 projects in 1 hour" dashboard',
+      '✅ ANALYTICS SERVICE: FREE dashboards for placement insights',
+      '📊 "Deloitte viewed 31 Economics students" → warm outreach opportunity',
+      '📈 "Excel searched 89x this month" → advise Business students',
+      '📉 Early alerts: "87 seniors with zero views" → proactive support',
+      '✅ Placement tracking: "47-day avg hire via your verification"',
+      '✅ Prove impact to MIUR: "85% placement boost from your stamp"',
+      '✅ Zero cost (vs AlmaLaurea €2,500/year or Univariety €500/year)',
+      '⏱️ Saves projected 40+ hours/month vs manual career services',
+      '🌍 European job opportunities for your students',
+      'EU/Italian: 30/30 grading, tirocini, stage curriculare support'
     ],
-    cta: 'Partner With Us',
+    cta: 'Become a Partner (Free)',
     ctaLink: '/contact',
     highlight: true
   },
@@ -206,19 +201,19 @@ export default function PricingPage() {
   const getHeaderContent = () => {
     switch (selectedSegment) {
       case 'students': return {
-        badge: 'For Students',
-        title: 'Complete Platform Access - Free Forever',
-        subtitle: 'University partner? Opt-in streamlined profile via email consent. No university? Upload projects + select courses. All features free, no paywalls.'
+        badge: 'For Students - All Disciplines',
+        title: 'Verified Talent Discovery Service - Free Forever',
+        subtitle: 'Upload projects → Institution verifies → Companies discover YOU (no applications). Four free services: Verification, Matching, Discovery, Analytics. EU/Italian: 30/30 grading, stage curriculare, tirocini support.'
       }
       case 'institutes': return {
         badge: 'For Institutes (Universities & ITS)',
-        title: 'You Supply Talent. We Handle Everything Else.',
-        subtitle: 'Institutes are talent SUPPLIERS, not platform users. Zero cost. Zero burden. Better placement statistics. Modern reputation. Better than AlmaLaurea (€2,500/year) or headhunters (only top 5%).'
+        title: 'Free Career Intelligence Service - No Subscriptions Ever',
+        subtitle: 'FREE Verification + Analytics services. Auto-import Esse3/Moodle. You authenticate, we deliver insights. Zero cost vs AlmaLaurea (€2,500/year). Prove 85% placement boost to MIUR.'
       }
       case 'companies': return {
-        badge: 'For Companies',
-        title: 'Browse Free, Pay Only When You Contact',
-        subtitle: 'No subscriptions, no monthly fees. Explore unlimited profiles for free. Pay €10 only when you find the perfect candidate.'
+        badge: 'For Companies - Pay As You Use',
+        title: 'Transparent Talent Sourcing Service - No Subscriptions',
+        subtitle: 'Browse 100% institution-verified profiles FREE. Search "AutoCAD, 28/30 by ITS Rizzoli" with project excerpts. Pay €10 only when you contact verified candidates. 80% faster screening, 92% match accuracy.'
       }
     }
   }
@@ -275,10 +270,12 @@ export default function PricingPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
               >
-                Simple, Transparent Pricing
+                Subscription-Free Service Model
               </motion.h1>
-              <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-12">
-                Choose the plan that fits your needs. Always free for students to start.
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-4">
+                Partner-enabled services, not subscription traps. Free for students & institutions. Companies pay only per contact.</p>
+              <p className="text-base text-gray-600 max-w-2xl mx-auto mb-12">
+                Low-overhead SaaS (€0.02/query, €20/month hosting) scalable to 100K+ users. No subscriptions, no monthly fees - just transparent, pay-as-you-use services.
               </p>
 
             {/* Segment Selector */}
