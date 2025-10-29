@@ -166,7 +166,7 @@ export async function GET(request: Request) {
         }
       }
       // Remove sensitive data
-      const { verificationEmail, verificationToken, ...public Data } = story
+      const { verificationEmail, verificationToken, ...publicData } = story
       return publicData
     })
 

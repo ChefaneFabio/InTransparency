@@ -18,13 +18,22 @@ import { MessageCenter } from '@/components/messaging/MessageCenter'
 import { NotificationCenter } from '@/components/notifications/NotificationCenter'
 import { Plus, TrendingUp, Users, Briefcase, Eye, Star, ArrowRight, Share2, Gift } from 'lucide-react'
 import Link from 'next/link'
+import { ReferralPrompt } from '@/components/referrals/ReferralPrompt'
+import { trackUpgradePrompt, trackUpgradeInteraction, ConversionTrigger, PlanType } from '@/lib/analytics'
+import { useRouter } from 'next/navigation'
 
 export default function StudentDashboard() {
   const { user } = useAuth()
+  const router = useRouter()
   const [projects, setProjects] = useState<any[]>([])
   const [matches, setMatches] = useState<any[]>([])
   const [analytics, setAnalytics] = useState<any>(null)
   const [loading, setLoading] = useState(true)
+  const [showUpgradePrompt, setShowUpgradePrompt] = useState(false)
+  const [promptTrigger, setPromptTrigger] = useState<any>('student-project-limit')
+
+  // Assume free plan for demo - in production, get from user.subscriptionTier
+  const userPlan = user?.subscriptionTier || 'free'
 
   useEffect(() => {
     // Fetch dashboard data
@@ -56,6 +65,50 @@ export default function StudentDashboard() {
       fetchDashboardData()
     }
   }, [user])
+
+  // Trigger upgrade prompts based on user behavior
+  useEffect(() => {
+    if (userPlan === 'free' && projects.length > 0 && matches.length > 0) {
+      // Trigger 1: Project limit reached (5 projects)
+      if (projects.length >= 5) {
+        setPromptTrigger('student-project-limit')
+        setShowUpgradePrompt(true)
+        trackUpgradePrompt(ConversionTrigger.PROJECT_LIMIT_REACHED, PlanType.PRO_STUDENT, {
+          projectCount: projects.length
+        })
+      }
+      // Trigger 2: After viewing 3+ matches
+      else if (matches.length >= 3) {
+        setPromptTrigger('student-after-match')
+        setShowUpgradePrompt(true)
+        trackUpgradePrompt(ConversionTrigger.MATCH_THRESHOLD_3, PlanType.PRO_STUDENT, {
+          matchCount: matches.length
+        })
+      }
+    }
+  }, [userPlan, projects.length, matches.length])
+
+  const handleUpgradeClick = () => {
+    trackUpgradeInteraction({
+      trigger: promptTrigger === 'student-project-limit'
+        ? ConversionTrigger.PROJECT_LIMIT_REACHED
+        : ConversionTrigger.MATCH_THRESHOLD_3,
+      targetPlan: PlanType.PRO_STUDENT,
+      action: 'clicked'
+    })
+    router.push('/pricing?highlight=pro_student')
+  }
+
+  const handleDismissPrompt = () => {
+    trackUpgradeInteraction({
+      trigger: promptTrigger === 'student-project-limit'
+        ? ConversionTrigger.PROJECT_LIMIT_REACHED
+        : ConversionTrigger.MATCH_THRESHOLD_3,
+      targetPlan: PlanType.PRO_STUDENT,
+      action: 'dismissed'
+    })
+    setShowUpgradePrompt(false)
+  }
 
   if (loading) {
     return (
@@ -135,6 +188,21 @@ export default function StudentDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
+      {/* Contextual Upgrade Prompt - Shows based on user behavior */}
+      {showUpgradePrompt && userPlan === 'free' && (
+        <div className="mb-6">
+          <ReferralPrompt
+            triggerType={promptTrigger}
+            contextData={{
+              projectCount: projects.length,
+              matchCount: matches.length
+            }}
+            onDismiss={handleDismissPrompt}
+            onAction={handleUpgradeClick}
+          />
+        </div>
+      )}
+
       {/* Enhanced Welcome Section */}
       <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-2xl p-8 mb-8">
         <div className="relative z-10">
