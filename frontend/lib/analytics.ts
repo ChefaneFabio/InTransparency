@@ -324,3 +324,191 @@ export function getVariantPricing(variant: 'A' | 'B' | 'C' | 'D') {
   }
   return configs[variant]
 }
+
+// ==========================================
+// CONVERSION & UPGRADE TRACKING
+// ==========================================
+
+export enum ConversionTrigger {
+  // Student triggers
+  PROJECT_UPLOAD = 'project_upload',
+  PROJECT_LIMIT_REACHED = 'project_limit_reached',
+  MATCH_VIEWED = 'match_viewed',
+  MATCH_THRESHOLD_3 = 'match_threshold_3',
+  PRO_FEATURE_BLOCKED = 'pro_feature_blocked',
+
+  // Institution triggers
+  DASHBOARD_VIEW = 'dashboard_view',
+  STUDENT_UPGRADE_MILESTONE = 'student_upgrade_milestone',
+  COMPANY_INTEREST = 'company_interest',
+  EMBED_PROMPT = 'embed_prompt',
+
+  // Company triggers
+  CANDIDATE_BROWSING = 'candidate_browsing',
+  CONTACT_THRESHOLD_10 = 'contact_threshold_10',
+  ENTERPRISE_ROI = 'enterprise_roi_shown',
+  INSTITUTION_REFERRAL = 'institution_referral_prompt'
+}
+
+export enum PlanType {
+  FREE = 'free',
+  PRO_STUDENT = 'pro_student',
+  ENTERPRISE_COMPANY = 'enterprise_company',
+  PREMIUM_EMBED = 'premium_embed',
+  ENTERPRISE_INSTITUTION = 'enterprise_institution'
+}
+
+/**
+ * Track upgrade prompt shown to user
+ */
+export function trackUpgradePrompt(
+  trigger: ConversionTrigger | string,
+  targetPlan: PlanType | string,
+  metadata: Record<string, any> = {}
+) {
+  trackEvent({
+    eventType: 'CUSTOM',
+    eventName: 'upgrade_prompt_shown',
+    properties: {
+      trigger,
+      targetPlan,
+      ...metadata
+    }
+  })
+}
+
+/**
+ * Track upgrade prompt interaction
+ */
+export function trackUpgradeInteraction(
+  action: 'clicked' | 'dismissed',
+  trigger: ConversionTrigger | string,
+  targetPlan: PlanType | string,
+  metadata: Record<string, any> = {}
+) {
+  trackEvent({
+    eventType: 'CUSTOM',
+    eventName: `upgrade_prompt_${action}`,
+    properties: {
+      trigger,
+      targetPlan,
+      ...metadata
+    }
+  })
+}
+
+/**
+ * Track successful conversion
+ */
+export function trackConversion(data: {
+  source: ConversionTrigger | string
+  plan: PlanType | string
+  revenue?: number
+  userId?: string
+  segment?: 'student' | 'institution' | 'company'
+  metadata?: Record<string, any>
+}) {
+  const { source, plan, revenue, userId, segment, metadata = {} } = data
+
+  trackEvent({
+    eventType: 'SUBSCRIPTION_STARTED',
+    eventName: 'conversion_completed',
+    properties: {
+      source,
+      plan,
+      revenue,
+      userId,
+      segment,
+      ...metadata
+    }
+  })
+
+  // Send revenue data to backend for analytics
+  if (revenue) {
+    fetch('/api/analytics/revenue', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        plan,
+        revenue,
+        source,
+        userId,
+        timestamp: new Date().toISOString()
+      })
+    }).catch(err => console.warn('Revenue tracking failed:', err))
+  }
+}
+
+/**
+ * Track referral activity
+ */
+export function trackReferralAction(
+  action: 'link_generated' | 'link_shared' | 'signup' | 'reward_earned',
+  data: {
+    referralType: string
+    referrerSegment: 'student' | 'institution' | 'company'
+    refereeSegment: 'student' | 'institution' | 'company'
+    reward?: number
+    metadata?: Record<string, any>
+  }
+) {
+  const { referralType, referrerSegment, refereeSegment, reward, metadata = {} } = data
+
+  trackEvent({
+    eventType: action === 'signup' ? 'REFERRAL_SIGNUP' : 'CUSTOM',
+    eventName: `referral_${action}`,
+    properties: {
+      referralType,
+      referrerSegment,
+      refereeSegment,
+      reward,
+      ...metadata
+    }
+  })
+}
+
+/**
+ * Track verification milestone
+ */
+export function trackVerificationMilestone(
+  action: 'project_uploaded' | 'institution_verified' | 'profile_activated',
+  metadata: Record<string, any> = {}
+) {
+  trackEvent({
+    eventType: 'CUSTOM',
+    eventName: `verification_${action}`,
+    properties: metadata
+  })
+}
+
+/**
+ * Track match activity
+ */
+export function trackMatchActivity(
+  action: 'match_generated' | 'match_viewed' | 'contact_initiated',
+  metadata: Record<string, any> = {}
+) {
+  trackEvent({
+    eventType: 'CUSTOM',
+    eventName: `match_${action}`,
+    properties: metadata
+  })
+}
+
+/**
+ * Get conversion funnel metrics (client-side cached)
+ */
+export async function getConversionMetrics(plan: PlanType): Promise<{
+  promptsShown: number
+  clicked: number
+  converted: number
+  conversionRate: number
+}> {
+  try {
+    const response = await fetch(`/api/analytics/conversion-metrics?plan=${plan}`)
+    return await response.json()
+  } catch (error) {
+    console.error('Error fetching conversion metrics:', error)
+    return { promptsShown: 0, clicked: 0, converted: 0, conversionRate: 0 }
+  }
+}

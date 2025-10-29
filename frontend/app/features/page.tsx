@@ -316,7 +316,7 @@ const features: Feature[] = [
     benefits: [
       'Transparent match scoring (e.g., "85% match")',
       'Clear alignment explanations ("Your Python project matches 3/4 requirements")',
-      'Companies can leave notes: "Add AWS experience and you're perfect"',
+      'Companies can leave notes: "Add AWS experience and you are perfect"',
       'No hidden criteria or bias',
       'GDPR-compliant AI transparency'
     ],
