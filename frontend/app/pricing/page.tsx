@@ -19,10 +19,10 @@ const studentPlans = [
     period: 'forever',
     description: 'Upload projects → Institution verifies → Companies discover YOU (no applications)',
     icon: GraduationCap,
-    popular: true,
-    badge: '🎓 Always Free - No Subscriptions',
+    popular: false,
+    badge: '🎓 Always Free - Core Services',
     features: [
-      '✅ VERIFICATION SERVICE: Upload projects (theses, stage curriculare, code)',
+      '✅ VERIFICATION SERVICE: Upload up to 5 projects (theses, stage curriculare, code)',
       '✅ Institution authenticates via Esse3/Moodle integration',
       '✅ MATCHING SERVICE: AI connects you to opportunities (92% verified accuracy)',
       '✅ DISCOVERY SERVICE: Companies find YOU - zero applications needed',
@@ -31,11 +31,38 @@ const studentPlans = [
       '📊 Skill demand insights ("Excel searched 89x this month")',
       '📝 See company requirements and match reasoning (bidirectional transparency)',
       'All disciplines: Tech, Business, Law, Engineering, Design, Fashion',
-      '25% higher response rates via institution-backed profiles',
       'Custom portfolio URL with verification badges',
-      'EU/Italian support: 30/30 grading, tirocini, stage curriculare'
+      'EU/Italian support: 30/30 grading, tirocini, stage curriculare',
+      '⚠️ Limit: 5 projects, standard AI analysis, no direct messaging'
     ],
     cta: 'Get Started Free',
+    ctaLink: '/auth/register/role-selection',
+    highlight: false
+  },
+  {
+    name: 'Pro Student',
+    price: '€9',
+    period: 'per month',
+    description: 'Unlimited projects + priority matching + direct messaging. 30% more contacts vs Free.',
+    icon: Sparkles,
+    popular: true,
+    badge: '⚡ Most Popular - Upgrade',
+    features: [
+      '✅ Everything in Free, plus:',
+      '🚀 UNLIMITED projects (vs. 5 free) - upload thesis, portfolios, side projects',
+      '🧠 Advanced AI analysis: Deeper soft skills detection from teamwork/presentations',
+      '📹 Video portfolio support: Record project demos and explanations',
+      '⚡ Priority matching: Your profile shown first in company searches',
+      '💬 Direct recruiter messaging: Contact companies directly (vs. waiting)',
+      '📈 30% more contacts: Pro users get significantly more company interest',
+      '🎯 Custom alerts: "New BMW internship matches your AutoCAD skills"',
+      '📊 Advanced analytics: "Your Python thesis viewed by 12 companies this week"',
+      '🏆 Pro badge on profile: "Verified Pro Student" increases credibility',
+      '✅ Early access to new features and beta tests',
+      '⏱️ Projected 40+ hours/month time savings with unlimited uploads',
+      'Cancel anytime - no commitment'
+    ],
+    cta: 'Upgrade to Pro',
     ctaLink: '/auth/register/role-selection',
     highlight: true
   },
@@ -112,6 +139,32 @@ const companyPlans = [
     ],
     cta: 'Start Browsing Free',
     ctaLink: '/auth/register/role-selection',
+    highlight: false
+  },
+  {
+    name: 'Enterprise',
+    price: '€99',
+    period: 'per month',
+    description: 'Unlimited contacts + custom filters + branding + API access. For high-volume recruiting.',
+    icon: Crown,
+    popular: true,
+    badge: '🏢 Best for Scale',
+    features: [
+      '✅ Everything in Pay-Per-Contact, plus:',
+      '💎 UNLIMITED contacts (vs. €10 each) - hire as many as you need',
+      '🔍 Custom filters: "All 30/30 law students from Sapienza" or "ITS mechatronics grads near Milan"',
+      '🎨 Company branding: Your logo on matches and job postings',
+      '🔗 API access: Integrate InTransparency into your ATS (Manatal, Greenhouse, etc.)',
+      '📊 Bulk operations: Download candidate lists, mass messaging, campaign tracking',
+      '⚡ Priority support: Dedicated account manager for onboarding and strategy',
+      '📈 Advanced analytics: "47-day avg hire from ITS students", "€10K cost savings vs. Indeed"',
+      '🏷️ "Preferred Partner" badge: Increase student trust and application rates',
+      '🎯 Early access: Beta features, exclusive talent pools, new partnerships',
+      '💰 ROI: €10/contact × 100 contacts = €1K vs. €99/month Enterprise (90% savings)',
+      'Cancel anytime - no long-term commitment'
+    ],
+    cta: 'Upgrade to Enterprise',
+    ctaLink: '/contact',
     highlight: true
   },
   {
@@ -121,8 +174,9 @@ const companyPlans = [
     description: 'Buy credits in bulk and save more',
     icon: Building2,
     popular: false,
+    badge: '💳 Pay As You Go',
     features: [
-      '50 credits (5 contacts) = €50',
+      '50 credits (5 contacts) = €50 (no discount)',
       '200 credits (20 contacts) = €180 (10% off)',
       '500 credits (50 contacts) = €400 (20% off)',
       '1000+ credits = 40% discount',
