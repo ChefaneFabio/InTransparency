@@ -384,6 +384,40 @@ const features: Feature[] = [
     status: 'live'
   },
   {
+    id: 'institutional-feedback-loop',
+    title: 'Institutional Feedback Loop',
+    description: 'Learn from every interaction with structured feedback from companies, shared with you and your career center for continuous professional growth.',
+    icon: MessageSquare,
+    image: IMAGES.features.dataAnalytics,
+    targets: ['students', 'companies', 'institutes'],
+    benefits: [
+      'Structured feedback after interviews (skills, performance, growth areas)',
+      'Shared visibility: student + institution career center',
+      'Actionable recommendations for skill development',
+      'Company notes help students improve professionally',
+      'Career centers gain market intelligence',
+      'Institution-verified growth tracking'
+    ],
+    status: 'live'
+  },
+  {
+    id: 'smart-application-assistant',
+    title: 'Smart Application Assistant',
+    description: 'AI-powered guidance during job applications. Get project suggestions, skill matching, and form completion help based on your verified profile.',
+    icon: Bot,
+    image: IMAGES.features.aiAnalysis,
+    targets: ['students'],
+    benefits: [
+      'Smart form assistance with verified data auto-fill',
+      'Project recommendations matching job requirements',
+      'Skill gap analysis and suggestions',
+      'Draft save & resume - never lose progress',
+      '35% reduction in abandoned applications',
+      'Completion tracking with actionable tips'
+    ],
+    status: 'live'
+  },
+  {
     id: 'company-recruiting-assistant',
     title: 'AI Recruiting Assistant',
     description: 'Intelligent chatbot helps source candidates, explains match scores, and provides transparent recruiting guidance 24/7.',
