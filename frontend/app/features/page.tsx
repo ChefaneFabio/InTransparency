@@ -304,13 +304,14 @@ const features: Feature[] = [
   {
     id: 'explainable-ai-matching',
     title: 'Explainable AI Matching',
-    description: 'Every match shows exactly WHY it was made. No black-box algorithms - see the reasoning behind every connection.',
+    description: 'Every match shows exactly WHY it was made. Companies state requirements clearly, AI explains alignment, and you get actionable feedback.',
     icon: Lightbulb,
     image: IMAGES.features.aiAnalysis,
     targets: ['all'],
     benefits: [
       'Transparent match scoring (e.g., "85% match")',
       'Clear alignment explanations ("Your Python project matches 3/4 requirements")',
+      'Companies can leave notes: "Add AWS experience and you're perfect"',
       'No hidden criteria or bias',
       'GDPR-compliant AI transparency'
     ],
@@ -334,14 +335,15 @@ const features: Feature[] = [
   {
     id: 'bidirectional-transparency',
     title: 'Bidirectional Transparency',
-    description: 'Companies see verified student skills. Students/Institutions see company requirements and search patterns. Full mutual visibility.',
+    description: 'Companies explicitly state what skills and knowledge they need. Students get direct feedback via profile notes. No guessing, no hidden requirements.',
     icon: Eye,
     image: IMAGES.features.dataAnalytics,
     targets: ['all'],
     benefits: [
-      'Companies must specify clear requirements',
-      'Students see exactly what jobs need',
-      'Institutions track company search trends',
+      'Companies leave notes on profiles with specific feedback',
+      'Clear skill requirements stated upfront (not hidden)',
+      'Students know exactly what to improve',
+      'Institutions see real market demand from company notes',
       '25% less hiring bias with transparent criteria'
     ],
     status: 'live'
@@ -349,13 +351,14 @@ const features: Feature[] = [
   {
     id: 'consent-driven-sharing',
     title: 'Consent-Driven Data Sharing',
-    description: 'Complete control over who sees what. Audit logs show exactly which companies viewed your profile and when.',
+    description: 'Complete control over who sees what. See exactly which companies left notes, what they need, and why you're a fit (or not).',
     icon: Lock,
     image: IMAGES.students.student2,
     targets: ['students', 'institutes'],
     benefits: [
       'Opt-in data sharing controls',
-      'Full audit trail of profile views',
+      'See all company notes and feedback on your profile',
+      'Know exactly what skills companies are seeking',
       'Revoke access anytime',
       'GDPR Article 15 compliant'
     ],

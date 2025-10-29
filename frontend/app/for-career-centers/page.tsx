@@ -294,13 +294,13 @@ export default function CareerCentersPage() {
                 Strategic Intelligence Hub
               </div>
               <h2 className="text-4xl font-display font-bold text-foreground mb-4">
-                See Which Companies{' '}
+                See What Companies{' '}
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Search Your Students
+                  Need From Your Students
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Stop guessing. Start knowing. Full visibility into company behavior and hiring patterns.
+                Companies state requirements clearly and leave feedback notes - you see real market demand.
               </p>
             </motion.div>
 
@@ -311,16 +311,16 @@ export default function CareerCentersPage() {
                     <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
                       <TrendingUp className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="font-bold text-lg">Track Company Interest</h3>
+                    <h3 className="font-bold text-lg">Company Feedback Notes</h3>
                   </div>
                   <p className="text-gray-700 mb-4">
-                    See exactly which companies view your students and when.
+                    See what companies explicitly need and their notes on student profiles.
                   </p>
                   <div className="bg-white p-4 rounded-lg border border-blue-200">
                     <p className="text-sm text-gray-800">
-                      <strong className="text-blue-900">"Deloitte viewed 31 Economics students"</strong>
+                      <strong className="text-blue-900">"Deloitte: Need AWS certification for 8 students"</strong>
                       <br />
-                      <span className="text-gray-600">→ Time for warm outreach!</span>
+                      <span className="text-gray-600">→ Time to add AWS workshops!</span>
                     </p>
                   </div>
                 </CardContent>
@@ -332,14 +332,14 @@ export default function CareerCentersPage() {
                     <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
                       <BarChart3 className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="font-bold text-lg">Skill Demand Data</h3>
+                    <h3 className="font-bold text-lg">Explicit Requirements</h3>
                   </div>
                   <p className="text-gray-700 mb-4">
-                    Know what skills companies actually search for.
+                    Know exactly what skills companies are asking for in their job postings.
                   </p>
                   <div className="bg-white p-4 rounded-lg border border-green-200">
                     <p className="text-sm text-gray-800">
-                      <strong className="text-green-900">"Excel searched 89 times"</strong>
+                      <strong className="text-green-900">"89 job posts require Excel + Power BI"</strong>
                       <br />
                       <span className="text-gray-600">→ Tell Business students to add data viz!</span>
                     </p>
@@ -356,11 +356,11 @@ export default function CareerCentersPage() {
                     <h3 className="font-bold text-lg">Early Intervention</h3>
                   </div>
                   <p className="text-gray-700 mb-4">
-                    Identify at-risk students before graduation.
+                    Identify at-risk students who lack skills companies are asking for.
                   </p>
                   <div className="bg-white p-4 rounded-lg border border-orange-200">
                     <p className="text-sm text-gray-800">
-                      <strong className="text-orange-900">"87 seniors with zero views"</strong>
+                      <strong className="text-orange-900">"87 seniors missing top 3 requested skills"</strong>
                       <br />
                       <span className="text-gray-600">→ Fix profiles before they graduate!</span>
                     </p>
@@ -379,12 +379,12 @@ export default function CareerCentersPage() {
                       What You See
                     </h4>
                     <ul className="space-y-2 text-white/90">
-                      <li>• Which companies viewed which students</li>
-                      <li>• Most-searched skills by discipline</li>
-                      <li>• Hiring patterns and trends</li>
+                      <li>• Company notes and feedback on student profiles</li>
+                      <li>• Explicit skill requirements from job postings</li>
+                      <li>• What companies are looking for by discipline</li>
                       <li>• Geographic demand (Milan vs Rome vs Europe)</li>
-                      <li>• Students with zero/low visibility</li>
-                      <li>• Time-to-hire averages by field</li>
+                      <li>• Students lacking top-requested skills</li>
+                      <li>• Gap analysis: curriculum vs market needs</li>
                     </ul>
                   </div>
                   <div>

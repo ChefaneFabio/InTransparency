@@ -204,7 +204,7 @@ export default function TransparencyPage() {
                     <h3 className="text-2xl font-bold text-foreground">2. Explainable AI</h3>
                   </div>
                   <p className="text-gray-700 mb-4">
-                    Every match shows exactly WHY it was made. No black boxes.
+                    Every match shows exactly WHY. Companies can add notes with feedback.
                   </p>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-center gap-2">
@@ -217,7 +217,7 @@ export default function TransparencyPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                      No hidden criteria or bias
+                      Company notes: "Add AWS experience and you're perfect"
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
@@ -236,24 +236,24 @@ export default function TransparencyPage() {
                     <h3 className="text-2xl font-bold text-foreground">3. Bidirectional Transparency</h3>
                   </div>
                   <p className="text-gray-700 mb-4">
-                    Full mutual visibility for all parties. No information asymmetry.
+                    Companies state requirements clearly. Students get actionable feedback. No guessing games.
                   </p>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-purple-600 flex-shrink-0" />
-                      Companies see verified student skills and projects
+                      Companies explicitly state what skills/knowledge they need
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-purple-600 flex-shrink-0" />
-                      Students see exactly what jobs require
+                      Companies leave notes on profiles with specific feedback
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-purple-600 flex-shrink-0" />
-                      Institutions track company search trends (e.g., "Excel searched 89x")
+                      Students know exactly what to improve (e.g., "Add AWS experience")
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-purple-600 flex-shrink-0" />
-                      <strong>25% less hiring bias</strong> with clear criteria
+                      <strong>25% less hiring bias</strong> with transparent requirements
                     </li>
                   </ul>
                 </CardContent>
@@ -268,7 +268,7 @@ export default function TransparencyPage() {
                     <h3 className="text-2xl font-bold text-foreground">4. Consent & Audit Trails</h3>
                   </div>
                   <p className="text-gray-700 mb-4">
-                    Complete control over data with full visibility into who accessed what.
+                    Complete control over data. See all company notes and feedback on your profile.
                   </p>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-center gap-2">
@@ -277,7 +277,7 @@ export default function TransparencyPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-orange-600 flex-shrink-0" />
-                      Full audit trail of profile views
+                      See all company notes and what they're looking for
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-orange-600 flex-shrink-0" />

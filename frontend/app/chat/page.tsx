@@ -328,22 +328,26 @@ Want me to walk you through adding your first project?`
 - Software Developer positions in Milan (89% match)
 - Frontend roles requiring React/TypeScript (92% match)
 
-📊 **Trending skills companies are searching:**
-- Excel: searched 89 times this month
-- Python: 127 searches
-- Data visualization: 64 searches
+📊 **What companies are asking for:**
+- Excel + Power BI: 89 job posts require this combo
+- Python: 127 job postings mention it
+- Data visualization: 64 companies explicitly need this
+
+💡 **Company Feedback Example:** "Great profile! Add AWS certification and you're a perfect fit."
 
 Would you like me to refine the search by location or skills?`
     }
     if (lowerInput.includes('skill') || lowerInput.includes('companies')) {
-      return `Based on real-time company search data, here are the most in-demand skills this month:
+      return `Based on explicit company requirements and job postings, here are the most in-demand skills this month:
 
-📈 **Top 5 Skills:**
-1. Python (127 searches) - +23% from last month
-2. Excel & Data Analysis (89 searches)
-3. React/TypeScript (78 searches)
-4. Figma/UI Design (64 searches)
-5. SQL databases (52 searches)
+📈 **Top 5 Skills (from company job postings):**
+1. Python (127 job posts) - +23% from last month
+2. Excel & Data Analysis (89 job posts)
+3. React/TypeScript (78 job posts)
+4. Figma/UI Design (64 job posts)
+5. SQL databases (52 job posts)
+
+📝 **Sample Company Note:** "Looking for candidates with strong Python skills and ML experience. Your profile is 85% there - add a TensorFlow project!"
 
 💡 **Career Tip:** Adding verified projects with these skills increases your visibility by 3x!`
     }
@@ -413,32 +417,34 @@ This transparency builds trust and improves hiring decisions by 40%!`
 Ready to get started? I can walk you through the setup!`
     }
     if (lowerInput.includes('trend') || lowerInput.includes('company') || lowerInput.includes('search')) {
-      return `Here's what companies are searching for YOUR students:
+      return `Here's what companies are explicitly asking for from YOUR students:
 
-📊 **This Month's Activity:**
-- Deloitte viewed 31 Economics students → Time for warm outreach!
-- Tech startups searched "Python" 47 times → Tell CS students to showcase projects
-- 12 companies want Marketing interns → Promote those openings
+📊 **This Month's Company Requirements:**
+- Deloitte left notes on 31 Economics profiles: "Need financial modeling + Excel"
+- Tech startups posted 47 jobs requiring Python + ML → Tell CS students to showcase projects
+- 12 companies explicitly need Marketing interns with Adobe Creative Suite
 
-🎯 **Action Items:**
-1. **Hot Skills:** Excel (89 searches), Python (127), React (78)
-2. **Geographic Demand:** Milan (234 searches), Rome (187), Bologna (94)
-3. **At-Risk:** 87 seniors with zero views → Flag for intervention
+🎯 **Action Items from Company Feedback:**
+1. **Hot Skills (from job posts):** Excel (89 posts), Python (127 posts), React (78 posts)
+2. **Geographic Demand:** Milan (234 job openings), Rome (187), Bologna (94)
+3. **At-Risk:** 87 seniors missing top 3 requested skills → Flag for intervention
+
+📝 **Sample Company Note:** "Great Economics program! Students need more SQL and Power BI exposure for our roles."
 
 Want me to dig deeper into a specific program or skill?`
     }
     if (lowerInput.includes('at-risk') || lowerInput.includes('zero') || lowerInput.includes('help')) {
       return `Smart move on early intervention! Here's what I found:
 
-🚨 **At-Risk Students (Zero Profile Views):**
-- 87 seniors graduating in 3 months
+🚨 **At-Risk Students (Missing Key Skills):**
+- 87 seniors graduating in 3 months lacking top-requested skills
 - 34 have incomplete profiles (missing projects)
-- 53 have profiles but weak visibility
+- 53 have profiles but missing skills companies explicitly need
 
-💡 **Recommended Actions:**
+💡 **Recommended Actions (based on company feedback):**
 1. **Missing Projects (34 students):** Email template: "Add your thesis/capstone project before graduation!"
-2. **Weak Profiles (53 students):** Suggest adding course portfolios or internship work
-3. **Location Issues:** 12 students haven't specified work preferences
+2. **Skill Gaps (53 students):** Companies need AWS/Python - run workshops!
+3. **Company Note Example:** "Strong theoretical background, needs practical Excel/SQL projects"
 
 📧 Want me to generate outreach templates for each group?`
     }
