@@ -272,7 +272,7 @@ export default function CareerCentersPage() {
                         </div>
                         <div className="flex items-center justify-between">
                           <span>Placement:</span>
-                          <Badge className="bg-green-100 text-green-800">{discipline.placementRate}%</Badge>
+                          <Badge className="bg-green-100 text-green-800">{discipline.placementRate}%*</Badge>
                         </div>
                       </div>
                     </CardContent>
@@ -465,7 +465,7 @@ export default function CareerCentersPage() {
                     </div>
                     <div className="bg-green-50 p-4 rounded-lg text-center">
                       <div className="text-3xl font-bold text-green-600">{selectedDiscipline.placementRate}%</div>
-                      <div className="text-sm text-gray-600">Placement Rate</div>
+                      <div className="text-sm text-gray-600">Projected Placement Rate*</div>
                     </div>
                   </div>
                 </div>
@@ -594,6 +594,15 @@ export default function CareerCentersPage() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Disclaimer */}
+          <div className="mb-8 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+            <p className="text-xs text-gray-600">
+              <strong>*Projected Placement Rates:</strong> Placement rate estimates are based on industry benchmarks and preliminary data analysis.
+              Actual results will vary by institution, discipline, and implementation. Search volumes represent aggregated company search activity
+              across similar skill categories. Contact rate and hire statistics shown are illustrative examples for demonstration purposes.
+            </p>
+          </div>
 
           {/* CTA Section */}
           <div className="text-center bg-gradient-to-r from-primary to-secondary rounded-3xl p-12 text-white">
