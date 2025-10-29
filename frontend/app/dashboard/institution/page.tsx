@@ -40,20 +40,20 @@ export default function InstitutionDashboard() {
   }, [userPlan, stats])
 
   const handleUpgradeClick = () => {
-    trackUpgradeInteraction({
-      trigger: ConversionTrigger.EMBED_PROMPT,
-      targetPlan: PlanType.PREMIUM_EMBED,
-      action: 'clicked'
-    })
+    trackUpgradeInteraction(
+      'clicked',
+      ConversionTrigger.EMBED_PROMPT,
+      PlanType.PREMIUM_EMBED
+    )
     router.push('/pricing?highlight=premium_embed')
   }
 
   const handleDismissPrompt = () => {
-    trackUpgradeInteraction({
-      trigger: ConversionTrigger.EMBED_PROMPT,
-      targetPlan: PlanType.PREMIUM_EMBED,
-      action: 'dismissed'
-    })
+    trackUpgradeInteraction(
+      'dismissed',
+      ConversionTrigger.EMBED_PROMPT,
+      PlanType.PREMIUM_EMBED
+    )
     setShowUpgradePrompt(false)
   }
 

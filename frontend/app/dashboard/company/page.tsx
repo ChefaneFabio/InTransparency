@@ -45,20 +45,20 @@ export default function CompanyDashboard() {
   }, [userPlan, stats])
 
   const handleUpgradeClick = () => {
-    trackUpgradeInteraction({
-      trigger: ConversionTrigger.CONTACT_THRESHOLD_10,
-      targetPlan: PlanType.ENTERPRISE_COMPANY,
-      action: 'clicked'
-    })
+    trackUpgradeInteraction(
+      'clicked',
+      ConversionTrigger.CONTACT_THRESHOLD_10,
+      PlanType.ENTERPRISE_COMPANY
+    )
     router.push('/pricing?highlight=enterprise_company')
   }
 
   const handleDismissPrompt = () => {
-    trackUpgradeInteraction({
-      trigger: ConversionTrigger.CONTACT_THRESHOLD_10,
-      targetPlan: PlanType.ENTERPRISE_COMPANY,
-      action: 'dismissed'
-    })
+    trackUpgradeInteraction(
+      'dismissed',
+      ConversionTrigger.CONTACT_THRESHOLD_10,
+      PlanType.ENTERPRISE_COMPANY
+    )
     setShowUpgradePrompt(false)
   }
 

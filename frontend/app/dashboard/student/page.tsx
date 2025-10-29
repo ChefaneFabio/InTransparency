@@ -89,24 +89,24 @@ export default function StudentDashboard() {
   }, [userPlan, projects.length, matches.length])
 
   const handleUpgradeClick = () => {
-    trackUpgradeInteraction({
-      trigger: promptTrigger === 'student-project-limit'
+    trackUpgradeInteraction(
+      'clicked',
+      promptTrigger === 'student-project-limit'
         ? ConversionTrigger.PROJECT_LIMIT_REACHED
         : ConversionTrigger.MATCH_THRESHOLD_3,
-      targetPlan: PlanType.PRO_STUDENT,
-      action: 'clicked'
-    })
+      PlanType.PRO_STUDENT
+    )
     router.push('/pricing?highlight=pro_student')
   }
 
   const handleDismissPrompt = () => {
-    trackUpgradeInteraction({
-      trigger: promptTrigger === 'student-project-limit'
+    trackUpgradeInteraction(
+      'dismissed',
+      promptTrigger === 'student-project-limit'
         ? ConversionTrigger.PROJECT_LIMIT_REACHED
         : ConversionTrigger.MATCH_THRESHOLD_3,
-      targetPlan: PlanType.PRO_STUDENT,
-      action: 'dismissed'
-    })
+      PlanType.PRO_STUDENT
+    )
     setShowUpgradePrompt(false)
   }
 
