@@ -30,8 +30,8 @@ export async function POST(request: NextRequest) {
 
     // Determine segment from user role
     const segment = user.role === 'STUDENT' ? 'student' :
-                   user.role === 'COMPANY_RECRUITER' ? 'company' :
-                   user.role === 'UNIVERSITY_ADMIN' ? 'institution' : 'student'
+                   user.role === 'RECRUITER' ? 'company' :
+                   user.role === 'UNIVERSITY' ? 'institution' : 'student'
 
     // Generate unique referral code
     const code = `INTRANS-${segment.substring(0, 3).toUpperCase()}-${crypto.randomBytes(4).toString('hex').toUpperCase()}`
