@@ -32,8 +32,8 @@ export default function StudentDashboard() {
   const [showUpgradePrompt, setShowUpgradePrompt] = useState(false)
   const [promptTrigger, setPromptTrigger] = useState<any>('student-project-limit')
 
-  // Assume free plan for demo - in production, get from user.subscriptionTier
-  const userPlan = user?.subscriptionTier || 'free'
+  // TODO: Get from user.subscriptionTier once added to AuthContext
+  const userPlan = 'free' // Default to free for demo
 
   useEffect(() => {
     // Fetch dashboard data
