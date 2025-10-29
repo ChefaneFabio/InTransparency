@@ -19,7 +19,7 @@ interface MapProps {
 function GoogleMapInner({
   center,
   zoom,
-  mapTypeId = google.maps.MapTypeId.SATELLITE,
+  mapTypeId,
   onMapLoad,
   onCenterChanged,
   onZoomChanged,
@@ -36,11 +36,11 @@ function GoogleMapInner({
       const newMap = new window.google.maps.Map(ref.current, {
         center,
         zoom,
-        mapTypeId,
+        mapTypeId: mapTypeId || window.google.maps.MapTypeId.SATELLITE,
         mapTypeControl: true,
         mapTypeControlOptions: {
-          style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-          position: google.maps.ControlPosition.TOP_CENTER,
+          style: window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+          position: window.google.maps.ControlPosition.TOP_CENTER,
         },
         zoomControl: false,
         streetViewControl: false,
@@ -97,7 +97,7 @@ function GoogleMapInner({
   }, [map, zoom])
 
   useEffect(() => {
-    if (map) {
+    if (map && mapTypeId) {
       map.setMapTypeId(mapTypeId)
     }
   }, [map, mapTypeId])
@@ -154,7 +154,7 @@ export function MapMarker({ position, map, title, icon, onClick, zIndex }: Marke
     if (!marker && map) {
       // Try to use AdvancedMarkerElement first, fallback to regular Marker
       if (window.google?.maps?.marker?.AdvancedMarkerElement) {
-        const newMarker = new google.maps.marker.AdvancedMarkerElement({
+        const newMarker = new window.google.maps.marker.AdvancedMarkerElement({
           position,
           map,
           title,
@@ -181,7 +181,7 @@ export function MapMarker({ position, map, title, icon, onClick, zIndex }: Marke
         setMarker(newMarker)
       } else {
         // Fallback to regular Marker for compatibility
-        const newMarker = new google.maps.Marker({
+        const newMarker = new window.google.maps.Marker({
           position,
           map,
           title,
@@ -257,7 +257,7 @@ export function MapCircle({
 
   useEffect(() => {
     if (map && !circle) {
-      const newCircle = new google.maps.Circle({
+      const newCircle = new window.google.maps.Circle({
         center,
         radius,
         map,
@@ -308,7 +308,7 @@ export function MapPolyline({
 
   useEffect(() => {
     if (map && !polyline) {
-      const newPolyline = new google.maps.Polyline({
+      const newPolyline = new window.google.maps.Polyline({
         path,
         geodesic: true,
         strokeColor,

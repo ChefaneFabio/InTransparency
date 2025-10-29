@@ -38,14 +38,14 @@ export function PlacesAutocomplete({
       // Migration to google.maps.places.AutocompleteSuggestion planned but API not yet stable
       // See: https://developers.google.com/maps/documentation/javascript/places-migration-overview
       // Current implementation continues to work with bug fixes for major regressions
-      autocompleteService.current = new google.maps.places.AutocompleteService()
+      autocompleteService.current = new window.google.maps.places.AutocompleteService()
     }
     if (map && !placesService.current) {
       // DEPRECATION NOTICE: google.maps.places.PlacesService deprecated March 1, 2025
       // Migration to google.maps.places.Place planned but API not yet stable
       // See: https://developers.google.com/maps/documentation/javascript/places-migration-overview
       // Current implementation continues to work with bug fixes for major regressions
-      placesService.current = new google.maps.places.PlacesService(map)
+      placesService.current = new window.google.maps.places.PlacesService(map)
     }
   }, [map])
 
@@ -74,7 +74,7 @@ export function PlacesAutocomplete({
     // This API continues to receive bug fixes but will migrate when replacement is stable
     autocompleteService.current.getPlacePredictions(request, (predictions, status) => {
       setIsSearching(false)
-      if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
         setSuggestions(predictions)
         setShowSuggestions(true)
       } else {
@@ -116,7 +116,7 @@ export function PlacesAutocomplete({
     // LEGACY API USAGE: getDetails deprecated March 1, 2025
     // This API continues to receive bug fixes but will migrate when replacement is stable
     placesService.current.getDetails(request, (place, status) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK && place) {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK && place) {
         setValue(place.name || '')
         setSuggestions([])
         setShowSuggestions(false)
