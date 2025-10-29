@@ -194,7 +194,7 @@ export default function JobApplicationPage() {
     } else if (suggestion.action === 'auto-add-skills' && suggestion.data?.skills) {
       setFormData({
         ...formData,
-        selectedSkills: [...new Set([...formData.selectedSkills, ...suggestion.data.skills])]
+        selectedSkills: Array.from(new Set([...formData.selectedSkills, ...suggestion.data.skills]))
       })
       saveDraft()
     }
