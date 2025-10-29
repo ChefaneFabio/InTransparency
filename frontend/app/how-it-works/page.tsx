@@ -33,7 +33,8 @@ import {
   TrendingUp,
   Clock,
   Target,
-  Settings
+  Settings,
+  BarChart3
 } from 'lucide-react'
 import { StudentDataImportComponent } from '@/components/how-it-works/StudentDataImportComponent'
 
@@ -263,12 +264,170 @@ export default function HowItWorksPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h1 className="text-4xl font-display font-bold text-foreground mb-4">How InTransparency Works</h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              A transparent platform connecting students, recruiters, and universities worldwide
+            <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white">
+              Subscription-Free Service Model
+            </Badge>
+            <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
+              Four Services, One Ecosystem
+            </h1>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-2">
+              Partner-enabled services connecting students, institutions, and companies via 100% verified competencies
             </p>
+            <p className="text-base text-gray-600 max-w-2xl mx-auto">
+              Low-overhead SaaS (€0.02/query, €20/month hosting) • No subscriptions • Scalable to 100K+ users
+            </p>
+          </motion.div>
+
+          {/* Four Services Overview */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-16"
+          >
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              {/* Verification Service */}
+              <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
+                <CardHeader className="text-center">
+                  <div className="bg-gradient-to-br from-primary to-secondary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <Shield className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-lg">Verification Service</CardTitle>
+                  <Badge variant="secondary" className="mt-2">FREE for Institutions</Badge>
+                </CardHeader>
+                <CardContent className="text-sm text-gray-700 space-y-2">
+                  <p className="font-semibold text-primary">Auto-import & Authenticate</p>
+                  <ul className="space-y-1 text-xs">
+                    <li>• Esse3/Moodle integration</li>
+                    <li>• Institution endorses projects</li>
+                    <li>• Batch approval: 50 in 1 hour</li>
+                    <li>• "Verified by ITS G. Natta, 28/30"</li>
+                  </ul>
+                  <p className="text-xs italic pt-2 border-t">
+                    vs AlmaLaurea: €2,500/year
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Matching Service */}
+              <Card className="border-2 border-secondary/20 hover:border-secondary/40 transition-all hover:shadow-lg">
+                <CardHeader className="text-center">
+                  <div className="bg-gradient-to-br from-secondary to-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <Target className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-lg">Matching Service</CardTitle>
+                  <Badge variant="secondary" className="mt-2">FREE for Students</Badge>
+                </CardHeader>
+                <CardContent className="text-sm text-gray-700 space-y-2">
+                  <p className="font-semibold text-secondary">AI-Powered Connections</p>
+                  <ul className="space-y-1 text-xs">
+                    <li>• 92% verified accuracy</li>
+                    <li>• Transparent explanations</li>
+                    <li>• "92% fit: Python thesis matches"</li>
+                    <li>• Bidirectional requirements</li>
+                  </ul>
+                  <p className="text-xs italic pt-2 border-t">
+                    vs Manatal: Opaque resume parsing
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Discovery Service */}
+              <Card className="border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-lg">
+                <CardHeader className="text-center">
+                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <Search className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-lg">Discovery Service</CardTitle>
+                  <Badge variant="secondary" className="mt-2">Browse FREE, €10/contact</Badge>
+                </CardHeader>
+                <CardContent className="text-sm text-gray-700 space-y-2">
+                  <p className="font-semibold text-green-700">Reverse Recruitment</p>
+                  <ul className="space-y-1 text-xs">
+                    <li>• Companies search verified pools</li>
+                    <li>• Zero applications for students</li>
+                    <li>• Project excerpts + stamps</li>
+                    <li>• 80% faster screening</li>
+                  </ul>
+                  <p className="text-xs italic pt-2 border-t">
+                    vs Indeed: 30% self-reported fakes
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Analytics Service */}
+              <Card className="border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-lg">
+                <CardHeader className="text-center">
+                  <div className="bg-gradient-to-br from-purple-500 to-indigo-600 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <BarChart3 className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-lg">Analytics Service</CardTitle>
+                  <Badge variant="secondary" className="mt-2">FREE Dashboards</Badge>
+                </CardHeader>
+                <CardContent className="text-sm text-gray-700 space-y-2">
+                  <p className="font-semibold text-purple-700">Career Intelligence</p>
+                  <ul className="space-y-1 text-xs">
+                    <li>• "Deloitte viewed 31 students"</li>
+                    <li>• "Excel searched 89x"</li>
+                    <li>• Early intervention alerts</li>
+                    <li>• Prove 85% placement boost</li>
+                  </ul>
+                  <p className="text-xs italic pt-2 border-t">
+                    vs Univariety: €500/year subs
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Service Flow Diagram */}
+            <Card className="bg-gradient-to-r from-primary/5 to-secondary/5 border-2 border-primary/20">
+              <CardContent className="py-8">
+                <h3 className="text-xl font-bold text-center mb-6">How Services Work Together</h3>
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4 max-w-5xl mx-auto">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-white p-4 rounded-lg shadow-md mb-2 w-48">
+                      <Upload className="h-8 w-8 mx-auto mb-2 text-primary" />
+                      <p className="text-sm font-semibold">1. Upload Projects</p>
+                      <p className="text-xs text-gray-600">theses, stage curriculare</p>
+                    </div>
+                  </div>
+                  <ArrowRight className="h-6 w-6 text-gray-400 rotate-90 md:rotate-0" />
+
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-white p-4 rounded-lg shadow-md mb-2 w-48">
+                      <Shield className="h-8 w-8 mx-auto mb-2 text-primary" />
+                      <p className="text-sm font-semibold">2. Institution Verifies</p>
+                      <p className="text-xs text-gray-600">via Esse3/Moodle</p>
+                    </div>
+                  </div>
+                  <ArrowRight className="h-6 w-6 text-gray-400 rotate-90 md:rotate-0" />
+
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-white p-4 rounded-lg shadow-md mb-2 w-48">
+                      <Target className="h-8 w-8 mx-auto mb-2 text-secondary" />
+                      <p className="text-sm font-semibold">3. AI Matches</p>
+                      <p className="text-xs text-gray-600">92% verified accuracy</p>
+                    </div>
+                  </div>
+                  <ArrowRight className="h-6 w-6 text-gray-400 rotate-90 md:rotate-0" />
+
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-white p-4 rounded-lg shadow-md mb-2 w-48">
+                      <CheckCircle className="h-8 w-8 mx-auto mb-2 text-green-600" />
+                      <p className="text-sm font-semibold">4. Companies Discover</p>
+                      <p className="text-xs text-gray-600">Zero applications</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center mt-6">
+                  <p className="text-sm text-gray-700">
+                    <strong>Result:</strong> Students get 25% higher responses • Institutions prove 85% placement boost • Companies save 80% screening time
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
 
           {/* User Type Selector */}

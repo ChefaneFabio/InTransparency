@@ -192,6 +192,18 @@ export function Hero() {
 
       <div className="container relative z-10">
         <div className="mx-auto max-w-4xl text-center">
+          {/* Service Model Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="mb-4 flex justify-center"
+          >
+            <div className="text-xs text-gray-600 bg-white/40 backdrop-blur-sm px-3 py-1 rounded-full border border-gray-200/50">
+              Subscription-Free Service • Partner-Enabled
+            </div>
+          </motion.div>
+
           {/* Segment Selector */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -300,9 +312,12 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-16 pt-8 border-t border-gray-200"
           >
-            <p className="text-sm font-medium text-gray-700 text-center flex items-center justify-center gap-2">
+            <p className="text-sm font-medium text-gray-700 text-center flex items-center justify-center gap-2 mb-2">
               <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
               {content.stats.label} {content.stats.value}
+            </p>
+            <p className="text-xs text-gray-600 text-center">
+              Four Services, Zero Subscriptions • Low-overhead SaaS (€0.02/query, €20/month hosting)
             </p>
           </motion.div>
 
