@@ -418,6 +418,23 @@ const features: Feature[] = [
     status: 'live'
   },
   {
+    id: 'academic-advocacy-network',
+    title: 'Academic Advocacy Network',
+    description: 'Institution-verified alumni success stories and student networking. Build professional connections through verified career journeys and peer referrals.',
+    icon: Users,
+    image: IMAGES.features.matching,
+    targets: ['students', 'institutes'],
+    benefits: [
+      'Verified alumni success stories with career paths',
+      'Institution-authenticated via .edu email verification',
+      'Professional student networking (no gamification)',
+      'Alumni advice for current students',
+      'Career center insights from network growth',
+      'Privacy-first with anonymization options'
+    ],
+    status: 'live'
+  },
+  {
     id: 'company-recruiting-assistant',
     title: 'AI Recruiting Assistant',
     description: 'Intelligent chatbot helps source candidates, explains match scores, and provides transparent recruiting guidance 24/7.',
