@@ -17,13 +17,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
-    // Verify user is admin
+    // Verify user is university or admin
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: { role: true, university: true }
     })
 
-    if (!user || user.role !== 'UNIVERSITY_ADMIN') {
+    if (!user || !['UNIVERSITY', 'ADMIN'].includes(user.role)) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
