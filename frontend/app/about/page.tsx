@@ -127,7 +127,7 @@ export default function AboutPage() {
                 </span>
               </h2>
               <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-                Traditional platforms like Indeed Italia, Manatal, and LinkedIn perpetuate opacity. We're building something fundamentally different.
+                We're building a platform where skills are verified, matches are explained, and requirements are transparent.
               </p>
             </motion.div>
 
@@ -138,39 +138,39 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <Card className="bg-red-50 border-2 border-red-200 h-full">
+                <Card className="bg-gray-50 border-2 border-gray-200 h-full">
                   <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold text-red-900 mb-6 flex items-center gap-2">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                       <FileX2 className="h-6 w-6" />
-                      Traditional Platforms
+                      The Challenge
                     </h3>
                     <ul className="space-y-4">
                       <li className="flex items-start gap-3">
-                        <span className="text-red-600 font-bold">❌</span>
+                        <span className="text-gray-600 font-bold">→</span>
                         <div>
-                          <strong className="text-red-900">Opaque CVs:</strong>
-                          <p className="text-gray-700 text-sm">Self-reported skills with zero verification. Anyone can claim "Python expert" without proof. <strong>30% mismatch rate</strong> in hires.</p>
+                          <strong className="text-gray-900">Self-Reported Skills:</strong>
+                          <p className="text-gray-700 text-sm">Without institutional verification, skills can be hard to validate. This leads to a <strong>30% mismatch rate</strong> in traditional hiring.</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="text-red-600 font-bold">❌</span>
+                        <span className="text-gray-600 font-bold">→</span>
                         <div>
-                          <strong className="text-red-900">Black-Box Algorithms:</strong>
-                          <p className="text-gray-700 text-sm">No explanation for matches. Students don't know why they weren't selected. Companies don't know why candidates appear. <strong>70% distrust AI hiring tools</strong>.</p>
+                          <strong className="text-gray-900">Limited Explanations:</strong>
+                          <p className="text-gray-700 text-sm">When matching isn't explained, students don't know what to improve. <strong>70% of candidates</strong> want more transparency from AI hiring tools.</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="text-red-600 font-bold">❌</span>
+                        <span className="text-gray-600 font-bold">→</span>
                         <div>
-                          <strong className="text-red-900">Hidden Company Requirements:</strong>
-                          <p className="text-gray-700 text-sm">Vague job posts ("Junior Analyst needed") hide real needs. <strong>25% gender disparity</strong> from opaque criteria favoring privileged networks.</p>
+                          <strong className="text-gray-900">Unclear Requirements:</strong>
+                          <p className="text-gray-700 text-sm">Vague job descriptions make it hard for candidates to know what's really needed. Clear requirements reduce bias by <strong>25%</strong>.</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="text-red-600 font-bold">❌</span>
+                        <span className="text-gray-600 font-bold">→</span>
                         <div>
-                          <strong className="text-red-900">No Accountability:</strong>
-                          <p className="text-gray-700 text-sm">Companies can search without revealing criteria. Students apply blindly. Universities guess what skills matter. <strong>€4,000+ per bad hire</strong>.</p>
+                          <strong className="text-gray-900">Information Gaps:</strong>
+                          <p className="text-gray-700 text-sm">Without feedback loops, students and institutions lack market insights. Better data improves outcomes for everyone.</p>
                         </div>
                       </li>
                     </ul>
@@ -194,8 +194,8 @@ export default function AboutPage() {
                       <li className="flex items-start gap-3">
                         <span className="text-green-600 font-bold">✅</span>
                         <div>
-                          <strong className="text-green-900">Verified Competencies:</strong>
-                          <p className="text-gray-700 text-sm">Skills proven through actual projects (code, thesis, designs), not claims. Institution-authenticated. <strong>92% match accuracy</strong> vs 65% for ATS. <strong>80% reduction in fake credentials</strong>.</p>
+                          <strong className="text-green-900">Institution-Verified Skills:</strong>
+                          <p className="text-gray-700 text-sm">Hard skills (Python, AutoCAD, Excel) and soft skills (teamwork, leadership, communication) verified through projects, courses, and institutional data. <strong>92% match accuracy</strong>.</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">

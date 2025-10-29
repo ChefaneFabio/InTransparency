@@ -43,16 +43,15 @@ export default function TransparencyPage() {
               </Badge>
 
               <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">
-                Full{' '}
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Transparency
+                  Verified Skills
                 </span>
                 <br />
-                No Hidden Algorithms
+                Clear Explanations
               </h1>
 
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Traditional hiring platforms use opaque CVs and black-box algorithms. We believe in complete transparency for students, companies, and institutions.
+                Institution-verified hard and soft skills. Explainable AI matching. Direct company feedback. Complete transparency for students, companies, and institutions.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -70,79 +69,79 @@ export default function TransparencyPage() {
           </div>
         </section>
 
-        {/* The Problem */}
+        {/* The Challenge */}
         <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
           <div className="container max-w-6xl">
             <h2 className="text-4xl font-display font-bold text-foreground text-center mb-4">
-              The Problem with Traditional Platforms
+              The Hiring Challenge
             </h2>
             <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
-              Indeed Italia, Manatal, LinkedIn, and others perpetuate opacity that hurts everyone
+              Traditional hiring relies on self-reported CVs and unexplained match scores
             </p>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <Card className="bg-red-50 border-2 border-red-200">
+              <Card className="bg-blue-50 border-2 border-blue-200">
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-lg bg-red-500 flex items-center justify-center">
-                      <XCircle className="h-6 w-6 text-white" />
+                    <div className="w-12 h-12 rounded-lg bg-blue-500 flex items-center justify-center">
+                      <FileCheck className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-red-900">Opaque CVs</h3>
+                    <h3 className="text-2xl font-bold text-blue-900">Self-Reported Skills</h3>
                   </div>
                   <ul className="space-y-4 text-gray-700">
                     <li className="flex items-start gap-3">
-                      <span className="text-red-600 font-bold mt-1">•</span>
+                      <span className="text-blue-600 font-bold mt-1">•</span>
                       <div>
-                        <strong>Self-reported skills</strong> with zero verification
-                        <p className="text-sm text-gray-600">Anyone can claim "Python expert" without proof</p>
+                        <strong>Hard to verify</strong> technical and soft skills
+                        <p className="text-sm text-gray-600">Resume skills often don't match actual capabilities</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-red-600 font-bold mt-1">•</span>
+                      <span className="text-blue-600 font-bold mt-1">•</span>
                       <div>
-                        <strong>30% mismatch rate</strong> in hires
-                        <p className="text-sm text-gray-600">Candidates look great on paper but can't perform</p>
+                        <strong>30% skill mismatch</strong> in hires
+                        <p className="text-sm text-gray-600">Institutional verification closes this gap</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-red-600 font-bold mt-1">•</span>
+                      <span className="text-blue-600 font-bold mt-1">•</span>
                       <div>
-                        <strong>€4,000+ cost per bad hire</strong>
-                        <p className="text-sm text-gray-600">Wasted recruiting time, training, and severance</p>
+                        <strong>Time-consuming validation</strong>
+                        <p className="text-sm text-gray-600">Recruiters spend hours verifying credentials</p>
                       </div>
                     </li>
                   </ul>
                 </CardContent>
               </Card>
 
-              <Card className="bg-red-50 border-2 border-red-200">
+              <Card className="bg-purple-50 border-2 border-purple-200">
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-lg bg-red-500 flex items-center justify-center">
-                      <XCircle className="h-6 w-6 text-white" />
+                    <div className="w-12 h-12 rounded-lg bg-purple-500 flex items-center justify-center">
+                      <Lightbulb className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-red-900">Black-Box Algorithms</h3>
+                    <h3 className="text-2xl font-bold text-purple-900">Unexplained Matching</h3>
                   </div>
                   <ul className="space-y-4 text-gray-700">
                     <li className="flex items-start gap-3">
-                      <span className="text-red-600 font-bold mt-1">•</span>
+                      <span className="text-purple-600 font-bold mt-1">•</span>
                       <div>
-                        <strong>No explanation</strong> for matches
-                        <p className="text-sm text-gray-600">Students don't know why they were rejected</p>
+                        <strong>Limited transparency</strong> in match reasons
+                        <p className="text-sm text-gray-600">Students don't know what to improve</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-red-600 font-bold mt-1">•</span>
+                      <span className="text-purple-600 font-bold mt-1">•</span>
                       <div>
-                        <strong>70% distrust AI hiring tools</strong>
-                        <p className="text-sm text-gray-600">Lack of transparency breeds distrust and bias</p>
+                        <strong>70% want more clarity</strong> from AI tools
+                        <p className="text-sm text-gray-600">Explainable matching builds trust</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-red-600 font-bold mt-1">•</span>
+                      <span className="text-purple-600 font-bold mt-1">•</span>
                       <div>
-                        <strong>25% gender disparity</strong>
-                        <p className="text-sm text-gray-600">Hidden criteria favor privileged networks</p>
+                        <strong>Feedback helps everyone</strong>
+                        <p className="text-sm text-gray-600">Clear requirements reduce bias by 25%</p>
                       </div>
                     </li>
                   </ul>
@@ -172,24 +171,24 @@ export default function TransparencyPage() {
                     <h3 className="text-2xl font-bold text-foreground">1. Verified Competencies</h3>
                   </div>
                   <p className="text-gray-700 mb-4">
-                    Skills proven through actual projects, not self-reported claims.
+                    Hard and soft skills verified through institutional data and project analysis.
                   </p>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                      Project-based skill verification (code, thesis, designs)
+                      Hard skills: Verified through projects, code, designs, research
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                      Institution-authenticated grades and courses
+                      Soft skills: Analyzed from teamwork, leadership, presentations
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                      AI flags inconsistencies and resume inflation
+                      Institution-authenticated grades, courses, and achievements
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                      <strong>92% match accuracy</strong> vs 65% for traditional ATS
+                      <strong>92% match accuracy</strong> vs 65% for traditional methods
                     </li>
                   </ul>
                 </CardContent>

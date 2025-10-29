@@ -174,15 +174,15 @@ const features: Feature[] = [
   {
     id: 'verified-skills-companies',
     title: 'Verified Skills & Projects',
-    description: 'See actual verified projects, not self-reported CVs. University-authenticated portfolios and grades.',
+    description: 'See actual verified projects and institution-authenticated portfolios. Both hard and soft skills verified through academic work.',
     icon: Shield,
     image: IMAGES.universityCampuses.campus,
     targets: ['companies'],
     benefits: [
-      'View real project work',
-      'University-verified grades',
-      'AI-analyzed skills',
-      'No resume inflation'
+      'View real project work (code, designs, research)',
+      'Institution-verified grades and achievements',
+      'Hard and soft skills verified through coursework',
+      'AI-analyzed competencies from projects'
     ],
     status: 'live'
   },
@@ -319,16 +319,16 @@ const features: Feature[] = [
   },
   {
     id: 'verified-competencies',
-    title: 'Verified Competencies (No Resume Inflation)',
-    description: 'Skills proven through actual projects, not self-reported claims. 80% reduction in fake credentials vs traditional CVs.',
+    title: 'Institution-Verified Skills',
+    description: 'Hard skills (Python, Excel, CAD) and soft skills (teamwork, leadership, communication) verified through projects, courses, and institutional data.',
     icon: FileCheck,
     image: IMAGES.universityCampuses.campus,
     targets: ['companies', 'students'],
     benefits: [
-      'Project-based skill verification',
-      'Institution-authenticated grades',
-      'AI flags inconsistencies',
-      '92% match accuracy vs 65% for ATS tools'
+      'Hard skills verified through projects and coursework',
+      'Soft skills analyzed from teamwork and presentations',
+      'Institution-authenticated grades and achievements',
+      '92% match accuracy with verified data'
     ],
     status: 'live'
   },

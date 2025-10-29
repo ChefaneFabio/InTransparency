@@ -105,7 +105,7 @@ const companyPlans = [
       '💬 Get match explanations and job description tips via chat',
       '📊 40% higher engagement with conversational search',
       '🔍 Explainable AI matching (see WHY each match)',
-      '✅ Verified competencies (no resume inflation)',
+      '✅ Institution-verified hard and soft skills',
       '📊 Transparent match scores with reasoning',
       '📝 Leave notes on profiles with feedback and requirements',
       'Buy credits as needed',
