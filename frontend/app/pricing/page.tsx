@@ -22,7 +22,7 @@ const studentPlans = [
     popular: true,
     badge: '🎓 Always Free',
     features: [
-      'Two onboarding paths: University partner = automatic profile OR Independent = upload + select courses',
+      'Two onboarding paths: University partner = opt-in streamlined profile OR Independent = upload + select courses',
       'Unlimited projects (all formats)',
       'Complete AI analysis (hard + soft skills)',
       'University integration available for institutions',
@@ -150,7 +150,7 @@ const institutePlans = [
     badge: '🎓 Always Free',
     features: [
       '✅ Zero cost (vs AlmaLaurea €2,500/year)',
-      '✅ Zero operational burden - automatic profile creation',
+      '✅ Streamlined onboarding - students consent via email, profiles created with verified data',
       '✅ ALL students get exposure (not just top 5% like headhunters)',
       '✅ AI verifies skills via projects (not self-reported CVs)',
       '🤖 24/7 AI Partnership Assistant for onboarding & analytics',
@@ -162,7 +162,7 @@ const institutePlans = [
       '🎯 Bidirectional transparency (see what companies need)',
       '📉 Early intervention alerts (at-risk students)',
       '🤖 Modern image: "AI-powered career services"',
-      '⏱️ Save 40+ hours/month - no manual matching',
+      '⏱️ Projected 40+ hours/month time savings with automated matching',
       '🌍 European job opportunities search for students'
     ],
     cta: 'Partner With Us',
@@ -208,7 +208,7 @@ export default function PricingPage() {
       case 'students': return {
         badge: 'For Students',
         title: 'Complete Platform Access - Free Forever',
-        subtitle: 'University partner? Automatic profile. No university? Upload projects + select courses = instant profile. All features free, no paywalls.'
+        subtitle: 'University partner? Opt-in streamlined profile via email consent. No university? Upload projects + select courses. All features free, no paywalls.'
       }
       case 'institutes': return {
         badge: 'For Institutes (Universities & ITS)',
@@ -430,7 +430,7 @@ export default function PricingPage() {
               {[
                 {
                   question: 'How do students create profiles?',
-                  answer: 'Two ways: (1) If your university is a partner, your profile is created AUTOMATICALLY from university data. (2) If not, you upload projects + select courses, and we identify them to create your complete profile. Both ways: 100% free, < 5 minutes.'
+                  answer: 'Two ways: (1) If your university is a partner, we send an email invitation. Students click to consent and their profile is created from verified university data. (2) If independent, students upload projects + select courses, and we verify them to create their complete profile. Both ways: 100% free, consent-based, < 5 minutes.'
                 },
                 {
                   question: 'Do institutes (universities/ITS) have to pay?',

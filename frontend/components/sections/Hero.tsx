@@ -48,7 +48,7 @@ const segmentContent = {
       {
         image: IMAGES.features.aiAnalysis,
         title: 'Complete Skill Profile',
-        description: 'Hard skills + soft skills automatically detected from your projects across ANY field'
+        description: 'Hard skills + soft skills verified from your projects across ANY field with AI analysis'
       },
       {
         image: IMAGES.students.student4,
@@ -58,7 +58,7 @@ const segmentContent = {
       {
         image: IMAGES.universityCampuses.graduation,
         title: 'Two Ways to Join',
-        description: 'University partner = automatic profile. Independent = upload projects + select courses'
+        description: 'University partner = opt-in streamlined profile. Independent = upload projects + select courses'
       }
     ],
     stats: {

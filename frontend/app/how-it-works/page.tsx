@@ -324,10 +324,10 @@ export default function HowItWorksPage() {
                 <CardHeader className="text-center">
                   <CardTitle className="flex items-center justify-center text-primary mb-2">
                     <Database className="h-6 w-6 mr-2" />
-                    Automatic Profile Creation
+                    Streamlined Profile Creation (Consent-Based)
                   </CardTitle>
                   <p className="text-gray-700">
-                    Import all your academic data from your institution profile to create a complete CV instantly
+                    Consent via email, then import your verified academic data to create a complete profile
                   </p>
                 </CardHeader>
                 <CardContent className="text-center">

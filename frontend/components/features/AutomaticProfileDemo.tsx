@@ -142,10 +142,10 @@ export function AutomaticProfileDemo() {
       {/* Header */}
       <div className="text-center">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">
-          Automatic Profile Creation
+          Streamlined Profile Creation (Consent-Based)
         </h2>
         <p className="text-lg text-gray-600 mb-2">
-          No manual CV building. No data entry. Just connect and go.
+          Email invitation → Click to consent → Verified profile created. No manual CV building.
         </p>
         <div className="flex justify-center items-center space-x-6 text-sm text-gray-700">
           <div className="flex items-center">
@@ -186,10 +186,10 @@ export function AutomaticProfileDemo() {
                   <Link className="h-12 w-12 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Connect Your University Account
+                  Consent & Connect Your University Data
                 </h3>
                 <p className="text-gray-600 max-w-md mx-auto">
-                  One click imports all your academic data: transcripts, projects, courses, skills, and achievements.
+                  After you consent via email, we import your verified academic data: transcripts, projects, courses, skills, and achievements.
                 </p>
               </div>
               <Button
@@ -352,7 +352,7 @@ export function AutomaticProfileDemo() {
               </div>
               <h4 className="font-semibold text-gray-900 mb-2">Always Current</h4>
               <p className="text-sm text-gray-600">
-                Profile automatically updates as you complete courses and projects.
+                Profile updates with your consent as you complete courses and projects.
               </p>
             </div>
           </CardContent>

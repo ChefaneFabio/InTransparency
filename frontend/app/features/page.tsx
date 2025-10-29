@@ -52,12 +52,12 @@ const features: Feature[] = [
   {
     id: 'two-onboarding-paths',
     title: 'Two Ways to Join',
-    description: 'University partner = automatic profile from university data. No university = upload projects + select courses for instant profile.',
+    description: 'University partner = opt-in streamlined profile from verified data. No university = upload projects + select courses.',
     icon: Upload,
     image: IMAGES.universityCampuses.graduation,
     targets: ['students'],
     benefits: [
-      'University partners get automatic profiles',
+      'University partners: consent via email, then streamlined profile',
       'Independent students upload projects',
       'AI identifies courses automatically',
       'Complete profile in < 5 minutes'
@@ -82,13 +82,13 @@ const features: Feature[] = [
   {
     id: 'complete-skill-profile',
     title: 'Complete Skill Profile',
-    description: 'Automatic skill profile with hard skills, soft skills, courses, grades, and projects - all verified by university or AI.',
+    description: 'Comprehensive skill profile with hard skills, soft skills, courses, grades, and projects - all verified by university or AI.',
     icon: Award,
     image: IMAGES.students.student3,
     targets: ['students'],
     benefits: [
-      'Hard + soft skills automatically detected',
-      'University verification (if partner)',
+      'Hard + soft skills verified from projects',
+      'University verification (if partner, with consent)',
       'Project portfolio included',
       'Course history with grades'
     ],
