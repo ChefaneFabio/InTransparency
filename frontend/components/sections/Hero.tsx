@@ -17,17 +17,17 @@ const segmentContent = {
     badgeIcon: GraduationCap,
     headline: (
       <>
-        Stop Applying.{' '}
+        Your Institution Verifies.{' '}
         <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          Start Getting Discovered.
+          Companies Trust You.
         </span>
       </>
     ),
     description: (
       <>
-        Upload projects in 2 minutes. AI analyzes hard and soft skills. Companies find YOU for specific competencies. Zero endless applications.
+        Upload projects (theses, stage curriculare, portfolios). Your institution authenticates them. Companies discover 100% verified competencies - no resume inflation.
         <br />
-        <strong className="text-gray-900">🚀 Works for ALL fields: Tech, Business, Law, Engineering, Design & more.</strong>
+        <strong className="text-gray-900">🎓 Institution-stamped skills for Tech, Business, Law, Engineering, Design & more.</strong>
       </>
     ),
     primaryCTA: {
@@ -40,25 +40,25 @@ const segmentContent = {
       href: '/how-it-works'
     },
     benefits: [
-      { icon: CheckCircle2, text: '2-minute setup' },
-      { icon: CheckCircle2, text: 'Companies find you' },
-      { icon: CheckCircle2, text: 'Zero endless applications' }
+      { icon: CheckCircle2, text: 'Institution-verified skills' },
+      { icon: CheckCircle2, text: '100% traceable competencies' },
+      { icon: CheckCircle2, text: 'Companies discover verified YOU' }
     ],
     features: [
       {
         image: IMAGES.features.aiAnalysis,
-        title: 'Complete Skill Profile',
-        description: 'Hard skills + soft skills verified from your projects across ANY field with AI analysis'
+        title: 'Institution-Authenticated Skills',
+        description: 'Your university/ITS verifies your competencies (grades, projects, stage curriculare) - companies see 100% authentic proof'
       },
       {
         image: IMAGES.students.student4,
-        title: 'All Disciplines Welcome',
-        description: 'Tech, Business, Law, Engineering, Architecture, Design, Psychology, Fashion - we analyze everything'
+        title: 'All Disciplines Verified',
+        description: 'Tech, Business, Law, Engineering, Design - every field gets institutional authentication (30/30 thesis? ITS project? All stamped)'
       },
       {
         image: IMAGES.universityCampuses.graduation,
-        title: 'Two Ways to Join',
-        description: 'University partner = opt-in streamlined profile. Independent = upload projects + select courses'
+        title: 'Traceable to Source',
+        description: 'Every competency shows institution badge: "Verified by Politecnico" or "Endorsed by ITS G. Natta" - no fake credentials'
       }
     ],
     stats: {
@@ -71,17 +71,17 @@ const segmentContent = {
     badgeIcon: Building2,
     headline: (
       <>
-        Turn Career Services into a{' '}
+        Be the{' '}
         <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          Strategic Intelligence Hub.
+          Verification Authority.
         </span>
       </>
     ),
     description: (
       <>
-        See which companies search your students. Give data-driven career advice. Fix at-risk profiles before graduation. Save 40h/month on manual work.
+        Free integration with Esse3/Moodle/your CRM. You authenticate student competencies (grades, projects, tirocini) - companies trust your stamp. Track placement analytics.
         <br />
-        <strong className="text-gray-900">🚀 Always Free for all disciplines and institutions.</strong>
+        <strong className="text-gray-900">🎓 100% Free verification layer - no fees, no subscriptions.</strong>
       </>
     ),
     primaryCTA: {
@@ -94,25 +94,25 @@ const segmentContent = {
       href: '/pricing'
     },
     benefits: [
-      { icon: CheckCircle2, text: 'See which companies search your students' },
-      { icon: CheckCircle2, text: 'Give data-driven career advice' },
-      { icon: CheckCircle2, text: 'Fix at-risk profiles before graduation' }
+      { icon: CheckCircle2, text: 'Free Esse3/Moodle integration' },
+      { icon: CheckCircle2, text: 'You authenticate competencies' },
+      { icon: CheckCircle2, text: 'Track placement from your stamp' }
     ],
     features: [
       {
         image: IMAGES.features.dataAnalytics,
-        title: 'Company Search Intelligence',
-        description: 'See which companies view your students → "Deloitte viewed 31 Economics students" = warm outreach opportunity'
+        title: 'Auto-Import & Verify',
+        description: 'Connect Esse3/Moodle → We import grades/projects → You click "Verify" → Student profile activates with YOUR institutional badge'
       },
       {
         image: IMAGES.recruiters.recruiter2,
-        title: 'Data-Driven Counseling',
-        description: 'Show students what skills are trending → "Excel searched 89x this month" = tell Business students to learn it'
+        title: 'Your Credibility = Student Success',
+        description: 'Companies trust "Verified by Politecnico" or "ITS G. Natta endorsed" - your stamp increases placement by 25%'
       },
       {
         image: IMAGES.universityCampuses.campus,
-        title: 'Early Intervention Alerts',
-        description: 'Flag at-risk students → "87 seniors graduating in 60 days with zero views" = proactive career support'
+        title: 'Placement Analytics Dashboard',
+        description: 'Track: "47 ITS students contacted by companies → 23 hired via your verification" - prove your impact to MIUR'
       }
     ],
     stats: {
@@ -127,16 +127,16 @@ const segmentContent = {
       <>
         Hire{' '}
         <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          Verified Talent,
+          Institution-Verified Talent,
         </span>{' '}
         Not Resumes.
       </>
     ),
     description: (
       <>
-        AI search across ALL fields. See verified matches with projects and soft skills. Pay €10 per contact. Zero screening hundreds of CVs.
+        Search verified competencies (100% authentic, stamped by universities/ITS). See projects, 30/30 grades, stage curriculare - all institution-authenticated. Pay €10 per contact.
         <br />
-        <strong className="text-gray-900">🚀 Browse Free - Pay €10 only when you contact.</strong>
+        <strong className="text-gray-900">🎓 Every skill traceable to educational source - zero resume inflation.</strong>
       </>
     ),
     primaryCTA: {
@@ -149,30 +149,30 @@ const segmentContent = {
       href: '/pricing'
     },
     benefits: [
-      { icon: CheckCircle2, text: 'AI conversational search' },
-      { icon: CheckCircle2, text: 'See verified projects + soft skills' },
-      { icon: CheckCircle2, text: 'Zero screening hundreds of CVs' }
+      { icon: CheckCircle2, text: '100% institution-verified' },
+      { icon: CheckCircle2, text: 'Traceable to educational source' },
+      { icon: CheckCircle2, text: 'Zero resume inflation' }
     ],
     features: [
       {
         image: IMAGES.features.search,
-        title: 'AI Matching',
-        description: 'Find candidates based on verified project work'
+        title: 'Search Verified Talent Pools',
+        description: 'Query by skill → See "AutoCAD: Verified by ITS Rizzoli, 28/30 project grade" - every competency stamped by institution'
       },
       {
         image: IMAGES.universityCampuses.library,
-        title: 'Verified Skills',
-        description: 'University-authenticated portfolios and grades'
+        title: 'Institution Authentication Badges',
+        description: 'Every profile shows: "Verified by Politecnico Milano" or "ITS G. Natta endorsed" - trust the source, not the student claim'
       },
       {
         image: IMAGES.success.handshake,
-        title: 'Hire 2x Faster',
-        description: 'Reduce time-to-hire with project-based assessment'
+        title: '92% Match Accuracy',
+        description: 'Institution-verified competencies = 30-40% fewer mismatches vs. self-reported Indeed CVs - hire confidently'
       }
     ],
     stats: {
-      label: 'Access verified talent',
-      value: 'with projects, grades, and skills analysis'
+      label: 'Access verified talent from',
+      value: 'universities, ITS academies, and vocational schools'
     }
   }
 }
