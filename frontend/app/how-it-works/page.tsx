@@ -276,7 +276,7 @@ export default function HowItWorksPage() {
               Partner-enabled services connecting students, institutions, and companies via 100% verified competencies
             </p>
             <p className="text-base text-gray-600 max-w-2xl mx-auto">
-              Built to Scale • No Subscriptions • Designed for 100K+ Users
+              No Subscriptions • Pay Only for What You Use
             </p>
           </motion.div>
 

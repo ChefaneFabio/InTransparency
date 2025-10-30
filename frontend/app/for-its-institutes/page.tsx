@@ -284,11 +284,6 @@ export default function ITSInstitutesPage() {
               </Card>
             </div>
 
-            <div className="text-center mt-6">
-              <p className="text-sm text-gray-600">
-                <strong>Progettato per Scalare:</strong> Costruito per 100K+ utenti • Nessun abbonamento • Paghi solo ciò che usi
-              </p>
-            </div>
           </motion.div>
 
           {/* ITS Focus Areas */}

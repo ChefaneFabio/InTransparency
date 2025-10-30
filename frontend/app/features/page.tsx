@@ -661,11 +661,6 @@ export default function FeaturesPage() {
               </Card>
             </div>
 
-            <div className="text-center mt-6">
-              <p className="text-sm text-gray-600">
-                <strong>Built to Scale:</strong> Designed for 100K+ users • No subscriptions ever • Pay only for what you use
-              </p>
-            </div>
           </motion.div>
 
           {/* Audience Filter */}
