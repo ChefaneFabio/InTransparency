@@ -276,7 +276,7 @@ export default function HowItWorksPage() {
               Partner-enabled services connecting students, institutions, and companies via 100% verified competencies
             </p>
             <p className="text-base text-gray-600 max-w-2xl mx-auto">
-              Low-overhead SaaS (€0.02/query, €20/month hosting) • No subscriptions • Scalable to 100K+ users
+              Built to Scale • No Subscriptions • Designed for 100K+ Users
             </p>
           </motion.div>
 

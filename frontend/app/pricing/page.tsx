@@ -359,7 +359,7 @@ export default function PricingPage() {
               <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-4">
                 Partner-enabled services, not subscription traps. Free for students & institutions. Companies pay only per contact.</p>
               <p className="text-base text-gray-600 max-w-2xl mx-auto mb-12">
-                Low-overhead SaaS (€0.02/query, €20/month hosting) scalable to 100K+ users. No subscriptions, no monthly fees - just transparent, pay-as-you-use services.
+                Built to scale for 100K+ users. No subscriptions, no monthly fees - just transparent, pay-as-you-use services that grow with you.
               </p>
 
             {/* Segment Selector */}

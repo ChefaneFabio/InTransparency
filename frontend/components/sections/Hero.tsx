@@ -317,7 +317,7 @@ export function Hero() {
               {content.stats.label} {content.stats.value}
             </p>
             <p className="text-xs text-gray-600 text-center">
-              Four Services, Zero Subscriptions • Low-overhead SaaS (€0.02/query, €20/month hosting)
+              Four Services, Zero Subscriptions • Built to Scale, Designed for Transparency
             </p>
           </motion.div>
 

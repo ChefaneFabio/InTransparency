@@ -286,7 +286,7 @@ export default function ITSInstitutesPage() {
 
             <div className="text-center mt-6">
               <p className="text-sm text-gray-600">
-                <strong>Low-overhead SaaS:</strong> €0.02/query • €20/mese hosting • Scalabile a 100K+ utenti
+                <strong>Progettato per Scalare:</strong> Costruito per 100K+ utenti • Nessun abbonamento • Paghi solo ciò che usi
               </p>
             </div>
           </motion.div>

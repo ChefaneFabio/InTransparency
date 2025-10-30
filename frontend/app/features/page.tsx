@@ -663,7 +663,7 @@ export default function FeaturesPage() {
 
             <div className="text-center mt-6">
               <p className="text-sm text-gray-600">
-                <strong>Low-overhead SaaS:</strong> €0.02/query • €20/month hosting • Scalable to 100K+ users • No subscriptions ever
+                <strong>Built to Scale:</strong> Designed for 100K+ users • No subscriptions ever • Pay only for what you use
               </p>
             </div>
           </motion.div>
