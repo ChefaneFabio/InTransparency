@@ -516,7 +516,7 @@ export default function AboutPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
-                    <Link href="/auth/register/role-selection">Get Started Free</Link>
+                    <Link href="/auth/register">Get Started Free</Link>
                   </Button>
                   <Button variant="outline" asChild>
                     <Link href="/contact">Partner With Us</Link>
@@ -556,7 +556,7 @@ export default function AboutPage() {
             </p>
 
             <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100" asChild>
-              <Link href="/auth/register/role-selection">
+              <Link href="/auth/register">
                 Get Started Free - Show Your Work
               </Link>
             </Button>
@@ -575,7 +575,7 @@ export default function AboutPage() {
 
             <div className="flex justify-center gap-4 flex-wrap">
               <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
-                <Link href="/auth/register/role-selection">Get Started Free</Link>
+                <Link href="/auth/register">Get Started Free</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link href="/how-it-works">See How It Works</Link>
@@ -583,7 +583,7 @@ export default function AboutPage() {
             </div>
 
             <p className="mt-8 text-sm text-gray-700">
-              For companies: <Link href="/auth/register/role-selection" className="text-primary hover:underline font-medium">Browse free, pay only for contacts →</Link>
+              For companies: <Link href="/auth/register" className="text-primary hover:underline font-medium">Browse free, pay only for contacts →</Link>
             </p>
           </div>
         </section>

@@ -78,7 +78,7 @@ export function Header() {
                 <Link href="/auth/login">Sign In</Link>
               </Button>
               <Button asChild>
-                <Link href="/auth/register/role-selection">Get Started</Link>
+                <Link href="/auth/register">Get Started</Link>
               </Button>
             </>
           )}
@@ -155,7 +155,7 @@ export function Header() {
                         Sign In
                       </Link>
                       <Button className="w-full" asChild>
-                        <Link href="/auth/register/role-selection" onClick={() => setMobileMenuOpen(false)}>
+                        <Link href="/auth/register" onClick={() => setMobileMenuOpen(false)}>
                           Get Started
                         </Link>
                       </Button>

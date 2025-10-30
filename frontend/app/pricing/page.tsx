@@ -36,7 +36,7 @@ const studentPlans = [
       '⚠️ Limit: 5 projects, standard AI analysis, no direct messaging'
     ],
     cta: 'Get Started Free',
-    ctaLink: '/auth/register/role-selection',
+    ctaLink: '/auth/register',
     highlight: false
   },
   {
@@ -63,7 +63,7 @@ const studentPlans = [
       'Cancel anytime - no commitment'
     ],
     cta: 'Upgrade to Pro',
-    ctaLink: '/auth/register/role-selection',
+    ctaLink: '/auth/register',
     highlight: true
   },
   {
@@ -111,7 +111,7 @@ const companyPlans = [
       'No monthly fees ever'
     ],
     cta: 'Start Exploring Free',
-    ctaLink: '/auth/register/role-selection'
+    ctaLink: '/auth/register'
   },
   {
     name: 'Transparent Talent Sourcing Service',
@@ -138,7 +138,7 @@ const companyPlans = [
       'Credits never expire'
     ],
     cta: 'Start Browsing Free',
-    ctaLink: '/auth/register/role-selection',
+    ctaLink: '/auth/register',
     highlight: false
   },
   {
@@ -582,7 +582,7 @@ export default function PricingPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" variant="secondary" asChild>
-                    <Link href="/auth/register/role-selection">
+                    <Link href="/auth/register">
                       Start Exploring Free
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>

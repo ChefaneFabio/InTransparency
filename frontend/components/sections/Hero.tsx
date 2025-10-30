@@ -32,7 +32,7 @@ const segmentContent = {
     ),
     primaryCTA: {
       text: 'Get Started Free',
-      href: '/auth/register/role-selection',
+      href: '/auth/register',
       icon: ArrowRight
     },
     secondaryCTA: {
@@ -86,7 +86,7 @@ const segmentContent = {
     ),
     primaryCTA: {
       text: 'Become a Partner',
-      href: '/auth/register/role-selection',
+      href: '/auth/register',
       icon: ArrowRight
     },
     secondaryCTA: {
@@ -141,7 +141,7 @@ const segmentContent = {
     ),
     primaryCTA: {
       text: 'Start Exploring Free',
-      href: '/auth/register/role-selection',
+      href: '/auth/register',
       icon: ArrowRight
     },
     secondaryCTA: {

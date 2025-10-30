@@ -159,7 +159,7 @@ export default function ITSInstitutesPage() {
                 className="bg-primary hover:bg-primary/90 shadow-lg"
                 asChild
               >
-                <Link href="/auth/register/role-selection">
+                <Link href="/auth/register">
                   Diventa Partner Gratuito
                   <ArrowRight className="h-5 w-5 ml-2" />
                 </Link>
@@ -610,7 +610,7 @@ export default function ITSInstitutesPage() {
                     asChild
                     className="shadow-xl"
                   >
-                    <Link href="/auth/register/role-selection">
+                    <Link href="/auth/register">
                       Inizia Ora - Gratis per Sempre
                       <ArrowRight className="h-5 w-5 ml-2" />
                     </Link>
@@ -735,7 +735,7 @@ export default function ITSInstitutesPage() {
                     className="bg-primary hover:bg-primary/90 shadow-lg"
                     asChild
                   >
-                    <Link href="/auth/register/role-selection">
+                    <Link href="/auth/register">
                       Diventa Partner ITS Gratuito
                       <ArrowRight className="h-5 w-5 ml-2" />
                     </Link>

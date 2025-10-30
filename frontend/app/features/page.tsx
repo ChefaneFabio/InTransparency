@@ -778,7 +778,7 @@ export default function FeaturesPage() {
                     variant="secondary"
                     asChild
                   >
-                    <Link href="/auth/register/role-selection">
+                    <Link href="/auth/register">
                       Start Free
                       <ArrowRight className="h-5 w-5 ml-2" />
                     </Link>

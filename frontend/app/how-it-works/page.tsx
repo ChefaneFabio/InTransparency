@@ -648,7 +648,7 @@ export default function HowItWorksPage() {
               <Button
                 size="lg"
                 className="bg-white text-primary hover:bg-gray-100"
-                onClick={() => window.location.href = '/auth/register/role-selection'}
+                onClick={() => window.location.href = '/auth/register'}
               >
                 Get Started Free
                 <ArrowRight className="h-5 w-5 ml-2" />

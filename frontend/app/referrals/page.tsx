@@ -601,7 +601,7 @@ export default function ReferralsPage() {
                     variant="secondary"
                     asChild
                   >
-                    <Link href="/auth/register/role-selection">
+                    <Link href="/auth/register">
                       Get Your Referral Link
                       <ArrowRight className="h-5 w-5 ml-2" />
                     </Link>

@@ -418,7 +418,7 @@ export function HowItWorks() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" asChild>
-              <a href="/auth/register/role-selection">
+              <a href="/auth/register">
                 Get Started Free
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
