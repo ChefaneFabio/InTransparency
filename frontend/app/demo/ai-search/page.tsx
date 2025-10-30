@@ -610,7 +610,6 @@ export default function AISearchDemoPage() {
                         apiKey={apiKey}
                         center={mapCenter}
                         zoom={7}
-                        mapTypeId={google.maps.MapTypeId.ROADMAP}
                         className="h-full w-full"
                       >
                         {getCurrentResults().map((result: any) => {
@@ -629,14 +628,18 @@ export default function AISearchDemoPage() {
                               key={result.id}
                               position={result.coordinates}
                               title={result.title || result.name || result.initials}
-                              icon={{
-                                path: google.maps.SymbolPath.CIRCLE,
-                                scale: 12,
-                                fillColor: markerColor,
-                                fillOpacity: 0.9,
-                                strokeColor: '#ffffff',
-                                strokeWeight: 3,
-                              }}
+                              icon={
+                                window.google?.maps?.SymbolPath
+                                  ? {
+                                      path: window.google.maps.SymbolPath.CIRCLE,
+                                      scale: 12,
+                                      fillColor: markerColor,
+                                      fillOpacity: 0.9,
+                                      strokeColor: '#ffffff',
+                                      strokeWeight: 3,
+                                    }
+                                  : undefined
+                              }
                               onClick={() => setSelectedMarker(result.id)}
                               zIndex={selectedMarker === result.id ? 1000 : 1}
                             />
