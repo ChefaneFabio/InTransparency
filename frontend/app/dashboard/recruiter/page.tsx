@@ -511,10 +511,16 @@ export default function RecruiterDashboard() {
               <CardTitle>Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
+              <Button className="w-full justify-start bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700" asChild>
+                <Link href="/dashboard/recruiter/course-search">
+                  <Award className="mr-2 h-4 w-4" />
+                  Course-Level Search (NEW!)
+                </Link>
+              </Button>
               <Button className="w-full justify-start bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" asChild>
                 <Link href="/dashboard/recruiter/ai-search">
                   <Sparkles className="mr-2 h-4 w-4" />
-                  AI Candidate Search (NEW!)
+                  AI Candidate Search
                 </Link>
               </Button>
               <Button className="w-full justify-start" asChild>
@@ -527,6 +533,12 @@ export default function RecruiterDashboard() {
                 <Link href="/dashboard/recruiter/candidates">
                   <Search className="mr-2 h-4 w-4" />
                   Search Candidates
+                </Link>
+              </Button>
+              <Button variant="outline" className="w-full justify-start" asChild>
+                <Link href="/dashboard/recruiter/market-intelligence">
+                  <TrendingUp className="mr-2 h-4 w-4" />
+                  Market Intelligence
                 </Link>
               </Button>
               <Button variant="outline" className="w-full justify-start" asChild>
