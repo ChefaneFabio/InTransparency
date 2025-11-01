@@ -192,81 +192,47 @@ const companyPlans = [
 
 const institutePlans = [
   {
-    name: 'Free Career Intelligence Service',
+    name: 'Free Marketplace Access',
     price: 'Free',
     period: 'forever - no subscriptions',
-    description: 'FREE Verification + Analytics services. Auto-import from Esse3/Moodle. You authenticate competencies, we deliver insights.',
+    description: 'Get your students hired through verified marketplace. FREE verification, discovery, matching, and analytics.',
     icon: School,
     popular: true,
-    badge: '🎓 100% Free Core Services',
+    badge: '🎓 100% Free Forever',
     features: [
-      '✅ VERIFICATION SERVICE: FREE Esse3/Moodle/CRM integration',
-      '✅ Auto-import grades/projects → You endorse → Student profile goes live',
+      '✅ FREE MARKETPLACE ACCESS: Your students discovered by 10K+ companies',
+      '✅ VERIFICATION SERVICE: Optional Esse3/Moodle integration',
+      '✅ You endorse student projects → They get verified badge',
       '✅ Batch approval: "Endorse 50 projects in 1 hour" dashboard',
-      '✅ ANALYTICS SERVICE: FREE dashboards for placement insights',
-      '📊 "Deloitte viewed 31 Economics students" → warm outreach opportunity',
-      '📈 "Excel searched 89x this month" → advise Business students',
+      '✅ DISCOVERY SERVICE: Companies browse & contact your students',
+      '✅ Your verification gives students competitive edge',
+      '✅ ANALYTICS DASHBOARDS: Track placement success',
+      '📊 "Deloitte viewed 31 Economics students" → warm outreach',
+      '📈 "Excel searched 89x" → advise Business students',
       '📉 Early alerts: "87 seniors with zero views" → proactive support',
       '✅ Placement tracking: "47-day avg hire via your verification"',
-      '✅ Prove impact to MIUR: "85% placement boost from your stamp"',
-      '✅ Zero cost (vs AlmaLaurea €2,500/year or Univariety €500/year)',
-      '⏱️ Saves projected 40+ hours/month vs manual career services',
+      '✅ Prove 85% placement boost to MIUR with data',
+      '✅ Zero cost vs AlmaLaurea €2,500/year',
+      '⏱️ Save 40+ hours/month vs manual career services',
       '🌍 European job opportunities for your students',
       'EU/Italian: 30/30 grading, tirocini, stage curriculare support'
     ],
-    cta: 'Become a Partner (Free)',
+    cta: 'Join Free Marketplace',
     ctaLink: '/contact',
     highlight: true
-  },
-  {
-    name: 'Premium Embed & Career Day',
-    price: '€500',
-    period: 'per year',
-    description: 'Branded widgets + Career Day platform with interview booking. Includes 1 event/year + on-demand extras.',
-    icon: Building2,
-    popular: false,
-    badge: '🎓 Career Events',
-    features: [
-      '✅ Everything in Free, plus:',
-      '',
-      '🌐 EMBEDDABLE WIDGET:',
-      '📊 "InTransparency Matches" showing live placements',
-      '🎨 Branded with your institution logo and colors',
-      '📱 Responsive iframe integration (copy-paste code)',
-      '📈 40% more student sign-ups vs. email-only promotion',
-      '',
-      '📅 CAREER DAY PLATFORM (1 event/year included):',
-      '🎫 QR code system: Students get unique CV codes for stands',
-      '📝 Multi-CV management: Generic + company-specific versions',
-      '⏰ Interview booking: Students book up to 8 company slots',
-      '🏢 Company stand management: Digital coordination',
-      '📊 Pre-event matching: AI suggests student-company pairs',
-      '👔 "Pronto CV" sessions: Expert CV review appointments',
-      '🎯 Preparatory events: "Waiting for Career Day" webinars',
-      '📈 Post-event analytics: Placement tracking & ROI reports',
-      '💼 Additional events: €1,000 each (on-demand)',
-      '',
-      '🏷️ "Premium Partner" badge on your institution profile',
-      '⚡ Priority support: Dedicated onboarding sessions',
-      '💰 ROI: €500/year vs. €2,500 AlmaLaurea + €500 Univariety = Save €2,500',
-      'Core verification & analytics remain 100% free forever'
-    ],
-    cta: 'Upgrade to Premium',
-    ctaLink: '/contact',
-    highlight: false
   },
   {
     name: 'Enterprise Custom',
     price: '€2,000',
     period: 'per year',
-    description: 'Full white-label, API access, custom integrations. For large universities.',
+    description: 'Full white-label, API access, custom integrations. For large universities with advanced needs.',
     icon: Crown,
     popular: false,
     badge: '🏢 Enterprise',
     features: [
-      '✅ Everything in Premium Embed, plus:',
+      '✅ Everything in Free, plus:',
       '🔗 API access: Integrate InTransparency into your CRM/ERP',
-      '🎨 Full white-label: Remove InTransparency branding entirely',
+      '🎨 Full white-label: Remove InTransparency branding',
       '📊 Custom analytics dashboards with your KPIs',
       '🤝 Priority employer partnerships: Direct intro to top companies',
       '👤 Dedicated account manager + quarterly strategy sessions',
@@ -278,7 +244,8 @@ const institutePlans = [
       'ROI: Prove 85% placement boost to secure MIUR funding'
     ],
     cta: 'Contact Sales',
-    ctaLink: '/contact'
+    ctaLink: '/contact',
+    highlight: false
   }
 ]
 
@@ -525,8 +492,12 @@ export default function PricingPage() {
                   answer: 'Two ways: (1) If your university is a partner, we send an email invitation. Students click to consent and their profile is created from verified university data. (2) If independent, students upload projects + select courses, and we verify them to create their complete profile. Both ways: 100% free, consent-based, < 5 minutes.'
                 },
                 {
-                  question: 'Do institutes (universities/ITS) have to pay?',
-                  answer: 'No! The core platform is always free - not just "year 1 free." Institutes are talent SUPPLIERS, not platform users. You supply talent, we handle everything else: profile creation, company search, analytics. Zero cost, zero burden. You only pay for optional customizations (API, white-label).'
+                  question: 'Is the marketplace really free for institutions?',
+                  answer: 'Yes! The core marketplace (verification, discovery, matching, analytics) is 100% free forever. Institutions supply talent, we handle everything else: profile creation, company search, placement tracking. Zero cost vs AlmaLaurea €2,500/year. You only pay for optional enterprise features (API, white-label).'
+                },
+                {
+                  question: 'Can institutions add Career Day tools or branded widgets?',
+                  answer: 'Yes! Optional Premium Embed add-on (€500/year) includes Career Day platform (QR codes, interview booking) and branded website widgets. But the core marketplace is always free. Most institutions start with free tier, then add premium features if needed. Contact sales for details.'
                 },
                 {
                   question: 'How is this better than AlmaLaurea?',
@@ -539,10 +510,6 @@ export default function PricingPage() {
                 {
                   question: 'How does company pricing work?',
                   answer: 'Companies browse the entire database for free - unlimited searching, filtering, and AI candidate search. You only pay €10 when you decide to contact a specific candidate. No subscriptions, no monthly fees, credits never expire.'
-                },
-                {
-                  question: 'What is the €9 career coaching service?',
-                  answer: 'This is an optional 1-on-1 consultation with HR professionals and career consultants. It\'s a human service, not a software feature. You get personalized career advice, skills assessment, interview prep, and portfolio review.'
                 }
               ].map((faq, idx) => (
                 <motion.div

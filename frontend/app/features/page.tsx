@@ -553,7 +553,7 @@ export default function FeaturesPage() {
             </div>
           </motion.div>
 
-          {/* Four Services Overview */}
+          {/* Four Services Overview - WITH VISUAL HIERARCHY */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -561,101 +561,107 @@ export default function FeaturesPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-4">
-              Organized by Four Services
+              Four Services - Marketplace Platform
             </h2>
             <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-              All features below are categorized into four core services: Verification, Matching, Discovery, and Analytics
+              Marketplace services (Discovery, Matching) powered by verification quality layer (Verification, Analytics)
             </p>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Verification Service */}
-              <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all">
-                <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-primary to-secondary p-3 rounded-full w-14 h-14 mx-auto mb-3 flex items-center justify-center">
-                    <Shield className="h-7 w-7 text-white" />
+            {/* PRIMARY SERVICES - Larger cards */}
+            <div className="grid md:grid-cols-2 gap-8 mb-6">
+              {/* Discovery Service - PRIMARY */}
+              <Card className="border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-xl">
+                <CardHeader className="text-center pb-3">
+                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                    <Search className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-base">Verification Service</CardTitle>
-                  <Badge variant="secondary" className="mt-2 text-xs">FREE for Institutions</Badge>
-                </CardHeader>
-                <CardContent className="text-xs text-gray-700">
-                  <p className="mb-2 font-semibold text-primary">Institution Authentication</p>
-                  <ul className="space-y-1">
-                    <li>• Institution-verified profiles</li>
-                    <li>• AI + institution workflow</li>
-                    <li>• Audit trails & logs</li>
-                    <li>• 100% traceable competencies</li>
-                  </ul>
-                  <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
-                    vs AlmaLaurea: €2,500/year
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Matching Service */}
-              <Card className="border-2 border-secondary/20 hover:border-secondary/40 transition-all">
-                <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-secondary to-primary p-3 rounded-full w-14 h-14 mx-auto mb-3 flex items-center justify-center">
-                    <Target className="h-7 w-7 text-white" />
-                  </div>
-                  <CardTitle className="text-base">Matching Service</CardTitle>
-                  <Badge variant="secondary" className="mt-2 text-xs">FREE for Students</Badge>
-                </CardHeader>
-                <CardContent className="text-xs text-gray-700">
-                  <p className="mb-2 font-semibold text-secondary">AI-Powered Connections</p>
-                  <ul className="space-y-1">
-                    <li>• Explainable AI matching</li>
-                    <li>• Bidirectional transparency</li>
-                    <li>• 92% verified accuracy</li>
-                    <li>• Full reasoning shown</li>
-                  </ul>
-                  <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
-                    vs Manatal: Opaque scores
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Discovery Service */}
-              <Card className="border-2 border-green-200 hover:border-green-400 transition-all">
-                <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-3 rounded-full w-14 h-14 mx-auto mb-3 flex items-center justify-center">
-                    <Search className="h-7 w-7 text-white" />
-                  </div>
-                  <CardTitle className="text-base">Discovery Service</CardTitle>
+                  <Badge className="mb-2 bg-green-600 text-white text-xs">PRIMARY SERVICE</Badge>
+                  <CardTitle className="text-lg">Discovery Service</CardTitle>
                   <Badge variant="secondary" className="mt-2 text-xs">Browse FREE, €10/contact</Badge>
                 </CardHeader>
-                <CardContent className="text-xs text-gray-700">
-                  <p className="mb-2 font-semibold text-green-700">Reverse Recruitment</p>
-                  <ul className="space-y-1">
-                    <li>• AI candidate/job search</li>
-                    <li>• Zero applications model</li>
-                    <li>• Profile visibility analytics</li>
-                    <li>• Direct messaging</li>
+                <CardContent className="text-sm text-gray-700">
+                  <p className="mb-2 font-semibold text-green-700">Reverse Recruitment Marketplace</p>
+                  <ul className="space-y-1.5">
+                    <li>• Companies discover verified student profiles</li>
+                    <li>• Students visible without applying (zero applications)</li>
+                    <li>• AI candidate/job search with filters</li>
+                    <li>• Profile visibility analytics for students</li>
                   </ul>
                   <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
-                    vs Indeed: 30% fake CVs
+                    vs Indeed: Verified skills = 30% fewer fake CVs
                   </p>
                 </CardContent>
               </Card>
 
-              {/* Analytics Service */}
-              <Card className="border-2 border-purple-200 hover:border-purple-400 transition-all">
-                <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-purple-500 to-indigo-600 p-3 rounded-full w-14 h-14 mx-auto mb-3 flex items-center justify-center">
-                    <BarChart3 className="h-7 w-7 text-white" />
+              {/* Matching Service - PRIMARY */}
+              <Card className="border-2 border-secondary/30 hover:border-secondary/50 transition-all hover:shadow-xl">
+                <CardHeader className="text-center pb-3">
+                  <div className="bg-gradient-to-br from-secondary to-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                    <Target className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-base">Analytics Service</CardTitle>
-                  <Badge variant="secondary" className="mt-2 text-xs">FREE Dashboards</Badge>
+                  <Badge className="mb-2 bg-secondary text-white text-xs">PRIMARY SERVICE</Badge>
+                  <CardTitle className="text-lg">Matching Service</CardTitle>
+                  <Badge variant="secondary" className="mt-2 text-xs">FREE for Students</Badge>
                 </CardHeader>
-                <CardContent className="text-xs text-gray-700">
-                  <p className="mb-2 font-semibold text-purple-700">Career Intelligence</p>
-                  <ul className="space-y-1">
-                    <li>• Company search insights</li>
-                    <li>• Data-driven counseling</li>
-                    <li>• Early intervention alerts</li>
-                    <li>• Placement dashboards</li>
+                <CardContent className="text-sm text-gray-700">
+                  <p className="mb-2 font-semibold text-secondary">AI-Powered Connections</p>
+                  <ul className="space-y-1.5">
+                    <li>• Explainable AI: "92% fit because Python thesis"</li>
+                    <li>• Bidirectional transparency (students see why)</li>
+                    <li>• 92% verified accuracy (vs 60% self-reported)</li>
+                    <li>• Full reasoning shown for every match</li>
                   </ul>
                   <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
-                    vs Univariety: €500/year
+                    vs Manatal: Opaque scores, no explanations
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* SECONDARY SERVICES - Smaller cards */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Verification Service - SECONDARY */}
+              <Card className="border border-gray-200 hover:border-gray-300 transition-all hover:shadow-md">
+                <CardHeader className="text-center py-4">
+                  <div className="bg-gradient-to-br from-gray-400 to-gray-600 p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
+                    <Shield className="h-6 w-6 text-white" />
+                  </div>
+                  <CardTitle className="text-base">Verification Service</CardTitle>
+                  <Badge variant="outline" className="mt-1 text-xs">Quality Layer</Badge>
+                </CardHeader>
+                <CardContent className="text-xs text-gray-700">
+                  <p className="mb-2 font-semibold text-gray-900">Enables Marketplace Trust</p>
+                  <ul className="space-y-1">
+                    <li>• Institution-verified profiles (not self-reported)</li>
+                    <li>• Esse3/Moodle integration for auto-import</li>
+                    <li>• Audit trails & verification logs</li>
+                    <li>• 100% traceable competencies to source</li>
+                  </ul>
+                  <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
+                    Free vs AlmaLaurea €2,500/year
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Analytics Service - SECONDARY */}
+              <Card className="border border-gray-200 hover:border-gray-300 transition-all hover:shadow-md">
+                <CardHeader className="text-center py-4">
+                  <div className="bg-gradient-to-br from-gray-400 to-gray-600 p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
+                    <BarChart3 className="h-6 w-6 text-white" />
+                  </div>
+                  <CardTitle className="text-base">Analytics Service</CardTitle>
+                  <Badge variant="outline" className="mt-1 text-xs">Track Impact</Badge>
+                </CardHeader>
+                <CardContent className="text-xs text-gray-700">
+                  <p className="mb-2 font-semibold text-gray-900">Measure Marketplace Success</p>
+                  <ul className="space-y-1">
+                    <li>• Company search insights (who viewed students)</li>
+                    <li>• Data-driven career counseling for institutions</li>
+                    <li>• Early intervention alerts (zero-view students)</li>
+                    <li>• Placement dashboards & MIUR reports</li>
+                  </ul>
+                  <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
+                    Free vs Univariety €500/year
                   </p>
                 </CardContent>
               </Card>

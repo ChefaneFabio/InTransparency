@@ -71,53 +71,53 @@ const segmentContent = {
     badgeIcon: Building2,
     headline: (
       <>
-        Be the{' '}
+        Get Your Graduates{' '}
         <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          Verification Authority.
+          Hired Through Verified Marketplace.
         </span>
       </>
     ),
     description: (
       <>
-        Free integration with Esse3/Moodle/your CRM. You authenticate student competencies (grades, projects, tirocini) - companies trust your stamp. Track placement analytics.
+        Free three-sided marketplace connecting your students to 10K+ companies actively hiring. Your verification gives graduates a competitive edge. Track placement success with free analytics.
         <br />
-        <strong className="text-gray-900">🎓 100% Free verification layer - no fees, no subscriptions.</strong>
+        <strong className="text-gray-900">🎓 100% Free marketplace access - zero cost vs AlmaLaurea €2.500/year.</strong>
       </>
     ),
     primaryCTA: {
-      text: 'Become a Partner',
+      text: 'Join Free Marketplace',
       href: '/auth/register',
       icon: ArrowRight
     },
     secondaryCTA: {
-      text: 'View Pricing',
-      href: '/pricing'
+      text: 'See How It Works',
+      href: '/how-it-works'
     },
     benefits: [
-      { icon: CheckCircle2, text: 'Free Esse3/Moodle integration' },
-      { icon: CheckCircle2, text: 'You authenticate competencies' },
-      { icon: CheckCircle2, text: 'Track placement from your stamp' }
+      { icon: CheckCircle2, text: 'Students discovered by companies' },
+      { icon: CheckCircle2, text: '25% more placements vs traditional' },
+      { icon: CheckCircle2, text: 'Track hiring success for MIUR' }
     ],
     features: [
       {
-        image: IMAGES.features.dataAnalytics,
-        title: 'Auto-Import & Verify',
-        description: 'Connect Esse3/Moodle → We import grades/projects → You click "Verify" → Student profile activates with YOUR institutional badge'
+        image: IMAGES.features.search,
+        title: 'Companies Discover Your Students',
+        description: '10K+ companies browse verified graduates → Find matches → Contact directly. Your verification badge = trust signal that gets students noticed'
       },
       {
         image: IMAGES.recruiters.recruiter2,
-        title: 'Your Credibility = Student Success',
-        description: 'Companies trust "Verified by Politecnico" or "ITS G. Natta endorsed" - your stamp increases placement by 25%'
+        title: 'Your Verification = Competitive Edge',
+        description: '"Verified by Politecnico" or "ITS G. Natta endorsed" increases student placement 25% vs unverified profiles - your stamp matters'
       },
       {
         image: IMAGES.universityCampuses.campus,
-        title: 'Placement Analytics Dashboard',
-        description: 'Track: "47 ITS students contacted by companies → 23 hired via your verification" - prove your impact to MIUR'
+        title: 'Track Placement Impact',
+        description: 'Free analytics: "47 students contacted by companies → 23 hired in 47 days avg" - prove 85% placement boost to MIUR with data'
       }
     ],
     stats: {
-      label: 'Seamless integration with',
-      value: 'university data systems (Esse3, Moodle, etc.)'
+      label: 'Free marketplace connecting students to',
+      value: '10K+ companies actively hiring verified talent'
     }
   },
   companies: {

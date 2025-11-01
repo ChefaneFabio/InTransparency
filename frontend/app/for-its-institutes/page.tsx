@@ -29,7 +29,8 @@ import {
   Clock,
   FileCheck,
   Building2,
-  GraduationCap
+  GraduationCap,
+  Sparkles
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { IMAGES } from '@/lib/images'
@@ -113,42 +114,42 @@ export default function ITSInstitutesPage() {
       <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Hero Section */}
+          {/* Hero Section - MARKETPLACE FIRST */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white">
-              Per ITS Academies • 100% Gratis
+            <Badge className="mb-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white">
+              Free Marketplace • Get Your Students Hired
             </Badge>
             <h1 className="text-5xl font-display font-bold mb-6">
-              ITS: Il Tuo{' '}
+              Connect Your Graduates to{' '}
               <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Sistema di Verifica Gratuito
+                Companies Seeking Verified Skills
               </span>
             </h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-4">
-              Integrazione Esse3/Moodle gratuita. Tu autentichi le competenze degli studenti (30/30, progetti, tirocini) - le aziende si fidano del tuo sigillo. Traccia il placement con analytics.
+              Free three-sided marketplace connecting your ITS students to companies actively hiring. Your institutional verification gives graduates a competitive edge. Track placement success with free analytics.
             </p>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-              <strong>Subscription-Free Service Model:</strong> Verifica + Matching + Discovery + Analytics - tutto gratis per sempre. Zero costi vs AlmaLaurea (€2.500/anno).
+              <strong>100% Free Forever:</strong> No setup fees, no monthly costs, no subscriptions. Zero cost vs AlmaLaurea (€2.500/anno).
             </p>
 
-            {/* Quick Stats */}
+            {/* Quick Stats - Marketplace Focused */}
             <div className="flex flex-wrap justify-center gap-8 mb-8">
               <div className="text-center">
-                <div className="text-4xl font-bold text-primary">€0</div>
-                <div className="text-sm text-gray-700">Per Sempre</div>
+                <div className="text-4xl font-bold text-green-600">87%</div>
+                <div className="text-sm text-gray-700">Avg Placement Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-green-600">100%</div>
-                <div className="text-sm text-gray-700">Competenze Verificate</div>
+                <div className="text-4xl font-bold text-primary">10K+</div>
+                <div className="text-sm text-gray-700">Students Discovered</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-secondary">4</div>
-                <div className="text-sm text-gray-700">Servizi Gratuiti</div>
+                <div className="text-4xl font-bold text-secondary">€0</div>
+                <div className="text-sm text-gray-700">Cost Forever</div>
               </div>
             </div>
 
@@ -156,11 +157,11 @@ export default function ITSInstitutesPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 shadow-lg"
+                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-lg"
                 asChild
               >
                 <Link href="/auth/register">
-                  Diventa Partner Gratuito
+                  Join Free Marketplace
                   <ArrowRight className="h-5 w-5 ml-2" />
                 </Link>
               </Button>
@@ -170,13 +171,114 @@ export default function ITSInstitutesPage() {
                 asChild
               >
                 <Link href="/pricing">
-                  Vedi Dettagli Servizi
+                  See How It Works
                 </Link>
               </Button>
             </div>
           </motion.div>
 
-          {/* Four Services for ITS */}
+          {/* How Marketplace Benefits ITS - NEW SECTION */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-16"
+          >
+            <h2 className="text-3xl font-display font-bold text-center text-foreground mb-8">
+              How the Marketplace Helps Your ITS
+            </h2>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card className="border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-lg">
+                <CardHeader className="text-center">
+                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <Briefcase className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-lg">Students Get Discovered</CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm text-gray-700">
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>Companies search 10K+ verified graduates</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>Students don't apply - companies reach out</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>Your verification badge = trust signal</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>25% more placements than traditional methods</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
+                <CardHeader className="text-center">
+                  <div className="bg-gradient-to-br from-primary to-secondary p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <Target className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-lg">AI-Powered Matching</CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm text-gray-700">
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
+                      <span>Companies see "92% fit: AutoCAD from ITS project"</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
+                      <span>Verified skills = higher match scores</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
+                      <span>Transparent AI explanations</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
+                      <span>80% faster screening vs CVs</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-lg">
+                <CardHeader className="text-center">
+                  <div className="bg-gradient-to-br from-purple-500 to-indigo-600 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <TrendingUp className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-lg">Track Your Impact</CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm text-gray-700">
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <BarChart3 className="h-4 w-4 text-purple-600 mr-2 mt-0.5" />
+                      <span>See which companies viewed your students</span>
+                    </li>
+                    <li className="flex items-start">
+                      <BarChart3 className="h-4 w-4 text-purple-600 mr-2 mt-0.5" />
+                      <span>"47 days avg time-to-hire"</span>
+                    </li>
+                    <li className="flex items-start">
+                      <BarChart3 className="h-4 w-4 text-purple-600 mr-2 mt-0.5" />
+                      <span>Prove 85% placement to MIUR</span>
+                    </li>
+                    <li className="flex items-start">
+                      <BarChart3 className="h-4 w-4 text-purple-600 mr-2 mt-0.5" />
+                      <span>Early intervention alerts</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </motion.div>
+
+          {/* Four Services - REORDERED (Marketplace First) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -184,102 +286,100 @@ export default function ITSInstitutesPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-4">
-              Quattro Servizi Gratuiti per il Tuo ITS
+              Four Free Services
             </h2>
             <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-              Sistema di verifica partner-enabled, zero abbonamenti, scalabile a 100K+ utenti
+              Marketplace platform with verification quality layer - all free forever
             </p>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Verification Service */}
-              <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
-                <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-primary to-secondary p-3 rounded-full w-14 h-14 mx-auto mb-3 flex items-center justify-center">
-                    <Shield className="h-7 w-7 text-white" />
+            <div className="grid md:grid-cols-2 gap-8 mb-6">
+              {/* Discovery Service - PRIMARY (Larger card) */}
+              <Card className="border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-xl">
+                <CardHeader className="text-center pb-3">
+                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                    <Search className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-base">Servizio Verifica</CardTitle>
-                  <Badge variant="secondary" className="mt-2 text-xs">GRATIS per ITS</Badge>
+                  <Badge className="mb-2 bg-green-600 text-white">PRIMARY SERVICE</Badge>
+                  <CardTitle className="text-lg">Discovery Service</CardTitle>
+                  <Badge variant="secondary" className="mt-2 text-xs">Browse FREE, €10/contact</Badge>
                 </CardHeader>
-                <CardContent className="text-xs text-gray-700 space-y-2">
-                  <p className="font-semibold text-primary">Auto-import & Autentica</p>
-                  <ul className="space-y-1">
-                    <li>• Integrazione Esse3/Moodle</li>
-                    <li>• ITS approva progetti (batch 50 in 1 ora)</li>
-                    <li>• "Verificato da ITS G. Natta, 28/30"</li>
-                    <li>• Competenze 100% tracciabili</li>
-                  </ul>
-                  <p className="text-xs italic pt-2 border-t text-gray-600">
-                    vs AlmaLaurea: €2.500/anno
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Matching Service */}
-              <Card className="border-2 border-secondary/20 hover:border-secondary/40 transition-all hover:shadow-lg">
-                <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-secondary to-primary p-3 rounded-full w-14 h-14 mx-auto mb-3 flex items-center justify-center">
-                    <Target className="h-7 w-7 text-white" />
-                  </div>
-                  <CardTitle className="text-base">Servizio Matching</CardTitle>
-                  <Badge variant="secondary" className="mt-2 text-xs">GRATIS per Studenti</Badge>
-                </CardHeader>
-                <CardContent className="text-xs text-gray-700 space-y-2">
-                  <p className="font-semibold text-secondary">AI Trasparente</p>
-                  <ul className="space-y-1">
-                    <li>• "92% fit: AutoCAD da progetto ITS"</li>
-                    <li>• Requisiti aziende visibili</li>
-                    <li>• Spiegazioni complete match</li>
-                    <li>• 25% più assunzioni ITS</li>
-                  </ul>
-                  <p className="text-xs italic pt-2 border-t text-gray-600">
-                    vs CV Indeed: 30% falsi positivi
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Discovery Service */}
-              <Card className="border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-lg">
-                <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-3 rounded-full w-14 h-14 mx-auto mb-3 flex items-center justify-center">
-                    <Search className="h-7 w-7 text-white" />
-                  </div>
-                  <CardTitle className="text-base">Servizio Discovery</CardTitle>
-                  <Badge variant="secondary" className="mt-2 text-xs">Naviga GRATIS, €10/contatto</Badge>
-                </CardHeader>
-                <CardContent className="text-xs text-gray-700 space-y-2">
+                <CardContent className="text-sm text-gray-700 space-y-2">
                   <p className="font-semibold text-green-700">Reverse Recruitment</p>
-                  <ul className="space-y-1">
-                    <li>• Aziende cercano pool verificati ITS</li>
-                    <li>• Studenti zero candidature</li>
-                    <li>• Progetti + sigillo ITS visibili</li>
-                    <li>• 80% screening più veloce</li>
+                  <ul className="space-y-1.5">
+                    <li>• Companies search verified ITS talent pool</li>
+                    <li>• Students visible without applying</li>
+                    <li>• Your verification badge = quality signal</li>
+                    <li>• Companies pay €10 to contact, you get credit</li>
                   </ul>
                   <p className="text-xs italic pt-2 border-t text-gray-600">
-                    vs CV autoriportati: -35% mismatch
+                    vs LinkedIn: No verification = lower trust
                   </p>
                 </CardContent>
               </Card>
 
-              {/* Analytics Service */}
-              <Card className="border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-lg">
-                <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-purple-500 to-indigo-600 p-3 rounded-full w-14 h-14 mx-auto mb-3 flex items-center justify-center">
-                    <BarChart3 className="h-7 w-7 text-white" />
+              {/* Matching Service - PRIMARY (Larger card) */}
+              <Card className="border-2 border-secondary/30 hover:border-secondary/50 transition-all hover:shadow-xl">
+                <CardHeader className="text-center pb-3">
+                  <div className="bg-gradient-to-br from-secondary to-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                    <Target className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-base">Servizio Analytics</CardTitle>
-                  <Badge variant="secondary" className="mt-2 text-xs">Dashboard GRATIS</Badge>
+                  <Badge className="mb-2 bg-secondary text-white">PRIMARY SERVICE</Badge>
+                  <CardTitle className="text-lg">Matching Service</CardTitle>
+                  <Badge variant="secondary" className="mt-2 text-xs">FREE for Students</Badge>
                 </CardHeader>
-                <CardContent className="text-xs text-gray-700 space-y-2">
-                  <p className="font-semibold text-purple-700">Career Intelligence</p>
-                  <ul className="space-y-1">
-                    <li>• "Siemens visto 23 studenti ITS"</li>
-                    <li>• "PLC ricercato 76x"</li>
-                    <li>• Alert intervento precoce</li>
-                    <li>• Prova 85% placement boost a MIUR</li>
+                <CardContent className="text-sm text-gray-700 space-y-2">
+                  <p className="font-semibold text-secondary">Transparent AI Matching</p>
+                  <ul className="space-y-1.5">
+                    <li>• "92% fit: AutoCAD from ITS project"</li>
+                    <li>• Verified skills = higher match scores</li>
+                    <li>• Companies see your institutional endorsement</li>
+                    <li>• 25% more successful placements</li>
                   </ul>
                   <p className="text-xs italic pt-2 border-t text-gray-600">
-                    vs Univariety: €500/anno subs
+                    vs Resume screening: 80% faster
                   </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Verification Service - SECONDARY (Smaller card) */}
+              <Card className="border border-gray-200 hover:border-gray-300 transition-all hover:shadow-md">
+                <CardHeader className="text-center py-4">
+                  <div className="bg-gradient-to-br from-gray-400 to-gray-600 p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
+                    <Shield className="h-6 w-6 text-white" />
+                  </div>
+                  <CardTitle className="text-base">Verification Service</CardTitle>
+                  <Badge variant="outline" className="mt-1 text-xs">Quality Layer</Badge>
+                </CardHeader>
+                <CardContent className="text-xs text-gray-700 space-y-1.5">
+                  <p className="font-semibold text-gray-900">Enables Marketplace Trust</p>
+                  <ul className="space-y-1">
+                    <li>• Esse3/Moodle integration (optional)</li>
+                    <li>• You verify projects/grades</li>
+                    <li>• "Verified by ITS G. Natta, 28/30"</li>
+                    <li>• Batch approve 50 in 1 hour</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Analytics Service - SECONDARY (Smaller card) */}
+              <Card className="border border-gray-200 hover:border-gray-300 transition-all hover:shadow-md">
+                <CardHeader className="text-center py-4">
+                  <div className="bg-gradient-to-br from-gray-400 to-gray-600 p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
+                    <BarChart3 className="h-6 w-6 text-white" />
+                  </div>
+                  <CardTitle className="text-base">Analytics Service</CardTitle>
+                  <Badge variant="outline" className="mt-1 text-xs">Track Impact</Badge>
+                </CardHeader>
+                <CardContent className="text-xs text-gray-700 space-y-1.5">
+                  <p className="font-semibold text-gray-900">Measure Placement Success</p>
+                  <ul className="space-y-1">
+                    <li>• "Siemens viewed 23 ITS students"</li>
+                    <li>• "PLC skills searched 76x"</li>
+                    <li>• Export reports for MIUR</li>
+                    <li>• Early intervention alerts</li>
+                  </ul>
                 </CardContent>
               </Card>
             </div>
@@ -295,10 +395,10 @@ export default function ITSInstitutesPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-4">
-              Aree Tecniche ITS Supportate
+              All ITS Areas Supported
             </h2>
             <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-              Tutti i settori ITS con competenze verificate: dalla meccatronica alle biotecnologie
+              From mechatronics to biotech - companies actively hiring ITS graduates
             </p>
 
             {/* Area Selector */}
@@ -329,13 +429,13 @@ export default function ITSInstitutesPage() {
                   <div>
                     <h3 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
                       {selectedArea.area}
-                      <Badge className="bg-gradient-to-r from-primary to-secondary text-white">
+                      <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white">
                         {selectedArea.avgPlacement}% Placement
                       </Badge>
                     </h3>
                     <div className="space-y-4">
                       <div>
-                        <p className="font-semibold text-gray-900 mb-2">Competenze Chiave Verificate:</p>
+                        <p className="font-semibold text-gray-900 mb-2">Verified Skills Companies Seek:</p>
                         <div className="flex flex-wrap gap-2">
                           {selectedArea.skills.map((skill) => (
                             <Badge key={skill} variant="secondary" className="bg-white">
@@ -345,7 +445,7 @@ export default function ITSInstitutesPage() {
                         </div>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900 mb-2">Aziende che Cercano:</p>
+                        <p className="font-semibold text-gray-900 mb-2">Companies Hiring:</p>
                         <div className="flex flex-wrap gap-2">
                           {selectedArea.companies.map((company) => (
                             <Badge key={company} className="bg-green-100 text-green-800">
@@ -356,7 +456,7 @@ export default function ITSInstitutesPage() {
                       </div>
                       <div className="bg-white p-4 rounded-lg border border-gray-200">
                         <p className="text-sm text-gray-700">
-                          <strong className="text-primary">{selectedArea.searchVolume} ricerche/mese</strong> per competenze in quest'area
+                          <strong className="text-primary">{selectedArea.searchVolume} company searches/month</strong> for skills in this area
                         </p>
                       </div>
                     </div>
@@ -365,48 +465,216 @@ export default function ITSInstitutesPage() {
                   <div className="space-y-4">
                     <Card>
                       <CardHeader>
-                        <CardTitle className="text-base">Esempio: Workflow Verifica ITS</CardTitle>
+                        <CardTitle className="text-base">How Students Get Hired</CardTitle>
                       </CardHeader>
                       <CardContent className="text-sm space-y-3">
                         <div className="flex items-start gap-3">
-                          <div className="bg-primary/10 rounded-full p-2">
-                            <Database className="h-4 w-4 text-primary" />
+                          <div className="bg-green-500/10 rounded-full p-2">
+                            <GraduationCap className="h-4 w-4 text-green-600" />
                           </div>
                           <div>
-                            <p className="font-semibold">1. Auto-import da Esse3/Moodle</p>
-                            <p className="text-xs text-gray-600">Progetto tirocinio, voto 28/30, competenze estratte</p>
+                            <p className="font-semibold">1. Student Uploads ITS Project</p>
+                            <p className="text-xs text-gray-600">Project on {selectedArea.skills[0]}, grade 28/30</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="bg-primary/10 rounded-full p-2">
+                            <Shield className="h-4 w-4 text-primary" />
+                          </div>
+                          <div>
+                            <p className="font-semibold">2. Your ITS Verifies</p>
+                            <p className="text-xs text-gray-600">Badge: "Verified by {selectedArea.area.split(' ')[0]} ITS"</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
                           <div className="bg-secondary/10 rounded-full p-2">
-                            <FileCheck className="h-4 w-4 text-secondary" />
+                            <Search className="h-4 w-4 text-secondary" />
                           </div>
                           <div>
-                            <p className="font-semibold">2. Dashboard ITS: "Approva?"</p>
-                            <p className="text-xs text-gray-600">Batch 50 progetti in 1 ora con un click</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-3">
-                          <div className="bg-green-500/10 rounded-full p-2">
-                            <Shield className="h-4 w-4 text-green-600" />
-                          </div>
-                          <div>
-                            <p className="font-semibold">3. Profilo Studente Live</p>
-                            <p className="text-xs text-gray-600">"Verificato da {selectedArea.area.split(' ')[0]} ITS, 28/30"</p>
+                            <p className="font-semibold">3. Companies Discover</p>
+                            <p className="text-xs text-gray-600">Siemens searches "{selectedArea.skills[0]}" → finds student</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
                           <div className="bg-purple-500/10 rounded-full p-2">
-                            <TrendingUp className="h-4 w-4 text-purple-600" />
+                            <Briefcase className="h-4 w-4 text-purple-600" />
                           </div>
                           <div>
-                            <p className="font-semibold">4. Analytics ITS</p>
-                            <p className="text-xs text-gray-600">"47 giorni media assunzione con tuo sigillo"</p>
+                            <p className="font-semibold">4. Student Gets Hired</p>
+                            <p className="text-xs text-gray-600">Company pays €10 to contact → Interview → Hired in 47 days</p>
                           </div>
                         </div>
                       </CardContent>
                     </Card>
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Why Choose InTransparency - REFRAMED */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-16"
+          >
+            <h2 className="text-3xl font-display font-bold text-center text-foreground mb-8">
+              Why ITS Choose InTransparency
+            </h2>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card className="border-2 border-green-200">
+                <CardHeader className="text-center">
+                  <div className="bg-green-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <TrendingUp className="h-8 w-8 text-green-600" />
+                  </div>
+                  <CardTitle className="text-lg">Better Placement Outcomes</CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm text-gray-700">
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>25% more students hired vs traditional methods</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>Companies proactively reach out</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>47 days avg time-to-hire</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>Verified skills = competitive edge</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 border-primary/20">
+                <CardHeader className="text-center">
+                  <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <Euro className="h-8 w-8 text-primary" />
+                  </div>
+                  <CardTitle className="text-lg">100% Free Forever</CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm text-gray-700">
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>Zero setup or monthly costs</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>vs AlmaLaurea €2.500/anno saved</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>Companies pay, not institutions</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>All 4 services included</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 border-secondary/20">
+                <CardHeader className="text-center">
+                  <div className="bg-secondary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <BarChart3 className="h-8 w-8 text-secondary" />
+                  </div>
+                  <CardTitle className="text-lg">Track Impact for MIUR</CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm text-gray-700">
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>Prove 85% placement with data</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>See which companies hiring your grads</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>Export reports for funding</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <span>Early intervention alerts</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </motion.div>
+
+          {/* Integration Workflow - SIMPLIFIED */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-16"
+          >
+            <Card className="bg-gradient-to-r from-primary to-secondary border-0 text-white">
+              <CardContent className="py-12">
+                <h3 className="text-3xl font-display font-bold text-center mb-8">
+                  Get Started in 3 Steps
+                </h3>
+
+                <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                  <div className="text-center">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                      <span className="text-3xl font-bold">1</span>
+                    </div>
+                    <h4 className="text-xl font-bold mb-2">Register ITS</h4>
+                    <p className="text-white/90 text-sm">
+                      Create free account → Email .edu verified → Dashboard active in 5 minutes
+                    </p>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                      <span className="text-3xl font-bold">2</span>
+                    </div>
+                    <h4 className="text-xl font-bold mb-2">Students Upload Projects</h4>
+                    <p className="text-white/90 text-sm">
+                      Students join free → Upload ITS projects → You verify with your institutional badge
+                    </p>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                      <span className="text-3xl font-bold">3</span>
+                    </div>
+                    <h4 className="text-xl font-bold mb-2">Track Placements</h4>
+                    <p className="text-white/90 text-sm">
+                      Companies discover students → Analytics: "23 students contacted" → Track hiring success
+                    </p>
+                  </div>
+                </div>
+
+                <div className="text-center mt-8">
+                  <Button
+                    size="lg"
+                    variant="secondary"
+                    asChild
+                    className="shadow-xl"
+                  >
+                    <Link href="/auth/register">
+                      Join Free Marketplace Now
+                      <ArrowRight className="h-5 w-5 ml-2" />
+                    </Link>
+                  </Button>
+                  <p className="text-sm text-white/80 mt-4">
+                    ✓ Setup 5 min  ✓ €0 forever  ✓ 10K+ companies hiring  ✓ Track placements
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -421,10 +689,10 @@ export default function ITSInstitutesPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-4">
-              ITS Pilota in Italia
+              ITS That Could Benefit
             </h2>
             <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-              Esempi di ITS che possono beneficiare del sistema di verifica gratuito
+              Examples of ITS that would increase student placement through verified marketplace
             </p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -433,14 +701,14 @@ export default function ITSInstitutesPage() {
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
                       <Building2 className="h-8 w-8 text-primary" />
-                      <Badge variant="secondary">{its.students} studenti</Badge>
+                      <Badge variant="secondary">{its.students} students</Badge>
                     </div>
                     <CardTitle className="text-base">{its.name}</CardTitle>
                     <p className="text-xs text-gray-600">{its.area}</p>
                     <p className="text-xs text-gray-500">{its.location}</p>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-xs font-semibold text-gray-900 mb-2">Top Competenze:</p>
+                    <p className="text-xs font-semibold text-gray-900 mb-2">Skills Companies Seek:</p>
                     <div className="space-y-1">
                       {its.topSkills.map((skill) => (
                         <div key={skill} className="flex items-center text-xs text-gray-700">
@@ -455,174 +723,6 @@ export default function ITSInstitutesPage() {
             </div>
           </motion.div>
 
-          {/* Why ITS Should Choose InTransparency */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <h2 className="text-3xl font-display font-bold text-center text-foreground mb-8">
-              Perché InTransparency per il Tuo ITS?
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              <Card className="border-2 border-primary/20">
-                <CardHeader className="text-center">
-                  <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Euro className="h-8 w-8 text-primary" />
-                  </div>
-                  <CardTitle className="text-lg">100% Gratis per Sempre</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-gray-700">
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>Zero costi setup o mensili</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>vs AlmaLaurea €2.500/anno</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>vs Univariety €500/anno</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>Tutti i 4 servizi inclusi gratis</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              <Card className="border-2 border-secondary/20">
-                <CardHeader className="text-center">
-                  <div className="bg-secondary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Clock className="h-8 w-8 text-secondary" />
-                  </div>
-                  <CardTitle className="text-lg">Risparmio Tempo</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-gray-700">
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <Zap className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
-                      <span>Batch approval: 50 progetti in 1 ora</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Zap className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
-                      <span>Auto-import Esse3/Moodle (no data entry)</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Zap className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
-                      <span>Dashboard analytics automatica</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Zap className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
-                      <span>Proiettato 40+ ore/mese risparmiate</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              <Card className="border-2 border-green-200">
-                <CardHeader className="text-center">
-                  <div className="bg-green-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Award className="h-8 w-8 text-green-600" />
-                  </div>
-                  <CardTitle className="text-lg">Credibilità ITS</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-gray-700">
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <Shield className="h-4 w-4 text-blue-600 mr-2 mt-0.5" />
-                      <span>Il tuo sigillo aumenta placement 25%</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Shield className="h-4 w-4 text-blue-600 mr-2 mt-0.5" />
-                      <span>Aziende fidano "Verificato da ITS X"</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Shield className="h-4 w-4 text-blue-600 mr-2 mt-0.5" />
-                      <span>Prova impatto 85% a MIUR con dati</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Shield className="h-4 w-4 text-blue-600 mr-2 mt-0.5" />
-                      <span>Track: "47 giorni media assunzione"</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
-          </motion.div>
-
-          {/* Integration Workflow */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <Card className="bg-gradient-to-r from-primary to-secondary border-0 text-white">
-              <CardContent className="py-12">
-                <h3 className="text-3xl font-display font-bold text-center mb-8">
-                  Come Partire: 3 Step Integrazione
-                </h3>
-
-                <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                  <div className="text-center">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-3xl font-bold">1</span>
-                    </div>
-                    <h4 className="text-xl font-bold mb-2">Registra ITS</h4>
-                    <p className="text-white/90 text-sm">
-                      Click "Diventa Partner" → Scegli "Istituto" → Email .edu verificata → Dashboard attiva in 5 minuti
-                    </p>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-3xl font-bold">2</span>
-                    </div>
-                    <h4 className="text-xl font-bold mb-2">Connetti Esse3/Moodle</h4>
-                    <p className="text-white/90 text-sm">
-                      API integration gratuita → Import automatico voti/progetti → Noi gestiamo tutto (zero lavoro IT per te)
-                    </p>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-3xl font-bold">3</span>
-                    </div>
-                    <h4 className="text-xl font-bold mb-2">Approva & Traccia</h4>
-                    <p className="text-white/90 text-sm">
-                      Dashboard: "50 progetti da approvare" → Click → Analytics: "23 studenti contattati da aziende"
-                    </p>
-                  </div>
-                </div>
-
-                <div className="text-center mt-8">
-                  <Button
-                    size="lg"
-                    variant="secondary"
-                    asChild
-                    className="shadow-xl"
-                  >
-                    <Link href="/auth/register">
-                      Inizia Ora - Gratis per Sempre
-                      <ArrowRight className="h-5 w-5 ml-2" />
-                    </Link>
-                  </Button>
-                  <p className="text-sm text-white/80 mt-4">
-                    ✓ Setup 5 minuti  ✓ Zero costi  ✓ Integrazione Esse3/Moodle  ✓ Support italiano
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
           {/* FAQ for ITS */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -632,81 +732,80 @@ export default function ITSInstitutesPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-8">
-              Domande Frequenti ITS
+              Frequently Asked Questions
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">È davvero gratis per sempre?</CardTitle>
+                  <CardTitle className="text-base">How does the marketplace help our students?</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <p>
-                    Sì, 100% gratis. Tutti e 4 i servizi (Verifica, Matching, Discovery, Analytics) inclusi senza costi.
-                    Le aziende pagano €10 per contattare i candidati - questo finanzia il sistema.
-                    Tu non paghi mai nulla.
+                    Companies browse 10K+ verified graduates and proactively reach out to students with matching skills.
+                    Students don't apply - they get discovered. Your institutional verification gives them a competitive edge.
+                    25% more placements than traditional job boards.
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">L'integrazione Esse3/Moodle è complicata?</CardTitle>
+                  <CardTitle className="text-base">Is it really free forever?</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <p>
-                    No, API integration gestita da noi. Setup 1 ora con il nostro team.
-                    Import automatico voti, progetti, tirocini. Zero lavoro IT per te dopo setup iniziale.
+                    Yes, 100% free. All 4 services (Discovery, Matching, Verification, Analytics) included.
+                    Companies pay €10 per contact - this finances the platform.
+                    You save €2.500/year vs AlmaLaurea.
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">Come approviamo i progetti studenti?</CardTitle>
+                  <CardTitle className="text-base">Do we need to integrate Esse3/Moodle?</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <p>
-                    Dashboard: "50 progetti da approvare" → Click "Approva batch" → Fatto.
-                    1 ora per 50 approvazioni. AI pre-analizza, tu validi finale con tuo sigillo ITS.
+                    No, integration is optional. Students can manually upload projects and you verify them.
+                    If you want auto-import, we handle the API setup (1 hour with our team). Zero IT work for you after setup.
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">Come tracciamo il placement con MIUR?</CardTitle>
+                  <CardTitle className="text-base">Can we add Career Day tools?</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <p>
-                    Analytics dashboard: "47 giorni media assunzione", "23 studenti assunti via tuo sigillo", "85% placement boost".
-                    Export report per MIUR con dati verificabili.
+                    Yes! Optional Premium Embed add-on (€500/year) includes Career Day platform with QR codes, interview booking, and branded widgets.
+                    But core marketplace is always free. See pricing page for details.
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">Quali competenze ITS possiamo verificare?</CardTitle>
+                  <CardTitle className="text-base">How do we track placement for MIUR reporting?</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <p>
-                    Tutte: Meccatronica, ICT, Chimica, Design, Turismo, ecc.
-                    Hard skills (CAD, PLC, Python) + soft skills (teamwork, problem solving) da progetti/tirocini.
-                    AI estrae, tu autentichi con 30/30 o gradi ITS.
+                    Free analytics dashboard shows: "47 days avg time-to-hire", "23 students hired via platform", "85% placement boost".
+                    Export reports for MIUR with verifiable data.
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">GDPR compliant per dati studenti?</CardTitle>
+                  <CardTitle className="text-base">What if students don't get discovered?</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <p>
-                    100% compliant. Studenti consentono via email prima di import.
-                    Audit trail completo: "Competenza X verificata da ITS Y il 29 Oct 2025".
-                    Studenti controllano cosa è condiviso.
+                    Analytics show you early warnings: "Student X: 0 views in 30 days - skills mismatch?"
+                    You can intervene early, update skills/projects, or offer career counseling. Prevention vs reaction.
                   </p>
                 </CardContent>
               </Card>
@@ -721,22 +820,23 @@ export default function ITSInstitutesPage() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border-2 border-primary/20">
+            <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200">
               <CardContent className="py-12">
                 <h3 className="text-3xl font-display font-bold text-foreground mb-4">
-                  Pronto a Rendere Verificabili i Tuoi Studenti ITS?
+                  Ready to Get Your ITS Students Hired?
                 </h3>
                 <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-                  Unisciti al sistema di verifica gratuito. Setup 5 minuti. Zero costi. Prova impatto 85% placement a MIUR.
+                  Join the free marketplace connecting verified ITS graduates to companies actively hiring.
+                  Setup in 5 minutes. Zero costs. Track placement success.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <Button
                     size="lg"
-                    className="bg-primary hover:bg-primary/90 shadow-lg"
+                    className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-lg"
                     asChild
                   >
                     <Link href="/auth/register">
-                      Diventa Partner ITS Gratuito
+                      Join Free Marketplace
                       <ArrowRight className="h-5 w-5 ml-2" />
                     </Link>
                   </Button>
@@ -745,13 +845,13 @@ export default function ITSInstitutesPage() {
                     size="lg"
                     asChild
                   >
-                    <Link href="/how-it-works">
-                      Vedi Come Funziona
+                    <Link href="/pricing">
+                      See Pricing & Add-ons
                     </Link>
                   </Button>
                 </div>
                 <p className="text-sm text-gray-600 mt-6">
-                  ✓ 100% gratis per sempre  ✓ Esse3/Moodle integration  ✓ 4 servizi inclusi  ✓ Support italiano
+                  ✓ €0 forever  ✓ 10K+ companies  ✓ 87% avg placement  ✓ Track impact for MIUR
                 </p>
               </CardContent>
             </Card>
