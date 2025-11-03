@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
+import { requireAuth } from '@/lib/auth/jwt-verify'
 
 // GET /api/referrals - Get user's referral data
 export async function GET(request: NextRequest) {
   try {
-    // In production, get userId from authenticated session
-    const userId = request.headers.get('x-user-id')
+    const userId = await requireAuth(request)
 
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

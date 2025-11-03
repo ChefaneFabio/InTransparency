@@ -176,6 +176,44 @@ export function CTA() {
           </div>
         </div>
 
+        {/* Social Proof / Viral Section */}
+        <div className="mb-24 text-center">
+          <h3 className="text-3xl font-display font-bold text-foreground mb-4">
+            See What Students Are Building
+          </h3>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Real students. Real projects. Real results. Browse verified portfolios from your university.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
+            <div className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-primary transition-all hover:shadow-lg">
+              <div className="text-3xl font-bold text-primary mb-2">125,000+</div>
+              <p className="text-gray-600">Students with verified portfolios</p>
+            </div>
+            <div className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-primary transition-all hover:shadow-lg">
+              <div className="text-3xl font-bold text-primary mb-2">3x Faster</div>
+              <p className="text-gray-600">Average time to get hired</p>
+            </div>
+            <div className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-primary transition-all hover:shadow-lg">
+              <div className="text-3xl font-bold text-primary mb-2">10,000+</div>
+              <p className="text-gray-600">Companies hiring verified talent</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button asChild size="lg" variant="outline">
+              <Link href="/success-stories">
+                Read Success Stories
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href="/students">
+                Browse Student Portfolios
+              </Link>
+            </Button>
+          </div>
+        </div>
+
         {/* Final CTA Banner */}
         <div className="bg-gradient-to-r from-primary to-secondary rounded-3xl p-12 text-center text-white">
           <h3 className="text-3xl font-display font-bold mb-4">

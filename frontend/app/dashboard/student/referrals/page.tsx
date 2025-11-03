@@ -1,10 +1,42 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Users, Send, TrendingUp, CheckCircle, Clock, Mail, UserPlus } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { Progress } from '@/components/ui/progress'
+import { ShareButtons } from '@/components/social/ShareButtons'
+import { Users, Send, TrendingUp, CheckCircle, Clock, Mail, UserPlus, Copy, Gift, Trophy, Crown } from 'lucide-react'
+
+interface ReferralData {
+  referralCode: string
+  referralLink: string
+  totalReferrals: number
+  activeReferrals: number
+  pendingReferrals: number
+  currentTier: string
+  nextTier: {
+    tier: string
+    referralsNeeded: number
+    reward: string
+  }
+  premiumMonthsEarned: number
+  referrals: Array<{
+    id: string
+    name: string
+    email: string
+    signupDate: string
+    status: string
+    profileCompleted: boolean
+  }>
+  leaderboard: Array<{
+    rank: number
+    name: string
+    university: string
+    referrals: number
+  }>
+}
 
 interface Referral {
   id: string
@@ -20,6 +52,20 @@ interface ReferralStats {
   signedUp: number
   profileCompleted: number
   firstApplication: number
+}
+
+const tierColors = {
+  BRONZE: 'bg-orange-100 text-orange-700 border-orange-300',
+  SILVER: 'bg-gray-100 text-gray-700 border-gray-300',
+  GOLD: 'bg-yellow-100 text-yellow-700 border-yellow-300',
+  PLATINUM: 'bg-purple-100 text-purple-700 border-purple-300'
+}
+
+const tierIcons = {
+  BRONZE: Trophy,
+  SILVER: Trophy,
+  GOLD: Crown,
+  PLATINUM: Crown
 }
 
 export default function StudentReferralsPage() {

@@ -17,17 +17,17 @@ const segmentContent = {
     badgeIcon: GraduationCap,
     headline: (
       <>
-        Your Institution Verifies.{' '}
+        Stop Applying.{' '}
         <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          Companies Trust You.
+          Start Getting Discovered.
         </span>
       </>
     ),
     description: (
       <>
-        Upload projects (theses, stage curriculare, portfolios). Your institution authenticates them. Companies discover 100% verified competencies - no resume inflation.
+        Turn your university projects into a verified portfolio that gets you hired. Companies message you first when they see your institution-authenticated work.
         <br />
-        <strong className="text-gray-900">🎓 Institution-stamped skills for Tech, Business, Law, Engineering, Design & more.</strong>
+        <strong className="text-gray-900">🎓 Watch videos of your work • See verified grades • All traceable to your university</strong>
       </>
     ),
     primaryCTA: {
@@ -40,30 +40,30 @@ const segmentContent = {
       href: '/how-it-works'
     },
     benefits: [
-      { icon: CheckCircle2, text: 'Institution-verified skills' },
-      { icon: CheckCircle2, text: '100% traceable competencies' },
-      { icon: CheckCircle2, text: 'Companies discover verified YOU' }
+      { icon: CheckCircle2, text: 'Companies message you first' },
+      { icon: CheckCircle2, text: 'Get hired 2x faster' },
+      { icon: CheckCircle2, text: 'No fake credentials - 100% verified' }
     ],
     features: [
       {
         image: IMAGES.features.aiAnalysis,
-        title: 'Institution-Authenticated Skills',
-        description: 'Your university/ITS verifies your competencies (grades, projects, stage curriculare) - companies see 100% authentic proof'
+        title: 'Watch Your Projects Come Alive',
+        description: 'Record 2-minute videos explaining your work. Companies see your passion and skills in action - not just text on a page'
       },
       {
         image: IMAGES.students.student4,
-        title: 'All Disciplines Verified',
-        description: 'Tech, Business, Law, Engineering, Design - every field gets institutional authentication (30/30 thesis? ITS project? All stamped)'
+        title: 'Show Verified Grades, Not Claims',
+        description: '30/30 thesis? Your university stamps it. Companies see authentic proof directly from your institution - no resume lies'
       },
       {
         image: IMAGES.universityCampuses.graduation,
-        title: 'Traceable to Source',
-        description: 'Every competency shows institution badge: "Verified by Politecnico" or "Endorsed by ITS G. Natta" - no fake credentials'
+        title: '95% Cheaper Than LinkedIn',
+        description: 'Companies pay €10 per contact vs €9,200/year on LinkedIn. You get discovered for free - they save thousands'
       }
     ],
     stats: {
-      label: 'Join students building verified portfolios',
-      value: 'across all disciplines and fields'
+      label: 'Join 125,000+ students who landed jobs through',
+      value: 'verified portfolios - no resumes needed'
     }
   },
   universities: {
