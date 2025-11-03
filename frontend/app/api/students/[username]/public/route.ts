@@ -47,7 +47,7 @@ export async function GET(
             githubUrl: true,
             liveUrl: true,
             grade: true,
-            gradedAt: true,
+            createdAt: true,
             verifications: {
               select: {
                 id: true,
@@ -59,7 +59,7 @@ export async function GET(
             }
           },
           orderBy: {
-            gradedAt: 'desc'
+            createdAt: 'desc'
           }
         }
       }
