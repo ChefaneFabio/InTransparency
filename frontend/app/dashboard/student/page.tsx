@@ -31,6 +31,8 @@ export default function StudentDashboard() {
   const [loading, setLoading] = useState(true)
   const [showUpgradePrompt, setShowUpgradePrompt] = useState(false)
   const [promptTrigger, setPromptTrigger] = useState<any>('student-project-limit')
+  const [referralCount, setReferralCount] = useState(0)
+  const [referralData, setReferralData] = useState<any>(null)
 
   // TODO: Get from user.subscriptionTier once added to AuthContext
   const userPlan = 'free' // Default to free for demo
@@ -53,6 +55,19 @@ export default function StudentDashboard() {
         const analyticsResponse = await fetch(`/api/analytics/dashboard/${user?.id}`)
         const analyticsData = await analyticsResponse.json()
         setAnalytics(analyticsData.analytics || {})
+
+        // Fetch referral data
+        const token = localStorage.getItem('token')
+        if (token) {
+          const referralResponse = await fetch('/api/referrals', {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          })
+          const referralData = await referralResponse.json()
+          setReferralCount(referralData.totalReferrals || 0)
+          setReferralData(referralData)
+        }
 
       } catch (error) {
         console.error('Failed to fetch dashboard data:', error)
@@ -570,7 +585,10 @@ export default function StudentDashboard() {
                 Invite Friends, Get Premium Free 🎁
               </CardTitle>
               <CardDescription className="text-blue-700">
-                Unlock Premium features by inviting your classmates
+                {referralCount >= 3
+                  ? `You've unlocked rewards! Keep going for more.`
+                  : `You're ${3 - referralCount} friend${3 - referralCount === 1 ? '' : 's'} away from 1 month Premium!`
+                }
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -578,26 +596,40 @@ export default function StudentDashboard() {
                 <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm font-medium text-gray-700">Your Progress</span>
-                    <span className="text-sm font-bold text-blue-600">0/3 invited</span>
+                    <span className="text-sm font-bold text-blue-600">{referralCount}/3 invited</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-blue-600 h-2 rounded-full" style={{ width: '0%' }}></div>
+                    <div
+                      className="bg-blue-600 h-2 rounded-full transition-all duration-500"
+                      style={{ width: `${Math.min((referralCount / 3) * 100, 100)}%` }}
+                    ></div>
                   </div>
                   <p className="text-xs text-gray-600 mt-2">
-                    Invite 3 classmates → Unlock 1 month Premium FREE
+                    {referralCount >= 3
+                      ? '✅ 1 month Premium unlocked!'
+                      : `${3 - referralCount} more to unlock 1 month Premium FREE`
+                    }
                   </p>
                 </div>
 
                 <div className="space-y-2">
                   <Button className="w-full bg-blue-600 hover:bg-blue-700" asChild>
-                    <Link href="/referrals">
+                    <Link href="/dashboard/student/referrals">
                       <Gift className="mr-2 h-4 w-4" />
-                      Get Your Referral Link
+                      {referralCount > 0 ? 'View Your Referrals' : 'Get Your Referral Link'}
                     </Link>
                   </Button>
-                  <p className="text-xs text-center text-gray-600">
-                    Premium features: Initiate contact, advanced matching, priority search
-                  </p>
+                  <div className="text-xs space-y-1 text-gray-700">
+                    <p className={referralCount >= 3 ? 'text-green-600 font-semibold' : ''}>
+                      ✅ 3 invites → 1 month Premium FREE
+                    </p>
+                    <p className={referralCount >= 10 ? 'text-green-600 font-semibold' : ''}>
+                      ✅ 10 invites → 6 months Premium FREE
+                    </p>
+                    <p className={referralCount >= 50 ? 'text-green-600 font-semibold' : ''}>
+                      ✅ 50 invites → Lifetime Premium FREE
+                    </p>
+                  </div>
                 </div>
               </div>
             </CardContent>
