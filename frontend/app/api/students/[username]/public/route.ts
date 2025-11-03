@@ -33,7 +33,7 @@ export async function GET(
         portfolioUrl: true,
         projects: {
           where: {
-            visibility: 'PUBLIC'
+            isPublic: true
           },
           select: {
             id: true,
