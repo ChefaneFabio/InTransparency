@@ -1,94 +1,19 @@
 'use client'
 
 import { useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Check, X, Star, Users, Building2, GraduationCap, ArrowRight, Zap, Crown, Sparkles, School } from 'lucide-react'
+import { Check, X, Star, Users, Building2, GraduationCap, ArrowRight, Zap, Crown, Sparkles, School, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { STUDENT_PRICING, RECRUITER_PRICING } from '@/lib/config/pricing'
 
 type PricingSegment = 'students' | 'companies' | 'institutes'
-
-const studentPlans = [
-  {
-    name: 'Verified Talent Discovery Service',
-    price: 'Free',
-    period: 'forever',
-    description: 'Upload projects → Institution verifies → Companies discover YOU (no applications)',
-    icon: GraduationCap,
-    popular: false,
-    badge: '🎓 Always Free - Core Services',
-    features: [
-      '✅ VERIFICATION SERVICE: Upload up to 5 projects (theses, stage curriculare, code)',
-      '✅ Institution authenticates via Esse3/Moodle integration',
-      '✅ MATCHING SERVICE: AI connects you to opportunities (92% verified accuracy)',
-      '✅ DISCOVERY SERVICE: Companies find YOU - zero applications needed',
-      '✅ Transparent explanations: "92% fit because Python thesis matches ML req"',
-      '🤖 24/7 AI Career Assistant for profile building & guidance',
-      '📊 Skill demand insights ("Excel searched 89x this month")',
-      '📝 See company requirements and match reasoning (bidirectional transparency)',
-      'All disciplines: Tech, Business, Law, Engineering, Design, Fashion',
-      'Custom portfolio URL with verification badges',
-      'EU/Italian support: 30/30 grading, tirocini, stage curriculare',
-      '⚠️ Limit: 5 projects, standard AI analysis, no direct messaging'
-    ],
-    cta: 'Get Started Free',
-    ctaLink: '/auth/register',
-    highlight: false
-  },
-  {
-    name: 'Pro Student',
-    price: '€9',
-    period: 'per month',
-    description: 'Unlimited projects + priority matching + direct messaging. 30% more contacts vs Free.',
-    icon: Sparkles,
-    popular: true,
-    badge: '⚡ Most Popular - Upgrade',
-    features: [
-      '✅ Everything in Free, plus:',
-      '🚀 UNLIMITED projects (vs. 5 free) - upload thesis, portfolios, side projects',
-      '🧠 Advanced AI analysis: Deeper soft skills detection from teamwork/presentations',
-      '📹 Video portfolio support: Record project demos and explanations',
-      '⚡ Priority matching: Your profile shown first in company searches',
-      '💬 Direct recruiter messaging: Contact companies directly (vs. waiting)',
-      '📈 30% more contacts: Pro users get significantly more company interest',
-      '🎯 Custom alerts: "New BMW internship matches your AutoCAD skills"',
-      '📊 Advanced analytics: "Your Python thesis viewed by 12 companies this week"',
-      '🏆 Pro badge on profile: "Verified Pro Student" increases credibility',
-      '✅ Early access to new features and beta tests',
-      '⏱️ Projected 40+ hours/month time savings with unlimited uploads',
-      'Cancel anytime - no commitment'
-    ],
-    cta: 'Upgrade to Pro',
-    ctaLink: '/auth/register',
-    highlight: true
-  },
-  {
-    name: 'Career Coaching',
-    price: '€9',
-    period: 'per session',
-    description: 'Optional 1-on-1 consultations with HR experts',
-    icon: Crown,
-    popular: false,
-    badge: '👥 Human Service',
-    features: [
-      'Platform access remains free',
-      '1-on-1 session with HR professionals',
-      'Personalized career strategy',
-      'Skills discovery & assessment',
-      'Portfolio & resume review',
-      'Interview preparation',
-      'Industry-specific advice',
-      'Career path guidance',
-      'Book sessions as needed'
-    ],
-    cta: 'Book a Session',
-    ctaLink: '/contact'
-  }
-]
 
 const companyPlans = [
   {
