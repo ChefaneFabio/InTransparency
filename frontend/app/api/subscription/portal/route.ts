@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { requireAuth } from '@/lib/auth/jwt-verify'
-import { prisma } from '@/lib/prisma'
+import prisma from '@/lib/prisma'
 import { STRIPE_CONFIG } from '@/lib/config/pricing'
 
 const stripe = new Stripe(STRIPE_CONFIG.secretKey, {
