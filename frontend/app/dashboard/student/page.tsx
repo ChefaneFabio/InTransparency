@@ -16,9 +16,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { MessageCenter } from '@/components/messaging/MessageCenter'
 import { NotificationCenter } from '@/components/notifications/NotificationCenter'
-import { Plus, TrendingUp, Users, Briefcase, Eye, Star, ArrowRight, Share2, Gift } from 'lucide-react'
+import { Plus, TrendingUp, Users, Briefcase, Eye, Star, ArrowRight, Share2, Gift, Copy, Globe, Check } from 'lucide-react'
 import Link from 'next/link'
 import { ReferralPrompt } from '@/components/referrals/ReferralPrompt'
+import { ShareButtons } from '@/components/social/ShareButtons'
+import { Input } from '@/components/ui/input'
+import { Switch } from '@/components/ui/switch'
 import { trackUpgradePrompt, trackUpgradeInteraction, ConversionTrigger, PlanType } from '@/lib/analytics'
 import { useRouter } from 'next/navigation'
 
@@ -33,6 +36,8 @@ export default function StudentDashboard() {
   const [promptTrigger, setPromptTrigger] = useState<any>('student-project-limit')
   const [referralCount, setReferralCount] = useState(0)
   const [referralData, setReferralData] = useState<any>(null)
+  const [profilePublic, setProfilePublic] = useState(false)
+  const [portfolioLinkCopied, setPortfolioLinkCopied] = useState(false)
 
   // TODO: Get from user.subscriptionTier once added to AuthContext
   const userPlan = 'free' // Default to free for demo
@@ -112,6 +117,39 @@ export default function StudentDashboard() {
       PlanType.PRO_STUDENT
     )
     router.push('/pricing?highlight=pro_student')
+  }
+
+  const handleTogglePortfolio = async (checked: boolean) => {
+    try {
+      const token = localStorage.getItem('token')
+      if (!token) return
+
+      const response = await fetch('/api/user/profile', {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ profilePublic: checked })
+      })
+
+      if (response.ok) {
+        setProfilePublic(checked)
+      }
+    } catch (error) {
+      console.error('Failed to update portfolio visibility:', error)
+    }
+  }
+
+  const copyPortfolioLink = async () => {
+    const portfolioUrl = `${window.location.origin}/students/${user?.username}/public`
+    try {
+      await navigator.clipboard.writeText(portfolioUrl)
+      setPortfolioLinkCopied(true)
+      setTimeout(() => setPortfolioLinkCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy:', err)
+    }
   }
 
   const handleDismissPrompt = () => {
@@ -632,6 +670,80 @@ export default function StudentDashboard() {
                   </div>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Public Portfolio Toggle */}
+          <Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-emerald-50">
+            <CardHeader>
+              <CardTitle className="flex items-center text-green-900">
+                <Globe className="h-5 w-5 mr-2" />
+                Public Portfolio
+              </CardTitle>
+              <CardDescription className="text-green-700">
+                Let recruiters discover you by making your portfolio public
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-between bg-white/80 backdrop-blur-sm rounded-lg p-4">
+                <div>
+                  <p className="font-medium text-gray-900">Profile Visibility</p>
+                  <p className="text-sm text-gray-600">
+                    {profilePublic ? 'Your portfolio is public' : 'Your portfolio is private'}
+                  </p>
+                </div>
+                <Switch
+                  checked={profilePublic}
+                  onCheckedChange={handleTogglePortfolio}
+                />
+              </div>
+
+              {profilePublic && (
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-sm font-medium mb-2">Your Portfolio Link:</p>
+                    <div className="flex gap-2">
+                      <Input
+                        value={`${typeof window !== 'undefined' ? window.location.origin : ''}/students/${user?.username}/public`}
+                        readOnly
+                        className="text-sm"
+                      />
+                      <Button onClick={copyPortfolioLink} variant="outline" size="sm">
+                        {portfolioLinkCopied ? (
+                          <Check className="h-4 w-4" />
+                        ) : (
+                          <Copy className="h-4 w-4" />
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+
+                  <ShareButtons
+                    url={`${typeof window !== 'undefined' ? window.location.origin : ''}/students/${user?.username}/public`}
+                    title="Check out my verified portfolio on InTransparency!"
+                    description="View my university-verified projects and skills"
+                  />
+
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm">
+                    <p className="font-medium text-blue-900 mb-1">💡 Pro tip:</p>
+                    <p className="text-blue-800">
+                      Share your portfolio on LinkedIn to get 3x more recruiter views!
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {!profilePublic && (
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm text-gray-600">
+                  <p className="mb-2">📌 Make your portfolio public to:</p>
+                  <ul className="space-y-1 ml-4">
+                    <li>• Get discovered by recruiters</li>
+                    <li>• Share your work on social media</li>
+                    <li>• Boost your online presence</li>
+                    <li>• Each portfolio is a landing page for InTransparency</li>
+                  </ul>
+                </div>
+              )}
             </CardContent>
           </Card>
 
