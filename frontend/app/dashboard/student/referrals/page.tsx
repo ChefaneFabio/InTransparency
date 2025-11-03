@@ -7,7 +7,19 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Progress } from '@/components/ui/progress'
 import { ShareButtons } from '@/components/social/ShareButtons'
-import { Users, Send, TrendingUp, CheckCircle, Clock, Mail, UserPlus, Copy, Gift, Trophy, Crown } from 'lucide-react'
+import {
+  Users,
+  TrendingUp,
+  CheckCircle,
+  Clock,
+  Copy,
+  Gift,
+  Trophy,
+  Crown,
+  Share2,
+  Award,
+  Check
+} from 'lucide-react'
 
 interface ReferralData {
   referralCode: string
@@ -38,27 +50,11 @@ interface ReferralData {
   }>
 }
 
-interface Referral {
-  id: string
-  referredEmail: string
-  referredName?: string
-  createdAt: string
-  status: 'pending' | 'signed-up' | 'profile-completed' | 'first-application'
-}
-
-interface ReferralStats {
-  total: number
-  pending: number
-  signedUp: number
-  profileCompleted: number
-  firstApplication: number
-}
-
 const tierColors = {
   BRONZE: 'bg-orange-100 text-orange-700 border-orange-300',
-  SILVER: 'bg-gray-100 text-gray-700 border-gray-300',
-  GOLD: 'bg-yellow-100 text-yellow-700 border-yellow-300',
-  PLATINUM: 'bg-purple-100 text-purple-700 border-purple-300'
+  SILVER: 'bg-gray-200 text-gray-700 border-gray-400',
+  GOLD: 'bg-yellow-100 text-yellow-700 border-yellow-400',
+  PLATINUM: 'bg-purple-100 text-purple-700 border-purple-400'
 }
 
 const tierIcons = {
@@ -68,84 +64,67 @@ const tierIcons = {
   PLATINUM: Crown
 }
 
-export default function StudentReferralsPage() {
-  const [referrals, setReferrals] = useState<Referral[]>([])
-  const [stats, setStats] = useState<ReferralStats>({
-    total: 0,
-    pending: 0,
-    signedUp: 0,
-    profileCompleted: 0,
-    firstApplication: 0
-  })
-  const [loading, setLoading] = useState(true)
-  const [submitting, setSubmitting] = useState(false)
+const rewardTiers = [
+  { tier: 'BRONZE', referrals: 3, reward: '1 month Premium FREE', icon: Trophy, color: 'orange' },
+  { tier: 'SILVER', referrals: 10, reward: '6 months Premium FREE', icon: Trophy, color: 'gray' },
+  { tier: 'GOLD', referrals: 50, reward: 'Lifetime Premium FREE', icon: Crown, color: 'yellow' },
+  { tier: 'PLATINUM', referrals: 100, reward: 'Lifetime + €500 cash', icon: Crown, color: 'purple' }
+]
 
-  // Referral form
-  const [referralForm, setReferralForm] = useState({
-    referredEmail: '',
-    referredName: ''
-  })
+export default function StudentReferralsPage() {
+  const [referralData, setReferralData] = useState<ReferralData | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
-    fetchReferrals()
+    fetchReferralData()
   }, [])
 
-  const fetchReferrals = async () => {
+  const fetchReferralData = async () => {
     setLoading(true)
     try {
-      const response = await fetch('/api/advocacy/referrals?referrerId=student_123') // Replace with actual auth
+      const token = localStorage.getItem('token')
+      if (!token) {
+        console.error('No auth token found')
+        setLoading(false)
+        return
+      }
+
+      const response = await fetch('/api/referrals', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       const data = await response.json()
 
-      if (data.success) {
-        setReferrals(data.referrals)
-        setStats(data.stats)
+      if (response.ok) {
+        setReferralData(data)
+      } else {
+        console.error('Error fetching referral data:', data.error)
       }
     } catch (error) {
-      console.error('Error fetching referrals:', error)
+      console.error('Error fetching referral data:', error)
     } finally {
       setLoading(false)
     }
   }
 
-  const handleSubmitReferral = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitting(true)
+  const copyReferralLink = async () => {
+    if (!referralData?.referralLink) return
 
     try {
-      const response = await fetch('/api/advocacy/referrals', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          referrerId: 'student_123', // Replace with actual auth
-          referrerName: 'Current Student', // Replace with actual name
-          institutionId: 'inst_123', // Replace with actual institution
-          ...referralForm
-        })
-      })
-
-      const data = await response.json()
-
-      if (data.success) {
-        alert(data.message)
-        setReferralForm({ referredEmail: '', referredName: '' })
-        fetchReferrals()
-      } else {
-        alert(data.error || 'Failed to send referral')
-      }
-    } catch (error) {
-      console.error('Error submitting referral:', error)
-      alert('An error occurred. Please try again.')
-    } finally {
-      setSubmitting(false)
+      await navigator.clipboard.writeText(referralData.referralLink)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy:', err)
     }
   }
 
   const getStatusBadge = (status: string) => {
     const config = {
       'pending': { color: 'bg-yellow-100 text-yellow-800', label: 'Pending', icon: Clock },
-      'signed-up': { color: 'bg-blue-100 text-blue-800', label: 'Registered', icon: CheckCircle },
-      'profile-completed': { color: 'bg-purple-100 text-purple-800', label: 'Profile Ready', icon: UserPlus },
-      'first-application': { color: 'bg-green-100 text-green-800', label: 'Active', icon: TrendingUp }
+      'completed': { color: 'bg-green-100 text-green-800', label: 'Completed', icon: CheckCircle }
     }
 
     const { color, label, icon: Icon } = config[status as keyof typeof config] || config.pending
@@ -158,185 +137,231 @@ export default function StudentReferralsPage() {
     )
   }
 
+  if (loading) {
+    return (
+      <div className="p-8 bg-gray-50 min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    )
+  }
+
+  const totalReferrals = referralData?.totalReferrals || 0
+  const nextTier = referralData?.nextTier
+  const referralsToNextTier = nextTier ? nextTier.referralsNeeded - totalReferrals : 0
+
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <Users className="h-8 w-8 text-primary" />
-            <h1 className="text-3xl font-display font-bold">Student Network</h1>
+            <Gift className="h-8 w-8 text-primary" />
+            <h1 className="text-3xl font-display font-bold">Referral Program</h1>
           </div>
           <p className="text-gray-600">
-            Help fellow students discover InTransparency and build a stronger academic professional network
+            Invite friends and unlock Premium features for FREE! Every successful referral brings you closer to amazing rewards.
           </p>
         </div>
 
-        {/* Statistics Cards */}
-        <div className="grid md:grid-cols-4 gap-6 mb-8">
-          <Card className="border-2 border-primary/20">
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-600 mb-1">Students Invited</p>
-                  <p className="text-3xl font-bold text-primary">{stats.total}</p>
-                </div>
-                <div className="bg-gradient-to-br from-primary to-secondary p-3 rounded-full">
-                  <UserPlus className="h-6 w-6 text-white" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-600 mb-1">Joined Platform</p>
-                  <p className="text-3xl font-bold">{stats.signedUp}</p>
-                </div>
-                <CheckCircle className="h-8 w-8 text-green-500" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-600 mb-1">Active Users</p>
-                  <p className="text-3xl font-bold">{stats.firstApplication}</p>
-                </div>
-                <TrendingUp className="h-8 w-8 text-blue-500" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-600 mb-1">Pending Invites</p>
-                  <p className="text-3xl font-bold">{stats.pending}</p>
-                </div>
-                <Clock className="h-8 w-8 text-gray-400" />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
         <div className="grid lg:grid-cols-3 gap-6">
-          {/* Referral Form */}
-          <div className="lg:col-span-1">
-            <Card className="border-2 border-primary/30 sticky top-4">
+          {/* Left Column - Main Content */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Referral Link Card */}
+            <Card className="border-2 border-primary shadow-lg">
               <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
                 <CardTitle className="flex items-center gap-2">
-                  <Send className="h-5 w-5 text-primary" />
-                  Invite a Student
+                  <Share2 className="h-5 w-5 text-primary" />
+                  Your Referral Link
                 </CardTitle>
+                <CardDescription>
+                  Share this link with friends to earn rewards
+                </CardDescription>
               </CardHeader>
-              <CardContent className="pt-6">
-                <form onSubmit={handleSubmitReferral} className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-1">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={referralForm.referredEmail}
-                      onChange={(e) => setReferralForm({ ...referralForm, referredEmail: e.target.value })}
-                      placeholder="colleague@university.edu"
-                      className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-1">
-                      Name (Optional)
-                    </label>
-                    <input
-                      type="text"
-                      value={referralForm.referredName}
-                      onChange={(e) => setReferralForm({ ...referralForm, referredName: e.target.value })}
-                      placeholder="Colleague's name"
-                      className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-
+              <CardContent className="pt-6 space-y-4">
+                <div className="flex gap-2">
+                  <Input
+                    value={referralData?.referralLink || 'Loading...'}
+                    readOnly
+                    className="font-mono text-sm"
+                  />
                   <Button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full bg-gradient-to-r from-primary to-secondary"
+                    onClick={copyReferralLink}
+                    variant={copied ? "default" : "outline"}
+                    className="min-w-[100px]"
                   >
-                    <Send className="h-4 w-4 mr-2" />
-                    {submitting ? 'Sending...' : 'Send Invitation'}
+                    {copied ? (
+                      <>
+                        <Check className="h-4 w-4 mr-2" />
+                        Copied!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="h-4 w-4 mr-2" />
+                        Copy
+                      </>
+                    )}
                   </Button>
-                </form>
-
-                {/* Network Benefits */}
-                <div className="mt-6 pt-6 border-t space-y-3">
-                  <h4 className="font-semibold text-sm">Why Invite Colleagues?</h4>
-                  <div className="space-y-2 text-sm text-gray-600">
-                    <div className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>Help peers discover verified skill opportunities</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>Build a stronger institutional network</span>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>Career centers gain insights from network growth</span>
-                    </div>
-                  </div>
                 </div>
 
-                {/* Impact Preview */}
-                <div className="mt-6 pt-6 border-t">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Users className="h-4 w-4 text-primary" />
-                    <h4 className="font-semibold text-sm">Your Network Impact</h4>
-                  </div>
-                  <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-primary mb-1">
-                      {stats.signedUp}
-                    </div>
-                    <p className="text-xs text-gray-600">
-                      students joined through your invitations
-                    </p>
-                  </div>
+                {/* Share Buttons */}
+                <div>
+                  <p className="text-sm font-medium mb-2">Share on social media:</p>
+                  <ShareButtons
+                    url={referralData?.referralLink || ''}
+                    title="Join me on InTransparency! 🎓"
+                    description="Build your verified portfolio and get discovered by top companies. Sign up with my link to get started!"
+                  />
+                </div>
+
+                {/* Sharing Tips */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-900 mb-2">💡 Tips for Success:</h4>
+                  <ul className="text-sm text-blue-800 space-y-1">
+                    <li>• Share on your university WhatsApp/Discord groups</li>
+                    <li>• Post on LinkedIn with your success story</li>
+                    <li>• Email classmates from your project teams</li>
+                    <li>• Add to your Instagram/Twitter bio</li>
+                  </ul>
                 </div>
               </CardContent>
             </Card>
-          </div>
 
-          {/* Referrals List */}
-          <div className="lg:col-span-2">
+            {/* Progress Tracker */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Your Progress</CardTitle>
+                <CardDescription>
+                  {referralsToNextTier > 0
+                    ? `${referralsToNextTier} more referral${referralsToNextTier === 1 ? '' : 's'} to unlock ${nextTier?.reward}`
+                    : 'Amazing! You\'ve reached the maximum tier!'
+                  }
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {/* Progress Bar */}
+                  {nextTier && (
+                    <div>
+                      <Progress
+                        value={(totalReferrals / nextTier.referralsNeeded) * 100}
+                        className="h-3"
+                      />
+                      <div className="flex justify-between text-sm text-gray-600 mt-2">
+                        <span>{totalReferrals} referrals</span>
+                        <span>{nextTier.referralsNeeded} for {nextTier.tier}</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="bg-primary/10 rounded-lg p-4 text-center">
+                      <div className="text-2xl font-bold text-primary">{totalReferrals}</div>
+                      <div className="text-xs text-gray-600 mt-1">Total Invited</div>
+                    </div>
+                    <div className="bg-green-100 rounded-lg p-4 text-center">
+                      <div className="text-2xl font-bold text-green-600">{referralData?.activeReferrals || 0}</div>
+                      <div className="text-xs text-gray-600 mt-1">Active Users</div>
+                    </div>
+                    <div className="bg-yellow-100 rounded-lg p-4 text-center">
+                      <div className="text-2xl font-bold text-yellow-600">{referralData?.pendingReferrals || 0}</div>
+                      <div className="text-xs text-gray-600 mt-1">Pending</div>
+                    </div>
+                  </div>
+
+                  {/* Current Tier Badge */}
+                  {referralData?.currentTier && (
+                    <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg p-4">
+                      <Award className="h-5 w-5 text-primary" />
+                      <span className="font-semibold">Current Tier:</span>
+                      <Badge className={tierColors[referralData.currentTier as keyof typeof tierColors]}>
+                        {referralData.currentTier}
+                      </Badge>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Reward Tiers */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Reward Tiers</CardTitle>
+                <CardDescription>
+                  Unlock amazing rewards as you refer more friends
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {rewardTiers.map(({ tier, referrals, reward, icon: Icon, color }) => {
+                    const isUnlocked = totalReferrals >= referrals
+                    const isNextTier = tier === nextTier?.tier
+
+                    return (
+                      <div
+                        key={tier}
+                        className={`border-2 rounded-lg p-4 transition-all ${
+                          isUnlocked
+                            ? 'bg-green-50 border-green-500'
+                            : isNextTier
+                            ? 'bg-blue-50 border-blue-500 ring-2 ring-blue-200'
+                            : 'bg-gray-50 border-gray-200'
+                        }`}
+                      >
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-center gap-2">
+                            <Icon className={`h-6 w-6 text-${color}-600`} />
+                            <span className="font-bold text-lg">{tier}</span>
+                          </div>
+                          {isUnlocked && (
+                            <Badge className="bg-green-500 text-white">
+                              <CheckCircle className="h-3 w-3 mr-1" />
+                              Unlocked
+                            </Badge>
+                          )}
+                          {isNextTier && !isUnlocked && (
+                            <Badge className="bg-blue-500 text-white">
+                              Next Goal
+                            </Badge>
+                          )}
+                        </div>
+                        <p className="text-sm font-semibold text-gray-900 mb-1">{reward}</p>
+                        <p className="text-xs text-gray-600">{referrals} successful referrals</p>
+                        {!isUnlocked && (
+                          <div className="mt-3">
+                            <Progress value={(totalReferrals / referrals) * 100} className="h-1" />
+                            <p className="text-xs text-gray-500 mt-1">
+                              {referrals - totalReferrals} more to go
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Referrals List */}
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle>Your Network</CardTitle>
-                  <Badge variant="outline">{stats.total} invited</Badge>
+                  <CardTitle>Your Referrals</CardTitle>
+                  <Badge variant="outline">{totalReferrals} total</Badge>
                 </div>
               </CardHeader>
               <CardContent>
-                {loading ? (
-                  <div className="flex items-center justify-center py-12">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                  </div>
-                ) : referrals.length === 0 ? (
+                {!referralData?.referrals || referralData.referrals.length === 0 ? (
                   <div className="text-center py-12">
-                    <Mail className="h-16 w-16 mx-auto mb-4 text-gray-300" />
-                    <h3 className="text-lg font-semibold mb-2">No Invitations Sent Yet</h3>
+                    <Users className="h-16 w-16 mx-auto mb-4 text-gray-300" />
+                    <h3 className="text-lg font-semibold mb-2">No Referrals Yet</h3>
                     <p className="text-gray-600 mb-6">
-                      Start building your professional network by inviting fellow students to join the platform
+                      Start sharing your referral link to see your network grow here
                     </p>
                   </div>
                 ) : (
                   <div className="space-y-3">
-                    {referrals.map((referral) => (
+                    {referralData.referrals.map((referral) => (
                       <div
                         key={referral.id}
                         className="border rounded-lg p-4 hover:bg-gray-50 transition-colors"
@@ -344,47 +369,20 @@ export default function StudentReferralsPage() {
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-1">
-                              <h4 className="font-semibold">
-                                {referral.referredName || referral.referredEmail}
-                              </h4>
+                              <h4 className="font-semibold">{referral.name}</h4>
                               {getStatusBadge(referral.status)}
                             </div>
-                            {referral.referredName && (
-                              <p className="text-sm text-gray-600">{referral.referredEmail}</p>
-                            )}
+                            <p className="text-sm text-gray-600">{referral.email}</p>
                           </div>
                         </div>
-
-                        <div className="flex items-center justify-between text-xs text-gray-500">
-                          <span>Invited on {new Date(referral.createdAt).toLocaleDateString()}</span>
-                          {referral.status === 'pending' && (
-                            <span className="text-yellow-600">Awaiting registration</span>
-                          )}
-                          {referral.status === 'first-application' && (
-                            <span className="text-green-600">Actively using platform</span>
-                          )}
-                        </div>
-
-                        {/* Progress Bar */}
-                        <div className="mt-3">
-                          <div className="flex items-center justify-between text-xs mb-1">
-                            <span className="text-gray-600">Onboarding Progress</span>
-                            <span className="text-gray-600">
-                              {referral.status === 'first-application' ? 'Complete' :
-                               referral.status === 'profile-completed' ? 'Profile Ready' :
-                               referral.status === 'signed-up' ? 'Registered' : 'Invited'}
+                        <div className="flex items-center justify-between text-xs text-gray-500 mt-2">
+                          <span>Joined {new Date(referral.signupDate).toLocaleDateString()}</span>
+                          {referral.profileCompleted && (
+                            <span className="text-green-600 flex items-center gap-1">
+                              <CheckCircle className="h-3 w-3" />
+                              Profile Complete
                             </span>
-                          </div>
-                          <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                            <div
-                              className="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-500"
-                              style={{
-                                width: referral.status === 'first-application' ? '100%' :
-                                       referral.status === 'profile-completed' ? '75%' :
-                                       referral.status === 'signed-up' ? '50%' : '25%'
-                              }}
-                            />
-                          </div>
+                          )}
                         </div>
                       </div>
                     ))}
@@ -392,41 +390,119 @@ export default function StudentReferralsPage() {
                 )}
               </CardContent>
             </Card>
+          </div>
 
-            {/* How It Works */}
-            <Card className="mt-6">
+          {/* Right Column - Sidebar */}
+          <div className="space-y-6">
+            {/* Leaderboard */}
+            <Card className="border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50">
               <CardHeader>
-                <CardTitle className="text-lg">How Student Invitations Work</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-purple-900">
+                  <Trophy className="h-5 w-5" />
+                  Top Referrers
+                </CardTitle>
+                <CardDescription>
+                  See who's leading the way
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3 text-sm">
+                {referralData?.leaderboard && referralData.leaderboard.length > 0 ? (
+                  <div className="space-y-3">
+                    {referralData.leaderboard.slice(0, 10).map((entry) => {
+                      const medalColors = {
+                        1: 'bg-yellow-400 text-yellow-900',
+                        2: 'bg-gray-300 text-gray-700',
+                        3: 'bg-orange-400 text-orange-900'
+                      }
+                      const isTopThree = entry.rank <= 3
+
+                      return (
+                        <div
+                          key={entry.rank}
+                          className={`flex items-center gap-3 p-3 rounded-lg ${
+                            isTopThree ? 'bg-white shadow-md' : 'bg-white/50'
+                          }`}
+                        >
+                          <div
+                            className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
+                              isTopThree
+                                ? medalColors[entry.rank as keyof typeof medalColors]
+                                : 'bg-gray-200 text-gray-600'
+                            }`}
+                          >
+                            {entry.rank}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="font-semibold text-sm truncate">{entry.name}</div>
+                            <div className="text-xs text-gray-600 truncate">{entry.university}</div>
+                          </div>
+                          <div className="text-right">
+                            <div className="font-bold text-primary">{entry.referrals}</div>
+                            <div className="text-xs text-gray-600">refs</div>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                ) : (
+                  <div className="text-center py-6 text-gray-600">
+                    <Trophy className="h-12 w-12 mx-auto mb-2 text-gray-300" />
+                    <p className="text-sm">Be the first on the leaderboard!</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* How It Works */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">How It Works</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="bg-primary rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="bg-primary rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <span className="text-xs font-bold text-white">1</span>
                     </div>
                     <div>
-                      <p className="font-medium">Send Invitation</p>
-                      <p className="text-gray-600">Enter a fellow student's email and we'll send them a personalized invitation to join the platform</p>
+                      <p className="font-medium text-sm">Share Your Link</p>
+                      <p className="text-xs text-gray-600">Copy and share your unique referral link with friends</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="bg-primary rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="bg-primary rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <span className="text-xs font-bold text-white">2</span>
                     </div>
                     <div>
-                      <p className="font-medium">They Register</p>
-                      <p className="text-gray-600">When they sign up, they join your institutional network with verified credentials</p>
+                      <p className="font-medium text-sm">Friends Sign Up</p>
+                      <p className="text-xs text-gray-600">They create an account using your referral link</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="bg-primary rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="bg-primary rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <span className="text-xs font-bold text-white">3</span>
                     </div>
                     <div>
-                      <p className="font-medium">Network Grows</p>
-                      <p className="text-gray-600">Track their progress as they complete profiles and apply for opportunities through the platform</p>
+                      <p className="font-medium text-sm">They Complete Profile</p>
+                      <p className="text-xs text-gray-600">Once they finish setting up, the referral counts</p>
                     </div>
                   </div>
+                  <div className="flex items-start gap-3">
+                    <div className="bg-primary rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-xs font-bold text-white">4</span>
+                    </div>
+                    <div>
+                      <p className="font-medium text-sm">You Earn Rewards</p>
+                      <p className="text-xs text-gray-600">Premium features unlock automatically at each milestone</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-4 border-t">
+                  <p className="text-xs text-gray-600 mb-2">🎁 <strong>Bonus:</strong></p>
+                  <p className="text-xs text-gray-600">
+                    Premium rewards are applied immediately when you hit each tier. No waiting, no hassle!
+                  </p>
                 </div>
               </CardContent>
             </Card>
