@@ -27,7 +27,6 @@ export async function GET(
         degree: true,
         graduationYear: true,
         profilePublic: true,
-        skills: true,
         linkedinUrl: true,
         githubUrl: true,
         portfolioUrl: true,
@@ -42,6 +41,7 @@ export async function GET(
             courseCode: true,
             courseName: true,
             category: true,
+            skills: true,
             technologies: true,
             videos: true,
             githubUrl: true,
@@ -88,7 +88,17 @@ export async function GET(
       ? Math.round((verifiedProjectsCount / projectsCount) * 100)
       : 0
 
-    const skillsCount = user.skills ? (user.skills as any[]).length : 0
+    // Aggregate unique skills from all projects
+    const allSkills = new Set<string>()
+    user.projects.forEach(project => {
+      if (project.skills && Array.isArray(project.skills)) {
+        project.skills.forEach(skill => allSkills.add(skill))
+      }
+      if (project.technologies && Array.isArray(project.technologies)) {
+        project.technologies.forEach(tech => allSkills.add(tech))
+      }
+    })
+    const skillsCount = allSkills.size
 
     // Remove sensitive data
     const { email, ...publicUserData } = user

@@ -32,7 +32,6 @@ interface PublicPortfolioProps {
     graduationYear: number
     linkedinUrl?: string
     githubUrl?: string
-    skills?: any[]
     projects: any[]
     stats: {
       projectsCount: number
@@ -258,26 +257,27 @@ export function PublicPortfolio({ user }: PublicPortfolioProps) {
           )}
         </section>
 
-        {/* Skills Section */}
-        {user.skills && user.skills.length > 0 && (
+        {/* Skills Section - Aggregated from Projects */}
+        {user.stats.skillsCount > 0 && (
           <section className="mb-12">
             <h2 className="text-3xl font-bold mb-8">Technical Skills</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {user.skills.map((skill: any, idx: number) => (
-                <Card key={idx}>
-                  <CardContent className="pt-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-semibold text-lg">{skill.name || skill}</span>
-                      {skill.level && (
-                        <Badge variant="outline">{skill.level}</Badge>
-                      )}
-                    </div>
-                    {skill.proficiency && (
-                      <Progress value={skill.proficiency} className="h-2" />
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="flex flex-wrap gap-2">
+              {(() => {
+                const allSkills = new Set<string>()
+                user.projects.forEach((project: any) => {
+                  if (project.skills && Array.isArray(project.skills)) {
+                    project.skills.forEach((skill: string) => allSkills.add(skill))
+                  }
+                  if (project.technologies && Array.isArray(project.technologies)) {
+                    project.technologies.forEach((tech: string) => allSkills.add(tech))
+                  }
+                })
+                return Array.from(allSkills).map((skill, idx) => (
+                  <Badge key={idx} variant="secondary" className="text-sm px-3 py-1">
+                    {skill}
+                  </Badge>
+                ))
+              })()}
             </div>
           </section>
         )}
