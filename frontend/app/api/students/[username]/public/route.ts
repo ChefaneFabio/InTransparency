@@ -48,13 +48,15 @@ export async function GET(
             liveUrl: true,
             grade: true,
             createdAt: true,
-            verifications: {
+            universityVerified: true,
+            professor: true,
+            endorsements: {
               select: {
                 id: true,
-                type: true,
-                status: true,
-                verifiedAt: true,
-                verifierName: true
+                professorName: true,
+                professorTitle: true,
+                endorsementText: true,
+                createdAt: true
               }
             }
           },
@@ -80,7 +82,7 @@ export async function GET(
     // Calculate stats
     const projectsCount = user.projects.length
     const verifiedProjectsCount = user.projects.filter(
-      (p) => p.verifications && p.verifications.length > 0
+      (p) => p.universityVerified || (p.endorsements && p.endorsements.length > 0)
     ).length
     const verificationScore = projectsCount > 0
       ? Math.round((verifiedProjectsCount / projectsCount) * 100)

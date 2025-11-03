@@ -193,18 +193,26 @@ export function PublicPortfolio({ user }: PublicPortfolioProps) {
 
                   <CardContent>
                     {/* Verification Badges */}
-                    {project.verifications && project.verifications.length > 0 && (
+                    {(project.universityVerified || (project.endorsements && project.endorsements.length > 0)) && (
                       <div className="flex flex-wrap gap-2 mb-3">
-                        {project.verifications.map((verification: any) => (
+                        {project.universityVerified && (
                           <Badge
-                            key={verification.id}
                             variant="outline"
                             className="border-green-500 text-green-700 bg-green-50"
                           >
                             <CheckCircle className="h-3 w-3 mr-1" />
-                            {verification.type === 'UNIVERSITY' ? 'University Verified' : 'Verified'}
+                            University Verified
                           </Badge>
-                        ))}
+                        )}
+                        {project.endorsements && project.endorsements.length > 0 && (
+                          <Badge
+                            variant="outline"
+                            className="border-blue-500 text-blue-700 bg-blue-50"
+                          >
+                            <CheckCircle className="h-3 w-3 mr-1" />
+                            {project.endorsements.length} Endorsement{project.endorsements.length > 1 ? 's' : ''}
+                          </Badge>
+                        )}
                       </div>
                     )}
 
