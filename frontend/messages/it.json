@@ -1982,6 +1982,135 @@
       "learnMore": "Scopri di Più"
     }
   },
+  "about": {
+    "hero": {
+      "badge": "Il Problema Che Stiamo Risolvendo",
+      "title": "I CV Sono Rotti.",
+      "description": "Chiunque può dichiarare \"Competente in React\" o \"Esperto in Python\" su un CV.\nI recruiter perdono tempo intervistando candidati non qualificati.\nGli studenti con competenze reali vengono trascurati perché non hanno stage prestigiosi."
+    },
+    "resumeProblem": {
+      "title": "Il Problema del CV",
+      "items": {
+        "0": "❌ Competenze non verificate (chiunque può mentire)",
+        "1": "❌ Nessuna prova di capacità",
+        "2": "❌ Premia buoni scrittori, non buoni costruttori",
+        "3": "❌ Favorisce pedigree su talento",
+        "4": "❌ Aziende sprecano €4.000+ per assunzione sbagliata"
+      }
+    },
+    "intransparencyWay": {
+      "title": "Il Modo InTransparency",
+      "items": {
+        "0": "✅ Progetti verificati dall'istituzione (tutti i formati)",
+        "1": "✅ Analisi competenze hard + soft",
+        "2": "✅ Costruzione profilo completo potenziata da AI",
+        "3": "✅ Prova di lavoro batte dichiarazioni",
+        "4": "✅ Trova talenti nascosti 2x più veloce"
+      }
+    },
+    "whyDifferent": {
+      "badge": "Trasparenza vs Opacità",
+      "title": "Perché InTransparency è",
+      "titleHighlight": "Diverso",
+      "subtitle": "Stiamo costruendo una piattaforma dove le competenze sono verificate, i match sono spiegati e i requisiti sono trasparenti.",
+      "challenge": {
+        "title": "La Sfida",
+        "items": {
+          "0": {
+            "title": "Competenze Auto-Dichiarate:",
+            "description": "Senza verifica istituzionale, le competenze possono essere difficili da validare. Questo porta a un tasso di mismatch del 30% nell'assunzione tradizionale."
+          },
+          "1": {
+            "title": "Spiegazioni Limitate:",
+            "description": "Quando il matching non è spiegato, gli studenti non sanno cosa migliorare. Il 70% dei candidati vuole più trasparenza dagli strumenti AI di assunzione."
+          },
+          "2": {
+            "title": "Requisiti Non Chiari:",
+            "description": "Descrizioni lavoro vaghe rendono difficile ai candidati sapere cosa serve davvero. Requisiti chiari riducono i bias del 25%."
+          },
+          "3": {
+            "title": "Gap Informativi:",
+            "description": "Senza cicli di feedback, studenti e istituzioni mancano di insight di mercato. Dati migliori migliorano i risultati per tutti."
+          }
+        }
+      },
+      "solution": {
+        "title": "InTransparency",
+        "items": {
+          "0": {
+            "title": "Competenze Verificate dall'Istituzione:",
+            "description": "Competenze hard (Python, AutoCAD, Excel) e soft (teamwork, leadership, comunicazione) verificate tramite progetti, corsi e dati istituzionali. 92% accuratezza match."
+          },
+          "1": {
+            "title": "AI Spiegabile:",
+            "description": "Ogni match spiega il PERCHÉ (\"Il tuo progetto Python corrisponde a 3/4 requisiti\"). Nessuna black box. 85% maggiore fiducia nell'AI trasparente per studi UE."
+          },
+          "2": {
+            "title": "Trasparenza Bidirezionale:",
+            "description": "Aziende specificano requisiti chiari. Studenti vedono esattamente cosa serve ai lavori. Istituzioni tracciano trend ricerca (es. \"Excel cercato 89x\"). 25% meno bias assunzioni con criteri trasparenti."
+          },
+          "3": {
+            "title": "Trail di Audit Completi:",
+            "description": "Studenti vedono quali aziende hanno visualizzato il loro profilo. Istituzioni vedono pattern di assunzione. Conforme Articolo 15 GDPR. 20-30% boost placement via decisioni basate su dati."
+          }
+        }
+      },
+      "result": {
+        "title": "Il Risultato",
+        "metrics": {
+          "0": {
+            "value": "47 giorni",
+            "label": "Tempo medio per assunzione (vs 42+ giorni tradizionale)"
+          },
+          "1": {
+            "value": "92%",
+            "label": "Accuratezza match (vs 65% per strumenti ATS)"
+          },
+          "2": {
+            "value": "€10",
+            "label": "Per contatto (vs €8.000/anno abbonamenti)"
+          }
+        },
+        "tagline": "La trasparenza costruisce fiducia. La fiducia costruisce match migliori. Match migliori costruiscono carriere."
+      }
+    },
+    "mission": {
+      "title": "La Nostra Missione",
+      "description": "Stiamo costruendo la prima piattaforma portfolio progetti verificata al mondo dove gli studenti dimostrano le loro competenze attraverso ciò che hanno realmente costruito, non ciò che dichiarano di saper fare.",
+      "quote": "\"I progetti parlano più forte dei CV.\"",
+      "quoteAuthor": "— La Filosofia InTransparency",
+      "story": {
+        "title": "Come Siamo Nati",
+        "paragraphs": {
+          "0": "InTransparency è nato dalla frustrazione. I nostri fondatori hanno visto studenti talentuosi con progetti universitari incredibili essere rifiutati per lavori perché i loro CV non elencavano \"2+ anni esperienza\" o uno stage FAANG.",
+          "1": "Nel frattempo, le aziende si lamentavano di assumere candidati che sembravano ottimi sulla carta ma non sapevano programmare. La disconnessione era ovvia: i CV premiano il buon storytelling, non la buona costruzione.",
+          "2": "Ci siamo posti una semplice domanda: E se gli studenti potessero mostrare il loro lavoro invece di limitarsi a elencarlo? E se i recruiter potessero vedere progetti verificati con analisi completa delle competenze (hard + soft) e endorsement istituzionali?",
+          "3": "InTransparency è stata la nostra risposta."
+        }
+      }
+    },
+    "values": {
+      "title": "In Cosa Crediamo",
+      "items": {
+        "0": {
+          "title": "Verifica Oltre Dichiarazioni",
+          "description": "Progetti supportati dall'istituzione in tutti i formati, analisi completa competenze ed endorsement provano che le competenze sono reali."
+        },
+        "1": {
+          "title": "Prova di Lavoro",
+          "description": "Mostra ciò che hai costruito, non ciò che dici di saper costruire. Il codice parla più forte dei punti elenco."
+        },
+        "2": {
+          "title": "Talento Oltre Pedigree",
+          "description": "Un progetto brillante da una università statale batte un CV mediocre da una Ivy League."
+        },
+        "3": {
+          "title": "Sempre Trasparenza",
+          "description": "Nessun algoritmo nascosto. Gli studenti vedono chi ha visualizzato il loro profilo. Le aziende vedono dati verificati."
+        }
+      }
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Modello Servizio Senza Abbonamenti",

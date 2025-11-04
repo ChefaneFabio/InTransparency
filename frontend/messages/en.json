@@ -1982,6 +1982,135 @@
       "learnMore": "Learn More"
     }
   },
+  "about": {
+    "hero": {
+      "badge": "The Problem We're Solving",
+      "title": "Resumes Are Broken.",
+      "description": "Anyone can claim \"Proficient in React\" or \"Expert in Python\" on a resume.\nRecruiters waste time interviewing unqualified candidates.\nStudents with real skills get overlooked because they don't have fancy internships."
+    },
+    "resumeProblem": {
+      "title": "The Resume Problem",
+      "items": {
+        "0": "❌ Unverified skills (anyone can lie)",
+        "1": "❌ No proof of ability",
+        "2": "❌ Rewards good writers, not good builders",
+        "3": "❌ Favors pedigree over talent",
+        "4": "❌ Companies waste $4,000+ per bad hire"
+      }
+    },
+    "intransparencyWay": {
+      "title": "The InTransparency Way",
+      "items": {
+        "0": "✅ Institution-verified projects (all formats)",
+        "1": "✅ Hard skills + soft skills analysis",
+        "2": "✅ AI-powered complete profile building",
+        "3": "✅ Proof of work beats claims",
+        "4": "✅ Find hidden talent 2x faster"
+      }
+    },
+    "whyDifferent": {
+      "badge": "Transparency vs Opacity",
+      "title": "Why InTransparency is",
+      "titleHighlight": "Different",
+      "subtitle": "We're building a platform where skills are verified, matches are explained, and requirements are transparent.",
+      "challenge": {
+        "title": "The Challenge",
+        "items": {
+          "0": {
+            "title": "Self-Reported Skills:",
+            "description": "Without institutional verification, skills can be hard to validate. This leads to a 30% mismatch rate in traditional hiring."
+          },
+          "1": {
+            "title": "Limited Explanations:",
+            "description": "When matching isn't explained, students don't know what to improve. 70% of candidates want more transparency from AI hiring tools."
+          },
+          "2": {
+            "title": "Unclear Requirements:",
+            "description": "Vague job descriptions make it hard for candidates to know what's really needed. Clear requirements reduce bias by 25%."
+          },
+          "3": {
+            "title": "Information Gaps:",
+            "description": "Without feedback loops, students and institutions lack market insights. Better data improves outcomes for everyone."
+          }
+        }
+      },
+      "solution": {
+        "title": "InTransparency",
+        "items": {
+          "0": {
+            "title": "Institution-Verified Skills:",
+            "description": "Hard skills (Python, AutoCAD, Excel) and soft skills (teamwork, leadership, communication) verified through projects, courses, and institutional data. 92% match accuracy."
+          },
+          "1": {
+            "title": "Explainable AI:",
+            "description": "Every match explains WHY (\"Your Python project matches 3/4 requirements\"). No black boxes. 85% higher trust in transparent AI per EU studies."
+          },
+          "2": {
+            "title": "Bidirectional Transparency:",
+            "description": "Companies specify clear requirements. Students see exactly what jobs need. Institutions track search trends (e.g., \"Excel searched 89x\"). 25% less hiring bias with transparent criteria."
+          },
+          "3": {
+            "title": "Full Audit Trails:",
+            "description": "Students see which companies viewed their profile. Institutions see hiring patterns. GDPR Article 15 compliant. 20-30% boost in placements via data-driven decisions."
+          }
+        }
+      },
+      "result": {
+        "title": "The Result",
+        "metrics": {
+          "0": {
+            "value": "47 days",
+            "label": "Average time to hire (vs 42+ days traditional)"
+          },
+          "1": {
+            "value": "92%",
+            "label": "Match accuracy (vs 65% for ATS tools)"
+          },
+          "2": {
+            "value": "€10",
+            "label": "Per contact (vs €8,000/year subscriptions)"
+          }
+        },
+        "tagline": "Transparency builds trust. Trust builds better matches. Better matches build careers."
+      }
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "We're building the world's first verified project portfolio platform where students prove their skills through what they've actually built, not what they claim they can do.",
+      "quote": "\"Projects speak louder than resumes.\"",
+      "quoteAuthor": "— The InTransparency Philosophy",
+      "story": {
+        "title": "How We Started",
+        "paragraphs": {
+          "0": "InTransparency was born from frustration. Our founders watched talented students with incredible university projects get rejected from jobs because their resumes didn't list \"2+ years experience\" or a FAANG internship.",
+          "1": "Meanwhile, companies complained about hiring candidates who looked great on paper but couldn't code. The disconnect was obvious: resumes reward good storytelling, not good building.",
+          "2": "We asked a simple question: What if students could show their work instead of just listing it? What if recruiters could see verified projects with complete skill analysis (hard + soft), and institution endorsements?",
+          "3": "InTransparency was our answer."
+        }
+      }
+    },
+    "values": {
+      "title": "What We Believe",
+      "items": {
+        "0": {
+          "title": "Verification Over Claims",
+          "description": "Institution-backed projects in all formats, complete skill analysis, and endorsements prove skills are real."
+        },
+        "1": {
+          "title": "Proof of Work",
+          "description": "Show what you've built, not what you say you can build. Code speaks louder than bullet points."
+        },
+        "2": {
+          "title": "Talent Over Pedigree",
+          "description": "A brilliant project from a state school beats a mediocre resume from an Ivy League."
+        },
+        "3": {
+          "title": "Transparency Always",
+          "description": "No hidden algorithms. Students see who viewed their profile. Companies see verified data."
+        }
+      }
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Subscription-Free Service Model",
