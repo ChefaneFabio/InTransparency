@@ -83,79 +83,10 @@ export function CTA() {
           </p>
         </div>
 
-        {/* Pricing Section */}
-        <div className="mb-24">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-display font-bold text-foreground mb-4">
-              {t('pricing.title')}
-            </h3>
-            <p className="text-xl text-gray-600">
-              {t('pricing.subtitle')}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {pricingTiers.map((tier, index) => (
-              <div
-                key={tier.name}
-                className={`relative rounded-2xl border-2 p-8 ${
-                  tier.popular
-                    ? 'border-primary shadow-xl scale-105'
-                    : 'border-gray-200'
-                }`}
-              >
-                {tier.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 rounded-full text-sm font-medium">
-                      {t('pricing.mostPopular')}
-                    </span>
-                  </div>
-                )}
-
-                <div className="text-center mb-8">
-                  <h4 className="text-2xl font-bold text-gray-900 mb-2">
-                    {tier.name}
-                  </h4>
-                  <p className="text-gray-600 mb-4">{tier.description}</p>
-                  <div className="text-4xl font-bold text-gray-900">
-                    {tier.price}
-                    {tier.period && (
-                      <span className="text-lg text-gray-700 font-normal">{tier.period}</span>
-                    )}
-                  </div>
-                </div>
-
-                <ul className="space-y-4 mb-8">
-                  {(tier.features || []).map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Button
-                  className={`w-full ${
-                    tier.popular
-                      ? 'bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white'
-                      : 'border border-gray-300 bg-white hover:bg-gray-50 text-gray-900'
-                  }`}
-                  asChild
-                >
-                  <Link href={tier.name === 'University' ? '/contact-sales' : '/auth/register'}>
-                    {tier.cta}
-                  </Link>
-                </Button>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-8">
-            <p className="text-sm text-gray-700">
-              {t('pricing.allPlansInclude')}
-            </p>
-          </div>
-        </div>
+        {/* Pricing Section - Hidden on homepage, available on /pricing page */}
+        {/* <div className="mb-24">
+          ... pricing content removed for homepage ...
+        </div> */}
 
         {/* Social Proof / Viral Section */}
         <div className="mb-24 text-center">
