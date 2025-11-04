@@ -2744,5 +2744,49 @@
       "message": "Non hai un account?",
       "link": "Registrati qui"
     }
+  },
+  "companiesSearch": {
+    "header": {
+      "title": "Scopri Talenti Accademici",
+      "subtitle": "Trova laureati basati su prestazioni accademiche verificate e progetti reali"
+    },
+    "search": {
+      "placeholder": "Prova: \"Sviluppatore Python con background ML e progetti healthcare\"",
+      "aiButton": "Ricerca AI",
+      "filtersButton": "Filtri",
+      "aiUnderstanding": "Comprensione AI: Cercando laureati in",
+      "withSkills": "con competenze",
+      "andProjectExperience": "ed esperienza in progetti"
+    },
+    "filters": {
+      "title": "Filtri Avanzati",
+      "gpaRange": "Intervallo GPA (18-30)",
+      "universities": "Università",
+      "mustHaveCourses": "Corsi Obbligatori",
+      "minGrade": "(min 25/30)",
+      "cancel": "Annulla",
+      "apply": "Applica Filtri"
+    },
+    "results": {
+      "found": "Trovati {count} candidati corrispondenti",
+      "sortBy": {
+        "label": "Ordina per:",
+        "bestMatch": "Migliore Corrispondenza",
+        "gpaHighToLow": "GPA (Alto a Basso)",
+        "recentGraduates": "Laureati Recenti",
+        "mostProjects": "Più Progetti"
+      }
+    },
+    "candidate": {
+      "verified": "Verificato",
+      "match": "{score}% Corrispondenza",
+      "gpa": "GPA",
+      "topCourses": "Corsi Principali:",
+      "skillsFromProjects": "Competenze dai Progetti:",
+      "projects": "Progetti",
+      "profEndorsements": "{count} Raccomandazioni Prof.",
+      "viewProfile": "Visualizza Profilo"
+    },
+    "loadMore": "Carica Altri Candidati"
   }
 }

@@ -2744,5 +2744,50 @@
       "message": "Don't have an account?",
       "link": "Sign up here"
     }
+  },
+  "companiesSearch": {
+    "header": {
+      "title": "Discover Academic Talent",
+      "subtitle": "Find graduates based on verified academic performance and real projects"
+    },
+    "search": {
+      "placeholder": "Try: \"Python developer with ML background and healthcare projects\"",
+      "aiButton": "AI Search",
+      "filtersButton": "Filters",
+      "aiUnderstanding": "AI Understanding: Looking for",
+      "withSkills": "graduates with",
+      "andProjectExperience": "skills and",
+      "projectExperience": "project experience"
+    },
+    "filters": {
+      "title": "Advanced Filters",
+      "gpaRange": "GPA Range (18-30)",
+      "universities": "Universities",
+      "mustHaveCourses": "Must Have Courses",
+      "minGrade": "(min 25/30)",
+      "cancel": "Cancel",
+      "apply": "Apply Filters"
+    },
+    "results": {
+      "found": "Found {count} matching candidates",
+      "sortBy": {
+        "label": "Sort by:",
+        "bestMatch": "Best Match",
+        "gpaHighToLow": "GPA (High to Low)",
+        "recentGraduates": "Recent Graduates",
+        "mostProjects": "Most Projects"
+      }
+    },
+    "candidate": {
+      "verified": "Verified",
+      "match": "{score}% Match",
+      "gpa": "GPA",
+      "topCourses": "Top Courses:",
+      "skillsFromProjects": "Skills from Projects:",
+      "projects": "Projects",
+      "profEndorsements": "{count} Prof. Endorsements",
+      "viewProfile": "View Profile"
+    },
+    "loadMore": "Load More Candidates"
   }
 }
