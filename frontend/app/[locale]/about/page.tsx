@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/button'
@@ -11,6 +12,7 @@ import { IMAGES } from '@/lib/images'
 import { motion } from 'framer-motion'
 
 export default function AboutPage() {
+  const t = useTranslations('about')
   return (
     <div className="min-h-screen hero-bg">
       <Header />
@@ -35,15 +37,13 @@ export default function AboutPage() {
               className="text-center mb-12"
             >
               <div className="inline-block bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                The Problem We're Solving
+                {t('hero.badge')}
               </div>
               <h1 className="text-5xl font-display font-bold text-foreground mb-6">
-                Resumes Are Broken.
+                {t('hero.title')}
               </h1>
-              <p className="text-xl text-gray-700 leading-relaxed">
-                Anyone can claim "Proficient in React" or "Expert in Python" on a resume. <br />
-                Recruiters waste time interviewing unqualified candidates. <br />
-                <strong>Students with real skills get overlooked</strong> because they don't have fancy internships.
+              <p className="text-xl text-gray-700 leading-relaxed whitespace-pre-line">
+                {t('hero.description')}
               </p>
             </motion.div>
 
@@ -64,13 +64,13 @@ export default function AboutPage() {
                       className="object-cover"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">The Resume Problem</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{t('resumeProblem.title')}</h3>
                   <ul className="space-y-2 text-gray-700">
-                    <li>❌ Unverified skills (anyone can lie)</li>
-                    <li>❌ No proof of ability</li>
-                    <li>❌ Rewards good writers, not good builders</li>
-                    <li>❌ Favors pedigree over talent</li>
-                    <li>❌ Companies waste $4,000+ per bad hire</li>
+                    <li>{t('resumeProblem.items.0')}</li>
+                    <li>{t('resumeProblem.items.1')}</li>
+                    <li>{t('resumeProblem.items.2')}</li>
+                    <li>{t('resumeProblem.items.3')}</li>
+                    <li>{t('resumeProblem.items.4')}</li>
                   </ul>
                 </CardContent>
               </Card>
@@ -92,13 +92,13 @@ export default function AboutPage() {
                       className="object-cover"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">The InTransparency Way</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{t('intransparencyWay.title')}</h3>
                   <ul className="space-y-2 text-gray-700">
-                    <li>✅ Institution-verified projects (all formats)</li>
-                    <li>✅ Hard skills + soft skills analysis</li>
-                    <li>✅ AI-powered complete profile building</li>
-                    <li>✅ Proof of work beats claims</li>
-                    <li>✅ Find hidden talent 2x faster</li>
+                    <li>{t('intransparencyWay.items.0')}</li>
+                    <li>{t('intransparencyWay.items.1')}</li>
+                    <li>{t('intransparencyWay.items.2')}</li>
+                    <li>{t('intransparencyWay.items.3')}</li>
+                    <li>{t('intransparencyWay.items.4')}</li>
                   </ul>
                 </CardContent>
               </Card>
@@ -118,16 +118,16 @@ export default function AboutPage() {
               className="text-center mb-16"
             >
               <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                Transparency vs Opacity
+                {t('whyDifferent.badge')}
               </div>
               <h2 className="text-4xl font-display font-bold text-foreground mb-4">
-                Why InTransparency is{' '}
+                {t('whyDifferent.title')}{' '}
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Different
+                  {t('whyDifferent.titleHighlight')}
                 </span>
               </h2>
               <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-                We're building a platform where skills are verified, matches are explained, and requirements are transparent.
+                {t('whyDifferent.subtitle')}
               </p>
             </motion.div>
 
@@ -142,35 +142,35 @@ export default function AboutPage() {
                   <CardContent className="p-8">
                     <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                       <FileX2 className="h-6 w-6" />
-                      The Challenge
+                      {t('whyDifferent.challenge.title')}
                     </h3>
                     <ul className="space-y-4">
                       <li className="flex items-start gap-3">
                         <span className="text-gray-600 font-bold">→</span>
                         <div>
-                          <strong className="text-gray-900">Self-Reported Skills:</strong>
-                          <p className="text-gray-700 text-sm">Without institutional verification, skills can be hard to validate. This leads to a <strong>30% mismatch rate</strong> in traditional hiring.</p>
+                          <strong className="text-gray-900">{t('whyDifferent.challenge.items.0.title')}</strong>
+                          <p className="text-gray-700 text-sm">{t('whyDifferent.challenge.items.0.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="text-gray-600 font-bold">→</span>
                         <div>
-                          <strong className="text-gray-900">Limited Explanations:</strong>
-                          <p className="text-gray-700 text-sm">When matching isn't explained, students don't know what to improve. <strong>70% of candidates</strong> want more transparency from AI hiring tools.</p>
+                          <strong className="text-gray-900">{t('whyDifferent.challenge.items.1.title')}</strong>
+                          <p className="text-gray-700 text-sm">{t('whyDifferent.challenge.items.1.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="text-gray-600 font-bold">→</span>
                         <div>
-                          <strong className="text-gray-900">Unclear Requirements:</strong>
-                          <p className="text-gray-700 text-sm">Vague job descriptions make it hard for candidates to know what's really needed. Clear requirements reduce bias by <strong>25%</strong>.</p>
+                          <strong className="text-gray-900">{t('whyDifferent.challenge.items.2.title')}</strong>
+                          <p className="text-gray-700 text-sm">{t('whyDifferent.challenge.items.2.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="text-gray-600 font-bold">→</span>
                         <div>
-                          <strong className="text-gray-900">Information Gaps:</strong>
-                          <p className="text-gray-700 text-sm">Without feedback loops, students and institutions lack market insights. Better data improves outcomes for everyone.</p>
+                          <strong className="text-gray-900">{t('whyDifferent.challenge.items.3.title')}</strong>
+                          <p className="text-gray-700 text-sm">{t('whyDifferent.challenge.items.3.description')}</p>
                         </div>
                       </li>
                     </ul>
@@ -188,35 +188,35 @@ export default function AboutPage() {
                   <CardContent className="p-8">
                     <h3 className="text-2xl font-bold text-green-900 mb-6 flex items-center gap-2">
                       <Shield className="h-6 w-6" />
-                      InTransparency
+                      {t('whyDifferent.solution.title')}
                     </h3>
                     <ul className="space-y-4">
                       <li className="flex items-start gap-3">
                         <span className="text-green-600 font-bold">✅</span>
                         <div>
-                          <strong className="text-green-900">Institution-Verified Skills:</strong>
-                          <p className="text-gray-700 text-sm">Hard skills (Python, AutoCAD, Excel) and soft skills (teamwork, leadership, communication) verified through projects, courses, and institutional data. <strong>92% match accuracy</strong>.</p>
+                          <strong className="text-green-900">{t('whyDifferent.solution.items.0.title')}</strong>
+                          <p className="text-gray-700 text-sm">{t('whyDifferent.solution.items.0.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="text-green-600 font-bold">✅</span>
                         <div>
-                          <strong className="text-green-900">Explainable AI:</strong>
-                          <p className="text-gray-700 text-sm">Every match explains WHY ("Your Python project matches 3/4 requirements"). No black boxes. <strong>85% higher trust</strong> in transparent AI per EU studies.</p>
+                          <strong className="text-green-900">{t('whyDifferent.solution.items.1.title')}</strong>
+                          <p className="text-gray-700 text-sm">{t('whyDifferent.solution.items.1.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="text-green-600 font-bold">✅</span>
                         <div>
-                          <strong className="text-green-900">Bidirectional Transparency:</strong>
-                          <p className="text-gray-700 text-sm">Companies specify clear requirements. Students see exactly what jobs need. Institutions track search trends (e.g., "Excel searched 89x"). <strong>25% less hiring bias</strong> with transparent criteria.</p>
+                          <strong className="text-green-900">{t('whyDifferent.solution.items.2.title')}</strong>
+                          <p className="text-gray-700 text-sm">{t('whyDifferent.solution.items.2.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="text-green-600 font-bold">✅</span>
                         <div>
-                          <strong className="text-green-900">Full Audit Trails:</strong>
-                          <p className="text-gray-700 text-sm">Students see which companies viewed their profile. Institutions see hiring patterns. GDPR Article 15 compliant. <strong>20-30% boost in placements</strong> via data-driven decisions.</p>
+                          <strong className="text-green-900">{t('whyDifferent.solution.items.3.title')}</strong>
+                          <p className="text-gray-700 text-sm">{t('whyDifferent.solution.items.3.description')}</p>
                         </div>
                       </li>
                     </ul>
@@ -233,23 +233,23 @@ export default function AboutPage() {
             >
               <Card className="bg-gradient-to-r from-primary to-secondary text-white">
                 <CardContent className="p-8 text-center">
-                  <h3 className="text-2xl font-display font-bold mb-4">The Result</h3>
+                  <h3 className="text-2xl font-display font-bold mb-4">{t('whyDifferent.result.title')}</h3>
                   <div className="grid md:grid-cols-3 gap-6 mb-6">
                     <div>
-                      <div className="text-4xl font-bold mb-2">47 days</div>
-                      <div className="text-white/90">Average time to hire (vs 42+ days traditional)</div>
+                      <div className="text-4xl font-bold mb-2">{t('whyDifferent.result.metrics.0.value')}</div>
+                      <div className="text-white/90">{t('whyDifferent.result.metrics.0.label')}</div>
                     </div>
                     <div>
-                      <div className="text-4xl font-bold mb-2">92%</div>
-                      <div className="text-white/90">Match accuracy (vs 65% for ATS tools)</div>
+                      <div className="text-4xl font-bold mb-2">{t('whyDifferent.result.metrics.1.value')}</div>
+                      <div className="text-white/90">{t('whyDifferent.result.metrics.1.label')}</div>
                     </div>
                     <div>
-                      <div className="text-4xl font-bold mb-2">€10</div>
-                      <div className="text-white/90">Per contact (vs €8,000/year subscriptions)</div>
+                      <div className="text-4xl font-bold mb-2">{t('whyDifferent.result.metrics.2.value')}</div>
+                      <div className="text-white/90">{t('whyDifferent.result.metrics.2.label')}</div>
                     </div>
                   </div>
                   <p className="text-white/90 text-lg">
-                    Transparency builds trust. Trust builds better matches. Better matches build careers.
+                    {t('whyDifferent.result.tagline')}
                   </p>
                 </CardContent>
               </Card>
@@ -277,36 +277,36 @@ export default function AboutPage() {
               className="text-center mb-16"
             >
               <h2 className="text-4xl font-display font-bold text-foreground mb-4">
-                Our Mission
+                {t('mission.title')}
               </h2>
               <p className="text-xl text-gray-700 leading-relaxed">
-                We're building the world's first <strong>verified project portfolio platform</strong> where students prove their skills through what they've actually built, not what they claim they can do.
+                {t('mission.description')}
               </p>
             </motion.div>
 
             <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-12 text-white text-center mb-16">
               <blockquote className="text-2xl font-medium italic mb-4">
-                "Projects speak louder than resumes."
+                {t('mission.quote')}
               </blockquote>
               <p className="text-white/80">
-                — The InTransparency Philosophy
+                {t('mission.quoteAuthor')}
               </p>
             </div>
 
             {/* Our Story */}
             <div className="prose prose-lg max-w-none">
-              <h3 className="text-2xl font-display font-bold text-foreground mb-4">How We Started</h3>
+              <h3 className="text-2xl font-display font-bold text-foreground mb-4">{t('mission.story.title')}</h3>
               <p className="text-gray-700 leading-relaxed mb-4">
-                InTransparency was born from frustration. Our founders watched talented students with incredible university projects get rejected from jobs because their resumes didn't list "2+ years experience" or a FAANG internship.
+                {t('mission.story.paragraphs.0')}
               </p>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Meanwhile, companies complained about hiring candidates who looked great on paper but couldn't code. The disconnect was obvious: <strong>resumes reward good storytelling, not good building.</strong>
+                {t('mission.story.paragraphs.1')}
               </p>
               <p className="text-gray-700 leading-relaxed mb-8">
-                We asked a simple question: What if students could show their work instead of just listing it? What if recruiters could see verified projects with complete skill analysis (hard + soft), and institution endorsements?
+                {t('mission.story.paragraphs.2')}
               </p>
               <p className="text-gray-700 leading-relaxed font-semibold">
-                InTransparency was our answer.
+                {t('mission.story.paragraphs.3')}
               </p>
             </div>
           </div>
@@ -316,30 +316,30 @@ export default function AboutPage() {
         <section className="py-20 hero-bg">
           <div className="container max-w-6xl">
             <h2 className="text-4xl font-display font-bold text-foreground text-center mb-16">
-              What We Believe
+              {t('values.title')}
             </h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 {
                   image: IMAGES.students.student5,
-                  title: 'Verification Over Claims',
-                  description: 'Institution-backed projects in all formats, complete skill analysis, and endorsements prove skills are real.'
+                  title: t('values.items.0.title'),
+                  description: t('values.items.0.description')
                 },
                 {
                   image: IMAGES.companies.office2,
-                  title: 'Proof of Work',
-                  description: 'Show what you\'ve built, not what you say you can build. Code speaks louder than bullet points.'
+                  title: t('values.items.1.title'),
+                  description: t('values.items.1.description')
                 },
                 {
                   image: IMAGES.features.collaboration,
-                  title: 'Talent Over Pedigree',
-                  description: 'A brilliant project from a state school beats a mediocre resume from an Ivy League.'
+                  title: t('values.items.2.title'),
+                  description: t('values.items.2.description')
                 },
                 {
                   image: IMAGES.success.handshake,
-                  title: 'Transparency Always',
-                  description: 'No hidden algorithms. Students see who viewed their profile. Companies see verified data.'
+                  title: t('values.items.3.title'),
+                  description: t('values.items.3.description')
                 }
               ].map((value, idx) => {
                 return (
@@ -378,6 +378,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Business Model */}
+        {/* TODO: Add translations for businessModel section */}
         <section className="py-20 hero-bg">
           <div className="container max-w-4xl">
             <motion.div
@@ -461,6 +462,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Vision */}
+        {/* TODO: Add translations for vision section */}
         <section className="py-20 hero-bg">
           <div className="container max-w-4xl">
             <motion.div
@@ -529,6 +531,7 @@ export default function AboutPage() {
         </section>
 
         {/* The Enemy: Resumes */}
+        {/* TODO: Add translations for killResume section */}
         <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
           <div className="container max-w-4xl text-center">
             <h2 className="text-4xl font-bold mb-6">
@@ -564,6 +567,7 @@ export default function AboutPage() {
         </section>
 
         {/* Join Us */}
+        {/* TODO: Add translations for joinMovement section */}
         <section className="py-20 hero-bg">
           <div className="container max-w-4xl text-center">
             <h2 className="text-4xl font-display font-bold text-foreground mb-6">
