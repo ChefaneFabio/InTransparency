@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const createNextIntlPlugin = require('next-intl/plugin')
-const withNextIntl = createNextIntlPlugin()
+const withNextIntl = createNextIntlPlugin('./i18n.ts')
 
 const isDev = process.env.NODE_ENV === 'development'
 const isVercel = process.env.VERCEL === '1'
