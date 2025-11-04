@@ -41,25 +41,31 @@ export function HowItWorks() {
   const t = useTranslations('home.howItWorksPage')
 
   // Get step data from translations
-  const getStep = (index: number) => ({
-    id: index + 1,
-    title: t(`steps.${index}.title`),
-    description: t(`steps.${index}.description`),
-    details: [
-      t(`steps.${index}.details.0`),
-      t(`steps.${index}.details.1`),
-      t(`steps.${index}.details.2`),
-      t(`steps.${index}.details.3`)
-    ],
-    stats: {
-      key1: Object.keys(JSON.parse(t.raw(`steps.${index}.stats`) as string))[0] as string,
-      value1: Object.values(JSON.parse(t.raw(`steps.${index}.stats`) as string))[0] as string,
-      key2: Object.keys(JSON.parse(t.raw(`steps.${index}.stats`) as string))[1] as string,
-      value2: Object.values(JSON.parse(t.raw(`steps.${index}.stats`) as string))[1] as string
-    },
-    image: stepImages[index],
-    color: 'from-primary to-secondary'
-  })
+  const getStep = (index: number) => {
+    const statsObj = t.raw(`steps.${index}.stats`) as Record<string, string>
+    const statsKeys = Object.keys(statsObj)
+    const statsValues = Object.values(statsObj)
+
+    return {
+      id: index + 1,
+      title: t(`steps.${index}.title`),
+      description: t(`steps.${index}.description`),
+      details: [
+        t(`steps.${index}.details.0`),
+        t(`steps.${index}.details.1`),
+        t(`steps.${index}.details.2`),
+        t(`steps.${index}.details.3`)
+      ],
+      stats: {
+        key1: statsKeys[0] as string,
+        value1: statsValues[0] as string,
+        key2: statsKeys[1] as string,
+        value2: statsValues[1] as string
+      },
+      image: stepImages[index],
+      color: 'from-primary to-secondary'
+    }
+  }
 
   const steps = [0, 1, 2, 3].map(i => getStep(i))
 
