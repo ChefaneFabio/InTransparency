@@ -27,9 +27,6 @@ export async function GET(
         degree: true,
         graduationYear: true,
         profilePublic: true,
-        linkedinUrl: true,
-        githubUrl: true,
-        portfolioUrl: true,
         projects: {
           where: {
             isPublic: true

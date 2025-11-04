@@ -62,11 +62,7 @@ export async function GET(request: NextRequest) {
         university: true,
         degree: true,
         graduationYear: true,
-        profilePublic: true,
-        skills: true,
-        linkedinUrl: true,
-        githubUrl: true,
-        portfolioUrl: true
+        profilePublic: true
       }
     })
 

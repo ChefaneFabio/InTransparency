@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, mkdir } from 'fs/promises'
+import { promises as fs } from 'fs'
 import { existsSync } from 'fs'
 import path from 'path'
 import { v4 as uuidv4 } from 'uuid'
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
 
     // Create uploads directory if it doesn't exist
     if (!existsSync(uploadDir)) {
-      await mkdir(uploadDir, { recursive: true })
+      await fs.mkdir(uploadDir, { recursive: true })
     }
 
     const filePath = path.join(uploadDir, uniqueFilename)
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     // Convert file to buffer and save
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
-    await writeFile(filePath, buffer)
+    await fs.writeFile(filePath, buffer)
 
     // Return the URL (in production, this would be the cloud storage URL)
     const videoUrl = `/uploads/videos/${uniqueFilename}`

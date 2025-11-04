@@ -10,7 +10,6 @@ import {
   ArrowRight,
   CheckCircle,
   Github,
-  Linkedin,
   ExternalLink,
   Award,
   Code,
@@ -30,8 +29,6 @@ interface PublicPortfolioProps {
     university: string
     degree: string
     graduationYear: number
-    linkedinUrl?: string
-    githubUrl?: string
     projects: any[]
     stats: {
       projectsCount: number
@@ -70,26 +67,6 @@ export function PublicPortfolio({ user }: PublicPortfolioProps) {
               {user.bio}
             </p>
           )}
-
-          {/* Social Links */}
-          <div className="flex items-center justify-center gap-3 mb-8">
-            {user.linkedinUrl && (
-              <Button variant="outline" size="sm" asChild>
-                <a href={user.linkedinUrl} target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="h-4 w-4 mr-2" />
-                  LinkedIn
-                </a>
-              </Button>
-            )}
-            {user.githubUrl && (
-              <Button variant="outline" size="sm" asChild>
-                <a href={user.githubUrl} target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4 mr-2" />
-                  GitHub
-                </a>
-              </Button>
-            )}
-          </div>
 
           {/* CTA for Recruiters */}
           <div className="flex items-center justify-center gap-3">
