@@ -4,12 +4,17 @@ import { requireAuth } from '@/lib/auth/jwt-verify'
 import prisma from '@/lib/prisma'
 import { STRIPE_PRICE_IDS, STRIPE_CONFIG } from '@/lib/config/pricing'
 
-const stripe = new Stripe(STRIPE_CONFIG.secretKey, {
-  apiVersion: '2025-09-30.clover'
-})
+// Lazy initialize Stripe to avoid build-time errors
+function getStripe() {
+  return new Stripe(STRIPE_CONFIG.secretKey, {
+    apiVersion: '2025-09-30.clover'
+  })
+}
 
 export async function POST(req: NextRequest) {
   try {
+    const stripe = getStripe()
+
     // Get authenticated user ID
     const userId = await requireAuth(req)
     if (!userId) {
