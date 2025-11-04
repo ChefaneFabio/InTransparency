@@ -6,6 +6,8 @@ const navigation = {
   product: [
     { name: 'Features', href: '/features' },
     { name: 'How it Works', href: '/how-it-works' },
+    { name: 'Explore Portfolios', href: '/explore' },
+    { name: 'Success Stories', href: '/success-stories' },
     { name: 'Pricing', href: '/pricing' },
   ],
   company: [
