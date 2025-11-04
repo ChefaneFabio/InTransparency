@@ -1640,6 +1640,182 @@
       "university": "Università"
     }
   },
+  "transparency": {
+    "hero": {
+      "badge": "Il Nostro Impegno alla Trasparenza",
+      "title": "Competenze Verificate",
+      "subtitle": "Spiegazioni Chiare",
+      "description": "Competenze hard e soft verificate dall'istituzione. Matching AI spiegabile. Feedback diretto dalle aziende. Completa trasparenza per studenti, aziende e istituzioni.",
+      "ctas": {
+        "features": "Vedi le Nostre Funzionalità",
+        "demo": "Prova la Demo Live"
+      }
+    },
+    "challenge": {
+      "title": "La Sfida del Recruiting",
+      "subtitle": "Il recruiting tradizionale si basa su CV auto-dichiarati e punteggi di match non spiegati",
+      "selfReported": {
+        "title": "Competenze Auto-Dichiarate",
+        "items": {
+          "0": {
+            "title": "Difficili da verificare",
+            "subtitle": "Competenze tecniche e soft skills",
+            "description": "Le competenze sul CV spesso non corrispondono alle capacità reali"
+          },
+          "1": {
+            "title": "30% mismatch competenze",
+            "subtitle": "nelle assunzioni",
+            "description": "La verifica istituzionale colma questo gap"
+          },
+          "2": {
+            "title": "Validazione dispendiosa",
+            "subtitle": "in termini di tempo",
+            "description": "I recruiter passano ore a verificare le credenziali"
+          }
+        }
+      },
+      "unexplainedMatching": {
+        "title": "Matching Non Spiegato",
+        "items": {
+          "0": {
+            "title": "Trasparenza limitata",
+            "subtitle": "nelle ragioni del match",
+            "description": "Gli studenti non sanno cosa migliorare"
+          },
+          "1": {
+            "title": "70% vuole più chiarezza",
+            "subtitle": "dagli strumenti AI",
+            "description": "Il matching spiegabile crea fiducia"
+          },
+          "2": {
+            "title": "Il feedback aiuta tutti",
+            "subtitle": "",
+            "description": "Requisiti chiari riducono i bias del 25%"
+          }
+        }
+      }
+    },
+    "model": {
+      "title": "Il Nostro Modello di Trasparenza",
+      "subtitle": "Quattro pilastri di completa trasparenza sulla piattaforma",
+      "pillars": {
+        "0": {
+          "title": "1. Competenze Verificate",
+          "description": "Competenze hard e soft verificate attraverso dati istituzionali e analisi progetti.",
+          "items": {
+            "0": "Hard skills: Verificate attraverso progetti, codice, design, ricerca",
+            "1": "Soft skills: Analizzate da teamwork, leadership, presentazioni",
+            "2": "Voti, corsi e traguardi autenticati dall'istituzione",
+            "3": "92% accuratezza match vs 65% per metodi tradizionali"
+          }
+        },
+        "1": {
+          "title": "2. AI Spiegabile",
+          "description": "Ogni match mostra esattamente il PERCHÉ. Le aziende possono aggiungere note con feedback.",
+          "items": {
+            "0": "Punteggio match trasparente (es. \"85% match\")",
+            "1": "Spiegazioni chiare (\"Il tuo progetto Python corrisponde a 3/4 requisiti\")",
+            "2": "Note aziende: \"Aggiungi esperienza AWS e sei perfetto\"",
+            "3": "85% maggiore fiducia nell'AI trasparente (studi UE)"
+          }
+        },
+        "2": {
+          "title": "3. Trasparenza Bidirezionale",
+          "description": "Le aziende dichiarano i requisiti chiaramente. Gli studenti ricevono feedback azionabile. Nessun gioco di indovinelli.",
+          "items": {
+            "0": "Aziende dichiarano esplicitamente quali competenze/conoscenze servono",
+            "1": "Aziende lasciano note sui profili con feedback specifico",
+            "2": "Studenti sanno esattamente cosa migliorare (es. \"Aggiungi esperienza AWS\")",
+            "3": "25% meno bias nelle assunzioni con requisiti trasparenti"
+          }
+        },
+        "3": {
+          "title": "4. Consenso & Trail di Audit",
+          "description": "Completo controllo sui dati. Vedi tutte le note e i feedback delle aziende sul tuo profilo.",
+          "items": {
+            "0": "Controlli condivisione dati opt-in",
+            "1": "Vedi tutte le note aziende e cosa cercano",
+            "2": "Revoca l'accesso in qualsiasi momento",
+            "3": "Conforme all'Articolo 15 GDPR"
+          }
+        }
+      }
+    },
+    "benefits": {
+      "title": "La Trasparenza Beneficia Tutti",
+      "students": {
+        "title": "Per Studenti",
+        "items": {
+          "0": "Vedi quali aziende hanno visualizzato il tuo profilo",
+          "1": "Capisci perché sei stato/non sei stato selezionato",
+          "2": "Sappi esattamente quali competenze richiedono i lavori",
+          "3": "Fidati che le tue competenze sono rappresentate equamente",
+          "4": "Niente più rifiuti black-box"
+        }
+      },
+      "companies": {
+        "title": "Per Aziende",
+        "items": {
+          "0": "Competenze verificate, non inflazione CV",
+          "1": "Match spiegabili con ragionamento",
+          "2": "Vedi il lavoro reale su progetti prima di contattare",
+          "3": "92% accuratezza match fa risparmiare tempo",
+          "4": "€10 per contatto vs €8K/anno abbonamenti"
+        }
+      },
+      "institutions": {
+        "title": "Per Istituzioni",
+        "items": {
+          "0": "Monitora quali aziende visualizzano gli studenti",
+          "1": "Career counseling basato sui dati",
+          "2": "Intervento precoce per studenti a rischio",
+          "3": "Feedback curriculum dalla domanda di mercato",
+          "4": "20-30% boost nei placement"
+        }
+      }
+    },
+    "impact": {
+      "title": "L'Impatto della Trasparenza",
+      "subtitle": "Dati reali che mostrano come la trasparenza migliora i risultati per tutti",
+      "metrics": {
+        "0": {
+          "value": "92%",
+          "label": "Accuratezza Match",
+          "note": "(vs 65% per ATS)"
+        },
+        "1": {
+          "value": "85%",
+          "label": "Maggiore Fiducia",
+          "note": "(studi trasparenza AI UE)"
+        },
+        "2": {
+          "value": "25%",
+          "label": "Meno Bias",
+          "note": "(con criteri trasparenti)"
+        },
+        "3": {
+          "value": "20-30%",
+          "label": "Più Placement",
+          "note": "(decisioni basate su dati)"
+        }
+      }
+    },
+    "cta": {
+      "title": "Sperimenta la Vera Trasparenza",
+      "subtitle": "Unisciti a una piattaforma dove competenze verificate, AI spiegabile e visibilità reciproca creano match migliori per tutti.",
+      "buttons": {
+        "getStarted": "Inizia Gratis",
+        "demo": "Prova la Demo Live",
+        "learnMore": "Scopri di Più"
+      },
+      "compliance": {
+        "gdpr": "Conforme GDPR",
+        "soc2": "SOC 2 Type II",
+        "iso": "ISO 27001",
+        "explainableAI": "AI Spiegabile"
+      }
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Modello Servizio Senza Abbonamenti",

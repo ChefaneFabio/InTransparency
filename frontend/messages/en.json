@@ -1640,6 +1640,182 @@
       "university": "University"
     }
   },
+  "transparency": {
+    "hero": {
+      "badge": "Our Transparency Commitment",
+      "title": "Verified Skills",
+      "subtitle": "Clear Explanations",
+      "description": "Institution-verified hard and soft skills. Explainable AI matching. Direct company feedback. Complete transparency for students, companies, and institutions.",
+      "ctas": {
+        "features": "See Our Features",
+        "demo": "Try Live Demo"
+      }
+    },
+    "challenge": {
+      "title": "The Hiring Challenge",
+      "subtitle": "Traditional hiring relies on self-reported CVs and unexplained match scores",
+      "selfReported": {
+        "title": "Self-Reported Skills",
+        "items": {
+          "0": {
+            "title": "Hard to verify",
+            "subtitle": "technical and soft skills",
+            "description": "Resume skills often don't match actual capabilities"
+          },
+          "1": {
+            "title": "30% skill mismatch",
+            "subtitle": "in hires",
+            "description": "Institutional verification closes this gap"
+          },
+          "2": {
+            "title": "Time-consuming validation",
+            "subtitle": "",
+            "description": "Recruiters spend hours verifying credentials"
+          }
+        }
+      },
+      "unexplainedMatching": {
+        "title": "Unexplained Matching",
+        "items": {
+          "0": {
+            "title": "Limited transparency",
+            "subtitle": "in match reasons",
+            "description": "Students don't know what to improve"
+          },
+          "1": {
+            "title": "70% want more clarity",
+            "subtitle": "from AI tools",
+            "description": "Explainable matching builds trust"
+          },
+          "2": {
+            "title": "Feedback helps everyone",
+            "subtitle": "",
+            "description": "Clear requirements reduce bias by 25%"
+          }
+        }
+      }
+    },
+    "model": {
+      "title": "Our Transparency Model",
+      "subtitle": "Four pillars of complete transparency across the platform",
+      "pillars": {
+        "0": {
+          "title": "1. Verified Competencies",
+          "description": "Hard and soft skills verified through institutional data and project analysis.",
+          "items": {
+            "0": "Hard skills: Verified through projects, code, designs, research",
+            "1": "Soft skills: Analyzed from teamwork, leadership, presentations",
+            "2": "Institution-authenticated grades, courses, and achievements",
+            "3": "92% match accuracy vs 65% for traditional methods"
+          }
+        },
+        "1": {
+          "title": "2. Explainable AI",
+          "description": "Every match shows exactly WHY. Companies can add notes with feedback.",
+          "items": {
+            "0": "Transparent match scoring (e.g., \"85% match\")",
+            "1": "Clear explanations (\"Your Python project matches 3/4 requirements\")",
+            "2": "Company notes: \"Add AWS experience and you're perfect\"",
+            "3": "85% higher trust in transparent AI (EU studies)"
+          }
+        },
+        "2": {
+          "title": "3. Bidirectional Transparency",
+          "description": "Companies state requirements clearly. Students get actionable feedback. No guessing games.",
+          "items": {
+            "0": "Companies explicitly state what skills/knowledge they need",
+            "1": "Companies leave notes on profiles with specific feedback",
+            "2": "Students know exactly what to improve (e.g., \"Add AWS experience\")",
+            "3": "25% less hiring bias with transparent requirements"
+          }
+        },
+        "3": {
+          "title": "4. Consent & Audit Trails",
+          "description": "Complete control over data. See all company notes and feedback on your profile.",
+          "items": {
+            "0": "Opt-in data sharing controls",
+            "1": "See all company notes and what they're looking for",
+            "2": "Revoke access anytime",
+            "3": "GDPR Article 15 compliant"
+          }
+        }
+      }
+    },
+    "benefits": {
+      "title": "Transparency Benefits Everyone",
+      "students": {
+        "title": "For Students",
+        "items": {
+          "0": "See which companies viewed your profile",
+          "1": "Understand why you were/weren't selected",
+          "2": "Know exactly what skills jobs require",
+          "3": "Trust that your skills are fairly represented",
+          "4": "No more black-box rejections"
+        }
+      },
+      "companies": {
+        "title": "For Companies",
+        "items": {
+          "0": "Verified skills, not resume inflation",
+          "1": "Explainable matches with reasoning",
+          "2": "See actual project work before contacting",
+          "3": "92% match accuracy saves time",
+          "4": "€10 per contact vs €8K/year subscriptions"
+        }
+      },
+      "institutions": {
+        "title": "For Institutions",
+        "items": {
+          "0": "Track which companies view students",
+          "1": "Data-driven career counseling",
+          "2": "Early intervention for at-risk students",
+          "3": "Curriculum feedback from market demand",
+          "4": "20-30% boost in placements"
+        }
+      }
+    },
+    "impact": {
+      "title": "The Impact of Transparency",
+      "subtitle": "Real data showing how transparency improves outcomes for everyone",
+      "metrics": {
+        "0": {
+          "value": "92%",
+          "label": "Match Accuracy",
+          "note": "(vs 65% for ATS)"
+        },
+        "1": {
+          "value": "85%",
+          "label": "Higher Trust",
+          "note": "(EU AI transparency studies)"
+        },
+        "2": {
+          "value": "25%",
+          "label": "Less Bias",
+          "note": "(with transparent criteria)"
+        },
+        "3": {
+          "value": "20-30%",
+          "label": "More Placements",
+          "note": "(data-driven decisions)"
+        }
+      }
+    },
+    "cta": {
+      "title": "Experience True Transparency",
+      "subtitle": "Join a platform where verified skills, explainable AI, and mutual visibility create better matches for everyone.",
+      "buttons": {
+        "getStarted": "Get Started Free",
+        "demo": "Try Live Demo",
+        "learnMore": "Learn More"
+      },
+      "compliance": {
+        "gdpr": "GDPR Compliant",
+        "soc2": "SOC 2 Type II",
+        "iso": "ISO 27001",
+        "explainableAI": "Explainable AI"
+      }
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Subscription-Free Service Model",
