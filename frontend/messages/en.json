@@ -578,5 +578,53 @@
         "cta": "Schedule Demo"
       }
     }
+  },
+  "pricingPage": {
+    "hero": {
+      "title": "Subscription-Free Service Model",
+      "subtitle": "Partner-enabled services, not subscription traps. Free for students & institutions. Companies pay only per contact.",
+      "description": "No subscriptions, no monthly fees - just transparent, pay-as-you-use services.",
+      "segments": {
+        "students": "Students",
+        "institutes": "Institutes",
+        "companies": "Companies"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": {
+        "0": {
+          "q": "How do students create profiles?",
+          "a": "Two ways: (1) If your university is a partner, we send an email invitation. Students click to consent and their profile is created from verified university data. (2) If independent, students upload projects + select courses, and we verify them to create their complete profile. Both ways: 100% free, consent-based, < 5 minutes."
+        },
+        "1": {
+          "q": "Is the marketplace really free for institutions?",
+          "a": "Yes! The core marketplace (verification, discovery, matching, analytics) is 100% free forever. Institutions supply talent, we handle everything else: profile creation, company search, placement tracking. Zero cost vs AlmaLaurea €2,500/year. You only pay for optional enterprise features (API, white-label)."
+        },
+        "2": {
+          "q": "Can institutions add Career Day tools or branded widgets?",
+          "a": "Yes! Optional Premium Embed add-on (€500/year) includes Career Day platform (QR codes, interview booking) and branded website widgets. But the core marketplace is always free. Most institutions start with free tier, then add premium features if needed. Contact sales for details."
+        },
+        "3": {
+          "q": "How is this better than AlmaLaurea?",
+          "a": "AlmaLaurea charges universities €2,500/year and just collects self-reported CVs. InTransparency is FREE forever and verifies skills via AI + actual projects. Plus ALL students get exposure (not just those who update their CV), and companies get better data (verified portfolios vs self-reported)."
+        },
+        "4": {
+          "q": "Do ALL students get exposure or just top performers?",
+          "a": "ALL students. Traditional headhunters only contact the top 5%. We give EVERY student a profile that companies can discover. This dramatically improves placement rates across your entire graduating class, not just the stars."
+        },
+        "5": {
+          "q": "How does company pricing work?",
+          "a": "Companies browse the entire database for free - unlimited searching, filtering, and AI candidate search. You only pay €10 when you decide to contact a specific candidate. No subscriptions, no monthly fees, credits never expire."
+        }
+      }
+    },
+    "finalCta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Start exploring for free. Only pay when you find the perfect candidate.",
+      "primaryButton": "Start Exploring Free",
+      "secondaryButton": "Talk to Sales",
+      "benefits": "✓ No credit card required  ✓ Unlimited free browsing  ✓ Only pay for contacts you unlock"
+    }
   }
 }

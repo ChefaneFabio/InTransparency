@@ -578,5 +578,53 @@
         "cta": "Prenota Demo"
       }
     }
+  },
+  "pricingPage": {
+    "hero": {
+      "title": "Modello Servizio Senza Abbonamenti",
+      "subtitle": "Servizi abilitati dai partner, non trappole di abbonamenti. Gratis per studenti e istituzioni. Le aziende pagano solo per contatto.",
+      "description": "Nessun abbonamento, nessun canone mensile - solo servizi trasparenti a consumo.",
+      "segments": {
+        "students": "Studenti",
+        "institutes": "Istituti",
+        "companies": "Aziende"
+      }
+    },
+    "faq": {
+      "title": "Domande Frequenti",
+      "questions": {
+        "0": {
+          "q": "Come creano profili gli studenti?",
+          "a": "Due modi: (1) Se la tua università è partner, inviamo un'email di invito. Gli studenti cliccano per acconsentire e il loro profilo viene creato dai dati universitari verificati. (2) Se indipendenti, gli studenti caricano progetti + selezionano corsi, e noi li verifichiamo per creare il loro profilo completo. Entrambi i modi: 100% gratis, basato su consenso, < 5 minuti."
+        },
+        "1": {
+          "q": "Il marketplace è davvero gratis per le istituzioni?",
+          "a": "Sì! Il marketplace core (verifica, scoperta, matching, analytics) è 100% gratis per sempre. Le istituzioni forniscono talenti, noi gestiamo tutto il resto: creazione profili, ricerca aziende, tracking placement. Zero costi vs AlmaLaurea €2.500/anno. Paghi solo per funzionalità enterprise opzionali (API, white-label)."
+        },
+        "2": {
+          "q": "Le istituzioni possono aggiungere strumenti Career Day o widget brandizzati?",
+          "a": "Sì! Add-on Premium Embed opzionale (€500/anno) include piattaforma Career Day (codici QR, prenotazione colloqui) e widget sito web brandizzati. Ma il marketplace core è sempre gratis. La maggior parte delle istituzioni inizia con tier gratuito, poi aggiunge funzionalità premium se necessario. Contatta le vendite per dettagli."
+        },
+        "3": {
+          "q": "Come è meglio di AlmaLaurea?",
+          "a": "AlmaLaurea fa pagare alle università €2.500/anno e raccoglie solo CV auto-dichiarati. InTransparency è GRATIS per sempre e verifica competenze tramite AI + progetti reali. Inoltre TUTTI gli studenti ottengono visibilità (non solo quelli che aggiornano il CV), e le aziende ottengono dati migliori (portfolio verificati vs auto-dichiarati)."
+        },
+        "4": {
+          "q": "TUTTI gli studenti ottengono visibilità o solo i top performer?",
+          "a": "TUTTI gli studenti. I headhunter tradizionali contattano solo il top 5%. Noi diamo a OGNI studente un profilo che le aziende possono scoprire. Questo migliora drasticamente i tassi di placement dell'intera classe laureanda, non solo le stelle."
+        },
+        "5": {
+          "q": "Come funziona il pricing per aziende?",
+          "a": "Le aziende sfogliano l'intero database gratis - ricerca illimitata, filtri e ricerca candidati AI. Paghi solo €10 quando decidi di contattare un candidato specifico. Nessun abbonamento, nessun canone mensile, i crediti non scadono mai."
+        }
+      }
+    },
+    "finalCta": {
+      "title": "Pronto per Iniziare?",
+      "subtitle": "Inizia a esplorare gratis. Paga solo quando trovi il candidato perfetto.",
+      "primaryButton": "Inizia a Esplorare Gratis",
+      "secondaryButton": "Parla con le Vendite",
+      "benefits": "✓ Nessuna carta richiesta  ✓ Sfogliamento gratis illimitato  ✓ Paga solo per contatti sbloccati"
+    }
   }
 }
