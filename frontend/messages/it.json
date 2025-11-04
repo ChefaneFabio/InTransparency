@@ -921,6 +921,121 @@
       "secondaryButton": "Prenota una Demo"
     }
   },
+  "howItWorksPage": {
+    "hero": {
+      "badge": "Modello Servizio Senza Abbonamenti",
+      "title": "Quattro Servizi, Un Ecosistema",
+      "subtitle": "Servizi abilitati dai partner che collegano studenti, istituzioni e aziende tramite competenze 100% verificate",
+      "tagline": "Nessun Abbonamento • Paga Solo Ciò Che Usi"
+    },
+    "services": {
+      "verification": {
+        "title": "Servizio Verifica",
+        "badge": "GRATIS per Istituzioni",
+        "heading": "Auto-import & Autentica",
+        "features": {
+          "0": "Integrazione Esse3/Moodle",
+          "1": "L'istituzione approva i progetti",
+          "2": "Approvazione batch: 50 in 1 ora",
+          "3": "\"Verificato da ITS G. Natta, 28/30\""
+        },
+        "comparison": "vs AlmaLaurea: €2.500/anno"
+      },
+      "matching": {
+        "title": "Servizio Matching",
+        "badge": "GRATIS per Studenti",
+        "heading": "Connessioni Basate su AI",
+        "features": {
+          "0": "92% accuratezza verificata",
+          "1": "Spiegazioni trasparenti",
+          "2": "\"92% compatibilità: tesi Python corrisponde\"",
+          "3": "Requisiti bidirezionali"
+        },
+        "comparison": "vs Manatal: Parsing curriculum opaco"
+      },
+      "discovery": {
+        "title": "Servizio Scoperta",
+        "badge": "Sfoglia GRATIS, €10/contatto",
+        "heading": "Reverse Recruitment",
+        "features": {
+          "0": "Le aziende cercano pool verificati",
+          "1": "Zero candidature per studenti",
+          "2": "Estratti progetti + timbri",
+          "3": "80% screening più veloce"
+        },
+        "comparison": "vs Indeed: 30% fake auto-dichiarati"
+      },
+      "analytics": {
+        "title": "Servizio Analytics",
+        "badge": "Dashboard GRATIS",
+        "heading": "Career Intelligence",
+        "features": {
+          "0": "\"Deloitte ha visto 31 studenti\"",
+          "1": "\"Excel cercato 89x\"",
+          "2": "Alert intervento precoce",
+          "3": "Dimostra aumento placement 85%"
+        },
+        "comparison": "vs Univariety: €500/anno abbonamenti"
+      }
+    },
+    "userTypes": {
+      "student": {
+        "label": "Studente",
+        "description": "Crea profilo, mostra competenze, trova opportunità",
+        "title": "Come Gli Studenti Usano InTransparency",
+        "subtitle": "Importa i tuoi dati accademici, costruisci il tuo profilo e vieni scoperto dai migliori datori di lavoro"
+      },
+      "institute": {
+        "label": "Istituto",
+        "description": "Collega studenti con opportunità, traccia alumni",
+        "title": "Come Gli Istituti Usano InTransparency",
+        "subtitle": "Collega studenti con opportunità e traccia risultati carriera tra università, ITS e istituzioni di istruzione superiore"
+      },
+      "recruiter": {
+        "label": "Recruiter",
+        "description": "Scopri talenti, pubblica lavori, traccia candidature",
+        "title": "Come I Recruiter Usano InTransparency",
+        "subtitle": "Cerca proattivamente candidati, sfrutta matching AI per trovare match perfetti e assumi basandoti su conoscenza settore e compatibilità profilo"
+      }
+    },
+    "workflow": {
+      "title": "Come Funzionano Insieme i Servizi",
+      "result": "Risultato:"
+    },
+    "studentDataImport": {
+      "title": "Creazione Profilo Semplificata (Basata su Consenso)",
+      "description": "Consenso via email, poi importa i tuoi dati accademici verificati per creare un profilo completo",
+      "buttonShow": "Prova Demo Import Dati",
+      "buttonHide": "Nascondi Demo Import Dati"
+    },
+    "benefits": {
+      "title": "Perché Scegliere InTransparency?",
+      "0": {
+        "title": "Processo Trasparente",
+        "description": "Visibilità completa nei processi di assunzione e candidatura"
+      },
+      "1": {
+        "title": "Portata Globale",
+        "description": "Connettiti con opportunità e talenti in tutto il mondo"
+      },
+      "2": {
+        "title": "Matching Basato su AI & RAG",
+        "description": "L'AI analizza i profili per trovare terreno comune tra aziende e candidati basandosi su conoscenza settore e compatibilità"
+      },
+      "3": {
+        "title": "Aggiornamenti in Tempo Reale",
+        "description": "Ricevi notifiche istantanee su candidature e opportunità"
+      }
+    },
+    "cta": {
+      "title": "Smetti di Candidarti. Inizia a Essere Scoperto.",
+      "student": "Costruisci il tuo profilo, mostra il tuo lavoro e vieni scoperto dalle migliori aziende.",
+      "institute": "Collega i tuoi studenti con opportunità di carriera e traccia il loro successo tra tutte le istituzioni di istruzione superiore.",
+      "recruiter": "Trova talenti verificati basati su competenze reali e progetti, non curriculum.",
+      "primaryButton": "Inizia Gratis",
+      "secondaryButton": "Vedi Portfolio"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Modello Servizio Senza Abbonamenti",

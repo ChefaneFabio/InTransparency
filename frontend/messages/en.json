@@ -921,6 +921,121 @@
       "secondaryButton": "Schedule a Demo"
     }
   },
+  "howItWorksPage": {
+    "hero": {
+      "badge": "Subscription-Free Service Model",
+      "title": "Four Services, One Ecosystem",
+      "subtitle": "Partner-enabled services connecting students, institutions, and companies via 100% verified competencies",
+      "tagline": "No Subscriptions • Pay Only for What You Use"
+    },
+    "services": {
+      "verification": {
+        "title": "Verification Service",
+        "badge": "FREE for Institutions",
+        "heading": "Auto-import & Authenticate",
+        "features": {
+          "0": "Esse3/Moodle integration",
+          "1": "Institution endorses projects",
+          "2": "Batch approval: 50 in 1 hour",
+          "3": "\"Verified by ITS G. Natta, 28/30\""
+        },
+        "comparison": "vs AlmaLaurea: €2,500/year"
+      },
+      "matching": {
+        "title": "Matching Service",
+        "badge": "FREE for Students",
+        "heading": "AI-Powered Connections",
+        "features": {
+          "0": "92% verified accuracy",
+          "1": "Transparent explanations",
+          "2": "\"92% fit: Python thesis matches\"",
+          "3": "Bidirectional requirements"
+        },
+        "comparison": "vs Manatal: Opaque resume parsing"
+      },
+      "discovery": {
+        "title": "Discovery Service",
+        "badge": "Browse FREE, €10/contact",
+        "heading": "Reverse Recruitment",
+        "features": {
+          "0": "Companies search verified pools",
+          "1": "Zero applications for students",
+          "2": "Project excerpts + stamps",
+          "3": "80% faster screening"
+        },
+        "comparison": "vs Indeed: 30% self-reported fakes"
+      },
+      "analytics": {
+        "title": "Analytics Service",
+        "badge": "FREE Dashboards",
+        "heading": "Career Intelligence",
+        "features": {
+          "0": "\"Deloitte viewed 31 students\"",
+          "1": "\"Excel searched 89x\"",
+          "2": "Early intervention alerts",
+          "3": "Prove 85% placement boost"
+        },
+        "comparison": "vs Univariety: €500/year subs"
+      }
+    },
+    "userTypes": {
+      "student": {
+        "label": "Student",
+        "description": "Create profile, showcase skills, find opportunities",
+        "title": "How Students Use InTransparency",
+        "subtitle": "Import your academic data, build your profile, and get discovered by top employers"
+      },
+      "institute": {
+        "label": "Institute",
+        "description": "Connect students with opportunities, track alumni",
+        "title": "How Institutes Use InTransparency",
+        "subtitle": "Connect students with opportunities and track career outcomes across universities, ITS, and higher education institutions"
+      },
+      "recruiter": {
+        "label": "Recruiter",
+        "description": "Discover talent, post jobs, track applications",
+        "title": "How Recruiters Use InTransparency",
+        "subtitle": "Proactively search for candidates, leverage AI matching to find perfect fits, and hire based on industry knowledge and profile compatibility"
+      }
+    },
+    "workflow": {
+      "title": "How Services Work Together",
+      "result": "Result:"
+    },
+    "studentDataImport": {
+      "title": "Streamlined Profile Creation (Consent-Based)",
+      "description": "Consent via email, then import your verified academic data to create a complete profile",
+      "buttonShow": "Try Data Import Demo",
+      "buttonHide": "Hide Data Import Demo"
+    },
+    "benefits": {
+      "title": "Why Choose InTransparency?",
+      "0": {
+        "title": "Transparent Process",
+        "description": "Complete visibility into hiring and application processes"
+      },
+      "1": {
+        "title": "Global Reach",
+        "description": "Connect with opportunities and talent worldwide"
+      },
+      "2": {
+        "title": "AI-Powered Matching & RAG",
+        "description": "AI analyzes profiles to find common ground between companies and candidates based on industry knowledge and compatibility"
+      },
+      "3": {
+        "title": "Real-time Updates",
+        "description": "Get instant notifications about applications and opportunities"
+      }
+    },
+    "cta": {
+      "title": "Stop Applying. Start Getting Discovered.",
+      "student": "Build your profile, showcase your work, and get discovered by top companies.",
+      "institute": "Connect your students with career opportunities and track their success across all higher education institutions.",
+      "recruiter": "Find verified talent based on real skills and projects, not resumes.",
+      "primaryButton": "Get Started Free",
+      "secondaryButton": "See Portfolios"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Subscription-Free Service Model",
