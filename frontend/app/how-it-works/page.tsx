@@ -215,6 +215,97 @@ const instituteSteps = [
   }
 ]
 
+// Workflow data for each persona
+const workflows = {
+  student: {
+    steps: [
+      {
+        icon: Upload,
+        title: '1. Upload Projects',
+        description: 'theses, stage curriculare',
+        color: 'text-primary'
+      },
+      {
+        icon: Shield,
+        title: '2. Institution Verifies',
+        description: 'via Esse3/Moodle',
+        color: 'text-primary'
+      },
+      {
+        icon: Target,
+        title: '3. AI Matches',
+        description: '92% verified accuracy',
+        color: 'text-secondary'
+      },
+      {
+        icon: CheckCircle,
+        title: '4. Companies Discover',
+        description: 'Zero applications',
+        color: 'text-green-600'
+      }
+    ],
+    result: 'Students get 25% higher responses • Zero applications sent • Get discovered passively'
+  },
+  institute: {
+    steps: [
+      {
+        icon: Database,
+        title: '1. Connect Data Systems',
+        description: 'Esse3/Moodle integration',
+        color: 'text-purple-600'
+      },
+      {
+        icon: Shield,
+        title: '2. Verify Students',
+        description: 'Batch approval dashboard',
+        color: 'text-purple-600'
+      },
+      {
+        icon: BarChart3,
+        title: '3. Track Placements',
+        description: 'Real-time analytics',
+        color: 'text-blue-600'
+      },
+      {
+        icon: TrendingUp,
+        title: '4. Prove Impact',
+        description: 'Placement statistics',
+        color: 'text-green-600'
+      }
+    ],
+    result: 'Institutions prove 85% placement boost • Free forever platform • Track alumni success'
+  },
+  recruiter: {
+    steps: [
+      {
+        icon: Search,
+        title: '1. Define Requirements',
+        description: 'Specific skills needed',
+        color: 'text-green-600'
+      },
+      {
+        icon: Target,
+        title: '2. AI Search',
+        description: 'Verified candidates only',
+        color: 'text-green-600'
+      },
+      {
+        icon: Eye,
+        title: '3. Review Portfolios',
+        description: 'Real projects & grades',
+        color: 'text-blue-600'
+      },
+      {
+        icon: MessageSquare,
+        title: '4. Contact Directly',
+        description: 'No CV screening',
+        color: 'text-primary'
+      }
+    ],
+    result: 'Companies save 80% screening time • 92% match accuracy • See verified work upfront'
+  }
+}
+
 export default function HowItWorksPage() {
   const [selectedUserType, setSelectedUserType] = useState('student')
   const [showDataImport, setShowDataImport] = useState(false)
@@ -226,6 +317,10 @@ export default function HowItWorksPage() {
       case 'recruiter': return recruiterSteps
       default: return studentSteps
     }
+  }
+
+  const getCurrentWorkflow = () => {
+    return workflows[selectedUserType as keyof typeof workflows] || workflows.student
   }
 
   const getHeaderContent = () => {
@@ -381,83 +476,71 @@ export default function HowItWorksPage() {
               </Card>
             </div>
 
-            {/* Service Flow Diagram */}
-            <Card className="bg-gradient-to-r from-primary/5 to-secondary/5 border-2 border-primary/20">
-              <CardContent className="py-8">
-                <h3 className="text-xl font-bold text-center mb-6">How Services Work Together</h3>
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4 max-w-5xl mx-auto">
-                  <div className="flex flex-col items-center text-center">
-                    <div className="bg-white p-4 rounded-lg shadow-md mb-2 w-48">
-                      <Upload className="h-8 w-8 mx-auto mb-2 text-primary" />
-                      <p className="text-sm font-semibold">1. Upload Projects</p>
-                      <p className="text-xs text-gray-600">theses, stage curriculare</p>
-                    </div>
-                  </div>
-                  <ArrowRight className="h-6 w-6 text-gray-400 rotate-90 md:rotate-0" />
-
-                  <div className="flex flex-col items-center text-center">
-                    <div className="bg-white p-4 rounded-lg shadow-md mb-2 w-48">
-                      <Shield className="h-8 w-8 mx-auto mb-2 text-primary" />
-                      <p className="text-sm font-semibold">2. Institution Verifies</p>
-                      <p className="text-xs text-gray-600">via Esse3/Moodle</p>
-                    </div>
-                  </div>
-                  <ArrowRight className="h-6 w-6 text-gray-400 rotate-90 md:rotate-0" />
-
-                  <div className="flex flex-col items-center text-center">
-                    <div className="bg-white p-4 rounded-lg shadow-md mb-2 w-48">
-                      <Target className="h-8 w-8 mx-auto mb-2 text-secondary" />
-                      <p className="text-sm font-semibold">3. AI Matches</p>
-                      <p className="text-xs text-gray-600">92% verified accuracy</p>
-                    </div>
-                  </div>
-                  <ArrowRight className="h-6 w-6 text-gray-400 rotate-90 md:rotate-0" />
-
-                  <div className="flex flex-col items-center text-center">
-                    <div className="bg-white p-4 rounded-lg shadow-md mb-2 w-48">
-                      <CheckCircle className="h-8 w-8 mx-auto mb-2 text-green-600" />
-                      <p className="text-sm font-semibold">4. Companies Discover</p>
-                      <p className="text-xs text-gray-600">Zero applications</p>
-                    </div>
-                  </div>
+            {/* User Type Selector */}
+            <div className="flex justify-center mb-12">
+              <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-200">
+                <div className="flex space-x-2">
+                  {(userTypes || []).map((type) => {
+                    const Icon = type.icon
+                    return (
+                      <button
+                        key={type.id}
+                        onClick={() => setSelectedUserType(type.id)}
+                        className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                          selectedUserType === type.id
+                            ? type.color
+                            : 'text-gray-800 hover:text-gray-900 hover:bg-slate-100'
+                        }`}
+                      >
+                        <Icon className="h-4 w-4 mr-2" />
+                        {type.label}
+                      </button>
+                    )
+                  })}
                 </div>
-                <div className="text-center mt-6">
-                  <p className="text-sm text-gray-700">
-                    <strong>Result:</strong> Students get 25% higher responses • Institutions prove 85% placement boost • Companies save 80% screening time
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* User Type Selector */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex justify-center mb-12"
-          >
-            <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-200">
-              <div className="flex space-x-2">
-                {(userTypes || []).map((type) => {
-                  const Icon = type.icon
-                  return (
-                    <button
-                      key={type.id}
-                      onClick={() => setSelectedUserType(type.id)}
-                      className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                        selectedUserType === type.id
-                          ? type.color
-                          : 'text-gray-800 hover:text-gray-900 hover:bg-slate-100'
-                      }`}
-                    >
-                      <Icon className="h-4 w-4 mr-2" />
-                      {type.label}
-                    </button>
-                  )
-                })}
               </div>
             </div>
+
+            {/* Service Flow Diagram - Dynamic based on persona */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedUserType}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Card className="bg-gradient-to-r from-primary/5 to-secondary/5 border-2 border-primary/20">
+                  <CardContent className="py-8">
+                    <h3 className="text-xl font-bold text-center mb-6">How Services Work Together</h3>
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4 max-w-5xl mx-auto">
+                      {getCurrentWorkflow().steps.map((step, index) => {
+                        const Icon = step.icon
+                        return (
+                          <React.Fragment key={index}>
+                            <div className="flex flex-col items-center text-center">
+                              <div className="bg-white p-4 rounded-lg shadow-md mb-2 w-48 hover:shadow-lg transition-shadow">
+                                <Icon className={`h-8 w-8 mx-auto mb-2 ${step.color}`} />
+                                <p className="text-sm font-semibold">{step.title}</p>
+                                <p className="text-xs text-gray-600">{step.description}</p>
+                              </div>
+                            </div>
+                            {index < getCurrentWorkflow().steps.length - 1 && (
+                              <ArrowRight className="h-6 w-6 text-gray-400 rotate-90 md:rotate-0" />
+                            )}
+                          </React.Fragment>
+                        )
+                      })}
+                    </div>
+                    <div className="text-center mt-6">
+                      <p className="text-sm text-gray-700">
+                        <strong>Result:</strong> {getCurrentWorkflow().result}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </AnimatePresence>
           </motion.div>
 
           {/* Dynamic Header */}
