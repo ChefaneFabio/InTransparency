@@ -22,18 +22,65 @@ const studentPlans = [
     period: 'forever',
     description: 'All core features - always free for students',
     icon: GraduationCap,
-    popular: true,
-    highlight: true,
+    popular: false,
+    highlight: false,
     badge: '100% Free',
     features: [
       'Unlimited verified project uploads',
       'University verification',
       'Public portfolio page',
       'Company discovery',
-      'Profile analytics',
+      'Basic profile analytics',
       'No credit card required'
     ],
     cta: 'Get Started Free',
+    ctaLink: '/auth/register'
+  },
+  {
+    name: 'Premium Profile',
+    price: '€9',
+    period: 'per month',
+    description: 'Stand out and get discovered faster with premium features',
+    icon: Crown,
+    popular: true,
+    highlight: true,
+    badge: '🚀 Most Popular',
+    features: [
+      'Everything in Free Forever',
+      'Priority in recruiter search results',
+      'Advanced analytics & insights',
+      'Custom portfolio URL (your-name.intransparency.com)',
+      'Contact recruiters directly',
+      'AI-powered career recommendations',
+      'Resume builder with verified projects',
+      'Interview preparation tools',
+      'Priority support',
+      'Remove "Powered by InTransparency" badge'
+    ],
+    cta: 'Start 7-Day Free Trial',
+    ctaLink: '/auth/register'
+  },
+  {
+    name: 'Portfolio Boost',
+    price: '€9',
+    period: 'one-time',
+    description: 'Professional portfolio design + LinkedIn optimization',
+    icon: Sparkles,
+    popular: false,
+    highlight: false,
+    badge: '💎 One-Time Service',
+    features: [
+      'Professional portfolio design review',
+      'AI-optimized project descriptions',
+      'LinkedIn profile optimization',
+      'Personalized skill recommendations',
+      'Cover letter templates (5 templates)',
+      'Career pathway suggestions',
+      'Industry benchmarking report',
+      '30-day satisfaction guarantee',
+      'Delivered within 48 hours'
+    ],
+    cta: 'Get Portfolio Boost',
     ctaLink: '/auth/register'
   }
 ]
@@ -212,8 +259,8 @@ export default function PricingPage() {
     switch (selectedSegment) {
       case 'students': return {
         badge: 'For Students - All Disciplines',
-        title: 'Verified Talent Discovery Service - Free Forever',
-        subtitle: 'Upload projects → Institution verifies → Companies discover YOU (no applications). Four free services: Verification, Matching, Discovery, Analytics. EU/Italian: 30/30 grading, stage curriculare, tirocini support.'
+        title: 'Free Core Platform + Optional Premium Features',
+        subtitle: 'Core marketplace FREE FOREVER: Upload projects → Institution verifies → Companies discover YOU. Optional €9 premium services: Priority search placement, advanced analytics, or one-time portfolio optimization. EU/Italian: 30/30 grading, stage curriculare, tirocini support.'
       }
       case 'institutes': return {
         badge: 'For Institutes (Universities & ITS)',
