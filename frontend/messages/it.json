@@ -1036,6 +1036,76 @@
       "secondaryButton": "Vedi Portfolio"
     }
   },
+  "legal": {
+    "hero": {
+      "title": "Termini e Privacy",
+      "subtitle": "La tua privacy e fiducia sono le nostre massime priorità"
+    },
+    "tabs": {
+      "privacy": "Informativa Privacy",
+      "terms": "Termini di Servizio"
+    },
+    "privacy": {
+      "title": "Informativa Privacy",
+      "lastUpdated": "Ultimo aggiornamento:",
+      "sections": {
+        "collection": {
+          "title": "1. Informazioni Che Raccogliamo",
+          "intro": "Raccogliamo informazioni che ci fornisci direttamente, tra cui:"
+        },
+        "usage": {
+          "title": "2. Come Utilizziamo Le Tue Informazioni",
+          "intro": "Utilizziamo le informazioni raccolte per:"
+        },
+        "sharing": {
+          "title": "3. Condivisione Informazioni",
+          "intro": "Condividiamo informazioni nelle seguenti circostanze:"
+        },
+        "security": {
+          "title": "4. Sicurezza Dati",
+          "intro": "Implementiamo misure di sicurezza per proteggere i tuoi dati:"
+        },
+        "rights": {
+          "title": "5. I Tuoi Diritti",
+          "intro": "Hai il diritto di:"
+        },
+        "contact": {
+          "title": "6. Contattaci",
+          "intro": "Per domande sulla privacy, contattaci a:"
+        }
+      }
+    },
+    "terms": {
+      "title": "Termini di Servizio",
+      "lastUpdated": "Ultimo aggiornamento:",
+      "sections": {
+        "acceptance": {
+          "title": "1. Accettazione Termini",
+          "intro": "Utilizzando InTransparency, accetti questi termini:"
+        },
+        "accounts": {
+          "title": "2. Account Utente",
+          "intro": "Per creare un account, devi:"
+        },
+        "content": {
+          "title": "3. Contenuto Utente",
+          "intro": "Sei responsabile del contenuto che carichi:"
+        },
+        "prohibited": {
+          "title": "4. Condotta Proibita",
+          "intro": "Non puoi:"
+        },
+        "termination": {
+          "title": "5. Terminazione",
+          "intro": "Possiamo sospendere o terminare il tuo account se:"
+        },
+        "liability": {
+          "title": "6. Limitazione Responsabilità",
+          "intro": "InTransparency non è responsabile per:"
+        }
+      }
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Modello Servizio Senza Abbonamenti",
