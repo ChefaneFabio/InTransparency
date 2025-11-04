@@ -31,9 +31,9 @@ export function Header() {
             <Image
               src="/logo.png"
               alt="InTransparency Logo"
-              width={280}
-              height={84}
-              className="h-20 w-auto"
+              width={308}
+              height={92}
+              className="h-[88px] w-auto"
               priority
             />
           </Link>
