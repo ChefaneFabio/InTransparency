@@ -6,7 +6,7 @@ import { locales, defaultLocale } from './i18n'
 const intlMiddleware = createMiddleware({
   locales,
   defaultLocale,
-  localePrefix: 'as-needed' // /it/pricing or just /pricing for Italian
+  localePrefix: 'always' // Always use /it/ or /en/ prefix for clarity
 })
 
 export function middleware(request: NextRequest) {

@@ -11,13 +11,11 @@ export function LanguageSwitcher() {
   const pathname = usePathname()
 
   const switchLanguage = (newLocale: 'it' | 'en') => {
-    // Remove current locale prefix if any
+    // Remove current locale prefix
     const pathnameWithoutLocale = pathname.replace(/^\/(it|en)/, '') || '/'
 
-    // Add new locale prefix (only for English, Italian is default)
-    const newPath = newLocale === 'en'
-      ? `/en${pathnameWithoutLocale}`
-      : pathnameWithoutLocale
+    // Always add locale prefix
+    const newPath = `/${newLocale}${pathnameWithoutLocale}`
 
     // Use window.location for full page reload to ensure locale change
     window.location.href = newPath
