@@ -847,6 +847,56 @@
       "button": "Crea il Tuo Portfolio Gratuito"
     }
   },
+  "auth": {
+    "student": {
+      "title": "Registrazione Studente",
+      "subtitle": "Unisciti a InTransparency - Gratis Per Sempre",
+      "cardTitle": "Crea il Tuo Account Studente",
+      "cardDescription": "Lancia la tua carriera con credenziali verificate",
+      "submitButton": "Crea Account Studente Gratuito",
+      "submittingButton": "Creazione Account..."
+    },
+    "recruiter": {
+      "title": "Registrazione Azienda",
+      "subtitle": "Trova talenti verificati - Sfoglia Gratis, Paga Per Contatto",
+      "cardTitle": "Crea il Tuo Account Aziendale",
+      "cardDescription": "Scopri candidati verificati con ricerca AI",
+      "submitButton": "Crea Account Aziendale Gratuito",
+      "submittingButton": "Creazione Account..."
+    },
+    "university": {
+      "title": "Registrazione Istituzione",
+      "subtitle": "Career Intelligence Gratuito - Nessun Abbonamento Mai",
+      "cardTitle": "Crea il Tuo Account Istituzione",
+      "cardDescription": "Verifica studenti e traccia placement",
+      "submitButton": "Crea Account Istituzione Gratuito",
+      "submittingButton": "Creazione Account..."
+    },
+    "login": {
+      "title": "Benvenuto",
+      "subtitle": "Accedi al tuo account",
+      "cardTitle": "Accedi",
+      "cardDescription": "Inserisci le tue credenziali per accedere",
+      "submitButton": "Accedi",
+      "submittingButton": "Accesso in corso...",
+      "noAccount": "Non hai un account?",
+      "register": "Registrati"
+    },
+    "fields": {
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "email": "Email",
+      "password": "Password",
+      "companyName": "Nome Azienda",
+      "universityName": "Nome Istituzione"
+    },
+    "messages": {
+      "registrationFailed": "Registrazione fallita",
+      "loginFailed": "Accesso fallito",
+      "alreadyHaveAccount": "Hai già un account?",
+      "signIn": "Accedi"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Modello Servizio Senza Abbonamenti",

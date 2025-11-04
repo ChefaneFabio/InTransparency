@@ -847,6 +847,56 @@
       "button": "Create Your Free Portfolio"
     }
   },
+  "auth": {
+    "student": {
+      "title": "Student Registration",
+      "subtitle": "Join InTransparency - Free Forever",
+      "cardTitle": "Create Your Student Account",
+      "cardDescription": "Launch your career with verified credentials",
+      "submitButton": "Create Free Student Account",
+      "submittingButton": "Creating Account..."
+    },
+    "recruiter": {
+      "title": "Company Registration",
+      "subtitle": "Find verified talent - Browse Free, Pay Per Contact",
+      "cardTitle": "Create Your Company Account",
+      "cardDescription": "Discover verified candidates with AI search",
+      "submitButton": "Create Free Company Account",
+      "submittingButton": "Creating Account..."
+    },
+    "university": {
+      "title": "Institution Registration",
+      "subtitle": "Free Career Intelligence - No Subscriptions Ever",
+      "cardTitle": "Create Your Institution Account",
+      "cardDescription": "Verify students and track placements",
+      "submitButton": "Create Free Institution Account",
+      "submittingButton": "Creating Account..."
+    },
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to your account",
+      "cardTitle": "Sign In",
+      "cardDescription": "Enter your credentials to access your account",
+      "submitButton": "Sign In",
+      "submittingButton": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "register": "Register"
+    },
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "companyName": "Company Name",
+      "universityName": "Institution Name"
+    },
+    "messages": {
+      "registrationFailed": "Registration failed",
+      "loginFailed": "Login failed",
+      "alreadyHaveAccount": "Already have an account?",
+      "signIn": "Sign in"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Subscription-Free Service Model",
