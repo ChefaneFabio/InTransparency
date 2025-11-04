@@ -16,10 +16,13 @@ import {
   Award,
   ExternalLink,
   Filter,
-  X
+  X,
+  Users
 } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { IMAGES } from '@/lib/images'
 
 interface Student {
   id: string
@@ -139,33 +142,65 @@ export default function ExplorePage() {
   const hasActiveFilters = searchQuery || selectedUniversity || selectedYear || selectedSkill
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen hero-bg">
       <Header />
 
-      <main className="flex-1">
+      <main className="pt-24 pb-16">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-primary to-secondary text-white py-12">
-          <div className="max-w-7xl mx-auto px-6">
+        <section className="hero-bg py-20 relative overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 opacity-5">
+            <Image
+              src={IMAGES.students.student2}
+              alt="Background pattern"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="container max-w-5xl relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
             >
-              <h1 className="text-4xl font-bold mb-4">Explore Verified Talent</h1>
-              <p className="text-xl text-white/90 mb-6">
-                Search through thousands of university-verified student portfolios
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                <Users className="h-4 w-4" />
+                Discover Verified Talent
+              </div>
+              <h1 className="text-5xl font-display font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Explore Student Portfolios
+              </h1>
+              <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto mb-8">
+                Search through thousands of university-verified student portfolios. Every project authenticated by institutions.
               </p>
 
               {/* Search Bar */}
-              <div className="relative max-w-2xl">
+              <div className="relative max-w-2xl mx-auto">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <Input
                   type="text"
                   placeholder="Search by name, skill, or university..."
-                  className="pl-12 py-6 text-lg bg-white text-gray-900"
+                  className="pl-12 py-6 text-lg bg-white text-gray-900 shadow-md border-2 hover:border-primary/30 transition-colors"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
+              </div>
+
+              {/* Quick Stats */}
+              <div className="flex justify-center space-x-8 mt-12">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary">{students.length}</div>
+                  <div className="text-sm text-gray-700">Students</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-green-600">100%</div>
+                  <div className="text-sm text-gray-700">Verified</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600">{popularSkills.length}+</div>
+                  <div className="text-sm text-gray-700">Skills</div>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -175,7 +210,7 @@ export default function ExplorePage() {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Filters Sidebar */}
             <aside className="lg:w-64 flex-shrink-0">
-              <Card className="sticky top-4">
+              <Card className="sticky top-4 bg-white hover:shadow-lg transition-shadow border-2">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="flex items-center gap-2">
@@ -304,7 +339,7 @@ export default function ExplorePage() {
                   <p className="mt-4 text-gray-600">Loading portfolios...</p>
                 </div>
               ) : students.length === 0 ? (
-                <Card className="p-12 text-center">
+                <Card className="p-12 text-center bg-white hover:shadow-lg transition-shadow">
                   <GraduationCap className="h-16 w-16 text-gray-300 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">No students found</h3>
                   <p className="text-gray-600 mb-6">Try adjusting your filters or search query</p>
@@ -319,7 +354,7 @@ export default function ExplorePage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                      <Card className="hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 h-full">
+                      <Card className="bg-white hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 h-full">
                         <CardHeader>
                           <div className="flex items-start gap-4">
                             <Avatar className="w-16 h-16 border-2 border-white shadow-md">

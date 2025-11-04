@@ -13,10 +13,13 @@ import {
   Briefcase,
   ExternalLink,
   Star,
-  GraduationCap
+  GraduationCap,
+  Trophy
 } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { IMAGES } from '@/lib/images'
 
 interface SuccessStory {
   id: string
@@ -90,43 +93,52 @@ export default function SuccessStoriesPage() {
   ]
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen hero-bg">
       <Header />
 
-      <main className="flex-1">
+      <main className="pt-24 pb-16">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-primary to-secondary text-white py-16">
-          <div className="max-w-7xl mx-auto px-6">
+        <section className="hero-bg py-20 relative overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 opacity-5">
+            <Image
+              src={IMAGES.students.student4}
+              alt="Background pattern"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="container max-w-5xl relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-center"
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
             >
-              <Badge className="mb-4 bg-white/20 text-white border-white/30">
-                <Star className="h-3 w-3 mr-1" />
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                <Trophy className="h-4 w-4" />
                 Success Stories
-              </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              </div>
+              <h1 className="text-5xl font-display font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Real Students. Real Success.
               </h1>
-              <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
+              <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto mb-8">
                 Discover how university-verified portfolios are transforming student careers. These students got discovered by top companies without sending a single application.
               </p>
-              <div className="flex items-center justify-center gap-6 text-white/90">
+
+              {/* Stats */}
+              <div className="flex justify-center space-x-8 mt-12">
                 <div className="text-center">
-                  <div className="text-3xl font-bold">2,500+</div>
-                  <div className="text-sm">Students Hired</div>
+                  <div className="text-3xl font-bold text-primary">2,500+</div>
+                  <div className="text-sm text-gray-700">Students Hired</div>
                 </div>
-                <div className="w-px h-12 bg-white/30"></div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold">€52k</div>
-                  <div className="text-sm">Avg. Starting Salary</div>
+                  <div className="text-3xl font-bold text-green-600">€52k</div>
+                  <div className="text-sm text-gray-700">Avg. Starting Salary</div>
                 </div>
-                <div className="w-px h-12 bg-white/30"></div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold">2 weeks</div>
-                  <div className="text-sm">Avg. Time to Hire</div>
+                  <div className="text-3xl font-bold text-blue-600">2 weeks</div>
+                  <div className="text-sm text-gray-700">Avg. Time to Hire</div>
                 </div>
               </div>
             </motion.div>
@@ -143,7 +155,7 @@ export default function SuccessStoriesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
               >
-                <Card className="overflow-hidden border-2 hover:border-primary/30 transition-all duration-300">
+                <Card className="bg-white overflow-hidden border-2 hover:border-primary/30 hover:shadow-xl transition-all duration-300">
                   <div className="md:flex">
                     {/* Left Column - Student Info */}
                     <div className="md:w-1/3 bg-gradient-to-br from-primary/5 to-secondary/5 p-8 border-r">
@@ -255,11 +267,13 @@ export default function SuccessStoriesPage() {
         </section>
 
         {/* Why It Works Section */}
-        <section className="bg-white py-16">
+        <section className="py-16">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-3xl font-bold text-center mb-12">Why InTransparency Works</h2>
+            <h2 className="text-3xl font-display font-bold text-center mb-12 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Why InTransparency Works
+            </h2>
             <div className="grid md:grid-cols-3 gap-8">
-              <Card className="text-center p-6">
+              <Card className="bg-white text-center p-6 hover:shadow-lg transition-shadow">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Award className="h-8 w-8 text-primary" />
                 </div>
@@ -269,7 +283,7 @@ export default function SuccessStoriesPage() {
                 </p>
               </Card>
 
-              <Card className="text-center p-6">
+              <Card className="bg-white text-center p-6 hover:shadow-lg transition-shadow">
                 <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <TrendingUp className="h-8 w-8 text-green-600" />
                 </div>
@@ -279,7 +293,7 @@ export default function SuccessStoriesPage() {
                 </p>
               </Card>
 
-              <Card className="text-center p-6">
+              <Card className="bg-white text-center p-6 hover:shadow-lg transition-shadow">
                 <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Briefcase className="h-8 w-8 text-blue-600" />
                 </div>
