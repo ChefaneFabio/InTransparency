@@ -2481,5 +2481,42 @@
         }
       }
     }
+  },
+  "featuredStudents": {
+    "hero": {
+      "badge": "Featured Talent",
+      "title": "Discover Verified Student Portfolios",
+      "subtitle": "Browse university-verified projects from top students. All portfolios are authenticated by institutional systems.",
+      "createPortfolio": "Create Your Portfolio",
+      "browseAsRecruiter": "Browse as Recruiter"
+    },
+    "filters": {
+      "filterBy": "Filter by:",
+      "allStudents": "All Students",
+      "topVerified": "Top Verified",
+      "recentlyAdded": "Recently Added"
+    },
+    "loading": "Loading featured portfolios...",
+    "empty": {
+      "title": "No portfolios yet",
+      "description": "Be the first to create a verified portfolio!",
+      "cta": "Create Your Portfolio"
+    },
+    "card": {
+      "classOf": "Class of {year}",
+      "stats": {
+        "projects": "Projects",
+        "verified": "Verified",
+        "skills": "Skills"
+      },
+      "verificationBadge": "100% University Verified",
+      "viewPortfolio": "View Portfolio"
+    },
+    "cta": {
+      "title": "Join 125,000+ Students on InTransparency",
+      "subtitle": "Create your verified portfolio in minutes and get discovered by top companies",
+      "createPortfolio": "Create Free Portfolio",
+      "learnMore": "Learn How It Works"
+    }
   }
 }

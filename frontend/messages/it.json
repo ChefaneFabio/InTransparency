@@ -2481,5 +2481,42 @@
         }
       }
     }
+  },
+  "featuredStudents": {
+    "hero": {
+      "badge": "Talenti in Evidenza",
+      "title": "Scopri Portfolio Studenti Verificati",
+      "subtitle": "Esplora progetti verificati dall'università dai migliori studenti. Tutti i portfolio sono autenticati dai sistemi istituzionali.",
+      "createPortfolio": "Crea il Tuo Portfolio",
+      "browseAsRecruiter": "Naviga come Recruiter"
+    },
+    "filters": {
+      "filterBy": "Filtra per:",
+      "allStudents": "Tutti gli Studenti",
+      "topVerified": "Top Verificati",
+      "recentlyAdded": "Aggiunti di Recente"
+    },
+    "loading": "Caricamento portfolio in evidenza...",
+    "empty": {
+      "title": "Nessun portfolio ancora",
+      "description": "Sii il primo a creare un portfolio verificato!",
+      "cta": "Crea il Tuo Portfolio"
+    },
+    "card": {
+      "classOf": "Classe del {year}",
+      "stats": {
+        "projects": "Progetti",
+        "verified": "Verificato",
+        "skills": "Competenze"
+      },
+      "verificationBadge": "100% Verificato dall'Università",
+      "viewPortfolio": "Visualizza Portfolio"
+    },
+    "cta": {
+      "title": "Unisciti a 125.000+ Studenti su InTransparency",
+      "subtitle": "Crea il tuo portfolio verificato in pochi minuti e fatti scoprire dalle migliori aziende",
+      "createPortfolio": "Crea Portfolio Gratuito",
+      "learnMore": "Scopri Come Funziona"
+    }
   }
 }
