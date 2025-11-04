@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import Image from 'next/image'
 import { Facebook, Twitter, Linkedin, Github, Instagram, Mail, MapPin, Phone, Shield } from 'lucide-react'
 import { useTranslations } from 'next-intl'
