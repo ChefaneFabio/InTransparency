@@ -1,0 +1,267 @@
+{
+  "nav": {
+    "features": "Features",
+    "howItWorks": "How It Works",
+    "explorePortfolios": "Explore Portfolios",
+    "successStories": "Success Stories",
+    "demo": "Demo",
+    "pricing": "Pricing",
+    "about": "About",
+    "contact": "Contact & Support",
+    "signIn": "Sign In",
+    "getStarted": "Get Started",
+    "dashboard": "Dashboard",
+    "signOut": "Sign Out"
+  },
+  "home": {
+    "hero": {
+      "badge": "University-Verified Marketplace",
+      "title": "Transform Your Academic Projects Into Career Opportunities",
+      "subtitle": "Upload your university projects → Institution verifies → Companies discover YOU. No applications. No inflated CVs. Only 100% verified competencies.",
+      "studentCta": "Create Free Portfolio",
+      "companyCta": "Search Verified Talent",
+      "stats": {
+        "students": "Registered Students",
+        "verified": "Verified Projects",
+        "companies": "Partner Companies"
+      }
+    },
+    "problem": {
+      "badge": "The Problem",
+      "title": "Resumes Are Broken",
+      "subtitle": "Anyone can claim 'Proficient in React' on a resume. Recruiters waste time interviewing unqualified candidates. Students with real skills get overlooked.",
+      "resumeProblem": "The Resume Problem",
+      "resumePoints": {
+        "unverified": "Unverified skills (anyone can lie)",
+        "noProof": "No proof of ability",
+        "rewardsWriters": "Rewards good writers, not good builders",
+        "favorsPedigree": "Favors pedigree over talent",
+        "costPerHire": "Companies waste €4,000+ per bad hire"
+      },
+      "solution": "The InTransparency Solution",
+      "solutionPoints": {
+        "verified": "University-verified projects (30/30 in ML thesis)",
+        "realWork": "See real work, not claims",
+        "aiAnalysis": "AI analysis of complex projects",
+        "noApplications": "Zero applications → Companies find you",
+        "accuracy": "92% match accuracy (vs 60% on resumes)"
+      }
+    },
+    "howItWorks": {
+      "badge": "How It Works",
+      "title": "From Thesis to Job in 3 Steps",
+      "students": "For Students",
+      "companies": "For Companies",
+      "step1": {
+        "title": "Upload Projects",
+        "description": "Thesis, internships, apprenticeships - any format"
+      },
+      "step2": {
+        "title": "Institution Verification",
+        "description": "Your university authenticates via Esse3/Moodle"
+      },
+      "step3": {
+        "title": "Companies Discover You",
+        "description": "Recruiters contact you directly, zero applications"
+      },
+      "companyStep1": {
+        "title": "Search FREE",
+        "description": "Full database, unlimited filters, AI search"
+      },
+      "companyStep2": {
+        "title": "See Verified Projects",
+        "description": "Real grades, real projects, verified skills"
+      },
+      "companyStep3": {
+        "title": "Pay Only on Contact",
+        "description": "€10 per candidate you want to hire"
+      }
+    },
+    "features": {
+      "badge": "Key Features",
+      "title": "100% Verified Skills, Not Resume Claims",
+      "verification": {
+        "title": "University Verification",
+        "description": "Every skill traceable to institution via Esse3/Moodle"
+      },
+      "aiAnalysis": {
+        "title": "AI Analysis",
+        "description": "Extracts technical and soft skills from thesis and projects"
+      },
+      "reverseRecruiting": {
+        "title": "Reverse Recruiting",
+        "description": "Companies find you, you don't need to apply"
+      },
+      "transparency": {
+        "title": "Bidirectional Transparency",
+        "description": "See exactly WHY you match: '92% because Python thesis'"
+      }
+    },
+    "stats": {
+      "badge": "Proven by Results",
+      "title": "The Numbers Speak",
+      "higherResponse": "higher responses for students",
+      "fasterScreening": "faster screening for companies",
+      "matchAccuracy": "verified match accuracy",
+      "placementBoost": "institutional placement boost"
+    },
+    "cta": {
+      "students": {
+        "title": "Ready to Get Discovered?",
+        "subtitle": "Join 125,000+ students getting discovered by top companies",
+        "button": "Create Free Portfolio"
+      },
+      "companies": {
+        "title": "Ready to Hire Verified Talent?",
+        "subtitle": "Browse free, pay only when you contact. No subscriptions.",
+        "button": "Start Searching Free"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Transform your academic projects into career opportunities with AI-powered analysis, intelligent matching, and professional storytelling.",
+    "contact": "Contact Us",
+    "product": "Product",
+    "company": "Company",
+    "legal": "Legal & Privacy",
+    "privacy": "Privacy & GDPR",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy",
+    "newsletter": {
+      "title": "Stay Updated",
+      "description": "Get the latest updates on new features and career opportunities.",
+      "placeholder": "Enter your email",
+      "subscribe": "Subscribe"
+    },
+    "compliance": {
+      "operational": "All systems operational",
+      "gdpr": "GDPR Compliant",
+      "poweredBy": "Powered by AI"
+    },
+    "copyright": "© 2024 InTransparency. All rights reserved.",
+    "support": "Support"
+  },
+  "pricing": {
+    "students": {
+      "badge": "For Students - All Disciplines",
+      "title": "Free Core Platform + Optional Premium Features",
+      "subtitle": "Core marketplace FREE FOREVER: Upload projects → Institution verifies → Companies discover YOU. Optional €9 premium services: Priority search placement, advanced analytics, or one-time portfolio optimization. EU/Italian: 30/30 grading, stage curriculare, tirocini support.",
+      "free": {
+        "name": "Free Forever",
+        "price": "€0",
+        "period": "forever",
+        "description": "All core features - always free",
+        "badge": "100% Free",
+        "features": {
+          "uploads": "Unlimited verified project uploads",
+          "verification": "University verification",
+          "portfolio": "Public portfolio page",
+          "discovery": "Company discovery",
+          "analytics": "Basic profile analytics",
+          "noCard": "No credit card required"
+        },
+        "cta": "Start Free"
+      },
+      "premium": {
+        "name": "Premium Profile",
+        "price": "€9",
+        "period": "per month",
+        "description": "Stand out and get discovered faster",
+        "badge": "🚀 Most Popular",
+        "features": {
+          "everything": "Everything in Free Forever",
+          "priority": "Priority in recruiter search results",
+          "advancedAnalytics": "Advanced analytics & insights",
+          "customUrl": "Custom portfolio URL",
+          "contactRecruiters": "Contact recruiters directly",
+          "aiRecommendations": "AI-powered career recommendations",
+          "resumeBuilder": "Resume builder with verified projects",
+          "interviewPrep": "Interview preparation tools",
+          "prioritySupport": "Priority support",
+          "removeBadge": "Remove 'Powered by InTransparency' badge"
+        },
+        "cta": "Start 7-Day Free Trial"
+      },
+      "boost": {
+        "name": "Portfolio Boost",
+        "price": "€9",
+        "period": "one-time",
+        "description": "Professional portfolio design + LinkedIn optimization",
+        "badge": "💎 One-Time Service",
+        "features": {
+          "review": "Professional portfolio design review",
+          "aiOptimized": "AI-optimized project descriptions",
+          "linkedin": "LinkedIn profile optimization",
+          "skillRecommendations": "Personalized skill recommendations",
+          "coverLetters": "Cover letter templates (5 templates)",
+          "careerPath": "Career pathway suggestions",
+          "benchmarking": "Industry benchmarking report",
+          "guarantee": "30-day satisfaction guarantee",
+          "delivery": "Delivered within 48 hours"
+        },
+        "cta": "Get Portfolio Boost"
+      }
+    },
+    "companies": {
+      "badge": "For Companies - Pay Only What You Use",
+      "title": "Transparent Talent Sourcing Service - No Subscriptions",
+      "subtitle": "Browse 100% institution-verified profiles FREE. Search 'AutoCAD, 28/30 by ITS Rizzoli' with project excerpts. Pay €10 only when you contact verified candidates. 80% faster screening, 92% accuracy.",
+      "browseFree": {
+        "name": "Browse Free",
+        "price": "€0",
+        "period": "no subscription",
+        "description": "Unlimited browsing - pay only when you contact",
+        "badge": "🔍 Always Free",
+        "features": {
+          "registration": "Free registration (no credit card)",
+          "unlimited": "Unlimited database exploration",
+          "profiles": "See all profiles (anonymized)",
+          "filters": "Advanced filters by institution, courses, grades",
+          "aiSearch": "AI Candidate Search",
+          "verified": "AI-verified skills from all project types",
+          "location": "Location and availability filters",
+          "saveSearches": "Save searches and candidates",
+          "noFees": "No monthly fees ever"
+        },
+        "cta": "Start Exploring Free"
+      },
+      "payPerContact": {
+        "name": "Transparent Talent Sourcing Service",
+        "price": "€10",
+        "period": "per contact (no subscriptions)",
+        "description": "Browse 100% verified profiles FREE → Pay €10 only when you contact the right candidate",
+        "badge": "Most Popular - Pay As You Use",
+        "cta": "Start Browsing Free"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "€99",
+        "period": "per month",
+        "description": "Unlimited contacts + custom filters + branding + API access",
+        "badge": "🏢 Best for Scale",
+        "cta": "Upgrade to Enterprise"
+      }
+    },
+    "institutes": {
+      "badge": "For Institutes (Universities & ITS)",
+      "title": "Free Career Intelligence Service - No Subscriptions Ever",
+      "subtitle": "FREE Verification + Analytics services. Auto-import Esse3/Moodle. You authenticate, we deliver insights. Zero cost vs AlmaLaurea (€2,500/year). Prove 85% placement boost to MIUR.",
+      "free": {
+        "name": "Free Marketplace Access",
+        "price": "Free",
+        "period": "forever - no subscriptions",
+        "description": "Get your students hired through verified marketplace. FREE verification, discovery, matching, and analytics.",
+        "badge": "🎓 100% Free Forever",
+        "cta": "Join Free Marketplace"
+      },
+      "enterprise": {
+        "name": "Enterprise Custom",
+        "price": "€2,000",
+        "period": "per year",
+        "description": "Full white-label, API access, custom integrations. For large universities with advanced needs.",
+        "badge": "🏢 Enterprise",
+        "cta": "Schedule Demo"
+      }
+    }
+  }
+}

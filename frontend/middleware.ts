@@ -1,7 +1,17 @@
+import createMiddleware from 'next-intl/middleware'
 import { NextRequest, NextResponse } from 'next/server'
+import { locales, defaultLocale } from './i18n'
+
+// Create next-intl middleware
+const intlMiddleware = createMiddleware({
+  locales,
+  defaultLocale,
+  localePrefix: 'as-needed' // /it/pricing or just /pricing for Italian
+})
 
 export function middleware(request: NextRequest) {
-  const response = NextResponse.next()
+  // First, apply next-intl locale detection
+  const response = intlMiddleware(request)
 
   // Fix MIME type for JavaScript files
   if (request.nextUrl.pathname.includes('/_next/static/') &&
@@ -56,8 +66,9 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
+     * - Files with extensions (.*\\..*)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)',
     // Also match static files to fix MIME types
     '/_next/static/(.*)',
   ],

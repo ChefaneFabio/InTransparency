@@ -6,20 +6,23 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Menu, X, User } from 'lucide-react'
 import { useAuth } from '@/lib/auth/AuthContext'
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
+import { useTranslations } from 'next-intl'
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { user, isAuthenticated, logout } = useAuth()
+  const t = useTranslations('nav')
 
   const navigation = [
-    { name: 'Features', href: '/features' },
-    { name: 'How It Works', href: '/how-it-works' },
-    { name: 'Explore Portfolios', href: '/explore' },
-    { name: 'Success Stories', href: '/success-stories' },
-    { name: 'Demo', href: '/demo/ai-search' },
-    { name: 'Pricing', href: '/pricing' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact & Support', href: '/contact' },
+    { name: t('features'), href: '/features' },
+    { name: t('howItWorks'), href: '/how-it-works' },
+    { name: t('explorePortfolios'), href: '/explore' },
+    { name: t('successStories'), href: '/success-stories' },
+    { name: t('demo'), href: '/demo/ai-search' },
+    { name: t('pricing'), href: '/pricing' },
+    { name: t('about'), href: '/about' },
+    { name: t('contact'), href: '/contact' },
   ]
 
   return (
@@ -60,26 +63,27 @@ export function Header() {
           ))}
         </div>
         
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4 lg:items-center">
+          <LanguageSwitcher />
           {isAuthenticated ? (
             <>
               <Button variant="ghost" asChild>
                 <Link href="/dashboard">
                   <User className="mr-2 h-4 w-4" />
-                  Dashboard
+                  {t('dashboard')}
                 </Link>
               </Button>
               <Button variant="outline" onClick={logout}>
-                Sign Out
+                {t('signOut')}
               </Button>
             </>
           ) : (
             <>
               <Button variant="ghost" asChild>
-                <Link href="/auth/login">Sign In</Link>
+                <Link href="/auth/login">{t('signIn')}</Link>
               </Button>
               <Button asChild>
-                <Link href="/auth/register">Get Started</Link>
+                <Link href="/auth/register">{t('getStarted')}</Link>
               </Button>
             </>
           )}
@@ -124,8 +128,12 @@ export function Header() {
                     </Link>
                   ))}
                 </div>
-                
+
                 <div className="py-6">
+                  <div className="mb-4 px-3">
+                    <LanguageSwitcher />
+                  </div>
+
                   {isAuthenticated ? (
                     <div className="space-y-2">
                       <Link
@@ -133,7 +141,7 @@ export function Header() {
                         className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        Dashboard
+                        {t('dashboard')}
                       </Link>
                       <Button
                         variant="outline"
@@ -143,7 +151,7 @@ export function Header() {
                           setMobileMenuOpen(false)
                         }}
                       >
-                        Sign Out
+                        {t('signOut')}
                       </Button>
                     </div>
                   ) : (
@@ -153,11 +161,11 @@ export function Header() {
                         className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        Sign In
+                        {t('signIn')}
                       </Link>
                       <Button className="w-full" asChild>
                         <Link href="/auth/register" onClick={() => setMobileMenuOpen(false)}>
-                          Get Started
+                          {t('getStarted')}
                         </Link>
                       </Button>
                     </div>
