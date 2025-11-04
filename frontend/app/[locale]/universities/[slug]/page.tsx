@@ -29,6 +29,7 @@ import {
   Share2,
   Download
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface University {
   id: string
@@ -89,6 +90,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
   const [university, setUniversity] = useState<University | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const t = useTranslations('universityProfile')
 
   useEffect(() => {
     const fetchUniversity = async () => {
@@ -116,7 +118,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="flex items-center space-x-2">
           <Loader2 className="h-8 w-8 animate-spin" />
-          <span className="text-lg">Loading university...</span>
+          <span className="text-lg">{t('loading')}</span>
         </div>
       </div>
     )
@@ -126,9 +128,9 @@ export default function UniversityPage({ params }: UniversityPageProps) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Error Loading University</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">{t('error.title')}</h2>
           <p className="text-gray-600 mb-4">{error}</p>
-          <Button onClick={() => window.location.reload()}>Try Again</Button>
+          <Button onClick={() => window.location.reload()}>{t('error.tryAgain')}</Button>
         </div>
       </div>
     )
@@ -157,11 +159,11 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                   </div>
                   <div className="flex items-center">
                     <Calendar className="h-4 w-4 mr-1" />
-                    Founded {university.founded}
+                    {t('header.founded', { year: university.founded })}
                   </div>
                   <div className="flex items-center">
                     <Star className="h-4 w-4 mr-1 text-yellow-500" />
-                    #{university.ranking.global} Global Ranking
+                    {t('header.globalRanking', { rank: university.ranking.global })}
                   </div>
                 </div>
               </div>
@@ -169,15 +171,15 @@ export default function UniversityPage({ params }: UniversityPageProps) {
             <div className="flex items-center space-x-3">
               <Button variant="outline">
                 <Heart className="h-4 w-4 mr-2" />
-                Save
+                {t('header.actions.save')}
               </Button>
               <Button variant="outline">
                 <Share2 className="h-4 w-4 mr-2" />
-                Share
+                {t('header.actions.share')}
               </Button>
               <Button>
                 <MessageSquare className="h-4 w-4 mr-2" />
-                Contact
+                {t('header.actions.contact')}
               </Button>
             </div>
           </div>
@@ -191,7 +193,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
             {/* Overview */}
             <Card>
               <CardHeader>
-                <CardTitle>University Overview</CardTitle>
+                <CardTitle>{t('overview.title')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700 mb-6">{university.description}</p>
@@ -199,19 +201,19 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-blue-600">{university.stats.students.toLocaleString()}</div>
-                    <div className="text-sm text-gray-600">Total Students</div>
+                    <div className="text-sm text-gray-600">{t('overview.stats.totalStudents')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-green-600">{university.stats.faculty.toLocaleString()}</div>
-                    <div className="text-sm text-gray-600">Faculty</div>
+                    <div className="text-sm text-gray-600">{t('overview.stats.faculty')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-orange-600">{university.stats.acceptanceRate}%</div>
-                    <div className="text-sm text-gray-600">Acceptance Rate</div>
+                    <div className="text-sm text-gray-600">{t('overview.stats.acceptanceRate')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-purple-600">{university.employmentRate}%</div>
-                    <div className="text-sm text-gray-600">Employment Rate</div>
+                    <div className="text-sm text-gray-600">{t('overview.stats.employmentRate')}</div>
                   </div>
                 </div>
               </CardContent>
@@ -222,22 +224,22 @@ export default function UniversityPage({ params }: UniversityPageProps) {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <Award className="h-5 w-5 mr-2" />
-                  Rankings
+                  {t('rankings.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-3 gap-6">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-yellow-600">#{university.ranking.global}</div>
-                    <div className="text-sm text-gray-600">Global Ranking</div>
+                    <div className="text-sm text-gray-600">{t('rankings.global')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-blue-600">#{university.ranking.national}</div>
-                    <div className="text-sm text-gray-600">National Ranking</div>
+                    <div className="text-sm text-gray-600">{t('rankings.national')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-green-600">#{university.ranking.engineering}</div>
-                    <div className="text-sm text-gray-600">Engineering Ranking</div>
+                    <div className="text-sm text-gray-600">{t('rankings.engineering')}</div>
                   </div>
                 </div>
               </CardContent>
@@ -248,7 +250,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <BookOpen className="h-5 w-5 mr-2" />
-                  Top Academic Programs
+                  {t('programs.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -257,14 +259,14 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                     <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                       <div>
                         <h3 className="font-semibold text-gray-900">{program.name}</h3>
-                        <p className="text-sm text-gray-600">{program.students} students</p>
+                        <p className="text-sm text-gray-600">{t('programs.students', { count: program.students })}</p>
                       </div>
                       <div className="text-right">
                         <div className="flex items-center text-yellow-600 mb-1">
                           <Star className="h-4 w-4 mr-1" />
                           <span className="font-semibold">#{program.ranking}</span>
                         </div>
-                        <p className="text-xs text-gray-700">National Ranking</p>
+                        <p className="text-xs text-gray-700">{t('programs.nationalRanking')}</p>
                       </div>
                     </div>
                   ))}
@@ -277,26 +279,26 @@ export default function UniversityPage({ params }: UniversityPageProps) {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <TrendingUp className="h-5 w-5 mr-2" />
-                  Student Outcomes
+                  {t('outcomes.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">Career Statistics</h4>
+                    <h4 className="font-semibold text-gray-900 mb-3">{t('outcomes.careerStats')}</h4>
                     <div className="space-y-2">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Employment Rate</span>
+                        <span className="text-gray-600">{t('outcomes.employmentRate')}</span>
                         <span className="font-semibold">{university.employmentRate}%</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Average Salary</span>
+                        <span className="text-gray-600">{t('outcomes.avgSalary')}</span>
                         <span className="font-semibold">{university.avgSalary}</span>
                       </div>
                     </div>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">Top Employers</h4>
+                    <h4 className="font-semibold text-gray-900 mb-3">{t('outcomes.topEmployers')}</h4>
                     <div className="flex flex-wrap gap-2">
                       {university.companies.slice(0, 4).map((company: string, index: number) => (
                         <Badge key={index} variant="outline">{company}</Badge>
@@ -313,25 +315,25 @@ export default function UniversityPage({ params }: UniversityPageProps) {
             {/* Quick Actions */}
             <Card>
               <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
+                <CardTitle>{t('quickActions.title')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <Button className="w-full">
                   <Users className="h-4 w-4 mr-2" />
-                  Browse Students
+                  {t('quickActions.browseStudents')}
                 </Button>
                 <Button variant="outline" className="w-full">
                   <Eye className="h-4 w-4 mr-2" />
-                  View Programs
+                  {t('quickActions.viewPrograms')}
                 </Button>
                 <Button variant="outline" className="w-full">
                   <BarChart3 className="h-4 w-4 mr-2" />
-                  See Analytics
+                  {t('quickActions.seeAnalytics')}
                 </Button>
                 <Button variant="outline" className="w-full" asChild>
                   <a href={university.website} target="_blank" rel="noopener noreferrer">
                     <ExternalLink className="h-4 w-4 mr-2" />
-                    Visit Website
+                    {t('quickActions.visitWebsite')}
                   </a>
                 </Button>
               </CardContent>
@@ -340,7 +342,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
             {/* Contact Information */}
             <Card>
               <CardHeader>
-                <CardTitle>Contact Information</CardTitle>
+                <CardTitle>{t('contact.title')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-start">
@@ -360,7 +362,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                 <div className="flex items-center">
                   <Globe className="h-4 w-4 text-gray-600 mr-2" />
                   <a href={university.website} className="text-sm text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">
-                    Official Website
+                    {t('quickActions.officialWebsite')}
                   </a>
                 </div>
               </CardContent>
@@ -369,7 +371,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
             {/* Top Skills */}
             <Card>
               <CardHeader>
-                <CardTitle>Top Skills from Students</CardTitle>
+                <CardTitle>{t('topSkills.title')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
@@ -383,7 +385,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
             {/* Social Media */}
             <Card>
               <CardHeader>
-                <CardTitle>Follow Us</CardTitle>
+                <CardTitle>{t('socialMedia.title')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
@@ -393,11 +395,11 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                   </a>
                   <a href={`https://linkedin.com/company/${university.socialMedia.linkedin}`} className="flex items-center text-blue-700 hover:text-blue-900" target="_blank" rel="noopener noreferrer">
                     <span className="mr-2">💼</span>
-                    LinkedIn
+                    {t('socialMedia.linkedin')}
                   </a>
                   <a href={`https://facebook.com/${university.socialMedia.facebook}`} className="flex items-center text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">
                     <span className="mr-2">👥</span>
-                    Facebook
+                    {t('socialMedia.facebook')}
                   </a>
                 </div>
               </CardContent>

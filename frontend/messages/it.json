@@ -3013,5 +3013,67 @@
       },
       "conclusion": "QUALSIASI settore con progetti verificabili = InTransparency funziona!"
     }
+  },
+  "universityProfile": {
+    "loading": "Caricamento università...",
+    "error": {
+      "title": "Errore Caricamento Università",
+      "tryAgain": "Riprova"
+    },
+    "header": {
+      "founded": "Fondata {year}",
+      "globalRanking": "#{rank} Classifica Globale",
+      "actions": {
+        "save": "Salva",
+        "share": "Condividi",
+        "contact": "Contatta"
+      }
+    },
+    "overview": {
+      "title": "Panoramica Università",
+      "stats": {
+        "totalStudents": "Studenti Totali",
+        "faculty": "Docenti",
+        "acceptanceRate": "Tasso di Accettazione",
+        "employmentRate": "Tasso di Occupazione"
+      }
+    },
+    "rankings": {
+      "title": "Classifiche",
+      "global": "Classifica Globale",
+      "national": "Classifica Nazionale",
+      "engineering": "Classifica Ingegneria"
+    },
+    "programs": {
+      "title": "Programmi Accademici Principali",
+      "students": "{count} studenti",
+      "nationalRanking": "Classifica Nazionale"
+    },
+    "outcomes": {
+      "title": "Risultati Studenti",
+      "careerStats": "Statistiche Carriera",
+      "employmentRate": "Tasso di Occupazione",
+      "avgSalary": "Stipendio Medio",
+      "topEmployers": "Principali Datori di Lavoro"
+    },
+    "quickActions": {
+      "title": "Azioni Rapide",
+      "browseStudents": "Naviga Studenti",
+      "viewPrograms": "Vedi Programmi",
+      "seeAnalytics": "Vedi Analisi",
+      "visitWebsite": "Visita Sito Web",
+      "officialWebsite": "Sito Web Ufficiale"
+    },
+    "contact": {
+      "title": "Informazioni di Contatto"
+    },
+    "topSkills": {
+      "title": "Competenze Principali dagli Studenti"
+    },
+    "socialMedia": {
+      "title": "Seguici",
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook"
+    }
   }
 }

@@ -3014,5 +3014,67 @@
       },
       "conclusion": "ANY sector with verifiable projects = InTransparency works!"
     }
+  },
+  "universityProfile": {
+    "loading": "Loading university...",
+    "error": {
+      "title": "Error Loading University",
+      "tryAgain": "Try Again"
+    },
+    "header": {
+      "founded": "Founded {year}",
+      "globalRanking": "#{rank} Global Ranking",
+      "actions": {
+        "save": "Save",
+        "share": "Share",
+        "contact": "Contact"
+      }
+    },
+    "overview": {
+      "title": "University Overview",
+      "stats": {
+        "totalStudents": "Total Students",
+        "faculty": "Faculty",
+        "acceptanceRate": "Acceptance Rate",
+        "employmentRate": "Employment Rate"
+      }
+    },
+    "rankings": {
+      "title": "Rankings",
+      "global": "Global Ranking",
+      "national": "National Ranking",
+      "engineering": "Engineering Ranking"
+    },
+    "programs": {
+      "title": "Top Academic Programs",
+      "students": "{count} students",
+      "nationalRanking": "National Ranking"
+    },
+    "outcomes": {
+      "title": "Student Outcomes",
+      "careerStats": "Career Statistics",
+      "employmentRate": "Employment Rate",
+      "avgSalary": "Average Salary",
+      "topEmployers": "Top Employers"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "browseStudents": "Browse Students",
+      "viewPrograms": "View Programs",
+      "seeAnalytics": "See Analytics",
+      "visitWebsite": "Visit Website",
+      "officialWebsite": "Official Website"
+    },
+    "contact": {
+      "title": "Contact Information"
+    },
+    "topSkills": {
+      "title": "Top Skills from Students"
+    },
+    "socialMedia": {
+      "title": "Follow Us",
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook"
+    }
   }
 }
