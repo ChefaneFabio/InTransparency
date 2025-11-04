@@ -2411,5 +2411,75 @@
       "button": "Get Certified - {price}",
       "quickFacts": "✓ Complete in 30 minutes  ✓ Instant certification  ✓ Lifetime access"
     }
+  },
+  "certificationWaitlist": {
+    "success": {
+      "title": "You're on the Waitlist!",
+      "subtitle": "We'll notify you at {email} when soft skills certification launches.",
+      "whatHappensNext": {
+        "title": "What happens next?",
+        "steps": {
+          "0": "You'll receive an email confirmation in the next few minutes",
+          "1": "We'll send you early access when certification launches (expected: 4-6 weeks)",
+          "2": "<strong>Early bird bonus:</strong> First 100 signups get 20% off (€79 instead of €99)"
+        }
+      },
+      "actions": {
+        "dashboard": "Go to Dashboard",
+        "home": "Back to Home"
+      },
+      "betaTesting": {
+        "message": "Want to help us shape the certification? We're looking for beta testers.",
+        "link": "→ Express interest in beta testing"
+      }
+    },
+    "form": {
+      "badge": "Early Access",
+      "title": "Join the Waitlist",
+      "subtitle": "Soft Skills Certification is launching soon",
+      "expectedLaunch": "Expected launch: 4-6 weeks",
+      "cardTitle": "Reserve Your Spot",
+      "cardSubtitle": "Be among the first to certify your soft skills",
+      "fields": {
+        "firstName": "First Name *",
+        "firstNamePlaceholder": "John",
+        "lastName": "Last Name *",
+        "lastNamePlaceholder": "Doe",
+        "email": "Email Address *",
+        "emailPlaceholder": "john.doe@university.edu",
+        "emailHelp": "We'll send you early access when certification launches",
+        "university": "University (Optional)",
+        "universityPlaceholder": "e.g., Politecnico di Milano",
+        "graduationYear": "Expected Graduation Year (Optional)",
+        "graduationYearPlaceholder": "2026"
+      },
+      "earlyBird": {
+        "title": "Early Bird Discount",
+        "description": "First 100 signups get 20% off: <strong>€79</strong> instead of €99"
+      },
+      "submit": "Join Waitlist",
+      "submitting": "Joining...",
+      "privacyNotice": "By joining, you agree to receive launch notifications and updates about soft skills certification. You can unsubscribe anytime."
+    },
+    "whyJoin": {
+      "title": "Why Join Now?",
+      "benefits": {
+        "0": {
+          "icon": "🎯",
+          "title": "Early Access",
+          "description": "Be first to certify before your peers"
+        },
+        "1": {
+          "icon": "💰",
+          "title": "20% Discount",
+          "description": "Save €20 as an early bird (€79 vs €99)"
+        },
+        "2": {
+          "icon": "🚀",
+          "title": "Shape the Product",
+          "description": "Your feedback helps us improve"
+        }
+      }
+    }
   }
 }

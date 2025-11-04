@@ -2411,5 +2411,75 @@
       "button": "Ottieni Certificazione - {price}",
       "quickFacts": "✓ Completa in 30 minuti  ✓ Certificazione istantanea  ✓ Accesso a vita"
     }
+  },
+  "certificationWaitlist": {
+    "success": {
+      "title": "Sei nella Lista d'Attesa!",
+      "subtitle": "Ti avviseremo a {email} quando sarà lanciata la certificazione soft skills.",
+      "whatHappensNext": {
+        "title": "Cosa succede ora?",
+        "steps": {
+          "0": "Riceverai un'email di conferma nei prossimi minuti",
+          "1": "Ti invieremo accesso anticipato quando sarà lanciata la certificazione (previsto: 4-6 settimane)",
+          "2": "<strong>Bonus early bird:</strong> I primi 100 iscritti ottengono il 20% di sconto (€79 invece di €99)"
+        }
+      },
+      "actions": {
+        "dashboard": "Vai alla Dashboard",
+        "home": "Torna alla Home"
+      },
+      "betaTesting": {
+        "message": "Vuoi aiutarci a modellare la certificazione? Stiamo cercando beta tester.",
+        "link": "→ Esprimi interesse per il beta testing"
+      }
+    },
+    "form": {
+      "badge": "Accesso Anticipato",
+      "title": "Unisciti alla Lista d'Attesa",
+      "subtitle": "La Certificazione Soft Skills sarà lanciata presto",
+      "expectedLaunch": "Lancio previsto: 4-6 settimane",
+      "cardTitle": "Prenota il Tuo Posto",
+      "cardSubtitle": "Sii tra i primi a certificare le tue soft skills",
+      "fields": {
+        "firstName": "Nome *",
+        "firstNamePlaceholder": "Mario",
+        "lastName": "Cognome *",
+        "lastNamePlaceholder": "Rossi",
+        "email": "Indirizzo Email *",
+        "emailPlaceholder": "mario.rossi@university.edu",
+        "emailHelp": "Ti invieremo accesso anticipato quando sarà lanciata la certificazione",
+        "university": "Università (Facoltativo)",
+        "universityPlaceholder": "es. Politecnico di Milano",
+        "graduationYear": "Anno di Laurea Previsto (Facoltativo)",
+        "graduationYearPlaceholder": "2026"
+      },
+      "earlyBird": {
+        "title": "Sconto Early Bird",
+        "description": "I primi 100 iscritti ottengono il 20% di sconto: <strong>€79</strong> invece di €99"
+      },
+      "submit": "Unisciti alla Lista d'Attesa",
+      "submitting": "Iscrizione...",
+      "privacyNotice": "Iscrivendoti, accetti di ricevere notifiche di lancio e aggiornamenti sulla certificazione soft skills. Puoi annullare l'iscrizione in qualsiasi momento."
+    },
+    "whyJoin": {
+      "title": "Perché Iscriversi Ora?",
+      "benefits": {
+        "0": {
+          "icon": "🎯",
+          "title": "Accesso Anticipato",
+          "description": "Sii il primo a certificarti prima dei tuoi compagni"
+        },
+        "1": {
+          "icon": "💰",
+          "title": "Sconto del 20%",
+          "description": "Risparmia €20 come early bird (€79 vs €99)"
+        },
+        "2": {
+          "icon": "🚀",
+          "title": "Modella il Prodotto",
+          "description": "Il tuo feedback ci aiuta a migliorare"
+        }
+      }
+    }
   }
 }
