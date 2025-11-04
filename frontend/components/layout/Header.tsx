@@ -33,7 +33,7 @@ export function Header() {
               alt="InTransparency Logo"
               width={280}
               height={84}
-              className="h-20 w-[280px]"
+              className="h-20 w-auto"
               priority
             />
           </Link>

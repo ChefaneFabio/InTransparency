@@ -19,7 +19,8 @@ export function LanguageSwitcher() {
       ? `/en${pathnameWithoutLocale}`
       : pathnameWithoutLocale
 
-    router.push(newPath)
+    // Use window.location for full page reload to ensure locale change
+    window.location.href = newPath
   }
 
   return (
