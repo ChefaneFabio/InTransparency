@@ -10,13 +10,22 @@ const intlMiddleware = createMiddleware({
 })
 
 export function middleware(request: NextRequest) {
-  // First, apply next-intl locale detection
-  const response = intlMiddleware(request)
+  // Skip intl middleware for static files
+  const isStaticFile = request.nextUrl.pathname.startsWith('/_next/static/')
 
-  // Fix MIME type for JavaScript files
-  if (request.nextUrl.pathname.includes('/_next/static/') &&
-      request.nextUrl.pathname.endsWith('.js')) {
-    response.headers.set('Content-Type', 'application/javascript; charset=utf-8')
+  let response: NextResponse
+
+  if (isStaticFile) {
+    // For static files, just pass through
+    response = NextResponse.next()
+
+    // Fix MIME type for JavaScript files
+    if (request.nextUrl.pathname.endsWith('.js')) {
+      response.headers.set('Content-Type', 'application/javascript; charset=utf-8')
+    }
+  } else {
+    // For all other requests, apply next-intl locale detection
+    response = intlMiddleware(request)
   }
 
   // Security headers for all requests
@@ -63,13 +72,11 @@ export const config = {
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)
-     * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - Files with extensions (.*\\..*)
+     * - Files with extensions like .png, .jpg, etc (.*\\..*)
+     * Note: We DO match _next/static to add security headers, but skip intl middleware for it
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)',
-    // Also match static files to fix MIME types
-    '/_next/static/(.*)',
+    '/((?!api|_next/image|favicon.ico).*)',
   ],
 }
