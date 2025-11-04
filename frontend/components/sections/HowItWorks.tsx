@@ -20,128 +20,59 @@ import {
   Clock
 } from 'lucide-react'
 import { IMAGES } from '@/lib/images'
+import { useTranslations } from 'next-intl'
+
+const stepImages = [
+  IMAGES.students.student1,
+  IMAGES.features.aiAnalysis,
+  IMAGES.companies.team,
+  IMAGES.success.handshake
+]
+
+const benefitIcons = {
+  students: Users,
+  companies: Building2,
+  institutes: GraduationCap
+}
 
 export function HowItWorks() {
   const [activeStep, setActiveStep] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const t = useTranslations('home.howItWorksPage')
 
-  const steps = [
-    {
-      id: 1,
-      title: 'Create Your Profile',
-      description: 'Two ways: University partner = automatic profile. Independent = upload projects + select courses for instant profile',
-      image: IMAGES.students.student1,
-      color: 'from-primary to-secondary',
-      details: [
-        'University Integrated: Profile created automatically from university data',
-        'Independent: Upload projects (code, docs, presentations) + select courses',
-        'AI identifies courses and creates complete profile',
-        'Both paths: Full platform access in < 5 minutes'
-      ],
-      stats: { students: '125,000+', time: '< 5 min' },
-      visual: {
-        type: 'upload',
-        files: ['main.py', 'README.md', 'requirements.txt', 'docs/'],
-        progress: 85
-      }
+  // Get step data from translations
+  const getStep = (index: number) => ({
+    id: index + 1,
+    title: t(`steps.${index}.title`),
+    description: t(`steps.${index}.description`),
+    details: [
+      t(`steps.${index}.details.0`),
+      t(`steps.${index}.details.1`),
+      t(`steps.${index}.details.2`),
+      t(`steps.${index}.details.3`)
+    ],
+    stats: {
+      key1: Object.keys(JSON.parse(t.raw(`steps.${index}.stats`) as string))[0],
+      value1: Object.values(JSON.parse(t.raw(`steps.${index}.stats`) as string))[0],
+      key2: Object.keys(JSON.parse(t.raw(`steps.${index}.stats`) as string))[1],
+      value2: Object.values(JSON.parse(t.raw(`steps.${index}.stats`) as string))[1]
     },
-    {
-      id: 2,
-      title: 'AI Analysis & Scoring',
-      description: 'Our advanced AI analyzes code quality, innovation level, complexity, and extracts relevant skills',
-      image: IMAGES.features.aiAnalysis,
-      color: 'from-primary to-secondary',
-      details: [
-        'Code quality assessment using industry standards',
-        'Innovation scoring based on uniqueness and creativity',
-        'Automatic skill extraction and categorization',
-        'Technology stack analysis and recommendations'
-      ],
-      stats: { accuracy: '94%', skills: '500+' },
-      visual: {
-        type: 'analysis',
-        scores: { innovation: 85, quality: 92, complexity: 'Advanced' },
-        skills: ['Python', 'Machine Learning', 'Web Development', 'APIs']
-      }
-    },
-    {
-      id: 3,
-      title: 'Story Generation',
-      description: 'Transform technical projects into compelling professional narratives that recruiters understand',
-      image: IMAGES.companies.team,
-      color: 'from-primary to-secondary',
-      details: [
-        'AI-powered professional storytelling',
-        'Industry-specific terminology and keywords',
-        'Achievement and impact highlighting',
-        'ATS-optimized content generation'
-      ],
-      stats: { stories: '89,000+', engagement: '+40%' },
-      visual: {
-        type: 'story',
-        content: 'Developed an intelligent recommendation system that increased user engagement by 40%. Leveraged machine learning algorithms to analyze customer behavior patterns...'
-      }
-    },
-    {
-      id: 4,
-      title: 'Smart Matching',
-      description: 'Connect students with relevant opportunities and enable recruiters to find the perfect candidates',
-      image: IMAGES.success.handshake,
-      color: 'from-primary to-secondary',
-      details: [
-        'AI-powered skill and project matching',
-        'Real-time opportunity notifications',
-        'Preference-based filtering and recommendations',
-        'Direct communication channels'
-      ],
-      stats: { matches: '8,500+', success: '78%' },
-      visual: {
-        type: 'matching',
-        matches: [
-          { company: 'TechCorp', role: 'ML Engineer', match: 94 },
-          { company: 'DataFlow', role: 'Full Stack Dev', match: 89 }
-        ]
-      }
-    }
-  ]
+    image: stepImages[index],
+    color: 'from-primary to-secondary'
+  })
 
-  const benefits = [
-    {
-      icon: Users,
-      title: 'For Students',
-      description: 'Showcase your work professionally and get discovered by top companies',
-      features: ['AI-enhanced portfolios', 'Direct recruiter connections', 'Career insights', 'Skill verification']
-    },
-    {
-      icon: Building2,
-      title: 'For Companies',
-      description: 'Find and hire the best talent based on real projects and verified skills',
-      features: ['Pre-screened candidates', 'Project-based assessment', 'Direct messaging', 'Hiring analytics']
-    },
-    {
-      icon: GraduationCap,
-      title: 'For Institutes (Universities & ITS)',
-      description: 'Turn your Career Center into a strategic intelligence hub. Stop guessing. Start knowing.',
-      features: [
-        'See which companies search your students (Deloitte viewed 31 Economics students → time for outreach?)',
-        'Data-driven career advice (Excel searched 89x → tell students to learn it)',
-        'Fix at-risk profiles before graduation (87 seniors with zero views = early intervention)',
-        'Give departments curriculum feedback (Add Docker → hired 60% faster)',
-        'Prove your impact (Dashboard: 156 contacts → 23 hires → 47 days avg)'
-      ]
-    }
-  ]
+  const steps = [0, 1, 2, 3].map(i => getStep(i))
 
   // Auto-advance steps
   useEffect(() => {
     if (!isAutoPlaying) return
 
     const interval = setInterval(() => {
-      setActiveStep(prev => (prev + 1) % steps.length)
+      setActiveStep(prev => (prev + 1) % 4)
     }, 4000)
 
     return () => clearInterval(interval)
-  }, [isAutoPlaying]) // Removed steps.length dependency to prevent infinite loop
+  }, [isAutoPlaying])
 
   const currentStep = steps[activeStep]
 
@@ -151,13 +82,13 @@ export function HowItWorks() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-display font-bold text-foreground mb-6">
-            How InTransparency{' '}
+            {t('title')} {' '}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Works
+              {t('titleHighlight')}
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Our AI-powered platform transforms academic projects into professional opportunities through four simple steps
+            {t('subtitle')}
           </p>
 
           <div className="flex justify-center items-center space-x-4">
@@ -166,9 +97,9 @@ export function HowItWorks() {
               onClick={() => setIsAutoPlaying(!isAutoPlaying)}
               size="sm"
             >
-              {isAutoPlaying ? 'Pause' : 'Play'} Demo
+              {isAutoPlaying ? t('pauseDemo') : t('playDemo')}
             </Button>
-            <span className="text-sm text-gray-700">Auto-advancing every 4 seconds</span>
+            <span className="text-sm text-gray-700">{t('autoAdvancing')}</span>
           </div>
         </div>
 
@@ -218,7 +149,7 @@ export function HowItWorks() {
                 />
               </div>
               <div>
-                <div className="text-sm font-medium text-gray-700 mb-1">Step {currentStep.id}</div>
+                <div className="text-sm font-medium text-gray-700 mb-1">{t('step')} {currentStep.id}</div>
                 <h3 className="text-3xl font-bold text-gray-900">{currentStep.title}</h3>
               </div>
             </div>
@@ -237,12 +168,14 @@ export function HowItWorks() {
             </div>
 
             <div className="flex items-center space-x-6 pt-4">
-              {Object.entries(currentStep.stats).map(([key, value]) => (
-                <div key={key} className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">{value}</div>
-                  <div className="text-sm text-gray-700 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</div>
-                </div>
-              ))}
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gray-900">{currentStep.stats.value1}</div>
+                <div className="text-sm text-gray-700 capitalize">{currentStep.stats.key1}</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gray-900">{currentStep.stats.value2}</div>
+                <div className="text-sm text-gray-700 capitalize">{currentStep.stats.key2}</div>
+              </div>
             </div>
           </div>
 
@@ -250,13 +183,14 @@ export function HowItWorks() {
           <div className="relative">
             <Card className="p-6 shadow-2xl border-0 bg-gradient-to-br from-white to-gray-50/50 overflow-hidden">
               <CardContent className="p-0">
-                {currentStep.visual.type === 'upload' && (
+                {/* Step 0: Upload */}
+                {activeStep === 0 && (
                   <div className="space-y-4">
                     <div className="border-2 border-dashed border-blue-300 rounded-lg p-8 text-center bg-blue-50/50">
                       <Upload className="h-12 w-12 text-blue-500 mx-auto mb-4" />
-                      <h5 className="font-semibold text-gray-900 mb-4">Project Upload</h5>
+                      <h5 className="font-semibold text-gray-900 mb-4">{t('steps.0.visual.uploadTitle')}</h5>
                       <div className="space-y-2">
-                        {currentStep.visual.files?.map((file, index) => (
+                        {['main.py', 'README.md', 'requirements.txt', 'docs/'].map((file, index) => (
                           <div key={index} className="bg-white rounded p-3 text-sm text-gray-600 flex items-center">
                             📄 <span className="ml-2">{file}</span>
                             <CheckCircle className="h-4 w-4 text-green-500 ml-auto" />
@@ -266,20 +200,18 @@ export function HowItWorks() {
                     </div>
                     <div className="bg-blue-50 rounded-lg p-4">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium">Upload Progress</span>
-                        <span className="text-sm text-blue-600">{currentStep.visual.progress}%</span>
+                        <span className="text-sm font-medium">{t('steps.0.visual.uploadProgress')}</span>
+                        <span className="text-sm text-blue-600">85%</span>
                       </div>
                       <div className="w-full bg-blue-100 rounded-full h-2">
-                        <div
-                          className="bg-blue-500 h-2 rounded-full transition-all duration-1000"
-                          style={{ width: `${currentStep.visual.progress}%` }}
-                        ></div>
+                        <div className="bg-blue-500 h-2 rounded-full transition-all duration-1000" style={{ width: '85%' }}></div>
                       </div>
                     </div>
                   </div>
                 )}
 
-                {currentStep.visual.type === 'analysis' && (
+                {/* Step 1: Analysis */}
+                {activeStep === 1 && (
                   <div className="space-y-6">
                     <div className="text-center">
                       <div className="relative w-32 h-32 mx-auto mb-4">
@@ -289,24 +221,24 @@ export function HowItWorks() {
                           <Brain className="h-8 w-8 text-purple-600" />
                         </div>
                       </div>
-                      <h5 className="font-semibold text-gray-900">AI Analysis in Progress...</h5>
+                      <h5 className="font-semibold text-gray-900">{t('steps.1.visual.analysisTitle')}</h5>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-blue-50 rounded-lg p-4 text-center">
-                        <div className="text-2xl font-bold text-blue-600">{currentStep.visual.scores?.innovation}</div>
-                        <div className="text-sm text-gray-600">Innovation Score</div>
+                        <div className="text-2xl font-bold text-blue-600">85</div>
+                        <div className="text-sm text-gray-600">{t('steps.1.visual.innovationScore')}</div>
                       </div>
                       <div className="bg-green-50 rounded-lg p-4 text-center">
-                        <div className="text-2xl font-bold text-green-600">{currentStep.visual.scores?.quality}</div>
-                        <div className="text-sm text-gray-600">Code Quality</div>
+                        <div className="text-2xl font-bold text-green-600">92</div>
+                        <div className="text-sm text-gray-600">{t('steps.1.visual.codeQuality')}</div>
                       </div>
                     </div>
 
                     <div>
-                      <h6 className="font-medium text-gray-900 mb-3">Skills Detected:</h6>
+                      <h6 className="font-medium text-gray-900 mb-3">{t('steps.1.visual.skillsDetected')}</h6>
                       <div className="flex flex-wrap gap-2">
-                        {currentStep.visual.skills?.map((skill, index) => (
+                        {['Python', 'Machine Learning', 'Web Development', 'APIs'].map((skill, index) => (
                           <Badge key={index} className="bg-purple-100 text-purple-800">
                             {skill}
                           </Badge>
@@ -316,38 +248,43 @@ export function HowItWorks() {
                   </div>
                 )}
 
-                {currentStep.visual.type === 'story' && (
+                {/* Step 2: Story */}
+                {activeStep === 2 && (
                   <div className="space-y-4">
                     <div className="flex items-center mb-4">
                       <Sparkles className="h-6 w-6 text-yellow-500 mr-2" />
-                      <h5 className="font-semibold text-gray-900">Professional Story Generated</h5>
+                      <h5 className="font-semibold text-gray-900">{t('steps.2.visual.storyTitle')}</h5>
                     </div>
                     <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-4 border border-yellow-200">
                       <p className="text-gray-700 leading-relaxed text-sm">
-                        {currentStep.visual.content}
+                        Developed an intelligent recommendation system that increased user engagement by 40%. Leveraged machine learning algorithms to analyze customer behavior patterns...
                       </p>
                     </div>
                     <div className="grid grid-cols-2 gap-4 text-center">
                       <div className="bg-green-50 rounded-lg p-3">
                         <Zap className="h-5 w-5 text-green-500 mx-auto mb-1" />
-                        <div className="text-xs text-gray-600">ATS Optimized</div>
+                        <div className="text-xs text-gray-600">{t('steps.2.visual.atsOptimized')}</div>
                       </div>
                       <div className="bg-blue-50 rounded-lg p-3">
                         <TrendingUp className="h-5 w-5 text-blue-500 mx-auto mb-1" />
-                        <div className="text-xs text-gray-600">Industry Keywords</div>
+                        <div className="text-xs text-gray-600">{t('steps.2.visual.industryKeywords')}</div>
                       </div>
                     </div>
                   </div>
                 )}
 
-                {currentStep.visual.type === 'matching' && (
+                {/* Step 3: Matching */}
+                {activeStep === 3 && (
                   <div className="space-y-4">
                     <div className="flex items-center mb-4">
                       <Target className="h-6 w-6 text-green-500 mr-2" />
-                      <h5 className="font-semibold text-gray-900">Perfect Matches Found</h5>
+                      <h5 className="font-semibold text-gray-900">{t('steps.3.visual.matchesTitle')}</h5>
                     </div>
                     <div className="space-y-3">
-                      {currentStep.visual.matches?.map((match, index) => (
+                      {[
+                        { company: 'TechCorp', role: 'ML Engineer', match: 94 },
+                        { company: 'DataFlow', role: 'Full Stack Dev', match: 89 }
+                      ].map((match, index) => (
                         <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
                           <div className="flex items-center justify-between">
                             <div>
@@ -356,7 +293,7 @@ export function HowItWorks() {
                             </div>
                             <div className="text-right">
                               <div className="text-lg font-bold text-green-600">{match.match}%</div>
-                              <div className="text-xs text-gray-700">match</div>
+                              <div className="text-xs text-gray-700">{t('steps.3.visual.match')}</div>
                             </div>
                           </div>
                         </div>
@@ -364,7 +301,7 @@ export function HowItWorks() {
                     </div>
                     <div className="bg-orange-50 rounded-lg p-3 text-center">
                       <Clock className="h-5 w-5 text-orange-500 mx-auto mb-1" />
-                      <div className="text-sm text-orange-700">Real-time notifications for new opportunities</div>
+                      <div className="text-sm text-orange-700">{t('steps.3.visual.realTimeNotifications')}</div>
                     </div>
                   </div>
                 )}
@@ -380,21 +317,25 @@ export function HowItWorks() {
         {/* Benefits Grid */}
         <div className="mb-16">
           <h3 className="text-3xl font-display font-bold text-center text-foreground mb-12">
-            Benefits for Everyone
+            {t('benefits.title')}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon
+            {['forStudents', 'forCompanies', 'forInstitutes'].map((benefitKey, index) => {
+              const Icon = Object.values(benefitIcons)[index]
+              const features = Array.from({ length: benefitKey === 'forInstitutes' ? 5 : 4 }, (_, i) =>
+                t(`benefits.${benefitKey}.features.${i}`)
+              )
+
               return (
-                <Card key={index} className="p-6 text-center border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50">
+                <Card key={benefitKey} className="p-6 text-center border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50">
                   <CardContent className="p-0">
                     <div className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-6">
                       <Icon className="h-8 w-8 text-white" />
                     </div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h4>
-                    <p className="text-gray-600 mb-4">{benefit.description}</p>
+                    <h4 className="text-xl font-bold text-gray-900 mb-3">{t(`benefits.${benefitKey}.title`)}</h4>
+                    <p className="text-gray-600 mb-4">{t(`benefits.${benefitKey}.description`)}</p>
                     <div className="space-y-2">
-                      {(benefit.features || []).map((feature, featureIndex) => (
+                      {features.map((feature, featureIndex) => (
                         <div key={featureIndex} className="flex items-center text-sm text-gray-600">
                           <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
                           {feature}
@@ -411,21 +352,21 @@ export function HowItWorks() {
         {/* Final CTA */}
         <div className="text-center">
           <h3 className="text-3xl font-display font-bold text-foreground mb-6">
-            Ready to Get Started?
+            {t('finalCTA.title')}
           </h3>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto mb-8">
-            Join thousands of students and hundreds of companies already using InTransparency
+            {t('finalCTA.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" asChild>
               <a href="/auth/register">
-                Get Started Free
+                {t('finalCTA.getStarted')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <a href="/pricing">
-                View Pricing
+                {t('finalCTA.viewPricing')}
               </a>
             </Button>
           </div>
