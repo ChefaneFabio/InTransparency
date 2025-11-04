@@ -91,8 +91,8 @@ export function VerificationBadge({
     lg: 'h-5 w-5'
   }
 
-  const buildTooltipContent = () => {
-    let content = tooltip
+  const buildTooltipContent = (): string | React.ReactNode => {
+    let content: string | React.ReactNode = tooltip
 
     if (level === 'university' && (institutionName || courseName || grade)) {
       content = (
