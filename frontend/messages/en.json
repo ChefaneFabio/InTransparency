@@ -1816,6 +1816,172 @@
       }
     }
   },
+  "referrals": {
+    "hero": {
+      "badge": "Referral & Partnership Programs",
+      "title": "Earn Rewards by",
+      "titleHighlight": "Growing the Network",
+      "subtitle": "Cross-segment referral system: Students → Institutions → Companies. Transparent tracking, automatic payouts, win-win ecosystem growth.",
+      "stats": "20-30% additional revenue through referrals • €177K Year 1 projected from cross-selling"
+    },
+    "segments": {
+      "students": "Students",
+      "institutions": "Institutions",
+      "companies": "Companies"
+    },
+    "student": {
+      "title": "Student Referral Program",
+      "subtitle": "Earn rewards by inviting your institution and fellow students",
+      "programs": {
+        "referInstitution": {
+          "title": "Refer Your Institution",
+          "description": "Invite your university/ITS to verify student profiles",
+          "reward": "10% of first-year Pro fees",
+          "details": {
+            "0": "Your institution signs up and verifies students",
+            "1": "You earn 10% of all Pro subscriptions from your institution students in Year 1",
+            "2": "Example: 100 students upgrade to Pro (€9/month) = €90/month × 12 = €1,080/year × 10% = €108 reward",
+            "3": "Paid quarterly via PayPal/bank transfer",
+            "4": "Lifetime tracking - even students who join later count"
+          },
+          "cta": "Get Referral Link",
+          "trigger": "Share institution referral link → Institution verifies → Students upgrade → You earn"
+        },
+        "referStudents": {
+          "title": "Refer Fellow Students",
+          "description": "Invite classmates to join and get verified",
+          "reward": "€5 per Pro upgrade",
+          "details": {
+            "0": "Share your referral link with classmates",
+            "1": "When they sign up and upgrade to Pro (€9/month), you earn €5",
+            "2": "Example: 20 friends upgrade = €100 bonus",
+            "3": "No limit on referrals",
+            "4": "Both you and your friend get bonus: Friend gets 1 month free Pro trial"
+          },
+          "cta": "Get Referral Code",
+          "trigger": "After 3 matches viewed → \"Share with friends for €5 bonus per upgrade\""
+        },
+        "campusAmbassador": {
+          "title": "Campus Ambassador Program",
+          "description": "Become official ambassador for your university",
+          "reward": "€50/month + exclusive perks",
+          "details": {
+            "0": "Host info sessions and promote InTransparency on campus",
+            "1": "Fixed €50/month stipend + performance bonuses",
+            "2": "Exclusive \"Campus Ambassador\" badge on profile (increases company interest)",
+            "3": "Early access to new features and beta tests",
+            "4": "Direct line to InTransparency team for feedback",
+            "5": "Resume builder: \"Campus Ambassador, InTransparency - Drove 150+ sign-ups\""
+          },
+          "cta": "Apply Now",
+          "trigger": "After referring 10+ students → \"Become Campus Ambassador?\""
+        }
+      }
+    },
+    "institution": {
+      "title": "Institution Partner Program",
+      "subtitle": "Earn bonuses by promoting Pro upgrades and company partnerships",
+      "programs": {
+        "studentUpgradeBonus": {
+          "title": "Student Pro Upgrade Bonus",
+          "description": "Earn when your students upgrade to Pro",
+          "reward": "10% of student Pro fees",
+          "details": {
+            "0": "When your verified students upgrade to Pro (€9/month), you earn 10%",
+            "1": "Example: 50 students upgrade = €45/month × 12 = €540/year",
+            "2": "Automated tracking via your institution dashboard",
+            "3": "Promote Pro in career center emails: \"Unlock unlimited projects for €9/month\"",
+            "4": "Use funds for student scholarships or career services budget"
+          },
+          "cta": "Enable Partner Tracking",
+          "trigger": "In dashboard: \"50% of your alumni on Pro - promote bulk upgrade?\""
+        },
+        "companyPartnership": {
+          "title": "Company Partnership Referrals",
+          "description": "Connect companies to InTransparency",
+          "reward": "20% of first-year company revenue",
+          "details": {
+            "0": "Refer companies recruiting from your students",
+            "1": "Company signs up → Uses InTransparency → You earn 20% Year 1 revenue",
+            "2": "Example: Company spends €500 in Year 1 = €100 bonus to institution",
+            "3": "Win-win: Companies get verified talent, you prove placement impact",
+            "4": "Track in analytics: \"BMW recruited 5 students via your referral - €87 earned\""
+          },
+          "cta": "Get Company Referral Link",
+          "trigger": "After dashboard views: \"Deloitte viewed 31 students - invite them officially?\""
+        },
+        "itsNetwork": {
+          "title": "ITS Academy Network",
+          "description": "Refer other ITS academies to join",
+          "reward": "€250 per ITS signup",
+          "details": {
+            "0": "Refer fellow ITS academies (G. Natta, IFOA, Rizzoli, etc.)",
+            "1": "When they complete integration and verify 10+ students, you earn €250",
+            "2": "Help build verified ITS talent network across Italy",
+            "3": "Collaborative benefits: \"47 ITS academies verified - companies trust ITS brand\"",
+            "4": "Quarterly ITS partner summits for networking"
+          },
+          "cta": "Refer ITS Academy",
+          "trigger": "Free core hooks all → Upsell via in-dashboard tours"
+        }
+      }
+    },
+    "company": {
+      "title": "Company Referral Program",
+      "subtitle": "Earn credits by referring institutions and other companies",
+      "programs": {
+        "referInstitution": {
+          "title": "Refer Educational Institutions",
+          "description": "Invite universities/ITS to verify their students",
+          "reward": "50 free contact credits",
+          "details": {
+            "0": "Partner with institutions you hire from (Politecnico, Sapienza, ITS)",
+            "1": "When they join and verify 20+ students, you get 50 free credits (€500 value)",
+            "2": "Get \"Institution-Recommended\" badge on your company profile",
+            "3": "Priority access to newly verified students from that institution",
+            "4": "Example: Refer 3 ITS academies = 150 credits = €1,500 in hiring"
+          },
+          "cta": "Nominate Institution",
+          "trigger": "Post-contact: \"Hired via InTransparency? Nominate this ITS for exclusive access\""
+        },
+        "referCompany": {
+          "title": "Refer Other Companies",
+          "description": "Invite fellow recruiters to join platform",
+          "reward": "€20 credit per signup",
+          "details": {
+            "0": "Share with HR network and fellow recruiters",
+            "1": "When referred company makes first contact (€10), you both get €20 credit",
+            "2": "No limit on referrals",
+            "3": "Build recruiter network: \"Join 500+ companies hiring verified talent\"",
+            "4": "Quarterly networking events for referrers"
+          },
+          "cta": "Get Referral Link",
+          "trigger": "After 5 matches viewed → \"Share InTransparency with HR network?\""
+        },
+        "enterpriseAdvocacy": {
+          "title": "Enterprise Advocate Program",
+          "description": "Case studies and testimonials for marketing",
+          "reward": "3 months free Enterprise",
+          "details": {
+            "0": "Share your success story: \"Hired 15 verified ITS students in 6 months\"",
+            "1": "We create case study with your company logo and metrics",
+            "2": "Get 3 months free Enterprise tier (€297 value)",
+            "3": "Featured in marketing materials and institution presentations",
+            "4": "Speaking opportunities at ITS career fairs and events",
+            "5": "Build employer brand as verified talent champion"
+          },
+          "cta": "Submit Success Story",
+          "trigger": "After successful hire: \"Share your hiring success for 3 months free?\""
+        }
+      }
+    },
+    "ui": {
+      "copyCode": "Copy Code",
+      "copied": "Copied!",
+      "getStarted": "Get Started",
+      "learnMore": "Learn More"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Subscription-Free Service Model",
