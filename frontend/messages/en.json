@@ -697,6 +697,107 @@
       }
     }
   },
+  "successStories": {
+    "hero": {
+      "badge": "Success Stories",
+      "title": "Real Students. Real Success.",
+      "subtitle": "Discover how university-verified portfolios are transforming student careers. These students got discovered by top companies without sending a single application.",
+      "stats": {
+        "0": {
+          "value": "2,500+",
+          "label": "Students Hired"
+        },
+        "1": {
+          "value": "€52k",
+          "label": "Avg. Starting Salary"
+        },
+        "2": {
+          "value": "2 weeks",
+          "label": "Avg. Time to Hire"
+        }
+      }
+    },
+    "stories": {
+      "0": {
+        "name": "Marco Bianchi",
+        "username": "marco-bianchi",
+        "university": "Politecnico di Milano",
+        "degree": "Computer Engineering",
+        "graduationYear": "2023",
+        "company": "Amazon Web Services",
+        "position": "Cloud Solutions Architect",
+        "salary": "€65,000",
+        "timeToHire": "2 weeks",
+        "projectsCount": "15",
+        "verificationScore": "100",
+        "quote": "InTransparency completely changed my job search. Instead of sending hundreds of applications, recruiters found ME through my verified projects. I had 3 job offers within 2 weeks!",
+        "story": "Marco uploaded his university-verified cloud computing projects to InTransparency. Within days, AWS recruiters discovered his portfolio through AI search and reached out directly. He accepted an offer without ever submitting a traditional application."
+      },
+      "1": {
+        "name": "Sofia Romano",
+        "username": "sofia-romano",
+        "university": "Università di Bologna",
+        "degree": "Data Science",
+        "graduationYear": "2024",
+        "company": "Google",
+        "position": "Data Analyst",
+        "salary": "€55,000",
+        "timeToHire": "3 weeks",
+        "projectsCount": "10",
+        "verificationScore": "95",
+        "quote": "The verification system was a game-changer. Recruiters could see my actual work from university courses, not just claims on a CV. It gave me so much credibility.",
+        "story": "Sofia showcased her machine learning projects from her Master's thesis. Google recruiters used InTransparency's course-level search to find students with specific ML experience. Sofia's verified projects stood out, leading to interviews and an offer."
+      },
+      "2": {
+        "name": "Luca Ferrari",
+        "username": "luca-ferrari",
+        "university": "Sapienza Università di Roma",
+        "degree": "Software Engineering",
+        "graduationYear": "2023",
+        "company": "Microsoft",
+        "position": "Software Engineer",
+        "salary": "€60,000",
+        "timeToHire": "1 week",
+        "projectsCount": "12",
+        "verificationScore": "100",
+        "quote": "I got hired based on my final year project! The recruiter saw it on InTransparency, loved the technical depth, and fast-tracked my interview. I started working just 2 weeks after graduating.",
+        "story": "Luca's university-verified distributed systems project caught Microsoft's attention. The detailed project documentation and 30/30 grade gave recruiters confidence in his abilities. He received an offer before most of his classmates even started applying."
+      }
+    },
+    "labels": {
+      "classOf": "Class of",
+      "verified": "Verified",
+      "verifiedProjects": "Verified Projects",
+      "viewPortfolio": "View Portfolio",
+      "perYear": "/year",
+      "hiredIn": "Hired in",
+      "howItHappened": "How It Happened",
+      "projectsUploaded": "Projects Uploaded",
+      "verificationScore": "Verification Score",
+      "timeToOffer": "Time to Offer"
+    },
+    "whyItWorks": {
+      "title": "Why InTransparency Works",
+      "0": {
+        "title": "University Verification",
+        "description": "Your projects are verified by your institution, giving recruiters confidence in your work without lengthy screening."
+      },
+      "1": {
+        "title": "Passive Discovery",
+        "description": "Companies find YOU through AI search. No more sending hundreds of applications - let your work speak for itself."
+      },
+      "2": {
+        "title": "Higher Quality Matches",
+        "description": "Recruiters see your actual work upfront. This leads to better conversations, faster interviews, and higher offer rates."
+      }
+    },
+    "cta": {
+      "title": "Ready to Write Your Success Story?",
+      "subtitle": "Join 125,000+ students who are getting discovered by top companies through verified portfolios",
+      "primaryButton": "Create Your Free Portfolio",
+      "secondaryButton": "Explore Student Portfolios"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Subscription-Free Service Model",

@@ -697,6 +697,107 @@
       }
     }
   },
+  "successStories": {
+    "hero": {
+      "badge": "Storie di Successo",
+      "title": "Studenti Veri. Successi Veri.",
+      "subtitle": "Scopri come i portfolio verificati dall'università stanno trasformando le carriere degli studenti. Questi studenti sono stati scoperti dalle migliori aziende senza inviare una sola candidatura.",
+      "stats": {
+        "0": {
+          "value": "2.500+",
+          "label": "Studenti Assunti"
+        },
+        "1": {
+          "value": "€52k",
+          "label": "Stipendio Iniziale Medio"
+        },
+        "2": {
+          "value": "2 settimane",
+          "label": "Tempo Medio Assunzione"
+        }
+      }
+    },
+    "stories": {
+      "0": {
+        "name": "Marco Bianchi",
+        "username": "marco-bianchi",
+        "university": "Politecnico di Milano",
+        "degree": "Ingegneria Informatica",
+        "graduationYear": "2023",
+        "company": "Amazon Web Services",
+        "position": "Cloud Solutions Architect",
+        "salary": "€65.000",
+        "timeToHire": "2 settimane",
+        "projectsCount": "15",
+        "verificationScore": "100",
+        "quote": "InTransparency ha completamente cambiato la mia ricerca di lavoro. Invece di inviare centinaia di candidature, i recruiter mi hanno trovato LORO tramite i miei progetti verificati. Ho avuto 3 offerte di lavoro entro 2 settimane!",
+        "story": "Marco ha caricato i suoi progetti di cloud computing verificati dall'università su InTransparency. In pochi giorni, i recruiter AWS hanno scoperto il suo portfolio tramite ricerca AI e lo hanno contattato direttamente. Ha accettato un'offerta senza mai inviare una candidatura tradizionale."
+      },
+      "1": {
+        "name": "Sofia Romano",
+        "username": "sofia-romano",
+        "university": "Università di Bologna",
+        "degree": "Data Science",
+        "graduationYear": "2024",
+        "company": "Google",
+        "position": "Data Analyst",
+        "salary": "€55.000",
+        "timeToHire": "3 settimane",
+        "projectsCount": "10",
+        "verificationScore": "95",
+        "quote": "Il sistema di verifica è stato un game-changer. I recruiter potevano vedere il mio lavoro reale dai corsi universitari, non solo affermazioni su un CV. Mi ha dato tantissima credibilità.",
+        "story": "Sofia ha mostrato i suoi progetti di machine learning della sua tesi di Laurea Magistrale. I recruiter Google hanno usato la ricerca a livello di corso di InTransparency per trovare studenti con esperienza ML specifica. I progetti verificati di Sofia si sono distinti, portando a colloqui e un'offerta."
+      },
+      "2": {
+        "name": "Luca Ferrari",
+        "username": "luca-ferrari",
+        "university": "Sapienza Università di Roma",
+        "degree": "Ingegneria del Software",
+        "graduationYear": "2023",
+        "company": "Microsoft",
+        "position": "Software Engineer",
+        "salary": "€60.000",
+        "timeToHire": "1 settimana",
+        "projectsCount": "12",
+        "verificationScore": "100",
+        "quote": "Sono stato assunto grazie al mio progetto di tesi! Il recruiter l'ha visto su InTransparency, ha adorato la profondità tecnica, e ha accelerato il mio colloquio. Ho iniziato a lavorare solo 2 settimane dopo la laurea.",
+        "story": "Il progetto di sistemi distribuiti verificato dall'università di Luca ha attirato l'attenzione di Microsoft. La documentazione dettagliata del progetto e il voto 30/30 hanno dato ai recruiter fiducia nelle sue capacità. Ha ricevuto un'offerta prima che la maggior parte dei suoi compagni iniziasse anche a candidarsi."
+      }
+    },
+    "labels": {
+      "classOf": "Classe del",
+      "verified": "Verificato",
+      "verifiedProjects": "Progetti Verificati",
+      "viewPortfolio": "Visualizza Portfolio",
+      "perYear": "/anno",
+      "hiredIn": "Assunto in",
+      "howItHappened": "Come È Successo",
+      "projectsUploaded": "Progetti Caricati",
+      "verificationScore": "Punteggio Verifica",
+      "timeToOffer": "Tempo per Offerta"
+    },
+    "whyItWorks": {
+      "title": "Perché InTransparency Funziona",
+      "0": {
+        "title": "Verifica Universitaria",
+        "description": "I tuoi progetti sono verificati dalla tua istituzione, dando ai recruiter fiducia nel tuo lavoro senza lunghi screening."
+      },
+      "1": {
+        "title": "Scoperta Passiva",
+        "description": "Le aziende ti trovano LORO tramite ricerca AI. Niente più invio di centinaia di candidature - lascia che il tuo lavoro parli per te."
+      },
+      "2": {
+        "title": "Match di Qualità Superiore",
+        "description": "I recruiter vedono il tuo lavoro reale in anticipo. Questo porta a conversazioni migliori, colloqui più veloci e tassi di offerta più alti."
+      }
+    },
+    "cta": {
+      "title": "Pronto a Scrivere la Tua Storia di Successo?",
+      "subtitle": "Unisciti a 125.000+ studenti che vengono scoperti dalle migliori aziende tramite portfolio verificati",
+      "primaryButton": "Crea il Tuo Portfolio Gratuito",
+      "secondaryButton": "Esplora Portfolio Studenti"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Modello Servizio Senza Abbonamenti",
