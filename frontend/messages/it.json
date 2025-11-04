@@ -204,6 +204,133 @@
         "subtitle": "Sfoglia gratis, paga solo quando contatti. Niente abbonamenti.",
         "button": "Inizia a Cercare Gratis"
       }
+    },
+    "howItWorksPage": {
+      "title": "Come Funziona",
+      "titleHighlight": "InTransparency",
+      "subtitle": "La nostra piattaforma AI trasforma i progetti accademici in opportunità professionali attraverso quattro semplici passi",
+      "pauseDemo": "Pausa Demo",
+      "playDemo": "Play Demo",
+      "autoAdvancing": "Avanzamento automatico ogni 4 secondi",
+      "step": "Passo",
+      "steps": [
+        {
+          "title": "Crea il Tuo Profilo",
+          "description": "Due modi: Partner universitario = profilo automatico. Indipendente = carica progetti + seleziona corsi per profilo istantaneo",
+          "details": [
+            "Integrazione Universitaria: Profilo creato automaticamente dai dati universitari",
+            "Indipendente: Carica progetti (codice, documenti, presentazioni) + seleziona corsi",
+            "L'AI identifica i corsi e crea un profilo completo",
+            "Entrambi i percorsi: Accesso completo alla piattaforma in < 5 minuti"
+          ],
+          "stats": {
+            "students": "125.000+",
+            "time": "< 5 min"
+          },
+          "visual": {
+            "uploadTitle": "Caricamento Progetto",
+            "uploadProgress": "Progresso Caricamento"
+          }
+        },
+        {
+          "title": "Analisi e Punteggio AI",
+          "description": "La nostra AI avanzata analizza qualità del codice, livello di innovazione, complessità ed estrae competenze rilevanti",
+          "details": [
+            "Valutazione qualità codice usando standard industriali",
+            "Punteggio innovazione basato su unicità e creatività",
+            "Estrazione automatica e categorizzazione competenze",
+            "Analisi stack tecnologico e raccomandazioni"
+          ],
+          "stats": {
+            "accuracy": "94%",
+            "skills": "500+"
+          },
+          "visual": {
+            "analysisTitle": "Analisi AI in Corso...",
+            "innovationScore": "Punteggio Innovazione",
+            "codeQuality": "Qualità Codice",
+            "skillsDetected": "Competenze Rilevate:"
+          }
+        },
+        {
+          "title": "Generazione Storia",
+          "description": "Trasforma progetti tecnici in narrative professionali convincenti che i recruiter comprendono",
+          "details": [
+            "Storytelling professionale guidato dall'AI",
+            "Terminologia e parole chiave specifiche del settore",
+            "Evidenziazione risultati e impatto",
+            "Generazione contenuti ottimizzati per ATS"
+          ],
+          "stats": {
+            "stories": "89.000+",
+            "engagement": "+40%"
+          },
+          "visual": {
+            "storyTitle": "Storia Professionale Generata",
+            "atsOptimized": "Ottimizzato ATS",
+            "industryKeywords": "Parole Chiave Settore"
+          }
+        },
+        {
+          "title": "Matching Intelligente",
+          "description": "Connetti studenti con opportunità rilevanti e permetti ai recruiter di trovare i candidati perfetti",
+          "details": [
+            "Matching AI di competenze e progetti",
+            "Notifiche opportunità in tempo reale",
+            "Filtri e raccomandazioni basati su preferenze",
+            "Canali di comunicazione diretta"
+          ],
+          "stats": {
+            "matches": "8.500+",
+            "success": "78%"
+          },
+          "visual": {
+            "matchesTitle": "Corrispondenze Perfette Trovate",
+            "match": "corrispondenza",
+            "realTimeNotifications": "Notifiche in tempo reale per nuove opportunità"
+          }
+        }
+      ],
+      "benefits": {
+        "title": "Vantaggi per Tutti",
+        "forStudents": {
+          "title": "Per Studenti",
+          "description": "Mostra il tuo lavoro professionalmente e vieni scoperto da aziende top",
+          "features": [
+            "Portfolio potenziati da AI",
+            "Connessioni dirette con recruiter",
+            "Insights carriera",
+            "Verifica competenze"
+          ]
+        },
+        "forCompanies": {
+          "title": "Per Aziende",
+          "description": "Trova e assumi i migliori talenti basandoti su progetti reali e competenze verificate",
+          "features": [
+            "Candidati pre-selezionati",
+            "Valutazione basata su progetti",
+            "Messaggistica diretta",
+            "Analytics assunzioni"
+          ]
+        },
+        "forInstitutes": {
+          "title": "Per Istituti (Università e ITS)",
+          "description": "Trasforma il tuo Career Center in un hub di intelligence strategica. Smetti di indovinare. Inizia a sapere.",
+          "features": [
+            "Vedi quali aziende cercano i tuoi studenti (Deloitte ha visualizzato 31 studenti Economia → momento per contatti?)",
+            "Consigli carriera basati su dati (Excel cercato 89x → dì agli studenti di impararlo)",
+            "Correggi profili a rischio prima della laurea (87 senior con zero visualizzazioni = intervento precoce)",
+            "Feedback curriculum ai dipartimenti (Aggiungi Docker → assunti 60% più veloce)",
+            "Prova il tuo impatto (Dashboard: 156 contatti → 23 assunzioni → media 47 giorni)"
+          ]
+        }
+      },
+      "finalCTA": {
+        "title": "Pronto a Iniziare?",
+        "subtitle": "Unisciti a migliaia di studenti e centinaia di aziende che già usano InTransparency",
+        "getStarted": "Inizia Gratis",
+        "viewPricing": "Vedi Prezzi"
+      }
     }
   },
   "footer": {
