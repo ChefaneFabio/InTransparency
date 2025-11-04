@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/button'
@@ -10,6 +11,7 @@ import { FileText, Shield } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export default function LegalPage() {
+  const t = useTranslations('legal')
   const [activeTab, setActiveTab] = useState('privacy')
 
   return (
@@ -27,10 +29,10 @@ export default function LegalPage() {
             >
             <FileText className="h-16 w-16 mx-auto mb-4" />
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Terms & Privacy
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-white">
-              Your privacy and trust are our top priorities
+              {t('hero.subtitle')}
             </p>
             </motion.div>
           </div>
@@ -48,11 +50,11 @@ export default function LegalPage() {
               <TabsList className="grid w-full grid-cols-2 mb-8">
                 <TabsTrigger value="privacy" className="text-lg">
                   <Shield className="h-4 w-4 mr-2" />
-                  Privacy Policy
+                  {t('tabs.privacy')}
                 </TabsTrigger>
                 <TabsTrigger value="terms" className="text-lg">
                   <FileText className="h-4 w-4 mr-2" />
-                  Terms of Service
+                  {t('tabs.terms')}
                 </TabsTrigger>
               </TabsList>
 
