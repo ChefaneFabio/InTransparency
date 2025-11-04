@@ -798,6 +798,55 @@
       "secondaryButton": "Esplora Portfolio Studenti"
     }
   },
+  "explore": {
+    "hero": {
+      "badge": "Scopri Talenti Verificati",
+      "title": "Esplora Portfolio Studenti",
+      "subtitle": "Cerca tra migliaia di portfolio studenti verificati dall'università. Ogni progetto autenticato dalle istituzioni.",
+      "searchPlaceholder": "Cerca per nome, competenza o università...",
+      "stats": {
+        "students": "Studenti",
+        "verified": "Verificati",
+        "skills": "Competenze"
+      }
+    },
+    "filters": {
+      "title": "Filtri",
+      "clear": "Cancella",
+      "university": "Università",
+      "graduationYear": "Anno di Laurea",
+      "classOf": "Classe del",
+      "skills": "Competenze",
+      "searchSkills": "Cerca competenze...",
+      "noSkillsFound": "Nessuna competenza trovata corrispondente a"
+    },
+    "results": {
+      "loading": "Caricamento...",
+      "studentsFound": "Studenti Trovati",
+      "showingFiltered": "Mostrando risultati filtrati",
+      "loadingPortfolios": "Caricamento portfolio...",
+      "noStudents": {
+        "title": "Nessuno studente trovato",
+        "description": "Prova a modificare i tuoi filtri o la query di ricerca",
+        "clearButton": "Cancella Tutti i Filtri"
+      }
+    },
+    "studentCard": {
+      "classOf": "Classe del",
+      "stats": {
+        "projects": "Progetti",
+        "verified": "Verificati",
+        "skills": "Competenze"
+      },
+      "topSkills": "Competenze Principali:",
+      "viewPortfolio": "Visualizza Portfolio Completo"
+    },
+    "cta": {
+      "title": "Pronto per Essere Scoperto?",
+      "subtitle": "Unisciti a migliaia di studenti verificati e mostra il tuo lavoro alle migliori aziende",
+      "button": "Crea il Tuo Portfolio Gratuito"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Modello Servizio Senza Abbonamenti",
