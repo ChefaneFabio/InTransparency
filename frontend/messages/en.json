@@ -1106,6 +1106,242 @@
       }
     }
   },
+  "privacy": {
+    "hero": {
+      "badge": "GDPR Compliant",
+      "title": "Your Data. Your Control.",
+      "subtitle": "Complete transparency about what data we collect, how we use it, and who has access. GDPR-compliant, secure, and designed with your privacy first.",
+      "compliance": {
+        "gdpr": "EU GDPR Compliant",
+        "encryption": "End-to-End Encryption",
+        "iso": "ISO 27001 Certified",
+        "soc": "SOC 2 Type II"
+      }
+    },
+    "dataAccess": {
+      "title": "Data Access by Role",
+      "subtitle": "See exactly what each party can and cannot access",
+      "stakeholders": {
+        "student": "Student",
+        "university": "University",
+        "company": "Company"
+      },
+      "student": {
+        "title": "Student Data Control",
+        "description": "You own your data. You decide what to share and when.",
+        "controls": {
+          "title": "Access & Controls",
+          "items": {
+            "0": "View all your data",
+            "1": "Download your data (JSON/PDF)",
+            "2": "Delete your account anytime",
+            "3": "Control profile visibility",
+            "4": "Choose what companies see",
+            "5": "Revoke university verification"
+          }
+        },
+        "dataShared": {
+          "title": "Data Sharing",
+          "items": {
+            "0": {
+              "with": "University",
+              "data": "Academic records, courses, grades, projects",
+              "purpose": "Verification only",
+              "consent": "Required"
+            },
+            "1": {
+              "with": "Companies (Before Unlock)",
+              "data": "Initials only (M.R.), university, courses, grades, skills",
+              "purpose": "Searchable profile",
+              "consent": "Automatic when profile is public"
+            },
+            "2": {
+              "with": "Companies (After Unlock)",
+              "data": "Full name, email, phone, LinkedIn",
+              "purpose": "Contact for opportunities",
+              "consent": "Automatic when company pays to unlock"
+            }
+          },
+          "labels": {
+            "with": "Shared with:",
+            "data": "Data:",
+            "purpose": "Purpose:",
+            "consent": "Consent:"
+          }
+        }
+      },
+      "university": {
+        "title": "University Data Access",
+        "description": "Limited access for verification purposes only.",
+        "controls": {
+          "title": "Access & Controls",
+          "items": {
+            "0": "Verify student enrollment",
+            "1": "Verify academic records",
+            "2": "See career outcomes (aggregated)",
+            "3": "Export student names/emails",
+            "4": "Share data with third parties",
+            "5": "Access student without consent"
+          }
+        },
+        "dataShared": {
+          "title": "Data Sharing",
+          "items": {
+            "0": {
+              "with": "Platform",
+              "data": "Student enrollment status, course catalogs, grade verification",
+              "purpose": "Platform operation",
+              "consent": "University agreement"
+            },
+            "1": {
+              "with": "Students",
+              "data": "Verification status, university branding",
+              "purpose": "Profile credibility",
+              "consent": "Automatic"
+            },
+            "2": {
+              "with": "Companies",
+              "data": "Aggregated statistics only (no individual data)",
+              "purpose": "Market insights",
+              "consent": "N/A (anonymized)"
+            }
+          }
+        }
+      },
+      "company": {
+        "title": "Company Data Access",
+        "description": "Search freely, pay to unlock full contact details.",
+        "controls": {
+          "title": "Access & Controls",
+          "items": {
+            "0": "Browse all profiles (initials only)",
+            "1": "Use advanced filters",
+            "2": "See grades and courses",
+            "3": "See full names before payment",
+            "4": "Export student data in bulk",
+            "5": "Contact students directly without unlock"
+          }
+        },
+        "dataShared": {
+          "title": "Data Sharing",
+          "items": {
+            "0": {
+              "with": "Platform",
+              "data": "Company profile, job postings, search behavior",
+              "purpose": "Platform operation",
+              "consent": "Company agreement"
+            },
+            "1": {
+              "with": "Students (Before Unlock)",
+              "data": "Company name, job details",
+              "purpose": "Profile views notification",
+              "consent": "Automatic"
+            },
+            "2": {
+              "with": "Students (After Unlock)",
+              "data": "Company name, recruiter name, contact details",
+              "purpose": "Direct communication",
+              "consent": "Student accepted when making profile public"
+            }
+          }
+        }
+      }
+    },
+    "dataFlow": {
+      "title": "How Your Data Flows",
+      "steps": {
+        "0": {
+          "title": "1. Student Creates Profile",
+          "items": {
+            "0": "Student enters academic info voluntarily",
+            "1": "University verifies authenticity",
+            "2": "Data encrypted at rest and in transit"
+          }
+        },
+        "1": {
+          "title": "2. Companies Browse",
+          "items": {
+            "0": "See initials only (e.g., \"M.R.\")",
+            "1": "See university, courses, grades",
+            "2": "Cannot see email, phone, full name"
+          }
+        },
+        "2": {
+          "title": "3. Contact Unlock",
+          "items": {
+            "0": "Company pays €10 to unlock contact",
+            "1": "Student gets notified immediately",
+            "2": "Student can block future contact"
+          }
+        }
+      }
+    },
+    "gdprRights": {
+      "title": "Your GDPR Rights",
+      "subtitle": "Under the General Data Protection Regulation (GDPR), you have these fundamental rights",
+      "rights": {
+        "0": {
+          "title": "Right to Access",
+          "description": "Request a copy of all your personal data we hold, in machine-readable format.",
+          "action": "Export My Data"
+        },
+        "1": {
+          "title": "Right to Erasure",
+          "description": "Delete your account and all associated data permanently within 30 days.",
+          "action": "Delete Account"
+        },
+        "2": {
+          "title": "Right to Rectification",
+          "description": "Correct or update any inaccurate personal information at any time.",
+          "action": "Edit Profile"
+        },
+        "3": {
+          "title": "Right to Restrict Processing",
+          "description": "Limit how we process your data while maintaining your account.",
+          "action": "Privacy Settings"
+        },
+        "4": {
+          "title": "Right to Data Portability",
+          "description": "Transfer your data to another service in a structured format.",
+          "action": "Download & Transfer"
+        },
+        "5": {
+          "title": "Right to Object",
+          "description": "Object to processing of your data for marketing or other purposes.",
+          "action": "Manage Preferences"
+        }
+      }
+    },
+    "security": {
+      "title": "How We Protect Your Data",
+      "subtitle": "Bank-level security and encryption to keep your information safe",
+      "measures": {
+        "0": {
+          "title": "AES-256 Encryption",
+          "description": "Military-grade encryption at rest"
+        },
+        "1": {
+          "title": "TLS 1.3",
+          "description": "Secure data transmission"
+        },
+        "2": {
+          "title": "EU Servers Only",
+          "description": "Data never leaves EU"
+        },
+        "3": {
+          "title": "2FA Available",
+          "description": "Two-factor authentication"
+        }
+      }
+    },
+    "contact": {
+      "title": "Questions About Your Data?",
+      "description": "Contact our Data Protection Officer (DPO) for any privacy concerns or to exercise your GDPR rights.",
+      "emailButton": "privacy@intransparency.eu",
+      "contactButton": "Contact Form",
+      "responseTime": "Response time: Within 30 days as required by GDPR"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Subscription-Free Service Model",

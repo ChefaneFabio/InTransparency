@@ -1106,6 +1106,242 @@
       }
     }
   },
+  "privacy": {
+    "hero": {
+      "badge": "Conforme GDPR",
+      "title": "I Tuoi Dati. Il Tuo Controllo.",
+      "subtitle": "Completa trasparenza su quali dati raccogliamo, come li usiamo e chi vi ha accesso. Conforme GDPR, sicuro e progettato con la tua privacy al primo posto.",
+      "compliance": {
+        "gdpr": "Conforme GDPR UE",
+        "encryption": "Crittografia End-to-End",
+        "iso": "Certificato ISO 27001",
+        "soc": "SOC 2 Type II"
+      }
+    },
+    "dataAccess": {
+      "title": "Accesso Dati per Ruolo",
+      "subtitle": "Vedi esattamente cosa ogni parte può e non può accedere",
+      "stakeholders": {
+        "student": "Studente",
+        "university": "Università",
+        "company": "Azienda"
+      },
+      "student": {
+        "title": "Controllo Dati Studente",
+        "description": "Possiedi i tuoi dati. Decidi tu cosa condividere e quando.",
+        "controls": {
+          "title": "Accesso & Controlli",
+          "items": {
+            "0": "Visualizza tutti i tuoi dati",
+            "1": "Scarica i tuoi dati (JSON/PDF)",
+            "2": "Elimina il tuo account in qualsiasi momento",
+            "3": "Controlla la visibilità del profilo",
+            "4": "Scegli cosa vedono le aziende",
+            "5": "Revoca verifica università"
+          }
+        },
+        "dataShared": {
+          "title": "Condivisione Dati",
+          "items": {
+            "0": {
+              "with": "Università",
+              "data": "Registri accademici, corsi, voti, progetti",
+              "purpose": "Solo verifica",
+              "consent": "Richiesto"
+            },
+            "1": {
+              "with": "Aziende (Prima Sblocco)",
+              "data": "Solo iniziali (M.R.), università, corsi, voti, competenze",
+              "purpose": "Profilo ricercabile",
+              "consent": "Automatico quando profilo è pubblico"
+            },
+            "2": {
+              "with": "Aziende (Dopo Sblocco)",
+              "data": "Nome completo, email, telefono, LinkedIn",
+              "purpose": "Contatto per opportunità",
+              "consent": "Automatico quando azienda paga per sbloccare"
+            }
+          },
+          "labels": {
+            "with": "Condiviso con:",
+            "data": "Dati:",
+            "purpose": "Scopo:",
+            "consent": "Consenso:"
+          }
+        }
+      },
+      "university": {
+        "title": "Accesso Dati Università",
+        "description": "Accesso limitato solo per scopi di verifica.",
+        "controls": {
+          "title": "Accesso & Controlli",
+          "items": {
+            "0": "Verifica iscrizione studente",
+            "1": "Verifica registri accademici",
+            "2": "Vedi risultati carriera (aggregati)",
+            "3": "Esporta nomi/email studenti",
+            "4": "Condividi dati con terze parti",
+            "5": "Accedi a studente senza consenso"
+          }
+        },
+        "dataShared": {
+          "title": "Condivisione Dati",
+          "items": {
+            "0": {
+              "with": "Piattaforma",
+              "data": "Stato iscrizione studente, cataloghi corsi, verifica voti",
+              "purpose": "Operatività piattaforma",
+              "consent": "Accordo università"
+            },
+            "1": {
+              "with": "Studenti",
+              "data": "Stato verifica, branding università",
+              "purpose": "Credibilità profilo",
+              "consent": "Automatico"
+            },
+            "2": {
+              "with": "Aziende",
+              "data": "Solo statistiche aggregate (nessun dato individuale)",
+              "purpose": "Analisi mercato",
+              "consent": "N/A (anonimizzato)"
+            }
+          }
+        }
+      },
+      "company": {
+        "title": "Accesso Dati Azienda",
+        "description": "Cerca liberamente, paga per sbloccare i dettagli di contatto completi.",
+        "controls": {
+          "title": "Accesso & Controlli",
+          "items": {
+            "0": "Sfoglia tutti i profili (solo iniziali)",
+            "1": "Usa filtri avanzati",
+            "2": "Vedi voti e corsi",
+            "3": "Vedi nomi completi prima del pagamento",
+            "4": "Esporta dati studenti in blocco",
+            "5": "Contatta studenti direttamente senza sblocco"
+          }
+        },
+        "dataShared": {
+          "title": "Condivisione Dati",
+          "items": {
+            "0": {
+              "with": "Piattaforma",
+              "data": "Profilo azienda, offerte lavoro, comportamento ricerca",
+              "purpose": "Operatività piattaforma",
+              "consent": "Accordo azienda"
+            },
+            "1": {
+              "with": "Studenti (Prima Sblocco)",
+              "data": "Nome azienda, dettagli lavoro",
+              "purpose": "Notifica visualizzazioni profilo",
+              "consent": "Automatico"
+            },
+            "2": {
+              "with": "Studenti (Dopo Sblocco)",
+              "data": "Nome azienda, nome recruiter, dettagli contatto",
+              "purpose": "Comunicazione diretta",
+              "consent": "Studente ha accettato rendendo profilo pubblico"
+            }
+          }
+        }
+      }
+    },
+    "dataFlow": {
+      "title": "Come Fluiscono i Tuoi Dati",
+      "steps": {
+        "0": {
+          "title": "1. Studente Crea Profilo",
+          "items": {
+            "0": "Studente inserisce info accademiche volontariamente",
+            "1": "Università verifica autenticità",
+            "2": "Dati crittografati a riposo e in transito"
+          }
+        },
+        "1": {
+          "title": "2. Aziende Sfogliano",
+          "items": {
+            "0": "Vedono solo iniziali (es. \"M.R.\")",
+            "1": "Vedono università, corsi, voti",
+            "2": "Non possono vedere email, telefono, nome completo"
+          }
+        },
+        "2": {
+          "title": "3. Sblocco Contatto",
+          "items": {
+            "0": "Azienda paga €10 per sbloccare contatto",
+            "1": "Studente viene notificato immediatamente",
+            "2": "Studente può bloccare contatti futuri"
+          }
+        }
+      }
+    },
+    "gdprRights": {
+      "title": "I Tuoi Diritti GDPR",
+      "subtitle": "In base al Regolamento Generale sulla Protezione dei Dati (GDPR), hai questi diritti fondamentali",
+      "rights": {
+        "0": {
+          "title": "Diritto di Accesso",
+          "description": "Richiedi una copia di tutti i tuoi dati personali che deteniamo, in formato leggibile.",
+          "action": "Esporta i Miei Dati"
+        },
+        "1": {
+          "title": "Diritto alla Cancellazione",
+          "description": "Elimina il tuo account e tutti i dati associati permanentemente entro 30 giorni.",
+          "action": "Elimina Account"
+        },
+        "2": {
+          "title": "Diritto di Rettifica",
+          "description": "Correggi o aggiorna qualsiasi informazione personale inesatta in qualsiasi momento.",
+          "action": "Modifica Profilo"
+        },
+        "3": {
+          "title": "Diritto di Limitazione del Trattamento",
+          "description": "Limita come trattiamo i tuoi dati mantenendo il tuo account.",
+          "action": "Impostazioni Privacy"
+        },
+        "4": {
+          "title": "Diritto alla Portabilità dei Dati",
+          "description": "Trasferisci i tuoi dati ad un altro servizio in formato strutturato.",
+          "action": "Scarica & Trasferisci"
+        },
+        "5": {
+          "title": "Diritto di Opposizione",
+          "description": "Opponi al trattamento dei tuoi dati per marketing o altri scopi.",
+          "action": "Gestisci Preferenze"
+        }
+      }
+    },
+    "security": {
+      "title": "Come Proteggiamo i Tuoi Dati",
+      "subtitle": "Sicurezza e crittografia di livello bancario per mantenere le tue informazioni al sicuro",
+      "measures": {
+        "0": {
+          "title": "Crittografia AES-256",
+          "description": "Crittografia di livello militare a riposo"
+        },
+        "1": {
+          "title": "TLS 1.3",
+          "description": "Trasmissione dati sicura"
+        },
+        "2": {
+          "title": "Solo Server UE",
+          "description": "I dati non lasciano mai l'UE"
+        },
+        "3": {
+          "title": "2FA Disponibile",
+          "description": "Autenticazione a due fattori"
+        }
+      }
+    },
+    "contact": {
+      "title": "Domande sui Tuoi Dati?",
+      "description": "Contatta il nostro Responsabile della Protezione dei Dati (DPO) per qualsiasi dubbio sulla privacy o per esercitare i tuoi diritti GDPR.",
+      "emailButton": "privacy@intransparency.eu",
+      "contactButton": "Modulo Contatto",
+      "responseTime": "Tempo di risposta: Entro 30 giorni come richiesto dal GDPR"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Modello Servizio Senza Abbonamenti",
