@@ -331,6 +331,106 @@
         "getStarted": "Inizia Gratis",
         "viewPricing": "Vedi Prezzi"
       }
+    },
+    "cta": {
+      "main": {
+        "title": "Trasforma i tuoi progetti in",
+        "titleHighlight": "opportunità di carriera",
+        "subtitle": "Usa InTransparency per mostrare il tuo lavoro, connetterti con opportunità e far progredire la tua carriera.",
+        "benefits": {
+          "0": "Analisi progetti AI-powered",
+          "1": "Generazione storie professionali",
+          "2": "Matching intelligente con aziende",
+          "3": "Connessioni dirette con recruiter",
+          "4": "Tracciamento progressi carriera",
+          "5": "Network collaborazione tra pari"
+        },
+        "primaryCTA": "Inizia Gratis",
+        "secondaryCTA": "Guarda Demo",
+        "finePrint": "Nessuna carta di credito richiesta • Inizia a mostrare il tuo lavoro in minuti • Comincia oggi"
+      },
+      "pricing": {
+        "title": "Scegli il tuo piano",
+        "subtitle": "Inizia gratis e aggiorna man mano che la tua carriera cresce",
+        "mostPopular": "Più Popolare",
+        "tiers": {
+          "0": {
+            "name": "Studente",
+            "price": "Gratis",
+            "description": "Perfetto per studenti che iniziano",
+            "features": {
+              "0": "Carica fino a 5 progetti",
+              "1": "Analisi AI base",
+              "2": "Storie professionali",
+              "3": "Accesso alla community",
+              "4": "Supporto email"
+            },
+            "cta": "Inizia Gratis"
+          },
+          "1": {
+            "name": "Pro Studente",
+            "price": "€9",
+            "period": "/mese",
+            "description": "Funzionalità avanzate per studenti seri",
+            "features": {
+              "0": "Progetti illimitati",
+              "1": "Analisi AI avanzata",
+              "2": "Matching prioritario con aziende",
+              "3": "Creazione portfolio video",
+              "4": "Messaggistica diretta recruiter",
+              "5": "Supporto prioritario"
+            },
+            "cta": "Aggiorna a Pro"
+          },
+          "2": {
+            "name": "Università",
+            "price": "Personalizzato",
+            "description": "Soluzione enterprise per istituzioni",
+            "features": {
+              "0": "Accesso per tutta l'istituzione",
+              "1": "Dashboard analytics studenti",
+              "2": "Tracciamento placement",
+              "3": "Partnership con industrie",
+              "4": "Branding personalizzato",
+              "5": "Supporto dedicato"
+            },
+            "cta": "Contatta Vendite"
+          }
+        },
+        "allPlansInclude": "Tutti i piani includono sicurezza SSL, backup dati e conformità GDPR"
+      },
+      "socialProof": {
+        "title": "Vedi Cosa Stanno Costruendo gli Studenti",
+        "subtitle": "Studenti reali. Progetti reali. Risultati reali. Sfoglia portfolio verificati della tua università.",
+        "stats": {
+          "0": {
+            "value": "125.000+",
+            "label": "Studenti con portfolio verificati"
+          },
+          "1": {
+            "value": "3x Più Veloce",
+            "label": "Tempo medio per essere assunti"
+          },
+          "2": {
+            "value": "10.000+",
+            "label": "Aziende che assumono talenti verificati"
+          }
+        },
+        "readStories": "Leggi Storie di Successo",
+        "browsePortfolios": "Sfoglia Portfolio Studenti"
+      },
+      "finalBanner": {
+        "title": "Pronto a sbloccare il tuo potenziale?",
+        "subtitle": "Trasforma i tuoi progetti accademici in storie di carriera convincenti. Inizia il tuo viaggio con InTransparency oggi.",
+        "createAccount": "Crea Account Gratuito",
+        "schedulDemo": "Prenota Demo",
+        "benefits": {
+          "0": "Piano gratuito per sempre",
+          "1": "Nessun costo di setup",
+          "2": "Cancella in qualsiasi momento"
+        }
+      },
+      "trustIndicator": "Connettiti con le migliori università e aziende"
     }
   },
   "footer": {

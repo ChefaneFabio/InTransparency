@@ -331,6 +331,106 @@
         "getStarted": "Get Started Free",
         "viewPricing": "View Pricing"
       }
+    },
+    "cta": {
+      "main": {
+        "title": "Transform your projects into",
+        "titleHighlight": "career opportunities",
+        "subtitle": "Use InTransparency to showcase your work, connect with opportunities, and advance your career.",
+        "benefits": {
+          "0": "AI-powered project analysis",
+          "1": "Professional story generation",
+          "2": "Smart job matching",
+          "3": "Direct recruiter connections",
+          "4": "Career progress tracking",
+          "5": "Peer collaboration network"
+        },
+        "primaryCTA": "Get Started Free",
+        "secondaryCTA": "Watch Demo",
+        "finePrint": "No credit card required • Start showcasing in minutes • Get started today"
+      },
+      "pricing": {
+        "title": "Choose your plan",
+        "subtitle": "Start free and upgrade as your career grows",
+        "mostPopular": "Most Popular",
+        "tiers": {
+          "0": {
+            "name": "Student",
+            "price": "Free",
+            "description": "Perfect for students getting started",
+            "features": {
+              "0": "Upload up to 5 projects",
+              "1": "Basic AI analysis",
+              "2": "Professional stories",
+              "3": "Community access",
+              "4": "Email support"
+            },
+            "cta": "Start Free"
+          },
+          "1": {
+            "name": "Pro Student",
+            "price": "$9",
+            "period": "/month",
+            "description": "Advanced features for serious students",
+            "features": {
+              "0": "Unlimited projects",
+              "1": "Advanced AI analysis",
+              "2": "Priority job matching",
+              "3": "Video portfolio creation",
+              "4": "Direct recruiter messaging",
+              "5": "Priority support"
+            },
+            "cta": "Upgrade to Pro"
+          },
+          "2": {
+            "name": "University",
+            "price": "Custom",
+            "description": "Enterprise solution for institutions",
+            "features": {
+              "0": "Institution-wide access",
+              "1": "Student analytics dashboard",
+              "2": "Placement tracking",
+              "3": "Industry partnerships",
+              "4": "Custom branding",
+              "5": "Dedicated support"
+            },
+            "cta": "Contact Sales"
+          }
+        },
+        "allPlansInclude": "All plans include SSL security, data backups, and GDPR compliance"
+      },
+      "socialProof": {
+        "title": "See What Students Are Building",
+        "subtitle": "Real students. Real projects. Real results. Browse verified portfolios from your university.",
+        "stats": {
+          "0": {
+            "value": "125,000+",
+            "label": "Students with verified portfolios"
+          },
+          "1": {
+            "value": "3x Faster",
+            "label": "Average time to get hired"
+          },
+          "2": {
+            "value": "10,000+",
+            "label": "Companies hiring verified talent"
+          }
+        },
+        "readStories": "Read Success Stories",
+        "browsePortfolios": "Browse Student Portfolios"
+      },
+      "finalBanner": {
+        "title": "Ready to unlock your potential?",
+        "subtitle": "Transform your academic projects into compelling career stories. Start your journey with InTransparency today.",
+        "createAccount": "Create Free Account",
+        "schedulDemo": "Schedule Demo",
+        "benefits": {
+          "0": "Free forever plan",
+          "1": "No setup fees",
+          "2": "Cancel anytime"
+        }
+      },
+      "trustIndicator": "Connect with top universities and companies"
     }
   },
   "footer": {
