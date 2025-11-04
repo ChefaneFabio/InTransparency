@@ -1342,6 +1342,234 @@
       "responseTime": "Tempo di risposta: Entro 30 giorni come richiesto dal GDPR"
     }
   },
+  "forITS": {
+    "hero": {
+      "badge": "Marketplace Gratuito • Fai Assumere i Tuoi Studenti",
+      "title": "Connetti i Tuoi Diplomati a",
+      "titleHighlight": "Aziende che Cercano Competenze Verificate",
+      "subtitle1": "Marketplace gratuito a tre lati che connette i tuoi studenti ITS ad aziende che assumono attivamente. La tua verifica istituzionale dà ai diplomati un vantaggio competitivo. Monitora il successo di placement con analytics gratuiti.",
+      "subtitle2": "100% Gratis per Sempre: Nessun costo di setup, nessun costo mensile, nessun abbonamento. Zero costi vs AlmaLaurea (€2.500/anno).",
+      "stats": {
+        "0": { "value": "87%", "label": "Tasso Medio di Placement" },
+        "1": { "value": "10K+", "label": "Studenti Scoperti" },
+        "2": { "value": "€0", "label": "Costo per Sempre" }
+      },
+      "ctas": {
+        "primary": "Unisciti al Marketplace Gratuito",
+        "secondary": "Vedi Come Funziona"
+      }
+    },
+    "benefits": {
+      "title": "Come il Marketplace Aiuta il Tuo ITS",
+      "cards": {
+        "0": {
+          "title": "Gli Studenti Vengono Scoperti",
+          "items": {
+            "0": "Aziende cercano tra 10K+ diplomati verificati",
+            "1": "Gli studenti non si candidano - le aziende li contattano",
+            "2": "Il tuo badge di verifica = segnale di fiducia",
+            "3": "25% più placement rispetto ai metodi tradizionali"
+          }
+        },
+        "1": {
+          "title": "Matching Potenziato da AI",
+          "items": {
+            "0": "Aziende vedono \"92% compatibilità: AutoCAD da progetto ITS\"",
+            "1": "Competenze verificate = punteggi di match più alti",
+            "2": "Spiegazioni AI trasparenti",
+            "3": "80% più veloce dello screening CV"
+          }
+        },
+        "2": {
+          "title": "Monitora il Tuo Impatto",
+          "items": {
+            "0": "Vedi quali aziende hanno visualizzato i tuoi studenti",
+            "1": "\"47 giorni tempo medio per assunzione\"",
+            "2": "Dimostra 85% placement al MIUR",
+            "3": "Alert per intervento precoce"
+          }
+        }
+      }
+    },
+    "services": {
+      "title": "Quattro Servizi Gratuiti",
+      "subtitle": "Piattaforma marketplace con livello di qualità di verifica - tutto gratis per sempre",
+      "discovery": {
+        "badge": "SERVIZIO PRIMARIO",
+        "title": "Servizio Scoperta",
+        "priceBadge": "Sfoglia GRATIS, €10/contatto",
+        "subtitle": "Reclutamento Inverso",
+        "items": {
+          "0": "Aziende cercano tra talenti ITS verificati",
+          "1": "Studenti visibili senza candidarsi",
+          "2": "Il tuo badge di verifica = segnale di qualità",
+          "3": "Aziende pagano €10 per contattare, tu ottieni credito"
+        },
+        "comparison": "vs LinkedIn: Nessuna verifica = minor fiducia"
+      },
+      "matching": {
+        "badge": "SERVIZIO PRIMARIO",
+        "title": "Servizio Matching",
+        "priceBadge": "GRATIS per Studenti",
+        "subtitle": "Matching AI Trasparente",
+        "items": {
+          "0": "\"92% compatibilità: AutoCAD da progetto ITS\"",
+          "1": "Competenze verificate = punteggi match più alti",
+          "2": "Aziende vedono il tuo endorsement istituzionale",
+          "3": "25% più placement di successo"
+        },
+        "comparison": "vs Screening CV: 80% più veloce"
+      },
+      "verification": {
+        "badge": "Livello Qualità",
+        "title": "Servizio Verifica",
+        "subtitle": "Abilita Fiducia Marketplace",
+        "items": {
+          "0": "Integrazione Esse3/Moodle (opzionale)",
+          "1": "Tu verifichi progetti/voti",
+          "2": "\"Verificato da ITS G. Natta, 28/30\"",
+          "3": "Approva 50 in batch in 1 ora"
+        }
+      },
+      "analytics": {
+        "badge": "Monitora Impatto",
+        "title": "Servizio Analytics",
+        "subtitle": "Misura Successo Placement",
+        "items": {
+          "0": "\"Siemens ha visualizzato 23 studenti ITS\"",
+          "1": "\"Competenze PLC cercate 76 volte\"",
+          "2": "Esporta report per MIUR",
+          "3": "Alert intervento precoce"
+        }
+      }
+    },
+    "focusAreas": {
+      "title": "Tutte le Aree ITS Supportate",
+      "subtitle": "Dalla meccatronica al biotech - aziende che assumono attivamente diplomati ITS",
+      "areaDetails": {
+        "placement": "Placement",
+        "skillsTitle": "Competenze Verificate che le Aziende Cercano:",
+        "companiesTitle": "Aziende che Assumono:",
+        "searchVolume": "ricerche aziende/mese per competenze in quest'area"
+      },
+      "howStudentsHired": {
+        "title": "Come gli Studenti Vengono Assunti",
+        "steps": {
+          "0": {
+            "title": "1. Studente Carica Progetto ITS",
+            "subtitle": "Progetto su {skill}, voto 28/30"
+          },
+          "1": {
+            "title": "2. Il Tuo ITS Verifica",
+            "subtitle": "Badge: \"Verificato da {area} ITS\""
+          },
+          "2": {
+            "title": "3. Aziende Scoprono",
+            "subtitle": "Siemens cerca \"{skill}\" → trova studente"
+          },
+          "3": {
+            "title": "4. Studente Viene Assunto",
+            "subtitle": "Azienda paga €10 per contattare → Colloquio → Assunto in 47 giorni"
+          }
+        }
+      }
+    },
+    "whyChoose": {
+      "title": "Perché gli ITS Scelgono InTransparency",
+      "cards": {
+        "0": {
+          "title": "Migliori Risultati di Placement",
+          "items": {
+            "0": "25% più studenti assunti vs metodi tradizionali",
+            "1": "Aziende contattano proattivamente",
+            "2": "47 giorni tempo medio per assunzione",
+            "3": "Competenze verificate = vantaggio competitivo"
+          }
+        },
+        "1": {
+          "title": "100% Gratis per Sempre",
+          "items": {
+            "0": "Zero costi di setup o mensili",
+            "1": "vs AlmaLaurea €2.500/anno risparmiati",
+            "2": "Pagano le aziende, non le istituzioni",
+            "3": "Tutti i 4 servizi inclusi"
+          }
+        },
+        "2": {
+          "title": "Monitora Impatto per MIUR",
+          "items": {
+            "0": "Dimostra 85% placement con dati",
+            "1": "Vedi quali aziende assumono i tuoi diplomati",
+            "2": "Esporta report per finanziamenti",
+            "3": "Alert intervento precoce"
+          }
+        }
+      }
+    },
+    "getStarted": {
+      "title": "Inizia in 3 Passaggi",
+      "steps": {
+        "0": {
+          "title": "Registra ITS",
+          "description": "Crea account gratuito → Email .edu verificata → Dashboard attiva in 5 minuti"
+        },
+        "1": {
+          "title": "Studenti Caricano Progetti",
+          "description": "Studenti si uniscono gratis → Caricano progetti ITS → Tu verifichi con il tuo badge istituzionale"
+        },
+        "2": {
+          "title": "Monitora Placement",
+          "description": "Aziende scoprono studenti → Analytics: \"23 studenti contattati\" → Monitora successo assunzioni"
+        }
+      },
+      "cta": "Unisciti al Marketplace Gratuito Ora",
+      "benefits": "✓ Setup 5 min  ✓ €0 per sempre  ✓ 10K+ aziende che assumono  ✓ Monitora placement"
+    },
+    "examples": {
+      "title": "ITS che Potrebbero Beneficiare",
+      "subtitle": "Esempi di ITS che aumenterebbero il placement studentesco attraverso marketplace verificato",
+      "studentsLabel": "studenti",
+      "skillsLabel": "Competenze che le Aziende Cercano:"
+    },
+    "faq": {
+      "title": "Domande Frequenti",
+      "questions": {
+        "0": {
+          "question": "Come aiuta il marketplace i nostri studenti?",
+          "answer": "Le aziende sfogliano 10K+ diplomati verificati e contattano proattivamente studenti con competenze corrispondenti. Gli studenti non si candidano - vengono scoperti. La tua verifica istituzionale dà loro un vantaggio competitivo. 25% più placement rispetto ai job board tradizionali."
+        },
+        "1": {
+          "question": "È davvero gratis per sempre?",
+          "answer": "Sì, 100% gratis. Tutti i 4 servizi (Scoperta, Matching, Verifica, Analytics) inclusi. Le aziende pagano €10 per contatto - questo finanzia la piattaforma. Risparmi €2.500/anno vs AlmaLaurea."
+        },
+        "2": {
+          "question": "Dobbiamo integrare Esse3/Moodle?",
+          "answer": "No, l'integrazione è opzionale. Gli studenti possono caricare manualmente i progetti e tu li verifichi. Se vuoi l'auto-importazione, gestiamo noi il setup API (1 ora con il nostro team). Zero lavoro IT per te dopo il setup."
+        },
+        "3": {
+          "question": "Possiamo aggiungere strumenti Career Day?",
+          "answer": "Sì! Add-on Premium Embed opzionale (€500/anno) include piattaforma Career Day con QR code, prenotazione colloqui e widget brandizzati. Ma il marketplace core è sempre gratis. Vedi pagina prezzi per dettagli."
+        },
+        "4": {
+          "question": "Come monitoriamo il placement per report MIUR?",
+          "answer": "Dashboard analytics gratuito mostra: \"47 giorni tempo medio per assunzione\", \"23 studenti assunti via piattaforma\", \"85% boost placement\". Esporta report per MIUR con dati verificabili."
+        },
+        "5": {
+          "question": "Cosa succede se gli studenti non vengono scoperti?",
+          "answer": "Gli analytics ti mostrano alert precoci: \"Studente X: 0 visualizzazioni in 30 giorni - mismatch competenze?\". Puoi intervenire presto, aggiornare competenze/progetti, o offrire career counseling. Prevenzione vs reazione."
+        }
+      }
+    },
+    "finalCTA": {
+      "title": "Pronto a Far Assumere i Tuoi Studenti ITS?",
+      "subtitle": "Unisciti al marketplace gratuito che connette diplomati ITS verificati ad aziende che assumono attivamente. Setup in 5 minuti. Zero costi. Monitora successo placement.",
+      "ctas": {
+        "primary": "Unisciti al Marketplace Gratuito",
+        "secondary": "Vedi Prezzi & Add-on"
+      },
+      "benefits": "✓ €0 per sempre  ✓ 10K+ aziende  ✓ 87% placement medio  ✓ Monitora impatto per MIUR"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Modello Servizio Senza Abbonamenti",

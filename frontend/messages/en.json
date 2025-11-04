@@ -1342,6 +1342,234 @@
       "responseTime": "Response time: Within 30 days as required by GDPR"
     }
   },
+  "forITS": {
+    "hero": {
+      "badge": "Free Marketplace • Get Your Students Hired",
+      "title": "Connect Your Graduates to",
+      "titleHighlight": "Companies Seeking Verified Skills",
+      "subtitle1": "Free three-sided marketplace connecting your ITS students to companies actively hiring. Your institutional verification gives graduates a competitive edge. Track placement success with free analytics.",
+      "subtitle2": "100% Free Forever: No setup fees, no monthly costs, no subscriptions. Zero cost vs AlmaLaurea (€2.500/anno).",
+      "stats": {
+        "0": { "value": "87%", "label": "Avg Placement Rate" },
+        "1": { "value": "10K+", "label": "Students Discovered" },
+        "2": { "value": "€0", "label": "Cost Forever" }
+      },
+      "ctas": {
+        "primary": "Join Free Marketplace",
+        "secondary": "See How It Works"
+      }
+    },
+    "benefits": {
+      "title": "How the Marketplace Helps Your ITS",
+      "cards": {
+        "0": {
+          "title": "Students Get Discovered",
+          "items": {
+            "0": "Companies search 10K+ verified graduates",
+            "1": "Students don't apply - companies reach out",
+            "2": "Your verification badge = trust signal",
+            "3": "25% more placements than traditional methods"
+          }
+        },
+        "1": {
+          "title": "AI-Powered Matching",
+          "items": {
+            "0": "Companies see \"92% fit: AutoCAD from ITS project\"",
+            "1": "Verified skills = higher match scores",
+            "2": "Transparent AI explanations",
+            "3": "80% faster screening vs CVs"
+          }
+        },
+        "2": {
+          "title": "Track Your Impact",
+          "items": {
+            "0": "See which companies viewed your students",
+            "1": "\"47 days avg time-to-hire\"",
+            "2": "Prove 85% placement to MIUR",
+            "3": "Early intervention alerts"
+          }
+        }
+      }
+    },
+    "services": {
+      "title": "Four Free Services",
+      "subtitle": "Marketplace platform with verification quality layer - all free forever",
+      "discovery": {
+        "badge": "PRIMARY SERVICE",
+        "title": "Discovery Service",
+        "priceBadge": "Browse FREE, €10/contact",
+        "subtitle": "Reverse Recruitment",
+        "items": {
+          "0": "Companies search verified ITS talent pool",
+          "1": "Students visible without applying",
+          "2": "Your verification badge = quality signal",
+          "3": "Companies pay €10 to contact, you get credit"
+        },
+        "comparison": "vs LinkedIn: No verification = lower trust"
+      },
+      "matching": {
+        "badge": "PRIMARY SERVICE",
+        "title": "Matching Service",
+        "priceBadge": "FREE for Students",
+        "subtitle": "Transparent AI Matching",
+        "items": {
+          "0": "\"92% fit: AutoCAD from ITS project\"",
+          "1": "Verified skills = higher match scores",
+          "2": "Companies see your institutional endorsement",
+          "3": "25% more successful placements"
+        },
+        "comparison": "vs Resume screening: 80% faster"
+      },
+      "verification": {
+        "badge": "Quality Layer",
+        "title": "Verification Service",
+        "subtitle": "Enables Marketplace Trust",
+        "items": {
+          "0": "Esse3/Moodle integration (optional)",
+          "1": "You verify projects/grades",
+          "2": "\"Verified by ITS G. Natta, 28/30\"",
+          "3": "Batch approve 50 in 1 hour"
+        }
+      },
+      "analytics": {
+        "badge": "Track Impact",
+        "title": "Analytics Service",
+        "subtitle": "Measure Placement Success",
+        "items": {
+          "0": "\"Siemens viewed 23 ITS students\"",
+          "1": "\"PLC skills searched 76x\"",
+          "2": "Export reports for MIUR",
+          "3": "Early intervention alerts"
+        }
+      }
+    },
+    "focusAreas": {
+      "title": "All ITS Areas Supported",
+      "subtitle": "From mechatronics to biotech - companies actively hiring ITS graduates",
+      "areaDetails": {
+        "placement": "Placement",
+        "skillsTitle": "Verified Skills Companies Seek:",
+        "companiesTitle": "Companies Hiring:",
+        "searchVolume": "company searches/month for skills in this area"
+      },
+      "howStudentsHired": {
+        "title": "How Students Get Hired",
+        "steps": {
+          "0": {
+            "title": "1. Student Uploads ITS Project",
+            "subtitle": "Project on {skill}, grade 28/30"
+          },
+          "1": {
+            "title": "2. Your ITS Verifies",
+            "subtitle": "Badge: \"Verified by {area} ITS\""
+          },
+          "2": {
+            "title": "3. Companies Discover",
+            "subtitle": "Siemens searches \"{skill}\" → finds student"
+          },
+          "3": {
+            "title": "4. Student Gets Hired",
+            "subtitle": "Company pays €10 to contact → Interview → Hired in 47 days"
+          }
+        }
+      }
+    },
+    "whyChoose": {
+      "title": "Why ITS Choose InTransparency",
+      "cards": {
+        "0": {
+          "title": "Better Placement Outcomes",
+          "items": {
+            "0": "25% more students hired vs traditional methods",
+            "1": "Companies proactively reach out",
+            "2": "47 days avg time-to-hire",
+            "3": "Verified skills = competitive edge"
+          }
+        },
+        "1": {
+          "title": "100% Free Forever",
+          "items": {
+            "0": "Zero setup or monthly costs",
+            "1": "vs AlmaLaurea €2.500/anno saved",
+            "2": "Companies pay, not institutions",
+            "3": "All 4 services included"
+          }
+        },
+        "2": {
+          "title": "Track Impact for MIUR",
+          "items": {
+            "0": "Prove 85% placement with data",
+            "1": "See which companies hiring your grads",
+            "2": "Export reports for funding",
+            "3": "Early intervention alerts"
+          }
+        }
+      }
+    },
+    "getStarted": {
+      "title": "Get Started in 3 Steps",
+      "steps": {
+        "0": {
+          "title": "Register ITS",
+          "description": "Create free account → Email .edu verified → Dashboard active in 5 minutes"
+        },
+        "1": {
+          "title": "Students Upload Projects",
+          "description": "Students join free → Upload ITS projects → You verify with your institutional badge"
+        },
+        "2": {
+          "title": "Track Placements",
+          "description": "Companies discover students → Analytics: \"23 students contacted\" → Track hiring success"
+        }
+      },
+      "cta": "Join Free Marketplace Now",
+      "benefits": "✓ Setup 5 min  ✓ €0 forever  ✓ 10K+ companies hiring  ✓ Track placements"
+    },
+    "examples": {
+      "title": "ITS That Could Benefit",
+      "subtitle": "Examples of ITS that would increase student placement through verified marketplace",
+      "studentsLabel": "students",
+      "skillsLabel": "Skills Companies Seek:"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": {
+        "0": {
+          "question": "How does the marketplace help our students?",
+          "answer": "Companies browse 10K+ verified graduates and proactively reach out to students with matching skills. Students don't apply - they get discovered. Your institutional verification gives them a competitive edge. 25% more placements than traditional job boards."
+        },
+        "1": {
+          "question": "Is it really free forever?",
+          "answer": "Yes, 100% free. All 4 services (Discovery, Matching, Verification, Analytics) included. Companies pay €10 per contact - this finances the platform. You save €2.500/year vs AlmaLaurea."
+        },
+        "2": {
+          "question": "Do we need to integrate Esse3/Moodle?",
+          "answer": "No, integration is optional. Students can manually upload projects and you verify them. If you want auto-import, we handle the API setup (1 hour with our team). Zero IT work for you after setup."
+        },
+        "3": {
+          "question": "Can we add Career Day tools?",
+          "answer": "Yes! Optional Premium Embed add-on (€500/year) includes Career Day platform with QR codes, interview booking, and branded widgets. But core marketplace is always free. See pricing page for details."
+        },
+        "4": {
+          "question": "How do we track placement for MIUR reporting?",
+          "answer": "Free analytics dashboard shows: \"47 days avg time-to-hire\", \"23 students hired via platform\", \"85% placement boost\". Export reports for MIUR with verifiable data."
+        },
+        "5": {
+          "question": "What if students don't get discovered?",
+          "answer": "Analytics show you early warnings: \"Student X: 0 views in 30 days - skills mismatch?\" You can intervene early, update skills/projects, or offer career counseling. Prevention vs reaction."
+        }
+      }
+    },
+    "finalCTA": {
+      "title": "Ready to Get Your ITS Students Hired?",
+      "subtitle": "Join the free marketplace connecting verified ITS graduates to companies actively hiring. Setup in 5 minutes. Zero costs. Track placement success.",
+      "ctas": {
+        "primary": "Join Free Marketplace",
+        "secondary": "See Pricing & Add-ons"
+      },
+      "benefits": "✓ €0 forever  ✓ 10K+ companies  ✓ 87% avg placement  ✓ Track impact for MIUR"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Subscription-Free Service Model",
