@@ -52,10 +52,10 @@ export function HowItWorks() {
       t(`steps.${index}.details.3`)
     ],
     stats: {
-      key1: Object.keys(JSON.parse(t.raw(`steps.${index}.stats`) as string))[0],
-      value1: Object.values(JSON.parse(t.raw(`steps.${index}.stats`) as string))[0],
-      key2: Object.keys(JSON.parse(t.raw(`steps.${index}.stats`) as string))[1],
-      value2: Object.values(JSON.parse(t.raw(`steps.${index}.stats`) as string))[1]
+      key1: Object.keys(JSON.parse(t.raw(`steps.${index}.stats`) as string))[0] as string,
+      value1: Object.values(JSON.parse(t.raw(`steps.${index}.stats`) as string))[0] as string,
+      key2: Object.keys(JSON.parse(t.raw(`steps.${index}.stats`) as string))[1] as string,
+      value2: Object.values(JSON.parse(t.raw(`steps.${index}.stats`) as string))[1] as string
     },
     image: stepImages[index],
     color: 'from-primary to-secondary'
