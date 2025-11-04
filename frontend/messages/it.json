@@ -1570,6 +1570,76 @@
       "benefits": "✓ €0 per sempre  ✓ 10K+ aziende  ✓ 87% placement medio  ✓ Monitora impatto per MIUR"
     }
   },
+  "demoAISearch": {
+    "demoConfigs": {
+      "student": {
+        "title": "Demo Ricerca Lavoro AI",
+        "subtitle": "Per Studenti",
+        "placeholder": "Descrivi il tuo lavoro ideale...",
+        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI per la ricerca lavoro. Dimmi che tipo di lavoro cerchi in italiano!\n\nProva: \"Trovami lavori frontend developer a Milano in startup\" o \"Stage curriculare in data science\"",
+        "registrationLink": "/auth/register/student"
+      },
+      "company": {
+        "title": "Demo Ricerca Candidati AI",
+        "subtitle": "Per Aziende",
+        "placeholder": "Descrivi chi stai cercando...",
+        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI per il recruiting. Descrivi il candidato di cui hai bisogno in italiano!\n\nProva: \"Studenti Cybersecurity Roma Network Security 30/30\"",
+        "registrationLink": "/auth/register/recruiter"
+      },
+      "university": {
+        "title": "Demo Hub Ricerca AI",
+        "subtitle": "Per Istituti (Università & ITS)",
+        "placeholder": "Cerca studenti o lavori...",
+        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI istituzionale. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Mostrami studenti CS con GPA 3.8+\" o \"Trova aziende tech che assumono\"",
+        "registrationLink": "/auth/register/university"
+      }
+    },
+    "exampleQueries": {
+      "student": {
+        "0": "Stage curriculare per informatica a Milano",
+        "1": "Tirocinio data science per laurea magistrale",
+        "2": "Lavori frontend developer entry-level a Milano"
+      },
+      "company": {
+        "0": "Studenti Cybersecurity del Politecnico con Network Security 30/30",
+        "1": "Data engineer con Python e Spark, GPA 27+, zona Milano",
+        "2": "Frontend developer con React e TypeScript, ottime capacità comunicative"
+      },
+      "university": {
+        "0": "Mostrami studenti CS con GPA 3.8+ non ancora contattati",
+        "1": "Quali studenti sono stati assunti da aziende tech questo mese?",
+        "2": "Trova aziende tech che assumono ML engineer a Milano"
+      }
+    },
+    "ui": {
+      "chatView": "Vista Chat",
+      "mapView": "Vista Mappa",
+      "validForDegree": "✓ Valido per Laurea",
+      "contactLocked": "Contatto Bloccato",
+      "match": "Compatibilità",
+      "fullTime": "Full-time",
+      "internship": "Stage",
+      "remote": "Remoto",
+      "month": "mese",
+      "duration": "Durata",
+      "gpa": "Media",
+      "contacted": "Contattato",
+      "hired": "Assunto",
+      "matchedStudents": "studenti compatibili",
+      "noResults": "Nessun risultato trovato",
+      "typing": "Sta scrivendo...",
+      "sendMessage": "Invia messaggio",
+      "tryExample": "Prova un esempio:",
+      "student": "Studente",
+      "company": "Azienda",
+      "university": "Università"
+    },
+    "tabs": {
+      "student": "Studente",
+      "company": "Azienda",
+      "university": "Università"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Modello Servizio Senza Abbonamenti",
