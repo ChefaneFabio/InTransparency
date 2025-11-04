@@ -2158,5 +2158,97 @@
       "secondaryButton": "Parla con le Vendite",
       "benefits": "✓ Nessuna carta richiesta  ✓ Sfogliamento gratis illimitato  ✓ Paga solo per contatti sbloccati"
     }
+  },
+  "submitStory": {
+    "hero": {
+      "title": "Condividi la Tua Storia di Successo",
+      "subtitle": "Ispira gli studenti attuali condividendo il tuo percorso professionale.\nLa tua storia verificata mostra percorsi reali dalla laurea al successo."
+    },
+    "form": {
+      "alumniInfo": {
+        "title": "Informazioni Alumni",
+        "fullName": "Nome Completo *",
+        "fullNamePlaceholder": "Mario Rossi",
+        "graduationYear": "Anno di Laurea *",
+        "degree": "Laurea *",
+        "degreePlaceholder": "es. Informatica, Ingegneria",
+        "institution": "Istituzione *",
+        "institutionPlaceholder": "es. Politecnico di Milano",
+        "verificationEmail": "Email Istituzionale (.edu) *",
+        "verificationEmailPlaceholder": "tuo.nome@university.edu",
+        "emailHelp": "Invieremo un link di verifica a questa email. Deve essere un indirizzo .edu.",
+        "anonymous": "Rendi la mia storia anonima (mostra come \"{degree} Laureato\")",
+        "emailValidation": "Per favore usa il tuo indirizzo email istituzionale (.edu)"
+      },
+      "currentPosition": {
+        "title": "Posizione Attuale",
+        "currentRole": "Ruolo Attuale *",
+        "currentRolePlaceholder": "es. Senior Software Engineer",
+        "currentCompany": "Azienda Attuale *",
+        "currentCompanyPlaceholder": "es. Google, Microsoft"
+      },
+      "careerJourney": {
+        "title": "Percorso Professionale (Facoltativo)",
+        "subtitle": "Mostra la tua progressione di carriera dalla laurea al ruolo attuale",
+        "addStep": "Aggiungi Tappa",
+        "stepLabel": "Tappa {number}",
+        "rolePlaceholder": "Ruolo",
+        "companyPlaceholder": "Azienda",
+        "durationPlaceholder": "Durata (es. 2 anni)",
+        "yearPlaceholder": "Anno"
+      },
+      "successStory": {
+        "title": "La Tua Storia di Successo *",
+        "subtitle": "Condividi il tuo viaggio, le sfide e come hai raggiunto il successo (200-1000 parole)",
+        "placeholder": "Esempio: Dopo la laurea in Informatica, ho iniziato come sviluppatore junior in una piccola startup. La sfida più grande era...",
+        "characterCount": "{count} / 1000 caratteri (min 200)"
+      },
+      "keySkills": {
+        "title": "Competenze Chiave Che Ti Hanno Aiutato",
+        "addSkill": "Aggiungi Competenza",
+        "placeholder": "es. Python, Problem Solving, Leadership"
+      },
+      "advice": {
+        "title": "Consigli per gli Studenti Attuali",
+        "subtitle": "Cosa diresti agli studenti che vogliono seguire un percorso simile?",
+        "placeholder": "Esempio: Concentrati sulla creazione di progetti reali, non solo sul seguire corsi. Fai networking presto e non aver paura di candidarti per posizioni che sembrano fuori portata..."
+      },
+      "submit": {
+        "cancel": "Annulla",
+        "submit": "Invia Storia",
+        "submitting": "Invio in corso..."
+      }
+    },
+    "verification": {
+      "title": "Controlla la Tua Email",
+      "subtitle": "Verifica richiesta per pubblicare la tua storia",
+      "emailSent": {
+        "title": "Email di Verifica Inviata",
+        "message": "Abbiamo inviato un link di verifica a <strong>{email}</strong>"
+      },
+      "nextSteps": {
+        "title": "Prossimi Passi:",
+        "step1": "Controlla la tua casella email a {email}",
+        "step2": "Clicca sul link di verifica nell'email",
+        "step3": "La tua storia sarà pubblicata e visibile agli studenti"
+      },
+      "demo": {
+        "title": "Per Scopi Demo:",
+        "tokenLabel": "Il tuo token di verifica:",
+        "note": "In produzione, riceveresti un'email con un link cliccabile."
+      },
+      "actions": {
+        "viewAllStories": "Vedi Tutte le Storie",
+        "gotIt": "Capito"
+      }
+    },
+    "success": {
+      "title": "Grazie!",
+      "message": "La tua storia di successo ispirerà gli studenti attuali una volta che verifichi la tua email.\nApprezziamo che tu abbia condiviso il tuo viaggio!",
+      "actions": {
+        "viewStories": "Vedi Storie Alumni",
+        "backHome": "Torna alla Home"
+      }
+    }
   }
 }

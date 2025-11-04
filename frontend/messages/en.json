@@ -2158,5 +2158,97 @@
       "secondaryButton": "Talk to Sales",
       "benefits": "✓ No credit card required  ✓ Unlimited free browsing  ✓ Only pay for contacts you unlock"
     }
+  },
+  "submitStory": {
+    "hero": {
+      "title": "Share Your Success Story",
+      "subtitle": "Inspire current students by sharing your career journey.\nYour verified story shows real paths from graduation to success."
+    },
+    "form": {
+      "alumniInfo": {
+        "title": "Alumni Information",
+        "fullName": "Full Name *",
+        "fullNamePlaceholder": "John Doe",
+        "graduationYear": "Graduation Year *",
+        "degree": "Degree *",
+        "degreePlaceholder": "e.g., Computer Science, Engineering",
+        "institution": "Institution *",
+        "institutionPlaceholder": "e.g., Politecnico di Milano",
+        "verificationEmail": "Institutional Email (.edu) *",
+        "verificationEmailPlaceholder": "your.name@university.edu",
+        "emailHelp": "We'll send a verification link to this email. Must be a .edu address.",
+        "anonymous": "Make my story anonymous (show as \"{degree} Graduate\")",
+        "emailValidation": "Please use your institutional (.edu) email address"
+      },
+      "currentPosition": {
+        "title": "Current Position",
+        "currentRole": "Current Role *",
+        "currentRolePlaceholder": "e.g., Senior Software Engineer",
+        "currentCompany": "Current Company *",
+        "currentCompanyPlaceholder": "e.g., Google, Microsoft"
+      },
+      "careerJourney": {
+        "title": "Career Journey (Optional)",
+        "subtitle": "Show your career progression from graduation to current role",
+        "addStep": "Add Step",
+        "stepLabel": "Step {number}",
+        "rolePlaceholder": "Role",
+        "companyPlaceholder": "Company",
+        "durationPlaceholder": "Duration (e.g., 2 years)",
+        "yearPlaceholder": "Year"
+      },
+      "successStory": {
+        "title": "Your Success Story *",
+        "subtitle": "Share your journey, challenges, and how you achieved success (200-1000 words)",
+        "placeholder": "Example: After graduating with a degree in Computer Science, I started as a junior developer at a small startup. The biggest challenge was...",
+        "characterCount": "{count} / 1000 characters (min 200)"
+      },
+      "keySkills": {
+        "title": "Key Skills That Helped You",
+        "addSkill": "Add Skill",
+        "placeholder": "e.g., Python, Problem Solving, Leadership"
+      },
+      "advice": {
+        "title": "Advice for Current Students",
+        "subtitle": "What would you tell students who want to follow a similar path?",
+        "placeholder": "Example: Focus on building real projects, not just taking courses. Network early and don't be afraid to apply for positions that seem out of reach..."
+      },
+      "submit": {
+        "cancel": "Cancel",
+        "submit": "Submit Story",
+        "submitting": "Submitting..."
+      }
+    },
+    "verification": {
+      "title": "Check Your Email",
+      "subtitle": "Verification required to publish your story",
+      "emailSent": {
+        "title": "Verification Email Sent",
+        "message": "We've sent a verification link to <strong>{email}</strong>"
+      },
+      "nextSteps": {
+        "title": "Next Steps:",
+        "step1": "Check your email inbox at {email}",
+        "step2": "Click the verification link in the email",
+        "step3": "Your story will be published and visible to students"
+      },
+      "demo": {
+        "title": "For Demo Purposes:",
+        "tokenLabel": "Your verification token:",
+        "note": "In production, you would receive an email with a clickable link."
+      },
+      "actions": {
+        "viewAllStories": "View All Stories",
+        "gotIt": "Got It"
+      }
+    },
+    "success": {
+      "title": "Thank You!",
+      "message": "Your success story will inspire current students once you verify your email.\nWe appreciate you sharing your journey!",
+      "actions": {
+        "viewStories": "View Alumni Stories",
+        "backHome": "Back to Home"
+      }
+    }
   }
 }
