@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -205,6 +206,7 @@ const referralPrograms = {
 }
 
 export default function ReferralsPage() {
+  const t = useTranslations('referrals')
   const [selectedSegment, setSelectedSegment] = useState<ReferralSegment>('student')
   const [copiedCode, setCopiedCode] = useState<string | null>(null)
   const [referralCode] = useState('INTRANS-STU-A7B9C2') // Mock code
@@ -232,16 +234,16 @@ export default function ReferralsPage() {
             className="text-center mb-16"
           >
             <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white">
-              Referral & Partnership Programs
+              {t('hero.badge')}
             </Badge>
             <h1 className="text-5xl font-display font-bold mb-6">
-              Earn Rewards by{' '}
+              {t('hero.title')}{' '}
               <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Growing the Network
+                {t('hero.titleHighlight')}
               </span>
             </h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-4">
-              Cross-segment referral system: Students → Institutions → Companies. Transparent tracking, automatic payouts, win-win ecosystem growth.
+              {t('hero.subtitle')}
             </p>
             <p className="text-base text-gray-600 max-w-2xl mx-auto">
               20-30% additional revenue through referrals • €177K Year 1 projected from cross-selling
