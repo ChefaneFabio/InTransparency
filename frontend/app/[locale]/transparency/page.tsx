@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent } from '@/components/ui/card'
@@ -24,6 +25,8 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 export default function TransparencyPage() {
+  const t = useTranslations('transparency')
+
   return (
     <div className="min-h-screen hero-bg">
       <Header />
@@ -39,30 +42,30 @@ export default function TransparencyPage() {
             >
               <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white border-0 px-6 py-2 text-base">
                 <Shield className="h-4 w-4 mr-2" />
-                Our Transparency Commitment
+                {t('hero.badge')}
               </Badge>
 
               <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Verified Skills
+                  {t('hero.title')}
                 </span>
                 <br />
-                Clear Explanations
+                {t('hero.subtitle')}
               </h1>
 
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Institution-verified hard and soft skills. Explainable AI matching. Direct company feedback. Complete transparency for students, companies, and institutions.
+                {t('hero.description')}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
                   <Link href="/features">
-                    See Our Features
+                    {t('hero.ctas.features')}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
-                  <Link href="/demo/ai-search">Try Live Demo</Link>
+                  <Link href="/demo/ai-search">{t('hero.ctas.demo')}</Link>
                 </Button>
               </div>
             </motion.div>
@@ -73,10 +76,10 @@ export default function TransparencyPage() {
         <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
           <div className="container max-w-6xl">
             <h2 className="text-4xl font-display font-bold text-foreground text-center mb-4">
-              The Hiring Challenge
+              {t('challenge.title')}
             </h2>
             <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
-              Traditional hiring relies on self-reported CVs and unexplained match scores
+              {t('challenge.subtitle')}
             </p>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -86,7 +89,7 @@ export default function TransparencyPage() {
                     <div className="w-12 h-12 rounded-lg bg-blue-500 flex items-center justify-center">
                       <FileCheck className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-blue-900">Self-Reported Skills</h3>
+                    <h3 className="text-2xl font-bold text-blue-900">{t('challenge.selfReported.title')}</h3>
                   </div>
                   <ul className="space-y-4 text-gray-700">
                     <li className="flex items-start gap-3">
@@ -155,10 +158,10 @@ export default function TransparencyPage() {
         <section className="py-20">
           <div className="container max-w-6xl">
             <h2 className="text-4xl font-display font-bold text-foreground text-center mb-4">
-              Our Transparency Model
+              {t('model.title')}
             </h2>
             <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
-              Four pillars of complete transparency across the platform
+              {t('model.subtitle')}
             </p>
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -297,7 +300,7 @@ export default function TransparencyPage() {
         <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
           <div className="container max-w-6xl">
             <h2 className="text-4xl font-display font-bold text-foreground text-center mb-12">
-              Transparency Benefits Everyone
+              {t('benefits.title')}
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -363,9 +366,9 @@ export default function TransparencyPage() {
           <div className="container max-w-6xl">
             <Card className="bg-gradient-to-r from-primary to-secondary text-white">
               <CardContent className="p-12 text-center">
-                <h2 className="text-4xl font-display font-bold mb-4">The Impact of Transparency</h2>
+                <h2 className="text-4xl font-display font-bold mb-4">{t('impact.title')}</h2>
                 <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
-                  Real data showing how transparency improves outcomes for everyone
+                  {t('impact.subtitle')}
                 </p>
 
                 <div className="grid md:grid-cols-4 gap-8">
@@ -399,43 +402,43 @@ export default function TransparencyPage() {
         <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
           <div className="container max-w-4xl text-center">
             <h2 className="text-4xl font-display font-bold text-foreground mb-6">
-              Experience True Transparency
+              {t('cta.title')}
             </h2>
             <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-              Join a platform where verified skills, explainable AI, and mutual visibility create better matches for everyone.
+              {t('cta.subtitle')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
                 <Link href="/auth/register">
-                  Get Started Free
+                  {t('cta.buttons.getStarted')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link href="/demo/ai-search">Try Live Demo</Link>
+                <Link href="/demo/ai-search">{t('cta.buttons.demo')}</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link href="/about">Learn More</Link>
+                <Link href="/about">{t('cta.buttons.learnMore')}</Link>
               </Button>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600">
               <div className="flex items-center gap-2">
                 <Shield className="h-4 w-4 text-green-600" />
-                <span>GDPR Compliant</span>
+                <span>{t('cta.compliance.gdpr')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Shield className="h-4 w-4 text-green-600" />
-                <span>SOC 2 Type II</span>
+                <span>{t('cta.compliance.soc2')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Shield className="h-4 w-4 text-green-600" />
-                <span>ISO 27001</span>
+                <span>{t('cta.compliance.iso')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Lightbulb className="h-4 w-4 text-primary" />
-                <span>Explainable AI</span>
+                <span>{t('cta.compliance.explainableAI')}</span>
               </div>
             </div>
           </div>
