@@ -2788,5 +2788,230 @@
       "viewProfile": "Visualizza Profilo"
     },
     "loadMore": "Carica Altri Candidati"
+  },
+  "competitiveAdvantage": {
+    "header": {
+      "title": "Perché InTransparency Vince",
+      "subtitle": "L'unica piattaforma che verifica il tuo lavoro effettivo attraverso corsi, voti e progetti—non solo ciò che affermi di sapere"
+    },
+    "linkedin": {
+      "title": "LinkedIn",
+      "issues": {
+        "selfReported": {
+          "title": "Competenze Auto-Dichiarate",
+          "description": "Chiunque può dichiarare \"Esperto in Python\""
+        },
+        "noProof": {
+          "title": "Nessuna Prova di Lavoro",
+          "description": "Raccomandazioni da amici, non professori"
+        },
+        "noGrades": {
+          "title": "Nessuna Verifica Voti",
+          "description": "Non puoi dimostrare prestazioni accademiche"
+        },
+        "premiumRequired": {
+          "title": "Premium Richiesto",
+          "description": "Funzionalità chiave dietro paywall per studenti"
+        }
+      },
+      "advantage": "InTransparency: 100% gratuito per studenti"
+    },
+    "github": {
+      "title": "GitHub",
+      "issues": {
+        "techOnly": {
+          "title": "Solo Tech",
+          "description": "Nessun modo per mostrare lavori business, design, healthcare"
+        },
+        "codeOnly": {
+          "title": "Solo Portfolio Codice",
+          "description": "Non puoi caricare casi studio, design o paper di ricerca"
+        },
+        "excluded": {
+          "title": "95% Studenti Esclusi",
+          "description": "Utile solo per sviluppatori software"
+        }
+      },
+      "advantage": "InTransparency supporta 15 discipline"
+    },
+    "resumes": {
+      "title": "Curriculum",
+      "issues": {
+        "bulletPoints": {
+          "title": "Solo Elenchi Puntati",
+          "description": "\"Ho costruito un'app web\" non dice nulla sulla qualità"
+        },
+        "noProof": {
+          "title": "Nessuna Prova",
+          "description": "I recruiter non possono vedere il tuo lavoro effettivo"
+        },
+        "oneSize": {
+          "title": "Taglia Unica",
+          "description": "Stesso formato per tutti i lavori, nessuna personalizzazione"
+        }
+      },
+      "advantage": "InTransparency mostra progetti + voti"
+    },
+    "advantage": {
+      "title": "Il Vantaggio InTransparency",
+      "subtitle": "L'unica piattaforma con verifica a tre livelli che dimostra cosa hai effettivamente costruito e imparato",
+      "layers": {
+        "projects": {
+          "title": "1. Progetti Reali",
+          "description": "Carica lavoro effettivo: codice, casi studio, design, paper di ricerca—non solo descrizioni"
+        },
+        "grades": {
+          "title": "2. Voti Verificati",
+          "description": "Collega progetti a corsi, professori e voti—mostra dove l'hai imparato"
+        },
+        "university": {
+          "title": "3. Verificato dall'Università",
+          "description": "Professori e università confermano che il tuo lavoro è reale—massima credibilità possibile"
+        }
+      },
+      "comparisons": {
+        "vsLinkedIn": {
+          "title": "Più credibile di LinkedIn",
+          "description": "Voti verificati vs competenze auto-dichiarate"
+        },
+        "vsGitHub": {
+          "title": "Più accessibile di GitHub",
+          "description": "Tutte le discipline vs solo tech"
+        },
+        "vsResumes": {
+          "title": "Più completo dei curriculum",
+          "description": "Progetti + voti + corsi"
+        }
+      }
+    },
+    "pricing": {
+      "title": "L'Unico Modello di Prezzo Basato sulle Prestazioni",
+      "linkedinRecruiter": {
+        "title": "LinkedIn Recruiter",
+        "price": "€8.000+",
+        "period": "per recruiter all'anno",
+        "issues": {
+          "upfront": "Paghi in anticipo prima di trovare qualcuno",
+          "contracts": "Contratti annuali richiesti",
+          "expensive": "Costoso per piccole aziende"
+        }
+      },
+      "jobBoards": {
+        "title": "Job Board",
+        "price": "€500+",
+        "period": "per annuncio di lavoro",
+        "issues": {
+          "perPost": "Paghi per post, non per assunzione",
+          "unqualified": "Inondato di candidati non qualificati",
+          "noVerification": "Nessuna verifica competenze"
+        }
+      },
+      "inTransparency": {
+        "title": "InTransparency",
+        "price": "€10",
+        "period": "per contatto candidato",
+        "benefits": {
+          "browseFree": "Naviga intero database GRATIS",
+          "payWhenFound": "Paghi solo quando trovi qualcuno",
+          "noSubscription": "Nessun abbonamento, crediti mai scadono"
+        }
+      },
+      "summary": "Per studenti: 100% gratuito per sempre. Per università: Piattaforma core gratuita. Per aziende: Paghi solo per risultati."
+    },
+    "uniqueFeatures": {
+      "title": "5 Funzionalità che LinkedIn Non Ha",
+      "features": {
+        "universityVerified": {
+          "title": "Dati Verificati dall'Università",
+          "description": "Integrazione API con Esse3 → voti/corsi in tempo reale"
+        },
+        "aiAnalysis": {
+          "title": "Analisi Progetti AI",
+          "description": "Analisi multi-formato GitHub/PDF/Behance/Portfolio"
+        },
+        "conversationalAI": {
+          "title": "AI Conversazionale",
+          "description": "\"Trova finanza Bocconi con tesi M&A\""
+        },
+        "academicFilters": {
+          "title": "Filtri Accademici",
+          "description": "Filtri specifici corso + voto + università"
+        },
+        "portfolioCoverage": {
+          "title": "100% Copertura Portfolio",
+          "description": "100% studenti caricano progetti vs 5% su LinkedIn"
+        }
+      }
+    },
+    "useCases": {
+      "title": "Quando InTransparency è 10-100x Meglio di LinkedIn",
+      "subtitle": "Per questi specifici scenari di assunzione, InTransparency supera LinkedIn di ordini di grandezza",
+      "cases": {
+        "juniorHires": {
+          "title": "Assunzioni Junior (0-2 anni)",
+          "description": "QUALSIASI settore - non solo tech"
+        },
+        "verifiedSkills": {
+          "title": "Competenze Verificate Necessarie",
+          "description": "Vedi progetti effettivi + voti, non affermazioni"
+        },
+        "universityFilters": {
+          "title": "Filtri Università/Corso",
+          "description": "Polimi CS 28/30 vs generico \"Python\""
+        },
+        "smbBudget": {
+          "title": "Budget PMI",
+          "description": "€10/contatto vs €8.000/anno LinkedIn"
+        },
+        "volumeHiring": {
+          "title": "Assunzioni Volume",
+          "description": "10-50+ junior/anno"
+        },
+        "fasterHiring": {
+          "title": "2x Assunzioni Più Veloci",
+          "description": "Progetti pre-verificati saltano screening"
+        },
+        "italyEU": {
+          "title": "Talenti Italia/UE",
+          "description": "Copertura profonda dati universitari"
+        },
+        "realProjects": {
+          "title": "Vedi Progetti Reali",
+          "description": "100% hanno portfolio vs 5% LinkedIn"
+        }
+      },
+      "conclusion": "Per questi casi d'uso: InTransparency è 10-100x meglio di LinkedIn"
+    },
+    "disciplines": {
+      "title": "Non Solo Tech - TUTTE le Discipline",
+      "subtitle": "Ogni settore con progetti verificabili - da STEM a Creativo a Umanistico",
+      "categories": {
+        "stem": {
+          "title": "STEM",
+          "items": ["Informatica", "Ingegneria", "Data Science", "Cybersecurity"]
+        },
+        "business": {
+          "title": "Business",
+          "items": ["Finanza", "Economia", "Management", "Consulenza"]
+        },
+        "creative": {
+          "title": "Creativo",
+          "items": ["Design (Industriale/Grafico/Moda)", "Architettura", "Marketing (Digitale/Brand/Social)"]
+        },
+        "legal": {
+          "title": "Legale",
+          "items": ["Diritto Societario", "Diritto Internazionale"]
+        },
+        "humanities": {
+          "title": "Umanistico",
+          "items": ["Traduzione", "Creazione Contenuti", "Giornalismo"]
+        },
+        "other": {
+          "title": "& Altro",
+          "items": ["Healthcare", "Scienze Sociali", "Educazione"]
+        }
+      },
+      "conclusion": "QUALSIASI settore con progetti verificabili = InTransparency funziona!"
+    }
   }
 }

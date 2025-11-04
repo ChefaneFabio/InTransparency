@@ -1,18 +1,21 @@
 'use client'
 
 import { Shield, Globe, GraduationCap, CheckCircle, XCircle, Linkedin, Github, FileText } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 export function CompetitiveAdvantage() {
+  const t = useTranslations('competitiveAdvantage')
+
   return (
     <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Why InTransparency Wins
+            {t('header.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            The only platform that verifies your actual work through courses, grades, and projects—not just what you claim to know
+            {t('header.subtitle')}
           </p>
         </div>
 
@@ -25,7 +28,7 @@ export function CompetitiveAdvantage() {
                 <div className="p-3 bg-blue-100 rounded-lg">
                   <Linkedin className="text-blue-600" size={28} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">LinkedIn</h3>
+                <h3 className="text-xl font-bold text-gray-900">{t('linkedin.title')}</h3>
               </div>
               <div className="text-4xl">🤝</div>
             </div>
@@ -34,32 +37,32 @@ export function CompetitiveAdvantage() {
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">Self-Reported Skills</p>
-                  <p className="text-sm text-gray-600">Anyone can claim "Expert in Python"</p>
+                  <p className="font-semibold text-gray-900">{t('linkedin.issues.selfReported.title')}</p>
+                  <p className="text-sm text-gray-600">{t('linkedin.issues.selfReported.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">No Proof of Work</p>
-                  <p className="text-sm text-gray-600">Endorsements from friends, not professors</p>
+                  <p className="font-semibold text-gray-900">{t('linkedin.issues.noProof.title')}</p>
+                  <p className="text-sm text-gray-600">{t('linkedin.issues.noProof.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">No Grade Verification</p>
-                  <p className="text-sm text-gray-600">Can't prove academic performance</p>
+                  <p className="font-semibold text-gray-900">{t('linkedin.issues.noGrades.title')}</p>
+                  <p className="text-sm text-gray-600">{t('linkedin.issues.noGrades.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">Premium Required</p>
-                  <p className="text-sm text-gray-600">Key features behind paywalls for students</p>
+                  <p className="font-semibold text-gray-900">{t('linkedin.issues.premiumRequired.title')}</p>
+                  <p className="text-sm text-gray-600">{t('linkedin.issues.premiumRequired.description')}</p>
                 </div>
               </div>
             </div>
@@ -67,7 +70,7 @@ export function CompetitiveAdvantage() {
             <div className="mt-6 pt-6 border-t border-gray-200">
               <div className="flex items-center gap-2 text-blue-600 font-semibold">
                 <Shield size={20} />
-                <span>InTransparency: 100% free for students</span>
+                <span>{t('linkedin.advantage')}</span>
               </div>
             </div>
           </div>
@@ -79,7 +82,7 @@ export function CompetitiveAdvantage() {
                 <div className="p-3 bg-gray-800 rounded-lg">
                   <Github className="text-white" size={28} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">GitHub</h3>
+                <h3 className="text-xl font-bold text-gray-900">{t('github.title')}</h3>
               </div>
               <div className="text-4xl">💻</div>
             </div>
@@ -88,24 +91,24 @@ export function CompetitiveAdvantage() {
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">Tech-Only</p>
-                  <p className="text-sm text-gray-600">No way to showcase business, design, healthcare work</p>
+                  <p className="font-semibold text-gray-900">{t('github.issues.techOnly.title')}</p>
+                  <p className="text-sm text-gray-600">{t('github.issues.techOnly.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">Code-Only Portfolios</p>
-                  <p className="text-sm text-gray-600">Can't upload case studies, designs, or research papers</p>
+                  <p className="font-semibold text-gray-900">{t('github.issues.codeOnly.title')}</p>
+                  <p className="text-sm text-gray-600">{t('github.issues.codeOnly.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">95% of Students Excluded</p>
-                  <p className="text-sm text-gray-600">Only useful for software developers</p>
+                  <p className="font-semibold text-gray-900">{t('github.issues.excluded.title')}</p>
+                  <p className="text-sm text-gray-600">{t('github.issues.excluded.description')}</p>
                 </div>
               </div>
             </div>
@@ -113,7 +116,7 @@ export function CompetitiveAdvantage() {
             <div className="mt-6 pt-6 border-t border-gray-200">
               <div className="flex items-center gap-2 text-blue-600 font-semibold">
                 <Globe size={20} />
-                <span>InTransparency supports 15 disciplines</span>
+                <span>{t('github.advantage')}</span>
               </div>
             </div>
           </div>
@@ -125,7 +128,7 @@ export function CompetitiveAdvantage() {
                 <div className="p-3 bg-green-100 rounded-lg">
                   <FileText className="text-green-600" size={28} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">Resumes</h3>
+                <h3 className="text-xl font-bold text-gray-900">{t('resumes.title')}</h3>
               </div>
               <div className="text-4xl">📄</div>
             </div>
@@ -134,24 +137,24 @@ export function CompetitiveAdvantage() {
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">Just Bullet Points</p>
-                  <p className="text-sm text-gray-600">"Built a web app" tells nothing about quality</p>
+                  <p className="font-semibold text-gray-900">{t('resumes.issues.bulletPoints.title')}</p>
+                  <p className="text-sm text-gray-600">{t('resumes.issues.bulletPoints.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">No Proof</p>
-                  <p className="text-sm text-gray-600">Recruiters can't see your actual work</p>
+                  <p className="font-semibold text-gray-900">{t('resumes.issues.noProof.title')}</p>
+                  <p className="text-sm text-gray-600">{t('resumes.issues.noProof.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">One-Size-Fits-All</p>
-                  <p className="text-sm text-gray-600">Same format for all jobs, no customization</p>
+                  <p className="font-semibold text-gray-900">{t('resumes.issues.oneSize.title')}</p>
+                  <p className="text-sm text-gray-600">{t('resumes.issues.oneSize.description')}</p>
                 </div>
               </div>
             </div>
@@ -159,7 +162,7 @@ export function CompetitiveAdvantage() {
             <div className="mt-6 pt-6 border-t border-gray-200">
               <div className="flex items-center gap-2 text-blue-600 font-semibold">
                 <GraduationCap size={20} />
-                <span>InTransparency shows projects + grades</span>
+                <span>{t('resumes.advantage')}</span>
               </div>
             </div>
           </div>
@@ -169,10 +172,10 @@ export function CompetitiveAdvantage() {
         <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl shadow-2xl p-12 text-white">
           <div className="text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-bold mb-4">
-              The InTransparency Advantage
+              {t('advantage.title')}
             </h3>
             <p className="text-xl text-white max-w-3xl mx-auto">
-              The only platform with triple-layer verification that proves what you actually built and learned
+              {t('advantage.subtitle')}
             </p>
           </div>
 
@@ -182,9 +185,9 @@ export function CompetitiveAdvantage() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
                 <FileText className="text-white" size={32} />
               </div>
-              <h4 className="text-xl font-bold mb-2">1. Real Projects</h4>
+              <h4 className="text-xl font-bold mb-2">{t('advantage.layers.projects.title')}</h4>
               <p className="text-white">
-                Upload actual work: code, case studies, designs, research papers—not just descriptions
+                {t('advantage.layers.projects.description')}
               </p>
             </div>
 
@@ -193,9 +196,9 @@ export function CompetitiveAdvantage() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
                 <GraduationCap className="text-white" size={32} />
               </div>
-              <h4 className="text-xl font-bold mb-2">2. Verified Grades</h4>
+              <h4 className="text-xl font-bold mb-2">{t('advantage.layers.grades.title')}</h4>
               <p className="text-white">
-                Link projects to courses, professors, and grades—show where you learned it
+                {t('advantage.layers.grades.description')}
               </p>
             </div>
 
@@ -204,9 +207,9 @@ export function CompetitiveAdvantage() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
                 <Shield className="text-white" size={32} />
               </div>
-              <h4 className="text-xl font-bold mb-2">3. University Verified</h4>
+              <h4 className="text-xl font-bold mb-2">{t('advantage.layers.university.title')}</h4>
               <p className="text-white">
-                Professors and universities confirm your work is real—highest credibility possible
+                {t('advantage.layers.university.description')}
               </p>
             </div>
           </div>
@@ -216,24 +219,24 @@ export function CompetitiveAdvantage() {
               <div className="flex items-center gap-4">
                 <CheckCircle className="text-green-300" size={32} />
                 <div className="text-left">
-                  <p className="font-semibold text-lg">More credible than LinkedIn</p>
-                  <p className="text-white text-sm">Verified grades vs self-reported skills</p>
+                  <p className="font-semibold text-lg">{t('advantage.comparisons.vsLinkedIn.title')}</p>
+                  <p className="text-white text-sm">{t('advantage.comparisons.vsLinkedIn.description')}</p>
                 </div>
               </div>
               <div className="hidden sm:block w-px h-12 bg-white/30"></div>
               <div className="flex items-center gap-4">
                 <CheckCircle className="text-green-300" size={32} />
                 <div className="text-left">
-                  <p className="font-semibold text-lg">More accessible than GitHub</p>
-                  <p className="text-white text-sm">All disciplines vs tech-only</p>
+                  <p className="font-semibold text-lg">{t('advantage.comparisons.vsGitHub.title')}</p>
+                  <p className="text-white text-sm">{t('advantage.comparisons.vsGitHub.description')}</p>
                 </div>
               </div>
               <div className="hidden sm:block w-px h-12 bg-white/30"></div>
               <div className="flex items-center gap-4">
                 <CheckCircle className="text-green-300" size={32} />
                 <div className="text-left">
-                  <p className="font-semibold text-lg">More complete than resumes</p>
-                  <p className="text-white text-sm">Projects + grades + courses</p>
+                  <p className="font-semibold text-lg">{t('advantage.comparisons.vsResumes.title')}</p>
+                  <p className="text-white text-sm">{t('advantage.comparisons.vsResumes.description')}</p>
                 </div>
               </div>
             </div>
@@ -243,29 +246,29 @@ export function CompetitiveAdvantage() {
         {/* Pricing Model Comparison */}
         <div className="mt-16">
           <h3 className="text-3xl font-bold text-gray-900 text-center mb-8">
-            The Only Performance-Based Pricing Model
+            {t('pricing.title')}
           </h3>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* LinkedIn */}
             <div className="bg-white rounded-xl shadow-md p-6 border-2 border-gray-200">
               <div className="flex items-center gap-2 mb-4">
                 <Linkedin className="text-blue-600" size={24} />
-                <h4 className="font-bold text-gray-900">LinkedIn Recruiter</h4>
+                <h4 className="font-bold text-gray-900">{t('pricing.linkedinRecruiter.title')}</h4>
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">$8,000+</div>
-              <p className="text-sm text-gray-600 mb-4">per recruiter per year</p>
+              <div className="text-3xl font-bold text-gray-900 mb-2">{t('pricing.linkedinRecruiter.price')}</div>
+              <p className="text-sm text-gray-600 mb-4">{t('pricing.linkedinRecruiter.period')}</p>
               <div className="space-y-2 text-sm">
                 <div className="flex items-start gap-2">
                   <XCircle className="text-red-500 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">Pay upfront before finding anyone</span>
+                  <span className="text-gray-700">{t('pricing.linkedinRecruiter.issues.upfront')}</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <XCircle className="text-red-500 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">Annual contracts required</span>
+                  <span className="text-gray-700">{t('pricing.linkedinRecruiter.issues.contracts')}</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <XCircle className="text-red-500 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">Expensive for small companies</span>
+                  <span className="text-gray-700">{t('pricing.linkedinRecruiter.issues.expensive')}</span>
                 </div>
               </div>
             </div>
@@ -274,22 +277,22 @@ export function CompetitiveAdvantage() {
             <div className="bg-white rounded-xl shadow-md p-6 border-2 border-gray-200">
               <div className="flex items-center gap-2 mb-4">
                 <Globe className="text-blue-700" size={24} />
-                <h4 className="font-bold text-gray-900">Job Boards</h4>
+                <h4 className="font-bold text-gray-900">{t('pricing.jobBoards.title')}</h4>
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">$500+</div>
-              <p className="text-sm text-gray-600 mb-4">per job posting</p>
+              <div className="text-3xl font-bold text-gray-900 mb-2">{t('pricing.jobBoards.price')}</div>
+              <p className="text-sm text-gray-600 mb-4">{t('pricing.jobBoards.period')}</p>
               <div className="space-y-2 text-sm">
                 <div className="flex items-start gap-2">
                   <XCircle className="text-red-500 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">Pay per post, not per hire</span>
+                  <span className="text-gray-700">{t('pricing.jobBoards.issues.perPost')}</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <XCircle className="text-red-500 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">Flooded with unqualified applicants</span>
+                  <span className="text-gray-700">{t('pricing.jobBoards.issues.unqualified')}</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <XCircle className="text-red-500 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">No skill verification</span>
+                  <span className="text-gray-700">{t('pricing.jobBoards.issues.noVerification')}</span>
                 </div>
               </div>
             </div>
@@ -298,22 +301,22 @@ export function CompetitiveAdvantage() {
             <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl shadow-lg p-6 border-2 border-green-300">
               <div className="flex items-center gap-2 mb-4">
                 <Shield className="text-green-600" size={24} />
-                <h4 className="font-bold text-gray-900">InTransparency</h4>
+                <h4 className="font-bold text-gray-900">{t('pricing.inTransparency.title')}</h4>
               </div>
-              <div className="text-3xl font-bold text-green-600 mb-2">€10</div>
-              <p className="text-sm text-gray-700 mb-4">per candidate contact</p>
+              <div className="text-3xl font-bold text-green-600 mb-2">{t('pricing.inTransparency.price')}</div>
+              <p className="text-sm text-gray-700 mb-4">{t('pricing.inTransparency.period')}</p>
               <div className="space-y-2 text-sm">
                 <div className="flex items-start gap-2">
                   <CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">Browse entire database FREE</span>
+                  <span className="text-gray-700">{t('pricing.inTransparency.benefits.browseFree')}</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">Pay only when you find someone</span>
+                  <span className="text-gray-700">{t('pricing.inTransparency.benefits.payWhenFound')}</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">No subscriptions, credits never expire</span>
+                  <span className="text-gray-700">{t('pricing.inTransparency.benefits.noSubscription')}</span>
                 </div>
               </div>
             </div>
@@ -321,7 +324,7 @@ export function CompetitiveAdvantage() {
 
           <div className="mt-8 text-center">
             <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              <strong>For students:</strong> 100% free forever. <strong>For universities:</strong> Core platform free. <strong>For companies:</strong> Pay only for results.
+              {t('pricing.summary')}
             </p>
           </div>
         </div>
@@ -329,40 +332,20 @@ export function CompetitiveAdvantage() {
         {/* Unique Features NOT on LinkedIn */}
         <div className="mt-16">
           <h3 className="text-3xl font-bold text-gray-900 text-center mb-8">
-            5 Features LinkedIn Doesn't Have
+            {t('uniqueFeatures.title')}
           </h3>
           <div className="grid md:grid-cols-5 gap-6 max-w-6xl mx-auto">
             {[
-              {
-                title: 'University-Verified Data',
-                description: 'API integration with Esse3 → real-time grades/courses',
-                icon: '🎓'
-              },
-              {
-                title: 'AI Project Analysis',
-                description: 'GitHub/PDF/Behance/Portfolio multi-format analysis',
-                icon: '🤖'
-              },
-              {
-                title: 'Conversational AI',
-                description: '"Find Bocconi finance with M&A thesis"',
-                icon: '💬'
-              },
-              {
-                title: 'Academic Filters',
-                description: 'Specific course + grade + university filters',
-                icon: '🎯'
-              },
-              {
-                title: '100% Portfolio Coverage',
-                description: '100% students upload projects vs 5% on LinkedIn',
-                icon: '📁'
-              }
-            ].map((feature, idx) => (
-              <div key={idx} className="bg-white rounded-xl p-6 shadow-md border-2 border-blue-200 text-center">
+              { key: 'universityVerified', icon: '🎓' },
+              { key: 'aiAnalysis', icon: '🤖' },
+              { key: 'conversationalAI', icon: '💬' },
+              { key: 'academicFilters', icon: '🎯' },
+              { key: 'portfolioCoverage', icon: '📁' }
+            ].map((feature) => (
+              <div key={feature.key} className="bg-white rounded-xl p-6 shadow-md border-2 border-blue-200 text-center">
                 <div className="text-4xl mb-3">{feature.icon}</div>
-                <h4 className="font-bold text-gray-900 mb-2">{feature.title}</h4>
-                <p className="text-sm text-gray-600">{feature.description}</p>
+                <h4 className="font-bold text-gray-900 mb-2">{t(`uniqueFeatures.features.${feature.key}.title`)}</h4>
+                <p className="text-sm text-gray-600">{t(`uniqueFeatures.features.${feature.key}.description`)}</p>
               </div>
             ))}
           </div>
@@ -371,61 +354,29 @@ export function CompetitiveAdvantage() {
         {/* When InTransparency Beats LinkedIn */}
         <div className="mt-16">
           <h3 className="text-3xl font-bold text-gray-900 text-center mb-4">
-            When InTransparency is 10-100x Better Than LinkedIn
+            {t('useCases.title')}
           </h3>
           <p className="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
-            For these specific hiring scenarios, InTransparency outperforms LinkedIn by orders of magnitude
+            {t('useCases.subtitle')}
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {[
-              {
-                title: 'Junior Hires (0-2 years)',
-                description: 'ANY sector - not just tech',
-                color: 'from-blue-500 to-blue-600'
-              },
-              {
-                title: 'Verified Skills Needed',
-                description: 'See actual projects + grades, not claims',
-                color: 'from-purple-500 to-purple-600'
-              },
-              {
-                title: 'University/Course Filters',
-                description: 'Polimi CS 28/30 vs generic "Python"',
-                color: 'from-green-500 to-green-600'
-              },
-              {
-                title: 'SMB Budget',
-                description: '€10/contact vs €8,000/year LinkedIn',
-                color: 'from-orange-500 to-orange-600'
-              },
-              {
-                title: 'Volume Hiring',
-                description: '10-50+ juniors/year',
-                color: 'from-teal-500 to-teal-600'
-              },
-              {
-                title: '2x Faster Hiring',
-                description: 'Pre-verified projects skip screening',
-                color: 'from-pink-500 to-pink-600'
-              },
-              {
-                title: 'Italy/EU Talent',
-                description: 'Deep university data coverage',
-                color: 'from-indigo-500 to-indigo-600'
-              },
-              {
-                title: 'See Real Projects',
-                description: '100% have portfolios vs 5% LinkedIn',
-                color: 'from-red-500 to-red-600'
-              }
-            ].map((useCase, idx) => (
-              <div key={idx} className={`bg-gradient-to-br ${useCase.color} text-white rounded-xl p-6 shadow-lg`}>
+              { key: 'juniorHires', color: 'from-blue-500 to-blue-600' },
+              { key: 'verifiedSkills', color: 'from-purple-500 to-purple-600' },
+              { key: 'universityFilters', color: 'from-green-500 to-green-600' },
+              { key: 'smbBudget', color: 'from-orange-500 to-orange-600' },
+              { key: 'volumeHiring', color: 'from-teal-500 to-teal-600' },
+              { key: 'fasterHiring', color: 'from-pink-500 to-pink-600' },
+              { key: 'italyEU', color: 'from-indigo-500 to-indigo-600' },
+              { key: 'realProjects', color: 'from-red-500 to-red-600' }
+            ].map((useCase) => (
+              <div key={useCase.key} className={`bg-gradient-to-br ${useCase.color} text-white rounded-xl p-6 shadow-lg`}>
                 <div className="flex items-center mb-2">
                   <CheckCircle className="h-5 w-5 mr-2 flex-shrink-0" />
-                  <h4 className="font-bold">{useCase.title}</h4>
+                  <h4 className="font-bold">{t(`useCases.cases.${useCase.key}.title`)}</h4>
                 </div>
-                <p className="text-sm text-white">{useCase.description}</p>
+                <p className="text-sm text-white">{t(`useCases.cases.${useCase.key}.description`)}</p>
               </div>
             ))}
           </div>
@@ -433,7 +384,7 @@ export function CompetitiveAdvantage() {
           <div className="mt-8 text-center">
             <div className="inline-block bg-green-100 border-2 border-green-300 rounded-xl p-6">
               <p className="text-lg font-semibold text-green-900">
-                🏆 For these use cases: InTransparency is 10-100x better than LinkedIn
+                🏆 {t('useCases.conclusion')}
               </p>
             </div>
           </div>
@@ -441,63 +392,32 @@ export function CompetitiveAdvantage() {
 
         {/* Disciplines Supported - ALL SECTORS */}
         <div className="mt-16 text-center">
-          <h3 className="text-3xl font-bold text-gray-900 mb-4">Not Just Tech - ALL Disciplines</h3>
+          <h3 className="text-3xl font-bold text-gray-900 mb-4">{t('disciplines.title')}</h3>
           <p className="text-gray-600 font-medium mb-6 max-w-3xl mx-auto">
-            Every sector with verifiable projects - from STEM to Creative to Humanities
+            {t('disciplines.subtitle')}
           </p>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
-            <div className="bg-blue-50 rounded-lg p-6">
-              <h4 className="font-bold text-blue-900 mb-3">🔬 STEM</h4>
-              <ul className="space-y-1 text-sm text-gray-700">
-                <li>• Computer Science</li>
-                <li>• Engineering</li>
-                <li>• Data Science</li>
-                <li>• Cybersecurity</li>
-              </ul>
-            </div>
-            <div className="bg-green-50 rounded-lg p-6">
-              <h4 className="font-bold text-green-900 mb-3">💼 Business</h4>
-              <ul className="space-y-1 text-sm text-gray-700">
-                <li>• Finance</li>
-                <li>• Economics</li>
-                <li>• Management</li>
-                <li>• Consulting</li>
-              </ul>
-            </div>
-            <div className="bg-purple-50 rounded-lg p-6">
-              <h4 className="font-bold text-purple-900 mb-3">🎨 Creative</h4>
-              <ul className="space-y-1 text-sm text-gray-700">
-                <li>• Design (Industrial/Graphic/Fashion)</li>
-                <li>• Architecture</li>
-                <li>• Marketing (Digital/Brand/Social)</li>
-              </ul>
-            </div>
-            <div className="bg-orange-50 rounded-lg p-6">
-              <h4 className="font-bold text-orange-900 mb-3">⚖️ Legal</h4>
-              <ul className="space-y-1 text-sm text-gray-700">
-                <li>• Corporate Law</li>
-                <li>• International Law</li>
-              </ul>
-            </div>
-            <div className="bg-pink-50 rounded-lg p-6">
-              <h4 className="font-bold text-pink-900 mb-3">📝 Humanities</h4>
-              <ul className="space-y-1 text-sm text-gray-700">
-                <li>• Translation</li>
-                <li>• Content Creation</li>
-                <li>• Journalism</li>
-              </ul>
-            </div>
-            <div className="bg-cyan-50 rounded-lg p-6">
-              <h4 className="font-bold text-cyan-900 mb-3">📊 & More</h4>
-              <ul className="space-y-1 text-sm text-gray-700">
-                <li>• Healthcare</li>
-                <li>• Social Sciences</li>
-                <li>• Education</li>
-              </ul>
-            </div>
+            {['stem', 'business', 'creative', 'legal', 'humanities', 'other'].map((category) => (
+              <div key={category} className={`bg-${category === 'stem' ? 'blue' : category === 'business' ? 'green' : category === 'creative' ? 'purple' : category === 'legal' ? 'orange' : category === 'humanities' ? 'pink' : 'cyan'}-50 rounded-lg p-6`}>
+                <h4 className="font-bold mb-3">
+                  {category === 'stem' && '🔬 '}
+                  {category === 'business' && '💼 '}
+                  {category === 'creative' && '🎨 '}
+                  {category === 'legal' && '⚖️ '}
+                  {category === 'humanities' && '📝 '}
+                  {category === 'other' && '📊 '}
+                  {t(`disciplines.categories.${category}.title`)}
+                </h4>
+                <ul className="space-y-1 text-sm text-gray-700">
+                  {t.raw(`disciplines.categories.${category}.items`).map((item: string) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
           <p className="mt-6 text-lg font-semibold text-gray-900">
-            🎯 ANY sector with verifiable projects = InTransparency works!
+            🎯 {t('disciplines.conclusion')}
           </p>
         </div>
       </div>
