@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -47,54 +48,6 @@ type Message = {
   results?: any[]
 }
 
-const exampleQueries = {
-  student: [
-    "Stage curriculare for computer science in Milan",
-    "Tirocinio data science for my university degree",
-    "Entry-level frontend developer jobs in Milan"
-  ],
-  company: [
-    "Cybersecurity students from Politecnico with Network Security 30/30",
-    "Data engineers with Python and Spark, 27+ GPA, Milan area",
-    "Frontend developers with React and TypeScript, strong communication skills"
-  ],
-  university: [
-    "Show me CS students with 3.8+ GPA who haven't been contacted yet",
-    "Which students got hired at tech companies this month?",
-    "Find tech companies hiring ML engineers in Milan"
-  ]
-}
-
-const demoConfigs = {
-  student: {
-    title: 'AI Job Search Demo',
-    subtitle: 'For Students',
-    color: 'from-primary to-secondary',
-    icon: GraduationCap,
-    placeholder: 'Describe your ideal job...',
-    initialMessage: "👋 Hi! I'm Transparenty, your AI job search assistant. Tell me what kind of job you're looking for in plain English!\n\nTry: \"Find me frontend developer jobs in Milan at startups\" or \"Stage curriculare in data science\"",
-    registrationLink: '/auth/register/student'
-  },
-  company: {
-    title: 'AI Candidate Search Demo',
-    subtitle: 'For Companies',
-    color: 'from-primary to-secondary',
-    icon: Building2,
-    placeholder: 'Describe who you\'re looking for...',
-    initialMessage: "👋 Hi! I'm Transparenty, your AI recruiting assistant. Describe the candidate you need in plain English!\n\nTry: \"Cybersecurity students Roma Network Security 30/30\"",
-    registrationLink: '/auth/register/recruiter'
-  },
-  university: {
-    title: 'AI Search Hub Demo',
-    subtitle: 'For Institutes (Universities & ITS)',
-    color: 'from-primary to-secondary',
-    icon: Users,
-    placeholder: 'Search students or jobs...',
-    initialMessage: "👋 Hi! I'm Transparenty, your institute AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Show me CS students with 3.8+ GPA\" or \"Find tech companies hiring\"",
-    registrationLink: '/auth/register/university'
-  }
-}
-
 const mockResults = {
   studentJobs: [
     { id: '1', title: 'Frontend Developer', company: 'TechStartup', location: 'Milan, IT', salary: '€35,000 - €45,000', type: 'Full-time', match: 94, coordinates: { lat: 45.4642, lng: 9.1900 } },
@@ -130,6 +83,7 @@ const mockResults = {
 }
 
 export default function AISearchDemoPage() {
+  const t = useTranslations('aiSearchDemo')
   const [activeDemo, setActiveDemo] = useState<DemoType>('student')
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
@@ -139,6 +93,42 @@ export default function AISearchDemoPage() {
   const [mapCenter, setMapCenter] = useState({ lat: 42.5, lng: 12.5 }) // Center of Italy
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''
+
+  const demoConfigs = {
+    student: {
+      title: t('demoConfigs.student.title'),
+      subtitle: t('demoConfigs.student.subtitle'),
+      color: 'from-primary to-secondary',
+      icon: GraduationCap,
+      placeholder: t('demoConfigs.student.placeholder'),
+      initialMessage: t('demoConfigs.student.initialMessage'),
+      registrationLink: '/auth/register/student'
+    },
+    company: {
+      title: t('demoConfigs.company.title'),
+      subtitle: t('demoConfigs.company.subtitle'),
+      color: 'from-primary to-secondary',
+      icon: Building2,
+      placeholder: t('demoConfigs.company.placeholder'),
+      initialMessage: t('demoConfigs.company.initialMessage'),
+      registrationLink: '/auth/register/recruiter'
+    },
+    university: {
+      title: t('demoConfigs.university.title'),
+      subtitle: t('demoConfigs.university.subtitle'),
+      color: 'from-primary to-secondary',
+      icon: Users,
+      placeholder: t('demoConfigs.university.placeholder'),
+      initialMessage: t('demoConfigs.university.initialMessage'),
+      registrationLink: '/auth/register/university'
+    }
+  }
+
+  const exampleQueries = {
+    student: t.raw('exampleQueries.student') as string[],
+    company: t.raw('exampleQueries.company') as string[],
+    university: t.raw('exampleQueries.university') as string[]
+  }
 
   const config = demoConfigs[activeDemo]
 
@@ -345,16 +335,16 @@ export default function AISearchDemoPage() {
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border-2 border-primary/30 rounded-full px-6 py-2 mb-4 shadow-sm">
             <Sparkles className="h-5 w-5 text-primary" />
-            <span className="font-bold text-foreground">Try AI Conversational Search - No Login Required</span>
+            <span className="font-bold text-foreground">{t('banner.badge')}</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
-            Experience{' '}
+            {t('banner.title')}{' '}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              AI-Powered Search
+              {t('banner.titleHighlight')}
             </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
-            Ask in plain English what you need. Our AI understands and finds exactly what you're looking for.
+            {t('banner.description')}
           </p>
 
           {/* Alternative Search Banner */}
@@ -365,13 +355,13 @@ export default function AISearchDemoPage() {
                   <div className="flex items-center gap-3">
                     <SlidersHorizontal className="h-6 w-6 text-primary" />
                     <div className="text-left">
-                      <p className="font-semibold text-gray-900">Prefer traditional filters?</p>
-                      <p className="text-sm text-gray-600">Try our Advanced Search with manual filters</p>
+                      <p className="font-semibold text-gray-900">{t('banner.alternativeTitle')}</p>
+                      <p className="text-sm text-gray-600">{t('banner.alternativeDescription')}</p>
                     </div>
                   </div>
                   <Button variant="outline" className="border-primary/30 hover:bg-primary/10 hover:text-primary" asChild>
                     <Link href="/demo/advanced-search">
-                      Try Advanced Search
+                      {t('banner.alternativeButton')}
                       <ArrowRight className="h-4 w-4 ml-2" />
                     </Link>
                   </Button>
@@ -386,15 +376,15 @@ export default function AISearchDemoPage() {
           <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3">
             <TabsTrigger value="student" className="flex items-center gap-2">
               <GraduationCap className="h-4 w-4" />
-              Student Demo
+              {t('tabs.student')}
             </TabsTrigger>
             <TabsTrigger value="company" className="flex items-center gap-2">
               <Building2 className="h-4 w-4" />
-              Company Demo
+              {t('tabs.company')}
             </TabsTrigger>
             <TabsTrigger value="university" className="flex items-center gap-2">
               <Users className="h-4 w-4" />
-              University Demo
+              {t('tabs.university')}
             </TabsTrigger>
           </TabsList>
         </Tabs>
@@ -412,7 +402,7 @@ export default function AISearchDemoPage() {
                 }`}
               >
                 <List className="h-4 w-4" />
-                <span className="font-medium">Chat View</span>
+                <span className="font-medium">{t('viewToggle.chatView')}</span>
               </button>
               <button
                 onClick={() => setViewMode('map')}
@@ -423,7 +413,7 @@ export default function AISearchDemoPage() {
                 }`}
               >
                 <MapIcon className="h-4 w-4" />
-                <span className="font-medium">Map View</span>
+                <span className="font-medium">{t('viewToggle.mapView')}</span>
               </button>
             </div>
           </div>
@@ -482,7 +472,7 @@ export default function AISearchDemoPage() {
                                           <p className="font-semibold text-gray-900">{result.title}</p>
                                           {result.type === 'Internship' && result.validForDegree && (
                                             <Badge className="bg-purple-100 text-purple-800 text-xs mt-1">
-                                              ✓ Valid for Degree
+                                              {t('results.validForDegree')}
                                             </Badge>
                                           )}
                                         </div>
@@ -493,7 +483,7 @@ export default function AISearchDemoPage() {
                                           <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold text-xs">
                                             {result.initials}
                                           </div>
-                                          <span className="text-gray-600">Contact Locked</span>
+                                          <span className="text-gray-600">{t('results.contactLocked')}</span>
                                         </div>
                                       )}
                                       <p className="text-gray-600 text-xs mt-1">
@@ -506,7 +496,7 @@ export default function AISearchDemoPage() {
                                     </div>
                                     {result.match && (
                                       <Badge className="bg-green-100 text-green-800 text-xs">
-                                        {result.match}% Match
+                                        {t('results.match', { score: result.match })}
                                       </Badge>
                                     )}
                                   </div>
@@ -514,7 +504,7 @@ export default function AISearchDemoPage() {
                               ))}
                               <Button className={`w-full bg-gradient-to-r ${config.color}`} size="sm" asChild>
                                 <Link href={config.registrationLink}>
-                                  Register Free to See All Results
+                                  {t('ui.registerToSeeAll')}
                                   <ArrowRight className="h-3 w-3 ml-2" />
                                 </Link>
                               </Button>
@@ -585,9 +575,9 @@ export default function AISearchDemoPage() {
                     <div className="flex items-center gap-3">
                       <MapPin className="h-6 w-6" />
                       <div>
-                        <CardTitle>Geographic View</CardTitle>
+                        <CardTitle>{t('ui.geographicView')}</CardTitle>
                         <p className="text-sm text-white/90">
-                          {getCurrentResults().length} results on map
+                          {t('ui.resultsOnMap', { count: getCurrentResults().length })}
                         </p>
                       </div>
                     </div>
@@ -598,7 +588,7 @@ export default function AISearchDemoPage() {
                       onClick={() => setViewMode('list')}
                     >
                       <List className="h-4 w-4 mr-2" />
-                      Back to Chat
+                      {t('ui.backToChat')}
                     </Button>
                   </div>
                 </CardHeader>
@@ -675,7 +665,7 @@ export default function AISearchDemoPage() {
                                         <p className="text-gray-600">{selected.company}</p>
                                         {isInternship && selected.validForDegree && (
                                           <Badge className="bg-purple-100 text-purple-800 mt-1 text-xs">
-                                            ✓ Valid for University Degree
+                                            {t('results.validForUniversityDegree')}
                                           </Badge>
                                         )}
                                       </div>
@@ -708,18 +698,18 @@ export default function AISearchDemoPage() {
                                       )}
                                       {selected.match && (
                                         <Badge className="bg-green-100 text-green-800 mt-2">
-                                          {selected.match}% Match
+                                          {t('results.match', { score: selected.match })}
                                         </Badge>
                                       )}
                                       {selected.matchedStudents && (
                                         <Badge className="bg-blue-100 text-blue-800 mt-2">
-                                          {selected.matchedStudents} students match
+                                          {t('results.studentsMatch', { count: selected.matchedStudents })}
                                         </Badge>
                                       )}
                                     </div>
                                     <Button className={`w-full mt-3 bg-gradient-to-r ${config.color}`} size="sm" asChild>
                                       <Link href={config.registrationLink}>
-                                        {isInternship ? 'Apply for Stage' : 'Register to Apply'}
+                                        {isInternship ? t('results.applyForStage') : t('results.registerToApply')}
                                       </Link>
                                     </Button>
                                   </div>
@@ -734,7 +724,7 @@ export default function AISearchDemoPage() {
                                           {selected.initials}
                                         </div>
                                         <div>
-                                          <p className="font-bold">Contact Locked</p>
+                                          <p className="font-bold">{t('results.contactLocked')}</p>
                                           <p className="text-sm text-gray-600">{selected.university}</p>
                                         </div>
                                       </div>
@@ -746,15 +736,15 @@ export default function AISearchDemoPage() {
                                       </button>
                                     </div>
                                     <div className="space-y-2 text-sm">
-                                      <p><strong>Major:</strong> {selected.major}</p>
-                                      <p><strong>GPA:</strong> {selected.gpa}/30</p>
-                                      <p><strong>Skills:</strong> {selected.skills?.slice(0, 3).join(', ')}</p>
+                                      <p><strong>{t('mapInfo.major')}:</strong> {selected.major}</p>
+                                      <p><strong>{t('mapInfo.gpa')}:</strong> {selected.gpa}/30</p>
+                                      <p><strong>{t('mapInfo.skills')}:</strong> {selected.skills?.slice(0, 3).join(', ')}</p>
                                       <Badge className="bg-green-100 text-green-800 mt-2">
-                                        {selected.match}% Match
+                                        {t('results.match', { score: selected.match })}
                                       </Badge>
                                     </div>
                                     <Button className={`w-full mt-3 bg-gradient-to-r ${config.color}`} size="sm" asChild>
-                                      <Link href={config.registrationLink}>Unlock for €10</Link>
+                                      <Link href={config.registrationLink}>{t('results.unlockContact')}</Link>
                                     </Button>
                                   </div>
                                 )
@@ -775,16 +765,16 @@ export default function AISearchDemoPage() {
                                       </button>
                                     </div>
                                     <div className="space-y-1 text-sm">
-                                      <p><strong>GPA:</strong> {selected.gpa}/4.0</p>
-                                      <p><strong>Contacted:</strong> {selected.contacted} times</p>
+                                      <p><strong>{t('mapInfo.gpa')}:</strong> {selected.gpa}/4.0</p>
+                                      <p><strong>{t('mapInfo.contacted')}:</strong> {selected.contacted} {t('mapInfo.times')}</p>
                                       {selected.hired && (
                                         <Badge className="bg-green-100 text-green-800 mt-2">
-                                          Hired at {selected.company}
+                                          {t('results.hiredAt', { company: selected.company })}
                                         </Badge>
                                       )}
                                     </div>
                                     <Button className={`w-full mt-3 bg-gradient-to-r ${config.color}`} size="sm" asChild>
-                                      <Link href={config.registrationLink}>View Full Profile</Link>
+                                      <Link href={config.registrationLink}>{t('results.viewFullProfile')}</Link>
                                     </Button>
                                   </div>
                                 )
@@ -807,7 +797,7 @@ export default function AISearchDemoPage() {
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
                   <Lightbulb className="h-5 w-5 mr-2 text-yellow-500" />
-                  Try These Examples
+                  {t('ui.exampleQueriesTitle')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
@@ -828,40 +818,40 @@ export default function AISearchDemoPage() {
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
                   <Zap className="h-5 w-5 mr-2" />
-                  Like What You See?
+                  {t('ui.likeWhatYouSee')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3 text-sm">
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span>Access full search results</span>
+                    <span>{t('features.accessFullResults')}</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span>Save searches and favorites</span>
+                    <span>{t('features.saveSearches')}</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
                     <span>
-                      {activeDemo === 'student' && 'Apply to jobs and get discovered'}
-                      {activeDemo === 'company' && 'Unlock contacts for €10 each'}
-                      {activeDemo === 'university' && 'Track placements in real-time'}
+                      {activeDemo === 'student' && t('features.studentFeature')}
+                      {activeDemo === 'company' && t('features.companyFeature')}
+                      {activeDemo === 'university' && t('features.universityFeature')}
                     </span>
                   </div>
                 </div>
 
                 <Button className={`w-full bg-gradient-to-r ${config.color}`} size="lg" asChild>
                   <Link href={config.registrationLink}>
-                    Register Free Now
+                    {t('ui.registerFree')}
                     <ArrowRight className="h-4 w-4 ml-2" />
                   </Link>
                 </Button>
 
                 <p className="text-xs text-center text-gray-600">
-                  {activeDemo === 'student' && 'Free forever • No credit card required'}
-                  {activeDemo === 'company' && 'No subscriptions • Pay only for results'}
-                  {activeDemo === 'university' && 'Always free • Pay only for customizations'}
+                  {activeDemo === 'student' && t('pricing.studentTagline')}
+                  {activeDemo === 'company' && t('pricing.companyTagline')}
+                  {activeDemo === 'university' && t('pricing.universityTagline')}
                 </p>
               </CardContent>
             </Card>

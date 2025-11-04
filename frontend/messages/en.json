@@ -3315,5 +3315,154 @@
         "subtitle": "Find European job opportunities for your students"
       }
     }
+  },
+  "aiSearchDemo": {
+    "banner": {
+      "badge": "Try AI Conversational Search - No Login Required",
+      "title": "Experience",
+      "titleHighlight": "AI-Powered Search",
+      "description": "Ask in plain English what you need. Our AI understands and finds exactly what you're looking for.",
+      "alternativeTitle": "Prefer traditional filters?",
+      "alternativeDescription": "Try our Advanced Search with manual filters",
+      "alternativeButton": "Try Advanced Search"
+    },
+    "tabs": {
+      "student": "Student Demo",
+      "company": "Company Demo",
+      "university": "University Demo"
+    },
+    "viewToggle": {
+      "chatView": "Chat View",
+      "mapView": "Map View"
+    },
+    "demoConfigs": {
+      "student": {
+        "title": "AI Job Search Demo",
+        "subtitle": "For Students",
+        "placeholder": "Describe your ideal job...",
+        "initialMessage": "👋 Hi! I'm Transparenty, your AI job search assistant. Tell me what kind of job you're looking for in plain English!\n\nTry: \"Find me frontend developer jobs in Milan at startups\" or \"Stage curriculare in data science\""
+      },
+      "company": {
+        "title": "AI Candidate Search Demo",
+        "subtitle": "For Companies",
+        "placeholder": "Describe who you're looking for...",
+        "initialMessage": "👋 Hi! I'm Transparenty, your AI recruiting assistant. Describe the candidate you need in plain English!\n\nTry: \"Cybersecurity students Roma Network Security 30/30\""
+      },
+      "university": {
+        "title": "AI Search Hub Demo",
+        "subtitle": "For Institutes (Universities & ITS)",
+        "placeholder": "Search students or jobs...",
+        "initialMessage": "👋 Hi! I'm Transparenty, your institute AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Show me CS students with 3.8+ GPA\" or \"Find tech companies hiring\""
+      }
+    },
+    "exampleQueries": {
+      "student": [
+        "Stage curriculare for computer science in Milan",
+        "Tirocinio data science for my university degree",
+        "Entry-level frontend developer jobs in Milan"
+      ],
+      "company": [
+        "Cybersecurity students from Politecnico with Network Security 30/30",
+        "Data engineers with Python and Spark, 27+ GPA, Milan area",
+        "Frontend developers with React and TypeScript, strong communication skills"
+      ],
+      "university": [
+        "Show me CS students with 3.8+ GPA who haven't been contacted yet",
+        "Which students got hired at tech companies this month?",
+        "Find tech companies hiring ML engineers in Milan"
+      ]
+    },
+    "ui": {
+      "send": "Send",
+      "clear": "Clear",
+      "exampleQueriesTitle": "Try These Examples",
+      "likeWhatYouSee": "Like What You See?",
+      "registerFree": "Register Free Now",
+      "registerToSeeAll": "Register Free to See All Results",
+      "backToChat": "Back to Chat",
+      "geographicView": "Geographic View",
+      "resultsOnMap": "{count} results on map"
+    },
+    "features": {
+      "accessFullResults": "Access full search results",
+      "saveSearches": "Save searches and favorites",
+      "studentFeature": "Apply to jobs and get discovered",
+      "companyFeature": "Unlock contacts for €10 each",
+      "universityFeature": "Track placements in real-time"
+    },
+    "pricing": {
+      "studentTagline": "Free forever • No credit card required",
+      "companyTagline": "No subscriptions • Pay only for results",
+      "universityTagline": "Always free • Pay only for customizations"
+    },
+    "results": {
+      "validForDegree": "✓ Valid for Degree",
+      "validForUniversityDegree": "✓ Valid for University Degree",
+      "contactLocked": "Contact Locked",
+      "match": "{score}% Match",
+      "studentsMatch": "{count} students match",
+      "applyForStage": "Apply for Stage",
+      "registerToApply": "Register to Apply",
+      "unlockContact": "Unlock for €10",
+      "viewFullProfile": "View Full Profile",
+      "hiredAt": "Hired at {company}"
+    },
+    "mapInfo": {
+      "location": "Location",
+      "salary": "Salary",
+      "duration": "Duration",
+      "type": "Type",
+      "major": "Major",
+      "gpa": "GPA",
+      "skills": "Skills",
+      "contacted": "Contacted",
+      "times": "times"
+    },
+    "mockResults": {
+      "studentJobs": {
+        "frontendDeveloper": "Frontend Developer",
+        "juniorSoftwareEngineer": "Junior Software Engineer",
+        "reactDeveloper": "React Developer",
+        "fullStackDeveloper": "Full Stack Developer",
+        "backendEngineer": "Backend Engineer"
+      },
+      "internships": {
+        "stageSoftwareDevelopment": "Stage Curriculare - Software Development",
+        "tirocinioDataScience": "Tirocinio Data Science",
+        "stageAIMachineLearning": "Stage in AI/Machine Learning",
+        "internshipFrontend": "Internship - Frontend Development",
+        "stageCybersecurity": "Stage Curriculare - Cybersecurity",
+        "tirocinioFullStack": "Tirocinio Full Stack"
+      },
+      "companies": {
+        "techStartup": "TechStartup",
+        "innovateCo": "InnovateCo",
+        "startupHub": "StartupHub",
+        "techCo": "TechCo",
+        "devShop": "DevShop",
+        "microsoft": "Microsoft Italia",
+        "ibm": "IBM Rome",
+        "accenture": "Accenture",
+        "deloitte": "Deloitte Digital",
+        "leonardo": "Leonardo SpA",
+        "reply": "Reply"
+      },
+      "locations": {
+        "milan": "Milan, IT",
+        "rome": "Rome, IT",
+        "turin": "Turin, IT",
+        "florence": "Florence, IT",
+        "remote": "Remote"
+      },
+      "jobTypes": {
+        "fullTime": "Full-time",
+        "internship": "Internship",
+        "partTime": "Part-time"
+      },
+      "durations": {
+        "sixMonths": "6 months",
+        "threeToSixMonths": "3-6 months"
+      }
+    }
   }
 }

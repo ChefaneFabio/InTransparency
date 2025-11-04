@@ -3314,5 +3314,154 @@
         "subtitle": "Trova opportunità di lavoro europee per i tuoi studenti"
       }
     }
+  },
+  "aiSearchDemo": {
+    "banner": {
+      "badge": "Prova la Ricerca Conversazionale AI - Nessun Login Richiesto",
+      "title": "Vivi l'esperienza della",
+      "titleHighlight": "Ricerca Potenziata dall'AI",
+      "description": "Chiedi in italiano quello che ti serve. La nostra AI capisce e trova esattamente ciò che stai cercando.",
+      "alternativeTitle": "Preferisci i filtri tradizionali?",
+      "alternativeDescription": "Prova la nostra Ricerca Avanzata con filtri manuali",
+      "alternativeButton": "Prova Ricerca Avanzata"
+    },
+    "tabs": {
+      "student": "Demo Studente",
+      "company": "Demo Azienda",
+      "university": "Demo Università"
+    },
+    "viewToggle": {
+      "chatView": "Vista Chat",
+      "mapView": "Vista Mappa"
+    },
+    "demoConfigs": {
+      "student": {
+        "title": "Demo Ricerca Lavoro AI",
+        "subtitle": "Per Studenti",
+        "placeholder": "Descrivi il tuo lavoro ideale...",
+        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI per la ricerca di lavoro. Dimmi che tipo di lavoro stai cercando in italiano!\n\nProva: \"Trova lavori frontend developer a Milano in startup\" o \"Stage curriculare in data science\""
+      },
+      "company": {
+        "title": "Demo Ricerca Candidati AI",
+        "subtitle": "Per Aziende",
+        "placeholder": "Descrivi chi stai cercando...",
+        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI per il recruiting. Descrivi il candidato che ti serve in italiano!\n\nProva: \"Studenti cybersecurity Roma Network Security 30/30\""
+      },
+      "university": {
+        "title": "Demo Hub Ricerca AI",
+        "subtitle": "Per Istituti (Università e ITS)",
+        "placeholder": "Cerca studenti o lavori...",
+        "initialMessage": "👋 Ciao! Sono Transparenty, l'assistente AI del tuo istituto. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Mostrami studenti CS con media 3.8+\" o \"Trova aziende tech che assumono\""
+      }
+    },
+    "exampleQueries": {
+      "student": [
+        "Stage curriculare informatica a Milano",
+        "Tirocinio data science per la mia laurea",
+        "Lavori frontend developer entry-level a Milano"
+      ],
+      "company": [
+        "Studenti cybersecurity Politecnico con Network Security 30/30",
+        "Data engineer con Python e Spark, media 27+, zona Milano",
+        "Frontend developer con React e TypeScript, ottime capacità comunicative"
+      ],
+      "university": [
+        "Mostrami studenti CS con media 3.8+ non ancora contattati",
+        "Quali studenti sono stati assunti da aziende tech questo mese?",
+        "Trova aziende tech che cercano ML engineer a Milano"
+      ]
+    },
+    "ui": {
+      "send": "Invia",
+      "clear": "Cancella",
+      "exampleQueriesTitle": "Prova Questi Esempi",
+      "likeWhatYouSee": "Ti Piace Quello Che Vedi?",
+      "registerFree": "Registrati Gratis Ora",
+      "registerToSeeAll": "Registrati Gratis per Vedere Tutti i Risultati",
+      "backToChat": "Torna alla Chat",
+      "geographicView": "Vista Geografica",
+      "resultsOnMap": "{count} risultati sulla mappa"
+    },
+    "features": {
+      "accessFullResults": "Accedi a tutti i risultati di ricerca",
+      "saveSearches": "Salva ricerche e preferiti",
+      "studentFeature": "Candidati per lavori e fatti scoprire",
+      "companyFeature": "Sblocca contatti a €10 l'uno",
+      "universityFeature": "Traccia i placement in tempo reale"
+    },
+    "pricing": {
+      "studentTagline": "Gratis per sempre • Nessuna carta di credito richiesta",
+      "companyTagline": "Nessun abbonamento • Paghi solo per i risultati",
+      "universityTagline": "Sempre gratis • Paghi solo per personalizzazioni"
+    },
+    "results": {
+      "validForDegree": "✓ Valido per Laurea",
+      "validForUniversityDegree": "✓ Valido per Laurea Universitaria",
+      "contactLocked": "Contatto Bloccato",
+      "match": "{score}% Compatibilità",
+      "studentsMatch": "{count} studenti compatibili",
+      "applyForStage": "Candidati per Stage",
+      "registerToApply": "Registrati per Candidarti",
+      "unlockContact": "Sblocca per €10",
+      "viewFullProfile": "Visualizza Profilo Completo",
+      "hiredAt": "Assunto presso {company}"
+    },
+    "mapInfo": {
+      "location": "Posizione",
+      "salary": "Salario",
+      "duration": "Durata",
+      "type": "Tipo",
+      "major": "Corso di Laurea",
+      "gpa": "Media",
+      "skills": "Competenze",
+      "contacted": "Contattato",
+      "times": "volte"
+    },
+    "mockResults": {
+      "studentJobs": {
+        "frontendDeveloper": "Sviluppatore Frontend",
+        "juniorSoftwareEngineer": "Junior Software Engineer",
+        "reactDeveloper": "Sviluppatore React",
+        "fullStackDeveloper": "Sviluppatore Full Stack",
+        "backendEngineer": "Backend Engineer"
+      },
+      "internships": {
+        "stageSoftwareDevelopment": "Stage Curriculare - Sviluppo Software",
+        "tirocinioDataScience": "Tirocinio Data Science",
+        "stageAIMachineLearning": "Stage in AI/Machine Learning",
+        "internshipFrontend": "Tirocinio - Sviluppo Frontend",
+        "stageCybersecurity": "Stage Curriculare - Cybersecurity",
+        "tirocinioFullStack": "Tirocinio Full Stack"
+      },
+      "companies": {
+        "techStartup": "TechStartup",
+        "innovateCo": "InnovateCo",
+        "startupHub": "StartupHub",
+        "techCo": "TechCo",
+        "devShop": "DevShop",
+        "microsoft": "Microsoft Italia",
+        "ibm": "IBM Roma",
+        "accenture": "Accenture",
+        "deloitte": "Deloitte Digital",
+        "leonardo": "Leonardo SpA",
+        "reply": "Reply"
+      },
+      "locations": {
+        "milan": "Milano, IT",
+        "rome": "Roma, IT",
+        "turin": "Torino, IT",
+        "florence": "Firenze, IT",
+        "remote": "Remoto"
+      },
+      "jobTypes": {
+        "fullTime": "Tempo pieno",
+        "internship": "Stage",
+        "partTime": "Part-time"
+      },
+      "durations": {
+        "sixMonths": "6 mesi",
+        "threeToSixMonths": "3-6 mesi"
+      }
+    }
   }
 }
