@@ -2518,5 +2518,54 @@
       "createPortfolio": "Crea Portfolio Gratuito",
       "learnMore": "Scopri Come Funziona"
     }
+  },
+  "explore": {
+    "hero": {
+      "badge": "Scopri Talenti Verificati",
+      "title": "Esplora Portfolio Studenti",
+      "subtitle": "Cerca tra migliaia di portfolio studenti verificati dall'università. Ogni progetto autenticato dalle istituzioni.",
+      "searchPlaceholder": "Cerca per nome, competenza o università...",
+      "stats": {
+        "students": "Studenti",
+        "verified": "Verificato",
+        "skills": "Competenze"
+      }
+    },
+    "filters": {
+      "title": "Filtri",
+      "clear": "Cancella",
+      "university": "Università",
+      "graduationYear": "Anno di Laurea",
+      "classOf": "Classe del {year}",
+      "skills": "Competenze ({count})",
+      "searchSkills": "Cerca competenze...",
+      "noSkillsFound": "Nessuna competenza trovata corrispondente a \"{query}\""
+    },
+    "results": {
+      "loading": "Caricamento...",
+      "studentsFound": "{count} Studenti Trovati",
+      "filtered": "Mostrando risultati filtrati",
+      "loadingPortfolios": "Caricamento portfolio..."
+    },
+    "empty": {
+      "title": "Nessuno studente trovato",
+      "description": "Prova a modificare i tuoi filtri o la query di ricerca",
+      "clearFilters": "Cancella Tutti i Filtri"
+    },
+    "card": {
+      "classOf": "Classe del {year}",
+      "stats": {
+        "projects": "Progetti",
+        "verified": "Verificato",
+        "skills": "Competenze"
+      },
+      "topSkills": "Top Competenze:",
+      "viewPortfolio": "Visualizza Portfolio Completo"
+    },
+    "cta": {
+      "title": "Pronto per Essere Scoperto?",
+      "subtitle": "Unisciti a migliaia di studenti verificati e mostra il tuo lavoro alle migliori aziende",
+      "createPortfolio": "Crea il Tuo Portfolio Gratuito"
+    }
   }
 }

@@ -2518,5 +2518,54 @@
       "createPortfolio": "Create Free Portfolio",
       "learnMore": "Learn How It Works"
     }
+  },
+  "explore": {
+    "hero": {
+      "badge": "Discover Verified Talent",
+      "title": "Explore Student Portfolios",
+      "subtitle": "Search through thousands of university-verified student portfolios. Every project authenticated by institutions.",
+      "searchPlaceholder": "Search by name, skill, or university...",
+      "stats": {
+        "students": "Students",
+        "verified": "Verified",
+        "skills": "Skills"
+      }
+    },
+    "filters": {
+      "title": "Filters",
+      "clear": "Clear",
+      "university": "University",
+      "graduationYear": "Graduation Year",
+      "classOf": "Class of {year}",
+      "skills": "Skills ({count})",
+      "searchSkills": "Search skills...",
+      "noSkillsFound": "No skills found matching \"{query}\""
+    },
+    "results": {
+      "loading": "Loading...",
+      "studentsFound": "{count} Students Found",
+      "filtered": "Showing filtered results",
+      "loadingPortfolios": "Loading portfolios..."
+    },
+    "empty": {
+      "title": "No students found",
+      "description": "Try adjusting your filters or search query",
+      "clearFilters": "Clear All Filters"
+    },
+    "card": {
+      "classOf": "Class of {year}",
+      "stats": {
+        "projects": "Projects",
+        "verified": "Verified",
+        "skills": "Skills"
+      },
+      "topSkills": "Top Skills:",
+      "viewPortfolio": "View Full Portfolio"
+    },
+    "cta": {
+      "title": "Ready to Get Discovered?",
+      "subtitle": "Join thousands of verified students and showcase your work to top companies",
+      "createPortfolio": "Create Your Free Portfolio"
+    }
   }
 }
