@@ -21,8 +21,10 @@ import {
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { IMAGES } from '@/lib/images'
+import { useTranslations } from 'next-intl'
 
 export default function ContactPage() {
+  const t = useTranslations('contact')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -76,7 +78,7 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-5xl font-display font-bold mb-6"
             >
-              Contact & Support
+              {t('hero.title')}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -84,7 +86,7 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-xl text-white max-w-2xl mx-auto"
             >
-              Have questions about InTransparency? Need technical support? We're here to help you transform your academic journey into career success.
+              {t('hero.subtitle')}
             </motion.p>
           </div>
         </section>
@@ -98,10 +100,10 @@ export default function ContactPage() {
               <div className="space-y-8">
                 <div>
                   <h2 className="text-3xl font-display font-bold text-foreground mb-6">
-                    Let's Start a Conversation
+                    {t('section.title')}
                   </h2>
                   <p className="text-lg text-gray-600 mb-8">
-                    Whether you're a student, recruiter, or university, we're excited to hear from you and help you succeed.
+                    {t('section.subtitle')}
                   </p>
                 </div>
 
@@ -114,9 +116,9 @@ export default function ContactPage() {
                           <Mail className="h-6 w-6 text-primary" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900">Email Us</h3>
+                          <h3 className="font-semibold text-gray-900">{t('methods.email.title')}</h3>
                           <p className="text-gray-600">in.transparency.job@gmail.com</p>
-                          <p className="text-sm text-gray-700">We typically respond within 24 hours</p>
+                          <p className="text-sm text-gray-700">{t('methods.email.subtitle')}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -129,9 +131,9 @@ export default function ContactPage() {
                           <Phone className="h-6 w-6 text-green-600" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900">Call Us</h3>
+                          <h3 className="font-semibold text-gray-900">{t('methods.phone.title')}</h3>
                           <p className="text-gray-600">+39 348 170 1615</p>
-                          <p className="text-sm text-gray-700">Mon-Fri, 9AM-6PM CET</p>
+                          <p className="text-sm text-gray-700">{t('methods.phone.subtitle')}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -144,8 +146,8 @@ export default function ContactPage() {
                           <MapPin className="h-6 w-6 text-primary" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900">Based in</h3>
-                          <p className="text-gray-600">Bergamo, Italy</p>
+                          <h3 className="font-semibold text-gray-900">{t('methods.location.title')}</h3>
+                          <p className="text-gray-600">{t('methods.location.value')}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -157,26 +159,26 @@ export default function ContactPage() {
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <HelpCircle className="h-5 w-5 mr-2" />
-                      Support Resources
+                      {t('resources.title')}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Common Questions</h4>
+                        <h4 className="font-semibold text-gray-900 mb-2">{t('resources.commonQuestions')}</h4>
                         <ul className="space-y-2 text-sm text-gray-700">
-                          <li>• How do I upload my projects?</li>
-                          <li>• How does AI analysis work?</li>
-                          <li>• How to access AI conversational search?</li>
-                          <li>• What formats are supported?</li>
+                          <li>• {t('resources.questions.0')}</li>
+                          <li>• {t('resources.questions.1')}</li>
+                          <li>• {t('resources.questions.2')}</li>
+                          <li>• {t('resources.questions.3')}</li>
                         </ul>
                       </div>
                       <div className="pt-4 border-t border-primary/20">
                         <p className="text-sm text-gray-700 mb-3">
-                          <strong>Students:</strong> Access AI Job Search from your dashboard
+                          <strong>{t('resources.students')}</strong>
                         </p>
                         <p className="text-sm text-gray-700">
-                          <strong>Recruiters:</strong> Access AI Candidate Search from your dashboard
+                          <strong>{t('resources.recruiters')}</strong>
                         </p>
                       </div>
                     </div>
@@ -188,7 +190,7 @@ export default function ContactPage() {
               <div>
                 <Card>
                   <CardHeader>
-                    <CardTitle>Send us a Message</CardTitle>
+                    <CardTitle>{t('form.title')}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     {isSubmitted ? (
@@ -196,12 +198,12 @@ export default function ContactPage() {
                         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                           <CheckCircle className="h-8 w-8 text-green-600" />
                         </div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Message Sent!</h3>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('form.success.title')}</h3>
                         <p className="text-gray-600 mb-4">
-                          Thank you for reaching out. We'll get back to you within 24 hours.
+                          {t('form.success.message')}
                         </p>
                         <Button onClick={() => setIsSubmitted(false)} variant="outline">
-                          Send Another Message
+                          {t('form.success.button')}
                         </Button>
                       </div>
                     ) : (
@@ -209,7 +211,7 @@ export default function ContactPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Full Name *
+                              {t('form.fullName')} *
                             </label>
                             <input
                               type="text"
@@ -218,12 +220,12 @@ export default function ContactPage() {
                               value={formData.name}
                               onChange={handleInputChange}
                               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                              placeholder="Your full name"
+                              placeholder={t('form.placeholders.fullName')}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Email Address *
+                              {t('form.emailAddress')} *
                             </label>
                             <input
                               type="email"
@@ -232,7 +234,7 @@ export default function ContactPage() {
                               value={formData.email}
                               onChange={handleInputChange}
                               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                              placeholder="your@email.com"
+                              placeholder={t('form.placeholders.email')}
                             />
                           </div>
                         </div>
@@ -240,7 +242,7 @@ export default function ContactPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Company/University
+                              {t('form.companyUniversity')}
                             </label>
                             <input
                               type="text"
@@ -248,12 +250,12 @@ export default function ContactPage() {
                               value={formData.company}
                               onChange={handleInputChange}
                               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                              placeholder="Your organization"
+                              placeholder={t('form.placeholders.company')}
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Role
+                              {t('form.role')}
                             </label>
                             <select
                               name="role"
@@ -261,19 +263,19 @@ export default function ContactPage() {
                               onChange={handleInputChange}
                               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             >
-                              <option value="">Select your role</option>
-                              <option value="student">Student</option>
-                              <option value="recruiter">Recruiter</option>
-                              <option value="university-admin">University Admin</option>
-                              <option value="professor">Professor</option>
-                              <option value="other">Other</option>
+                              <option value="">{t('form.roleOptions.select')}</option>
+                              <option value="student">{t('form.roleOptions.student')}</option>
+                              <option value="recruiter">{t('form.roleOptions.recruiter')}</option>
+                              <option value="university-admin">{t('form.roleOptions.universityAdmin')}</option>
+                              <option value="professor">{t('form.roleOptions.professor')}</option>
+                              <option value="other">{t('form.roleOptions.other')}</option>
                             </select>
                           </div>
                         </div>
 
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Subject *
+                            {t('form.subject')} *
                           </label>
                           <input
                             type="text"
@@ -282,13 +284,13 @@ export default function ContactPage() {
                             value={formData.subject}
                             onChange={handleInputChange}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="What can we help you with?"
+                            placeholder={t('form.subjectPlaceholder')}
                           />
                         </div>
 
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Priority
+                            {t('form.priority')}
                           </label>
                           <select
                             name="priority"
@@ -296,15 +298,15 @@ export default function ContactPage() {
                             onChange={handleInputChange}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           >
-                            <option value="low">Low - General inquiry</option>
-                            <option value="medium">Medium - Need assistance</option>
-                            <option value="high">High - Urgent issue</option>
+                            <option value="low">{t('form.priorityOptions.low')}</option>
+                            <option value="medium">{t('form.priorityOptions.medium')}</option>
+                            <option value="high">{t('form.priorityOptions.high')}</option>
                           </select>
                         </div>
 
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Message *
+                            {t('form.message')} *
                           </label>
                           <textarea
                             name="message"
@@ -313,7 +315,7 @@ export default function ContactPage() {
                             onChange={handleInputChange}
                             rows={5}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Please describe your question or issue in detail..."
+                            placeholder={t('form.messagePlaceholder')}
                           />
                         </div>
 
@@ -325,12 +327,12 @@ export default function ContactPage() {
                           {isSubmitting ? (
                             <>
                               <div className="animate-spin h-4 w-4 mr-2 border-2 border-white border-t-transparent rounded-full" />
-                              Sending...
+                              {t('form.sending')}
                             </>
                           ) : (
                             <>
                               <Send className="h-4 w-4 mr-2" />
-                              Send Message
+                              {t('form.send')}
                             </>
                           )}
                         </Button>
@@ -348,10 +350,10 @@ export default function ContactPage() {
           <div className="container max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-display font-bold text-foreground mb-4">
-                AI Conversational Search
+                {t('aiSearch.title')}
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Use natural language to find exactly what you need - jobs for students, candidates for recruiters
+                {t('aiSearch.subtitle')}
               </p>
             </div>
 
@@ -361,12 +363,12 @@ export default function ContactPage() {
                 <CardHeader>
                   <CardTitle className="flex items-center text-primary">
                     <User className="h-6 w-6 mr-2" />
-                    For Students: AI Job Search
+                    {t('aiSearch.students.title')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-gray-700">
-                    Search for jobs using natural language. Companies find YOU for specific competencies:
+                    {t('aiSearch.students.description')}
                   </p>
                   <div className="bg-primary/10 rounded-lg p-4 space-y-2 text-sm">
                     <p className="font-mono text-gray-800">"Frontend developer React 2 years Milan startup"</p>
@@ -374,17 +376,17 @@ export default function ContactPage() {
                     <p className="font-mono text-gray-800">"UX designer portfolio healthcare remote"</p>
                   </div>
                   <div className="pt-4 border-t border-primary/10">
-                    <h4 className="font-semibold text-gray-900 mb-2">How to Access:</h4>
+                    <h4 className="font-semibold text-gray-900 mb-2">{t('aiSearch.students.howToAccess')}</h4>
                     <ol className="space-y-2 text-sm text-gray-700">
-                      <li>1. Log in to your student account</li>
-                      <li>2. Go to your Dashboard</li>
-                      <li>3. Click <strong>"AI Job Search"</strong> in the Quick Actions menu</li>
-                      <li>4. Start chatting with our AI to find perfect job matches</li>
+                      <li>1. {t('aiSearch.students.steps.0')}</li>
+                      <li>2. {t('aiSearch.students.steps.1')}</li>
+                      <li>3. {t('aiSearch.students.steps.2')}</li>
+                      <li>4. {t('aiSearch.students.steps.3')}</li>
                     </ol>
                   </div>
                   <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
                     <a href="/dashboard/student/ai-job-search">
-                      Try AI Job Search →
+                      {t('aiSearch.students.button')}
                     </a>
                   </Button>
                 </CardContent>
@@ -395,12 +397,12 @@ export default function ContactPage() {
                 <CardHeader>
                   <CardTitle className="flex items-center text-primary">
                     <Building2 className="h-6 w-6 mr-2" />
-                    For Recruiters: AI Candidate Search
+                    {t('aiSearch.recruiters.title')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-gray-700">
-                    Find verified candidates with natural language. Zero screening CVs:
+                    {t('aiSearch.recruiters.description')}
                   </p>
                   <div className="bg-primary/10 rounded-lg p-4 space-y-2 text-sm">
                     <p className="font-mono text-gray-800">"Cybersecurity Roma Network Security 30/30"</p>
@@ -409,21 +411,21 @@ export default function ContactPage() {
                   </div>
                   <div className="mt-4 bg-primary/20 rounded-lg p-3 text-sm">
                     <p className="text-primary">
-                      <strong>Result:</strong> See 5-10 verified matches with actual projects + AI-analyzed soft skills → Pay €10 only per contact
+                      <strong>{t('aiSearch.recruiters.result')}</strong>
                     </p>
                   </div>
                   <div className="pt-4 border-t border-primary/10">
-                    <h4 className="font-semibold text-gray-900 mb-2">How to Access:</h4>
+                    <h4 className="font-semibold text-gray-900 mb-2">{t('aiSearch.recruiters.howToAccess')}</h4>
                     <ol className="space-y-2 text-sm text-gray-700">
-                      <li>1. Register free (no credit card)</li>
-                      <li>2. Go to your Dashboard</li>
-                      <li>3. Click <strong>"AI Candidate Search"</strong> in Quick Actions</li>
-                      <li>4. Type natural search, see verified matches, pay €10 only per contact</li>
+                      <li>1. {t('aiSearch.recruiters.steps.0')}</li>
+                      <li>2. {t('aiSearch.recruiters.steps.1')}</li>
+                      <li>3. {t('aiSearch.recruiters.steps.2')}</li>
+                      <li>4. {t('aiSearch.recruiters.steps.3')}</li>
                     </ol>
                   </div>
                   <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
                     <a href="/dashboard/recruiter/ai-search">
-                      Try AI Candidate Search →
+                      {t('aiSearch.recruiters.button')}
                     </a>
                   </Button>
                 </CardContent>
@@ -434,7 +436,7 @@ export default function ContactPage() {
               <Card className="inline-block bg-gradient-to-r from-primary to-secondary text-white">
                 <CardContent className="p-6">
                   <p className="text-lg">
-                    💡 <strong>Pro Tip:</strong> The AI understands natural language - just describe what you're looking for as if talking to a person!
+                    {t('aiSearch.proTip')}
                   </p>
                 </CardContent>
               </Card>
@@ -445,25 +447,25 @@ export default function ContactPage() {
         {/* Office Hours */}
         <section className="py-16 hero-bg">
           <div className="container max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-display font-bold text-foreground mb-8">Office Hours</h2>
+            <h2 className="text-3xl font-display font-bold text-foreground mb-8">{t('officeHours.title')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card>
                 <CardContent className="p-6">
                   <Clock className="h-8 w-8 text-primary mx-auto mb-4" />
-                  <h3 className="font-semibold text-gray-900 mb-2">Support Hours</h3>
-                  <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM CET</p>
-                  <p className="text-gray-600">Saturday: 10:00 AM - 4:00 PM CET</p>
-                  <p className="text-gray-600">Sunday: Closed</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('officeHours.support.title')}</h3>
+                  <p className="text-gray-600">{t('officeHours.support.weekdays')}</p>
+                  <p className="text-gray-600">{t('officeHours.support.saturday')}</p>
+                  <p className="text-gray-600">{t('officeHours.support.sunday')}</p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardContent className="p-6">
                   <MessageSquare className="h-8 w-8 text-green-600 mx-auto mb-4" />
-                  <h3 className="font-semibold text-gray-900 mb-2">Response Time</h3>
-                  <p className="text-gray-600">Email: Within 24 hours</p>
-                  <p className="text-gray-600">Phone: Immediate during office hours</p>
-                  <p className="text-gray-600">Chat: Within 2 hours</p>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('officeHours.responseTime.title')}</h3>
+                  <p className="text-gray-600">{t('officeHours.responseTime.email')}</p>
+                  <p className="text-gray-600">{t('officeHours.responseTime.phone')}</p>
+                  <p className="text-gray-600">{t('officeHours.responseTime.chat')}</p>
                 </CardContent>
               </Card>
             </div>
