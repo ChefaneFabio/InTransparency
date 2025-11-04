@@ -2628,5 +2628,77 @@
         "description": "Get instant help anytime - no waiting for business hours or human support."
       }
     }
+  },
+  "companyProfile": {
+    "loading": "Loading company...",
+    "error": {
+      "title": "Error Loading Company",
+      "message": "Failed to load company data",
+      "retry": "Try Again"
+    },
+    "header": {
+      "founded": "Founded {year}",
+      "reviews": "({count} reviews)",
+      "follow": "Follow",
+      "share": "Share",
+      "viewJobs": "View Jobs ({count})"
+    },
+    "about": {
+      "title": "About {name}",
+      "stats": {
+        "employees": "Employees",
+        "openPositions": "Open Positions",
+        "companyRating": "Company Rating",
+        "globalOffices": "Global Offices"
+      }
+    },
+    "values": {
+      "title": "Our Values"
+    },
+    "benefits": {
+      "title": "Benefits & Perks"
+    },
+    "techStack": {
+      "title": "Technology Stack"
+    },
+    "workCulture": {
+      "title": "Work Culture",
+      "remoteWork": "Remote Work",
+      "available": "Available",
+      "officeBased": "Office-based",
+      "diversityScore": "Diversity Score",
+      "workLifeBalance": "Work-Life Balance",
+      "careerGrowth": "Career Growth"
+    },
+    "recentNews": {
+      "title": "Recent News",
+      "read": "Read"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "viewAllJobs": "View All Jobs ({count})",
+      "contactRecruiter": "Contact Recruiter",
+      "companyInsights": "Company Insights",
+      "visitWebsite": "Visit Website"
+    },
+    "stats": {
+      "title": "Company Statistics",
+      "industry": "Industry",
+      "averageSalary": "Average Salary",
+      "globalOffices": "Global Offices",
+      "companySize": "Company Size"
+    },
+    "globalPresence": {
+      "title": "Global Presence"
+    },
+    "contact": {
+      "title": "Contact Information"
+    },
+    "social": {
+      "title": "Follow Us",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "instagram": "Instagram"
+    }
   }
 }

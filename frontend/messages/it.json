@@ -2628,5 +2628,77 @@
         "description": "Ricevi aiuto istantaneo in qualsiasi momento - senza aspettare orari d'ufficio o supporto umano."
       }
     }
+  },
+  "companyProfile": {
+    "loading": "Caricamento azienda...",
+    "error": {
+      "title": "Errore nel Caricamento dell'Azienda",
+      "message": "Impossibile caricare i dati dell'azienda",
+      "retry": "Riprova"
+    },
+    "header": {
+      "founded": "Fondata {year}",
+      "reviews": "({count} recensioni)",
+      "follow": "Segui",
+      "share": "Condividi",
+      "viewJobs": "Vedi Lavori ({count})"
+    },
+    "about": {
+      "title": "Chi è {name}",
+      "stats": {
+        "employees": "Dipendenti",
+        "openPositions": "Posizioni Aperte",
+        "companyRating": "Valutazione Aziendale",
+        "globalOffices": "Uffici Globali"
+      }
+    },
+    "values": {
+      "title": "I Nostri Valori"
+    },
+    "benefits": {
+      "title": "Benefit e Vantaggi"
+    },
+    "techStack": {
+      "title": "Stack Tecnologico"
+    },
+    "workCulture": {
+      "title": "Cultura del Lavoro",
+      "remoteWork": "Lavoro Remoto",
+      "available": "Disponibile",
+      "officeBased": "In Ufficio",
+      "diversityScore": "Punteggio Diversità",
+      "workLifeBalance": "Equilibrio Vita-Lavoro",
+      "careerGrowth": "Crescita Professionale"
+    },
+    "recentNews": {
+      "title": "Notizie Recenti",
+      "read": "Leggi"
+    },
+    "quickActions": {
+      "title": "Azioni Rapide",
+      "viewAllJobs": "Vedi Tutte le Posizioni ({count})",
+      "contactRecruiter": "Contatta Recruiter",
+      "companyInsights": "Insights Azienda",
+      "visitWebsite": "Visita Sito Web"
+    },
+    "stats": {
+      "title": "Statistiche Aziendali",
+      "industry": "Settore",
+      "averageSalary": "Stipendio Medio",
+      "globalOffices": "Uffici Globali",
+      "companySize": "Dimensioni Azienda"
+    },
+    "globalPresence": {
+      "title": "Presenza Globale"
+    },
+    "contact": {
+      "title": "Informazioni di Contatto"
+    },
+    "social": {
+      "title": "Seguici",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "instagram": "Instagram"
+    }
   }
 }
