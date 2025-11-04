@@ -18,10 +18,8 @@ export function Header() {
     { name: t('features'), href: '/features' },
     { name: t('howItWorks'), href: '/how-it-works' },
     { name: t('explorePortfolios'), href: '/explore' },
-    { name: t('successStories'), href: '/success-stories' },
     { name: t('demo'), href: '/demo/ai-search' },
     { name: t('pricing'), href: '/pricing' },
-    { name: t('about'), href: '/about' },
     { name: t('contact'), href: '/contact' },
   ]
 
@@ -33,9 +31,9 @@ export function Header() {
             <Image
               src="/logo.png"
               alt="InTransparency Logo"
-              width={200}
-              height={60}
-              className="h-14 w-auto"
+              width={280}
+              height={84}
+              className="h-20 w-[280px]"
               priority
             />
           </Link>
