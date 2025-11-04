@@ -39,279 +39,229 @@ import {
 } from 'lucide-react'
 import { StudentDataImportComponent } from '@/components/how-it-works/StudentDataImportComponent'
 
-// TODO: Add translations for studentSteps, recruiterSteps, instituteSteps arrays
-const userTypes = [
+const getUserTypes = (t: any) => [
   {
     id: 'student',
-    label: 'Student',
+    label: t('userTypes.student.label'),
     icon: GraduationCap,
     color: 'bg-blue-100 text-blue-700',
-    description: 'Create profile, showcase skills, find opportunities'
+    description: t('userTypes.student.description')
   },
   {
     id: 'institute',
-    label: 'Institute',
+    label: t('userTypes.institute.label'),
     icon: Building2,
     color: 'bg-purple-100 text-purple-700',
-    description: 'Connect students with opportunities, track alumni'
+    description: t('userTypes.institute.description')
   },
   {
     id: 'recruiter',
-    label: 'Recruiter',
+    label: t('userTypes.recruiter.label'),
     icon: Users,
     color: 'bg-green-100 text-green-700',
-    description: 'Discover talent, post jobs, track applications'
+    description: t('userTypes.recruiter.description')
   }
 ]
 
-const studentSteps = [
+const getStudentSteps = (t: any) => [
   {
     id: 1,
-    title: 'Upload Your Projects',
-    description: 'Upload projects in any format - code, documents, presentations, reports. Our AI analyzes everything you\'ve built.',
+    title: t('studentSteps.step1.title'),
+    description: t('studentSteps.step1.description'),
     icon: Upload,
     color: 'bg-blue-50 border-blue-200',
-    duration: '2 minutes',
-    features: [
-      'All formats accepted (code, PDFs, docs, videos)',
-      'Institution collaboration for verified data',
-      'AI project analysis & scoring',
-      'Complexity & innovation metrics',
-      'Technology and skill detection'
-    ],
-    example: '→ Example: Upload your thesis, capstone project, or group work'
+    duration: t('studentSteps.step1.duration'),
+    features: t('studentSteps.step1.features'),
+    example: t('studentSteps.step1.example')
   },
   {
     id: 2,
-    title: 'Get AI-Powered Analysis',
-    description: 'Our AI analyzes your projects and creates a complete profile with both hard skills and soft skills',
+    title: t('studentSteps.step2.title'),
+    description: t('studentSteps.step2.description'),
     icon: Zap,
     color: 'bg-purple-50 border-purple-200',
-    duration: '30 seconds',
-    features: [
-      'Hard skills: Technical abilities & tools',
-      'Soft skills: Teamwork, leadership, communication',
-      'Project complexity scoring',
-      'Market relevance analysis',
-      'Career readiness score & benchmarking'
-    ],
-    example: '→ Example: "Strong Python + Excellent team collaboration skills"'
+    duration: t('studentSteps.step2.duration'),
+    features: t('studentSteps.step2.features'),
+    example: t('studentSteps.step2.example')
   },
   {
     id: 3,
-    title: 'Recruiters Message You First',
-    description: 'Companies discover you based on what you\'ve built, not your resume',
+    title: t('studentSteps.step3.title'),
+    description: t('studentSteps.step3.description'),
     icon: MessageSquare,
     color: 'bg-green-50 border-green-200',
-    duration: 'Ongoing',
-    features: [
-      'Appear in recruiter searches',
-      'Get matched to relevant opportunities',
-      'Direct messages from companies',
-      'Receive interview invitations',
-      'Share portfolio on LinkedIn'
-    ],
-    example: '→ Example: "Recruiter wants to chat about your AI project"'
+    duration: t('studentSteps.step3.duration'),
+    features: t('studentSteps.step3.features'),
+    example: t('studentSteps.step3.example')
   }
 ]
 
-const recruiterSteps = [
+const getRecruiterSteps = (t: any) => [
   {
     id: 1,
-    title: 'Proactive Candidate Discovery',
-    description: 'Search for candidates even if they haven\'t applied to your jobs. Find talent based on skills, education, and experience',
+    title: t('recruiterSteps.step1.title'),
+    description: t('recruiterSteps.step1.description'),
     icon: Search,
     color: 'bg-blue-50 border-blue-200',
     duration: undefined,
     example: undefined,
-    features: [
-      'Search candidates without applications',
-      'Filter by universities, courses, grades',
-      'Find by projects and technologies',
-      '250+ customizable search filters',
-      'Geographic talent mapping'
-    ]
+    features: t('recruiterSteps.step1.features')
   },
   {
     id: 2,
-    title: 'AI-Powered Matching',
-    description: 'Intelligent AI analyzes industry knowledge and finds common ground between your company profile and candidates',
+    title: t('recruiterSteps.step2.title'),
+    description: t('recruiterSteps.step2.description'),
     icon: Target,
     color: 'bg-green-50 border-green-200',
     duration: undefined,
     example: undefined,
-    features: [
-      'AI RAG for intelligent candidate matching',
-      'Industry knowledge compatibility',
-      'Profile alignment scoring',
-      'Skills and culture fit analysis',
-      'Automated compatibility reports'
-    ]
+    features: t('recruiterSteps.step2.features')
   },
   {
     id: 3,
-    title: 'Engage & Hire',
-    description: 'Connect directly with matched candidates and manage the hiring process efficiently',
+    title: t('recruiterSteps.step3.title'),
+    description: t('recruiterSteps.step3.description'),
     icon: MessageSquare,
     color: 'bg-purple-50 border-purple-200',
     duration: undefined,
     example: undefined,
-    features: [
-      'Direct messaging with AI insights',
-      'Interview scheduling',
-      'Application tracking',
-      'Offer management',
-      'Hiring analytics'
-    ]
+    features: t('recruiterSteps.step3.features')
   }
 ]
 
-const instituteSteps = [
+const getInstituteSteps = (t: any) => [
   {
     id: 1,
-    title: 'Connect Students',
-    description: 'Enable students to import their academic data seamlessly',
+    title: t('instituteSteps.step1.title'),
+    description: t('instituteSteps.step1.description'),
     icon: Link,
     color: 'bg-purple-50 border-purple-200',
     duration: undefined,
     example: undefined,
-    features: [
-      'API integration',
-      'Student data sync',
-      'Privacy controls',
-      'Bulk enrollment',
-      'Custom fields'
-    ]
+    features: t('instituteSteps.step1.features')
   },
   {
     id: 2,
-    title: 'Track Outcomes',
-    description: 'Monitor student career outcomes and placement rates',
+    title: t('instituteSteps.step2.title'),
+    description: t('instituteSteps.step2.description'),
     icon: TrendingUp,
     color: 'bg-green-50 border-green-200',
     duration: undefined,
     example: undefined,
-    features: [
-      'Employment analytics',
-      'Salary insights',
-      'Industry trends',
-      'Alumni tracking',
-      'Performance metrics'
-    ]
+    features: t('instituteSteps.step2.features')
   },
   {
     id: 3,
-    title: 'Build Partnerships',
-    description: 'Establish relationships with top employers and industry partners',
+    title: t('instituteSteps.step3.title'),
+    description: t('instituteSteps.step3.description'),
     icon: Award,
     color: 'bg-blue-50 border-blue-200',
     duration: undefined,
     example: undefined,
-    features: [
-      'Recruiter network',
-      'Job fair coordination',
-      'Industry events',
-      'Partnership management',
-      'Success stories'
-    ]
+    features: t('instituteSteps.step3.features')
   }
 ]
 
 // Workflow data for each persona
-const workflows = {
+const getWorkflows = (t: any) => ({
   student: {
     steps: [
       {
         icon: Upload,
-        title: '1. Upload Projects',
-        description: 'theses, stage curriculare',
+        title: t('workflow.student.step1.title'),
+        description: t('workflow.student.step1.description'),
         color: 'text-primary'
       },
       {
         icon: Shield,
-        title: '2. Institution Verifies',
-        description: 'via Esse3/Moodle',
+        title: t('workflow.student.step2.title'),
+        description: t('workflow.student.step2.description'),
         color: 'text-primary'
       },
       {
         icon: Target,
-        title: '3. AI Matches',
-        description: '92% verified accuracy',
+        title: t('workflow.student.step3.title'),
+        description: t('workflow.student.step3.description'),
         color: 'text-secondary'
       },
       {
         icon: CheckCircle,
-        title: '4. Companies Discover',
-        description: 'Zero applications',
+        title: t('workflow.student.step4.title'),
+        description: t('workflow.student.step4.description'),
         color: 'text-green-600'
       }
     ],
-    result: 'Students get 25% higher responses • Zero applications sent • Get discovered passively'
+    result: t('workflow.student.result')
   },
   institute: {
     steps: [
       {
         icon: Database,
-        title: '1. Connect Data Systems',
-        description: 'Esse3/Moodle integration',
+        title: t('workflow.institute.step1.title'),
+        description: t('workflow.institute.step1.description'),
         color: 'text-purple-600'
       },
       {
         icon: Shield,
-        title: '2. Verify Students',
-        description: 'Batch approval dashboard',
+        title: t('workflow.institute.step2.title'),
+        description: t('workflow.institute.step2.description'),
         color: 'text-purple-600'
       },
       {
         icon: BarChart3,
-        title: '3. Track Placements',
-        description: 'Real-time analytics',
+        title: t('workflow.institute.step3.title'),
+        description: t('workflow.institute.step3.description'),
         color: 'text-blue-600'
       },
       {
         icon: TrendingUp,
-        title: '4. Prove Impact',
-        description: 'Placement statistics',
+        title: t('workflow.institute.step4.title'),
+        description: t('workflow.institute.step4.description'),
         color: 'text-green-600'
       }
     ],
-    result: 'Institutions prove 85% placement boost • Free forever platform • Track alumni success'
+    result: t('workflow.institute.result')
   },
   recruiter: {
     steps: [
       {
         icon: Search,
-        title: '1. Define Requirements',
-        description: 'Specific skills needed',
+        title: t('workflow.recruiter.step1.title'),
+        description: t('workflow.recruiter.step1.description'),
         color: 'text-green-600'
       },
       {
         icon: Target,
-        title: '2. AI Search',
-        description: 'Verified candidates only',
+        title: t('workflow.recruiter.step2.title'),
+        description: t('workflow.recruiter.step2.description'),
         color: 'text-green-600'
       },
       {
         icon: Eye,
-        title: '3. Review Portfolios',
-        description: 'Real projects & grades',
+        title: t('workflow.recruiter.step3.title'),
+        description: t('workflow.recruiter.step3.description'),
         color: 'text-blue-600'
       },
       {
         icon: MessageSquare,
-        title: '4. Contact Directly',
-        description: 'No CV screening',
+        title: t('workflow.recruiter.step4.title'),
+        description: t('workflow.recruiter.step4.description'),
         color: 'text-primary'
       }
     ],
-    result: 'Companies save 80% screening time • 92% match accuracy • See verified work upfront'
+    result: t('workflow.recruiter.result')
   }
-}
+})
 
 export default function HowItWorksPage() {
   const t = useTranslations('howItWorksPage')
   const [selectedUserType, setSelectedUserType] = useState('student')
   const [showDataImport, setShowDataImport] = useState(false)
+  const userTypes = getUserTypes(t)
+  const workflows = getWorkflows(t)
+  const studentSteps = getStudentSteps(t)
+  const recruiterSteps = getRecruiterSteps(t)
+  const instituteSteps = getInstituteSteps(t)
 
   const getCurrentSteps = () => {
     switch (selectedUserType) {
@@ -515,7 +465,7 @@ export default function HowItWorksPage() {
               >
                 <Card className="bg-gradient-to-r from-primary/5 to-secondary/5 border-2 border-primary/20">
                   <CardContent className="py-8">
-                    <h3 className="text-xl font-bold text-center mb-6">How Services Work Together</h3>
+                    <h3 className="text-xl font-bold text-center mb-6">{t('workflow.title')}</h3>
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4 max-w-5xl mx-auto">
                       {getCurrentWorkflow().steps.map((step, index) => {
                         const Icon = step.icon
@@ -537,7 +487,7 @@ export default function HowItWorksPage() {
                     </div>
                     <div className="text-center mt-6">
                       <p className="text-sm text-gray-700">
-                        <strong>Result:</strong> {getCurrentWorkflow().result}
+                        <strong>{t('workflow.result')}</strong> {getCurrentWorkflow().result}
                       </p>
                     </div>
                   </CardContent>
@@ -569,10 +519,10 @@ export default function HowItWorksPage() {
                 <CardHeader className="text-center">
                   <CardTitle className="flex items-center justify-center text-primary mb-2">
                     <Database className="h-6 w-6 mr-2" />
-                    Streamlined Profile Creation (Consent-Based)
+                    {t('studentDataImport.title')}
                   </CardTitle>
                   <p className="text-gray-700">
-                    Consent via email, then import your verified academic data to create a complete profile
+                    {t('studentDataImport.description')}
                   </p>
                 </CardHeader>
                 <CardContent className="text-center">
@@ -580,7 +530,7 @@ export default function HowItWorksPage() {
                     onClick={() => setShowDataImport(!showDataImport)}
                     className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg text-white"
                   >
-                    {showDataImport ? 'Hide' : 'Try'} Data Import Demo
+                    {showDataImport ? t('studentDataImport.buttonHide') : t('studentDataImport.buttonShow')}
                     <ArrowRight className="h-4 w-4 ml-2" />
                   </Button>
                 </CardContent>

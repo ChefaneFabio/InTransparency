@@ -1000,7 +1000,64 @@
     },
     "workflow": {
       "title": "How Services Work Together",
-      "result": "Result:"
+      "result": "Result:",
+      "student": {
+        "step1": {
+          "title": "1. Upload Projects",
+          "description": "theses, stage curriculare"
+        },
+        "step2": {
+          "title": "2. Institution Verifies",
+          "description": "via Esse3/Moodle"
+        },
+        "step3": {
+          "title": "3. AI Matches",
+          "description": "92% verified accuracy"
+        },
+        "step4": {
+          "title": "4. Companies Discover",
+          "description": "Zero applications"
+        },
+        "result": "Students get 25% higher responses • Zero applications sent • Get discovered passively"
+      },
+      "institute": {
+        "step1": {
+          "title": "1. Connect Data Systems",
+          "description": "Esse3/Moodle integration"
+        },
+        "step2": {
+          "title": "2. Verify Students",
+          "description": "Batch approval dashboard"
+        },
+        "step3": {
+          "title": "3. Track Placements",
+          "description": "Real-time analytics"
+        },
+        "step4": {
+          "title": "4. Prove Impact",
+          "description": "Placement statistics"
+        },
+        "result": "Institutions prove 85% placement boost • Free forever platform • Track alumni success"
+      },
+      "recruiter": {
+        "step1": {
+          "title": "1. Define Requirements",
+          "description": "Specific skills needed"
+        },
+        "step2": {
+          "title": "2. AI Search",
+          "description": "Verified candidates only"
+        },
+        "step3": {
+          "title": "3. Review Portfolios",
+          "description": "Real projects & grades"
+        },
+        "step4": {
+          "title": "4. Contact Directly",
+          "description": "No CV screening"
+        },
+        "result": "Companies save 80% screening time • 92% match accuracy • See verified work upfront"
+      }
     },
     "studentDataImport": {
       "title": "Streamlined Profile Creation (Consent-Based)",
@@ -1025,6 +1082,63 @@
       "3": {
         "title": "Real-time Updates",
         "description": "Get instant notifications about applications and opportunities"
+      }
+    },
+    "studentSteps": {
+      "step1": {
+        "title": "Upload Your Projects",
+        "description": "Upload projects in any format - code, documents, presentations, reports. Our AI analyzes everything you've built.",
+        "duration": "2 minutes",
+        "features": ["All formats accepted (code, PDFs, docs, videos)", "Institution collaboration for verified data", "AI project analysis & scoring", "Complexity & innovation metrics", "Technology and skill detection"],
+        "example": "→ Example: Upload your thesis, capstone project, or group work"
+      },
+      "step2": {
+        "title": "Get AI-Powered Analysis",
+        "description": "Our AI analyzes your projects and creates a complete profile with both hard skills and soft skills",
+        "duration": "30 seconds",
+        "features": ["Hard skills: Technical abilities & tools", "Soft skills: Teamwork, leadership, communication", "Project complexity scoring", "Market relevance analysis", "Career readiness score & benchmarking"],
+        "example": "→ Example: \"Strong Python + Excellent team collaboration skills\""
+      },
+      "step3": {
+        "title": "Recruiters Message You First",
+        "description": "Companies discover you based on what you've built, not your resume",
+        "duration": "Ongoing",
+        "features": ["Appear in recruiter searches", "Get matched to relevant opportunities", "Direct messages from companies", "Receive interview invitations", "Share portfolio on LinkedIn"],
+        "example": "→ Example: \"Recruiter wants to chat about your AI project\""
+      }
+    },
+    "recruiterSteps": {
+      "step1": {
+        "title": "Proactive Candidate Discovery",
+        "description": "Search for candidates even if they haven't applied to your jobs. Find talent based on skills, education, and experience",
+        "features": ["Search candidates without applications", "Filter by universities, courses, grades", "Find by projects and technologies", "250+ customizable search filters", "Geographic talent mapping"]
+      },
+      "step2": {
+        "title": "AI-Powered Matching",
+        "description": "Intelligent AI analyzes industry knowledge and finds common ground between your company profile and candidates",
+        "features": ["AI RAG for intelligent candidate matching", "Industry knowledge compatibility", "Profile alignment scoring", "Skills and culture fit analysis", "Automated compatibility reports"]
+      },
+      "step3": {
+        "title": "Engage & Hire",
+        "description": "Connect directly with matched candidates and manage the hiring process efficiently",
+        "features": ["Direct messaging with AI insights", "Interview scheduling", "Application tracking", "Offer management", "Hiring analytics"]
+      }
+    },
+    "instituteSteps": {
+      "step1": {
+        "title": "Connect Students",
+        "description": "Enable students to import their academic data seamlessly",
+        "features": ["API integration", "Student data sync", "Privacy controls", "Bulk enrollment", "Custom fields"]
+      },
+      "step2": {
+        "title": "Track Outcomes",
+        "description": "Monitor student career outcomes and placement rates",
+        "features": ["Employment analytics", "Salary insights", "Industry trends", "Alumni tracking", "Performance metrics"]
+      },
+      "step3": {
+        "title": "Build Partnerships",
+        "description": "Establish relationships with top employers and industry partners",
+        "features": ["Recruiter network", "Job fair coordination", "Industry events", "Partnership management", "Success stories"]
       }
     },
     "cta": {

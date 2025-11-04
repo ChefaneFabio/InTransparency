@@ -1000,7 +1000,64 @@
     },
     "workflow": {
       "title": "Come Funzionano Insieme i Servizi",
-      "result": "Risultato:"
+      "result": "Risultato:",
+      "student": {
+        "step1": {
+          "title": "1. Carica Progetti",
+          "description": "tesi, stage curriculare"
+        },
+        "step2": {
+          "title": "2. L'Istituzione Verifica",
+          "description": "via Esse3/Moodle"
+        },
+        "step3": {
+          "title": "3. L'AI Trova Corrispondenze",
+          "description": "92% accuratezza verificata"
+        },
+        "step4": {
+          "title": "4. Le Aziende Scoprono",
+          "description": "Zero candidature"
+        },
+        "result": "Gli studenti ottengono 25% più risposte • Zero candidature inviate • Vengono scoperti passivamente"
+      },
+      "institute": {
+        "step1": {
+          "title": "1. Collega Sistemi Dati",
+          "description": "Integrazione Esse3/Moodle"
+        },
+        "step2": {
+          "title": "2. Verifica Studenti",
+          "description": "Dashboard approvazione batch"
+        },
+        "step3": {
+          "title": "3. Traccia Placement",
+          "description": "Analytics in tempo reale"
+        },
+        "step4": {
+          "title": "4. Dimostra Impatto",
+          "description": "Statistiche placement"
+        },
+        "result": "Le istituzioni dimostrano aumento placement 85% • Piattaforma gratis per sempre • Traccia successo alumni"
+      },
+      "recruiter": {
+        "step1": {
+          "title": "1. Definisci Requisiti",
+          "description": "Competenze specifiche necessarie"
+        },
+        "step2": {
+          "title": "2. Ricerca AI",
+          "description": "Solo candidati verificati"
+        },
+        "step3": {
+          "title": "3. Rivedi Portfolio",
+          "description": "Progetti reali & voti"
+        },
+        "step4": {
+          "title": "4. Contatta Direttamente",
+          "description": "Nessuno screening CV"
+        },
+        "result": "Le aziende risparmiano 80% tempo screening • 92% accuratezza matching • Vedono lavoro verificato in anticipo"
+      }
     },
     "studentDataImport": {
       "title": "Creazione Profilo Semplificata (Basata su Consenso)",
@@ -1025,6 +1082,63 @@
       "3": {
         "title": "Aggiornamenti in Tempo Reale",
         "description": "Ricevi notifiche istantanee su candidature e opportunità"
+      }
+    },
+    "studentSteps": {
+      "step1": {
+        "title": "Carica i Tuoi Progetti",
+        "description": "Carica progetti in qualsiasi formato - codice, documenti, presentazioni, report. La nostra AI analizza tutto ciò che hai costruito.",
+        "duration": "2 minuti",
+        "features": ["Tutti i formati accettati (codice, PDF, documenti, video)", "Collaborazione istituzionale per dati verificati", "Analisi e punteggio progetti AI", "Metriche complessità e innovazione", "Rilevamento tecnologie e competenze"],
+        "example": "→ Esempio: Carica la tua tesi, progetto finale o lavoro di gruppo"
+      },
+      "step2": {
+        "title": "Ottieni Analisi AI",
+        "description": "La nostra AI analizza i tuoi progetti e crea un profilo completo con competenze hard e soft",
+        "duration": "30 secondi",
+        "features": ["Competenze hard: Abilità tecniche e strumenti", "Competenze soft: Lavoro di squadra, leadership, comunicazione", "Punteggio complessità progetti", "Analisi rilevanza mercato", "Punteggio prontezza carriera e benchmarking"],
+        "example": "→ Esempio: \"Python forte + Eccellenti capacità collaborazione team\""
+      },
+      "step3": {
+        "title": "I Recruiter Ti Contattano Per Primi",
+        "description": "Le aziende ti scoprono in base a ciò che hai costruito, non al tuo curriculum",
+        "duration": "Continuo",
+        "features": ["Appari nelle ricerche recruiter", "Vieni abbinato a opportunità rilevanti", "Messaggi diretti dalle aziende", "Ricevi inviti a colloqui", "Condividi portfolio su LinkedIn"],
+        "example": "→ Esempio: \"Il recruiter vuole parlare del tuo progetto AI\""
+      }
+    },
+    "recruiterSteps": {
+      "step1": {
+        "title": "Scoperta Proattiva Candidati",
+        "description": "Cerca candidati anche se non hanno fatto domanda per i tuoi lavori. Trova talenti basati su competenze, istruzione ed esperienza",
+        "features": ["Cerca candidati senza candidature", "Filtra per università, corsi, voti", "Trova per progetti e tecnologie", "250+ filtri di ricerca personalizzabili", "Mappatura geografica talenti"]
+      },
+      "step2": {
+        "title": "Matching Basato su AI",
+        "description": "L'AI intelligente analizza conoscenza settore e trova terreno comune tra profilo aziendale e candidati",
+        "features": ["AI RAG per matching intelligente candidati", "Compatibilità conoscenza settore", "Punteggio allineamento profilo", "Analisi competenze e fit culturale", "Report compatibilità automatizzati"]
+      },
+      "step3": {
+        "title": "Coinvolgi e Assumi",
+        "description": "Connettiti direttamente con candidati abbinati e gestisci efficacemente il processo di assunzione",
+        "features": ["Messaggistica diretta con insights AI", "Programmazione colloqui", "Tracciamento candidature", "Gestione offerte", "Analytics assunzioni"]
+      }
+    },
+    "instituteSteps": {
+      "step1": {
+        "title": "Collega Studenti",
+        "description": "Abilita gli studenti a importare i loro dati accademici senza problemi",
+        "features": ["Integrazione API", "Sincronizzazione dati studenti", "Controlli privacy", "Iscrizione in blocco", "Campi personalizzati"]
+      },
+      "step2": {
+        "title": "Traccia Risultati",
+        "description": "Monitora risultati carriera studenti e tassi di placement",
+        "features": ["Analytics occupazione", "Insights stipendi", "Tendenze settore", "Tracciamento alumni", "Metriche performance"]
+      },
+      "step3": {
+        "title": "Costruisci Partnership",
+        "description": "Stabilisci relazioni con top datori di lavoro e partner industriali",
+        "features": ["Network recruiter", "Coordinamento job fair", "Eventi settore", "Gestione partnership", "Storie di successo"]
       }
     },
     "cta": {
