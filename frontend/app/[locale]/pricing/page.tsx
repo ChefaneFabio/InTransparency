@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Header } from '@/components/layout/Header'
@@ -13,6 +14,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { STUDENT_PRICING, RECRUITER_PRICING } from '@/lib/config/pricing'
 
+// TODO: Add translations for studentPlans, companyPlans, institutePlans arrays
 type PricingSegment = 'students' | 'companies' | 'institutes'
 
 const studentPlans = [
@@ -245,6 +247,7 @@ const institutePlans = [
 ]
 
 export default function PricingPage() {
+  const t = useTranslations('pricingPage')
   const [selectedSegment, setSelectedSegment] = useState<PricingSegment>('students')
 
   const getPlans = () => {
@@ -327,12 +330,12 @@ export default function PricingPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
               >
-                Subscription-Free Service Model
+                {t('hero.title')}
               </motion.h1>
               <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-4">
-                Partner-enabled services, not subscription traps. Free for students & institutions. Companies pay only per contact.</p>
+                {t('hero.subtitle')}</p>
               <p className="text-base text-gray-600 max-w-2xl mx-auto mb-12">
-                No subscriptions, no monthly fees - just transparent, pay-as-you-use services.
+                {t('hero.description')}
               </p>
 
             {/* Segment Selector */}
@@ -350,9 +353,7 @@ export default function PricingPage() {
                     }`}
                   >
                     <Icon className="h-4 w-4" />
-                    {segment === 'students' && 'Students'}
-                    {segment === 'institutes' && 'Institutes'}
-                    {segment === 'companies' && 'Companies'}
+                    {t(`hero.segments.${segment}`)}
                   </button>
                 )
               })}
@@ -476,37 +477,12 @@ export default function PricingPage() {
           >
             <div className="text-center mb-12">
               <h2 className="text-3xl font-display font-bold text-foreground mb-4">
-                Frequently Asked Questions
+                {t('faq.title')}
               </h2>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {[
-                {
-                  question: 'How do students create profiles?',
-                  answer: 'Two ways: (1) If your university is a partner, we send an email invitation. Students click to consent and their profile is created from verified university data. (2) If independent, students upload projects + select courses, and we verify them to create their complete profile. Both ways: 100% free, consent-based, < 5 minutes.'
-                },
-                {
-                  question: 'Is the marketplace really free for institutions?',
-                  answer: 'Yes! The core marketplace (verification, discovery, matching, analytics) is 100% free forever. Institutions supply talent, we handle everything else: profile creation, company search, placement tracking. Zero cost vs AlmaLaurea €2,500/year. You only pay for optional enterprise features (API, white-label).'
-                },
-                {
-                  question: 'Can institutions add Career Day tools or branded widgets?',
-                  answer: 'Yes! Optional Premium Embed add-on (€500/year) includes Career Day platform (QR codes, interview booking) and branded website widgets. But the core marketplace is always free. Most institutions start with free tier, then add premium features if needed. Contact sales for details.'
-                },
-                {
-                  question: 'How is this better than AlmaLaurea?',
-                  answer: 'AlmaLaurea charges universities €2,500/year and just collects self-reported CVs. InTransparency is FREE forever and verifies skills via AI + actual projects. Plus ALL students get exposure (not just those who update their CV), and companies get better data (verified portfolios vs self-reported).'
-                },
-                {
-                  question: 'Do ALL students get exposure or just top performers?',
-                  answer: 'ALL students. Traditional headhunters only contact the top 5%. We give EVERY student a profile that companies can discover. This dramatically improves placement rates across your entire graduating class, not just the stars.'
-                },
-                {
-                  question: 'How does company pricing work?',
-                  answer: 'Companies browse the entire database for free - unlimited searching, filtering, and AI candidate search. You only pay €10 when you decide to contact a specific candidate. No subscriptions, no monthly fees, credits never expire.'
-                }
-              ].map((faq, idx) => (
+              {[0, 1, 2, 3, 4, 5].map((idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
@@ -516,10 +492,10 @@ export default function PricingPage() {
                 >
                 <Card className="hover:shadow-lg transition-shadow h-full">
                   <CardHeader>
-                    <CardTitle className="text-lg">{faq.question}</CardTitle>
+                    <CardTitle className="text-lg">{t(`faq.questions.${idx}.q`)}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-800">{faq.answer}</p>
+                    <p className="text-gray-800">{t(`faq.questions.${idx}.a`)}</p>
                   </CardContent>
                 </Card>
                 </motion.div>
@@ -528,6 +504,7 @@ export default function PricingPage() {
           </motion.div>
 
           {/* Final CTA */}
+          {/* TODO: Add translations for finalCTA section */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
