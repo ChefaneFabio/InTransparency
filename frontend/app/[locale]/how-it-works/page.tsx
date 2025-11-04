@@ -71,7 +71,7 @@ const getStudentSteps = (t: any) => [
     icon: Upload,
     color: 'bg-blue-50 border-blue-200',
     duration: t('studentSteps.step1.duration'),
-    features: t('studentSteps.step1.features'),
+    features: t.raw('studentSteps.step1.features'),
     example: t('studentSteps.step1.example')
   },
   {
@@ -81,7 +81,7 @@ const getStudentSteps = (t: any) => [
     icon: Zap,
     color: 'bg-purple-50 border-purple-200',
     duration: t('studentSteps.step2.duration'),
-    features: t('studentSteps.step2.features'),
+    features: t.raw('studentSteps.step2.features'),
     example: t('studentSteps.step2.example')
   },
   {
@@ -91,7 +91,7 @@ const getStudentSteps = (t: any) => [
     icon: MessageSquare,
     color: 'bg-green-50 border-green-200',
     duration: t('studentSteps.step3.duration'),
-    features: t('studentSteps.step3.features'),
+    features: t.raw('studentSteps.step3.features'),
     example: t('studentSteps.step3.example')
   }
 ]
@@ -105,7 +105,7 @@ const getRecruiterSteps = (t: any) => [
     color: 'bg-blue-50 border-blue-200',
     duration: undefined,
     example: undefined,
-    features: t('recruiterSteps.step1.features')
+    features: t.raw('recruiterSteps.step1.features')
   },
   {
     id: 2,
@@ -115,7 +115,7 @@ const getRecruiterSteps = (t: any) => [
     color: 'bg-green-50 border-green-200',
     duration: undefined,
     example: undefined,
-    features: t('recruiterSteps.step2.features')
+    features: t.raw('recruiterSteps.step2.features')
   },
   {
     id: 3,
@@ -125,7 +125,7 @@ const getRecruiterSteps = (t: any) => [
     color: 'bg-purple-50 border-purple-200',
     duration: undefined,
     example: undefined,
-    features: t('recruiterSteps.step3.features')
+    features: t.raw('recruiterSteps.step3.features')
   }
 ]
 
@@ -138,7 +138,7 @@ const getInstituteSteps = (t: any) => [
     color: 'bg-purple-50 border-purple-200',
     duration: undefined,
     example: undefined,
-    features: t('instituteSteps.step1.features')
+    features: t.raw('instituteSteps.step1.features')
   },
   {
     id: 2,
@@ -148,7 +148,7 @@ const getInstituteSteps = (t: any) => [
     color: 'bg-green-50 border-green-200',
     duration: undefined,
     example: undefined,
-    features: t('instituteSteps.step2.features')
+    features: t.raw('instituteSteps.step2.features')
   },
   {
     id: 3,
@@ -158,7 +158,7 @@ const getInstituteSteps = (t: any) => [
     color: 'bg-blue-50 border-blue-200',
     duration: undefined,
     example: undefined,
-    features: t('instituteSteps.step3.features')
+    features: t.raw('instituteSteps.step3.features')
   }
 ]
 
