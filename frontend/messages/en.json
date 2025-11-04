@@ -2700,5 +2700,49 @@
       "twitter": "Twitter",
       "instagram": "Instagram"
     }
+  },
+  "forgotPassword": {
+    "backToSignIn": "Back to sign in",
+    "header": {
+      "title": "Forgot your password?",
+      "subtitle": "No worries, we'll send you reset instructions"
+    },
+    "form": {
+      "title": "Reset password",
+      "description": "Enter your email and we'll send you a link to reset your password",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "Enter your email",
+      "sendButton": "Send reset link",
+      "sending": "Sending reset link...",
+      "errors": {
+        "required": "Email is required",
+        "invalid": "Please enter a valid email address",
+        "failed": "Failed to send reset email. Please try again."
+      }
+    },
+    "success": {
+      "title": "Check your email",
+      "message": "We've sent a password reset link to",
+      "nextSteps": {
+        "title": "What to do next:",
+        "step1": "Check your email inbox",
+        "step2": "Look for an email from InTransparency",
+        "step3": "Click the reset link in the email",
+        "step4": "Create your new password"
+      },
+      "didNotReceive": "Didn't receive the email? Check your spam folder or",
+      "resendButton": "Resend email",
+      "resending": "Resending...",
+      "returnToSignIn": "Return to sign in"
+    },
+    "help": {
+      "title": "Still having trouble?",
+      "message": "If you're unable to reset your password, please contact our support team for assistance.",
+      "contactSupport": "Contact Support"
+    },
+    "signUp": {
+      "message": "Don't have an account?",
+      "link": "Sign up here"
+    }
   }
 }

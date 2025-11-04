@@ -2700,5 +2700,49 @@
       "twitter": "Twitter",
       "instagram": "Instagram"
     }
+  },
+  "forgotPassword": {
+    "backToSignIn": "Torna al login",
+    "header": {
+      "title": "Hai dimenticato la password?",
+      "subtitle": "Nessun problema, ti invieremo le istruzioni per reimpostarla"
+    },
+    "form": {
+      "title": "Reimposta password",
+      "description": "Inserisci la tua email e ti invieremo un link per reimpostare la tua password",
+      "emailLabel": "Indirizzo email",
+      "emailPlaceholder": "Inserisci la tua email",
+      "sendButton": "Invia link di reimpostazione",
+      "sending": "Invio link di reimpostazione...",
+      "errors": {
+        "required": "L'email è richiesta",
+        "invalid": "Per favore inserisci un indirizzo email valido",
+        "failed": "Impossibile inviare l'email di reimpostazione. Riprova."
+      }
+    },
+    "success": {
+      "title": "Controlla la tua email",
+      "message": "Abbiamo inviato un link di reimpostazione password a",
+      "nextSteps": {
+        "title": "Cosa fare ora:",
+        "step1": "Controlla la tua casella email",
+        "step2": "Cerca un'email da InTransparency",
+        "step3": "Clicca sul link di reimpostazione nell'email",
+        "step4": "Crea la tua nuova password"
+      },
+      "didNotReceive": "Non hai ricevuto l'email? Controlla la cartella spam o",
+      "resendButton": "Invia nuovamente email",
+      "resending": "Invio in corso...",
+      "returnToSignIn": "Torna al login"
+    },
+    "help": {
+      "title": "Hai ancora problemi?",
+      "message": "Se non riesci a reimpostare la tua password, contatta il nostro team di supporto per assistenza.",
+      "contactSupport": "Contatta il Supporto"
+    },
+    "signUp": {
+      "message": "Non hai un account?",
+      "link": "Registrati qui"
+    }
   }
 }
