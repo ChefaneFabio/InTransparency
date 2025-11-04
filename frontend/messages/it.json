@@ -2250,5 +2250,60 @@
         "backHome": "Torna alla Home"
       }
     }
+  },
+  "alumniStories": {
+    "hero": {
+      "title": "Storie di Successo Alumni",
+      "subtitle": "Percorsi professionali verificati di laureati che hanno iniziato dove sei tu oggi.\nImpara dalle loro esperienze, competenze e crescita professionale.",
+      "shareYourStory": "Condividi la Tua Storia",
+      "joinNetwork": "Unisciti alla Rete"
+    },
+    "howItWorks": {
+      "title": "Come Funziona la Verifica",
+      "steps": {
+        "0": {
+          "title": "1. Invia Storia",
+          "description": "Gli alumni inviano il loro percorso professionale usando la loro email istituzionale (.edu)"
+        },
+        "1": {
+          "title": "2. Verifica Email",
+          "description": "Inviamo un link di verifica per confermare l'affiliazione istituzionale"
+        },
+        "2": {
+          "title": "3. Pubblicato",
+          "description": "Le storie verificate vengono pubblicate per ispirare gli studenti attuali"
+        }
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Cerca per nome, ruolo, azienda o competenze...",
+      "allDegrees": "Tutte le Lauree",
+      "degrees": {
+        "computerScience": "Informatica",
+        "engineering": "Ingegneria",
+        "business": "Business",
+        "design": "Design"
+      },
+      "clear": "Cancella"
+    },
+    "stories": {
+      "loading": "Caricamento...",
+      "noStories": {
+        "title": "Nessuna Storia Ancora",
+        "description": "Sii il primo a condividere la tua storia di successo e ispirare gli studenti attuali!",
+        "cta": "Condividi la Tua Storia"
+      },
+      "verified": "Verificato",
+      "careerJourney": "Percorso Professionale",
+      "successStory": "Storia di Successo",
+      "keySkills": "Competenze Chiave",
+      "moreSkills": "+{count} altre",
+      "adviceForStudents": "Consigli per gli Studenti"
+    },
+    "cta": {
+      "title": "Sei un Alumni?",
+      "subtitle": "Condividi il tuo percorso professionale e ispira la prossima generazione di professionisti.\nLa tua storia verificata aiuta gli studenti a comprendere i percorsi professionali reali.",
+      "button": "Invia la Tua Storia"
+    }
   }
 }

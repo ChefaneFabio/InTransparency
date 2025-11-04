@@ -2250,5 +2250,60 @@
         "backHome": "Back to Home"
       }
     }
+  },
+  "alumniStories": {
+    "hero": {
+      "title": "Alumni Success Stories",
+      "subtitle": "Verified career journeys from graduates who started where you are today.\nLearn from their experiences, skills, and professional growth.",
+      "shareYourStory": "Share Your Story",
+      "joinNetwork": "Join the Network"
+    },
+    "howItWorks": {
+      "title": "How Verification Works",
+      "steps": {
+        "0": {
+          "title": "1. Submit Story",
+          "description": "Alumni submit their career journey using their institutional (.edu) email"
+        },
+        "1": {
+          "title": "2. Email Verification",
+          "description": "We send a verification link to confirm institutional affiliation"
+        },
+        "2": {
+          "title": "3. Published",
+          "description": "Verified stories are published to inspire current students"
+        }
+      }
+    },
+    "filters": {
+      "searchPlaceholder": "Search by name, role, company, or skills...",
+      "allDegrees": "All Degrees",
+      "degrees": {
+        "computerScience": "Computer Science",
+        "engineering": "Engineering",
+        "business": "Business",
+        "design": "Design"
+      },
+      "clear": "Clear"
+    },
+    "stories": {
+      "loading": "Loading...",
+      "noStories": {
+        "title": "No Stories Yet",
+        "description": "Be the first to share your success story and inspire current students!",
+        "cta": "Share Your Story"
+      },
+      "verified": "Verified",
+      "careerJourney": "Career Journey",
+      "successStory": "Success Story",
+      "keySkills": "Key Skills",
+      "moreSkills": "+{count} more",
+      "adviceForStudents": "Advice for Students"
+    },
+    "cta": {
+      "title": "Are You an Alumni?",
+      "subtitle": "Share your career journey and inspire the next generation of professionals.\nYour verified story helps students understand real career paths.",
+      "button": "Submit Your Story"
+    }
   }
 }
