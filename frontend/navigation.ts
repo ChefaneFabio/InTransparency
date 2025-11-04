@@ -1,6 +1,5 @@
-import NextLink from 'next/link'
+import { createSharedPathnamesNavigation } from 'next-intl/navigation'
+import { locales } from './i18n'
 
-// For now, just re-export Next.js Link directly
-// The middleware will handle locale routing
-export { default as Link } from 'next/link'
-export { usePathname, useRouter, redirect } from 'next/navigation'
+// Create locale-aware navigation components
+export const { Link, redirect, usePathname, useRouter } = createSharedPathnamesNavigation({ locales })
