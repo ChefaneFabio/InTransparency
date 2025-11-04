@@ -15,16 +15,104 @@
   },
   "home": {
     "hero": {
-      "badge": "Marketplace Verificato dall'Università",
-      "title": "Trasforma i Tuoi Progetti Accademici in Opportunità di Carriera",
-      "subtitle": "Carica i tuoi progetti universitari → L'istituzione li verifica → Le aziende ti scoprono. Niente candidature. Niente CV gonfiati. Solo competenze verificate al 100%.",
-      "studentCta": "Crea Portfolio Gratuito",
-      "companyCta": "Cerca Talenti Verificati",
-      "stats": {
-        "students": "Studenti Registrati",
-        "verified": "Progetti Verificati",
-        "companies": "Aziende Partner"
-      }
+      "serviceBadge": "Servizio Senza Abbonamenti • Abilitato dai Partner",
+      "segmentLabels": {
+        "students": "Studenti",
+        "institutes": "Istituti",
+        "companies": "Aziende"
+      },
+      "students": {
+        "badge": "Per Studenti - Tutte le Discipline",
+        "headlinePart1": "Smetti di Candidarti.",
+        "headlinePart2": "Inizia a Essere Scoperto.",
+        "description": "Trasforma i tuoi progetti universitari in un portfolio verificato che ti fa assumere. Le aziende ti contattano per prime quando vedono il tuo lavoro autenticato dall'istituzione.",
+        "descriptionStrong": "🎓 Guarda i video del tuo lavoro • Vedi i voti verificati • Tutto tracciabile alla tua università",
+        "primaryCTA": "Inizia Gratis",
+        "secondaryCTA": "Vedi Come Funziona",
+        "benefits": [
+          "Le aziende ti contattano per prime",
+          "Assunto 2x più velocemente",
+          "Niente credenziali false - 100% verificate"
+        ],
+        "features": [
+          {
+            "title": "Guarda i Tuoi Progetti Prendere Vita",
+            "description": "Registra video di 2 minuti che spiegano il tuo lavoro. Le aziende vedono la tua passione e competenze in azione - non solo testo su una pagina"
+          },
+          {
+            "title": "Mostra Voti Verificati, Non Affermazioni",
+            "description": "Tesi 30/30? La tua università la timbra. Le aziende vedono prove autentiche direttamente dalla tua istituzione - niente bugie sul CV"
+          },
+          {
+            "title": "95% Più Economico di LinkedIn",
+            "description": "Le aziende pagano €10 per contatto vs €9.200/anno su LinkedIn. Tu vieni scoperto gratis - loro risparmiano migliaia"
+          }
+        ],
+        "statsLabel": "Unisciti a 125.000+ studenti che hanno trovato lavoro attraverso",
+        "statsValue": "portfolio verificati - niente CV necessari"
+      },
+      "universities": {
+        "badge": "Per Istituti - Università e ITS",
+        "headlinePart1": "Fai Assumere i Tuoi Laureati",
+        "headlinePart2": "Tramite Marketplace Verificato.",
+        "description": "Marketplace gratuito a tre lati che collega i tuoi studenti a 10K+ aziende che assumono attivamente. La tua verifica dà ai laureati un vantaggio competitivo. Traccia il successo dei placement con analytics gratuiti.",
+        "descriptionStrong": "🎓 Accesso marketplace 100% gratuito - zero costi vs AlmaLaurea €2.500/anno.",
+        "primaryCTA": "Unisciti al Marketplace Gratuito",
+        "secondaryCTA": "Vedi Come Funziona",
+        "benefits": [
+          "Studenti scoperti dalle aziende",
+          "25% placement in più vs tradizionale",
+          "Traccia successo assunzioni per MIUR"
+        ],
+        "features": [
+          {
+            "title": "Le Aziende Scoprono i Tuoi Studenti",
+            "description": "10K+ aziende sfogliano laureati verificati → Trovano corrispondenze → Contattano direttamente. Il tuo badge di verifica = segnale di fiducia che fa notare gli studenti"
+          },
+          {
+            "title": "La Tua Verifica = Vantaggio Competitivo",
+            "description": "\"Verificato da Politecnico\" o \"ITS G. Natta endorsato\" aumenta il placement degli studenti del 25% vs profili non verificati - il tuo timbro conta"
+          },
+          {
+            "title": "Traccia l'Impatto del Placement",
+            "description": "Analytics gratuiti: \"47 studenti contattati da aziende → 23 assunti in media 47 giorni\" - prova aumento placement 85% al MIUR con i dati"
+          }
+        ],
+        "statsLabel": "Marketplace gratuito che collega studenti a",
+        "statsValue": "10K+ aziende che assumono attivamente talento verificato"
+      },
+      "companies": {
+        "badge": "Per Aziende - Tutto il Talento",
+        "headlinePart1": "Assumi",
+        "headlinePart2": "Talento Verificato dall'Istituzione,",
+        "headlinePart3": "Non CV.",
+        "description": "Cerca competenze verificate (100% autentiche, timbrate da università/ITS). Vedi progetti, voti 30/30, stage curriculare - tutto autenticato dall'istituzione. Paga €10 per contatto.",
+        "descriptionStrong": "🎓 Ogni competenza tracciabile alla fonte educativa - zero gonfiaggio CV.",
+        "primaryCTA": "Inizia a Esplorare Gratis",
+        "secondaryCTA": "Vedi Prezzi",
+        "benefits": [
+          "100% verificato dall'istituzione",
+          "Tracciabile alla fonte educativa",
+          "Zero gonfiaggio CV"
+        ],
+        "features": [
+          {
+            "title": "Cerca Pool di Talenti Verificati",
+            "description": "Query per competenza → Vedi \"AutoCAD: Verificato da ITS Rizzoli, voto progetto 28/30\" - ogni competenza timbrata dall'istituzione"
+          },
+          {
+            "title": "Badge di Autenticazione Istituzionale",
+            "description": "Ogni profilo mostra: \"Verificato da Politecnico Milano\" o \"ITS G. Natta endorsato\" - fidati della fonte, non dell'affermazione dello studente"
+          },
+          {
+            "title": "92% Accuratezza Corrispondenze",
+            "description": "Competenze verificate dall'istituzione = 30-40% meno mismatch vs CV auto-dichiarati su Indeed - assumi con fiducia"
+          }
+        ],
+        "statsLabel": "Accedi a talento verificato da",
+        "statsValue": "università, accademie ITS e scuole professionali"
+      },
+      "bottomText": "Quattro Servizi, Zero Abbonamenti"
     },
     "problem": {
       "badge": "Il Problema",
