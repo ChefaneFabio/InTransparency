@@ -1,7 +1,7 @@
 'use client'
 
-import { useLocale, useTranslations } from 'next-intl'
-import { usePathname, useRouter } from '@/navigation'
+import { useLocale } from 'next-intl'
+import { usePathname, useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Globe } from 'lucide-react'
 
@@ -11,8 +11,15 @@ export function LanguageSwitcher() {
   const pathname = usePathname()
 
   const switchLanguage = (newLocale: 'it' | 'en') => {
-    router.push(pathname, { locale: newLocale })
-    router.refresh()
+    // Remove current locale prefix if any
+    const pathnameWithoutLocale = pathname.replace(/^\/(it|en)/, '') || '/'
+
+    // Add new locale prefix (only for English, Italian is default)
+    const newPath = newLocale === 'en'
+      ? `/en${pathnameWithoutLocale}`
+      : pathnameWithoutLocale
+
+    router.push(newPath)
   }
 
   return (
