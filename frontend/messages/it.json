@@ -3075,5 +3075,130 @@
       "linkedin": "LinkedIn",
       "facebook": "Facebook"
     }
+  },
+  "advancedSearchDemo": {
+    "hero": {
+      "badge": "Ricerca Avanzata - Filtra & Trova Esattamente Ciò Che Cerchi",
+      "title": "{count} Risultati Verificati",
+      "subtitle": "Usa i filtri per restringere e trovare la corrispondenza perfetta. Nessuna AI necessaria - solo ricerca tradizionale."
+    },
+    "demoSelector": {
+      "student": "Demo Studente",
+      "company": "Demo Azienda",
+      "university": "Demo Università"
+    },
+    "universityToggle": {
+      "searchStudents": "Cerca Studenti",
+      "searchCompanies": "Cerca Aziende/Lavori"
+    },
+    "searchBar": {
+      "placeholders": {
+        "student": "Cerca per titolo lavoro, azienda o parole chiave...",
+        "company": "Cerca per competenze, laurea o università...",
+        "universityStudents": "Cerca i tuoi studenti per competenze, corsi, laurea...",
+        "universityJobs": "Cerca opportunità di lavoro in tutta Europa..."
+      },
+      "filtersButton": "Filtri"
+    },
+    "filters": {
+      "title": "Filtri",
+      "clearAll": "Cancella tutti",
+      "jobType": {
+        "title": "Tipo di Lavoro",
+        "fullTime": "Tempo Pieno",
+        "internship": "Stage",
+        "partTime": "Part-time",
+        "remote": "Remoto"
+      },
+      "location": {
+        "title": "Posizione",
+        "europe": "Posizione (Europa)"
+      },
+      "salary": {
+        "title": "Fascia Salariale",
+        "range": "€{min} - €{max}"
+      },
+      "field": {
+        "title": "Campo/Disciplina"
+      },
+      "university": {
+        "title": "Università"
+      },
+      "major": {
+        "title": "Laurea"
+      },
+      "gpa": {
+        "title": "GPA Minimo",
+        "value": "{gpa}/30"
+      },
+      "skills": {
+        "title": "Competenze & Capacità",
+        "subtitle": "Tech, Business, Creativo, Legale & altro",
+        "available": "{count}+ competenze disponibili"
+      },
+      "courses": {
+        "title": "Corsi Specifici",
+        "subtitle": "Filtra per singoli corsi seguiti",
+        "available": "{count} corsi disponibili"
+      },
+      "projectTypes": {
+        "title": "Tipi di Progetto",
+        "subtitle": "Filtra per esperienza di progetto",
+        "available": "{count} tipi di progetto"
+      }
+    },
+    "results": {
+      "found": "{count} risultati trovati",
+      "withFilters": "con {count} filtri applicati",
+      "allDisciplines": "• Tutte le Discipline",
+      "sortBy": "Ordina per: Più Recente",
+      "showing": "Mostrando {current} di {total} risultati",
+      "loadMore": "Carica Altri Risultati",
+      "registerPrompt": "Registrati gratis per vedere tutti i risultati e candidarti"
+    },
+    "jobResult": {
+      "type": {
+        "fullTime": "Tempo Pieno",
+        "internship": "Stage",
+        "partTime": "Part-time",
+        "remote": "Remoto"
+      },
+      "validForDegree": "✓ Valido per Laurea",
+      "duration": "{months} mesi",
+      "applicants": "{count} candidati",
+      "match": "{score}% Corrispondenza",
+      "applyNow": "Candidati Ora",
+      "posted": "{time}"
+    },
+    "candidateResult": {
+      "contactLocked": "Contatto Bloccato",
+      "available": "Disponibile",
+      "major": "Laurea:",
+      "gpa": "GPA:",
+      "technicalSkills": "Competenze Tecniche:",
+      "softSkills": "Soft Skills:",
+      "relevantCourses": "Corsi Rilevanti:",
+      "projectExperience": "Esperienza Progetti:",
+      "match": "{score}% Corrispondenza",
+      "unlock": "Sblocca per €10"
+    },
+    "demoTitles": {
+      "student": {
+        "title": "Ricerca Lavori Avanzata",
+        "subtitle": "Filtra per posizione, stipendio, tipo e altro"
+      },
+      "company": {
+        "title": "Ricerca Candidati Avanzata",
+        "subtitle": "Tutte le discipline: Business, Ingegneria, STEM, Legale, Creativo, Umanistico & altro"
+      },
+      "universityStudents": {
+        "title": "Cerca i Tuoi Studenti",
+        "subtitle": "Filtra studenti per competenze, corsi, progetti e altro"
+      },
+      "universityJobs": {
+        "title": "Cerca Opportunità di Lavoro",
+        "subtitle": "Trova opportunità di lavoro europee per i tuoi studenti"
+      }
+    }
   }
 }

@@ -3076,5 +3076,130 @@
       "linkedin": "LinkedIn",
       "facebook": "Facebook"
     }
+  },
+  "advancedSearchDemo": {
+    "hero": {
+      "badge": "Advanced Search - Filter & Find Exactly What You Need",
+      "title": "{count} Verified Results",
+      "subtitle": "Use filters to narrow down and find your perfect match. No AI needed - just traditional search."
+    },
+    "demoSelector": {
+      "student": "Student Demo",
+      "company": "Company Demo",
+      "university": "University Demo"
+    },
+    "universityToggle": {
+      "searchStudents": "Search Students",
+      "searchCompanies": "Search Companies/Jobs"
+    },
+    "searchBar": {
+      "placeholders": {
+        "student": "Search by job title, company, or keywords...",
+        "company": "Search by skills, major, or university...",
+        "universityStudents": "Search your students by skills, courses, major...",
+        "universityJobs": "Search job opportunities across Europe..."
+      },
+      "filtersButton": "Filters"
+    },
+    "filters": {
+      "title": "Filters",
+      "clearAll": "Clear all",
+      "jobType": {
+        "title": "Job Type",
+        "fullTime": "Full-time",
+        "internship": "Internship",
+        "partTime": "Part-time",
+        "remote": "Remote"
+      },
+      "location": {
+        "title": "Location",
+        "europe": "Location (Europe)"
+      },
+      "salary": {
+        "title": "Salary Range",
+        "range": "€{min} - €{max}"
+      },
+      "field": {
+        "title": "Field/Discipline"
+      },
+      "university": {
+        "title": "University"
+      },
+      "major": {
+        "title": "Major"
+      },
+      "gpa": {
+        "title": "Minimum GPA",
+        "value": "{gpa}/30"
+      },
+      "skills": {
+        "title": "Skills & Competencies",
+        "subtitle": "Tech, Business, Creative, Legal & more",
+        "available": "{count}+ skills available"
+      },
+      "courses": {
+        "title": "Specific Courses",
+        "subtitle": "Filter by individual courses taken",
+        "available": "{count} courses available"
+      },
+      "projectTypes": {
+        "title": "Project Types",
+        "subtitle": "Filter by project experience",
+        "available": "{count} project types"
+      }
+    },
+    "results": {
+      "found": "{count} results found",
+      "withFilters": "with {count} filters applied",
+      "allDisciplines": "• All Disciplines",
+      "sortBy": "Sort by: Most Recent",
+      "showing": "Showing {current} of {total} results",
+      "loadMore": "Load More Results",
+      "registerPrompt": "Register free to see all results and apply"
+    },
+    "jobResult": {
+      "type": {
+        "fullTime": "Full-time",
+        "internship": "Internship",
+        "partTime": "Part-time",
+        "remote": "Remote"
+      },
+      "validForDegree": "✓ Valid for Degree",
+      "duration": "{months} months",
+      "applicants": "{count} applicants",
+      "match": "{score}% Match",
+      "applyNow": "Apply Now",
+      "posted": "{time}"
+    },
+    "candidateResult": {
+      "contactLocked": "Contact Locked",
+      "available": "Available",
+      "major": "Major:",
+      "gpa": "GPA:",
+      "technicalSkills": "Technical Skills:",
+      "softSkills": "Soft Skills:",
+      "relevantCourses": "Relevant Courses:",
+      "projectExperience": "Project Experience:",
+      "match": "{score}% Match",
+      "unlock": "Unlock for €10"
+    },
+    "demoTitles": {
+      "student": {
+        "title": "Advanced Job Search",
+        "subtitle": "Filter by location, salary, type, and more"
+      },
+      "company": {
+        "title": "Advanced Candidate Search",
+        "subtitle": "All disciplines: Business, Engineering, STEM, Law, Creative, Humanities & more"
+      },
+      "universityStudents": {
+        "title": "Search Your Students",
+        "subtitle": "Filter students by skills, courses, projects, and more"
+      },
+      "universityJobs": {
+        "title": "Search Job Opportunities",
+        "subtitle": "Find European job opportunities for your students"
+      }
+    }
   }
 }
