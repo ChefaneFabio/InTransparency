@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -38,6 +39,7 @@ import {
 } from 'lucide-react'
 import { StudentDataImportComponent } from '@/components/how-it-works/StudentDataImportComponent'
 
+// TODO: Add translations for studentSteps, recruiterSteps, instituteSteps arrays
 const userTypes = [
   {
     id: 'student',
@@ -307,6 +309,7 @@ const workflows = {
 }
 
 export default function HowItWorksPage() {
+  const t = useTranslations('howItWorksPage')
   const [selectedUserType, setSelectedUserType] = useState('student')
   const [showDataImport, setShowDataImport] = useState(false)
 
@@ -327,23 +330,23 @@ export default function HowItWorksPage() {
     switch (selectedUserType) {
       case 'student':
         return {
-          title: 'How Students Use InTransparency',
-          subtitle: 'Import your academic data, build your profile, and get discovered by top employers'
+          title: t('userTypes.student.title'),
+          subtitle: t('userTypes.student.subtitle')
         }
       case 'institute':
         return {
-          title: 'How Institutes Use InTransparency',
-          subtitle: 'Connect students with opportunities and track career outcomes across universities, ITS, and higher education institutions'
+          title: t('userTypes.institute.title'),
+          subtitle: t('userTypes.institute.subtitle')
         }
       case 'recruiter':
         return {
-          title: 'How Recruiters Use InTransparency',
-          subtitle: 'Proactively search for candidates, leverage AI matching to find perfect fits, and hire based on industry knowledge and profile compatibility'
+          title: t('userTypes.recruiter.title'),
+          subtitle: t('userTypes.recruiter.subtitle')
         }
       default:
         return {
-          title: 'How Students Use InTransparency',
-          subtitle: 'Import your academic data, build your profile, and get discovered by top employers'
+          title: t('userTypes.student.title'),
+          subtitle: t('userTypes.student.subtitle')
         }
     }
   }
@@ -362,16 +365,16 @@ export default function HowItWorksPage() {
             className="text-center mb-16"
           >
             <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white">
-              Subscription-Free Service Model
+              {t('hero.badge')}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
-              Four Services, One Ecosystem
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-2">
-              Partner-enabled services connecting students, institutions, and companies via 100% verified competencies
+              {t('hero.subtitle')}
             </p>
             <p className="text-base text-gray-600 max-w-2xl mx-auto">
-              No Subscriptions • Pay Only for What You Use
+              {t('hero.tagline')}
             </p>
           </motion.div>
 
@@ -389,19 +392,19 @@ export default function HowItWorksPage() {
                   <div className="bg-gradient-to-br from-primary to-secondary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Shield className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-lg">Verification Service</CardTitle>
-                  <Badge variant="secondary" className="mt-2">FREE for Institutions</Badge>
+                  <CardTitle className="text-lg">{t('services.verification.title')}</CardTitle>
+                  <Badge variant="secondary" className="mt-2">{t('services.verification.badge')}</Badge>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700 space-y-2">
-                  <p className="font-semibold text-primary">Auto-import & Authenticate</p>
+                  <p className="font-semibold text-primary">{t('services.verification.heading')}</p>
                   <ul className="space-y-1 text-xs">
-                    <li>• Esse3/Moodle integration</li>
-                    <li>• Institution endorses projects</li>
-                    <li>• Batch approval: 50 in 1 hour</li>
-                    <li>• "Verified by ITS G. Natta, 28/30"</li>
+                    <li>• {t('services.verification.features.0')}</li>
+                    <li>• {t('services.verification.features.1')}</li>
+                    <li>• {t('services.verification.features.2')}</li>
+                    <li>• {t('services.verification.features.3')}</li>
                   </ul>
                   <p className="text-xs italic pt-2 border-t">
-                    vs AlmaLaurea: €2,500/year
+                    {t('services.verification.comparison')}
                   </p>
                 </CardContent>
               </Card>
@@ -412,19 +415,19 @@ export default function HowItWorksPage() {
                   <div className="bg-gradient-to-br from-secondary to-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Target className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-lg">Matching Service</CardTitle>
-                  <Badge variant="secondary" className="mt-2">FREE for Students</Badge>
+                  <CardTitle className="text-lg">{t('services.matching.title')}</CardTitle>
+                  <Badge variant="secondary" className="mt-2">{t('services.matching.badge')}</Badge>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700 space-y-2">
-                  <p className="font-semibold text-secondary">AI-Powered Connections</p>
+                  <p className="font-semibold text-secondary">{t('services.matching.heading')}</p>
                   <ul className="space-y-1 text-xs">
-                    <li>• 92% verified accuracy</li>
-                    <li>• Transparent explanations</li>
-                    <li>• "92% fit: Python thesis matches"</li>
-                    <li>• Bidirectional requirements</li>
+                    <li>• {t('services.matching.features.0')}</li>
+                    <li>• {t('services.matching.features.1')}</li>
+                    <li>• {t('services.matching.features.2')}</li>
+                    <li>• {t('services.matching.features.3')}</li>
                   </ul>
                   <p className="text-xs italic pt-2 border-t">
-                    vs Manatal: Opaque resume parsing
+                    {t('services.matching.comparison')}
                   </p>
                 </CardContent>
               </Card>
@@ -435,19 +438,19 @@ export default function HowItWorksPage() {
                   <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Search className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-lg">Discovery Service</CardTitle>
-                  <Badge variant="secondary" className="mt-2">Browse FREE, €10/contact</Badge>
+                  <CardTitle className="text-lg">{t('services.discovery.title')}</CardTitle>
+                  <Badge variant="secondary" className="mt-2">{t('services.discovery.badge')}</Badge>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700 space-y-2">
-                  <p className="font-semibold text-green-700">Reverse Recruitment</p>
+                  <p className="font-semibold text-green-700">{t('services.discovery.heading')}</p>
                   <ul className="space-y-1 text-xs">
-                    <li>• Companies search verified pools</li>
-                    <li>• Zero applications for students</li>
-                    <li>• Project excerpts + stamps</li>
-                    <li>• 80% faster screening</li>
+                    <li>• {t('services.discovery.features.0')}</li>
+                    <li>• {t('services.discovery.features.1')}</li>
+                    <li>• {t('services.discovery.features.2')}</li>
+                    <li>• {t('services.discovery.features.3')}</li>
                   </ul>
                   <p className="text-xs italic pt-2 border-t">
-                    vs Indeed: 30% self-reported fakes
+                    {t('services.discovery.comparison')}
                   </p>
                 </CardContent>
               </Card>
@@ -458,19 +461,19 @@ export default function HowItWorksPage() {
                   <div className="bg-gradient-to-br from-purple-500 to-indigo-600 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <BarChart3 className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-lg">Analytics Service</CardTitle>
-                  <Badge variant="secondary" className="mt-2">FREE Dashboards</Badge>
+                  <CardTitle className="text-lg">{t('services.analytics.title')}</CardTitle>
+                  <Badge variant="secondary" className="mt-2">{t('services.analytics.badge')}</Badge>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700 space-y-2">
-                  <p className="font-semibold text-purple-700">Career Intelligence</p>
+                  <p className="font-semibold text-purple-700">{t('services.analytics.heading')}</p>
                   <ul className="space-y-1 text-xs">
-                    <li>• "Deloitte viewed 31 students"</li>
-                    <li>• "Excel searched 89x"</li>
-                    <li>• Early intervention alerts</li>
-                    <li>• Prove 85% placement boost</li>
+                    <li>• {t('services.analytics.features.0')}</li>
+                    <li>• {t('services.analytics.features.1')}</li>
+                    <li>• {t('services.analytics.features.2')}</li>
+                    <li>• {t('services.analytics.features.3')}</li>
                   </ul>
                   <p className="text-xs italic pt-2 border-t">
-                    vs Univariety: €500/year subs
+                    {t('services.analytics.comparison')}
                   </p>
                 </CardContent>
               </Card>
@@ -673,29 +676,29 @@ export default function HowItWorksPage() {
           {/* Platform Benefits */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-16">
             <h3 className="text-2xl font-display font-bold text-foreground text-center mb-8">
-              Why Choose InTransparency?
+              {t('benefits.title')}
             </h3>
             <div className="grid md:grid-cols-4 gap-6">
               {[
                 {
                   image: IMAGES.students.student4,
-                  title: 'Transparent Process',
-                  description: 'Complete visibility into hiring and application processes'
+                  title: t('benefits.0.title'),
+                  description: t('benefits.0.description')
                 },
                 {
                   image: IMAGES.universities.campus1,
-                  title: 'Global Reach',
-                  description: 'Connect with opportunities and talent worldwide'
+                  title: t('benefits.1.title'),
+                  description: t('benefits.1.description')
                 },
                 {
                   image: IMAGES.features.aiAnalysis,
-                  title: 'AI-Powered Matching & RAG',
-                  description: 'AI analyzes profiles to find common ground between companies and candidates based on industry knowledge and compatibility'
+                  title: t('benefits.2.title'),
+                  description: t('benefits.2.description')
                 },
                 {
                   image: IMAGES.features.collaboration,
-                  title: 'Real-time Updates',
-                  description: 'Get instant notifications about applications and opportunities'
+                  title: t('benefits.3.title'),
+                  description: t('benefits.3.description')
                 }
               ].map((benefit, index) => {
                 return (
@@ -720,12 +723,12 @@ export default function HowItWorksPage() {
           {/* Viral CTA Section */}
           <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-12 text-center text-white mb-16">
             <h3 className="text-3xl font-display font-bold mb-4">
-              Stop Applying. Start Getting Discovered.
+              {t('cta.title')}
             </h3>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-              {selectedUserType === 'student' && 'Build your profile, showcase your work, and get discovered by top companies.'}
-              {selectedUserType === 'institute' && 'Connect your students with career opportunities and track their success across all higher education institutions.'}
-              {selectedUserType === 'recruiter' && 'Find verified talent based on real skills and projects, not resumes.'}
+              {selectedUserType === 'student' && t('cta.student')}
+              {selectedUserType === 'institute' && t('cta.institute')}
+              {selectedUserType === 'recruiter' && t('cta.recruiter')}
             </p>
             <div className="flex justify-center space-x-4">
               <Button
@@ -733,7 +736,7 @@ export default function HowItWorksPage() {
                 className="bg-white text-primary hover:bg-gray-100"
                 onClick={() => window.location.href = '/auth/register'}
               >
-                Get Started Free
+                {t('cta.primaryButton')}
                 <ArrowRight className="h-5 w-5 ml-2" />
               </Button>
               {selectedUserType === 'student' && (
@@ -743,7 +746,7 @@ export default function HowItWorksPage() {
                   className="border-white text-white hover:bg-white hover:text-primary"
                   onClick={() => window.location.href = '/students/explore'}
                 >
-                  See Portfolios
+                  {t('cta.secondaryButton')}
                   <Eye className="h-5 w-5 ml-2" />
                 </Button>
               )}
