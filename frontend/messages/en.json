@@ -204,6 +204,133 @@
         "subtitle": "Browse free, pay only when you contact. No subscriptions.",
         "button": "Start Searching Free"
       }
+    },
+    "howItWorksPage": {
+      "title": "How",
+      "titleHighlight": "InTransparency Works",
+      "subtitle": "Our AI-powered platform transforms academic projects into professional opportunities through four simple steps",
+      "pauseDemo": "Pause Demo",
+      "playDemo": "Play Demo",
+      "autoAdvancing": "Auto-advancing every 4 seconds",
+      "step": "Step",
+      "steps": [
+        {
+          "title": "Create Your Profile",
+          "description": "Two ways: University partner = automatic profile. Independent = upload projects + select courses for instant profile",
+          "details": [
+            "University Integrated: Profile created automatically from university data",
+            "Independent: Upload projects (code, docs, presentations) + select courses",
+            "AI identifies courses and creates complete profile",
+            "Both paths: Full platform access in < 5 minutes"
+          ],
+          "stats": {
+            "students": "125,000+",
+            "time": "< 5 min"
+          },
+          "visual": {
+            "uploadTitle": "Project Upload",
+            "uploadProgress": "Upload Progress"
+          }
+        },
+        {
+          "title": "AI Analysis & Scoring",
+          "description": "Our advanced AI analyzes code quality, innovation level, complexity, and extracts relevant skills",
+          "details": [
+            "Code quality assessment using industry standards",
+            "Innovation scoring based on uniqueness and creativity",
+            "Automatic skill extraction and categorization",
+            "Technology stack analysis and recommendations"
+          ],
+          "stats": {
+            "accuracy": "94%",
+            "skills": "500+"
+          },
+          "visual": {
+            "analysisTitle": "AI Analysis in Progress...",
+            "innovationScore": "Innovation Score",
+            "codeQuality": "Code Quality",
+            "skillsDetected": "Skills Detected:"
+          }
+        },
+        {
+          "title": "Story Generation",
+          "description": "Transform technical projects into compelling professional narratives that recruiters understand",
+          "details": [
+            "AI-powered professional storytelling",
+            "Industry-specific terminology and keywords",
+            "Achievement and impact highlighting",
+            "ATS-optimized content generation"
+          ],
+          "stats": {
+            "stories": "89,000+",
+            "engagement": "+40%"
+          },
+          "visual": {
+            "storyTitle": "Professional Story Generated",
+            "atsOptimized": "ATS Optimized",
+            "industryKeywords": "Industry Keywords"
+          }
+        },
+        {
+          "title": "Smart Matching",
+          "description": "Connect students with relevant opportunities and enable recruiters to find the perfect candidates",
+          "details": [
+            "AI-powered skill and project matching",
+            "Real-time opportunity notifications",
+            "Preference-based filtering and recommendations",
+            "Direct communication channels"
+          ],
+          "stats": {
+            "matches": "8,500+",
+            "success": "78%"
+          },
+          "visual": {
+            "matchesTitle": "Perfect Matches Found",
+            "match": "match",
+            "realTimeNotifications": "Real-time notifications for new opportunities"
+          }
+        }
+      ],
+      "benefits": {
+        "title": "Benefits for Everyone",
+        "forStudents": {
+          "title": "For Students",
+          "description": "Showcase your work professionally and get discovered by top companies",
+          "features": [
+            "AI-enhanced portfolios",
+            "Direct recruiter connections",
+            "Career insights",
+            "Skill verification"
+          ]
+        },
+        "forCompanies": {
+          "title": "For Companies",
+          "description": "Find and hire the best talent based on real projects and verified skills",
+          "features": [
+            "Pre-screened candidates",
+            "Project-based assessment",
+            "Direct messaging",
+            "Hiring analytics"
+          ]
+        },
+        "forInstitutes": {
+          "title": "For Institutes (Universities & ITS)",
+          "description": "Turn your Career Center into a strategic intelligence hub. Stop guessing. Start knowing.",
+          "features": [
+            "See which companies search your students (Deloitte viewed 31 Economics students → time for outreach?)",
+            "Data-driven career advice (Excel searched 89x → tell students to learn it)",
+            "Fix at-risk profiles before graduation (87 seniors with zero views = early intervention)",
+            "Give departments curriculum feedback (Add Docker → hired 60% faster)",
+            "Prove your impact (Dashboard: 156 contacts → 23 hires → 47 days avg)"
+          ]
+        }
+      },
+      "finalCTA": {
+        "title": "Ready to Get Started?",
+        "subtitle": "Join thousands of students and hundreds of companies already using InTransparency",
+        "getStarted": "Get Started Free",
+        "viewPricing": "View Pricing"
+      }
     }
   },
   "footer": {
