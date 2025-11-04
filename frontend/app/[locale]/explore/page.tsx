@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -40,6 +41,7 @@ interface Student {
 }
 
 export default function ExplorePage() {
+  const t = useTranslations('explore')
   const [students, setStudents] = useState<Student[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
@@ -166,13 +168,13 @@ export default function ExplorePage() {
             >
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 <Users className="h-4 w-4" />
-                Discover Verified Talent
+                {t('hero.badge')}
               </div>
               <h1 className="text-5xl font-display font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Explore Student Portfolios
+                {t('hero.title')}
               </h1>
               <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto mb-8">
-                Search through thousands of university-verified student portfolios. Every project authenticated by institutions.
+                {t('hero.subtitle')}
               </p>
 
               {/* Search Bar */}
@@ -180,7 +182,7 @@ export default function ExplorePage() {
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <Input
                   type="text"
-                  placeholder="Search by name, skill, or university..."
+                  placeholder={t('hero.searchPlaceholder')}
                   className="pl-12 py-6 text-lg bg-white text-gray-900 shadow-md border-2 hover:border-primary/30 transition-colors"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -191,15 +193,15 @@ export default function ExplorePage() {
               <div className="flex justify-center space-x-8 mt-12">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary">{students.length}</div>
-                  <div className="text-sm text-gray-700">Students</div>
+                  <div className="text-sm text-gray-700">{t('hero.stats.students')}</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-green-600">100%</div>
-                  <div className="text-sm text-gray-700">Verified</div>
+                  <div className="text-sm text-gray-700">{t('hero.stats.verified')}</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-blue-600">{popularSkills.length}+</div>
-                  <div className="text-sm text-gray-700">Skills</div>
+                  <div className="text-sm text-gray-700">{t('hero.stats.skills')}</div>
                 </div>
               </div>
             </motion.div>
@@ -215,7 +217,7 @@ export default function ExplorePage() {
                   <div className="flex items-center justify-between">
                     <CardTitle className="flex items-center gap-2">
                       <Filter className="h-5 w-5" />
-                      Filters
+                      {t('filters.title')}
                     </CardTitle>
                     {hasActiveFilters && (
                       <Button
@@ -225,7 +227,7 @@ export default function ExplorePage() {
                         className="text-xs"
                       >
                         <X className="h-3 w-3 mr-1" />
-                        Clear
+                        {t('filters.clear')}
                       </Button>
                     )}
                   </div>
@@ -235,7 +237,7 @@ export default function ExplorePage() {
                   <div>
                     <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                       <GraduationCap className="h-4 w-4" />
-                      University
+                      {t('filters.university')}
                     </h3>
                     <div className="space-y-2">
                       {universities.map((uni) => (
@@ -256,7 +258,7 @@ export default function ExplorePage() {
                   <div>
                     <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
-                      Graduation Year
+                      {t('filters.graduationYear')}
                     </h3>
                     <div className="space-y-2">
                       {years.map((year) => (
@@ -267,7 +269,7 @@ export default function ExplorePage() {
                           className="w-full justify-start"
                           onClick={() => setSelectedYear(selectedYear === year ? '' : year)}
                         >
-                          Class of {year}
+                          {t('filters.classOf', { year })}
                         </Button>
                       ))}
                     </div>
@@ -277,13 +279,13 @@ export default function ExplorePage() {
                   <div>
                     <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                       <Award className="h-4 w-4" />
-                      Skills ({popularSkills.length})
+                      {t('filters.skills', { count: popularSkills.length })}
                     </h3>
 
                     {/* Skills Search */}
                     <Input
                       type="text"
-                      placeholder="Search skills..."
+                      placeholder={t('filters.searchSkills')}
                       className="mb-3 text-sm"
                       value={skillSearchQuery}
                       onChange={(e) => setSkillSearchQuery(e.target.value)}
@@ -309,7 +311,7 @@ export default function ExplorePage() {
                         skill.toLowerCase().includes(skillSearchQuery.toLowerCase())
                       ).length === 0 && (
                         <p className="text-sm text-gray-500 text-center py-4">
-                          No skills found matching "{skillSearchQuery}"
+                          {t('filters.noSkillsFound', { query: skillSearchQuery })}
                         </p>
                       )}
                     </div>
@@ -323,11 +325,11 @@ export default function ExplorePage() {
               {/* Results Header */}
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-gray-900">
-                  {loading ? 'Loading...' : `${students.length} Students Found`}
+                  {loading ? t('results.loading') : t('results.studentsFound', { count: students.length })}
                 </h2>
                 {hasActiveFilters && (
                   <p className="text-sm text-gray-600 mt-1">
-                    Showing filtered results
+                    {t('results.filtered')}
                   </p>
                 )}
               </div>
@@ -336,14 +338,14 @@ export default function ExplorePage() {
               {loading ? (
                 <div className="text-center py-12">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-                  <p className="mt-4 text-gray-600">Loading portfolios...</p>
+                  <p className="mt-4 text-gray-600">{t('results.loadingPortfolios')}</p>
                 </div>
               ) : students.length === 0 ? (
                 <Card className="p-12 text-center bg-white hover:shadow-lg transition-shadow">
                   <GraduationCap className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">No students found</h3>
-                  <p className="text-gray-600 mb-6">Try adjusting your filters or search query</p>
-                  <Button onClick={clearFilters}>Clear All Filters</Button>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('empty.title')}</h3>
+                  <p className="text-gray-600 mb-6">{t('empty.description')}</p>
+                  <Button onClick={clearFilters}>{t('empty.clearFilters')}</Button>
                 </Card>
               ) : (
                 <div className="grid md:grid-cols-2 gap-6">
@@ -376,7 +378,7 @@ export default function ExplorePage() {
                                 <div>{student.degree}</div>
                                 <div className="flex items-center gap-1">
                                   <Calendar className="h-3 w-3" />
-                                  Class of {student.graduationYear}
+                                  {t('card.classOf', { year: student.graduationYear })}
                                 </div>
                               </div>
                             </div>
@@ -388,21 +390,21 @@ export default function ExplorePage() {
                           <div className="grid grid-cols-3 gap-2 text-center py-2 bg-gray-50 rounded-lg">
                             <div>
                               <div className="text-xl font-bold text-primary">{student.projectsCount}</div>
-                              <div className="text-xs text-gray-600">Projects</div>
+                              <div className="text-xs text-gray-600">{t('card.stats.projects')}</div>
                             </div>
                             <div>
                               <div className="text-xl font-bold text-green-600">{student.verificationScore}%</div>
-                              <div className="text-xs text-gray-600">Verified</div>
+                              <div className="text-xs text-gray-600">{t('card.stats.verified')}</div>
                             </div>
                             <div>
                               <div className="text-xl font-bold text-blue-600">{student.skillsCount}</div>
-                              <div className="text-xs text-gray-600">Skills</div>
+                              <div className="text-xs text-gray-600">{t('card.stats.skills')}</div>
                             </div>
                           </div>
 
                           {/* Top Skills */}
                           <div>
-                            <p className="text-xs font-medium text-gray-700 mb-2">Top Skills:</p>
+                            <p className="text-xs font-medium text-gray-700 mb-2">{t('card.topSkills')}</p>
                             <div className="flex flex-wrap gap-2">
                               {student.topSkills.slice(0, 3).map((skill) => (
                                 <Badge key={skill} variant="secondary" className="text-xs">
@@ -415,7 +417,7 @@ export default function ExplorePage() {
                           {/* View Portfolio Button */}
                           <Button className="w-full" asChild>
                             <Link href={`/students/${student.username}/public`}>
-                              View Full Portfolio
+                              {t('card.viewPortfolio')}
                               <ExternalLink className="h-4 w-4 ml-2" />
                             </Link>
                           </Button>
@@ -433,14 +435,14 @@ export default function ExplorePage() {
         <section className="bg-gradient-to-r from-primary to-secondary text-white py-16 mt-12">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-3xl font-bold mb-4">
-              Ready to Get Discovered?
+              {t('cta.title')}
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              Join thousands of verified students and showcase your work to top companies
+              {t('cta.subtitle')}
             </p>
             <Button size="lg" variant="secondary" asChild>
               <Link href="/register?role=student">
-                Create Your Free Portfolio
+                {t('cta.createPortfolio')}
               </Link>
             </Button>
           </div>
