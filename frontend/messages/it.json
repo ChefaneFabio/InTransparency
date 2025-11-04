@@ -2567,5 +2567,66 @@
       "subtitle": "Unisciti a migliaia di studenti verificati e mostra il tuo lavoro alle migliori aziende",
       "createPortfolio": "Crea il Tuo Portfolio Gratuito"
     }
+  },
+  "chat": {
+    "hero": {
+      "title": "Hub Assistente AI",
+      "subtitle": "Ricevi aiuto personalizzato per il tuo percorso - IA conversazionale 24/7 trasparente sull'uso dei dati",
+      "roles": {
+        "student": "Studente",
+        "company": "Azienda",
+        "institution": "Istituzione"
+      }
+    },
+    "chatbot": {
+      "student": {
+        "title": "Assistente Carriera",
+        "greeting": "👋 Ciao! Sono Transparenty, il tuo assistente AI per la carriera. Sono qui per aiutarti a costruire un profilo eccellente, scoprire lavori perfetti per te e ricevere consigli personalizzati sulla carriera - il tutto essendo trasparente su come i tuoi dati migliorano la tua esperienza.",
+        "examples": {
+          "0": "Aiutami a costruire il mio profilo",
+          "1": "Trova lavori corrispondenti alle mie competenze a Milano",
+          "2": "Quali competenze cercano le aziende?",
+          "3": "Consigli di carriera per laureati in Informatica"
+        }
+      },
+      "company": {
+        "title": "Assistente Reclutamento",
+        "greeting": "👋 Ciao! Sono Transparenty, il tuo assistente AI per il reclutamento. Ti aiuto a trovare i migliori talenti, comprendere i punteggi di corrispondenza e creare descrizioni di lavoro convincenti. Ogni ricerca è registrata in modo trasparente per migliorare la tua esperienza.",
+        "examples": {
+          "0": "Trova studenti di cybersecurity a Roma",
+          "1": "Stagista marketing con portfolio creativo",
+          "2": "Spiega i punteggi di corrispondenza per questo candidato",
+          "3": "Cosa rende buona una descrizione di lavoro?"
+        }
+      },
+      "institution": {
+        "title": "Assistente Partnership",
+        "greeting": "👋 Ciao! Sono Transparenty, il tuo assistente istituzionale. Ti aiuto a configurare partnership, analizzare dati di placement, identificare studenti a rischio e mostrare opportunità di lavoro europee. Tutte le interazioni sono conformi al GDPR e trasparenti.",
+        "examples": {
+          "0": "Come funziona la partnership gratuita?",
+          "1": "Mostrami le tendenze di ricerca delle aziende per i miei studenti",
+          "2": "Aiuta a identificare studenti a rischio con zero visualizzazioni del profilo",
+          "3": "Opportunità di lavoro europee per studenti di Economia"
+        }
+      },
+      "powered": "Alimentato da AI • Conforme GDPR",
+      "inputPlaceholder": "Chiedi a {title} qualsiasi cosa...",
+      "tryAsking": "Prova a chiedere:",
+      "transparencyNotice": "<strong>AI Trasparente:</strong> Questa conversazione aiuta a perfezionare la tua esperienza. I dati sono conformi al GDPR e utilizzati per migliorare le corrispondenze. Puoi disattivare in qualsiasi momento nelle impostazioni."
+    },
+    "infoCards": {
+      "transparent": {
+        "title": "100% Trasparente",
+        "description": "Ogni conversazione è registrata con il tuo consenso. Puoi visualizzare, scaricare o eliminare i tuoi dati in qualsiasi momento."
+      },
+      "learning": {
+        "title": "Sempre in Apprendimento",
+        "description": "Le tue conversazioni aiutano a migliorare la qualità delle corrispondenze per tutti rispettando la tua privacy."
+      },
+      "available": {
+        "title": "Disponibile 24/7",
+        "description": "Ricevi aiuto istantaneo in qualsiasi momento - senza aspettare orari d'ufficio o supporto umano."
+      }
+    }
   }
 }

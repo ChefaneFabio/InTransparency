@@ -2567,5 +2567,66 @@
       "subtitle": "Join thousands of verified students and showcase your work to top companies",
       "createPortfolio": "Create Your Free Portfolio"
     }
+  },
+  "chat": {
+    "hero": {
+      "title": "AI Assistant Hub",
+      "subtitle": "Get personalized help for your journey - 24/7 conversational AI that's transparent about data usage",
+      "roles": {
+        "student": "Student",
+        "company": "Company",
+        "institution": "Institution"
+      }
+    },
+    "chatbot": {
+      "student": {
+        "title": "Career Assistant",
+        "greeting": "👋 Hi! I'm Transparenty, your AI career assistant. I'm here to help you build a stellar profile, discover perfect-fit jobs, and get personalized career advice - all while being transparent about how your data helps improve your experience.",
+        "examples": {
+          "0": "Help me build my profile",
+          "1": "Find jobs matching my skills in Milan",
+          "2": "What skills are companies searching for?",
+          "3": "Career advice for Computer Science graduates"
+        }
+      },
+      "company": {
+        "title": "Recruiting Assistant",
+        "greeting": "👋 Hi! I'm Transparenty, your AI recruiting assistant. I help you find top talent, understand match scores, and craft compelling job descriptions. Every search is logged transparently to improve your experience.",
+        "examples": {
+          "0": "Find cybersecurity students in Rome",
+          "1": "Marketing intern with creative portfolio",
+          "2": "Explain match scores for this candidate",
+          "3": "What makes a good job description?"
+        }
+      },
+      "institution": {
+        "title": "Partnership Assistant",
+        "greeting": "👋 Hi! I'm Transparenty, your institutional assistant. I help you set up partnerships, analyze placement data, identify at-risk students, and showcase European job opportunities. All interactions are GDPR-compliant and transparent.",
+        "examples": {
+          "0": "How does the free partnership work?",
+          "1": "Show me company search trends for my students",
+          "2": "Help identify at-risk students with zero profile views",
+          "3": "European job opportunities for Economics students"
+        }
+      },
+      "powered": "Powered by AI • GDPR Compliant",
+      "inputPlaceholder": "Ask {title} anything...",
+      "tryAsking": "Try asking:",
+      "transparencyNotice": "<strong>Transparent AI:</strong> This conversation helps refine your experience. Data is GDPR-compliant and used to improve matches. You can opt out anytime in settings."
+    },
+    "infoCards": {
+      "transparent": {
+        "title": "100% Transparent",
+        "description": "Every conversation is logged with your consent. You can view, download, or delete your data anytime."
+      },
+      "learning": {
+        "title": "Always Learning",
+        "description": "Your conversations help improve match quality for everyone while respecting your privacy."
+      },
+      "available": {
+        "title": "24/7 Available",
+        "description": "Get instant help anytime - no waiting for business hours or human support."
+      }
+    }
   }
 }
