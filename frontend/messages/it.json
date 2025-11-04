@@ -897,6 +897,30 @@
       "signIn": "Accedi"
     }
   },
+  "features": {
+    "hero": {
+      "badge": "Piattaforma Completa",
+      "title": "Funzionalità Potenti per Tutti",
+      "subtitle": "Dalle competenze verificate dall'istituzione alla ricerca AI, tutto ciò di cui hai bisogno per collegare studenti e aziende."
+    },
+    "filters": {
+      "all": "Tutte",
+      "students": "Studenti",
+      "institutes": "Istituti",
+      "companies": "Aziende"
+    },
+    "labels": {
+      "keyBenefits": "Vantaggi Chiave:",
+      "live": "Live",
+      "beta": "Beta"
+    },
+    "cta": {
+      "title": "Pronto per Iniziare?",
+      "subtitle": "Unisciti a migliaia di studenti, istituti e aziende già su InTransparency",
+      "primaryButton": "Inizia Gratis",
+      "secondaryButton": "Prenota una Demo"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Modello Servizio Senza Abbonamenti",

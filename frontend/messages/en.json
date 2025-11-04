@@ -897,6 +897,30 @@
       "signIn": "Sign in"
     }
   },
+  "features": {
+    "hero": {
+      "badge": "Complete Platform",
+      "title": "Powerful Features for Everyone",
+      "subtitle": "From institution-verified skills to AI search, everything you need to connect students and companies."
+    },
+    "filters": {
+      "all": "All",
+      "students": "Students",
+      "institutes": "Institutes",
+      "companies": "Companies"
+    },
+    "labels": {
+      "keyBenefits": "Key Benefits:",
+      "live": "Live",
+      "beta": "Beta"
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Join thousands of students, institutes, and companies already on InTransparency",
+      "primaryButton": "Start Free",
+      "secondaryButton": "Schedule a Demo"
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Subscription-Free Service Model",
