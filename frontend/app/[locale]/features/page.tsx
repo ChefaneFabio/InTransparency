@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -35,6 +36,7 @@ import {
 } from 'lucide-react'
 import { IMAGES } from '@/lib/images'
 
+// TODO: Add translations for features array data
 type TargetAudience = 'students' | 'institutes' | 'companies' | 'all'
 
 interface Feature {
@@ -478,6 +480,7 @@ const features: Feature[] = [
 ]
 
 export default function FeaturesPage() {
+  const t = useTranslations('features')
   const [selectedAudience, setSelectedAudience] = useState<TargetAudience>('all')
 
   const filteredFeatures = selectedAudience === 'all'
@@ -523,10 +526,10 @@ export default function FeaturesPage() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
             >
-              Platform Features
+              {t('hero.title')}
             </motion.h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Real features available today. No hype, just honest capabilities for students, institutes, and companies.
+              {t('hero.subtitle')}
             </p>
 
             {/* Feature Stats */}
@@ -772,11 +775,10 @@ export default function FeaturesPage() {
             <Card className="bg-gradient-to-r from-primary to-secondary border-0 shadow-2xl">
               <CardContent className="py-12 px-6">
                 <h3 className="text-3xl font-display font-bold text-white mb-4">
-                  Ready to Get Started?
+                  {t('cta.title')}
                 </h3>
                 <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                  Join InTransparency today. Students get complete platform access free forever.
-                  Companies browse free, pay €10 per contact. Institutes always free.
+                  {t('cta.subtitle')}
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <Button
@@ -785,7 +787,7 @@ export default function FeaturesPage() {
                     asChild
                   >
                     <Link href="/auth/register">
-                      Start Free
+                      {t('cta.primaryButton')}
                       <ArrowRight className="h-5 w-5 ml-2" />
                     </Link>
                   </Button>
@@ -796,7 +798,7 @@ export default function FeaturesPage() {
                     asChild
                   >
                     <Link href="/pricing">
-                      View Pricing
+                      {t('cta.secondaryButton')}
                     </Link>
                   </Button>
                 </div>
