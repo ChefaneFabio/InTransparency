@@ -142,7 +142,7 @@ export default function StudentDashboard() {
   }
 
   const copyPortfolioLink = async () => {
-    const portfolioUrl = `${window.location.origin}/students/${user?.username}/public`
+    const portfolioUrl = `${window.location.origin}/students/${(user as any)?.username}/public`
     try {
       await navigator.clipboard.writeText(portfolioUrl)
       setPortfolioLinkCopied(true)
@@ -704,7 +704,7 @@ export default function StudentDashboard() {
                     <p className="text-sm font-medium mb-2">Your Portfolio Link:</p>
                     <div className="flex gap-2">
                       <Input
-                        value={`${typeof window !== 'undefined' ? window.location.origin : ''}/students/${user?.username}/public`}
+                        value={`${typeof window !== 'undefined' ? window.location.origin : ''}/students/${(user as any)?.username}/public`}
                         readOnly
                         className="text-sm"
                       />
@@ -719,7 +719,7 @@ export default function StudentDashboard() {
                   </div>
 
                   <ShareButtons
-                    url={`${typeof window !== 'undefined' ? window.location.origin : ''}/students/${user?.username}/public`}
+                    url={`${typeof window !== 'undefined' ? window.location.origin : ''}/students/${(user as any)?.username}/public`}
                     title="Check out my verified portfolio on InTransparency!"
                     description="View my university-verified projects and skills"
                   />

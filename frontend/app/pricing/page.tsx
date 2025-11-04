@@ -15,6 +15,29 @@ import { STUDENT_PRICING, RECRUITER_PRICING } from '@/lib/config/pricing'
 
 type PricingSegment = 'students' | 'companies' | 'institutes'
 
+const studentPlans = [
+  {
+    name: 'Free Forever',
+    price: '€0',
+    period: 'forever',
+    description: 'All core features - always free for students',
+    icon: GraduationCap,
+    popular: true,
+    highlight: true,
+    badge: '100% Free',
+    features: [
+      'Unlimited verified project uploads',
+      'University verification',
+      'Public portfolio page',
+      'Company discovery',
+      'Profile analytics',
+      'No credit card required'
+    ],
+    cta: 'Get Started Free',
+    ctaLink: '/auth/register'
+  }
+]
+
 const companyPlans = [
   {
     name: 'Browse Free',
