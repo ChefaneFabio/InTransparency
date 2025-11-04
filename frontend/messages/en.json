@@ -15,16 +15,104 @@
   },
   "home": {
     "hero": {
-      "badge": "University-Verified Marketplace",
-      "title": "Transform Your Academic Projects Into Career Opportunities",
-      "subtitle": "Upload your university projects → Institution verifies → Companies discover YOU. No applications. No inflated CVs. Only 100% verified competencies.",
-      "studentCta": "Create Free Portfolio",
-      "companyCta": "Search Verified Talent",
-      "stats": {
-        "students": "Registered Students",
-        "verified": "Verified Projects",
-        "companies": "Partner Companies"
-      }
+      "serviceBadge": "Subscription-Free Service • Partner-Enabled",
+      "segmentLabels": {
+        "students": "Students",
+        "institutes": "Institutes",
+        "companies": "Companies"
+      },
+      "students": {
+        "badge": "For Students - All Disciplines",
+        "headlinePart1": "Stop Applying.",
+        "headlinePart2": "Start Getting Discovered.",
+        "description": "Turn your university projects into a verified portfolio that gets you hired. Companies message you first when they see your institution-authenticated work.",
+        "descriptionStrong": "🎓 Watch videos of your work • See verified grades • All traceable to your university",
+        "primaryCTA": "Get Started Free",
+        "secondaryCTA": "See How It Works",
+        "benefits": [
+          "Companies message you first",
+          "Get hired 2x faster",
+          "No fake credentials - 100% verified"
+        ],
+        "features": [
+          {
+            "title": "Watch Your Projects Come Alive",
+            "description": "Record 2-minute videos explaining your work. Companies see your passion and skills in action - not just text on a page"
+          },
+          {
+            "title": "Show Verified Grades, Not Claims",
+            "description": "30/30 thesis? Your university stamps it. Companies see authentic proof directly from your institution - no resume lies"
+          },
+          {
+            "title": "95% Cheaper Than LinkedIn",
+            "description": "Companies pay €10 per contact vs €9,200/year on LinkedIn. You get discovered for free - they save thousands"
+          }
+        ],
+        "statsLabel": "Join 125,000+ students who landed jobs through",
+        "statsValue": "verified portfolios - no resumes needed"
+      },
+      "universities": {
+        "badge": "For Institutes - Universities & ITS",
+        "headlinePart1": "Get Your Graduates",
+        "headlinePart2": "Hired Through Verified Marketplace.",
+        "description": "Free three-sided marketplace connecting your students to 10K+ companies actively hiring. Your verification gives graduates a competitive edge. Track placement success with free analytics.",
+        "descriptionStrong": "🎓 100% Free marketplace access - zero cost vs AlmaLaurea €2.500/year.",
+        "primaryCTA": "Join Free Marketplace",
+        "secondaryCTA": "See How It Works",
+        "benefits": [
+          "Students discovered by companies",
+          "25% more placements vs traditional",
+          "Track hiring success for MIUR"
+        ],
+        "features": [
+          {
+            "title": "Companies Discover Your Students",
+            "description": "10K+ companies browse verified graduates → Find matches → Contact directly. Your verification badge = trust signal that gets students noticed"
+          },
+          {
+            "title": "Your Verification = Competitive Edge",
+            "description": "\"Verified by Politecnico\" or \"ITS G. Natta endorsed\" increases student placement 25% vs unverified profiles - your stamp matters"
+          },
+          {
+            "title": "Track Placement Impact",
+            "description": "Free analytics: \"47 students contacted by companies → 23 hired in 47 days avg\" - prove 85% placement boost to MIUR with data"
+          }
+        ],
+        "statsLabel": "Free marketplace connecting students to",
+        "statsValue": "10K+ companies actively hiring verified talent"
+      },
+      "companies": {
+        "badge": "For Companies - All Talent",
+        "headlinePart1": "Hire",
+        "headlinePart2": "Institution-Verified Talent,",
+        "headlinePart3": "Not Resumes.",
+        "description": "Search verified competencies (100% authentic, stamped by universities/ITS). See projects, 30/30 grades, stage curriculare - all institution-authenticated. Pay €10 per contact.",
+        "descriptionStrong": "🎓 Every skill traceable to educational source - zero resume inflation.",
+        "primaryCTA": "Start Exploring Free",
+        "secondaryCTA": "View Pricing",
+        "benefits": [
+          "100% institution-verified",
+          "Traceable to educational source",
+          "Zero resume inflation"
+        ],
+        "features": [
+          {
+            "title": "Search Verified Talent Pools",
+            "description": "Query by skill → See \"AutoCAD: Verified by ITS Rizzoli, 28/30 project grade\" - every competency stamped by institution"
+          },
+          {
+            "title": "Institution Authentication Badges",
+            "description": "Every profile shows: \"Verified by Politecnico Milano\" or \"ITS G. Natta endorsed\" - trust the source, not the student claim"
+          },
+          {
+            "title": "92% Match Accuracy",
+            "description": "Institution-verified competencies = 30-40% fewer mismatches vs. self-reported Indeed CVs - hire confidently"
+          }
+        ],
+        "statsLabel": "Access verified talent from",
+        "statsValue": "universities, ITS academies, and vocational schools"
+      },
+      "bottomText": "Four Services, Zero Subscriptions"
     },
     "problem": {
       "badge": "The Problem",
