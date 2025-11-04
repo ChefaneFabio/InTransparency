@@ -2305,5 +2305,111 @@
       "subtitle": "Condividi il tuo percorso professionale e ispira la prossima generazione di professionisti.\nLa tua storia verificata aiuta gli studenti a comprendere i percorsi professionali reali.",
       "button": "Invia la Tua Storia"
     }
+  },
+  "certification": {
+    "hero": {
+      "badge": "NUOVO: Certificazione Soft Skills",
+      "title": "Distinguiti Con",
+      "titleHighlight": "Soft Skills Certificate",
+      "subtitle": "Oltre i tuoi progetti e codice. Prova le tue capacità di leadership, comunicazione e lavoro di squadra con test psicometrici fidati dai recruiter.",
+      "primaryButton": "Ottieni Certificazione - {price}",
+      "secondaryButton": "Vedi Come Funziona",
+      "quickFacts": "✓ Valutazione di 30 minuti  ✓ Risultati istantanei  ✓ Certificato a vita"
+    },
+    "softSkills": {
+      "title": "Cosa Misuriamo",
+      "skills": {
+        "problemSolving": {
+          "title": "Problem Solving",
+          "description": "Pensiero critico e capacità analitiche"
+        },
+        "teamwork": {
+          "title": "Lavoro di Squadra",
+          "description": "Collaborazione e competenze interpersonali"
+        },
+        "leadership": {
+          "title": "Leadership",
+          "description": "Iniziativa e capacità decisionale"
+        },
+        "adaptability": {
+          "title": "Adattabilità",
+          "description": "Flessibilità e resilienza sotto pressione"
+        }
+      }
+    },
+    "assessments": {
+      "title": "Tre Valutazioni Validate",
+      "subtitle": "La nostra certificazione combina test psicometrici standard del settore usati dalle aziende Fortune 500.",
+      "measures": "Misura:",
+      "items": {
+        "0": {
+          "name": "Big Five Personality",
+          "duration": "10 min",
+          "measures": "Apertura, Coscienziosità, Estroversione, Gradevolezza, Stabilità Emotiva"
+        },
+        "1": {
+          "name": "DISC Comportamentale",
+          "duration": "8 min",
+          "measures": "Dominanza, Influenza, Stabilità, Conformità"
+        },
+        "2": {
+          "name": "Competenze Chiave",
+          "duration": "12 min",
+          "measures": "Comunicazione, Leadership, Problem-solving, Intelligenza Emotiva"
+        }
+      }
+    },
+    "whatYouGet": {
+      "title": "Cosa Ottieni",
+      "oneTimePayment": "Pagamento unico, accesso a vita",
+      "monthlySubscription": "Abbonamento mensile",
+      "benefits": {
+        "0": "Validato da psicologi organizzativi industriali",
+        "1": "Valutazioni scientificamente supportate",
+        "2": "Classifiche percentili vs. gruppo di pari universitari",
+        "3": "Certificato condivisibile con codice di verifica unico",
+        "4": "Integrato nel tuo profilo InTransparency",
+        "5": "Aiuta i recruiter a trovarti per cultura aziendale",
+        "6": "Tariffa unica, accesso a vita ai risultati",
+        "7": "Ripeti annualmente per tracciare la crescita"
+      },
+      "button": "Ottieni Certificazione Ora",
+      "subtitle": "Sii tra i primi a ottenere la certificazione"
+    },
+    "faq": {
+      "title": "Domande Frequenti",
+      "questions": {
+        "0": {
+          "q": "Quanto tempo richiede la valutazione?",
+          "a": "Circa 30 minuti totali per tutte e tre le valutazioni. Puoi mettere in pausa e riprendere in qualsiasi momento."
+        },
+        "1": {
+          "q": "È scientificamente validato?",
+          "a": "Sì. Le nostre valutazioni si basano su ricerche peer-reviewed e validate da psicologi I-O."
+        },
+        "2": {
+          "q": "I recruiter vedranno davvero questo?",
+          "a": "Sì! La tua certificazione viene visualizzata in modo prominente sul tuo profilo e nei risultati di ricerca dei recruiter."
+        },
+        "3": {
+          "q": "Cosa succede se non sono soddisfatto dei miei risultati?",
+          "a": "Puoi ripetere la valutazione una volta all'anno. Molti studenti vedono miglioramenti dopo aver acquisito esperienza."
+        },
+        "4": {
+          "q": "È riconosciuto a livello internazionale?",
+          "a": "Sì. Siamo partner con oltre 500 aziende in Europa e ci stiamo espandendo a livello globale."
+        },
+        "5": {
+          "q": "In cosa è diverso dalle valutazioni di LinkedIn?",
+          "a": "Le nostre sono psicometriche (personalità/comportamento) non quiz di competenze. Inoltre, forniamo classifiche percentili vs. pari."
+        }
+      }
+    },
+    "finalCTA": {
+      "title": "Pronto a Distinguerti?",
+      "subtitle": "Sii tra i primi a certificare le tue soft skills e a distinguerti per i recruiter.",
+      "button": "Ottieni Certificazione - {price}",
+      "quickFacts": "✓ Completa in 30 minuti  ✓ Certificazione istantanea  ✓ Accesso a vita"
+    }
   }
 }

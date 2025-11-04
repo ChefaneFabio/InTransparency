@@ -2305,5 +2305,111 @@
       "subtitle": "Share your career journey and inspire the next generation of professionals.\nYour verified story helps students understand real career paths.",
       "button": "Submit Your Story"
     }
+  },
+  "certification": {
+    "hero": {
+      "badge": "NEW: Soft Skills Certification",
+      "title": "Stand Out With",
+      "titleHighlight": "Certified Soft Skills",
+      "subtitle": "Beyond your projects and code. Prove your leadership, communication, and teamwork skills with psychometric testing trusted by recruiters.",
+      "primaryButton": "Get Certified - {price}",
+      "secondaryButton": "See How It Works",
+      "quickFacts": "✓ 30-minute assessment  ✓ Instant results  ✓ Lifetime certificate"
+    },
+    "softSkills": {
+      "title": "What We Measure",
+      "skills": {
+        "problemSolving": {
+          "title": "Problem Solving",
+          "description": "Critical thinking and analytical abilities"
+        },
+        "teamwork": {
+          "title": "Teamwork",
+          "description": "Collaboration and interpersonal skills"
+        },
+        "leadership": {
+          "title": "Leadership",
+          "description": "Initiative and decision-making capacity"
+        },
+        "adaptability": {
+          "title": "Adaptability",
+          "description": "Flexibility and resilience under pressure"
+        }
+      }
+    },
+    "assessments": {
+      "title": "Three Validated Assessments",
+      "subtitle": "Our certification combines industry-standard psychometric tests used by Fortune 500 companies.",
+      "measures": "Measures:",
+      "items": {
+        "0": {
+          "name": "Big Five Personality",
+          "duration": "10 min",
+          "measures": "Openness, Conscientiousness, Extraversion, Agreeableness, Emotional Stability"
+        },
+        "1": {
+          "name": "DISC Behavioral",
+          "duration": "8 min",
+          "measures": "Dominance, Influence, Steadiness, Compliance"
+        },
+        "2": {
+          "name": "Core Competencies",
+          "duration": "12 min",
+          "measures": "Communication, Leadership, Problem-solving, Emotional Intelligence"
+        }
+      }
+    },
+    "whatYouGet": {
+      "title": "What You Get",
+      "oneTimePayment": "One-time payment, lifetime access",
+      "monthlySubscription": "Monthly subscription",
+      "benefits": {
+        "0": "Validated by industrial-organizational psychologists",
+        "1": "Scientifically-backed assessments",
+        "2": "Percentile rankings vs. university peer group",
+        "3": "Shareable certificate with unique verification code",
+        "4": "Integrated into your InTransparency profile",
+        "5": "Helps recruiters find you for culture fit",
+        "6": "One-time fee, lifetime access to results",
+        "7": "Re-take annually to track growth"
+      },
+      "button": "Get Certified Now",
+      "subtitle": "Be among the first to get certified"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": {
+        "0": {
+          "q": "How long does the assessment take?",
+          "a": "Approximately 30 minutes total for all three assessments. You can pause and resume anytime."
+        },
+        "1": {
+          "q": "Is this scientifically validated?",
+          "a": "Yes. Our assessments are based on peer-reviewed research and validated by I-O psychologists."
+        },
+        "2": {
+          "q": "Will recruiters actually see this?",
+          "a": "Yes! Your certification displays prominently on your profile and in recruiter search results."
+        },
+        "3": {
+          "q": "What if I'm not happy with my results?",
+          "a": "You can retake the assessment once per year. Many students see improvement after gaining experience."
+        },
+        "4": {
+          "q": "Is this recognized internationally?",
+          "a": "Yes. We're partnered with 500+ companies across Europe and expanding globally."
+        },
+        "5": {
+          "q": "How is this different from LinkedIn assessments?",
+          "a": "Ours are psychometric (personality/behavior) not skill quizzes. Plus, we provide percentile rankings vs. peers."
+        }
+      }
+    },
+    "finalCTA": {
+      "title": "Ready to Stand Out?",
+      "subtitle": "Be among the first to certify your soft skills and stand out to recruiters.",
+      "button": "Get Certified - {price}",
+      "quickFacts": "✓ Complete in 30 minutes  ✓ Instant certification  ✓ Lifetime access"
+    }
   }
 }
