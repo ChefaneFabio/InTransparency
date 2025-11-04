@@ -43,6 +43,7 @@ export default function ExplorePage() {
   const [selectedUniversity, setSelectedUniversity] = useState<string>('')
   const [selectedYear, setSelectedYear] = useState<string>('')
   const [selectedSkill, setSelectedSkill] = useState<string>('')
+  const [skillSearchQuery, setSkillSearchQuery] = useState('')
 
   // Mock data - replace with actual API call
   const mockStudents: Student[] = [
@@ -76,7 +77,50 @@ export default function ExplorePage() {
 
   const universities = ['Politecnico di Milano', 'Università di Bologna', 'Sapienza Università di Roma']
   const years = ['2024', '2025', '2026']
-  const popularSkills = ['React', 'Python', 'Machine Learning', 'Java', 'SQL', 'AWS']
+
+  // Comprehensive skills covering technical, soft, and business competencies
+  const popularSkills = [
+    // Programming Languages
+    'Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'C#', 'Go', 'Rust', 'Swift', 'Kotlin',
+    'PHP', 'Ruby', 'R', 'MATLAB', 'Scala', 'Dart',
+
+    // Web Development
+    'React', 'Next.js', 'Vue.js', 'Angular', 'Node.js', 'Express', 'Django', 'Flask',
+    'FastAPI', 'Spring Boot', 'ASP.NET', 'HTML/CSS', 'Tailwind CSS', 'Bootstrap',
+
+    // Mobile Development
+    'React Native', 'Flutter', 'iOS Development', 'Android Development', 'SwiftUI',
+
+    // Data Science & AI
+    'Machine Learning', 'Deep Learning', 'Natural Language Processing', 'Computer Vision',
+    'Data Analysis', 'Statistical Modeling', 'TensorFlow', 'PyTorch', 'Scikit-learn',
+    'Pandas', 'NumPy', 'Jupyter', 'Data Visualization', 'AI/ML',
+
+    // Cloud & DevOps
+    'AWS', 'Azure', 'Google Cloud', 'Docker', 'Kubernetes', 'CI/CD', 'Jenkins',
+    'Terraform', 'DevOps', 'Linux', 'Cloud Architecture',
+
+    // Databases
+    'SQL', 'PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Elasticsearch', 'Neo4j',
+    'Database Design', 'Data Modeling',
+
+    // Other Technical Skills
+    'Git', 'APIs', 'REST', 'GraphQL', 'Microservices', 'System Design', 'Algorithms',
+    'Data Structures', 'Security', 'Blockchain', 'IoT', 'Embedded Systems',
+    'Testing', 'Agile', 'Scrum',
+
+    // Soft Skills
+    'Leadership', 'Team Collaboration', 'Communication', 'Problem Solving',
+    'Critical Thinking', 'Creativity', 'Adaptability', 'Time Management',
+    'Project Management', 'Presentation Skills', 'Conflict Resolution',
+    'Emotional Intelligence', 'Mentoring', 'Negotiation',
+
+    // Business & Domain Skills
+    'Product Management', 'Business Analysis', 'Strategy', 'Marketing',
+    'UX/UI Design', 'User Research', 'Figma', 'Adobe Creative Suite',
+    'Financial Analysis', 'Accounting', 'Economics', 'Research',
+    'Technical Writing', 'Documentation', 'Teaching', 'Customer Success'
+  ]
 
   useEffect(() => {
     // TODO: Replace with actual API call with filters
@@ -89,6 +133,7 @@ export default function ExplorePage() {
     setSelectedUniversity('')
     setSelectedYear('')
     setSelectedSkill('')
+    setSkillSearchQuery('')
   }
 
   const hasActiveFilters = searchQuery || selectedUniversity || selectedYear || selectedSkill
@@ -197,19 +242,41 @@ export default function ExplorePage() {
                   <div>
                     <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                       <Award className="h-4 w-4" />
-                      Top Skills
+                      Skills ({popularSkills.length})
                     </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {popularSkills.map((skill) => (
-                        <Badge
-                          key={skill}
-                          variant={selectedSkill === skill ? 'default' : 'outline'}
-                          className="cursor-pointer hover:bg-primary hover:text-white transition-colors"
-                          onClick={() => setSelectedSkill(selectedSkill === skill ? '' : skill)}
-                        >
-                          {skill}
-                        </Badge>
-                      ))}
+
+                    {/* Skills Search */}
+                    <Input
+                      type="text"
+                      placeholder="Search skills..."
+                      className="mb-3 text-sm"
+                      value={skillSearchQuery}
+                      onChange={(e) => setSkillSearchQuery(e.target.value)}
+                    />
+
+                    {/* Skills List */}
+                    <div className="max-h-96 overflow-y-auto pr-2 space-y-1">
+                      {popularSkills
+                        .filter(skill =>
+                          skill.toLowerCase().includes(skillSearchQuery.toLowerCase())
+                        )
+                        .map((skill) => (
+                          <Badge
+                            key={skill}
+                            variant={selectedSkill === skill ? 'default' : 'outline'}
+                            className="cursor-pointer hover:bg-primary hover:text-white transition-colors mr-2 mb-2 inline-flex"
+                            onClick={() => setSelectedSkill(selectedSkill === skill ? '' : skill)}
+                          >
+                            {skill}
+                          </Badge>
+                        ))}
+                      {popularSkills.filter(skill =>
+                        skill.toLowerCase().includes(skillSearchQuery.toLowerCase())
+                      ).length === 0 && (
+                        <p className="text-sm text-gray-500 text-center py-4">
+                          No skills found matching "{skillSearchQuery}"
+                        </p>
+                      )}
                     </div>
                   </div>
                 </CardContent>
