@@ -1,9 +1,3 @@
-import { createLocalizedPathnamesNavigation } from 'next-intl/navigation'
-import { locales, defaultLocale } from './i18n'
-
-export const { Link, redirect, usePathname, useRouter } = createLocalizedPathnamesNavigation({
-  locales,
-  defaultLocale,
-  localePrefix: 'as-needed',
-  pathnames: {}
-})
+// Re-export navigation functions from next-intl
+// For App Router with shared pathnames
+export { Link, redirect, usePathname, useRouter } from 'next-intl/navigation'
