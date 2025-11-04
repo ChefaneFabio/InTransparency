@@ -579,6 +579,124 @@
       }
     }
   },
+  "contact": {
+    "hero": {
+      "title": "Contact & Support",
+      "subtitle": "Have questions about InTransparency? Need technical support? We're here to help you transform your academic journey into career success."
+    },
+    "section": {
+      "title": "Let's Start a Conversation",
+      "subtitle": "Whether you're a student, recruiter, or university, we're excited to hear from you and help you succeed."
+    },
+    "methods": {
+      "email": {
+        "title": "Email Us",
+        "subtitle": "We typically respond within 24 hours"
+      },
+      "phone": {
+        "title": "Call Us",
+        "subtitle": "Mon-Fri, 9AM-6PM CET"
+      },
+      "location": {
+        "title": "Based in",
+        "value": "Bergamo, Italy"
+      }
+    },
+    "resources": {
+      "title": "Support Resources",
+      "commonQuestions": "Common Questions",
+      "questions": {
+        "0": "How do I upload my projects?",
+        "1": "How does AI analysis work?",
+        "2": "How to access AI conversational search?",
+        "3": "What formats are supported?"
+      },
+      "students": "Students: Access AI Job Search from your dashboard",
+      "recruiters": "Recruiters: Access AI Candidate Search from your dashboard"
+    },
+    "form": {
+      "title": "Send us a Message",
+      "fullName": "Full Name",
+      "emailAddress": "Email Address",
+      "companyUniversity": "Company/University",
+      "role": "Role",
+      "roleOptions": {
+        "select": "Select your role",
+        "student": "Student",
+        "recruiter": "Recruiter",
+        "universityAdmin": "University Admin",
+        "professor": "Professor",
+        "other": "Other"
+      },
+      "subject": "Subject",
+      "subjectPlaceholder": "What can we help you with?",
+      "priority": "Priority",
+      "priorityOptions": {
+        "low": "Low - General inquiry",
+        "medium": "Medium - Need assistance",
+        "high": "High - Urgent issue"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Please describe your question or issue in detail...",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": {
+        "title": "Message Sent!",
+        "message": "Thank you for reaching out. We'll get back to you within 24 hours.",
+        "button": "Send Another Message"
+      },
+      "placeholders": {
+        "fullName": "Your full name",
+        "email": "your@email.com",
+        "company": "Your organization"
+      }
+    },
+    "aiSearch": {
+      "title": "AI Conversational Search",
+      "subtitle": "Use natural language to find exactly what you need - jobs for students, candidates for recruiters",
+      "students": {
+        "title": "For Students: AI Job Search",
+        "description": "Search for jobs using natural language. Companies find YOU for specific competencies:",
+        "howToAccess": "How to Access:",
+        "steps": {
+          "0": "Log in to your student account",
+          "1": "Go to your Dashboard",
+          "2": "Click \"AI Job Search\" in the Quick Actions menu",
+          "3": "Start chatting with our AI to find perfect job matches"
+        },
+        "button": "Try AI Job Search →"
+      },
+      "recruiters": {
+        "title": "For Recruiters: AI Candidate Search",
+        "description": "Find verified candidates with natural language. Zero screening CVs:",
+        "result": "Result: See 5-10 verified matches with actual projects + AI-analyzed soft skills → Pay €10 only per contact",
+        "howToAccess": "How to Access:",
+        "steps": {
+          "0": "Register free (no credit card)",
+          "1": "Go to your Dashboard",
+          "2": "Click \"AI Candidate Search\" in Quick Actions",
+          "3": "Type natural search, see verified matches, pay €10 only per contact"
+        },
+        "button": "Try AI Candidate Search →"
+      },
+      "proTip": "💡 Pro Tip: The AI understands natural language - just describe what you're looking for as if talking to a person!"
+    },
+    "officeHours": {
+      "title": "Office Hours",
+      "support": {
+        "title": "Support Hours",
+        "weekdays": "Monday - Friday: 9:00 AM - 6:00 PM CET",
+        "saturday": "Saturday: 10:00 AM - 4:00 PM CET",
+        "sunday": "Sunday: Closed"
+      },
+      "responseTime": {
+        "title": "Response Time",
+        "email": "Email: Within 24 hours",
+        "phone": "Phone: Immediate during office hours",
+        "chat": "Chat: Within 2 hours"
+      }
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Subscription-Free Service Model",

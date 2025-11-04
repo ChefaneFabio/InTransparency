@@ -579,6 +579,124 @@
       }
     }
   },
+  "contact": {
+    "hero": {
+      "title": "Contatti e Supporto",
+      "subtitle": "Hai domande su InTransparency? Hai bisogno di supporto tecnico? Siamo qui per aiutarti a trasformare il tuo percorso accademico in successo professionale."
+    },
+    "section": {
+      "title": "Iniziamo una Conversazione",
+      "subtitle": "Che tu sia uno studente, un recruiter o un'università, siamo entusiasti di sentirti e aiutarti ad avere successo."
+    },
+    "methods": {
+      "email": {
+        "title": "Inviaci un'Email",
+        "subtitle": "Rispondiamo tipicamente entro 24 ore"
+      },
+      "phone": {
+        "title": "Chiamaci",
+        "subtitle": "Lun-Ven, 9:00-18:00 CET"
+      },
+      "location": {
+        "title": "Siamo a",
+        "value": "Bergamo, Italia"
+      }
+    },
+    "resources": {
+      "title": "Risorse di Supporto",
+      "commonQuestions": "Domande Comuni",
+      "questions": {
+        "0": "Come carico i miei progetti?",
+        "1": "Come funziona l'analisi AI?",
+        "2": "Come accedere alla ricerca conversazionale AI?",
+        "3": "Quali formati sono supportati?"
+      },
+      "students": "Studenti: Accedi alla Ricerca Lavoro AI dalla tua dashboard",
+      "recruiters": "Recruiter: Accedi alla Ricerca Candidati AI dalla tua dashboard"
+    },
+    "form": {
+      "title": "Inviaci un Messaggio",
+      "fullName": "Nome Completo",
+      "emailAddress": "Indirizzo Email",
+      "companyUniversity": "Azienda/Università",
+      "role": "Ruolo",
+      "roleOptions": {
+        "select": "Seleziona il tuo ruolo",
+        "student": "Studente",
+        "recruiter": "Recruiter",
+        "universityAdmin": "Amministratore Universitario",
+        "professor": "Professore",
+        "other": "Altro"
+      },
+      "subject": "Oggetto",
+      "subjectPlaceholder": "In cosa possiamo aiutarti?",
+      "priority": "Priorità",
+      "priorityOptions": {
+        "low": "Bassa - Richiesta generale",
+        "medium": "Media - Necessito assistenza",
+        "high": "Alta - Problema urgente"
+      },
+      "message": "Messaggio",
+      "messagePlaceholder": "Descrivi in dettaglio la tua domanda o problema...",
+      "send": "Invia Messaggio",
+      "sending": "Invio in corso...",
+      "success": {
+        "title": "Messaggio Inviato!",
+        "message": "Grazie per averci contattato. Ti risponderemo entro 24 ore.",
+        "button": "Invia un Altro Messaggio"
+      },
+      "placeholders": {
+        "fullName": "Il tuo nome completo",
+        "email": "tua@email.com",
+        "company": "La tua organizzazione"
+      }
+    },
+    "aiSearch": {
+      "title": "Ricerca Conversazionale AI",
+      "subtitle": "Usa linguaggio naturale per trovare esattamente ciò di cui hai bisogno - lavori per studenti, candidati per recruiter",
+      "students": {
+        "title": "Per Studenti: Ricerca Lavoro AI",
+        "description": "Cerca lavori usando linguaggio naturale. Le aziende ti trovano per competenze specifiche:",
+        "howToAccess": "Come Accedere:",
+        "steps": {
+          "0": "Accedi al tuo account studente",
+          "1": "Vai alla tua Dashboard",
+          "2": "Clicca \"Ricerca Lavoro AI\" nel menu Azioni Rapide",
+          "3": "Inizia a chattare con la nostra AI per trovare lavori perfetti"
+        },
+        "button": "Prova Ricerca Lavoro AI →"
+      },
+      "recruiters": {
+        "title": "Per Recruiter: Ricerca Candidati AI",
+        "description": "Trova candidati verificati con linguaggio naturale. Zero screening CV:",
+        "result": "Risultato: Vedi 5-10 match verificati con progetti reali + soft skills analizzate AI → Paga €10 solo per contatto",
+        "howToAccess": "Come Accedere:",
+        "steps": {
+          "0": "Registrati gratis (nessuna carta)",
+          "1": "Vai alla tua Dashboard",
+          "2": "Clicca \"Ricerca Candidati AI\" in Azioni Rapide",
+          "3": "Digita ricerca naturale, vedi match verificati, paga €10 solo per contatto"
+        },
+        "button": "Prova Ricerca Candidati AI →"
+      },
+      "proTip": "💡 Suggerimento: L'AI comprende linguaggio naturale - descrivi solo ciò che stai cercando come se parlassi con una persona!"
+    },
+    "officeHours": {
+      "title": "Orari Ufficio",
+      "support": {
+        "title": "Orari Supporto",
+        "weekdays": "Lunedì - Venerdì: 9:00 - 18:00 CET",
+        "saturday": "Sabato: 10:00 - 16:00 CET",
+        "sunday": "Domenica: Chiuso"
+      },
+      "responseTime": {
+        "title": "Tempi di Risposta",
+        "email": "Email: Entro 24 ore",
+        "phone": "Telefono: Immediato durante orari ufficio",
+        "chat": "Chat: Entro 2 ore"
+      }
+    }
+  },
   "pricingPage": {
     "hero": {
       "title": "Modello Servizio Senza Abbonamenti",
