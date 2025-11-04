@@ -1,0 +1,267 @@
+{
+  "nav": {
+    "features": "Funzionalità",
+    "howItWorks": "Come Funziona",
+    "explorePortfolios": "Esplora Portfolio",
+    "successStories": "Storie di Successo",
+    "demo": "Demo",
+    "pricing": "Prezzi",
+    "about": "Chi Siamo",
+    "contact": "Contatti e Supporto",
+    "signIn": "Accedi",
+    "getStarted": "Inizia Ora",
+    "dashboard": "Dashboard",
+    "signOut": "Esci"
+  },
+  "home": {
+    "hero": {
+      "badge": "Marketplace Verificato dall'Università",
+      "title": "Trasforma i Tuoi Progetti Accademici in Opportunità di Carriera",
+      "subtitle": "Carica i tuoi progetti universitari → L'istituzione li verifica → Le aziende ti scoprono. Niente candidature. Niente CV gonfiati. Solo competenze verificate al 100%.",
+      "studentCta": "Crea Portfolio Gratuito",
+      "companyCta": "Cerca Talenti Verificati",
+      "stats": {
+        "students": "Studenti Registrati",
+        "verified": "Progetti Verificati",
+        "companies": "Aziende Partner"
+      }
+    },
+    "problem": {
+      "badge": "Il Problema",
+      "title": "I CV Sono Rotti",
+      "subtitle": "Chiunque può affermare 'Competente in React' su un curriculum. I recruiter sprecano tempo intervistando candidati non qualificati. Gli studenti con competenze reali vengono trascurati.",
+      "resumeProblem": "Il Problema dei CV",
+      "resumePoints": {
+        "unverified": "Competenze non verificate (chiunque può mentire)",
+        "noProof": "Nessuna prova di capacità",
+        "rewardsWriters": "Premia i buoni scrittori, non i buoni sviluppatori",
+        "favorsPedigree": "Favorisce il pedigree rispetto al talento",
+        "costPerHire": "Le aziende sprecano €4.000+ per assunzione sbagliata"
+      },
+      "solution": "La Soluzione InTransparency",
+      "solutionPoints": {
+        "verified": "Progetti verificati dall'università (30/30 in tesi ML)",
+        "realWork": "Vedi il lavoro reale, non affermazioni",
+        "aiAnalysis": "Analisi AI di progetti complessi",
+        "noApplications": "Zero candidature → Le aziende ti trovano",
+        "accuracy": "92% di accuratezza nelle corrispondenze (vs 60% nei CV)"
+      }
+    },
+    "howItWorks": {
+      "badge": "Come Funziona",
+      "title": "Dalla Tesi al Lavoro in 3 Passi",
+      "students": "Per Studenti",
+      "companies": "Per Aziende",
+      "step1": {
+        "title": "Carica Progetti",
+        "description": "Tesi, stage curriculare, tirocini - in qualsiasi formato"
+      },
+      "step2": {
+        "title": "Verifica dell'Istituzione",
+        "description": "La tua università autentica tramite Esse3/Moodle"
+      },
+      "step3": {
+        "title": "Le Aziende ti Scoprono",
+        "description": "I recruiter ti contattano direttamente, zero candidature"
+      },
+      "companyStep1": {
+        "title": "Cerca GRATIS",
+        "description": "Database completo, filtri illimitati, ricerca AI"
+      },
+      "companyStep2": {
+        "title": "Vedi Progetti Verificati",
+        "description": "Voti reali, progetti reali, competenze verificate"
+      },
+      "companyStep3": {
+        "title": "Paga Solo al Contatto",
+        "description": "€10 per candidato che vuoi assumere"
+      }
+    },
+    "features": {
+      "badge": "Funzionalità Principali",
+      "title": "Competenze Verificate al 100%, Non Affermazioni da CV",
+      "verification": {
+        "title": "Verifica Universitaria",
+        "description": "Ogni competenza tracciabile all'istituzione via Esse3/Moodle"
+      },
+      "aiAnalysis": {
+        "title": "Analisi AI",
+        "description": "Estrae competenze tecniche e soft da tesi e progetti"
+      },
+      "reverseRecruiting": {
+        "title": "Reverse Recruiting",
+        "description": "Le aziende ti trovano, non devi candidarti"
+      },
+      "transparency": {
+        "title": "Trasparenza Bidirezionale",
+        "description": "Vedi esattamente PERCHÉ corrispondere: '92% perché tesi Python'"
+      }
+    },
+    "stats": {
+      "badge": "Comprovato dai Risultati",
+      "title": "I Numeri Parlano Chiaro",
+      "higherResponse": "risposte in più per studenti",
+      "fasterScreening": "screening più veloce per aziende",
+      "matchAccuracy": "accuratezza corrispondenze verificate",
+      "placementBoost": "aumento placement istituzionale"
+    },
+    "cta": {
+      "students": {
+        "title": "Pronto a Essere Scoperto?",
+        "subtitle": "Unisciti a 125.000+ studenti che vengono scoperti da aziende top",
+        "button": "Crea Portfolio Gratuito"
+      },
+      "companies": {
+        "title": "Pronto a Assumere Talento Verificato?",
+        "subtitle": "Sfoglia gratis, paga solo quando contatti. Niente abbonamenti.",
+        "button": "Inizia a Cercare Gratis"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Trasforma i tuoi progetti accademici in opportunità di carriera con analisi AI, matching intelligente e storytelling professionale.",
+    "contact": "Contattaci",
+    "product": "Prodotto",
+    "company": "Azienda",
+    "legal": "Legale e Privacy",
+    "privacy": "Privacy e GDPR",
+    "terms": "Termini di Servizio",
+    "cookies": "Politica Cookie",
+    "newsletter": {
+      "title": "Rimani Aggiornato",
+      "description": "Ricevi gli ultimi aggiornamenti su nuove funzionalità e opportunità di carriera.",
+      "placeholder": "Inserisci la tua email",
+      "subscribe": "Iscriviti"
+    },
+    "compliance": {
+      "operational": "Tutti i sistemi operativi",
+      "gdpr": "Conforme GDPR",
+      "poweredBy": "Powered by AI"
+    },
+    "copyright": "© 2024 InTransparency. Tutti i diritti riservati.",
+    "support": "Supporto"
+  },
+  "pricing": {
+    "students": {
+      "badge": "Per Studenti - Tutte le Discipline",
+      "title": "Piattaforma Core Gratuita + Funzionalità Premium Opzionali",
+      "subtitle": "Marketplace core GRATIS PER SEMPRE: Carica progetti → L'istituzione verifica → Le aziende ti scoprono. Servizi premium opzionali €9: Posizionamento prioritario, analytics avanzati, o ottimizzazione portfolio. EU/Italiano: voti 30/30, stage curriculare, tirocini.",
+      "free": {
+        "name": "Gratis Per Sempre",
+        "price": "€0",
+        "period": "per sempre",
+        "description": "Tutte le funzionalità core - sempre gratis",
+        "badge": "100% Gratis",
+        "features": {
+          "uploads": "Caricamenti progetti verificati illimitati",
+          "verification": "Verifica universitaria",
+          "portfolio": "Pagina portfolio pubblica",
+          "discovery": "Scoperta da aziende",
+          "analytics": "Analytics profilo base",
+          "noCard": "Nessuna carta richiesta"
+        },
+        "cta": "Inizia Gratis"
+      },
+      "premium": {
+        "name": "Profilo Premium",
+        "price": "€9",
+        "period": "al mese",
+        "description": "Distinguiti e vieni scoperto più velocemente",
+        "badge": "🚀 Più Popolare",
+        "features": {
+          "everything": "Tutto in Gratis Per Sempre",
+          "priority": "Priorità nei risultati recruiter",
+          "advancedAnalytics": "Analytics e insights avanzati",
+          "customUrl": "URL portfolio personalizzato",
+          "contactRecruiters": "Contatta recruiter direttamente",
+          "aiRecommendations": "Raccomandazioni carriera AI",
+          "resumeBuilder": "Resume builder con progetti verificati",
+          "interviewPrep": "Strumenti preparazione colloqui",
+          "prioritySupport": "Supporto prioritario",
+          "removeBadge": "Rimuovi badge 'Powered by InTransparency'"
+        },
+        "cta": "Prova Gratuita 7 Giorni"
+      },
+      "boost": {
+        "name": "Portfolio Boost",
+        "price": "€9",
+        "period": "una tantum",
+        "description": "Design portfolio professionale + ottimizzazione LinkedIn",
+        "badge": "💎 Servizio Una Tantum",
+        "features": {
+          "review": "Revisione design portfolio professionale",
+          "aiOptimized": "Descrizioni progetti ottimizzate AI",
+          "linkedin": "Ottimizzazione profilo LinkedIn",
+          "skillRecommendations": "Raccomandazioni competenze personalizzate",
+          "coverLetters": "Template lettera presentazione (5 template)",
+          "careerPath": "Suggerimenti percorso carriera",
+          "benchmarking": "Report benchmarking settore",
+          "guarantee": "Garanzia soddisfazione 30 giorni",
+          "delivery": "Consegnato entro 48 ore"
+        },
+        "cta": "Ottieni Portfolio Boost"
+      }
+    },
+    "companies": {
+      "badge": "Per Aziende - Paga Solo Ciò Che Usi",
+      "title": "Servizio Trasparente Ricerca Talenti - Niente Abbonamenti",
+      "subtitle": "Sfoglia profili verificati 100% dall'istituzione GRATIS. Cerca 'AutoCAD, 28/30 da ITS Rizzoli' con estratti progetti. Paga €10 solo quando contatti candidati verificati. Screening 80% più veloce, 92% accuratezza.",
+      "browseFree": {
+        "name": "Sfoglia Gratis",
+        "price": "€0",
+        "period": "nessun abbonamento",
+        "description": "Sfogliamento illimitato - paga solo quando contatti",
+        "badge": "🔍 Sempre Gratis",
+        "features": {
+          "registration": "Registrazione gratuita (nessuna carta)",
+          "unlimited": "Esplorazione database illimitata",
+          "profiles": "Vedi tutti i profili (anonimizzati)",
+          "filters": "Filtri avanzati per istituzione, corsi, voti",
+          "aiSearch": "Ricerca Candidati AI",
+          "verified": "Competenze verificate AI da tutti i tipi progetto",
+          "location": "Filtri posizione e disponibilità",
+          "saveSearches": "Salva ricerche e candidati",
+          "noFees": "Nessun canone mensile mai"
+        },
+        "cta": "Inizia Esplorazione Gratis"
+      },
+      "payPerContact": {
+        "name": "Servizio Trasparente Ricerca Talenti",
+        "price": "€10",
+        "period": "per contatto (niente abbonamenti)",
+        "description": "Sfoglia profili verificati 100% GRATIS → Paga €10 solo quando contatti il candidato giusto",
+        "badge": "Più Popolare - Paga Solo Uso",
+        "cta": "Inizia a Sfogliare Gratis"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "€99",
+        "period": "al mese",
+        "description": "Contatti illimitati + filtri custom + branding + accesso API",
+        "badge": "🏢 Migliore per Scala",
+        "cta": "Upgrade a Enterprise"
+      }
+    },
+    "institutes": {
+      "badge": "Per Istituti (Università e ITS)",
+      "title": "Servizio Gratuito Career Intelligence - Niente Abbonamenti Mai",
+      "subtitle": "Servizi GRATUITI Verifica + Analytics. Auto-import Esse3/Moodle. Tu autentichi, noi forniamo insights. Zero costi vs AlmaLaurea (€2.500/anno). Prova aumento placement 85% al MIUR.",
+      "free": {
+        "name": "Accesso Marketplace Gratuito",
+        "price": "Gratis",
+        "period": "per sempre - niente abbonamenti",
+        "description": "Fai assumere i tuoi studenti tramite marketplace verificato. Verifica, scoperta, matching e analytics GRATUITI.",
+        "badge": "🎓 100% Gratis Per Sempre",
+        "cta": "Unisciti a Marketplace Gratuito"
+      },
+      "enterprise": {
+        "name": "Enterprise Custom",
+        "price": "€2.000",
+        "period": "all'anno",
+        "description": "White-label completo, accesso API, integrazioni custom. Per grandi università con esigenze avanzate.",
+        "badge": "🏢 Enterprise",
+        "cta": "Prenota Demo"
+      }
+    }
+  }
+}
