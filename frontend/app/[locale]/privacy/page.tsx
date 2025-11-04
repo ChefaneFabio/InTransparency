@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -31,6 +32,7 @@ import Link from 'next/link'
 type Stakeholder = 'student' | 'university' | 'company'
 
 export default function PrivacyPage() {
+  const t = useTranslations('privacy')
   const [selectedStakeholder, setSelectedStakeholder] = useState<Stakeholder>('student')
 
   const dataAccessLevels = {
@@ -153,17 +155,16 @@ export default function PrivacyPage() {
             >
               <Badge className="bg-gradient-to-r from-blue-600 to-green-600 text-white border-0 px-6 py-2">
                 <Shield className="inline h-4 w-4 mr-2" />
-                GDPR Compliant
+                {t('hero.badge')}
               </Badge>
             </motion.div>
 
             <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-green-600 to-teal-600 bg-clip-text text-transparent">
-              Your Data. Your Control.
+              {t('hero.title')}
             </h1>
 
             <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Complete transparency about what data we collect, how we use it, and who has access.
-              GDPR-compliant, secure, and designed with your privacy first.
+              {t('hero.subtitle')}
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -195,10 +196,10 @@ export default function PrivacyPage() {
           >
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Data Access by Role
+                {t('dataAccess.title')}
               </h2>
               <p className="text-gray-600">
-                See exactly what each party can and cannot access
+                {t('dataAccess.subtitle')}
               </p>
             </div>
 
@@ -324,7 +325,7 @@ export default function PrivacyPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-              How Your Data Flows
+              {t('dataFlow.title')}
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -426,10 +427,10 @@ export default function PrivacyPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
-              Your GDPR Rights
+              {t('gdprRights.title')}
             </h2>
             <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-              Under the General Data Protection Regulation (GDPR), you have these fundamental rights
+              {t('gdprRights.subtitle')}
             </p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -479,10 +480,10 @@ export default function PrivacyPage() {
             <Card className="bg-gradient-to-r from-blue-600 to-green-600 text-white border-0">
               <CardContent className="p-12">
                 <h2 className="text-3xl font-bold mb-4 text-center">
-                  How We Protect Your Data
+                  {t('security.title')}
                 </h2>
                 <p className="text-center text-white mb-8 max-w-2xl mx-auto">
-                  Bank-level security and encryption to keep your information safe
+                  {t('security.subtitle')}
                 </p>
 
                 <div className="grid md:grid-cols-4 gap-6">
@@ -530,10 +531,10 @@ export default function PrivacyPage() {
               <CardContent className="p-8 text-center">
                 <Mail className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  Questions About Your Data?
+                  {t('contact.title')}
                 </h3>
                 <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
-                  Contact our Data Protection Officer (DPO) for any privacy concerns or to exercise your GDPR rights.
+                  {t('contact.subtitle')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button className="bg-blue-600 hover:bg-blue-700" asChild>
