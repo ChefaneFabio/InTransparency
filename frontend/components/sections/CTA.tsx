@@ -1,76 +1,57 @@
+'use client'
+
 import Link from 'next/link'
 import { ArrowRight, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-
-const benefits = [
-  'AI-powered project analysis',
-  'Professional story generation', 
-  'Smart job matching',
-  'Direct recruiter connections',
-  'Career progress tracking',
-  'Peer collaboration network'
-]
-
-const pricingTiers = [
-  {
-    name: 'Student',
-    price: 'Free',
-    description: 'Perfect for students getting started',
-    features: [
-      'Upload up to 5 projects',
-      'Basic AI analysis',
-      'Professional stories',
-      'Community access',
-      'Email support'
-    ],
-    cta: 'Start Free',
-    popular: false
-  },
-  {
-    name: 'Pro Student',
-    price: '$9/month',
-    description: 'Advanced features for serious students',
-    features: [
-      'Unlimited projects',
-      'Advanced AI analysis',
-      'Priority job matching',
-      'Video portfolio creation',
-      'Direct recruiter messaging',
-      'Priority support'
-    ],
-    cta: 'Upgrade to Pro',
-    popular: true
-  },
-  {
-    name: 'University',
-    price: 'Custom',
-    description: 'Enterprise solution for institutions',
-    features: [
-      'Institution-wide access',
-      'Student analytics dashboard',
-      'Placement tracking',
-      'Industry partnerships',
-      'Custom branding',
-      'Dedicated support'
-    ],
-    cta: 'Contact Sales',
-    popular: false
-  }
-]
+import { useTranslations } from 'next-intl'
 
 export function CTA() {
+  const t = useTranslations('home.cta')
+
+  // Get benefits from translations
+  const benefits = Array.from({ length: 6 }, (_, i) => t(`main.benefits.${i}`))
+
+  // Get pricing tiers from translations
+  const pricingTiers = [
+    {
+      name: t('pricing.tiers.0.name'),
+      price: t('pricing.tiers.0.price'),
+      period: null,
+      description: t('pricing.tiers.0.description'),
+      features: Array.from({ length: 5 }, (_, i) => t(`pricing.tiers.0.features.${i}`)),
+      cta: t('pricing.tiers.0.cta'),
+      popular: false
+    },
+    {
+      name: t('pricing.tiers.1.name'),
+      price: t('pricing.tiers.1.price'),
+      period: t('pricing.tiers.1.period'),
+      description: t('pricing.tiers.1.description'),
+      features: Array.from({ length: 6 }, (_, i) => t(`pricing.tiers.1.features.${i}`)),
+      cta: t('pricing.tiers.1.cta'),
+      popular: true
+    },
+    {
+      name: t('pricing.tiers.2.name'),
+      price: t('pricing.tiers.2.price'),
+      period: null,
+      description: t('pricing.tiers.2.description'),
+      features: Array.from({ length: 6 }, (_, i) => t(`pricing.tiers.2.features.${i}`)),
+      cta: t('pricing.tiers.2.cta'),
+      popular: false
+    }
+  ]
   return (
     <section className="relative py-24 overflow-hidden hero-bg">
       <div className="container relative z-10">
         {/* Main CTA */}
         <div className="text-center mb-24">
           <h2 className="text-4xl font-display font-bold tracking-tight text-foreground sm:text-5xl mb-6">
-            Transform your projects into
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"> career opportunities</span>
+            {t('main.title')}{' '}
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('main.titleHighlight')}</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Use InTransparency to showcase your work, connect with opportunities,
-            and advance your career.
+            {t('main.subtitle')}
           </p>
 
           {/* Benefits Grid */}
@@ -86,19 +67,19 @@ export function CTA() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button asChild size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               <Link href="/auth/register">
-                Get Started Free
+                {t('main.primaryCTA')}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
               <Link href="#demo">
-                Watch Demo
+                {t('main.secondaryCTA')}
               </Link>
             </Button>
           </div>
 
           <p className="text-sm text-gray-700 mt-4">
-            No credit card required • Start showcasing in minutes • Get started today
+            {t('main.finePrint')}
           </p>
         </div>
 
@@ -106,10 +87,10 @@ export function CTA() {
         <div className="mb-24">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-display font-bold text-foreground mb-4">
-              Choose your plan
+              {t('pricing.title')}
             </h3>
             <p className="text-xl text-gray-600">
-              Start free and upgrade as your career grows
+              {t('pricing.subtitle')}
             </p>
           </div>
 
@@ -126,7 +107,7 @@ export function CTA() {
                 {tier.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <span className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 rounded-full text-sm font-medium">
-                      Most Popular
+                      {t('pricing.mostPopular')}
                     </span>
                   </div>
                 )}
@@ -138,8 +119,8 @@ export function CTA() {
                   <p className="text-gray-600 mb-4">{tier.description}</p>
                   <div className="text-4xl font-bold text-gray-900">
                     {tier.price}
-                    {tier.price !== 'Free' && tier.price !== 'Custom' && (
-                      <span className="text-lg text-gray-700 font-normal">/month</span>
+                    {tier.period && (
+                      <span className="text-lg text-gray-700 font-normal">{tier.period}</span>
                     )}
                   </div>
                 </div>
@@ -171,7 +152,7 @@ export function CTA() {
 
           <div className="text-center mt-8">
             <p className="text-sm text-gray-700">
-              All plans include SSL security, data backups, and GDPR compliance
+              {t('pricing.allPlansInclude')}
             </p>
           </div>
         </div>
@@ -179,36 +160,30 @@ export function CTA() {
         {/* Social Proof / Viral Section */}
         <div className="mb-24 text-center">
           <h3 className="text-3xl font-display font-bold text-foreground mb-4">
-            See What Students Are Building
+            {t('socialProof.title')}
           </h3>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Real students. Real projects. Real results. Browse verified portfolios from your university.
+            {t('socialProof.subtitle')}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
-            <div className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-primary transition-all hover:shadow-lg">
-              <div className="text-3xl font-bold text-primary mb-2">125,000+</div>
-              <p className="text-gray-600">Students with verified portfolios</p>
-            </div>
-            <div className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-primary transition-all hover:shadow-lg">
-              <div className="text-3xl font-bold text-primary mb-2">3x Faster</div>
-              <p className="text-gray-600">Average time to get hired</p>
-            </div>
-            <div className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-primary transition-all hover:shadow-lg">
-              <div className="text-3xl font-bold text-primary mb-2">10,000+</div>
-              <p className="text-gray-600">Companies hiring verified talent</p>
-            </div>
+            {[0, 1, 2].map((index) => (
+              <div key={index} className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-primary transition-all hover:shadow-lg">
+                <div className="text-3xl font-bold text-primary mb-2">{t(`socialProof.stats.${index}.value`)}</div>
+                <p className="text-gray-600">{t(`socialProof.stats.${index}.label`)}</p>
+              </div>
+            ))}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button asChild size="lg" variant="outline">
               <Link href="/success-stories">
-                Read Success Stories
+                {t('socialProof.readStories')}
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
               <Link href="/students">
-                Browse Student Portfolios
+                {t('socialProof.browsePortfolios')}
               </Link>
             </Button>
           </div>
@@ -217,13 +192,12 @@ export function CTA() {
         {/* Final CTA Banner */}
         <div className="bg-gradient-to-r from-primary to-secondary rounded-3xl p-12 text-center text-white">
           <h3 className="text-3xl font-display font-bold mb-4">
-            Ready to unlock your potential?
+            {t('finalBanner.title')}
           </h3>
           <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
-            Transform your academic projects into compelling career stories. 
-            Start your journey with InTransparency today.
+            {t('finalBanner.subtitle')}
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
@@ -231,7 +205,7 @@ export function CTA() {
               asChild
             >
               <Link href="/auth/register">
-                Create Free Account
+                {t('finalBanner.createAccount')}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -242,31 +216,25 @@ export function CTA() {
               asChild
             >
               <Link href="/contact">
-                Schedule Demo
+                {t('finalBanner.schedulDemo')}
               </Link>
             </Button>
           </div>
 
           <div className="mt-8 flex items-center justify-center space-x-8 text-white">
-            <div className="flex items-center">
-              <CheckCircle className="h-5 w-5 mr-2" />
-              <span>Free forever plan</span>
-            </div>
-            <div className="flex items-center">
-              <CheckCircle className="h-5 w-5 mr-2" />
-              <span>No setup fees</span>
-            </div>
-            <div className="flex items-center">
-              <CheckCircle className="h-5 w-5 mr-2" />
-              <span>Cancel anytime</span>
-            </div>
+            {[0, 1, 2].map((index) => (
+              <div key={index} className="flex items-center">
+                <CheckCircle className="h-5 w-5 mr-2" />
+                <span>{t(`finalBanner.benefits.${index}`)}</span>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Trust Indicators */}
         <div className="mt-16 text-center">
           <p className="text-sm text-gray-700 mb-6">
-            Connect with top universities and companies
+            {t('trustIndicator')}
           </p>
         </div>
       </div>
