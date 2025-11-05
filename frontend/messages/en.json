@@ -3464,5 +3464,233 @@
         "threeToSixMonths": "3-6 months"
       }
     }
+  },
+  "advancedSearchDemo": {
+    "heroBanner": {
+      "badge": "Advanced Search - Filter & Find Exactly What You Need",
+      "verifiedResults": "Verified Results",
+      "description": "Use filters to narrow down and find your perfect match. No AI needed - just traditional search."
+    },
+    "demoSelector": {
+      "studentDemo": "Student Demo",
+      "companyDemo": "Company Demo",
+      "universityDemo": "University Demo"
+    },
+    "universityToggle": {
+      "searchStudents": "Search Students",
+      "searchCompanies": "Search Companies/Jobs"
+    },
+    "searchPlaceholders": {
+      "student": "Search by job title, company, or keywords...",
+      "company": "Search by skills, major, or university...",
+      "universityStudents": "Search your students by skills, courses, major...",
+      "universityJobs": "Search job opportunities across Europe..."
+    },
+    "demoTitles": {
+      "studentTitle": "Advanced Job Search",
+      "studentSubtitle": "Filter by location, salary, type, and more",
+      "companyTitle": "Advanced Candidate Search",
+      "companySubtitle": "All disciplines: Business, Engineering, STEM, Law, Creative, Humanities & more",
+      "universityStudentsTitle": "Search Your Students",
+      "universityStudentsSubtitle": "Filter students by skills, courses, projects, and more",
+      "universityJobsTitle": "Search Job Opportunities",
+      "universityJobsSubtitle": "Find European job opportunities for your students"
+    },
+    "filters": {
+      "title": "Filters",
+      "clearAll": "Clear all",
+      "jobType": {
+        "title": "Job Type",
+        "fullTime": "Full-time",
+        "internship": "Internship",
+        "partTime": "Part-time",
+        "remote": "Remote"
+      },
+      "location": {
+        "title": "Location",
+        "titleEurope": "Location (Europe)"
+      },
+      "salaryRange": {
+        "title": "Salary Range"
+      },
+      "field": {
+        "title": "Field/Discipline"
+      },
+      "university": {
+        "title": "University"
+      },
+      "major": {
+        "title": "Major"
+      },
+      "gpa": {
+        "title": "Minimum GPA"
+      },
+      "skills": {
+        "title": "Skills & Competencies",
+        "subtitle": "Tech, Business, Creative, Legal & more",
+        "available": "skills available"
+      },
+      "courses": {
+        "title": "Specific Courses",
+        "subtitle": "Filter by individual courses taken",
+        "available": "courses available"
+      },
+      "projectTypes": {
+        "title": "Project Types",
+        "subtitle": "Filter by project experience",
+        "available": "project types"
+      }
+    },
+    "results": {
+      "found": "results found",
+      "withFilters": "with {count} filters applied",
+      "allDisciplines": "All Disciplines",
+      "sortBy": "Sort by: Most Recent",
+      "showing": "Showing {current} of {total} results"
+    },
+    "jobCard": {
+      "applyNow": "Apply Now",
+      "match": "Match",
+      "applicants": "applicants",
+      "validForDegree": "Valid for Degree",
+      "posted": {
+        "daysAgo": "{count} days ago",
+        "weekAgo": "1 week ago",
+        "weeksAgo": "{count} weeks ago"
+      }
+    },
+    "candidateCard": {
+      "contactLocked": "Contact Locked",
+      "available": "Available",
+      "major": "Major",
+      "gpa": "GPA",
+      "technicalSkills": "Technical Skills:",
+      "softSkills": "Soft Skills:",
+      "relevantCourses": "Relevant Courses:",
+      "projectExperience": "Project Experience:",
+      "unlockFor": "Unlock for €10",
+      "match": "Match"
+    },
+    "loadMore": {
+      "button": "Load More Results",
+      "registerMessage": "Register free to see all results and apply"
+    }
+  },
+  "advancedSearchDemo": {
+    "heroBanner": "Advanced Search - Filter & Find Exactly What You Need",
+    "verifiedResults": "Verified Results",
+    "subtitle": "Use filters to narrow down and find your perfect match. No AI needed - just traditional search.",
+    "tabs": {
+      "student": "Student Demo",
+      "company": "Company Demo",
+      "university": "University Demo"
+    },
+    "universitySearchType": {
+      "searchStudents": "Search Students",
+      "searchJobs": "Search Companies/Jobs"
+    },
+    "searchPlaceholders": {
+      "student": "Search by job title, company, or keywords...",
+      "company": "Search by skills, major, or university...",
+      "universityStudents": "Search your students by skills, courses, major...",
+      "universityJobs": "Search job opportunities across Europe..."
+    },
+    "filters": {
+      "title": "Filters",
+      "button": "Filters",
+      "clearAll": "Clear all",
+      "jobType": {
+        "title": "Job Type",
+        "fullTime": "Full-time",
+        "internship": "Internship",
+        "partTime": "Part-time",
+        "remote": "Remote"
+      },
+      "location": {
+        "title": "Location",
+        "titleEurope": "Location (Europe)"
+      },
+      "salaryRange": {
+        "title": "Salary Range"
+      },
+      "field": {
+        "title": "Field/Discipline"
+      },
+      "university": {
+        "title": "University"
+      },
+      "major": {
+        "title": "Major"
+      },
+      "gpa": {
+        "title": "Minimum GPA"
+      },
+      "skills": {
+        "title": "Skills & Competencies",
+        "subtitle": "Tech, Business, Creative, Legal & more",
+        "available": "skills available"
+      },
+      "courses": {
+        "title": "Specific Courses",
+        "subtitle": "Filter by individual courses taken",
+        "available": "courses available"
+      },
+      "projectTypes": {
+        "title": "Project Types",
+        "subtitle": "Filter by project experience",
+        "available": "project types"
+      }
+    },
+    "results": {
+      "found": "results found",
+      "withFilters": "with",
+      "filtersApplied": "filters applied",
+      "allDisciplines": "• All Disciplines",
+      "sortBy": "Sort by: Most Recent",
+      "showing": "Showing",
+      "of": "of"
+    },
+    "jobCard": {
+      "applyNow": "Apply Now",
+      "validForDegree": "✓ Valid for Degree",
+      "applicants": "applicants",
+      "match": "Match"
+    },
+    "candidateCard": {
+      "contactLocked": "Contact Locked",
+      "available": "Available",
+      "major": "Major:",
+      "gpa": "GPA:",
+      "technicalSkills": "Technical Skills:",
+      "softSkills": "Soft Skills:",
+      "relevantCourses": "Relevant Courses:",
+      "projectExperience": "Project Experience:",
+      "unlockFor": "Unlock for €10",
+      "match": "Match"
+    },
+    "loadMore": {
+      "button": "Load More Results",
+      "registerMessage": "Register free to see all results and apply"
+    },
+    "demoTitles": {
+      "student": {
+        "title": "Advanced Job Search",
+        "subtitle": "Filter by location, salary, type, and more",
+        "totalCount": "5,240"
+      },
+      "company": {
+        "title": "Advanced Candidate Search",
+        "subtitle": "All disciplines: Business, Engineering, STEM, Law, Creative, Humanities & more",
+        "totalCount": "12,847"
+      },
+      "university": {
+        "titleStudents": "Search Your Students",
+        "titleJobs": "Search Job Opportunities",
+        "subtitleStudents": "Filter students by skills, courses, projects, and more",
+        "subtitleJobs": "Find European job opportunities for your students",
+        "totalCountStudents": "12,847",
+        "totalCountJobs": "18,934"
+      }
+    }
   }
 }
