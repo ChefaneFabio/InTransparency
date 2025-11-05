@@ -177,7 +177,7 @@
         "description": "Estrae competenze tecniche e soft da tesi e progetti"
       },
       "reverseRecruiting": {
-        "title": "Reverse Recruiting",
+        "title": "Reclutamento Inverso",
         "description": "Le aziende ti trovano, non devi candidarti"
       },
       "transparency": {
@@ -992,7 +992,7 @@
         "subtitle": "Collega studenti con opportunità e traccia risultati carriera tra università, ITS e istituzioni di istruzione superiore"
       },
       "recruiter": {
-        "label": "Recruiter",
+        "label": "Reclutatore",
         "description": "Scopri talenti, pubblica lavori, traccia candidature",
         "title": "Come I Recruiter Usano InTransparency",
         "subtitle": "Cerca proattivamente candidati, sfrutta matching AI per trovare match perfetti e assumi basandoti su conoscenza settore e compatibilità profilo"
@@ -2434,7 +2434,7 @@
       "title": "Cosa Misuriamo",
       "skills": {
         "problemSolving": {
-          "title": "Problem Solving",
+          "title": "Risoluzione dei Problemi",
           "description": "Pensiero critico e capacità analitiche"
         },
         "teamwork": {
@@ -2442,7 +2442,7 @@
           "description": "Collaborazione e competenze interpersonali"
         },
         "leadership": {
-          "title": "Leadership",
+          "title": "Capacità di Leadership",
           "description": "Iniziativa e capacità decisionale"
         },
         "adaptability": {
