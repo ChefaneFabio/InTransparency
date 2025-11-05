@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -229,6 +230,7 @@ const skillsByField = {
 const allSkills = Object.values(skillsByField).flat()
 
 export default function AdvancedSearchPage() {
+  const t = useTranslations('advancedSearchDemo')
   const [activeDemo, setActiveDemo] = useState<DemoType>('student')
   const [searchQuery, setSearchQuery] = useState('')
   const [showFilters, setShowFilters] = useState(true)
@@ -250,30 +252,30 @@ export default function AdvancedSearchPage() {
 
   const demoConfig = {
     student: {
-      title: 'Advanced Job Search',
-      subtitle: 'Filter by location, salary, type, and more',
+      title: t('demoTitles.student.title'),
+      subtitle: t('demoTitles.student.subtitle'),
       color: 'from-teal-600 to-blue-600',
       icon: GraduationCap,
       results: mockJobs,
-      totalCount: '5,240'
+      totalCount: t('demoTitles.student.totalCount')
     },
     company: {
-      title: 'Advanced Candidate Search',
-      subtitle: 'All disciplines: Business, Engineering, STEM, Law, Creative, Humanities & more',
+      title: t('demoTitles.company.title'),
+      subtitle: t('demoTitles.company.subtitle'),
       color: 'from-blue-600 to-purple-600',
       icon: Building2,
       results: mockCandidates,
-      totalCount: '12,847'
+      totalCount: t('demoTitles.company.totalCount')
     },
     university: {
-      title: universitySearchType === 'students' ? 'Search Your Students' : 'Search Job Opportunities',
+      title: universitySearchType === 'students' ? t('demoTitles.university.titleStudents') : t('demoTitles.university.titleJobs'),
       subtitle: universitySearchType === 'students'
-        ? 'Filter students by skills, courses, projects, and more'
-        : 'Find European job opportunities for your students',
+        ? t('demoTitles.university.subtitleStudents')
+        : t('demoTitles.university.subtitleJobs'),
       color: 'from-indigo-600 to-purple-600',
       icon: Users,
       results: universitySearchType === 'students' ? mockCandidates : mockJobs,
-      totalCount: universitySearchType === 'students' ? '12,847' : '18,934'
+      totalCount: universitySearchType === 'students' ? t('demoTitles.university.totalCountStudents') : t('demoTitles.university.totalCountJobs')
     }
   }
 
@@ -315,16 +317,16 @@ export default function AdvancedSearchPage() {
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border-2 border-primary/30 rounded-full px-6 py-2 mb-4 shadow-sm">
             <SlidersHorizontal className="h-5 w-5 text-primary" />
-            <span className="font-bold text-foreground">Advanced Search - Filter & Find Exactly What You Need</span>
+            <span className="font-bold text-foreground">{t('heroBanner')}</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
             {config.totalCount}{' '}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Verified Results
+              {t('verifiedResults')}
             </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Use filters to narrow down and find your perfect match. No AI needed - just traditional search.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -333,15 +335,15 @@ export default function AdvancedSearchPage() {
           <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3">
             <TabsTrigger value="student" className="flex items-center gap-2">
               <GraduationCap className="h-4 w-4" />
-              Student Demo
+              {t('tabs.student')}
             </TabsTrigger>
             <TabsTrigger value="company" className="flex items-center gap-2">
               <Building2 className="h-4 w-4" />
-              Company Demo
+              {t('tabs.company')}
             </TabsTrigger>
             <TabsTrigger value="university" className="flex items-center gap-2">
               <Users className="h-4 w-4" />
-              University Demo
+              {t('tabs.university')}
             </TabsTrigger>
           </TabsList>
         </Tabs>
@@ -355,7 +357,7 @@ export default function AdvancedSearchPage() {
               className={universitySearchType === 'students' ? 'bg-gradient-to-r from-primary to-secondary' : ''}
             >
               <Users className="h-4 w-4 mr-2" />
-              Search Students
+              {t('universityToggle.searchStudents')}
             </Button>
             <Button
               variant={universitySearchType === 'companies' ? 'default' : 'outline'}
@@ -363,7 +365,7 @@ export default function AdvancedSearchPage() {
               className={universitySearchType === 'companies' ? 'bg-gradient-to-r from-primary to-secondary' : ''}
             >
               <Briefcase className="h-4 w-4 mr-2" />
-              Search Companies/Jobs
+              {t('universityToggle.searchCompanies')}
             </Button>
           </div>
         )}
@@ -379,12 +381,12 @@ export default function AdvancedSearchPage() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={
                     activeDemo === 'student'
-                      ? 'Search by job title, company, or keywords...'
+                      ? t('searchPlaceholders.student')
                       : activeDemo === 'company'
-                      ? 'Search by skills, major, or university...'
+                      ? t('searchPlaceholders.company')
                       : universitySearchType === 'students'
-                      ? 'Search your students by skills, courses, major...'
-                      : 'Search job opportunities across Europe...'
+                      ? t('searchPlaceholders.universityStudents')
+                      : t('searchPlaceholders.universityJobs')
                   }
                   className="pl-10 h-12 text-base"
                 />
@@ -395,7 +397,7 @@ export default function AdvancedSearchPage() {
                 className="h-12 px-6"
               >
                 <SlidersHorizontal className="h-5 w-5 mr-2" />
-                Filters
+                {t('filters.title')}
                 {activeFiltersCount > 0 && (
                   <Badge className="ml-2 bg-gradient-to-r from-primary to-secondary text-white">{activeFiltersCount}</Badge>
                 )}
@@ -415,7 +417,7 @@ export default function AdvancedSearchPage() {
               <Card className="shadow-lg">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg">Filters</CardTitle>
+                    <CardTitle className="text-lg">{t('filters.title')}</CardTitle>
                     {activeFiltersCount > 0 && (
                       <Button
                         variant="ghost"
@@ -423,7 +425,7 @@ export default function AdvancedSearchPage() {
                         onClick={clearAllFilters}
                         className="text-primary hover:text-primary/80"
                       >
-                        Clear all
+                        {t('filters.clearAll')}
                       </Button>
                     )}
                   </div>
@@ -436,18 +438,23 @@ export default function AdvancedSearchPage() {
                       <div>
                         <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                           <Briefcase className="h-4 w-4" />
-                          Job Type
+                          {t('filters.jobType.title')}
                         </h3>
                         <div className="space-y-2">
-                          {['Full-time', 'Internship', 'Part-time', 'Remote'].map((type) => (
-                            <label key={type} className="flex items-center gap-2 cursor-pointer">
+                          {[
+                            { key: 'fullTime', label: t('filters.jobType.fullTime') },
+                            { key: 'internship', label: t('filters.jobType.internship') },
+                            { key: 'partTime', label: t('filters.jobType.partTime') },
+                            { key: 'remote', label: t('filters.jobType.remote') }
+                          ].map((type) => (
+                            <label key={type.key} className="flex items-center gap-2 cursor-pointer">
                               <input
                                 type="checkbox"
-                                checked={jobType.includes(type)}
-                                onChange={() => toggleFilter(jobType, type, setJobType)}
+                                checked={jobType.includes(type.label)}
+                                onChange={() => toggleFilter(jobType, type.label, setJobType)}
                                 className="rounded border-gray-300"
                               />
-                              <span className="text-sm">{type}</span>
+                              <span className="text-sm">{type.label}</span>
                             </label>
                           ))}
                         </div>
@@ -457,7 +464,7 @@ export default function AdvancedSearchPage() {
                       <div>
                         <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                           <MapPin className="h-4 w-4" />
-                          Location
+                          {t('filters.location.title')}
                         </h3>
                         <div className="space-y-2">
                           {cities.map((city) => (
@@ -478,7 +485,7 @@ export default function AdvancedSearchPage() {
                       <div>
                         <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                           <DollarSign className="h-4 w-4" />
-                          Salary Range
+                          {t('filters.salaryRange.title')}
                         </h3>
                         <p className="text-sm text-gray-600 mb-2">
                           €{salaryRange[0].toLocaleString()} - €{salaryRange[1].toLocaleString()}
@@ -503,7 +510,7 @@ export default function AdvancedSearchPage() {
                       <div>
                         <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                           <Briefcase className="h-4 w-4" />
-                          Field/Discipline
+                          {t('filters.field.title')}
                         </h3>
                         <div className="space-y-2">
                           {fields.map((field) => (
@@ -524,7 +531,7 @@ export default function AdvancedSearchPage() {
                       <div>
                         <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                           <GraduationCap className="h-4 w-4" />
-                          University
+                          {t('filters.university.title')}
                         </h3>
                         <div className="space-y-2 max-h-48 overflow-y-auto">
                           {universities.map((uni) => (
@@ -545,7 +552,7 @@ export default function AdvancedSearchPage() {
                       <div>
                         <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                           <Star className="h-4 w-4" />
-                          Major
+                          {t('filters.major.title')}
                         </h3>
                         <div className="space-y-2 max-h-48 overflow-y-auto">
                           {majors.map((major) => (
@@ -566,7 +573,7 @@ export default function AdvancedSearchPage() {
                       <div>
                         <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                           <TrendingUp className="h-4 w-4" />
-                          Minimum GPA
+                          {t('filters.gpa.title')}
                         </h3>
                         <p className="text-sm text-gray-600 mb-2">{gpaMin}/30</p>
                         <input
@@ -583,9 +590,9 @@ export default function AdvancedSearchPage() {
                       <div>
                         <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                           <Filter className="h-4 w-4" />
-                          Skills & Competencies
+                          {t('filters.skills.title')}
                         </h3>
-                        <p className="text-xs text-gray-500 mb-2">Tech, Business, Creative, Legal & more</p>
+                        <p className="text-xs text-gray-500 mb-2">{t('filters.skills.subtitle')}</p>
                         <div className="space-y-2 max-h-48 overflow-y-auto">
                           {allSkills.slice(0, 20).map((skill) => (
                             <label key={skill} className="flex items-center gap-2 cursor-pointer">
@@ -599,16 +606,16 @@ export default function AdvancedSearchPage() {
                             </label>
                           ))}
                         </div>
-                        <p className="text-xs text-gray-500 mt-2">{allSkills.length}+ skills available</p>
+                        <p className="text-xs text-gray-500 mt-2">{allSkills.length}+ {t('filters.skills.available')}</p>
                       </div>
 
                       {/* Courses */}
                       <div>
                         <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                           <GraduationCap className="h-4 w-4" />
-                          Specific Courses
+                          {t('filters.courses.title')}
                         </h3>
-                        <p className="text-xs text-gray-500 mb-2">Filter by individual courses taken</p>
+                        <p className="text-xs text-gray-500 mb-2">{t('filters.courses.subtitle')}</p>
                         <div className="space-y-2 max-h-48 overflow-y-auto">
                           {courses.map((course) => (
                             <label key={course} className="flex items-center gap-2 cursor-pointer">
@@ -622,16 +629,16 @@ export default function AdvancedSearchPage() {
                             </label>
                           ))}
                         </div>
-                        <p className="text-xs text-gray-500 mt-2">{courses.length} courses available</p>
+                        <p className="text-xs text-gray-500 mt-2">{courses.length} {t('filters.courses.available')}</p>
                       </div>
 
                       {/* Project Types */}
                       <div>
                         <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                           <Briefcase className="h-4 w-4" />
-                          Project Types
+                          {t('filters.projectTypes.title')}
                         </h3>
-                        <p className="text-xs text-gray-500 mb-2">Filter by project experience</p>
+                        <p className="text-xs text-gray-500 mb-2">{t('filters.projectTypes.subtitle')}</p>
                         <div className="space-y-2 max-h-48 overflow-y-auto">
                           {projectTypes.map((projectType) => (
                             <label key={projectType} className="flex items-center gap-2 cursor-pointer">
@@ -645,7 +652,7 @@ export default function AdvancedSearchPage() {
                             </label>
                           ))}
                         </div>
-                        <p className="text-xs text-gray-500 mt-2">{projectTypes.length} project types</p>
+                        <p className="text-xs text-gray-500 mt-2">{projectTypes.length} {t('filters.projectTypes.available')}</p>
                       </div>
                     </>
                   )}
@@ -660,7 +667,7 @@ export default function AdvancedSearchPage() {
                           <div>
                             <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                               <Briefcase className="h-4 w-4" />
-                              Field/Discipline
+                              {t('filters.field.title')}
                             </h3>
                             <div className="space-y-2">
                               {fields.map((field) => (
@@ -681,7 +688,7 @@ export default function AdvancedSearchPage() {
                           <div>
                             <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                               <Star className="h-4 w-4" />
-                              Major
+                              {t('filters.major.title')}
                             </h3>
                             <div className="space-y-2 max-h-48 overflow-y-auto">
                               {majors.map((major) => (
@@ -702,7 +709,7 @@ export default function AdvancedSearchPage() {
                           <div>
                             <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                               <TrendingUp className="h-4 w-4" />
-                              Minimum GPA
+                              {t('filters.gpa.title')}
                             </h3>
                             <p className="text-sm text-gray-600 mb-2">{gpaMin}/30</p>
                             <input
@@ -719,9 +726,9 @@ export default function AdvancedSearchPage() {
                           <div>
                             <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                               <Filter className="h-4 w-4" />
-                              Skills & Competencies
+                              {t('filters.skills.title')}
                             </h3>
-                            <p className="text-xs text-gray-500 mb-2">Tech, Business, Creative, Legal & more</p>
+                            <p className="text-xs text-gray-500 mb-2">{t('filters.skills.subtitle')}</p>
                             <div className="space-y-2 max-h-48 overflow-y-auto">
                               {allSkills.slice(0, 20).map((skill) => (
                                 <label key={skill} className="flex items-center gap-2 cursor-pointer">
@@ -735,16 +742,16 @@ export default function AdvancedSearchPage() {
                                 </label>
                               ))}
                             </div>
-                            <p className="text-xs text-gray-500 mt-2">{allSkills.length}+ skills available</p>
+                            <p className="text-xs text-gray-500 mt-2">{allSkills.length}+ {t('filters.skills.available')}</p>
                           </div>
 
                           {/* Courses */}
                           <div>
                             <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                               <GraduationCap className="h-4 w-4" />
-                              Specific Courses
+                              {t('filters.courses.title')}
                             </h3>
-                            <p className="text-xs text-gray-500 mb-2">Filter by individual courses taken</p>
+                            <p className="text-xs text-gray-500 mb-2">{t('filters.courses.subtitle')}</p>
                             <div className="space-y-2 max-h-48 overflow-y-auto">
                               {courses.map((course) => (
                                 <label key={course} className="flex items-center gap-2 cursor-pointer">
@@ -758,16 +765,16 @@ export default function AdvancedSearchPage() {
                                 </label>
                               ))}
                             </div>
-                            <p className="text-xs text-gray-500 mt-2">{courses.length} courses available</p>
+                            <p className="text-xs text-gray-500 mt-2">{courses.length} {t('filters.courses.available')}</p>
                           </div>
 
                           {/* Project Types */}
                           <div>
                             <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                               <Briefcase className="h-4 w-4" />
-                              Project Types
+                              {t('filters.projectTypes.title')}
                             </h3>
-                            <p className="text-xs text-gray-500 mb-2">Filter by project experience</p>
+                            <p className="text-xs text-gray-500 mb-2">{t('filters.projectTypes.subtitle')}</p>
                             <div className="space-y-2 max-h-48 overflow-y-auto">
                               {projectTypes.map((projectType) => (
                                 <label key={projectType} className="flex items-center gap-2 cursor-pointer">
@@ -781,7 +788,7 @@ export default function AdvancedSearchPage() {
                                 </label>
                               ))}
                             </div>
-                            <p className="text-xs text-gray-500 mt-2">{projectTypes.length} project types</p>
+                            <p className="text-xs text-gray-500 mt-2">{projectTypes.length} {t('filters.projectTypes.available')}</p>
                           </div>
                         </>
                       ) : (
@@ -790,18 +797,23 @@ export default function AdvancedSearchPage() {
                           <div>
                             <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                               <Briefcase className="h-4 w-4" />
-                              Job Type
+                              {t('filters.jobType.title')}
                             </h3>
                             <div className="space-y-2">
-                              {['Full-time', 'Internship', 'Part-time', 'Remote'].map((type) => (
-                                <label key={type} className="flex items-center gap-2 cursor-pointer">
+                              {[
+                                { key: 'fullTime', label: t('filters.jobType.fullTime') },
+                                { key: 'internship', label: t('filters.jobType.internship') },
+                                { key: 'partTime', label: t('filters.jobType.partTime') },
+                                { key: 'remote', label: t('filters.jobType.remote') }
+                              ].map((type) => (
+                                <label key={type.key} className="flex items-center gap-2 cursor-pointer">
                                   <input
                                     type="checkbox"
-                                    checked={jobType.includes(type)}
-                                    onChange={() => toggleFilter(jobType, type, setJobType)}
+                                    checked={jobType.includes(type.label)}
+                                    onChange={() => toggleFilter(jobType, type.label, setJobType)}
                                     className="rounded border-gray-300"
                                   />
-                                  <span className="text-sm">{type}</span>
+                                  <span className="text-sm">{type.label}</span>
                                 </label>
                               ))}
                             </div>
@@ -811,7 +823,7 @@ export default function AdvancedSearchPage() {
                           <div>
                             <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                               <MapPin className="h-4 w-4" />
-                              Location (Europe)
+                              {t('filters.location.titleEurope')}
                             </h3>
                             <div className="space-y-2 max-h-64 overflow-y-auto">
                               {cities.map((city) => (
@@ -832,7 +844,7 @@ export default function AdvancedSearchPage() {
                           <div>
                             <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                               <DollarSign className="h-4 w-4" />
-                              Salary Range
+                              {t('filters.salaryRange.title')}
                             </h3>
                             <p className="text-sm text-gray-600 mb-2">
                               €{salaryRange[0].toLocaleString()} - €{salaryRange[1].toLocaleString()}
@@ -860,13 +872,13 @@ export default function AdvancedSearchPage() {
           <div className={showFilters ? 'lg:col-span-3' : 'lg:col-span-4'}>
             <div className="mb-4 flex items-center justify-between">
               <p className="text-gray-600">
-                <span className="font-bold text-gray-900">{config.results.length}</span> results found
-                {activeFiltersCount > 0 && ` with ${activeFiltersCount} filters applied`}
-                {activeDemo === 'company' && <span className="text-primary ml-2">• All Disciplines</span>}
+                <span className="font-bold text-gray-900">{config.results.length}</span> {t('results.found')}
+                {activeFiltersCount > 0 && ` ${t('results.withFilters', { count: activeFiltersCount })}`}
+                {activeDemo === 'company' && <span className="text-primary ml-2">• {t('results.allDisciplines')}</span>}
               </p>
               <Button variant="outline" size="sm">
                 <Clock className="h-4 w-4 mr-2" />
-                Sort by: Most Recent
+                {t('results.sortBy')}
               </Button>
             </div>
 
@@ -908,22 +920,22 @@ export default function AdvancedSearchPage() {
                                 <div className="flex flex-wrap gap-2">
                                   <Badge className="bg-blue-100 text-blue-800">{result.type}</Badge>
                                   {result.validForDegree && (
-                                    <Badge className="bg-purple-100 text-purple-800">✓ Valid for Degree</Badge>
+                                    <Badge className="bg-purple-100 text-purple-800">✓ {t('jobCard.validForDegree')}</Badge>
                                   )}
                                   {result.duration && (
                                     <Badge className="bg-gray-100 text-gray-800">{result.duration}</Badge>
                                   )}
-                                  <Badge className="bg-gray-100 text-gray-700">{result.applicants} applicants</Badge>
+                                  <Badge className="bg-gray-100 text-gray-700">{result.applicants} {t('jobCard.applicants')}</Badge>
                                 </div>
                               </div>
                             </div>
                           </div>
                           <div className="ml-4 flex flex-col items-end justify-between">
                             <Badge className="bg-green-100 text-green-800 text-base px-3 py-1">
-                              {result.match}% Match
+                              {result.match}% {t('jobCard.match')}
                             </Badge>
                             <Button className={`bg-gradient-to-r ${config.color}`}>
-                              Apply Now
+                              {t('jobCard.applyNow')}
                             </Button>
                           </div>
                         </div>
@@ -938,15 +950,15 @@ export default function AdvancedSearchPage() {
                             </div>
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-1">
-                                <h3 className="text-lg font-bold text-gray-900">Contact Locked</h3>
-                                <Badge className="bg-green-100 text-green-800 text-xs">Available</Badge>
+                                <h3 className="text-lg font-bold text-gray-900">{t('candidateCard.contactLocked')}</h3>
+                                <Badge className="bg-green-100 text-green-800 text-xs">{t('candidateCard.available')}</Badge>
                               </div>
                               <p className="text-gray-600 mb-2">{result.university}</p>
                               <p className="text-sm text-gray-700 mb-3">
-                                <strong>Major:</strong> {result.major} • <strong>GPA:</strong> {result.gpa}/30
+                                <strong>{t('candidateCard.major')}:</strong> {result.major} • <strong>{t('candidateCard.gpa')}:</strong> {result.gpa}/30
                               </p>
                               <div className="mb-2">
-                                <p className="text-sm font-semibold text-gray-700 mb-1">Technical Skills:</p>
+                                <p className="text-sm font-semibold text-gray-700 mb-1">{t('candidateCard.technicalSkills')}:</p>
                                 <div className="flex flex-wrap gap-1">
                                   {result.skills.map((skill: string) => (
                                     <Badge key={skill} className="bg-blue-100 text-blue-800 text-xs">
@@ -956,7 +968,7 @@ export default function AdvancedSearchPage() {
                                 </div>
                               </div>
                               <div className="mb-2">
-                                <p className="text-sm font-semibold text-gray-700 mb-1">Soft Skills:</p>
+                                <p className="text-sm font-semibold text-gray-700 mb-1">{t('candidateCard.softSkills')}:</p>
                                 <div className="flex flex-wrap gap-1">
                                   {result.softSkills.map((skill: string) => (
                                     <Badge key={skill} className="bg-purple-100 text-purple-800 text-xs">
@@ -967,7 +979,7 @@ export default function AdvancedSearchPage() {
                               </div>
                               {result.courses && (
                                 <div className="mb-2">
-                                  <p className="text-sm font-semibold text-gray-700 mb-1">Relevant Courses:</p>
+                                  <p className="text-sm font-semibold text-gray-700 mb-1">{t('candidateCard.relevantCourses')}:</p>
                                   <div className="flex flex-wrap gap-1">
                                     {result.courses.map((course: string) => (
                                       <Badge key={course} className="bg-green-100 text-green-800 text-xs">
@@ -979,7 +991,7 @@ export default function AdvancedSearchPage() {
                               )}
                               {result.projects && (
                                 <div>
-                                  <p className="text-sm font-semibold text-gray-700 mb-1">Project Experience:</p>
+                                  <p className="text-sm font-semibold text-gray-700 mb-1">{t('candidateCard.projectExperience')}:</p>
                                   <div className="flex flex-wrap gap-1">
                                     {result.projects.map((project: string) => (
                                       <Badge key={project} className="bg-orange-100 text-orange-800 text-xs">
@@ -993,10 +1005,10 @@ export default function AdvancedSearchPage() {
                           </div>
                           <div className="ml-4 flex flex-col items-end justify-between">
                             <Badge className="bg-green-100 text-green-800 text-base px-3 py-1 mb-2">
-                              {result.match}% Match
+                              {result.match}% {t('candidateCard.match')}
                             </Badge>
                             <Button className={`bg-gradient-to-r ${config.color}`}>
-                              Unlock for €10
+                              {t('candidateCard.unlock')}
                             </Button>
                           </div>
                         </div>
@@ -1010,13 +1022,13 @@ export default function AdvancedSearchPage() {
             {/* Load More */}
             <div className="mt-8 text-center">
               <p className="text-gray-600 mb-4">
-                Showing {config.results.length} of {config.totalCount} results
+                {t('loadMore.showing', { current: config.results.length, total: config.totalCount })}
               </p>
               <Button variant="outline" size="lg" className="px-8">
-                Load More Results
+                {t('loadMore.button')}
               </Button>
               <p className="text-sm text-gray-500 mt-4">
-                Register free to see all results and apply
+                {t('loadMore.registerPrompt')}
               </p>
             </div>
           </div>
