@@ -802,7 +802,7 @@
     "hero": {
       "badge": "Discover Verified Talent",
       "title": "Explore Student Portfolios",
-      "subtitle": "Search through thousands of university-verified student portfolios. Every project authenticated by institutions.",
+      "subtitle": "Search through thousands of verified student portfolios. Every project authenticated by institutions.",
       "searchPlaceholder": "Search by name, skill, or university...",
       "stats": {
         "students": "Students",
@@ -2637,7 +2637,7 @@
     "hero": {
       "badge": "Discover Verified Talent",
       "title": "Explore Student Portfolios",
-      "subtitle": "Search through thousands of university-verified student portfolios. Every project authenticated by institutions.",
+      "subtitle": "Search through thousands of verified student portfolios. Every project authenticated by institutions.",
       "searchPlaceholder": "Search by name, skill, or university...",
       "stats": {
         "students": "Students",

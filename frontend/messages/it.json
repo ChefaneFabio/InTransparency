@@ -802,7 +802,7 @@
     "hero": {
       "badge": "Scopri Talenti Verificati",
       "title": "Esplora Portfolio Studenti",
-      "subtitle": "Cerca tra migliaia di portfolio studenti verificati dall'università. Ogni progetto autenticato dalle istituzioni.",
+      "subtitle": "Cerca tra migliaia di portfolio studenti verificati. Ogni progetto autenticato dalle istituzioni.",
       "searchPlaceholder": "Cerca per nome, competenza o università...",
       "stats": {
         "students": "Studenti",
@@ -2637,7 +2637,7 @@
     "hero": {
       "badge": "Scopri Talenti Verificati",
       "title": "Esplora Portfolio Studenti",
-      "subtitle": "Cerca tra migliaia di portfolio studenti verificati dall'università. Ogni progetto autenticato dalle istituzioni.",
+      "subtitle": "Cerca tra migliaia di portfolio studenti verificati. Ogni progetto autenticato dalle istituzioni.",
       "searchPlaceholder": "Cerca per nome, competenza o università...",
       "stats": {
         "students": "Studenti",
