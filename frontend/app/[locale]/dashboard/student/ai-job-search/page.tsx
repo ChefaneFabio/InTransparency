@@ -45,6 +45,10 @@ type JobSearchCriteria = {
   experienceLevel?: string
   companySize?: string
   industries?: string[]
+  benefits?: string[]
+  companyCulture?: string[]
+  contractType?: string
+  workArrangement?: string
 }
 
 type Job = {
@@ -60,57 +64,127 @@ type Job = {
   description: string
   requirements: string[]
   benefits: string[]
+  industry?: string
+  companyCulture?: string[]
+  contractType?: string
+  workArrangement?: string
 }
 
 const exampleQueries = [
-  "I'm looking for entry-level software engineer jobs in California",
-  "Find me remote frontend developer positions with good work-life balance",
-  "I want internships in data science, preferably at startups",
-  "Show me full-stack roles at big tech companies with high pay"
+  "Find me software engineering internships in Milan with flexible hours",
+  "I want remote frontend developer roles with good work-life balance",
+  "Looking for data science jobs in Rome with learning opportunities",
+  "Show me consulting positions in Bologna, full-time with competitive salary"
 ]
 
 const mockJobs: Job[] = [
   {
     id: '1',
     title: 'Junior Software Engineer',
-    company: 'TechCorp Inc.',
-    location: 'San Francisco, CA',
-    salary: '$95,000 - $120,000',
+    company: 'Intesa Sanpaolo',
+    location: 'Milan, Italy',
+    salary: '€35,000 - €45,000',
     jobType: 'Full-time',
     postedDate: '2 days ago',
     applicants: 45,
     matchScore: 94,
-    description: "We're looking for a passionate junior engineer to join our growing team...",
+    description: "We're looking for a passionate junior engineer to join our digital innovation team...",
     requirements: ['Python', 'React', 'Problem-solving', 'Team collaboration'],
-    benefits: ['Health insurance', 'Stock options', 'Flexible hours', 'Remote work']
+    benefits: ['Health insurance', 'Meal vouchers', 'Flexible hours', 'Smart working'],
+    industry: 'Finance',
+    companyCulture: ['Innovation', 'Work-life balance'],
+    contractType: 'Permanent',
+    workArrangement: 'Hybrid'
   },
   {
     id: '2',
     title: 'Frontend Developer Intern',
-    company: 'StartupXYZ',
-    location: 'Remote',
-    salary: '$25/hour',
+    company: 'Bending Spoons',
+    location: 'Milan, Italy',
+    salary: '€1,200/month',
     jobType: 'Internship',
     postedDate: '1 week ago',
     applicants: 28,
     matchScore: 89,
-    description: 'Summer internship opportunity for frontend developers...',
+    description: 'Stage curriculare per sviluppatori frontend con passione per le app...',
     requirements: ['React', 'TypeScript', 'CSS', 'Communication'],
-    benefits: ['Mentorship', 'Learning budget', 'Flexible schedule']
+    benefits: ['Mentorship', 'Learning budget', 'Flexible schedule', 'Free lunch'],
+    industry: 'Technology',
+    companyCulture: ['Startup culture', 'Innovation', 'Fast-paced'],
+    contractType: 'Stage',
+    workArrangement: 'Hybrid'
   },
   {
     id: '3',
     title: 'Data Science Associate',
-    company: 'DataCo',
-    location: 'Boston, MA',
-    salary: '$85,000 - $105,000',
+    company: 'UniCredit',
+    location: 'Rome, Italy',
+    salary: '€32,000 - €42,000',
     jobType: 'Full-time',
     postedDate: '3 days ago',
     applicants: 67,
     matchScore: 92,
-    description: 'Join our data science team to work on cutting-edge ML projects...',
+    description: 'Join our data science team to work on cutting-edge ML projects in banking...',
     requirements: ['Python', 'Machine Learning', 'SQL', 'Analytics'],
-    benefits: ['401k matching', 'Health insurance', 'Learning stipend', 'Hybrid work']
+    benefits: ['Pension plan', 'Health insurance', 'Learning stipend', 'Smart working'],
+    industry: 'Finance',
+    companyCulture: ['Work-life balance', 'Professional growth'],
+    contractType: 'Permanent',
+    workArrangement: 'Hybrid'
+  },
+  {
+    id: '4',
+    title: 'Business Consultant',
+    company: 'McKinsey & Company',
+    location: 'Bologna, Italy',
+    salary: '€45,000 - €55,000',
+    jobType: 'Full-time',
+    postedDate: '5 days ago',
+    applicants: 82,
+    matchScore: 88,
+    description: 'Join our Italian consulting team working with Fortune 500 clients...',
+    requirements: ['Strategy', 'Analytics', 'Communication', 'Problem-solving'],
+    benefits: ['Travel opportunities', 'Learning budget', 'Health insurance', 'Performance bonus'],
+    industry: 'Consulting',
+    companyCulture: ['Fast-paced', 'Learning culture', 'Global exposure'],
+    contractType: 'Permanent',
+    workArrangement: 'Office'
+  },
+  {
+    id: '5',
+    title: 'Full Stack Developer',
+    company: 'Spotify',
+    location: 'Remote',
+    salary: '€40,000 - €50,000',
+    jobType: 'Full-time',
+    postedDate: '1 day ago',
+    applicants: 156,
+    matchScore: 96,
+    description: 'Remote opportunity for full stack developers passionate about music tech...',
+    requirements: ['JavaScript', 'Node.js', 'React', 'Python', 'AWS'],
+    benefits: ['Remote work', 'Flexible hours', 'Learning budget', 'Premium Spotify', 'Wellness program'],
+    industry: 'Technology',
+    companyCulture: ['Innovation', 'Work-life balance', 'Creativity'],
+    contractType: 'Permanent',
+    workArrangement: 'Remote'
+  },
+  {
+    id: '6',
+    title: 'UX/UI Designer Intern',
+    company: 'Luxottica',
+    location: 'Turin, Italy',
+    salary: '€900/month',
+    jobType: 'Internship',
+    postedDate: '4 days ago',
+    applicants: 34,
+    matchScore: 85,
+    description: 'Stage in UX/UI design for our e-commerce and retail innovation team...',
+    requirements: ['Figma', 'User research', 'Prototyping', 'Communication'],
+    benefits: ['Mentorship', 'Product discounts', 'Flexible hours', 'Learning opportunities'],
+    industry: 'Retail',
+    companyCulture: ['Innovation', 'Design-focused', 'Global brand'],
+    contractType: 'Stage',
+    workArrangement: 'Hybrid'
   }
 ]
 
@@ -119,7 +193,7 @@ export default function AIJobSearchPage() {
     {
       id: '1',
       role: 'assistant',
-      content: "👋 Hi! I'm your AI job search assistant. Tell me what kind of job you're looking for, and I'll find perfect matches for you!\n\nYou can mention:\n- Job title or role\n- Preferred location (or remote)\n- Skills you want to use\n- Company size or type\n- Salary expectations\n- Work-life balance preferences",
+      content: "👋 Hi! I'm your AI job search assistant. Tell me what kind of job you're looking for, and I'll find perfect matches for you!\n\nYou can mention:\n- Job title or role (software engineer, consultant, designer)\n- Location (Milan, Rome, Bologna, Turin, or remote)\n- Skills you want to use (Python, React, Figma, etc.)\n- Industries (finance, tech, consulting, retail)\n- Benefits (flexible hours, learning budget, smart working)\n- Company culture (work-life balance, innovation, startup)\n- Contract type (permanent, stage, internship)\n- Salary expectations",
       timestamp: new Date()
     }
   ])
@@ -146,20 +220,24 @@ export default function AIJobSearchPage() {
     if (lowerQuery.includes('full-stack') || lowerQuery.includes('fullstack')) criteria.role = 'Full Stack Developer'
     if (lowerQuery.includes('data scien')) criteria.role = 'Data Scientist'
     if (lowerQuery.includes('machine learning') || lowerQuery.includes('ml engineer')) criteria.role = 'ML Engineer'
+    if (lowerQuery.includes('consult')) criteria.role = 'Consultant'
+    if (lowerQuery.includes('designer') || lowerQuery.includes('ux') || lowerQuery.includes('ui')) criteria.role = 'Designer'
 
     // Skills
-    const skills = ['python', 'javascript', 'react', 'node.js', 'java', 'aws', 'sql', 'machine learning', 'typescript']
+    const skills = ['python', 'javascript', 'react', 'node.js', 'java', 'aws', 'sql', 'machine learning', 'typescript', 'figma', 'analytics', 'strategy']
     criteria.skills = skills.filter(skill => lowerQuery.includes(skill))
 
-    // Location
-    if (lowerQuery.includes('remote')) criteria.location = 'Remote'
-    if (lowerQuery.includes('california') || lowerQuery.includes('ca') || lowerQuery.includes('san francisco')) criteria.location = 'California'
-    if (lowerQuery.includes('boston')) criteria.location = 'Boston'
-    if (lowerQuery.includes('new york') || lowerQuery.includes('nyc')) criteria.location = 'New York'
+    // Location - Italian cities
+    if (lowerQuery.includes('remote') || lowerQuery.includes('remoto')) criteria.location = 'Remote'
+    if (lowerQuery.includes('milan') || lowerQuery.includes('milano')) criteria.location = 'Milan'
+    if (lowerQuery.includes('rome') || lowerQuery.includes('roma')) criteria.location = 'Rome'
+    if (lowerQuery.includes('bologna')) criteria.location = 'Bologna'
+    if (lowerQuery.includes('turin') || lowerQuery.includes('torino')) criteria.location = 'Turin'
+    if (lowerQuery.includes('florence') || lowerQuery.includes('firenze')) criteria.location = 'Florence'
 
     // Job type
-    if (lowerQuery.includes('internship') || lowerQuery.includes('intern')) criteria.jobType = 'Internship'
-    if (lowerQuery.includes('full-time') || lowerQuery.includes('full time')) criteria.jobType = 'Full-time'
+    if (lowerQuery.includes('internship') || lowerQuery.includes('intern') || lowerQuery.includes('stage')) criteria.jobType = 'Internship'
+    if (lowerQuery.includes('full-time') || lowerQuery.includes('full time') || lowerQuery.includes('tempo pieno')) criteria.jobType = 'Full-time'
     if (lowerQuery.includes('part-time') || lowerQuery.includes('part time')) criteria.jobType = 'Part-time'
 
     // Experience level
@@ -167,25 +245,122 @@ export default function AIJobSearchPage() {
       criteria.experienceLevel = 'Entry Level'
     }
 
+    // Industries
+    const industries = ['finance', 'finanza', 'tech', 'technology', 'consulting', 'consulenza', 'retail', 'healthcare', 'education']
+    criteria.industries = industries.filter(ind => lowerQuery.includes(ind))
+
+    // Benefits
+    const benefitsList = [
+      'flexible hours', 'flexible', 'orario flessibile',
+      'remote work', 'smart working', 'lavoro remoto',
+      'learning', 'formazione', 'learning budget',
+      'health insurance', 'assicurazione',
+      'meal vouchers', 'buoni pasto'
+    ]
+    criteria.benefits = benefitsList.filter(benefit => lowerQuery.includes(benefit))
+
+    // Company culture
+    const cultureTags = [
+      'work-life balance', 'work life balance', 'equilibrio',
+      'innovation', 'innovazione', 'innovative',
+      'startup culture', 'startup',
+      'fast-paced', 'dinamico',
+      'learning culture', 'cultura apprendimento'
+    ]
+    criteria.companyCulture = cultureTags.filter(culture => lowerQuery.includes(culture))
+
+    // Contract type
+    if (lowerQuery.includes('permanent') || lowerQuery.includes('indeterminato') || lowerQuery.includes('tempo indeterminato')) {
+      criteria.contractType = 'Permanent'
+    }
+    if (lowerQuery.includes('stage') || lowerQuery.includes('tirocinio')) {
+      criteria.contractType = 'Stage'
+    }
+
+    // Work arrangement
+    if (lowerQuery.includes('hybrid') || lowerQuery.includes('ibrido')) criteria.workArrangement = 'Hybrid'
+    if (lowerQuery.includes('remote') || lowerQuery.includes('remoto')) criteria.workArrangement = 'Remote'
+    if (lowerQuery.includes('office') || lowerQuery.includes('ufficio') || lowerQuery.includes('in presenza')) criteria.workArrangement = 'Office'
+
     // Company size
     if (lowerQuery.includes('startup')) criteria.companySize = 'Startup'
-    if (lowerQuery.includes('big tech') || lowerQuery.includes('large company')) criteria.companySize = 'Large Enterprise'
+    if (lowerQuery.includes('big tech') || lowerQuery.includes('large company') || lowerQuery.includes('grande azienda')) criteria.companySize = 'Large Enterprise'
+
+    // Salary
+    const salaryMatch = lowerQuery.match(/€?\s*(\d+)[k,]/)
+    if (salaryMatch) {
+      criteria.salaryMin = parseInt(salaryMatch[1]) * 1000
+    }
 
     return criteria
   }
 
   const filterJobs = (criteria: JobSearchCriteria): Job[] => {
     return mockJobs.filter(job => {
+      // Role match
       if (criteria.role && !job.title.toLowerCase().includes(criteria.role.toLowerCase().split(' ')[0])) {
         return false
       }
 
+      // Skills match
+      if (criteria.skills && criteria.skills.length > 0) {
+        const hasSkill = criteria.skills.some(skill =>
+          job.requirements.some(req => req.toLowerCase().includes(skill.toLowerCase()))
+        )
+        if (!hasSkill) return false
+      }
+
+      // Location match
       if (criteria.location && !job.location.includes(criteria.location)) {
         return false
       }
 
+      // Job type match
       if (criteria.jobType && job.jobType !== criteria.jobType) {
         return false
+      }
+
+      // Industry match
+      if (criteria.industries && criteria.industries.length > 0) {
+        const hasIndustry = criteria.industries.some(ind =>
+          job.industry?.toLowerCase().includes(ind.toLowerCase())
+        )
+        if (!hasIndustry) return false
+      }
+
+      // Benefits match
+      if (criteria.benefits && criteria.benefits.length > 0) {
+        const hasBenefit = criteria.benefits.some(benefit =>
+          job.benefits.some(jb => jb.toLowerCase().includes(benefit.toLowerCase()))
+        )
+        if (!hasBenefit) return false
+      }
+
+      // Company culture match
+      if (criteria.companyCulture && criteria.companyCulture.length > 0) {
+        const hasCulture = criteria.companyCulture.some(culture =>
+          job.companyCulture?.some(jc => jc.toLowerCase().includes(culture.toLowerCase()))
+        )
+        if (!hasCulture) return false
+      }
+
+      // Contract type match
+      if (criteria.contractType && job.contractType !== criteria.contractType) {
+        return false
+      }
+
+      // Work arrangement match
+      if (criteria.workArrangement && job.workArrangement !== criteria.workArrangement) {
+        return false
+      }
+
+      // Salary match
+      if (criteria.salaryMin) {
+        const salaryNumbers = job.salary.match(/€(\d+,?\d*)/g)
+        if (salaryNumbers) {
+          const minSalary = parseInt(salaryNumbers[0].replace(/[€,]/g, ''))
+          if (minSalary < criteria.salaryMin) return false
+        }
       }
 
       return true
@@ -220,10 +395,28 @@ export default function AIJobSearchPage() {
         if (criteria.skills && criteria.skills.length > 0) {
           responseContent += `✅ Skills: ${criteria.skills.join(', ')}\n`
         }
+        if (criteria.industries && criteria.industries.length > 0) {
+          responseContent += `✅ Industries: ${criteria.industries.join(', ')}\n`
+        }
+        if (criteria.benefits && criteria.benefits.length > 0) {
+          responseContent += `✅ Benefits: ${criteria.benefits.join(', ')}\n`
+        }
+        if (criteria.companyCulture && criteria.companyCulture.length > 0) {
+          responseContent += `✅ Culture: ${criteria.companyCulture.join(', ')}\n`
+        }
+        if (criteria.contractType) {
+          responseContent += `✅ Contract: ${criteria.contractType}\n`
+        }
+        if (criteria.workArrangement) {
+          responseContent += `✅ Work Mode: ${criteria.workArrangement}\n`
+        }
+        if (criteria.salaryMin) {
+          responseContent += `✅ Salary: €${criteria.salaryMin.toLocaleString()}+\n`
+        }
 
-        responseContent += `\n💡 Tip: You can refine by asking about salary, work-life balance, or specific technologies!`
+        responseContent += `\n💡 Tip: Refine by asking about:\n- Specific companies or industries\n- Benefits (flexible hours, learning budget, remote work)\n- Company culture (work-life balance, innovation, startup)\n- Italian cities (Milan, Rome, Bologna, Turin)`
       } else {
-        responseContent = "I couldn't find jobs matching those exact criteria. Would you like to:\n\n1. Expand to nearby locations?\n2. Consider related job titles?\n3. Look at different job types (full-time, internship, etc.)?"
+        responseContent = "I couldn't find jobs matching those exact criteria. Would you like to:\n\n1. Expand to nearby locations?\n2. Consider related job titles?\n3. Look at different job types (full-time, internship, stage)?\n4. Broaden industry or company culture preferences?"
       }
 
       const assistantMessage: Message = {
