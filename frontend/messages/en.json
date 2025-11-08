@@ -3692,5 +3692,39 @@
         "totalCountJobs": "18,934"
       }
     }
+  },
+  "studentsFeatured": {
+    "hero": {
+      "badge": "Featured Talent",
+      "title": "Discover Verified Student Portfolios",
+      "description": "Browse university-verified projects from top students. All portfolios are authenticated by institutional systems.",
+      "ctaStudent": "Create Your Portfolio",
+      "ctaRecruiter": "Browse as Recruiter"
+    },
+    "filters": {
+      "label": "Filter by:",
+      "all": "All Students",
+      "topVerified": "Top Verified",
+      "recent": "Recently Added"
+    },
+    "loading": "Loading featured portfolios...",
+    "empty": {
+      "title": "No portfolios yet",
+      "description": "Be the first to create a verified portfolio!",
+      "cta": "Create Your Portfolio"
+    },
+    "card": {
+      "projects": "Projects",
+      "verified": "Verified",
+      "skills": "Skills",
+      "fullyVerified": "100% University Verified",
+      "viewPortfolio": "View Portfolio"
+    },
+    "cta": {
+      "title": "Join 125,000+ Students on InTransparency",
+      "description": "Create your verified portfolio in minutes and get discovered by top companies",
+      "primaryButton": "Create Free Portfolio",
+      "secondaryButton": "Learn How It Works"
+    }
   }
 }

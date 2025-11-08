@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -8,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Star, GraduationCap, Award, TrendingUp, ExternalLink, Filter } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
 
 interface FeaturedStudent {
@@ -27,6 +28,7 @@ interface FeaturedStudent {
 }
 
 export default function FeaturedPortfoliosPage() {
+  const t = useTranslations('studentsFeatured')
   const [students, setStudents] = useState<FeaturedStudent[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState<'all' | 'top-verified' | 'recent'>('all')
@@ -68,10 +70,10 @@ export default function FeaturedPortfoliosPage() {
   }, [filter])
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col hero-bg">
       <Header />
 
-      <main className="flex-1">
+      <main className="flex-1 pt-20">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-primary to-secondary text-white py-16">
           <div className="max-w-7xl mx-auto px-6">
@@ -83,23 +85,23 @@ export default function FeaturedPortfoliosPage() {
             >
               <Badge className="mb-4 bg-white/20 text-white border-white/30">
                 <Star className="h-3 w-3 mr-1" />
-                Featured Talent
+                {t('hero.badge')}
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Discover Verified Student Portfolios
+              <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+                {t('hero.title')}
               </h1>
               <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
-                Browse university-verified projects from top students. All portfolios are authenticated by institutional systems.
+                {t('hero.description')}
               </p>
               <div className="flex items-center justify-center gap-4">
                 <Button size="lg" variant="secondary" asChild>
                   <Link href="/auth/register?role=student">
-                    Create Your Portfolio
+                    {t('hero.ctaStudent')}
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="bg-white/10 border-white/30 hover:bg-white/20 text-white" asChild>
                   <Link href="/auth/register?role=company">
-                    Browse as Recruiter
+                    {t('hero.ctaRecruiter')}
                   </Link>
                 </Button>
               </div>
@@ -108,12 +110,12 @@ export default function FeaturedPortfoliosPage() {
         </section>
 
         {/* Filter Section */}
-        <section className="bg-white border-b sticky top-0 z-10 shadow-sm">
+        <section className="bg-white border-b sticky top-20 z-10 shadow-sm">
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Filter className="h-5 w-5 text-gray-600" />
-                <span className="font-medium text-gray-700">Filter by:</span>
+                <span className="font-medium text-gray-700">{t('filters.label')}</span>
               </div>
               <div className="flex gap-2">
                 <Button
@@ -121,7 +123,7 @@ export default function FeaturedPortfoliosPage() {
                   size="sm"
                   onClick={() => setFilter('all')}
                 >
-                  All Students
+                  {t('filters.all')}
                 </Button>
                 <Button
                   variant={filter === 'top-verified' ? 'default' : 'outline'}
@@ -129,7 +131,7 @@ export default function FeaturedPortfoliosPage() {
                   onClick={() => setFilter('top-verified')}
                 >
                   <Award className="h-4 w-4 mr-1" />
-                  Top Verified
+                  {t('filters.topVerified')}
                 </Button>
                 <Button
                   variant={filter === 'recent' ? 'default' : 'outline'}
@@ -137,7 +139,7 @@ export default function FeaturedPortfoliosPage() {
                   onClick={() => setFilter('recent')}
                 >
                   <TrendingUp className="h-4 w-4 mr-1" />
-                  Recently Added
+                  {t('filters.recent')}
                 </Button>
               </div>
             </div>
@@ -149,15 +151,15 @@ export default function FeaturedPortfoliosPage() {
           {loading ? (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-              <p className="mt-4 text-gray-600">Loading featured portfolios...</p>
+              <p className="mt-4 text-gray-600">{t('loading')}</p>
             </div>
           ) : students.length === 0 ? (
             <div className="text-center py-12">
               <GraduationCap className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No portfolios yet</h3>
-              <p className="text-gray-600 mb-6">Be the first to create a verified portfolio!</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('empty.title')}</h3>
+              <p className="text-gray-600 mb-6">{t('empty.description')}</p>
               <Button asChild>
-                <Link href="/auth/register?role=student">Create Your Portfolio</Link>
+                <Link href="/auth/register?role=student">{t('empty.cta')}</Link>
               </Button>
             </div>
           ) : (
@@ -202,15 +204,15 @@ export default function FeaturedPortfoliosPage() {
                       <div className="grid grid-cols-3 gap-2 text-center py-3 bg-gray-50 rounded-lg">
                         <div>
                           <div className="text-2xl font-bold text-primary">{student.projectsCount}</div>
-                          <div className="text-xs text-gray-600">Projects</div>
+                          <div className="text-xs text-gray-600">{t('card.projects')}</div>
                         </div>
                         <div>
                           <div className="text-2xl font-bold text-green-600">{student.verificationScore}%</div>
-                          <div className="text-xs text-gray-600">Verified</div>
+                          <div className="text-xs text-gray-600">{t('card.verified')}</div>
                         </div>
                         <div>
                           <div className="text-2xl font-bold text-blue-600">{student.skillsCount}</div>
-                          <div className="text-xs text-gray-600">Skills</div>
+                          <div className="text-xs text-gray-600">{t('card.skills')}</div>
                         </div>
                       </div>
 
@@ -218,14 +220,14 @@ export default function FeaturedPortfoliosPage() {
                       {student.verificationScore === 100 && (
                         <Badge className="w-full justify-center bg-green-500 hover:bg-green-600 text-white">
                           <Award className="h-3 w-3 mr-1" />
-                          100% University Verified
+                          {t('card.fullyVerified')}
                         </Badge>
                       )}
 
                       {/* View Portfolio Button */}
                       <Button className="w-full" variant="outline" asChild>
                         <Link href={`/students/${student.username}/public`}>
-                          View Portfolio
+                          {t('card.viewPortfolio')}
                           <ExternalLink className="h-4 w-4 ml-2" />
                         </Link>
                       </Button>
@@ -240,21 +242,21 @@ export default function FeaturedPortfoliosPage() {
         {/* CTA Section */}
         <section className="bg-gradient-to-r from-primary to-secondary text-white py-16">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-4">
-              Join 125,000+ Students on InTransparency
+            <h2 className="text-3xl font-display font-bold mb-4">
+              {t('cta.title')}
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              Create your verified portfolio in minutes and get discovered by top companies
+              {t('cta.description')}
             </p>
             <div className="flex gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
                 <Link href="/auth/register?role=student">
-                  Create Free Portfolio
+                  {t('cta.primaryButton')}
                 </Link>
               </Button>
               <Button size="lg" variant="outline" className="bg-white/10 border-white/30 hover:bg-white/20 text-white" asChild>
                 <Link href="/how-it-works">
-                  Learn How It Works
+                  {t('cta.secondaryButton')}
                 </Link>
               </Button>
             </div>

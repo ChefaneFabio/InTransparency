@@ -3691,5 +3691,39 @@
         "totalCountJobs": "18.934"
       }
     }
+  },
+  "studentsFeatured": {
+    "hero": {
+      "badge": "Talenti in Primo Piano",
+      "title": "Scopri Portfolio Verificati di Studenti",
+      "description": "Esplora progetti verificati dalle università dei migliori studenti. Tutti i portfolio sono autenticati dai sistemi istituzionali.",
+      "ctaStudent": "Crea il Tuo Portfolio",
+      "ctaRecruiter": "Cerca come Recruiter"
+    },
+    "filters": {
+      "label": "Filtra per:",
+      "all": "Tutti gli Studenti",
+      "topVerified": "Top Verificati",
+      "recent": "Aggiunti di Recente"
+    },
+    "loading": "Caricamento portfolio in primo piano...",
+    "empty": {
+      "title": "Nessun portfolio ancora",
+      "description": "Sii il primo a creare un portfolio verificato!",
+      "cta": "Crea il Tuo Portfolio"
+    },
+    "card": {
+      "projects": "Progetti",
+      "verified": "Verificato",
+      "skills": "Competenze",
+      "fullyVerified": "100% Verificato dall'Università",
+      "viewPortfolio": "Visualizza Portfolio"
+    },
+    "cta": {
+      "title": "Unisciti a 125.000+ Studenti su InTransparency",
+      "description": "Crea il tuo portfolio verificato in pochi minuti e fatti scoprire dalle migliori aziende",
+      "primaryButton": "Crea Portfolio Gratuito",
+      "secondaryButton": "Scopri Come Funziona"
+    }
   }
 }
