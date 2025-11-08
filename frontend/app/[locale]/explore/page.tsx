@@ -441,7 +441,7 @@ export default function ExplorePage() {
               {t('cta.subtitle')}
             </p>
             <Button size="lg" variant="secondary" asChild>
-              <Link href="/register?role=student">
+              <Link href="/auth/register?role=student">
                 {t('cta.createPortfolio')}
               </Link>
             </Button>

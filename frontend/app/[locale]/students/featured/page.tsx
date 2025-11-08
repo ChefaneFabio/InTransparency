@@ -93,12 +93,12 @@ export default function FeaturedPortfoliosPage() {
               </p>
               <div className="flex items-center justify-center gap-4">
                 <Button size="lg" variant="secondary" asChild>
-                  <Link href="/register?role=student">
+                  <Link href="/auth/register?role=student">
                     Create Your Portfolio
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="bg-white/10 border-white/30 hover:bg-white/20 text-white" asChild>
-                  <Link href="/register?role=company">
+                  <Link href="/auth/register?role=company">
                     Browse as Recruiter
                   </Link>
                 </Button>
@@ -157,7 +157,7 @@ export default function FeaturedPortfoliosPage() {
               <h3 className="text-xl font-semibold text-gray-900 mb-2">No portfolios yet</h3>
               <p className="text-gray-600 mb-6">Be the first to create a verified portfolio!</p>
               <Button asChild>
-                <Link href="/register?role=student">Create Your Portfolio</Link>
+                <Link href="/auth/register?role=student">Create Your Portfolio</Link>
               </Button>
             </div>
           ) : (
@@ -248,7 +248,7 @@ export default function FeaturedPortfoliosPage() {
             </p>
             <div className="flex gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
-                <Link href="/register?role=student">
+                <Link href="/auth/register?role=student">
                   Create Free Portfolio
                 </Link>
               </Button>

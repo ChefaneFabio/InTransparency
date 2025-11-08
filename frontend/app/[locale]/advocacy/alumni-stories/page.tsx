@@ -95,7 +95,7 @@ export default function AlumniStoriesPage() {
                   Share Your Story
                 </Button>
               </Link>
-              <Link href="/register">
+              <Link href="/auth/register">
                 <Button
                   size="lg"
                   variant="outline"

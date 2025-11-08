@@ -1,9 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import { Link } from '@/navigation'
 import Image from 'next/image'
 import { Facebook, Twitter, Linkedin, Github, Instagram, Mail, MapPin, Phone, Shield } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useToast } from '@/components/ui/use-toast'
 
 const social = [
   {
@@ -37,6 +39,42 @@ export function Footer() {
   const t = useTranslations()
   const tNav = useTranslations('nav')
   const tFooter = useTranslations('footer')
+  const { toast } = useToast()
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+  const [isSubscribing, setIsSubscribing] = useState(false)
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!newsletterEmail || !newsletterEmail.includes('@')) {
+      toast({
+        title: 'Invalid email',
+        description: 'Please enter a valid email address',
+        variant: 'destructive'
+      })
+      return
+    }
+
+    setIsSubscribing(true)
+
+    try {
+      // TODO: Replace with actual newsletter API endpoint
+      await new Promise(resolve => setTimeout(resolve, 1000))
+
+      toast({
+        title: 'Successfully subscribed!',
+        description: 'Thank you for subscribing to our newsletter.',
+      })
+      setNewsletterEmail('')
+    } catch (error) {
+      toast({
+        title: 'Subscription failed',
+        description: 'Please try again later.',
+        variant: 'destructive'
+      })
+    } finally {
+      setIsSubscribing(false)
+    }
+  }
 
   // Navigation structure using translations
   const navigation = {
@@ -157,16 +195,24 @@ export function Footer() {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md w-full md:w-auto">
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md w-full md:w-auto">
               <input
                 type="email"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
                 placeholder={tFooter('newsletter.placeholder')}
                 className="flex-1 px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                disabled={isSubscribing}
+                required
               />
-              <button className="px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-all whitespace-nowrap">
-                {tFooter('newsletter.subscribe')}
+              <button
+                type="submit"
+                disabled={isSubscribing}
+                className="px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-all whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubscribing ? 'Subscribing...' : tFooter('newsletter.subscribe')}
               </button>
-            </div>
+            </form>
           </div>
         </div>
 

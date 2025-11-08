@@ -72,7 +72,7 @@ export function CTA() {
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link href="#demo">
+              <Link href="/demo">
                 {t('main.secondaryCTA')}
               </Link>
             </Button>
