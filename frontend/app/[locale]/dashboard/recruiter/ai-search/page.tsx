@@ -47,6 +47,10 @@ type SearchCriteria = {
   gpaMin?: number
   experienceLevel?: string
   softSkills?: string[]
+  fieldOfStudy?: string[]
+  languages?: string[]
+  availability?: string
+  verificationLevel?: string
 }
 
 type Candidate = {
@@ -63,60 +67,90 @@ type Candidate = {
   projectCount: number
   aiScore: number
   availability: string
+  fieldOfStudy?: string
+  languages?: string[]
+  verificationScore?: number
 }
 
 const exampleQueries = [
-  "Find me Python developers with ML experience from top universities",
-  "I need a frontend engineer with React skills, recent grad from California",
-  "Looking for data scientists with strong communication skills, 3.5+ GPA",
-  "Show me candidates with leadership experience and full-stack skills"
+  "Find me Computer Science grads from Milan who speak English and Italian",
+  "I need Data Science students from Politecnico di Milano, available immediately",
+  "Looking for Engineering students with Python and ML, 100% verified profiles",
+  "Show me Business Administration candidates who speak 3+ languages, remote work"
 ]
 
 const mockCandidates: Candidate[] = [
   {
     id: '1',
-    name: 'Sarah Martinez',
-    initials: 'S.M.',
-    university: 'Stanford University',
+    name: 'Marco Rossi',
+    initials: 'M.R.',
+    university: 'Politecnico di Milano',
     major: 'Computer Science',
     gpa: 3.85,
     graduationYear: '2024',
-    location: 'San Francisco, CA',
+    location: 'Milan, Italy',
     skills: ['Python', 'Machine Learning', 'TensorFlow', 'React'],
     softSkills: ['Leadership', 'Communication', 'Teamwork'],
     projectCount: 8,
     aiScore: 94,
-    availability: 'Immediately'
+    availability: 'Available immediately',
+    fieldOfStudy: 'Engineering',
+    languages: ['Italian', 'English', 'Spanish'],
+    verificationScore: 100
   },
   {
     id: '2',
-    name: 'Michael Chen',
-    initials: 'M.C.',
-    university: 'MIT',
-    major: 'AI & Decision Making',
+    name: 'Sofia Bianchi',
+    initials: 'S.B.',
+    university: 'Università di Bologna',
+    major: 'Data Science',
     gpa: 3.92,
     graduationYear: '2024',
-    location: 'Boston, MA',
+    location: 'Bologna, Italy',
     skills: ['Python', 'Deep Learning', 'PyTorch', 'NLP'],
     softSkills: ['Problem-solving', 'Innovation', 'Collaboration'],
     projectCount: 12,
     aiScore: 97,
-    availability: 'Immediately'
+    availability: 'Available immediately',
+    fieldOfStudy: 'Data Science',
+    languages: ['Italian', 'English', 'French'],
+    verificationScore: 100
   },
   {
     id: '3',
-    name: 'Emily Rodriguez',
-    initials: 'E.R.',
-    university: 'Berkeley',
-    major: 'Data Science',
+    name: 'Giulia Ferrari',
+    initials: 'G.F.',
+    university: 'Sapienza Università di Roma',
+    major: 'Business Administration',
     gpa: 3.78,
     graduationYear: '2025',
-    location: 'Oakland, CA',
-    skills: ['Python', 'R', 'Machine Learning', 'SQL'],
+    location: 'Rome, Italy',
+    skills: ['Marketing', 'Strategy', 'Analytics', 'Excel'],
     softSkills: ['Analytical thinking', 'Communication', 'Presentation'],
     projectCount: 7,
     aiScore: 89,
-    availability: 'June 2025'
+    availability: 'Open to offers',
+    fieldOfStudy: 'Business Administration',
+    languages: ['Italian', 'English', 'German', 'Chinese'],
+    verificationScore: 95
+  },
+  {
+    id: '4',
+    name: 'Alessandro Conti',
+    initials: 'A.C.',
+    university: 'Politecnico di Torino',
+    major: 'Engineering',
+    gpa: 3.88,
+    graduationYear: '2024',
+    location: 'Remote',
+    skills: ['Python', 'Java', 'AWS', 'Docker'],
+    softSkills: ['Adaptability', 'Problem-solving', 'Teamwork'],
+    projectCount: 10,
+    aiScore: 92,
+    availability: 'Available',
+    fieldOfStudy: 'Engineering',
+    languages: ['Italian', 'English'],
+    verificationScore: 100
   }
 ]
 
@@ -147,23 +181,51 @@ export default function AISearchPage() {
     const lowerQuery = query.toLowerCase()
 
     // Skills detection
-    const skills = ['python', 'javascript', 'react', 'machine learning', 'ml', 'tensorflow', 'data science', 'java', 'aws', 'node.js', 'full-stack', 'frontend', 'backend']
+    const skills = ['python', 'javascript', 'react', 'machine learning', 'ml', 'tensorflow', 'data science', 'java', 'aws', 'node.js', 'full-stack', 'frontend', 'backend', 'docker', 'kubernetes', 'analytics', 'marketing', 'strategy']
     criteria.skills = skills.filter(skill => lowerQuery.includes(skill))
 
     // Soft skills detection
-    const softSkillsMap = ['leadership', 'communication', 'teamwork', 'collaboration', 'problem-solving', 'analytical', 'innovation']
+    const softSkillsMap = ['leadership', 'communication', 'teamwork', 'collaboration', 'problem-solving', 'analytical', 'innovation', 'adaptability', 'creativity']
     criteria.softSkills = softSkillsMap.filter(skill => lowerQuery.includes(skill))
 
-    // Universities
-    if (lowerQuery.includes('top universit') || lowerQuery.includes('ivy league')) {
-      criteria.universities = ['MIT', 'Stanford', 'Harvard', 'Berkeley']
+    // Field of Study detection
+    const fields = ['engineering', 'computer science', 'data science', 'business', 'economics', 'mathematics', 'physics', 'design', 'law', 'medicine']
+    criteria.fieldOfStudy = fields.filter(field => lowerQuery.includes(field))
+
+    // Universities - Italian universities
+    if (lowerQuery.includes('politecnico') || lowerQuery.includes('polimi')) {
+      criteria.universities = ['Politecnico di Milano', 'Politecnico di Torino']
+    }
+    if (lowerQuery.includes('bologna')) criteria.universities = ['Università di Bologna']
+    if (lowerQuery.includes('sapienza') || lowerQuery.includes('roma')) criteria.universities = ['Sapienza Università di Roma']
+    if (lowerQuery.includes('top universit') || lowerQuery.includes('best universit')) {
+      criteria.universities = ['Politecnico di Milano', 'Università di Bologna', 'Sapienza Università di Roma']
     }
 
-    // Location
-    if (lowerQuery.includes('california') || lowerQuery.includes('ca')) criteria.location = 'California'
-    if (lowerQuery.includes('bay area') || lowerQuery.includes('san francisco')) criteria.location = 'San Francisco Bay Area'
-    if (lowerQuery.includes('boston')) criteria.location = 'Boston'
+    // Location - Italian cities
+    if (lowerQuery.includes('milan') || lowerQuery.includes('milano')) criteria.location = 'Milan'
+    if (lowerQuery.includes('rome') || lowerQuery.includes('roma')) criteria.location = 'Rome'
+    if (lowerQuery.includes('bologna')) criteria.location = 'Bologna'
+    if (lowerQuery.includes('turin') || lowerQuery.includes('torino')) criteria.location = 'Turin'
+    if (lowerQuery.includes('florence') || lowerQuery.includes('firenze')) criteria.location = 'Florence'
     if (lowerQuery.includes('remote')) criteria.location = 'Remote'
+
+    // Languages detection
+    const languagesList = ['italian', 'italiano', 'english', 'inglese', 'spanish', 'spagnolo', 'french', 'francese', 'german', 'tedesco', 'chinese', 'cinese']
+    criteria.languages = languagesList.filter(lang => lowerQuery.includes(lang))
+    if (lowerQuery.includes('bilingual')) criteria.languages = ['Italian', 'English']
+    if (lowerQuery.includes('multilingual') || lowerQuery.match(/\d+\+?\s*language/)) {
+      criteria.languages = ['Italian', 'English', 'Spanish']
+    }
+
+    // Availability detection
+    if (lowerQuery.includes('immediately') || lowerQuery.includes('asap')) criteria.availability = 'Available immediately'
+    if (lowerQuery.includes('available now')) criteria.availability = 'Available'
+    if (lowerQuery.includes('open to offers')) criteria.availability = 'Open to offers'
+
+    // Verification level
+    if (lowerQuery.includes('100%') || lowerQuery.includes('fully verified')) criteria.verificationLevel = '100'
+    if (lowerQuery.includes('verified') || lowerQuery.includes('90%')) criteria.verificationLevel = '90+'
 
     // GPA
     const gpaMatch = lowerQuery.match(/(\d+\.\d+)\+?\s*gpa/)
@@ -173,8 +235,8 @@ export default function AISearchPage() {
     if (lowerQuery.includes('recent grad') || lowerQuery.includes('new grad')) {
       criteria.graduationYear = '2024-2025'
     }
-    if (lowerQuery.match(/202[4-5]/)) {
-      criteria.graduationYear = lowerQuery.match(/202[4-5]/)?.[0]
+    if (lowerQuery.match(/202[4-7]/)) {
+      criteria.graduationYear = lowerQuery.match(/202[4-7]/)?.[0]
     }
 
     // Experience level
@@ -202,6 +264,15 @@ export default function AISearchPage() {
         if (!hasSoftSkill) return false
       }
 
+      // Field of study match
+      if (criteria.fieldOfStudy && criteria.fieldOfStudy.length > 0) {
+        const hasField = criteria.fieldOfStudy.some(field =>
+          candidate.fieldOfStudy?.toLowerCase().includes(field.toLowerCase()) ||
+          candidate.major.toLowerCase().includes(field.toLowerCase())
+        )
+        if (!hasField) return false
+      }
+
       // University match
       if (criteria.universities && criteria.universities.length > 0) {
         const hasUniversity = criteria.universities.some(uni =>
@@ -213,6 +284,25 @@ export default function AISearchPage() {
       // Location match
       if (criteria.location && !candidate.location.includes(criteria.location)) {
         return false
+      }
+
+      // Languages match
+      if (criteria.languages && criteria.languages.length > 0) {
+        const hasLanguage = criteria.languages.some(lang =>
+          candidate.languages?.some(cl => cl.toLowerCase().includes(lang.toLowerCase()))
+        )
+        if (!hasLanguage) return false
+      }
+
+      // Availability match
+      if (criteria.availability && !candidate.availability.toLowerCase().includes(criteria.availability.toLowerCase())) {
+        return false
+      }
+
+      // Verification level
+      if (criteria.verificationLevel) {
+        if (criteria.verificationLevel === '100' && candidate.verificationScore !== 100) return false
+        if (criteria.verificationLevel === '90+' && (candidate.verificationScore || 0) < 90) return false
       }
 
       // GPA filter
@@ -247,6 +337,9 @@ export default function AISearchPage() {
       if (matchedCandidates.length > 0) {
         responseContent = `Great! I found **${matchedCandidates.length} candidate${matchedCandidates.length > 1 ? 's' : ''}** matching your requirements:\n\n`
 
+        if (criteria.fieldOfStudy && criteria.fieldOfStudy.length > 0) {
+          responseContent += `✅ Field: ${criteria.fieldOfStudy.join(', ')}\n`
+        }
         if (criteria.skills && criteria.skills.length > 0) {
           responseContent += `✅ Skills: ${criteria.skills.join(', ')}\n`
         }
@@ -254,16 +347,25 @@ export default function AISearchPage() {
           responseContent += `✅ Soft Skills: ${criteria.softSkills.join(', ')}\n`
         }
         if (criteria.universities) {
-          responseContent += `✅ From top universities\n`
+          responseContent += `✅ Universities: ${criteria.universities.join(', ')}\n`
         }
         if (criteria.location) {
           responseContent += `✅ Location: ${criteria.location}\n`
+        }
+        if (criteria.languages && criteria.languages.length > 0) {
+          responseContent += `✅ Languages: ${criteria.languages.join(', ')}\n`
+        }
+        if (criteria.availability) {
+          responseContent += `✅ Availability: ${criteria.availability}\n`
+        }
+        if (criteria.verificationLevel) {
+          responseContent += `✅ Verification: ${criteria.verificationLevel}% verified\n`
         }
         if (criteria.gpaMin) {
           responseContent += `✅ GPA: ${criteria.gpaMin}+\n`
         }
 
-        responseContent += `\n💡 You can refine your search by asking me to:\n- Add more requirements\n- Filter by specific universities\n- Focus on particular soft skills\n- Adjust GPA or graduation year`
+        responseContent += `\n💡 You can refine your search by asking me to:\n- Add field of study or language requirements\n- Filter by specific Italian universities or cities\n- Focus on verification level or availability\n- Adjust GPA, soft skills, or technical skills`
       } else {
         responseContent = "I couldn't find any candidates matching those exact criteria. Would you like to:\n\n1. Broaden the search parameters?\n2. Try different skills or qualifications?\n3. Search across more universities?"
       }
