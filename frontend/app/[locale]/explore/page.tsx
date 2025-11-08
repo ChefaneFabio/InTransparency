@@ -312,12 +312,12 @@ export default function ExplorePage() {
                 <CardContent className="space-y-6">
                   {/* Field of Study Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
                       <BookOpen className="h-4 w-4" />
                       {t('filters.fieldOfStudy')}
                     </h3>
                     <select
-                      className="w-full p-2 border rounded-md text-sm"
+                      className="w-full p-2 border border-gray-300 rounded-md text-sm bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
                       value={selectedField}
                       onChange={(e) => setSelectedField(e.target.value)}
                     >
@@ -330,12 +330,12 @@ export default function ExplorePage() {
 
                   {/* University Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
                       <GraduationCap className="h-4 w-4" />
                       {t('filters.university')}
                     </h3>
                     <select
-                      className="w-full p-2 border rounded-md text-sm"
+                      className="w-full p-2 border border-gray-300 rounded-md text-sm bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
                       value={selectedUniversity}
                       onChange={(e) => setSelectedUniversity(e.target.value)}
                     >
@@ -348,12 +348,12 @@ export default function ExplorePage() {
 
                   {/* Location Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
                       <MapPin className="h-4 w-4" />
                       {t('filters.location')}
                     </h3>
                     <select
-                      className="w-full p-2 border rounded-md text-sm"
+                      className="w-full p-2 border border-gray-300 rounded-md text-sm bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
                       value={selectedLocation}
                       onChange={(e) => setSelectedLocation(e.target.value)}
                     >
@@ -366,12 +366,12 @@ export default function ExplorePage() {
 
                   {/* Graduation Year Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
                       <Calendar className="h-4 w-4" />
                       {t('filters.graduationYear')}
                     </h3>
                     <select
-                      className="w-full p-2 border rounded-md text-sm"
+                      className="w-full p-2 border border-gray-300 rounded-md text-sm bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
                       value={selectedYear}
                       onChange={(e) => setSelectedYear(e.target.value)}
                     >
@@ -384,12 +384,12 @@ export default function ExplorePage() {
 
                   {/* Language Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
                       <Globe className="h-4 w-4" />
                       {t('filters.language')}
                     </h3>
                     <select
-                      className="w-full p-2 border rounded-md text-sm"
+                      className="w-full p-2 border border-gray-300 rounded-md text-sm bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
                       value={selectedLanguage}
                       onChange={(e) => setSelectedLanguage(e.target.value)}
                     >
@@ -402,12 +402,12 @@ export default function ExplorePage() {
 
                   {/* Availability Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
                       <Briefcase className="h-4 w-4" />
                       {t('filters.availability')}
                     </h3>
                     <select
-                      className="w-full p-2 border rounded-md text-sm"
+                      className="w-full p-2 border border-gray-300 rounded-md text-sm bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
                       value={selectedAvailability}
                       onChange={(e) => setSelectedAvailability(e.target.value)}
                     >
@@ -420,7 +420,7 @@ export default function ExplorePage() {
 
                   {/* Verification Status */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
                       <Shield className="h-4 w-4" />
                       {t('filters.verification')}
                     </h3>
@@ -446,7 +446,7 @@ export default function ExplorePage() {
 
                   {/* Skills Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
                       <Award className="h-4 w-4" />
                       {t('filters.skills', { count: popularSkills.length })}
                     </h3>
@@ -455,7 +455,7 @@ export default function ExplorePage() {
                     <Input
                       type="text"
                       placeholder={t('filters.searchSkills')}
-                      className="mb-3 text-sm"
+                      className="mb-3 text-sm bg-white text-gray-900 border-gray-300"
                       value={skillSearchQuery}
                       onChange={(e) => setSkillSearchQuery(e.target.value)}
                     />
