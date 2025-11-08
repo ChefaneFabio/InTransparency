@@ -18,7 +18,11 @@ import {
   ExternalLink,
   Filter,
   X,
-  Users
+  Users,
+  BookOpen,
+  Globe,
+  Briefcase,
+  Shield
 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -38,6 +42,10 @@ interface Student {
   verificationScore: number
   skillsCount: number
   topSkills: string[]
+  fieldOfStudy?: string
+  location?: string
+  languages?: string[]
+  availability?: string
 }
 
 export default function ExplorePage() {
@@ -49,6 +57,11 @@ export default function ExplorePage() {
   const [selectedYear, setSelectedYear] = useState<string>('')
   const [selectedSkill, setSelectedSkill] = useState<string>('')
   const [skillSearchQuery, setSkillSearchQuery] = useState('')
+  const [selectedField, setSelectedField] = useState<string>('')
+  const [selectedLocation, setSelectedLocation] = useState<string>('')
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('')
+  const [selectedAvailability, setSelectedAvailability] = useState<string>('')
+  const [verificationFilter, setVerificationFilter] = useState<string>('')
 
   // Mock data - replace with actual API call
   const mockStudents: Student[] = [
@@ -63,7 +76,11 @@ export default function ExplorePage() {
       projectsCount: 12,
       verificationScore: 100,
       skillsCount: 15,
-      topSkills: ['React', 'Python', 'Machine Learning']
+      topSkills: ['React', 'Python', 'Machine Learning'],
+      fieldOfStudy: 'Engineering',
+      location: 'Milan, Italy',
+      languages: ['Italian', 'English'],
+      availability: 'Available'
     },
     {
       id: '2',
@@ -76,12 +93,67 @@ export default function ExplorePage() {
       projectsCount: 8,
       verificationScore: 95,
       skillsCount: 12,
-      topSkills: ['Python', 'TensorFlow', 'SQL']
+      topSkills: ['Python', 'TensorFlow', 'SQL'],
+      fieldOfStudy: 'Data Science',
+      location: 'Bologna, Italy',
+      languages: ['Italian', 'English', 'Spanish'],
+      availability: 'Open to offers'
     }
   ]
 
-  const universities = ['Politecnico di Milano', 'Università di Bologna', 'Sapienza Università di Roma']
-  const years = ['2024', '2025', '2026']
+  const universities = ['Politecnico di Milano', 'Università di Bologna', 'Sapienza Università di Roma', 'Politecnico di Torino', 'Università di Padova']
+  const years = ['2024', '2025', '2026', '2027']
+
+  const fieldsOfStudy = [
+    'Engineering',
+    'Computer Science',
+    'Data Science',
+    'Business Administration',
+    'Economics',
+    'Mathematics',
+    'Physics',
+    'Chemistry',
+    'Biology',
+    'Medicine',
+    'Law',
+    'Psychology',
+    'Architecture',
+    'Design',
+    'Arts',
+    'Literature',
+    'Philosophy',
+    'Political Science'
+  ]
+
+  const locations = [
+    'Milan, Italy',
+    'Rome, Italy',
+    'Bologna, Italy',
+    'Turin, Italy',
+    'Florence, Italy',
+    'Naples, Italy',
+    'Venice, Italy',
+    'Padua, Italy',
+    'Remote'
+  ]
+
+  const languages = [
+    'Italian',
+    'English',
+    'Spanish',
+    'French',
+    'German',
+    'Chinese',
+    'Arabic',
+    'Portuguese'
+  ]
+
+  const availabilityOptions = [
+    'Available immediately',
+    'Available',
+    'Open to offers',
+    'Not looking'
+  ]
 
   // Comprehensive skills covering technical, soft, and business competencies
   const popularSkills = [
@@ -131,7 +203,7 @@ export default function ExplorePage() {
     // TODO: Replace with actual API call with filters
     setStudents(mockStudents)
     setLoading(false)
-  }, [searchQuery, selectedUniversity, selectedYear, selectedSkill])
+  }, [searchQuery, selectedUniversity, selectedYear, selectedSkill, selectedField, selectedLocation, selectedLanguage, selectedAvailability, verificationFilter])
 
   const clearFilters = () => {
     setSearchQuery('')
@@ -139,9 +211,14 @@ export default function ExplorePage() {
     setSelectedYear('')
     setSelectedSkill('')
     setSkillSearchQuery('')
+    setSelectedField('')
+    setSelectedLocation('')
+    setSelectedLanguage('')
+    setSelectedAvailability('')
+    setVerificationFilter('')
   }
 
-  const hasActiveFilters = searchQuery || selectedUniversity || selectedYear || selectedSkill
+  const hasActiveFilters = searchQuery || selectedUniversity || selectedYear || selectedSkill || selectedField || selectedLocation || selectedLanguage || selectedAvailability || verificationFilter
 
   return (
     <div className="min-h-screen hero-bg">
@@ -233,25 +310,58 @@ export default function ExplorePage() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-6">
+                  {/* Field of Study Filter */}
+                  <div>
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                      <BookOpen className="h-4 w-4" />
+                      {t('filters.fieldOfStudy')}
+                    </h3>
+                    <select
+                      className="w-full p-2 border rounded-md text-sm"
+                      value={selectedField}
+                      onChange={(e) => setSelectedField(e.target.value)}
+                    >
+                      <option value="">{t('filters.allFields')}</option>
+                      {fieldsOfStudy.map((field) => (
+                        <option key={field} value={field}>{field}</option>
+                      ))}
+                    </select>
+                  </div>
+
                   {/* University Filter */}
                   <div>
                     <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
                       <GraduationCap className="h-4 w-4" />
                       {t('filters.university')}
                     </h3>
-                    <div className="space-y-2">
+                    <select
+                      className="w-full p-2 border rounded-md text-sm"
+                      value={selectedUniversity}
+                      onChange={(e) => setSelectedUniversity(e.target.value)}
+                    >
+                      <option value="">{t('filters.allUniversities')}</option>
                       {universities.map((uni) => (
-                        <Button
-                          key={uni}
-                          variant={selectedUniversity === uni ? 'default' : 'outline'}
-                          size="sm"
-                          className="w-full justify-start text-left"
-                          onClick={() => setSelectedUniversity(selectedUniversity === uni ? '' : uni)}
-                        >
-                          {uni}
-                        </Button>
+                        <option key={uni} value={uni}>{uni}</option>
                       ))}
-                    </div>
+                    </select>
+                  </div>
+
+                  {/* Location Filter */}
+                  <div>
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                      <MapPin className="h-4 w-4" />
+                      {t('filters.location')}
+                    </h3>
+                    <select
+                      className="w-full p-2 border rounded-md text-sm"
+                      value={selectedLocation}
+                      onChange={(e) => setSelectedLocation(e.target.value)}
+                    >
+                      <option value="">{t('filters.allLocations')}</option>
+                      {locations.map((location) => (
+                        <option key={location} value={location}>{location}</option>
+                      ))}
+                    </select>
                   </div>
 
                   {/* Graduation Year Filter */}
@@ -260,18 +370,77 @@ export default function ExplorePage() {
                       <Calendar className="h-4 w-4" />
                       {t('filters.graduationYear')}
                     </h3>
-                    <div className="space-y-2">
+                    <select
+                      className="w-full p-2 border rounded-md text-sm"
+                      value={selectedYear}
+                      onChange={(e) => setSelectedYear(e.target.value)}
+                    >
+                      <option value="">{t('filters.allYears')}</option>
                       {years.map((year) => (
-                        <Button
-                          key={year}
-                          variant={selectedYear === year ? 'default' : 'outline'}
-                          size="sm"
-                          className="w-full justify-start"
-                          onClick={() => setSelectedYear(selectedYear === year ? '' : year)}
-                        >
-                          {t('filters.classOf', { year })}
-                        </Button>
+                        <option key={year} value={year}>{t('filters.classOf', { year })}</option>
                       ))}
+                    </select>
+                  </div>
+
+                  {/* Language Filter */}
+                  <div>
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                      <Globe className="h-4 w-4" />
+                      {t('filters.language')}
+                    </h3>
+                    <select
+                      className="w-full p-2 border rounded-md text-sm"
+                      value={selectedLanguage}
+                      onChange={(e) => setSelectedLanguage(e.target.value)}
+                    >
+                      <option value="">{t('filters.allLanguages')}</option>
+                      {languages.map((lang) => (
+                        <option key={lang} value={lang}>{lang}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Availability Filter */}
+                  <div>
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                      <Briefcase className="h-4 w-4" />
+                      {t('filters.availability')}
+                    </h3>
+                    <select
+                      className="w-full p-2 border rounded-md text-sm"
+                      value={selectedAvailability}
+                      onChange={(e) => setSelectedAvailability(e.target.value)}
+                    >
+                      <option value="">{t('filters.allAvailability')}</option>
+                      {availabilityOptions.map((option) => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Verification Status */}
+                  <div>
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                      <Shield className="h-4 w-4" />
+                      {t('filters.verification')}
+                    </h3>
+                    <div className="space-y-2">
+                      <Button
+                        variant={verificationFilter === '100' ? 'default' : 'outline'}
+                        size="sm"
+                        className="w-full justify-start"
+                        onClick={() => setVerificationFilter(verificationFilter === '100' ? '' : '100')}
+                      >
+                        {t('filters.fullyVerified')}
+                      </Button>
+                      <Button
+                        variant={verificationFilter === '90+' ? 'default' : 'outline'}
+                        size="sm"
+                        className="w-full justify-start"
+                        onClick={() => setVerificationFilter(verificationFilter === '90+' ? '' : '90+')}
+                      >
+                        {t('filters.highlyVerified')}
+                      </Button>
                     </div>
                   </div>
 
