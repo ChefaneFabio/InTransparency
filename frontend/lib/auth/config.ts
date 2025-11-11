@@ -76,6 +76,16 @@ export const authOptions: NextAuthOptions = {
             : user.username,
           image: user.photo,
           role: user.role,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          company: user.company,
+          jobTitle: user.jobTitle,
+          university: user.university,
+          degree: user.degree,
+          photo: user.photo,
+          username: user.username,
+          subscriptionTier: user.subscriptionTier,
+          profilePublic: user.profilePublic,
         }
       }
     })
@@ -140,6 +150,13 @@ export const authOptions: NextAuthOptions = {
           token.username = dbUser.username
           token.subscriptionTier = dbUser.subscriptionTier
           token.profilePublic = dbUser.profilePublic
+          token.firstName = dbUser.firstName
+          token.lastName = dbUser.lastName
+          token.company = dbUser.company
+          token.jobTitle = dbUser.jobTitle
+          token.university = dbUser.university
+          token.degree = dbUser.degree
+          token.photo = dbUser.photo
         }
       }
 
@@ -156,9 +173,16 @@ export const authOptions: NextAuthOptions = {
       if (token && session.user) {
         session.user.id = token.id as string
         session.user.role = token.role as string
-        session.user.username = token.username as string
-        session.user.subscriptionTier = token.subscriptionTier as string
-        session.user.profilePublic = token.profilePublic as boolean
+        session.user.username = token.username as string | undefined
+        session.user.subscriptionTier = token.subscriptionTier as string | undefined
+        session.user.profilePublic = token.profilePublic as boolean | undefined
+        session.user.firstName = token.firstName as string | undefined
+        session.user.lastName = token.lastName as string | undefined
+        session.user.company = token.company as string | undefined
+        session.user.jobTitle = token.jobTitle as string | undefined
+        session.user.university = token.university as string | undefined
+        session.user.degree = token.degree as string | undefined
+        session.user.photo = token.photo as string | undefined
       }
 
       return session

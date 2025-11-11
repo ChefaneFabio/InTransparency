@@ -12,6 +12,13 @@ declare module "next-auth" {
       username?: string
       subscriptionTier?: string
       profilePublic?: boolean
+      firstName?: string
+      lastName?: string
+      company?: string
+      jobTitle?: string
+      university?: string
+      degree?: string
+      photo?: string
     }
   }
 
@@ -24,6 +31,13 @@ declare module "next-auth" {
     username?: string
     subscriptionTier?: string
     profilePublic?: boolean
+    firstName?: string
+    lastName?: string
+    company?: string
+    jobTitle?: string
+    university?: string
+    degree?: string
+    photo?: string
   }
 }
 
@@ -35,5 +49,12 @@ declare module "next-auth/jwt" {
     username?: string
     subscriptionTier?: string
     profilePublic?: boolean
+    firstName?: string
+    lastName?: string
+    company?: string
+    jobTitle?: string
+    university?: string
+    degree?: string
+    photo?: string
   }
 }
