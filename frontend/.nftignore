@@ -1,0 +1,31 @@
+# Next.js File Tracing Ignore
+# Excludes directories from serverless function dependency tracing
+
+# Node modules binaries
+node_modules/@swc/**
+node_modules/@esbuild/**
+node_modules/webpack/**
+node_modules/terser/**
+node_modules/@next/swc-*/**
+
+# Git directory
+.git/**
+
+# Build artifacts
+.next/**
+build/**
+
+# Documentation
+**/*.md
+!README.md
+
+# Tests
+**/__tests__/**
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+
+# Development
+.vscode/**
+.idea/**
