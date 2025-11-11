@@ -85,22 +85,17 @@ const nextConfig = {
     } : false
   },
 
+  // Output configuration - disable file tracing to prevent stack overflow
+  output: 'standalone',
+
   // Experimental features
   experimental: {
     // Enable modern JavaScript output
     esmExternals: true,
     // Server components
     serverComponentsExternalPackages: ['@prisma/client'],
-    // Optimize output file tracing to prevent stack overflow
-    outputFileTracingExcludes: {
-      '*': [
-        'node_modules/@swc/core-linux-x64-gnu',
-        'node_modules/@swc/core-linux-x64-musl',
-        'node_modules/@esbuild/linux-x64',
-        '.git/**',
-        '**/*.log',
-      ],
-    },
+    // Disable output file tracing that causes stack overflow with Prisma
+    outputFileTracing: false,
   },
 
   // Webpack configuration to handle process.env in client
