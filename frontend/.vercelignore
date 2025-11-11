@@ -2,3 +2,4 @@ node_modules/@swc/**
 node_modules/@esbuild/**
 .git/
 *.log
+# Trigger rebuild with Root Directory fix
