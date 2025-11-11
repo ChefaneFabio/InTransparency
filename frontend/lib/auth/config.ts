@@ -73,17 +73,17 @@ export const authOptions: NextAuthOptions = {
           email: user.email,
           name: user.firstName && user.lastName
             ? `${user.firstName} ${user.lastName}`
-            : user.username,
-          image: user.photo,
+            : user.username || undefined,
+          image: user.photo || undefined,
           role: user.role,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          company: user.company,
-          jobTitle: user.jobTitle,
-          university: user.university,
-          degree: user.degree,
-          photo: user.photo,
-          username: user.username,
+          firstName: user.firstName || undefined,
+          lastName: user.lastName || undefined,
+          company: user.company || undefined,
+          jobTitle: user.jobTitle || undefined,
+          university: user.university || undefined,
+          degree: user.degree || undefined,
+          photo: user.photo || undefined,
+          username: user.username || undefined,
           subscriptionTier: user.subscriptionTier,
           profilePublic: user.profilePublic,
         }
@@ -147,16 +147,16 @@ export const authOptions: NextAuthOptions = {
         })
 
         if (dbUser) {
-          token.username = dbUser.username
+          token.username = dbUser.username || undefined
           token.subscriptionTier = dbUser.subscriptionTier
           token.profilePublic = dbUser.profilePublic
-          token.firstName = dbUser.firstName
-          token.lastName = dbUser.lastName
-          token.company = dbUser.company
-          token.jobTitle = dbUser.jobTitle
-          token.university = dbUser.university
-          token.degree = dbUser.degree
-          token.photo = dbUser.photo
+          token.firstName = dbUser.firstName || undefined
+          token.lastName = dbUser.lastName || undefined
+          token.company = dbUser.company || undefined
+          token.jobTitle = dbUser.jobTitle || undefined
+          token.university = dbUser.university || undefined
+          token.degree = dbUser.degree || undefined
+          token.photo = dbUser.photo || undefined
         }
       }
 
