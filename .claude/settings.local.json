@@ -84,7 +84,9 @@
       "Bash(jobs)",
       "Bash(git log:*)",
       "Bash(ls:*)",
-      "Bash(git remote get-url:*)"
+      "Bash(git remote get-url:*)",
+      "Bash(do echo '=== $page ===')",
+      "Bash(do echo \"=== $key ===\")"
     ],
     "defaultMode": "acceptEdits"
   }

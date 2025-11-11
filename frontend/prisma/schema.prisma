@@ -237,6 +237,8 @@ model User {
   lastLoginAt       DateTime?
 
   // Relations
+  accounts          Account[]
+  sessions          Session[]
   projects          Project[]
   subscriptionHistory Subscription[]
   referrals         Referral[]       @relation("ReferredUsers")
@@ -244,6 +246,8 @@ model User {
   analytics         Analytics[]
   messages          Message[]
   endorsements      ProfessorEndorsement[] @relation("StudentEndorsements")
+  jobs              Job[]            @relation("RecruiterJobs")
+  applications      Application[]    @relation("ApplicantApplications")
 
   @@index([email])
   @@index([username])
@@ -284,6 +288,45 @@ enum ReferralTier {
   SILVER   // 3-9 referrals
   GOLD     // 10-49 referrals
   PLATINUM // 50+ referrals
+}
+
+// NextAuth Models for Authentication
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
 }
 
 // Project Model - Multi-Discipline Support
@@ -1061,4 +1104,178 @@ model PsychometricQuestion {
   @@index([dimension])
   @@index([isActive])
   @@index([orderIndex])
+}
+
+// Job Posting Model
+model Job {
+  id                String    @id @default(cuid())
+
+  // Recruiter Info
+  recruiterId       String
+  recruiter         User      @relation("RecruiterJobs", fields: [recruiterId], references: [id], onDelete: Cascade)
+
+  // Company Info
+  companyName       String
+  companyLogo       String?
+  companyWebsite    String?
+  companySize       String?   // "1-10", "11-50", "51-200", "201-500", "500+"
+  companyIndustry   String?
+
+  // Job Details
+  title             String
+  description       String    @db.Text
+  responsibilities  String?   @db.Text
+  requirements      String?   @db.Text
+  niceToHave        String?   @db.Text
+
+  // Job Type & Location
+  jobType           JobType   @default(FULL_TIME)
+  workLocation      WorkLocation @default(HYBRID)
+  location          String?   // City, Country
+  remoteOk          Boolean   @default(false)
+
+  // Compensation
+  salaryMin         Int?
+  salaryMax         Int?
+  salaryCurrency    String    @default("EUR")
+  salaryPeriod      String    @default("yearly") // "yearly", "monthly", "hourly"
+  showSalary        Boolean   @default(false)
+
+  // Required Skills & Qualifications
+  requiredSkills    String[]  @default([])
+  preferredSkills   String[]  @default([])
+  education         String?   // "Bachelor's", "Master's", "PhD", etc.
+  experience        String?   // "0-1 years", "2-3 years", "5+ years"
+  languages         String[]  @default([])
+
+  // Target Disciplines (from Project disciplines)
+  targetDisciplines ProjectDiscipline[]  @default([])
+
+  // Application Settings
+  applicationUrl    String?   // External application URL
+  applicationEmail  String?
+  internalApply     Boolean   @default(true)  // Allow apply through platform
+  requireCV         Boolean   @default(false)
+  requireCoverLetter Boolean  @default(false)
+  customQuestions   Json?     // Array of custom application questions
+
+  // Status & Visibility
+  status            JobStatus @default(DRAFT)
+  isPublic          Boolean   @default(false)
+  isFeatured        Boolean   @default(false)
+
+  // SEO & Discoverability
+  slug              String    @unique
+  tags              String[]  @default([])
+  views             Int       @default(0)
+
+  // Deadlines
+  postedAt          DateTime?
+  expiresAt         DateTime?
+  closedAt          DateTime?
+
+  // Relations
+  applications      Application[]
+
+  // Timestamps
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([recruiterId])
+  @@index([status])
+  @@index([isPublic])
+  @@index([jobType])
+  @@index([workLocation])
+  @@index([postedAt])
+  @@index([slug])
+}
+
+// Job Application Model
+model Application {
+  id                String    @id @default(cuid())
+
+  // Relations
+  jobId             String
+  job               Job       @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  applicantId       String
+  applicant         User      @relation("ApplicantApplications", fields: [applicantId], references: [id], onDelete: Cascade)
+
+  // Application Materials
+  coverLetter       String?   @db.Text
+  cvUrl             String?
+  portfolioUrl      String?
+  customAnswers     Json?     // Answers to custom questions
+
+  // Selected Projects (student can choose which projects to highlight)
+  selectedProjects  String[]  @default([]) // Array of project IDs
+
+  // Status & Tracking
+  status            ApplicationStatus @default(PENDING)
+  isRead            Boolean   @default(false)
+  isStarred         Boolean   @default(false)
+
+  // Recruiter Notes
+  recruiterNotes    String?   @db.Text
+  rating            Int?      // 1-5 star rating
+
+  // Interview Scheduling
+  interviewDate     DateTime?
+  interviewType     String?   // "phone", "video", "in-person"
+  interviewNotes    String?   @db.Text
+
+  // Rejection/Offer
+  rejectionReason   String?
+  offerDetails      Json?     // Salary, start date, etc.
+
+  // Timestamps
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  respondedAt       DateTime? // When recruiter responded
+
+  @@unique([jobId, applicantId]) // One application per job per user
+  @@index([jobId])
+  @@index([applicantId])
+  @@index([status])
+  @@index([isRead])
+  @@index([createdAt])
+}
+
+// Job Type Enum
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  INTERNSHIP
+  TEMPORARY
+  FREELANCE
+}
+
+// Work Location Enum
+enum WorkLocation {
+  REMOTE
+  HYBRID
+  ON_SITE
+}
+
+// Job Status Enum
+enum JobStatus {
+  DRAFT       // Not yet published
+  ACTIVE      // Currently accepting applications
+  PAUSED      // Temporarily not accepting applications
+  CLOSED      // No longer accepting applications
+  FILLED      // Position has been filled
+  CANCELLED   // Job posting cancelled
+}
+
+// Application Status Enum
+enum ApplicationStatus {
+  PENDING       // Application submitted, awaiting review
+  REVIEWING     // Recruiter is reviewing
+  SHORTLISTED   // Moved to shortlist
+  INTERVIEW     // Interview scheduled or completed
+  OFFER         // Offer extended
+  ACCEPTED      // Offer accepted by candidate
+  REJECTED      // Application rejected
+  WITHDRAWN     // Candidate withdrew application
 }

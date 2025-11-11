@@ -194,104 +194,16 @@
       "placementBoost": "aumento placement istituzionale"
     },
     "cta": {
-      "main": {
-        "title": "Trasforma i tuoi progetti in",
-        "titleHighlight": "opportunità di carriera",
-        "subtitle": "Usa InTransparency per mostrare il tuo lavoro, connetterti con opportunità e far progredire la tua carriera.",
-        "benefits": {
-          "0": "Analisi progetti AI-powered",
-          "1": "Generazione storie professionali",
-          "2": "Matching intelligente con aziende",
-          "3": "Connessioni dirette con recruiter",
-          "4": "Tracciamento progressi carriera",
-          "5": "Network collaborazione tra pari"
-        },
-        "primaryCTA": "Inizia Gratis",
-        "secondaryCTA": "Guarda Demo",
-        "finePrint": "Nessuna carta di credito richiesta • Inizia a mostrare il tuo lavoro in minuti • Comincia oggi"
+      "students": {
+        "title": "Pronto a Essere Scoperto?",
+        "subtitle": "Unisciti a 125.000+ studenti che vengono scoperti da aziende top",
+        "button": "Crea Portfolio Gratuito"
       },
-      "pricing": {
-        "title": "Scegli il tuo piano",
-        "subtitle": "Inizia gratis e aggiorna man mano che la tua carriera cresce",
-        "mostPopular": "Più Popolare",
-        "tiers": {
-          "0": {
-            "name": "Studente",
-            "price": "Gratis",
-            "description": "Perfetto per studenti che iniziano",
-            "features": {
-              "0": "Carica fino a 5 progetti",
-              "1": "Analisi AI base",
-              "2": "Storie professionali",
-              "3": "Accesso alla community",
-              "4": "Supporto email"
-            },
-            "cta": "Inizia Gratis"
-          },
-          "1": {
-            "name": "Pro Studente",
-            "price": "€9",
-            "period": "/mese",
-            "description": "Funzionalità avanzate per studenti seri",
-            "features": {
-              "0": "Progetti illimitati",
-              "1": "Analisi AI avanzata",
-              "2": "Matching prioritario con aziende",
-              "3": "Creazione portfolio video",
-              "4": "Messaggistica diretta recruiter",
-              "5": "Supporto prioritario"
-            },
-            "cta": "Aggiorna a Pro"
-          },
-          "2": {
-            "name": "Università",
-            "price": "Personalizzato",
-            "description": "Soluzione enterprise per istituzioni",
-            "features": {
-              "0": "Accesso per tutta l'istituzione",
-              "1": "Dashboard analytics studenti",
-              "2": "Tracciamento placement",
-              "3": "Partnership con industrie",
-              "4": "Branding personalizzato",
-              "5": "Supporto dedicato"
-            },
-            "cta": "Contatta Vendite"
-          }
-        },
-        "allPlansInclude": "Tutti i piani includono sicurezza SSL, backup dati e conformità GDPR"
-      },
-      "socialProof": {
-        "title": "Vedi Cosa Stanno Costruendo gli Studenti",
-        "subtitle": "Studenti reali. Progetti reali. Risultati reali. Sfoglia portfolio verificati della tua università.",
-        "stats": {
-          "0": {
-            "value": "125.000+",
-            "label": "Studenti con portfolio verificati"
-          },
-          "1": {
-            "value": "3x Più Veloce",
-            "label": "Tempo medio per essere assunti"
-          },
-          "2": {
-            "value": "10.000+",
-            "label": "Aziende che assumono talenti verificati"
-          }
-        },
-        "readStories": "Leggi Storie di Successo",
-        "browsePortfolios": "Sfoglia Portfolio Studenti"
-      },
-      "finalBanner": {
-        "title": "Pronto a sbloccare il tuo potenziale?",
-        "subtitle": "Trasforma i tuoi progetti accademici in storie di carriera convincenti. Inizia il tuo viaggio con InTransparency oggi.",
-        "createAccount": "Crea Account Gratuito",
-        "schedulDemo": "Prenota Demo",
-        "benefits": {
-          "0": "Piano gratuito per sempre",
-          "1": "Nessun costo di setup",
-          "2": "Cancella in qualsiasi momento"
-        }
-      },
-      "trustIndicator": "Connettiti con le migliori università e aziende"
+      "companies": {
+        "title": "Pronto a Assumere Talento Verificato?",
+        "subtitle": "Sfoglia gratis, paga solo quando contatti. Niente abbonamenti.",
+        "button": "Inizia a Cercare Gratis"
+      }
     },
     "howItWorksPage": {
       "title": "Come Funziona",
@@ -419,6 +331,106 @@
         "getStarted": "Inizia Gratis",
         "viewPricing": "Vedi Prezzi"
       }
+    },
+    "cta": {
+      "main": {
+        "title": "Trasforma i tuoi progetti in",
+        "titleHighlight": "opportunità di carriera",
+        "subtitle": "Usa InTransparency per mostrare il tuo lavoro, connetterti con opportunità e far progredire la tua carriera.",
+        "benefits": {
+          "0": "Analisi progetti AI-powered",
+          "1": "Generazione storie professionali",
+          "2": "Matching intelligente con aziende",
+          "3": "Connessioni dirette con recruiter",
+          "4": "Tracciamento progressi carriera",
+          "5": "Network collaborazione tra pari"
+        },
+        "primaryCTA": "Inizia Gratis",
+        "secondaryCTA": "Guarda Demo",
+        "finePrint": "Nessuna carta di credito richiesta • Inizia a mostrare il tuo lavoro in minuti • Comincia oggi"
+      },
+      "pricing": {
+        "title": "Scegli il tuo piano",
+        "subtitle": "Inizia gratis e aggiorna man mano che la tua carriera cresce",
+        "mostPopular": "Più Popolare",
+        "tiers": {
+          "0": {
+            "name": "Studente",
+            "price": "Gratis",
+            "description": "Perfetto per studenti che iniziano",
+            "features": {
+              "0": "Carica fino a 5 progetti",
+              "1": "Analisi AI base",
+              "2": "Storie professionali",
+              "3": "Accesso alla community",
+              "4": "Supporto email"
+            },
+            "cta": "Inizia Gratis"
+          },
+          "1": {
+            "name": "Pro Studente",
+            "price": "€9",
+            "period": "/mese",
+            "description": "Funzionalità avanzate per studenti seri",
+            "features": {
+              "0": "Progetti illimitati",
+              "1": "Analisi AI avanzata",
+              "2": "Matching prioritario con aziende",
+              "3": "Creazione portfolio video",
+              "4": "Messaggistica diretta recruiter",
+              "5": "Supporto prioritario"
+            },
+            "cta": "Aggiorna a Pro"
+          },
+          "2": {
+            "name": "Università",
+            "price": "Personalizzato",
+            "description": "Soluzione enterprise per istituzioni",
+            "features": {
+              "0": "Accesso per tutta l'istituzione",
+              "1": "Dashboard analytics studenti",
+              "2": "Tracciamento placement",
+              "3": "Partnership con industrie",
+              "4": "Branding personalizzato",
+              "5": "Supporto dedicato"
+            },
+            "cta": "Contatta Vendite"
+          }
+        },
+        "allPlansInclude": "Tutti i piani includono sicurezza SSL, backup dati e conformità GDPR"
+      },
+      "socialProof": {
+        "title": "Vedi Cosa Stanno Costruendo gli Studenti",
+        "subtitle": "Studenti reali. Progetti reali. Risultati reali. Sfoglia portfolio verificati della tua università.",
+        "stats": {
+          "0": {
+            "value": "125.000+",
+            "label": "Studenti con portfolio verificati"
+          },
+          "1": {
+            "value": "3x Più Veloce",
+            "label": "Tempo medio per essere assunti"
+          },
+          "2": {
+            "value": "10.000+",
+            "label": "Aziende che assumono talenti verificati"
+          }
+        },
+        "readStories": "Leggi Storie di Successo",
+        "browsePortfolios": "Sfoglia Portfolio Studenti"
+      },
+      "finalBanner": {
+        "title": "Pronto a sbloccare il tuo potenziale?",
+        "subtitle": "Trasforma i tuoi progetti accademici in storie di carriera convincenti. Inizia il tuo viaggio con InTransparency oggi.",
+        "createAccount": "Crea Account Gratuito",
+        "schedulDemo": "Prenota Demo",
+        "benefits": {
+          "0": "Piano gratuito per sempre",
+          "1": "Nessun costo di setup",
+          "2": "Cancella in qualsiasi momento"
+        }
+      },
+      "trustIndicator": "Connettiti con le migliori università e aziende"
     }
   },
   "footer": {
@@ -765,6 +777,7 @@
       "timeToOffer": "Tempo per Offerta"
     },
     "whyItWorks": {
+      "title": "Perché InTransparency Funziona",
       "0": {
         "title": "Verifica Universitaria",
         "description": "I tuoi progetti sono verificati dalla tua istituzione, dando ai recruiter fiducia nel tuo lavoro senza lunghi screening."
@@ -776,8 +789,7 @@
       "2": {
         "title": "Match di Qualità Superiore",
         "description": "I recruiter vedono il tuo lavoro reale in anticipo. Questo porta a conversazioni migliori, colloqui più veloci e tassi di offerta più alti."
-      },
-      "title": "Perché InTransparency Funziona"
+      }
     },
     "cta": {
       "title": "Pronto a Scrivere la Tua Storia di Successo?",
@@ -794,93 +806,48 @@
       "searchPlaceholder": "Cerca per nome, competenza o università...",
       "stats": {
         "students": "Studenti",
-        "verified": "Verificato",
+        "verified": "Verificati",
         "skills": "Competenze"
       }
     },
     "filters": {
       "title": "Filtri",
       "clear": "Cancella",
-      "fieldOfStudy": "Campo di Studio",
-      "allFields": "Tutti i Campi",
       "university": "Università",
-      "allUniversities": "Tutte le Università",
-      "location": "Località",
-      "allLocations": "Tutte le Località",
       "graduationYear": "Anno di Laurea",
-      "allYears": "Tutti gli Anni",
-      "classOf": "Classe del {{year}}",
-      "language": "Lingua",
-      "allLanguages": "Tutte le Lingue",
-      "availability": "Disponibilità",
-      "allAvailability": "Tutte le Disponibilità",
-      "verification": "Verifica",
-      "fullyVerified": "100% Verificato",
-      "highlyVerified": "90%+ Verificato",
-      "skills": "Competenze ({{count}}+)",
+      "classOf": "Classe del",
+      "skills": "Competenze",
       "searchSkills": "Cerca competenze...",
-      "noSkillsFound": "Nessuna competenza trovata per '{{query}}'",
-      "filtered": "Risultati filtrati"
+      "noSkillsFound": "Nessuna competenza trovata corrispondente a"
     },
     "results": {
       "loading": "Caricamento...",
-      "studentsFound": "{{count}} Studenti Trovati",
-      "filtered": "Mostrando risultati filtrati",
-      "loadingPortfolios": "Caricamento portfolio..."
+      "studentsFound": "Studenti Trovati",
+      "showingFiltered": "Mostrando risultati filtrati",
+      "loadingPortfolios": "Caricamento portfolio...",
+      "noStudents": {
+        "title": "Nessuno studente trovato",
+        "description": "Prova a modificare i tuoi filtri o la query di ricerca",
+        "clearButton": "Cancella Tutti i Filtri"
+      }
     },
-    "empty": {
-      "title": "Nessuno studente trovato",
-      "description": "Prova a modificare i tuoi filtri o la query di ricerca",
-      "clearFilters": "Cancella Tutti i Filtri"
-    },
-    "card": {
-      "classOf": "Classe del {{year}}",
+    "studentCard": {
+      "classOf": "Classe del",
       "stats": {
         "projects": "Progetti",
-        "verified": "Verificato",
+        "verified": "Verificati",
         "skills": "Competenze"
       },
-      "topSkills": "Competenze Principali",
-      "viewPortfolio": "Visualizza Portfolio"
+      "topSkills": "Competenze Principali:",
+      "viewPortfolio": "Visualizza Portfolio Completo"
     },
     "cta": {
       "title": "Pronto per Essere Scoperto?",
       "subtitle": "Unisciti a migliaia di studenti verificati e mostra il tuo lavoro alle migliori aziende",
-      "createPortfolio": "Crea il Tuo Portfolio Gratuito"
+      "button": "Crea il Tuo Portfolio Gratuito"
     }
   },
   "auth": {
-    "signInToYourAccount": "Accedi al tuo account",
-    "createYourAccount": "Crea il tuo account",
-    "continueWithGoogle": "Continua con Google",
-    "continueWithGitHub": "Continua con GitHub",
-    "orContinueWith": "oppure continua con",
-    "email": "Email",
-    "password": "Password",
-    "confirmPassword": "Conferma Password",
-    "firstName": "Nome",
-    "lastName": "Cognome",
-    "iAm": "Sono un/una",
-    "student": "Studente",
-    "recruiter": "Recruiter",
-    "university": "Università",
-    "forgotPassword": "Password dimenticata?",
-    "signIn": "Accedi",
-    "signUp": "Registrati",
-    "signingIn": "Accesso in corso...",
-    "creatingAccount": "Creazione account...",
-    "createAccount": "Crea Account",
-    "dontHaveAccount": "Non hai un account?",
-    "alreadyHaveAccount": "Hai già un account?",
-    "passwordsDontMatch": "Le password non corrispondono",
-    "passwordTooShort": "La password deve contenere almeno 8 caratteri",
-    "registrationFailed": "Registrazione fallita",
-    "passwordRequirements": "Minimo 8 caratteri",
-    "bySigningIn": "Effettuando l'accesso, accetti i nostri",
-    "bySigningUp": "Creando un account, accetti i nostri",
-    "terms": "Termini di Servizio",
-    "and": "e la",
-    "privacy": "Informativa sulla Privacy",
     "student": {
       "title": "Registrazione Studente",
       "subtitle": "Unisciti a InTransparency - Gratis Per Sempre",
@@ -929,18 +896,6 @@
       "alreadyHaveAccount": "Hai già un account?",
       "signIn": "Accedi"
     }
-  },
-  "errors": {
-    "accessDenied": "Accesso Negato",
-    "unauthorizedMessage": "Non hai i permessi necessari per accedere a questa pagina.",
-    "goBack": "Torna Indietro",
-    "goHome": "Vai alla Home",
-    "whyAmISeeingThis": "Perché vedo questo messaggio?",
-    "reasonInsufficientPermissions": "Non hai i permessi necessari per questa risorsa",
-    "reasonWrongAccountType": "Il tuo tipo di account non può accedere a questa funzionalità",
-    "reasonSubscriptionRequired": "Questa funzionalità richiede un piano premium",
-    "needHelp": "Hai bisogno di aiuto?",
-    "contactSupport": "Contatta il supporto"
   },
   "features": {
     "hero": {
@@ -1111,6 +1066,7 @@
       "buttonHide": "Nascondi Demo Import Dati"
     },
     "benefits": {
+      "title": "Perché Scegliere InTransparency?",
       "0": {
         "title": "Processo Trasparente",
         "description": "Visibilità completa nei processi di assunzione e candidatura"
@@ -1126,47 +1082,28 @@
       "3": {
         "title": "Aggiornamenti in Tempo Reale",
         "description": "Ricevi notifiche istantanee su candidature e opportunità"
-      },
-      "title": "Perché Scegliere InTransparency?"
+      }
     },
     "studentSteps": {
       "step1": {
         "title": "Carica i Tuoi Progetti",
         "description": "Carica progetti in qualsiasi formato - codice, documenti, presentazioni, report. La nostra AI analizza tutto ciò che hai costruito.",
         "duration": "2 minuti",
-        "features": [
-          "Tutti i formati accettati (codice, PDF, documenti, video)",
-          "Collaborazione istituzionale per dati verificati",
-          "Analisi e punteggio progetti AI",
-          "Metriche complessità e innovazione",
-          "Rilevamento tecnologie e competenze"
-        ],
+        "features": ["Tutti i formati accettati (codice, PDF, documenti, video)", "Collaborazione istituzionale per dati verificati", "Analisi e punteggio progetti AI", "Metriche complessità e innovazione", "Rilevamento tecnologie e competenze"],
         "example": "→ Esempio: Carica la tua tesi, progetto finale o lavoro di gruppo"
       },
       "step2": {
         "title": "Ottieni Analisi AI",
         "description": "La nostra AI analizza i tuoi progetti e crea un profilo completo con competenze hard e soft",
         "duration": "30 secondi",
-        "features": [
-          "Competenze hard: Abilità tecniche e strumenti",
-          "Competenze soft: Lavoro di squadra, leadership, comunicazione",
-          "Punteggio complessità progetti",
-          "Analisi rilevanza mercato",
-          "Punteggio prontezza carriera e benchmarking"
-        ],
+        "features": ["Competenze hard: Abilità tecniche e strumenti", "Competenze soft: Lavoro di squadra, leadership, comunicazione", "Punteggio complessità progetti", "Analisi rilevanza mercato", "Punteggio prontezza carriera e benchmarking"],
         "example": "→ Esempio: \"Python forte + Eccellenti capacità collaborazione team\""
       },
       "step3": {
         "title": "I Recruiter Ti Contattano Per Primi",
         "description": "Le aziende ti scoprono in base a ciò che hai costruito, non al tuo curriculum",
         "duration": "Continuo",
-        "features": [
-          "Appari nelle ricerche recruiter",
-          "Vieni abbinato a opportunità rilevanti",
-          "Messaggi diretti dalle aziende",
-          "Ricevi inviti a colloqui",
-          "Condividi portfolio su LinkedIn"
-        ],
+        "features": ["Appari nelle ricerche recruiter", "Vieni abbinato a opportunità rilevanti", "Messaggi diretti dalle aziende", "Ricevi inviti a colloqui", "Condividi portfolio su LinkedIn"],
         "example": "→ Esempio: \"Il recruiter vuole parlare del tuo progetto AI\""
       }
     },
@@ -1174,70 +1111,34 @@
       "step1": {
         "title": "Scoperta Proattiva Candidati",
         "description": "Cerca candidati anche se non hanno fatto domanda per i tuoi lavori. Trova talenti basati su competenze, istruzione ed esperienza",
-        "features": [
-          "Cerca candidati senza candidature",
-          "Filtra per università, corsi, voti",
-          "Trova per progetti e tecnologie",
-          "250+ filtri di ricerca personalizzabili",
-          "Mappatura geografica talenti"
-        ]
+        "features": ["Cerca candidati senza candidature", "Filtra per università, corsi, voti", "Trova per progetti e tecnologie", "250+ filtri di ricerca personalizzabili", "Mappatura geografica talenti"]
       },
       "step2": {
         "title": "Matching Basato su AI",
         "description": "L'AI intelligente analizza conoscenza settore e trova terreno comune tra profilo aziendale e candidati",
-        "features": [
-          "AI RAG per matching intelligente candidati",
-          "Compatibilità conoscenza settore",
-          "Punteggio allineamento profilo",
-          "Analisi competenze e fit culturale",
-          "Report compatibilità automatizzati"
-        ]
+        "features": ["AI RAG per matching intelligente candidati", "Compatibilità conoscenza settore", "Punteggio allineamento profilo", "Analisi competenze e fit culturale", "Report compatibilità automatizzati"]
       },
       "step3": {
         "title": "Coinvolgi e Assumi",
         "description": "Connettiti direttamente con candidati abbinati e gestisci efficacemente il processo di assunzione",
-        "features": [
-          "Messaggistica diretta con insights AI",
-          "Programmazione colloqui",
-          "Tracciamento candidature",
-          "Gestione offerte",
-          "Analytics assunzioni"
-        ]
+        "features": ["Messaggistica diretta con insights AI", "Programmazione colloqui", "Tracciamento candidature", "Gestione offerte", "Analytics assunzioni"]
       }
     },
     "instituteSteps": {
       "step1": {
         "title": "Collega Studenti",
         "description": "Abilita gli studenti a importare i loro dati accademici senza problemi",
-        "features": [
-          "Integrazione API",
-          "Sincronizzazione dati studenti",
-          "Controlli privacy",
-          "Iscrizione in blocco",
-          "Campi personalizzati"
-        ]
+        "features": ["Integrazione API", "Sincronizzazione dati studenti", "Controlli privacy", "Iscrizione in blocco", "Campi personalizzati"]
       },
       "step2": {
         "title": "Traccia Risultati",
         "description": "Monitora risultati carriera studenti e tassi di placement",
-        "features": [
-          "Analytics occupazione",
-          "Insights stipendi",
-          "Tendenze settore",
-          "Tracciamento alumni",
-          "Metriche performance"
-        ]
+        "features": ["Analytics occupazione", "Insights stipendi", "Tendenze settore", "Tracciamento alumni", "Metriche performance"]
       },
       "step3": {
         "title": "Costruisci Partnership",
         "description": "Stabilisci relazioni con top datori di lavoro e partner industriali",
-        "features": [
-          "Network recruiter",
-          "Coordinamento job fair",
-          "Eventi settore",
-          "Gestione partnership",
-          "Storie di successo"
-        ]
+        "features": ["Network recruiter", "Coordinamento job fair", "Eventi settore", "Gestione partnership", "Storie di successo"]
       }
     },
     "cta": {
@@ -1563,18 +1464,9 @@
       "subtitle1": "Marketplace gratuito a tre lati che connette i tuoi studenti ITS ad aziende che assumono attivamente. La tua verifica istituzionale dà ai diplomati un vantaggio competitivo. Monitora il successo di placement con analytics gratuiti.",
       "subtitle2": "100% Gratis per Sempre: Nessun costo di setup, nessun costo mensile, nessun abbonamento. Zero costi vs AlmaLaurea (€2.500/anno).",
       "stats": {
-        "0": {
-          "value": "87%",
-          "label": "Tasso Medio di Placement"
-        },
-        "1": {
-          "value": "10K+",
-          "label": "Studenti Scoperti"
-        },
-        "2": {
-          "value": "€0",
-          "label": "Costo per Sempre"
-        }
+        "0": { "value": "87%", "label": "Tasso Medio di Placement" },
+        "1": { "value": "10K+", "label": "Studenti Scoperti" },
+        "2": { "value": "€0", "label": "Costo per Sempre" }
       },
       "ctas": {
         "primary": "Unisciti al Marketplace Gratuito",
@@ -2741,6 +2633,55 @@
       "learnMore": "Scopri Come Funziona"
     }
   },
+  "explore": {
+    "hero": {
+      "badge": "Scopri Talenti Verificati",
+      "title": "Esplora Portfolio Studenti",
+      "subtitle": "Cerca tra migliaia di portfolio studenti verificati. Ogni progetto autenticato dalle istituzioni.",
+      "searchPlaceholder": "Cerca per nome, competenza o università...",
+      "stats": {
+        "students": "Studenti",
+        "verified": "Verificato",
+        "skills": "Competenze"
+      }
+    },
+    "filters": {
+      "title": "Filtri",
+      "clear": "Cancella",
+      "university": "Università",
+      "graduationYear": "Anno di Laurea",
+      "classOf": "Classe del {year}",
+      "skills": "Competenze ({count})",
+      "searchSkills": "Cerca competenze...",
+      "noSkillsFound": "Nessuna competenza trovata corrispondente a \"{query}\""
+    },
+    "results": {
+      "loading": "Caricamento...",
+      "studentsFound": "{count} Studenti Trovati",
+      "filtered": "Mostrando risultati filtrati",
+      "loadingPortfolios": "Caricamento portfolio..."
+    },
+    "empty": {
+      "title": "Nessuno studente trovato",
+      "description": "Prova a modificare i tuoi filtri o la query di ricerca",
+      "clearFilters": "Cancella Tutti i Filtri"
+    },
+    "card": {
+      "classOf": "Classe del {year}",
+      "stats": {
+        "projects": "Progetti",
+        "verified": "Verificato",
+        "skills": "Competenze"
+      },
+      "topSkills": "Top Competenze:",
+      "viewPortfolio": "Visualizza Portfolio Completo"
+    },
+    "cta": {
+      "title": "Pronto per Essere Scoperto?",
+      "subtitle": "Unisciti a migliaia di studenti verificati e mostra il tuo lavoro alle migliori aziende",
+      "createPortfolio": "Crea il Tuo Portfolio Gratuito"
+    }
+  },
   "chat": {
     "hero": {
       "title": "Hub Assistente AI",
@@ -3161,52 +3102,27 @@
       "categories": {
         "stem": {
           "title": "STEM",
-          "items": [
-            "Informatica",
-            "Ingegneria",
-            "Data Science",
-            "Cybersecurity"
-          ]
+          "items": ["Informatica", "Ingegneria", "Data Science", "Cybersecurity"]
         },
         "business": {
           "title": "Business",
-          "items": [
-            "Finanza",
-            "Economia",
-            "Management",
-            "Consulenza"
-          ]
+          "items": ["Finanza", "Economia", "Management", "Consulenza"]
         },
         "creative": {
           "title": "Creativo",
-          "items": [
-            "Design (Industriale/Grafico/Moda)",
-            "Architettura",
-            "Marketing (Digitale/Brand/Social)"
-          ]
+          "items": ["Design (Industriale/Grafico/Moda)", "Architettura", "Marketing (Digitale/Brand/Social)"]
         },
         "legal": {
           "title": "Legale",
-          "items": [
-            "Diritto Societario",
-            "Diritto Internazionale"
-          ]
+          "items": ["Diritto Societario", "Diritto Internazionale"]
         },
         "humanities": {
           "title": "Umanistico",
-          "items": [
-            "Traduzione",
-            "Creazione Contenuti",
-            "Giornalismo"
-          ]
+          "items": ["Traduzione", "Creazione Contenuti", "Giornalismo"]
         },
         "other": {
           "title": "& Altro",
-          "items": [
-            "Healthcare",
-            "Scienze Sociali",
-            "Educazione"
-          ]
+          "items": ["Healthcare", "Scienze Sociali", "Educazione"]
         }
       },
       "conclusion": "QUALSIASI settore con progetti verificabili = InTransparency funziona!"
@@ -3275,41 +3191,46 @@
     }
   },
   "advancedSearchDemo": {
-    "heroBanner": "Ricerca Avanzata - Filtra e Trova Esattamente Ciò che Ti Serve",
-    "verifiedResults": "Risultati Verificati",
-    "subtitle": "Utilizza i filtri per restringere e trovare la corrispondenza perfetta. Non serve AI - solo ricerca tradizionale.",
-    "tabs": {
+    "hero": {
+      "badge": "Ricerca Avanzata - Filtra & Trova Esattamente Ciò Che Cerchi",
+      "title": "{count} Risultati Verificati",
+      "subtitle": "Usa i filtri per restringere e trovare la corrispondenza perfetta. Nessuna AI necessaria - solo ricerca tradizionale."
+    },
+    "demoSelector": {
       "student": "Demo Studente",
       "company": "Demo Azienda",
       "university": "Demo Università"
     },
-    "universitySearchType": {
+    "universityToggle": {
       "searchStudents": "Cerca Studenti",
-      "searchJobs": "Cerca Aziende/Lavori"
+      "searchCompanies": "Cerca Aziende/Lavori"
     },
-    "searchPlaceholders": {
-      "student": "Cerca per titolo lavoro, azienda o parole chiave...",
-      "company": "Cerca per competenze, laurea o università...",
-      "universityStudents": "Cerca i tuoi studenti per competenze, corsi, laurea...",
-      "universityJobs": "Cerca opportunità di lavoro in tutta Europa..."
+    "searchBar": {
+      "placeholders": {
+        "student": "Cerca per titolo lavoro, azienda o parole chiave...",
+        "company": "Cerca per competenze, laurea o università...",
+        "universityStudents": "Cerca i tuoi studenti per competenze, corsi, laurea...",
+        "universityJobs": "Cerca opportunità di lavoro in tutta Europa..."
+      },
+      "filtersButton": "Filtri"
     },
     "filters": {
       "title": "Filtri",
-      "button": "Filtri",
-      "clearAll": "Cancella tutto",
+      "clearAll": "Cancella tutti",
       "jobType": {
         "title": "Tipo di Lavoro",
-        "fullTime": "Full-time",
+        "fullTime": "Tempo Pieno",
         "internship": "Stage",
         "partTime": "Part-time",
         "remote": "Remoto"
       },
       "location": {
         "title": "Posizione",
-        "titleEurope": "Posizione (Europa)"
+        "europe": "Posizione (Europa)"
       },
-      "salaryRange": {
-        "title": "Fascia Salariale"
+      "salary": {
+        "title": "Fascia Salariale",
+        "range": "€{min} - €{max}"
       },
       "field": {
         "title": "Campo/Disciplina"
@@ -3321,73 +3242,76 @@
         "title": "Laurea"
       },
       "gpa": {
-        "title": "Voto Minimo"
+        "title": "GPA Minimo",
+        "value": "{gpa}/30"
       },
       "skills": {
-        "title": "Competenze & Abilità",
-        "subtitle": "Tech, Business, Creative, Legal & altro",
-        "available": "competenze disponibili"
+        "title": "Competenze & Capacità",
+        "subtitle": "Tech, Business, Creativo, Legale & altro",
+        "available": "{count}+ competenze disponibili"
       },
       "courses": {
         "title": "Corsi Specifici",
         "subtitle": "Filtra per singoli corsi seguiti",
-        "available": "corsi disponibili"
+        "available": "{count} corsi disponibili"
       },
       "projectTypes": {
         "title": "Tipi di Progetto",
         "subtitle": "Filtra per esperienza di progetto",
-        "available": "tipi di progetto"
+        "available": "{count} tipi di progetto"
       }
     },
     "results": {
-      "found": "risultati trovati",
-      "withFilters": "con",
-      "filtersApplied": "filtri applicati",
+      "found": "{count} risultati trovati",
+      "withFilters": "con {count} filtri applicati",
       "allDisciplines": "• Tutte le Discipline",
-      "sortBy": "Ordina per: Più Recenti",
-      "showing": "Mostrati",
-      "of": "di"
+      "sortBy": "Ordina per: Più Recente",
+      "showing": "Mostrando {current} di {total} risultati",
+      "loadMore": "Carica Altri Risultati",
+      "registerPrompt": "Registrati gratis per vedere tutti i risultati e candidarti"
     },
-    "jobCard": {
-      "applyNow": "Candidati Ora",
+    "jobResult": {
+      "type": {
+        "fullTime": "Tempo Pieno",
+        "internship": "Stage",
+        "partTime": "Part-time",
+        "remote": "Remoto"
+      },
       "validForDegree": "✓ Valido per Laurea",
-      "applicants": "candidati",
-      "match": "Match"
+      "duration": "{months} mesi",
+      "applicants": "{count} candidati",
+      "match": "{score}% Corrispondenza",
+      "applyNow": "Candidati Ora",
+      "posted": "{time}"
     },
-    "candidateCard": {
+    "candidateResult": {
       "contactLocked": "Contatto Bloccato",
       "available": "Disponibile",
       "major": "Laurea:",
-      "gpa": "Voto:",
+      "gpa": "GPA:",
       "technicalSkills": "Competenze Tecniche:",
       "softSkills": "Soft Skills:",
       "relevantCourses": "Corsi Rilevanti:",
-      "projectExperience": "Esperienza di Progetto:",
-      "unlockFor": "Sblocca per €10",
-      "match": "Match"
-    },
-    "loadMore": {
-      "button": "Carica Altri Risultati",
-      "registerMessage": "Registrati gratis per vedere tutti i risultati e candidarti"
+      "projectExperience": "Esperienza Progetti:",
+      "match": "{score}% Corrispondenza",
+      "unlock": "Sblocca per €10"
     },
     "demoTitles": {
       "student": {
-        "title": "Ricerca Avanzata Lavori",
-        "subtitle": "Filtra per posizione, salario, tipo e altro",
-        "totalCount": "5.240"
+        "title": "Ricerca Lavori Avanzata",
+        "subtitle": "Filtra per posizione, stipendio, tipo e altro"
       },
       "company": {
-        "title": "Ricerca Avanzata Candidati",
-        "subtitle": "Tutte le discipline: Business, Ingegneria, STEM, Legge, Creative, Umanistiche & altro",
-        "totalCount": "12.847"
+        "title": "Ricerca Candidati Avanzata",
+        "subtitle": "Tutte le discipline: Business, Ingegneria, STEM, Legale, Creativo, Umanistico & altro"
       },
-      "university": {
-        "titleStudents": "Cerca i Tuoi Studenti",
-        "titleJobs": "Cerca Opportunità di Lavoro",
-        "subtitleStudents": "Filtra studenti per competenze, corsi, progetti e altro",
-        "subtitleJobs": "Trova opportunità di lavoro europee per i tuoi studenti",
-        "totalCountStudents": "12.847",
-        "totalCountJobs": "18.934"
+      "universityStudents": {
+        "title": "Cerca i Tuoi Studenti",
+        "subtitle": "Filtra studenti per competenze, corsi, progetti e altro"
+      },
+      "universityJobs": {
+        "title": "Cerca Opportunità di Lavoro",
+        "subtitle": "Trova opportunità di lavoro europee per i tuoi studenti"
       }
     }
   },
@@ -3537,6 +3461,234 @@
       "durations": {
         "sixMonths": "6 mesi",
         "threeToSixMonths": "3-6 mesi"
+      }
+    }
+  },
+  "advancedSearchDemo": {
+    "heroBanner": {
+      "badge": "Ricerca Avanzata - Filtra e Trova Esattamente Ciò di Cui Hai Bisogno",
+      "verifiedResults": "Risultati Verificati",
+      "description": "Usa i filtri per restringere e trovare la tua corrispondenza perfetta. Nessuna AI necessaria - solo ricerca tradizionale."
+    },
+    "demoSelector": {
+      "studentDemo": "Demo Studente",
+      "companyDemo": "Demo Azienda",
+      "universityDemo": "Demo Università"
+    },
+    "universityToggle": {
+      "searchStudents": "Cerca Studenti",
+      "searchCompanies": "Cerca Aziende/Lavori"
+    },
+    "searchPlaceholders": {
+      "student": "Cerca per titolo di lavoro, azienda o parole chiave...",
+      "company": "Cerca per competenze, corso di laurea o università...",
+      "universityStudents": "Cerca i tuoi studenti per competenze, corsi, corso di laurea...",
+      "universityJobs": "Cerca opportunità di lavoro in tutta Europa..."
+    },
+    "demoTitles": {
+      "studentTitle": "Ricerca Avanzata Lavoro",
+      "studentSubtitle": "Filtra per posizione, stipendio, tipo e altro",
+      "companyTitle": "Ricerca Avanzata Candidati",
+      "companySubtitle": "Tutte le discipline: Business, Ingegneria, STEM, Giurisprudenza, Creatività, Discipline Umanistiche e altro",
+      "universityStudentsTitle": "Cerca i Tuoi Studenti",
+      "universityStudentsSubtitle": "Filtra gli studenti per competenze, corsi, progetti e altro",
+      "universityJobsTitle": "Cerca Opportunità di Lavoro",
+      "universityJobsSubtitle": "Trova opportunità di lavoro europee per i tuoi studenti"
+    },
+    "filters": {
+      "title": "Filtri",
+      "clearAll": "Cancella tutto",
+      "jobType": {
+        "title": "Tipo di Lavoro",
+        "fullTime": "Tempo pieno",
+        "internship": "Stage",
+        "partTime": "Part-time",
+        "remote": "Remoto"
+      },
+      "location": {
+        "title": "Posizione",
+        "titleEurope": "Posizione (Europa)"
+      },
+      "salaryRange": {
+        "title": "Fascia Salariale"
+      },
+      "field": {
+        "title": "Campo/Disciplina"
+      },
+      "university": {
+        "title": "Università"
+      },
+      "major": {
+        "title": "Corso di Laurea"
+      },
+      "gpa": {
+        "title": "Voto Minimo"
+      },
+      "skills": {
+        "title": "Competenze",
+        "subtitle": "Tech, Business, Creative, Legal e altro",
+        "available": "competenze disponibili"
+      },
+      "courses": {
+        "title": "Corsi Specifici",
+        "subtitle": "Filtra per singoli corsi seguiti",
+        "available": "corsi disponibili"
+      },
+      "projectTypes": {
+        "title": "Tipi di Progetto",
+        "subtitle": "Filtra per esperienza di progetto",
+        "available": "tipi di progetto"
+      }
+    },
+    "results": {
+      "found": "risultati trovati",
+      "withFilters": "con {count} filtri applicati",
+      "allDisciplines": "Tutte le Discipline",
+      "sortBy": "Ordina per: Più Recente",
+      "showing": "Visualizzazione {current} di {total} risultati"
+    },
+    "jobCard": {
+      "applyNow": "Candidati Ora",
+      "match": "Match",
+      "applicants": "candidati",
+      "validForDegree": "Valido per Laurea",
+      "posted": {
+        "daysAgo": "{count} giorni fa",
+        "weekAgo": "1 settimana fa",
+        "weeksAgo": "{count} settimane fa"
+      }
+    },
+    "candidateCard": {
+      "contactLocked": "Contatto Bloccato",
+      "available": "Disponibile",
+      "major": "Corso di Laurea",
+      "gpa": "Voto",
+      "technicalSkills": "Competenze Tecniche:",
+      "softSkills": "Soft Skills:",
+      "relevantCourses": "Corsi Rilevanti:",
+      "projectExperience": "Esperienza Progetti:",
+      "unlockFor": "Sblocca per €10",
+      "match": "Match"
+    },
+    "loadMore": {
+      "button": "Carica Altri Risultati",
+      "registerMessage": "Registrati gratis per vedere tutti i risultati e candidarti"
+    }
+  },
+  "advancedSearchDemo": {
+    "heroBanner": "Ricerca Avanzata - Filtra e Trova Esattamente Ciò che Ti Serve",
+    "verifiedResults": "Risultati Verificati",
+    "subtitle": "Utilizza i filtri per restringere e trovare la corrispondenza perfetta. Non serve AI - solo ricerca tradizionale.",
+    "tabs": {
+      "student": "Demo Studente",
+      "company": "Demo Azienda",
+      "university": "Demo Università"
+    },
+    "universitySearchType": {
+      "searchStudents": "Cerca Studenti",
+      "searchJobs": "Cerca Aziende/Lavori"
+    },
+    "searchPlaceholders": {
+      "student": "Cerca per titolo lavoro, azienda o parole chiave...",
+      "company": "Cerca per competenze, laurea o università...",
+      "universityStudents": "Cerca i tuoi studenti per competenze, corsi, laurea...",
+      "universityJobs": "Cerca opportunità di lavoro in tutta Europa..."
+    },
+    "filters": {
+      "title": "Filtri",
+      "button": "Filtri",
+      "clearAll": "Cancella tutto",
+      "jobType": {
+        "title": "Tipo di Lavoro",
+        "fullTime": "Full-time",
+        "internship": "Stage",
+        "partTime": "Part-time",
+        "remote": "Remoto"
+      },
+      "location": {
+        "title": "Posizione",
+        "titleEurope": "Posizione (Europa)"
+      },
+      "salaryRange": {
+        "title": "Fascia Salariale"
+      },
+      "field": {
+        "title": "Campo/Disciplina"
+      },
+      "university": {
+        "title": "Università"
+      },
+      "major": {
+        "title": "Laurea"
+      },
+      "gpa": {
+        "title": "Voto Minimo"
+      },
+      "skills": {
+        "title": "Competenze & Abilità",
+        "subtitle": "Tech, Business, Creative, Legal & altro",
+        "available": "competenze disponibili"
+      },
+      "courses": {
+        "title": "Corsi Specifici",
+        "subtitle": "Filtra per singoli corsi seguiti",
+        "available": "corsi disponibili"
+      },
+      "projectTypes": {
+        "title": "Tipi di Progetto",
+        "subtitle": "Filtra per esperienza di progetto",
+        "available": "tipi di progetto"
+      }
+    },
+    "results": {
+      "found": "risultati trovati",
+      "withFilters": "con",
+      "filtersApplied": "filtri applicati",
+      "allDisciplines": "• Tutte le Discipline",
+      "sortBy": "Ordina per: Più Recenti",
+      "showing": "Mostrati",
+      "of": "di"
+    },
+    "jobCard": {
+      "applyNow": "Candidati Ora",
+      "validForDegree": "✓ Valido per Laurea",
+      "applicants": "candidati",
+      "match": "Match"
+    },
+    "candidateCard": {
+      "contactLocked": "Contatto Bloccato",
+      "available": "Disponibile",
+      "major": "Laurea:",
+      "gpa": "Voto:",
+      "technicalSkills": "Competenze Tecniche:",
+      "softSkills": "Soft Skills:",
+      "relevantCourses": "Corsi Rilevanti:",
+      "projectExperience": "Esperienza di Progetto:",
+      "unlockFor": "Sblocca per €10",
+      "match": "Match"
+    },
+    "loadMore": {
+      "button": "Carica Altri Risultati",
+      "registerMessage": "Registrati gratis per vedere tutti i risultati e candidarti"
+    },
+    "demoTitles": {
+      "student": {
+        "title": "Ricerca Avanzata Lavori",
+        "subtitle": "Filtra per posizione, salario, tipo e altro",
+        "totalCount": "5.240"
+      },
+      "company": {
+        "title": "Ricerca Avanzata Candidati",
+        "subtitle": "Tutte le discipline: Business, Ingegneria, STEM, Legge, Creative, Umanistiche & altro",
+        "totalCount": "12.847"
+      },
+      "university": {
+        "titleStudents": "Cerca i Tuoi Studenti",
+        "titleJobs": "Cerca Opportunità di Lavoro",
+        "subtitleStudents": "Filtra studenti per competenze, corsi, progetti e altro",
+        "subtitleJobs": "Trova opportunità di lavoro europee per i tuoi studenti",
+        "totalCountStudents": "12.847",
+        "totalCountJobs": "18.934"
       }
     }
   },
