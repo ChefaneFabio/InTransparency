@@ -85,8 +85,11 @@ const nextConfig = {
     } : false
   },
 
-  // Output configuration - disable file tracing to prevent stack overflow
+  // Output configuration
   output: 'standalone',
+
+  // Disable output file tracing to prevent stack overflow on Vercel
+  outputFileTracing: false,
 
   // Experimental features
   experimental: {
@@ -94,8 +97,6 @@ const nextConfig = {
     esmExternals: true,
     // Server components
     serverComponentsExternalPackages: ['@prisma/client'],
-    // Disable output file tracing that causes stack overflow with Prisma
-    outputFileTracing: false,
   },
 
   // Webpack configuration to handle process.env in client
