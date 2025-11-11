@@ -177,11 +177,15 @@ export async function POST(req: NextRequest) {
       .replace(/(^-|-$)/g, '')
       + '-' + Date.now()
 
+    // Prepare data for Prisma
+    const { targetDisciplines, ...restData } = validatedData
+
     // Create job
     const job = await prisma.job.create({
       data: {
-        ...validatedData,
+        ...restData,
         slug,
+        targetDisciplines: targetDisciplines as any, // Cast to avoid type error
         recruiterId: session.user.id,
         status: 'DRAFT', // Start as draft
         expiresAt: validatedData.expiresAt ? new Date(validatedData.expiresAt) : undefined,

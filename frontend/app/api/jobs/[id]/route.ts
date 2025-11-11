@@ -185,12 +185,16 @@ export async function PUT(
         + '-' + Date.now()
     }
 
+    // Prepare update data
+    const { targetDisciplines, ...restData } = validatedData
+
     // Update job
     const job = await prisma.job.update({
       where: { id: jobId },
       data: {
-        ...validatedData,
+        ...restData,
         slug,
+        targetDisciplines: targetDisciplines as any, // Cast to avoid type error
         postedAt: validatedData.status === 'ACTIVE' && existingJob.status === 'DRAFT'
           ? new Date()
           : existingJob.postedAt,
