@@ -10,7 +10,6 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { FaGoogle, FaGithub } from "react-icons/fa"
 import { useTranslations } from "next-intl"
-import bcrypt from "bcryptjs"
 
 export default function SignUpPage() {
   const router = useRouter()
