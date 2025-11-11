@@ -90,7 +90,17 @@ const nextConfig = {
     // Enable modern JavaScript output
     esmExternals: true,
     // Server components
-    serverComponentsExternalPackages: ['@prisma/client']
+    serverComponentsExternalPackages: ['@prisma/client'],
+    // Optimize output file tracing to prevent stack overflow
+    outputFileTracingExcludes: {
+      '*': [
+        'node_modules/@swc/core-linux-x64-gnu',
+        'node_modules/@swc/core-linux-x64-musl',
+        'node_modules/@esbuild/linux-x64',
+        '.git/**',
+        '**/*.log',
+      ],
+    },
   },
 
   // Webpack configuration to handle process.env in client
