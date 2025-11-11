@@ -88,15 +88,23 @@ const nextConfig = {
   // Output configuration
   output: 'standalone',
 
-  // Disable output file tracing to prevent stack overflow on Vercel
-  outputFileTracing: false,
-
   // Experimental features
   experimental: {
     // Enable modern JavaScript output
     esmExternals: true,
     // Server components
     serverComponentsExternalPackages: ['@prisma/client'],
+    // Reduce file tracing scope to prevent stack overflow
+    outputFileTracingExcludes: {
+      '*': [
+        'node_modules/@swc/core-linux-x64-gnu',
+        'node_modules/@swc/core-linux-x64-musl',
+        'node_modules/@esbuild',
+        'node_modules/webpack',
+        'node_modules/terser',
+        '.git',
+      ],
+    },
   },
 
   // Webpack configuration to handle process.env in client
