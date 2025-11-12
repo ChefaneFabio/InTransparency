@@ -4,10 +4,10 @@ import prisma from '@/lib/prisma'
 // POST /api/projects/[id]/files - Upload files to a project
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id: projectId } = params
+    const { id: projectId } = await params
     const userId = request.headers.get('x-user-id')
 
     if (!userId) {
@@ -138,10 +138,10 @@ export async function POST(
 // GET /api/projects/[id]/files - Get all files for a project
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id: projectId } = params
+    const { id: projectId } = await params
 
     // Check if project exists and is accessible
     const project = await prisma.project.findUnique({
@@ -186,10 +186,10 @@ export async function GET(
 // DELETE /api/projects/[id]/files/[fileId] - Delete a specific file
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id: projectId } = params
+    const { id: projectId } = await params
     const userId = request.headers.get('x-user-id')
 
     if (!userId) {

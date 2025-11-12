@@ -20,7 +20,7 @@ const applySchema = z.object({
  */
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -40,7 +40,7 @@ export async function POST(
       )
     }
 
-    const jobId = params.id
+    const { id: jobId } = await params
 
     // Get job
     const job = await prisma.job.findUnique({

@@ -60,10 +60,10 @@ const updateJobSchema = z.object({
  */
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const jobId = params.id
+    const { id: jobId } = await params
 
     // Get job
     const job = await prisma.job.findUnique({
@@ -134,7 +134,7 @@ export async function GET(
  */
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -146,7 +146,7 @@ export async function PUT(
       )
     }
 
-    const jobId = params.id
+    const { id: jobId } = await params
 
     // Get existing job
     const existingJob = await prisma.job.findUnique({
@@ -239,7 +239,7 @@ export async function PUT(
  */
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -251,7 +251,7 @@ export async function DELETE(
       )
     }
 
-    const jobId = params.id
+    const { id: jobId } = await params
 
     // Get existing job
     const existingJob = await prisma.job.findUnique({

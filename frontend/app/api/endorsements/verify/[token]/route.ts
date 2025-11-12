@@ -4,10 +4,10 @@ import prisma from '@/lib/prisma'
 // GET /api/endorsements/verify/[token] - Get endorsement request details
 export async function GET(
   request: NextRequest,
-  { params }: { params: { token: string } }
+  { params }: { params: Promise<{ token: string }> }
 ) {
   try {
-    const { token } = params
+    const { token } = await params
 
     const endorsement = await prisma.professorEndorsement.findUnique({
       where: { verificationToken: token },
@@ -74,10 +74,10 @@ export async function GET(
 // POST /api/endorsements/verify/[token] - Submit endorsement
 export async function POST(
   request: NextRequest,
-  { params }: { params: { token: string } }
+  { params }: { params: Promise<{ token: string }> }
 ) {
   try {
-    const { token } = params
+    const { token } = await params
     const body = await request.json()
     const { endorsementText, skills, rating, grade, action } = body
 

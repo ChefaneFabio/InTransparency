@@ -11,7 +11,7 @@ const prisma = new PrismaClient()
  */
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -23,7 +23,7 @@ export async function GET(
       )
     }
 
-    const messageId = params.id
+    const { id: messageId } = await params
 
     // Get message
     const message = await prisma.message.findUnique({
@@ -88,7 +88,7 @@ export async function GET(
  */
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -100,7 +100,7 @@ export async function DELETE(
       )
     }
 
-    const messageId = params.id
+    const { id: messageId } = await params
 
     // Get message
     const message = await prisma.message.findUnique({

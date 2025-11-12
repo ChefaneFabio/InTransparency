@@ -25,7 +25,7 @@ const updateApplicationSchema = z.object({
  */
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -37,7 +37,7 @@ export async function GET(
       )
     }
 
-    const applicationId = params.id
+    const { id: applicationId } = await params
 
     // Get application
     const application = await prisma.application.findUnique({
@@ -123,7 +123,7 @@ export async function GET(
  */
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -135,7 +135,7 @@ export async function PUT(
       )
     }
 
-    const applicationId = params.id
+    const { id: applicationId } = await params
 
     // Get application
     const existingApplication = await prisma.application.findUnique({
@@ -225,7 +225,7 @@ export async function PUT(
  */
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -237,7 +237,7 @@ export async function DELETE(
       )
     }
 
-    const applicationId = params.id
+    const { id: applicationId } = await params
 
     // Get application
     const application = await prisma.application.findUnique({

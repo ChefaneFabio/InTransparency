@@ -4,10 +4,10 @@ import prisma from '@/lib/prisma'
 // GET /api/projects/[id] - Get a single project by ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params
+    const { id } = await params
 
     const project = await prisma.project.findUnique({
       where: { id },
@@ -104,10 +104,10 @@ export async function GET(
 // PATCH /api/projects/[id] - Update a project
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params
+    const { id } = await params
     const userId = request.headers.get('x-user-id')
 
     if (!userId) {
@@ -194,10 +194,10 @@ export async function PATCH(
 // DELETE /api/projects/[id] - Delete a project
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params
+    const { id } = await params
     const userId = request.headers.get('x-user-id')
 
     if (!userId) {
