@@ -126,3 +126,144 @@ class AnalysisCache(BaseModel):
     analysis_data: Dict[str, Any]
     created_at: str
     expires_at: str
+
+
+# ============================================
+# Conversation / Chat Models
+# ============================================
+
+class UserRole(str, Enum):
+    STUDENT = "student"
+    RECRUITER = "recruiter"
+    COMPANY = "company"
+    INSTITUTION = "institution"
+    UNIVERSITY = "university"
+
+
+class ConversationMessageRequest(BaseModel):
+    session_id: str = Field(..., description="Unique session identifier")
+    message: str = Field(..., min_length=1, max_length=2000)
+    user_role: UserRole = Field(default=UserRole.STUDENT)
+    user_id: Optional[str] = None
+    stream: bool = Field(default=False, description="Enable streaming response")
+
+
+class ConversationMessageResponse(BaseModel):
+    message: str
+    intent: str
+    confidence: float = 0.0
+    entities: Dict[str, Any] = {}
+    suggested_actions: List[Dict[str, str]] = []
+    session_id: str
+    status: str = "success"
+
+
+class ConversationHistoryRequest(BaseModel):
+    session_id: str
+
+
+class ConversationHistoryResponse(BaseModel):
+    session_id: str
+    messages: List[Dict[str, Any]]
+    user_role: str
+    created_at: str
+    status: str = "success"
+
+
+class CandidateMatchingRequest(BaseModel):
+    job_data: Dict[str, Any]
+    candidates: List[Dict[str, Any]]
+    limit: int = Field(default=10, ge=1, le=100)
+
+
+class CandidateMatch(BaseModel):
+    candidate_id: str
+    job_id: str
+    overall_score: float
+    match_breakdown: Dict[str, float]
+    strengths: List[str]
+    gaps: List[str]
+    recommendations: List[str]
+
+
+class CandidateMatchingResponse(BaseModel):
+    matches: List[Dict[str, Any]]
+    status: str
+
+
+class SkillsAssessmentRequest(BaseModel):
+    projects: List[Dict[str, Any]]
+    technologies: List[str]
+    experience_level: Optional[str] = None
+    education_background: Optional[Dict[str, Any]] = None
+
+
+class SkillsAssessmentResponse(BaseModel):
+    skill_scores: Dict[str, float]
+    overall_level: str
+    strengths: List[str]
+    growth_areas: List[str]
+    recommended_skills: List[str]
+    career_path_suggestions: List[str]
+    status: str
+
+
+class MarketTrendsRequest(BaseModel):
+    technologies: List[str] = []
+    time_horizon: str = "month"
+    industry_focus: Optional[str] = None
+
+
+class MarketTrendsResponse(BaseModel):
+    trends: List[Dict[str, Any]]
+    market_summary: str
+    hot_technologies: List[str]
+    declining_technologies: List[str]
+    recommendations: List[str]
+    status: str
+
+
+class ResumeSuggestionsRequest(BaseModel):
+    resume_data: Dict[str, Any]
+    target_role: str
+    optimization_focus: Optional[str] = None
+    target_company: Optional[str] = None
+
+
+class ResumeSuggestionsResponse(BaseModel):
+    optimized_sections: Dict[str, Any]
+    suggestions: List[str]
+    ats_score: float
+    key_improvements: List[str]
+    custom_summary: str
+    status: str
+
+
+class InterviewQuestionsRequest(BaseModel):
+    job_data: Dict[str, Any]
+    candidate_data: Dict[str, Any]
+    question_count: int = Field(default=5, ge=1, le=20)
+
+
+class InterviewQuestionsResponse(BaseModel):
+    questions: List[Dict[str, Any]]
+    status: str
+
+
+class ProjectRecommendationsRequest(BaseModel):
+    user_profile: Dict[str, Any]
+    target_role: Optional[str] = None
+
+
+class ProjectRecommendationsResponse(BaseModel):
+    recommendations: List[Dict[str, Any]]
+    status: str
+
+
+class BatchProcessingRequest(BaseModel):
+    operations: List[Dict[str, Any]]
+
+
+class BatchProcessingResponse(BaseModel):
+    results: List[Dict[str, Any]]
+    status: str

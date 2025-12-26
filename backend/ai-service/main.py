@@ -49,7 +49,12 @@ from app.models.schemas import (
     ProjectRecommendationsRequest,
     ProjectRecommendationsResponse,
     BatchProcessingRequest,
-    BatchProcessingResponse
+    BatchProcessingResponse,
+    ConversationMessageRequest,
+    ConversationMessageResponse,
+    ConversationHistoryRequest,
+    ConversationHistoryResponse,
+    UserRole
 )
 from app.services.project_analyzer import ProjectAnalyzer
 from app.services.candidate_matcher import CandidateMatcher
@@ -57,8 +62,10 @@ from app.services.story_generator import StoryGenerator
 from app.services.skills_assessor import SkillsAssessor
 from app.services.market_analyzer import MarketAnalyzer
 from app.services.resume_optimizer import ResumeOptimizer
+from app.services.conversation_service import ConversationService, UserRole as ConvUserRole
 from app.utils.cache_manager import CacheManager
 from app.utils.rate_limiter import RateLimiter
+from fastapi.responses import StreamingResponse
 
 load_dotenv()
 
@@ -90,6 +97,7 @@ story_generator = StoryGenerator()
 skills_assessor = SkillsAssessor()
 market_analyzer = MarketAnalyzer()
 resume_optimizer = ResumeOptimizer()
+conversation_service = ConversationService()
 cache_manager = CacheManager()
 rate_limiter = RateLimiter()
 
@@ -359,10 +367,177 @@ async def optimize_resume(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Resume optimization failed: {str(e)}")
 
+# ============================================
+# Conversation / Chat Endpoints
+# ============================================
+
+@app.post("/chat", response_model=ConversationMessageResponse)
+async def chat(
+    request: ConversationMessageRequest,
+    user = Depends(get_current_user)
+):
+    """
+    Send a message and get an AI response.
+    Supports both regular and streaming responses.
+    """
+    try:
+        # Map schema UserRole to service UserRole
+        role_mapping = {
+            UserRole.STUDENT: ConvUserRole.STUDENT,
+            UserRole.RECRUITER: ConvUserRole.RECRUITER,
+            UserRole.COMPANY: ConvUserRole.COMPANY,
+            UserRole.INSTITUTION: ConvUserRole.INSTITUTION,
+            UserRole.UNIVERSITY: ConvUserRole.UNIVERSITY
+        }
+        conv_role = role_mapping.get(request.user_role, ConvUserRole.STUDENT)
+
+        if request.stream:
+            # Return streaming response
+            async def generate():
+                async for chunk in conversation_service.stream_response(
+                    session_id=request.session_id,
+                    message=request.message,
+                    user_role=conv_role,
+                    user_id=request.user_id
+                ):
+                    yield f"data: {json.dumps({'text': chunk})}\n\n"
+                yield "data: [DONE]\n\n"
+
+            return StreamingResponse(
+                generate(),
+                media_type="text/event-stream",
+                headers={
+                    "Cache-Control": "no-cache",
+                    "Connection": "keep-alive",
+                    "X-Accel-Buffering": "no"
+                }
+            )
+
+        # Regular (non-streaming) response
+        response = await conversation_service.process_message(
+            session_id=request.session_id,
+            message=request.message,
+            user_role=conv_role,
+            user_id=request.user_id
+        )
+
+        return ConversationMessageResponse(
+            message=response.message,
+            intent=response.intent.value,
+            entities=response.entities,
+            suggested_actions=response.suggested_actions,
+            session_id=request.session_id,
+            status="success"
+        )
+
+    except Exception as e:
+        logger.error(f"Chat error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Chat failed: {str(e)}")
+
+
+@app.get("/chat/history/{session_id}", response_model=ConversationHistoryResponse)
+async def get_chat_history(
+    session_id: str,
+    user = Depends(get_current_user)
+):
+    """
+    Get conversation history for a session.
+    """
+    try:
+        context = await conversation_service.get_session(session_id)
+
+        if not context:
+            raise HTTPException(status_code=404, detail="Session not found")
+
+        return ConversationHistoryResponse(
+            session_id=session_id,
+            messages=[
+                {
+                    "role": m.role,
+                    "content": m.content,
+                    "timestamp": m.timestamp.isoformat()
+                }
+                for m in context.messages
+            ],
+            user_role=context.user_role.value,
+            created_at=context.created_at.isoformat(),
+            status="success"
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Get history error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to get history: {str(e)}")
+
+
+@app.delete("/chat/session/{session_id}")
+async def delete_chat_session(
+    session_id: str,
+    user = Depends(get_current_user)
+):
+    """
+    Delete a conversation session.
+    """
+    try:
+        # Clear from Redis
+        if conversation_service.redis_client:
+            conversation_service.redis_client.delete(f"conv:{session_id}")
+
+        return {"status": "success", "message": "Session deleted"}
+
+    except Exception as e:
+        logger.error(f"Delete session error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to delete session: {str(e)}")
+
+
+@app.post("/chat/stream")
+async def chat_stream(
+    request: ConversationMessageRequest,
+    user = Depends(get_current_user)
+):
+    """
+    Stream chat response using Server-Sent Events.
+    """
+    try:
+        role_mapping = {
+            UserRole.STUDENT: ConvUserRole.STUDENT,
+            UserRole.RECRUITER: ConvUserRole.RECRUITER,
+            UserRole.COMPANY: ConvUserRole.COMPANY,
+            UserRole.INSTITUTION: ConvUserRole.INSTITUTION,
+            UserRole.UNIVERSITY: ConvUserRole.UNIVERSITY
+        }
+        conv_role = role_mapping.get(request.user_role, ConvUserRole.STUDENT)
+
+        async def generate():
+            async for chunk in conversation_service.stream_response(
+                session_id=request.session_id,
+                message=request.message,
+                user_role=conv_role,
+                user_id=request.user_id
+            ):
+                yield f"data: {json.dumps({'text': chunk})}\n\n"
+            yield "data: [DONE]\n\n"
+
+        return StreamingResponse(
+            generate(),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "X-Accel-Buffering": "no"
+            }
+        )
+
+    except Exception as e:
+        logger.error(f"Stream error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Streaming failed: {str(e)}")
+
+
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
     host = "0.0.0.0"
-    
+
     uvicorn.run(
         "main:app",
         host=host,

@@ -390,3 +390,129 @@ export const analyticsApi = {
   getStudentAnalytics: (studentId: string) =>
     api.get(`/api/analytics/student/${studentId}`),
 }
+
+// Chat / Conversation API
+export type ChatUserRole = 'student' | 'recruiter' | 'company' | 'institution' | 'university'
+
+export interface ChatMessage {
+  role: 'user' | 'assistant'
+  content: string
+  timestamp?: string
+}
+
+export interface ChatResponse {
+  message: string
+  intent: string
+  confidence?: number
+  entities: Record<string, unknown>
+  suggested_actions: Array<{ label: string; action: string }>
+  session_id: string
+  status: string
+}
+
+export const chatApi = {
+  // Send a message and get AI response
+  sendMessage: async (
+    sessionId: string,
+    message: string,
+    userRole: ChatUserRole = 'student'
+  ): Promise<ChatResponse> => {
+    const response = await api.post('/api/chat', {
+      session_id: sessionId,
+      message,
+      user_role: userRole,
+      stream: false
+    })
+    return response.data
+  },
+
+  // Stream a message response (returns EventSource-like interface)
+  streamMessage: async (
+    sessionId: string,
+    message: string,
+    userRole: ChatUserRole = 'student',
+    onChunk: (text: string) => void,
+    onComplete?: () => void,
+    onError?: (error: Error) => void
+  ): Promise<void> => {
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          session_id: sessionId,
+          message,
+          user_role: userRole,
+          stream: true
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      const reader = response.body?.getReader()
+      if (!reader) {
+        throw new Error('No reader available')
+      }
+
+      const decoder = new TextDecoder()
+
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) {
+          onComplete?.()
+          break
+        }
+
+        const chunk = decoder.decode(value, { stream: true })
+        const lines = chunk.split('\n')
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const data = line.slice(6)
+            if (data === '[DONE]') {
+              onComplete?.()
+              return
+            }
+            try {
+              const parsed = JSON.parse(data)
+              if (parsed.text) {
+                onChunk(parsed.text)
+              }
+            } catch {
+              // Ignore parse errors for incomplete chunks
+            }
+          }
+        }
+      }
+    } catch (error) {
+      onError?.(error as Error)
+      throw error
+    }
+  },
+
+  // Get conversation history
+  getHistory: async (sessionId: string): Promise<{
+    session_id: string
+    messages: ChatMessage[]
+    user_role: string
+    created_at: string
+    status: string
+  }> => {
+    const response = await api.get(`/api/chat?session_id=${sessionId}`)
+    return response.data
+  },
+
+  // Delete a conversation session
+  deleteSession: async (sessionId: string): Promise<void> => {
+    await api.delete(`/api/chat?session_id=${sessionId}`)
+  },
+
+  // Generate a unique session ID
+  generateSessionId: (): string => {
+    return `chat_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`
+  }
+}

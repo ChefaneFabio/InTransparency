@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -13,9 +13,12 @@ import {
   Sparkles,
   Shield,
   Bot,
-  User
+  User,
+  Loader2,
+  RefreshCw
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { chatApi, ChatUserRole } from '@/lib/api'
 
 export type ChatbotRole = 'student' | 'company' | 'institution'
 
@@ -24,13 +27,22 @@ interface Message {
   role: 'user' | 'assistant'
   content: string
   timestamp: Date
+  intent?: string
+  isStreaming?: boolean
+}
+
+interface SuggestedAction {
+  label: string
+  action: string
 }
 
 interface ChatbotWidgetProps {
   userRole: ChatbotRole
   userName?: string
+  userId?: string
   isOpen?: boolean
   onClose?: () => void
+  enableStreaming?: boolean
 }
 
 const chatbotConfig = {
@@ -39,6 +51,7 @@ const chatbotConfig = {
     greeting: "👋 Hi! I'm Transparenty, your AI career assistant. I can help you:\n\n• Build your profile from projects\n• Find jobs matching your skills\n• Get career advice\n• Understand what companies are looking for\n\nWhat would you like to do?",
     color: 'from-primary to-secondary',
     badge: 'Student Assistant',
+    apiRole: 'student' as ChatUserRole,
     examples: [
       "Help me build my profile",
       "Find jobs in Milan",
@@ -51,6 +64,7 @@ const chatbotConfig = {
     greeting: "👋 Hi! I'm Transparenty, your AI recruiting assistant. I can help you:\n\n• Find verified candidates (all disciplines)\n• Understand match explanations\n• Get sourcing tips\n• See skill demand trends\n\nHow can I assist your search?",
     color: 'from-primary to-secondary',
     badge: 'Recruiting Assistant',
+    apiRole: 'recruiter' as ChatUserRole,
     examples: [
       "Find cybersecurity students in Rome",
       "Marketing intern with creative portfolio",
@@ -63,6 +77,7 @@ const chatbotConfig = {
     greeting: "👋 Hi! I'm Transparenty, your institutional assistant. I can help you:\n\n• Set up free partnership\n• Understand dashboard analytics\n• Get early intervention alerts\n• Explore European job opportunities\n\nWhat would you like to know?",
     color: 'from-primary to-secondary',
     badge: 'Institution Assistant',
+    apiRole: 'institution' as ChatUserRole,
     examples: [
       "How does the free partnership work?",
       "Show me company search trends",
@@ -72,19 +87,44 @@ const chatbotConfig = {
   }
 }
 
-export function ChatbotWidget({ userRole, userName, isOpen: initialIsOpen = false, onClose }: ChatbotWidgetProps) {
+// Session storage key for chat session ID
+const SESSION_STORAGE_KEY = 'intransparency_chat_session'
+
+export function ChatbotWidget({
+  userRole,
+  userName,
+  userId,
+  isOpen: initialIsOpen = false,
+  onClose,
+  enableStreaming = true
+}: ChatbotWidgetProps) {
   const [isOpen, setIsOpen] = useState(initialIsOpen)
   const [isMinimized, setIsMinimized] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [sessionId, setSessionId] = useState<string>('')
+  const [suggestedActions, setSuggestedActions] = useState<SuggestedAction[]>([])
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const config = chatbotConfig[userRole]
 
+  // Initialize session ID on mount
   useEffect(() => {
-    if (isOpen && messages.length === 0) {
-      // Initial greeting
+    let storedSessionId = sessionStorage.getItem(SESSION_STORAGE_KEY)
+    if (!storedSessionId) {
+      storedSessionId = chatApi.generateSessionId()
+      sessionStorage.setItem(SESSION_STORAGE_KEY, storedSessionId)
+    }
+    setSessionId(storedSessionId)
+  }, [])
+
+  // Initialize greeting message
+  useEffect(() => {
+    if (isOpen && messages.length === 0 && sessionId) {
       const greeting: Message = {
         id: '1',
         role: 'assistant',
@@ -93,14 +133,22 @@ export function ChatbotWidget({ userRole, userName, isOpen: initialIsOpen = fals
       }
       setMessages([greeting])
     }
-  }, [isOpen, config.greeting, messages.length])
+  }, [isOpen, config.greeting, messages.length, sessionId])
 
+  // Auto-scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
-  const handleSend = async () => {
-    if (!input.trim()) return
+  // Focus input when opened
+  useEffect(() => {
+    if (isOpen && !isMinimized) {
+      inputRef.current?.focus()
+    }
+  }, [isOpen, isMinimized])
+
+  const handleSend = useCallback(async () => {
+    if (!input.trim() || isLoading || !sessionId) return
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -111,24 +159,99 @@ export function ChatbotWidget({ userRole, userName, isOpen: initialIsOpen = fals
 
     setMessages(prev => [...prev, userMessage])
     setInput('')
+    setError(null)
     setIsTyping(true)
+    setIsLoading(true)
+    setSuggestedActions([])
 
-    // Simulate AI response (in production, this would call your API)
-    setTimeout(() => {
-      const response = generateResponse(input, userRole)
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: response,
-        timestamp: new Date()
+    try {
+      if (enableStreaming) {
+        // Streaming response
+        const assistantMessageId = (Date.now() + 1).toString()
+
+        // Add empty assistant message that will be filled by streaming
+        setMessages(prev => [...prev, {
+          id: assistantMessageId,
+          role: 'assistant',
+          content: '',
+          timestamp: new Date(),
+          isStreaming: true
+        }])
+
+        await chatApi.streamMessage(
+          sessionId,
+          input,
+          config.apiRole,
+          // onChunk - update the streaming message
+          (chunk) => {
+            setMessages(prev => prev.map(msg =>
+              msg.id === assistantMessageId
+                ? { ...msg, content: msg.content + chunk }
+                : msg
+            ))
+          },
+          // onComplete
+          () => {
+            setMessages(prev => prev.map(msg =>
+              msg.id === assistantMessageId
+                ? { ...msg, isStreaming: false }
+                : msg
+            ))
+            setIsTyping(false)
+            setIsLoading(false)
+          },
+          // onError
+          (err) => {
+            console.error('Streaming error:', err)
+            setError('Failed to get response. Please try again.')
+            setMessages(prev => prev.filter(msg => msg.id !== assistantMessageId))
+            setIsTyping(false)
+            setIsLoading(false)
+          }
+        )
+      } else {
+        // Non-streaming response
+        const response = await chatApi.sendMessage(
+          sessionId,
+          input,
+          config.apiRole
+        )
+
+        const assistantMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          role: 'assistant',
+          content: response.message,
+          timestamp: new Date(),
+          intent: response.intent
+        }
+
+        setMessages(prev => [...prev, assistantMessage])
+
+        if (response.suggested_actions?.length > 0) {
+          setSuggestedActions(response.suggested_actions)
+        }
+
+        setIsTyping(false)
+        setIsLoading(false)
       }
-      setMessages(prev => [...prev, assistantMessage])
+    } catch (err) {
+      console.error('Chat error:', err)
+      setError('Failed to send message. Please try again.')
       setIsTyping(false)
-    }, 1000)
-  }
+      setIsLoading(false)
+    }
+  }, [input, isLoading, sessionId, config.apiRole, enableStreaming])
 
   const handleExampleClick = (example: string) => {
     setInput(example)
+    inputRef.current?.focus()
+  }
+
+  const handleActionClick = (action: SuggestedAction) => {
+    // Handle suggested action clicks
+    // This could navigate to different pages or trigger specific actions
+    console.log('Action clicked:', action)
+    setInput(`I want to ${action.label.toLowerCase()}`)
   }
 
   const handleToggle = () => {
@@ -136,6 +259,28 @@ export function ChatbotWidget({ userRole, userName, isOpen: initialIsOpen = fals
       onClose()
     }
     setIsOpen(!isOpen)
+  }
+
+  const handleNewChat = () => {
+    // Clear session and start fresh
+    const newSessionId = chatApi.generateSessionId()
+    sessionStorage.setItem(SESSION_STORAGE_KEY, newSessionId)
+    setSessionId(newSessionId)
+    setMessages([{
+      id: '1',
+      role: 'assistant',
+      content: config.greeting,
+      timestamp: new Date()
+    }])
+    setSuggestedActions([])
+    setError(null)
+  }
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      handleSend()
+    }
   }
 
   if (!isOpen) {
@@ -183,6 +328,15 @@ export function ChatbotWidget({ userRole, userName, isOpen: initialIsOpen = fals
               <Button
                 variant="ghost"
                 size="sm"
+                onClick={handleNewChat}
+                className="text-white hover:bg-white/20 h-8 w-8 p-0"
+                title="New conversation"
+              >
+                <RefreshCw className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => setIsMinimized(!isMinimized)}
                 className="text-white hover:bg-white/20 h-8 w-8 p-0"
               >
@@ -203,7 +357,7 @@ export function ChatbotWidget({ userRole, userName, isOpen: initialIsOpen = fals
         {!isMinimized && (
           <>
             {/* Messages */}
-            <CardContent className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+            <CardContent className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 max-h-[350px]">
               {/* Transparency Notice */}
               <div className="bg-white border border-primary/20 rounded-lg p-3 text-xs text-gray-700">
                 <div className="flex items-start gap-2">
@@ -213,6 +367,13 @@ export function ChatbotWidget({ userRole, userName, isOpen: initialIsOpen = fals
                   </div>
                 </div>
               </div>
+
+              {/* Error Message */}
+              {error && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-700">
+                  {error}
+                </div>
+              )}
 
               {messages.map((message) => (
                 <div
@@ -231,7 +392,12 @@ export function ChatbotWidget({ userRole, userName, isOpen: initialIsOpen = fals
                         : 'bg-white border border-gray-200 text-gray-800'
                     }`}
                   >
-                    <p className="text-sm whitespace-pre-line">{message.content}</p>
+                    <p className="text-sm whitespace-pre-line">
+                      {message.content}
+                      {message.isStreaming && (
+                        <span className="inline-block w-2 h-4 bg-primary/50 ml-1 animate-pulse" />
+                      )}
+                    </p>
                   </div>
                   {message.role === 'user' && (
                     <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
@@ -241,7 +407,7 @@ export function ChatbotWidget({ userRole, userName, isOpen: initialIsOpen = fals
                 </div>
               ))}
 
-              {isTyping && (
+              {isTyping && !messages.some(m => m.isStreaming) && (
                 <div className="flex gap-3">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
                     <Bot className="h-5 w-5 text-white" />
@@ -258,6 +424,26 @@ export function ChatbotWidget({ userRole, userName, isOpen: initialIsOpen = fals
 
               <div ref={messagesEndRef} />
             </CardContent>
+
+            {/* Suggested Actions */}
+            {suggestedActions.length > 0 && (
+              <div className="p-3 bg-white border-t">
+                <p className="text-xs text-gray-600 mb-2">Suggested actions:</p>
+                <div className="flex flex-wrap gap-2">
+                  {suggestedActions.map((action, idx) => (
+                    <Button
+                      key={idx}
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleActionClick(action)}
+                      className="text-xs"
+                    >
+                      {action.label}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Example Questions */}
             {messages.length <= 1 && (
@@ -283,18 +469,24 @@ export function ChatbotWidget({ userRole, userName, isOpen: initialIsOpen = fals
             <div className="p-4 bg-white border-t flex-shrink-0">
               <div className="flex gap-2">
                 <Input
+                  ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                  onKeyPress={handleKeyPress}
                   placeholder="Type your message..."
                   className="flex-1"
+                  disabled={isLoading}
                 />
                 <Button
                   onClick={handleSend}
                   className="bg-gradient-to-r from-primary to-secondary"
-                  disabled={!input.trim() || isTyping}
+                  disabled={!input.trim() || isLoading}
                 >
-                  <Send className="h-4 w-4" />
+                  {isLoading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Send className="h-4 w-4" />
+                  )}
                 </Button>
               </div>
             </div>
@@ -303,60 +495,4 @@ export function ChatbotWidget({ userRole, userName, isOpen: initialIsOpen = fals
       </Card>
     </motion.div>
   )
-}
-
-// Mock response generator (in production, this would call your AI API)
-function generateResponse(input: string, role: ChatbotRole): string {
-  const lowerInput = input.toLowerCase()
-
-  // Student responses
-  if (role === 'student') {
-    if (lowerInput.includes('profile') || lowerInput.includes('build')) {
-      return "Great! Let's build your profile. I'll need to know:\n\n1. What projects have you worked on? (thesis, code, designs, etc.)\n2. What's your major and university?\n3. What type of work are you looking for?\n\nTell me about your most recent project - what did you build and what skills did you use?"
-    }
-    if (lowerInput.includes('job') || lowerInput.includes('milan') || lowerInput.includes('rome')) {
-      return "I can help you find jobs! Based on your profile, I found:\n\n• **Frontend Developer** at TechStartup, Milan (€35-45K) - 94% match\n• **Stage Curriculare** at Microsoft Italia, Milan (€800/mo) - 96% match\n\nThese match your skills in [Python, React]. Want to see why these are good matches?"
-    }
-    if (lowerInput.includes('skill') || lowerInput.includes('trend') || lowerInput.includes('companies')) {
-      return "Great question! Based on company searches:\n\n📈 **Top Skills in Demand:**\n• Python - searched 127 times this month\n• Excel + PowerBI - 89 searches\n• AutoCAD - 76 searches\n• React - 54 searches\n\nFor your field (Computer Science), companies are especially looking for: Machine Learning, Cloud Computing, and Docker.\n\nWant tips on how to showcase these skills?"
-    }
-    if (lowerInput.includes('advice') || lowerInput.includes('career') || lowerInput.includes('help')) {
-      return "I'd love to give you career advice! What field are you in?\n\n• Computer Science / Tech\n• Business / Economics\n• Engineering\n• Law\n• Design / Creative\n• Other\n\nOr tell me what you're struggling with and I'll provide specific guidance."
-    }
-  }
-
-  // Company responses
-  if (role === 'company') {
-    if (lowerInput.includes('cybersecurity') || lowerInput.includes('security') || lowerInput.includes('rome')) {
-      return "Found **4 verified candidates** matching your search:\n\n👤 **M.R.** - Politecnico Milano, Cybersecurity, 30/30 GPA\n   Skills: Network Security, Python, Cryptography\n   Projects: ML Model, Capstone Project\n   **96% match** - €10 to unlock\n\n👤 **S.B.** - Sapienza Roma, Computer Science, 29/30\n   Skills: Cybersecurity, Linux, Ethical Hacking\n   Projects: Web App, Thesis\n   **92% match** - €10 to unlock\n\nWant to see why these candidates match your requirements?"
-    }
-    if (lowerInput.includes('marketing') || lowerInput.includes('creative') || lowerInput.includes('portfolio')) {
-      return "Searching for marketing talent with creative portfolios...\n\nI found **6 candidates** across Business and Design:\n\n📊 **C.R.** - Università di Firenze, Marketing\n   Skills: Digital Marketing, SEO, Social Media\n   Projects: Market Research, Social Impact\n   **90% match**\n\nThese candidates have **verified portfolios** you can preview. Browse free, pay €10 only to contact.\n\nWant filtering tips to narrow down?"
-    }
-    if (lowerInput.includes('match') || lowerInput.includes('explain') || lowerInput.includes('why')) {
-      return "**Match Explanation (Transparent AI):**\n\nWhen we show a 92% match, here's what it means:\n\n✅ **Skills Alignment (40 points):**\n   Your requirement: Python, Network Security\n   Candidate: Python (verified via web app), Network Security (30/30 grade)\n\n✅ **Project Relevance (30 points):**\n   Your need: Experience with security projects\n   Candidate: Capstone on cryptography\n\n✅ **Soft Skills (20 points):**\n   Your preference: Problem-solving, teamwork\n   Candidate: Both detected in group projects\n\n✅ **Location/Availability (10 points):**\n   Match: Both seeking Milan area\n\n**Total: 92/100 = 92% match**\n\nThis is why we're different - no black boxes!"
-    }
-    if (lowerInput.includes('job') || lowerInput.includes('description') || lowerInput.includes('write')) {
-      return "Great question! Here's how to write transparent job descriptions that attract 25% more qualified candidates:\n\n**1. Be Specific About Skills:**\n   ❌ \"Proficient in programming\"\n   ✅ \"Python + React for web development\"\n\n**2. Show Real Requirements:**\n   ❌ \"Junior Analyst needed\"\n   ✅ \"Excel modeling + PowerBI visualization for market research\"\n\n**3. Include Soft Skills:**\n   ✅ \"Teamwork from group projects\"\n   ✅ \"Communication for client presentations\"\n\n**4. Be Honest About Level:**\n   ✅ \"Stage curriculare (6 months, €800/mo)\"\n   ✅ \"Entry-level (0-1 year experience)\"\n\nWant me to review your job post?"
-    }
-  }
-
-  // Institution responses
-  if (role === 'institution') {
-    if (lowerInput.includes('partnership') || lowerInput.includes('free') || lowerInput.includes('work')) {
-      return "**Free Partnership - How It Works:**\n\n✅ **Zero Cost Forever** (vs AlmaLaurea €2,500/year)\n   No setup fees, no monthly costs\n\n✅ **Automatic Profile Creation**\n   Integrate with Esse3/Moodle\n   Students get instant verified profiles\n\n✅ **What You Get:**\n   • Real-time placement dashboard\n   • Company search intelligence (\"Deloitte viewed 31 students\")\n   • Early intervention alerts (\"87 seniors with zero views\")\n   • European job opportunities search\n   • Save 40+ hours/month on manual matching\n\n✅ **Optional Add-Ons** (custom pricing):\n   • API integrations\n   • White-label branding\n   • Custom analytics\n\nWant to set up a demo?"
-    }
-    if (lowerInput.includes('trend') || lowerInput.includes('companies') || lowerInput.includes('search')) {
-      return "**Company Search Intelligence - This Month:**\n\n📊 **Top Companies Viewing Your Students:**\n1. Deloitte - 31 Economics students\n2. Microsoft Italia - 18 Computer Science students\n3. Leonardo SpA - 12 Engineering students\n\n📈 **Most-Searched Skills:**\n1. Excel + PowerBI - 89 searches\n2. Python - 67 searches\n3. AutoCAD - 54 searches\n4. Contract Law - 43 searches\n\n🎯 **Actionable Insights:**\n• **Warm Lead:** Deloitte is active - time for outreach!\n• **Curriculum:** Add data visualization to Economics courses\n• **Career Advice:** Tell Engineering students to showcase CAD portfolios\n\nWant detailed reports by department?"
-    }
-    if (lowerInput.includes('at-risk') || lowerInput.includes('intervention') || lowerInput.includes('students')) {
-      return "**Early Intervention Alert - At-Risk Students:**\n\n⚠️ **Graduating Soon, Zero Visibility:**\n• 87 seniors graduating in 60 days\n• Zero company views\n• Profiles incomplete or missing projects\n\n**Suggested Actions:**\n1. **Contact students** - \"Add your thesis project!\"\n2. **Profile audit** - Check for missing skills/courses\n3. **Workshop** - \"How to showcase your work\"\n4. **1-on-1 support** - Career center consultations\n\n**Success Story:**\nPolitecnico Milano intervened with 45 at-risk students:\n• 38 improved profiles within 2 weeks\n• 23 got company views\n• 11 secured interviews\n\nWant a list of your at-risk students?"
-    }
-    if (lowerInput.includes('european') || lowerInput.includes('job') || lowerInput.includes('opportunities')) {
-      return "**European Job Opportunities for Your Students:**\n\n🌍 **Current Openings (18,934 total):**\n\n**Germany:**\n• SAP Berlin - Software Engineer (€50-65K)\n• BMW Munich - Data Analyst (€48-60K)\n\n**France:**\n• Criteo Paris - ML Engineer (€50-70K)\n• BlaBlaCar Paris - Full Stack Dev (€42-55K)\n\n**Netherlands:**\n• Booking.com Amsterdam - Backend Dev (€55-70K)\n\n**Spain:**\n• Glovo Barcelona - UX Designer (€35-45K)\n\n**UK:**\n• Revolut London - DevOps (£50-65K)\n\nYou can search by:\n• Location (18 European cities)\n• Job type (Full-time, Internship, Remote)\n• Salary range\n• Field (STEM, Business, etc.)\n\nWant to filter for specific programs?"
-    }
-  }
-
-  // Default response
-  return "That's a great question! I'm here to help with:\n\n• Profile building and optimization\n• Job/candidate matching\n• Career/recruiting advice\n• Platform features and transparency\n\nCould you tell me more about what you're looking for? Or ask me something specific!"
 }
