@@ -595,7 +595,7 @@ export default function ReferralsPage() {
                   Start Earning Today
                 </h3>
                 <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                  Join {selectedSegment === 'student' ? '10,000+ students' : selectedSegment === 'institution' ? '100+ institutions' : '500+ companies'} earning through referrals. Transparent tracking, automatic payouts, win-win growth.
+                  Join our growing community of {selectedSegment === 'student' ? 'students' : selectedSegment === 'institution' ? 'institutions' : 'companies'} earning through referrals. Transparent tracking, automatic payouts, win-win growth.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <Button

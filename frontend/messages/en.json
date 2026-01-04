@@ -31,7 +31,7 @@
         "secondaryCTA": "See How It Works",
         "benefits": [
           "Companies message you first",
-          "Get hired 2x faster",
+          "Institution-verified skills",
           "No fake credentials - 100% verified"
         ],
         "features": [
@@ -48,8 +48,8 @@
             "description": "Companies pay €10 per contact vs €9,200/year on LinkedIn. You get discovered for free - they save thousands"
           }
         ],
-        "statsLabel": "Join 125,000+ students who landed jobs through",
-        "statsValue": "verified portfolios - no resumes needed"
+        "statsLabel": "Institution-verified portfolios -",
+        "statsValue": "companies contact you directly, no resumes needed"
       },
       "universities": {
         "badge": "For Institutes - Universities & ITS",
@@ -265,16 +265,16 @@
         "subtitle": "Real students. Real projects. Real results. Browse verified portfolios from your university.",
         "stats": {
           "0": {
-            "value": "125,000+",
-            "label": "Students with verified portfolios"
+            "value": "Verified Portfolios",
+            "label": "Skills confirmed by institution"
           },
           "1": {
-            "value": "3x Faster",
-            "label": "Average time to get hired"
+            "value": "Zero Applications",
+            "label": "Companies contact you first"
           },
           "2": {
-            "value": "10,000+",
-            "label": "Companies hiring verified talent"
+            "value": "98% Savings",
+            "label": "vs traditional staffing agencies"
           }
         },
         "readStories": "Read Success Stories",
@@ -312,7 +312,6 @@
             "Both paths: Full platform access in < 5 minutes"
           ],
           "stats": {
-            "students": "125,000+",
             "time": "< 5 min"
           },
           "visual": {
@@ -341,39 +340,20 @@
           }
         },
         {
-          "title": "Story Generation",
-          "description": "Transform technical projects into compelling professional narratives that recruiters understand",
+          "title": "Connect with Companies",
+          "description": "Companies browse the marketplace and contact you directly based on your verified skills",
           "details": [
-            "AI-powered professional storytelling",
-            "Industry-specific terminology and keywords",
-            "Achievement and impact highlighting",
-            "ATS-optimized content generation"
+            "Companies browse verified portfolios",
+            "Intelligent skills-requirements matching",
+            "Direct contact without intermediaries",
+            "Real-time opportunity notifications"
           ],
           "stats": {
-            "stories": "89,000+",
-            "engagement": "+40%"
+            "savings": "98%",
+            "direct": "Direct Contact"
           },
           "visual": {
-            "storyTitle": "Professional Story Generated",
-            "atsOptimized": "ATS Optimized",
-            "industryKeywords": "Industry Keywords"
-          }
-        },
-        {
-          "title": "Smart Matching",
-          "description": "Connect students with relevant opportunities and enable recruiters to find the perfect candidates",
-          "details": [
-            "AI-powered skill and project matching",
-            "Real-time opportunity notifications",
-            "Preference-based filtering and recommendations",
-            "Direct communication channels"
-          ],
-          "stats": {
-            "matches": "8,500+",
-            "success": "78%"
-          },
-          "visual": {
-            "matchesTitle": "Perfect Matches Found",
+            "matchesTitle": "Matches Found",
             "match": "match",
             "realTimeNotifications": "Real-time notifications for new opportunities"
           }
@@ -441,7 +421,7 @@
       "gdpr": "GDPR Compliant",
       "poweredBy": "Powered by AI"
     },
-    "copyright": "© 2024 InTransparency. All rights reserved.",
+    "copyright": "© 2025-2026 InTransparency. All rights reserved.",
     "support": "Support"
   },
   "pricing": {

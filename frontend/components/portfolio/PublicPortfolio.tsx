@@ -265,7 +265,7 @@ export function PublicPortfolio({ user }: PublicPortfolioProps) {
             Build Your Own Verified Portfolio
           </h3>
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-            Join {user.firstName} and 125,000+ other students on InTransparency
+            Join {user.firstName} with an institution-verified portfolio on InTransparency
           </p>
           <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100" asChild>
             <Link href="/auth/register?role=student">

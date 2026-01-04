@@ -31,7 +31,7 @@
         "secondaryCTA": "Vedi Come Funziona",
         "benefits": [
           "Le aziende ti contattano per prime",
-          "Assunto 2x più velocemente",
+          "Competenze verificate dall'istituzione",
           "Niente credenziali false - 100% verificate"
         ],
         "features": [
@@ -48,8 +48,8 @@
             "description": "Le aziende pagano €10 per contatto vs €9.200/anno su LinkedIn. Tu vieni scoperto gratis - loro risparmiano migliaia"
           }
         ],
-        "statsLabel": "Unisciti a 125.000+ studenti che hanno trovato lavoro attraverso",
-        "statsValue": "portfolio verificati - niente CV necessari"
+        "statsLabel": "Portfolio verificati dalle istituzioni -",
+        "statsValue": "le aziende ti contattano direttamente, niente CV necessari"
       },
       "universities": {
         "badge": "Per Istituti - Università e ITS",
@@ -265,16 +265,16 @@
         "subtitle": "Studenti reali. Progetti reali. Risultati reali. Sfoglia portfolio verificati della tua università.",
         "stats": {
           "0": {
-            "value": "125.000+",
-            "label": "Studenti con portfolio verificati"
+            "value": "Portfolio Verificati",
+            "label": "Competenze confermate dall'istituzione"
           },
           "1": {
-            "value": "3x Più Veloce",
-            "label": "Tempo medio per essere assunti"
+            "value": "Zero Candidature",
+            "label": "Le aziende ti contattano per prime"
           },
           "2": {
-            "value": "10.000+",
-            "label": "Aziende che assumono talenti verificati"
+            "value": "98% Risparmio",
+            "label": "vs agenzie interinali tradizionali"
           }
         },
         "readStories": "Leggi Storie di Successo",
@@ -312,7 +312,6 @@
             "Entrambi i percorsi: Accesso completo alla piattaforma in < 5 minuti"
           ],
           "stats": {
-            "students": "125.000+",
             "time": "< 5 min"
           },
           "visual": {
@@ -341,39 +340,20 @@
           }
         },
         {
-          "title": "Generazione Storia",
-          "description": "Trasforma progetti tecnici in narrative professionali convincenti che i recruiter comprendono",
+          "title": "Connettiti con le Aziende",
+          "description": "Le aziende cercano nel marketplace e ti contattano direttamente in base alle tue competenze verificate",
           "details": [
-            "Storytelling professionale guidato dall'AI",
-            "Terminologia e parole chiave specifiche del settore",
-            "Evidenziazione risultati e impatto",
-            "Generazione contenuti ottimizzati per ATS"
+            "Le aziende sfogliano portfolio verificati",
+            "Match intelligente competenze-requisiti",
+            "Contatto diretto senza intermediari",
+            "Notifiche opportunità in tempo reale"
           ],
           "stats": {
-            "stories": "89.000+",
-            "engagement": "+40%"
+            "savings": "98%",
+            "direct": "Contatto Diretto"
           },
           "visual": {
-            "storyTitle": "Storia Professionale Generata",
-            "atsOptimized": "Ottimizzato ATS",
-            "industryKeywords": "Parole Chiave Settore"
-          }
-        },
-        {
-          "title": "Matching Intelligente",
-          "description": "Connetti studenti con opportunità rilevanti e permetti ai recruiter di trovare i candidati perfetti",
-          "details": [
-            "Matching AI di competenze e progetti",
-            "Notifiche opportunità in tempo reale",
-            "Filtri e raccomandazioni basati su preferenze",
-            "Canali di comunicazione diretta"
-          ],
-          "stats": {
-            "matches": "8.500+",
-            "success": "78%"
-          },
-          "visual": {
-            "matchesTitle": "Corrispondenze Perfette Trovate",
+            "matchesTitle": "Match Trovati",
             "match": "corrispondenza",
             "realTimeNotifications": "Notifiche in tempo reale per nuove opportunità"
           }
@@ -441,7 +421,7 @@
       "gdpr": "Conforme GDPR",
       "poweredBy": "Powered by AI"
     },
-    "copyright": "© 2024 InTransparency. Tutti i diritti riservati.",
+    "copyright": "© 2025-2026 InTransparency. Tutti i diritti riservati.",
     "support": "Supporto"
   },
   "pricing": {

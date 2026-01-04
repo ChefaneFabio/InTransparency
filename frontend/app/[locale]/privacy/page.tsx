@@ -178,11 +178,7 @@ export default function PrivacyPage() {
               </Badge>
               <Badge variant="outline" className="text-sm px-4 py-2">
                 <CheckCircle className="inline h-4 w-4 mr-2 text-green-600" />
-                ISO 27001 Certified
-              </Badge>
-              <Badge variant="outline" className="text-sm px-4 py-2">
-                <CheckCircle className="inline h-4 w-4 mr-2 text-green-600" />
-                SOC 2 Type II
+                Data Portability
               </Badge>
             </div>
           </motion.div>

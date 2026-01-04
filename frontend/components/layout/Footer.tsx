@@ -267,12 +267,6 @@ export function Footer() {
                   <Shield className="h-3 w-3 text-green-600" />
                   {tFooter('compliance.gdpr')}
                 </Link>
-                <div className="text-xs text-gray-600">
-                  SOC 2 Type II
-                </div>
-                <div className="text-xs text-gray-600">
-                  ISO 27001
-                </div>
               </div>
 
               <div className="flex items-center space-x-4 text-xs text-gray-600">
