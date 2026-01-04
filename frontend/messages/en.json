@@ -146,7 +146,7 @@
       },
       "step2": {
         "title": "Institution Verification",
-        "description": "Your university authenticates via Esse3/Moodle"
+        "description": "Your university authenticates via our dashboard"
       },
       "step3": {
         "title": "Companies Discover You",
@@ -170,7 +170,7 @@
       "title": "100% Verified Skills, Not Resume Claims",
       "verification": {
         "title": "University Verification",
-        "description": "Every skill traceable to institution via Esse3/Moodle"
+        "description": "Every skill traceable to institution"
       },
       "aiAnalysis": {
         "title": "AI Analysis",
@@ -528,7 +528,7 @@
     "institutes": {
       "badge": "For Institutes (Universities & ITS)",
       "title": "Free Career Intelligence Service - No Subscriptions Ever",
-      "subtitle": "FREE Verification + Analytics services. Auto-import Esse3/Moodle. You authenticate, we deliver insights. Zero cost vs AlmaLaurea (€2,500/year). Prove 85% placement boost to MIUR.",
+      "subtitle": "FREE Verification + Analytics services. Simple verification dashboard. You authenticate, we deliver insights. Zero cost vs AlmaLaurea (€2,500/year). Prove 85% placement boost to MIUR.",
       "free": {
         "name": "Free Marketplace Access",
         "price": "Free",
@@ -916,7 +916,7 @@
         "badge": "FREE for Institutions",
         "heading": "Auto-import & Authenticate",
         "features": {
-          "0": "Esse3/Moodle integration",
+          "0": "Simple verification dashboard",
           "1": "Institution endorses projects",
           "2": "Batch approval: 50 in 1 hour",
           "3": "\"Verified by ITS G. Natta, 28/30\""
@@ -990,7 +990,7 @@
         },
         "step2": {
           "title": "2. Institution Verifies",
-          "description": "via Esse3/Moodle"
+          "description": "via simple dashboard"
         },
         "step3": {
           "title": "3. AI Matches",
@@ -1005,7 +1005,7 @@
       "institute": {
         "step1": {
           "title": "1. Connect Data Systems",
-          "description": "Esse3/Moodle integration"
+          "description": "Simple dashboard or API"
         },
         "step2": {
           "title": "2. Verify Students",
@@ -1584,7 +1584,7 @@
         "title": "Verification Service",
         "subtitle": "Enables Marketplace Trust",
         "items": {
-          "0": "Esse3/Moodle integration (optional)",
+          "0": "Manual or API verification",
           "1": "You verify projects/grades",
           "2": "\"Verified by ITS G. Natta, 28/30\"",
           "3": "Batch approve 50 in 1 hour"
@@ -1702,8 +1702,8 @@
           "answer": "Yes, 100% free. All 4 services (Discovery, Matching, Verification, Analytics) included. Companies pay €10 per contact - this finances the platform. You save €2.500/year vs AlmaLaurea."
         },
         "2": {
-          "question": "Do we need to integrate Esse3/Moodle?",
-          "answer": "No, integration is optional. Students can manually upload projects and you verify them. If you want auto-import, we handle the API setup (1 hour with our team). Zero IT work for you after setup."
+          "question": "How does verification work?",
+          "answer": "Students manually upload projects and you verify them through our simple dashboard. For larger institutions, we can set up API integration (contact us for details). Zero IT work for you after setup."
         },
         "3": {
           "question": "Can we add Career Day tools?",
@@ -3034,7 +3034,7 @@
       "features": {
         "universityVerified": {
           "title": "University-Verified Data",
-          "description": "API integration with Esse3 → real-time grades/courses"
+          "description": "Institution-verified grades and courses"
         },
         "aiAnalysis": {
           "title": "AI Project Analysis",

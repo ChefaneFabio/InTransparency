@@ -198,7 +198,7 @@ const institutePlans = [
     badge: '🎓 100% Free Forever',
     features: [
       '✅ FREE MARKETPLACE ACCESS: Your students discovered by 10K+ companies',
-      '✅ VERIFICATION SERVICE: Optional Esse3/Moodle integration',
+      '✅ VERIFICATION SERVICE: Manual or API verification workflow',
       '✅ You endorse student projects → They get verified badge',
       '✅ Batch approval: "Endorse 50 projects in 1 hour" dashboard',
       '✅ DISCOVERY SERVICE: Companies browse & contact your students',
@@ -268,7 +268,7 @@ export default function PricingPage() {
       case 'institutes': return {
         badge: 'For Institutes (Universities & ITS)',
         title: 'Free Career Intelligence Service - No Subscriptions Ever',
-        subtitle: 'FREE Verification + Analytics services. Auto-import Esse3/Moodle. You authenticate, we deliver insights. Zero cost vs AlmaLaurea (€2,500/year). Prove 85% placement boost to MIUR.'
+        subtitle: 'FREE Verification + Analytics services. Simple verification dashboard. You authenticate, we deliver insights. Zero cost vs AlmaLaurea (€2,500/year). Prove 85% placement boost to MIUR.'
       }
       case 'companies': return {
         badge: 'For Companies - Pay As You Use',

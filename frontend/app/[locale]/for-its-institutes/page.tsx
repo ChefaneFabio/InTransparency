@@ -355,7 +355,7 @@ export default function ITSInstitutesPage() {
                 <CardContent className="text-xs text-gray-700 space-y-1.5">
                   <p className="font-semibold text-gray-900">Enables Marketplace Trust</p>
                   <ul className="space-y-1">
-                    <li>• Esse3/Moodle integration (optional)</li>
+                    <li>• Manual or API verification workflow</li>
                     <li>• You verify projects/grades</li>
                     <li>• "Verified by ITS G. Natta, 28/30"</li>
                     <li>• Batch approve 50 in 1 hour</li>
@@ -764,12 +764,12 @@ export default function ITSInstitutesPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">Do we need to integrate Esse3/Moodle?</CardTitle>
+                  <CardTitle className="text-base">How does verification work?</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <p>
-                    No, integration is optional. Students can manually upload projects and you verify them.
-                    If you want auto-import, we handle the API setup (1 hour with our team). Zero IT work for you after setup.
+                    Students manually upload projects and you verify them through our simple dashboard.
+                    For larger institutions, we can set up API integration (contact us for details). Zero IT work for you after setup.
                   </p>
                 </CardContent>
               </Card>

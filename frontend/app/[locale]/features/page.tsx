@@ -60,7 +60,7 @@ const features: Feature[] = [
     image: IMAGES.universityCampuses.graduation,
     targets: ['students', 'institutes', 'companies'],
     benefits: [
-      'Zero resume inflation: Every skill traceable to institution (Esse3/Moodle)',
+      'Zero resume inflation: Every skill traceable to institution',
       '100% authenticity: "Python verified by ITS G. Natta, 28/30 project grade"',
       'Project excerpts/links shown to companies with institutional stamp',
       'Solves 30% false positives in hiring vs. self-reported Indeed CVs',
@@ -80,7 +80,7 @@ const features: Feature[] = [
       'AI initial scan: "Excel model built" extracted from uploaded project PDF',
       'Institution dashboard: "Endorse this project? Y/N" button (batch 50 in 1 hour)',
       'Final validation: "Verified by Politecnico Milano, 30/30 in ML thesis"',
-      'Free core feature for institutions (Esse3/Moodle auto-import)',
+      'Free core feature for institutions (manual upload or API)',
       'Works for ALL disciplines: Tech, Business, Law, Engineering, Design',
       'EU AI Act compliant: Every skill traced to authenticated source'
     ],
@@ -367,7 +367,7 @@ const features: Feature[] = [
       'Full audit trail: "Python skill verified by ITS G. Natta, Oct 29, 2025, 28/30 grade"',
       'Institutional stamp visible: "Competency authenticated by Politecnico Milano"',
       'Verification logs for students: "Your AutoCAD project endorsed—shared with 3 recruiters"',
-      'Companies see source: "This skill verified Oct 29, 2025 via Esse3 import"',
+      'Companies see source: "This skill verified Oct 29, 2025 via institution dashboard"',
       'GDPR Article 15 compliant: Complete data transparency',
       '100% traceability: Every skill → institution → date → context'
     ],
@@ -636,7 +636,7 @@ export default function FeaturesPage() {
                   <p className="mb-2 font-semibold text-gray-900">Enables Marketplace Trust</p>
                   <ul className="space-y-1">
                     <li>• Institution-verified profiles (not self-reported)</li>
-                    <li>• Esse3/Moodle integration for auto-import</li>
+                    <li>• Manual verification or API integration</li>
                     <li>• Audit trails & verification logs</li>
                     <li>• 100% traceable competencies to source</li>
                   </ul>

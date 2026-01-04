@@ -146,7 +146,7 @@
       },
       "step2": {
         "title": "Verifica dell'Istituzione",
-        "description": "La tua università autentica tramite Esse3/Moodle"
+        "description": "La tua università autentica tramite la nostra dashboard"
       },
       "step3": {
         "title": "Le Aziende ti Scoprono",
@@ -170,7 +170,7 @@
       "title": "Competenze Verificate al 100%, Non Affermazioni da CV",
       "verification": {
         "title": "Verifica Universitaria",
-        "description": "Ogni competenza tracciabile all'istituzione via Esse3/Moodle"
+        "description": "Ogni competenza tracciabile all'istituzione"
       },
       "aiAnalysis": {
         "title": "Analisi AI",
@@ -528,7 +528,7 @@
     "institutes": {
       "badge": "Per Istituti (Università e ITS)",
       "title": "Servizio Gratuito Career Intelligence - Niente Abbonamenti Mai",
-      "subtitle": "Servizi GRATUITI Verifica + Analytics. Auto-import Esse3/Moodle. Tu autentichi, noi forniamo insights. Zero costi vs AlmaLaurea (€2.500/anno). Prova aumento placement 85% al MIUR.",
+      "subtitle": "Servizi GRATUITI Verifica + Analytics. Dashboard di verifica semplice. Tu autentichi, noi forniamo insights. Zero costi vs AlmaLaurea (€2.500/anno). Prova aumento placement 85% al MIUR.",
       "free": {
         "name": "Accesso Marketplace Gratuito",
         "price": "Gratis",
@@ -959,7 +959,7 @@
         "badge": "GRATIS per Istituzioni",
         "heading": "Auto-import & Autentica",
         "features": {
-          "0": "Integrazione Esse3/Moodle",
+          "0": "Dashboard di verifica semplice",
           "1": "L'istituzione approva i progetti",
           "2": "Approvazione batch: 50 in 1 ora",
           "3": "\"Verificato da ITS G. Natta, 28/30\""
@@ -1033,7 +1033,7 @@
         },
         "step2": {
           "title": "2. L'Istituzione Verifica",
-          "description": "via Esse3/Moodle"
+          "description": "via dashboard semplice"
         },
         "step3": {
           "title": "3. L'AI Trova Corrispondenze",
@@ -1048,7 +1048,7 @@
       "institute": {
         "step1": {
           "title": "1. Collega Sistemi Dati",
-          "description": "Integrazione Esse3/Moodle"
+          "description": "Dashboard semplice o API"
         },
         "step2": {
           "title": "2. Verifica Studenti",
@@ -1627,7 +1627,7 @@
         "title": "Servizio Verifica",
         "subtitle": "Abilita Fiducia Marketplace",
         "items": {
-          "0": "Integrazione Esse3/Moodle (opzionale)",
+          "0": "Verifica manuale o API",
           "1": "Tu verifichi progetti/voti",
           "2": "\"Verificato da ITS G. Natta, 28/30\"",
           "3": "Approva 50 in batch in 1 ora"
@@ -1745,8 +1745,8 @@
           "answer": "Sì, 100% gratis. Tutti i 4 servizi (Scoperta, Matching, Verifica, Analytics) inclusi. Le aziende pagano €10 per contatto - questo finanzia la piattaforma. Risparmi €2.500/anno vs AlmaLaurea."
         },
         "2": {
-          "question": "Dobbiamo integrare Esse3/Moodle?",
-          "answer": "No, l'integrazione è opzionale. Gli studenti possono caricare manualmente i progetti e tu li verifichi. Se vuoi l'auto-importazione, gestiamo noi il setup API (1 ora con il nostro team). Zero lavoro IT per te dopo il setup."
+          "question": "Come funziona la verifica?",
+          "answer": "Gli studenti caricano manualmente i progetti e tu li verifichi tramite la nostra dashboard semplice. Per istituzioni più grandi, possiamo configurare integrazione API (contattaci per dettagli). Zero lavoro IT per te dopo il setup."
         },
         "3": {
           "question": "Possiamo aggiungere strumenti Career Day?",
@@ -3076,7 +3076,7 @@
       "features": {
         "universityVerified": {
           "title": "Dati Verificati dall'Università",
-          "description": "Integrazione API con Esse3 → voti/corsi in tempo reale"
+          "description": "Voti e corsi verificati dall'istituzione"
         },
         "aiAnalysis": {
           "title": "Analisi Progetti AI",

@@ -7,33 +7,8 @@ import { Facebook, Twitter, Linkedin, Github, Instagram, Mail, MapPin, Phone, Sh
 import { useTranslations } from 'next-intl'
 import { useToast } from '@/components/ui/use-toast'
 
-const social = [
-  {
-    name: 'Facebook',
-    href: 'https://facebook.com/intransparency',
-    icon: Facebook,
-  },
-  {
-    name: 'Instagram',
-    href: 'https://instagram.com/intransparency',
-    icon: Instagram,
-  },
-  {
-    name: 'Twitter',
-    href: 'https://twitter.com/intransparency',
-    icon: Twitter,
-  },
-  {
-    name: 'GitHub',
-    href: 'https://github.com/intransparency',
-    icon: Github,
-  },
-  {
-    name: 'LinkedIn',
-    href: 'https://linkedin.com/company/intransparency',
-    icon: Linkedin,
-  },
-]
+// Social links - to be added when official profiles are created
+const social: { name: string; href: string; icon: typeof Facebook }[] = []
 
 export function Footer() {
   const t = useTranslations()
