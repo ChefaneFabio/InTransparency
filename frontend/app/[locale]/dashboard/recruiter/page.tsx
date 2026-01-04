@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useAuth } from '@/lib/auth/AuthContext'
+import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -41,7 +41,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { exportCandidatesToCsv, exportJobPostingsToCsv } from '@/lib/export-csv'
 
 export default function RecruiterDashboard() {
-  const { user } = useAuth()
+  const { data: session } = useSession()
+  const user = session?.user
   const [stats, setStats] = useState<any>(null)
   const [candidates, setCandidates] = useState<any[]>([])
   const [jobPostings, setJobPostings] = useState<any[]>([])

@@ -2,58 +2,52 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuth } from '@/lib/auth/AuthContext'
-import { MessageCenter } from '@/components/messaging/MessageCenter'
+import { useSession } from 'next-auth/react'
 import { Loader2 } from 'lucide-react'
 
 export default function DashboardPage() {
   const router = useRouter()
-  const { user, isAuthenticated, isLoading } = useAuth()
+  const { data: session, status } = useSession()
 
   useEffect(() => {
-    if (!isLoading) {
-      if (!isAuthenticated) {
-        // Redirect to login if not authenticated
-        router.push('/auth/login')
-        return
-      }
+    if (status === 'loading') return
 
-      // Redirect based on user role
-      if (user?.role) {
-        const role = user.role as 'student' | 'recruiter' | 'university' | 'admin'
-        switch (role) {
-          case 'student':
-            router.push('/dashboard/student')
-            break
-          case 'recruiter':
-            router.push('/dashboard/recruiter')
-            break
-          case 'university':
-            router.push('/dashboard/university')
-            break
-          case 'admin':
-            router.push('/dashboard/admin')
-            break
-          default:
-            // Default to student dashboard for unknown roles
-            router.push('/dashboard/student')
-            break
-        }
-      } else {
-        // If no role is set, default to student
-        router.push('/dashboard/student')
-      }
+    if (status === 'unauthenticated') {
+      router.push('/auth/login')
+      return
     }
-  }, [user, isAuthenticated, isLoading, router])
 
-  // Show loading spinner while determining where to redirect
+    // Redirect based on user role
+    if (session?.user?.role) {
+      const role = session.user.role.toLowerCase()
+      switch (role) {
+        case 'student':
+          router.push('/dashboard/student')
+          break
+        case 'recruiter':
+          router.push('/dashboard/recruiter')
+          break
+        case 'university':
+          router.push('/dashboard/institution')
+          break
+        case 'admin':
+          router.push('/dashboard/admin')
+          break
+        default:
+          router.push('/dashboard/student')
+          break
+      }
+    } else {
+      router.push('/dashboard/student')
+    }
+  }, [session, status, router])
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-center">
         <Loader2 className="h-8 w-8 animate-spin mx-auto text-blue-600 mb-4" />
         <p className="text-gray-600">Redirecting to your dashboard...</p>
       </div>
-      <MessageCenter />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useAuth } from '@/lib/auth/AuthContext'
+import { useSession } from 'next-auth/react'
 import { ProjectCard } from '@/components/dashboard/student/ProjectCard'
 import { EnhancedProjectCard } from '@/components/dashboard/student/EnhancedProjectCard'
 import { SmartRecommendations } from '@/components/dashboard/student/SmartRecommendations'
@@ -26,7 +26,8 @@ import { trackUpgradePrompt, trackUpgradeInteraction, ConversionTrigger, PlanTyp
 import { useRouter } from 'next/navigation'
 
 export default function StudentDashboard() {
-  const { user } = useAuth()
+  const { data: session } = useSession()
+  const user = session?.user
   const router = useRouter()
   const [projects, setProjects] = useState<any[]>([])
   const [matches, setMatches] = useState<any[]>([])
