@@ -20,11 +20,12 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 interface ProfileCardProps {
   user: {
-    id: string
-    firstName: string
-    lastName: string
-    email: string
-    role: string
+    id?: string
+    firstName?: string
+    lastName?: string
+    name?: string
+    email?: string
+    role?: string
     university?: string
     major?: string
     graduationYear?: number
@@ -32,10 +33,12 @@ interface ProfileCardProps {
     position?: string
     bio?: string
     avatarUrl?: string
-    skills: string[]
+    image?: string
+    photo?: string
+    skills?: string[]
     location?: string
-    createdAt: string
-  } | null
+    createdAt?: string
+  } | null | undefined
 }
 
 export function ProfileCard({ user }: ProfileCardProps) {
@@ -59,7 +62,27 @@ export function ProfileCard({ user }: ProfileCardProps) {
   }
 
   const completeness = calculateCompleteness()
-  const initials = `${user.firstName?.[0] || ''}${user.lastName?.[0] || ''}`
+
+  // Handle initials from firstName/lastName or from name
+  const getInitials = () => {
+    if (user.firstName && user.lastName) {
+      return `${user.firstName[0]}${user.lastName[0]}`
+    }
+    if (user.name) {
+      const parts = user.name.split(' ')
+      return parts.length > 1 ? `${parts[0][0]}${parts[1][0]}` : user.name[0] || 'U'
+    }
+    return 'U'
+  }
+  const initials = getInitials()
+
+  // Get display name
+  const displayName = user.firstName && user.lastName
+    ? `${user.firstName} ${user.lastName}`
+    : user.name || 'User'
+
+  // Get avatar URL from various possible fields
+  const avatarUrl = user.avatarUrl || user.image || user.photo
 
   const getCompletenessColor = (percentage: number) => {
     if (percentage >= 80) return 'text-green-600'
@@ -67,7 +90,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
     return 'text-red-600'
   }
 
-  const memberSince = new Date(user.createdAt).getFullYear()
+  const memberSince = user.createdAt ? new Date(user.createdAt).getFullYear() : new Date().getFullYear()
 
   return (
     <Card>
@@ -75,15 +98,15 @@ export function ProfileCard({ user }: ProfileCardProps) {
         {/* Profile Header */}
         <div className="flex items-start space-x-4">
           <Avatar className="h-16 w-16">
-            <AvatarImage src={user.avatarUrl} alt={`${user.firstName} ${user.lastName}`} />
+            <AvatarImage src={avatarUrl} alt={displayName} />
             <AvatarFallback className="text-lg font-semibold bg-blue-100 text-blue-600">
               {initials}
             </AvatarFallback>
           </Avatar>
-          
+
           <div className="flex-1 min-w-0">
             <h3 className="text-lg font-semibold text-gray-900 truncate">
-              {user.firstName} {user.lastName}
+              {displayName}
             </h3>
             <p className="text-sm text-gray-600 capitalize">
               {user.role}
@@ -227,7 +250,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
               Boost your profile! 
             </h4>
             <ul className="text-xs text-blue-700 space-y-1">
-              {!user.avatarUrl && <li>• Add a professional photo</li>}
+              {!avatarUrl && <li>• Add a professional photo</li>}
               {!user.bio && <li>• Write a compelling bio</li>}
               {(!user.skills || user.skills.length === 0) && <li>• Add your skills</li>}
               {!user.location && <li>• Add your location</li>}
