@@ -24,12 +24,24 @@
   ],
   "rewrites": [
     {
-      "source": "/api/auth/:path*",
-      "destination": "/api/auth/:path*"
+      "source": "/api/projects/:path*",
+      "destination": "https://api-intransparency.onrender.com/api/projects/:path*"
     },
     {
-      "source": "/api/:path((?!auth).*)",
-      "destination": "https://api-intransparency.onrender.com/api/:path*"
+      "source": "/api/matches/:path*",
+      "destination": "https://api-intransparency.onrender.com/api/matches/:path*"
+    },
+    {
+      "source": "/api/analytics/:path*",
+      "destination": "https://api-intransparency.onrender.com/api/analytics/:path*"
+    },
+    {
+      "source": "/api/messages/:path*",
+      "destination": "https://api-intransparency.onrender.com/api/messages/:path*"
+    },
+    {
+      "source": "/api/referrals/:path*",
+      "destination": "https://api-intransparency.onrender.com/api/referrals/:path*"
     }
   ]
 }
