@@ -21,6 +21,11 @@ interface Competitor {
 }
 
 const competitors: Record<string, Competitor> = {
+  staffingAgency: {
+    name: 'Staffing Agency',
+    annualCost: 5000, // 15-20% of €30K salary = €4,500-6,000 per hire
+    features: ['15-25% of salary per hire', 'Long hiring cycles', 'Limited candidate pool', 'No verification']
+  },
   linkedinRecruiter: {
     name: 'LinkedIn Recruiter Lite',
     annualCost: 9200, // ~$10,000/year
@@ -40,7 +45,7 @@ const competitors: Record<string, Competitor> = {
 
 interface SavingsCalculatorProps {
   defaultHires?: number
-  competitor?: 'linkedinRecruiter' | 'handshake' | 'greenhouse'
+  competitor?: 'staffingAgency' | 'linkedinRecruiter' | 'handshake' | 'greenhouse'
   showComparison?: boolean
   className?: string
 }
