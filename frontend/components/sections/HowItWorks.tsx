@@ -67,14 +67,14 @@ export function HowItWorks() {
     }
   }
 
-  const steps = [0, 1, 2, 3].map(i => getStep(i))
+  const steps = [0, 1, 2].map(i => getStep(i))
 
   // Auto-advance steps
   useEffect(() => {
     if (!isAutoPlaying) return
 
     const interval = setInterval(() => {
-      setActiveStep(prev => (prev + 1) % 4)
+      setActiveStep(prev => (prev + 1) % 3)
     }, 4000)
 
     return () => clearInterval(interval)
@@ -254,37 +254,12 @@ export function HowItWorks() {
                   </div>
                 )}
 
-                {/* Step 2: Story */}
+                {/* Step 2: Connect with Companies */}
                 {activeStep === 2 && (
                   <div className="space-y-4">
                     <div className="flex items-center mb-4">
-                      <Sparkles className="h-6 w-6 text-yellow-500 mr-2" />
-                      <h5 className="font-semibold text-gray-900">{t('steps.2.visual.storyTitle')}</h5>
-                    </div>
-                    <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-4 border border-yellow-200">
-                      <p className="text-gray-700 leading-relaxed text-sm">
-                        Developed an intelligent recommendation system that increased user engagement by 40%. Leveraged machine learning algorithms to analyze customer behavior patterns...
-                      </p>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 text-center">
-                      <div className="bg-green-50 rounded-lg p-3">
-                        <Zap className="h-5 w-5 text-green-500 mx-auto mb-1" />
-                        <div className="text-xs text-gray-600">{t('steps.2.visual.atsOptimized')}</div>
-                      </div>
-                      <div className="bg-blue-50 rounded-lg p-3">
-                        <TrendingUp className="h-5 w-5 text-blue-500 mx-auto mb-1" />
-                        <div className="text-xs text-gray-600">{t('steps.2.visual.industryKeywords')}</div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Step 3: Matching */}
-                {activeStep === 3 && (
-                  <div className="space-y-4">
-                    <div className="flex items-center mb-4">
                       <Target className="h-6 w-6 text-green-500 mr-2" />
-                      <h5 className="font-semibold text-gray-900">{t('steps.3.visual.matchesTitle')}</h5>
+                      <h5 className="font-semibold text-gray-900">{t('steps.2.visual.matchesTitle')}</h5>
                     </div>
                     <div className="space-y-3">
                       {[
@@ -299,7 +274,7 @@ export function HowItWorks() {
                             </div>
                             <div className="text-right">
                               <div className="text-lg font-bold text-green-600">{match.match}%</div>
-                              <div className="text-xs text-gray-700">{t('steps.3.visual.match')}</div>
+                              <div className="text-xs text-gray-700">{t('steps.2.visual.match')}</div>
                             </div>
                           </div>
                         </div>
@@ -307,7 +282,7 @@ export function HowItWorks() {
                     </div>
                     <div className="bg-orange-50 rounded-lg p-3 text-center">
                       <Clock className="h-5 w-5 text-orange-500 mx-auto mb-1" />
-                      <div className="text-sm text-orange-700">{t('steps.3.visual.realTimeNotifications')}</div>
+                      <div className="text-sm text-orange-700">{t('steps.2.visual.realTimeNotifications')}</div>
                     </div>
                   </div>
                 )}
