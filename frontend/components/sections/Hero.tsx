@@ -168,20 +168,6 @@ export function Hero() {
                 </Button>
               </div>
 
-              {/* Pricing Badge for Companies */}
-              {selectedSegment === 'companies' && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="mt-6 flex justify-center"
-                >
-                  <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-3">
-                    <span className="text-2xl font-bold">€10</span>
-                    <span className="text-sm opacity-90">per contact • No subscription</span>
-                  </div>
-                </motion.div>
-              )}
-
               {/* Quick benefits */}
               <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm animate-fade-in animate-delay-500">
                 {[0, 1, 2].map((index) => (
