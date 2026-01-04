@@ -614,7 +614,7 @@ export default function StudentDashboard() {
           </Card>
 
           {/* Profile Card */}
-          <ProfileCard user={user} />
+          <ProfileCard user={user as any} />
 
           {/* Referral Program Card - VIRAL FEATURE */}
           <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50">
