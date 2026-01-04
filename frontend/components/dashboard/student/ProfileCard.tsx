@@ -54,10 +54,10 @@ export function ProfileCard({ user }: ProfileCardProps) {
       user.university,
       user.major,
       user.location,
-      user.avatarUrl,
-      user.skills?.length > 0 ? 'skills' : null
+      user.avatarUrl || user.image || user.photo,
+      user.skills && user.skills.length > 0 ? 'skills' : null
     ]
-    const completedFields = fields.filter(field => field && field.length > 0).length
+    const completedFields = fields.filter(field => field && String(field).length > 0).length
     return Math.round((completedFields / fields.length) * 100)
   }
 
