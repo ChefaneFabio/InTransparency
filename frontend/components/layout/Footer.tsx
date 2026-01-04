@@ -79,10 +79,10 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center mb-6">
               <Image
-                src="/logo.png"
+                src="/logo.jpeg"
                 alt="InTransparency Logo"
-                width={220}
-                height={70}
+                width={340}
+                height={438}
                 className="h-16 w-auto"
               />
             </Link>

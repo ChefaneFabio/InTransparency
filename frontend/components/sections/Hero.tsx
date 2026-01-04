@@ -44,7 +44,7 @@ const segmentIcons = {
 }
 
 export function Hero() {
-  const [selectedSegment, setSelectedSegment] = useState<Segment>('students')
+  const [selectedSegment, setSelectedSegment] = useState<Segment>('companies')
   const t = useTranslations('home.hero')
 
   // Get current segment translations
@@ -86,7 +86,7 @@ export function Hero() {
             className="mb-8 flex justify-center"
           >
             <div className="inline-flex bg-white/80 backdrop-blur-sm rounded-full p-1.5 shadow-lg border border-gray-200">
-              {(['students', 'universities', 'companies'] as Segment[]).map((seg) => {
+              {(['companies', 'universities', 'students'] as Segment[]).map((seg) => {
                 const Icon = segmentIcons[seg]
                 return (
                   <button

@@ -29,11 +29,11 @@ export function Header() {
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5 flex items-center">
             <Image
-              src="/logo.png"
+              src="/logo.jpeg"
               alt="InTransparency Logo"
-              width={308}
-              height={92}
-              className="h-[88px] w-auto"
+              width={340}
+              height={438}
+              className="h-[60px] w-auto"
               priority
             />
           </Link>
@@ -96,11 +96,11 @@ export function Header() {
             <div className="flex items-center justify-between">
               <Link href="/" className="-m-1.5 p-1.5">
                 <Image
-                  src="/logo.png"
+                  src="/logo.jpeg"
                   alt="InTransparency Logo"
-                  width={120}
-                  height={32}
-                  className="h-8 w-auto"
+                  width={340}
+                  height={438}
+                  className="h-10 w-auto"
                 />
               </Link>
               <Button

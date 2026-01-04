@@ -14,22 +14,8 @@ import { useTranslations } from 'next-intl'
 
 const roles = [
   {
-    id: 'student',
-    name: 'Student',
-    description: 'Create your academic portfolio and get discovered by top companies',
-    icon: GraduationCap,
-    color: 'from-blue-500 to-cyan-500',
-    href: '/auth/register/student',
-    benefits: [
-      'Free forever',
-      'AI-powered portfolio',
-      'Get matched with jobs',
-      'Verified credentials'
-    ]
-  },
-  {
     id: 'recruiter',
-    name: 'Recruiter',
+    name: 'Company',
     description: 'Find and connect with verified top talent from universities',
     icon: Users,
     color: 'from-green-500 to-emerald-500',
@@ -43,7 +29,7 @@ const roles = [
   },
   {
     id: 'university',
-    name: 'University',
+    name: 'University / ITS',
     description: 'Showcase your students and boost their career opportunities',
     icon: Building2,
     color: 'from-purple-500 to-indigo-500',
@@ -53,6 +39,20 @@ const roles = [
       'Student analytics',
       'Placement tracking',
       'Career services tools'
+    ]
+  },
+  {
+    id: 'student',
+    name: 'Student',
+    description: 'Create your academic portfolio and get discovered by top companies',
+    icon: GraduationCap,
+    color: 'from-blue-500 to-cyan-500',
+    href: '/auth/register/student',
+    benefits: [
+      'Free forever',
+      'AI-powered portfolio',
+      'Get matched with jobs',
+      'Verified credentials'
     ]
   }
 ]
