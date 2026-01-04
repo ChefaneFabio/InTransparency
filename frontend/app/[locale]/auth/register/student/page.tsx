@@ -1,16 +1,17 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { signIn } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { useAuth } from '@/lib/auth/AuthContext'
-import { GraduationCap } from 'lucide-react'
+import { GraduationCap, Loader2 } from 'lucide-react'
 
 export default function StudentRegisterPage() {
-  const { register } = useAuth()
+  const router = useRouter()
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -27,7 +28,34 @@ export default function StudentRegisterPage() {
     setError('')
 
     try {
-      await register(formData)
+      // First, register the user via API
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Registration failed')
+      }
+
+      // If registration successful, sign in automatically
+      const signInResult = await signIn('credentials', {
+        email: formData.email,
+        password: formData.password,
+        redirect: false
+      })
+
+      if (signInResult?.error) {
+        // Registration succeeded but sign-in failed - redirect to login
+        router.push('/auth/login?registered=true')
+      } else {
+        // Both succeeded - go to dashboard
+        router.push('/dashboard/student')
+        router.refresh()
+      }
     } catch (err: any) {
       setError(err.message || 'Registration failed')
     } finally {
@@ -67,6 +95,7 @@ export default function StudentRegisterPage() {
                     value={formData.firstName}
                     onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
                     required
+                    disabled={isLoading}
                   />
                 </div>
                 <div>
@@ -76,6 +105,7 @@ export default function StudentRegisterPage() {
                     value={formData.lastName}
                     onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
                     required
+                    disabled={isLoading}
                   />
                 </div>
               </div>
@@ -88,6 +118,7 @@ export default function StudentRegisterPage() {
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                   required
+                  disabled={isLoading}
                 />
               </div>
 
@@ -96,9 +127,12 @@ export default function StudentRegisterPage() {
                 <Input
                   id="password"
                   type="password"
+                  placeholder="At least 8 characters"
                   value={formData.password}
                   onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                   required
+                  minLength={8}
+                  disabled={isLoading}
                 />
               </div>
 
@@ -107,7 +141,14 @@ export default function StudentRegisterPage() {
                 className="w-full bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700"
                 disabled={isLoading}
               >
-                {isLoading ? 'Creating Account...' : 'Create Free Student Account'}
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Creating Account...
+                  </>
+                ) : (
+                  'Create Free Student Account'
+                )}
               </Button>
             </form>
 

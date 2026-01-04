@@ -3,17 +3,17 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { useAuth } from '@/lib/auth/AuthContext'
+import { signIn } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { 
-  Eye, 
-  EyeOff, 
-  Mail, 
-  Lock, 
+import {
+  Eye,
+  EyeOff,
+  Mail,
+  Lock,
   AlertCircle,
   Loader2,
   ArrowRight
@@ -37,8 +37,7 @@ const Google = ({ className }: { className?: string }) => (
 
 export default function LoginPage() {
   const router = useRouter()
-  const { login } = useAuth()
-  
+
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -50,7 +49,6 @@ export default function LoginPage() {
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors((prev: any) => ({ ...prev, [field]: null }))
     }
@@ -62,14 +60,12 @@ export default function LoginPage() {
   const validateForm = () => {
     const newErrors: any = {}
 
-    // Email validation
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required'
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address'
     }
 
-    // Password validation
     if (!formData.password.trim()) {
       newErrors.password = 'Password is required'
     } else if (formData.password.length < 6) {
@@ -82,53 +78,43 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!validateForm()) return
 
     setIsLoading(true)
     setLoginError('')
 
     try {
-      const response = await login(formData.email, formData.password)
-      
-      // Redirect based on user role after successful login
-      if (response?.user?.role) {
-        const role = response.user.role as 'student' | 'recruiter' | 'university' | 'admin'
-        switch (role) {
-          case 'student':
-            router.push('/dashboard/student')
-            break
-          case 'recruiter':
-            router.push('/dashboard/recruiter')
-            break
-          case 'university':
-            router.push('/dashboard/university')
-            break
-          case 'admin':
-            router.push('/dashboard/admin')
-            break
-          default:
-            router.push('/dashboard')
-            break
-        }
-      } else {
-        // Fallback redirect
+      const result = await signIn('credentials', {
+        email: formData.email,
+        password: formData.password,
+        redirect: false,
+      })
+
+      if (result?.error) {
+        setLoginError(result.error === 'CredentialsSignin'
+          ? 'Invalid email or password'
+          : result.error)
+      } else if (result?.ok) {
+        // Redirect to dashboard on success
         router.push('/dashboard')
+        router.refresh()
       }
     } catch (error: any) {
-      setLoginError(error.message || 'An unexpected error occurred')
+      setLoginError('An unexpected error occurred. Please try again.')
     } finally {
       setIsLoading(false)
     }
   }
 
-  const handleSocialLogin = (provider: string) => {
-    // For demo purposes, show an alert that this feature is coming soon
-    // In production, this would redirect to OAuth provider
-    alert(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login is coming soon! For now, please use email/password or demo accounts below.`)
-
-    // TODO: Implement OAuth endpoints
-    // window.location.href = `/api/auth/${provider}/redirect`
+  const handleSocialLogin = async (provider: 'google' | 'github') => {
+    setIsLoading(true)
+    try {
+      await signIn(provider, { callbackUrl: '/dashboard' })
+    } catch (error) {
+      setLoginError(`Failed to sign in with ${provider}`)
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -184,8 +170,8 @@ export default function LoginPage() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password">Password</Label>
-                  <Link 
-                    href="/auth/forgot-password" 
+                  <Link
+                    href="/auth/forgot-password"
                     className="text-sm text-blue-600 hover:text-blue-500"
                   >
                     Forgot password?
@@ -217,9 +203,9 @@ export default function LoginPage() {
               </div>
 
               {/* Submit Button */}
-              <Button 
-                type="submit" 
-                className="w-full" 
+              <Button
+                type="submit"
+                className="w-full"
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -274,28 +260,14 @@ export default function LoginPage() {
         <div className="text-center">
           <p className="text-sm text-gray-600">
             Don't have an account?{' '}
-            <Link 
-              href="/auth/register" 
+            <Link
+              href="/auth/register"
               className="font-medium text-blue-600 hover:text-blue-500"
             >
               Sign up here
             </Link>
           </p>
         </div>
-
-        {/* Demo Accounts */}
-        <Card className="bg-blue-50 border-blue-200">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm text-blue-900">Demo Accounts</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="text-xs text-blue-800">
-              <p><strong>Student:</strong> student@demo.com / password</p>
-              <p><strong>Recruiter:</strong> recruiter@demo.com / password</p>
-              <p><strong>University:</strong> university@demo.com / password</p>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </div>
   )

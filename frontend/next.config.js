@@ -153,18 +153,22 @@ const nextConfig = {
   },
   
   async rewrites() {
+    // Note: NextAuth routes (/api/auth/*) are handled by Next.js API routes
+    // and should NOT be proxied to the backend
     if (process.env.NODE_ENV === 'development') {
       return [
         {
-          source: '/api/:path*',
+          // Exclude auth routes from proxy - handled by NextAuth in Next.js
+          source: '/api/:path((?!auth).*)',
           destination: 'http://localhost:3001/api/:path*',
         },
       ]
     }
-    
+
     return [
       {
-        source: '/api/:path*',
+        // Exclude auth routes from proxy - handled by NextAuth in Next.js
+        source: '/api/:path((?!auth).*)',
         destination: 'https://api-intransparency.onrender.com/api/:path*',
       },
     ]
