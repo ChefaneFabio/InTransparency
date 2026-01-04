@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -27,8 +28,10 @@ import {
   Calendar,
   BarChart3,
   Settings,
-  Bell
+  Bell,
+  Plus
 } from 'lucide-react'
+import { UniversityConnectionModal, ITALIAN_INSTITUTIONS } from './UniversityConnectionModal'
 
 interface UniversityConnection {
   universityId: string
@@ -71,11 +74,14 @@ interface UniversityIntegrationProps {
 }
 
 export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
+  const { data: session } = useSession()
   const [connection, setConnection] = useState<UniversityConnection | null>(null)
   const [activities, setActivities] = useState<SyncActivity[]>([])
   const [isSyncing, setIsSyncing] = useState(false)
   const [syncProgress, setSyncProgress] = useState(0)
   const [lastSyncTime, setLastSyncTime] = useState<Date>(new Date())
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     loadUniversityConnection()
@@ -87,38 +93,55 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
     }, 30000) // Check every 30 seconds
 
     return () => clearInterval(interval)
-  }, [])
+  }, [session])
 
-  const loadUniversityConnection = () => {
-    // Mock university connection data
-    const mockConnection: UniversityConnection = {
-      universityId: 'bocconi',
-      universityName: 'Università Bocconi',
-      logoUrl: '/api/placeholder/40/40',
-      website: 'https://www.unibocconi.it',
-      isConnected: true,
-      connectionType: 'direct_api',
-      lastSync: new Date(Date.now() - 5 * 60 * 1000).toISOString(), // 5 minutes ago
-      syncStatus: 'success',
-      dataTypes: {
-        transcripts: true,
-        courses: true,
-        grades: true,
-        projects: true,
-        extracurriculars: false,
-        recommendations: true
-      },
-      syncFrequency: 'real_time',
-      recordsCount: {
-        courses: 24,
-        grades: 142,
-        projects: 8,
-        certificates: 5
-      },
-      verificationLevel: 'verified'
+  const loadUniversityConnection = async () => {
+    setIsLoading(true)
+    try {
+      const response = await fetch('/api/user/university-connection')
+      if (response.ok) {
+        const data = await response.json()
+        if (data.connection) {
+          // Find institution details from our list
+          const institution = ITALIAN_INSTITUTIONS.find(i => i.id === data.connection.universityId)
+
+          const connectionData: UniversityConnection = {
+            universityId: data.connection.universityId,
+            universityName: institution?.name || data.connection.universityName,
+            logoUrl: undefined,
+            website: institution ? `https://www.${institution.domains[0]}` : '',
+            isConnected: true,
+            connectionType: 'email_integration',
+            lastSync: data.connection.connectedAt || new Date().toISOString(),
+            syncStatus: data.connection.verificationStatus === 'verified' ? 'success' : 'warning',
+            dataTypes: {
+              transcripts: true,
+              courses: true,
+              grades: true,
+              projects: true,
+              extracurriculars: false,
+              recommendations: true
+            },
+            syncFrequency: 'daily',
+            recordsCount: {
+              courses: data.connection.coursesCount || 0,
+              grades: data.connection.gradesCount || 0,
+              projects: data.connection.projectsCount || 0,
+              certificates: data.connection.certificatesCount || 0
+            },
+            verificationLevel: data.connection.verificationStatus || 'pending'
+          }
+          setConnection(connectionData)
+        } else {
+          setConnection(null)
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load university connection:', error)
+      setConnection(null)
+    } finally {
+      setIsLoading(false)
     }
-
-    setConnection(mockConnection)
   }
 
   const loadSyncActivities = () => {
@@ -274,23 +297,82 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
     return 'Just now'
   }
 
-  if (!connection) {
+  const handleConnectUniversity = async (institution: any, email: string) => {
+    const response = await fetch('/api/user/university-connection', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        universityId: institution.id,
+        universityName: institution.name,
+        universityType: institution.type,
+        institutionalEmail: email,
+        city: institution.city
+      })
+    })
+
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.message || 'Failed to connect university')
+    }
+
+    // Reload connection after successful connection
+    await loadUniversityConnection()
+  }
+
+  const handleDisconnect = async () => {
+    if (!confirm('Sei sicuro di voler disconnettere la tua università?')) return
+
+    try {
+      const response = await fetch('/api/user/university-connection', {
+        method: 'DELETE'
+      })
+
+      if (response.ok) {
+        setConnection(null)
+      }
+    } catch (error) {
+      console.error('Failed to disconnect:', error)
+    }
+  }
+
+  if (isLoading) {
     return (
       <Card>
         <CardContent className="pt-6">
           <div className="text-center py-8">
-            <School className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No University Connected</h3>
-            <p className="text-gray-600 mb-4">
-              Connect your university account to automatically sync your academic records
-            </p>
-            <Button>
-              <Shield className="mr-2 h-4 w-4" />
-              Connect University
-            </Button>
+            <RefreshCw className="h-8 w-8 text-gray-400 mx-auto mb-4 animate-spin" />
+            <p className="text-gray-600">Caricamento...</p>
           </div>
         </CardContent>
       </Card>
+    )
+  }
+
+  if (!connection) {
+    return (
+      <>
+        <Card>
+          <CardContent className="pt-6">
+            <div className="text-center py-8">
+              <School className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Nessuna Università Connessa</h3>
+              <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                Connetti la tua università o ITS per sincronizzare automaticamente i tuoi voti, corsi e progetti accademici
+              </p>
+              <Button onClick={() => setIsModalOpen(true)} className="bg-blue-600 hover:bg-blue-700">
+                <Plus className="mr-2 h-4 w-4" />
+                Connetti Università
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        <UniversityConnectionModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onConnect={handleConnectUniversity}
+        />
+      </>
     )
   }
 
@@ -540,14 +622,18 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
                 <div className="flex gap-3">
                   <Button variant="outline">
                     <Settings className="h-4 w-4 mr-2" />
-                    Configure Sync
+                    Configura Sync
                   </Button>
-                  <Button variant="outline">
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    University Portal
-                  </Button>
-                  <Button variant="destructive" className="ml-auto">
-                    Disconnect
+                  {connection?.website && (
+                    <Button variant="outline" asChild>
+                      <a href={connection.website} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Portale Università
+                      </a>
+                    </Button>
+                  )}
+                  <Button variant="destructive" className="ml-auto" onClick={handleDisconnect}>
+                    Disconnetti
                   </Button>
                 </div>
               </div>

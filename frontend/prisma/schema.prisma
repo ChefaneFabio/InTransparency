@@ -256,6 +256,52 @@ model User {
   @@index([role])
 }
 
+// University Connection Model (for students connecting with their institution)
+model UniversityConnection {
+  id                  String   @id @default(cuid())
+  userId              String   @unique
+
+  // University Info
+  universityId        String   // e.g., "polimi", "unibocconi"
+  universityName      String
+  universityType      String   @default("university") // "university" or "its"
+  city                String?
+
+  // Verification
+  institutionalEmail  String
+  verificationStatus  VerificationStatus @default(PENDING)
+  verificationToken   String?  @unique
+  verificationSentAt  DateTime?
+  verifiedAt          DateTime?
+
+  // Sync Settings
+  syncEnabled         Boolean  @default(true)
+  lastSyncAt          DateTime?
+  syncFrequency       String   @default("daily") // "real_time", "daily", "weekly", "manual"
+
+  // Synced Data Counts (updated on each sync)
+  coursesCount        Int      @default(0)
+  gradesCount         Int      @default(0)
+  projectsCount       Int      @default(0)
+  certificatesCount   Int      @default(0)
+
+  // Timestamps
+  connectedAt         DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([userId])
+  @@index([universityId])
+  @@index([verificationStatus])
+  @@index([institutionalEmail])
+}
+
+enum VerificationStatus {
+  PENDING           // Email sent, awaiting verification
+  VERIFIED          // Email verified
+  EXPIRED           // Verification link expired
+  FAILED            // Verification failed
+}
+
 enum UserRole {
   STUDENT
   RECRUITER
