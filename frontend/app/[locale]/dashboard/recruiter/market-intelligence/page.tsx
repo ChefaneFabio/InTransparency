@@ -400,15 +400,15 @@ export default function MarketIntelligencePage() {
                 <p className="text-sm text-blue-900 font-semibold mb-1">
                   💡 Demo Mode - Mock Market Data
                 </p>
-                <p className="text-sm text-blue-800">
-                  In production, this dashboard will pull:
+                <div className="text-sm text-blue-800">
+                  <p>In production, this dashboard will pull:</p>
                   <ul className="list-disc list-inside mt-2 space-y-1">
                     <li>Real salary benchmarks from market APIs</li>
                     <li>Live competition data from job boards</li>
                     <li>Actual hiring trends from institutional partnerships</li>
                     <li>Geographic salary variations</li>
                   </ul>
-                </p>
+                </div>
                 <Button variant="outline" size="sm" className="mt-3" asChild>
                   <Link href="/dashboard/recruiter/course-search">
                     <ExternalLink className="h-4 w-4 mr-2" />
