@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
-import { PrismaClient } from '@prisma/client'
+import prisma from '@/lib/prisma'
 import { z } from 'zod'
-
-const prisma = new PrismaClient()
+import { getPricingTier } from '@/lib/config/pricing'
 
 const sendMessageSchema = z.object({
   recipientId: z.string().optional().nullable(),
@@ -117,10 +116,139 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const validatedData = sendMessageSchema.parse(body)
 
-    // Generate thread ID if not provided (for new conversations)
+    // For recruiters, check contact limits
+    const isRecruiter = session.user.role === 'RECRUITER'
+    const recipientId = validatedData.recipientId
+
+    if (isRecruiter && recipientId) {
+      const user = await prisma.user.findUnique({
+        where: { id: session.user.id },
+        select: {
+          subscriptionTier: true,
+          premiumUntil: true,
+        }
+      })
+
+      if (!user) {
+        return NextResponse.json({ error: 'User not found' }, { status: 404 })
+      }
+
+      const tier = getPricingTier(user.subscriptionTier)
+      const contactLimit = tier?.limits.contacts ?? 0
+
+      // Check if contacts are allowed
+      if (contactLimit === 0) {
+        return NextResponse.json({
+          error: 'Upgrade required to contact candidates',
+          upgradeUrl: '/pricing?for=recruiters',
+        }, { status: 403 })
+      }
+
+      // For paid tiers with limits, check usage
+      if (contactLimit !== -1) {
+        const now = new Date()
+        let billingPeriodStart: Date
+        let billingPeriodEnd: Date
+
+        if (user.premiumUntil) {
+          const premiumDate = new Date(user.premiumUntil)
+          const dayOfMonth = premiumDate.getDate()
+          billingPeriodStart = new Date(now.getFullYear(), now.getMonth(), dayOfMonth)
+          if (billingPeriodStart > now) {
+            billingPeriodStart.setMonth(billingPeriodStart.getMonth() - 1)
+          }
+          billingPeriodEnd = new Date(billingPeriodStart)
+          billingPeriodEnd.setMonth(billingPeriodEnd.getMonth() + 1)
+        } else {
+          billingPeriodStart = new Date(now.getFullYear(), now.getMonth(), 1)
+          billingPeriodEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1)
+        }
+
+        // Check if already contacted this student
+        const existingContact = await prisma.contactUsage.findUnique({
+          where: {
+            recruiterId_recipientId_billingPeriodStart: {
+              recruiterId: session.user.id,
+              recipientId: recipientId,
+              billingPeriodStart: billingPeriodStart,
+            }
+          }
+        })
+
+        if (!existingContact) {
+          // Count current usage
+          const used = await prisma.contactUsage.count({
+            where: {
+              recruiterId: session.user.id,
+              billingPeriodStart: billingPeriodStart,
+            }
+          })
+
+          if (used >= contactLimit) {
+            return NextResponse.json({
+              error: `Contact limit reached (${contactLimit}/month). Upgrade for more contacts.`,
+              upgradeUrl: '/pricing?for=recruiters',
+              used,
+              limit: contactLimit,
+            }, { status: 403 })
+          }
+        }
+
+        // Generate thread ID if not provided
+        const threadId = validatedData.threadId || `thread_${Date.now()}_${Math.random().toString(36).substring(7)}`
+
+        // Create message and contact usage in a transaction
+        const result = await prisma.$transaction(async (tx) => {
+          const message = await tx.message.create({
+            data: {
+              senderId: session.user.id,
+              recipientEmail: validatedData.recipientEmail,
+              recipientId: validatedData.recipientId || null,
+              subject: validatedData.subject,
+              content: validatedData.content,
+              threadId,
+              replyToId: validatedData.replyToId,
+            },
+            include: {
+              sender: {
+                select: {
+                  id: true,
+                  firstName: true,
+                  lastName: true,
+                  email: true,
+                  photo: true,
+                  company: true,
+                }
+              }
+            }
+          })
+
+          // Record contact usage (upsert to handle same student contacted twice)
+          if (!existingContact) {
+            await tx.contactUsage.create({
+              data: {
+                recruiterId: session.user.id,
+                recipientId: recipientId,
+                billingPeriodStart: billingPeriodStart,
+                billingPeriodEnd: billingPeriodEnd,
+                messageId: message.id,
+              }
+            })
+          }
+
+          return message
+        })
+
+        return NextResponse.json({
+          success: true,
+          message: result,
+        }, { status: 201 })
+      }
+    }
+
+    // For non-recruiters or unlimited tier, just create the message
     const threadId = validatedData.threadId || `thread_${Date.now()}_${Math.random().toString(36).substring(7)}`
 
-    // Create message
     const message = await prisma.message.create({
       data: {
         senderId: session.user.id,
@@ -145,8 +273,30 @@ export async function POST(req: NextRequest) {
       }
     })
 
-    // TODO: Send email notification if recipient is not online
-    // TODO: Emit Socket.io event for real-time delivery
+    // For unlimited tier recruiters, still record contact usage for analytics
+    if (isRecruiter && recipientId) {
+      const now = new Date()
+      const billingPeriodStart = new Date(now.getFullYear(), now.getMonth(), 1)
+      const billingPeriodEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1)
+
+      await prisma.contactUsage.upsert({
+        where: {
+          recruiterId_recipientId_billingPeriodStart: {
+            recruiterId: session.user.id,
+            recipientId: recipientId,
+            billingPeriodStart: billingPeriodStart,
+          }
+        },
+        update: {},
+        create: {
+          recruiterId: session.user.id,
+          recipientId: recipientId,
+          billingPeriodStart: billingPeriodStart,
+          billingPeriodEnd: billingPeriodEnd,
+          messageId: message.id,
+        }
+      })
+    }
 
     return NextResponse.json({
       success: true,

@@ -5,19 +5,40 @@ import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Link } from '@/navigation'
-import { ArrowLeft, Upload, FileText, CheckCircle, AlertCircle, Download } from 'lucide-react'
+import { ArrowLeft, Upload, FileText, CheckCircle, AlertCircle, Download, Loader2, XCircle } from 'lucide-react'
+
+interface ImportError {
+  row: number
+  email?: string
+  errors: string[]
+}
+
+interface ImportResult {
+  success: number
+  failed: number
+  skipped: number
+  total: number
+  errors: ImportError[]
+  message: string
+}
 
 export default function ImportStudentsPage() {
   const { data: session } = useSession()
   const [file, setFile] = useState<File | null>(null)
   const [importing, setImporting] = useState(false)
-  const [result, setResult] = useState<{ success: number; failed: number } | null>(null)
+  const [result, setResult] = useState<ImportResult | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0]
-    if (selectedFile && selectedFile.type === 'text/csv') {
-      setFile(selectedFile)
-      setResult(null)
+    if (selectedFile) {
+      if (selectedFile.type === 'text/csv' || selectedFile.name.endsWith('.csv')) {
+        setFile(selectedFile)
+        setResult(null)
+        setError(null)
+      } else {
+        setError('Please select a CSV file')
+      }
     }
   }
 
@@ -25,22 +46,40 @@ export default function ImportStudentsPage() {
     if (!file) return
 
     setImporting(true)
+    setError(null)
 
-    // Simulate import process
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    try {
+      const formData = new FormData()
+      formData.append('file', file)
 
-    setResult({ success: 45, failed: 3 })
-    setImporting(false)
+      const response = await fetch('/api/dashboard/university/students/import', {
+        method: 'POST',
+        body: formData,
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Import failed')
+      }
+
+      setResult(data)
+    } catch (err: any) {
+      setError(err.message || 'Failed to import students')
+    } finally {
+      setImporting(false)
+    }
   }
 
   const downloadTemplate = () => {
-    const csvContent = "email,first_name,last_name,course,year\nstudent@university.edu,Mario,Rossi,Computer Science,3\n"
+    const csvContent = "email,first_name,last_name,course,year\nstudent@university.edu,Mario,Rossi,Computer Science,3\nstudent2@university.edu,Laura,Bianchi,Business Administration,2\n"
     const blob = new Blob([csvContent], { type: 'text/csv' })
     const url = window.URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
     a.download = 'students_template.csv'
     a.click()
+    window.URL.revokeObjectURL(url)
   }
 
   return (
@@ -68,13 +107,21 @@ export default function ImportStudentsPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="bg-gray-50 rounded-lg p-4 font-mono text-sm mb-4">
-            email, first_name, last_name, course, year
+          <div className="bg-gray-50 rounded-lg p-4 font-mono text-sm mb-4 overflow-x-auto">
+            <p className="text-gray-600 mb-2"># Required columns:</p>
+            <p>email, first_name, last_name</p>
+            <p className="text-gray-600 mt-2 mb-2"># Optional columns:</p>
+            <p>course, year</p>
           </div>
-          <Button variant="outline" size="sm" onClick={downloadTemplate}>
-            <Download className="h-4 w-4 mr-2" />
-            Download Template
-          </Button>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="outline" size="sm" onClick={downloadTemplate}>
+              <Download className="h-4 w-4 mr-2" />
+              Download Template
+            </Button>
+          </div>
+          <p className="text-xs text-gray-500 mt-3">
+            Maximum 1000 students per import. File size limit: 5MB.
+          </p>
         </CardContent>
       </Card>
 
@@ -99,7 +146,11 @@ export default function ImportStudentsPage() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => setFile(null)}
+                  onClick={() => {
+                    setFile(null)
+                    setResult(null)
+                    setError(null)
+                  }}
                 >
                   Remove
                 </Button>
@@ -110,18 +161,11 @@ export default function ImportStudentsPage() {
                 <p className="text-gray-600">
                   Drag and drop a CSV file, or click to browse
                 </p>
-                <input
-                  type="file"
-                  accept=".csv"
-                  onChange={handleFileChange}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                  style={{ position: 'relative' }}
-                />
                 <Button variant="outline" asChild>
                   <label className="cursor-pointer">
                     <input
                       type="file"
-                      accept=".csv"
+                      accept=".csv,text/csv"
                       onChange={handleFileChange}
                       className="hidden"
                     />
@@ -134,22 +178,79 @@ export default function ImportStudentsPage() {
         </CardContent>
       </Card>
 
+      {/* Error Message */}
+      {error && (
+        <Card className="border-red-200 bg-red-50">
+          <CardContent className="pt-6">
+            <div className="flex items-start gap-4">
+              <XCircle className="h-6 w-6 text-red-500 flex-shrink-0" />
+              <div>
+                <p className="font-medium text-red-800">Import Failed</p>
+                <p className="text-sm text-red-600 mt-1">{error}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Result */}
       {result && (
-        <Card className={result.failed > 0 ? 'border-amber-200' : 'border-green-200'}>
+        <Card className={`${
+          result.failed > 0 ? 'border-amber-200' : 'border-green-200'
+        }`}>
           <CardContent className="pt-6">
             <div className="flex items-start gap-4">
               {result.failed > 0 ? (
-                <AlertCircle className="h-6 w-6 text-amber-500" />
+                <AlertCircle className="h-6 w-6 text-amber-500 flex-shrink-0" />
               ) : (
-                <CheckCircle className="h-6 w-6 text-green-500" />
+                <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0" />
               )}
-              <div>
+              <div className="flex-1">
                 <p className="font-medium text-gray-900">Import Complete</p>
-                <p className="text-sm text-gray-600 mt-1">
-                  {result.success} students imported successfully
-                  {result.failed > 0 && `, ${result.failed} failed`}
-                </p>
+                <p className="text-sm text-gray-600 mt-1">{result.message}</p>
+
+                {/* Stats */}
+                <div className="flex flex-wrap gap-4 mt-4 text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                    <span>{result.success} imported</span>
+                  </div>
+                  {result.skipped > 0 && (
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                      <span>{result.skipped} skipped</span>
+                    </div>
+                  )}
+                  {result.failed > 0 && (
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-red-500" />
+                      <span>{result.failed} failed</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Error Details */}
+                {result.errors.length > 0 && (
+                  <div className="mt-4">
+                    <p className="text-sm font-medium text-gray-700 mb-2">
+                      Error Details:
+                    </p>
+                    <div className="bg-gray-50 rounded-lg p-3 max-h-48 overflow-y-auto">
+                      {result.errors.map((err, idx) => (
+                        <div key={idx} className="text-xs text-gray-600 mb-2 last:mb-0">
+                          <span className="font-medium">Row {err.row}</span>
+                          {err.email && <span className="text-gray-400"> ({err.email})</span>}
+                          <span>: {err.errors.join(', ')}</span>
+                        </div>
+                      ))}
+                      {result.errors.length >= 50 && (
+                        <p className="text-xs text-gray-400 italic mt-2">
+                          Showing first 50 errors...
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </CardContent>
@@ -165,7 +266,17 @@ export default function ImportStudentsPage() {
           onClick={handleImport}
           disabled={!file || importing}
         >
-          {importing ? 'Importing...' : 'Import Students'}
+          {importing ? (
+            <>
+              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+              Importing...
+            </>
+          ) : (
+            <>
+              <Upload className="h-4 w-4 mr-2" />
+              Import Students
+            </>
+          )}
         </Button>
       </div>
     </div>

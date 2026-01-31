@@ -12,16 +12,16 @@ datasource db {
 
 // Survey Response Models
 model SurveyResponse {
-  id           String   @id @default(cuid())
-  surveyType   String   // 'student', 'company', 'university'
-  responses    Json     // Store all survey data as JSON
-  metadata     Json?    // Store metadata like completion time, user agent, etc.
-  ipAddress    String?
-  userAgent    String?
-  referrer     String?
-  completionTime Int?   // Time taken to complete in milliseconds
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id             String   @id @default(cuid())
+  surveyType     String // 'student', 'company', 'university'
+  responses      Json // Store all survey data as JSON
+  metadata       Json? // Store metadata like completion time, user agent, etc.
+  ipAddress      String?
+  userAgent      String?
+  referrer       String?
+  completionTime Int? // Time taken to complete in milliseconds
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   @@index([surveyType])
   @@index([createdAt])
@@ -29,47 +29,47 @@ model SurveyResponse {
 
 // Optional: Structured storage for student surveys
 model StudentSurvey {
-  id           String   @id @default(cuid())
+  id String @id @default(cuid())
 
   // Demographics
-  university   String
-  degree       String
+  university     String
+  degree         String
   graduationYear String
-  currentStatus String
+  currentStatus  String
 
   // Academic Showcase
   proudestAchievement String?
-  projectPreferences Json?
-  gradeImportance String?
-  skillDemonstration String?
+  projectPreferences  Json?
+  gradeImportance     String?
+  skillDemonstration  String?
 
   // Platform Features
-  profilePriorities Json?
-  transparencyComfort String?
+  profilePriorities     Json?
+  transparencyComfort   String?
   professorEndorsements String?
 
   // Job Search
-  jobSearchChallenges Json?
+  jobSearchChallenges     Json?
   idealEmployerConnection String?
-  platformFeatures Json?
+  platformFeatures        Json?
 
   // Transparency & Privacy
   transparencyMeaning String?
-  informationSharing Json?
-  privacyPreferences String?
+  informationSharing  Json?
+  privacyPreferences  String?
 
   // Platform Development
   additionalFeatures String?
-  betaParticipation Boolean @default(false)
-  emailAddress String?
+  betaParticipation  Boolean @default(false)
+  emailAddress       String?
 
   // Metadata
-  ipAddress    String?
-  userAgent    String?
-  referrer     String?
+  ipAddress      String?
+  userAgent      String?
+  referrer       String?
   completionTime Int?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   @@index([university])
   @@index([createdAt])
@@ -78,7 +78,7 @@ model StudentSurvey {
 
 // Optional: Structured storage for company surveys
 model CompanySurvey {
-  id           String   @id @default(cuid())
+  id String @id @default(cuid())
 
   // Company Info
   companyName  String
@@ -87,39 +87,39 @@ model CompanySurvey {
   hiringVolume String
 
   // Current Recruitment
-  currentMethods Json?
+  currentMethods    Json?
   biggestChallenges Json?
-  timeToHire String?
-  importantFactors String?
+  timeToHire        String?
+  importantFactors  String?
 
   // Candidate Evaluation
-  projectsImportance String?
+  projectsImportance  String?
   technicalEvaluation String?
-  softSkills Json?
-  dealBreakers String?
+  softSkills          Json?
+  dealBreakers        String?
 
   // Platform Features
-  valuableFeatures Json?
+  valuableFeatures   Json?
   missingCredentials Json?
-  transparencyLevel String?
+  transparencyLevel  String?
 
   // Recruitment Tools & Costs
-  currentTools Json?
-  monthlyBudget String?
+  currentTools   Json?
+  monthlyBudget  String?
   decisionMakers String?
 
   // Platform Development
   additionalFeatures String?
   pilotParticipation Boolean @default(false)
-  contactEmail String?
+  contactEmail       String?
 
   // Metadata
-  ipAddress    String?
-  userAgent    String?
-  referrer     String?
+  ipAddress      String?
+  userAgent      String?
+  referrer       String?
   completionTime Int?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   @@index([companyName])
   @@index([createdAt])
@@ -128,42 +128,42 @@ model CompanySurvey {
 
 // Optional: Structured storage for university surveys
 model UniversitySurvey {
-  id           String   @id @default(cuid())
+  id String @id @default(cuid())
 
   // Institution Info
-  universityName String
-  studentCount String
+  universityName  String
+  studentCount    String
   primaryPrograms Json?
-  region String
+  region          String
 
   // Placement Challenges
-  placementRate String?
+  placementRate     String?
   biggestChallenges Json?
-  industryGaps String?
+  industryGaps      String?
 
   // Career Services
   currentServices Json?
-  toolsUsed Json?
-  successMetrics String?
+  toolsUsed       Json?
+  successMetrics  String?
 
   // Platform Integration
-  dataIntegration String?
-  studentAdoption Json?
-  privacyConcerns String?
+  dataIntegration     String?
+  studentAdoption     Json?
+  privacyConcerns     String?
   administrativeNeeds Json?
 
   // Platform Development
   additionalFeatures String?
   pilotParticipation Boolean @default(false)
-  contactEmail String?
+  contactEmail       String?
 
   // Metadata
-  ipAddress    String?
-  userAgent    String?
-  referrer     String?
+  ipAddress      String?
+  userAgent      String?
+  referrer       String?
   completionTime Int?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   @@index([universityName])
   @@index([createdAt])
@@ -176,78 +176,82 @@ model UniversitySurvey {
 
 // User Model
 model User {
-  id                String    @id @default(cuid())
-  email             String    @unique
-  username          String?   @unique
-  passwordHash      String
-  role              UserRole  @default(STUDENT)
+  id           String   @id @default(cuid())
+  email        String   @unique
+  username     String?  @unique
+  passwordHash String
+  role         UserRole @default(STUDENT)
 
   // Profile
-  firstName         String?
-  lastName          String?
-  photo             String?
-  bio               String?
-  tagline           String?
+  firstName String?
+  lastName  String?
+  photo     String?
+  bio       String?
+  tagline   String?
 
   // University Info (for students)
-  university        String?
-  degree            String?
-  graduationYear    String?
-  gpa               String?
-  gpaPublic         Boolean   @default(false)
+  university     String?
+  degree         String?
+  graduationYear String?
+  gpa            String?
+  gpaPublic      Boolean @default(false)
 
   // Company Info (for recruiters)
-  company           String?
-  jobTitle          String?
+  company  String?
+  jobTitle String?
 
   // Premium & Subscription
-  subscriptionTier  SubscriptionTier @default(FREE)
-  subscriptionStatus SubscriptionStatus @default(INACTIVE)
-  stripeCustomerId  String?   @unique
-  stripeSubscriptionId String? @unique
-  premiumUntil      DateTime?
+  subscriptionTier     SubscriptionTier   @default(FREE)
+  subscriptionStatus   SubscriptionStatus @default(INACTIVE)
+  stripeCustomerId     String?            @unique
+  stripeSubscriptionId String?            @unique
+  premiumUntil         DateTime?
 
   // Referral Info
-  referralCode      String    @unique @default(cuid())
-  referredBy        String?   // referralCode of referrer
-  referralCount     Int       @default(0)
-  referralTier      ReferralTier @default(BRONZE)
-  premiumMonthsEarned Int     @default(0)
+  referralCode        String       @unique @default(cuid())
+  referredBy          String? // referralCode of referrer
+  referralCount       Int          @default(0)
+  referralTier        ReferralTier @default(BRONZE)
+  premiumMonthsEarned Int          @default(0)
 
   // Settings
-  emailVerified     Boolean   @default(false)
-  emailVerifiedAt   DateTime?
-  profilePublic     Boolean   @default(false)
-  portfolioUrl      String?   @unique // custom subdomain
+  emailVerified   Boolean   @default(false)
+  emailVerifiedAt DateTime?
+  profilePublic   Boolean   @default(false)
+  portfolioUrl    String?   @unique // custom subdomain
 
   // Privacy Settings
-  showLocation      Boolean   @default(true)
-  showEmail         Boolean   @default(false)
-  showPhone         Boolean   @default(false)
-  showLastActive    Boolean   @default(true)
-  anonymousBrowsing Boolean   @default(false)
-  allowMessagesFrom String    @default("verified") // 'all', 'verified', 'none'
-  indexInSearchEngines Boolean @default(true)
-  showProjects      String    @default("all") // 'all', 'featured', 'none'
-  blockedCompanies  String[]  @default([]) // Array of company IDs/names to hide profile from
+  showLocation         Boolean  @default(true)
+  showEmail            Boolean  @default(false)
+  showPhone            Boolean  @default(false)
+  showLastActive       Boolean  @default(true)
+  anonymousBrowsing    Boolean  @default(false)
+  allowMessagesFrom    String   @default("verified") // 'all', 'verified', 'none'
+  indexInSearchEngines Boolean  @default(true)
+  showProjects         String   @default("all") // 'all', 'featured', 'none'
+  blockedCompanies     String[] @default([]) // Array of company IDs/names to hide profile from
 
   // Timestamps
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
-  lastLoginAt       DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  lastLoginAt DateTime?
 
   // Relations
-  accounts          Account[]
-  sessions          Session[]
-  projects          Project[]
-  subscriptionHistory Subscription[]
-  referrals         Referral[]       @relation("ReferredUsers")
-  referrer          Referral?        @relation("Referrer")
-  analytics         Analytics[]
-  messages          Message[]
-  endorsements      ProfessorEndorsement[] @relation("StudentEndorsements")
-  jobs              Job[]            @relation("RecruiterJobs")
-  applications      Application[]    @relation("ApplicantApplications")
+  accounts             Account[]
+  sessions             Session[]
+  projects             Project[]
+  subscriptionHistory  Subscription[]
+  referrals            Referral[]             @relation("ReferredUsers")
+  referrer             Referral?              @relation("Referrer")
+  analytics            Analytics[]
+  messages             Message[]
+  endorsements         ProfessorEndorsement[] @relation("StudentEndorsements")
+  jobs                 Job[]                  @relation("RecruiterJobs")
+  applications         Application[]          @relation("ApplicantApplications")
+  challenges           CompanyChallenge[]     @relation("RecruiterChallenges")
+  challengeSubmissions ChallengeSubmission[]  @relation("StudentChallengeSubmissions")
+  contactsMade         ContactUsage[]         @relation("RecruiterContacts")
+  contactsReceived     ContactUsage[]         @relation("RecipientContacts")
 
   @@index([email])
   @@index([username])
@@ -258,36 +262,36 @@ model User {
 
 // University Connection Model (for students connecting with their institution)
 model UniversityConnection {
-  id                  String   @id @default(cuid())
-  userId              String   @unique
+  id     String @id @default(cuid())
+  userId String @unique
 
   // University Info
-  universityId        String   // e.g., "polimi", "unibocconi"
-  universityName      String
-  universityType      String   @default("university") // "university" or "its"
-  city                String?
+  universityId   String // e.g., "polimi", "unibocconi"
+  universityName String
+  universityType String  @default("university") // "university" or "its"
+  city           String?
 
   // Verification
-  institutionalEmail  String
-  verificationStatus  VerificationStatus @default(PENDING)
-  verificationToken   String?  @unique
-  verificationSentAt  DateTime?
-  verifiedAt          DateTime?
+  institutionalEmail String
+  verificationStatus VerificationStatus @default(PENDING)
+  verificationToken  String?            @unique
+  verificationSentAt DateTime?
+  verifiedAt         DateTime?
 
   // Sync Settings
-  syncEnabled         Boolean  @default(true)
-  lastSyncAt          DateTime?
-  syncFrequency       String   @default("daily") // "real_time", "daily", "weekly", "manual"
+  syncEnabled   Boolean   @default(true)
+  lastSyncAt    DateTime?
+  syncFrequency String    @default("daily") // "real_time", "daily", "weekly", "manual"
 
   // Synced Data Counts (updated on each sync)
-  coursesCount        Int      @default(0)
-  gradesCount         Int      @default(0)
-  projectsCount       Int      @default(0)
-  certificatesCount   Int      @default(0)
+  coursesCount      Int @default(0)
+  gradesCount       Int @default(0)
+  projectsCount     Int @default(0)
+  certificatesCount Int @default(0)
 
   // Timestamps
-  connectedAt         DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  connectedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@index([userId])
   @@index([universityId])
@@ -296,10 +300,10 @@ model UniversityConnection {
 }
 
 enum VerificationStatus {
-  PENDING           // Email sent, awaiting verification
-  VERIFIED          // Email verified
-  EXPIRED           // Verification link expired
-  FAILED            // Verification failed
+  PENDING // Email sent, awaiting verification
+  VERIFIED // Email verified
+  EXPIRED // Verification link expired
+  FAILED // Verification failed
 }
 
 enum UserRole {
@@ -330,9 +334,9 @@ enum SubscriptionStatus {
 }
 
 enum ReferralTier {
-  BRONZE   // 0-2 referrals
-  SILVER   // 3-9 referrals
-  GOLD     // 10-49 referrals
+  BRONZE // 0-2 referrals
+  SILVER // 3-9 referrals
+  GOLD // 10-49 referrals
   PLATINUM // 50+ referrals
 }
 
@@ -377,78 +381,85 @@ model VerificationToken {
 
 // Project Model - Multi-Discipline Support
 model Project {
-  id                String    @id @default(cuid())
-  userId            String
-  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // Discipline & Type
-  discipline        ProjectDiscipline @default(TECHNOLOGY)
-  projectType       String?   // "Web App", "Case Study", "UX Design", "Research Paper", etc.
-  category          String?   // Legacy field, keep for backwards compatibility
+  discipline  ProjectDiscipline @default(TECHNOLOGY)
+  projectType String? // "Web App", "Case Study", "UX Design", "Research Paper", etc.
+  category    String? // Legacy field, keep for backwards compatibility
 
   // Basic Info
-  title             String
-  description       String    @db.Text
+  title       String
+  description String @db.Text
 
   // Tech-specific fields (for TECHNOLOGY discipline)
-  technologies      String[]  @default([])  // Array of tech stack
-  githubUrl         String?
-  liveUrl           String?
+  technologies String[] @default([]) // Array of tech stack
+  githubUrl    String?
+  liveUrl      String?
 
   // Universal fields (all disciplines)
-  skills            String[]  @default([])  // "React", "Financial Modeling", "Patient Care"
-  tools             String[]  @default([])  // "Excel", "SolidWorks", "Figma", "Adobe Suite"
+  skills String[] @default([]) // "React", "Financial Modeling", "Patient Care"
+  tools  String[] @default([]) // "Excel", "SolidWorks", "Figma", "Adobe Suite"
 
   // Media & Files
-  imageUrl          String?   // Primary project image/thumbnail
-  images            String[]  @default([])  // Additional images
-  videos            String[]  @default([])  // Video URLs
-  files             ProjectFile[]  // PDFs, CAD files, etc.
+  imageUrl String? // Primary project image/thumbnail
+  images   String[]      @default([]) // Additional images
+  videos   String[]      @default([]) // Video URLs
+  files    ProjectFile[] // PDFs, CAD files, etc.
 
   // Project Context
-  duration          String?   // "3 months", "1 semester"
-  teamSize          Int?      // Number of team members
-  role              String?   // "Lead Developer", "Analyst", "Designer"
-  client            String?   // "Company X", "University", "Personal"
-  outcome           String?   @db.Text // Results achieved
+  duration String? // "3 months", "1 semester"
+  teamSize Int? // Number of team members
+  role     String? // "Lead Developer", "Analyst", "Designer"
+  client   String? // "Company X", "University", "Personal"
+  outcome  String? @db.Text // Results achieved
 
   // Academic Context (Course-based verification)
-  courseName        String?   // "Financial Modeling 401"
-  courseCode        String?   // "FIN401"
-  semester          String?   // "Fall 2024"
-  academicYear      String?   // "2023-2024"
-  grade             String?   // "A", "A-", "95%"
-  professor         String?   // Professor name
-  universityVerified Boolean  @default(false)  // Did university verify this?
-  courseId          String?   // Link to Course model
-  course            Course?   @relation(fields: [courseId], references: [id])
+  courseName         String? // "Financial Modeling 401"
+  courseCode         String? // "FIN401"
+  semester           String? // "Fall 2024"
+  academicYear       String? // "2023-2024"
+  grade              String? // "A", "A-", "95%"
+  professor          String? // Professor name
+  universityVerified Boolean @default(false) // Did university verify this?
+  courseId           String? // Link to Course model
+  course             Course? @relation(fields: [courseId], references: [id])
+
+  // Verification Status (detailed tracking)
+  verificationStatus  ProjectVerificationStatus @default(PENDING)
+  verificationMessage String?                   @db.Text
+  verifiedBy          String?
+  verifiedAt          DateTime?
 
   // Competencies Demonstrated
-  competencies      String[]  @default([])  // Verified competencies from this project
+  competencies      String[]            @default([]) // Verified competencies from this project
   competencyRecords ProjectCompetency[]
 
   // Certifications (for trades, healthcare, technical fields)
-  certifications    String[]  @default([])  // "AWS Certified", "OSHA 30", "CPR Certified"
+  certifications String[] @default([]) // "AWS Certified", "OSHA 30", "CPR Certified"
 
   // Featured & Visibility
-  featured          Boolean   @default(false)
-  isPublic          Boolean   @default(true)
-  views             Int       @default(0)
-  recruiterViews    Int       @default(0)
+  featured       Boolean @default(false)
+  isPublic       Boolean @default(true)
+  views          Int     @default(0)
+  recruiterViews Int     @default(0)
 
   // AI Analysis (discipline-specific)
-  aiAnalyzed        Boolean   @default(false)
-  complexityScore   Int?      // Technical complexity, research rigor, design quality
-  innovationScore   Int?      // Creativity, originality
-  marketRelevance   Int?      // Industry demand, practical application
-  aiInsights        Json?     // Store detailed discipline-specific AI analysis
+  aiAnalyzed      Boolean @default(false)
+  complexityScore Int? // Technical complexity, research rigor, design quality
+  innovationScore Int? // Creativity, originality
+  marketRelevance Int? // Industry demand, practical application
+  aiInsights      Json? // Store detailed discipline-specific AI analysis
 
   // Relations
-  endorsements      ProfessorEndorsement[]
+  endorsements        ProfessorEndorsement[]
+  challengeSubmission ChallengeSubmission?
 
   // Timestamps
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
   @@index([discipline])
@@ -460,33 +471,33 @@ model Project {
 
 // Subscription History
 model Subscription {
-  id                String    @id @default(cuid())
-  userId            String
-  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  tier              SubscriptionTier
-  status            SubscriptionStatus
+  tier   SubscriptionTier
+  status SubscriptionStatus
 
   // Stripe
-  stripeSubscriptionId String?
-  stripePriceId     String?
+  stripeSubscriptionId   String?
+  stripePriceId          String?
   stripeCurrentPeriodEnd DateTime?
 
   // Billing
-  amount            Int?      // in cents
-  currency          String    @default("eur")
-  interval          String?   // monthly, annual
+  amount   Int? // in cents
+  currency String  @default("eur")
+  interval String? // monthly, annual
 
   // Trial
-  trialStart        DateTime?
-  trialEnd          DateTime?
+  trialStart DateTime?
+  trialEnd   DateTime?
 
   // Timestamps
-  startedAt         DateTime  @default(now())
-  endedAt           DateTime?
-  canceledAt        DateTime?
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  startedAt  DateTime  @default(now())
+  endedAt    DateTime?
+  canceledAt DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 
   @@index([userId])
   @@index([status])
@@ -495,29 +506,29 @@ model Subscription {
 
 // Referral Tracking
 model Referral {
-  id                String    @id @default(cuid())
+  id String @id @default(cuid())
 
   // Referrer Info
-  referrerId        String    @unique
-  referrer          User      @relation("Referrer", fields: [referrerId], references: [id], onDelete: Cascade)
-  referralCode      String    @unique
+  referrerId   String @unique
+  referrer     User   @relation("Referrer", fields: [referrerId], references: [id], onDelete: Cascade)
+  referralCode String @unique
 
   // Referred Users
-  referredUsers     User[]    @relation("ReferredUsers")
+  referredUsers User[] @relation("ReferredUsers")
 
   // Stats
-  totalReferrals    Int       @default(0)
-  completedReferrals Int      @default(0) // Users who completed profile
+  totalReferrals     Int @default(0)
+  completedReferrals Int @default(0) // Users who completed profile
 
   // Rewards
-  rewardTier        ReferralTier @default(BRONZE)
-  premiumMonthsEarned Int     @default(0)
-  cashRewardEarned  Int       @default(0) // in cents
-  rewardsClaimed    Boolean   @default(false)
+  rewardTier          ReferralTier @default(BRONZE)
+  premiumMonthsEarned Int          @default(0)
+  cashRewardEarned    Int          @default(0) // in cents
+  rewardsClaimed      Boolean      @default(false)
 
   // Timestamps
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([referralCode])
   @@index([referrerId])
@@ -525,36 +536,36 @@ model Referral {
 
 // Analytics & Tracking
 model Analytics {
-  id                String    @id @default(cuid())
-  userId            String?
-  user              User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id     String  @id @default(cuid())
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // Event Info
-  eventType         AnalyticsEventType
-  eventName         String
+  eventType AnalyticsEventType
+  eventName String
 
   // Event Data
-  properties        Json?     // Store event-specific data
+  properties Json? // Store event-specific data
 
   // Session Info
-  sessionId         String?
-  ipAddress         String?
-  userAgent         String?
-  referrer          String?
+  sessionId String?
+  ipAddress String?
+  userAgent String?
+  referrer  String?
 
   // Page Info
-  pageUrl           String?
-  pagePath          String?
+  pageUrl  String?
+  pagePath String?
 
   // UTM Parameters
-  utmSource         String?
-  utmMedium         String?
-  utmCampaign       String?
-  utmTerm           String?
-  utmContent        String?
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  utmTerm     String?
+  utmContent  String?
 
   // Timestamps
-  createdAt         DateTime  @default(now())
+  createdAt DateTime @default(now())
 
   @@index([userId])
   @@index([eventType])
@@ -581,29 +592,29 @@ enum AnalyticsEventType {
 
 // Profile Views (Detailed tracking)
 model ProfileView {
-  id                String    @id @default(cuid())
+  id String @id @default(cuid())
 
   // Profile Being Viewed
-  profileUserId     String
-  profileUsername   String?
+  profileUserId   String
+  profileUsername String?
 
   // Viewer Info
-  viewerId          String?   // null if anonymous
-  viewerRole        UserRole?
-  viewerCompany     String?   // for recruiters
+  viewerId      String? // null if anonymous
+  viewerRole    UserRole?
+  viewerCompany String? // for recruiters
 
   // View Details
-  viewDuration      Int?      // in seconds
-  projectsViewed    String[]  // Array of project IDs
+  viewDuration   Int? // in seconds
+  projectsViewed String[] // Array of project IDs
 
   // Session
-  sessionId         String?
-  ipAddress         String?
-  userAgent         String?
-  referrer          String?
+  sessionId String?
+  ipAddress String?
+  userAgent String?
+  referrer  String?
 
   // Timestamps
-  createdAt         DateTime  @default(now())
+  createdAt DateTime @default(now())
 
   @@index([profileUserId])
   @@index([viewerId])
@@ -612,29 +623,29 @@ model ProfileView {
 
 // Messages (for recruiter-student communication)
 model Message {
-  id                String    @id @default(cuid())
+  id String @id @default(cuid())
 
-  senderId          String
-  sender            User      @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  senderId String
+  sender   User   @relation(fields: [senderId], references: [id], onDelete: Cascade)
 
-  recipientEmail    String    // Can message by email if not in platform
-  recipientId       String?   // If recipient is a user
+  recipientEmail String // Can message by email if not in platform
+  recipientId    String? // If recipient is a user
 
-  subject           String?
-  content           String    @db.Text
+  subject String?
+  content String  @db.Text
 
   // Status
-  read              Boolean   @default(false)
-  readAt            DateTime?
-  replied           Boolean   @default(false)
+  read    Boolean   @default(false)
+  readAt  DateTime?
+  replied Boolean   @default(false)
 
   // Thread
-  threadId          String?
-  replyToId         String?
+  threadId  String?
+  replyToId String?
 
   // Timestamps
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([senderId])
   @@index([recipientId])
@@ -642,33 +653,51 @@ model Message {
   @@index([createdAt])
 }
 
+// Contact Usage Tracking (for pay-per-contact billing)
+model ContactUsage {
+  id                 String   @id @default(cuid())
+  recruiterId        String
+  recipientId        String
+  billingPeriodStart DateTime
+  billingPeriodEnd   DateTime
+  firstContactAt     DateTime @default(now())
+  messageId          String?
+  createdAt          DateTime @default(now())
+
+  recruiter User @relation("RecruiterContacts", fields: [recruiterId], references: [id], onDelete: Cascade)
+  recipient User @relation("RecipientContacts", fields: [recipientId], references: [id], onDelete: Cascade)
+
+  @@unique([recruiterId, recipientId, billingPeriodStart])
+  @@index([recruiterId, billingPeriodStart])
+}
+
 // Professor Endorsements
 model ProfessorEndorsement {
-  id                String    @id @default(cuid())
+  id String @id @default(cuid())
 
   // Student & Project
-  studentId         String
-  student           User      @relation("StudentEndorsements", fields: [studentId], references: [id], onDelete: Cascade)
-  projectId         String
-  project           Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  studentId String
+  student   User    @relation("StudentEndorsements", fields: [studentId], references: [id], onDelete: Cascade)
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   // Professor Info
-  professorName     String
-  professorEmail    String
-  professorTitle    String?   // e.g., "Associate Professor"
-  department        String?
-  university        String
+  professorName  String
+  professorEmail String
+  professorTitle String? // e.g., "Associate Professor"
+  department     String?
+  university     String
 
   // Course Info
-  courseName        String?
-  courseCode        String?
-  semester          String?   // e.g., "Fall 2024"
-  grade             String?   // e.g., "A", "A-"
+  courseName String?
+  courseCode String?
+  semester   String? // e.g., "Fall 2024"
+  grade      String? // e.g., "A", "A-"
 
   // Endorsement
-  endorsementText   String?   @db.Text
-  skills            String[]  // Skills professor endorses
-  rating            Int?      // 1-5 rating
+  endorsementText String?  @db.Text
+  skills          String[] // Skills professor endorses
+  rating          Int? // 1-5 rating
 
   // Verification
   verified          Boolean   @default(false)
@@ -676,11 +705,11 @@ model ProfessorEndorsement {
   verifiedAt        DateTime?
 
   // Status
-  status            EndorsementStatus @default(PENDING)
+  status EndorsementStatus @default(PENDING)
 
   // Timestamps
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([studentId])
   @@index([projectId])
@@ -689,10 +718,10 @@ model ProfessorEndorsement {
 }
 
 enum EndorsementStatus {
-  PENDING       // Awaiting professor confirmation
-  VERIFIED      // Professor confirmed
-  DECLINED      // Professor declined
-  EXPIRED       // Verification link expired
+  PENDING // Awaiting professor confirmation
+  VERIFIED // Professor confirmed
+  DECLINED // Professor declined
+  EXPIRED // Verification link expired
 }
 
 // ============================================
@@ -701,44 +730,44 @@ enum EndorsementStatus {
 
 // Project Disciplines
 enum ProjectDiscipline {
-  TECHNOLOGY        // Software, web dev, data science, etc.
-  BUSINESS          // Case studies, business plans, market analysis
-  DESIGN            // UX/UI, graphic design, product design
-  HEALTHCARE        // Clinical cases, research, patient care
-  ENGINEERING       // Mechanical, civil, electrical projects
-  TRADES            // Construction, plumbing, electrical work
-  ARCHITECTURE      // Building design, CAD models
-  MEDIA             // Film, video, photography, audio
-  WRITING           // Articles, research papers, creative writing
-  SOCIAL_SCIENCES   // Research, case studies, field work
-  ARTS              // Fine arts, performance, music
-  LAW               // Legal research, case analysis, moot court
-  EDUCATION         // Lesson plans, teaching portfolios
-  SCIENCE           // Lab work, research, experiments
+  TECHNOLOGY // Software, web dev, data science, etc.
+  BUSINESS // Case studies, business plans, market analysis
+  DESIGN // UX/UI, graphic design, product design
+  HEALTHCARE // Clinical cases, research, patient care
+  ENGINEERING // Mechanical, civil, electrical projects
+  TRADES // Construction, plumbing, electrical work
+  ARCHITECTURE // Building design, CAD models
+  MEDIA // Film, video, photography, audio
+  WRITING // Articles, research papers, creative writing
+  SOCIAL_SCIENCES // Research, case studies, field work
+  ARTS // Fine arts, performance, music
+  LAW // Legal research, case analysis, moot court
+  EDUCATION // Lesson plans, teaching portfolios
+  SCIENCE // Lab work, research, experiments
   OTHER
 }
 
 // Project File Attachments (PDFs, images, videos, CAD files)
 model ProjectFile {
-  id          String   @id @default(cuid())
-  projectId   String
-  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  id        String  @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   // File Info
-  fileName    String
-  fileType    FileType
-  fileUrl     String   // S3/Cloudflare URL
-  fileSize    Int      // in bytes
-  mimeType    String
+  fileName String
+  fileType FileType
+  fileUrl  String // S3/Cloudflare URL
+  fileSize Int // in bytes
+  mimeType String
 
   // Optional metadata
-  thumbnail   String?  // Thumbnail URL for images/videos
-  duration    Int?     // Video duration in seconds
-  dimensions  Json?    // Width/height for images
+  thumbnail  String? // Thumbnail URL for images/videos
+  duration   Int? // Video duration in seconds
+  dimensions Json? // Width/height for images
 
   // Timestamps
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([projectId])
   @@index([fileType])
@@ -748,49 +777,50 @@ enum FileType {
   PDF
   IMAGE
   VIDEO
-  CAD           // AutoCAD, SolidWorks, etc.
-  DOCUMENT      // Word, Excel, etc.
-  ARCHIVE       // ZIP, RAR
-  CODE          // Code files
+  CAD // AutoCAD, SolidWorks, etc.
+  DOCUMENT // Word, Excel, etc.
+  ARCHIVE // ZIP, RAR
+  CODE // Code files
   OTHER
 }
 
 // Course Model (Academic Context)
 model Course {
-  id              String   @id @default(cuid())
+  id String @id @default(cuid())
 
   // Course Info
-  courseName      String
-  courseCode      String
-  department      String?
-  university      String
-  semester        String   // "Fall 2024"
-  academicYear    String   // "2023-2024"
+  courseName   String
+  courseCode   String
+  department   String?
+  university   String
+  semester     String // "Fall 2024"
+  academicYear String // "2023-2024"
 
   // Instructor
-  professorName   String?
-  professorEmail  String?
+  professorName  String?
+  professorEmail String?
 
   // Course Description
-  description     String?  @db.Text
-  syllabus        String?  // URL to syllabus
-  credits         Int?
-  level           CourseLevel?
+  description String?      @db.Text
+  syllabus    String? // URL to syllabus
+  credits     Int?
+  level       CourseLevel?
 
   // Competencies taught in this course
-  competencies    String[]  @default([])
+  competencies     String[] @default([])
   learningOutcomes String[] @default([])
 
   // University Verification
-  universityVerified Boolean @default(false)
-  verifiedAt      DateTime?
+  universityVerified Boolean   @default(false)
+  verifiedAt         DateTime?
 
   // Relations
-  projects        Project[]
+  projects           Project[]
+  challengeApprovals ChallengeUniversityApproval[]
 
   // Timestamps
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([courseCode, university, semester])
   @@index([university])
@@ -799,34 +829,34 @@ model Course {
 }
 
 enum CourseLevel {
-  UNDERGRADUATE_100  // 100-level
-  UNDERGRADUATE_200  // 200-level
-  UNDERGRADUATE_300  // 300-level
-  UNDERGRADUATE_400  // 400-level
-  GRADUATE           // Graduate level
-  DOCTORAL           // PhD level
+  UNDERGRADUATE_100 // 100-level
+  UNDERGRADUATE_200 // 200-level
+  UNDERGRADUATE_300 // 300-level
+  UNDERGRADUATE_400 // 400-level
+  GRADUATE // Graduate level
+  DOCTORAL // PhD level
 }
 
 // Competency Model (Skills verified through courses/projects)
 model Competency {
-  id              String   @id @default(cuid())
+  id String @id @default(cuid())
 
   // Competency Info
-  name            String   @unique  // "Data Analysis", "Financial Modeling"
-  discipline      ProjectDiscipline
-  category        String?  // "Technical", "Soft Skills", "Domain Knowledge"
-  description     String?  @db.Text
+  name        String            @unique // "Data Analysis", "Financial Modeling"
+  discipline  ProjectDiscipline
+  category    String? // "Technical", "Soft Skills", "Domain Knowledge"
+  description String?           @db.Text
 
   // Industry Alignment
-  industryDemand  Int?     // 1-100 score
-  relatedJobs     String[] @default([])  // Job titles that require this
+  industryDemand Int? // 1-100 score
+  relatedJobs    String[] @default([]) // Job titles that require this
 
   // Relations
-  projectRecords  ProjectCompetency[]
+  projectRecords ProjectCompetency[]
 
   // Timestamps
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([discipline])
   @@index([name])
@@ -834,21 +864,21 @@ model Competency {
 
 // Project-Competency Junction (Many-to-Many with metadata)
 model ProjectCompetency {
-  id              String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  projectId       String
-  project         Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
-  competencyId    String
-  competency      Competency @relation(fields: [competencyId], references: [id], onDelete: Cascade)
+  competencyId String
+  competency   Competency @relation(fields: [competencyId], references: [id], onDelete: Cascade)
 
   // Verification
   proficiencyLevel String? // "Beginner", "Intermediate", "Advanced", "Expert"
-  verifiedBy      String?  // "Professor", "AI Analysis", "Peer Review"
-  evidence        String?  @db.Text // How this competency was demonstrated
+  verifiedBy       String? // "Professor", "AI Analysis", "Peer Review"
+  evidence         String? @db.Text // How this competency was demonstrated
 
   // Timestamps
-  createdAt       DateTime @default(now())
+  createdAt DateTime @default(now())
 
   @@unique([projectId, competencyId])
   @@index([projectId])
@@ -861,52 +891,52 @@ model ProjectCompetency {
 
 // Main Soft Skills Assessment Model
 model SoftSkillAssessment {
-  id                String   @id @default(cuid())
-  userId            String
+  id     String @id @default(cuid())
+  userId String
 
   // Assessment Type
-  assessmentType    AssessmentType
-  status            AssessmentStatus @default(PENDING)
+  assessmentType AssessmentType
+  status         AssessmentStatus @default(PENDING)
 
   // Progress
-  currentQuestion   Int      @default(0)
-  totalQuestions    Int
-  timeStarted       DateTime @default(now())
-  timeCompleted     DateTime?
-  durationSeconds   Int?     // Total time taken
+  currentQuestion Int       @default(0)
+  totalQuestions  Int
+  timeStarted     DateTime  @default(now())
+  timeCompleted   DateTime?
+  durationSeconds Int? // Total time taken
 
   // Responses
-  responses         Json     // Map of questionId -> response value
+  responses Json // Map of questionId -> response value
 
   // Scores (after completion)
-  scores            Json?    // Raw scores
-  percentiles       Json?    // Percentile rankings vs. peer group
-  interpretation    String?  @db.Text // AI-generated interpretation
+  scores         Json? // Raw scores
+  percentiles    Json? // Percentile rankings vs. peer group
+  interpretation String? @db.Text // AI-generated interpretation
 
   // Certification
-  isCertified       Boolean  @default(false)
-  certificateId     String?  @unique
-  certificateUrl    String?  // PDF URL
+  isCertified         Boolean   @default(false)
+  certificateId       String?   @unique
+  certificateUrl      String? // PDF URL
   certificateIssuedAt DateTime?
 
   // Payment
-  paymentId         String?  @unique
-  paymentAmount     Int?     // in cents (€99 = 9900)
-  paymentStatus     PaymentStatus @default(PENDING)
+  paymentId     String?       @unique
+  paymentAmount Int? // in cents (€99 = 9900)
+  paymentStatus PaymentStatus @default(PENDING)
 
   // Relations
-  payment           AssessmentPayment?  @relation(fields: [paymentId], references: [id])
+  payment           AssessmentPayment? @relation(fields: [paymentId], references: [id])
   bigFiveProfile    BigFiveProfile?
   discProfile       DISCProfile?
   competencyProfile CompetencyProfile?
 
   // Metadata
-  ipAddress         String?
-  userAgent         String?
+  ipAddress String?
+  userAgent String?
 
   // Timestamps
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
   @@index([assessmentType])
@@ -916,19 +946,19 @@ model SoftSkillAssessment {
 }
 
 enum AssessmentType {
-  BIG_FIVE        // Big Five Personality (OCEAN)
-  DISC            // DISC Behavioral Assessment
-  COMPETENCY      // Soft Skills Competencies
-  FULL            // All three assessments (€99 package)
+  BIG_FIVE // Big Five Personality (OCEAN)
+  DISC // DISC Behavioral Assessment
+  COMPETENCY // Soft Skills Competencies
+  FULL // All three assessments (€99 package)
 }
 
 enum AssessmentStatus {
-  PENDING         // Payment pending
-  PAID            // Payment received
-  IN_PROGRESS     // Currently taking assessment
-  COMPLETED       // Assessment finished
-  CERTIFIED       // Certificate issued
-  EXPIRED         // Payment expired without completion
+  PENDING // Payment pending
+  PAID // Payment received
+  IN_PROGRESS // Currently taking assessment
+  COMPLETED // Assessment finished
+  CERTIFIED // Certificate issued
+  EXPIRED // Payment expired without completion
 }
 
 enum PaymentStatus {
@@ -941,83 +971,83 @@ enum PaymentStatus {
 
 // Big Five Personality Profile (OCEAN)
 model BigFiveProfile {
-  id                  String   @id @default(cuid())
-  assessmentId        String   @unique
-  assessment          SoftSkillAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  id           String              @id @default(cuid())
+  assessmentId String              @unique
+  assessment   SoftSkillAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
 
   // Raw Scores (0-100)
-  openness            Float    // Openness to Experience
-  conscientiousness   Float    // Conscientiousness
-  extraversion        Float    // Extraversion
-  agreeableness       Float    // Agreeableness
-  neuroticism         Float    // Emotional Stability (inverse)
+  openness          Float // Openness to Experience
+  conscientiousness Float // Conscientiousness
+  extraversion      Float // Extraversion
+  agreeableness     Float // Agreeableness
+  neuroticism       Float // Emotional Stability (inverse)
 
   // Percentiles (vs. university peer group)
-  opennessPercentile        Int
+  opennessPercentile          Int
   conscientiousnessPercentile Int
-  extraversionPercentile    Int
-  agreeablenessPercentile   Int
-  neuroticismPercentile     Int
+  extraversionPercentile      Int
+  agreeablenessPercentile     Int
+  neuroticismPercentile       Int
 
   // Facets (sub-dimensions)
-  facets              Json?    // Detailed sub-scores
+  facets Json? // Detailed sub-scores
 
   // Interpretation
-  personality         String?  // "Innovator", "Organizer", "Social Leader", etc.
-  strengths           String[] @default([])
-  developmentAreas    String[] @default([])
-  careerFit           String[] @default([]) // Recommended career paths
+  personality      String? // "Innovator", "Organizer", "Social Leader", etc.
+  strengths        String[] @default([])
+  developmentAreas String[] @default([])
+  careerFit        String[] @default([]) // Recommended career paths
 
   // Timestamps
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([assessmentId])
 }
 
 // DISC Behavioral Profile
 model DISCProfile {
-  id                String   @id @default(cuid())
-  assessmentId      String   @unique
-  assessment        SoftSkillAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  id           String              @id @default(cuid())
+  assessmentId String              @unique
+  assessment   SoftSkillAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
 
   // Raw Scores (0-100)
-  dominance         Float    // D: Direct, Results-oriented
-  influence         Float    // I: Sociable, Enthusiastic
-  steadiness        Float    // S: Patient, Cooperative
-  compliance        Float    // C: Analytical, Precise
+  dominance  Float // D: Direct, Results-oriented
+  influence  Float // I: Sociable, Enthusiastic
+  steadiness Float // S: Patient, Cooperative
+  compliance Float // C: Analytical, Precise
 
   // Percentiles
-  dominancePercentile   Int
-  influencePercentile   Int
-  steadinessPercentile  Int
-  compliancePercentile  Int
+  dominancePercentile  Int
+  influencePercentile  Int
+  steadinessPercentile Int
+  compliancePercentile Int
 
   // Primary Style
-  primaryStyle      DISCStyle
-  secondaryStyle    DISCStyle?
+  primaryStyle   DISCStyle
+  secondaryStyle DISCStyle?
 
   // Interpretation
-  workStyle         String?  @db.Text
-  communicationStyle String? @db.Text
-  motivators        String[] @default([])
-  stressors         String[] @default([])
-  idealTeamRole     String?
+  workStyle          String?  @db.Text
+  communicationStyle String?  @db.Text
+  motivators         String[] @default([])
+  stressors          String[] @default([])
+  idealTeamRole      String?
 
   // Timestamps
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([assessmentId])
   @@index([primaryStyle])
 }
 
 enum DISCStyle {
-  DOMINANCE         // D
-  INFLUENCE         // I
-  STEADINESS        // S
-  COMPLIANCE        // C
-  DI                // Combinations
+  DOMINANCE // D
+  INFLUENCE // I
+  STEADINESS // S
+  COMPLIANCE // C
+  DI // Combinations
   DC
   IS
   IC
@@ -1027,19 +1057,19 @@ enum DISCStyle {
 
 // Soft Skills Competency Profile
 model CompetencyProfile {
-  id                    String   @id @default(cuid())
-  assessmentId          String   @unique
-  assessment            SoftSkillAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  id           String              @id @default(cuid())
+  assessmentId String              @unique
+  assessment   SoftSkillAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
 
   // Core Competency Scores (0-100)
-  communication         Float    // Verbal & written communication
-  teamwork              Float    // Collaboration & cooperation
-  leadership            Float    // Initiative & influence
-  problemSolving        Float    // Critical thinking & creativity
-  adaptability          Float    // Flexibility & resilience
-  emotionalIntelligence Float    // Self-awareness & empathy
-  timeManagement        Float    // Organization & prioritization
-  conflictResolution    Float    // Negotiation & mediation
+  communication         Float // Verbal & written communication
+  teamwork              Float // Collaboration & cooperation
+  leadership            Float // Initiative & influence
+  problemSolving        Float // Critical thinking & creativity
+  adaptability          Float // Flexibility & resilience
+  emotionalIntelligence Float // Self-awareness & empathy
+  timeManagement        Float // Organization & prioritization
+  conflictResolution    Float // Negotiation & mediation
 
   // Percentiles
   communicationPercentile         Int
@@ -1052,59 +1082,59 @@ model CompetencyProfile {
   conflictResolutionPercentile    Int
 
   // Overall Score
-  overallScore          Float
-  overallPercentile     Int
+  overallScore      Float
+  overallPercentile Int
 
   // Top Strengths
-  topStrengths          String[] @default([]) // Top 3-5 competencies
-  developmentAreas      String[] @default([]) // Bottom 3 competencies
+  topStrengths     String[] @default([]) // Top 3-5 competencies
+  developmentAreas String[] @default([]) // Bottom 3 competencies
 
   // Recommendations
   trainingRecommendations String[] @default([])
-  careerSuitability     Json?    // Best-fit roles based on profile
+  careerSuitability       Json? // Best-fit roles based on profile
 
   // Timestamps
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([assessmentId])
 }
 
 // Assessment Payment Tracking
 model AssessmentPayment {
-  id                  String   @id @default(cuid())
+  id String @id @default(cuid())
 
   // User Info
-  userId              String
-  email               String
+  userId String
+  email  String
 
   // Payment Details
-  amount              Int      // in cents (€99 = 9900)
-  currency            String   @default("eur")
+  amount   Int // in cents (€99 = 9900)
+  currency String @default("eur")
 
   // Stripe
   stripePaymentIntentId String? @unique
-  stripeSessionId     String?  @unique
-  stripeCustomerId    String?
+  stripeSessionId       String? @unique
+  stripeCustomerId      String?
 
   // Status
-  status              PaymentStatus @default(PENDING)
+  status PaymentStatus @default(PENDING)
 
   // Assessment Access
-  assessmentType      AssessmentType
-  accessGranted       Boolean  @default(false)
-  accessExpiresAt     DateTime? // Optional expiry (e.g., 30 days to complete)
+  assessmentType  AssessmentType
+  accessGranted   Boolean        @default(false)
+  accessExpiresAt DateTime? // Optional expiry (e.g., 30 days to complete)
 
   // Relations
-  assessments         SoftSkillAssessment[]
+  assessments SoftSkillAssessment[]
 
   // Metadata
-  metadata            Json?    // Stripe metadata, promo codes, etc.
+  metadata Json? // Stripe metadata, promo codes, etc.
 
   // Timestamps
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-  paidAt              DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  paidAt    DateTime?
 
   @@index([userId])
   @@index([email])
@@ -1114,37 +1144,37 @@ model AssessmentPayment {
 
 // Psychometric Question Bank
 model PsychometricQuestion {
-  id                String   @id @default(cuid())
+  id String @id @default(cuid())
 
   // Question Content
-  questionText      String   @db.Text
-  questionType      AssessmentType
+  questionText String         @db.Text
+  questionType AssessmentType
 
   // Dimension measured
-  dimension         String   // "openness", "dominance", "communication", etc.
-  facet             String?  // Sub-dimension
+  dimension String // "openness", "dominance", "communication", etc.
+  facet     String? // Sub-dimension
 
   // Scoring
-  isReverseCoded    Boolean  @default(false) // Some questions are reverse-scored
-  weight            Float    @default(1.0)
+  isReverseCoded Boolean @default(false) // Some questions are reverse-scored
+  weight         Float   @default(1.0)
 
   // Display
-  orderIndex        Int      // Question order in assessment
-  category          String?  // Group questions into sections
+  orderIndex Int // Question order in assessment
+  category   String? // Group questions into sections
 
   // Response Options (Likert scale)
-  responseType      String   @default("likert_5") // "likert_5", "likert_7", "binary"
-  minValue          Int      @default(1)
-  maxValue          Int      @default(5)
-  minLabel          String   @default("Strongly Disagree")
-  maxLabel          String   @default("Strongly Agree")
+  responseType String @default("likert_5") // "likert_5", "likert_7", "binary"
+  minValue     Int    @default(1)
+  maxValue     Int    @default(5)
+  minLabel     String @default("Strongly Disagree")
+  maxLabel     String @default("Strongly Agree")
 
   // Active/Inactive
-  isActive          Boolean  @default(true)
+  isActive Boolean @default(true)
 
   // Timestamps
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([questionType])
   @@index([dimension])
@@ -1154,78 +1184,78 @@ model PsychometricQuestion {
 
 // Job Posting Model
 model Job {
-  id                String    @id @default(cuid())
+  id String @id @default(cuid())
 
   // Recruiter Info
-  recruiterId       String
-  recruiter         User      @relation("RecruiterJobs", fields: [recruiterId], references: [id], onDelete: Cascade)
+  recruiterId String
+  recruiter   User   @relation("RecruiterJobs", fields: [recruiterId], references: [id], onDelete: Cascade)
 
   // Company Info
-  companyName       String
-  companyLogo       String?
-  companyWebsite    String?
-  companySize       String?   // "1-10", "11-50", "51-200", "201-500", "500+"
-  companyIndustry   String?
+  companyName     String
+  companyLogo     String?
+  companyWebsite  String?
+  companySize     String? // "1-10", "11-50", "51-200", "201-500", "500+"
+  companyIndustry String?
 
   // Job Details
-  title             String
-  description       String    @db.Text
-  responsibilities  String?   @db.Text
-  requirements      String?   @db.Text
-  niceToHave        String?   @db.Text
+  title            String
+  description      String  @db.Text
+  responsibilities String? @db.Text
+  requirements     String? @db.Text
+  niceToHave       String? @db.Text
 
   // Job Type & Location
-  jobType           JobType   @default(FULL_TIME)
-  workLocation      WorkLocation @default(HYBRID)
-  location          String?   // City, Country
-  remoteOk          Boolean   @default(false)
+  jobType      JobType      @default(FULL_TIME)
+  workLocation WorkLocation @default(HYBRID)
+  location     String? // City, Country
+  remoteOk     Boolean      @default(false)
 
   // Compensation
-  salaryMin         Int?
-  salaryMax         Int?
-  salaryCurrency    String    @default("EUR")
-  salaryPeriod      String    @default("yearly") // "yearly", "monthly", "hourly"
-  showSalary        Boolean   @default(false)
+  salaryMin      Int?
+  salaryMax      Int?
+  salaryCurrency String  @default("EUR")
+  salaryPeriod   String  @default("yearly") // "yearly", "monthly", "hourly"
+  showSalary     Boolean @default(false)
 
   // Required Skills & Qualifications
-  requiredSkills    String[]  @default([])
-  preferredSkills   String[]  @default([])
-  education         String?   // "Bachelor's", "Master's", "PhD", etc.
-  experience        String?   // "0-1 years", "2-3 years", "5+ years"
-  languages         String[]  @default([])
+  requiredSkills  String[] @default([])
+  preferredSkills String[] @default([])
+  education       String? // "Bachelor's", "Master's", "PhD", etc.
+  experience      String? // "0-1 years", "2-3 years", "5+ years"
+  languages       String[] @default([])
 
   // Target Disciplines (from Project disciplines)
-  targetDisciplines ProjectDiscipline[]  @default([])
+  targetDisciplines ProjectDiscipline[] @default([])
 
   // Application Settings
-  applicationUrl    String?   // External application URL
-  applicationEmail  String?
-  internalApply     Boolean   @default(true)  // Allow apply through platform
-  requireCV         Boolean   @default(false)
-  requireCoverLetter Boolean  @default(false)
-  customQuestions   Json?     // Array of custom application questions
+  applicationUrl     String? // External application URL
+  applicationEmail   String?
+  internalApply      Boolean @default(true) // Allow apply through platform
+  requireCV          Boolean @default(false)
+  requireCoverLetter Boolean @default(false)
+  customQuestions    Json? // Array of custom application questions
 
   // Status & Visibility
-  status            JobStatus @default(DRAFT)
-  isPublic          Boolean   @default(false)
-  isFeatured        Boolean   @default(false)
+  status     JobStatus @default(DRAFT)
+  isPublic   Boolean   @default(false)
+  isFeatured Boolean   @default(false)
 
   // SEO & Discoverability
-  slug              String    @unique
-  tags              String[]  @default([])
-  views             Int       @default(0)
+  slug  String   @unique
+  tags  String[] @default([])
+  views Int      @default(0)
 
   // Deadlines
-  postedAt          DateTime?
-  expiresAt         DateTime?
-  closedAt          DateTime?
+  postedAt  DateTime?
+  expiresAt DateTime?
+  closedAt  DateTime?
 
   // Relations
-  applications      Application[]
+  applications Application[]
 
   // Timestamps
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([recruiterId])
   @@index([status])
@@ -1238,46 +1268,46 @@ model Job {
 
 // Job Application Model
 model Application {
-  id                String    @id @default(cuid())
+  id String @id @default(cuid())
 
   // Relations
-  jobId             String
-  job               Job       @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  jobId String
+  job   Job    @relation(fields: [jobId], references: [id], onDelete: Cascade)
 
-  applicantId       String
-  applicant         User      @relation("ApplicantApplications", fields: [applicantId], references: [id], onDelete: Cascade)
+  applicantId String
+  applicant   User   @relation("ApplicantApplications", fields: [applicantId], references: [id], onDelete: Cascade)
 
   // Application Materials
-  coverLetter       String?   @db.Text
-  cvUrl             String?
-  portfolioUrl      String?
-  customAnswers     Json?     // Answers to custom questions
+  coverLetter   String? @db.Text
+  cvUrl         String?
+  portfolioUrl  String?
+  customAnswers Json? // Answers to custom questions
 
   // Selected Projects (student can choose which projects to highlight)
-  selectedProjects  String[]  @default([]) // Array of project IDs
+  selectedProjects String[] @default([]) // Array of project IDs
 
   // Status & Tracking
-  status            ApplicationStatus @default(PENDING)
-  isRead            Boolean   @default(false)
-  isStarred         Boolean   @default(false)
+  status    ApplicationStatus @default(PENDING)
+  isRead    Boolean           @default(false)
+  isStarred Boolean           @default(false)
 
   // Recruiter Notes
-  recruiterNotes    String?   @db.Text
-  rating            Int?      // 1-5 star rating
+  recruiterNotes String? @db.Text
+  rating         Int? // 1-5 star rating
 
   // Interview Scheduling
-  interviewDate     DateTime?
-  interviewType     String?   // "phone", "video", "in-person"
-  interviewNotes    String?   @db.Text
+  interviewDate  DateTime?
+  interviewType  String? // "phone", "video", "in-person"
+  interviewNotes String?   @db.Text
 
   // Rejection/Offer
-  rejectionReason   String?
-  offerDetails      Json?     // Salary, start date, etc.
+  rejectionReason String?
+  offerDetails    Json? // Salary, start date, etc.
 
   // Timestamps
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
-  respondedAt       DateTime? // When recruiter responded
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  respondedAt DateTime? // When recruiter responded
 
   @@unique([jobId, applicantId]) // One application per job per user
   @@index([jobId])
@@ -1306,22 +1336,256 @@ enum WorkLocation {
 
 // Job Status Enum
 enum JobStatus {
-  DRAFT       // Not yet published
-  ACTIVE      // Currently accepting applications
-  PAUSED      // Temporarily not accepting applications
-  CLOSED      // No longer accepting applications
-  FILLED      // Position has been filled
-  CANCELLED   // Job posting cancelled
+  DRAFT // Not yet published
+  ACTIVE // Currently accepting applications
+  PAUSED // Temporarily not accepting applications
+  CLOSED // No longer accepting applications
+  FILLED // Position has been filled
+  CANCELLED // Job posting cancelled
 }
 
 // Application Status Enum
 enum ApplicationStatus {
-  PENDING       // Application submitted, awaiting review
-  REVIEWING     // Recruiter is reviewing
-  SHORTLISTED   // Moved to shortlist
-  INTERVIEW     // Interview scheduled or completed
-  OFFER         // Offer extended
-  ACCEPTED      // Offer accepted by candidate
-  REJECTED      // Application rejected
-  WITHDRAWN     // Candidate withdrew application
+  PENDING // Application submitted, awaiting review
+  REVIEWING // Recruiter is reviewing
+  SHORTLISTED // Moved to shortlist
+  INTERVIEW // Interview scheduled or completed
+  OFFER // Offer extended
+  ACCEPTED // Offer accepted by candidate
+  REJECTED // Application rejected
+  WITHDRAWN // Candidate withdrew application
+}
+
+// ============================================
+// COMPANY CHALLENGES MODELS
+// ============================================
+
+// Challenge Status Enum
+enum ChallengeStatus {
+  DRAFT // Challenge being created
+  PENDING_REVIEW // Submitted for university review
+  APPROVED // Approved by at least one university
+  ACTIVE // Open for student applications
+  IN_PROGRESS // Students are working on it
+  CLOSED // No longer accepting applications
+  COMPLETED // Challenge finished
+  CANCELLED // Challenge cancelled
+}
+
+// Challenge Submission Status Enum
+enum ChallengeSubmissionStatus {
+  APPLIED // Student applied to challenge
+  SELECTED // Company selected student
+  IN_PROGRESS // Student is working on it
+  SUBMITTED // Work submitted for review
+  REVISION_REQUESTED // Company requested changes
+  APPROVED // Work approved by company
+  REJECTED // Submission rejected
+  WITHDRAWN // Student withdrew
+}
+
+// Challenge Type Enum
+enum ChallengeType {
+  CAPSTONE // Senior capstone project
+  INTERNSHIP // Internship project
+  COURSE_PROJECT // Regular course project
+  THESIS // Thesis/dissertation work
+  HACKATHON // Hackathon-style challenge
+  RESEARCH // Research project
+}
+
+// University Approval Status Enum
+enum UniversityApprovalStatus {
+  PENDING // Awaiting review
+  APPROVED // Approved for students
+  REJECTED // Not approved
+  REQUIRES_CHANGES // Changes needed before approval
+}
+
+// Project Verification Status Enum
+enum ProjectVerificationStatus {
+  PENDING // Awaiting university review
+  VERIFIED // Verified by university
+  REJECTED // Rejected by university
+  NEEDS_INFO // More information requested
+}
+
+// Company Challenge Model
+model CompanyChallenge {
+  id String @id @default(cuid())
+
+  // Recruiter Info
+  recruiterId String
+  recruiter   User   @relation("RecruiterChallenges", fields: [recruiterId], references: [id], onDelete: Cascade)
+
+  // Company Info
+  companyName     String
+  companyLogo     String?
+  companyIndustry String?
+
+  // Challenge Details
+  title            String
+  description      String  @db.Text
+  problemStatement String? @db.Text
+  expectedOutcome  String? @db.Text
+
+  // Type & Discipline
+  challengeType ChallengeType     @default(CAPSTONE)
+  discipline    ProjectDiscipline @default(TECHNOLOGY)
+
+  // Requirements
+  requiredSkills String[] @default([])
+  tools          String[] @default([])
+  teamSizeMin    Int      @default(1)
+  teamSizeMax    Int      @default(4)
+
+  // Timeline
+  estimatedDuration   String? // e.g., "3 months", "1 semester"
+  startDate           DateTime?
+  endDate             DateTime?
+  applicationDeadline DateTime?
+
+  // Academic Context
+  targetCourses   String[] @default([]) // Course names/codes this is suitable for
+  targetSemesters String[] @default([]) // e.g., ["Fall 2025", "Spring 2026"]
+  creditWorth     Int? // Estimated credits
+
+  // Targeting
+  targetUniversities String[] @default([]) // Leave empty for all universities
+  maxSubmissions     Int      @default(10)
+
+  // Resources & Benefits
+  mentorshipOffered Boolean @default(false)
+  compensation      String? // e.g., "$500 stipend", "Equipment provided"
+  equipmentProvided String?
+
+  // Status & Visibility
+  status   ChallengeStatus @default(DRAFT)
+  isPublic Boolean         @default(false)
+  slug     String          @unique
+
+  // Stats
+  views Int @default(0)
+
+  // Relations
+  universityApprovals ChallengeUniversityApproval[]
+  submissions         ChallengeSubmission[]
+
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  publishedAt DateTime?
+
+  @@index([recruiterId])
+  @@index([status])
+  @@index([isPublic])
+  @@index([discipline])
+  @@index([challengeType])
+  @@index([slug])
+  @@index([applicationDeadline])
+}
+
+// Challenge University Approval Model
+model ChallengeUniversityApproval {
+  id String @id @default(cuid())
+
+  // Challenge Reference
+  challengeId String
+  challenge   CompanyChallenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+
+  // University Info
+  universityId   String // University identifier
+  universityName String
+  approvedBy     String? // User ID who approved
+
+  // Status
+  status        UniversityApprovalStatus @default(PENDING)
+  statusMessage String?                  @db.Text // Reason for rejection or changes needed
+
+  // Course Linking
+  linkedCourseId String? // Link to Course model
+  linkedCourse   Course? @relation(fields: [linkedCourseId], references: [id])
+  courseName     String?
+  courseCode     String?
+  semester       String?
+  professorName  String?
+  professorEmail String?
+
+  // Timestamps
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  approvedAt DateTime?
+
+  @@unique([challengeId, universityId])
+  @@index([challengeId])
+  @@index([universityId])
+  @@index([status])
+}
+
+// Challenge Submission Model
+model ChallengeSubmission {
+  id String @id @default(cuid())
+
+  // Challenge Reference
+  challengeId String
+  challenge   CompanyChallenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+
+  // Student Reference
+  studentId String
+  student   User   @relation("StudentChallengeSubmissions", fields: [studentId], references: [id], onDelete: Cascade)
+
+  // University Context
+  universityId   String?
+  universityName String?
+  courseName     String?
+  courseCode     String?
+  semester       String?
+  professorName  String?
+
+  // Team Info
+  isTeamProject Boolean @default(false)
+  teamName      String?
+  teamMembers   Json? // Array of { name, email, role }
+
+  // Status
+  status ChallengeSubmissionStatus @default(APPLIED)
+
+  // Application Materials
+  applicationText String? @db.Text
+  proposalUrl     String?
+  resumeUrl       String?
+
+  // Submission Work
+  submissionTitle       String?
+  submissionDescription String?  @db.Text
+  submissionUrl         String? // Main deliverable URL (repo, demo, etc.)
+  documentationUrl      String?
+  additionalFiles       String[] @default([])
+
+  // Evaluation (by company)
+  companyFeedback String? @db.Text
+  companyRating   Int? // 1-5 rating
+
+  // Academic Evaluation
+  professorFeedback String? @db.Text
+  grade             String? // e.g., "A", "95%"
+
+  // Conversion to Portfolio Project
+  convertedToProject Boolean  @default(false)
+  projectId          String?  @unique
+  project            Project? @relation(fields: [projectId], references: [id])
+
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  appliedAt   DateTime  @default(now())
+  selectedAt  DateTime?
+  submittedAt DateTime?
+  reviewedAt  DateTime?
+
+  @@unique([challengeId, studentId])
+  @@index([challengeId])
+  @@index([studentId])
+  @@index([status])
+  @@index([universityId])
 }
