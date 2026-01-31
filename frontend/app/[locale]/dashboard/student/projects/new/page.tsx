@@ -253,43 +253,43 @@ export default function NewProjectPage() {
 
   if (step === 'discipline') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
-        <div className="max-w-6xl mx-auto">
+      <div className="min-h-screen bg-white p-8">
+        <div className="max-w-5xl mx-auto">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6"
+            className="flex items-center gap-2 text-gray-700 hover:text-gray-900 mb-6"
           >
             <ArrowLeft size={20} />
             Back to Dashboard
           </button>
 
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Add New Project
+          <div className="mb-8">
+            <h1 className="text-2xl font-semibold text-gray-900 mb-2">
+              New Project
             </h1>
-            <p className="text-xl text-gray-600">
-              What type of work would you like to showcase?
+            <p className="text-gray-600">
+              Select your project category
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {DISCIPLINES.map((disc) => {
               const Icon = disc.icon
               return (
                 <button
                   key={disc.value}
                   onClick={() => handleDisciplineSelect(disc.value)}
-                  className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover:scale-105 text-left group"
+                  className="border-2 border-gray-200 rounded-lg p-4 hover:border-blue-500 hover:bg-blue-50 transition-all text-left group"
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
-                      <Icon className="text-blue-600" size={24} />
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-blue-100 transition-colors">
+                      <Icon className="text-gray-700 group-hover:text-blue-600" size={20} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-semibold text-lg text-gray-900 mb-1">
+                      <h3 className="font-medium text-gray-900">
                         {disc.label}
                       </h3>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-500 mt-0.5">
                         {disc.description}
                       </p>
                     </div>
@@ -304,28 +304,28 @@ export default function NewProjectPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-white py-8 px-4">
+      <div className="max-w-3xl mx-auto">
         <button
           onClick={() => setStep('discipline')}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6"
+          className="flex items-center gap-2 text-gray-700 hover:text-gray-900 mb-6"
         >
           <ArrowLeft size={20} />
-          Change Discipline
+          Change Category
         </button>
 
-        <div className="bg-white rounded-xl shadow-lg p-8">
+        <div className="border rounded-lg p-6">
           <div className="flex items-center gap-3 mb-6">
             {selectedDiscipline && (
               <>
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  {<selectedDiscipline.icon className="text-blue-600" size={24} />}
+                <div className="p-2 bg-gray-100 rounded-lg">
+                  {<selectedDiscipline.icon className="text-gray-700" size={20} />}
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">
+                  <h2 className="text-xl font-semibold text-gray-900">
                     {selectedDiscipline.label} Project
                   </h2>
-                  <p className="text-gray-600">{selectedDiscipline.description}</p>
+                  <p className="text-sm text-gray-600">{selectedDiscipline.description}</p>
                 </div>
               </>
             )}
@@ -334,14 +334,14 @@ export default function NewProjectPage() {
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Project Type */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-1.5">
                 Project Type *
               </label>
               <select
                 value={projectType}
                 onChange={(e) => setProjectType(e.target.value)}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
               >
                 <option value="">Select a project type</option>
                 {selectedDiscipline?.types.map(type => (
@@ -357,7 +357,7 @@ export default function NewProjectPage() {
               </h3>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-900 mb-1.5">
                   Project Title *
                 </label>
                 <input
@@ -366,12 +366,12 @@ export default function NewProjectPage() {
                   onChange={(e) => setTitle(e.target.value)}
                   required
                   placeholder="Give your project a clear, descriptive title"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-900 mb-1.5">
                   Description *
                 </label>
                 <textarea
@@ -380,7 +380,7 @@ export default function NewProjectPage() {
                   required
                   rows={6}
                   placeholder="Describe what you built, the problem you solved, your approach, and the results"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                 />
               </div>
             </div>
@@ -393,7 +393,7 @@ export default function NewProjectPage() {
                 </h3>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-1.5">
                     GitHub Repository URL
                   </label>
                   <input
@@ -401,12 +401,12 @@ export default function NewProjectPage() {
                     value={githubUrl}
                     onChange={(e) => setGithubUrl(e.target.value)}
                     placeholder="https://github.com/username/repo"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-1.5">
                     Live Demo URL
                   </label>
                   <input
@@ -414,12 +414,12 @@ export default function NewProjectPage() {
                     value={liveUrl}
                     onChange={(e) => setLiveUrl(e.target.value)}
                     placeholder="https://your-project.com"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-1.5">
                     Technologies Used
                   </label>
                   <div className="flex gap-2 mb-2">
@@ -434,7 +434,7 @@ export default function NewProjectPage() {
                         }
                       }}
                       placeholder="React, Python, PostgreSQL..."
-                      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                     />
                     <button
                       type="button"
@@ -472,7 +472,7 @@ export default function NewProjectPage() {
               </h3>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-900 mb-1.5">
                   Skills Demonstrated
                 </label>
                 <div className="flex gap-2 mb-2">
@@ -487,7 +487,7 @@ export default function NewProjectPage() {
                       }
                     }}
                     placeholder="Data Analysis, Problem Solving, Communication..."
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                   />
                   <button
                     type="button"
@@ -517,7 +517,7 @@ export default function NewProjectPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-900 mb-1.5">
                   Tools Used
                 </label>
                 <div className="flex gap-2 mb-2">
@@ -532,7 +532,7 @@ export default function NewProjectPage() {
                       }
                     }}
                     placeholder="Excel, Figma, SolidWorks, Adobe Suite..."
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                   />
                   <button
                     type="button"
@@ -570,7 +570,7 @@ export default function NewProjectPage() {
               </h3>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-900 mb-1.5">
                   Main Project Image URL
                 </label>
                 <input
@@ -578,7 +578,7 @@ export default function NewProjectPage() {
                   value={imageUrl}
                   onChange={(e) => setImageUrl(e.target.value)}
                   placeholder="https://example.com/image.jpg"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                 />
                 <p className="text-xs text-gray-500 mt-1">
                   File upload coming soon - for now, paste an image URL
@@ -586,7 +586,7 @@ export default function NewProjectPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-900 mb-1.5">
                   Video URL (YouTube, Vimeo, etc.)
                 </label>
                 <div className="flex gap-2 mb-2">
@@ -601,7 +601,7 @@ export default function NewProjectPage() {
                       }
                     }}
                     placeholder="https://youtube.com/watch?v=..."
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                   />
                   <button
                     type="button"
@@ -639,7 +639,7 @@ export default function NewProjectPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-1.5">
                     Duration
                   </label>
                   <input
@@ -647,12 +647,12 @@ export default function NewProjectPage() {
                     value={duration}
                     onChange={(e) => setDuration(e.target.value)}
                     placeholder="3 months, 1 semester..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-1.5">
                     Team Size
                   </label>
                   <input
@@ -661,12 +661,12 @@ export default function NewProjectPage() {
                     onChange={(e) => setTeamSize(e.target.value ? parseInt(e.target.value) : '')}
                     placeholder="1 (solo), 2, 3..."
                     min="1"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-1.5">
                     Your Role
                   </label>
                   <input
@@ -674,12 +674,12 @@ export default function NewProjectPage() {
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
                     placeholder="Lead Developer, Analyst, Designer..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-1.5">
                     Client/Context
                   </label>
                   <input
@@ -687,13 +687,13 @@ export default function NewProjectPage() {
                     value={client}
                     onChange={(e) => setClient(e.target.value)}
                     placeholder="Company X, University, Personal..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-900 mb-1.5">
                   Outcome & Results
                 </label>
                 <textarea
@@ -701,24 +701,24 @@ export default function NewProjectPage() {
                   onChange={(e) => setOutcome(e.target.value)}
                   rows={3}
                   placeholder="What was the impact? What did you achieve?"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                 />
               </div>
             </div>
 
             {/* Academic Context */}
-            <div className="space-y-4 bg-blue-50 p-6 rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-900 border-b border-blue-200 pb-2 flex items-center gap-2">
-                <GraduationCap size={20} />
-                Academic Context (Course-Based Verification)
+            <div className="space-y-4 bg-gray-50 p-5 rounded-lg border">
+              <h3 className="text-base font-semibold text-gray-900 pb-2 flex items-center gap-2">
+                <GraduationCap size={18} />
+                Academic Context
               </h3>
               <p className="text-sm text-gray-600">
-                Link this project to a course to increase credibility and enable university verification
+                Optional: Link to a course for university verification
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-1.5">
                     Course Name
                   </label>
                   <input
@@ -726,12 +726,12 @@ export default function NewProjectPage() {
                     value={courseName}
                     onChange={(e) => setCourseName(e.target.value)}
                     placeholder="Financial Modeling, Machine Learning..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white shadow-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-1.5">
                     Course Code
                   </label>
                   <input
@@ -739,12 +739,12 @@ export default function NewProjectPage() {
                     value={courseCode}
                     onChange={(e) => setCourseCode(e.target.value)}
                     placeholder="FIN401, CS229..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white shadow-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-1.5">
                     Semester
                   </label>
                   <input
@@ -752,12 +752,12 @@ export default function NewProjectPage() {
                     value={semester}
                     onChange={(e) => setSemester(e.target.value)}
                     placeholder="Fall 2024, Spring 2025..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white shadow-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-1.5">
                     Academic Year
                   </label>
                   <input
@@ -765,12 +765,12 @@ export default function NewProjectPage() {
                     value={academicYear}
                     onChange={(e) => setAcademicYear(e.target.value)}
                     placeholder="2023-2024, 2024-2025..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white shadow-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-1.5">
                     Grade Received
                   </label>
                   <input
@@ -778,12 +778,12 @@ export default function NewProjectPage() {
                     value={grade}
                     onChange={(e) => setGrade(e.target.value)}
                     placeholder="A, A-, 95%, First Class..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white shadow-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-900 mb-1.5">
                     Professor Name
                   </label>
                   <input
@@ -791,7 +791,7 @@ export default function NewProjectPage() {
                     value={professor}
                     onChange={(e) => setProfessor(e.target.value)}
                     placeholder="Dr. Smith, Prof. Johnson..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white shadow-sm"
                   />
                 </div>
               </div>
@@ -818,7 +818,7 @@ export default function NewProjectPage() {
                     }
                   }}
                   placeholder="Data Analysis, Project Management, Critical Thinking..."
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                 />
                 <button
                   type="button"
@@ -866,7 +866,7 @@ export default function NewProjectPage() {
                       }
                     }}
                     placeholder="AWS Certified, OSHA 30, CPR Certified..."
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
                   />
                   <button
                     type="button"
