@@ -834,6 +834,34 @@
       "title": "Ready to Get Discovered?",
       "subtitle": "Join thousands of verified students and showcase your work to top companies",
       "createPortfolio": "Create Your Free Portfolio"
+    },
+    "options": {
+      "fieldsOfStudy": {
+        "Engineering": "Engineering",
+        "Computer Science": "Computer Science",
+        "Data Science": "Data Science",
+        "Business Administration": "Business Administration",
+        "Economics": "Economics",
+        "Mathematics": "Mathematics",
+        "Physics": "Physics",
+        "Chemistry": "Chemistry",
+        "Biology": "Biology",
+        "Medicine": "Medicine",
+        "Law": "Law",
+        "Psychology": "Psychology",
+        "Architecture": "Architecture",
+        "Design": "Design",
+        "Arts": "Arts",
+        "Literature": "Literature",
+        "Philosophy": "Philosophy",
+        "Political Science": "Political Science"
+      },
+      "availability": {
+        "Available immediately": "Available immediately",
+        "Available": "Available",
+        "Open to offers": "Open to offers",
+        "Not looking": "Not looking"
+      }
     }
   },
   "auth": {

@@ -104,7 +104,7 @@ export default function ExplorePage() {
   const universities = ['Politecnico di Milano', 'Università di Bologna', 'Sapienza Università di Roma', 'Politecnico di Torino', 'Università di Padova']
   const years = ['2024', '2025', '2026', '2027']
 
-  const fieldsOfStudy = [
+  const fieldsOfStudyKeys = [
     'Engineering',
     'Computer Science',
     'Data Science',
@@ -148,7 +148,7 @@ export default function ExplorePage() {
     'Portuguese'
   ]
 
-  const availabilityOptions = [
+  const availabilityKeys = [
     'Available immediately',
     'Available',
     'Open to offers',
@@ -322,8 +322,8 @@ export default function ExplorePage() {
                       onChange={(e) => setSelectedField(e.target.value)}
                     >
                       <option value="">{t('filters.allFields')}</option>
-                      {fieldsOfStudy.map((field) => (
-                        <option key={field} value={field}>{field}</option>
+                      {fieldsOfStudyKeys.map((field) => (
+                        <option key={field} value={field}>{t(`options.fieldsOfStudy.${field}`)}</option>
                       ))}
                     </select>
                   </div>
@@ -412,8 +412,8 @@ export default function ExplorePage() {
                       onChange={(e) => setSelectedAvailability(e.target.value)}
                     >
                       <option value="">{t('filters.allAvailability')}</option>
-                      {availabilityOptions.map((option) => (
-                        <option key={option} value={option}>{option}</option>
+                      {availabilityKeys.map((option) => (
+                        <option key={option} value={option}>{t(`options.availability.${option}`)}</option>
                       ))}
                     </select>
                   </div>

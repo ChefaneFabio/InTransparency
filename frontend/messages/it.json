@@ -834,6 +834,34 @@
       "title": "Pronto per Essere Scoperto?",
       "subtitle": "Unisciti a migliaia di studenti verificati e mostra il tuo lavoro alle migliori aziende",
       "createPortfolio": "Crea il Tuo Portfolio Gratuito"
+    },
+    "options": {
+      "fieldsOfStudy": {
+        "Engineering": "Ingegneria",
+        "Computer Science": "Informatica",
+        "Data Science": "Data Science",
+        "Business Administration": "Economia Aziendale",
+        "Economics": "Economia",
+        "Mathematics": "Matematica",
+        "Physics": "Fisica",
+        "Chemistry": "Chimica",
+        "Biology": "Biologia",
+        "Medicine": "Medicina",
+        "Law": "Giurisprudenza",
+        "Psychology": "Psicologia",
+        "Architecture": "Architettura",
+        "Design": "Design",
+        "Arts": "Belle Arti",
+        "Literature": "Lettere",
+        "Philosophy": "Filosofia",
+        "Political Science": "Scienze Politiche"
+      },
+      "availability": {
+        "Available immediately": "Disponibile subito",
+        "Available": "Disponibile",
+        "Open to offers": "Aperto a proposte",
+        "Not looking": "Non in cerca"
+      }
     }
   },
   "auth": {
