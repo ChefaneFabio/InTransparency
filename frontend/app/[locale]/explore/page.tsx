@@ -155,48 +155,93 @@ export default function ExplorePage() {
     'Not looking'
   ]
 
-  // Comprehensive skills covering technical, soft, and business competencies
+  // Comprehensive skills covering all disciplines
   const popularSkills = [
-    // Programming Languages
-    'Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'C#', 'Go', 'Rust', 'Swift', 'Kotlin',
-    'PHP', 'Ruby', 'R', 'MATLAB', 'Scala', 'Dart',
+    // === ENGINEERING & TECHNOLOGY ===
+    // Programming
+    'Python', 'JavaScript', 'Java', 'C++', 'C#', 'SQL', 'R', 'MATLAB',
+    // Software Development
+    'React', 'Node.js', 'Machine Learning', 'Data Analysis', 'AWS', 'Docker',
+    // Engineering
+    'CAD', 'AutoCAD', 'SolidWorks', 'CATIA', 'Revit', 'Civil 3D',
+    'Structural Analysis', 'FEM/FEA', 'CFD', 'ANSYS', 'Simulink',
+    'PLC Programming', 'SCADA', 'Industrial Automation', 'Robotics',
+    'Electrical Design', 'PCB Design', 'Embedded Systems', 'IoT',
+    'BIM', 'GIS', 'Project Engineering', 'Quality Control',
 
-    // Web Development
-    'React', 'Next.js', 'Vue.js', 'Angular', 'Node.js', 'Express', 'Django', 'Flask',
-    'FastAPI', 'Spring Boot', 'ASP.NET', 'HTML/CSS', 'Tailwind CSS', 'Bootstrap',
+    // === BUSINESS & MANAGEMENT ===
+    'Business Strategy', 'Business Development', 'Market Analysis', 'Competitive Analysis',
+    'Financial Modeling', 'Budgeting', 'Forecasting', 'Business Planning',
+    'Operations Management', 'Supply Chain', 'Logistics', 'Procurement',
+    'Project Management', 'Agile', 'Scrum', 'Lean Six Sigma',
+    'Change Management', 'Risk Management', 'Stakeholder Management',
+    'Consulting', 'Management Consulting', 'Strategy Consulting',
 
-    // Mobile Development
-    'React Native', 'Flutter', 'iOS Development', 'Android Development', 'SwiftUI',
+    // === FINANCE & ACCOUNTING ===
+    'Financial Analysis', 'Financial Reporting', 'IFRS', 'GAAP',
+    'Accounting', 'Auditing', 'Tax Planning', 'Corporate Finance',
+    'Investment Analysis', 'Portfolio Management', 'Valuation', 'M&A',
+    'Risk Analysis', 'Credit Analysis', 'Treasury', 'Controlling',
+    'SAP', 'Bloomberg Terminal', 'Excel Advanced', 'Power BI',
 
-    // Data Science & AI
-    'Machine Learning', 'Deep Learning', 'Natural Language Processing', 'Computer Vision',
-    'Data Analysis', 'Statistical Modeling', 'TensorFlow', 'PyTorch', 'Scikit-learn',
-    'Pandas', 'NumPy', 'Jupyter', 'Data Visualization', 'AI/ML',
+    // === MARKETING & COMMUNICATIONS ===
+    'Digital Marketing', 'SEO', 'SEM', 'Social Media Marketing',
+    'Content Marketing', 'Brand Management', 'Product Marketing',
+    'Marketing Strategy', 'Market Research', 'Consumer Insights',
+    'Public Relations', 'Corporate Communications', 'Event Management',
+    'Copywriting', 'Content Creation', 'Video Production', 'Photography',
+    'Google Analytics', 'HubSpot', 'Salesforce',
 
-    // Cloud & DevOps
-    'AWS', 'Azure', 'Google Cloud', 'Docker', 'Kubernetes', 'CI/CD', 'Jenkins',
-    'Terraform', 'DevOps', 'Linux', 'Cloud Architecture',
+    // === DESIGN & CREATIVE ===
+    'Graphic Design', 'UI/UX Design', 'Web Design', 'Brand Identity',
+    'Adobe Photoshop', 'Adobe Illustrator', 'Adobe InDesign', 'Figma', 'Sketch',
+    'Motion Graphics', 'Video Editing', 'Adobe Premiere', 'After Effects',
+    '3D Modeling', 'Blender', 'Maya', 'Cinema 4D', 'Rendering',
+    'Interior Design', 'Product Design', 'Fashion Design', 'Packaging Design',
 
-    // Databases
-    'SQL', 'PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Elasticsearch', 'Neo4j',
-    'Database Design', 'Data Modeling',
+    // === HEALTHCARE & LIFE SCIENCES ===
+    'Clinical Research', 'Clinical Trials', 'GCP', 'Regulatory Affairs',
+    'Medical Writing', 'Pharmacovigilance', 'Drug Development',
+    'Laboratory Techniques', 'PCR', 'HPLC', 'Mass Spectrometry',
+    'Biotechnology', 'Molecular Biology', 'Cell Culture', 'Bioinformatics',
+    'Healthcare Management', 'Patient Care', 'Medical Imaging',
+    'Nursing', 'Physiotherapy', 'Nutrition', 'Public Health',
 
-    // Other Technical Skills
-    'Git', 'APIs', 'REST', 'GraphQL', 'Microservices', 'System Design', 'Algorithms',
-    'Data Structures', 'Security', 'Blockchain', 'IoT', 'Embedded Systems',
-    'Testing', 'Agile', 'Scrum',
+    // === LAW & LEGAL ===
+    'Legal Research', 'Contract Law', 'Corporate Law', 'Commercial Law',
+    'Intellectual Property', 'Patent Law', 'Trademark', 'Copyright',
+    'Labor Law', 'Employment Law', 'GDPR', 'Privacy Law',
+    'Litigation', 'Legal Writing', 'Due Diligence', 'Compliance',
 
-    // Soft Skills
-    'Leadership', 'Team Collaboration', 'Communication', 'Problem Solving',
-    'Critical Thinking', 'Creativity', 'Adaptability', 'Time Management',
-    'Project Management', 'Presentation Skills', 'Conflict Resolution',
-    'Emotional Intelligence', 'Mentoring', 'Negotiation',
+    // === SCIENCES ===
+    'Research Methodology', 'Statistical Analysis', 'SPSS', 'Stata',
+    'Laboratory Management', 'Scientific Writing', 'Peer Review',
+    'Physics', 'Chemistry', 'Biology', 'Environmental Science',
+    'Geology', 'Materials Science', 'Nanotechnology',
 
-    // Business & Domain Skills
-    'Product Management', 'Business Analysis', 'Strategy', 'Marketing',
-    'UX/UI Design', 'User Research', 'Figma', 'Adobe Creative Suite',
-    'Financial Analysis', 'Accounting', 'Economics', 'Research',
-    'Technical Writing', 'Documentation', 'Teaching', 'Customer Success'
+    // === EDUCATION & TRAINING ===
+    'Teaching', 'Curriculum Development', 'Instructional Design',
+    'E-Learning', 'Training Delivery', 'Educational Technology',
+    'Assessment Design', 'Student Mentoring', 'Academic Writing',
+
+    // === LANGUAGES ===
+    'English', 'Italian', 'Spanish', 'French', 'German', 'Chinese', 'Arabic',
+    'Translation', 'Interpretation', 'Localization', 'Technical Translation',
+
+    // === SOFT SKILLS ===
+    'Leadership', 'Team Management', 'Communication', 'Presentation',
+    'Negotiation', 'Problem Solving', 'Critical Thinking', 'Analytical Thinking',
+    'Creativity', 'Innovation', 'Adaptability', 'Time Management',
+    'Emotional Intelligence', 'Conflict Resolution', 'Cross-cultural Communication',
+
+    // === HOSPITALITY & TOURISM ===
+    'Hotel Management', 'Event Planning', 'Tourism Management',
+    'Customer Service', 'Front Office', 'Food & Beverage',
+
+    // === AGRICULTURE & ENVIRONMENT ===
+    'Agronomy', 'Sustainable Agriculture', 'Food Science',
+    'Environmental Management', 'Sustainability', 'Renewable Energy',
+    'Waste Management', 'Water Management', 'Climate Science'
   ]
 
   useEffect(() => {
