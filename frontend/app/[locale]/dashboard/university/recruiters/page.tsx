@@ -154,7 +154,7 @@ export default function UniversityRecruitersPage() {
   const partnersCount = recruiters.filter(r => r.isPartner).length
   const activeCount = recruiters.filter(r => r.status === 'active').length
 
-  const industries = [...new Set(recruiters.map(r => r.industry))]
+  const industries = Array.from(new Set(recruiters.map(r => r.industry)))
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
