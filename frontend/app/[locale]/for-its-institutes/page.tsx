@@ -131,27 +131,11 @@ export default function ITSInstitutesPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-4">
-              Free three-sided marketplace connecting your ITS students to companies actively hiring. Your institutional verification gives graduates a competitive edge. Track placement success with free analytics.
+              Marketplace connecting your ITS students to companies actively hiring. Your institutional verification gives graduates a competitive edge. Track placement success with analytics.
             </p>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-              <strong>100% Free Forever:</strong> No setup fees, no monthly costs, no subscriptions.
+              Freemium model for institutions.
             </p>
-
-            {/* Quick Stats - Marketplace Focused */}
-            <div className="flex flex-wrap justify-center gap-8 mb-8">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-green-600">87%</div>
-                <div className="text-sm text-gray-700">Avg Placement Rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-primary">10K+</div>
-                <div className="text-sm text-gray-700">Students Discovered</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-secondary">€0</div>
-                <div className="text-sm text-gray-700">Cost Forever</div>
-              </div>
-            </div>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -161,7 +145,7 @@ export default function ITSInstitutesPage() {
                 asChild
               >
                 <Link href="/auth/register">
-                  Join Free Marketplace
+                  Get Started
                   <ArrowRight className="h-5 w-5 ml-2" />
                 </Link>
               </Button>
@@ -289,7 +273,7 @@ export default function ITSInstitutesPage() {
               Four Free Services
             </h2>
             <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-              Marketplace platform with verification quality layer - all free forever
+              Marketplace platform with verification quality layer
             </p>
 
             <div className="grid md:grid-cols-2 gap-8 mb-6">
@@ -559,25 +543,25 @@ export default function ITSInstitutesPage() {
                   <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Euro className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="text-lg">100% Free Forever</CardTitle>
+                  <CardTitle className="text-lg">Freemium Model</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>Zero setup or monthly costs</span>
+                      <span>No setup costs</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>100% free platform forever</span>
+                      <span>Core features included</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>Companies pay, not institutions</span>
+                      <span>Companies pay per contact</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>All 4 services included</span>
+                      <span>Enterprise options available</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -668,12 +652,12 @@ export default function ITSInstitutesPage() {
                     className="shadow-xl"
                   >
                     <Link href="/auth/register">
-                      Join Free Marketplace Now
+                      Get Started
                       <ArrowRight className="h-5 w-5 ml-2" />
                     </Link>
                   </Button>
                   <p className="text-sm text-white/80 mt-4">
-                    ✓ Setup 5 min  ✓ €0 forever  ✓ 10K+ companies hiring  ✓ Track placements
+                    Quick setup. Track placements.
                   </p>
                 </div>
               </CardContent>
@@ -744,20 +728,18 @@ export default function ITSInstitutesPage() {
                   <p>
                     Companies browse 10K+ verified graduates and proactively reach out to students with matching skills.
                     Students don't apply - they get discovered. Your institutional verification gives them a competitive edge.
-                    25% more placements than traditional job boards.
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">Is it really free forever?</CardTitle>
+                  <CardTitle className="text-base">What does freemium mean?</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <p>
-                    Yes, 100% free. All 4 services (Discovery, Matching, Verification, Analytics) included.
-                    Companies pay €10 per contact - this finances the platform.
-                    No hidden costs, no annual fees.
+                    Core features are included at no cost. Companies pay per contact.
+                    Enterprise features available for larger institutions.
                   </p>
                 </CardContent>
               </Card>
@@ -851,7 +833,7 @@ export default function ITSInstitutesPage() {
                   </Button>
                 </div>
                 <p className="text-sm text-gray-600 mt-6">
-                  ✓ €0 forever  ✓ 10K+ companies  ✓ 87% avg placement  ✓ Track impact for MIUR
+                  Track placements for MIUR reporting
                 </p>
               </CardContent>
             </Card>

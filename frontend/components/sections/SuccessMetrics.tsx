@@ -120,7 +120,7 @@ export function SuccessMetrics() {
             </Button>
           </motion.div>
           <p className="mt-4 text-sm text-gray-600">
-            No credit card required • 2 minutes to set up • Free forever
+            No credit card required
           </p>
         </motion.div>
       </div>

@@ -16,13 +16,13 @@ const roles = [
   {
     id: 'recruiter',
     name: 'Company',
-    description: 'Find and connect with verified top talent from universities',
+    description: 'Find verified talent from universities',
     icon: Users,
     color: 'from-green-500 to-emerald-500',
     href: '/auth/register/recruiter',
     benefits: [
-      'Advanced AI search',
-      'Verified candidates',
+      'Search verified profiles',
+      'Pay per contact',
       'ATS integration',
       'Analytics dashboard'
     ]
@@ -30,29 +30,29 @@ const roles = [
   {
     id: 'university',
     name: 'University / ITS',
-    description: 'Showcase your students and boost their career opportunities',
+    description: 'Verify student projects and track placements',
     icon: Building2,
     color: 'from-purple-500 to-indigo-500',
     href: '/auth/register/university',
     benefits: [
-      'Free for institutions',
+      'Freemium model',
       'Student analytics',
       'Placement tracking',
-      'Career services tools'
+      'Company visibility'
     ]
   },
   {
     id: 'student',
     name: 'Student',
-    description: 'Create your academic portfolio and get discovered by top companies',
+    description: 'Build your portfolio and get discovered by companies',
     icon: GraduationCap,
     color: 'from-blue-500 to-cyan-500',
     href: '/auth/register/student',
     benefits: [
-      'Free forever',
-      'AI-powered portfolio',
-      'Get matched with jobs',
-      'Verified credentials'
+      'Freemium model',
+      'Verified portfolio',
+      'Company discovery',
+      'Profile analytics'
     ]
   }
 ]

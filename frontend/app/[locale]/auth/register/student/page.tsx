@@ -95,13 +95,13 @@ export default function StudentRegisterPage() {
             <div className="sticky top-8">
               <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
                 <CheckCircle className="h-4 w-4" />
-                100% Free Forever
+                Freemium
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Stop Applying. Start Getting Discovered.
+                Get Discovered by Companies
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Tired of sending 50+ applications with no response? Students on InTransparency get 3x more interview offers because companies find them first.
+                Build a verified portfolio. Let companies find you based on your real skills and projects.
               </p>
 
               <div className="space-y-4 mb-8">
@@ -121,26 +121,6 @@ export default function StudentRegisterPage() {
                 })}
               </div>
 
-              {/* Success Story */}
-              <div className="p-4 bg-white rounded-xl border border-gray-200">
-                <div className="flex gap-1 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-gray-600 italic text-sm mb-3">
-                  "I went from 0 responses to 5 interview invites in my first month. A recruiter from Accenture reached out based on my capstone project!"
-                </p>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-teal-500 to-blue-500 rounded-full flex items-center justify-center text-white text-xs font-medium">
-                    GE
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">Giulia Esposito</p>
-                    <p className="text-xs text-gray-500">Software Engineering, Politecnico di Milano</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -150,8 +130,8 @@ export default function StudentRegisterPage() {
               <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-r from-teal-500 to-blue-600 rounded-2xl mb-4">
                 <GraduationCap className="h-7 w-7 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">Create Your Free Account</h1>
-              <p className="text-gray-600 mt-1">Join 10,000+ verified students</p>
+              <h1 className="text-2xl font-bold text-gray-900">Create Your Account</h1>
+              <p className="text-gray-600 mt-1">Build your verified portfolio</p>
             </div>
 
             {/* Mobile Benefits */}
@@ -161,10 +141,9 @@ export default function StudentRegisterPage() {
                 <span className="font-medium text-sm">Why students love us:</span>
               </div>
               <ul className="text-sm text-gray-600 space-y-1">
-                <li>• 3x more interview offers</li>
-                <li>• Companies message you first</li>
+                <li>• Companies discover you first</li>
                 <li>• Verified portfolio employers trust</li>
-                <li>• 100% free forever</li>
+                <li>• Freemium model</li>
               </ul>
             </div>
 

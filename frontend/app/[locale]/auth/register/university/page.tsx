@@ -91,13 +91,13 @@ export default function UniversityRegisterPage() {
             <div className="sticky top-8">
               <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
                 <CheckCircle className="h-4 w-4" />
-                100% Free Forever
+                Freemium
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Get Your Students Hired Faster
+                Connect Students with Employers
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Join 50+ universities using InTransparency to connect students with top employers through verified academic portfolios.
+                Verify student projects and help them get discovered by companies looking for real skills.
               </p>
 
               <div className="space-y-4 mb-8">
@@ -119,24 +119,8 @@ export default function UniversityRegisterPage() {
 
               <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl">
                 <p className="text-sm text-amber-800">
-                  <span className="font-semibold">100% Free Platform</span> - No setup fees, no annual costs, no hidden charges
+                  <span className="font-semibold">Freemium Platform</span> - No setup fees, no hidden charges
                 </p>
-              </div>
-
-              {/* Testimonial */}
-              <div className="mt-6 p-4 bg-white rounded-xl border border-gray-200">
-                <p className="text-gray-600 italic text-sm mb-3">
-                  "We increased placement rates by 30% in the first semester. The analytics help us identify at-risk students early."
-                </p>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-medium">
-                    AR
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">Prof. Alessandro Romano</p>
-                    <p className="text-xs text-gray-500">Career Services, Politecnico di Milano</p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -148,7 +132,7 @@ export default function UniversityRegisterPage() {
                 <School className="h-7 w-7 text-white" />
               </div>
               <h1 className="text-2xl font-bold text-gray-900">Create Institution Account</h1>
-              <p className="text-gray-600 mt-1">Free access to all features, forever</p>
+              <p className="text-gray-600 mt-1">Get started with the freemium plan</p>
             </div>
 
             {/* Mobile Benefits */}
@@ -158,10 +142,10 @@ export default function UniversityRegisterPage() {
                 <span className="font-medium text-sm">Why universities choose us:</span>
               </div>
               <ul className="text-sm text-gray-600 space-y-1">
-                <li>• 25% more student placements</li>
-                <li>• Free talent marketplace</li>
-                <li>• Placement analytics for MIUR</li>
-                <li>• 100% free, no hidden costs</li>
+                <li>• Verified student portfolios</li>
+                <li>• Placement analytics</li>
+                <li>• Company visibility tracking</li>
+                <li>• Freemium model</li>
               </ul>
             </div>
 

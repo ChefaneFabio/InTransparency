@@ -94,18 +94,11 @@ export default function PerUniversitaPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-4">
-              Marketplace gratuito che connette i tuoi studenti alle aziende. La verifica istituzionale dà ai laureati un vantaggio competitivo. Traccia il successo con analytics gratuiti.
+              Marketplace che connette i tuoi studenti alle aziende. La verifica istituzionale dà ai laureati un vantaggio competitivo. Traccia il successo con analytics.
             </p>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-              <strong>100% Gratis per Sempre:</strong> Nessun costo di setup, nessun abbonamento, nessun costo nascosto.
+              Modello freemium per le istituzioni.
             </p>
-
-            {/* Quick Stats */}
-            <div className="flex flex-wrap justify-center gap-8 mb-8">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-primary">€0</div>
-                <div className="text-sm text-gray-700">Costo per Sempre</div>
-              </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-green-600">25%</div>
                 <div className="text-sm text-gray-700">Più Placement</div>
@@ -355,21 +348,21 @@ export default function PerUniversitaPage() {
                   <div className="bg-green-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Euro className="h-8 w-8 text-green-600" />
                   </div>
-                  <CardTitle className="text-lg">100% Gratis per Sempre</CardTitle>
+                  <CardTitle className="text-lg">Modello Freemium</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>Zero costi di setup o abbonamento</span>
+                      <span>Nessun costo di setup</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>100% gratis per sempre</span>
+                      <span>Funzionalità core incluse</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>Le aziende pagano, non le università</span>
+                      <span>Le aziende pagano per contatto</span>
                     </li>
                   </ul>
                 </CardContent>
