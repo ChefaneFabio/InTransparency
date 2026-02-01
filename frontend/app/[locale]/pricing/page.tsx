@@ -2,87 +2,55 @@
 
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Check, X, Star, Users, Building2, GraduationCap, ArrowRight, Zap, Crown, Sparkles, School, Loader2 } from 'lucide-react'
+import { Check, Building2, GraduationCap, ArrowRight, Zap, Crown, School } from 'lucide-react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { STUDENT_PRICING, RECRUITER_PRICING } from '@/lib/config/pricing'
 
 // TODO: Add translations for studentPlans, companyPlans, institutePlans arrays
 type PricingSegment = 'students' | 'companies' | 'institutes'
 
 const studentPlans = [
   {
-    name: 'Free Forever',
+    name: 'Free',
     price: '€0',
     period: 'forever',
-    description: 'All core features - always free for students',
+    description: 'Everything you need to get discovered',
     icon: GraduationCap,
-    popular: false,
-    highlight: false,
-    badge: '100% Free',
+    popular: true,
+    highlight: true,
+    badge: 'Free Forever',
     features: [
-      'Unlimited verified project uploads',
+      'Unlimited project uploads',
       'University verification',
       'Public portfolio page',
       'Company discovery',
-      'Basic profile analytics',
-      'No credit card required'
+      'Profile analytics'
     ],
-    cta: 'Get Started Free',
+    cta: 'Get Started',
     ctaLink: '/auth/register'
   },
   {
-    name: 'Premium Profile',
+    name: 'Premium',
     price: '€9',
-    period: 'per month',
-    description: 'Stand out and get discovered faster with premium features',
+    period: '/month',
+    description: 'Priority visibility and advanced tools',
     icon: Crown,
-    popular: true,
-    highlight: true,
-    badge: '🚀 Most Popular',
-    features: [
-      'Everything in Free Forever',
-      'Priority in recruiter search results',
-      'Advanced analytics & insights',
-      'Custom portfolio URL (your-name.intransparency.com)',
-      'Contact recruiters directly',
-      'AI-powered career recommendations',
-      'Resume builder with verified projects',
-      'Interview preparation tools',
-      'Priority support',
-      'Remove "Powered by InTransparency" badge'
-    ],
-    cta: 'Start 7-Day Free Trial',
-    ctaLink: '/auth/register'
-  },
-  {
-    name: 'Portfolio Boost',
-    price: '€9',
-    period: 'one-time',
-    description: 'Professional portfolio design + LinkedIn optimization',
-    icon: Sparkles,
     popular: false,
     highlight: false,
-    badge: '💎 One-Time Service',
+    badge: 'Optional',
     features: [
-      'Professional portfolio design review',
-      'AI-optimized project descriptions',
-      'LinkedIn profile optimization',
-      'Personalized skill recommendations',
-      'Cover letter templates (5 templates)',
-      'Career pathway suggestions',
-      'Industry benchmarking report',
-      '30-day satisfaction guarantee',
-      'Delivered within 48 hours'
+      'Everything in Free',
+      'Priority in search results',
+      'Custom portfolio URL',
+      'Contact recruiters directly',
+      'Advanced analytics'
     ],
-    cta: 'Get Portfolio Boost',
+    cta: 'Start Free Trial',
     ctaLink: '/auth/register'
   }
 ]
@@ -91,154 +59,95 @@ const companyPlans = [
   {
     name: 'Browse Free',
     price: '€0',
-    period: 'no subscription',
-    description: 'Unlimited browsing - pay only when you contact',
+    period: 'forever',
+    description: 'Explore verified talent at no cost',
     icon: Zap,
     popular: false,
-    badge: '🔍 Always Free',
+    badge: 'Free Forever',
     features: [
-      'Free registration (no credit card)',
-      'Unlimited database exploration',
-      'See all profiles (anonymized)',
-      'Advanced filters by institution, courses, grades',
-      'AI Candidate Search',
-      'AI-verified skills from all project types',
-      'Location and availability filters',
-      'Save searches and candidates',
-      'No monthly fees ever'
+      'Unlimited profile browsing',
+      'Advanced search filters',
+      'Save candidates',
+      'View verified skills',
+      'No credit card required'
     ],
-    cta: 'Start Exploring Free',
+    cta: 'Start Exploring',
     ctaLink: '/auth/register'
   },
   {
-    name: 'Transparent Talent Sourcing Service',
+    name: 'Pay Per Contact',
     price: '€10',
-    period: 'per contact (no subscriptions)',
-    description: 'Browse 100% verified profiles FREE → Pay €10 only when you contact the right candidate',
+    period: '/contact',
+    description: 'Pay only when you reach out',
     icon: Building2,
     popular: true,
-    badge: 'Most Popular - Pay As You Use',
+    badge: 'Most Popular',
     features: [
-      '✅ DISCOVERY SERVICE: FREE unlimited browsing of verified profiles',
-      '✅ Search institution-authenticated competencies: "AutoCAD, 28/30 by ITS Rizzoli"',
-      '✅ View project excerpts with institutional stamps (no self-reported CVs)',
-      '✅ MATCHING SERVICE: AI shows "92% fit because Python thesis matches ML req"',
-      '✅ Transparency Panel: See exact skill mappings and verification dates',
-      '✅ Bidirectional visibility: Define your requirements, see exact matches',
-      '€10 unlocks: Full name, email, phone, LinkedIn + verified project details',
-      '🤖 24/7 AI Recruiting Assistant for candidate sourcing guidance',
-      '📊 80% faster screening with verifiable data',
-      '✅ 92% match accuracy with institution-verified competencies',
-      '📝 EU AI Act compliant: Every match explained, traceable to source',
-      'Buy credits as needed - no monthly commitment',
-      'Volume discounts up to 40% (bulk packages available)',
-      'Credits never expire'
+      'Everything in Browse Free',
+      'Unlock full contact details',
+      'View complete project info',
+      'Credits never expire',
+      'Volume discounts available'
     ],
-    cta: 'Start Browsing Free',
+    cta: 'Get Started',
     ctaLink: '/auth/register',
-    highlight: false
+    highlight: true
   },
   {
     name: 'Enterprise',
     price: '€99',
-    period: 'per month',
-    description: 'Unlimited contacts + custom filters + branding + API access. For high-volume recruiting.',
+    period: '/month',
+    description: 'Unlimited access for teams',
     icon: Crown,
-    popular: true,
-    badge: '🏢 Best for Scale',
-    features: [
-      '✅ Everything in Pay-Per-Contact, plus:',
-      '💎 UNLIMITED contacts (vs. €10 each) - hire as many as you need',
-      '🔍 Custom filters: "All 30/30 law students from Sapienza" or "ITS mechatronics grads near Milan"',
-      '🎨 Company branding: Your logo on matches and job postings',
-      '🔗 API access: Integrate InTransparency into your ATS (Manatal, Greenhouse, etc.)',
-      '📊 Bulk operations: Download candidate lists, mass messaging, campaign tracking',
-      '⚡ Priority support: Dedicated account manager for onboarding and strategy',
-      '📈 Advanced analytics: "47-day avg hire from ITS students", "€10K cost savings vs. Indeed"',
-      '🏷️ "Preferred Partner" badge: Increase student trust and application rates',
-      '🎯 Early access: Beta features, exclusive talent pools, new partnerships',
-      '💰 ROI: €10/contact × 100 contacts = €1K vs. €99/month Enterprise (90% savings)',
-      'Cancel anytime - no long-term commitment'
-    ],
-    cta: 'Upgrade to Enterprise',
-    ctaLink: '/contact',
-    highlight: true
-  },
-  {
-    name: 'Credit Packages',
-    price: 'From €50',
-    period: 'volume discounts',
-    description: 'Buy credits in bulk and save more',
-    icon: Building2,
     popular: false,
-    badge: '💳 Pay As You Go',
+    badge: 'Best Value',
     features: [
-      '50 credits (5 contacts) = €50 (no discount)',
-      '200 credits (20 contacts) = €180 (10% off)',
-      '500 credits (50 contacts) = €400 (20% off)',
-      '1000+ credits = 40% discount',
-      'Monthly or annual billing',
-      'Custom enterprise packages',
-      'Dedicated account manager (1000+)',
-      'API access (enterprise)'
+      'Unlimited contacts',
+      'API access',
+      'ATS integration',
+      'Dedicated support',
+      'Custom analytics'
     ],
-    cta: 'View Packages',
-    ctaLink: '/contact'
+    cta: 'Contact Sales',
+    ctaLink: '/contact',
+    highlight: false
   }
 ]
 
 const institutePlans = [
   {
-    name: 'Free Marketplace Access',
-    price: 'Free',
-    period: 'forever - no subscriptions',
-    description: 'Get your students hired through verified marketplace. FREE verification, discovery, matching, and analytics.',
+    name: 'Free',
+    price: '€0',
+    period: 'forever',
+    description: 'Everything you need to verify and place students',
     icon: School,
     popular: true,
-    badge: '🎓 100% Free Forever',
+    badge: 'Free Forever',
     features: [
-      '✅ FREE MARKETPLACE ACCESS: Your students discovered by 10K+ companies',
-      '✅ VERIFICATION SERVICE: Manual or API verification workflow',
-      '✅ You endorse student projects → They get verified badge',
-      '✅ Batch approval: "Endorse 50 projects in 1 hour" dashboard',
-      '✅ DISCOVERY SERVICE: Companies browse & contact your students',
-      '✅ Your verification gives students competitive edge',
-      '✅ ANALYTICS DASHBOARDS: Track placement success',
-      '📊 "Deloitte viewed 31 Economics students" → warm outreach',
-      '📈 "Excel searched 89x" → advise Business students',
-      '📉 Early alerts: "87 seniors with zero views" → proactive support',
-      '✅ Placement tracking: "47-day avg hire via your verification"',
-      '✅ Prove 85% placement boost to MIUR with data',
-      '✅ 100% free platform forever',
-      '⏱️ Save 40+ hours/month with automated matching',
-      '🌍 European job opportunities for your students',
-      'EU/Italian: 30/30 grading, tirocini, stage curriculare support'
+      'Verify student projects',
+      'Batch approval dashboard',
+      'Placement analytics',
+      'Company visibility tracking',
+      'No credit card required'
     ],
-    cta: 'Join Free Marketplace',
+    cta: 'Get Started',
     ctaLink: '/contact',
     highlight: true
   },
   {
-    name: 'Enterprise Custom',
+    name: 'Enterprise',
     price: '€2,000',
-    period: 'per year',
-    description: 'Full white-label, API access, custom integrations. For large universities with advanced needs.',
+    period: '/year',
+    description: 'For large institutions with custom needs',
     icon: Crown,
     popular: false,
-    badge: '🏢 Enterprise',
+    badge: 'Enterprise',
     features: [
-      '✅ Everything in Free, plus:',
-      '🔗 API access: Integrate InTransparency into your CRM/ERP',
-      '🎨 Full white-label: Remove InTransparency branding',
-      '📊 Custom analytics dashboards with your KPIs',
-      '🤝 Priority employer partnerships: Direct intro to top companies',
-      '👤 Dedicated account manager + quarterly strategy sessions',
-      '⚙️ Custom feature development for your specific needs',
-      '🌍 Multi-campus support (e.g., Politecnico Milano + Torino)',
-      '📈 Advanced reporting: Board-ready placement impact reports',
-      '💼 SLA guarantees: 99.9% uptime, priority bug fixes',
-      'Ideal for: Large universities (10K+ students), multi-campus systems',
-      'ROI: Prove 85% placement boost to secure MIUR funding'
+      'Everything in Free',
+      'API integration',
+      'White-label option',
+      'Multi-campus support',
+      'Dedicated account manager'
     ],
     cta: 'Contact Sales',
     ctaLink: '/contact',
@@ -261,19 +170,19 @@ export default function PricingPage() {
   const getHeaderContent = () => {
     switch (selectedSegment) {
       case 'students': return {
-        badge: 'For Students - All Disciplines',
-        title: 'Free Core Platform + Optional Premium Features',
-        subtitle: 'Core marketplace FREE FOREVER: Upload projects → Institution verifies → Companies discover YOU. Optional €9 premium services: Priority search placement, advanced analytics, or one-time portfolio optimization. EU/Italian: 30/30 grading, stage curriculare, tirocini support.'
+        badge: 'For Students',
+        title: 'Free Forever',
+        subtitle: 'Build your verified portfolio. Get discovered by companies.'
       }
       case 'institutes': return {
-        badge: 'For Institutes (Universities & ITS)',
-        title: 'Free Career Intelligence Service - No Subscriptions Ever',
-        subtitle: 'FREE Verification + Analytics services. Simple verification dashboard. You authenticate, we deliver insights. 100% free forever. Prove 85% placement boost to MIUR.'
+        badge: 'For Universities & ITS',
+        title: 'Free Forever',
+        subtitle: 'Verify student projects. Track placement outcomes.'
       }
       case 'companies': return {
-        badge: 'For Companies - Pay As You Use',
-        title: 'Transparent Talent Sourcing Service - No Subscriptions',
-        subtitle: 'Browse 100% institution-verified profiles FREE. Search "AutoCAD, 28/30 by ITS Rizzoli" with project excerpts. Pay €10 only when you contact verified candidates. 80% faster screening, 92% match accuracy.'
+        badge: 'For Companies',
+        title: 'Pay Per Contact',
+        subtitle: 'Browse verified profiles free. Pay only when you reach out.'
       }
     }
   }
@@ -418,8 +327,8 @@ export default function PricingPage() {
                       <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
                       <div className="mb-4">
                         <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                        {plan.period && (
-                          <span className="text-gray-600 ml-2">/ {plan.period}</span>
+                        {plan.period && plan.period !== 'forever' && (
+                          <span className="text-gray-600 ml-1">{plan.period}</span>
                         )}
                       </div>
                       <p className="text-gray-600 text-sm">{plan.description}</p>
@@ -532,8 +441,8 @@ export default function PricingPage() {
                     </Link>
                   </Button>
                 </div>
-                <p className="text-sm text-white mt-6">
-                  ✓ No credit card required  ✓ Unlimited free browsing  ✓ Only pay for contacts you unlock
+                <p className="text-sm text-white/80 mt-6">
+                  No credit card required
                 </p>
               </CardContent>
             </Card>
