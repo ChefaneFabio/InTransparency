@@ -940,10 +940,10 @@
   },
   "howItWorksPage": {
     "hero": {
-      "badge": "Subscription-Free Service Model",
+      "badge": "How It Works",
       "title": "Four Services, One Ecosystem",
-      "subtitle": "Partner-enabled services connecting students, institutions, and companies via 100% verified competencies",
-      "tagline": "No Subscriptions • Pay Only for What You Use"
+      "subtitle": "Connecting students, institutions, and companies through verified skills",
+      "tagline": "Free for students and universities"
     },
     "services": {
       "verification": {
@@ -2307,9 +2307,9 @@
   },
   "pricingPage": {
     "hero": {
-      "title": "Subscription-Free Service Model",
-      "subtitle": "Partner-enabled services, not subscription traps. Free for students & institutions. Companies pay only per contact.",
-      "description": "No subscriptions, no monthly fees - just transparent, pay-as-you-use services.",
+      "title": "Pricing",
+      "subtitle": "Free for students and universities. Companies pay per contact.",
+      "description": "Simple, transparent pricing.",
       "segments": {
         "students": "Students",
         "institutes": "Institutes",
