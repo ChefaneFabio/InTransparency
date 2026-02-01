@@ -400,13 +400,13 @@ export default function AboutPage() {
                 <CardContent className="p-8 text-center">
                   <div className="text-5xl mb-4">🎓</div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    Students: 100% Free
+                    Students: Freemium
                   </h3>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    Every feature. Unlimited projects. No credit card ever required.
+                    Core features included. Build your verified portfolio.
                   </p>
                   <div className="text-sm text-gray-600 bg-green-50 rounded-lg p-3">
-                    <strong>€9 optional:</strong> Personal career coaching with HR experts (human service, not software)
+                    <strong>Premium options:</strong> Priority visibility, advanced analytics
                   </div>
                 </CardContent>
               </Card>
@@ -415,13 +415,13 @@ export default function AboutPage() {
                 <CardContent className="p-8 text-center">
                   <div className="text-5xl mb-4">🏫</div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    Universities: Always Free
+                    Universities: Freemium
                   </h3>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    Companies autonomously search your students. Save 40h/month. Zero manual matching.
+                    Verify student projects. Track placements.
                   </p>
                   <div className="text-sm text-gray-600 bg-blue-50 rounded-lg p-3">
-                    <strong>Optional:</strong> Customizations (API integrations, white-label, custom features)
+                    <strong>Enterprise:</strong> API integrations, white-label, custom features
                   </div>
                 </CardContent>
               </Card>
@@ -430,13 +430,13 @@ export default function AboutPage() {
                 <CardContent className="p-8 text-center">
                   <div className="text-5xl mb-4">💼</div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    Companies: Pay for Results
+                    Companies: Pay Per Contact
                   </h3>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    Browse free. Pay €10 only when you contact a candidate.
+                    Browse profiles. Pay when you reach out.
                   </p>
                   <div className="text-sm text-gray-600 bg-purple-50 rounded-lg p-3">
-                    <strong>No subscriptions:</strong> Only pay for actual results, credits never expire
+                    <strong>Enterprise:</strong> API access, ATS integration
                   </div>
                 </CardContent>
               </Card>
@@ -482,7 +482,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               {[
                 { emoji: '🚀', label: 'Launch in 2025', sublabel: 'Be among the first users' },
-                { emoji: '🎓', label: 'Students First', sublabel: 'Free forever for students' },
+                { emoji: '🎓', label: 'Students First', sublabel: 'Freemium for students' },
                 { emoji: '🤝', label: 'Build Together', sublabel: 'Shape features with us' }
               ].map((stat, idx) => (
                 <motion.div

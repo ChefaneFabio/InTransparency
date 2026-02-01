@@ -279,9 +279,9 @@ const features: Feature[] = [
     targets: ['institutes'],
     benefits: [
       'No setup fees',
-      'No monthly costs',
-      'No hidden charges',
-      '100% free forever'
+      'Core features included',
+      'Enterprise options available',
+      'Freemium model'
     ],
     status: 'live'
   },
@@ -641,7 +641,7 @@ export default function FeaturesPage() {
                     <li>• 100% traceable competencies to source</li>
                   </ul>
                   <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
-                    100% free for universities
+                    Freemium for universities
                   </p>
                 </CardContent>
               </Card>
@@ -664,7 +664,7 @@ export default function FeaturesPage() {
                     <li>• Placement dashboards & MIUR reports</li>
                   </ul>
                   <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
-                    100% free analytics included
+                    Analytics included in freemium
                   </p>
                 </CardContent>
               </Card>
