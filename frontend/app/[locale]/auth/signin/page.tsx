@@ -7,7 +7,6 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { FaGoogle, FaGithub } from "react-icons/fa"
 import { useTranslations } from "next-intl"
 
 export default function SignInPage() {
@@ -46,16 +45,6 @@ export default function SignInPage() {
     }
   }
 
-  const handleOAuthSignIn = async (provider: "google" | "github") => {
-    setIsLoading(true)
-    try {
-      await signIn(provider, { callbackUrl })
-    } catch (error) {
-      setError("Failed to sign in with " + provider)
-      setIsLoading(false)
-    }
-  }
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 px-4">
       <div className="w-full max-w-md">
@@ -79,41 +68,6 @@ export default function SignInPage() {
               {error}
             </div>
           )}
-
-          {/* OAuth Buttons */}
-          <div className="space-y-3 mb-6">
-            <Button
-              onClick={() => handleOAuthSignIn("google")}
-              disabled={isLoading}
-              className="w-full bg-white dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600"
-              size="lg"
-            >
-              <FaGoogle className="mr-2 h-5 w-5" />
-              {t("continueWithGoogle")}
-            </Button>
-
-            <Button
-              onClick={() => handleOAuthSignIn("github")}
-              disabled={isLoading}
-              className="w-full bg-gray-900 dark:bg-gray-700 text-white hover:bg-gray-800 dark:hover:bg-gray-600"
-              size="lg"
-            >
-              <FaGithub className="mr-2 h-5 w-5" />
-              {t("continueWithGitHub")}
-            </Button>
-          </div>
-
-          {/* Divider */}
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300 dark:border-gray-600" />
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
-                {t("orContinueWith")}
-              </span>
-            </div>
-          </div>
 
           {/* Credentials Form */}
           <form onSubmit={handleCredentialsSignIn} className="space-y-4">
