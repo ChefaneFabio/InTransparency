@@ -142,11 +142,15 @@ export function Hero() {
                 {segment === 'companies' && ` ${tSegment('headlinePart3')}`}
               </h1>
 
-              <p className="mt-6 text-lg leading-8 text-foreground/80 max-w-3xl mx-auto animate-fade-in animate-delay-200">
-                {tSegment('description')}
-                <br />
-                <strong className="text-gray-900">{tSegment('descriptionStrong')}</strong>
-              </p>
+              {(tSegment('description') || tSegment('descriptionStrong')) && (
+                <p className="mt-6 text-lg leading-8 text-foreground/80 max-w-3xl mx-auto animate-fade-in animate-delay-200">
+                  {tSegment('description')}
+                  {tSegment('description') && tSegment('descriptionStrong') && <br />}
+                  {tSegment('descriptionStrong') && (
+                    <strong className="text-gray-900">{tSegment('descriptionStrong')}</strong>
+                  )}
+                </p>
+              )}
 
               {/* CTA Buttons - teal/amber theme */}
               <div className="mt-10 flex items-center justify-center gap-x-6 animate-fade-in animate-delay-400">
