@@ -689,7 +689,9 @@
       "shareButton": "Condividi la Tua Storia",
       "createPortfolio": "Crea il Tuo Portfolio"
     },
-    "_old": {
+    "_placeholder": true
+  },
+  "_oldSuccessStories": {
     "stories": {
       "0": {
         "name": "Marco Bianchi",
