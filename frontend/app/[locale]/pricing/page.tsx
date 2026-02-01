@@ -18,12 +18,12 @@ const studentPlans = [
   {
     name: 'Free',
     price: '€0',
-    period: 'forever',
+    period: '',
     description: 'Everything you need to get discovered',
     icon: GraduationCap,
     popular: true,
     highlight: true,
-    badge: 'Free Forever',
+    badge: 'Free',
     features: [
       'Unlimited project uploads',
       'University verification',
@@ -59,11 +59,11 @@ const companyPlans = [
   {
     name: 'Browse Free',
     price: '€0',
-    period: 'forever',
+    period: '',
     description: 'Explore verified talent at no cost',
     icon: Zap,
     popular: false,
-    badge: 'Free Forever',
+    badge: 'Free',
     features: [
       'Unlimited profile browsing',
       'Advanced search filters',
@@ -86,7 +86,7 @@ const companyPlans = [
       'Everything in Browse Free',
       'Unlock full contact details',
       'View complete project info',
-      'Credits never expire',
+      'Credits with no expiration',
       'Volume discounts available'
     ],
     cta: 'Get Started',
@@ -97,10 +97,10 @@ const companyPlans = [
     name: 'Enterprise',
     price: '€99',
     period: '/month',
-    description: 'Unlimited access for teams',
+    description: 'Full access for teams',
     icon: Crown,
     popular: false,
-    badge: 'Best Value',
+    badge: 'Teams',
     features: [
       'Unlimited contacts',
       'API access',
@@ -118,11 +118,11 @@ const institutePlans = [
   {
     name: 'Free',
     price: '€0',
-    period: 'forever',
+    period: '',
     description: 'Everything you need to verify and place students',
     icon: School,
     popular: true,
-    badge: 'Free Forever',
+    badge: 'Free',
     features: [
       'Verify student projects',
       'Batch approval dashboard',
@@ -171,12 +171,12 @@ export default function PricingPage() {
     switch (selectedSegment) {
       case 'students': return {
         badge: 'For Students',
-        title: 'Free Forever',
+        title: 'Free',
         subtitle: 'Build your verified portfolio. Get discovered by companies.'
       }
       case 'institutes': return {
         badge: 'For Universities & ITS',
-        title: 'Free Forever',
+        title: 'Free',
         subtitle: 'Verify student projects. Track placement outcomes.'
       }
       case 'companies': return {
