@@ -317,24 +317,28 @@ export default function InstitutionDashboard() {
             </div>
           </Card>
 
-          {/* ROI Info */}
+          {/* Pricing Info */}
           <Card className="p-6 bg-green-50 border-green-200">
-            <h3 className="font-semibold text-green-900 mb-2">Cost Comparison</h3>
+            <h3 className="font-semibold text-green-900 mb-2">Your Plan</h3>
             <div className="space-y-2 text-sm text-green-800">
               <div className="flex justify-between">
-                <span>AlmaLaurea:</span>
-                <span className="font-medium">€2,500/yr</span>
+                <span>Platform Access:</span>
+                <span className="font-medium text-green-600">FREE</span>
               </div>
               <div className="flex justify-between">
-                <span>Univariety:</span>
-                <span className="font-medium">€500/yr</span>
+                <span>Student Verification:</span>
+                <span className="font-medium text-green-600">FREE</span>
               </div>
-              <div className="flex justify-between pt-2 border-t border-green-300 font-semibold">
-                <span>InTransparency:</span>
-                <span className="text-green-600">FREE (€500 widget)</span>
+              <div className="flex justify-between">
+                <span>Analytics Dashboard:</span>
+                <span className="font-medium text-green-600">FREE</span>
+              </div>
+              <div className="flex justify-between pt-2 border-t border-green-300">
+                <span>Optional Widget:</span>
+                <span className="font-medium">€500</span>
               </div>
               <p className="text-xs text-green-700 mt-2">
-                Save €2,500/year vs. competitors!
+                All core features included at no cost
               </p>
             </div>
           </Card>

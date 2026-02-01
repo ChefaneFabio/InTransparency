@@ -406,7 +406,7 @@ This transparency builds trust and improves hiring decisions by 40%!`
 - Handle all company outreach and matching
 - Provide real-time analytics dashboard
 
-💰 **Cost:** €0 forever (vs AlmaLaurea €2,500/year)
+💰 **Cost:** €0 forever - no hidden fees
 
 📈 **Your Benefits:**
 - Better placement statistics

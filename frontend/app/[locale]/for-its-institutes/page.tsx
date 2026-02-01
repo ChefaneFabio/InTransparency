@@ -134,7 +134,7 @@ export default function ITSInstitutesPage() {
               Free three-sided marketplace connecting your ITS students to companies actively hiring. Your institutional verification gives graduates a competitive edge. Track placement success with free analytics.
             </p>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-              <strong>100% Free Forever:</strong> No setup fees, no monthly costs, no subscriptions. Zero cost vs AlmaLaurea (€2.500/anno).
+              <strong>100% Free Forever:</strong> No setup fees, no monthly costs, no subscriptions.
             </p>
 
             {/* Quick Stats - Marketplace Focused */}
@@ -312,7 +312,7 @@ export default function ITSInstitutesPage() {
                     <li>• Companies pay €10 to contact, you get credit</li>
                   </ul>
                   <p className="text-xs italic pt-2 border-t text-gray-600">
-                    vs LinkedIn: No verification = lower trust
+                    University-verified credentials employers trust
                   </p>
                 </CardContent>
               </Card>
@@ -336,7 +336,7 @@ export default function ITSInstitutesPage() {
                     <li>• 25% more successful placements</li>
                   </ul>
                   <p className="text-xs italic pt-2 border-t text-gray-600">
-                    vs Resume screening: 80% faster
+                    80% faster candidate screening
                   </p>
                 </CardContent>
               </Card>
@@ -536,7 +536,7 @@ export default function ITSInstitutesPage() {
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>25% more students hired vs traditional methods</span>
+                      <span>25% higher placement rates</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
@@ -569,7 +569,7 @@ export default function ITSInstitutesPage() {
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>vs AlmaLaurea €2.500/anno saved</span>
+                      <span>100% free platform forever</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
@@ -757,7 +757,7 @@ export default function ITSInstitutesPage() {
                   <p>
                     Yes, 100% free. All 4 services (Discovery, Matching, Verification, Analytics) included.
                     Companies pay €10 per contact - this finances the platform.
-                    You save €2.500/year vs AlmaLaurea.
+                    No hidden costs, no annual fees.
                   </p>
                 </CardContent>
               </Card>

@@ -191,7 +191,7 @@ export default function TransparencyPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                      <strong>92% match accuracy</strong> vs 65% for traditional methods
+                      <strong>92% match accuracy</strong> with verified institutional data
                     </li>
                   </ul>
                 </CardContent>
@@ -335,7 +335,7 @@ export default function TransparencyPage() {
                     <li>• Explainable matches with reasoning</li>
                     <li>• See actual project work before contacting</li>
                     <li>• 92% match accuracy saves time</li>
-                    <li>• €10 per contact vs €8K/year subscriptions</li>
+                    <li>• €10 per contact, no annual fees</li>
                   </ul>
                 </CardContent>
               </Card>
@@ -375,7 +375,7 @@ export default function TransparencyPage() {
                   <div>
                     <div className="text-5xl font-bold mb-2">92%</div>
                     <div className="text-white/90">Match Accuracy</div>
-                    <div className="text-sm text-white/70 mt-1">(vs 65% for ATS)</div>
+                    <div className="text-sm text-white/70 mt-1">(with verified data)</div>
                   </div>
                   <div>
                     <div className="text-5xl font-bold mb-2">85%</div>

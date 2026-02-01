@@ -127,7 +127,7 @@ const companyPlans = [
       '✅ Bidirectional visibility: Define your requirements, see exact matches',
       '€10 unlocks: Full name, email, phone, LinkedIn + verified project details',
       '🤖 24/7 AI Recruiting Assistant for candidate sourcing guidance',
-      '📊 80% faster screening with verifiable data (vs Manatal resume parsing)',
+      '📊 80% faster screening with verifiable data',
       '✅ 92% match accuracy with institution-verified competencies',
       '📝 EU AI Act compliant: Every match explained, traceable to source',
       'Buy credits as needed - no monthly commitment',
@@ -209,8 +209,8 @@ const institutePlans = [
       '📉 Early alerts: "87 seniors with zero views" → proactive support',
       '✅ Placement tracking: "47-day avg hire via your verification"',
       '✅ Prove 85% placement boost to MIUR with data',
-      '✅ Zero cost vs AlmaLaurea €2,500/year',
-      '⏱️ Save 40+ hours/month vs manual career services',
+      '✅ 100% free platform forever',
+      '⏱️ Save 40+ hours/month with automated matching',
       '🌍 European job opportunities for your students',
       'EU/Italian: 30/30 grading, tirocini, stage curriculare support'
     ],
@@ -268,7 +268,7 @@ export default function PricingPage() {
       case 'institutes': return {
         badge: 'For Institutes (Universities & ITS)',
         title: 'Free Career Intelligence Service - No Subscriptions Ever',
-        subtitle: 'FREE Verification + Analytics services. Simple verification dashboard. You authenticate, we deliver insights. Zero cost vs AlmaLaurea (€2,500/year). Prove 85% placement boost to MIUR.'
+        subtitle: 'FREE Verification + Analytics services. Simple verification dashboard. You authenticate, we deliver insights. 100% free forever. Prove 85% placement boost to MIUR.'
       }
       case 'companies': return {
         badge: 'For Companies - Pay As You Use',

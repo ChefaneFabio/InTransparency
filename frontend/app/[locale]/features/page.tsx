@@ -63,7 +63,7 @@ const features: Feature[] = [
       'Zero resume inflation: Every skill traceable to institution',
       '100% authenticity: "Python verified by ITS G. Natta, 28/30 project grade"',
       'Project excerpts/links shown to companies with institutional stamp',
-      'Solves 30% false positives in hiring vs. self-reported Indeed CVs',
+      'Reduces 30% false positives with verified skills',
       '80% faster screening for companies (92% verified match accuracy)',
       '25% higher response rates for students (credibility boost)'
     ],
@@ -281,7 +281,7 @@ const features: Feature[] = [
       'No setup fees',
       'No monthly costs',
       'No hidden charges',
-      'Better than AlmaLaurea (€2,500/year)'
+      '100% free forever'
     ],
     status: 'live'
   },
@@ -352,7 +352,7 @@ const features: Feature[] = [
       'Students see: "This BMW internship seeks AutoCAD—your verified project matches 92%"',
       'Institutions dashboard: "Deloitte searched Contract Law 89x—advise law students"',
       'Full disclosure engine: No hidden scores, every match explained (EU AI Act compliant)',
-      'Reduces mismatches by 35% vs. Indeed vague postings, 25% less bias'
+      'Reduces mismatches by 35% with clear requirements, 25% less bias'
     ],
     status: 'live'
   },
@@ -455,7 +455,7 @@ const features: Feature[] = [
       'Match score explanations (why 92% match?)',
       'Job description optimization guidance',
       'Skill demand trend insights',
-      '40% higher engagement vs traditional search',
+      '40% higher candidate engagement',
       'Transparent AI that shows reasoning'
     ],
     status: 'live'
@@ -472,7 +472,7 @@ const features: Feature[] = [
       'Dashboard analytics explanations',
       'Early intervention alert management',
       'European job opportunities search help',
-      '20-30% more data gathered vs static forms',
+      '20-30% more data gathered with interactive forms',
       'Transparent conversation logging (GDPR compliant)'
     ],
     status: 'live'
@@ -591,7 +591,7 @@ export default function FeaturesPage() {
                     <li>• Profile visibility analytics for students</li>
                   </ul>
                   <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
-                    vs Indeed: Verified skills = 30% fewer fake CVs
+                    Verified skills = 30% fewer fake applications
                   </p>
                 </CardContent>
               </Card>
@@ -611,11 +611,11 @@ export default function FeaturesPage() {
                   <ul className="space-y-1.5">
                     <li>• Explainable AI: "92% fit because Python thesis"</li>
                     <li>• Bidirectional transparency (students see why)</li>
-                    <li>• 92% verified accuracy (vs 60% self-reported)</li>
+                    <li>• 92% verified accuracy with institutional data</li>
                     <li>• Full reasoning shown for every match</li>
                   </ul>
                   <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
-                    vs Manatal: Opaque scores, no explanations
+                    Transparent AI: Every match fully explained
                   </p>
                 </CardContent>
               </Card>
@@ -641,7 +641,7 @@ export default function FeaturesPage() {
                     <li>• 100% traceable competencies to source</li>
                   </ul>
                   <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
-                    Free vs AlmaLaurea €2,500/year
+                    100% free for universities
                   </p>
                 </CardContent>
               </Card>
@@ -664,7 +664,7 @@ export default function FeaturesPage() {
                     <li>• Placement dashboards & MIUR reports</li>
                   </ul>
                   <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
-                    Free vs Univariety €500/year
+                    100% free analytics included
                   </p>
                 </CardContent>
               </Card>

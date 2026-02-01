@@ -12,8 +12,6 @@ import {
   Users,
   GraduationCap,
   Building2,
-  Briefcase,
-  TrendingUp,
   Plus,
   Settings,
   ChevronRight,
@@ -23,56 +21,66 @@ import {
   BarChart3
 } from 'lucide-react'
 
+interface UniversityStats {
+  totalStudents: number
+  verifiedStudents: number
+  activeProfiles: number
+  recruiterViews: number
+}
+
+interface Student {
+  id: string
+  name: string
+  initials: string
+  course: string
+  year: string
+  projects: number
+  verified: boolean
+  photo: string | null
+}
+
+interface Recruiter {
+  name: string
+  views: number
+  contacts: number
+}
+
 export default function UniversityDashboard() {
   const { data: session } = useSession()
   const user = session?.user
   const [loading, setLoading] = useState(true)
+  const [stats, setStats] = useState<UniversityStats>({
+    totalStudents: 0,
+    verifiedStudents: 0,
+    activeProfiles: 0,
+    recruiterViews: 0
+  })
+  const [recentStudents, setRecentStudents] = useState<Student[]>([])
+  const [topRecruiters, setTopRecruiters] = useState<Recruiter[]>([])
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 500)
-    return () => clearTimeout(timer)
-  }, [])
-
-  // Sample data - would come from API
-  const stats = {
-    totalStudents: 156,
-    verifiedStudents: 89,
-    activeProfiles: 134,
-    recruiterViews: 1247
-  }
-
-  const recentStudents = [
-    {
-      id: 1,
-      name: "Marco Rossi",
-      course: "Computer Science",
-      year: "3rd Year",
-      projects: 4,
-      verified: true
-    },
-    {
-      id: 2,
-      name: "Giulia Bianchi",
-      course: "Data Science",
-      year: "2nd Year",
-      projects: 3,
-      verified: true
-    },
-    {
-      id: 3,
-      name: "Alessandro Ferrari",
-      course: "Software Engineering",
-      year: "3rd Year",
-      projects: 5,
-      verified: false
+    const fetchDashboardData = async () => {
+      try {
+        const response = await fetch('/api/dashboard/university/stats')
+        if (response.ok) {
+          const data = await response.json()
+          setStats(data.stats)
+          setRecentStudents(data.recentStudents || [])
+          setTopRecruiters(data.topRecruiters || [])
+        }
+      } catch (error) {
+        console.error('Failed to fetch dashboard data:', error)
+      } finally {
+        setLoading(false)
+      }
     }
-  ]
 
-  const topRecruiters = [
-    { name: "TechStart Milano", views: 45, contacts: 12 },
-    { name: "Fintech Solutions", views: 38, contacts: 8 },
-    { name: "Digital Agency", views: 29, contacts: 6 }
-  ]
+    if (user) {
+      fetchDashboardData()
+    } else {
+      setLoading(false)
+    }
+  }, [user])
 
   if (loading) {
     return (
@@ -85,8 +93,53 @@ export default function UniversityDashboard() {
     )
   }
 
+  const verificationPercentage = stats.totalStudents > 0
+    ? Math.round((stats.verifiedStudents / stats.totalStudents) * 100)
+    : 0
+
   return (
     <div className="max-w-6xl mx-auto space-y-8 pb-12">
+      {/* Welcome Banner - Show when few students */}
+      {stats.totalStudents < 10 && (
+        <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-6 text-white">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <h2 className="text-xl font-bold mb-1">
+                Welcome to InTransparency!
+              </h2>
+              <p className="text-indigo-100">
+                Your students are now discoverable by 500+ companies. Import your student list to boost placements by up to 25%.
+              </p>
+            </div>
+            <Button className="bg-white text-indigo-600 hover:bg-indigo-50 shrink-0" asChild>
+              <Link href="/dashboard/university/students/import">
+                <Upload className="h-4 w-4 mr-2" />
+                Import Students
+              </Link>
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {/* Success Metrics Banner - Show when there's activity */}
+      {stats.recruiterViews > 0 && (
+        <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-green-100 rounded-lg">
+              <Eye className="h-5 w-5 text-green-600" />
+            </div>
+            <div>
+              <p className="font-medium text-green-900">
+                {stats.recruiterViews} companies viewed your students this month
+              </p>
+              <p className="text-sm text-green-700">
+                Students with complete profiles get 3x more views
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
         <div>
@@ -193,38 +246,54 @@ export default function UniversityDashboard() {
               </div>
             </CardHeader>
             <CardContent className="space-y-3">
-              {recentStudents.map((student) => (
-                <div
-                  key={student.id}
-                  className="flex items-center gap-4 p-4 rounded-lg border hover:bg-gray-50 transition-colors"
-                >
-                  <Avatar className="h-10 w-10">
-                    <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-sm">
-                      {student.name.split(' ').map(n => n[0]).join('')}
-                    </AvatarFallback>
-                  </Avatar>
+              {recentStudents.length > 0 ? (
+                recentStudents.map((student) => (
+                  <div
+                    key={student.id}
+                    className="flex items-center gap-4 p-4 rounded-lg border hover:bg-gray-50 transition-colors"
+                  >
+                    <Avatar className="h-10 w-10">
+                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-sm">
+                        {student.initials}
+                      </AvatarFallback>
+                    </Avatar>
 
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <p className="font-medium text-gray-900">{student.name}</p>
-                      {student.verified && (
-                        <Badge variant="secondary" className="text-xs bg-green-100 text-green-700">
-                          Verified
-                        </Badge>
-                      )}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <p className="font-medium text-gray-900">{student.name}</p>
+                        {student.verified && (
+                          <Badge variant="secondary" className="text-xs bg-green-100 text-green-700">
+                            Verified
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-sm text-gray-500">
+                        {student.course} · {student.year}
+                      </p>
                     </div>
-                    <p className="text-sm text-gray-500">
-                      {student.course} · {student.year}
-                    </p>
-                  </div>
 
-                  <div className="text-right">
-                    <p className="text-sm font-medium">{student.projects} projects</p>
-                  </div>
+                    <div className="text-right">
+                      <p className="text-sm font-medium">{student.projects} projects</p>
+                    </div>
 
-                  <ChevronRight className="h-4 w-4 text-gray-400" />
+                    <ChevronRight className="h-4 w-4 text-gray-400" />
+                  </div>
+                ))
+              ) : (
+                <div className="text-center py-8">
+                  <Users className="h-12 w-12 mx-auto text-gray-300 mb-3" />
+                  <h3 className="font-medium text-gray-900 mb-1">No students yet</h3>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Import or add students to get started
+                  </p>
+                  <Button asChild>
+                    <Link href="/dashboard/university/students/add">
+                      <Plus className="h-4 w-4 mr-2" />
+                      Add Students
+                    </Link>
+                  </Button>
                 </div>
-              ))}
+              )}
             </CardContent>
           </Card>
 
@@ -326,18 +395,24 @@ export default function UniversityDashboard() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {topRecruiters.map((recruiter, index) => (
-                <div key={index} className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">{recruiter.name}</p>
-                    <p className="text-xs text-gray-500">{recruiter.contacts} contacts made</p>
+              {topRecruiters.length > 0 ? (
+                topRecruiters.map((recruiter, index) => (
+                  <div key={index} className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">{recruiter.name}</p>
+                      <p className="text-xs text-gray-500">{recruiter.contacts} contacts made</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-medium">{recruiter.views}</p>
+                      <p className="text-xs text-gray-500">views</p>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-sm font-medium">{recruiter.views}</p>
-                    <p className="text-xs text-gray-500">views</p>
-                  </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <p className="text-sm text-gray-500 text-center py-4">
+                  No recruiter activity yet
+                </p>
+              )}
             </CardContent>
           </Card>
 
@@ -352,9 +427,9 @@ export default function UniversityDashboard() {
                   <span className="text-gray-600">Students verified</span>
                   <span className="font-medium">{stats.verifiedStudents}/{stats.totalStudents}</span>
                 </div>
-                <Progress value={(stats.verifiedStudents / stats.totalStudents) * 100} className="h-2" />
+                <Progress value={verificationPercentage} className="h-2" />
                 <p className="text-xs text-gray-500">
-                  {Math.round((stats.verifiedStudents / stats.totalStudents) * 100)}% of students have verified profiles
+                  {verificationPercentage}% of students have verified profiles
                 </p>
               </div>
             </CardContent>

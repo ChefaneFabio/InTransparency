@@ -97,7 +97,7 @@ export default function PerUniversitaPage() {
               Marketplace gratuito che connette i tuoi studenti alle aziende. La verifica istituzionale dà ai laureati un vantaggio competitivo. Traccia il successo con analytics gratuiti.
             </p>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-              <strong>100% Gratis per Sempre:</strong> Nessun costo di setup, nessun abbonamento. Zero costi vs AlmaLaurea (€2.500/anno).
+              <strong>100% Gratis per Sempre:</strong> Nessun costo di setup, nessun abbonamento, nessun costo nascosto.
             </p>
 
             {/* Quick Stats */}
@@ -107,8 +107,8 @@ export default function PerUniversitaPage() {
                 <div className="text-sm text-gray-700">Costo per Sempre</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-green-600">98%</div>
-                <div className="text-sm text-gray-700">Risparmio vs Agenzie</div>
+                <div className="text-4xl font-bold text-green-600">25%</div>
+                <div className="text-sm text-gray-700">Più Placement</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-secondary">Diretto</div>
@@ -365,7 +365,7 @@ export default function PerUniversitaPage() {
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>vs AlmaLaurea €2.500/anno risparmiati</span>
+                      <span>100% gratis per sempre</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
@@ -394,7 +394,7 @@ export default function PerUniversitaPage() {
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>98% risparmio vs agenzie interinali</span>
+                      <span>Contatto diretto aziende-studenti</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -532,7 +532,7 @@ export default function PerUniversitaPage() {
                   </Button>
                 </div>
                 <p className="text-sm text-gray-600 mt-6">
-                  ✓ €0 per sempre  ✓ 98% risparmio vs agenzie  ✓ Report ANVUR
+                  ✓ €0 per sempre  ✓ Contatto diretto  ✓ Report ANVUR
                 </p>
               </CardContent>
             </Card>
