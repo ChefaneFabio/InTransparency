@@ -551,7 +551,7 @@ export default function FeaturesPage() {
             {/* Service Model Badge */}
             <div className="flex justify-center mb-4">
               <div className="text-xs text-gray-600 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200 shadow-sm">
-                Subscription-Free Service Model • Partner-Enabled
+                Freemium Model
               </div>
             </div>
           </motion.div>

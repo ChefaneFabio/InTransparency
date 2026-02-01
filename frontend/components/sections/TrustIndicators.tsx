@@ -20,7 +20,7 @@ export function TrustIndicators() {
       bg: 'bg-blue-100'
     },
     {
-      title: 'Free for Students',
+      title: 'Freemium',
       description: 'No cost for students and universities',
       icon: GraduationCap,
       color: 'text-purple-600',
@@ -65,7 +65,7 @@ export function TrustIndicators() {
         <div className="flex flex-wrap justify-center gap-3">
           <div className="flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-full text-sm font-medium">
             <CheckCircle className="h-4 w-4" />
-            Free for Students
+            Freemium
           </div>
           <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
             <Shield className="h-4 w-4" />

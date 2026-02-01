@@ -943,7 +943,7 @@
       "badge": "How It Works",
       "title": "Four Services, One Ecosystem",
       "subtitle": "Connecting students, institutions, and companies through verified skills",
-      "tagline": "Free for students and universities"
+      "tagline": "Freemium model"
     },
     "services": {
       "verification": {
@@ -2308,7 +2308,7 @@
   "pricingPage": {
     "hero": {
       "title": "Pricing",
-      "subtitle": "Free for students and universities. Companies pay per contact.",
+      "subtitle": "Freemium for students and universities. Companies pay per contact.",
       "description": "Simple, transparent pricing.",
       "segments": {
         "students": "Students",

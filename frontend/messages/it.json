@@ -986,7 +986,7 @@
       "badge": "Come Funziona",
       "title": "Quattro Servizi, Un Ecosistema",
       "subtitle": "Collegando studenti, istituzioni e aziende tramite competenze verificate",
-      "tagline": "Gratis per studenti e universita"
+      "tagline": "Modello freemium"
     },
     "services": {
       "verification": {
@@ -2351,7 +2351,7 @@
   "pricingPage": {
     "hero": {
       "title": "Prezzi",
-      "subtitle": "Gratis per studenti e universita. Le aziende pagano per contatto.",
+      "subtitle": "Freemium per studenti e universita. Le aziende pagano per contatto.",
       "description": "Prezzi semplici e trasparenti.",
       "segments": {
         "students": "Studenti",

@@ -162,8 +162,8 @@ export default function RegisterPage() {
           <div className="mt-16 pt-8 border-t border-gray-200">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-sm text-gray-600">
               <div>
-                <div className="font-bold text-2xl text-primary mb-1">100%</div>
-                <div>Free for Students</div>
+                <div className="font-bold text-2xl text-primary mb-1">Freemium</div>
+                <div>For Students</div>
               </div>
               <div>
                 <div className="font-bold text-2xl text-primary mb-1">GDPR</div>
