@@ -666,25 +666,30 @@
     }
   },
   "successStories": {
-    "hero": {
-      "badge": "Success Stories",
-      "title": "Real Students. Real Success.",
-      "subtitle": "Discover how university-verified portfolios are transforming student careers. These students got discovered by top companies without sending a single application.",
-      "stats": {
-        "0": {
-          "value": "2,500+",
-          "label": "Students Hired"
-        },
-        "1": {
-          "value": "€52k",
-          "label": "Avg. Starting Salary"
-        },
-        "2": {
-          "value": "2 weeks",
-          "label": "Avg. Time to Hire"
-        }
+    "comingSoon": "Coming Soon",
+    "title": "Success Stories",
+    "description": "We're building a collection of real success stories from verified students who found opportunities through InTransparency. Check back soon!",
+    "cards": {
+      "yourStory": {
+        "title": "Your Story Here",
+        "description": "Share how verified skills helped your career"
+      },
+      "realStudents": {
+        "title": "Real Students",
+        "description": "Verified journeys from graduation to employment"
+      },
+      "comingSoon": {
+        "title": "Coming Soon",
+        "description": "We're collecting stories from early users"
       }
     },
+    "cta": {
+      "title": "Got a Success Story?",
+      "description": "If InTransparency helped you land an opportunity, we'd love to hear about it. Your verified story could inspire other students.",
+      "shareButton": "Share Your Story",
+      "createPortfolio": "Create Your Portfolio"
+    },
+    "_old": {
     "stories": {
       "0": {
         "name": "Marco Bianchi",

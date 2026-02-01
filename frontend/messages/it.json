@@ -666,25 +666,30 @@
     }
   },
   "successStories": {
-    "hero": {
-      "badge": "Storie di Successo",
-      "title": "Studenti Veri. Successi Veri.",
-      "subtitle": "Scopri come i portfolio verificati dall'università stanno trasformando le carriere degli studenti. Questi studenti sono stati scoperti dalle migliori aziende senza inviare una sola candidatura.",
-      "stats": {
-        "0": {
-          "value": "2.500+",
-          "label": "Studenti Assunti"
-        },
-        "1": {
-          "value": "€52k",
-          "label": "Stipendio Iniziale Medio"
-        },
-        "2": {
-          "value": "2 settimane",
-          "label": "Tempo Medio Assunzione"
-        }
+    "comingSoon": "In Arrivo",
+    "title": "Storie di Successo",
+    "description": "Stiamo raccogliendo storie di successo reali da studenti verificati che hanno trovato opportunità tramite InTransparency. Torna presto!",
+    "cards": {
+      "yourStory": {
+        "title": "La Tua Storia Qui",
+        "description": "Condividi come le competenze verificate hanno aiutato la tua carriera"
+      },
+      "realStudents": {
+        "title": "Studenti Reali",
+        "description": "Percorsi verificati dalla laurea all'impiego"
+      },
+      "comingSoon": {
+        "title": "In Arrivo",
+        "description": "Stiamo raccogliendo storie dai primi utenti"
       }
     },
+    "cta": {
+      "title": "Hai una Storia di Successo?",
+      "description": "Se InTransparency ti ha aiutato a trovare un'opportunità, ci piacerebbe saperlo. La tua storia verificata potrebbe ispirare altri studenti.",
+      "shareButton": "Condividi la Tua Storia",
+      "createPortfolio": "Crea il Tuo Portfolio"
+    },
+    "_old": {
     "stories": {
       "0": {
         "name": "Marco Bianchi",
