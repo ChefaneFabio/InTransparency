@@ -289,7 +289,7 @@ export default function NewProjectPage() {
                       <h3 className="font-medium text-gray-900">
                         {disc.label}
                       </h3>
-                      <p className="text-sm text-gray-500 mt-0.5">
+                      <p className="text-sm text-gray-600 mt-0.5">
                         {disc.description}
                       </p>
                     </div>
@@ -341,7 +341,7 @@ export default function NewProjectPage() {
                 value={projectType}
                 onChange={(e) => setProjectType(e.target.value)}
                 required
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
               >
                 <option value="">Select a project type</option>
                 {selectedDiscipline?.types.map(type => (
@@ -366,7 +366,7 @@ export default function NewProjectPage() {
                   onChange={(e) => setTitle(e.target.value)}
                   required
                   placeholder="Give your project a clear, descriptive title"
-                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                  className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                 />
               </div>
 
@@ -380,7 +380,7 @@ export default function NewProjectPage() {
                   required
                   rows={6}
                   placeholder="Describe what you built, the problem you solved, your approach, and the results"
-                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                  className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                 />
               </div>
             </div>
@@ -401,7 +401,7 @@ export default function NewProjectPage() {
                     value={githubUrl}
                     onChange={(e) => setGithubUrl(e.target.value)}
                     placeholder="https://github.com/username/repo"
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                   />
                 </div>
 
@@ -414,7 +414,7 @@ export default function NewProjectPage() {
                     value={liveUrl}
                     onChange={(e) => setLiveUrl(e.target.value)}
                     placeholder="https://your-project.com"
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                   />
                 </div>
 
@@ -434,7 +434,7 @@ export default function NewProjectPage() {
                         }
                       }}
                       placeholder="React, Python, PostgreSQL..."
-                      className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                      className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                     />
                     <button
                       type="button"
@@ -487,7 +487,7 @@ export default function NewProjectPage() {
                       }
                     }}
                     placeholder="Data Analysis, Problem Solving, Communication..."
-                    className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                   />
                   <button
                     type="button"
@@ -532,7 +532,7 @@ export default function NewProjectPage() {
                       }
                     }}
                     placeholder="Excel, Figma, SolidWorks, Adobe Suite..."
-                    className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                   />
                   <button
                     type="button"
@@ -578,9 +578,9 @@ export default function NewProjectPage() {
                   value={imageUrl}
                   onChange={(e) => setImageUrl(e.target.value)}
                   placeholder="https://example.com/image.jpg"
-                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                  className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                 />
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-gray-600 mt-1">
                   File upload coming soon - for now, paste an image URL
                 </p>
               </div>
@@ -601,7 +601,7 @@ export default function NewProjectPage() {
                       }
                     }}
                     placeholder="https://youtube.com/watch?v=..."
-                    className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                   />
                   <button
                     type="button"
@@ -647,7 +647,7 @@ export default function NewProjectPage() {
                     value={duration}
                     onChange={(e) => setDuration(e.target.value)}
                     placeholder="3 months, 1 semester..."
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                   />
                 </div>
 
@@ -661,7 +661,7 @@ export default function NewProjectPage() {
                     onChange={(e) => setTeamSize(e.target.value ? parseInt(e.target.value) : '')}
                     placeholder="1 (solo), 2, 3..."
                     min="1"
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                   />
                 </div>
 
@@ -674,7 +674,7 @@ export default function NewProjectPage() {
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
                     placeholder="Lead Developer, Analyst, Designer..."
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                   />
                 </div>
 
@@ -687,7 +687,7 @@ export default function NewProjectPage() {
                     value={client}
                     onChange={(e) => setClient(e.target.value)}
                     placeholder="Company X, University, Personal..."
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                   />
                 </div>
               </div>
@@ -701,13 +701,13 @@ export default function NewProjectPage() {
                   onChange={(e) => setOutcome(e.target.value)}
                   rows={3}
                   placeholder="What was the impact? What did you achieve?"
-                  className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                  className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                 />
               </div>
             </div>
 
             {/* Academic Context */}
-            <div className="space-y-4 bg-gray-50 p-5 rounded-lg border">
+            <div className="space-y-4 bg-blue-50 p-5 rounded-lg border border-blue-200">
               <h3 className="text-base font-semibold text-gray-900 pb-2 flex items-center gap-2">
                 <GraduationCap size={18} />
                 Academic Context
@@ -726,7 +726,7 @@ export default function NewProjectPage() {
                     value={courseName}
                     onChange={(e) => setCourseName(e.target.value)}
                     placeholder="Financial Modeling, Machine Learning..."
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white shadow-sm"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500 bg-white shadow-sm"
                   />
                 </div>
 
@@ -739,7 +739,7 @@ export default function NewProjectPage() {
                     value={courseCode}
                     onChange={(e) => setCourseCode(e.target.value)}
                     placeholder="FIN401, CS229..."
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white shadow-sm"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500 bg-white shadow-sm"
                   />
                 </div>
 
@@ -752,7 +752,7 @@ export default function NewProjectPage() {
                     value={semester}
                     onChange={(e) => setSemester(e.target.value)}
                     placeholder="Fall 2024, Spring 2025..."
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white shadow-sm"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500 bg-white shadow-sm"
                   />
                 </div>
 
@@ -765,7 +765,7 @@ export default function NewProjectPage() {
                     value={academicYear}
                     onChange={(e) => setAcademicYear(e.target.value)}
                     placeholder="2023-2024, 2024-2025..."
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white shadow-sm"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500 bg-white shadow-sm"
                   />
                 </div>
 
@@ -778,7 +778,7 @@ export default function NewProjectPage() {
                     value={grade}
                     onChange={(e) => setGrade(e.target.value)}
                     placeholder="A, A-, 95%, First Class..."
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white shadow-sm"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500 bg-white shadow-sm"
                   />
                 </div>
 
@@ -791,7 +791,7 @@ export default function NewProjectPage() {
                     value={professor}
                     onChange={(e) => setProfessor(e.target.value)}
                     placeholder="Dr. Smith, Prof. Johnson..."
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white shadow-sm"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500 bg-white shadow-sm"
                   />
                 </div>
               </div>
@@ -818,7 +818,7 @@ export default function NewProjectPage() {
                     }
                   }}
                   placeholder="Data Analysis, Project Management, Critical Thinking..."
-                  className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                  className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                 />
                 <button
                   type="button"
@@ -866,7 +866,7 @@ export default function NewProjectPage() {
                       }
                     }}
                     placeholder="AWS Certified, OSHA 30, CPR Certified..."
-                    className="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
                   />
                   <button
                     type="button"
@@ -901,7 +901,7 @@ export default function NewProjectPage() {
               <button
                 type="button"
                 onClick={() => router.back()}
-                className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
+                className="flex-1 px-6 py-3 border-2 border-gray-400 text-gray-700 rounded-lg hover:bg-gray-100 font-medium"
               >
                 Cancel
               </button>
