@@ -99,15 +99,6 @@ export default function PerUniversitaPage() {
             <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
               Modello freemium per le istituzioni.
             </p>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-green-600">25%</div>
-                <div className="text-sm text-gray-700">Più Placement</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-secondary">Diretto</div>
-                <div className="text-sm text-gray-700">Contatto Aziende-Studenti</div>
-              </div>
-            </div>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row justify-center gap-4">
