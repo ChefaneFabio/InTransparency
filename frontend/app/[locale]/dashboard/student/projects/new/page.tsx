@@ -279,10 +279,10 @@ export default function NewProjectPage() {
                 <button
                   key={disc.value}
                   onClick={() => handleDisciplineSelect(disc.value)}
-                  className="border-2 border-gray-200 rounded-lg p-4 hover:border-blue-500 hover:bg-blue-50 transition-all text-left group"
+                  className="border-2 border-gray-300 rounded-lg p-4 hover:border-blue-500 hover:bg-blue-50 transition-all text-left group shadow-sm"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-blue-100 transition-colors">
+                    <div className="p-2 bg-gray-200 rounded-lg group-hover:bg-blue-100 transition-colors">
                       <Icon className="text-gray-700 group-hover:text-blue-600" size={20} />
                     </div>
                     <div className="flex-1">
@@ -314,11 +314,11 @@ export default function NewProjectPage() {
           Change Category
         </button>
 
-        <div className="border rounded-lg p-6">
+        <div className="border-2 border-gray-300 rounded-lg p-6 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
             {selectedDiscipline && (
               <>
-                <div className="p-2 bg-gray-100 rounded-lg">
+                <div className="p-2 bg-gray-200 rounded-lg">
                   {<selectedDiscipline.icon className="text-gray-700" size={20} />}
                 </div>
                 <div>
@@ -615,7 +615,7 @@ export default function NewProjectPage() {
                   {videos.map((video, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between p-2 bg-gray-50 rounded-lg"
+                      className="flex items-center justify-between p-2 bg-gray-100 rounded-lg"
                     >
                       <span className="text-sm text-gray-700 truncate flex-1">{video}</span>
                       <button
@@ -901,7 +901,7 @@ export default function NewProjectPage() {
               <button
                 type="button"
                 onClick={() => router.back()}
-                className="flex-1 px-6 py-3 border-2 border-gray-400 text-gray-700 rounded-lg hover:bg-gray-100 font-medium"
+                className="flex-1 px-6 py-3 border-2 border-gray-400 text-gray-700 rounded-lg hover:bg-gray-200 font-medium"
               >
                 Cancel
               </button>
