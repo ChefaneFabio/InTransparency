@@ -63,44 +63,6 @@ export default function ExplorePage() {
   const [selectedAvailability, setSelectedAvailability] = useState<string>('')
   const [verificationFilter, setVerificationFilter] = useState<string>('')
 
-  // Mock data - replace with actual API call
-  const mockStudents: Student[] = [
-    {
-      id: '1',
-      username: 'john-doe',
-      firstName: 'John',
-      lastName: 'Doe',
-      university: 'Politecnico di Milano',
-      degree: 'Computer Science',
-      graduationYear: 2024,
-      projectsCount: 12,
-      verificationScore: 100,
-      skillsCount: 15,
-      topSkills: ['React', 'Python', 'Machine Learning'],
-      fieldOfStudy: 'Engineering',
-      location: 'Milan, Italy',
-      languages: ['Italian', 'English'],
-      availability: 'Available'
-    },
-    {
-      id: '2',
-      username: 'maria-rossi',
-      firstName: 'Maria',
-      lastName: 'Rossi',
-      university: 'Università di Bologna',
-      degree: 'Data Science',
-      graduationYear: 2025,
-      projectsCount: 8,
-      verificationScore: 95,
-      skillsCount: 12,
-      topSkills: ['Python', 'TensorFlow', 'SQL'],
-      fieldOfStudy: 'Data Science',
-      location: 'Bologna, Italy',
-      languages: ['Italian', 'English', 'Spanish'],
-      availability: 'Open to offers'
-    }
-  ]
-
   const universities = ['Politecnico di Milano', 'Università di Bologna', 'Sapienza Università di Roma', 'Politecnico di Torino', 'Università di Padova']
   const years = ['2024', '2025', '2026', '2027']
 
@@ -245,9 +207,31 @@ export default function ExplorePage() {
   ]
 
   useEffect(() => {
-    // TODO: Replace with actual API call with filters
-    setStudents(mockStudents)
-    setLoading(false)
+    const fetchStudents = async () => {
+      setLoading(true)
+      try {
+        const params = new URLSearchParams()
+        if (searchQuery) params.set('search', searchQuery)
+        if (selectedUniversity) params.set('university', selectedUniversity)
+        if (selectedYear) params.set('year', selectedYear)
+        if (selectedSkill) params.set('skill', selectedSkill)
+
+        const response = await fetch(`/api/explore/students?${params.toString()}`)
+        if (response.ok) {
+          const data = await response.json()
+          setStudents(data.students || [])
+        } else {
+          setStudents([])
+        }
+      } catch (error) {
+        console.error('Error fetching students:', error)
+        setStudents([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchStudents()
   }, [searchQuery, selectedUniversity, selectedYear, selectedSkill, selectedField, selectedLocation, selectedLanguage, selectedAvailability, verificationFilter])
 
   const clearFilters = () => {
@@ -312,20 +296,14 @@ export default function ExplorePage() {
               </div>
 
               {/* Quick Stats */}
-              <div className="flex justify-center space-x-8 mt-12">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">{students.length}</div>
-                  <div className="text-sm text-gray-700">{t('hero.stats.students')}</div>
+              {students.length > 0 && (
+                <div className="flex justify-center space-x-8 mt-12">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-primary">{students.length}</div>
+                    <div className="text-sm text-gray-700">{t('hero.stats.students')}</div>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-green-600">100%</div>
-                  <div className="text-sm text-gray-700">{t('hero.stats.verified')}</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600">{popularSkills.length}+</div>
-                  <div className="text-sm text-gray-700">{t('hero.stats.skills')}</div>
-                </div>
-              </div>
+              )}
             </motion.div>
           </div>
         </section>

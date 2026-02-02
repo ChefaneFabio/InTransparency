@@ -777,7 +777,7 @@
     "hero": {
       "badge": "Discover Verified Talent",
       "title": "Explore Student Portfolios",
-      "subtitle": "Search through thousands of verified student portfolios. Every project authenticated by institutions.",
+      "subtitle": "Search student portfolios with verified skills. Projects authenticated by institutions.",
       "searchPlaceholder": "Search by name, skill, or university...",
       "stats": {
         "students": "Students",
@@ -832,7 +832,7 @@
     },
     "cta": {
       "title": "Ready to Get Discovered?",
-      "subtitle": "Join thousands of verified students and showcase your work to top companies",
+      "subtitle": "Showcase your verified work to companies",
       "createPortfolio": "Create Your Free Portfolio"
     },
     "options": {

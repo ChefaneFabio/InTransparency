@@ -395,7 +395,7 @@
       },
       "finalCTA": {
         "title": "Pronto a Iniziare?",
-        "subtitle": "Unisciti a migliaia di studenti e centinaia di aziende che già usano InTransparency",
+        "subtitle": "Unisciti a studenti e aziende che usano InTransparency",
         "getStarted": "Inizia Gratis",
         "viewPricing": "Vedi Prezzi"
       }
@@ -777,7 +777,7 @@
     "hero": {
       "badge": "Scopri Talenti Verificati",
       "title": "Esplora Portfolio Studenti",
-      "subtitle": "Cerca tra migliaia di portfolio studenti verificati. Ogni progetto autenticato dalle istituzioni.",
+      "subtitle": "Cerca portfolio studenti con competenze verificate. Progetti autenticati dalle istituzioni.",
       "searchPlaceholder": "Cerca per nome, competenza o università...",
       "stats": {
         "students": "Studenti",
@@ -832,7 +832,7 @@
     },
     "cta": {
       "title": "Pronto per Essere Scoperto?",
-      "subtitle": "Unisciti a migliaia di studenti verificati e mostra il tuo lavoro alle migliori aziende",
+      "subtitle": "Mostra il tuo lavoro verificato alle aziende",
       "createPortfolio": "Crea il Tuo Portfolio Gratuito"
     },
     "options": {
@@ -976,7 +976,7 @@
     },
     "cta": {
       "title": "Pronto per Iniziare?",
-      "subtitle": "Unisciti a migliaia di studenti, istituti e aziende già su InTransparency",
+      "subtitle": "Unisciti a studenti, istituti e aziende su InTransparency",
       "primaryButton": "Inizia Gratis",
       "secondaryButton": "Prenota una Demo"
     }
