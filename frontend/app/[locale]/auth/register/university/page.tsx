@@ -62,8 +62,8 @@ export default function UniversityRegisterPage() {
   const benefits = [
     {
       icon: TrendingUp,
-      title: '25% More Placements',
-      description: 'Students on verified platforms get more interview offers'
+      title: 'Better Visibility',
+      description: 'Students get discovered by companies directly'
     },
     {
       icon: Users,

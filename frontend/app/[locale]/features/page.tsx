@@ -55,24 +55,24 @@ const features: Feature[] = [
   {
     id: 'institution-verified-profiles',
     title: 'Institution-Verified Profiles (Replaces Opaque CVs)',
-    description: 'No more self-reported CVs with inflated claims. Upload projects (theses, stage curriculare, code) → Your institution authenticates them → Companies see 100% verified competencies with source proof.',
+    description: 'No more self-reported CVs with inflated claims. Upload projects (theses, stage curriculare, code) → Your institution authenticates them → Companies see verified competencies with source proof.',
     icon: Shield,
     image: IMAGES.universityCampuses.graduation,
     targets: ['students', 'institutes', 'companies'],
     benefits: [
-      'Zero resume inflation: Every skill traceable to institution',
-      '100% authenticity: "Python verified by ITS G. Natta, 28/30 project grade"',
-      'Project excerpts/links shown to companies with institutional stamp',
-      'Reduces 30% false positives with verified skills',
-      '80% faster screening for companies (92% verified match accuracy)',
-      '25% higher response rates for students (credibility boost)'
+      'Every skill traceable to institution',
+      'Skills verified by institutions with project grades',
+      'Project excerpts shown to companies with institutional stamp',
+      'Verified skills reduce false positives',
+      'Faster screening with verified data',
+      'Higher credibility with verified portfolio'
     ],
     status: 'live'
   },
   {
     id: 'ai-project-analysis',
     title: 'AI Analysis + Institution Verification Workflow',
-    description: 'Upload projects (code, theses, stage curriculare) → AI extracts skills (e.g., "Python in web app") → Institution reviews via dashboard → Approve with stamp → Profile goes live with 100% verified badge.',
+    description: 'Upload projects (code, theses, stage curriculare) → AI extracts skills (e.g., "Python in web app") → Institution reviews via dashboard → Approve with stamp → Profile goes live with verified badge.',
     icon: Brain,
     image: IMAGES.features.aiAnalysis,
     targets: ['students', 'institutes'],
@@ -316,9 +316,9 @@ const features: Feature[] = [
     image: IMAGES.features.aiAnalysis,
     targets: ['all'],
     benefits: [
-      'Transparent match scoring (e.g., "85% match")',
-      'Clear alignment explanations ("Your Python project matches 3/4 requirements")',
-      'Companies can leave notes: "Add AWS experience and you are perfect"',
+      'Transparent match scoring',
+      'Clear alignment explanations',
+      'Companies can leave feedback notes',
       'No hidden criteria or bias',
       'GDPR-compliant AI transparency'
     ],
@@ -335,7 +335,7 @@ const features: Feature[] = [
       'Hard skills verified through projects and coursework',
       'Soft skills analyzed from teamwork and presentations',
       'Institution-authenticated grades and achievements',
-      '92% match accuracy with verified data'
+      'Higher match accuracy with verified data'
     ],
     status: 'live'
   },
@@ -347,12 +347,12 @@ const features: Feature[] = [
     image: IMAGES.features.dataAnalytics,
     targets: ['all'],
     benefits: [
-      'No vague job posts: Companies required to specify "Must-have: AutoCAD, preferred: 28/30 GPA"',
-      'Transparency Panel: "92% fit because Python from your thesis matches their ML skills req"',
-      'Students see: "This BMW internship seeks AutoCAD—your verified project matches 92%"',
-      'Institutions dashboard: "Deloitte searched Contract Law 89x—advise law students"',
-      'Full disclosure engine: No hidden scores, every match explained (EU AI Act compliant)',
-      'Reduces mismatches by 35% with clear requirements, 25% less bias'
+      'Companies specify clear requirements',
+      'Transparency Panel explains match reasoning',
+      'Students see which skills match job requirements',
+      'Institutions see search trends by skill',
+      'Full disclosure: every match explained (EU AI Act compliant)',
+      'Clear requirements reduce mismatches'
     ],
     status: 'live'
   },
@@ -369,7 +369,7 @@ const features: Feature[] = [
       'Verification logs for students: "Your AutoCAD project endorsed—shared with 3 recruiters"',
       'Companies see source: "This skill verified Oct 29, 2025 via institution dashboard"',
       'GDPR Article 15 compliant: Complete data transparency',
-      '100% traceability: Every skill → institution → date → context'
+      'Full traceability: Every skill → institution → date → context'
     ],
     status: 'live'
   },
@@ -386,8 +386,8 @@ const features: Feature[] = [
       'Profile building guidance (projects, skills, courses)',
       'Job recommendations based on your verified skills',
       'Career advice specific to your discipline',
-      'Skill demand insights ("Excel searched 89x this month")',
-      '30% reduction in onboarding drop-offs',
+      'Skill demand insights',
+      'Improved onboarding completion',
       'Transparent data collection with GDPR compliance'
     ],
     status: 'live'
@@ -421,7 +421,7 @@ const features: Feature[] = [
       'Project recommendations matching job requirements',
       'Skill gap analysis and suggestions',
       'Draft save & resume - never lose progress',
-      '35% reduction in abandoned applications',
+      'Fewer abandoned applications',
       'Completion tracking with actionable tips'
     ],
     status: 'live'
@@ -452,10 +452,10 @@ const features: Feature[] = [
     targets: ['companies'],
     benefits: [
       'Candidate sourcing tips across all disciplines',
-      'Match score explanations (why 92% match?)',
+      'Match score explanations',
       'Job description optimization guidance',
       'Skill demand trend insights',
-      '40% higher candidate engagement',
+      'Higher candidate engagement',
       'Transparent AI that shows reasoning'
     ],
     status: 'live'
@@ -472,7 +472,7 @@ const features: Feature[] = [
       'Dashboard analytics explanations',
       'Early intervention alert management',
       'European job opportunities search help',
-      '20-30% more data gathered with interactive forms',
+      'Better data gathering with interactive forms',
       'Transparent conversation logging (GDPR compliant)'
     ],
     status: 'live'
@@ -591,7 +591,7 @@ export default function FeaturesPage() {
                     <li>• Profile visibility analytics for students</li>
                   </ul>
                   <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
-                    Verified skills = 30% fewer fake applications
+                    Verified skills reduce fake applications
                   </p>
                 </CardContent>
               </Card>
@@ -609,9 +609,9 @@ export default function FeaturesPage() {
                 <CardContent className="text-sm text-gray-700">
                   <p className="mb-2 font-semibold text-secondary">AI-Powered Connections</p>
                   <ul className="space-y-1.5">
-                    <li>• Explainable AI: "92% fit because Python thesis"</li>
+                    <li>• Explainable AI matching</li>
                     <li>• Bidirectional transparency (students see why)</li>
-                    <li>• 92% verified accuracy with institutional data</li>
+                    <li>• Higher accuracy with institutional data</li>
                     <li>• Full reasoning shown for every match</li>
                   </ul>
                   <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
@@ -638,7 +638,7 @@ export default function FeaturesPage() {
                     <li>• Institution-verified profiles (not self-reported)</li>
                     <li>• Manual verification or API integration</li>
                     <li>• Audit trails & verification logs</li>
-                    <li>• 100% traceable competencies to source</li>
+                    <li>• Fully traceable competencies to source</li>
                   </ul>
                   <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
                     Freemium for universities

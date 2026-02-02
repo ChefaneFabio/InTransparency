@@ -63,22 +63,22 @@ export default function RecruiterRegisterPage() {
     {
       icon: Shield,
       title: 'Verified Skills Only',
-      description: 'Every skill backed by university projects - zero resume inflation'
+      description: 'Every skill backed by university projects'
     },
     {
       icon: Search,
       title: 'AI-Powered Matching',
-      description: '92% match accuracy with verified skill data'
+      description: 'Match candidates based on verified skills'
     },
     {
       icon: Clock,
-      title: '50% Faster Hiring',
-      description: 'Skip resume screening - see verified work samples instantly'
+      title: 'Faster Screening',
+      description: 'See verified work samples directly'
     },
     {
       icon: Zap,
       title: 'Pay Per Contact',
-      description: 'Browse 10,000+ graduates free. Pay only when you connect.'
+      description: 'Browse profiles free. Pay only when you connect.'
     }
   ]
 
@@ -97,7 +97,7 @@ export default function RecruiterRegisterPage() {
                 Hire Verified Talent, Not Resumes
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Access 10,000+ university-verified graduates. Every skill is traceable to actual coursework and projects - no more guessing if candidates can deliver.
+                Access university-verified graduates. Every skill is traceable to actual coursework and projects.
               </p>
 
               <div className="space-y-4 mb-8">
@@ -136,21 +136,6 @@ export default function RecruiterRegisterPage() {
                 </div>
               </div>
 
-              {/* Testimonial */}
-              <div className="p-4 bg-white rounded-xl border border-gray-200">
-                <p className="text-gray-600 italic text-sm mb-3">
-                  "We hired 3 senior engineers in 2 months - faster than any other channel. The verified projects saved us hours of technical screening."
-                </p>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-medium">
-                    MB
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">Marco Bianchi</p>
-                    <p className="text-xs text-gray-500">Head of Talent, TechCorp Solutions</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -171,10 +156,9 @@ export default function RecruiterRegisterPage() {
                 <span className="font-medium text-sm">Why companies choose us:</span>
               </div>
               <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Browse 10,000+ candidates free</li>
-                <li>• University-verified skills only</li>
-                <li>• 50% faster time-to-hire</li>
-                <li>• Pay €10 per contact only</li>
+                <li>• Browse candidates free</li>
+                <li>• University-verified skills</li>
+                <li>• Pay per contact</li>
               </ul>
             </div>
 

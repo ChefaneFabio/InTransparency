@@ -196,7 +196,7 @@ export default function ITSInstitutesPage() {
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>25% more placements than traditional methods</span>
+                      <span>Companies contact students directly</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -213,11 +213,11 @@ export default function ITSInstitutesPage() {
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
-                      <span>Companies see "92% fit: AutoCAD from ITS project"</span>
+                      <span>AI matches skills to job requirements</span>
                     </li>
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
-                      <span>Verified skills = higher match scores</span>
+                      <span>Verified skills improve visibility</span>
                     </li>
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
@@ -225,7 +225,7 @@ export default function ITSInstitutesPage() {
                     </li>
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
-                      <span>80% faster screening vs CVs</span>
+                      <span>Faster screening with verified data</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -246,11 +246,11 @@ export default function ITSInstitutesPage() {
                     </li>
                     <li className="flex items-start">
                       <BarChart3 className="h-4 w-4 text-purple-600 mr-2 mt-0.5" />
-                      <span>"47 days avg time-to-hire"</span>
+                      <span>Track time-to-hire metrics</span>
                     </li>
                     <li className="flex items-start">
                       <BarChart3 className="h-4 w-4 text-purple-600 mr-2 mt-0.5" />
-                      <span>Prove 85% placement to MIUR</span>
+                      <span>Generate reports for MIUR</span>
                     </li>
                     <li className="flex items-start">
                       <BarChart3 className="h-4 w-4 text-purple-600 mr-2 mt-0.5" />
@@ -314,13 +314,13 @@ export default function ITSInstitutesPage() {
                 <CardContent className="text-sm text-gray-700 space-y-2">
                   <p className="font-semibold text-secondary">Transparent AI Matching</p>
                   <ul className="space-y-1.5">
-                    <li>• "92% fit: AutoCAD from ITS project"</li>
-                    <li>• Verified skills = higher match scores</li>
+                    <li>• AI matches skills to job requirements</li>
+                    <li>• Verified skills improve visibility</li>
                     <li>• Companies see your institutional endorsement</li>
-                    <li>• 25% more successful placements</li>
+                    <li>• Transparent matching explanations</li>
                   </ul>
                   <p className="text-xs italic pt-2 border-t text-gray-600">
-                    80% faster candidate screening
+                    Faster candidate screening with verified data
                   </p>
                 </CardContent>
               </Card>
@@ -520,7 +520,7 @@ export default function ITSInstitutesPage() {
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>25% higher placement rates</span>
+                      <span>Students get discovered by companies</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
@@ -528,7 +528,7 @@ export default function ITSInstitutesPage() {
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>47 days avg time-to-hire</span>
+                      <span>Track time-to-hire metrics</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
@@ -578,7 +578,7 @@ export default function ITSInstitutesPage() {
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
-                      <span>Prove 85% placement with data</span>
+                      <span>Track placement metrics</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
@@ -774,7 +774,7 @@ export default function ITSInstitutesPage() {
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <p>
-                    Free analytics dashboard shows: "47 days avg time-to-hire", "23 students hired via platform", "85% placement boost".
+                    Analytics dashboard tracks time-to-hire, students contacted, and placement outcomes.
                     Export reports for MIUR with verifiable data.
                   </p>
                 </CardContent>
