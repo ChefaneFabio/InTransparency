@@ -796,7 +796,7 @@
       "allLocations": "Tutte le Località",
       "graduationYear": "Anno di Laurea",
       "allYears": "Tutti gli Anni",
-      "classOf": "Classe del {{year}}",
+      "classOf": "Classe del {year}",
       "language": "Lingua",
       "allLanguages": "Tutte le Lingue",
       "availability": "Disponibilità",
@@ -804,14 +804,14 @@
       "verification": "Verifica",
       "fullyVerified": "100% Verificato",
       "highlyVerified": "90%+ Verificato",
-      "skills": "Competenze ({{count}}+)",
+      "skills": "Competenze ({count}+)",
       "searchSkills": "Cerca competenze...",
-      "noSkillsFound": "Nessuna competenza trovata per '{{query}}'",
+      "noSkillsFound": "Nessuna competenza trovata per '{query}'",
       "filtered": "Risultati filtrati"
     },
     "results": {
       "loading": "Caricamento...",
-      "studentsFound": "{{count}} Studenti Trovati",
+      "studentsFound": "{count} Studenti Trovati",
       "filtered": "Mostrando risultati filtrati",
       "loadingPortfolios": "Caricamento portfolio..."
     },
@@ -821,7 +821,7 @@
       "clearFilters": "Cancella Tutti i Filtri"
     },
     "card": {
-      "classOf": "Classe del {{year}}",
+      "classOf": "Classe del {year}",
       "stats": {
         "projects": "Progetti",
         "verified": "Verificato",
