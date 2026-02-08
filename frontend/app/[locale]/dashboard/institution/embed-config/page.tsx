@@ -1,17 +1,21 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
+import { Skeleton } from '@/components/ui/skeleton'
 import { Copy, Check, ExternalLink, Settings, Eye } from 'lucide-react'
 import InstitutionWidget from '@/components/embed/InstitutionWidget'
 
 export default function EmbedConfigPage() {
-  const [institutionId, setInstitutionId] = useState('inst_123456') // TODO: Get from auth context
-  const [institutionName, setInstitutionName] = useState('Politecnico di Milano')
+  const { data: session } = useSession()
+  const institutionId = session?.user?.id || ''
+  const institutionName = (session?.user as any)?.company || session?.user?.name || 'Your Institution'
+
   const [logoUrl, setLogoUrl] = useState('')
 
   // Widget configuration
@@ -24,6 +28,31 @@ export default function EmbedConfigPage() {
   // UI state
   const [copied, setCopied] = useState(false)
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle')
+  const [loading, setLoading] = useState(true)
+
+  // Load existing branding on mount
+  useEffect(() => {
+    if (!institutionId) return
+    const loadBranding = async () => {
+      try {
+        const res = await fetch('/api/institutions/branding')
+        if (res.ok) {
+          const data = await res.json()
+          if (data.success && data.settings) {
+            const s = data.settings
+            if (s.primaryColor) setPrimaryColor(s.primaryColor)
+            if (s.accentColor) setSecondaryColor(s.accentColor)
+            if (s.logo) setLogoUrl(s.logo)
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load branding:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadBranding()
+  }, [institutionId])
 
   const embedUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://intransparency.com'}/embed/${institutionId}?primaryColor=${encodeURIComponent(primaryColor)}&secondaryColor=${encodeURIComponent(secondaryColor)}&showLogo=${showLogo}&maxMatches=${maxMatches}&refreshInterval=${refreshInterval}`
 
@@ -52,10 +81,10 @@ export default function EmbedConfigPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          institutionId,
           brandingConfig: {
             primaryColor,
-            secondaryColor,
+            accentColor: secondaryColor,
+            logo: logoUrl,
             showLogo,
             maxMatches,
             refreshInterval
@@ -67,14 +96,25 @@ export default function EmbedConfigPage() {
         setSaveStatus('saved')
         setTimeout(() => setSaveStatus('idle'), 2000)
       } else {
-        alert('Failed to save configuration')
         setSaveStatus('idle')
       }
     } catch (error) {
       console.error('Error saving config:', error)
-      alert('Failed to save configuration')
       setSaveStatus('idle')
     }
+  }
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-8 max-w-7xl">
+        <Skeleton className="h-10 w-64 mb-2" />
+        <Skeleton className="h-5 w-96 mb-8" />
+        <div className="grid md:grid-cols-2 gap-8">
+          <Skeleton className="h-96" />
+          <Skeleton className="h-96" />
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -207,7 +247,7 @@ export default function EmbedConfigPage() {
                 className="w-full"
               >
                 {saveStatus === 'saving' && 'Saving...'}
-                {saveStatus === 'saved' && '✓ Saved'}
+                {saveStatus === 'saved' && 'Saved!'}
                 {saveStatus === 'idle' && 'Save Configuration'}
               </Button>
             </div>
@@ -242,9 +282,9 @@ export default function EmbedConfigPage() {
             </div>
 
             <div className="space-y-2 text-sm text-gray-600">
-              <p>📋 <strong>Step 1:</strong> Copy the code above</p>
-              <p>🌐 <strong>Step 2:</strong> Paste into your website HTML (career portal, placement page, etc.)</p>
-              <p>✨ <strong>Step 3:</strong> Widget will appear showing live matches!</p>
+              <p><strong>Step 1:</strong> Copy the code above</p>
+              <p><strong>Step 2:</strong> Paste into your website HTML (career portal, placement page, etc.)</p>
+              <p><strong>Step 3:</strong> Widget will appear showing live matches!</p>
             </div>
 
             <Button variant="outline" className="w-full mt-4" asChild>
@@ -257,12 +297,11 @@ export default function EmbedConfigPage() {
 
           {/* ROI Info */}
           <Card className="p-6 bg-green-50 border-green-200">
-            <h3 className="font-semibold text-green-900 mb-2">📈 Expected Impact</h3>
+            <h3 className="font-semibold text-green-900 mb-2">Expected Impact</h3>
             <ul className="space-y-1 text-sm text-green-800">
-              <li>• <strong>40% increase</strong> in student sign-ups</li>
-              <li>• <strong>Live updates</strong> create urgency and social proof</li>
-              <li>• <strong>Brand visibility</strong> on your own website</li>
-              <li>• <strong>€500/year</strong> vs. €2,500+ for competitors</li>
+              <li><strong>40% increase</strong> in student sign-ups</li>
+              <li><strong>Live updates</strong> create urgency and social proof</li>
+              <li><strong>Brand visibility</strong> on your own website</li>
             </ul>
           </Card>
         </div>
@@ -288,7 +327,7 @@ export default function EmbedConfigPage() {
 
             <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-sm text-blue-900">
-                <strong>💡 Tip:</strong> Change colors above to match your institution branding.
+                <strong>Tip:</strong> Change colors above to match your institution branding.
                 The widget updates in real-time!
               </p>
             </div>

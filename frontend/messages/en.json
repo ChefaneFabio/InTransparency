@@ -3611,5 +3611,252 @@
       "showingLimited": "Showing {shown} of {total}",
       "moreAvailable": "{count} more career paths available with Premium"
     }
+  },
+  "studentAnalytics": {
+    "title": "Analytics",
+    "subtitle": "Track your portfolio performance and career insights",
+    "unauthorized": "Please sign in to view your analytics.",
+    "error": "Something went wrong loading your analytics.",
+    "tryAgain": "Try Again",
+    "timeRange": {
+      "1month": "1M",
+      "3months": "3M",
+      "6months": "6M",
+      "1year": "1Y"
+    },
+    "premiumUpsell": {
+      "title": "Unlock Advanced Analytics",
+      "description": "Get detailed engagement metrics, recruiter interest, salary insights, and more with Premium.",
+      "cta": "Upgrade Plan"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "skills": "Skills",
+      "projects": "Projects",
+      "career": "Career"
+    },
+    "stats": {
+      "profileViews": "Profile Views",
+      "projects": "Projects",
+      "applications": "Applications",
+      "skillScore": "Skill Score"
+    },
+    "overview": {
+      "viewsOverTime": "Profile Views Over Time",
+      "viewsOverTimeDesc": "Monthly profile engagement trends",
+      "industryInterest": "Industry Interest",
+      "industryInterestDesc": "Which companies are viewing your profile",
+      "topCompanies": "Top Viewing Companies",
+      "views": "views"
+    },
+    "skills": {
+      "assessment": "Skills Assessment",
+      "assessmentDesc": "Your technical skills based on project analysis",
+      "project": "project",
+      "projects": "projects",
+      "vsMarket": "Skills vs Market Demand",
+      "vsMarketDesc": "How your skills align with industry demand",
+      "yourLevel": "Your Level",
+      "marketDemand": "Market Demand"
+    },
+    "projects": {
+      "performance": "Project Performance",
+      "performanceDesc": "How your projects are performing with recruiters",
+      "views": "views",
+      "recruiterViews": "recruiter views",
+      "techUsage": "Technology Usage",
+      "techUsageDesc": "Most used technologies across your projects"
+    },
+    "career": {
+      "readiness": "Career Readiness",
+      "readinessDesc": "Your readiness for different career paths",
+      "salaryInsights": "Salary Insights",
+      "salaryInsightsDesc": "Estimated salary ranges based on platform placement data (EUR)",
+      "estimatedRange": "Estimated annual salary range",
+      "applicationFunnel": "Application Funnel",
+      "applicationFunnelDesc": "Track your application progress across stages",
+      "recruiterInterest": "Recruiter Interest",
+      "savedBy": "Saved by Recruiters",
+      "contactedBy": "Contacted by",
+      "messagesReceived": "Messages Received"
+    },
+    "locked": {
+      "engagement": "Upgrade to Premium to see detailed profile view trends, top viewing companies, and average view duration.",
+      "industryInterest": "Upgrade to Premium to see which industries and companies are interested in your profile.",
+      "skillsVsMarket": "Upgrade to Premium to compare your skill levels with current market demand.",
+      "projectPerformance": "Upgrade to Premium to see detailed performance metrics for each project.",
+      "careerReadiness": "Upgrade to Premium to see how ready you are for different career paths.",
+      "salaryContext": "Upgrade to Premium to see estimated salary ranges based on platform data.",
+      "applicationFunnel": "Upgrade to Premium to track your applications through each hiring stage.",
+      "recruiterInterest": "Upgrade to Premium to see how many recruiters have saved, contacted, or messaged you."
+    },
+    "empty": {
+      "noSkills": "Add projects to see your skills analysis.",
+      "noProjects": "No projects yet. Add your first project to see performance data.",
+      "noCompanyViews": "No company views yet. Keep building your portfolio!",
+      "noCareerData": "Complete your skill path analysis to see career readiness data.",
+      "noSalaryData": "Not enough placement data available yet."
+    }
+  },
+  "studentJobs": {
+    "title": "Job Opportunities",
+    "subtitle": "Discover and apply to jobs that match your skills",
+    "search": "Search jobs by title, company, or skills...",
+    "filters": {
+      "jobType": "Job Type",
+      "workLocation": "Work Location",
+      "all": "All"
+    },
+    "sort": {
+      "recent": "Most Recent",
+      "salary": "Highest Salary",
+      "company": "Company A-Z",
+      "applicants": "Most Applicants"
+    },
+    "applied": "Applied",
+    "apply": "Apply Now",
+    "applying": "Applying...",
+    "applicants": "applicants",
+    "noJobs": "No jobs found",
+    "noJobsDescription": "Try adjusting your search or filters to find more opportunities.",
+    "applySuccess": "Application submitted successfully!",
+    "applyError": "Failed to submit application. Please try again."
+  },
+  "studentApplications": {
+    "title": "Applications",
+    "subtitle": "Track your job applications and interview schedule",
+    "search": "Search applications...",
+    "tabs": {
+      "all": "All Applications",
+      "interviews": "Interviews",
+      "offers": "Offers"
+    },
+    "status": {
+      "PENDING": "Applied",
+      "REVIEWING": "Under Review",
+      "SHORTLISTED": "Shortlisted",
+      "INTERVIEW": "Interview",
+      "OFFER": "Offer Received",
+      "ACCEPTED": "Accepted",
+      "REJECTED": "Not Selected",
+      "WITHDRAWN": "Withdrawn"
+    },
+    "appliedOn": "Applied on",
+    "viewJob": "View Job",
+    "viewApplication": "View Application",
+    "interview": "Interview",
+    "notes": "Notes",
+    "salary": "Salary",
+    "startDate": "Start Date",
+    "benefits": "Benefits",
+    "responseDeadline": "Response Deadline",
+    "lastUpdated": "Last updated",
+    "empty": {
+      "noApplications": "No applications yet",
+      "noApplicationsDesc": "Start applying to jobs to track your applications here.",
+      "noInterviews": "No interviews scheduled",
+      "noInterviewsDesc": "Interview invitations will appear here.",
+      "noOffers": "No offers yet",
+      "noOffersDesc": "Job offers will appear here when received."
+    }
+  },
+  "studentMessages": {
+    "title": "Messages",
+    "subtitle": "Your conversations with recruiters and employers",
+    "search": "Search conversations...",
+    "compose": "New Message",
+    "send": "Send",
+    "reply": "Type a message...",
+    "noConversations": "No conversations yet",
+    "noConversationsDesc": "Messages from recruiters and employers will appear here.",
+    "selectConversation": "Select a conversation",
+    "selectConversationDesc": "Choose a conversation from the list to view messages.",
+    "you": "You",
+    "unread": "unread",
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "studentProfile": {
+    "title": "My Profile",
+    "subtitle": "Manage your professional profile and settings",
+    "edit": "Edit Profile",
+    "save": "Save Changes",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "tabs": {
+      "overview": "Overview",
+      "skills": "Skills",
+      "projects": "Projects"
+    },
+    "fields": {
+      "bio": "Bio",
+      "tagline": "Tagline",
+      "portfolioUrl": "Portfolio URL",
+      "university": "University",
+      "degree": "Degree",
+      "graduationYear": "Graduation Year",
+      "gpa": "GPA"
+    },
+    "privacy": {
+      "title": "Privacy Settings",
+      "profilePublic": "Public Profile",
+      "showLocation": "Show Location",
+      "showEmail": "Show Email",
+      "showPhone": "Show Phone",
+      "gpaPublic": "Show GPA"
+    },
+    "completion": {
+      "title": "Profile Completion",
+      "complete": "Complete"
+    },
+    "stats": {
+      "profileViews": "Profile Views",
+      "recruiterViews": "Recruiter Views",
+      "applications": "Applications"
+    },
+    "generateCV": "Generate CV",
+    "premiumFeature": "Premium Feature",
+    "premiumPortfolio": "Upgrade to Premium to add a portfolio URL.",
+    "noSkills": "No skills yet. Add projects to build your skills profile.",
+    "noProjects": "No projects yet. Add your first project to showcase your work.",
+    "saveSuccess": "Profile updated successfully!",
+    "saveError": "Failed to update profile. Please try again."
+  },
+  "studentActivity": {
+    "title": "Activity Feed",
+    "subtitle": "Stay updated with all interactions and activities related to your profile",
+    "summary": {
+      "profileViews": "Profile Views",
+      "messagesReceived": "Messages Received",
+      "applicationUpdates": "Application Updates",
+      "last30Days": "Last 30 days"
+    },
+    "recentActivity": "Recent Activity",
+    "filters": {
+      "all": "All Activity",
+      "profileView": "Profile Views",
+      "messageReceived": "Messages",
+      "applicationStatus": "Applications"
+    },
+    "new": "New",
+    "viewedFor": "Viewed for {minutes} min",
+    "replyToMessage": "Reply to Message",
+    "viewApplication": "View Application",
+    "noActivities": "No activities found",
+    "noActivitiesAll": "Your activity feed will show profile views, messages, and application updates.",
+    "noActivitiesFiltered": "Try adjusting your filter or check back later for new activity."
+  },
+  "studentAiJobSearch": {
+    "title": "AI Job Search",
+    "subtitle": "Describe your ideal job and let AI find matching opportunities",
+    "chatPlaceholder": "e.g., I'm looking for a remote React developer internship...",
+    "search": "Search",
+    "searching": "Searching for matching jobs...",
+    "results": "Results",
+    "noResults": "No matching jobs found",
+    "noResultsDesc": "Try a different search query or broaden your criteria.",
+    "suggestions": "Try asking:",
+    "applied": "Applied",
+    "apply": "Apply"
   }
 }

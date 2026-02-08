@@ -1,278 +1,240 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useAuth } from '@/lib/auth/AuthContext'
+import { useEffect, useState, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Progress } from '@/components/ui/progress'
-import { 
-  User, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Calendar, 
-  School, 
-  Briefcase,
+import { Skeleton } from '@/components/ui/skeleton'
+import { Switch } from '@/components/ui/switch'
+import {
+  Mail,
+  School,
   Save,
   Edit3,
   Camera,
   Github,
-  Linkedin,
   Globe,
-  Award,
-  Code,
-  BookOpen,
-  Target,
-  TrendingUp,
-  Star,
-  Zap,
-  Brain,
-  Users,
   Eye,
-  Download,
   FileText,
-  Sparkles
+  Sparkles,
+  AlertCircle,
+  Users,
+  Briefcase
 } from 'lucide-react'
 
+interface ProfileData {
+  user: {
+    id: string
+    firstName: string | null
+    lastName: string | null
+    email: string
+    photo: string | null
+    bio: string | null
+    tagline: string | null
+    university: string | null
+    degree: string | null
+    graduationYear: string | null
+    gpa: string | null
+    gpaPublic: boolean
+    profilePublic: boolean
+    portfolioUrl: string | null
+    subscriptionTier: string
+    showLocation: boolean
+    showEmail: boolean
+    showPhone: boolean
+  }
+  skills: Array<{ name: string; level: number; projectCount: number }>
+  stats: {
+    profileViews: number
+    recruiterViews: number
+    totalApplications: number
+    totalProjects: number
+  }
+  profileCompletion: number
+  completionItems: Array<{ field: string; label: string; filled: boolean }>
+  projects: Array<{
+    id: string
+    title: string
+    skills: string[]
+    technologies: string[]
+    views: number
+    recruiterViews: number
+    githubUrl: string | null
+  }>
+  githubUrl: string | null
+}
+
 export default function ProfilePage() {
-  const { user } = useAuth()
-  const [profile, setProfile] = useState<any>(null)
+  const [profile, setProfile] = useState<ProfileData | null>(null)
   const [editing, setEditing] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
   const [generatingCV, setGeneratingCV] = useState(false)
 
+  // Editable fields
+  const [editBio, setEditBio] = useState('')
+  const [editTagline, setEditTagline] = useState('')
+  const [editPortfolioUrl, setEditPortfolioUrl] = useState('')
+  const [editProfilePublic, setEditProfilePublic] = useState(false)
+  const [editShowEmail, setEditShowEmail] = useState(false)
+  const [editGpaPublic, setEditGpaPublic] = useState(false)
+
+  const fetchProfile = useCallback(() => {
+    setLoading(true)
+    setError(null)
+    fetch('/api/dashboard/student/profile')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load profile')
+        return res.json()
+      })
+      .then((data: ProfileData) => {
+        setProfile(data)
+        setEditBio(data.user.bio || '')
+        setEditTagline(data.user.tagline || '')
+        setEditPortfolioUrl(data.user.portfolioUrl || '')
+        setEditProfilePublic(data.user.profilePublic)
+        setEditShowEmail(data.user.showEmail)
+        setEditGpaPublic(data.user.gpaPublic)
+        setLoading(false)
+      })
+      .catch(err => {
+        setError(err.message)
+        setLoading(false)
+      })
+  }, [])
+
   useEffect(() => {
     fetchProfile()
-  }, [user])
-
-  const fetchProfile = async () => {
-    try {
-      setLoading(true)
-      // Mock profile data
-      const mockProfile = {
-        id: user?.id,
-        firstName: "Alex",
-        lastName: "Johnson",
-        email: "alex.johnson@university.edu",
-        phone: "+1 (555) 123-4567",
-        location: "San Francisco, CA",
-        bio: "Passionate computer science student with a focus on AI and full-stack development. I love building innovative solutions that solve real-world problems and have experience with modern web technologies and machine learning frameworks.",
-        avatar: "/api/placeholder/120/120",
-        university: "Stanford University",
-        degree: "Bachelor of Science in Computer Science",
-        graduationYear: "2025",
-        gpa: "3.8",
-        major: "Computer Science",
-        minor: "Mathematics",
-        
-        // Social Links
-        githubUrl: "https://github.com/alexjohnson",
-        linkedinUrl: "https://linkedin.com/in/alexjohnson",
-        portfolioUrl: "https://alexjohnson.dev",
-        
-        // Skills & Preferences
-        skills: [
-          { name: "React", level: 90, category: "Frontend" },
-          { name: "TypeScript", level: 85, category: "Language" },
-          { name: "Node.js", level: 80, category: "Backend" },
-          { name: "Python", level: 85, category: "Language" },
-          { name: "PostgreSQL", level: 75, category: "Database" },
-          { name: "AWS", level: 70, category: "Cloud" },
-          { name: "Docker", level: 65, category: "DevOps" },
-          { name: "Machine Learning", level: 75, category: "AI" },
-          { name: "TensorFlow", level: 70, category: "AI" },
-          { name: "Git", level: 95, category: "Tools" }
-        ],
-        
-        interests: ["Artificial Intelligence", "Web Development", "Open Source", "Startups", "Gaming"],
-        jobPreferences: {
-          roles: ["Full Stack Developer", "Software Engineer", "AI Engineer"],
-          locations: ["San Francisco", "Remote", "New York"],
-          salaryMin: 80000,
-          salaryMax: 120000,
-          workTypes: ["Full-time", "Internship"],
-          companySize: ["Startup", "Medium", "Large"]
-        },
-        
-        // Statistics
-        stats: {
-          profileViews: 234,
-          projectViews: 1847,
-          recruiterViews: 43,
-          averageInnovationScore: 87,
-          totalProjects: 5,
-          githubContributions: 423,
-          endorsements: 12
-        },
-        
-        // Recent Activity
-        recentActivity: [
-          { type: "project", action: "updated", target: "AI Task Manager", date: "2 hours ago" },
-          { type: "profile", action: "viewed", target: "Google Recruiter", date: "1 day ago" },
-          { type: "skill", action: "endorsed", target: "React", date: "2 days ago" },
-          { type: "job", action: "applied", target: "Software Engineer at TechStart", date: "3 days ago" }
-        ],
-        
-        // Achievements
-        achievements: [
-          { 
-            title: "Innovation Pioneer", 
-            description: "Achieved 85+ innovation score on 3+ projects",
-            icon: "🚀",
-            date: "2024-01-15"
-          },
-          { 
-            title: "Tech Polyglot", 
-            description: "Demonstrated proficiency in 5+ programming languages",
-            icon: "💻",
-            date: "2024-01-10"
-          },
-          { 
-            title: "Community Builder", 
-            description: "Open source contributions to 10+ repositories",
-            icon: "👥",
-            date: "2024-01-05"
-          }
-        ]
-      }
-      
-      setProfile(mockProfile)
-    } catch (error) {
-      console.error('Failed to fetch profile:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
+  }, [fetchProfile])
 
   const saveProfile = async () => {
     setSaving(true)
     try {
-      // Mock save
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      const res = await fetch('/api/dashboard/student/profile', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bio: editBio,
+          tagline: editTagline,
+          portfolioUrl: editPortfolioUrl,
+          profilePublic: editProfilePublic,
+          showEmail: editShowEmail,
+          gpaPublic: editGpaPublic,
+        }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        alert(data.error || 'Failed to save profile')
+        return
+      }
+
       setEditing(false)
-    } catch (error) {
-      console.error('Failed to save profile:', error)
+      fetchProfile()
+    } catch {
+      alert('Failed to save profile. Please try again.')
     } finally {
       setSaving(false)
     }
   }
 
   const generateCV = async () => {
+    if (!profile) return
     setGeneratingCV(true)
     try {
-      // Mock CV generation - in production, this would call the API
-      await new Promise(resolve => setTimeout(resolve, 2000))
-
-      // Mock success notification
-      console.log('CV generated successfully!')
-
-      // In production, this would download the generated CV
       const cvData = {
         personal: {
-          name: `${profile.firstName} ${profile.lastName}`,
-          email: profile.email,
-          phone: profile.phone,
-          location: profile.location,
-          linkedin: profile.linkedinUrl,
+          name: `${profile.user.firstName || ''} ${profile.user.lastName || ''}`.trim(),
+          email: profile.user.email,
+          university: profile.user.university,
+          degree: profile.user.degree,
+          graduationYear: profile.user.graduationYear,
+          gpa: profile.user.gpa,
+          portfolio: profile.user.portfolioUrl,
           github: profile.githubUrl,
-          portfolio: profile.portfolioUrl
         },
-        education: {
-          university: profile.university,
-          degree: profile.degree,
-          graduationYear: profile.graduationYear,
-          gpa: profile.gpa,
-          major: profile.major,
-          minor: profile.minor
-        },
+        bio: profile.user.bio,
         skills: profile.skills,
-        achievements: profile.achievements,
-        stats: profile.stats
+        projects: profile.projects.map(p => ({
+          title: p.title,
+          skills: p.skills,
+          technologies: p.technologies,
+          githubUrl: p.githubUrl,
+        })),
+        stats: profile.stats,
       }
 
-      // Create and download JSON (in production, this would be PDF)
       const blob = new Blob([JSON.stringify(cvData, null, 2)], { type: 'application/json' })
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = `CV_${profile.firstName}_${profile.lastName}.json`
+      a.download = `CV_${profile.user.firstName || 'student'}_${profile.user.lastName || ''}.json`
       a.click()
       URL.revokeObjectURL(url)
-    } catch (error) {
-      console.error('Failed to generate CV:', error)
+    } catch {
+      alert('Failed to generate CV.')
     } finally {
       setGeneratingCV(false)
     }
   }
 
-  const getSkillColor = (level: number) => {
-    if (level >= 90) return "bg-green-500"
-    if (level >= 75) return "bg-blue-500"
-    if (level >= 60) return "bg-yellow-500"
-    return "bg-gray-500"
-  }
-
-  const getSkillsByCategory = () => {
-    const categories = profile.skills.reduce((acc: any, skill: any) => {
-      if (!acc[skill.category]) acc[skill.category] = []
-      acc[skill.category].push(skill)
-      return acc
-    }, {})
-    return categories
-  }
-
   if (loading) {
     return (
-      <div className="max-w-6xl mx-auto space-y-8 animate-pulse">
-        <div className="h-32 bg-gray-200 rounded"></div>
+      <div className="max-w-6xl mx-auto space-y-8">
+        <Skeleton className="h-32 w-full rounded-lg" />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
-            <div className="h-48 bg-gray-200 rounded"></div>
-            <div className="h-64 bg-gray-200 rounded"></div>
+            <Skeleton className="h-48 w-full rounded-lg" />
+            <Skeleton className="h-64 w-full rounded-lg" />
           </div>
-          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
-            <div className="h-48 bg-gray-200 rounded"></div>
-            <div className="h-32 bg-gray-200 rounded"></div>
+          <div className="space-y-6">
+            <Skeleton className="h-48 w-full rounded-lg" />
+            <Skeleton className="h-32 w-full rounded-lg" />
           </div>
         </div>
       </div>
     )
   }
 
-  if (!profile) {
+  if (error || !profile) {
     return (
-      <div className="text-center py-12">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">Profile Not Found</h1>
-        <p className="text-gray-600">Unable to load profile information.</p>
+      <div className="max-w-6xl mx-auto">
+        <Card>
+          <CardContent className="p-12 text-center">
+            <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+            <h2 className="text-xl font-bold mb-2">Unable to Load Profile</h2>
+            <p className="text-gray-600 mb-4">{error || 'Profile not found'}</p>
+            <Button onClick={fetchProfile}>Try Again</Button>
+          </CardContent>
+        </Card>
       </div>
     )
   }
+
+  const { user, skills, stats, profileCompletion, completionItems, projects, githubUrl } = profile
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       {/* Header */}
       <div className="relative">
-        {/* Cover Photo */}
         <div className="h-32 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg relative">
           <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg"></div>
         </div>
-        
-        {/* Profile Info */}
+
         <div className="relative px-6 pb-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-end space-y-4 sm:space-y-0 sm:space-x-6 -mt-16">
             <div className="relative">
               <Avatar className="w-32 h-32 border-4 border-white shadow-lg">
-                <AvatarImage src={profile.avatar} />
+                <AvatarImage src={user.photo || ''} />
                 <AvatarFallback className="text-2xl">
-                  {profile.firstName[0]}{profile.lastName[0]}
+                  {(user.firstName || '?')[0]}{(user.lastName || '?')[0]}
                 </AvatarFallback>
               </Avatar>
               <Button
@@ -283,31 +245,42 @@ export default function ProfilePage() {
                 <Camera className="h-4 w-4" />
               </Button>
             </div>
-            
+
             <div className="flex-1 pt-16 sm:pt-0">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <h1 className="text-3xl font-bold text-gray-900">
-                    {profile.firstName} {profile.lastName}
+                    {user.firstName || ''} {user.lastName || ''}
                   </h1>
-                  <p className="text-gray-600">{profile.degree} • {profile.university}</p>
-                  <p className="text-gray-700 text-sm">Class of {profile.graduationYear}</p>
+                  {user.tagline && <p className="text-gray-600 italic">{user.tagline}</p>}
+                  {user.degree && user.university && (
+                    <p className="text-gray-600">{user.degree} - {user.university}</p>
+                  )}
+                  {user.graduationYear && <p className="text-gray-700 text-sm">Class of {user.graduationYear}</p>}
                 </div>
-                
+
                 <div className="flex items-center space-x-2 mt-4 sm:mt-0">
-                  <Button 
+                  <Button
                     variant={editing ? "default" : "outline"}
                     onClick={() => editing ? saveProfile() : setEditing(true)}
                     disabled={saving}
                   >
                     {saving ? (
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    ) : editing ? (
+                      <Save className="mr-2 h-4 w-4" />
                     ) : (
                       <Edit3 className="mr-2 h-4 w-4" />
                     )}
-                    {editing ? 'Save Changes' : 'Edit Profile'}
+                    {editing ? (saving ? 'Saving...' : 'Save Changes') : 'Edit Profile'}
                   </Button>
-                  
+
+                  {editing && (
+                    <Button variant="outline" onClick={() => setEditing(false)}>
+                      Cancel
+                    </Button>
+                  )}
+
                   <Button
                     variant="outline"
                     onClick={generateCV}
@@ -333,16 +306,15 @@ export default function ProfilePage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left Column - Main Content */}
+        {/* Left Column */}
         <div className="lg:col-span-2 space-y-8">
           <Tabs defaultValue="overview" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="skills">Skills</TabsTrigger>
-              <TabsTrigger value="preferences">Preferences</TabsTrigger>
-              <TabsTrigger value="activity">Activity</TabsTrigger>
+              <TabsTrigger value="projects">Projects</TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="overview" className="space-y-6">
               {/* Basic Information */}
               <Card>
@@ -352,47 +324,13 @@ export default function ProfilePage() {
                 <CardContent className="space-y-4">
                   {editing ? (
                     <>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <Label htmlFor="firstName">First Name</Label>
-                          <Input
-                            id="firstName"
-                            value={profile.firstName}
-                            onChange={(e) => setProfile({...profile, firstName: e.target.value})}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="lastName">Last Name</Label>
-                          <Input
-                            id="lastName"
-                            value={profile.lastName}
-                            onChange={(e) => setProfile({...profile, lastName: e.target.value})}
-                          />
-                        </div>
-                      </div>
                       <div>
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="tagline">Tagline</Label>
                         <Input
-                          id="email"
-                          type="email"
-                          value={profile.email}
-                          onChange={(e) => setProfile({...profile, email: e.target.value})}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="phone">Phone</Label>
-                        <Input
-                          id="phone"
-                          value={profile.phone}
-                          onChange={(e) => setProfile({...profile, phone: e.target.value})}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="location">Location</Label>
-                        <Input
-                          id="location"
-                          value={profile.location}
-                          onChange={(e) => setProfile({...profile, location: e.target.value})}
+                          id="tagline"
+                          value={editTagline}
+                          onChange={(e) => setEditTagline(e.target.value)}
+                          placeholder="A short description of yourself"
                         />
                       </div>
                       <div>
@@ -400,9 +338,49 @@ export default function ProfilePage() {
                         <Textarea
                           id="bio"
                           rows={4}
-                          value={profile.bio}
-                          onChange={(e) => setProfile({...profile, bio: e.target.value})}
+                          value={editBio}
+                          onChange={(e) => setEditBio(e.target.value)}
+                          placeholder="Tell recruiters about yourself..."
                         />
+                      </div>
+                      <div>
+                        <Label htmlFor="portfolio">Portfolio URL</Label>
+                        <Input
+                          id="portfolio"
+                          value={editPortfolioUrl}
+                          onChange={(e) => setEditPortfolioUrl(e.target.value)}
+                          placeholder="https://yourportfolio.com"
+                        />
+                        {user.subscriptionTier !== 'STUDENT_PREMIUM' && (
+                          <p className="text-xs text-amber-600 mt-1">Premium feature - upgrade to set a custom URL</p>
+                        )}
+                      </div>
+                      <div className="space-y-3 border-t pt-4">
+                        <h4 className="text-sm font-medium">Privacy Settings</h4>
+                        <div className="flex items-center justify-between">
+                          <Label htmlFor="profilePublic">Public Profile</Label>
+                          <Switch
+                            id="profilePublic"
+                            checked={editProfilePublic}
+                            onCheckedChange={setEditProfilePublic}
+                          />
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <Label htmlFor="showEmail">Show Email</Label>
+                          <Switch
+                            id="showEmail"
+                            checked={editShowEmail}
+                            onCheckedChange={setEditShowEmail}
+                          />
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <Label htmlFor="gpaPublic">Show GPA</Label>
+                          <Switch
+                            id="gpaPublic"
+                            checked={editGpaPublic}
+                            onCheckedChange={setEditGpaPublic}
+                          />
+                        </div>
                       </div>
                     </>
                   ) : (
@@ -410,27 +388,27 @@ export default function ProfilePage() {
                       <div className="space-y-3">
                         <div className="flex items-center space-x-3">
                           <Mail className="h-4 w-4 text-gray-600" />
-                          <span>{profile.email}</span>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <Phone className="h-4 w-4 text-gray-600" />
-                          <span>{profile.phone}</span>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <MapPin className="h-4 w-4 text-gray-600" />
-                          <span>{profile.location}</span>
+                          <span>{user.email}</span>
                         </div>
                       </div>
-                      
-                      <div className="pt-4 border-t">
-                        <h4 className="font-medium text-gray-900 mb-2">About</h4>
-                        <p className="text-gray-700 leading-relaxed">{profile.bio}</p>
-                      </div>
+
+                      {user.bio && (
+                        <div className="pt-4 border-t">
+                          <h4 className="font-medium text-gray-900 mb-2">About</h4>
+                          <p className="text-gray-700 leading-relaxed">{user.bio}</p>
+                        </div>
+                      )}
+
+                      {!user.bio && (
+                        <div className="pt-4 border-t text-gray-500 italic text-sm">
+                          No bio yet. Click &quot;Edit Profile&quot; to add one.
+                        </div>
+                      )}
                     </>
                   )}
                 </CardContent>
               </Card>
-              
+
               {/* Education */}
               <Card>
                 <CardHeader>
@@ -440,248 +418,140 @@ export default function ProfilePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className="font-semibold text-gray-900">{profile.degree}</h3>
-                      <p className="text-gray-600">{profile.university}</p>
-                      <div className="flex items-center space-x-4 text-sm text-gray-700 mt-2">
-                        <span>Class of {profile.graduationYear}</span>
-                        <span>GPA: {profile.gpa}</span>
-                        <span>Major: {profile.major}</span>
-                        {profile.minor && <span>Minor: {profile.minor}</span>}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              {/* Social Links */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Social Links</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {editing ? (
-                    <div className="space-y-4">
-                      <div>
-                        <Label htmlFor="github">GitHub</Label>
-                        <Input
-                          id="github"
-                          value={profile.githubUrl}
-                          onChange={(e) => setProfile({...profile, githubUrl: e.target.value})}
-                          placeholder="https://github.com/username"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="linkedin">LinkedIn</Label>
-                        <Input
-                          id="linkedin"
-                          value={profile.linkedinUrl}
-                          onChange={(e) => setProfile({...profile, linkedinUrl: e.target.value})}
-                          placeholder="https://linkedin.com/in/username"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="portfolio">Portfolio</Label>
-                        <Input
-                          id="portfolio"
-                          value={profile.portfolioUrl}
-                          onChange={(e) => setProfile({...profile, portfolioUrl: e.target.value})}
-                          placeholder="https://yourportfolio.com"
-                        />
+                  {user.university || user.degree ? (
+                    <div className="space-y-2">
+                      {user.degree && <h3 className="font-semibold text-gray-900">{user.degree}</h3>}
+                      {user.university && <p className="text-gray-600">{user.university}</p>}
+                      <div className="flex items-center space-x-4 text-sm text-gray-700">
+                        {user.graduationYear && <span>Class of {user.graduationYear}</span>}
+                        {user.gpa && user.gpaPublic && <span>GPA: {user.gpa}</span>}
                       </div>
                     </div>
                   ) : (
-                    <div className="flex space-x-4">
-                      {profile.githubUrl && (
-                        <Button variant="outline" size="sm" asChild>
-                          <a href={profile.githubUrl} target="_blank" rel="noopener noreferrer">
-                            <Github className="mr-2 h-4 w-4" />
-                            GitHub
-                          </a>
-                        </Button>
-                      )}
-                      {profile.linkedinUrl && (
-                        <Button variant="outline" size="sm" asChild>
-                          <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer">
-                            <Linkedin className="mr-2 h-4 w-4" />
-                            LinkedIn
-                          </a>
-                        </Button>
-                      )}
-                      {profile.portfolioUrl && (
-                        <Button variant="outline" size="sm" asChild>
-                          <a href={profile.portfolioUrl} target="_blank" rel="noopener noreferrer">
-                            <Globe className="mr-2 h-4 w-4" />
-                            Portfolio
-                          </a>
-                        </Button>
-                      )}
-                    </div>
+                    <p className="text-gray-500 italic text-sm">No education info added yet.</p>
                   )}
                 </CardContent>
               </Card>
+
+              {/* Links */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Links</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-3">
+                    {githubUrl && (
+                      <Button variant="outline" size="sm" asChild>
+                        <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+                          <Github className="mr-2 h-4 w-4" />
+                          GitHub
+                        </a>
+                      </Button>
+                    )}
+                    {user.portfolioUrl && (
+                      <Button variant="outline" size="sm" asChild>
+                        <a href={user.portfolioUrl} target="_blank" rel="noopener noreferrer">
+                          <Globe className="mr-2 h-4 w-4" />
+                          Portfolio
+                        </a>
+                      </Button>
+                    )}
+                    {!githubUrl && !user.portfolioUrl && (
+                      <p className="text-gray-500 italic text-sm">No links yet. Add projects with GitHub URLs to show them here.</p>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
             </TabsContent>
-            
+
             <TabsContent value="skills" className="space-y-6">
-              {/* Skills by Category */}
-              {Object.entries(getSkillsByCategory()).map(([category, skills]: [string, any]) => (
-                <Card key={category}>
-                  <CardHeader>
-                    <CardTitle>{category}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Skills (derived from projects)</CardTitle>
+                  <CardDescription>
+                    Skills are automatically detected from your uploaded projects
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {skills.length > 0 ? (
                     <div className="space-y-4">
-                      {skills.map((skill: any) => (
+                      {skills.map((skill) => (
                         <div key={skill.name}>
                           <div className="flex justify-between items-center mb-2">
                             <span className="font-medium text-gray-900">{skill.name}</span>
-                            <span className="text-sm text-gray-700">{skill.level}%</span>
+                            <span className="text-sm text-gray-700">
+                              {skill.level}% ({skill.projectCount} {skill.projectCount === 1 ? 'project' : 'projects'})
+                            </span>
                           </div>
                           <Progress value={skill.level} className="h-2" />
                         </div>
                       ))}
                     </div>
+                  ) : (
+                    <div className="text-center py-8">
+                      <Briefcase className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">No skills detected</h3>
+                      <p className="text-gray-600">Upload projects to have your skills automatically analyzed.</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="projects" className="space-y-6">
+              {projects.length > 0 ? (
+                projects.map((project) => (
+                  <Card key={project.id}>
+                    <CardHeader>
+                      <div className="flex items-start justify-between">
+                        <CardTitle className="text-lg">{project.title}</CardTitle>
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <Eye className="h-4 w-4" />
+                          {project.views} views
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {project.skills.concat(project.technologies).slice(0, 8).map((s) => (
+                          <Badge key={s} variant="secondary" className="text-xs">{s}</Badge>
+                        ))}
+                      </div>
+                      <div className="flex items-center gap-4 text-sm text-gray-600">
+                        <span className="flex items-center gap-1">
+                          <Users className="h-3 w-3" />
+                          {project.recruiterViews} recruiter views
+                        </span>
+                        {project.githubUrl && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 text-blue-600 hover:underline"
+                          >
+                            <Github className="h-3 w-3" />
+                            Source
+                          </a>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))
+              ) : (
+                <Card>
+                  <CardContent className="p-12 text-center">
+                    <Briefcase className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h3>
+                    <p className="text-gray-600">Upload your first project to build your portfolio.</p>
                   </CardContent>
                 </Card>
-              ))}
-              
-              {/* Interests */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Interests</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {profile.interests.map((interest: string) => (
-                      <Badge key={interest} variant="secondary">
-                        {interest}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-            
-            <TabsContent value="preferences" className="space-y-6">
-              {/* Job Preferences */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Job Preferences</CardTitle>
-                  <CardDescription>
-                    Help us find the perfect opportunities for you
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div>
-                    <Label className="text-base font-medium">Desired Roles</Label>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {profile.jobPreferences.roles.map((role: string) => (
-                        <Badge key={role} variant="outline">
-                          {role}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <Label className="text-base font-medium">Preferred Locations</Label>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {profile.jobPreferences.locations.map((location: string) => (
-                        <Badge key={location} variant="outline">
-                          <MapPin className="mr-1 h-3 w-3" />
-                          {location}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <Label className="text-base font-medium">Salary Range</Label>
-                    <p className="text-gray-600 mt-1">
-                      ${profile.jobPreferences.salaryMin.toLocaleString()} - ${profile.jobPreferences.salaryMax.toLocaleString()}
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <Label className="text-base font-medium">Work Types</Label>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {profile.jobPreferences.workTypes.map((type: string) => (
-                        <Badge key={type} variant="outline">
-                          {type}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <Label className="text-base font-medium">Company Size</Label>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {profile.jobPreferences.companySize.map((size: string) => (
-                        <Badge key={size} variant="outline">
-                          {size}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-            
-            <TabsContent value="activity" className="space-y-6">
-              {/* Recent Activity */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Recent Activity</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {profile.recentActivity.map((activity: any, index: number) => (
-                      <div key={index} className="flex items-center space-x-3 pb-3 border-b last:border-b-0">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <div className="flex-1">
-                          <p className="text-sm text-gray-900">
-                            {activity.action} <span className="font-medium">{activity.target}</span>
-                          </p>
-                          <p className="text-xs text-gray-700">{activity.date}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-              
-              {/* Achievements */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Award className="mr-2 h-5 w-5" />
-                    Achievements
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {profile.achievements.map((achievement: any, index: number) => (
-                      <div key={index} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg">
-                        <div className="text-2xl">{achievement.icon}</div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-gray-900">{achievement.title}</h4>
-                          <p className="text-sm text-gray-600">{achievement.description}</p>
-                          <p className="text-xs text-gray-700 mt-1">
-                            Earned on {new Date(achievement.date).toLocaleDateString()}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              )}
             </TabsContent>
           </Tabs>
         </div>
-        
+
         {/* Right Column - Sidebar */}
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+        <div className="space-y-6">
           {/* Profile Stats */}
           <Card>
             <CardHeader>
@@ -689,24 +559,24 @@ export default function ProfilePage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Profile Views</span>
-                <span className="font-semibold">{profile.stats.profileViews}</span>
+                <span className="text-sm text-gray-600">Profile Views (30d)</span>
+                <span className="font-semibold">{stats.profileViews}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Project Views</span>
-                <span className="font-semibold">{profile.stats.projectViews}</span>
+                <span className="text-sm text-gray-600">Recruiter Views (30d)</span>
+                <span className="font-semibold">{stats.recruiterViews}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Recruiter Views</span>
-                <span className="font-semibold">{profile.stats.recruiterViews}</span>
+                <span className="text-sm text-gray-600">Total Projects</span>
+                <span className="font-semibold">{stats.totalProjects}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Avg Innovation Score</span>
-                <span className="font-semibold text-blue-600">{profile.stats.averageInnovationScore}</span>
+                <span className="text-sm text-gray-600">Total Applications</span>
+                <span className="font-semibold">{stats.totalApplications}</span>
               </div>
             </CardContent>
           </Card>
-          
+
           {/* Profile Completion */}
           <Card>
             <CardHeader>
@@ -715,33 +585,25 @@ export default function ProfilePage() {
             <CardContent>
               <div className="space-y-3">
                 <div className="flex justify-between items-center text-sm">
-                  <span>Profile Completeness</span>
-                  <span>85%</span>
+                  <span>Completeness</span>
+                  <span>{profileCompletion}%</span>
                 </div>
-                <Progress value={85} className="h-2" />
-                
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span className="text-gray-600">Basic information complete</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span className="text-gray-600">Skills added</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                    <span className="text-gray-600">Add more projects</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-                    <span className="text-gray-600">Add portfolio projects</span>
-                  </div>
+                <Progress value={profileCompletion} className="h-2" />
+
+                <div className="space-y-2 text-sm mt-4">
+                  {completionItems.map((item) => (
+                    <div key={item.field} className="flex items-center space-x-2">
+                      <div className={`w-2 h-2 rounded-full ${item.filled ? 'bg-green-500' : 'bg-gray-300'}`}></div>
+                      <span className={item.filled ? 'text-gray-600' : 'text-gray-400'}>
+                        {item.label}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </CardContent>
           </Card>
-          
+
           {/* Quick Actions */}
           <Card>
             <CardHeader>
@@ -760,10 +622,6 @@ export default function ProfilePage() {
               >
                 <FileText className="mr-2 h-4 w-4" />
                 {generatingCV ? 'Generating CV...' : 'Generate Academic CV'}
-              </Button>
-              <Button variant="outline" className="w-full justify-start">
-                <Target className="mr-2 h-4 w-4" />
-                Update Job Preferences
               </Button>
             </CardContent>
           </Card>

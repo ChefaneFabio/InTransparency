@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/lib/auth/config'
 
 // Types for institutional feedback
 export interface CompanyFeedback {
@@ -38,11 +40,16 @@ export interface CompanyFeedback {
   positionTitle: string
 }
 
-// Mock database - replace with actual database in production
-const mockFeedbackDatabase: CompanyFeedback[] = []
+// In-memory store (no Feedback model in Prisma yet)
+const feedbackStore: CompanyFeedback[] = []
 
 export async function POST(request: Request) {
   try {
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
     const body = await request.json()
 
     // Validate required fields
@@ -83,7 +90,6 @@ export async function POST(request: Request) {
       constructiveFeedback: body.constructiveFeedback,
       recommendationsForStudent: body.recommendationsForStudent || '',
 
-      // Default visibility: student + institution can see
       visibleToStudent: body.visibleToStudent ?? true,
       visibleToInstitution: body.visibleToInstitution ?? true,
       sharedWithCareerCenter: body.sharedWithCareerCenter ?? true,
@@ -94,11 +100,7 @@ export async function POST(request: Request) {
       positionTitle: body.positionTitle || 'Position'
     }
 
-    // Store feedback
-    mockFeedbackDatabase.push(feedback)
-
-    // In production: Send notification to student
-    // await sendFeedbackNotification(feedback.studentId, feedback.id)
+    feedbackStore.push(feedback)
 
     return NextResponse.json({
       success: true,
@@ -115,28 +117,21 @@ export async function POST(request: Request) {
   }
 }
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(request.url)
-    const studentId = searchParams.get('studentId')
-    const applicationId = searchParams.get('applicationId')
-
-    let filteredFeedback = [...mockFeedbackDatabase]
-
-    // Filter by student
-    if (studentId) {
-      filteredFeedback = filteredFeedback.filter(f => f.studentId === studentId && f.visibleToStudent)
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Filter by application
-    if (applicationId) {
-      filteredFeedback = filteredFeedback.filter(f => f.applicationId === applicationId)
-    }
+    const studentId = session.user.id
 
-    // Sort by most recent
-    filteredFeedback.sort((a, b) =>
-      new Date(b.feedbackDate).getTime() - new Date(a.feedbackDate).getTime()
-    )
+    // Filter feedback visible to this student
+    const filteredFeedback = feedbackStore
+      .filter(f => f.studentId === studentId && f.visibleToStudent)
+      .sort((a, b) =>
+        new Date(b.feedbackDate).getTime() - new Date(a.feedbackDate).getTime()
+      )
 
     return NextResponse.json({
       success: true,

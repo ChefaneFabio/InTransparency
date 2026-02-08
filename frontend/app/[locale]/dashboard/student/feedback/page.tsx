@@ -11,27 +11,23 @@ export default function StudentFeedbackPage() {
   const [feedback, setFeedback] = useState<CompanyFeedback[]>([])
   const [loading, setLoading] = useState(true)
 
-  // Mock student ID - replace with actual auth
-  const studentId = 'student_123'
-
   useEffect(() => {
+    const fetchFeedback = async () => {
+      try {
+        const response = await fetch('/api/feedback/company-to-student')
+        const data = await response.json()
+
+        if (data.success) {
+          setFeedback(data.feedback)
+        }
+      } catch (error) {
+        console.error('Error fetching feedback:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
     fetchFeedback()
   }, [])
-
-  const fetchFeedback = async () => {
-    try {
-      const response = await fetch(`/api/feedback/company-to-student?studentId=${studentId}`)
-      const data = await response.json()
-
-      if (data.success) {
-        setFeedback(data.feedback)
-      }
-    } catch (error) {
-      console.error('Error fetching feedback:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   // Calculate statistics
   const totalFeedback = feedback.length

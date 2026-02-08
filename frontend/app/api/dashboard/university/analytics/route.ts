@@ -11,6 +11,28 @@ import {
   getBenchmarkData,
 } from '@/lib/university-analytics'
 
+const TIER_LIMITS: Record<string, Record<string, boolean>> = {
+  INSTITUTION_ENTERPRISE: {
+    hasOverview: true,
+    hasPlacement: true,
+    hasIndustryDistribution: true,
+    hasSkillsGap: true,
+    hasEmployers: true,
+    hasSalary: true,
+    hasBenchmark: true,
+  },
+}
+
+const DEFAULT_LIMITS: Record<string, boolean> = {
+  hasOverview: true,
+  hasPlacement: true,
+  hasIndustryDistribution: true,
+  hasSkillsGap: false,
+  hasEmployers: false,
+  hasSalary: false,
+  hasBenchmark: false,
+}
+
 // GET /api/dashboard/university/analytics
 export async function GET(req: NextRequest) {
   try {
@@ -26,29 +48,32 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url)
     const tab = searchParams.get('tab') || 'all'
 
-    const result: any = {}
+    const tierLimits = TIER_LIMITS[user.subscriptionTier] || DEFAULT_LIMITS
+    const isLimited = user.subscriptionTier !== 'INSTITUTION_ENTERPRISE'
 
-    if (tab === 'all' || tab === 'overview' || tab === 'placement') {
+    const result: any = { isLimited, tierLimits }
+
+    if ((tab === 'all' || tab === 'overview' || tab === 'placement') && tierLimits.hasPlacement) {
       result.placement = await getPlacementStats(universityName)
     }
-    if (tab === 'all' || tab === 'overview') {
+    if ((tab === 'all' || tab === 'overview') && tierLimits.hasIndustryDistribution) {
       result.industryDistribution = await getIndustryDistribution(universityName)
     }
-    if (tab === 'all' || tab === 'skills') {
+    if ((tab === 'all' || tab === 'skills') && tierLimits.hasSkillsGap) {
       result.skillsGap = await getSkillsGapData(universityName)
     }
-    if (tab === 'all' || tab === 'employers') {
+    if ((tab === 'all' || tab === 'employers') && tierLimits.hasEmployers) {
       result.employers = await getEmployerEngagement(universityName)
     }
-    if (tab === 'all' || tab === 'salary') {
+    if ((tab === 'all' || tab === 'salary') && tierLimits.hasSalary) {
       result.salary = await getSalaryData(universityName)
     }
-    if (tab === 'all' || tab === 'benchmark') {
+    if ((tab === 'all' || tab === 'benchmark') && tierLimits.hasBenchmark) {
       result.benchmark = await getBenchmarkData(universityName)
     }
 
     // Overview stats
-    if (tab === 'all' || tab === 'overview') {
+    if ((tab === 'all' || tab === 'overview') && tierLimits.hasOverview) {
       const totalStudents = await prisma.user.count({
         where: { university: universityName, role: 'STUDENT' },
       })

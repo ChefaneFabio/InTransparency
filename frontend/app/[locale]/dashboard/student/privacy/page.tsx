@@ -1,43 +1,81 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Header } from '@/components/layout/Header'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
-import { Shield, Eye, EyeOff, Lock, Globe, UserX, AlertCircle } from 'lucide-react'
+import { Skeleton } from '@/components/ui/skeleton'
+import { Shield, Eye, EyeOff, Lock, Globe, UserX, AlertCircle, CheckCircle } from 'lucide-react'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 export default function PrivacySettingsPage() {
   const [settings, setSettings] = useState({
     profilePublic: true,
-    showGPA: false,
     showLocation: true,
     showEmail: false,
     showPhone: false,
-    allowMessagesFrom: 'verified', // 'all', 'verified', 'none'
+    allowMessagesFrom: 'verified',
     showLastActive: true,
-    showProfileViews: true,
-    showProjects: 'all', // 'all', 'featured', 'none'
+    showProjects: 'all',
     anonymousBrowsing: false,
-    hideFromCompanies: [] as string[],
-    indexInSearchEngines: true
+    indexInSearchEngines: true,
   })
 
+  const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+  const [saveMessage, setSaveMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
   const [blockedCompanies, setBlockedCompanies] = useState<string[]>([])
   const [newBlockedCompany, setNewBlockedCompany] = useState('')
 
+  useEffect(() => {
+    const loadSettings = async () => {
+      try {
+        const res = await fetch('/api/dashboard/student/profile')
+        if (!res.ok) throw new Error('Failed to load settings')
+        const data = await res.json()
+        const u = data.user
+        setSettings({
+          profilePublic: u.profilePublic ?? true,
+          showLocation: u.showLocation ?? true,
+          showEmail: u.showEmail ?? false,
+          showPhone: u.showPhone ?? false,
+          allowMessagesFrom: u.allowMessagesFrom ?? 'verified',
+          showLastActive: u.showLastActive ?? true,
+          showProjects: u.showProjects ?? 'all',
+          anonymousBrowsing: u.anonymousBrowsing ?? false,
+          indexInSearchEngines: u.indexInSearchEngines ?? true,
+        })
+        setBlockedCompanies(u.blockedCompanies ?? [])
+      } catch (error) {
+        console.error('Failed to load privacy settings:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadSettings()
+  }, [])
+
   const handleSave = async () => {
     setSaving(true)
+    setSaveMessage(null)
     try {
-      // TODO: API call to save settings
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      alert('Privacy settings saved successfully!')
+      const res = await fetch('/api/dashboard/student/profile', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...settings,
+          blockedCompanies,
+        }),
+      })
+      if (!res.ok) throw new Error('Failed to save')
+      setSaveMessage({ type: 'success', text: 'Privacy settings saved successfully!' })
+      setTimeout(() => setSaveMessage(null), 3000)
     } catch (error) {
       console.error('Failed to save settings:', error)
+      setSaveMessage({ type: 'error', text: 'Failed to save settings. Please try again.' })
     } finally {
       setSaving(false)
     }
@@ -52,6 +90,23 @@ export default function PrivacySettingsPage() {
 
   const removeBlockedCompany = (company: string) => {
     setBlockedCompanies(blockedCompanies.filter(c => c !== company))
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <main className="py-16">
+          <div className="container max-w-4xl space-y-6">
+            <Skeleton className="h-10 w-80" />
+            <Skeleton className="h-5 w-96" />
+            <Skeleton className="h-64 w-full" />
+            <Skeleton className="h-48 w-full" />
+            <Skeleton className="h-48 w-full" />
+          </div>
+        </main>
+      </div>
+    )
   }
 
   return (
@@ -70,6 +125,20 @@ export default function PrivacySettingsPage() {
               Control who can see your profile and what information is visible to recruiters.
             </p>
           </div>
+
+          {/* Save Message */}
+          {saveMessage && (
+            <Alert className={`mb-6 ${saveMessage.type === 'success' ? 'border-green-300 bg-green-50' : 'border-red-300 bg-red-50'}`}>
+              {saveMessage.type === 'success' ? (
+                <CheckCircle className="h-4 w-4 text-green-600" />
+              ) : (
+                <AlertCircle className="h-4 w-4 text-red-600" />
+              )}
+              <AlertDescription className={saveMessage.type === 'success' ? 'text-green-800' : 'text-red-800'}>
+                {saveMessage.text}
+              </AlertDescription>
+            </Alert>
+          )}
 
           {/* Alert */}
           <Alert className="mb-6">
@@ -167,24 +236,6 @@ export default function PrivacySettingsPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="flex items-center justify-between">
-                <div className="space-y-0.5">
-                  <Label htmlFor="showGPA" className="text-base font-medium">
-                    Show GPA
-                  </Label>
-                  <p className="text-sm text-gray-600">
-                    Display your GPA on your public profile
-                  </p>
-                </div>
-                <Switch
-                  id="showGPA"
-                  checked={settings.showGPA}
-                  onCheckedChange={(checked) => setSettings({ ...settings, showGPA: checked })}
-                />
-              </div>
-
-              <Separator />
-
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <Label htmlFor="showLocation" className="text-base font-medium">
@@ -343,7 +394,7 @@ export default function PrivacySettingsPage() {
                   placeholder="Enter company name..."
                   value={newBlockedCompany}
                   onChange={(e) => setNewBlockedCompany(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && addBlockedCompany()}
+                  onKeyDown={(e) => e.key === 'Enter' && addBlockedCompany()}
                   className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <Button onClick={addBlockedCompany} variant="outline">

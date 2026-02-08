@@ -1,149 +1,158 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Activity,
   Eye,
   MessageSquare,
-  Heart,
-  Download,
-  Upload,
-  UserPlus,
   FileText,
-  Calendar,
-  TrendingUp,
   Clock,
-  Filter,
-  ExternalLink,
-  CheckCircle
+  AlertCircle,
+  ExternalLink
 } from 'lucide-react'
 
+interface ActivityItem {
+  id: string
+  type: 'profile_view' | 'message_received' | 'application_status'
+  title: string
+  description: string
+  timestamp: string
+  metadata: Record<string, any>
+}
+
+interface ActivitySummary {
+  profileViews: number
+  messagesReceived: number
+  applicationUpdates: number
+}
+
 export default function StudentActivityPage() {
+  const [activities, setActivities] = useState<ActivityItem[]>([])
+  const [summary, setSummary] = useState<ActivitySummary>({ profileViews: 0, messagesReceived: 0, applicationUpdates: 0 })
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [filter, setFilter] = useState('all')
 
-  const activities = [
-    {
-      id: 1,
-      type: 'profile_view',
-      title: 'Profile viewed by TechCorp Recruiter',
-      description: 'Sarah Johnson from TechCorp viewed your profile',
-      timestamp: '2 hours ago',
-      icon: Eye,
-      color: 'blue',
-      actionable: true,
-      company: 'TechCorp',
-      details: 'Spent 4 minutes reviewing your Machine Learning projects'
-    },
-    {
-      id: 2,
-      type: 'project_like',
-      title: 'Project liked',
-      description: 'Your "E-commerce Analytics Dashboard" received a like from Alex Chen',
-      timestamp: '4 hours ago',
-      icon: Heart,
-      color: 'red',
-      actionable: false,
-      project: 'E-commerce Analytics Dashboard'
-    },
-    {
-      id: 3,
-      type: 'message_received',
-      title: 'New message from recruiter',
-      description: 'Maria Lopez from DataFlow sent you a message about a Full Stack Developer position',
-      timestamp: '1 day ago',
-      icon: MessageSquare,
-      color: 'green',
-      actionable: true,
-      company: 'DataFlow',
-      unread: true
-    },
-    {
-      id: 4,
-      type: 'project_upload',
-      title: 'Project uploaded successfully',
-      description: 'Your "Real-time Chat Application" has been analyzed and is now live',
-      timestamp: '2 days ago',
-      icon: Upload,
-      color: 'purple',
-      actionable: true,
-      project: 'Real-time Chat Application',
-      status: 'Analysis Complete'
-    },
-    {
-      id: 5,
-      type: 'cv_download',
-      title: 'CV downloaded',
-      description: 'Microsoft Recruiter downloaded your AI-generated CV',
-      timestamp: '3 days ago',
-      icon: Download,
-      color: 'indigo',
-      actionable: false,
-      company: 'Microsoft'
-    },
-    {
-      id: 6,
-      type: 'profile_update',
-      title: 'Profile updated',
-      description: 'You updated your skills and experience section',
-      timestamp: '3 days ago',
-      icon: UserPlus,
-      color: 'gray',
-      actionable: false
-    },
-    {
-      id: 7,
-      type: 'job_match',
-      title: 'New job matches found',
-      description: '5 new positions match your profile: Senior Developer, ML Engineer, and 3 more',
-      timestamp: '1 week ago',
-      icon: TrendingUp,
-      color: 'orange',
-      actionable: true,
-      matchCount: 5
-    },
-    {
-      id: 8,
-      type: 'application_status',
-      title: 'Application status updated',
-      description: 'Your application to Google for Software Engineer has moved to "Under Review"',
-      timestamp: '1 week ago',
-      icon: FileText,
-      color: 'blue',
-      actionable: true,
-      company: 'Google',
-      status: 'Under Review'
-    }
-  ]
+  const fetchActivity = useCallback(() => {
+    setLoading(true)
+    setError(null)
+    fetch('/api/dashboard/student/activity')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load activity')
+        return res.json()
+      })
+      .then(data => {
+        setActivities(data.activities || [])
+        setSummary(data.summary || { profileViews: 0, messagesReceived: 0, applicationUpdates: 0 })
+        setLoading(false)
+      })
+      .catch(err => {
+        setError(err.message)
+        setLoading(false)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetchActivity()
+  }, [fetchActivity])
+
+  const filteredActivities = filter === 'all'
+    ? activities
+    : activities.filter(a => a.type === filter)
 
   const filterOptions = [
     { value: 'all', label: 'All Activity', count: activities.length },
     { value: 'profile_view', label: 'Profile Views', count: activities.filter(a => a.type === 'profile_view').length },
     { value: 'message_received', label: 'Messages', count: activities.filter(a => a.type === 'message_received').length },
-    { value: 'project_like', label: 'Project Activity', count: activities.filter(a => a.type.includes('project')).length },
-    { value: 'job_match', label: 'Job Matches', count: activities.filter(a => a.type === 'job_match').length }
+    { value: 'application_status', label: 'Applications', count: activities.filter(a => a.type === 'application_status').length },
   ]
 
-  const filteredActivities = filter === 'all'
-    ? activities
-    : activities.filter(activity => {
-        if (filter === 'project_like') return activity.type.includes('project')
-        return activity.type === filter
-      })
-
-  const getIconColor = (color: string) => {
-    const colors = {
-      blue: 'text-blue-600 bg-blue-100',
-      red: 'text-red-600 bg-red-100',
-      green: 'text-green-600 bg-green-100',
-      purple: 'text-purple-600 bg-purple-100',
-      indigo: 'text-indigo-600 bg-indigo-100',
-      gray: 'text-gray-600 bg-gray-100',
-      orange: 'text-orange-600 bg-orange-100'
+  const getIconForType = (type: string) => {
+    switch (type) {
+      case 'profile_view': return Eye
+      case 'message_received': return MessageSquare
+      case 'application_status': return FileText
+      default: return Activity
     }
-    return colors[color as keyof typeof colors] || colors.gray
+  }
+
+  const getColorForType = (type: string) => {
+    switch (type) {
+      case 'profile_view': return 'text-blue-600 bg-blue-100'
+      case 'message_received': return 'text-green-600 bg-green-100'
+      case 'application_status': return 'text-purple-600 bg-purple-100'
+      default: return 'text-gray-600 bg-gray-100'
+    }
+  }
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr)
+    const now = new Date()
+    const diffMs = now.getTime() - date.getTime()
+    const diffMins = Math.floor(diffMs / 60000)
+    const diffHours = Math.floor(diffMs / 3600000)
+    const diffDays = Math.floor(diffMs / 86400000)
+
+    if (diffMins < 1) return 'Just now'
+    if (diffMins < 60) return `${diffMins}m ago`
+    if (diffHours < 24) return `${diffHours}h ago`
+    if (diffDays < 7) return `${diffDays}d ago`
+    return date.toLocaleDateString()
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Activity Feed</h1>
+          <p className="text-gray-600 mt-2">Stay updated with all interactions</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <Card key={i}>
+              <CardContent className="p-6">
+                <Skeleton className="h-8 w-16 mb-2" />
+                <Skeleton className="h-4 w-24" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        <Card>
+          <CardContent className="p-6 space-y-4">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className="flex items-start gap-4">
+                <Skeleton className="h-10 w-10 rounded-full" />
+                <div className="flex-1 space-y-2">
+                  <Skeleton className="h-4 w-3/4" />
+                  <Skeleton className="h-3 w-full" />
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Activity Feed</h1>
+        </div>
+        <Card>
+          <CardContent className="p-12 text-center">
+            <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+            <p className="text-red-600 mb-4">{error}</p>
+            <Button onClick={fetchActivity}>Try Again</Button>
+          </CardContent>
+        </Card>
+      </div>
+    )
   }
 
   return (
@@ -156,7 +165,7 @@ export default function StudentActivityPage() {
       </div>
 
       {/* Activity Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
@@ -165,11 +174,11 @@ export default function StudentActivityPage() {
               </div>
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-600">Profile Views</p>
-                <p className="text-2xl font-bold text-gray-900">127</p>
+                <p className="text-2xl font-bold text-gray-900">{summary.profileViews}</p>
               </div>
             </div>
             <div className="mt-2">
-              <span className="text-sm text-green-600">↗ +12% this week</span>
+              <span className="text-sm text-gray-500">Last 30 days</span>
             </div>
           </CardContent>
         </Card>
@@ -181,12 +190,12 @@ export default function StudentActivityPage() {
                 <MessageSquare className="h-4 w-4 text-green-600" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Messages</p>
-                <p className="text-2xl font-bold text-gray-900">8</p>
+                <p className="text-sm font-medium text-gray-600">Messages Received</p>
+                <p className="text-2xl font-bold text-gray-900">{summary.messagesReceived}</p>
               </div>
             </div>
             <div className="mt-2">
-              <span className="text-sm text-blue-600">2 unread</span>
+              <span className="text-sm text-gray-500">Last 30 days</span>
             </div>
           </CardContent>
         </Card>
@@ -195,32 +204,15 @@ export default function StudentActivityPage() {
           <CardContent className="p-6">
             <div className="flex items-center">
               <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                <Heart className="h-4 w-4 text-purple-600" />
+                <FileText className="h-4 w-4 text-purple-600" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Project Likes</p>
-                <p className="text-2xl font-bold text-gray-900">45</p>
+                <p className="text-sm font-medium text-gray-600">Application Updates</p>
+                <p className="text-2xl font-bold text-gray-900">{summary.applicationUpdates}</p>
               </div>
             </div>
             <div className="mt-2">
-              <span className="text-sm text-green-600">↗ +8 this week</span>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
-                <TrendingUp className="h-4 w-4 text-orange-600" />
-              </div>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Job Matches</p>
-                <p className="text-2xl font-bold text-gray-900">23</p>
-              </div>
-            </div>
-            <div className="mt-2">
-              <span className="text-sm text-green-600">5 new matches</span>
+              <span className="text-sm text-gray-500">Last 30 days</span>
             </div>
           </CardContent>
         </Card>
@@ -229,18 +221,10 @@ export default function StudentActivityPage() {
       {/* Activity Feed */}
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
-            <CardTitle className="flex items-center">
-              <Activity className="h-5 w-5 mr-2" />
-              Recent Activity
-            </CardTitle>
-            <div className="flex items-center space-x-2">
-              <Button variant="outline" size="sm">
-                <Filter className="h-4 w-4 mr-2" />
-                Filter
-              </Button>
-            </div>
-          </div>
+          <CardTitle className="flex items-center">
+            <Activity className="h-5 w-5 mr-2" />
+            Recent Activity
+          </CardTitle>
         </CardHeader>
         <CardContent>
           {/* Filter Tabs */}
@@ -263,15 +247,19 @@ export default function StudentActivityPage() {
           {/* Activity List */}
           <div className="space-y-4">
             {filteredActivities.map((activity) => {
-              const Icon = activity.icon
+              const Icon = getIconForType(activity.type)
+              const colorClass = getColorForType(activity.type)
+
               return (
                 <div
                   key={activity.id}
                   className={`flex items-start space-x-4 p-4 rounded-lg border transition-colors ${
-                    activity.unread ? 'bg-blue-50 border-blue-200' : 'bg-white border-gray-200'
+                    activity.metadata.read === false
+                      ? 'bg-blue-50 border-blue-200'
+                      : 'bg-white border-gray-200'
                   } hover:bg-gray-50`}
                 >
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ${getIconColor(activity.color)}`}>
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ${colorClass}`}>
                     <Icon className="h-5 w-5" />
                   </div>
 
@@ -279,59 +267,44 @@ export default function StudentActivityPage() {
                     <div className="flex items-center justify-between">
                       <h3 className="font-medium text-gray-900">{activity.title}</h3>
                       <div className="flex items-center space-x-2">
-                        {activity.unread && (
+                        {activity.metadata.read === false && (
                           <Badge className="bg-blue-100 text-blue-800">New</Badge>
                         )}
                         <span className="text-sm text-gray-700 flex items-center">
                           <Clock className="h-3 w-3 mr-1" />
-                          {activity.timestamp}
+                          {formatDate(activity.timestamp)}
                         </span>
                       </div>
                     </div>
 
                     <p className="text-gray-600 text-sm mt-1">{activity.description}</p>
 
-                    {activity.details && (
-                      <p className="text-gray-700 text-xs mt-2 italic">{activity.details}</p>
+                    {activity.metadata.viewDuration && (
+                      <p className="text-gray-700 text-xs mt-2 italic">
+                        Viewed for {Math.round(activity.metadata.viewDuration / 60)} min
+                      </p>
                     )}
 
-                    {activity.status && (
+                    {activity.metadata.statusLabel && activity.type === 'application_status' && (
                       <div className="flex items-center mt-2">
-                        <CheckCircle className="h-4 w-4 text-green-500 mr-1" />
-                        <span className="text-sm text-green-600">{activity.status}</span>
+                        <Badge variant="outline">{activity.metadata.statusLabel}</Badge>
                       </div>
                     )}
 
-                    {activity.actionable && (
-                      <div className="flex items-center space-x-3 mt-3">
-                        {activity.type === 'profile_view' && (
-                          <Button size="sm" variant="outline">
-                            View Company Profile
-                            <ExternalLink className="h-3 w-3 ml-1" />
-                          </Button>
-                        )}
-                        {activity.type === 'message_received' && (
-                          <Button size="sm">
-                            Reply to Message
-                          </Button>
-                        )}
-                        {activity.type === 'project_upload' && (
-                          <Button size="sm" variant="outline">
-                            View Analysis Results
-                          </Button>
-                        )}
-                        {activity.type === 'job_match' && (
-                          <Button size="sm">
-                            View {activity.matchCount} Matches
-                          </Button>
-                        )}
-                        {activity.type === 'application_status' && (
-                          <Button size="sm" variant="outline">
-                            View Application
-                          </Button>
-                        )}
-                      </div>
-                    )}
+                    <div className="flex items-center space-x-3 mt-3">
+                      {activity.type === 'profile_view' && activity.metadata.company && (
+                        <Button size="sm" variant="outline">
+                          {activity.metadata.company}
+                          <ExternalLink className="h-3 w-3 ml-1" />
+                        </Button>
+                      )}
+                      {activity.type === 'message_received' && (
+                        <Button size="sm">Reply to Message</Button>
+                      )}
+                      {activity.type === 'application_status' && (
+                        <Button size="sm" variant="outline">View Application</Button>
+                      )}
+                    </div>
                   </div>
                 </div>
               )
@@ -340,18 +313,13 @@ export default function StudentActivityPage() {
 
           {filteredActivities.length === 0 && (
             <div className="text-center py-12">
-              <Activity className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+              <Activity className="h-12 w-12 text-gray-300 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">No activities found</h3>
-              <p className="text-gray-600">Try adjusting your filter or check back later for new activity.</p>
-            </div>
-          )}
-
-          {/* Load More */}
-          {filteredActivities.length > 0 && (
-            <div className="text-center mt-6 pt-6 border-t border-gray-200">
-              <Button variant="outline">
-                Load More Activity
-              </Button>
+              <p className="text-gray-600">
+                {filter === 'all'
+                  ? 'Your activity feed will show profile views, messages, and application updates.'
+                  : 'Try adjusting your filter or check back later for new activity.'}
+              </p>
             </div>
           )}
         </CardContent>

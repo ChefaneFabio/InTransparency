@@ -1,276 +1,469 @@
 'use client'
 
-import { useState } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useState, useEffect, useCallback } from 'react'
+import { useSession } from 'next-auth/react'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Textarea } from '@/components/ui/textarea'
-import { Search, Send, Paperclip, MoreVertical, Star, Archive } from 'lucide-react'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { Skeleton } from '@/components/ui/skeleton'
+import {
+  Search,
+  Send,
+  Inbox,
+  Archive,
+  Star,
+  MoreHorizontal,
+  Clock,
+  MessageSquare,
+  RefreshCw,
+  AlertCircle
+} from 'lucide-react'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
-const conversations = [
-  {
-    id: '1',
-    name: 'Sarah Johnson',
-    title: 'HR Manager at TechCorp',
-    lastMessage: 'Thanks for your interest! We\'d like to schedule an interview.',
-    timestamp: '2 hours ago',
-    unread: 2,
-    avatar: 'SJ',
-    online: true,
-    starred: true
-  },
-  {
-    id: '2',
-    name: 'Michael Chen',
-    title: 'Engineering Manager at StartupXYZ',
-    lastMessage: 'Your portfolio looks impressive. Let\'s discuss the role.',
-    timestamp: '1 day ago',
-    unread: 0,
-    avatar: 'MC',
-    online: false,
-    starred: false
-  },
-  {
-    id: '3',
-    name: 'Emily Rodriguez',
-    title: 'Recruiter at BigTech Solutions',
-    lastMessage: 'We have a few questions about your React experience.',
-    timestamp: '2 days ago',
-    unread: 1,
-    avatar: 'ER',
-    online: true,
-    starred: false
-  },
-  {
-    id: '4',
-    name: 'David Kim',
-    title: 'CTO at InnovateTech',
-    lastMessage: 'Congratulations! We\'d like to extend an offer.',
-    timestamp: '3 days ago',
-    unread: 0,
-    avatar: 'DK',
-    online: false,
-    starred: true
-  }
-]
+interface Conversation {
+  threadId: string
+  subject: string
+  lastMessage: string
+  unreadCount: number
+  participants: {
+    id: string
+    firstName: string
+    lastName: string
+    email: string
+    photo?: string
+    company?: string
+  }[]
+  updatedAt: string
+}
 
-const messages = [
-  {
-    id: '1',
-    sender: 'Sarah Johnson',
-    content: 'Hi! I came across your portfolio on InTransparency and I\'m really impressed with your projects, especially the AI Task Manager.',
-    timestamp: '10:30 AM',
-    isMe: false
-  },
-  {
-    id: '2',
-    sender: 'You',
-    content: 'Thank you! I\'m really passionate about building AI-powered applications. I\'d love to learn more about the frontend developer position.',
-    timestamp: '10:45 AM',
-    isMe: true
-  },
-  {
-    id: '3',
-    sender: 'Sarah Johnson',
-    content: 'Perfect! Your skills align well with what we\'re looking for. We use React and TypeScript primarily, which I see you have experience with.',
-    timestamp: '11:00 AM',
-    isMe: false
-  },
-  {
-    id: '4',
-    sender: 'Sarah Johnson',
-    content: 'Would you be available for a quick call this Thursday at 2 PM to discuss the role in more detail?',
-    timestamp: '11:01 AM',
-    isMe: false
-  },
-  {
-    id: '5',
-    sender: 'You',
-    content: 'That sounds great! Thursday at 2 PM works perfectly for me. Should I prepare anything specific for the call?',
-    timestamp: '11:15 AM',
-    isMe: true
-  },
-  {
-    id: '6',
-    sender: 'Sarah Johnson',
-    content: 'Thanks for your interest! We\'d like to schedule an interview. Just be ready to discuss your experience with React and any challenges you faced in your projects.',
-    timestamp: '2 hours ago',
-    isMe: false
+interface ThreadMessage {
+  id: string
+  senderId: string
+  recipientId: string
+  subject: string
+  content: string
+  threadId: string
+  read: boolean
+  createdAt: string
+  sender: {
+    firstName: string
+    lastName: string
+    email: string
+    photo?: string
+    company?: string
   }
-]
+}
 
 export default function StudentMessages() {
-  const [selectedConversation, setSelectedConversation] = useState(conversations[0])
-  const [messageInput, setMessageInput] = useState('')
-  const [searchTerm, setSearchTerm] = useState('')
+  const { data: session } = useSession()
+  const currentUserId = session?.user?.id
 
-  const filteredConversations = conversations.filter(conv =>
-    conv.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    conv.title.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  const [conversations, setConversations] = useState<Conversation[]>([])
+  const [loadingConversations, setLoadingConversations] = useState(true)
+  const [errorConversations, setErrorConversations] = useState<string | null>(null)
 
-  const sendMessage = () => {
-    if (messageInput.trim()) {
-      // Add message logic here
-      setMessageInput('')
+  const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null)
+  const [threadMessages, setThreadMessages] = useState<ThreadMessage[]>([])
+  const [loadingThread, setLoadingThread] = useState(false)
+  const [errorThread, setErrorThread] = useState<string | null>(null)
+
+  const [searchQuery, setSearchQuery] = useState('')
+  const [replyContent, setReplyContent] = useState('')
+  const [sendingReply, setSendingReply] = useState(false)
+  const [activeTab, setActiveTab] = useState('inbox')
+
+  const fetchConversations = useCallback(() => {
+    setLoadingConversations(true)
+    setErrorConversations(null)
+    fetch('/api/messages/conversations')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load conversations')
+        return res.json()
+      })
+      .then(data => {
+        setConversations(data.conversations || [])
+        setLoadingConversations(false)
+      })
+      .catch(err => {
+        setErrorConversations(err.message)
+        setLoadingConversations(false)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetchConversations()
+  }, [fetchConversations])
+
+  const fetchThread = useCallback((threadId: string) => {
+    setLoadingThread(true)
+    setErrorThread(null)
+    fetch(`/api/messages?threadId=${threadId}`)
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load messages')
+        return res.json()
+      })
+      .then(data => {
+        setThreadMessages(data.messages || [])
+        setLoadingThread(false)
+      })
+      .catch(err => {
+        setErrorThread(err.message)
+        setLoadingThread(false)
+      })
+  }, [])
+
+  const getOtherParticipant = (conv: Conversation) => {
+    const other = conv.participants.find(p => p.id !== currentUserId)
+    return other || conv.participants[0]
+  }
+
+  const filteredConversations = conversations.filter(conv => {
+    const other = getOtherParticipant(conv)
+    const name = `${other?.firstName || ''} ${other?.lastName || ''}`.toLowerCase()
+    return name.includes(searchQuery.toLowerCase()) ||
+           conv.subject.toLowerCase().includes(searchQuery.toLowerCase())
+  })
+
+  const unreadCount = conversations.reduce((sum, c) => sum + c.unreadCount, 0)
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr)
+    const now = new Date()
+    const diffMs = now.getTime() - date.getTime()
+    const diffMins = Math.floor(diffMs / 60000)
+    const diffHours = Math.floor(diffMs / 3600000)
+    const diffDays = Math.floor(diffMs / 86400000)
+
+    if (diffMins < 1) return 'Now'
+    if (diffMins < 60) return `${diffMins}m ago`
+    if (diffHours < 24) return `${diffHours}h ago`
+    if (diffDays < 7) return `${diffDays}d ago`
+    return date.toLocaleDateString()
+  }
+
+  const handleSelectConversation = (conv: Conversation) => {
+    setSelectedConversation(conv)
+    fetchThread(conv.threadId)
+  }
+
+  const handleSendReply = async () => {
+    if (!replyContent.trim() || !selectedConversation) return
+
+    const other = getOtherParticipant(selectedConversation)
+    if (!other) return
+
+    setSendingReply(true)
+    try {
+      const res = await fetch('/api/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          recipientId: other.id,
+          recipientEmail: other.email,
+          subject: selectedConversation.subject,
+          content: replyContent,
+          threadId: selectedConversation.threadId,
+        }),
+      })
+
+      if (!res.ok) throw new Error('Failed to send message')
+
+      setReplyContent('')
+      fetchThread(selectedConversation.threadId)
+      fetchConversations()
+    } catch {
+      alert('Failed to send message. Please try again.')
+    } finally {
+      setSendingReply(false)
     }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Messages</h1>
-        <p className="text-muted-foreground">
-          Communicate with recruiters and potential employers
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Messages</h1>
+            <p className="text-muted-foreground">
+              Communicate with recruiters and potential employers
+            </p>
+          </div>
+          <Button variant="outline" onClick={fetchConversations}>
+            <RefreshCw className="h-4 w-4 mr-2" />
+            Refresh
+          </Button>
+        </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[600px]">
-        {/* Conversations List */}
-        <Card className="lg:col-span-1">
-          <CardHeader>
-            <div className="relative">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search conversations..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9"
-              />
-            </div>
-          </CardHeader>
-          <CardContent className="p-0">
-            <div className="space-y-1">
-              {filteredConversations.map((conversation) => (
-                <div
-                  key={conversation.id}
-                  className={`p-4 cursor-pointer hover:bg-muted transition-colors ${
-                    selectedConversation.id === conversation.id ? 'bg-muted' : ''
-                  }`}
-                  onClick={() => setSelectedConversation(conversation)}
-                >
-                  <div className="flex items-start space-x-3">
-                    <div className="relative">
-                      <Avatar>
-                        <AvatarImage src="" />
-                        <AvatarFallback>{conversation.avatar}</AvatarFallback>
-                      </Avatar>
-                      {conversation.online && (
-                        <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+        <div className="grid grid-cols-12 gap-6" style={{ minHeight: '600px' }}>
+          {/* Sidebar - Conversations */}
+          <div className="col-span-12 lg:col-span-4">
+            <Card className="h-full">
+              <CardContent className="p-4">
+                <Tabs value={activeTab} onValueChange={setActiveTab}>
+                  <TabsList className="w-full grid grid-cols-3">
+                    <TabsTrigger value="inbox" className="relative">
+                      <Inbox className="h-4 w-4" />
+                      {unreadCount > 0 && (
+                        <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center text-xs">
+                          {unreadCount}
+                        </Badge>
                       )}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <h3 className="font-medium truncate">{conversation.name}</h3>
-                        <div className="flex items-center space-x-1">
-                          {conversation.starred && (
-                            <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                          )}
-                          {conversation.unread > 0 && (
-                            <Badge variant="destructive" className="h-5 w-5 p-0 flex items-center justify-center text-xs">
-                              {conversation.unread}
-                            </Badge>
-                          )}
+                    </TabsTrigger>
+                    <TabsTrigger value="starred">
+                      <Star className="h-4 w-4" />
+                    </TabsTrigger>
+                    <TabsTrigger value="archived">
+                      <Archive className="h-4 w-4" />
+                    </TabsTrigger>
+                  </TabsList>
+                </Tabs>
+
+                <div className="relative mt-4">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Input
+                    placeholder="Search conversations..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10"
+                  />
+                </div>
+
+                <div className="mt-4 space-y-2 max-h-[500px] overflow-y-auto">
+                  {loadingConversations ? (
+                    <div className="space-y-3">
+                      {Array.from({ length: 4 }).map((_, i) => (
+                        <div key={i} className="p-3 space-y-2">
+                          <div className="flex items-start gap-3">
+                            <Skeleton className="h-10 w-10 rounded-full" />
+                            <div className="flex-1 space-y-1">
+                              <Skeleton className="h-4 w-24" />
+                              <Skeleton className="h-3 w-32" />
+                              <Skeleton className="h-3 w-full" />
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <p className="text-sm text-muted-foreground truncate">{conversation.title}</p>
-                      <p className="text-sm text-muted-foreground truncate mt-1">{conversation.lastMessage}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{conversation.timestamp}</p>
+                      ))}
+                    </div>
+                  ) : errorConversations ? (
+                    <div className="text-center py-8 text-red-500">
+                      <AlertCircle className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                      <p className="text-sm">{errorConversations}</p>
+                      <Button variant="outline" size="sm" className="mt-2" onClick={fetchConversations}>
+                        Try Again
+                      </Button>
+                    </div>
+                  ) : filteredConversations.length === 0 ? (
+                    <div className="text-center py-8 text-gray-500">
+                      <MessageSquare className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                      <p>No conversations yet</p>
+                    </div>
+                  ) : (
+                    filteredConversations.map(conv => {
+                      const other = getOtherParticipant(conv)
+                      const name = `${other?.firstName || ''} ${other?.lastName || ''}`
+                      const initials = name.trim().split(' ').map(n => n[0]).join('')
+
+                      return (
+                        <div
+                          key={conv.threadId}
+                          onClick={() => handleSelectConversation(conv)}
+                          className={`p-3 rounded-lg cursor-pointer transition-colors ${
+                            selectedConversation?.threadId === conv.threadId
+                              ? 'bg-blue-50 border border-blue-200'
+                              : conv.unreadCount > 0
+                                ? 'bg-blue-50/50 hover:bg-blue-50'
+                                : 'hover:bg-gray-50'
+                          }`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <Avatar className="h-10 w-10">
+                              <AvatarImage src={other?.photo || ''} />
+                              <AvatarFallback>{initials}</AvatarFallback>
+                            </Avatar>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between">
+                                <span className={`text-sm truncate ${conv.unreadCount > 0 ? 'font-semibold' : ''}`}>
+                                  {name}
+                                </span>
+                                <span className="text-xs text-gray-500">{formatDate(conv.updatedAt)}</span>
+                              </div>
+                              {other?.company && (
+                                <p className="text-xs text-gray-500 truncate">{other.company}</p>
+                              )}
+                              <p className={`text-sm truncate ${conv.unreadCount > 0 ? 'font-medium text-gray-900' : 'text-gray-600'}`}>
+                                {conv.subject}
+                              </p>
+                              <p className="text-xs text-gray-500 truncate">{conv.lastMessage}</p>
+                            </div>
+                            {conv.unreadCount > 0 && (
+                              <Badge className="h-5 w-5 p-0 flex items-center justify-center text-xs shrink-0">
+                                {conv.unreadCount}
+                              </Badge>
+                            )}
+                          </div>
+                        </div>
+                      )
+                    })
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Message Content */}
+          <div className="col-span-12 lg:col-span-8">
+            {selectedConversation ? (
+              <Card className="h-full flex flex-col">
+                <CardHeader className="border-b">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      {(() => {
+                        const other = getOtherParticipant(selectedConversation)
+                        const name = `${other?.firstName || ''} ${other?.lastName || ''}`
+                        const initials = name.trim().split(' ').map(n => n[0]).join('')
+                        return (
+                          <>
+                            <Avatar className="h-12 w-12">
+                              <AvatarImage src={other?.photo || ''} />
+                              <AvatarFallback>{initials}</AvatarFallback>
+                            </Avatar>
+                            <div>
+                              <CardTitle>{name}</CardTitle>
+                              <CardDescription>
+                                {other?.company ? `${other.company} - ` : ''}{other?.email || ''}
+                              </CardDescription>
+                            </div>
+                          </>
+                        )
+                      })()}
+                    </div>
+                    <div className="flex gap-2">
+                      <Button variant="ghost" size="icon">
+                        <Star className="h-4 w-4" />
+                      </Button>
+                      <Button variant="ghost" size="icon">
+                        <Archive className="h-4 w-4" />
+                      </Button>
+                      <Button variant="ghost" size="icon">
+                        <MoreHorizontal className="h-4 w-4" />
+                      </Button>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+                </CardHeader>
+                <CardContent className="flex-1 p-6 overflow-hidden flex flex-col">
+                  <div className="mb-4">
+                    <h3 className="text-lg font-semibold">{selectedConversation.subject}</h3>
+                  </div>
 
-        {/* Message Thread */}
-        <Card className="lg:col-span-2 flex flex-col">
-          {/* Header */}
-          <CardHeader className="border-b">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <Avatar>
-                  <AvatarImage src="" />
-                  <AvatarFallback>{selectedConversation.avatar}</AvatarFallback>
-                </Avatar>
-                <div>
-                  <h3 className="font-medium">{selectedConversation.name}</h3>
-                  <p className="text-sm text-muted-foreground">{selectedConversation.title}</p>
-                </div>
-              </div>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm">
-                    <MoreVertical className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>
-                    <Star className="h-4 w-4 mr-2" />
-                    {selectedConversation.starred ? 'Unstar' : 'Star'}
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Archive className="h-4 w-4 mr-2" />
-                    Archive
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-          </CardHeader>
+                  {/* Thread */}
+                  <div className="space-y-4 flex-1 overflow-y-auto mb-6">
+                    {loadingThread ? (
+                      <div className="space-y-4">
+                        {Array.from({ length: 3 }).map((_, i) => (
+                          <div key={i} className={`p-4 rounded-lg bg-gray-50 ${i % 2 === 0 ? 'mr-8' : 'ml-8'}`}>
+                            <div className="flex items-center justify-between mb-2">
+                              <Skeleton className="h-4 w-24" />
+                              <Skeleton className="h-3 w-16" />
+                            </div>
+                            <Skeleton className="h-4 w-full mb-1" />
+                            <Skeleton className="h-4 w-3/4" />
+                          </div>
+                        ))}
+                      </div>
+                    ) : errorThread ? (
+                      <div className="text-center py-8 text-red-500">
+                        <AlertCircle className="h-8 w-8 mx-auto mb-2" />
+                        <p>{errorThread}</p>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="mt-2"
+                          onClick={() => fetchThread(selectedConversation.threadId)}
+                        >
+                          Try Again
+                        </Button>
+                      </div>
+                    ) : threadMessages.length === 0 ? (
+                      <div className="text-center py-8 text-gray-500">
+                        <p>No messages in this conversation</p>
+                      </div>
+                    ) : (
+                      threadMessages.map(msg => {
+                        const isMe = msg.senderId === currentUserId
+                        const senderName = isMe
+                          ? 'You'
+                          : `${msg.sender.firstName} ${msg.sender.lastName}`
+                        return (
+                          <div
+                            key={msg.id}
+                            className={`p-4 rounded-lg ${
+                              isMe
+                                ? 'bg-blue-50 ml-8'
+                                : 'bg-gray-50 mr-8'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="text-sm font-medium">
+                                {senderName}
+                              </span>
+                              <span className="text-xs text-gray-500 flex items-center gap-1">
+                                <Clock className="h-3 w-3" />
+                                {formatDate(msg.createdAt)}
+                              </span>
+                            </div>
+                            <p className="text-gray-700 whitespace-pre-wrap">{msg.content}</p>
+                          </div>
+                        )
+                      })
+                    )}
+                  </div>
 
-          {/* Messages */}
-          <CardContent className="flex-1 overflow-y-auto p-4 space-y-4">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${message.isMe ? 'justify-end' : 'justify-start'}`}
-              >
-                <div
-                  className={`max-w-[70%] p-3 rounded-lg ${
-                    message.isMe
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted'
-                  }`}
-                >
-                  <p className="text-sm">{message.content}</p>
-                  <p className={`text-xs mt-1 ${
-                    message.isMe ? 'text-primary-foreground/70' : 'text-muted-foreground'
-                  }`}>
-                    {message.timestamp}
+                  {/* Reply */}
+                  <div className="border-t pt-4">
+                    <Textarea
+                      placeholder="Type your reply..."
+                      value={replyContent}
+                      onChange={(e) => setReplyContent(e.target.value)}
+                      rows={3}
+                      className="mb-3"
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                          e.preventDefault()
+                          handleSendReply()
+                        }
+                      }}
+                    />
+                    <div className="flex justify-end">
+                      <Button
+                        onClick={handleSendReply}
+                        disabled={!replyContent.trim() || sendingReply}
+                      >
+                        <Send className="h-4 w-4 mr-2" />
+                        {sendingReply ? 'Sending...' : 'Send'}
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <Card className="h-full flex items-center justify-center">
+                <div className="text-center py-16">
+                  <MessageSquare className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    Select a conversation
+                  </h3>
+                  <p className="text-gray-600">
+                    Choose a conversation from the list to view messages
                   </p>
                 </div>
-              </div>
-            ))}
-          </CardContent>
-
-          {/* Message Input */}
-          <div className="border-t p-4">
-            <div className="flex items-end space-x-2">
-              <Button variant="ghost" size="sm">
-                <Paperclip className="h-4 w-4" />
-              </Button>
-              <Textarea
-                placeholder="Type your message..."
-                value={messageInput}
-                onChange={(e) => setMessageInput(e.target.value)}
-                className="flex-1 min-h-[40px] max-h-[120px] resize-none"
-                onKeyPress={(e) => {
-                  if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault()
-                    sendMessage()
-                  }
-                }}
-              />
-              <Button onClick={sendMessage} disabled={!messageInput.trim()}>
-                <Send className="h-4 w-4" />
-              </Button>
-            </div>
+              </Card>
+            )}
           </div>
-        </Card>
+        </div>
       </div>
     </div>
   )

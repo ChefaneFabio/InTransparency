@@ -162,7 +162,7 @@ export default function JobApplicationPage() {
 
       // In production: Create actual application
       alert('Application submitted successfully!')
-      router.push('/dashboard/student/job-applications')
+      router.push('/dashboard/student/applications')
     } catch (error) {
       console.error('Error submitting application:', error)
       alert('Failed to submit application. Please try again.')

@@ -3653,5 +3653,252 @@
       "showingLimited": "Mostrati {shown} di {total}",
       "moreAvailable": "{count} altri percorsi di carriera disponibili con Premium"
     }
+  },
+  "studentAnalytics": {
+    "title": "Analytics",
+    "subtitle": "Monitora le prestazioni del tuo portfolio e le informazioni sulla carriera",
+    "unauthorized": "Accedi per visualizzare le tue analytics.",
+    "error": "Si è verificato un errore nel caricamento delle analytics.",
+    "tryAgain": "Riprova",
+    "timeRange": {
+      "1month": "1M",
+      "3months": "3M",
+      "6months": "6M",
+      "1year": "1A"
+    },
+    "premiumUpsell": {
+      "title": "Sblocca Analytics Avanzate",
+      "description": "Ottieni metriche di coinvolgimento dettagliate, interesse dei recruiter, informazioni sugli stipendi e altro con Premium.",
+      "cta": "Aggiorna Piano"
+    },
+    "tabs": {
+      "overview": "Panoramica",
+      "skills": "Competenze",
+      "projects": "Progetti",
+      "career": "Carriera"
+    },
+    "stats": {
+      "profileViews": "Visite al Profilo",
+      "projects": "Progetti",
+      "applications": "Candidature",
+      "skillScore": "Punteggio Competenze"
+    },
+    "overview": {
+      "viewsOverTime": "Visite al Profilo nel Tempo",
+      "viewsOverTimeDesc": "Tendenze mensili di coinvolgimento del profilo",
+      "industryInterest": "Interesse per Settore",
+      "industryInterestDesc": "Quali aziende stanno visualizzando il tuo profilo",
+      "topCompanies": "Aziende che Ti Visualizzano",
+      "views": "visite"
+    },
+    "skills": {
+      "assessment": "Valutazione Competenze",
+      "assessmentDesc": "Le tue competenze tecniche basate sull'analisi dei progetti",
+      "project": "progetto",
+      "projects": "progetti",
+      "vsMarket": "Competenze vs Domanda di Mercato",
+      "vsMarketDesc": "Come le tue competenze si allineano alla domanda del settore",
+      "yourLevel": "Il Tuo Livello",
+      "marketDemand": "Domanda di Mercato"
+    },
+    "projects": {
+      "performance": "Performance dei Progetti",
+      "performanceDesc": "Come stanno andando i tuoi progetti con i recruiter",
+      "views": "visite",
+      "recruiterViews": "visite recruiter",
+      "techUsage": "Utilizzo Tecnologie",
+      "techUsageDesc": "Tecnologie più utilizzate nei tuoi progetti"
+    },
+    "career": {
+      "readiness": "Prontezza Lavorativa",
+      "readinessDesc": "La tua preparazione per diversi percorsi di carriera",
+      "salaryInsights": "Informazioni sugli Stipendi",
+      "salaryInsightsDesc": "Range salariali stimati basati sui dati di placement della piattaforma (EUR)",
+      "estimatedRange": "Range salariale annuo stimato",
+      "applicationFunnel": "Funnel Candidature",
+      "applicationFunnelDesc": "Segui le tue candidature attraverso ogni fase",
+      "recruiterInterest": "Interesse dei Recruiter",
+      "savedBy": "Salvato dai Recruiter",
+      "contactedBy": "Contattato da",
+      "messagesReceived": "Messaggi Ricevuti"
+    },
+    "locked": {
+      "engagement": "Passa a Premium per vedere le tendenze dettagliate delle visite al profilo, le principali aziende e la durata media delle visite.",
+      "industryInterest": "Passa a Premium per vedere quali settori e aziende sono interessati al tuo profilo.",
+      "skillsVsMarket": "Passa a Premium per confrontare i tuoi livelli di competenza con la domanda attuale del mercato.",
+      "projectPerformance": "Passa a Premium per vedere le metriche dettagliate di performance per ogni progetto.",
+      "careerReadiness": "Passa a Premium per vedere quanto sei pronto per diversi percorsi di carriera.",
+      "salaryContext": "Passa a Premium per vedere i range salariali stimati basati sui dati della piattaforma.",
+      "applicationFunnel": "Passa a Premium per monitorare le tue candidature attraverso ogni fase di selezione.",
+      "recruiterInterest": "Passa a Premium per vedere quanti recruiter hanno salvato, contattato o inviato messaggi."
+    },
+    "empty": {
+      "noSkills": "Aggiungi progetti per vedere l'analisi delle competenze.",
+      "noProjects": "Nessun progetto ancora. Aggiungi il tuo primo progetto per vedere i dati di performance.",
+      "noCompanyViews": "Nessuna visita da aziende ancora. Continua a costruire il tuo portfolio!",
+      "noCareerData": "Completa l'analisi del percorso competenze per vedere i dati di prontezza lavorativa.",
+      "noSalaryData": "Dati di placement insufficienti al momento."
+    }
+  },
+  "studentJobs": {
+    "title": "Opportunità di Lavoro",
+    "subtitle": "Scopri e candidati per lavori che corrispondono alle tue competenze",
+    "search": "Cerca lavori per titolo, azienda o competenze...",
+    "filters": {
+      "jobType": "Tipo di Lavoro",
+      "workLocation": "Modalità di Lavoro",
+      "all": "Tutti"
+    },
+    "sort": {
+      "recent": "Più Recenti",
+      "salary": "Stipendio Più Alto",
+      "company": "Azienda A-Z",
+      "applicants": "Più Candidati"
+    },
+    "applied": "Candidato",
+    "apply": "Candidati Ora",
+    "applying": "Candidatura in corso...",
+    "applicants": "candidati",
+    "noJobs": "Nessun lavoro trovato",
+    "noJobsDescription": "Prova a modificare la ricerca o i filtri per trovare più opportunità.",
+    "applySuccess": "Candidatura inviata con successo!",
+    "applyError": "Invio candidatura fallito. Riprova."
+  },
+  "studentApplications": {
+    "title": "Candidature",
+    "subtitle": "Monitora le tue candidature e il calendario dei colloqui",
+    "search": "Cerca candidature...",
+    "tabs": {
+      "all": "Tutte le Candidature",
+      "interviews": "Colloqui",
+      "offers": "Offerte"
+    },
+    "status": {
+      "PENDING": "Inviata",
+      "REVIEWING": "In Revisione",
+      "SHORTLISTED": "Selezionato",
+      "INTERVIEW": "Colloquio",
+      "OFFER": "Offerta Ricevuta",
+      "ACCEPTED": "Accettata",
+      "REJECTED": "Non Selezionato",
+      "WITHDRAWN": "Ritirata"
+    },
+    "appliedOn": "Candidato il",
+    "viewJob": "Vedi Lavoro",
+    "viewApplication": "Vedi Candidatura",
+    "interview": "Colloquio",
+    "notes": "Note",
+    "salary": "Stipendio",
+    "startDate": "Data di Inizio",
+    "benefits": "Benefit",
+    "responseDeadline": "Scadenza Risposta",
+    "lastUpdated": "Ultimo aggiornamento",
+    "empty": {
+      "noApplications": "Nessuna candidatura ancora",
+      "noApplicationsDesc": "Inizia a candidarti per monitorare le tue candidature qui.",
+      "noInterviews": "Nessun colloquio programmato",
+      "noInterviewsDesc": "Gli inviti ai colloqui appariranno qui.",
+      "noOffers": "Nessuna offerta ancora",
+      "noOffersDesc": "Le offerte di lavoro appariranno qui quando ricevute."
+    }
+  },
+  "studentMessages": {
+    "title": "Messaggi",
+    "subtitle": "Le tue conversazioni con recruiter e datori di lavoro",
+    "search": "Cerca conversazioni...",
+    "compose": "Nuovo Messaggio",
+    "send": "Invia",
+    "reply": "Scrivi un messaggio...",
+    "noConversations": "Nessuna conversazione ancora",
+    "noConversationsDesc": "I messaggi da recruiter e datori di lavoro appariranno qui.",
+    "selectConversation": "Seleziona una conversazione",
+    "selectConversationDesc": "Scegli una conversazione dalla lista per visualizzare i messaggi.",
+    "you": "Tu",
+    "unread": "non letti",
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "studentProfile": {
+    "title": "Il Mio Profilo",
+    "subtitle": "Gestisci il tuo profilo professionale e le impostazioni",
+    "edit": "Modifica Profilo",
+    "save": "Salva Modifiche",
+    "saving": "Salvataggio...",
+    "cancel": "Annulla",
+    "tabs": {
+      "overview": "Panoramica",
+      "skills": "Competenze",
+      "projects": "Progetti"
+    },
+    "fields": {
+      "bio": "Biografia",
+      "tagline": "Slogan",
+      "portfolioUrl": "URL Portfolio",
+      "university": "Università",
+      "degree": "Laurea",
+      "graduationYear": "Anno di Laurea",
+      "gpa": "Media Voti"
+    },
+    "privacy": {
+      "title": "Impostazioni Privacy",
+      "profilePublic": "Profilo Pubblico",
+      "showLocation": "Mostra Posizione",
+      "showEmail": "Mostra Email",
+      "showPhone": "Mostra Telefono",
+      "gpaPublic": "Mostra Media Voti"
+    },
+    "completion": {
+      "title": "Completamento Profilo",
+      "complete": "Completo"
+    },
+    "stats": {
+      "profileViews": "Visualizzazioni Profilo",
+      "recruiterViews": "Visualizzazioni Recruiter",
+      "applications": "Candidature"
+    },
+    "generateCV": "Genera CV",
+    "premiumFeature": "Funzionalità Premium",
+    "premiumPortfolio": "Passa a Premium per aggiungere un URL portfolio.",
+    "noSkills": "Nessuna competenza ancora. Aggiungi progetti per costruire il tuo profilo competenze.",
+    "noProjects": "Nessun progetto ancora. Aggiungi il tuo primo progetto per mostrare il tuo lavoro.",
+    "saveSuccess": "Profilo aggiornato con successo!",
+    "saveError": "Aggiornamento profilo fallito. Riprova."
+  },
+  "studentActivity": {
+    "title": "Feed Attività",
+    "subtitle": "Resta aggiornato su tutte le interazioni e attività relative al tuo profilo",
+    "summary": {
+      "profileViews": "Visualizzazioni Profilo",
+      "messagesReceived": "Messaggi Ricevuti",
+      "applicationUpdates": "Aggiornamenti Candidature",
+      "last30Days": "Ultimi 30 giorni"
+    },
+    "recentActivity": "Attività Recente",
+    "filters": {
+      "all": "Tutte le Attività",
+      "profileView": "Visualizzazioni Profilo",
+      "messageReceived": "Messaggi",
+      "applicationStatus": "Candidature"
+    },
+    "new": "Nuovo",
+    "viewedFor": "Visualizzato per {minutes} min",
+    "replyToMessage": "Rispondi al Messaggio",
+    "viewApplication": "Vedi Candidatura",
+    "noActivities": "Nessuna attività trovata",
+    "noActivitiesAll": "Il tuo feed mostrerà visualizzazioni profilo, messaggi e aggiornamenti candidature.",
+    "noActivitiesFiltered": "Prova a modificare il filtro o torna più tardi per nuove attività."
+  },
+  "studentAiJobSearch": {
+    "title": "Ricerca Lavoro AI",
+    "subtitle": "Descrivi il tuo lavoro ideale e lascia che l'AI trovi le opportunità corrispondenti",
+    "chatPlaceholder": "es. Cerco uno stage remoto come sviluppatore React...",
+    "search": "Cerca",
+    "searching": "Ricerca lavori corrispondenti in corso...",
+    "results": "Risultati",
+    "noResults": "Nessun lavoro corrispondente trovato",
+    "noResultsDesc": "Prova una ricerca diversa o amplia i tuoi criteri.",
+    "suggestions": "Prova a chiedere:",
+    "applied": "Candidato",
+    "apply": "Candidati"
   }
 }

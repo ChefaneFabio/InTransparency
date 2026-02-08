@@ -603,6 +603,20 @@ export const skillPathApi = {
     api.post('/api/student/skill-path/refresh'),
 }
 
+export const studentDashboardApi = {
+  getAnalytics: (params?: { timeRange?: string }) =>
+    api.get('/api/dashboard/student/analytics', { params }),
+
+  getProfile: () =>
+    api.get('/api/dashboard/student/profile'),
+
+  updateProfile: (data: any) =>
+    api.patch('/api/dashboard/student/profile', data),
+
+  getActivity: () =>
+    api.get('/api/dashboard/student/activity'),
+}
+
 export const universityDashboardApi = {
   // Students
   getStudents: (params?: { search?: string; major?: string; year?: string; page?: number; limit?: number }) =>
