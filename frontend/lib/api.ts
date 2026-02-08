@@ -516,3 +516,81 @@ export const chatApi = {
     return `chat_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`
   }
 }
+
+export const skillPathApi = {
+  getRecommendations: () =>
+    api.get('/api/student/skill-path'),
+
+  refreshRecommendations: () =>
+    api.post('/api/student/skill-path/refresh'),
+}
+
+export const universityDashboardApi = {
+  // Students
+  getStudents: (params?: { search?: string; major?: string; year?: string; page?: number; limit?: number }) =>
+    api.get('/api/dashboard/university/students', { params }),
+
+  addStudent: (data: { firstName: string; lastName: string; email: string; department?: string; degree?: string; enrollmentYear?: string; expectedGraduation?: string }) =>
+    api.post('/api/dashboard/university/students/add', data),
+
+  importStudents: (file: File) => {
+    const formData = new FormData()
+    formData.append('file', file)
+    return api.post('/api/dashboard/university/students/import', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+  },
+
+  // Courses
+  getCourses: (params?: { search?: string; department?: string; semester?: string }) =>
+    api.get('/api/dashboard/university/courses', { params }),
+
+  getCourse: (id: string) =>
+    api.get(`/api/dashboard/university/courses/${id}`),
+
+  createCourse: (data: any) =>
+    api.post('/api/dashboard/university/courses', data),
+
+  updateCourse: (id: string, data: any) =>
+    api.patch(`/api/dashboard/university/courses/${id}`, data),
+
+  deleteCourse: (id: string) =>
+    api.delete(`/api/dashboard/university/courses/${id}`),
+
+  // Departments
+  getDepartments: () =>
+    api.get('/api/dashboard/university/departments'),
+
+  // Placements
+  getPlacements: (params?: { search?: string; status?: string; type?: string }) =>
+    api.get('/api/dashboard/university/placements', { params }),
+
+  // Recruiters
+  getRecruiters: () =>
+    api.get('/api/dashboard/university/recruiters'),
+
+  // Analytics
+  getAnalytics: (tab?: string) =>
+    api.get('/api/dashboard/university/analytics', { params: { tab } }),
+
+  // Alumni
+  getAlumni: (params?: { search?: string; status?: string; year?: string }) =>
+    api.get('/api/dashboard/university/alumni', { params }),
+
+  createAlumni: (data: any) =>
+    api.post('/api/dashboard/university/alumni', data),
+
+  // Sync
+  getSyncData: () =>
+    api.get('/api/dashboard/university/sync'),
+
+  triggerSync: (dataType: string) =>
+    api.post('/api/dashboard/university/sync', { dataType }),
+
+  // Settings
+  getSettings: () =>
+    api.get('/api/dashboard/university/settings'),
+
+  updateSettings: (data: any) =>
+    api.put('/api/dashboard/university/settings', data),
+}

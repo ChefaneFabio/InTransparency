@@ -1,24 +1,20 @@
 'use client'
 
-import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useState, useEffect } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Search,
-  Filter,
   Building2,
   Users,
   Mail,
   Phone,
   MapPin,
   Star,
-  CheckCircle,
-  Clock,
-  ExternalLink,
-  MoreHorizontal,
   TrendingUp,
   Briefcase
 } from 'lucide-react'
@@ -29,12 +25,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 import {
   Dialog,
   DialogContent,
@@ -60,87 +50,110 @@ interface Recruiter {
   status: 'active' | 'inactive'
 }
 
-const mockRecruiters: Recruiter[] = [
-  {
-    id: '1',
-    companyName: 'Google',
-    contactName: 'Maria Verdi',
-    contactEmail: 'maria.verdi@google.com',
-    contactPhone: '+39 02 1234567',
-    location: 'Milano',
-    industry: 'Technology',
-    studentsHired: 12,
-    studentsContacted: 45,
-    avgSalaryOffered: 48000,
-    isPartner: true,
-    lastActivity: '2 ore fa',
-    status: 'active'
-  },
-  {
-    id: '2',
-    companyName: 'McKinsey & Company',
-    contactName: 'Paolo Bianchi',
-    contactEmail: 'paolo.bianchi@mckinsey.com',
-    location: 'Milano',
-    industry: 'Consulting',
-    studentsHired: 8,
-    studentsContacted: 32,
-    avgSalaryOffered: 45000,
-    isPartner: true,
-    lastActivity: '1 giorno fa',
-    status: 'active'
-  },
-  {
-    id: '3',
-    companyName: 'Ferrari',
-    contactName: 'Laura Rossi',
-    contactEmail: 'l.rossi@ferrari.com',
-    contactPhone: '+39 0536 949111',
-    location: 'Maranello',
-    industry: 'Automotive',
-    studentsHired: 5,
-    studentsContacted: 18,
-    avgSalaryOffered: 38000,
-    isPartner: false,
-    lastActivity: '3 giorni fa',
-    status: 'active'
-  },
-  {
-    id: '4',
-    companyName: 'Accenture',
-    contactName: 'Marco Ferrari',
-    contactEmail: 'm.ferrari@accenture.com',
-    location: 'Milano',
-    industry: 'Consulting',
-    studentsHired: 15,
-    studentsContacted: 67,
-    avgSalaryOffered: 35000,
-    isPartner: true,
-    lastActivity: '5 ore fa',
-    status: 'active'
-  },
-  {
-    id: '5',
-    companyName: 'Startup XYZ',
-    contactName: 'Giovanni Neri',
-    contactEmail: 'g.neri@startupxyz.com',
-    location: 'Roma',
-    industry: 'Technology',
-    studentsHired: 2,
-    studentsContacted: 8,
-    avgSalaryOffered: 32000,
-    isPartner: false,
-    lastActivity: '1 settimana fa',
-    status: 'inactive'
-  }
-]
+interface RecruitersStats {
+  total: number
+  partners: number
+  totalHired: number
+  activeThisMonth: number
+}
+
+function formatRelativeTime(isoDate: string): string {
+  const now = new Date()
+  const date = new Date(isoDate)
+  const diffMs = now.getTime() - date.getTime()
+  const diffSeconds = Math.floor(diffMs / 1000)
+  const diffMinutes = Math.floor(diffSeconds / 60)
+  const diffHours = Math.floor(diffMinutes / 60)
+  const diffDays = Math.floor(diffHours / 24)
+  const diffWeeks = Math.floor(diffDays / 7)
+  const diffMonths = Math.floor(diffDays / 30)
+
+  if (diffMinutes < 1) return 'adesso'
+  if (diffMinutes < 60) return `${diffMinutes} minut${diffMinutes === 1 ? 'o' : 'i'} fa`
+  if (diffHours < 24) return `${diffHours} or${diffHours === 1 ? 'a' : 'e'} fa`
+  if (diffDays < 7) return `${diffDays} giorn${diffDays === 1 ? 'o' : 'i'} fa`
+  if (diffWeeks < 5) return `${diffWeeks} settiman${diffWeeks === 1 ? 'a' : 'e'} fa`
+  return `${diffMonths} mes${diffMonths === 1 ? 'e' : 'i'} fa`
+}
+
+function StatsLoadingSkeleton() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+      {Array.from({ length: 4 }).map((_, i) => (
+        <Card key={i}>
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3">
+              <Skeleton className="w-10 h-10 rounded-lg" />
+              <div className="space-y-2">
+                <Skeleton className="h-7 w-16" />
+                <Skeleton className="h-4 w-24" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  )
+}
+
+function GridLoadingSkeleton() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {Array.from({ length: 6 }).map((_, i) => (
+        <Card key={i}>
+          <CardContent className="p-6">
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <Skeleton className="h-12 w-12 rounded-full" />
+                <div className="space-y-2">
+                  <Skeleton className="h-5 w-32" />
+                  <Skeleton className="h-4 w-20" />
+                </div>
+              </div>
+              <Skeleton className="h-5 w-14 rounded-full" />
+            </div>
+            <div className="space-y-2 mb-4">
+              <Skeleton className="h-4 w-36" />
+              <Skeleton className="h-4 w-28" />
+            </div>
+            <div className="flex items-center justify-between pt-4 border-t">
+              <Skeleton className="h-10 w-16" />
+              <Skeleton className="h-10 w-16" />
+              <Skeleton className="h-10 w-16" />
+            </div>
+            <Skeleton className="h-3 w-40 mt-4" />
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  )
+}
 
 export default function UniversityRecruitersPage() {
-  const [recruiters, setRecruiters] = useState<Recruiter[]>(mockRecruiters)
+  const [recruiters, setRecruiters] = useState<Recruiter[]>([])
+  const [stats, setStats] = useState<RecruitersStats | null>(null)
+  const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
   const [industryFilter, setIndustryFilter] = useState('all')
   const [statusFilter, setStatusFilter] = useState('all')
   const [selectedRecruiter, setSelectedRecruiter] = useState<Recruiter | null>(null)
+
+  useEffect(() => {
+    async function fetchRecruiters() {
+      try {
+        const res = await fetch('/api/dashboard/university/recruiters')
+        if (!res.ok) throw new Error('Failed to fetch recruiters')
+        const data = await res.json()
+        setRecruiters(data.recruiters)
+        setStats(data.stats)
+      } catch (error) {
+        console.error('Error fetching recruiters:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchRecruiters()
+  }, [])
 
   const filteredRecruiters = recruiters.filter(r => {
     const matchesSearch = r.companyName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -149,10 +162,6 @@ export default function UniversityRecruitersPage() {
     const matchesStatus = statusFilter === 'all' || r.status === statusFilter
     return matchesSearch && matchesIndustry && matchesStatus
   })
-
-  const totalHired = recruiters.reduce((sum, r) => sum + r.studentsHired, 0)
-  const partnersCount = recruiters.filter(r => r.isPartner).length
-  const activeCount = recruiters.filter(r => r.status === 'active').length
 
   const industries = Array.from(new Set(recruiters.map(r => r.industry)))
 
@@ -172,60 +181,64 @@ export default function UniversityRecruitersPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <Building2 className="h-5 w-5 text-blue-600" />
+        {loading || !stats ? (
+          <StatsLoadingSkeleton />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <Building2 className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{stats.total}</p>
+                    <p className="text-sm text-gray-600">Aziende Totali</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-2xl font-bold">{recruiters.length}</p>
-                  <p className="text-sm text-gray-600">Aziende Totali</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                    <Star className="h-5 w-5 text-yellow-600" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{stats.partners}</p>
+                    <p className="text-sm text-gray-600">Partner Ufficiali</p>
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                  <Star className="h-5 w-5 text-yellow-600" />
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                    <Users className="h-5 w-5 text-green-600" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{stats.totalHired}</p>
+                    <p className="text-sm text-gray-600">Studenti Assunti</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-2xl font-bold">{partnersCount}</p>
-                  <p className="text-sm text-gray-600">Partner Ufficiali</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <TrendingUp className="h-5 w-5 text-purple-600" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{stats.activeThisMonth}</p>
+                    <p className="text-sm text-gray-600">Attivi Questo Mese</p>
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                  <Users className="h-5 w-5 text-green-600" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">{totalHired}</p>
-                  <p className="text-sm text-gray-600">Studenti Assunti</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                  <TrendingUp className="h-5 w-5 text-purple-600" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">{activeCount}</p>
-                  <p className="text-sm text-gray-600">Attivi Questo Mese</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Filters */}
         <div className="flex flex-wrap gap-4 mb-6">
@@ -262,84 +275,90 @@ export default function UniversityRecruitersPage() {
         </div>
 
         {/* Recruiters Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredRecruiters.map((recruiter) => (
-            <Card
-              key={recruiter.id}
-              className="hover:shadow-md transition-shadow cursor-pointer"
-              onClick={() => setSelectedRecruiter(recruiter)}
-            >
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <Avatar className="h-12 w-12">
-                      <AvatarImage src={recruiter.companyLogo} />
-                      <AvatarFallback className="bg-blue-100 text-blue-600 font-semibold">
-                        {recruiter.companyName.slice(0, 2).toUpperCase()}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-semibold text-gray-900">{recruiter.companyName}</h3>
-                        {recruiter.isPartner && (
-                          <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
-                        )}
+        {loading ? (
+          <GridLoadingSkeleton />
+        ) : (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filteredRecruiters.map((recruiter) => (
+                <Card
+                  key={recruiter.id}
+                  className="hover:shadow-md transition-shadow cursor-pointer"
+                  onClick={() => setSelectedRecruiter(recruiter)}
+                >
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <Avatar className="h-12 w-12">
+                          <AvatarImage src={recruiter.companyLogo} />
+                          <AvatarFallback className="bg-blue-100 text-blue-600 font-semibold">
+                            {recruiter.companyName.slice(0, 2).toUpperCase()}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h3 className="font-semibold text-gray-900">{recruiter.companyName}</h3>
+                            {recruiter.isPartner && (
+                              <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-600">{recruiter.industry}</p>
+                        </div>
                       </div>
-                      <p className="text-sm text-gray-600">{recruiter.industry}</p>
+                      <Badge
+                        variant={recruiter.status === 'active' ? 'default' : 'secondary'}
+                        className={recruiter.status === 'active' ? 'bg-green-100 text-green-800' : ''}
+                      >
+                        {recruiter.status === 'active' ? 'Attivo' : 'Inattivo'}
+                      </Badge>
                     </div>
-                  </div>
-                  <Badge
-                    variant={recruiter.status === 'active' ? 'default' : 'secondary'}
-                    className={recruiter.status === 'active' ? 'bg-green-100 text-green-800' : ''}
-                  >
-                    {recruiter.status === 'active' ? 'Attivo' : 'Inattivo'}
-                  </Badge>
-                </div>
 
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Users className="h-4 w-4" />
-                    <span>{recruiter.contactName}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <MapPin className="h-4 w-4" />
-                    <span>{recruiter.location}</span>
-                  </div>
-                </div>
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <Users className="h-4 w-4" />
+                        <span>{recruiter.contactName}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <MapPin className="h-4 w-4" />
+                        <span>{recruiter.location}</span>
+                      </div>
+                    </div>
 
-                <div className="flex items-center justify-between pt-4 border-t">
-                  <div className="text-center">
-                    <p className="text-lg font-bold text-gray-900">{recruiter.studentsHired}</p>
-                    <p className="text-xs text-gray-600">Assunti</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-lg font-bold text-gray-900">{recruiter.studentsContacted}</p>
-                    <p className="text-xs text-gray-600">Contattati</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-lg font-bold text-gray-900">€{(recruiter.avgSalaryOffered / 1000).toFixed(0)}k</p>
-                    <p className="text-xs text-gray-600">RAL Media</p>
-                  </div>
-                </div>
+                    <div className="flex items-center justify-between pt-4 border-t">
+                      <div className="text-center">
+                        <p className="text-lg font-bold text-gray-900">{recruiter.studentsHired}</p>
+                        <p className="text-xs text-gray-600">Assunti</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-lg font-bold text-gray-900">{recruiter.studentsContacted}</p>
+                        <p className="text-xs text-gray-600">Contattati</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-lg font-bold text-gray-900">{"€"}{(recruiter.avgSalaryOffered / 1000).toFixed(0)}k</p>
+                        <p className="text-xs text-gray-600">RAL Media</p>
+                      </div>
+                    </div>
 
-                <p className="text-xs text-gray-500 mt-4">
-                  Ultima attività: {recruiter.lastActivity}
+                    <p className="text-xs text-gray-500 mt-4">
+                      Ultima attività: {formatRelativeTime(recruiter.lastActivity)}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {filteredRecruiters.length === 0 && (
+              <Card className="p-8 text-center">
+                <Building2 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Nessun recruiter trovato
+                </h3>
+                <p className="text-gray-600">
+                  Prova a modificare i filtri di ricerca
                 </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {filteredRecruiters.length === 0 && (
-          <Card className="p-8 text-center">
-            <Building2 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Nessun recruiter trovato
-            </h3>
-            <p className="text-gray-600">
-              Prova a modificare i filtri di ricerca
-            </p>
-          </Card>
+              </Card>
+            )}
+          </>
         )}
 
         {/* Recruiter Detail Dialog */}
@@ -378,7 +397,7 @@ export default function UniversityRecruitersPage() {
                       <p className="text-sm text-gray-600">Contattati</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-gray-900">€{selectedRecruiter.avgSalaryOffered.toLocaleString()}</p>
+                      <p className="text-2xl font-bold text-gray-900">{"€"}{selectedRecruiter.avgSalaryOffered.toLocaleString()}</p>
                       <p className="text-sm text-gray-600">RAL Media</p>
                     </div>
                   </div>

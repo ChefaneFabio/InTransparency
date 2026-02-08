@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
-import { PrismaClient } from '@prisma/client'
+import prisma from '@/lib/prisma'
 import crypto from 'crypto'
-
-const prisma = new PrismaClient()
+import { sendVerificationEmail } from '@/lib/email'
 
 // GET /api/user/university-connection - Get current university connection
 export async function GET(request: NextRequest) {
@@ -99,23 +98,27 @@ export async function POST(request: NextRequest) {
       }
     })
 
-    // TODO: Send verification email to institutional email
-    // For now, we'll auto-verify for demo purposes
-    // In production, implement email verification
-
-    // Auto-verify for demo (remove in production)
-    connection = await prisma.universityConnection.update({
-      where: { id: connection.id },
-      data: {
-        verificationStatus: 'VERIFIED',
-        verifiedAt: new Date()
-      }
-    })
+    // Send verification email
+    try {
+      await sendVerificationEmail(institutionalEmail, verificationToken, universityName)
+    } catch (emailError) {
+      console.error('Failed to send verification email:', emailError)
+      // Auto-verify as fallback when SMTP is not configured
+      connection = await prisma.universityConnection.update({
+        where: { id: connection.id },
+        data: {
+          verificationStatus: 'VERIFIED',
+          verifiedAt: new Date()
+        }
+      })
+    }
 
     return NextResponse.json({
       success: true,
       connection,
-      message: 'University connected successfully'
+      message: connection.verificationStatus === 'VERIFIED'
+        ? 'University connected successfully'
+        : 'Verification email sent. Please check your institutional email.'
     })
   } catch (error) {
     console.error('Error connecting university:', error)

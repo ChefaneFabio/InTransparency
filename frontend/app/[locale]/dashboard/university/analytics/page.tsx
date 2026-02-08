@@ -1,68 +1,192 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
+import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell, AreaChart, Area } from 'recharts'
 
-const placementTrends = [
-  { year: '2020', rate: 68, avgSalary: 72000 },
-  { year: '2021', rate: 72, avgSalary: 75000 },
-  { year: '2022', rate: 76, avgSalary: 78000 },
-  { year: '2023', rate: 81, avgSalary: 82000 },
-  { year: '2024', rate: 85, avgSalary: 87000 }
-]
+// ---------------------------------------------------------------------------
+// Types matching the API response shapes from /api/dashboard/university/analytics
+// ---------------------------------------------------------------------------
 
-const skillsInDemand = [
-  { skill: 'React', demand: 95, students: 78, gap: 17 },
-  { skill: 'Python', demand: 92, students: 85, gap: 7 },
-  { skill: 'AWS', demand: 88, students: 45, gap: 43 },
-  { skill: 'Machine Learning', demand: 85, students: 52, gap: 33 },
-  { skill: 'TypeScript', demand: 82, students: 68, gap: 14 },
-  { skill: 'Docker', demand: 78, students: 38, gap: 40 },
-  { skill: 'Node.js', demand: 75, students: 71, gap: 4 },
-  { skill: 'Kubernetes', demand: 72, students: 22, gap: 50 }
-]
+interface OverviewData {
+  totalStudents: number
+  employerPartners: number
+  placementRate: number
+  avgSalary: number
+}
 
-const employerEngagement = [
-  { month: 'Jan', visits: 45, applications: 234, hires: 18 },
-  { month: 'Feb', visits: 52, applications: 289, hires: 22 },
-  { month: 'Mar', visits: 48, applications: 267, hires: 19 },
-  { month: 'Apr', visits: 67, applications: 356, hires: 28 },
-  { month: 'May', visits: 71, applications: 398, hires: 31 },
-  { month: 'Jun', visits: 59, applications: 312, hires: 25 }
-]
+interface PlacementTrend {
+  year: string
+  rate: number
+  avgSalary: number
+}
 
-const industryDistribution = [
-  { name: 'Technology', value: 45, color: '#0088FE', growth: 8 },
-  { name: 'Financial Services', value: 20, color: '#00C49F', growth: 12 },
-  { name: 'Healthcare', value: 15, color: '#FFBB28', growth: 15 },
-  { name: 'Consulting', value: 10, color: '#FF8042', growth: 5 },
-  { name: 'Startups', value: 6, color: '#8884d8', growth: 22 },
-  { name: 'Government', value: 4, color: '#82ca9d', growth: -3 }
-]
+interface PlacementData {
+  totalPlacements: number
+  confirmed: number
+  pending: number
+  declined: number
+  avgSalary: number
+  placementRate: number
+  placementTrends: PlacementTrend[]
+}
 
-const salaryTrends = [
-  { major: 'Computer Science', entry: 78000, mid: 110000, senior: 150000 },
-  { major: 'Software Engineering', entry: 75000, mid: 105000, senior: 145000 },
-  { major: 'Data Science', entry: 82000, mid: 120000, senior: 170000 },
-  { major: 'Cybersecurity', entry: 73000, mid: 108000, senior: 155000 }
-]
+interface IndustryItem {
+  name: string
+  value: number
+  color: string
+}
 
-const competitorAnalysis = [
-  { university: 'MIT', placementRate: 92, avgSalary: 95000, rank: 1 },
-  { university: 'Stanford', placementRate: 90, avgSalary: 98000, rank: 2 },
-  { university: 'Carnegie Mellon', placementRate: 89, avgSalary: 92000, rank: 3 },
-  { university: 'Our University', placementRate: 85, avgSalary: 87000, rank: 7 },
-  { university: 'UC Berkeley', placementRate: 86, avgSalary: 89000, rank: 5 }
-]
+interface SkillGapItem {
+  skill: string
+  demand: number
+  students: number
+  gap: number
+}
+
+interface TopCompany {
+  company: string
+  views: number
+  contacts: number
+}
+
+interface EmployersData {
+  totalViews: number
+  totalContacts: number
+  uniqueCompanies: number
+  topCompanies: TopCompany[]
+}
+
+interface SalaryItem {
+  major: string
+  avg: number
+  min: number
+  max: number
+  count: number
+}
+
+interface BenchmarkItem {
+  university: string
+  placementRate: number
+  avgSalary: number
+  placements: number
+  isOwn: boolean
+  rank: number
+}
+
+interface AnalyticsData {
+  overview?: OverviewData
+  placement?: PlacementData
+  industryDistribution?: IndustryItem[]
+  skillsGap?: SkillGapItem[]
+  employers?: EmployersData
+  salary?: SalaryItem[]
+  benchmark?: BenchmarkItem[]
+}
+
+// ---------------------------------------------------------------------------
+// Skeleton helpers
+// ---------------------------------------------------------------------------
+
+function StatCardSkeleton() {
+  return (
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <Skeleton className="h-4 w-24" />
+      </CardHeader>
+      <CardContent>
+        <Skeleton className="h-8 w-20 mb-2" />
+        <Skeleton className="h-3 w-32" />
+      </CardContent>
+    </Card>
+  )
+}
+
+function ChartSkeleton({ height = 300 }: { height?: number }) {
+  return (
+    <div className="flex items-center justify-center" style={{ height }}>
+      <div className="space-y-3 w-full">
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-5/6" />
+        <Skeleton className="h-4 w-4/6" />
+        <Skeleton className="h-4 w-5/6" />
+        <Skeleton className="h-4 w-3/6" />
+        <Skeleton className="h-4 w-4/6" />
+      </div>
+    </div>
+  )
+}
+
+function ListSkeleton({ rows = 5 }: { rows?: number }) {
+  return (
+    <div className="space-y-4">
+      {Array.from({ length: rows }).map((_, i) => (
+        <div key={i} className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Skeleton className="h-4 w-32" />
+            <Skeleton className="h-4 w-12" />
+          </div>
+          <Skeleton className="h-2 w-full" />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function EmptyState({ message }: { message: string }) {
+  return (
+    <div className="flex items-center justify-center py-12 text-muted-foreground">
+      <p>{message}</p>
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Main component
+// ---------------------------------------------------------------------------
 
 export default function UniversityAnalytics() {
   const [activeTab, setActiveTab] = useState('overview')
   const [timeRange, setTimeRange] = useState('1year')
+  const [data, setData] = useState<AnalyticsData>({})
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  const fetchData = useCallback(async (tab: string) => {
+    setLoading(true)
+    setError(null)
+    try {
+      const res = await fetch(`/api/dashboard/university/analytics?tab=${tab}`)
+      if (!res.ok) {
+        throw new Error(`Failed to fetch analytics (${res.status})`)
+      }
+      const json = await res.json()
+      setData((prev) => ({ ...prev, ...json }))
+    } catch (err: any) {
+      setError(err.message || 'An unexpected error occurred')
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  // Fetch data when tab changes
+  useEffect(() => {
+    fetchData(activeTab)
+  }, [activeTab, fetchData])
+
+  const overview = data.overview
+  const placement = data.placement
+  const industryDistribution = data.industryDistribution || []
+  const skillsGap = data.skillsGap || []
+  const employers = data.employers
+  const salary = data.salary || []
+  const benchmark = data.benchmark || []
+  const placementTrends = placement?.placementTrends || []
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
@@ -86,6 +210,14 @@ export default function UniversityAnalytics() {
         </Select>
       </div>
 
+      {error && (
+        <Card className="border-destructive">
+          <CardContent className="pt-6">
+            <p className="text-destructive text-sm">{error}</p>
+          </CardContent>
+        </Card>
+      )}
+
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="overview">Overview</TabsTrigger>
@@ -96,52 +228,66 @@ export default function UniversityAnalytics() {
           <TabsTrigger value="benchmark">Benchmark</TabsTrigger>
         </TabsList>
 
+        {/* ===================== OVERVIEW TAB ===================== */}
         <TabsContent value="overview" className="space-y-6">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Placement Rate</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">85%</div>
-                <p className="text-xs text-muted-foreground">
-                  +4% from last year
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Avg. Starting Salary</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">$87,000</div>
-                <p className="text-xs text-muted-foreground">
-                  +$5,000 from last year
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Employer Partners</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">147</div>
-                <p className="text-xs text-muted-foreground">
-                  +23 new this year
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Time to Placement</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">3.2 months</div>
-                <p className="text-xs text-muted-foreground">
-                  -0.5 months improvement
-                </p>
-              </CardContent>
-            </Card>
+            {loading ? (
+              <>
+                <StatCardSkeleton />
+                <StatCardSkeleton />
+                <StatCardSkeleton />
+                <StatCardSkeleton />
+              </>
+            ) : (
+              <>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Placement Rate</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{overview?.placementRate ?? 0}%</div>
+                    <p className="text-xs text-muted-foreground">
+                      Based on confirmed placements
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Avg. Starting Salary</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">
+                      ${(overview?.avgSalary ?? 0).toLocaleString()}
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      From confirmed full-time placements
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Employer Partners</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{overview?.employerPartners ?? 0}</div>
+                    <p className="text-xs text-muted-foreground">
+                      Unique confirmed companies
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Total Students</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{overview?.totalStudents ?? 0}</div>
+                    <p className="text-xs text-muted-foreground">
+                      Enrolled at your institution
+                    </p>
+                  </CardContent>
+                </Card>
+              </>
+            )}
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -149,19 +295,25 @@ export default function UniversityAnalytics() {
               <CardHeader>
                 <CardTitle>Placement Rate Trends</CardTitle>
                 <CardDescription>
-                  5-year trend of graduate placement rates
+                  Trend of graduate placement rates over time
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <AreaChart data={placementTrends}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="year" />
-                    <YAxis />
-                    <Tooltip />
-                    <Area type="monotone" dataKey="rate" stroke="#8884d8" fill="#8884d8" fillOpacity={0.3} />
-                  </AreaChart>
-                </ResponsiveContainer>
+                {loading ? (
+                  <ChartSkeleton />
+                ) : placementTrends.length === 0 ? (
+                  <EmptyState message="No placement trend data available" />
+                ) : (
+                  <ResponsiveContainer width="100%" height={300}>
+                    <AreaChart data={placementTrends}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="year" />
+                      <YAxis />
+                      <Tooltip />
+                      <Area type="monotone" dataKey="rate" stroke="#8884d8" fill="#8884d8" fillOpacity={0.3} />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                )}
               </CardContent>
             </Card>
 
@@ -173,84 +325,107 @@ export default function UniversityAnalytics() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <PieChart>
-                    <Pie
-                      data={industryDistribution}
-                      cx="50%"
-                      cy="50%"
-                      outerRadius={80}
-                      fill="#8884d8"
-                      dataKey="value"
-                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                    >
-                      {industryDistribution.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
+                {loading ? (
+                  <ChartSkeleton />
+                ) : industryDistribution.length === 0 ? (
+                  <EmptyState message="No industry distribution data available" />
+                ) : (
+                  <ResponsiveContainer width="100%" height={300}>
+                    <PieChart>
+                      <Pie
+                        data={industryDistribution}
+                        cx="50%"
+                        cy="50%"
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="value"
+                        label={({ name, percent }: { name: string; percent: number }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      >
+                        {industryDistribution.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                    </PieChart>
+                  </ResponsiveContainer>
+                )}
               </CardContent>
             </Card>
           </div>
         </TabsContent>
 
+        {/* ===================== PLACEMENT TAB ===================== */}
         <TabsContent value="placement" className="space-y-6">
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Placement Rate by Major</CardTitle>
+                <CardTitle>Placement Summary</CardTitle>
                 <CardDescription>
-                  Success rates across different programs
+                  Breakdown of placement statuses
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {[
-                    { major: 'Data Science', rate: 92 },
-                    { major: 'Computer Science', rate: 88 },
-                    { major: 'Software Engineering', rate: 85 },
-                    { major: 'Cybersecurity', rate: 82 },
-                    { major: 'Information Systems', rate: 79 }
-                  ].map((item) => (
-                    <div key={item.major} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">{item.major}</span>
-                        <span className="text-sm text-muted-foreground">{item.rate}%</span>
+                {loading ? (
+                  <ListSkeleton rows={4} />
+                ) : !placement ? (
+                  <EmptyState message="No placement data available" />
+                ) : (
+                  <div className="space-y-4">
+                    {[
+                      { label: 'Total Placements', value: placement.totalPlacements },
+                      { label: 'Confirmed', value: placement.confirmed },
+                      { label: 'Pending', value: placement.pending },
+                      { label: 'Declined', value: placement.declined },
+                    ].map((item) => (
+                      <div key={item.label} className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium">{item.label}</span>
+                          <span className="text-sm text-muted-foreground">{item.value}</span>
+                        </div>
+                        <Progress
+                          value={placement.totalPlacements > 0 ? (item.value / placement.totalPlacements) * 100 : 0}
+                          className="h-2"
+                        />
                       </div>
-                      <Progress value={item.rate} className="h-2" />
+                    ))}
+                    <div className="pt-2 border-t">
+                      <div className="flex items-center justify-between">
+                        <span className="font-medium">Placement Rate</span>
+                        <span className="text-sm font-bold">{placement.placementRate}%</span>
+                      </div>
+                      <div className="flex items-center justify-between mt-1">
+                        <span className="font-medium">Average Salary</span>
+                        <span className="text-sm font-bold">${placement.avgSalary.toLocaleString()}</span>
+                      </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Time to Placement Distribution</CardTitle>
+                <CardTitle>Placement Rate Over Time</CardTitle>
                 <CardDescription>
-                  How long students take to find employment
+                  Yearly placement rate progression
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {[
-                    { timeframe: 'Before Graduation', percentage: 35 },
-                    { timeframe: '0-1 months', percentage: 28 },
-                    { timeframe: '1-3 months', percentage: 22 },
-                    { timeframe: '3-6 months', percentage: 12 },
-                    { timeframe: '6+ months', percentage: 3 }
-                  ].map((item) => (
-                    <div key={item.timeframe} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">{item.timeframe}</span>
-                        <span className="text-sm text-muted-foreground">{item.percentage}%</span>
-                      </div>
-                      <Progress value={item.percentage} className="h-2" />
-                    </div>
-                  ))}
-                </div>
+                {loading ? (
+                  <ChartSkeleton />
+                ) : placementTrends.length === 0 ? (
+                  <EmptyState message="No trend data available" />
+                ) : (
+                  <ResponsiveContainer width="100%" height={300}>
+                    <AreaChart data={placementTrends}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="year" />
+                      <YAxis />
+                      <Tooltip />
+                      <Area type="monotone" dataKey="rate" stroke="#8884d8" fill="#8884d8" fillOpacity={0.3} name="Placement Rate %" />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                )}
               </CardContent>
             </Card>
           </div>
@@ -259,25 +434,32 @@ export default function UniversityAnalytics() {
             <CardHeader>
               <CardTitle>Graduate Outcomes Over Time</CardTitle>
               <CardDescription>
-                Employment status progression for recent graduates
+                Placement rate and average salary progression for recent graduates
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={placementTrends}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="year" />
-                  <YAxis yAxisId="left" orientation="left" />
-                  <YAxis yAxisId="right" orientation="right" />
-                  <Tooltip />
-                  <Bar yAxisId="left" dataKey="rate" fill="#8884d8" name="Placement Rate %" />
-                  <Line yAxisId="right" type="monotone" dataKey="avgSalary" stroke="#82ca9d" strokeWidth={3} name="Avg Salary" />
-                </LineChart>
-              </ResponsiveContainer>
+              {loading ? (
+                <ChartSkeleton />
+              ) : placementTrends.length === 0 ? (
+                <EmptyState message="No graduate outcome data available" />
+              ) : (
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={placementTrends}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="year" />
+                    <YAxis yAxisId="left" orientation="left" />
+                    <YAxis yAxisId="right" orientation="right" />
+                    <Tooltip />
+                    <Bar yAxisId="left" dataKey="rate" fill="#8884d8" name="Placement Rate %" />
+                    <Line yAxisId="right" type="monotone" dataKey="avgSalary" stroke="#82ca9d" strokeWidth={3} name="Avg Salary" />
+                  </LineChart>
+                </ResponsiveContainer>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
 
+        {/* ===================== SKILLS GAP TAB ===================== */}
         <TabsContent value="skills" className="space-y-6">
           <Card>
             <CardHeader>
@@ -287,34 +469,40 @@ export default function UniversityAnalytics() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
-                {skillsInDemand.map((skill) => (
-                  <div key={skill.skill} className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-medium">{skill.skill}</h3>
-                      <Badge variant={skill.gap > 30 ? 'destructive' : skill.gap > 15 ? 'default' : 'secondary'}>
-                        {skill.gap}% gap
-                      </Badge>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between text-sm">
-                          <span>Market Demand</span>
-                          <span>{skill.demand}%</span>
-                        </div>
-                        <Progress value={skill.demand} className="h-2" />
+              {loading ? (
+                <ListSkeleton rows={6} />
+              ) : skillsGap.length === 0 ? (
+                <EmptyState message="No skills gap data available" />
+              ) : (
+                <div className="space-y-6">
+                  {skillsGap.map((skill) => (
+                    <div key={skill.skill} className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <h3 className="font-medium">{skill.skill}</h3>
+                        <Badge variant={skill.gap > 30 ? 'destructive' : skill.gap > 15 ? 'default' : 'secondary'}>
+                          {skill.gap}% gap
+                        </Badge>
                       </div>
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between text-sm">
-                          <span>Student Proficiency</span>
-                          <span>{skill.students}%</span>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span>Market Demand</span>
+                            <span>{skill.demand}%</span>
+                          </div>
+                          <Progress value={skill.demand} className="h-2" />
                         </div>
-                        <Progress value={skill.students} className="h-2" />
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span>Student Proficiency</span>
+                            <span>{skill.students}%</span>
+                          </div>
+                          <Progress value={skill.students} className="h-2" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </CardContent>
           </Card>
 
@@ -327,226 +515,335 @@ export default function UniversityAnalytics() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {[
-                    { priority: 'High', recommendation: 'Add comprehensive AWS certification track' },
-                    { priority: 'High', recommendation: 'Integrate Docker/Kubernetes in DevOps course' },
-                    { priority: 'Medium', recommendation: 'Expand Machine Learning practical projects' },
-                    { priority: 'Medium', recommendation: 'Include TypeScript in web development curriculum' },
-                    { priority: 'Low', recommendation: 'Add advanced React patterns workshop' }
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <Badge variant={
-                        item.priority === 'High' ? 'destructive' : 
-                        item.priority === 'Medium' ? 'default' : 'secondary'
-                      }>
-                        {item.priority}
-                      </Badge>
-                      <p className="text-sm flex-1">{item.recommendation}</p>
-                    </div>
-                  ))}
-                </div>
+                {loading ? (
+                  <ListSkeleton rows={5} />
+                ) : skillsGap.length === 0 ? (
+                  <EmptyState message="No recommendations available" />
+                ) : (
+                  <div className="space-y-4">
+                    {skillsGap
+                      .filter((s) => s.gap > 0)
+                      .slice(0, 5)
+                      .map((s) => {
+                        const priority = s.gap > 30 ? 'High' : s.gap > 15 ? 'Medium' : 'Low'
+                        return (
+                          <div key={s.skill} className="flex items-start gap-3">
+                            <Badge variant={
+                              priority === 'High' ? 'destructive' :
+                              priority === 'Medium' ? 'default' : 'secondary'
+                            }>
+                              {priority}
+                            </Badge>
+                            <p className="text-sm flex-1">
+                              Improve curriculum coverage for <strong>{s.skill}</strong> ({s.gap}% gap between demand and student proficiency)
+                            </p>
+                          </div>
+                        )
+                      })}
+                  </div>
+                )}
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Industry Partnerships</CardTitle>
+                <CardTitle>Top Skills in Demand</CardTitle>
                 <CardDescription>
-                  Companies that could help bridge skill gaps
+                  Highest market demand skills from job postings
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {[
-                    { company: 'Amazon Web Services', skills: ['AWS', 'Cloud Computing'], type: 'Training Partner' },
-                    { company: 'Google', skills: ['Machine Learning', 'TensorFlow'], type: 'Education Partner' },
-                    { company: 'Microsoft', skills: ['Azure', 'TypeScript'], type: 'Technology Partner' },
-                    { company: 'Docker Inc.', skills: ['Containerization', 'DevOps'], type: 'Training Partner' }
-                  ].map((partner, index) => (
-                    <div key={index} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">{partner.company}</span>
-                        <Badge variant="outline">{partner.type}</Badge>
-                      </div>
-                      <div className="flex flex-wrap gap-1">
-                        {partner.skills.map((skill) => (
-                          <Badge key={skill} variant="secondary" className="text-xs">{skill}</Badge>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                {loading ? (
+                  <ListSkeleton rows={5} />
+                ) : skillsGap.length === 0 ? (
+                  <EmptyState message="No demand data available" />
+                ) : (
+                  <div className="space-y-4">
+                    {skillsGap
+                      .sort((a, b) => b.demand - a.demand)
+                      .slice(0, 6)
+                      .map((s) => (
+                        <div key={s.skill} className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium">{s.skill}</span>
+                            <Badge variant="outline">{s.demand}% demand</Badge>
+                          </div>
+                          <div className="flex flex-wrap gap-1">
+                            <Badge variant="secondary" className="text-xs">
+                              Students: {s.students}%
+                            </Badge>
+                            <Badge
+                              variant={s.gap > 20 ? 'destructive' : 'secondary'}
+                              className="text-xs"
+                            >
+                              Gap: {s.gap}%
+                            </Badge>
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
         </TabsContent>
 
+        {/* ===================== EMPLOYERS TAB ===================== */}
         <TabsContent value="employers" className="space-y-6">
+          <div className="grid gap-4 md:grid-cols-3 mb-6">
+            {loading ? (
+              <>
+                <StatCardSkeleton />
+                <StatCardSkeleton />
+                <StatCardSkeleton />
+              </>
+            ) : (
+              <>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Total Profile Views</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{employers?.totalViews ?? 0}</div>
+                    <p className="text-xs text-muted-foreground">By recruiters in last 6 months</p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Total Contacts Made</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{employers?.totalContacts ?? 0}</div>
+                    <p className="text-xs text-muted-foreground">Recruiters reaching out to students</p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Unique Companies</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{employers?.uniqueCompanies ?? 0}</div>
+                    <p className="text-xs text-muted-foreground">Engaging with your students</p>
+                  </CardContent>
+                </Card>
+              </>
+            )}
+          </div>
+
           <Card>
             <CardHeader>
-              <CardTitle>Employer Engagement Trends</CardTitle>
+              <CardTitle>Top Engaging Companies</CardTitle>
               <CardDescription>
-                Monthly activity from recruiting partners
+                Companies most actively viewing and contacting your students
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={employerEngagement}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="visits" stroke="#8884d8" strokeWidth={2} name="Company Visits" />
-                  <Line type="monotone" dataKey="applications" stroke="#82ca9d" strokeWidth={2} name="Applications" />
-                  <Line type="monotone" dataKey="hires" stroke="#ffc658" strokeWidth={2} name="Hires" />
-                </LineChart>
-              </ResponsiveContainer>
+              {loading ? (
+                <ChartSkeleton />
+              ) : !employers || employers.topCompanies.length === 0 ? (
+                <EmptyState message="No employer engagement data available" />
+              ) : (
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={employers.topCompanies.slice(0, 8)} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="company" />
+                    <YAxis />
+                    <Tooltip />
+                    <Bar dataKey="views" fill="#8884d8" name="Profile Views" />
+                    <Bar dataKey="contacts" fill="#82ca9d" name="Contacts" />
+                  </BarChart>
+                </ResponsiveContainer>
+              )}
             </CardContent>
           </Card>
 
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Top Hiring Partners</CardTitle>
+                <CardTitle>Top Companies by Views</CardTitle>
                 <CardDescription>
-                  Companies with highest hiring volumes
+                  Companies with highest student profile engagement
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {[
-                    { company: 'Google', hires: 23, growth: 15 },
-                    { company: 'Microsoft', hires: 19, growth: 8 },
-                    { company: 'Amazon', hires: 16, growth: 22 },
-                    { company: 'Meta', hires: 12, growth: -5 },
-                    { company: 'Apple', hires: 9, growth: 12 }
-                  ].map((company) => (
-                    <div key={company.company} className="flex items-center justify-between">
-                      <div>
-                        <p className="font-medium">{company.company}</p>
-                        <p className="text-sm text-muted-foreground">{company.hires} hires this year</p>
+                {loading ? (
+                  <ListSkeleton rows={5} />
+                ) : !employers || employers.topCompanies.length === 0 ? (
+                  <EmptyState message="No company data available" />
+                ) : (
+                  <div className="space-y-4">
+                    {employers.topCompanies.slice(0, 5).map((company) => (
+                      <div key={company.company} className="flex items-center justify-between">
+                        <div>
+                          <p className="font-medium">{company.company}</p>
+                          <p className="text-sm text-muted-foreground">{company.views} views, {company.contacts} contacts</p>
+                        </div>
+                        <Badge variant="default">
+                          {company.views} views
+                        </Badge>
                       </div>
-                      <Badge variant={company.growth > 0 ? 'default' : 'destructive'}>
-                        {company.growth > 0 ? '+' : ''}{company.growth}%
-                      </Badge>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Recruitment Events</CardTitle>
+                <CardTitle>Engagement Summary</CardTitle>
                 <CardDescription>
-                  Upcoming and recent employer events
+                  Overall recruiter activity metrics
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {[
-                    { event: 'Spring Career Fair', date: 'March 15, 2024', companies: 45, type: 'Career Fair' },
-                    { event: 'Tech Talk: AI at Scale', date: 'March 22, 2024', companies: 1, type: 'Tech Talk' },
-                    { event: 'Startup Showcase', date: 'April 5, 2024', companies: 12, type: 'Networking' },
-                    { event: 'Industry Panel Discussion', date: 'April 18, 2024', companies: 6, type: 'Panel' }
-                  ].map((event, index) => (
-                    <div key={index} className="space-y-2">
+                {loading ? (
+                  <ListSkeleton rows={3} />
+                ) : !employers ? (
+                  <EmptyState message="No engagement data available" />
+                ) : (
+                  <div className="space-y-4">
+                    <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="font-medium">{event.event}</span>
-                        <Badge variant="outline">{event.type}</Badge>
+                        <span className="font-medium">Profile Views</span>
+                        <span className="text-sm text-muted-foreground">{employers.totalViews}</span>
                       </div>
-                      <div className="text-sm text-muted-foreground">
-                        {event.date} • {event.companies} {event.companies === 1 ? 'company' : 'companies'}
-                      </div>
+                      <Progress value={Math.min(employers.totalViews, 100)} className="h-2" />
                     </div>
-                  ))}
-                </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="font-medium">Contacts Made</span>
+                        <span className="text-sm text-muted-foreground">{employers.totalContacts}</span>
+                      </div>
+                      <Progress value={Math.min(employers.totalContacts, 100)} className="h-2" />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="font-medium">Unique Companies</span>
+                        <span className="text-sm text-muted-foreground">{employers.uniqueCompanies}</span>
+                      </div>
+                      <Progress value={Math.min(employers.uniqueCompanies, 100)} className="h-2" />
+                    </div>
+                    {employers.totalViews > 0 && (
+                      <div className="pt-2 border-t">
+                        <p className="text-sm text-muted-foreground">
+                          Contact rate: {((employers.totalContacts / employers.totalViews) * 100).toFixed(1)}% of views led to contact
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
         </TabsContent>
 
+        {/* ===================== SALARY TAB ===================== */}
         <TabsContent value="salary" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Salary Progression by Major</CardTitle>
+              <CardTitle>Salary by Major / Degree</CardTitle>
               <CardDescription>
-                Career progression and earning potential across programs
+                Average, minimum, and maximum salary across programs
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={400}>
-                <BarChart data={salaryTrends} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="major" />
-                  <YAxis tickFormatter={(value) => `$${value / 1000}k`} />
-                  <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
-                  <Bar dataKey="entry" fill="#8884d8" name="Entry Level" />
-                  <Bar dataKey="mid" fill="#82ca9d" name="Mid Level" />
-                  <Bar dataKey="senior" fill="#ffc658" name="Senior Level" />
-                </BarChart>
-              </ResponsiveContainer>
+              {loading ? (
+                <ChartSkeleton height={400} />
+              ) : salary.length === 0 ? (
+                <EmptyState message="No salary data available" />
+              ) : (
+                <ResponsiveContainer width="100%" height={400}>
+                  <BarChart data={salary} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="major" />
+                    <YAxis tickFormatter={(value: number) => `$${value / 1000}k`} />
+                    <Tooltip formatter={(value: number) => `$${value.toLocaleString()}`} />
+                    <Bar dataKey="min" fill="#8884d8" name="Minimum" />
+                    <Bar dataKey="avg" fill="#82ca9d" name="Average" />
+                    <Bar dataKey="max" fill="#ffc658" name="Maximum" />
+                  </BarChart>
+                </ResponsiveContainer>
+              )}
             </CardContent>
           </Card>
 
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Salary Growth Factors</CardTitle>
+                <CardTitle>Salary Details by Major</CardTitle>
                 <CardDescription>
-                  Skills and factors that drive higher compensation
+                  Detailed breakdown per program
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {[
-                    { factor: 'Machine Learning Expertise', impact: '+$15,000' },
-                    { factor: 'Full-Stack Development', impact: '+$12,000' },
-                    { factor: 'Cloud Certifications (AWS/Azure)', impact: '+$10,000' },
-                    { factor: 'Leadership Experience', impact: '+$8,000' },
-                    { factor: 'Open Source Contributions', impact: '+$6,000' }
-                  ].map((item) => (
-                    <div key={item.factor} className="flex items-center justify-between">
-                      <span className="text-sm">{item.factor}</span>
-                      <Badge className="bg-green-600">{item.impact}</Badge>
-                    </div>
-                  ))}
-                </div>
+                {loading ? (
+                  <ListSkeleton rows={5} />
+                ) : salary.length === 0 ? (
+                  <EmptyState message="No salary data available" />
+                ) : (
+                  <div className="space-y-4">
+                    {salary.map((item) => (
+                      <div key={item.major} className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium">{item.major}</span>
+                          <span className="text-sm font-bold">${item.avg.toLocaleString()}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <span>Min: ${item.min.toLocaleString()}</span>
+                          <span>|</span>
+                          <span>Max: ${item.max.toLocaleString()}</span>
+                          <span>|</span>
+                          <span>{item.count} placements</span>
+                        </div>
+                        <Progress
+                          value={salary[0] ? (item.avg / salary[0].avg) * 100 : 0}
+                          className="h-2"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Regional Salary Comparison</CardTitle>
+                <CardTitle>Salary Range Distribution</CardTitle>
                 <CardDescription>
-                  Average starting salaries by location
+                  Spread between minimum and maximum salaries
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {[
-                    { location: 'San Francisco Bay Area', salary: 115000, col: 'High' },
-                    { location: 'Seattle', salary: 105000, col: 'High' },
-                    { location: 'New York City', salary: 98000, col: 'Very High' },
-                    { location: 'Austin', salary: 92000, col: 'Medium' },
-                    { location: 'Boston', salary: 88000, col: 'High' },
-                    { location: 'Chicago', salary: 82000, col: 'Medium' }
-                  ].map((location) => (
-                    <div key={location.location} className="flex items-center justify-between">
-                      <div>
-                        <p className="font-medium">{location.location}</p>
-                        <p className="text-sm text-muted-foreground">Cost of Living: {location.col}</p>
-                      </div>
-                      <p className="font-medium">${(location.salary / 1000).toFixed(0)}k</p>
-                    </div>
-                  ))}
-                </div>
+                {loading ? (
+                  <ListSkeleton rows={5} />
+                ) : salary.length === 0 ? (
+                  <EmptyState message="No salary data available" />
+                ) : (
+                  <div className="space-y-4">
+                    {salary.map((item) => {
+                      const range = item.max - item.min
+                      return (
+                        <div key={item.major} className="flex items-center justify-between">
+                          <div>
+                            <p className="font-medium">{item.major}</p>
+                            <p className="text-sm text-muted-foreground">
+                              ${(item.min / 1000).toFixed(0)}k - ${(item.max / 1000).toFixed(0)}k
+                            </p>
+                          </div>
+                          <Badge className="bg-green-600">
+                            ${(range / 1000).toFixed(0)}k range
+                          </Badge>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
         </TabsContent>
 
+        {/* ===================== BENCHMARK TAB ===================== */}
         <TabsContent value="benchmark" className="space-y-6">
           <Card>
             <CardHeader>
@@ -556,104 +853,143 @@ export default function UniversityAnalytics() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                {competitorAnalysis.map((university) => (
-                  <div key={university.university} className="p-4 border rounded-lg">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-sm font-medium">
-                          #{university.rank}
+              {loading ? (
+                <ListSkeleton rows={5} />
+              ) : benchmark.length === 0 ? (
+                <EmptyState message="No benchmark data available" />
+              ) : (
+                <div className="space-y-4">
+                  {benchmark.map((university) => (
+                    <div key={university.university} className="p-4 border rounded-lg">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-sm font-medium">
+                            #{university.rank}
+                          </div>
+                          <div>
+                            <h3 className="font-medium">{university.university}</h3>
+                            <p className="text-sm text-muted-foreground">
+                              {university.isOwn ? 'Current Institution' : 'Competitor'} - {university.placements} placements
+                            </p>
+                          </div>
+                        </div>
+                        {university.isOwn && (
+                          <Badge variant="outline">Us</Badge>
+                        )}
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <p className="text-sm text-muted-foreground">Placement Rate</p>
+                          <div className="flex items-center gap-2">
+                            <p className="font-medium text-lg">{university.placementRate}%</p>
+                            <Progress value={university.placementRate} className="flex-1 h-2" />
+                          </div>
                         </div>
                         <div>
-                          <h3 className="font-medium">{university.university}</h3>
-                          <p className="text-sm text-muted-foreground">
-                            {university.university === 'Our University' ? 'Current Institution' : 'Competitor'}
-                          </p>
+                          <p className="text-sm text-muted-foreground">Average Salary</p>
+                          <p className="font-medium text-lg">${(university.avgSalary / 1000).toFixed(0)}k</p>
                         </div>
                       </div>
-                      {university.university === 'Our University' && (
-                        <Badge variant="outline">Us</Badge>
-                      )}
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-sm text-muted-foreground">Placement Rate</p>
-                        <div className="flex items-center gap-2">
-                          <p className="font-medium text-lg">{university.placementRate}%</p>
-                          <Progress value={university.placementRate} className="flex-1 h-2" />
-                        </div>
-                      </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground">Average Salary</p>
-                        <p className="font-medium text-lg">${(university.avgSalary / 1000).toFixed(0)}k</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </CardContent>
           </Card>
 
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Improvement Opportunities</CardTitle>
+                <CardTitle>Benchmark Chart</CardTitle>
                 <CardDescription>
-                  Areas where we can gain competitive advantage
+                  Placement rate comparison across institutions
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {[
-                    { area: 'Industry Partnerships', gap: '15 fewer than top performers', priority: 'High' },
-                    { area: 'Alumni Network Engagement', gap: '20% lower participation', priority: 'Medium' },
-                    { area: 'Placement Rate', gap: '7% below top tier', priority: 'High' },
-                    { area: 'Starting Salaries', gap: '$8k below competitors', priority: 'Medium' },
-                    { area: 'Career Services', gap: 'Limited AI-powered matching', priority: 'High' }
-                  ].map((item) => (
-                    <div key={item.area} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">{item.area}</span>
-                        <Badge variant={item.priority === 'High' ? 'destructive' : 'default'}>
-                          {item.priority}
-                        </Badge>
-                      </div>
-                      <p className="text-sm text-muted-foreground">{item.gap}</p>
-                    </div>
-                  ))}
-                </div>
+                {loading ? (
+                  <ChartSkeleton />
+                ) : benchmark.length === 0 ? (
+                  <EmptyState message="No benchmark data available" />
+                ) : (
+                  <ResponsiveContainer width="100%" height={300}>
+                    <BarChart data={benchmark} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="university" />
+                      <YAxis />
+                      <Tooltip />
+                      <Bar dataKey="placementRate" name="Placement Rate %">
+                        {benchmark.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.isOwn ? '#8884d8' : '#ccc'} />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
+                )}
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Ranking Factors</CardTitle>
+                <CardTitle>Ranking Overview</CardTitle>
                 <CardDescription>
-                  Key metrics that influence institutional rankings
+                  Key metrics compared to other institutions
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {[
-                    { metric: 'Graduate Employment Rate', weight: '25%', score: 85 },
-                    { metric: 'Starting Salary Outcomes', weight: '20%', score: 78 },
-                    { metric: 'Industry Recognition', weight: '15%', score: 82 },
-                    { metric: 'Alumni Success', weight: '15%', score: 79 },
-                    { metric: 'Employer Satisfaction', weight: '15%', score: 88 },
-                    { metric: 'Innovation Index', weight: '10%', score: 75 }
-                  ].map((metric) => (
-                    <div key={metric.metric} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm">{metric.metric}</span>
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs text-muted-foreground">{metric.weight}</span>
-                          <span className="text-sm font-medium">{metric.score}/100</span>
+                {loading ? (
+                  <ListSkeleton rows={5} />
+                ) : benchmark.length === 0 ? (
+                  <EmptyState message="No ranking data available" />
+                ) : (() => {
+                  const own = benchmark.find((b) => b.isOwn)
+                  const topRate = benchmark.length > 0 ? benchmark[0].placementRate : 0
+                  const avgRate = benchmark.length > 0
+                    ? Math.round(benchmark.reduce((sum, b) => sum + b.placementRate, 0) / benchmark.length)
+                    : 0
+                  const topSalary = benchmark.length > 0
+                    ? Math.max(...benchmark.map(b => b.avgSalary))
+                    : 0
+                  const avgSalary = benchmark.length > 0
+                    ? Math.round(benchmark.reduce((sum, b) => sum + b.avgSalary, 0) / benchmark.length)
+                    : 0
+
+                  return (
+                    <div className="space-y-4">
+                      {own && (
+                        <div className="space-y-2 pb-3 border-b">
+                          <p className="text-sm font-medium">Your Position</p>
+                          <p className="text-2xl font-bold">Rank #{own.rank} of {benchmark.length}</p>
                         </div>
+                      )}
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm">Top Placement Rate</span>
+                          <span className="text-sm font-medium">{topRate}%</span>
+                        </div>
+                        <Progress value={topRate} className="h-2" />
                       </div>
-                      <Progress value={metric.score} className="h-2" />
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm">Average Placement Rate</span>
+                          <span className="text-sm font-medium">{avgRate}%</span>
+                        </div>
+                        <Progress value={avgRate} className="h-2" />
+                      </div>
+                      {own && (
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm">Your Placement Rate</span>
+                            <span className="text-sm font-medium">{own.placementRate}%</span>
+                          </div>
+                          <Progress value={own.placementRate} className="h-2" />
+                        </div>
+                      )}
+                      <div className="pt-2 border-t text-sm text-muted-foreground">
+                        <p>Top salary: ${(topSalary / 1000).toFixed(0)}k | Average: ${(avgSalary / 1000).toFixed(0)}k</p>
+                      </div>
                     </div>
-                  ))}
-                </div>
+                  )
+                })()}
               </CardContent>
             </Card>
           </div>

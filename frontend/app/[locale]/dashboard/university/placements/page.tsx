@@ -1,21 +1,18 @@
 'use client'
 
-import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useState, useEffect, useCallback } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Search,
-  Filter,
   Download,
   TrendingUp,
-  Users,
   Briefcase,
   DollarSign,
-  Calendar,
   Building2,
   MapPin,
   CheckCircle,
@@ -33,103 +30,80 @@ import {
 interface Placement {
   id: string
   studentName: string
-  studentAvatar?: string
+  studentId: string
   department: string
   company: string
   position: string
   salary: number
+  salaryCurrency: string
+  salaryPeriod: string
   location: string
   startDate: string
+  endDate: string | null
   status: 'confirmed' | 'pending' | 'declined'
   type: 'full-time' | 'internship' | 'part-time'
 }
 
-const mockPlacements: Placement[] = [
-  {
-    id: '1',
-    studentName: 'Marco Rossi',
-    department: 'Ingegneria Informatica',
-    company: 'Google',
-    position: 'Software Engineer',
-    salary: 45000,
-    location: 'Milano',
-    startDate: '2024-03-01',
-    status: 'confirmed',
-    type: 'full-time'
-  },
-  {
-    id: '2',
-    studentName: 'Sofia Bianchi',
-    department: 'Ingegneria Gestionale',
-    company: 'McKinsey',
-    position: 'Business Analyst',
-    salary: 42000,
-    location: 'Milano',
-    startDate: '2024-02-15',
-    status: 'confirmed',
-    type: 'full-time'
-  },
-  {
-    id: '3',
-    studentName: 'Alessandro Costa',
-    department: 'Design',
-    company: 'Apple',
-    position: 'UX Designer',
-    salary: 40000,
-    location: 'Londra',
-    startDate: '2024-04-01',
-    status: 'pending',
-    type: 'full-time'
-  },
-  {
-    id: '4',
-    studentName: 'Giulia Ferrari',
-    department: 'Ingegneria Meccanica',
-    company: 'Ferrari',
-    position: 'Engineering Intern',
-    salary: 1200,
-    location: 'Maranello',
-    startDate: '2024-06-01',
-    status: 'confirmed',
-    type: 'internship'
-  },
-  {
-    id: '5',
-    studentName: 'Luca Verdi',
-    department: 'Architettura',
-    company: 'Foster + Partners',
-    position: 'Junior Architect',
-    salary: 32000,
-    location: 'Londra',
-    startDate: '2024-03-15',
-    status: 'declined',
-    type: 'full-time'
-  }
-]
+interface PlacementStats {
+  confirmed: number
+  pending: number
+  avgSalary: number
+  placementRate: number
+}
+
+const currencySymbols: Record<string, string> = {
+  EUR: '\u20AC',
+  USD: '$',
+  GBP: '\u00A3',
+  CHF: 'CHF ',
+}
+
+function getCurrencySymbol(code: string): string {
+  return currencySymbols[code] || code + ' '
+}
 
 export default function UniversityPlacementsPage() {
-  const [placements, setPlacements] = useState<Placement[]>(mockPlacements)
+  const [placements, setPlacements] = useState<Placement[]>([])
+  const [stats, setStats] = useState<PlacementStats | null>(null)
+  const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [typeFilter, setTypeFilter] = useState('all')
 
-  const filteredPlacements = placements.filter(p => {
-    const matchesSearch = p.studentName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         p.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         p.position.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesStatus = statusFilter === 'all' || p.status === statusFilter
-    const matchesType = typeFilter === 'all' || p.type === typeFilter
-    return matchesSearch && matchesStatus && matchesType
-  })
+  const fetchPlacements = useCallback(async () => {
+    setLoading(true)
+    try {
+      const params = new URLSearchParams()
+      if (searchQuery) params.set('search', searchQuery)
+      if (statusFilter && statusFilter !== 'all') params.set('status', statusFilter)
+      if (typeFilter && typeFilter !== 'all') params.set('type', typeFilter)
 
-  const confirmedCount = placements.filter(p => p.status === 'confirmed').length
-  const pendingCount = placements.filter(p => p.status === 'pending').length
-  const avgSalary = Math.round(
-    placements
-      .filter(p => p.type === 'full-time' && p.status === 'confirmed')
-      .reduce((sum, p) => sum + p.salary, 0) /
-    placements.filter(p => p.type === 'full-time' && p.status === 'confirmed').length
-  )
+      const qs = params.toString()
+      const url = `/api/dashboard/university/placements${qs ? `?${qs}` : ''}`
+      const res = await fetch(url)
+
+      if (!res.ok) {
+        console.error('Failed to fetch placements:', res.status)
+        setPlacements([])
+        setStats(null)
+        return
+      }
+
+      const data = await res.json()
+      setPlacements(data.placements ?? [])
+      setStats(data.stats ?? null)
+    } catch (err) {
+      console.error('Error fetching placements:', err)
+      setPlacements([])
+      setStats(null)
+    } finally {
+      setLoading(false)
+    }
+  }, [searchQuery, statusFilter, typeFilter])
+
+  useEffect(() => {
+    fetchPlacements()
+  }, [fetchPlacements])
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -181,8 +155,17 @@ export default function UniversityPlacementsPage() {
                   <CheckCircle className="h-5 w-5 text-green-600" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">{confirmedCount}</p>
-                  <p className="text-sm text-gray-600">Confermati</p>
+                  {loading ? (
+                    <>
+                      <Skeleton className="h-7 w-12 mb-1" />
+                      <Skeleton className="h-4 w-20" />
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-2xl font-bold">{stats?.confirmed ?? 0}</p>
+                      <p className="text-sm text-gray-600">Confermati</p>
+                    </>
+                  )}
                 </div>
               </div>
             </CardContent>
@@ -194,8 +177,17 @@ export default function UniversityPlacementsPage() {
                   <Clock className="h-5 w-5 text-yellow-600" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">{pendingCount}</p>
-                  <p className="text-sm text-gray-600">In Attesa</p>
+                  {loading ? (
+                    <>
+                      <Skeleton className="h-7 w-12 mb-1" />
+                      <Skeleton className="h-4 w-20" />
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-2xl font-bold">{stats?.pending ?? 0}</p>
+                      <p className="text-sm text-gray-600">In Attesa</p>
+                    </>
+                  )}
                 </div>
               </div>
             </CardContent>
@@ -207,8 +199,19 @@ export default function UniversityPlacementsPage() {
                   <DollarSign className="h-5 w-5 text-blue-600" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">€{(avgSalary / 1000).toFixed(0)}k</p>
-                  <p className="text-sm text-gray-600">Stipendio Medio</p>
+                  {loading ? (
+                    <>
+                      <Skeleton className="h-7 w-16 mb-1" />
+                      <Skeleton className="h-4 w-24" />
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-2xl font-bold">
+                        {'\u20AC'}{((stats?.avgSalary ?? 0) / 1000).toFixed(0)}k
+                      </p>
+                      <p className="text-sm text-gray-600">Stipendio Medio</p>
+                    </>
+                  )}
                 </div>
               </div>
             </CardContent>
@@ -220,8 +223,17 @@ export default function UniversityPlacementsPage() {
                   <TrendingUp className="h-5 w-5 text-purple-600" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">94%</p>
-                  <p className="text-sm text-gray-600">Tasso Placement</p>
+                  {loading ? (
+                    <>
+                      <Skeleton className="h-7 w-14 mb-1" />
+                      <Skeleton className="h-4 w-24" />
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-2xl font-bold">{stats?.placementRate ?? 0}%</p>
+                      <p className="text-sm text-gray-600">Tasso Placement</p>
+                    </>
+                  )}
                 </div>
               </div>
             </CardContent>
@@ -280,59 +292,85 @@ export default function UniversityPlacementsPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y">
-                  {filteredPlacements.map((placement) => (
-                    <tr key={placement.id} className="hover:bg-gray-50">
-                      <td className="p-4">
-                        <div className="flex items-center gap-3">
-                          <Avatar className="h-10 w-10">
-                            <AvatarImage src={placement.studentAvatar} />
-                            <AvatarFallback>
-                              {placement.studentName.split(' ').map(n => n[0]).join('')}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <p className="font-medium text-gray-900">{placement.studentName}</p>
-                            <p className="text-sm text-gray-600">{placement.department}</p>
+                  {loading ? (
+                    Array.from({ length: 5 }).map((_, i) => (
+                      <tr key={i}>
+                        <td className="p-4">
+                          <div className="flex items-center gap-3">
+                            <Skeleton className="h-10 w-10 rounded-full" />
+                            <div>
+                              <Skeleton className="h-4 w-28 mb-1" />
+                              <Skeleton className="h-3 w-36" />
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td className="p-4">
-                        <div className="flex items-center gap-2">
-                          <Building2 className="h-4 w-4 text-gray-400" />
-                          <span className="font-medium">{placement.company}</span>
-                        </div>
-                      </td>
-                      <td className="p-4">
-                        <p className="text-gray-900">{placement.position}</p>
-                        <p className="text-sm text-gray-600 flex items-center gap-1">
-                          <MapPin className="h-3 w-3" />
-                          {placement.location}
-                        </p>
-                      </td>
-                      <td className="p-4">
-                        <span className="font-semibold text-gray-900">
-                          €{placement.salary.toLocaleString()}
-                          {placement.type === 'internship' && '/mese'}
-                        </span>
-                      </td>
-                      <td className="p-4">
-                        <span className="text-gray-600">
-                          {new Date(placement.startDate).toLocaleDateString('it-IT', {
-                            day: 'numeric',
-                            month: 'short',
-                            year: 'numeric'
-                          })}
-                        </span>
-                      </td>
-                      <td className="p-4">{getTypeBadge(placement.type)}</td>
-                      <td className="p-4">{getStatusBadge(placement.status)}</td>
-                    </tr>
-                  ))}
+                        </td>
+                        <td className="p-4"><Skeleton className="h-4 w-24" /></td>
+                        <td className="p-4">
+                          <Skeleton className="h-4 w-32 mb-1" />
+                          <Skeleton className="h-3 w-20" />
+                        </td>
+                        <td className="p-4"><Skeleton className="h-4 w-20" /></td>
+                        <td className="p-4"><Skeleton className="h-4 w-24" /></td>
+                        <td className="p-4"><Skeleton className="h-5 w-16 rounded-full" /></td>
+                        <td className="p-4"><Skeleton className="h-5 w-20 rounded-full" /></td>
+                      </tr>
+                    ))
+                  ) : (
+                    placements.map((placement) => (
+                      <tr key={placement.id} className="hover:bg-gray-50">
+                        <td className="p-4">
+                          <div className="flex items-center gap-3">
+                            <Avatar className="h-10 w-10">
+                              <AvatarFallback>
+                                {placement.studentName.split(' ').map(n => n[0]).join('')}
+                              </AvatarFallback>
+                            </Avatar>
+                            <div>
+                              <p className="font-medium text-gray-900">{placement.studentName}</p>
+                              <p className="text-sm text-gray-600">{placement.department}</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="p-4">
+                          <div className="flex items-center gap-2">
+                            <Building2 className="h-4 w-4 text-gray-400" />
+                            <span className="font-medium">{placement.company}</span>
+                          </div>
+                        </td>
+                        <td className="p-4">
+                          <p className="text-gray-900">{placement.position}</p>
+                          {placement.location && (
+                            <p className="text-sm text-gray-600 flex items-center gap-1">
+                              <MapPin className="h-3 w-3" />
+                              {placement.location}
+                            </p>
+                          )}
+                        </td>
+                        <td className="p-4">
+                          <span className="font-semibold text-gray-900">
+                            {getCurrencySymbol(placement.salaryCurrency)}{placement.salary.toLocaleString()}
+                            {placement.type === 'internship' && '/mese'}
+                          </span>
+                        </td>
+                        <td className="p-4">
+                          <span className="text-gray-600">
+                            {new Date(placement.startDate).toLocaleDateString('it-IT', {
+                              day: 'numeric',
+                              month: 'short',
+                              year: 'numeric'
+                            })}
+                          </span>
+                        </td>
+                        <td className="p-4">{getTypeBadge(placement.type)}</td>
+                        <td className="p-4">{getStatusBadge(placement.status)}</td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>
 
-            {filteredPlacements.length === 0 && (
+            {!loading && placements.length === 0 && (
               <div className="text-center py-12">
                 <Briefcase className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">

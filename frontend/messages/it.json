@@ -3588,5 +3588,70 @@
       "primaryButton": "Crea Portfolio Gratuito",
       "secondaryButton": "Scopri Come Funziona"
     }
+  },
+  "skillPath": {
+    "title": "Percorso Competenze Consigliato",
+    "subtitle": "Analisi personalizzata delle tue competenze rispetto alla domanda di mercato",
+    "unauthorized": "Accedi per visualizzare i consigli sul percorso competenze.",
+    "error": "Si è verificato un errore nel caricamento dei consigli.",
+    "tryAgain": "Riprova",
+    "refresh": "Aggiorna",
+    "refreshing": "Aggiornamento...",
+    "lastUpdated": "Ultimo aggiornamento {date}",
+    "unlock": "Aggiorna Piano",
+    "emptyState": {
+      "title": "Aggiungi il Tuo Primo Progetto",
+      "description": "Abbiamo bisogno di almeno un progetto per analizzare le tue competenze e generare consigli personalizzati. Inizia aggiungendo un progetto al tuo portfolio.",
+      "cta": "Aggiungi il Tuo Primo Progetto"
+    },
+    "premiumUpsell": {
+      "title": "Sblocca l'Analisi Completa delle Competenze",
+      "description": "Ottieni gap di competenze illimitati, idee progetto, roadmap di apprendimento e confronto percorsi di carriera.",
+      "cta": "Aggiorna Piano"
+    },
+    "tabs": {
+      "overview": "Panoramica",
+      "skills": "Competenze",
+      "roadmap": "Roadmap",
+      "projects": "Progetti",
+      "careers": "Percorsi di Carriera"
+    },
+    "overview": {
+      "radarTitle": "Competenze vs Candidato Ideale",
+      "radarDescription": "I tuoi livelli di competenza rispetto alle aspettative del mercato",
+      "topGapsTitle": "Gap di Competenze Prioritari",
+      "topGapsDescription": "Le competenze più importanti da sviluppare per migliorare l'occupabilità",
+      "showingLimited": "Mostrati {count} di {total}",
+      "quickStatsTitle": "Statistiche Rapide",
+      "skillsDetected": "Competenze Rilevate",
+      "skillGaps": "Gap Competenze",
+      "careerMatches": "Corrispondenze Carriera",
+      "projectIdeas": "Idee Progetto",
+      "topCareerTitle": "Miglior Corrispondenza Carriera",
+      "skillsToLearn": "Competenze da apprendere:"
+    },
+    "skills": {
+      "radarTitle": "Radar Competenze Completo",
+      "radarDescription": "Vista completa delle tue competenze rispetto alla domanda di mercato",
+      "gapsTitle": "Gap di Competenze da Colmare",
+      "limitedGaps": "Mostrati {shown} di {total} gap di competenze",
+      "currentTitle": "Le Tue Competenze Attuali"
+    },
+    "roadmap": {
+      "title": "Roadmap di Apprendimento",
+      "description": "Timeline personalizzata di competenze da apprendere e progetti da realizzare",
+      "lockedTitle": "Roadmap di Apprendimento (Funzione Pro)",
+      "lockedDescription": "Passa a Pro per ottenere una roadmap di apprendimento personalizzata con tappe settimanali su misura per i tuoi gap di competenze."
+    },
+    "projects": {
+      "title": "Progetti Consigliati",
+      "showingLimited": "Mostrati {shown} di {total}",
+      "moreAvailable": "{count} altre idee progetto disponibili con Pro"
+    },
+    "careers": {
+      "title": "Analisi Percorsi di Carriera",
+      "showingLimited": "Mostrati {shown} di {total}",
+      "moreAvailable": "{count} altri percorsi di carriera disponibili con Pro"
+    }
   }
 }

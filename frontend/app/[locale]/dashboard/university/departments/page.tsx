@@ -1,21 +1,19 @@
 'use client'
 
-import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useState, useEffect } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Search,
-  Plus,
   Users,
   TrendingUp,
   Briefcase,
   GraduationCap,
   MoreHorizontal,
-  Edit,
-  Trash2,
   BarChart3,
   ArrowUpRight,
   ArrowDownRight
@@ -26,16 +24,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-} from '@/components/ui/dialog'
-import { Label } from '@/components/ui/label'
 
 interface Department {
   id: string
@@ -49,69 +37,26 @@ interface Department {
   trendValue: number
 }
 
-const mockDepartments: Department[] = [
-  {
-    id: '1',
-    name: 'Ingegneria Informatica',
-    code: 'INF',
-    students: 450,
-    placementRate: 94,
-    avgSalary: 35000,
-    topCompanies: ['Google', 'Microsoft', 'Amazon'],
-    trend: 'up',
-    trendValue: 5
-  },
-  {
-    id: '2',
-    name: 'Ingegneria Gestionale',
-    code: 'GES',
-    students: 380,
-    placementRate: 91,
-    avgSalary: 33000,
-    topCompanies: ['McKinsey', 'BCG', 'Accenture'],
-    trend: 'up',
-    trendValue: 3
-  },
-  {
-    id: '3',
-    name: 'Ingegneria Meccanica',
-    code: 'MEC',
-    students: 320,
-    placementRate: 88,
-    avgSalary: 32000,
-    topCompanies: ['Ferrari', 'Lamborghini', 'Pirelli'],
-    trend: 'stable',
-    trendValue: 0
-  },
-  {
-    id: '4',
-    name: 'Architettura',
-    code: 'ARC',
-    students: 280,
-    placementRate: 76,
-    avgSalary: 28000,
-    topCompanies: ['Renzo Piano', 'Foster + Partners', 'Zaha Hadid'],
-    trend: 'down',
-    trendValue: -2
-  },
-  {
-    id: '5',
-    name: 'Design',
-    code: 'DES',
-    students: 220,
-    placementRate: 82,
-    avgSalary: 29000,
-    topCompanies: ['Apple', 'IDEO', 'Pininfarina'],
-    trend: 'up',
-    trendValue: 4
-  }
-]
-
 export default function UniversityDepartmentsPage() {
-  const [departments, setDepartments] = useState<Department[]>(mockDepartments)
+  const [departments, setDepartments] = useState<Department[]>([])
   const [searchQuery, setSearchQuery] = useState('')
-  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
-  const [newDepartment, setNewDepartment] = useState({ name: '', code: '' })
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchDepartments() {
+      try {
+        const res = await fetch('/api/dashboard/university/departments')
+        if (!res.ok) throw new Error('Failed to fetch departments')
+        const data = await res.json()
+        setDepartments(data.departments)
+      } catch (err) {
+        console.error('Error fetching departments:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchDepartments()
+  }, [])
 
   const filteredDepartments = departments.filter(dept =>
     dept.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -119,85 +64,81 @@ export default function UniversityDepartmentsPage() {
   )
 
   const totalStudents = departments.reduce((sum, d) => sum + d.students, 0)
-  const avgPlacementRate = Math.round(departments.reduce((sum, d) => sum + d.placementRate, 0) / departments.length)
+  const avgPlacementRate = departments.length > 0
+    ? Math.round(departments.reduce((sum, d) => sum + d.placementRate, 0) / departments.length)
+    : 0
 
-  const handleAddDepartment = () => {
-    if (!newDepartment.name || !newDepartment.code) return
+  // Derive unique partner companies count from all departments
+  const partnerCompaniesSet = new Set<string>()
+  departments.forEach(d => d.topCompanies.forEach(c => partnerCompaniesSet.add(c)))
+  const partnerCompaniesCount = partnerCompaniesSet.size
 
-    const dept: Department = {
-      id: Date.now().toString(),
-      name: newDepartment.name,
-      code: newDepartment.code,
-      students: 0,
-      placementRate: 0,
-      avgSalary: 0,
-      topCompanies: [],
-      trend: 'stable',
-      trendValue: 0
-    }
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+        <div className="container mx-auto px-4">
+          {/* Header skeleton */}
+          <div className="mb-8">
+            <Skeleton className="h-9 w-48 mb-2" />
+            <Skeleton className="h-5 w-80" />
+          </div>
 
-    setDepartments([...departments, dept])
-    setNewDepartment({ name: '', code: '' })
-    setIsAddDialogOpen(false)
-  }
+          {/* Stats skeleton */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <Card key={i}>
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3">
+                    <Skeleton className="w-10 h-10 rounded-lg" />
+                    <div>
+                      <Skeleton className="h-7 w-16 mb-1" />
+                      <Skeleton className="h-4 w-24" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
-  const handleDeleteDepartment = (id: string) => {
-    setDepartments(departments.filter(d => d.id !== id))
+          {/* Search skeleton */}
+          <Skeleton className="h-10 w-full max-w-md mb-6" />
+
+          {/* Department cards skeleton */}
+          <div className="grid gap-4">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <Card key={i}>
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <Skeleton className="w-12 h-12 rounded-lg" />
+                      <div>
+                        <Skeleton className="h-6 w-48 mb-2" />
+                        <Skeleton className="h-4 w-32" />
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-8">
+                      <Skeleton className="h-10 w-20" />
+                      <Skeleton className="h-10 w-16" />
+                      <Skeleton className="h-6 w-32 hidden lg:block" />
+                      <Skeleton className="h-8 w-8" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Dipartimenti</h1>
-            <p className="text-gray-600">Gestisci i dipartimenti e monitora le performance</p>
-          </div>
-          <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-            <DialogTrigger asChild>
-              <Button>
-                <Plus className="h-4 w-4 mr-2" />
-                Aggiungi Dipartimento
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Nuovo Dipartimento</DialogTitle>
-                <DialogDescription>
-                  Aggiungi un nuovo dipartimento alla tua istituzione
-                </DialogDescription>
-              </DialogHeader>
-              <div className="space-y-4 py-4">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Nome Dipartimento</Label>
-                  <Input
-                    id="name"
-                    value={newDepartment.name}
-                    onChange={(e) => setNewDepartment({ ...newDepartment, name: e.target.value })}
-                    placeholder="es. Ingegneria Informatica"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="code">Codice</Label>
-                  <Input
-                    id="code"
-                    value={newDepartment.code}
-                    onChange={(e) => setNewDepartment({ ...newDepartment, code: e.target.value })}
-                    placeholder="es. INF"
-                  />
-                </div>
-              </div>
-              <DialogFooter>
-                <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}>
-                  Annulla
-                </Button>
-                <Button onClick={handleAddDepartment}>
-                  Aggiungi
-                </Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">Dipartimenti</h1>
+          <p className="text-gray-600">Gestisci i dipartimenti e monitora le performance</p>
         </div>
 
         {/* Stats Overview */}
@@ -248,7 +189,7 @@ export default function UniversityDepartmentsPage() {
                   <Briefcase className="h-5 w-5 text-orange-600" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">156</p>
+                  <p className="text-2xl font-bold">{partnerCompaniesCount}</p>
                   <p className="text-sm text-gray-600">Aziende Partner</p>
                 </div>
               </div>
@@ -302,7 +243,7 @@ export default function UniversityDepartmentsPage() {
                     {/* Avg Salary */}
                     <div className="text-center">
                       <p className="text-2xl font-bold text-gray-900">
-                        €{(dept.avgSalary / 1000).toFixed(0)}k
+                        &euro;{(dept.avgSalary / 1000).toFixed(0)}k
                       </p>
                       <p className="text-xs text-gray-600">Stipendio Medio</p>
                     </div>
@@ -335,17 +276,6 @@ export default function UniversityDepartmentsPage() {
                         <DropdownMenuItem>
                           <BarChart3 className="h-4 w-4 mr-2" />
                           Vedi Analytics
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <Edit className="h-4 w-4 mr-2" />
-                          Modifica
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                          className="text-red-600"
-                          onClick={() => handleDeleteDepartment(dept.id)}
-                        >
-                          <Trash2 className="h-4 w-4 mr-2" />
-                          Elimina
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>

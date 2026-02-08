@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma'
 import { z } from 'zod'
 import bcrypt from 'bcryptjs'
 import crypto from 'crypto'
+import { sendWelcomeEmail } from '@/lib/email'
 
 // Schema for validating each row in the CSV
 const studentRowSchema = z.object({
@@ -245,9 +246,12 @@ export async function POST(req: NextRequest) {
         // Add to existing set to prevent duplicates within same import
         existingEmails.add(validRow.email.toLowerCase())
 
-        // TODO: Send welcome email with temp password
-        // For now, log it (in production, send email)
-        console.log(`Created student: ${validRow.email} with temp password`)
+        // Send welcome email with temp password
+        try {
+          await sendWelcomeEmail(validRow.email, tempPassword, universityName)
+        } catch (emailError) {
+          console.error(`Failed to send welcome email to ${validRow.email}:`, emailError)
+        }
 
       } catch (error: any) {
         result.failed++

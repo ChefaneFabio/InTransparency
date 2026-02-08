@@ -14,19 +14,14 @@ import {
   MapPin,
   Star,
   Award,
-  TrendingUp,
   Briefcase,
   Calendar,
   Building2,
-  Users,
-  CheckCircle,
   ArrowRight,
   Lightbulb,
   Zap,
-  Target,
   DollarSign,
   Clock,
-  Search
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -44,7 +39,7 @@ type Student = {
   id: string
   name: string
   major: string
-  gpa: number
+  gpa: number | null
   graduationYear: string
   location: string
   skills: string[]
@@ -69,6 +64,66 @@ type Job = {
   companySize: string
 }
 
+// Response types from real APIs
+type StudentApiResponse = {
+  students: Array<{
+    id: string
+    name: string
+    email: string
+    major: string
+    year: string
+    gpa: number | null
+    projects: number
+    applications: number
+    verified: boolean
+    profilePublic: boolean
+    lastActive: string | null
+    joinedAt: string
+    avatar: string
+    photo: string | null
+  }>
+  total: number
+  page: number
+  totalPages: number
+  stats: {
+    totalStudents: number
+    verifiedStudents: number
+    activeProfiles: number
+  }
+  filters: {
+    degrees: string[]
+  }
+}
+
+type JobApiResponse = {
+  jobs: Array<{
+    id: string
+    title: string
+    companyName: string
+    companySize: string | null
+    location: string | null
+    jobType: string
+    workLocation: string
+    salaryMin: number | null
+    salaryMax: number | null
+    salaryCurrency: string
+    salaryPeriod: string
+    showSalary: boolean
+    requiredSkills: string[]
+    postedAt: string | null
+    createdAt: string
+    _count: {
+      applications: number
+    }
+  }>
+  pagination: {
+    page: number
+    limit: number
+    total: number
+    totalPages: number
+  }
+}
+
 const exampleQueries = [
   // Student queries
   "Show me CS students with 3.8+ GPA who haven't been contacted yet",
@@ -80,99 +135,101 @@ const exampleQueries = [
   "Which companies are offering remote opportunities for our students?"
 ]
 
-const mockStudents: Student[] = [
-  {
-    id: '1',
-    name: 'Marco Rossi',
-    major: 'Computer Science',
-    gpa: 3.85,
-    graduationYear: '2024',
-    location: 'Milan, IT',
-    skills: ['Python', 'Machine Learning', 'React', 'SQL'],
-    softSkills: ['Leadership', 'Communication', 'Problem-solving'],
-    projectCount: 8,
-    aiScore: 94,
-    contacted: 5,
-    hired: false,
-    availability: 'Immediately'
-  },
-  {
-    id: '2',
-    name: 'Sofia Bianchi',
-    major: 'Data Science',
-    gpa: 3.92,
-    graduationYear: '2024',
-    location: 'Rome, IT',
-    skills: ['Python', 'R', 'TensorFlow', 'Statistics'],
-    softSkills: ['Analytical thinking', 'Teamwork', 'Presentation'],
-    projectCount: 10,
-    aiScore: 96,
-    contacted: 8,
-    hired: true,
-    availability: 'Hired at TechCorp'
-  },
-  {
-    id: '3',
-    name: 'Luca Ferrari',
-    major: 'Software Engineering',
-    gpa: 3.78,
-    graduationYear: '2025',
-    location: 'Turin, IT',
-    skills: ['Java', 'Spring', 'AWS', 'Docker'],
-    softSkills: ['Innovation', 'Collaboration', 'Time management'],
-    projectCount: 7,
-    aiScore: 89,
-    contacted: 2,
-    hired: false,
-    availability: 'June 2025'
+/**
+ * Map a student from the API response to the display Student type.
+ */
+function mapApiStudentToDisplay(apiStudent: StudentApiResponse['students'][number]): Student {
+  return {
+    id: apiStudent.id,
+    name: apiStudent.name,
+    major: apiStudent.major || 'Undeclared',
+    gpa: apiStudent.gpa,
+    graduationYear: apiStudent.year || '',
+    location: '', // Not returned by API
+    skills: [], // Skills not in this API response
+    softSkills: [],
+    projectCount: apiStudent.projects,
+    aiScore: 0, // Not computed by API
+    contacted: apiStudent.applications,
+    hired: false, // Not directly tracked in this API
+    availability: apiStudent.profilePublic ? 'Available' : 'Not public',
   }
-]
+}
 
-const mockJobs: Job[] = [
-  {
-    id: '1',
-    title: 'ML Engineer',
-    company: 'TechCorp Italy',
-    location: 'Milan, IT',
-    salary: '€45,000 - €60,000',
-    jobType: 'Full-time',
-    postedDate: '2 days ago',
-    matchedStudents: 12,
-    requirements: ['Python', 'Machine Learning', 'TensorFlow'],
-    companySize: 'Large (500+)'
-  },
-  {
-    id: '2',
-    title: 'Frontend Developer',
-    company: 'StartupXYZ',
-    location: 'Remote',
-    salary: '€35,000 - €45,000',
-    jobType: 'Full-time',
-    postedDate: '1 week ago',
-    matchedStudents: 8,
-    requirements: ['React', 'TypeScript', 'CSS'],
-    companySize: 'Startup (10-50)'
-  },
-  {
-    id: '3',
-    title: 'Data Analyst Intern',
-    company: 'DataCo',
-    location: 'Rome, IT',
-    salary: '€1,200/month',
-    jobType: 'Internship',
-    postedDate: '3 days ago',
-    matchedStudents: 15,
-    requirements: ['Python', 'SQL', 'Excel', 'Statistics'],
-    companySize: 'Medium (100-500)'
+/**
+ * Map a job from the API response to the display Job type.
+ */
+function mapApiJobToDisplay(apiJob: JobApiResponse['jobs'][number]): Job {
+  // Format salary string
+  let salary = 'Not disclosed'
+  if (apiJob.showSalary && (apiJob.salaryMin || apiJob.salaryMax)) {
+    const currency = apiJob.salaryCurrency || 'EUR'
+    const symbol = currency === 'EUR' ? '\u20AC' : currency === 'USD' ? '$' : currency
+    if (apiJob.salaryMin && apiJob.salaryMax) {
+      salary = `${symbol}${apiJob.salaryMin.toLocaleString()} - ${symbol}${apiJob.salaryMax.toLocaleString()}`
+    } else if (apiJob.salaryMin) {
+      salary = `${symbol}${apiJob.salaryMin.toLocaleString()}+`
+    } else if (apiJob.salaryMax) {
+      salary = `Up to ${symbol}${apiJob.salaryMax.toLocaleString()}`
+    }
+    if (apiJob.salaryPeriod) {
+      salary += `/${apiJob.salaryPeriod}`
+    }
   }
-]
+
+  // Format job type for display
+  const jobTypeMap: Record<string, string> = {
+    'FULL_TIME': 'Full-time',
+    'PART_TIME': 'Part-time',
+    'CONTRACT': 'Contract',
+    'INTERNSHIP': 'Internship',
+    'TEMPORARY': 'Temporary',
+    'FREELANCE': 'Freelance',
+  }
+
+  // Format posted date
+  let postedDate = 'Recently'
+  const postedTimestamp = apiJob.postedAt || apiJob.createdAt
+  if (postedTimestamp) {
+    const posted = new Date(postedTimestamp)
+    const now = new Date()
+    const diffMs = now.getTime() - posted.getTime()
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+    if (diffDays === 0) {
+      postedDate = 'Today'
+    } else if (diffDays === 1) {
+      postedDate = '1 day ago'
+    } else if (diffDays < 7) {
+      postedDate = `${diffDays} days ago`
+    } else if (diffDays < 30) {
+      const weeks = Math.floor(diffDays / 7)
+      postedDate = `${weeks} week${weeks > 1 ? 's' : ''} ago`
+    } else {
+      const months = Math.floor(diffDays / 30)
+      postedDate = `${months} month${months > 1 ? 's' : ''} ago`
+    }
+  }
+
+  return {
+    id: apiJob.id,
+    title: apiJob.title,
+    company: apiJob.companyName,
+    location: apiJob.location || (apiJob.workLocation === 'REMOTE' ? 'Remote' : 'On-site'),
+    salary,
+    jobType: jobTypeMap[apiJob.jobType] || apiJob.jobType,
+    postedDate,
+    matchedStudents: apiJob._count.applications,
+    requirements: apiJob.requiredSkills,
+    companySize: apiJob.companySize || 'Unknown',
+  }
+}
 
 export default function UniversityAISearchPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
       role: 'assistant',
-      content: "👋 Hi! I'm your university AI assistant. I can help you with:\n\n🎓 **Student Queries**: Track placement, identify high performers, find students with specific skills\n💼 **Job Opportunities**: Find companies and positions that match your students\n\nJust tell me what you need in plain English!",
+      content: "Hi! I'm your university AI assistant. I can help you with:\n\n**Student Queries**: Track placement, identify high performers, find students with specific skills\n**Job Opportunities**: Find companies and positions that match your students\n\nJust tell me what you need in plain English!",
       timestamp: new Date()
     }
   ])
@@ -204,8 +261,12 @@ export default function UniversityAISearchPage() {
     return 'jobs'
   }
 
-  const parseStudentQuery = (query: string) => {
-    const criteria: any = {}
+  /**
+   * Extract search parameters from a natural language student query.
+   * Returns an object with `search` (for the API) and display `criteria`.
+   */
+  const parseStudentQuery = (query: string): { search: string; major: string; year: string; criteria: Record<string, any> } => {
+    const criteria: Record<string, any> = {}
     const lowerQuery = query.toLowerCase()
 
     // GPA
@@ -213,9 +274,31 @@ export default function UniversityAISearchPage() {
     if (gpaMatch) criteria.gpaMin = parseFloat(gpaMatch[1])
 
     // Major
-    if (lowerQuery.includes('cs') || lowerQuery.includes('computer science')) criteria.major = 'Computer Science'
-    if (lowerQuery.includes('engineering')) criteria.major = 'Engineering'
-    if (lowerQuery.includes('data science')) criteria.major = 'Data Science'
+    let major = ''
+    if (lowerQuery.includes('cs') || lowerQuery.includes('computer science')) {
+      major = 'Computer Science'
+      criteria.major = 'Computer Science'
+    }
+    if (lowerQuery.includes('engineering')) {
+      major = 'Engineering'
+      criteria.major = 'Engineering'
+    }
+    if (lowerQuery.includes('data science')) {
+      major = 'Data Science'
+      criteria.major = 'Data Science'
+    }
+    if (lowerQuery.includes('finance')) {
+      major = 'Finance'
+      criteria.major = 'Finance'
+    }
+
+    // Graduation year
+    let year = ''
+    const yearMatch = lowerQuery.match(/\b(20\d{2})\b/)
+    if (yearMatch) {
+      year = yearMatch[1]
+      criteria.year = year
+    }
 
     // Contacted status
     if (lowerQuery.includes("haven't been contacted") || lowerQuery.includes("not contacted")) {
@@ -235,58 +318,118 @@ export default function UniversityAISearchPage() {
       criteria.availableNow = true
     }
 
-    return criteria
+    // Build a general search term from the query by extracting key nouns
+    // The API search parameter does free text search on name/email
+    // For broader matching, just pass the whole query
+    const search = query.trim()
+
+    return { search, major, year, criteria }
   }
 
-  const parseJobQuery = (query: string) => {
-    const criteria: any = {}
+  /**
+   * Fetch students from the real API.
+   */
+  const fetchStudents = async (query: string): Promise<{ students: Student[]; total: number; criteria: Record<string, any> }> => {
+    const { major, year, criteria } = parseStudentQuery(query)
+
+    const params = new URLSearchParams()
+    // Use major/year filters if detected; otherwise pass the raw search
+    if (major) params.set('major', major)
+    if (year) params.set('year', year)
+    // The API's `search` param searches name/email - we pass the raw query for maximum results
+    // If specific filters were detected, we don't need the general text search
+    if (!major && !year) {
+      params.set('search', query.trim())
+    }
+    params.set('limit', '20')
+
+    const res = await fetch(`/api/dashboard/university/students?${params.toString()}`)
+    if (!res.ok) {
+      throw new Error(`Students API error: ${res.status}`)
+    }
+
+    const data: StudentApiResponse = await res.json()
+
+    let mappedStudents = data.students.map(mapApiStudentToDisplay)
+
+    // Apply client-side filters that the API doesn't support
+    if (criteria.gpaMin) {
+      mappedStudents = mappedStudents.filter(s => s.gpa !== null && s.gpa >= criteria.gpaMin)
+    }
+    if (criteria.maxContacted !== undefined) {
+      mappedStudents = mappedStudents.filter(s => s.contacted <= criteria.maxContacted)
+    }
+    if (criteria.availableNow) {
+      mappedStudents = mappedStudents.filter(s => s.availability === 'Available')
+    }
+
+    return { students: mappedStudents, total: data.total, criteria }
+  }
+
+  /**
+   * Fetch jobs from the real API.
+   */
+  const fetchJobs = async (query: string): Promise<{ jobs: Job[]; total: number; criteria: Record<string, any> }> => {
+    const criteria: Record<string, any> = {}
     const lowerQuery = query.toLowerCase()
 
-    // Skills/roles
+    const params = new URLSearchParams()
+    params.set('search', query.trim())
+    params.set('limit', '20')
+
+    // Apply specific filters if detected
+    if (lowerQuery.includes('internship') || lowerQuery.includes('intern')) {
+      params.set('jobType', 'INTERNSHIP')
+      criteria.jobType = 'Internship'
+    } else if (lowerQuery.includes('full-time') || lowerQuery.includes('full time')) {
+      params.set('jobType', 'FULL_TIME')
+      criteria.jobType = 'Full-time'
+    } else if (lowerQuery.includes('part-time') || lowerQuery.includes('part time')) {
+      params.set('jobType', 'PART_TIME')
+      criteria.jobType = 'Part-time'
+    } else if (lowerQuery.includes('contract')) {
+      params.set('jobType', 'CONTRACT')
+      criteria.jobType = 'Contract'
+    }
+
+    if (lowerQuery.includes('remote')) {
+      params.set('workLocation', 'REMOTE')
+      criteria.workLocation = 'Remote'
+    } else if (lowerQuery.includes('hybrid')) {
+      params.set('workLocation', 'HYBRID')
+      criteria.workLocation = 'Hybrid'
+    }
+
+    // Detect location mentions for criteria display
+    if (lowerQuery.includes('milan')) criteria.location = 'Milan'
+    if (lowerQuery.includes('rome')) criteria.location = 'Rome'
+
+    // Detect role mentions for criteria display
     if (lowerQuery.includes('ml') || lowerQuery.includes('machine learning')) criteria.role = 'ML Engineer'
     if (lowerQuery.includes('frontend')) criteria.role = 'Frontend Developer'
     if (lowerQuery.includes('data')) criteria.role = 'Data Analyst'
-
-    // Location
-    if (lowerQuery.includes('milan')) criteria.location = 'Milan'
-    if (lowerQuery.includes('rome')) criteria.location = 'Rome'
-    if (lowerQuery.includes('remote')) criteria.location = 'Remote'
-
-    // Job type
-    if (lowerQuery.includes('internship') || lowerQuery.includes('intern')) criteria.jobType = 'Internship'
     if (lowerQuery.includes('entry-level')) criteria.experienceLevel = 'Entry Level'
 
-    return criteria
-  }
+    const res = await fetch(`/api/jobs?${params.toString()}`)
+    if (!res.ok) {
+      throw new Error(`Jobs API error: ${res.status}`)
+    }
 
-  const filterStudents = (criteria: any): Student[] => {
-    return mockStudents.filter(student => {
-      if (criteria.gpaMin && student.gpa < criteria.gpaMin) return false
-      if (criteria.major && !student.major.includes(criteria.major)) return false
-      if (criteria.maxContacted && student.contacted > criteria.maxContacted) return false
-      if (criteria.hired !== undefined && student.hired !== criteria.hired) return false
-      if (criteria.softSkills && !criteria.softSkills.some((s: string) => student.softSkills.includes(s))) return false
-      if (criteria.availableNow && !student.availability.includes('Immediately')) return false
-      return true
-    })
-  }
+    const data: JobApiResponse = await res.json()
 
-  const filterJobs = (criteria: any): Job[] => {
-    return mockJobs.filter(job => {
-      if (criteria.role && !job.title.includes(criteria.role)) return false
-      if (criteria.location && !job.location.includes(criteria.location)) return false
-      if (criteria.jobType && job.jobType !== criteria.jobType) return false
-      return true
-    })
+    const mappedJobs = data.jobs.map(mapApiJobToDisplay)
+
+    return { jobs: mappedJobs, total: data.pagination.total, criteria }
   }
 
   const handleSend = async () => {
-    if (!input.trim()) return
+    if (!input.trim() || isTyping) return
 
+    const userQuery = input.trim()
     const userMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
-      content: input,
+      content: userQuery,
       timestamp: new Date()
     }
 
@@ -294,59 +437,70 @@ export default function UniversityAISearchPage() {
     setInput('')
     setIsTyping(true)
 
-    setTimeout(() => {
-      const searchType = detectSearchType(input)
-      let responseContent = ''
-      let results: Student[] | Job[] = []
+    const searchType = detectSearchType(userQuery)
+    let responseContent = ''
+    let results: Student[] | Job[] = []
 
+    try {
       if (searchType === 'students') {
-        const criteria = parseStudentQuery(input)
-        const matchedStudents = filterStudents(criteria)
-        results = matchedStudents
+        const { students, total, criteria } = await fetchStudents(userQuery)
+        results = students
 
-        if (matchedStudents.length > 0) {
-          responseContent = `📊 Found **${matchedStudents.length} student${matchedStudents.length > 1 ? 's' : ''}** matching your criteria:\n\n`
+        if (students.length > 0) {
+          responseContent = `Found **${students.length} student${students.length > 1 ? 's' : ''}**`
+          if (total > students.length) {
+            responseContent += ` (showing ${students.length} of ${total} total)`
+          }
+          responseContent += ` matching your criteria:\n\n`
 
-          if (criteria.gpaMin) responseContent += `✅ GPA: ${criteria.gpaMin}+\n`
-          if (criteria.major) responseContent += `✅ Major: ${criteria.major}\n`
-          if (criteria.maxContacted !== undefined) responseContent += `✅ Low contact rate\n`
-          if (criteria.hired) responseContent += `✅ Successfully placed\n`
-          if (criteria.softSkills) responseContent += `✅ Soft skills: ${criteria.softSkills.join(', ')}\n`
+          if (criteria.gpaMin) responseContent += `GPA: ${criteria.gpaMin}+\n`
+          if (criteria.major) responseContent += `Major: ${criteria.major}\n`
+          if (criteria.year) responseContent += `Year: ${criteria.year}\n`
+          if (criteria.maxContacted !== undefined) responseContent += `Low contact rate\n`
+          if (criteria.hired) responseContent += `Successfully placed\n`
+          if (criteria.softSkills) responseContent += `Soft skills: ${criteria.softSkills.join(', ')}\n`
 
-          responseContent += `\n💡 You can refine by asking about specific skills, graduation year, or contact status.`
+          responseContent += `\nYou can refine by asking about specific skills, graduation year, or contact status.`
         } else {
-          responseContent = "No students match those exact criteria. Try:\n\n1. Broadening the GPA range\n2. Looking at different majors\n3. Including more graduation years"
+          responseContent = `No students match those criteria (searched ${total} total records). Try:\n\n1. Broadening the GPA range\n2. Looking at different majors\n3. Including more graduation years`
         }
       } else {
-        const criteria = parseJobQuery(input)
-        const matchedJobs = filterJobs(criteria)
-        results = matchedJobs
+        const { jobs, total, criteria } = await fetchJobs(userQuery)
+        results = jobs
 
-        if (matchedJobs.length > 0) {
-          responseContent = `💼 Found **${matchedJobs.length} job opportunity${matchedJobs.length > 1 ? 's' : ''}** for your students:\n\n`
+        if (jobs.length > 0) {
+          responseContent = `Found **${jobs.length} job opportunity${jobs.length > 1 ? 's' : ''}**`
+          if (total > jobs.length) {
+            responseContent += ` (showing ${jobs.length} of ${total} total)`
+          }
+          responseContent += ` for your students:\n\n`
 
-          if (criteria.role) responseContent += `✅ Role: ${criteria.role}\n`
-          if (criteria.location) responseContent += `✅ Location: ${criteria.location}\n`
-          if (criteria.jobType) responseContent += `✅ Type: ${criteria.jobType}\n`
+          if (criteria.role) responseContent += `Role: ${criteria.role}\n`
+          if (criteria.location) responseContent += `Location: ${criteria.location}\n`
+          if (criteria.jobType) responseContent += `Type: ${criteria.jobType}\n`
+          if (criteria.workLocation) responseContent += `Work location: ${criteria.workLocation}\n`
 
-          responseContent += `\n💡 I can show you which of your students match each position!`
+          responseContent += `\nI can show you which of your students match each position!`
         } else {
-          responseContent = "No jobs match those criteria. Try:\n\n1. Different locations\n2. Related job titles\n3. Various company sizes"
+          responseContent = `No jobs match those criteria. Try:\n\n1. Different locations\n2. Related job titles\n3. Various company sizes`
         }
       }
+    } catch (error) {
+      console.error('Search error:', error)
+      responseContent = `Sorry, I encountered an error while searching. Please try again.\n\nIf the issue persists, check your connection or contact support.`
+    }
 
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: responseContent,
-        timestamp: new Date(),
-        searchType,
-        results: results.length > 0 ? results : undefined
-      }
+    const assistantMessage: Message = {
+      id: (Date.now() + 1).toString(),
+      role: 'assistant',
+      content: responseContent,
+      timestamp: new Date(),
+      searchType,
+      results: results.length > 0 ? results : undefined
+    }
 
-      setMessages(prev => [...prev, assistantMessage])
-      setIsTyping(false)
-    }, 1500)
+    setMessages(prev => [...prev, assistantMessage])
+    setIsTyping(false)
   }
 
   const handleExampleClick = (example: string) => {
@@ -419,39 +573,41 @@ export default function UniversityAISearchPage() {
                                       </p>
                                     </div>
                                     <Badge className={student.hired ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}>
-                                      {student.hired ? '✓ Hired' : `${student.contacted} contacts`}
+                                      {student.hired ? 'Hired' : `${student.contacted} applications`}
                                     </Badge>
                                   </div>
 
                                   <div className="grid grid-cols-2 gap-2 text-sm mb-3">
                                     <div className="flex items-center text-gray-600">
                                       <Award className="h-4 w-4 mr-2" />
-                                      GPA: {student.gpa}
+                                      GPA: {student.gpa !== null ? student.gpa : 'N/A'}
                                     </div>
                                     <div className="flex items-center text-gray-600">
                                       <Calendar className="h-4 w-4 mr-2" />
-                                      Class of {student.graduationYear}
+                                      {student.graduationYear ? `Class of ${student.graduationYear}` : 'Year N/A'}
                                     </div>
                                     <div className="flex items-center text-gray-600">
-                                      <MapPin className="h-4 w-4 mr-2" />
-                                      {student.location}
+                                      <Briefcase className="h-4 w-4 mr-2" />
+                                      {student.projectCount} projects
                                     </div>
                                     <div className="flex items-center text-gray-600">
                                       <Star className="h-4 w-4 mr-2" />
-                                      {student.aiScore}% AI Score
+                                      {student.availability}
                                     </div>
                                   </div>
 
-                                  <div className="mb-2">
-                                    <p className="text-xs text-gray-500 mb-1">Skills:</p>
-                                    <div className="flex flex-wrap gap-1">
-                                      {student.skills.slice(0, 4).map((skill) => (
-                                        <Badge key={skill} variant="secondary" className="text-xs">
-                                          {skill}
-                                        </Badge>
-                                      ))}
+                                  {student.skills.length > 0 && (
+                                    <div className="mb-2">
+                                      <p className="text-xs text-gray-500 mb-1">Skills:</p>
+                                      <div className="flex flex-wrap gap-1">
+                                        {student.skills.slice(0, 4).map((skill) => (
+                                          <Badge key={skill} variant="secondary" className="text-xs">
+                                            {skill}
+                                          </Badge>
+                                        ))}
+                                      </div>
                                     </div>
-                                  </div>
+                                  )}
 
                                   <Button variant="outline" size="sm" className="w-full">
                                     View Full Profile
@@ -477,7 +633,7 @@ export default function UniversityAISearchPage() {
                                       </p>
                                     </div>
                                     <Badge className="bg-purple-100 text-purple-800">
-                                      {job.matchedStudents} matches
+                                      {job.matchedStudents} applications
                                     </Badge>
                                   </div>
 
@@ -500,16 +656,18 @@ export default function UniversityAISearchPage() {
                                     </div>
                                   </div>
 
-                                  <div className="mb-3">
-                                    <p className="text-xs text-gray-500 mb-1">Required:</p>
-                                    <div className="flex flex-wrap gap-1">
-                                      {job.requirements.map((req) => (
-                                        <Badge key={req} variant="secondary" className="text-xs">
-                                          {req}
-                                        </Badge>
-                                      ))}
+                                  {job.requirements.length > 0 && (
+                                    <div className="mb-3">
+                                      <p className="text-xs text-gray-500 mb-1">Required:</p>
+                                      <div className="flex flex-wrap gap-1">
+                                        {job.requirements.map((req) => (
+                                          <Badge key={req} variant="secondary" className="text-xs">
+                                            {req}
+                                          </Badge>
+                                        ))}
+                                      </div>
                                     </div>
-                                  </div>
+                                  )}
 
                                   <Button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
                                     View Matched Students
@@ -561,9 +719,11 @@ export default function UniversityAISearchPage() {
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                     placeholder="Search students or jobs..."
                     className="flex-1"
+                    disabled={isTyping}
                   />
                   <Button
                     onClick={handleSend}
+                    disabled={isTyping}
                     className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700"
                   >
                     <Send className="h-4 w-4" />
@@ -604,21 +764,21 @@ export default function UniversityAISearchPage() {
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
                 <div>
-                  <p className="font-semibold text-gray-900 mb-2">🎓 Student Searches:</p>
+                  <p className="font-semibold text-gray-900 mb-2">Student Searches:</p>
                   <ul className="text-gray-600 space-y-1">
-                    <li>• Track placement outcomes</li>
-                    <li>• Identify high performers</li>
-                    <li>• Monitor contact rates</li>
-                    <li>• Find available graduates</li>
+                    <li>- Track placement outcomes</li>
+                    <li>- Identify high performers</li>
+                    <li>- Monitor contact rates</li>
+                    <li>- Find available graduates</li>
                   </ul>
                 </div>
                 <div className="pt-3 border-t border-indigo-100">
-                  <p className="font-semibold text-gray-900 mb-2">💼 Job Searches:</p>
+                  <p className="font-semibold text-gray-900 mb-2">Job Searches:</p>
                   <ul className="text-gray-600 space-y-1">
-                    <li>• Find hiring companies</li>
-                    <li>• Match jobs to students</li>
-                    <li>• Track opportunities</li>
-                    <li>• Identify placements</li>
+                    <li>- Find hiring companies</li>
+                    <li>- Match jobs to students</li>
+                    <li>- Track opportunities</li>
+                    <li>- Identify placements</li>
                   </ul>
                 </div>
               </CardContent>

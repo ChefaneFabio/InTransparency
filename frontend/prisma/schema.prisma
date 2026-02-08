@@ -252,6 +252,10 @@ model User {
   challengeSubmissions ChallengeSubmission[]  @relation("StudentChallengeSubmissions")
   contactsMade         ContactUsage[]         @relation("RecruiterContacts")
   contactsReceived     ContactUsage[]         @relation("RecipientContacts")
+  skillPathRecommendation SkillPathRecommendation?
+  placements           Placement[]            @relation("StudentPlacements")
+  universitySettings   UniversitySettings?
+  alumniRecord         AlumniRecord?
 
   @@index([email])
   @@index([username])
@@ -1588,4 +1592,226 @@ model ChallengeSubmission {
   @@index([studentId])
   @@index([status])
   @@index([universityId])
+}
+
+// ============================================
+// SKILL PATH RECOMMENDATIONS (AI Cache)
+// ============================================
+
+model SkillPathRecommendation {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Cached AI analysis results
+  currentSkills    Json // Array of { name, level, confidence, category }
+  skillGaps        Json // Array of { skill, currentLevel, targetLevel, demand, priority, estimatedHours }
+  recommendations  Json // { projectIdeas: [...], challenges: [...], resources: [...] }
+  careerPaths      Json // Array of { title, matchScore, missingSkills, description }
+  hireabilityScore Int  // 0-100 composite score
+
+  // Cache management
+  generatedAt DateTime @default(now())
+  expiresAt   DateTime // 24h TTL default
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+// ============================================
+// UNIVERSITY FEATURES MODELS
+// ============================================
+
+// Placement Tracking
+model Placement {
+  id             String          @id @default(cuid())
+  studentId      String
+  student        User            @relation("StudentPlacements", fields: [studentId], references: [id], onDelete: Cascade)
+  universityId   String?
+  universityName String
+
+  // Company Info
+  companyName    String
+  companyIndustry String?
+  jobTitle       String
+  jobType        PlacementJobType @default(FULL_TIME)
+
+  // Compensation
+  salaryAmount   Int?
+  salaryCurrency String          @default("EUR")
+  salaryPeriod   String          @default("yearly") // "yearly", "monthly", "hourly"
+
+  // Dates
+  startDate      DateTime
+  endDate        DateTime?
+
+  // Status
+  status         PlacementStatus @default(PENDING)
+
+  // Source
+  applicationId  String?
+  source         String?         // "platform", "career_fair", "direct", "referral"
+
+  // Timestamps
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@index([studentId])
+  @@index([universityName])
+  @@index([status])
+  @@index([companyName])
+  @@index([startDate])
+}
+
+enum PlacementJobType {
+  FULL_TIME
+  PART_TIME
+  INTERNSHIP
+  CONTRACT
+  FREELANCE
+}
+
+enum PlacementStatus {
+  CONFIRMED
+  PENDING
+  DECLINED
+}
+
+// University Settings
+model UniversitySettings {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Profile
+  name        String?
+  shortName   String?
+  description String?  @db.Text
+  website     String?
+  email       String?
+  phone       String?
+  address     String?
+  city        String?
+  region      String?
+  logo        String?
+
+  // Branding
+  primaryColor String?
+  accentColor  String?
+  customDomain String?
+
+  // Notification Preferences
+  notifyNewStudents        Boolean @default(true)
+  notifyProjectSubmissions Boolean @default(true)
+  notifyRecruiterActivity  Boolean @default(true)
+  notifyPlacements         Boolean @default(true)
+
+  // Privacy / Visibility
+  showInDirectory          Boolean @default(true)
+  allowStudentDiscovery    Boolean @default(true)
+  shareAnalytics           Boolean @default(false)
+  requireEmailVerification Boolean @default(false)
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Alumni Record
+model AlumniRecord {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  universityName  String
+  graduationYear  String
+  degree          String?
+  department      String?
+
+  // Current Employment
+  currentCompany  String?
+  currentRole     String?
+  currentIndustry String?
+  employmentStatus AlumniEmploymentStatus @default(SEEKING)
+  salary          Int?
+  salaryCurrency  String?
+
+  // Contact
+  location    String?
+  linkedInUrl String?
+
+  // Tracking
+  updatedByStudent Boolean   @default(false)
+  lastSurveyAt     DateTime?
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([universityName])
+  @@index([graduationYear])
+  @@index([employmentStatus])
+}
+
+enum AlumniEmploymentStatus {
+  EMPLOYED
+  SEEKING
+  FURTHER_STUDY
+  OTHER
+}
+
+// University Sync Log
+model UniversitySyncLog {
+  id             String @id @default(cuid())
+  universityId   String
+  universityName String
+
+  // Sync Details
+  syncType  SyncType
+  dataType  SyncDataType
+  status    SyncStatus
+
+  // Counts
+  recordsProcessed Int @default(0)
+  recordsCreated   Int @default(0)
+  recordsUpdated   Int @default(0)
+  recordsFailed    Int @default(0)
+
+  // Error Details
+  errorDetails Json?
+
+  // Timing
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
+
+  // Trigger
+  triggeredBy String? // userId
+
+  @@index([universityId])
+  @@index([status])
+  @@index([startedAt])
+}
+
+enum SyncType {
+  MANUAL
+  SCHEDULED
+  WEBHOOK
+}
+
+enum SyncDataType {
+  STUDENTS
+  COURSES
+  GRADES
+  PROJECTS
+  CERTIFICATES
+}
+
+enum SyncStatus {
+  SUCCESS
+  PARTIAL
+  FAILED
 }

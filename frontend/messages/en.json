@@ -3546,5 +3546,70 @@
       "primaryButton": "Create Free Portfolio",
       "secondaryButton": "Learn How It Works"
     }
+  },
+  "skillPath": {
+    "title": "Skill Path Recommendations",
+    "subtitle": "Personalized analysis of your skills vs market demand",
+    "unauthorized": "Please sign in to view your skill path recommendations.",
+    "error": "Something went wrong loading your recommendations.",
+    "tryAgain": "Try Again",
+    "refresh": "Refresh",
+    "refreshing": "Refreshing...",
+    "lastUpdated": "Last updated {date}",
+    "unlock": "Upgrade",
+    "emptyState": {
+      "title": "Add Your First Project",
+      "description": "We need at least one project to analyze your skills and generate personalized recommendations. Start by adding a project to your portfolio.",
+      "cta": "Add Your First Project"
+    },
+    "premiumUpsell": {
+      "title": "Unlock Full Skill Analysis",
+      "description": "Get unlimited skill gaps, project ideas, learning roadmap, and career path comparisons.",
+      "cta": "Upgrade Plan"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "skills": "Skills",
+      "roadmap": "Roadmap",
+      "projects": "Projects",
+      "careers": "Career Paths"
+    },
+    "overview": {
+      "radarTitle": "Skills vs Ideal Candidate",
+      "radarDescription": "Your skill levels compared to market expectations",
+      "topGapsTitle": "Priority Skill Gaps",
+      "topGapsDescription": "Top skills to develop for better hireability",
+      "showingLimited": "Showing {count} of {total}",
+      "quickStatsTitle": "Quick Stats",
+      "skillsDetected": "Skills Detected",
+      "skillGaps": "Skill Gaps",
+      "careerMatches": "Career Matches",
+      "projectIdeas": "Project Ideas",
+      "topCareerTitle": "Top Career Match",
+      "skillsToLearn": "Skills to learn:"
+    },
+    "skills": {
+      "radarTitle": "Full Skill Radar",
+      "radarDescription": "Comprehensive view of your skills vs market demand",
+      "gapsTitle": "Skill Gaps to Close",
+      "limitedGaps": "Showing {shown} of {total} skill gaps",
+      "currentTitle": "Your Current Skills"
+    },
+    "roadmap": {
+      "title": "Learning Roadmap",
+      "description": "Personalized timeline of skills to learn and projects to build",
+      "lockedTitle": "Learning Roadmap (Pro Feature)",
+      "lockedDescription": "Upgrade to Pro to get a personalized learning roadmap with week-by-week milestones tailored to your skill gaps."
+    },
+    "projects": {
+      "title": "Recommended Projects",
+      "showingLimited": "Showing {shown} of {total}",
+      "moreAvailable": "{count} more project ideas available with Pro"
+    },
+    "careers": {
+      "title": "Career Path Analysis",
+      "showingLimited": "Showing {shown} of {total}",
+      "moreAvailable": "{count} more career paths available with Pro"
+    }
   }
 }

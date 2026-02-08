@@ -18,7 +18,9 @@ import {
   Eye,
   Award,
   Upload,
-  BarChart3
+  BarChart3,
+  BookOpen,
+  RefreshCw
 } from 'lucide-react'
 
 interface UniversityStats {
@@ -366,6 +368,48 @@ export default function UniversityDashboard() {
                 <div className="flex-1">
                   <p className="text-sm font-medium">Recruiters</p>
                   <p className="text-xs text-gray-500">Companies recruiting</p>
+                </div>
+                <ChevronRight className="h-4 w-4 text-gray-400" />
+              </Link>
+
+              <Link
+                href="/dashboard/university/courses"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <div className="p-2 bg-cyan-100 rounded-lg">
+                  <BookOpen className="h-4 w-4 text-cyan-600" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium">Courses</p>
+                  <p className="text-xs text-gray-500">Manage course catalog</p>
+                </div>
+                <ChevronRight className="h-4 w-4 text-gray-400" />
+              </Link>
+
+              <Link
+                href="/dashboard/university/alumni"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <div className="p-2 bg-orange-100 rounded-lg">
+                  <GraduationCap className="h-4 w-4 text-orange-600" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium">Alumni</p>
+                  <p className="text-xs text-gray-500">Track post-graduation outcomes</p>
+                </div>
+                <ChevronRight className="h-4 w-4 text-gray-400" />
+              </Link>
+
+              <Link
+                href="/dashboard/university/sync"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <div className="p-2 bg-teal-100 rounded-lg">
+                  <RefreshCw className="h-4 w-4 text-teal-600" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium">Data Sync</p>
+                  <p className="text-xs text-gray-500">Sync university systems</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-gray-400" />
               </Link>
