@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { useAuth } from '@/lib/auth/AuthContext'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Search,
   Filter,
@@ -22,32 +23,43 @@ import {
   Eye,
   MessageCircle,
   Download,
-  ExternalLink,
   CheckCircle2,
   Users,
-  TrendingUp
+  TrendingUp,
+  AlertCircle,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react'
+
+interface StudentProject {
+  id: string
+  title: string
+  technologies: string[]
+  innovationScore: number | null
+}
 
 interface Student {
   id: string
-  firstName: string
-  lastName: string
-  university: string
-  major: string
-  graduationYear: number
-  gpa: number
-  skills: string[]
-  projects: {
-    title: string
-    tech: string[]
-    complexity: number
-    github?: string
-  }[]
-  location: string
-  isOpenToWork: boolean
-  contactAllowed: boolean
-  matchScore: number
-  profileImage?: string
+  name: string
+  initials: string
+  email: string
+  university: string | null
+  degree: string | null
+  graduationYear: string | null
+  gpa: number | null
+  bio: string | null
+  tagline: string | null
+  photo: string | null
+  projectCount: number
+  topProjects: StudentProject[]
+}
+
+interface SearchResponse {
+  students: Student[]
+  total: number
+  page: number
+  limit: number
+  totalPages: number
 }
 
 export default function StudentSearchPage() {
@@ -55,9 +67,17 @@ export default function StudentSearchPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<Student[]>([])
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [selectedStudents, setSelectedStudents] = useState<string[]>([])
   const [showContactModal, setShowContactModal] = useState(false)
   const [contactStudent, setContactStudent] = useState<Student | null>(null)
+  const [sendingMessage, setSendingMessage] = useState(false)
+  const [messageSuccess, setMessageSuccess] = useState<string | null>(null)
+
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
+  const [totalResults, setTotalResults] = useState(0)
 
   const [searchFilters, setSearchFilters] = useState({
     skills: '',
@@ -70,110 +90,80 @@ export default function StudentSearchPage() {
     availability: 'all'
   })
 
-  // Mock search results
-  const mockStudents: Student[] = [
-    {
-      id: 'student_123',
-      firstName: 'Alex',
-      lastName: 'Chen',
-      university: 'Stanford University',
-      major: 'Computer Science',
-      graduationYear: 2024,
-      gpa: 3.8,
-      skills: ['JavaScript', 'React', 'Python', 'SQL', 'Node.js'],
-      projects: [
-        {
-          title: 'E-commerce Platform',
-          tech: ['React', 'Node.js', 'MongoDB'],
-          complexity: 8.5,
-          github: 'github.com/alexchen/ecommerce'
-        },
-        {
-          title: 'AI Chat Bot',
-          tech: ['Python', 'TensorFlow', 'Flask'],
-          complexity: 9.2
-        }
-      ],
-      location: 'San Francisco, CA',
-      isOpenToWork: true,
-      contactAllowed: true,
-      matchScore: 95
-    },
-    {
-      id: 'student_456',
-      firstName: 'Maria',
-      lastName: 'Rodriguez',
-      university: 'MIT',
-      major: 'Software Engineering',
-      graduationYear: 2025,
-      gpa: 3.9,
-      skills: ['Java', 'Spring', 'React', 'AWS', 'Docker'],
-      projects: [
-        {
-          title: 'Microservices Architecture',
-          tech: ['Java', 'Spring Boot', 'Docker', 'AWS'],
-          complexity: 9.0
-        }
-      ],
-      location: 'Boston, MA',
-      isOpenToWork: true,
-      contactAllowed: true,
-      matchScore: 88
-    },
-    {
-      id: 'student_789',
-      firstName: 'David',
-      lastName: 'Kim',
-      university: 'UC Berkeley',
-      major: 'Computer Science',
-      graduationYear: 2024,
-      gpa: 3.7,
-      skills: ['Python', 'Django', 'PostgreSQL', 'React', 'AWS'],
-      projects: [
-        {
-          title: 'Social Media Analytics',
-          tech: ['Python', 'Django', 'PostgreSQL', 'D3.js'],
-          complexity: 8.7
-        }
-      ],
-      location: 'San Francisco, CA',
-      isOpenToWork: false,
-      contactAllowed: true,
-      matchScore: 82
-    }
-  ]
-
-  const performSearch = async () => {
+  const performSearch = useCallback(async (page = 1) => {
     setLoading(true)
+    setError(null)
 
-    // Simulate API call
-    setTimeout(() => {
-      setSearchResults(mockStudents)
+    try {
+      const params = new URLSearchParams()
+      if (searchQuery) params.set('search', searchQuery)
+      if (searchFilters.skills) params.set('skills', searchFilters.skills)
+      if (searchFilters.university && searchFilters.university !== 'all') params.set('university', searchFilters.university)
+      if (searchFilters.graduationYear) params.set('graduationYear', searchFilters.graduationYear)
+      if (searchFilters.gpaMin) params.set('gpaMin', searchFilters.gpaMin)
+      if (searchFilters.major) params.set('major', searchFilters.major)
+      if (searchFilters.projectCount) params.set('minProjects', searchFilters.projectCount)
+      if (searchFilters.location) params.set('location', searchFilters.location)
+      params.set('page', String(page))
+      params.set('limit', '20')
+
+      const res = await fetch(`/api/dashboard/recruiter/search/students?${params.toString()}`)
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}))
+        throw new Error(errData.error || `Search failed (${res.status})`)
+      }
+
+      const data: SearchResponse = await res.json()
+      setSearchResults(data.students)
+      setCurrentPage(data.page)
+      setTotalPages(data.totalPages)
+      setTotalResults(data.total)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to search students')
+      setSearchResults([])
+    } finally {
       setLoading(false)
-    }, 1000)
-  }
+    }
+  }, [searchQuery, searchFilters])
 
   const handleContactStudent = (student: Student) => {
     setContactStudent(student)
     setShowContactModal(true)
+    setMessageSuccess(null)
   }
 
   const sendMessage = async (message: string, subject: string) => {
+    if (!contactStudent) return
+    setSendingMessage(true)
+    setMessageSuccess(null)
+
     try {
-      // Simulate API call to send message
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      const res = await fetch('/api/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          recipientId: contactStudent.id,
+          recipientEmail: contactStudent.email,
+          subject,
+          content: message,
+        }),
+      })
 
-      // In production, this would call: await messagesApi.send({ recipientId: contactStudent.id, subject, message })
-      console.log('Message sent successfully to', contactStudent?.firstName, ':', { subject, message })
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}))
+        throw new Error(errData.error || 'Failed to send message')
+      }
 
-      // Show success notification (you could use a toast library here)
-      alert(`Message sent successfully to ${contactStudent?.firstName} ${contactStudent?.lastName}!`)
-
-      setShowContactModal(false)
-      setContactStudent(null)
-    } catch (error) {
-      console.error('Failed to send message:', error)
-      alert('Failed to send message. Please try again.')
+      setMessageSuccess(`Message sent successfully to ${contactStudent.name}!`)
+      setTimeout(() => {
+        setShowContactModal(false)
+        setContactStudent(null)
+        setMessageSuccess(null)
+      }, 2000)
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to send message. Please try again.')
+    } finally {
+      setSendingMessage(false)
     }
   }
 
@@ -185,33 +175,34 @@ export default function StudentSearchPage() {
     )
   }
 
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      performSearch(newPage)
+    }
+  }
+
   const StudentCard = ({ student }: { student: Student }) => (
     <Card className="hover:shadow-lg transition-shadow">
       <CardHeader>
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-3">
             <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
-              {student.firstName[0]}{student.lastName[0]}
+              {student.initials}
             </div>
             <div>
               <CardTitle className="text-lg">
-                {student.firstName} {student.lastName}
+                {student.name}
               </CardTitle>
               <CardDescription className="flex items-center space-x-2">
                 <GraduationCap className="h-4 w-4" />
-                <span>{student.university}</span>
+                <span>{student.university || 'University not specified'}</span>
               </CardDescription>
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <Badge variant="secondary" className="text-green-600">
-              {student.matchScore}% match
+            <Badge variant="secondary" className="text-blue-600">
+              {student.projectCount} project{student.projectCount !== 1 ? 's' : ''}
             </Badge>
-            {student.isOpenToWork && (
-              <Badge variant="default" className="bg-green-500">
-                Open to work
-              </Badge>
-            )}
           </div>
         </div>
       </CardHeader>
@@ -221,55 +212,49 @@ export default function StudentSearchPage() {
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div className="flex items-center space-x-2">
             <GraduationCap className="h-4 w-4 text-gray-700" />
-            <span>{student.major}</span>
+            <span>{student.degree || 'Degree not specified'}</span>
           </div>
           <div className="flex items-center space-x-2">
             <Calendar className="h-4 w-4 text-gray-700" />
-            <span>Grad {student.graduationYear}</span>
+            <span>Grad {student.graduationYear || 'N/A'}</span>
           </div>
-          <div className="flex items-center space-x-2">
-            <Star className="h-4 w-4 text-gray-700" />
-            <span>GPA: {student.gpa}</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <MapPin className="h-4 w-4 text-gray-700" />
-            <span>{student.location}</span>
-          </div>
+          {student.gpa !== null && (
+            <div className="flex items-center space-x-2">
+              <Star className="h-4 w-4 text-gray-700" />
+              <span>GPA: {student.gpa}</span>
+            </div>
+          )}
+          {student.tagline && (
+            <div className="flex items-center space-x-2">
+              <MapPin className="h-4 w-4 text-gray-700" />
+              <span className="truncate">{student.tagline}</span>
+            </div>
+          )}
         </div>
 
-        {/* Skills */}
-        <div>
-          <Label className="text-sm font-medium">Skills</Label>
-          <div className="flex flex-wrap gap-1 mt-1">
-            {student.skills.slice(0, 5).map(skill => (
-              <Badge key={skill} variant="outline" className="text-xs">
-                {skill}
-              </Badge>
-            ))}
-            {student.skills.length > 5 && (
-              <Badge variant="outline" className="text-xs">
-                +{student.skills.length - 5} more
-              </Badge>
-            )}
-          </div>
-        </div>
+        {/* Bio excerpt */}
+        {student.bio && (
+          <p className="text-sm text-gray-600 line-clamp-2">{student.bio}</p>
+        )}
 
         {/* Top Project */}
-        {student.projects.length > 0 && (
+        {student.topProjects.length > 0 && (
           <div>
             <Label className="text-sm font-medium">Top Project</Label>
             <div className="mt-1 p-2 bg-gray-50 rounded">
               <div className="flex items-center justify-between">
-                <span className="font-medium text-sm">{student.projects[0]?.title}</span>
-                <div className="flex items-center space-x-1">
-                  <TrendingUp className="h-3 w-3 text-green-500" />
-                  <span className="text-xs text-green-600">
-                    {student.projects[0]?.complexity}/10
-                  </span>
-                </div>
+                <span className="font-medium text-sm">{student.topProjects[0]?.title}</span>
+                {student.topProjects[0]?.innovationScore !== null && (
+                  <div className="flex items-center space-x-1">
+                    <TrendingUp className="h-3 w-3 text-green-500" />
+                    <span className="text-xs text-green-600">
+                      {student.topProjects[0]?.innovationScore}/10
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="flex flex-wrap gap-1 mt-1">
-                {student.projects[0]?.tech?.map(tech => (
+                {student.topProjects[0]?.technologies?.map(tech => (
                   <Badge key={tech} variant="secondary" className="text-xs">
                     {tech}
                   </Badge>
@@ -303,7 +288,6 @@ export default function StudentSearchPage() {
             <Button
               size="sm"
               onClick={() => handleContactStudent(student)}
-              disabled={!student.contactAllowed}
             >
               <MessageCircle className="h-4 w-4 mr-1" />
               Contact
@@ -314,54 +298,87 @@ export default function StudentSearchPage() {
     </Card>
   )
 
+  const LoadingSkeleton = () => (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {Array.from({ length: 4 }).map((_, i) => (
+        <Card key={i}>
+          <CardHeader>
+            <div className="flex items-start space-x-3">
+              <Skeleton className="w-12 h-12 rounded-full" />
+              <div className="space-y-2 flex-1">
+                <Skeleton className="h-5 w-40" />
+                <Skeleton className="h-4 w-56" />
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-3/4" />
+            <Skeleton className="h-16 w-full" />
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  )
+
   const ContactModal = () => (
     showContactModal && contactStudent && (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <Card className="w-full max-w-lg mx-4">
           <CardHeader>
             <CardTitle>
-              Contact {contactStudent.firstName} {contactStudent.lastName}
+              Contact {contactStudent.name}
             </CardTitle>
             <CardDescription>
               Send a personalized message about opportunities at your company
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="subject">Subject</Label>
-              <Input
-                id="subject"
-                placeholder="Exciting Frontend Developer Opportunity"
-                defaultValue={`Exciting opportunity at ${user?.company || 'our company'}`}
-              />
-            </div>
-            <div>
-              <Label htmlFor="message">Message</Label>
-              <Textarea
-                id="message"
-                rows={6}
-                placeholder={`Hi ${contactStudent.firstName}! I came across your ${contactStudent.projects[0]?.title} project and was impressed by your skills. We have an exciting role that would be perfect for your background...`}
-                defaultValue={`Hi ${contactStudent.firstName}! I came across your ${contactStudent.projects[0]?.title} project and was impressed by your ${contactStudent.skills?.[0] || 'technical'} skills. We have an exciting opportunity at ${user?.company || 'our company'} that would be perfect for your background. Would you be interested in learning more?`}
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <Button
-                variant="outline"
-                onClick={() => setShowContactModal(false)}
-              >
-                Cancel
-              </Button>
-              <Button
-                onClick={() => {
-                  const subject = (document.getElementById('subject') as HTMLInputElement)?.value
-                  const message = (document.getElementById('message') as HTMLTextAreaElement)?.value
-                  sendMessage(message, subject)
-                }}
-              >
-                <Send className="h-4 w-4 mr-1" />
-                Send Message
-              </Button>
-            </div>
+            {messageSuccess ? (
+              <div className="flex items-center space-x-2 text-green-600 p-4 bg-green-50 rounded">
+                <CheckCircle2 className="h-5 w-5" />
+                <span>{messageSuccess}</span>
+              </div>
+            ) : (
+              <>
+                <div>
+                  <Label htmlFor="subject">Subject</Label>
+                  <Input
+                    id="subject"
+                    placeholder="Exciting Frontend Developer Opportunity"
+                    defaultValue={`Exciting opportunity at ${user?.company || 'our company'}`}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea
+                    id="message"
+                    rows={6}
+                    placeholder={`Hi ${contactStudent.name}! I came across your profile and was impressed by your skills...`}
+                    defaultValue={`Hi ${contactStudent.name}! I came across your ${contactStudent.topProjects[0]?.title || 'project'} and was impressed by your skills. We have an exciting opportunity at ${user?.company || 'our company'} that would be perfect for your background. Would you be interested in learning more?`}
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowContactModal(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    disabled={sendingMessage}
+                    onClick={() => {
+                      const subject = (document.getElementById('subject') as HTMLInputElement)?.value
+                      const message = (document.getElementById('message') as HTMLTextAreaElement)?.value
+                      sendMessage(message, subject)
+                    }}
+                  >
+                    <Send className="h-4 w-4 mr-1" />
+                    {sendingMessage ? 'Sending...' : 'Send Message'}
+                  </Button>
+                </div>
+              </>
+            )}
           </CardContent>
         </Card>
       </div>
@@ -415,10 +432,11 @@ export default function StudentSearchPage() {
                     placeholder="Search by skills, university, or keywords..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && performSearch(1)}
                     className="w-full"
                   />
                 </div>
-                <Button onClick={performSearch} disabled={loading}>
+                <Button onClick={() => performSearch(1)} disabled={loading}>
                   <Search className="h-4 w-4 mr-1" />
                   {loading ? 'Searching...' : 'Search'}
                 </Button>
@@ -438,18 +456,12 @@ export default function StudentSearchPage() {
                 </div>
                 <div>
                   <Label htmlFor="university">University</Label>
-                  <Select onValueChange={(value) => setSearchFilters(prev => ({ ...prev, university: value }))}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Any university" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">Any University</SelectItem>
-                      <SelectItem value="stanford">Stanford University</SelectItem>
-                      <SelectItem value="mit">MIT</SelectItem>
-                      <SelectItem value="berkeley">UC Berkeley</SelectItem>
-                      <SelectItem value="cmu">Carnegie Mellon</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <Input
+                    id="university"
+                    placeholder="Any university"
+                    value={searchFilters.university}
+                    onChange={(e) => setSearchFilters(prev => ({ ...prev, university: e.target.value }))}
+                  />
                 </div>
                 <div>
                   <Label htmlFor="graduationYear">Graduation Year</Label>
@@ -467,17 +479,12 @@ export default function StudentSearchPage() {
                 </div>
                 <div>
                   <Label htmlFor="major">Major</Label>
-                  <Select onValueChange={(value) => setSearchFilters(prev => ({ ...prev, major: value }))}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Any major" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="cs">Computer Science</SelectItem>
-                      <SelectItem value="se">Software Engineering</SelectItem>
-                      <SelectItem value="ee">Electrical Engineering</SelectItem>
-                      <SelectItem value="ds">Data Science</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <Input
+                    id="major"
+                    placeholder="Computer Science, Engineering..."
+                    value={searchFilters.major}
+                    onChange={(e) => setSearchFilters(prev => ({ ...prev, major: e.target.value }))}
+                  />
                 </div>
                 <div>
                   <Label htmlFor="location">Location</Label>
@@ -502,8 +509,22 @@ export default function StudentSearchPage() {
                     </SelectContent>
                   </Select>
                 </div>
+                <div>
+                  <Label htmlFor="minProjects">Min Projects</Label>
+                  <Select onValueChange={(value) => setSearchFilters(prev => ({ ...prev, projectCount: value }))}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Any" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1">1+</SelectItem>
+                      <SelectItem value="3">3+</SelectItem>
+                      <SelectItem value="5">5+</SelectItem>
+                      <SelectItem value="10">10+</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-              <Button onClick={performSearch} disabled={loading} className="w-full">
+              <Button onClick={() => performSearch(1)} disabled={loading} className="w-full">
                 <Search className="h-4 w-4 mr-1" />
                 {loading ? 'Searching...' : 'Search with Filters'}
               </Button>
@@ -518,7 +539,7 @@ export default function StudentSearchPage() {
                   placeholder="Paste your job description here for AI-powered candidate recommendations..."
                 />
               </div>
-              <Button onClick={performSearch} disabled={loading} className="w-full">
+              <Button onClick={() => performSearch(1)} disabled={loading} className="w-full">
                 <TrendingUp className="h-4 w-4 mr-1" />
                 Get AI Recommendations
               </Button>
@@ -527,12 +548,31 @@ export default function StudentSearchPage() {
         </CardContent>
       </Card>
 
+      {/* Error state */}
+      {error && (
+        <Card className="border-red-200 bg-red-50">
+          <CardContent className="p-6 flex items-center space-x-3">
+            <AlertCircle className="h-5 w-5 text-red-500" />
+            <div>
+              <p className="font-medium text-red-800">Search failed</p>
+              <p className="text-sm text-red-600">{error}</p>
+            </div>
+            <Button variant="outline" size="sm" className="ml-auto" onClick={() => performSearch(currentPage)}>
+              Retry
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Loading state */}
+      {loading && <LoadingSkeleton />}
+
       {/* Search Results */}
-      {searchResults.length > 0 && (
+      {!loading && searchResults.length > 0 && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold">
-              Search Results ({searchResults.length} students found)
+              Search Results ({totalResults} student{totalResults !== 1 ? 's' : ''} found)
             </h2>
             <div className="flex items-center space-x-2">
               <Select defaultValue="relevance">
@@ -557,7 +597,45 @@ export default function StudentSearchPage() {
               <StudentCard key={student.id} student={student} />
             ))}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center space-x-4 pt-4">
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={currentPage <= 1}
+                onClick={() => handlePageChange(currentPage - 1)}
+              >
+                <ChevronLeft className="h-4 w-4 mr-1" />
+                Previous
+              </Button>
+              <span className="text-sm text-gray-600">
+                Page {currentPage} of {totalPages}
+              </span>
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={currentPage >= totalPages}
+                onClick={() => handlePageChange(currentPage + 1)}
+              >
+                Next
+                <ChevronRight className="h-4 w-4 ml-1" />
+              </Button>
+            </div>
+          )}
         </div>
+      )}
+
+      {/* No results state */}
+      {!loading && !error && searchResults.length === 0 && totalResults === 0 && currentPage > 0 && totalPages > 0 && (
+        <Card className="p-12 text-center">
+          <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">No students found</h3>
+          <p className="text-gray-600">
+            Try broadening your search criteria or using different keywords
+          </p>
+        </Card>
       )}
 
       {/* Contact Modal */}

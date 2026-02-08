@@ -46,6 +46,7 @@ export async function GET(request: NextRequest) {
         university: true,
         degree: true,
         graduationYear: true,
+        subscriptionTier: true,
         projects: {
           where: { isPublic: true },
           select: {
@@ -61,6 +62,14 @@ export async function GET(request: NextRequest) {
       },
       orderBy: { createdAt: 'desc' },
       take: 50, // Limit results
+    })
+
+    // Sort STUDENT_PREMIUM users first for priority in search results
+    students.sort((a: any, b: any) => {
+      const aPremium = a.subscriptionTier === 'STUDENT_PREMIUM' ? 1 : 0
+      const bPremium = b.subscriptionTier === 'STUDENT_PREMIUM' ? 1 : 0
+      if (bPremium !== aPremium) return bPremium - aPremium
+      return 0 // preserve existing order for same tier
     })
 
     // Process students to calculate stats and filter by skills

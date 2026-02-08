@@ -20,7 +20,7 @@ import {
   ArrowRight,
   Loader2
 } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 
 export default function SubscriptionPage() {
   const { user: authUser, isAuthenticated, isLoading: authLoading } = useAuth()
@@ -99,9 +99,9 @@ export default function SubscriptionPage() {
   const isCanceled = subscriptionStatus === 'CANCELED'
 
   const getTierIcon = () => {
-    if (tierInfo?.name === 'Free') return <Sparkles className="h-6 w-6" />
-    if (tierInfo?.name === 'Pro') return <Zap className="h-6 w-6" />
-    if (tierInfo?.name === 'Elite') return <Crown className="h-6 w-6" />
+    if (tierInfo?.name === 'Free' || tierInfo?.name === 'Browse Free') return <Sparkles className="h-6 w-6" />
+    if (tierInfo?.name === 'Premium' || tierInfo?.name === 'Pay Per Contact') return <Zap className="h-6 w-6" />
+    if (tierInfo?.name === 'Enterprise') return <Crown className="h-6 w-6" />
     return <Sparkles className="h-6 w-6" />
   }
 
@@ -240,11 +240,11 @@ export default function SubscriptionPage() {
                         </>
                       )}
                     </Button>
-                    {(currentTier === 'STUDENT_PRO' || currentTier === 'RECRUITER_STARTER') && (
+                    {currentTier === 'RECRUITER_PAY_PER_CONTACT' && (
                       <Button size="lg" asChild className="flex-1">
-                        <Link href="/dashboard/student/upgrade">
+                        <Link href="/pricing?for=recruiters">
                           <TrendingUp className="mr-2 h-5 w-5" />
-                          Upgrade to Elite
+                          Upgrade to Enterprise
                         </Link>
                       </Button>
                     )}
@@ -283,50 +283,25 @@ export default function SubscriptionPage() {
                   </div>
                 </div>
 
-                {currentTier !== 'FREE' && (
-                  <>
-                    <div>
-                      <div className="flex justify-between text-sm mb-1">
-                        <span className="text-gray-600">AI Searches</span>
-                        <span className="font-medium">
-                          {subscriptionData.aiSearchCount || 0} / {tierInfo?.limits.aiSearches === -1 ? '∞' : tierInfo?.limits.aiSearches || 0}
-                        </span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-primary h-2 rounded-full transition-all"
-                          style={{
-                            width: `${
-                              tierInfo?.limits.aiSearches === -1
-                                ? 0
-                                : Math.min(((subscriptionData.aiSearchCount || 0) / (tierInfo?.limits.aiSearches || 1)) * 100, 100)
-                            }%`
-                          }}
-                        />
-                      </div>
+                {currentTier === 'RECRUITER_PAY_PER_CONTACT' && (
+                  <div>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="text-gray-600">Contact Credits</span>
+                      <span className="font-medium">
+                        {Math.floor((subscriptionData.contactBalance || 0) / 1000)} credits
+                      </span>
                     </div>
+                    <p className="text-xs text-gray-500">€10 per contact credit</p>
+                  </div>
+                )}
 
-                    <div>
-                      <div className="flex justify-between text-sm mb-1">
-                        <span className="text-gray-600">Contacts</span>
-                        <span className="font-medium">
-                          {subscriptionData.contactCount || 0} / {tierInfo?.limits.contacts === -1 ? '∞' : tierInfo?.limits.contacts || 0}
-                        </span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-primary h-2 rounded-full transition-all"
-                          style={{
-                            width: `${
-                              tierInfo?.limits.contacts === -1
-                                ? 0
-                                : Math.min(((subscriptionData.contactCount || 0) / (tierInfo?.limits.contacts || 1)) * 100, 100)
-                            }%`
-                          }}
-                        />
-                      </div>
+                {currentTier === 'RECRUITER_ENTERPRISE' && (
+                  <div>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="text-gray-600">Contacts</span>
+                      <span className="font-medium">Unlimited</span>
                     </div>
-                  </>
+                  </div>
                 )}
               </CardContent>
             </Card>

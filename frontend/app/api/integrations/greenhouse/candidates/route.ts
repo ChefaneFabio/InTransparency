@@ -10,6 +10,23 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
+    // Verify user is RECRUITER_ENTERPRISE
+    const recruiterUser = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { subscriptionTier: true, role: true, stripeCustomerId: true }
+    })
+
+    if (!recruiterUser || recruiterUser.role !== 'RECRUITER') {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+
+    if (recruiterUser.subscriptionTier !== 'RECRUITER_ENTERPRISE') {
+      return NextResponse.json({
+        error: 'ATS integration requires an Enterprise subscription',
+        upgradeUrl: '/pricing?for=recruiters',
+      }, { status: 403 })
+    }
+
     const body = await request.json()
     const { candidateId, jobId } = body
 
@@ -33,13 +50,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Candidate not found' }, { status: 404 })
     }
 
-    // Get recruiter's Greenhouse API key (would be stored in user settings)
-    const recruiter = await prisma.user.findUnique({
-      where: { id: userId }
-    })
-
     // In production, this would come from encrypted user settings
-    const greenhouseApiKey = process.env.GREENHOUSE_API_KEY || recruiter?.stripeCustomerId // placeholder
+    const greenhouseApiKey = process.env.GREENHOUSE_API_KEY || recruiterUser?.stripeCustomerId // placeholder
 
     if (!greenhouseApiKey) {
       return NextResponse.json({

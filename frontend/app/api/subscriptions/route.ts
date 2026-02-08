@@ -131,7 +131,7 @@ export async function POST(request: NextRequest) {
         }
       ],
       subscription_data: {
-        trial_period_days: tier === 'STUDENT_PRO' ? 7 : 0, // 7-day trial for Student Pro
+        trial_period_days: tier === 'STUDENT_PREMIUM' ? 7 : 0, // 7-day trial for Student Premium
         metadata: {
           userId: user.id,
           tier
@@ -157,6 +157,10 @@ export async function POST(request: NextRequest) {
 
 // Helper function to get Stripe price ID
 function getPriceId(tier: string, interval: string): string | null {
-  const key = `${tier}_${interval.toUpperCase()}` as keyof typeof STRIPE_PRICES
-  return STRIPE_PRICES[key] || null
+  const priceMap: Record<string, string> = {
+    'STUDENT_PREMIUM_MONTHLY': STRIPE_PRICES.STUDENT_PREMIUM_MONTHLY,
+    'RECRUITER_ENTERPRISE_MONTHLY': STRIPE_PRICES.RECRUITER_ENTERPRISE_MONTHLY,
+    'INSTITUTION_ENTERPRISE_ANNUAL': STRIPE_PRICES.INSTITUTION_ENTERPRISE_ANNUAL,
+  }
+  return priceMap[`${tier}_${interval.toUpperCase()}`] || null
 }

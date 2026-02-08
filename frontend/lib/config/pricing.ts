@@ -1,10 +1,10 @@
 /**
  * Pricing Configuration for InTransparency
  *
- * Multi-tier subscription model:
- * - Students: Free (3 projects) / Pro €12/mo / Elite €29/mo
- * - Companies: Browse Free / Starter €149/mo / Growth €399/mo / Enterprise €999/mo
- * - Universities: Free / Professional €499/mo / Enterprise €1,499/mo
+ * Simplified pricing model:
+ * - Students: Free / Premium €9/mo
+ * - Companies: Browse Free / Pay Per Contact €10/contact / Enterprise €99/mo
+ * - Institutions: Free / Enterprise €2,000/yr
  */
 
 import { SubscriptionTier } from '@prisma/client'
@@ -12,18 +12,16 @@ import { SubscriptionTier } from '@prisma/client'
 // Stripe Price IDs (Replace with actual Stripe price IDs after creating products)
 export const STRIPE_PRICE_IDS = {
   // Student Plans
-  STUDENT_PRO_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_STUDENT_PRO_MONTHLY || 'price_student_pro_monthly',
-  STUDENT_PRO_ANNUAL: process.env.NEXT_PUBLIC_STRIPE_STUDENT_PRO_ANNUAL || 'price_student_pro_annual',
-  STUDENT_ELITE_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_STUDENT_ELITE_MONTHLY || 'price_student_elite_monthly',
-  STUDENT_ELITE_ANNUAL: process.env.NEXT_PUBLIC_STRIPE_STUDENT_ELITE_ANNUAL || 'price_student_elite_annual',
+  STUDENT_PREMIUM_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_STUDENT_PREMIUM_MONTHLY || 'price_student_premium_monthly',
 
   // Company Plans
-  RECRUITER_STARTER_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_RECRUITER_STARTER_MONTHLY || 'price_recruiter_starter_monthly',
-  RECRUITER_STARTER_ANNUAL: process.env.NEXT_PUBLIC_STRIPE_RECRUITER_STARTER_ANNUAL || 'price_recruiter_starter_annual',
-  RECRUITER_GROWTH_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_RECRUITER_GROWTH_MONTHLY || 'price_recruiter_growth_monthly',
-  RECRUITER_GROWTH_ANNUAL: process.env.NEXT_PUBLIC_STRIPE_RECRUITER_GROWTH_ANNUAL || 'price_recruiter_growth_annual',
-  RECRUITER_PRO_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_RECRUITER_PRO_MONTHLY || 'price_recruiter_pro_monthly',
-  RECRUITER_PRO_ANNUAL: process.env.NEXT_PUBLIC_STRIPE_RECRUITER_PRO_ANNUAL || 'price_recruiter_pro_annual',
+  RECRUITER_ENTERPRISE_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_RECRUITER_ENTERPRISE_MONTHLY || 'price_recruiter_enterprise_monthly',
+
+  // Institution Plans
+  INSTITUTION_ENTERPRISE_ANNUAL: process.env.NEXT_PUBLIC_STRIPE_INSTITUTION_ENTERPRISE_ANNUAL || 'price_institution_enterprise_annual',
+
+  // Contact Credits (one-time payment)
+  CONTACT_CREDITS: process.env.NEXT_PUBLIC_STRIPE_CONTACT_CREDITS || 'price_contact_credits',
 } as const
 
 // Pricing tiers with features
@@ -31,23 +29,28 @@ export interface PricingTier {
   id: SubscriptionTier
   name: string
   description: string
+  pricingModel: 'free' | 'subscription' | 'pay_per_contact' | 'annual_subscription'
   price: {
-    monthly: number  // in euros
-    annual: number   // in euros (or null if not available)
+    monthly: number  // in euros (0 for free / pay-per-contact)
+    annual: number
+    perContact?: number  // in euros, for pay-per-contact
   }
   stripePriceIds: {
-    monthly: string
+    monthly?: string
     annual?: string
+    perContact?: string
   }
   features: string[]
   limits: {
     projects?: number
     contacts?: number
-    aiSearches?: number
-    cvDownloads?: number
-    teamMembers?: number
+    contactBalance?: boolean  // true for pay-per-contact tier
     customBranding?: boolean
     prioritySupport?: boolean
+    apiAccess?: boolean
+    atsIntegration?: boolean
+    whiteLabel?: boolean
+    multiCampus?: boolean
   }
   popular?: boolean
   cta: string
@@ -58,85 +61,51 @@ export const STUDENT_PRICING: PricingTier[] = [
   {
     id: 'FREE' as SubscriptionTier,
     name: 'Free',
-    description: 'Get started with basic profile',
+    description: 'Get started with your portfolio',
+    pricingModel: 'free',
     price: {
       monthly: 0,
-      annual: 0
+      annual: 0,
     },
-    stripePriceIds: {
-      monthly: '',
-      annual: ''
-    },
-    features: [
-      'Up to 3 projects',
-      'Basic profile page',
-      'Manual project upload',
-      'Public profile link',
-      'Community support'
-    ],
-    limits: {
-      projects: 3,
-      aiSearches: 0
-    },
-    cta: 'Get Started Free'
-  },
-  {
-    id: 'STUDENT_PRO' as SubscriptionTier,
-    name: 'Pro',
-    description: 'Stand out with unlimited projects',
-    price: {
-      monthly: 12,
-      annual: 120  // 2 months free
-    },
-    stripePriceIds: {
-      monthly: STRIPE_PRICE_IDS.STUDENT_PRO_MONTHLY,
-      annual: STRIPE_PRICE_IDS.STUDENT_PRO_ANNUAL
-    },
+    stripePriceIds: {},
     features: [
       'Unlimited projects',
-      'GitHub/GitLab auto-sync',
-      'Custom portfolio subdomain',
-      'AI project descriptions',
-      'Analytics dashboard',
-      'Priority in search results',
-      'Remove InTransparency branding'
+      'University verification',
+      'Public portfolio',
+      'Profile analytics',
     ],
     limits: {
-      projects: -1,  // unlimited
-      customBranding: true
+      projects: -1, // unlimited
     },
-    popular: true,
-    cta: 'Upgrade to Pro'
+    cta: 'Get Started Free',
   },
   {
-    id: 'STUDENT_ELITE' as SubscriptionTier,
-    name: 'Elite',
-    description: 'Premium features for top talent',
+    id: 'STUDENT_PREMIUM' as SubscriptionTier,
+    name: 'Premium',
+    description: 'Stand out to recruiters',
+    pricingModel: 'subscription',
     price: {
-      monthly: 29,
-      annual: 290  // 2 months free
+      monthly: 9,
+      annual: 90,
     },
     stripePriceIds: {
-      monthly: STRIPE_PRICE_IDS.STUDENT_ELITE_MONTHLY,
-      annual: STRIPE_PRICE_IDS.STUDENT_ELITE_ANNUAL
+      monthly: STRIPE_PRICE_IDS.STUDENT_PREMIUM_MONTHLY,
     },
     features: [
-      'Everything in Pro, plus:',
-      'Featured profile badge',
-      'Direct company messages',
-      'Career coaching session (1x/month)',
-      'Resume review by AI',
-      'Interview prep resources',
-      'Exclusive job opportunities',
-      'Priority support'
+      'Everything in Free, plus:',
+      'Priority in search results',
+      'Custom portfolio URL',
+      'Contact recruiters directly',
+      'Advanced analytics',
     ],
     limits: {
       projects: -1,
       customBranding: true,
-      prioritySupport: true
+      prioritySupport: true,
     },
-    cta: 'Go Elite'
-  }
+    popular: true,
+    cta: 'Upgrade to Premium',
+  },
 ]
 
 // Company/Recruiter Pricing Tiers
@@ -144,125 +113,130 @@ export const RECRUITER_PRICING: PricingTier[] = [
   {
     id: 'RECRUITER_FREE' as SubscriptionTier,
     name: 'Browse Free',
-    description: 'Explore talent pool at no cost',
+    description: 'Explore the talent pool',
+    pricingModel: 'free',
     price: {
       monthly: 0,
-      annual: 0
+      annual: 0,
     },
-    stripePriceIds: {
-      monthly: '',
-      annual: ''
-    },
+    stripePriceIds: {},
     features: [
-      'Browse student profiles',
-      'Basic search filters',
-      'View up to 10 profiles/month',
-      'Save favorite candidates'
+      'Unlimited browsing',
+      'Advanced search',
+      'Save candidates',
     ],
     limits: {
       contacts: 0,
-      aiSearches: 0,
-      cvDownloads: 10
     },
-    cta: 'Start Browsing'
+    cta: 'Start Browsing',
   },
   {
-    id: 'RECRUITER_STARTER' as SubscriptionTier,
-    name: 'Starter',
-    description: 'Perfect for small teams',
+    id: 'RECRUITER_PAY_PER_CONTACT' as SubscriptionTier,
+    name: 'Pay Per Contact',
+    description: 'Only pay when you reach out',
+    pricingModel: 'pay_per_contact',
     price: {
-      monthly: 149,
-      annual: 1490  // 2 months free
+      monthly: 0,
+      annual: 0,
+      perContact: 10,
     },
     stripePriceIds: {
-      monthly: STRIPE_PRICE_IDS.RECRUITER_STARTER_MONTHLY,
-      annual: STRIPE_PRICE_IDS.RECRUITER_STARTER_ANNUAL
+      perContact: STRIPE_PRICE_IDS.CONTACT_CREDITS,
     },
     features: [
-      'Contact up to 50 candidates/month',
-      'Advanced search filters',
-      'Course-level filtering',
-      'AI match explanations',
-      'Download CVs & portfolios',
-      'Email support'
+      'Everything in Browse Free, plus:',
+      'Full contact unlock (credit balance)',
     ],
     limits: {
-      contacts: 50,
-      aiSearches: 100,
-      cvDownloads: 50,
-      teamMembers: 2
-    },
-    cta: 'Start Free Trial'
-  },
-  {
-    id: 'RECRUITER_GROWTH' as SubscriptionTier,
-    name: 'Growth',
-    description: 'Scale your recruiting',
-    price: {
-      monthly: 399,
-      annual: 3990  // 2 months free
-    },
-    stripePriceIds: {
-      monthly: STRIPE_PRICE_IDS.RECRUITER_GROWTH_MONTHLY,
-      annual: STRIPE_PRICE_IDS.RECRUITER_GROWTH_ANNUAL
-    },
-    features: [
-      'Contact up to 200 candidates/month',
-      'Everything in Starter, plus:',
-      'Market intelligence dashboard',
-      'Bulk messaging',
-      'ATS integration',
-      'Team collaboration tools',
-      'Priority support'
-    ],
-    limits: {
-      contacts: 200,
-      aiSearches: 500,
-      cvDownloads: 200,
-      teamMembers: 5,
-      prioritySupport: true
+      contacts: -1, // unlimited, but deducted from balance
+      contactBalance: true,
     },
     popular: true,
-    cta: 'Start Free Trial'
+    cta: 'Buy Credits',
   },
   {
-    id: 'RECRUITER_PRO' as SubscriptionTier,
+    id: 'RECRUITER_ENTERPRISE' as SubscriptionTier,
     name: 'Enterprise',
     description: 'Unlimited hiring at scale',
+    pricingModel: 'subscription',
     price: {
-      monthly: 999,
-      annual: 9990  // 2 months free
+      monthly: 99,
+      annual: 990,
     },
     stripePriceIds: {
-      monthly: STRIPE_PRICE_IDS.RECRUITER_PRO_MONTHLY,
-      annual: STRIPE_PRICE_IDS.RECRUITER_PRO_ANNUAL
+      monthly: STRIPE_PRICE_IDS.RECRUITER_ENTERPRISE_MONTHLY,
     },
     features: [
-      'Unlimited candidate contacts',
-      'Everything in Growth, plus:',
-      'Dedicated account manager',
-      'Custom integrations',
-      'White-label option',
-      'Unlimited team members',
+      'Everything in Pay Per Contact, plus:',
+      'Unlimited contact unlocks',
       'API access',
-      '24/7 priority support',
-      'Custom contract terms'
+      'ATS integration',
+      'Dedicated support',
     ],
     limits: {
-      contacts: -1,  // unlimited
-      aiSearches: -1,
-      cvDownloads: -1,
-      teamMembers: -1,
-      customBranding: true,
-      prioritySupport: true
+      contacts: -1,
+      apiAccess: true,
+      atsIntegration: true,
+      prioritySupport: true,
     },
-    cta: 'Contact Sales'
-  }
+    cta: 'Go Enterprise',
+  },
+]
+
+// Institution Pricing Tiers
+export const INSTITUTION_PRICING: PricingTier[] = [
+  {
+    id: 'FREE' as SubscriptionTier,
+    name: 'Free',
+    description: 'Essential tools for your institution',
+    pricingModel: 'free',
+    price: {
+      monthly: 0,
+      annual: 0,
+    },
+    stripePriceIds: {},
+    features: [
+      'Verify projects',
+      'Batch approval',
+      'Placement analytics',
+    ],
+    limits: {},
+    cta: 'Get Started Free',
+  },
+  {
+    id: 'INSTITUTION_ENTERPRISE' as SubscriptionTier,
+    name: 'Enterprise',
+    description: 'Full platform for your institution',
+    pricingModel: 'annual_subscription',
+    price: {
+      monthly: 0,
+      annual: 2000,
+    },
+    stripePriceIds: {
+      annual: STRIPE_PRICE_IDS.INSTITUTION_ENTERPRISE_ANNUAL,
+    },
+    features: [
+      'Everything in Free, plus:',
+      'API integration',
+      'White-label',
+      'Multi-campus support',
+    ],
+    limits: {
+      apiAccess: true,
+      whiteLabel: true,
+      multiCampus: true,
+    },
+    cta: 'Contact Sales',
+  },
 ]
 
 // Helper function to get pricing tier by ID
 export function getPricingTier(tierId: SubscriptionTier): PricingTier | undefined {
-  return [...STUDENT_PRICING, ...RECRUITER_PRICING].find(tier => tier.id === tierId)
+  return [
+    ...STUDENT_PRICING,
+    ...RECRUITER_PRICING,
+    ...INSTITUTION_PRICING,
+  ].find(tier => tier.id === tierId)
 }
 
 // Helper function to check if user has access to a feature
@@ -299,12 +273,6 @@ export function hasReachedLimit(
   return currentUsage >= limit
 }
 
-// Annual discount percentage
-export const ANNUAL_DISCOUNT_PERCENT = 17  // ~2 months free
-
-// Free trial period (days)
-export const FREE_TRIAL_DAYS = 14
-
 // Stripe configuration
 export const STRIPE_CONFIG = {
   publicKey: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '',
@@ -312,5 +280,5 @@ export const STRIPE_CONFIG = {
   webhookSecret: process.env.STRIPE_WEBHOOK_SECRET || '',
   successUrl: process.env.NEXT_PUBLIC_URL + '/dashboard/subscription/success',
   cancelUrl: process.env.NEXT_PUBLIC_URL + '/pricing',
-  customerPortalUrl: process.env.NEXT_PUBLIC_URL + '/dashboard/subscription'
+  customerPortalUrl: process.env.NEXT_PUBLIC_URL + '/dashboard/subscription',
 }

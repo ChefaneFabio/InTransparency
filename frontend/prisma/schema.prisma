@@ -206,6 +206,7 @@ model User {
   stripeCustomerId     String?            @unique
   stripeSubscriptionId String?            @unique
   premiumUntil         DateTime?
+  contactBalance       Int                @default(0) // in cents; 1000 = €10 = 1 contact
 
   // Referral Info
   referralCode        String       @unique @default(cuid())
@@ -256,6 +257,13 @@ model User {
   placements           Placement[]            @relation("StudentPlacements")
   universitySettings   UniversitySettings?
   alumniRecord         AlumniRecord?
+  contactPayments      ContactPayment[]
+  apiKeys              ApiKey[]
+  savedCandidates      SavedCandidate[]       @relation("RecruiterSavedCandidates")
+  savedByCandidates    SavedCandidate[]       @relation("SavedCandidateProfile")
+  savedSearches        SavedSearch[]
+  recruiterSettings    RecruiterSettings?
+  campuses             Campus[]
 
   @@index([email])
   @@index([username])
@@ -319,13 +327,11 @@ enum UserRole {
 
 enum SubscriptionTier {
   FREE
-  STUDENT_PRO
-  STUDENT_ELITE
+  STUDENT_PREMIUM
   RECRUITER_FREE
-  RECRUITER_STARTER
-  RECRUITER_GROWTH
-  RECRUITER_PRO
-  ENTERPRISE
+  RECRUITER_PAY_PER_CONTACT
+  RECRUITER_ENTERPRISE
+  INSTITUTION_ENTERPRISE
 }
 
 enum SubscriptionStatus {
@@ -639,9 +645,11 @@ model Message {
   content String  @db.Text
 
   // Status
-  read    Boolean   @default(false)
-  readAt  DateTime?
-  replied Boolean   @default(false)
+  read       Boolean   @default(false)
+  readAt     DateTime?
+  replied    Boolean   @default(false)
+  isStarred  Boolean   @default(false)
+  isArchived Boolean   @default(false)
 
   // Thread
   threadId  String?
@@ -1814,4 +1822,166 @@ enum SyncStatus {
   SUCCESS
   PARTIAL
   FAILED
+}
+
+// ============================================
+// RECRUITER FEATURES MODELS
+// ============================================
+
+// Saved Candidates (recruiter bookmarks)
+model SavedCandidate {
+  id          String   @id @default(cuid())
+  recruiterId String
+  recruiter   User     @relation("RecruiterSavedCandidates", fields: [recruiterId], references: [id], onDelete: Cascade)
+  candidateId String
+  candidate   User     @relation("SavedCandidateProfile", fields: [candidateId], references: [id], onDelete: Cascade)
+
+  folder    String   @default("all")
+  notes     String?  @db.Text
+  rating    Int?
+  tags      String[] @default([])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([recruiterId, candidateId])
+  @@index([recruiterId])
+  @@index([candidateId])
+  @@index([folder])
+}
+
+// Saved Searches (recruiter search presets)
+model SavedSearch {
+  id          String  @id @default(cuid())
+  recruiterId String
+  recruiter   User    @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
+
+  name           String
+  description    String?
+  filters        Json
+  isActive       Boolean  @default(true)
+  alertsEnabled  Boolean  @default(false)
+  alertFrequency String   @default("daily")
+  candidateCount Int      @default(0)
+  newMatches     Int      @default(0)
+  lastRunAt      DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([recruiterId])
+}
+
+// Recruiter Settings (company profile & notification prefs)
+model RecruiterSettings {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Company Profile
+  companyName        String?
+  companyWebsite     String?
+  companyIndustry    String?
+  companySize        String?
+  companyLocation    String?
+  companyDescription String? @db.Text
+  companyLogo        String?
+
+  // Notification Preferences
+  notifyNewApplications Boolean @default(true)
+  notifyMessages        Boolean @default(true)
+  notifySearchAlerts    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Contact Credit Payment (pay-per-contact model)
+model ContactPayment {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  email  String
+
+  // Payment Details
+  amount   Int // in cents (€10 = 1000 per contact credit)
+  currency String @default("eur")
+  credits  Int // number of contact credits purchased
+
+  // Stripe
+  stripePaymentIntentId String? @unique
+  stripeSessionId       String? @unique
+  stripeCustomerId      String?
+
+  // Status
+  status PaymentStatus @default(PENDING)
+
+  // Metadata
+  metadata Json?
+
+  // Timestamps
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  paidAt    DateTime?
+
+  @@index([userId])
+  @@index([email])
+  @@index([status])
+  @@index([stripePaymentIntentId])
+}
+
+// ============================================
+// MULTI-CAMPUS SUPPORT (Enterprise)
+// ============================================
+
+model Campus {
+  id        String @id @default(cuid())
+  userId    String // The university admin who owns this campus
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name      String  // e.g., "Milano - Bovisa", "Milano - Leonardo"
+  code      String? // Internal campus code
+  city      String
+  region    String?
+  address   String?
+  country   String  @default("IT")
+
+  // Campus-specific settings
+  contactEmail String?
+  contactPhone String?
+  departments  String[] @default([])
+
+  isActive  Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, name])
+  @@index([userId])
+}
+
+// ============================================
+// API KEY MANAGEMENT (Enterprise)
+// ============================================
+
+model ApiKey {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name      String   // e.g., "Production Key", "Staging Key"
+  keyHash   String   @unique // SHA-256 hash of the API key
+  keyPrefix String   // First 8 chars of key for display (e.g., "itk_abc1...")
+
+  scopes    String[] @default(["read"]) // "read", "write", "export"
+
+  lastUsedAt DateTime?
+  expiresAt  DateTime?
+  revokedAt  DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([keyHash])
 }

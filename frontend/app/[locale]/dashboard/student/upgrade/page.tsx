@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { STUDENT_PRICING } from '@/lib/config/pricing'
 import { Check, Sparkles, Zap, Crown, Loader2, ArrowLeft } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 
 export default function UpgradePage() {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth()
@@ -64,8 +64,7 @@ export default function UpgradePage() {
 
   const getTierIcon = (tierName: string) => {
     if (tierName === 'Free') return <Sparkles className="h-6 w-6" />
-    if (tierName === 'Pro') return <Zap className="h-6 w-6" />
-    if (tierName === 'Elite') return <Crown className="h-6 w-6" />
+    if (tierName === 'Premium') return <Crown className="h-6 w-6" />
     return <Sparkles className="h-6 w-6" />
   }
 
@@ -235,7 +234,7 @@ export default function UpgradePage() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700">
-                  Start your 14-day free trial today. You'll get full access to all Pro or Elite features.
+                  Start your 14-day free trial today. You'll get full access to all Premium features.
                   We'll remind you before your trial ends. Cancel anytime during the trial and you won't be charged.
                 </p>
               </CardContent>
@@ -271,7 +270,7 @@ export default function UpgradePage() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700">
-                  Yes! You can upgrade from Pro to Elite at any time. The price difference will be prorated.
+                  Yes! You can switch plans at any time. If you upgrade, the price difference will be prorated.
                   If you downgrade, the change will take effect at the end of your current billing period.
                 </p>
               </CardContent>

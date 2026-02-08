@@ -229,7 +229,7 @@
             "cta": "Inizia Gratis"
           },
           "1": {
-            "name": "Pro Studente",
+            "name": "Premium Studente",
             "price": "€9",
             "period": "/mese",
             "description": "Funzionalità avanzate per studenti seri",
@@ -241,7 +241,7 @@
               "4": "Messaggistica diretta recruiter",
               "5": "Supporto prioritario"
             },
-            "cta": "Aggiorna a Pro"
+            "cta": "Aggiorna a Premium"
           },
           "2": {
             "name": "Università",
@@ -2073,11 +2073,11 @@
         "referInstitution": {
           "title": "Invita la Tua Istituzione",
           "description": "Invita la tua università/ITS a verificare i profili studenti",
-          "reward": "10% dei canoni Pro primo anno",
+          "reward": "10% dei canoni Premium primo anno",
           "details": {
             "0": "La tua istituzione si iscrive e verifica gli studenti",
-            "1": "Guadagni 10% di tutti gli abbonamenti Pro dagli studenti della tua istituzione nell'Anno 1",
-            "2": "Esempio: 100 studenti passano a Pro (€9/mese) = €90/mese × 12 = €1.080/anno × 10% = €108 premio",
+            "1": "Guadagni 10% di tutti gli abbonamenti Premium dagli studenti della tua istituzione nell'Anno 1",
+            "2": "Esempio: 100 studenti passano a Premium (€9/mese) = €90/mese × 12 = €1.080/anno × 10% = €108 premio",
             "3": "Pagato trimestralmente via PayPal/bonifico",
             "4": "Tracciamento lifetime - anche studenti che si uniscono dopo contano"
           },
@@ -2087,13 +2087,13 @@
         "referStudents": {
           "title": "Invita Altri Studenti",
           "description": "Invita compagni di corso a unirsi e farsi verificare",
-          "reward": "€5 per upgrade Pro",
+          "reward": "€5 per upgrade Premium",
           "details": {
             "0": "Condividi il tuo link referral con i compagni",
-            "1": "Quando si iscrivono e passano a Pro (€9/mese), guadagni €5",
+            "1": "Quando si iscrivono e passano a Premium (€9/mese), guadagni €5",
             "2": "Esempio: 20 amici fanno upgrade = €100 bonus",
             "3": "Nessun limite ai referral",
-            "4": "Bonus per entrambi: L'amico riceve 1 mese gratis di prova Pro"
+            "4": "Bonus per entrambi: L'amico riceve 1 mese gratis di prova Premium"
           },
           "cta": "Ottieni Codice Referral",
           "trigger": "Dopo 3 match visualizzati → \"Condividi con amici per €5 bonus per upgrade\""
@@ -2117,21 +2117,21 @@
     },
     "institution": {
       "title": "Programma Partner Istituzioni",
-      "subtitle": "Guadagna bonus promuovendo upgrade Pro e partnership aziende",
+      "subtitle": "Guadagna bonus promuovendo upgrade Premium e partnership aziende",
       "programs": {
         "studentUpgradeBonus": {
-          "title": "Bonus Upgrade Pro Studenti",
-          "description": "Guadagna quando i tuoi studenti passano a Pro",
-          "reward": "10% dei canoni Pro studenti",
+          "title": "Bonus Upgrade Premium Studenti",
+          "description": "Guadagna quando i tuoi studenti passano a Premium",
+          "reward": "10% dei canoni Premium studenti",
           "details": {
-            "0": "Quando i tuoi studenti verificati passano a Pro (€9/mese), guadagni 10%",
+            "0": "Quando i tuoi studenti verificati passano a Premium (€9/mese), guadagni 10%",
             "1": "Esempio: 50 studenti fanno upgrade = €45/mese × 12 = €540/anno",
             "2": "Tracciamento automatico tramite dashboard istituzione",
-            "3": "Promuovi Pro nelle email career center: \"Sblocca progetti illimitati per €9/mese\"",
+            "3": "Promuovi Premium nelle email career center: \"Sblocca progetti illimitati per €9/mese\"",
             "4": "Usa i fondi per borse di studio o budget servizi carriera"
           },
           "cta": "Abilita Tracciamento Partner",
-          "trigger": "In dashboard: \"50% dei tuoi alumni su Pro - promuovi upgrade bulk?\""
+          "trigger": "In dashboard: \"50% dei tuoi alumni su Premium - promuovi upgrade bulk?\""
         },
         "companyPartnership": {
           "title": "Referral Partnership Aziende",
@@ -3640,18 +3640,18 @@
     "roadmap": {
       "title": "Roadmap di Apprendimento",
       "description": "Timeline personalizzata di competenze da apprendere e progetti da realizzare",
-      "lockedTitle": "Roadmap di Apprendimento (Funzione Pro)",
-      "lockedDescription": "Passa a Pro per ottenere una roadmap di apprendimento personalizzata con tappe settimanali su misura per i tuoi gap di competenze."
+      "lockedTitle": "Roadmap di Apprendimento (Funzione Premium)",
+      "lockedDescription": "Passa a Premium per ottenere una roadmap di apprendimento personalizzata con tappe settimanali su misura per i tuoi gap di competenze."
     },
     "projects": {
       "title": "Progetti Consigliati",
       "showingLimited": "Mostrati {shown} di {total}",
-      "moreAvailable": "{count} altre idee progetto disponibili con Pro"
+      "moreAvailable": "{count} altre idee progetto disponibili con Premium"
     },
     "careers": {
       "title": "Analisi Percorsi di Carriera",
       "showingLimited": "Mostrati {shown} di {total}",
-      "moreAvailable": "{count} altri percorsi di carriera disponibili con Pro"
+      "moreAvailable": "{count} altri percorsi di carriera disponibili con Premium"
     }
   }
 }

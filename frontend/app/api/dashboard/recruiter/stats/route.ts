@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
-import { getPricingTier } from '@/lib/config/pricing'
 
 /**
  * GET /api/dashboard/recruiter/stats
@@ -26,41 +25,29 @@ export async function GET(req: NextRequest) {
       where: { id: userId },
       select: {
         subscriptionTier: true,
-        premiumUntil: true,
+        contactBalance: true,
       }
     })
 
-    // Calculate contact usage
-    let contactUsage = { used: 0, limit: 0, remaining: 0 }
+    // Calculate contact stats based on new pricing model
+    let contactStats: any = { model: 'free', balance: 0, totalContacted: 0 }
     if (user) {
-      const tier = getPricingTier(user.subscriptionTier)
-      const contactLimit = tier?.limits.contacts ?? 0
-
-      const now = new Date()
-      let billingPeriodStart: Date
-
-      if (user.premiumUntil) {
-        const premiumDate = new Date(user.premiumUntil)
-        const dayOfMonth = premiumDate.getDate()
-        billingPeriodStart = new Date(now.getFullYear(), now.getMonth(), dayOfMonth)
-        if (billingPeriodStart > now) {
-          billingPeriodStart.setMonth(billingPeriodStart.getMonth() - 1)
-        }
-      } else {
-        billingPeriodStart = new Date(now.getFullYear(), now.getMonth(), 1)
-      }
-
-      const used = await prisma.contactUsage.count({
-        where: {
-          recruiterId: userId,
-          billingPeriodStart: billingPeriodStart,
-        }
+      const totalContacted = await prisma.contactUsage.count({
+        where: { recruiterId: userId },
       })
 
-      contactUsage = {
-        used,
-        limit: contactLimit,
-        remaining: contactLimit === -1 ? -1 : Math.max(0, contactLimit - used),
+      if (user.subscriptionTier === 'RECRUITER_ENTERPRISE') {
+        contactStats = { model: 'enterprise', unlimited: true, totalContacted }
+      } else if (user.subscriptionTier === 'RECRUITER_PAY_PER_CONTACT') {
+        contactStats = {
+          model: 'pay_per_contact',
+          balance: user.contactBalance,
+          credits: Math.floor(user.contactBalance / 1000),
+          costPerContact: 1000,
+          totalContacted,
+        }
+      } else {
+        contactStats = { model: 'free', balance: 0, totalContacted: 0 }
       }
     }
 
@@ -257,7 +244,7 @@ export async function GET(req: NextRequest) {
         pendingReview,
         shortlisted,
         interviewsScheduled,
-        contactUsage,
+        contactStats,
       },
       recentApplications: formattedApplications,
       topCandidates: formattedCandidates,

@@ -1,18 +1,11 @@
 'use client'
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useState, useEffect, useCallback } from 'react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { CourseFilters } from '@/components/search/CourseFilters'
-import {
-  searchStudentsByCourse,
-  MOCK_STUDENTS_WITH_COURSES,
-  generateMatchExplanation
-} from '@/lib/data/mock-course-data'
-import { CourseCategory, COURSE_CATEGORIES } from '@/lib/types/course-data'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   GraduationCap,
   MapPin,
@@ -21,297 +14,470 @@ import {
   MessageSquare,
   Sparkles,
   TrendingUp,
-  CheckCircle,
   AlertCircle,
-  ExternalLink
+  ExternalLink,
+  Search,
+  Filter,
+  ChevronDown,
+  ChevronUp,
+  Building2,
+  BookOpen,
+  Users,
 } from 'lucide-react'
+import { Link } from '@/navigation'
+
+interface CourseStudent {
+  id: string
+  name: string
+  initials: string
+  email: string
+  university: string | null
+  degree: string | null
+  graduationYear: string | null
+  gpa: number | null
+  photo: string | null
+  bio: string | null
+  tagline: string | null
+  courseGrade: string | null
+  project: {
+    id: string
+    title: string
+    technologies: string[]
+    skills: string[]
+    innovationScore: number | null
+    complexityScore: number | null
+  }
+}
+
+interface CourseGroup {
+  courseId: string
+  courseName: string
+  courseCode: string
+  department: string | null
+  semester: string
+  academicYear: string
+  professorName: string | null
+  students: CourseStudent[]
+}
+
+interface InstitutionGroup {
+  institution: string
+  courses: CourseGroup[]
+}
 
 export default function CourseSearchPage() {
-  const [filters, setFilters] = useState<{
-    courseCategory?: CourseCategory
-    minGrade?: number
-    institutionType?: 'its' | 'university' | 'both'
-    location?: string
-    radius?: number
-  }>({
-    institutionType: 'both'
-  })
-  const [results, setResults] = useState(MOCK_STUDENTS_WITH_COURSES)
-  const [selectedCandidate, setSelectedCandidate] = useState<string | null>(null)
+  const [groups, setGroups] = useState<InstitutionGroup[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [totalStudents, setTotalStudents] = useState(0)
+  const [totalGroups, setTotalGroups] = useState(0)
 
-  const handleApplyFilters = () => {
-    const filtered = searchStudentsByCourse(filters)
-    setResults(filtered)
+  // Filters
+  const [courseCategory, setCourseCategory] = useState('')
+  const [minGrade, setMinGrade] = useState('')
+  const [institutionType, setInstitutionType] = useState('')
+  const [showFilters, setShowFilters] = useState(true)
+
+  // Expanded state
+  const [expandedInstitutions, setExpandedInstitutions] = useState<Record<string, boolean>>({})
+  const [expandedCourses, setExpandedCourses] = useState<Record<string, boolean>>({})
+
+  const fetchResults = useCallback(async () => {
+    setLoading(true)
+    setError(null)
+    try {
+      const params = new URLSearchParams()
+      if (courseCategory) params.set('courseCategory', courseCategory)
+      if (minGrade) params.set('minGrade', minGrade)
+      if (institutionType) params.set('institutionType', institutionType)
+
+      const res = await fetch(`/api/dashboard/recruiter/search/by-course?${params.toString()}`)
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Failed to search')
+      }
+      const data = await res.json()
+      setGroups(data.groups || [])
+      setTotalStudents(data.total || 0)
+      setTotalGroups(data.totalGroups || 0)
+    } catch (err: any) {
+      setError(err.message || 'Failed to fetch results')
+    } finally {
+      setLoading(false)
+    }
+  }, [courseCategory, minGrade, institutionType])
+
+  useEffect(() => {
+    fetchResults()
+  }, [fetchResults])
+
+  const toggleInstitution = (institution: string) => {
+    setExpandedInstitutions(prev => ({ ...prev, [institution]: !prev[institution] }))
   }
 
-  const getSelectedCandidateData = () => {
-    if (!selectedCandidate) return null
-    return results.find(c => c.id === selectedCandidate)
+  const toggleCourse = (courseId: string) => {
+    setExpandedCourses(prev => ({ ...prev, [courseId]: !prev[courseId] }))
   }
+
+  const gradeOptions = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D']
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-6">
-      <div className="container mx-auto max-w-7xl space-y-6">
-        {/* Header */}
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
-            <Sparkles className="h-8 w-8 text-primary" />
-            Course-Level Search
-          </h1>
-          <p className="text-gray-600 mt-2">
-            Filter candidates by verified course grades from institutions (ITS & Universities)
-          </p>
-        </div>
+    <div className="space-y-6">
+      {/* Header */}
+      <div>
+        <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+          <Sparkles className="h-8 w-8 text-primary" />
+          Course-Level Search
+        </h1>
+        <p className="text-gray-600 mt-2">
+          Search candidates by verified course grades from institutions
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Filters Sidebar */}
-          <div className="lg:col-span-1">
-            <CourseFilters
-              filters={filters}
-              onChange={setFilters}
-              onApply={handleApplyFilters}
-              resultCount={results.length}
-            />
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* Filters Sidebar */}
+        <div className="lg:col-span-1 space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-sm flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <Filter className="h-4 w-4" />
+                  Filters
+                </span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowFilters(!showFilters)}
+                >
+                  {showFilters ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                </Button>
+              </CardTitle>
+            </CardHeader>
+            {showFilters && (
+              <CardContent className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium text-gray-700 block mb-1">
+                    Department / Category
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g., Computer Science, Engineering..."
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm placeholder:text-gray-400"
+                    value={courseCategory}
+                    onChange={(e) => setCourseCategory(e.target.value)}
+                  />
+                </div>
 
-            {/* Quick Stats */}
-            <Card className="mt-6">
-              <CardHeader>
-                <CardTitle className="text-sm">Search Stats</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Total Candidates</span>
-                  <span className="font-semibold">{MOCK_STUDENTS_WITH_COURSES.length}</span>
+                <div>
+                  <label className="text-sm font-medium text-gray-700 block mb-1">
+                    Minimum Grade
+                  </label>
+                  <select
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+                    value={minGrade}
+                    onChange={(e) => setMinGrade(e.target.value)}
+                  >
+                    <option value="">Any grade</option>
+                    {gradeOptions.map(g => (
+                      <option key={g} value={g}>{g} or higher</option>
+                    ))}
+                  </select>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Matching Filters</span>
-                  <span className="font-semibold text-primary">{results.length}</span>
+
+                <div>
+                  <label className="text-sm font-medium text-gray-700 block mb-1">
+                    Institution Name
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Filter by institution name..."
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm placeholder:text-gray-400"
+                    value={institutionType}
+                    onChange={(e) => setInstitutionType(e.target.value)}
+                  />
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Match Rate</span>
-                  <span className="font-semibold text-green-600">
-                    {Math.round((results.length / MOCK_STUDENTS_WITH_COURSES.length) * 100)}%
-                  </span>
+
+                <div className="flex gap-2">
+                  <Button onClick={fetchResults} className="flex-1" size="sm">
+                    <Search className="h-4 w-4 mr-1" />
+                    Search
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setCourseCategory('')
+                      setMinGrade('')
+                      setInstitutionType('')
+                    }}
+                  >
+                    Reset
+                  </Button>
                 </div>
               </CardContent>
-            </Card>
+            )}
+          </Card>
+
+          {/* Quick Stats */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-sm">Search Stats</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-600">Institutions</span>
+                <span className="font-semibold">{totalGroups}</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-600">Students Found</span>
+                <span className="font-semibold text-primary">{totalStudents}</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-600">Active Filters</span>
+                <span className="font-semibold">
+                  {[courseCategory, minGrade, institutionType].filter(Boolean).length}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Results */}
+        <div className="lg:col-span-3 space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-semibold">
+              {totalGroups} Institution{totalGroups !== 1 ? 's' : ''} Found
+            </h2>
           </div>
 
-          {/* Results */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold">
-                {results.length} Candidate{results.length !== 1 ? 's' : ''} Found
-              </h2>
-              <Button variant="outline" size="sm" asChild>
-                <Link href="/dashboard/recruiter/market-intelligence">
-                  <TrendingUp className="h-4 w-4 mr-2" />
-                  Market Intelligence
-                </Link>
-              </Button>
+          {loading ? (
+            <div className="space-y-4">
+              {[1, 2, 3].map(i => (
+                <Card key={i}>
+                  <CardContent className="p-6 space-y-4">
+                    <Skeleton className="h-6 w-64" />
+                    <Skeleton className="h-4 w-48" />
+                    <div className="space-y-2">
+                      <Skeleton className="h-16 w-full" />
+                      <Skeleton className="h-16 w-full" />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
+          ) : error ? (
+            <Card className="p-12 text-center">
+              <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Error</h3>
+              <p className="text-gray-600 mb-4">{error}</p>
+              <Button onClick={fetchResults}>Retry</Button>
+            </Card>
+          ) : groups.length === 0 ? (
+            <Card className="p-12 text-center">
+              <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">No results found</h3>
+              <p className="text-gray-600 mb-4">
+                Try adjusting your filters to see more results
+              </p>
+              <Button onClick={() => {
+                setCourseCategory('')
+                setMinGrade('')
+                setInstitutionType('')
+              }}>
+                Reset Filters
+              </Button>
+            </Card>
+          ) : (
+            groups.map((group) => {
+              const isExpanded = expandedInstitutions[group.institution] !== false
+              const totalInstitutionStudents = group.courses.reduce(
+                (sum, c) => sum + c.students.length, 0
+              )
 
-            {results.length === 0 ? (
-              <Card className="p-12 text-center">
-                <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">No candidates found</h3>
-                <p className="text-gray-600 mb-4">
-                  Try adjusting your filters to see more results
-                </p>
-                <Button onClick={() => {
-                  setFilters({ institutionType: 'both' })
-                  setResults(MOCK_STUDENTS_WITH_COURSES)
-                }}>
-                  Reset Filters
-                </Button>
-              </Card>
-            ) : (
-              results.map((candidate) => {
-                const explanation = generateMatchExplanation(candidate, {
-                  role: filters.courseCategory || 'Technical Role',
-                  requiredSkills: candidate.courses.map(c => c.courseCategory)
-                })
-                const isExpanded = selectedCandidate === candidate.id
+              return (
+                <Card key={group.institution} className="overflow-hidden">
+                  {/* Institution Header */}
+                  <div
+                    className="p-4 bg-gradient-to-r from-slate-50 to-white cursor-pointer hover:bg-slate-100 transition-colors"
+                    onClick={() => toggleInstitution(group.institution)}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                          <Building2 className="h-5 w-5 text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900">{group.institution}</h3>
+                          <p className="text-sm text-gray-600">
+                            {group.courses.length} course{group.courses.length !== 1 ? 's' : ''} &middot; {totalInstitutionStudents} student{totalInstitutionStudents !== 1 ? 's' : ''}
+                          </p>
+                        </div>
+                      </div>
+                      {isExpanded ? (
+                        <ChevronUp className="h-5 w-5 text-gray-400" />
+                      ) : (
+                        <ChevronDown className="h-5 w-5 text-gray-400" />
+                      )}
+                    </div>
+                  </div>
 
-                return (
-                  <Card key={candidate.id} className="hover:shadow-lg transition-shadow">
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center gap-4">
-                          <Avatar className="h-12 w-12">
-                            <AvatarFallback className="text-lg font-semibold bg-gradient-to-br from-primary to-secondary text-white">
-                              {candidate.name}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <h3 className="text-lg font-semibold">{candidate.name}</h3>
-                              {candidate.institutionType === 'its' ? (
-                                <Badge variant="secondary" className="bg-blue-100 text-blue-700">
-                                  🔧 ITS
-                                </Badge>
-                              ) : (
-                                <Badge variant="secondary" className="bg-purple-100 text-purple-700">
-                                  🎓 University
-                                </Badge>
+                  {/* Courses */}
+                  {isExpanded && (
+                    <CardContent className="pt-0 space-y-3">
+                      {group.courses.map((course) => {
+                        const courseExpanded = expandedCourses[course.courseId] !== false
+
+                        return (
+                          <div key={course.courseId} className="border rounded-lg overflow-hidden">
+                            {/* Course Header */}
+                            <div
+                              className="p-3 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
+                              onClick={() => toggleCourse(course.courseId)}
+                            >
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <BookOpen className="h-4 w-4 text-primary" />
+                                  <span className="font-medium text-sm">{course.courseName}</span>
+                                  {course.courseCode && (
+                                    <Badge variant="outline" className="text-xs">{course.courseCode}</Badge>
+                                  )}
+                                  {course.department && (
+                                    <Badge variant="secondary" className="text-xs">{course.department}</Badge>
+                                  )}
+                                </div>
+                                <div className="flex items-center gap-3">
+                                  <span className="text-xs text-gray-500">
+                                    {course.semester} {course.academicYear}
+                                  </span>
+                                  <Badge variant="outline" className="text-xs">
+                                    <Users className="h-3 w-3 mr-1" />
+                                    {course.students.length}
+                                  </Badge>
+                                  {courseExpanded ? (
+                                    <ChevronUp className="h-4 w-4 text-gray-400" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-gray-400" />
+                                  )}
+                                </div>
+                              </div>
+                              {course.professorName && (
+                                <p className="text-xs text-gray-500 mt-1 ml-6">
+                                  Prof. {course.professorName}
+                                </p>
                               )}
                             </div>
-                            <p className="text-sm text-gray-600 flex items-center gap-1">
-                              <GraduationCap className="h-3 w-3" />
-                              {candidate.institutionName}
-                            </p>
-                            <p className="text-sm text-gray-600 flex items-center gap-1">
-                              <MapPin className="h-3 w-3" />
-                              {candidate.location}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-2xl font-bold text-primary">
-                            {candidate.matchScore}%
-                          </div>
-                          <div className="text-xs text-gray-600">Match Score</div>
-                        </div>
-                      </div>
-                    </CardHeader>
 
-                    <CardContent className="space-y-4">
-                      {/* Top Courses */}
-                      <div>
-                        <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
-                          <Award className="h-4 w-4 text-primary" />
-                          Top Verified Courses
-                        </h4>
-                        <div className="space-y-2">
-                          {candidate.courses
-                            .sort((a, b) => b.grade.normalized - a.grade.normalized)
-                            .slice(0, 3)
-                            .map((course) => (
-                              <div
-                                key={course.id}
-                                className="flex items-center justify-between text-sm bg-gray-50 rounded p-2"
-                              >
-                                <span className="font-medium">{course.courseName}</span>
-                                <div className="flex items-center gap-2">
-                                  <Badge variant={course.grade.honors ? 'default' : 'secondary'}>
-                                    {course.grade.value}/{course.grade.scale === 'its' ? '10' : '30'}
-                                    {course.grade.honors && ' 🏆'}
-                                  </Badge>
-                                  <Badge variant="outline" className="text-xs">
-                                    {course.grade.letter}
-                                  </Badge>
-                                </div>
-                              </div>
-                            ))}
-                        </div>
-                      </div>
+                            {/* Students */}
+                            {courseExpanded && (
+                              <div className="divide-y">
+                                {course.students.map((student) => (
+                                  <div key={`${student.id}-${course.courseId}`} className="p-3 hover:bg-gray-50 transition-colors">
+                                    <div className="flex items-start justify-between">
+                                      <div className="flex items-center gap-3">
+                                        <Avatar className="h-10 w-10">
+                                          {student.photo && <AvatarImage src={student.photo} alt={student.name} />}
+                                          <AvatarFallback className="text-xs font-semibold bg-gradient-to-br from-primary/20 to-primary/5">
+                                            {student.initials}
+                                          </AvatarFallback>
+                                        </Avatar>
+                                        <div>
+                                          <h4 className="font-medium text-sm">{student.name}</h4>
+                                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                                            {student.degree && (
+                                              <span className="flex items-center gap-1">
+                                                <GraduationCap className="h-3 w-3" />
+                                                {student.degree}
+                                              </span>
+                                            )}
+                                            {student.graduationYear && (
+                                              <span>Class of {student.graduationYear}</span>
+                                            )}
+                                            {student.gpa !== null && (
+                                              <Badge variant="outline" className="text-xs">
+                                                GPA: {student.gpa.toFixed(1)}
+                                              </Badge>
+                                            )}
+                                          </div>
+                                          {student.tagline && (
+                                            <p className="text-xs text-gray-400 mt-1">{student.tagline}</p>
+                                          )}
+                                        </div>
+                                      </div>
 
-                      {/* AI Match Explanation */}
-                      {isExpanded && (
-                        <div className="border-t pt-4">
-                          <h4 className="text-sm font-semibold mb-3 flex items-center gap-2">
-                            <Sparkles className="h-4 w-4 text-primary" />
-                            Why This Match? (AI Analysis)
-                          </h4>
-
-                          {/* Strengths */}
-                          <div className="space-y-2 mb-4">
-                            {explanation.strengths.map((strength, i) => (
-                              <div key={i} className="flex items-start gap-2 text-sm">
-                                <span className="text-lg">{strength.icon}</span>
-                                <span className="text-gray-700">{strength.text}</span>
-                              </div>
-                            ))}
-                          </div>
-
-                          {/* Concerns */}
-                          {explanation.concerns.length > 0 && (
-                            <div className="space-y-2 bg-orange-50 rounded p-3">
-                              <h5 className="text-sm font-semibold text-orange-900">Considerations:</h5>
-                              {explanation.concerns.map((concern, i) => (
-                                <div key={i} className="flex items-start gap-2 text-sm">
-                                  <span className="text-lg">{concern.icon}</span>
-                                  <span className="text-orange-700">{concern.text}</span>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          {/* Full Course List */}
-                          <div className="mt-4">
-                            <h5 className="text-sm font-semibold mb-2">All Verified Courses:</h5>
-                            <div className="grid grid-cols-1 gap-2">
-                              {candidate.courses.map((course) => (
-                                <div
-                                  key={course.id}
-                                  className="text-xs bg-white border rounded p-2 flex items-center justify-between"
-                                >
-                                  <div>
-                                    <div className="font-medium">{course.courseName}</div>
-                                    <div className="text-gray-500">{course.semester}</div>
-                                  </div>
-                                  <div className="text-right">
-                                    <div className="font-semibold">
-                                      {course.grade.value}/{course.grade.scale === 'its' ? '10' : '30'}
+                                      <div className="flex items-center gap-2">
+                                        {student.courseGrade && (
+                                          <Badge className="bg-green-100 text-green-700">
+                                            <Award className="h-3 w-3 mr-1" />
+                                            {student.courseGrade}
+                                          </Badge>
+                                        )}
+                                      </div>
                                     </div>
-                                    <div className="text-gray-500">{course.grade.letter}</div>
+
+                                    {/* Project */}
+                                    <div className="mt-2 ml-13 bg-gray-50 rounded p-2">
+                                      <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-2">
+                                          <Code className="h-3 w-3 text-primary" />
+                                          <span className="text-xs font-medium">{student.project.title}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                          {student.project.innovationScore !== null && (
+                                            <Badge variant="outline" className="text-xs">
+                                              Innovation: {student.project.innovationScore}
+                                            </Badge>
+                                          )}
+                                          {student.project.complexityScore !== null && (
+                                            <Badge variant="outline" className="text-xs">
+                                              Complexity: {student.project.complexityScore}
+                                            </Badge>
+                                          )}
+                                        </div>
+                                      </div>
+                                      {(student.project.technologies.length > 0 || student.project.skills.length > 0) && (
+                                        <div className="flex flex-wrap gap-1 mt-1">
+                                          {student.project.technologies.slice(0, 4).map(tech => (
+                                            <Badge key={tech} variant="secondary" className="text-xs">
+                                              {tech}
+                                            </Badge>
+                                          ))}
+                                          {student.project.skills.slice(0, 3).map(skill => (
+                                            <Badge key={skill} variant="outline" className="text-xs">
+                                              {skill}
+                                            </Badge>
+                                          ))}
+                                        </div>
+                                      )}
+                                    </div>
+
+                                    {/* Actions */}
+                                    <div className="mt-2 ml-13 flex items-center gap-2">
+                                      <Button size="sm" variant="outline" className="h-7 text-xs" asChild>
+                                        <Link href={`/dashboard/recruiter/candidates/${student.id}`}>
+                                          <ExternalLink className="h-3 w-3 mr-1" />
+                                          Profile
+                                        </Link>
+                                      </Button>
+                                      <Button size="sm" variant="outline" className="h-7 text-xs" asChild>
+                                        <Link href={`/dashboard/recruiter/messages?to=${student.id}`}>
+                                          <MessageSquare className="h-3 w-3 mr-1" />
+                                          Contact
+                                        </Link>
+                                      </Button>
+                                    </div>
                                   </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Projects */}
-                      {candidate.projects.length > 0 && (
-                        <div>
-                          <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
-                            <Code className="h-4 w-4 text-primary" />
-                            Verified Projects
-                          </h4>
-                          <div className="space-y-1">
-                            {candidate.projects.map((project, i) => (
-                              <div key={i} className="text-sm flex items-center gap-2">
-                                <CheckCircle className="h-4 w-4 text-green-600" />
-                                <span>{project.title}</span>
-                                <div className="flex gap-1">
-                                  {project.tags.slice(0, 2).map((tag) => (
-                                    <Badge key={tag} variant="outline" className="text-xs">
-                                      {tag}
-                                    </Badge>
-                                  ))}
-                                </div>
+                                ))}
                               </div>
-                            ))}
+                            )}
                           </div>
-                        </div>
-                      )}
-
-                      {/* Actions */}
-                      <div className="flex items-center gap-2 pt-4 border-t">
-                        <Button
-                          variant={isExpanded ? 'secondary' : 'outline'}
-                          size="sm"
-                          onClick={() => setSelectedCandidate(isExpanded ? null : candidate.id)}
-                        >
-                          {isExpanded ? 'Hide Details' : 'See Full Analysis'}
-                        </Button>
-                        <Button size="sm" variant="outline">
-                          <MessageSquare className="h-4 w-4 mr-2" />
-                          Contact (€10)
-                        </Button>
-                        <Button size="sm" className="ml-auto">
-                          View Full Profile
-                          <ExternalLink className="h-4 w-4 ml-2" />
-                        </Button>
-                      </div>
+                        )
+                      })}
                     </CardContent>
-                  </Card>
-                )
-              })
-            )}
-          </div>
+                  )}
+                </Card>
+              )
+            })
+          )}
         </div>
       </div>
     </div>

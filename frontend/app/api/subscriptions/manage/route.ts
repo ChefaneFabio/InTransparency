@@ -169,14 +169,9 @@ async function reactivateSubscription(subscriptionId: string, userId: string) {
 // Helper function to get price ID
 function getPriceId(tier: string, interval: string): string | null {
   const priceMap: Record<string, string> = {
-    'STUDENT_PRO_monthly': process.env.STRIPE_STUDENT_PRO_MONTHLY_PRICE_ID || '',
-    'STUDENT_PRO_annual': process.env.STRIPE_STUDENT_PRO_ANNUAL_PRICE_ID || '',
-    'RECRUITER_STARTER_monthly': process.env.STRIPE_RECRUITER_STARTER_MONTHLY_PRICE_ID || '',
-    'RECRUITER_STARTER_annual': process.env.STRIPE_RECRUITER_STARTER_ANNUAL_PRICE_ID || '',
-    'RECRUITER_GROWTH_monthly': process.env.STRIPE_RECRUITER_GROWTH_MONTHLY_PRICE_ID || '',
-    'RECRUITER_GROWTH_annual': process.env.STRIPE_RECRUITER_GROWTH_ANNUAL_PRICE_ID || '',
-    'RECRUITER_PRO_monthly': process.env.STRIPE_RECRUITER_PRO_MONTHLY_PRICE_ID || '',
-    'RECRUITER_PRO_annual': process.env.STRIPE_RECRUITER_PRO_ANNUAL_PRICE_ID || ''
+    'STUDENT_PREMIUM_monthly': process.env.STRIPE_STUDENT_PREMIUM_MONTHLY_PRICE_ID || '',
+    'RECRUITER_ENTERPRISE_monthly': process.env.STRIPE_RECRUITER_ENTERPRISE_MONTHLY_PRICE_ID || '',
+    'INSTITUTION_ENTERPRISE_annual': process.env.STRIPE_INSTITUTION_ENTERPRISE_ANNUAL_PRICE_ID || '',
   }
 
   return priceMap[`${tier}_${interval}`] || null

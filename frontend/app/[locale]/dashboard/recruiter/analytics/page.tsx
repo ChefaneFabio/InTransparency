@@ -1,56 +1,125 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell, FunnelChart, Funnel, LabelList } from 'recharts'
+import { Skeleton } from '@/components/ui/skeleton'
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
+  ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell,
+} from 'recharts'
 
-const hiringFunnelData = [
-  { name: 'Applications', value: 150, fill: '#0088FE' },
-  { name: 'Phone Screen', value: 45, fill: '#00C49F' },
-  { name: 'Technical Interview', value: 25, fill: '#FFBB28' },
-  { name: 'Final Interview', value: 12, fill: '#FF8042' },
-  { name: 'Offers Extended', value: 8, fill: '#8884d8' },
-  { name: 'Offers Accepted', value: 6, fill: '#82ca9d' }
-]
+const FUNNEL_COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d', '#f44336']
 
-const sourcingData = [
-  { source: 'InTransparency', candidates: 45, hires: 12, cost: 2400 },
-  { source: 'LinkedIn', candidates: 38, hires: 8, cost: 4500 },
-  { source: 'Indeed', candidates: 52, hires: 6, cost: 1800 },
-  { source: 'Referrals', candidates: 23, hires: 9, cost: 0 },
-  { source: 'Career Fair', candidates: 19, hires: 4, cost: 1200 }
-]
+interface AnalyticsData {
+  hiringFunnel: Array<{ name: string; value: number }>
+  applicationTrends: Array<{ month: string; applications: number }>
+  skillsGap: Array<{ skill: string; demand: number; supply: number; gap: number }>
+  overviewStats: {
+    totalApplications: number
+    interviewsScheduled: number
+    offersExtended: number
+    avgTimeToHire: number
+  }
+}
 
-const timeToHireData = [
-  { month: 'Jan', days: 21 },
-  { month: 'Feb', days: 18 },
-  { month: 'Mar', days: 24 },
-  { month: 'Apr', days: 19 },
-  { month: 'May', days: 16 },
-  { month: 'Jun', days: 22 }
-]
-
-const diversityData = [
-  { category: 'Gender', male: 65, female: 35 },
-  { category: 'Ethnicity', white: 45, asian: 25, hispanic: 15, black: 10, other: 5 },
-  { category: 'Education', bachelor: 60, master: 30, phd: 10 }
-]
-
-const topSkills = [
-  { skill: 'React', demand: 95, supply: 70, gap: 25 },
-  { skill: 'Python', demand: 90, supply: 80, gap: 10 },
-  { skill: 'TypeScript', demand: 85, supply: 60, gap: 25 },
-  { skill: 'AWS', demand: 80, supply: 55, gap: 25 },
-  { skill: 'Node.js', demand: 75, supply: 65, gap: 10 }
-]
+function LoadingSkeleton() {
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <Skeleton className="h-8 w-64 mb-2" />
+          <Skeleton className="h-4 w-96" />
+        </div>
+        <Skeleton className="h-10 w-[180px]" />
+      </div>
+      <Skeleton className="h-10 w-full" />
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <Card key={i}>
+            <CardHeader className="pb-2">
+              <Skeleton className="h-4 w-32" />
+            </CardHeader>
+            <CardContent>
+              <Skeleton className="h-8 w-20 mb-1" />
+              <Skeleton className="h-3 w-28" />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card>
+          <CardHeader><Skeleton className="h-6 w-48" /></CardHeader>
+          <CardContent><Skeleton className="h-[300px] w-full" /></CardContent>
+        </Card>
+        <Card>
+          <CardHeader><Skeleton className="h-6 w-48" /></CardHeader>
+          <CardContent><Skeleton className="h-[300px] w-full" /></CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}
 
 export default function RecruiterAnalytics() {
   const [activeTab, setActiveTab] = useState('overview')
-  const [timeRange, setTimeRange] = useState('6months')
+  const [timeRange, setTimeRange] = useState('3months')
+  const [data, setData] = useState<AnalyticsData | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    setLoading(true)
+    setError(null)
+    fetch(`/api/dashboard/recruiter/analytics?timeRange=${timeRange}`)
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch analytics')
+        return res.json()
+      })
+      .then((result: AnalyticsData) => {
+        setData(result)
+        setLoading(false)
+      })
+      .catch(err => {
+        setError(err.message)
+        setLoading(false)
+      })
+  }, [timeRange])
+
+  if (loading) return <LoadingSkeleton />
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
+        <Card className="max-w-md w-full">
+          <CardContent className="pt-6 text-center">
+            <p className="text-red-600 font-medium mb-2">Error loading analytics</p>
+            <p className="text-sm text-muted-foreground">{error}</p>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  if (!data) return null
+
+  const { hiringFunnel, applicationTrends, skillsGap, overviewStats } = data
+
+  // Compute conversion rates from funnel data (excluding Rejected)
+  const funnelSteps = hiringFunnel.filter(s => s.name !== 'Rejected')
+  const conversionRates: Array<{ label: string; rate: number }> = []
+  for (let i = 1; i < funnelSteps.length; i++) {
+    const prev = funnelSteps[i - 1].value
+    const curr = funnelSteps[i].value
+    const rate = prev > 0 ? Math.round((curr / prev) * 100) : 0
+    conversionRates.push({
+      label: `${funnelSteps[i - 1].name} to ${funnelSteps[i].name}`,
+      rate,
+    })
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
@@ -75,11 +144,9 @@ export default function RecruiterAnalytics() {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="funnel">Hiring Funnel</TabsTrigger>
-          <TabsTrigger value="sourcing">Sourcing</TabsTrigger>
-          <TabsTrigger value="diversity">Diversity</TabsTrigger>
           <TabsTrigger value="skills">Skills Gap</TabsTrigger>
         </TabsList>
 
@@ -90,9 +157,11 @@ export default function RecruiterAnalytics() {
                 <CardTitle className="text-sm font-medium">Total Applications</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">1,284</div>
+                <div className="text-2xl font-bold">
+                  {overviewStats.totalApplications.toLocaleString()}
+                </div>
                 <p className="text-xs text-muted-foreground">
-                  +12% from last period
+                  In selected time range
                 </p>
               </CardContent>
             </Card>
@@ -101,9 +170,11 @@ export default function RecruiterAnalytics() {
                 <CardTitle className="text-sm font-medium">Interviews Scheduled</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">156</div>
+                <div className="text-2xl font-bold">
+                  {overviewStats.interviewsScheduled}
+                </div>
                 <p className="text-xs text-muted-foreground">
-                  +8% from last period
+                  Currently in interview stage
                 </p>
               </CardContent>
             </Card>
@@ -112,20 +183,24 @@ export default function RecruiterAnalytics() {
                 <CardTitle className="text-sm font-medium">Offers Extended</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">23</div>
+                <div className="text-2xl font-bold">
+                  {overviewStats.offersExtended}
+                </div>
                 <p className="text-xs text-muted-foreground">
-                  +15% from last period
+                  Offers + accepted
                 </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Time to Hire</CardTitle>
+                <CardTitle className="text-sm font-medium">Avg Time to Hire</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">18 days</div>
+                <div className="text-2xl font-bold">
+                  {overviewStats.avgTimeToHire > 0 ? `${overviewStats.avgTimeToHire} days` : 'N/A'}
+                </div>
                 <p className="text-xs text-muted-foreground">
-                  -2 days from last period
+                  From application to acceptance
                 </p>
               </CardContent>
             </Card>
@@ -134,21 +209,27 @@ export default function RecruiterAnalytics() {
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Time to Hire Trend</CardTitle>
+                <CardTitle>Application Trends</CardTitle>
                 <CardDescription>
-                  Average days from application to offer acceptance
+                  Monthly applications over selected period
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={timeToHireData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="days" stroke="#8884d8" strokeWidth={2} />
-                  </LineChart>
-                </ResponsiveContainer>
+                {applicationTrends.length > 0 ? (
+                  <ResponsiveContainer width="100%" height={300}>
+                    <LineChart data={applicationTrends}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="month" />
+                      <YAxis />
+                      <Tooltip />
+                      <Line type="monotone" dataKey="applications" stroke="#8884d8" strokeWidth={2} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                ) : (
+                  <div className="flex items-center justify-center h-[300px] text-muted-foreground">
+                    No application data for selected period
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -161,41 +242,21 @@ export default function RecruiterAnalytics() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm">Application to Phone Screen</span>
-                      <span className="text-sm font-medium">30%</span>
+                  {conversionRates.length > 0 ? (
+                    conversionRates.map((step) => (
+                      <div key={step.label} className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm">{step.label}</span>
+                          <span className="text-sm font-medium">{step.rate}%</span>
+                        </div>
+                        <Progress value={step.rate} className="h-2" />
+                      </div>
+                    ))
+                  ) : (
+                    <div className="flex items-center justify-center h-[200px] text-muted-foreground">
+                      No funnel data available
                     </div>
-                    <Progress value={30} className="h-2" />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm">Phone Screen to Technical</span>
-                      <span className="text-sm font-medium">56%</span>
-                    </div>
-                    <Progress value={56} className="h-2" />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm">Technical to Final Interview</span>
-                      <span className="text-sm font-medium">48%</span>
-                    </div>
-                    <Progress value={48} className="h-2" />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm">Interview to Offer</span>
-                      <span className="text-sm font-medium">67%</span>
-                    </div>
-                    <Progress value={67} className="h-2" />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm">Offer Acceptance Rate</span>
-                      <span className="text-sm font-medium">75%</span>
-                    </div>
-                    <Progress value={75} className="h-2" />
-                  </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -211,184 +272,50 @@ export default function RecruiterAnalytics() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid gap-6 md:grid-cols-2">
-                <div className="space-y-4">
-                  {hiringFunnelData.map((stage, index) => (
-                    <div key={stage.name} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">{stage.name}</span>
-                        <span className="text-sm text-muted-foreground">{stage.value}</span>
+              {hiringFunnel.length > 0 && hiringFunnel[0].value > 0 ? (
+                <div className="grid gap-6 md:grid-cols-2">
+                  <div className="space-y-4">
+                    {hiringFunnel.map((stage, index) => (
+                      <div key={stage.name} className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium">{stage.name}</span>
+                          <span className="text-sm text-muted-foreground">{stage.value}</span>
+                        </div>
+                        <Progress value={(stage.value / hiringFunnel[0].value) * 100} className="h-3" />
+                        {index > 0 && hiringFunnel[index - 1].value > 0 && (
+                          <p className="text-xs text-muted-foreground">
+                            {((stage.value / hiringFunnel[index - 1].value) * 100).toFixed(1)}% from previous stage
+                          </p>
+                        )}
                       </div>
-                      <Progress value={(stage.value / hiringFunnelData[0].value) * 100} className="h-3" />
-                      {index > 0 && (
-                        <p className="text-xs text-muted-foreground">
-                          {((stage.value / hiringFunnelData[index - 1].value) * 100).toFixed(1)}% conversion rate
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center justify-center">
-                  <ResponsiveContainer width="100%" height={400}>
-                    <PieChart>
-                      <Pie
-                        data={hiringFunnelData}
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={120}
-                        fill="#8884d8"
-                        dataKey="value"
-                        label={({ name, value }) => `${name}: ${value}`}
-                      >
-                        {hiringFunnelData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.fill} />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="sourcing" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Sourcing Performance</CardTitle>
-              <CardDescription>
-                Compare effectiveness of different candidate sources
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
-                {sourcingData.map((source) => (
-                  <div key={source.source} className="space-y-3 p-4 border rounded-lg">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-medium text-lg">{source.source}</h3>
-                      <Badge variant={source.source === 'InTransparency' ? 'default' : 'secondary'}>
-                        {((source.hires / source.candidates) * 100).toFixed(1)}% hire rate
-                      </Badge>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                      <div>
-                        <p className="text-muted-foreground">Candidates</p>
-                        <p className="font-medium text-lg">{source.candidates}</p>
-                      </div>
-                      <div>
-                        <p className="text-muted-foreground">Successful Hires</p>
-                        <p className="font-medium text-lg">{source.hires}</p>
-                      </div>
-                      <div>
-                        <p className="text-muted-foreground">Cost per Hire</p>
-                        <p className="font-medium text-lg">
-                          {source.cost === 0 ? 'Free' : `$${(source.cost / source.hires).toFixed(0)}`}
-                        </p>
-                      </div>
-                    </div>
-                    <Progress value={(source.hires / source.candidates) * 100} className="h-2" />
+                    ))}
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="diversity" className="space-y-6">
-          <div className="grid gap-6 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>Gender Distribution</CardTitle>
-                <CardDescription>
-                  Current gender breakdown of candidates
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span>Male</span>
-                      <span className="font-medium">65%</span>
-                    </div>
-                    <Progress value={65} className="h-3" />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span>Female</span>
-                      <span className="font-medium">35%</span>
-                    </div>
-                    <Progress value={35} className="h-3" />
+                  <div className="flex items-center justify-center">
+                    <ResponsiveContainer width="100%" height={400}>
+                      <PieChart>
+                        <Pie
+                          data={hiringFunnel}
+                          cx="50%"
+                          cy="50%"
+                          outerRadius={120}
+                          fill="#8884d8"
+                          dataKey="value"
+                          label={({ name, value }: { name: string; value: number }) => `${name}: ${value}`}
+                        >
+                          {hiringFunnel.map((_, index) => (
+                            <Cell key={`cell-${index}`} fill={FUNNEL_COLORS[index % FUNNEL_COLORS.length]} />
+                          ))}
+                        </Pie>
+                        <Tooltip />
+                      </PieChart>
+                    </ResponsiveContainer>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Education Background</CardTitle>
-                <CardDescription>
-                  Educational qualifications of candidates
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span>Bachelor's Degree</span>
-                      <span className="font-medium">60%</span>
-                    </div>
-                    <Progress value={60} className="h-3" />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span>Master's Degree</span>
-                      <span className="font-medium">30%</span>
-                    </div>
-                    <Progress value={30} className="h-3" />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span>PhD</span>
-                      <span className="font-medium">10%</span>
-                    </div>
-                    <Progress value={10} className="h-3" />
-                  </div>
+              ) : (
+                <div className="flex items-center justify-center h-[400px] text-muted-foreground">
+                  No application data for selected period
                 </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Diversity Goals</CardTitle>
-              <CardDescription>
-                Progress towards diversity and inclusion targets
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span>Underrepresented Minorities</span>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm text-muted-foreground">25% / 30% goal</span>
-                      <Badge variant="outline">83%</Badge>
-                    </div>
-                  </div>
-                  <Progress value={83} className="h-3" />
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span>Women in Tech Roles</span>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm text-muted-foreground">35% / 40% goal</span>
-                      <Badge variant="outline">88%</Badge>
-                    </div>
-                  </div>
-                  <Progress value={88} className="h-3" />
-                </div>
-              </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
@@ -398,38 +325,58 @@ export default function RecruiterAnalytics() {
             <CardHeader>
               <CardTitle>Skills Gap Analysis</CardTitle>
               <CardDescription>
-                Market demand vs available talent for key skills
+                Job requirements demand vs available applicant skills
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
-                {topSkills.map((skill) => (
-                  <div key={skill.skill} className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-medium">{skill.skill}</h3>
-                      <Badge variant={skill.gap > 20 ? 'destructive' : skill.gap > 10 ? 'default' : 'secondary'}>
-                        {skill.gap}% gap
-                      </Badge>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between text-sm">
-                          <span>Market Demand</span>
-                          <span>{skill.demand}%</span>
-                        </div>
-                        <Progress value={skill.demand} className="h-2" />
+              {skillsGap.length > 0 ? (
+                <div className="space-y-6">
+                  {skillsGap.map((skill) => (
+                    <div key={skill.skill} className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <h3 className="font-medium">{skill.skill}</h3>
+                        <Badge variant={skill.gap > 2 ? 'destructive' : skill.gap > 0 ? 'default' : 'secondary'}>
+                          {skill.gap > 0 ? `${skill.gap} gap` : 'Balanced'}
+                        </Badge>
                       </div>
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between text-sm">
-                          <span>Available Talent</span>
-                          <span>{skill.supply}%</span>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span>Jobs Requiring</span>
+                            <span>{skill.demand}</span>
+                          </div>
+                          <Progress value={Math.min((skill.demand / Math.max(skill.demand, skill.supply)) * 100, 100)} className="h-2" />
                         </div>
-                        <Progress value={skill.supply} className="h-2" />
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span>Applicants With Skill</span>
+                            <span>{skill.supply}</span>
+                          </div>
+                          <Progress value={Math.min((skill.supply / Math.max(skill.demand, skill.supply)) * 100, 100)} className="h-2" />
+                        </div>
                       </div>
                     </div>
+                  ))}
+
+                  <div className="mt-6">
+                    <h3 className="font-medium mb-4">Skills Gap Comparison</h3>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <BarChart data={skillsGap}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="skill" />
+                        <YAxis />
+                        <Tooltip />
+                        <Bar dataKey="demand" fill="#8884d8" name="Jobs Requiring" />
+                        <Bar dataKey="supply" fill="#82ca9d" name="Applicants With Skill" />
+                      </BarChart>
+                    </ResponsiveContainer>
                   </div>
-                ))}
-              </div>
+                </div>
+              ) : (
+                <div className="flex items-center justify-center h-[300px] text-muted-foreground">
+                  No skills gap data available. Post jobs with required skills to see this analysis.
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>

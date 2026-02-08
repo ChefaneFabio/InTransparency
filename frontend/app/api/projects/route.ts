@@ -132,6 +132,11 @@ export async function POST(request: NextRequest) {
       certifications: project.certifications
     }).catch(err => console.error('AI analysis failed:', err))
 
+    // Invalidate skill path cache so recommendations update with new project
+    await prisma.skillPathRecommendation.deleteMany({
+      where: { userId }
+    }).catch(() => {}) // Non-critical, ignore errors
+
     // Track analytics
     await prisma.analytics.create({
       data: {

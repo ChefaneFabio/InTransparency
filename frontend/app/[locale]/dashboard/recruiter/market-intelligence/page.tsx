@@ -4,43 +4,119 @@ import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { getMarketIntelligence, getTalentPoolStats } from '@/lib/data/mock-course-data'
-import { COURSE_CATEGORIES, CourseCategory, MarketIntelligence } from '@/lib/types/course-data'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
-  BarChart3,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
+  ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell, Legend,
+} from 'recharts'
+import {
   TrendingUp,
   Users,
-  AlertCircle,
-  DollarSign,
-  MapPin,
-  Building2,
   GraduationCap,
-  TrendingDown,
-  Sparkles,
-  ExternalLink
+  Zap,
+  BookOpen,
+  RefreshCw,
 } from 'lucide-react'
-import Link from 'next/link'
+
+const PIE_COLORS = [
+  '#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8',
+  '#82ca9d', '#f44336', '#e91e63', '#9c27b0', '#3f51b5',
+]
+
+interface TalentAnalyticsData {
+  talentPool: number
+  universityDistribution: Array<{ university: string; count: number }>
+  skillsFrequency: Array<{ skill: string; count: number }>
+  growthTrends: Array<{ month: string; newStudents: number }>
+  disciplineDistribution: Array<{ discipline: string; count: number }>
+}
+
+function LoadingSkeleton() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-6">
+      <div className="container mx-auto max-w-7xl space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <Skeleton className="h-8 w-64 mb-2" />
+            <Skeleton className="h-4 w-80" />
+          </div>
+          <Skeleton className="h-10 w-24" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <Card key={i}>
+              <CardHeader className="pb-3"><Skeleton className="h-4 w-28" /></CardHeader>
+              <CardContent><Skeleton className="h-10 w-20" /></CardContent>
+            </Card>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card>
+            <CardHeader><Skeleton className="h-6 w-48" /></CardHeader>
+            <CardContent><Skeleton className="h-[300px] w-full" /></CardContent>
+          </Card>
+          <Card>
+            <CardHeader><Skeleton className="h-6 w-48" /></CardHeader>
+            <CardContent><Skeleton className="h-[300px] w-full" /></CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function MarketIntelligencePage() {
-  const [intelligence, setIntelligence] = useState<MarketIntelligence | null>(null)
-  const [selectedCategory, setSelectedCategory] = useState<CourseCategory>(COURSE_CATEGORIES.AUTOMATION)
+  const [data, setData] = useState<TalentAnalyticsData | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  const fetchData = () => {
+    setLoading(true)
+    setError(null)
+    fetch('/api/dashboard/recruiter/talent-analytics')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch market intelligence')
+        return res.json()
+      })
+      .then((result: TalentAnalyticsData) => {
+        setData(result)
+        setLoading(false)
+      })
+      .catch(err => {
+        setError(err.message)
+        setLoading(false)
+      })
+  }
 
   useEffect(() => {
-    // Get intelligence for selected category
-    const data = getMarketIntelligence(
-      `${selectedCategory} Specialist`,
-      {
-        courseCategory: selectedCategory,
-        minGrade: 70,
-        institutionType: 'both'
-      }
-    )
-    setIntelligence(data)
-  }, [selectedCategory])
+    fetchData()
+  }, [])
 
-  if (!intelligence) {
-    return <div className="p-6">Loading...</div>
+  if (loading) return <LoadingSkeleton />
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-6 flex items-center justify-center">
+        <Card className="max-w-md w-full">
+          <CardContent className="pt-6 text-center">
+            <p className="text-red-600 font-medium mb-2">Error loading market intelligence</p>
+            <p className="text-sm text-muted-foreground mb-4">{error}</p>
+            <Button variant="outline" onClick={fetchData}>
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Retry
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    )
   }
+
+  if (!data) return null
+
+  const { talentPool, universityDistribution, skillsFrequency, growthTrends, disciplineDistribution } = data
+
+  const totalSkillMentions = skillsFrequency.reduce((sum, s) => sum + s.count, 0)
+  const totalProjects = disciplineDistribution.reduce((sum, d) => sum + d.count, 0)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-6">
@@ -53,37 +129,14 @@ export default function MarketIntelligencePage() {
               Market Intelligence
             </h1>
             <p className="text-gray-600 mt-2">
-              Understand talent pool size, competition, and salary benchmarks
+              Understand the talent pool, skill availability, and growth trends
             </p>
           </div>
-          <Button asChild>
-            <Link href="/dashboard/recruiter/course-search">
-              <Sparkles className="h-4 w-4 mr-2" />
-              Course Search
-            </Link>
+          <Button variant="outline" onClick={fetchData}>
+            <RefreshCw className="h-4 w-4 mr-2" />
+            Refresh
           </Button>
         </div>
-
-        {/* Category Selector */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-sm">Select Skill Category</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-2">
-              {Object.entries(COURSE_CATEGORIES).slice(0, 12).map(([key, value]) => (
-                <Button
-                  key={key}
-                  variant={selectedCategory === value ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => setSelectedCategory(value)}
-                >
-                  {value}
-                </Button>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
 
         {/* Key Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -91,47 +144,45 @@ export default function MarketIntelligencePage() {
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Users className="h-4 w-4 text-blue-600" />
-                Total Candidates
+                Total Talent Pool
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-blue-600">
-                {intelligence.talentPool.totalCandidates}
+                {talentPool.toLocaleString()}
               </div>
-              <p className="text-xs text-gray-600 mt-1">in Italy (mock data)</p>
+              <p className="text-xs text-gray-600 mt-1">Public student profiles</p>
             </CardContent>
           </Card>
 
           <Card className="border-2 border-green-200 bg-green-50">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <BarChart3 className="h-4 w-4 text-green-600" />
-                Matching Your Filters
+                <GraduationCap className="h-4 w-4 text-green-600" />
+                Universities
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-green-600">
-                {intelligence.talentPool.matchingFilters}
+                {universityDistribution.length}
               </div>
-              <p className="text-xs text-green-700 mt-1 font-semibold">
-                {intelligence.talentPool.matchRate.toFixed(1)}% match rate
-              </p>
+              <p className="text-xs text-gray-600 mt-1">With active students</p>
             </CardContent>
           </Card>
 
           <Card className="border-2 border-purple-200 bg-purple-50">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <DollarSign className="h-4 w-4 text-purple-600" />
-                Avg Salary Range
+                <Zap className="h-4 w-4 text-purple-600" />
+                Skills Tracked
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-purple-600">
-                €{(intelligence.salaryRange.min / 1000).toFixed(0)}K - €{(intelligence.salaryRange.max / 1000).toFixed(0)}K
+              <div className="text-3xl font-bold text-purple-600">
+                {skillsFrequency.length}
               </div>
               <p className="text-xs text-gray-600 mt-1">
-                Avg: €{(intelligence.salaryRange.average / 1000).toFixed(0)}K/year
+                {totalSkillMentions.toLocaleString()} total mentions
               </p>
             </CardContent>
           </Card>
@@ -139,284 +190,196 @@ export default function MarketIntelligencePage() {
           <Card className="border-2 border-orange-200 bg-orange-50">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Building2 className="h-4 w-4 text-orange-600" />
-                Competition
+                <BookOpen className="h-4 w-4 text-orange-600" />
+                Public Projects
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-orange-600">
-                {intelligence.competingCompanies}
+                {totalProjects.toLocaleString()}
               </div>
               <p className="text-xs text-gray-600 mt-1">
-                companies hiring similar roles
+                Across {disciplineDistribution.length} disciplines
               </p>
             </CardContent>
           </Card>
         </div>
 
-        {/* Recommendations */}
-        <Card className="border-2 border-primary">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <AlertCircle className="h-5 w-5 text-primary" />
-              AI Recommendations to Improve Results
-            </CardTitle>
-            <CardDescription>
-              Based on current talent pool and your search criteria
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {intelligence.recommendations.length === 0 ? (
-              <div className="text-center py-8 text-gray-500">
-                <TrendingUp className="h-12 w-12 mx-auto mb-3 text-gray-400" />
-                <p>Your search is well-optimized! No recommendations at this time.</p>
-              </div>
-            ) : (
-              intelligence.recommendations.map((rec, i) => (
-                <div
-                  key={i}
-                  className={`border-l-4 pl-4 py-3 rounded-r ${
-                    rec.type === 'expand_location'
-                      ? 'border-blue-500 bg-blue-50'
-                      : rec.type === 'lower_grade_threshold'
-                      ? 'border-yellow-500 bg-yellow-50'
-                      : rec.type === 'add_related_skills'
-                      ? 'border-green-500 bg-green-50'
-                      : 'border-gray-500 bg-gray-50'
-                  }`}
-                >
-                  <h4 className="font-semibold text-sm mb-1">{rec.title}</h4>
-                  <p className="text-sm text-gray-700 mb-2">{rec.description}</p>
-                  <Badge variant="secondary" className="bg-white">
-                    <TrendingUp className="h-3 w-3 mr-1" />
-                    {rec.impact}
-                  </Badge>
-                </div>
-              ))
-            )}
-          </CardContent>
-        </Card>
-
+        {/* University Distribution & Growth Trends */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Geographic Distribution */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <MapPin className="h-5 w-5" />
-                Geographic Distribution
+                <GraduationCap className="h-5 w-5" />
+                University Distribution
               </CardTitle>
               <CardDescription>
-                Where matching candidates are located
+                Where students on the platform come from
               </CardDescription>
             </CardHeader>
             <CardContent>
-              {Object.keys(intelligence.talentPool.byLocation).length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
-                  <MapPin className="h-12 w-12 mx-auto mb-3 text-gray-400" />
-                  <p>No location data available for current filters</p>
+              {universityDistribution.length > 0 ? (
+                <div className="space-y-3">
+                  {universityDistribution.map((uni) => {
+                    const percentage = talentPool > 0
+                      ? (uni.count / talentPool) * 100
+                      : 0
+                    return (
+                      <div key={uni.university} className="space-y-1">
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="font-medium">{uni.university}</span>
+                          <span className="text-gray-600">
+                            {uni.count} ({percentage.toFixed(1)}%)
+                          </span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div
+                            className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all"
+                            style={{ width: `${Math.min(percentage * 3, 100)}%` }}
+                          />
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               ) : (
-                <div className="space-y-3">
-                  {Object.entries(intelligence.talentPool.byLocation)
-                    .sort(([, a], [, b]) => b - a)
-                    .map(([city, count]) => {
-                      const percentage = (count / intelligence.talentPool.matchingFilters) * 100
-                      return (
-                        <div key={city} className="space-y-1">
-                          <div className="flex items-center justify-between text-sm">
-                            <span className="font-medium">{city}</span>
-                            <span className="text-gray-600">
-                              {count} ({percentage.toFixed(0)}%)
-                            </span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2">
-                            <div
-                              className="bg-gradient-to-r from-primary to-secondary h-2 rounded-full transition-all"
-                              style={{ width: `${percentage}%` }}
-                            />
-                          </div>
-                        </div>
-                      )
-                    })}
+                <div className="text-center py-8 text-gray-500">
+                  No university data available
                 </div>
               )}
             </CardContent>
           </Card>
 
-          {/* Institution Type Distribution */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <GraduationCap className="h-5 w-5" />
-                Institution Type Breakdown
+                <TrendingUp className="h-5 w-5" />
+                Student Growth Trends
               </CardTitle>
               <CardDescription>
-                ITS vs University candidates
+                New student registrations over the last 6 months
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-3">
-                <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border border-blue-200">
-                  <div className="flex items-center gap-3">
-                    <div className="text-3xl">🔧</div>
-                    <div>
-                      <div className="font-semibold">ITS Students</div>
-                      <div className="text-xs text-gray-600">Vocational/Technical</div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-blue-600">
-                      {intelligence.talentPool.byInstitutionType.its}
-                    </div>
-                    <div className="text-xs text-gray-600">
-                      {((intelligence.talentPool.byInstitutionType.its / intelligence.talentPool.matchingFilters) * 100).toFixed(0)}%
-                    </div>
-                  </div>
+            <CardContent>
+              {growthTrends.length > 0 ? (
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={growthTrends}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Line
+                      type="monotone"
+                      dataKey="newStudents"
+                      stroke="#0088FE"
+                      strokeWidth={2}
+                      name="New Students"
+                      dot={{ r: 4 }}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              ) : (
+                <div className="flex items-center justify-center h-[300px] text-gray-500">
+                  No growth data available
                 </div>
-
-                <div className="flex items-center justify-between p-4 bg-purple-50 rounded-lg border border-purple-200">
-                  <div className="flex items-center gap-3">
-                    <div className="text-3xl">🎓</div>
-                    <div>
-                      <div className="font-semibold">University Students</div>
-                      <div className="text-xs text-gray-600">Academic</div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-purple-600">
-                      {intelligence.talentPool.byInstitutionType.university}
-                    </div>
-                    <div className="text-xs text-gray-600">
-                      {((intelligence.talentPool.byInstitutionType.university / intelligence.talentPool.matchingFilters) * 100).toFixed(0)}%
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                <p className="text-sm text-green-800">
-                  <strong>💡 Tip:</strong> ITS graduates have 87% placement rate and strong hands-on skills for technical roles.
-                </p>
-              </div>
+              )}
             </CardContent>
           </Card>
         </div>
 
-        {/* Grade Distribution */}
+        {/* Skills Frequency */}
         <Card>
           <CardHeader>
-            <CardTitle>Grade Distribution (Normalized)</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Zap className="h-5 w-5" />
+              Top Skills in Talent Pool
+            </CardTitle>
             <CardDescription>
-              Quality of candidates matching your filters
+              Most common skills and technologies from student projects
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-4 gap-4">
-              <div className="text-center p-4 bg-green-50 rounded-lg border-2 border-green-200">
-                <div className="text-3xl font-bold text-green-600 mb-1">
-                  {intelligence.talentPool.gradeDistribution.excellent}
-                </div>
-                <div className="text-sm font-medium text-gray-900 mb-1">Excellent</div>
-                <div className="text-xs text-gray-600">90-100% (A+/A)</div>
-                <div className="mt-2 text-xs text-green-700 font-semibold">
-                  {intelligence.talentPool.matchingFilters > 0
-                    ? ((intelligence.talentPool.gradeDistribution.excellent / intelligence.talentPool.matchingFilters) * 100).toFixed(0)
-                    : 0}% of pool
-                </div>
+            {skillsFrequency.length > 0 ? (
+              <ResponsiveContainer width="100%" height={400}>
+                <BarChart data={skillsFrequency.slice(0, 15)} layout="vertical">
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis type="number" />
+                  <YAxis dataKey="skill" type="category" width={120} tick={{ fontSize: 12 }} />
+                  <Tooltip />
+                  <Bar dataKey="count" fill="#8884d8" name="Mentions in Projects" />
+                </BarChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="flex items-center justify-center h-[400px] text-gray-500">
+                No skills data available
               </div>
-
-              <div className="text-center p-4 bg-blue-50 rounded-lg border-2 border-blue-200">
-                <div className="text-3xl font-bold text-blue-600 mb-1">
-                  {intelligence.talentPool.gradeDistribution.veryGood}
-                </div>
-                <div className="text-sm font-medium text-gray-900 mb-1">Very Good</div>
-                <div className="text-xs text-gray-600">80-89% (A-/B+)</div>
-                <div className="mt-2 text-xs text-blue-700 font-semibold">
-                  {intelligence.talentPool.matchingFilters > 0
-                    ? ((intelligence.talentPool.gradeDistribution.veryGood / intelligence.talentPool.matchingFilters) * 100).toFixed(0)
-                    : 0}% of pool
-                </div>
-              </div>
-
-              <div className="text-center p-4 bg-yellow-50 rounded-lg border-2 border-yellow-200">
-                <div className="text-3xl font-bold text-yellow-600 mb-1">
-                  {intelligence.talentPool.gradeDistribution.good}
-                </div>
-                <div className="text-sm font-medium text-gray-900 mb-1">Good</div>
-                <div className="text-xs text-gray-600">70-79% (B/B-)</div>
-                <div className="mt-2 text-xs text-yellow-700 font-semibold">
-                  {intelligence.talentPool.matchingFilters > 0
-                    ? ((intelligence.talentPool.gradeDistribution.good / intelligence.talentPool.matchingFilters) * 100).toFixed(0)
-                    : 0}% of pool
-                </div>
-              </div>
-
-              <div className="text-center p-4 bg-gray-50 rounded-lg border-2 border-gray-200">
-                <div className="text-3xl font-bold text-gray-600 mb-1">
-                  {intelligence.talentPool.gradeDistribution.fair}
-                </div>
-                <div className="text-sm font-medium text-gray-900 mb-1">Fair</div>
-                <div className="text-xs text-gray-600">60-69% (C)</div>
-                <div className="mt-2 text-xs text-gray-700 font-semibold">
-                  {intelligence.talentPool.matchingFilters > 0
-                    ? ((intelligence.talentPool.gradeDistribution.fair / intelligence.talentPool.matchingFilters) * 100).toFixed(0)
-                    : 0}% of pool
-                </div>
-              </div>
-            </div>
+            )}
           </CardContent>
         </Card>
 
-        {/* Recent Hiring Activity */}
-        <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200">
+        {/* Discipline Distribution */}
+        <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <TrendingDown className="h-5 w-5 text-blue-600" />
-              Recent Market Activity
+              <BookOpen className="h-5 w-5" />
+              Project Discipline Distribution
             </CardTitle>
+            <CardDescription>
+              Breakdown of student projects by discipline
+            </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-3">
-            <div className="flex items-center justify-between p-3 bg-white rounded-lg">
-              <span className="text-sm font-medium">Recent hires (last 30 days)</span>
-              <Badge className="bg-blue-600">{intelligence.recentHires} candidates</Badge>
-            </div>
-            <div className="flex items-center justify-between p-3 bg-white rounded-lg">
-              <span className="text-sm font-medium">Active job postings in category</span>
-              <Badge className="bg-purple-600">{Math.floor(intelligence.competingCompanies * 1.5)} positions</Badge>
-            </div>
-            <div className="flex items-center justify-between p-3 bg-white rounded-lg">
-              <span className="text-sm font-medium">Avg time to hire</span>
-              <Badge variant="outline">18-23 days</Badge>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Demo Notice */}
-        <Card className="bg-blue-50 border-blue-200 border-2">
-          <CardContent className="pt-6">
-            <div className="flex items-start gap-3">
-              <Sparkles className="h-5 w-5 text-blue-600 mt-0.5" />
-              <div>
-                <p className="text-sm text-blue-900 font-semibold mb-1">
-                  💡 Demo Mode - Mock Market Data
-                </p>
-                <div className="text-sm text-blue-800">
-                  <p>In production, this dashboard will pull:</p>
-                  <ul className="list-disc list-inside mt-2 space-y-1">
-                    <li>Real salary benchmarks from market APIs</li>
-                    <li>Live competition data from job boards</li>
-                    <li>Actual hiring trends from institutional partnerships</li>
-                    <li>Geographic salary variations</li>
-                  </ul>
+          <CardContent>
+            {disciplineDistribution.length > 0 ? (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={disciplineDistribution}
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={100}
+                      dataKey="count"
+                      nameKey="discipline"
+                      label={({ discipline, percent }: { discipline: string; percent: number }) =>
+                        `${(percent * 100).toFixed(0)}%`
+                      }
+                    >
+                      {disciplineDistribution.map((_, index) => (
+                        <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+                <div className="space-y-3">
+                  {disciplineDistribution.map((disc, index) => {
+                    const percentage = totalProjects > 0
+                      ? ((disc.count / totalProjects) * 100).toFixed(1)
+                      : '0'
+                    return (
+                      <div key={disc.discipline} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <div
+                            className="w-3 h-3 rounded-full"
+                            style={{ backgroundColor: PIE_COLORS[index % PIE_COLORS.length] }}
+                          />
+                          <span className="font-medium text-gray-900">{disc.discipline}</span>
+                        </div>
+                        <div className="text-right">
+                          <span className="text-sm font-semibold">{disc.count}</span>
+                          <span className="text-xs text-gray-600 ml-1">({percentage}%)</span>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
-                <Button variant="outline" size="sm" className="mt-3" asChild>
-                  <Link href="/dashboard/recruiter/course-search">
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    Start Searching with Course Filters
-                  </Link>
-                </Button>
               </div>
-            </div>
+            ) : (
+              <div className="flex items-center justify-center h-[300px] text-gray-500">
+                No discipline data available
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>

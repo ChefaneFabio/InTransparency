@@ -102,7 +102,7 @@ export default function CompanyDashboard() {
               <div className="text-sm text-gray-600">
                 Contacts Used
                 {userPlan === 'pay_per_contact' && (
-                  <span className="text-orange-600 font-medium ml-1">(€{stats.contactsUsed * 5})</span>
+                  <span className="text-orange-600 font-medium ml-1">(€{stats.contactsUsed * 10})</span>
                 )}
               </div>
             </div>
@@ -175,7 +175,7 @@ export default function CompanyDashboard() {
                   {userPlan === 'pay_per_contact' && (
                     <Button size="sm" variant="outline">
                       <Mail className="h-4 w-4 mr-1" />
-                      Contact - €5
+                      Contact - €10
                     </Button>
                   )}
                   {userPlan === 'enterprise' && (
@@ -191,7 +191,7 @@ export default function CompanyDashboard() {
             {userPlan === 'pay_per_contact' && (
               <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                 <p className="text-sm text-blue-900">
-                  <strong>💡 Enterprise Tip:</strong> Unlimited contacts for €99/month. You have spent €{stats.contactsUsed * 5} already this month.
+                  <strong>💡 Enterprise Tip:</strong> Unlimited contacts for €99/month. You have spent €{stats.contactsUsed * 10} already this month.
                 </p>
               </div>
             )}
@@ -260,7 +260,7 @@ export default function CompanyDashboard() {
                 <>
                   <div className="flex items-center gap-2">
                     <span className="text-gray-600">Cost per contact:</span>
-                    <span className="font-medium">€5</span>
+                    <span className="font-medium">€10</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Lock className="h-4 w-4 text-gray-400" />
@@ -327,20 +327,20 @@ export default function CompanyDashboard() {
                 <span className="font-medium">{stats.contactsUsed}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Cost (€5 each):</span>
-                <span className="font-medium">€{stats.contactsUsed * 5}</span>
+                <span className="text-gray-600">Cost (€10 each):</span>
+                <span className="font-medium">€{stats.contactsUsed * 10}</span>
               </div>
               <div className="border-t pt-2 mt-2">
                 <div className="flex justify-between font-semibold">
                   <span>Enterprise would save:</span>
                   <span className="text-green-600">
-                    {stats.contactsUsed >= 20 ? `€${(stats.contactsUsed * 5) - 99}` : '-'}
+                    {stats.contactsUsed >= 10 ? `€${(stats.contactsUsed * 10) - 99}` : '-'}
                   </span>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
-                  {stats.contactsUsed >= 20
-                    ? 'Enterprise pays off after 20 contacts/month'
-                    : `${20 - stats.contactsUsed} more contacts to break even`}
+                  {stats.contactsUsed >= 10
+                    ? 'Enterprise pays off after 10 contacts/month'
+                    : `${10 - stats.contactsUsed} more contacts to break even`}
                 </p>
               </div>
             </div>

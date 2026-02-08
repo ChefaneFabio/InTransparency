@@ -1,114 +1,194 @@
 'use client'
 
-import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useState, useEffect } from 'react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
+import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { Search, Plus, MoreVertical, Users, Eye, Calendar, DollarSign, MapPin, Clock } from 'lucide-react'
+import { Search, Plus, MoreVertical, Users, Eye, Calendar, DollarSign, MapPin, Clock, AlertCircle } from 'lucide-react'
+import { Link } from '@/navigation'
 
-const jobs = [
-  {
-    id: '1',
-    title: 'Senior Frontend Developer',
-    department: 'Engineering',
-    location: 'San Francisco, CA',
-    type: 'Full-time',
-    salary: '$120,000 - $150,000',
-    posted: '2024-01-15',
-    status: 'Active',
-    applicants: 23,
-    views: 145,
-    description: 'We are looking for a senior frontend developer with expertise in React and TypeScript...',
-    requirements: ['5+ years React experience', 'TypeScript proficiency', 'Testing experience'],
-    tags: ['React', 'TypeScript', 'JavaScript', 'CSS']
-  },
-  {
-    id: '2',
-    title: 'Full Stack Engineer',
-    department: 'Engineering',
-    location: 'Remote',
-    type: 'Full-time',
-    salary: '$100,000 - $130,000',
-    posted: '2024-01-12',
-    status: 'Active',
-    applicants: 34,
-    views: 189,
-    description: 'Join our team to build scalable web applications using modern technologies...',
-    requirements: ['3+ years full-stack experience', 'Node.js', 'Database experience'],
-    tags: ['React', 'Node.js', 'PostgreSQL', 'AWS']
-  },
-  {
-    id: '3',
-    title: 'DevOps Engineer',
-    department: 'Infrastructure',
-    location: 'Austin, TX',
-    type: 'Full-time',
-    salary: '$110,000 - $140,000',
-    posted: '2024-01-10',
-    status: 'Paused',
-    applicants: 18,
-    views: 98,
-    description: 'Seeking a DevOps engineer to manage our cloud infrastructure and CI/CD pipelines...',
-    requirements: ['AWS experience', 'Docker/Kubernetes', 'CI/CD setup'],
-    tags: ['AWS', 'Docker', 'Kubernetes', 'Jenkins']
-  },
-  {
-    id: '4',
-    title: 'Product Manager Intern',
-    department: 'Product',
-    location: 'New York, NY',
-    type: 'Internship',
-    salary: '$25/hour',
-    posted: '2024-01-08',
-    status: 'Closed',
-    applicants: 67,
-    views: 234,
-    description: 'Summer internship opportunity for aspiring product managers...',
-    requirements: ['Product management interest', 'Analytical skills', 'Communication'],
-    tags: ['Product Management', 'Analytics', 'Strategy']
-  },
-  {
-    id: '5',
-    title: 'UX Designer',
-    department: 'Design',
-    location: 'Seattle, WA',
-    type: 'Contract',
-    salary: '$80 - $100/hour',
-    posted: '2024-01-05',
-    status: 'Active',
-    applicants: 19,
-    views: 123,
-    description: 'Contract position for an experienced UX designer to lead design initiatives...',
-    requirements: ['5+ years UX design', 'Figma proficiency', 'User research'],
-    tags: ['UX Design', 'Figma', 'User Research', 'Prototyping']
-  }
-]
+interface Job {
+  id: string
+  title: string
+  slug: string
+  status: string
+  location: string | null
+  jobType: string | null
+  salaryDisplay: string | null
+  views: number
+  postedAt: string | null
+  createdAt: string
+  requiredSkills: string[]
+  applicationCount: number
+}
 
 export default function RecruiterJobs() {
+  const [jobs, setJobs] = useState<Job[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [typeFilter, setTypeFilter] = useState('all')
+  const [actionLoading, setActionLoading] = useState<string | null>(null)
+
+  useEffect(() => {
+    fetchJobs()
+  }, [])
+
+  const fetchJobs = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      const res = await fetch('/api/dashboard/recruiter/jobs')
+      if (!res.ok) {
+        throw new Error('Failed to fetch jobs')
+      }
+      const data = await res.json()
+      setJobs(data.jobs)
+    } catch (err: any) {
+      setError(err.message || 'Something went wrong')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleToggleStatus = async (job: Job) => {
+    const newStatus = job.status === 'ACTIVE' ? 'CLOSED' : 'ACTIVE'
+    setActionLoading(job.id)
+    try {
+      const res = await fetch(`/api/jobs/${job.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      })
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Failed to update job')
+      }
+      setJobs(prev => prev.map(j => j.id === job.id ? { ...j, status: newStatus } : j))
+    } catch (err: any) {
+      alert(err.message)
+    } finally {
+      setActionLoading(null)
+    }
+  }
+
+  const handleDelete = async (job: Job) => {
+    if (!confirm(`Are you sure you want to delete "${job.title}"?`)) return
+    setActionLoading(job.id)
+    try {
+      const res = await fetch(`/api/jobs/${job.id}`, { method: 'DELETE' })
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Failed to delete job')
+      }
+      setJobs(prev => prev.filter(j => j.id !== job.id))
+    } catch (err: any) {
+      alert(err.message)
+    } finally {
+      setActionLoading(null)
+    }
+  }
+
+  const formatJobType = (type: string | null) => {
+    if (!type) return ''
+    const map: Record<string, string> = {
+      FULL_TIME: 'Full-time',
+      PART_TIME: 'Part-time',
+      CONTRACT: 'Contract',
+      INTERNSHIP: 'Internship',
+      TEMPORARY: 'Temporary',
+      FREELANCE: 'Freelance',
+    }
+    return map[type] || type
+  }
 
   const filteredJobs = jobs.filter(job => {
-    const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         job.department.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesStatus = statusFilter === 'all' || job.status.toLowerCase() === statusFilter
-    const matchesType = typeFilter === 'all' || job.type.toLowerCase().replace('-', '') === typeFilter.replace('-', '')
-    
+    const matchesType = typeFilter === 'all' || job.jobType === typeFilter
     return matchesSearch && matchesStatus && matchesType
   })
 
+  // Compute stats from real data
+  const activeCount = jobs.filter(j => j.status === 'ACTIVE').length
+  const totalApplications = jobs.reduce((sum, j) => sum + j.applicationCount, 0)
+  const totalViews = jobs.reduce((sum, j) => sum + j.views, 0)
+
   const getStatusBadge = (status: string) => {
-    const colors = {
-      'Active': 'bg-green-500',
-      'Paused': 'bg-yellow-500',
-      'Closed': 'bg-red-500',
-      'Draft': 'bg-gray-500'
+    const colors: Record<string, string> = {
+      'ACTIVE': 'bg-green-500',
+      'PAUSED': 'bg-yellow-500',
+      'CLOSED': 'bg-red-500',
+      'DRAFT': 'bg-gray-500',
+      'FILLED': 'bg-blue-500',
+      'CANCELLED': 'bg-red-700',
     }
-    return <Badge className={`${colors[status as keyof typeof colors]} text-white`}>{status}</Badge>
+    const label = status.charAt(0) + status.slice(1).toLowerCase()
+    return <Badge className={`${colors[status] || 'bg-gray-500'} text-white`}>{label}</Badge>
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <Skeleton className="h-8 w-48" />
+            <Skeleton className="h-4 w-72 mt-2" />
+          </div>
+          <Skeleton className="h-10 w-32" />
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <Card key={i}>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <Skeleton className="h-4 w-24" />
+              </CardHeader>
+              <CardContent>
+                <Skeleton className="h-8 w-12" />
+                <Skeleton className="h-3 w-32 mt-2" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <Skeleton className="h-10 w-full" />
+          </CardContent>
+        </Card>
+        {Array.from({ length: 3 }).map((_, i) => (
+          <Card key={i}>
+            <CardHeader>
+              <Skeleton className="h-6 w-64" />
+              <Skeleton className="h-4 w-96 mt-2" />
+            </CardHeader>
+            <CardContent>
+              <Skeleton className="h-16 w-full" />
+              <Skeleton className="h-8 w-full mt-4" />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
+        <Card className="max-w-md w-full">
+          <CardContent className="pt-6 text-center space-y-4">
+            <AlertCircle className="h-12 w-12 text-red-500 mx-auto" />
+            <h2 className="text-xl font-semibold">Failed to load jobs</h2>
+            <p className="text-muted-foreground">{error}</p>
+            <Button onClick={fetchJobs}>Try Again</Button>
+          </CardContent>
+        </Card>
+      </div>
+    )
   }
 
   return (
@@ -120,9 +200,11 @@ export default function RecruiterJobs() {
             Manage your job listings and track applications
           </p>
         </div>
-        <Button>
-          <Plus className="h-4 w-4 mr-2" />
-          Post New Job
+        <Button asChild>
+          <Link href="/dashboard/recruiter/jobs/new">
+            <Plus className="h-4 w-4 mr-2" />
+            Post New Job
+          </Link>
         </Button>
       </div>
 
@@ -133,9 +215,9 @@ export default function RecruiterJobs() {
             <CardTitle className="text-sm font-medium">Active Jobs</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">3</div>
+            <div className="text-2xl font-bold">{activeCount}</div>
             <p className="text-xs text-muted-foreground">
-              2 new this week
+              {jobs.length} total listings
             </p>
           </CardContent>
         </Card>
@@ -144,31 +226,33 @@ export default function RecruiterJobs() {
             <CardTitle className="text-sm font-medium">Total Applications</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">161</div>
+            <div className="text-2xl font-bold">{totalApplications}</div>
             <p className="text-xs text-muted-foreground">
-              +12% from last month
+              across all jobs
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Views This Month</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Views</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">789</div>
+            <div className="text-2xl font-bold">{totalViews}</div>
             <p className="text-xs text-muted-foreground">
-              +8% from last month
+              across all jobs
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg. Time to Fill</CardTitle>
+            <CardTitle className="text-sm font-medium">Avg. Applications</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">18</div>
+            <div className="text-2xl font-bold">
+              {jobs.length > 0 ? Math.round(totalApplications / jobs.length) : 0}
+            </div>
             <p className="text-xs text-muted-foreground">
-              days per position
+              per job posting
             </p>
           </CardContent>
         </Card>
@@ -205,9 +289,11 @@ export default function RecruiterJobs() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Types</SelectItem>
-                <SelectItem value="fulltime">Full-time</SelectItem>
-                <SelectItem value="contract">Contract</SelectItem>
-                <SelectItem value="internship">Internship</SelectItem>
+                <SelectItem value="FULL_TIME">Full-time</SelectItem>
+                <SelectItem value="PART_TIME">Part-time</SelectItem>
+                <SelectItem value="CONTRACT">Contract</SelectItem>
+                <SelectItem value="INTERNSHIP">Internship</SelectItem>
+                <SelectItem value="FREELANCE">Freelance</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -215,95 +301,111 @@ export default function RecruiterJobs() {
       </Card>
 
       {/* Jobs List */}
-      <div className="grid gap-6">
-        {filteredJobs.map((job) => (
-          <Card key={job.id} className="hover:shadow-md transition-shadow">
-            <CardHeader>
-              <div className="flex items-start justify-between">
-                <div className="space-y-1">
-                  <CardTitle className="text-xl">{job.title}</CardTitle>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                    <span>{job.department}</span>
-                    <div className="flex items-center gap-1">
-                      <MapPin className="h-4 w-4" />
-                      {job.location}
+      {filteredJobs.length === 0 ? (
+        <Card>
+          <CardContent className="pt-6 text-center py-12">
+            <p className="text-muted-foreground">
+              {jobs.length === 0 ? 'No jobs posted yet. Create your first job listing!' : 'No jobs match your filters.'}
+            </p>
+          </CardContent>
+        </Card>
+      ) : (
+        <div className="grid gap-6">
+          {filteredJobs.map((job) => (
+            <Card key={job.id} className="hover:shadow-md transition-shadow">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="space-y-1">
+                    <CardTitle className="text-xl">
+                      <Link href={`/dashboard/recruiter/jobs/${job.id}`} className="hover:underline">
+                        {job.title}
+                      </Link>
+                    </CardTitle>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground flex-wrap">
+                      {job.location && (
+                        <div className="flex items-center gap-1">
+                          <MapPin className="h-4 w-4" />
+                          {job.location}
+                        </div>
+                      )}
+                      {job.salaryDisplay && (
+                        <div className="flex items-center gap-1">
+                          <DollarSign className="h-4 w-4" />
+                          {job.salaryDisplay}
+                        </div>
+                      )}
+                      {job.jobType && (
+                        <Badge variant="outline">{formatJobType(job.jobType)}</Badge>
+                      )}
                     </div>
-                    <div className="flex items-center gap-1">
-                      <DollarSign className="h-4 w-4" />
-                      {job.salary}
-                    </div>
-                    <Badge variant="outline">{job.type}</Badge>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {getStatusBadge(job.status)}
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="sm" disabled={actionLoading === job.id}>
+                          <MoreVertical className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem asChild>
+                          <Link href={`/dashboard/recruiter/jobs/${job.id}`}>
+                            View Details
+                          </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleToggleStatus(job)}>
+                          {job.status === 'ACTIVE' ? 'Close Job' : 'Activate Job'}
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          className="text-red-600"
+                          onClick={() => handleDelete(job)}
+                        >
+                          Delete
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  {getStatusBadge(job.status)}
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="sm">
-                        <MoreVertical className="h-4 w-4" />
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {job.requiredSkills && job.requiredSkills.length > 0 && (
+                    <div className="flex items-center flex-wrap gap-2">
+                      {job.requiredSkills.map((skill) => (
+                        <Badge key={skill} variant="secondary">{skill}</Badge>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="flex items-center justify-between pt-4 border-t">
+                    <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Users className="h-4 w-4" />
+                        {job.applicationCount} applicants
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Eye className="h-4 w-4" />
+                        {job.views} views
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4" />
+                        Posted {new Date(job.postedAt || job.createdAt).toLocaleDateString()}
+                      </div>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href={`/dashboard/recruiter/jobs/${job.id}`}>
+                          View Applications ({job.applicationCount})
+                        </Link>
                       </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem>Edit Job</DropdownMenuItem>
-                      <DropdownMenuItem>View Applications</DropdownMenuItem>
-                      <DropdownMenuItem>Duplicate</DropdownMenuItem>
-                      <DropdownMenuItem>
-                        {job.status === 'Active' ? 'Pause Job' : 'Activate Job'}
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <p className="text-sm text-muted-foreground">
-                  {job.description}
-                </p>
-                
-                <div className="space-y-2">
-                  <h4 className="text-sm font-medium">Key Requirements:</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    {job.requirements.map((req, index) => (
-                      <li key={index}>• {req}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="flex items-center flex-wrap gap-2">
-                  {job.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary">{tag}</Badge>
-                  ))}
-                </div>
-
-                <div className="flex items-center justify-between pt-4 border-t">
-                  <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <Users className="h-4 w-4" />
-                      {job.applicants} applicants
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Eye className="h-4 w-4" />
-                      {job.views} views
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
-                      Posted {new Date(job.posted).toLocaleDateString()}
                     </div>
                   </div>
-                  <div className="flex gap-2">
-                    <Button variant="outline" size="sm">
-                      View Applications ({job.applicants})
-                    </Button>
-                    <Button size="sm">Edit Job</Button>
-                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

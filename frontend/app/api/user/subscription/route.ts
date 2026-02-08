@@ -21,6 +21,7 @@ export async function GET(req: NextRequest) {
         subscriptionTier: true,
         subscriptionStatus: true,
         premiumUntil: true,
+        contactBalance: true,
         stripeCustomerId: true,
         stripeSubscriptionId: true,
         projects: {

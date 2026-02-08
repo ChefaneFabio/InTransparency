@@ -19,7 +19,8 @@ import {
   ChevronRight,
   MessageSquare,
   FolderOpen,
-  TrendingUp
+  TrendingUp,
+  Sparkles
 } from 'lucide-react'
 import { Link } from '@/navigation'
 
@@ -264,6 +265,16 @@ export default function StudentDashboard() {
                   className="flex items-center justify-between p-2 rounded hover:bg-gray-50 transition-colors"
                 >
                   <span className="text-sm">Analytics</span>
+                  <ChevronRight className="h-4 w-4 text-gray-400" />
+                </Link>
+                <Link
+                  href="/dashboard/student/skill-path"
+                  className="flex items-center justify-between p-2 rounded hover:bg-gray-50 transition-colors"
+                >
+                  <span className="text-sm flex items-center gap-1.5">
+                    <Sparkles className="h-3.5 w-3.5 text-purple-500" />
+                    Skill Path
+                  </span>
                   <ChevronRight className="h-4 w-4 text-gray-400" />
                 </Link>
                 <Link

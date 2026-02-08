@@ -12,17 +12,40 @@ export async function PATCH(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { profilePublic } = body
+    const { profilePublic, portfolioUrl } = body
+
+    // Gate portfolioUrl behind STUDENT_PREMIUM
+    if (portfolioUrl !== undefined && portfolioUrl !== null && portfolioUrl !== '') {
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { subscriptionTier: true }
+      })
+
+      if (user?.subscriptionTier !== 'STUDENT_PREMIUM') {
+        return NextResponse.json({
+          error: 'Custom portfolio URL requires a Premium subscription',
+          upgradeUrl: '/dashboard/student/upgrade',
+        }, { status: 403 })
+      }
+    }
+
+    // Build update data
+    const updateData: any = {}
+    if (profilePublic !== undefined) {
+      updateData.profilePublic = profilePublic
+    }
+    if (portfolioUrl !== undefined) {
+      updateData.portfolioUrl = portfolioUrl || null
+    }
 
     // Update user profile
     const updatedUser = await prisma.user.update({
       where: { id: userId },
-      data: {
-        profilePublic: profilePublic !== undefined ? profilePublic : undefined
-      },
+      data: updateData,
       select: {
         id: true,
         profilePublic: true,
+        portfolioUrl: true,
         username: true
       }
     })

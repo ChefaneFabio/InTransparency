@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Search,
   Send,
@@ -22,163 +23,171 @@ import {
   MessageSquare,
   Users,
   Filter,
-  RefreshCw
+  RefreshCw,
+  AlertCircle
 } from 'lucide-react'
 
-interface Message {
-  id: string
-  candidateName: string
-  candidateEmail: string
-  candidateAvatar?: string
-  candidateUniversity: string
+interface Conversation {
+  threadId: string
   subject: string
-  preview: string
-  content: string
-  timestamp: string
-  isRead: boolean
-  isStarred: boolean
-  isArchived: boolean
-  thread: {
+  lastMessage: string
+  unreadCount: number
+  participants: {
     id: string
-    sender: 'recruiter' | 'candidate'
-    content: string
-    timestamp: string
+    firstName: string
+    lastName: string
+    email: string
+    photo?: string
+    company?: string
   }[]
+  updatedAt: string
 }
 
-const mockMessages: Message[] = [
-  {
-    id: '1',
-    candidateName: 'Marco Rossi',
-    candidateEmail: 'marco.rossi@polimi.it',
-    candidateAvatar: '',
-    candidateUniversity: 'Politecnico di Milano',
-    subject: 'Re: Opportunità Full Stack Developer',
-    preview: 'Grazie per avermi contattato! Sono molto interessato alla posizione...',
-    content: 'Grazie per avermi contattato! Sono molto interessato alla posizione di Full Stack Developer. Ho esperienza con React, Node.js e PostgreSQL, come potete vedere dal mio portfolio. Sarei disponibile per un colloquio la prossima settimana.',
-    timestamp: '2 ore fa',
-    isRead: false,
-    isStarred: true,
-    isArchived: false,
-    thread: [
-      {
-        id: 't1',
-        sender: 'recruiter',
-        content: 'Ciao Marco, abbiamo visto il tuo profilo su InTransparency e siamo interessati a parlarti di una posizione aperta nel nostro team.',
-        timestamp: '1 giorno fa'
-      },
-      {
-        id: 't2',
-        sender: 'candidate',
-        content: 'Grazie per avermi contattato! Sono molto interessato alla posizione di Full Stack Developer. Ho esperienza con React, Node.js e PostgreSQL, come potete vedere dal mio portfolio. Sarei disponibile per un colloquio la prossima settimana.',
-        timestamp: '2 ore fa'
-      }
-    ]
-  },
-  {
-    id: '2',
-    candidateName: 'Sofia Bianchi',
-    candidateEmail: 'sofia.bianchi@unibo.it',
-    candidateAvatar: '',
-    candidateUniversity: 'Università di Bologna',
-    subject: 'Candidatura Data Scientist',
-    preview: 'Ho visto la vostra offerta per Data Scientist e credo di avere...',
-    content: 'Ho visto la vostra offerta per Data Scientist e credo di avere le competenze richieste. Ho completato diversi progetti di machine learning durante il mio percorso universitario.',
-    timestamp: '5 ore fa',
-    isRead: true,
-    isStarred: false,
-    isArchived: false,
-    thread: [
-      {
-        id: 't3',
-        sender: 'candidate',
-        content: 'Ho visto la vostra offerta per Data Scientist e credo di avere le competenze richieste. Ho completato diversi progetti di machine learning durante il mio percorso universitario.',
-        timestamp: '5 ore fa'
-      }
-    ]
-  },
-  {
-    id: '3',
-    candidateName: 'Alessandro Costa',
-    candidateEmail: 'a.costa@unimi.it',
-    candidateAvatar: '',
-    candidateUniversity: 'Università degli Studi di Milano',
-    subject: 'Informazioni stage estivo',
-    preview: 'Buongiorno, vorrei avere maggiori informazioni riguardo lo stage...',
-    content: 'Buongiorno, vorrei avere maggiori informazioni riguardo lo stage estivo che avete pubblicato. È possibile iniziare a giugno?',
-    timestamp: '1 giorno fa',
-    isRead: true,
-    isStarred: false,
-    isArchived: false,
-    thread: []
+interface ThreadMessage {
+  id: string
+  senderId: string
+  recipientId: string
+  subject: string
+  content: string
+  threadId: string
+  read: boolean
+  createdAt: string
+  sender: {
+    firstName: string
+    lastName: string
+    email: string
+    photo?: string
+    company?: string
   }
-]
+}
 
 export default function RecruiterMessagesPage() {
   const { data: session } = useSession()
-  const [messages, setMessages] = useState<Message[]>(mockMessages)
-  const [selectedMessage, setSelectedMessage] = useState<Message | null>(null)
+  const currentUserId = session?.user?.id
+
+  const [conversations, setConversations] = useState<Conversation[]>([])
+  const [loadingConversations, setLoadingConversations] = useState(true)
+  const [errorConversations, setErrorConversations] = useState<string | null>(null)
+
+  const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null)
+  const [threadMessages, setThreadMessages] = useState<ThreadMessage[]>([])
+  const [loadingThread, setLoadingThread] = useState(false)
+  const [errorThread, setErrorThread] = useState<string | null>(null)
+
   const [searchQuery, setSearchQuery] = useState('')
   const [replyContent, setReplyContent] = useState('')
+  const [sendingReply, setSendingReply] = useState(false)
   const [activeTab, setActiveTab] = useState('inbox')
 
-  const filteredMessages = messages.filter(msg => {
-    const matchesSearch = msg.candidateName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         msg.subject.toLowerCase().includes(searchQuery.toLowerCase())
+  // Fetch conversations
+  const fetchConversations = useCallback(() => {
+    setLoadingConversations(true)
+    setErrorConversations(null)
+    fetch('/api/messages/conversations')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load conversations')
+        return res.json()
+      })
+      .then(data => {
+        setConversations(data.conversations || [])
+        setLoadingConversations(false)
+      })
+      .catch(err => {
+        setErrorConversations(err.message)
+        setLoadingConversations(false)
+      })
+  }, [])
 
-    if (activeTab === 'inbox') return !msg.isArchived && matchesSearch
-    if (activeTab === 'starred') return msg.isStarred && !msg.isArchived && matchesSearch
-    if (activeTab === 'archived') return msg.isArchived && matchesSearch
+  useEffect(() => {
+    fetchConversations()
+  }, [fetchConversations])
+
+  // Fetch thread messages when a conversation is selected
+  const fetchThread = useCallback((threadId: string) => {
+    setLoadingThread(true)
+    setErrorThread(null)
+    fetch(`/api/messages?threadId=${threadId}`)
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load messages')
+        return res.json()
+      })
+      .then(data => {
+        setThreadMessages(data.messages || [])
+        setLoadingThread(false)
+      })
+      .catch(err => {
+        setErrorThread(err.message)
+        setLoadingThread(false)
+      })
+  }, [])
+
+  // Get the "other" participant (the candidate) from a conversation
+  const getOtherParticipant = (conv: Conversation) => {
+    const other = conv.participants.find(p => p.id !== currentUserId)
+    return other || conv.participants[0]
+  }
+
+  const filteredConversations = conversations.filter(conv => {
+    const other = getOtherParticipant(conv)
+    const name = `${other?.firstName || ''} ${other?.lastName || ''}`.toLowerCase()
+    const matchesSearch = name.includes(searchQuery.toLowerCase()) ||
+                         conv.subject.toLowerCase().includes(searchQuery.toLowerCase())
     return matchesSearch
   })
 
-  const unreadCount = messages.filter(m => !m.isRead && !m.isArchived).length
+  const unreadCount = conversations.reduce((sum, c) => sum + c.unreadCount, 0)
 
-  const handleSelectMessage = (message: Message) => {
-    setSelectedMessage(message)
-    // Mark as read
-    setMessages(prev => prev.map(m =>
-      m.id === message.id ? { ...m, isRead: true } : m
-    ))
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr)
+    const now = new Date()
+    const diffMs = now.getTime() - date.getTime()
+    const diffMins = Math.floor(diffMs / 60000)
+    const diffHours = Math.floor(diffMs / 3600000)
+    const diffDays = Math.floor(diffMs / 86400000)
+
+    if (diffMins < 1) return 'Now'
+    if (diffMins < 60) return `${diffMins}m ago`
+    if (diffHours < 24) return `${diffHours}h ago`
+    if (diffDays < 7) return `${diffDays}d ago`
+    return date.toLocaleDateString()
   }
 
-  const handleToggleStar = (messageId: string) => {
-    setMessages(prev => prev.map(m =>
-      m.id === messageId ? { ...m, isStarred: !m.isStarred } : m
-    ))
+  const handleSelectConversation = (conv: Conversation) => {
+    setSelectedConversation(conv)
+    fetchThread(conv.threadId)
   }
 
-  const handleArchive = (messageId: string) => {
-    setMessages(prev => prev.map(m =>
-      m.id === messageId ? { ...m, isArchived: true } : m
-    ))
-    if (selectedMessage?.id === messageId) {
-      setSelectedMessage(null)
+  const handleSendReply = async () => {
+    if (!replyContent.trim() || !selectedConversation) return
+
+    const other = getOtherParticipant(selectedConversation)
+    if (!other) return
+
+    setSendingReply(true)
+    try {
+      const res = await fetch('/api/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          recipientId: other.id,
+          recipientEmail: other.email,
+          subject: selectedConversation.subject,
+          content: replyContent,
+          threadId: selectedConversation.threadId
+        })
+      })
+
+      if (!res.ok) throw new Error('Failed to send message')
+
+      setReplyContent('')
+      // Refresh thread and conversations
+      fetchThread(selectedConversation.threadId)
+      fetchConversations()
+    } catch (err) {
+      alert('Failed to send message. Please try again.')
+    } finally {
+      setSendingReply(false)
     }
-  }
-
-  const handleSendReply = () => {
-    if (!replyContent.trim() || !selectedMessage) return
-
-    const newThread = {
-      id: `t${Date.now()}`,
-      sender: 'recruiter' as const,
-      content: replyContent,
-      timestamp: 'Adesso'
-    }
-
-    setMessages(prev => prev.map(m =>
-      m.id === selectedMessage.id
-        ? { ...m, thread: [...m.thread, newThread] }
-        : m
-    ))
-
-    setSelectedMessage(prev => prev ? {
-      ...prev,
-      thread: [...prev.thread, newThread]
-    } : null)
-
-    setReplyContent('')
   }
 
   return (
@@ -191,7 +200,7 @@ export default function RecruiterMessagesPage() {
             <p className="text-gray-600">Comunica con i candidati</p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline">
+            <Button variant="outline" onClick={fetchConversations}>
               <RefreshCw className="h-4 w-4 mr-2" />
               Aggiorna
             </Button>
@@ -237,46 +246,78 @@ export default function RecruiterMessagesPage() {
                 </div>
 
                 <div className="mt-4 space-y-2 max-h-[500px] overflow-y-auto">
-                  {filteredMessages.length === 0 ? (
+                  {loadingConversations ? (
+                    <div className="space-y-3">
+                      {Array.from({ length: 4 }).map((_, i) => (
+                        <div key={i} className="p-3 space-y-2">
+                          <div className="flex items-start gap-3">
+                            <Skeleton className="h-10 w-10 rounded-full" />
+                            <div className="flex-1 space-y-1">
+                              <Skeleton className="h-4 w-24" />
+                              <Skeleton className="h-3 w-32" />
+                              <Skeleton className="h-3 w-full" />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : errorConversations ? (
+                    <div className="text-center py-8 text-red-500">
+                      <AlertCircle className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                      <p className="text-sm">{errorConversations}</p>
+                      <Button variant="outline" size="sm" className="mt-2" onClick={fetchConversations}>
+                        Riprova
+                      </Button>
+                    </div>
+                  ) : filteredConversations.length === 0 ? (
                     <div className="text-center py-8 text-gray-500">
                       <MessageSquare className="h-8 w-8 mx-auto mb-2 opacity-50" />
                       <p>Nessun messaggio</p>
                     </div>
                   ) : (
-                    filteredMessages.map(message => (
-                      <div
-                        key={message.id}
-                        onClick={() => handleSelectMessage(message)}
-                        className={`p-3 rounded-lg cursor-pointer transition-colors ${
-                          selectedMessage?.id === message.id
-                            ? 'bg-blue-50 border border-blue-200'
-                            : message.isRead
-                              ? 'hover:bg-gray-50'
-                              : 'bg-blue-50/50 hover:bg-blue-50'
-                        }`}
-                      >
-                        <div className="flex items-start gap-3">
-                          <Avatar className="h-10 w-10">
-                            <AvatarImage src={message.candidateAvatar} />
-                            <AvatarFallback>
-                              {message.candidateName.split(' ').map(n => n[0]).join('')}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center justify-between">
-                              <span className={`text-sm truncate ${!message.isRead ? 'font-semibold' : ''}`}>
-                                {message.candidateName}
-                              </span>
-                              <span className="text-xs text-gray-500">{message.timestamp}</span>
+                    filteredConversations.map(conv => {
+                      const other = getOtherParticipant(conv)
+                      const name = `${other?.firstName || ''} ${other?.lastName || ''}`
+                      const initials = name.trim().split(' ').map(n => n[0]).join('')
+
+                      return (
+                        <div
+                          key={conv.threadId}
+                          onClick={() => handleSelectConversation(conv)}
+                          className={`p-3 rounded-lg cursor-pointer transition-colors ${
+                            selectedConversation?.threadId === conv.threadId
+                              ? 'bg-blue-50 border border-blue-200'
+                              : conv.unreadCount > 0
+                                ? 'bg-blue-50/50 hover:bg-blue-50'
+                                : 'hover:bg-gray-50'
+                          }`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <Avatar className="h-10 w-10">
+                              <AvatarImage src={other?.photo || ''} />
+                              <AvatarFallback>{initials}</AvatarFallback>
+                            </Avatar>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between">
+                                <span className={`text-sm truncate ${conv.unreadCount > 0 ? 'font-semibold' : ''}`}>
+                                  {name}
+                                </span>
+                                <span className="text-xs text-gray-500">{formatDate(conv.updatedAt)}</span>
+                              </div>
+                              <p className={`text-sm truncate ${conv.unreadCount > 0 ? 'font-medium text-gray-900' : 'text-gray-600'}`}>
+                                {conv.subject}
+                              </p>
+                              <p className="text-xs text-gray-500 truncate">{conv.lastMessage}</p>
                             </div>
-                            <p className={`text-sm truncate ${!message.isRead ? 'font-medium text-gray-900' : 'text-gray-600'}`}>
-                              {message.subject}
-                            </p>
-                            <p className="text-xs text-gray-500 truncate">{message.preview}</p>
+                            {conv.unreadCount > 0 && (
+                              <Badge className="h-5 w-5 p-0 flex items-center justify-center text-xs shrink-0">
+                                {conv.unreadCount}
+                              </Badge>
+                            )}
                           </div>
                         </div>
-                      </div>
-                    ))
+                      )
+                    })
                   )}
                 </div>
               </CardContent>
@@ -285,37 +326,36 @@ export default function RecruiterMessagesPage() {
 
           {/* Message Content */}
           <div className="col-span-9">
-            {selectedMessage ? (
+            {selectedConversation ? (
               <Card className="h-full">
                 <CardHeader className="border-b">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      <Avatar className="h-12 w-12">
-                        <AvatarImage src={selectedMessage.candidateAvatar} />
-                        <AvatarFallback>
-                          {selectedMessage.candidateName.split(' ').map(n => n[0]).join('')}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <CardTitle>{selectedMessage.candidateName}</CardTitle>
-                        <CardDescription>
-                          {selectedMessage.candidateUniversity} • {selectedMessage.candidateEmail}
-                        </CardDescription>
-                      </div>
+                      {(() => {
+                        const other = getOtherParticipant(selectedConversation)
+                        const name = `${other?.firstName || ''} ${other?.lastName || ''}`
+                        const initials = name.trim().split(' ').map(n => n[0]).join('')
+                        return (
+                          <>
+                            <Avatar className="h-12 w-12">
+                              <AvatarImage src={other?.photo || ''} />
+                              <AvatarFallback>{initials}</AvatarFallback>
+                            </Avatar>
+                            <div>
+                              <CardTitle>{name}</CardTitle>
+                              <CardDescription>
+                                {other?.company ? `${other.company} - ` : ''}{other?.email || ''}
+                              </CardDescription>
+                            </div>
+                          </>
+                        )
+                      })()}
                     </div>
                     <div className="flex gap-2">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => handleToggleStar(selectedMessage.id)}
-                      >
-                        <Star className={`h-4 w-4 ${selectedMessage.isStarred ? 'fill-yellow-400 text-yellow-400' : ''}`} />
+                      <Button variant="ghost" size="icon">
+                        <Star className="h-4 w-4" />
                       </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => handleArchive(selectedMessage.id)}
-                      >
+                      <Button variant="ghost" size="icon">
                         <Archive className="h-4 w-4" />
                       </Button>
                       <Button variant="ghost" size="icon">
@@ -326,32 +366,70 @@ export default function RecruiterMessagesPage() {
                 </CardHeader>
                 <CardContent className="p-6">
                   <div className="mb-4">
-                    <h3 className="text-lg font-semibold">{selectedMessage.subject}</h3>
+                    <h3 className="text-lg font-semibold">{selectedConversation.subject}</h3>
                   </div>
 
                   {/* Thread */}
                   <div className="space-y-4 max-h-[400px] overflow-y-auto mb-6">
-                    {selectedMessage.thread.map(msg => (
-                      <div
-                        key={msg.id}
-                        className={`p-4 rounded-lg ${
-                          msg.sender === 'recruiter'
-                            ? 'bg-blue-50 ml-8'
-                            : 'bg-gray-50 mr-8'
-                        }`}
-                      >
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-sm font-medium">
-                            {msg.sender === 'recruiter' ? 'Tu' : selectedMessage.candidateName}
-                          </span>
-                          <span className="text-xs text-gray-500 flex items-center gap-1">
-                            <Clock className="h-3 w-3" />
-                            {msg.timestamp}
-                          </span>
-                        </div>
-                        <p className="text-gray-700">{msg.content}</p>
+                    {loadingThread ? (
+                      <div className="space-y-4">
+                        {Array.from({ length: 3 }).map((_, i) => (
+                          <div key={i} className={`p-4 rounded-lg bg-gray-50 ${i % 2 === 0 ? 'mr-8' : 'ml-8'}`}>
+                            <div className="flex items-center justify-between mb-2">
+                              <Skeleton className="h-4 w-24" />
+                              <Skeleton className="h-3 w-16" />
+                            </div>
+                            <Skeleton className="h-4 w-full mb-1" />
+                            <Skeleton className="h-4 w-3/4" />
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    ) : errorThread ? (
+                      <div className="text-center py-8 text-red-500">
+                        <AlertCircle className="h-8 w-8 mx-auto mb-2" />
+                        <p>{errorThread}</p>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="mt-2"
+                          onClick={() => fetchThread(selectedConversation.threadId)}
+                        >
+                          Riprova
+                        </Button>
+                      </div>
+                    ) : threadMessages.length === 0 ? (
+                      <div className="text-center py-8 text-gray-500">
+                        <p>Nessun messaggio in questa conversazione</p>
+                      </div>
+                    ) : (
+                      threadMessages.map(msg => {
+                        const isMe = msg.senderId === currentUserId
+                        const senderName = isMe
+                          ? 'Tu'
+                          : `${msg.sender.firstName} ${msg.sender.lastName}`
+                        return (
+                          <div
+                            key={msg.id}
+                            className={`p-4 rounded-lg ${
+                              isMe
+                                ? 'bg-blue-50 ml-8'
+                                : 'bg-gray-50 mr-8'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="text-sm font-medium">
+                                {senderName}
+                              </span>
+                              <span className="text-xs text-gray-500 flex items-center gap-1">
+                                <Clock className="h-3 w-3" />
+                                {formatDate(msg.createdAt)}
+                              </span>
+                            </div>
+                            <p className="text-gray-700">{msg.content}</p>
+                          </div>
+                        )
+                      })
+                    )}
                   </div>
 
                   {/* Reply */}
@@ -367,9 +445,12 @@ export default function RecruiterMessagesPage() {
                       <Button variant="outline">
                         Allega File
                       </Button>
-                      <Button onClick={handleSendReply} disabled={!replyContent.trim()}>
+                      <Button
+                        onClick={handleSendReply}
+                        disabled={!replyContent.trim() || sendingReply}
+                      >
                         <Send className="h-4 w-4 mr-2" />
-                        Invia
+                        {sendingReply ? 'Invio...' : 'Invia'}
                       </Button>
                     </div>
                   </div>

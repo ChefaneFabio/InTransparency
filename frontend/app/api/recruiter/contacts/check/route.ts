@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
-import { getPricingTier } from '@/lib/config/pricing'
 import { z } from 'zod'
 
 const checkContactSchema = z.object({
@@ -32,7 +31,7 @@ export async function POST(req: NextRequest) {
       select: {
         id: true,
         subscriptionTier: true,
-        premiumUntil: true,
+        contactBalance: true,
       }
     })
 
@@ -40,88 +39,74 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
 
-    // Get pricing tier limits
-    const tier = getPricingTier(user.subscriptionTier)
-    const contactLimit = tier?.limits.contacts ?? 0
-
-    // Unlimited contacts
-    if (contactLimit === -1) {
+    // RECRUITER_ENTERPRISE: unlimited contacts
+    if (user.subscriptionTier === 'RECRUITER_ENTERPRISE') {
       return NextResponse.json({
         canContact: true,
         reason: 'unlimited',
+        model: 'enterprise',
       })
     }
 
-    // Zero contacts (free tier)
-    if (contactLimit === 0) {
+    // RECRUITER_FREE or FREE: no contacts
+    if (user.subscriptionTier === 'RECRUITER_FREE' || user.subscriptionTier === 'FREE') {
       return NextResponse.json({
         canContact: false,
         reason: 'upgrade_required',
         message: 'Upgrade to a paid plan to contact candidates',
         upgradeUrl: '/pricing?for=recruiters',
+        model: 'free',
       })
     }
 
-    // Determine billing period
-    const now = new Date()
-    let billingPeriodStart: Date
-
-    if (user.premiumUntil) {
-      const premiumDate = new Date(user.premiumUntil)
-      const dayOfMonth = premiumDate.getDate()
-      billingPeriodStart = new Date(now.getFullYear(), now.getMonth(), dayOfMonth)
-      if (billingPeriodStart > now) {
-        billingPeriodStart.setMonth(billingPeriodStart.getMonth() - 1)
-      }
-    } else {
-      billingPeriodStart = new Date(now.getFullYear(), now.getMonth(), 1)
-    }
-
-    // Check if already contacted this student in this period
-    const existingContact = await prisma.contactUsage.findUnique({
-      where: {
-        recruiterId_recipientId_billingPeriodStart: {
+    // RECRUITER_PAY_PER_CONTACT: check balance and dedup
+    if (user.subscriptionTier === 'RECRUITER_PAY_PER_CONTACT') {
+      // Check if already contacted this student (any time, not just this period)
+      const existingContact = await prisma.contactUsage.findFirst({
+        where: {
           recruiterId: session.user.id,
           recipientId: studentId,
-          billingPeriodStart: billingPeriodStart,
         }
-      }
-    })
+      })
 
-    if (existingContact) {
-      // Already contacted, doesn't count against limit
+      if (existingContact) {
+        return NextResponse.json({
+          canContact: true,
+          reason: 'already_contacted',
+          message: 'You have already contacted this student — no additional charge',
+          model: 'pay_per_contact',
+          balance: user.contactBalance,
+        })
+      }
+
+      // New contact — check balance
+      if (user.contactBalance < 1000) {
+        return NextResponse.json({
+          canContact: false,
+          reason: 'insufficient_credits',
+          message: 'Not enough contact credits. Purchase more to contact this candidate.',
+          upgradeUrl: '/pricing?for=recruiters',
+          model: 'pay_per_contact',
+          balance: user.contactBalance,
+          costPerContact: 1000,
+        })
+      }
+
       return NextResponse.json({
         canContact: true,
-        reason: 'already_contacted',
-        message: 'You have already contacted this student this billing period',
+        reason: 'has_credits',
+        model: 'pay_per_contact',
+        balance: user.contactBalance,
+        costPerContact: 1000,
       })
     }
 
-    // Count unique contacts in this billing period
-    const used = await prisma.contactUsage.count({
-      where: {
-        recruiterId: session.user.id,
-        billingPeriodStart: billingPeriodStart,
-      }
-    })
-
-    if (used >= contactLimit) {
-      return NextResponse.json({
-        canContact: false,
-        reason: 'limit_reached',
-        message: `You have reached your limit of ${contactLimit} contacts for this billing period`,
-        upgradeUrl: '/pricing?for=recruiters',
-        used,
-        limit: contactLimit,
-      })
-    }
-
+    // Fallback for any other tier
     return NextResponse.json({
-      canContact: true,
-      reason: 'within_limit',
-      used,
-      limit: contactLimit,
-      remaining: contactLimit - used,
+      canContact: false,
+      reason: 'upgrade_required',
+      message: 'Upgrade to contact candidates',
+      upgradeUrl: '/pricing?for=recruiters',
     })
   } catch (error) {
     console.error('Error checking contact:', error)

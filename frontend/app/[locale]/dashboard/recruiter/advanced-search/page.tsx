@@ -1,9 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Skeleton } from '@/components/ui/skeleton'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import {
   Search,
   Filter,
@@ -22,72 +25,64 @@ import {
   Star,
   ChevronDown,
   ChevronRight,
+  ChevronLeft,
   Plus,
   X,
   Clock,
   Building2,
   Users,
-  BarChart3
+  BarChart3,
+  AlertCircle,
+  Eye,
+  MessageCircle,
+  CheckCircle2
 } from 'lucide-react'
 
+interface StudentProject {
+  id: string
+  title: string
+  technologies: string[]
+  innovationScore: number | null
+}
+
+interface Student {
+  id: string
+  name: string
+  initials: string
+  email: string
+  university: string | null
+  degree: string | null
+  graduationYear: string | null
+  gpa: number | null
+  bio: string | null
+  tagline: string | null
+  photo: string | null
+  projectCount: number
+  topProjects: StudentProject[]
+}
+
+interface SearchResponse {
+  students: Student[]
+  total: number
+  page: number
+  limit: number
+  totalPages: number
+}
+
 export default function AdvancedSearchPage() {
-  const [searchMode, setSearchMode] = useState<'simple' | 'advanced'>('advanced')
-  const [savedSearches, setSavedSearches] = useState([
-    { id: 1, name: 'ML Engineers - Bay Area', filters: 12, lastRun: '2 hours ago', newMatches: 5 },
-    { id: 2, name: 'New Grad - Ivy League', filters: 8, lastRun: '1 day ago', newMatches: 12 },
-    { id: 3, name: 'Senior Developers - Remote', filters: 10, lastRun: '3 days ago', newMatches: 3 }
-  ])
+  const [searchResults, setSearchResults] = useState<Student[]>([])
+  const [searchLoading, setSearchLoading] = useState(false)
+  const [searchError, setSearchError] = useState<string | null>(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
+  const [totalResults, setTotalResults] = useState(0)
+  const [hasSearched, setHasSearched] = useState(false)
 
-  // University Rankings Database
-  const universityRankings = {
-    'Top 10': ['MIT', 'Stanford', 'Harvard', 'Caltech', 'CMU', 'Berkeley', 'Princeton', 'Yale', 'Columbia', 'Cornell'],
-    'Ivy League': ['Harvard', 'Yale', 'Princeton', 'Columbia', 'Cornell', 'Brown', 'Dartmouth', 'UPenn'],
-    'Top Public': ['Berkeley', 'UCLA', 'Michigan', 'UVA', 'UNC', 'Georgia Tech', 'UIUC', 'UT Austin'],
-    'Top Engineering': ['MIT', 'Stanford', 'Berkeley', 'Caltech', 'CMU', 'Georgia Tech', 'UIUC', 'Purdue'],
-    'Top CS Programs': ['MIT', 'Stanford', 'CMU', 'Berkeley', 'UIUC', 'Cornell', 'Georgia Tech', 'Washington'],
-    'West Coast': ['Stanford', 'Berkeley', 'Caltech', 'UCLA', 'USC', 'UCSD', 'Washington', 'Oregon State'],
-    'East Coast': ['MIT', 'Harvard', 'Yale', 'Princeton', 'Columbia', 'Cornell', 'NYU', 'Boston University']
-  }
-
-  // Search Filters State
-  const [filters, setFilters] = useState({
-    // Academic
-    universities: [] as string[],
-    universityGroups: [] as string[],
-    minGPA: 3.0,
-    maxGPA: 4.0,
-    major: '',
-    graduationYears: ['2024', '2025'],
-    degree: 'bachelors',
-
-    // Skills & Experience
-    requiredSkills: [] as string[],
-    preferredSkills: [] as string[],
-    experienceLevel: 'entry',
-    internships: true,
-    research: false,
-    publications: false,
-
-    // Location
-    locations: [] as string[],
-    willingToRelocate: true,
-    remoteOnly: false,
-    visaStatus: 'any',
-
-    // Project & Performance
-    minProjects: 1,
-    minAIScore: 70,
-    githubActivity: 'any',
-    portfolioRequired: false,
-
-    // Diversity & Inclusion
-    diversityFilters: {
-      gender: 'any',
-      firstGeneration: false,
-      veteran: false,
-      international: false
-    }
-  })
+  // Save search state
+  const [saveSearchName, setSaveSearchName] = useState('')
+  const [showSaveDialog, setShowSaveDialog] = useState(false)
+  const [savingSearch, setSavingSearch] = useState(false)
+  const [saveSuccess, setSaveSuccess] = useState<string | null>(null)
 
   // Skill Categories
   const skillCategories = {
@@ -123,21 +118,32 @@ export default function AdvancedSearchPage() {
     'International': ['Toronto', 'London', 'Berlin', 'Singapore', 'Tokyo', 'Tel Aviv']
   }
 
-  const handleUniversityGroupToggle = (group: string) => {
-    if (filters.universityGroups.includes(group)) {
-      setFilters(prev => ({
-        ...prev,
-        universityGroups: prev.universityGroups.filter(g => g !== group),
-        universities: prev.universities.filter(u => !universityRankings[group as keyof typeof universityRankings].includes(u))
-      }))
-    } else {
-      setFilters(prev => ({
-        ...prev,
-        universityGroups: [...prev.universityGroups, group],
-        universities: Array.from(new Set([...prev.universities, ...universityRankings[group as keyof typeof universityRankings]]))
-      }))
-    }
-  }
+  // Search Filters State
+  const [filters, setFilters] = useState({
+    // Academic
+    university: '',
+    minGPA: 3.0,
+    maxGPA: 4.0,
+    major: '',
+    graduationYears: ['2024', '2025'] as string[],
+
+    // Skills & Experience
+    requiredSkills: [] as string[],
+    preferredSkills: [] as string[],
+    minProjects: 1,
+    minAIScore: 70,
+    githubActivity: 'any',
+    portfolioRequired: false,
+    experienceLevel: 'entry',
+    internships: true,
+    research: false,
+    publications: false,
+
+    // Location
+    locations: [] as string[],
+    willingToRelocate: true,
+    remoteOnly: false,
+  })
 
   const handleSkillToggle = (skill: string, type: 'required' | 'preferred') => {
     const key = type === 'required' ? 'requiredSkills' : 'preferredSkills'
@@ -158,6 +164,102 @@ export default function AdvancedSearchPage() {
     }))
   }
 
+  const runSearch = useCallback(async (page = 1) => {
+    setSearchLoading(true)
+    setSearchError(null)
+    setHasSearched(true)
+
+    try {
+      const params = new URLSearchParams()
+
+      // Academic filters
+      if (filters.university) params.set('university', filters.university)
+      if (filters.major) params.set('major', filters.major)
+      if (filters.minGPA > 0) params.set('gpaMin', String(filters.minGPA))
+      if (filters.graduationYears.length === 1) {
+        params.set('graduationYear', filters.graduationYears[0])
+      }
+
+      // Skills
+      const allSkills = [...filters.requiredSkills, ...filters.preferredSkills]
+      if (allSkills.length > 0) params.set('skills', allSkills.join(','))
+
+      // Projects
+      if (filters.minProjects > 0) params.set('minProjects', String(filters.minProjects))
+
+      // Location
+      if (filters.locations.length > 0) params.set('location', filters.locations[0])
+
+      params.set('page', String(page))
+      params.set('limit', '20')
+
+      const res = await fetch(`/api/dashboard/recruiter/search/students?${params.toString()}`)
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}))
+        throw new Error(errData.error || `Search failed (${res.status})`)
+      }
+
+      const data: SearchResponse = await res.json()
+      setSearchResults(data.students)
+      setCurrentPage(data.page)
+      setTotalPages(data.totalPages)
+      setTotalResults(data.total)
+    } catch (err) {
+      setSearchError(err instanceof Error ? err.message : 'Failed to run search')
+      setSearchResults([])
+    } finally {
+      setSearchLoading(false)
+    }
+  }, [filters])
+
+  const handleSaveSearch = async () => {
+    if (!saveSearchName.trim()) return
+    setSavingSearch(true)
+    setSaveSuccess(null)
+
+    try {
+      const res = await fetch('/api/dashboard/recruiter/saved-searches', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: saveSearchName.trim(),
+          filters: {
+            university: filters.university || undefined,
+            major: filters.major || undefined,
+            gpaMin: filters.minGPA > 0 ? String(filters.minGPA) : undefined,
+            graduationYear: filters.graduationYears.length === 1 ? filters.graduationYears[0] : undefined,
+            skills: [...filters.requiredSkills, ...filters.preferredSkills].join(',') || undefined,
+            minProjects: filters.minProjects > 0 ? String(filters.minProjects) : undefined,
+            location: filters.locations.length > 0 ? filters.locations[0] : undefined,
+          },
+          alertsEnabled: false,
+        }),
+      })
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}))
+        throw new Error(errData.error || 'Failed to save search')
+      }
+
+      setSaveSuccess(`Search "${saveSearchName}" saved successfully!`)
+      setSaveSearchName('')
+      setTimeout(() => {
+        setShowSaveDialog(false)
+        setSaveSuccess(null)
+      }, 2000)
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to save search')
+    } finally {
+      setSavingSearch(false)
+    }
+  }
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      runSearch(newPage)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       {/* Header */}
@@ -173,56 +275,12 @@ export default function AdvancedSearchPage() {
             <Download className="h-4 w-4 mr-2" />
             Export Results
           </Button>
-          <Button>
+          <Button onClick={() => runSearch(1)} disabled={searchLoading}>
             <Search className="h-4 w-4 mr-2" />
-            Search
+            {searchLoading ? 'Searching...' : 'Search'}
           </Button>
         </div>
       </div>
-
-      {/* Saved Searches */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span className="flex items-center">
-              <Save className="h-5 w-5 mr-2" />
-              Saved Searches
-            </span>
-            <Button size="sm" variant="outline">
-              <Plus className="h-4 w-4 mr-2" />
-              Save Current Search
-            </Button>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {savedSearches.map((search) => (
-              <div
-                key={search.id}
-                className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-              >
-                <div>
-                  <h4 className="font-medium text-gray-900">{search.name}</h4>
-                  <p className="text-sm text-gray-600">{search.filters} filters • {search.lastRun}</p>
-                  {search.newMatches > 0 && (
-                    <Badge className="mt-2 bg-green-100 text-green-800">
-                      {search.newMatches} new matches
-                    </Badge>
-                  )}
-                </div>
-                <div className="flex items-center space-x-2">
-                  <button className="p-2 hover:bg-gray-100 rounded">
-                    <Bell className="h-4 w-4 text-gray-700" />
-                  </button>
-                  <button className="p-2 hover:bg-gray-100 rounded">
-                    <ChevronRight className="h-4 w-4 text-gray-700" />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Filters Column */}
@@ -237,25 +295,14 @@ export default function AdvancedSearchPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {/* University Selection */}
+                {/* University text input */}
                 <div>
-                  <label className="text-sm font-medium mb-2 block">University Groups</label>
-                  <div className="space-y-2">
-                    {Object.keys(universityRankings).map((group) => (
-                      <label key={group} className="flex items-center">
-                        <input
-                          type="checkbox"
-                          checked={filters.universityGroups.includes(group)}
-                          onChange={() => handleUniversityGroupToggle(group)}
-                          className="mr-2"
-                        />
-                        <span className="text-sm">{group}</span>
-                        <Badge variant="outline" className="ml-auto text-xs">
-                          {universityRankings[group as keyof typeof universityRankings].length}
-                        </Badge>
-                      </label>
-                    ))}
-                  </div>
+                  <label className="text-sm font-medium mb-2 block">University</label>
+                  <Input
+                    placeholder="Search universities..."
+                    value={filters.university}
+                    onChange={(e) => setFilters(prev => ({ ...prev, university: e.target.value }))}
+                  />
                 </div>
 
                 {/* GPA Range */}
@@ -587,55 +634,31 @@ export default function AdvancedSearchPage() {
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    checked={filters.diversityFilters.firstGeneration}
-                    onChange={(e) => setFilters(prev => ({
-                      ...prev,
-                      diversityFilters: { ...prev.diversityFilters, firstGeneration: e.target.checked }
-                    }))}
-                    className="mr-2"
-                  />
+                  <input type="checkbox" className="mr-2" />
                   <span className="text-sm">First Generation College</span>
                 </label>
                 <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    checked={filters.diversityFilters.veteran}
-                    onChange={(e) => setFilters(prev => ({
-                      ...prev,
-                      diversityFilters: { ...prev.diversityFilters, veteran: e.target.checked }
-                    }))}
-                    className="mr-2"
-                  />
+                  <input type="checkbox" className="mr-2" />
                   <span className="text-sm">Veteran Status</span>
                 </label>
                 <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    checked={filters.diversityFilters.international}
-                    onChange={(e) => setFilters(prev => ({
-                      ...prev,
-                      diversityFilters: { ...prev.diversityFilters, international: e.target.checked }
-                    }))}
-                    className="mr-2"
-                  />
+                  <input type="checkbox" className="mr-2" />
                   <span className="text-sm">International Student</span>
                 </label>
               </div>
             </CardContent>
           </Card>
 
-          {/* Search Summary */}
+          {/* Search Summary & Actions */}
           <Card className="bg-blue-50 border-blue-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-2">Search Summary</h3>
                   <div className="flex flex-wrap gap-2">
-                    {filters.universityGroups.length > 0 && (
+                    {filters.university && (
                       <Badge variant="outline" className="bg-white">
-                        {filters.universityGroups.length} University Groups
+                        University: {filters.university}
                       </Badge>
                     )}
                     {filters.requiredSkills.length > 0 && (
@@ -651,24 +674,225 @@ export default function AdvancedSearchPage() {
                     <Badge variant="outline" className="bg-white">
                       GPA {filters.minGPA} - {filters.maxGPA}
                     </Badge>
+                    {filters.minProjects > 0 && (
+                      <Badge variant="outline" className="bg-white">
+                        Min {filters.minProjects} Projects
+                      </Badge>
+                    )}
                   </div>
-                  <p className="text-sm text-gray-600 mt-3">
-                    Estimated matches: <span className="font-semibold text-blue-600">347 candidates</span>
-                  </p>
+                  {hasSearched && (
+                    <p className="text-sm text-gray-600 mt-3">
+                      Found: <span className="font-semibold text-blue-600">{totalResults} candidates</span>
+                    </p>
+                  )}
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Button variant="outline">
+                  <Button variant="outline" onClick={() => setShowSaveDialog(true)}>
                     <Save className="h-4 w-4 mr-2" />
                     Save Search
                   </Button>
-                  <Button className="bg-blue-600 hover:bg-blue-700">
+                  <Button
+                    className="bg-blue-600 hover:bg-blue-700"
+                    onClick={() => runSearch(1)}
+                    disabled={searchLoading}
+                  >
                     <Search className="h-4 w-4 mr-2" />
-                    Run Search
+                    {searchLoading ? 'Searching...' : 'Run Search'}
                   </Button>
                 </div>
               </div>
             </CardContent>
           </Card>
+
+          {/* Save Search Dialog */}
+          {showSaveDialog && (
+            <Card className="border-blue-200">
+              <CardContent className="p-6">
+                {saveSuccess ? (
+                  <div className="flex items-center space-x-2 text-green-600">
+                    <CheckCircle2 className="h-5 w-5" />
+                    <span>{saveSuccess}</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center space-x-3">
+                    <div className="flex-1">
+                      <Label htmlFor="searchName">Search Name</Label>
+                      <Input
+                        id="searchName"
+                        placeholder="e.g., ML Engineers - Bay Area"
+                        value={saveSearchName}
+                        onChange={(e) => setSaveSearchName(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleSaveSearch()}
+                      />
+                    </div>
+                    <Button onClick={handleSaveSearch} disabled={savingSearch || !saveSearchName.trim()}>
+                      {savingSearch ? 'Saving...' : 'Save'}
+                    </Button>
+                    <Button variant="outline" onClick={() => setShowSaveDialog(false)}>
+                      Cancel
+                    </Button>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Error state */}
+          {searchError && (
+            <Card className="border-red-200 bg-red-50">
+              <CardContent className="p-6 flex items-center space-x-3">
+                <AlertCircle className="h-5 w-5 text-red-500" />
+                <div>
+                  <p className="font-medium text-red-800">Search failed</p>
+                  <p className="text-sm text-red-600">{searchError}</p>
+                </div>
+                <Button variant="outline" size="sm" className="ml-auto" onClick={() => runSearch(currentPage)}>
+                  Retry
+                </Button>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Loading state */}
+          {searchLoading && (
+            <div className="space-y-4">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <Card key={i}>
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <Skeleton className="w-12 h-12 rounded-full" />
+                      <div className="flex-1 space-y-2">
+                        <Skeleton className="h-5 w-48" />
+                        <Skeleton className="h-4 w-64" />
+                        <Skeleton className="h-4 w-full" />
+                        <div className="flex gap-2 pt-2">
+                          <Skeleton className="h-6 w-16" />
+                          <Skeleton className="h-6 w-20" />
+                          <Skeleton className="h-6 w-14" />
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {/* Search Results */}
+          {!searchLoading && searchResults.length > 0 && (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold">
+                  Search Results ({totalResults} candidate{totalResults !== 1 ? 's' : ''})
+                </h2>
+              </div>
+
+              {searchResults.map(student => (
+                <Card key={student.id} className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
+                          {student.initials}
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900">{student.name}</h3>
+                          <p className="text-sm text-gray-600 flex items-center space-x-2">
+                            <GraduationCap className="h-4 w-4" />
+                            <span>{student.university || 'University not specified'}</span>
+                          </p>
+                          <p className="text-sm text-gray-500">
+                            {student.degree || 'Degree N/A'} {student.graduationYear ? `- Class of ${student.graduationYear}` : ''}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Badge variant="secondary">
+                          {student.projectCount} project{student.projectCount !== 1 ? 's' : ''}
+                        </Badge>
+                        {student.gpa !== null && (
+                          <Badge variant="outline">
+                            GPA: {student.gpa}
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+
+                    {student.bio && (
+                      <p className="text-sm text-gray-600 mt-3 line-clamp-2">{student.bio}</p>
+                    )}
+
+                    {student.topProjects.length > 0 && (
+                      <div className="mt-3">
+                        <p className="text-xs text-gray-500 mb-1">Top Projects:</p>
+                        <div className="flex flex-wrap gap-2">
+                          {student.topProjects.map(project => (
+                            <div key={project.id} className="flex items-center space-x-1">
+                              <Badge variant="secondary" className="text-xs">
+                                {project.title}
+                              </Badge>
+                              {project.innovationScore !== null && (
+                                <span className="text-xs text-green-600">{project.innovationScore}/10</span>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="flex items-center justify-end space-x-2 mt-4 pt-3 border-t">
+                      <Button variant="outline" size="sm">
+                        <Eye className="h-4 w-4 mr-1" />
+                        View Profile
+                      </Button>
+                      <Button size="sm">
+                        <MessageCircle className="h-4 w-4 mr-1" />
+                        Contact
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center space-x-4 pt-4">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    disabled={currentPage <= 1}
+                    onClick={() => handlePageChange(currentPage - 1)}
+                  >
+                    <ChevronLeft className="h-4 w-4 mr-1" />
+                    Previous
+                  </Button>
+                  <span className="text-sm text-gray-600">
+                    Page {currentPage} of {totalPages}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    disabled={currentPage >= totalPages}
+                    onClick={() => handlePageChange(currentPage + 1)}
+                  >
+                    Next
+                    <ChevronRight className="h-4 w-4 ml-1" />
+                  </Button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* No results state */}
+          {!searchLoading && hasSearched && searchResults.length === 0 && !searchError && (
+            <Card className="p-12 text-center">
+              <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">No candidates found</h3>
+              <p className="text-gray-600">
+                Try adjusting your filters to see more results
+              </p>
+            </Card>
+          )}
         </div>
       </div>
     </div>

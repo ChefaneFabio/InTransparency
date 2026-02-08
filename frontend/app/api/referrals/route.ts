@@ -244,7 +244,7 @@ async function updateReferralTier(userId: string, totalReferrals: number) {
           premiumMonthsEarned: {
             increment: premiumMonths
           },
-          subscriptionTier: 'STUDENT_PRO',
+          subscriptionTier: 'STUDENT_PREMIUM',
           subscriptionStatus: 'ACTIVE'
         }
       })
@@ -253,7 +253,7 @@ async function updateReferralTier(userId: string, totalReferrals: number) {
       await prisma.subscription.create({
         data: {
           userId,
-          tier: 'STUDENT_PRO',
+          tier: 'STUDENT_PREMIUM',
           status: 'ACTIVE',
           amount: 0, // Free from referral
           currency: 'eur',

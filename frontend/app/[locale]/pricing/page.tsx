@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Check, Building2, GraduationCap, ArrowRight, Zap, Crown, School } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
 
 // TODO: Add translations for studentPlans, companyPlans, institutePlans arrays

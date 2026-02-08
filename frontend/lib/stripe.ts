@@ -10,32 +10,24 @@ export const stripe = process.env.STRIPE_SECRET_KEY
 
 // Product Price IDs (set these in your .env file)
 export const STRIPE_PRICES = {
-  STUDENT_PRO_MONTHLY: process.env.STRIPE_STUDENT_PRO_MONTHLY_PRICE_ID || '',
-  STUDENT_PRO_ANNUAL: process.env.STRIPE_STUDENT_PRO_ANNUAL_PRICE_ID || '',
-  RECRUITER_STARTER_MONTHLY: process.env.STRIPE_RECRUITER_STARTER_MONTHLY_PRICE_ID || '',
-  RECRUITER_STARTER_ANNUAL: process.env.STRIPE_RECRUITER_STARTER_ANNUAL_PRICE_ID || '',
-  RECRUITER_GROWTH_MONTHLY: process.env.STRIPE_RECRUITER_GROWTH_MONTHLY_PRICE_ID || '',
-  RECRUITER_GROWTH_ANNUAL: process.env.STRIPE_RECRUITER_GROWTH_ANNUAL_PRICE_ID || '',
-  RECRUITER_PRO_MONTHLY: process.env.STRIPE_RECRUITER_PRO_MONTHLY_PRICE_ID || '',
-  RECRUITER_PRO_ANNUAL: process.env.STRIPE_RECRUITER_PRO_ANNUAL_PRICE_ID || ''
+  STUDENT_PREMIUM_MONTHLY: process.env.STRIPE_STUDENT_PREMIUM_MONTHLY_PRICE_ID || '',
+  RECRUITER_ENTERPRISE_MONTHLY: process.env.STRIPE_RECRUITER_ENTERPRISE_MONTHLY_PRICE_ID || '',
+  INSTITUTION_ENTERPRISE_ANNUAL: process.env.STRIPE_INSTITUTION_ENTERPRISE_ANNUAL_PRICE_ID || '',
+  CONTACT_CREDITS: process.env.STRIPE_CONTACT_CREDITS_PRICE_ID || '',
 }
 
-// Pricing configuration
+// Pricing configuration (amounts in cents)
 export const PRICING = {
-  STUDENT_PRO: {
-    monthly: 900, // €9 in cents
-    annual: 9000  // €90 in cents (save €18)
+  STUDENT_PREMIUM: {
+    monthly: 900, // €9
   },
-  RECRUITER_STARTER: {
-    monthly: 4900,  // €49
-    annual: 49000   // €490 (save ~€98)
+  RECRUITER_ENTERPRISE: {
+    monthly: 9900, // €99
   },
-  RECRUITER_GROWTH: {
-    monthly: 14900, // €149
-    annual: 149000  // €1490 (save ~€298)
+  INSTITUTION_ENTERPRISE: {
+    annual: 200000, // €2,000
   },
-  RECRUITER_PRO: {
-    monthly: 29700, // €297
-    annual: 297000  // €2970 (save ~€594)
-  }
+  CONTACT_CREDITS: {
+    perCredit: 1000, // €10 per contact credit
+  },
 }

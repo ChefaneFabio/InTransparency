@@ -75,9 +75,63 @@ export async function POST(request: NextRequest) {
 async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) {
   const userId = session.metadata?.userId
   const tier = session.metadata?.tier
+  const type = session.metadata?.type
 
-  if (!userId || !tier) {
-    console.error('Missing userId or tier in session metadata')
+  if (!userId) {
+    console.error('Missing userId in session metadata')
+    return
+  }
+
+  // Handle contact credit purchases (one-time payment)
+  if (type === 'contact_credits' && session.mode === 'payment') {
+    const credits = parseInt(session.metadata?.credits || '1', 10)
+    const creditsCents = credits * 1000 // 1 credit = 1000 cents = €10
+
+    await prisma.$transaction([
+      // Increment contact balance
+      prisma.user.update({
+        where: { id: userId },
+        data: {
+          contactBalance: { increment: creditsCents },
+          // Ensure tier is at least PAY_PER_CONTACT
+          subscriptionTier: 'RECRUITER_PAY_PER_CONTACT',
+        },
+      }),
+      // Create ContactPayment record
+      prisma.contactPayment.create({
+        data: {
+          userId,
+          email: session.customer_details?.email || '',
+          amount: session.amount_total || creditsCents,
+          currency: session.currency || 'eur',
+          credits,
+          stripeSessionId: session.id,
+          stripeCustomerId: session.customer as string,
+          stripePaymentIntentId: session.payment_intent as string,
+          status: 'SUCCEEDED',
+          paidAt: new Date(),
+        },
+      }),
+    ])
+
+    // Track analytics
+    await prisma.analytics.create({
+      data: {
+        userId,
+        eventType: 'SUBSCRIPTION_STARTED',
+        eventName: 'contact_credits_purchased',
+        properties: {
+          credits,
+          amount: session.amount_total,
+        },
+      },
+    })
+    return
+  }
+
+  // Handle subscription checkout
+  if (!tier) {
+    console.error('Missing tier in session metadata')
     return
   }
 

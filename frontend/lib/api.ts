@@ -517,6 +517,84 @@ export const chatApi = {
   }
 }
 
+export const recruiterDashboardApi = {
+  // Stats
+  getStats: () =>
+    api.get('/api/dashboard/recruiter/stats'),
+
+  // Jobs
+  getJobs: (params?: { status?: string; search?: string; page?: number; limit?: number }) =>
+    api.get('/api/dashboard/recruiter/jobs', { params }),
+
+  // Candidate profile
+  getCandidate: (id: string) =>
+    api.get(`/api/dashboard/recruiter/candidates/${id}`),
+
+  // Saved candidates
+  getSavedCandidates: (params?: { folder?: string }) =>
+    api.get('/api/dashboard/recruiter/saved-candidates', { params }),
+
+  saveCandidate: (candidateId: string, folder?: string) =>
+    api.post('/api/dashboard/recruiter/saved-candidates', { candidateId, folder }),
+
+  unsaveCandidate: (candidateId: string) =>
+    api.delete('/api/dashboard/recruiter/saved-candidates', { data: { candidateId } }),
+
+  updateSavedCandidate: (id: string, data: { folder?: string; notes?: string; rating?: number; tags?: string[] }) =>
+    api.put(`/api/dashboard/recruiter/saved-candidates/${id}`, data),
+
+  // Settings
+  getSettings: () =>
+    api.get('/api/dashboard/recruiter/settings'),
+
+  updateSettings: (data: any) =>
+    api.put('/api/dashboard/recruiter/settings', data),
+
+  // Search
+  searchStudents: (params?: { search?: string; university?: string; skills?: string; gpaMin?: string; minProjects?: string; graduationYear?: string; location?: string; major?: string; page?: number; limit?: number }) =>
+    api.get('/api/dashboard/recruiter/search/students', { params }),
+
+  searchByCourse: (params?: { courseCategory?: string; minGrade?: string; institutionType?: string; page?: number; limit?: number }) =>
+    api.get('/api/dashboard/recruiter/search/by-course', { params }),
+
+  // Saved searches
+  getSavedSearches: () =>
+    api.get('/api/dashboard/recruiter/saved-searches'),
+
+  createSavedSearch: (data: { name: string; description?: string; filters: any; alertsEnabled?: boolean; alertFrequency?: string }) =>
+    api.post('/api/dashboard/recruiter/saved-searches', data),
+
+  updateSavedSearch: (id: string, data: any) =>
+    api.put(`/api/dashboard/recruiter/saved-searches/${id}`, data),
+
+  deleteSavedSearch: (id: string) =>
+    api.delete(`/api/dashboard/recruiter/saved-searches/${id}`),
+
+  // Analytics
+  getAnalytics: (params?: { timeRange?: string }) =>
+    api.get('/api/dashboard/recruiter/analytics', { params }),
+
+  getTalentAnalytics: () =>
+    api.get('/api/dashboard/recruiter/talent-analytics'),
+}
+
+export const messagesApi = {
+  getConversations: (params?: { page?: number; limit?: number }) =>
+    api.get('/api/messages/conversations', { params }),
+
+  getMessages: (params?: { threadId?: string; unreadOnly?: string; page?: number; limit?: number }) =>
+    api.get('/api/messages', { params }),
+
+  sendMessage: (data: { recipientId?: string; recipientEmail: string; subject?: string; content: string; threadId?: string; replyToId?: string }) =>
+    api.post('/api/messages', data),
+
+  getMessage: (id: string) =>
+    api.get(`/api/messages/${id}`),
+
+  deleteMessage: (id: string) =>
+    api.delete(`/api/messages/${id}`),
+}
+
 export const skillPathApi = {
   getRecommendations: () =>
     api.get('/api/student/skill-path'),

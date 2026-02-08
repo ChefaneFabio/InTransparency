@@ -15,29 +15,14 @@ import {
   Star,
   Award,
   TrendingUp,
-  Briefcase,
   Calendar,
-  Code,
-  Brain,
-  MessageSquare,
-  Search,
-  Filter,
-  Users,
-  CheckCircle,
   ArrowRight,
   Lightbulb,
-  Zap
+  Zap,
+  CheckCircle,
+  AlertCircle
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-
-type Message = {
-  id: string
-  role: 'user' | 'assistant'
-  content: string
-  timestamp: Date
-  searchCriteria?: SearchCriteria
-  candidates?: Candidate[]
-}
 
 type SearchCriteria = {
   skills?: string[]
@@ -51,25 +36,41 @@ type SearchCriteria = {
   languages?: string[]
   availability?: string
   verificationLevel?: string
+  search?: string
 }
 
-type Candidate = {
+type StudentProject = {
+  id: string
+  title: string
+  technologies: string[]
+  innovationScore: number | null
+}
+
+type APIStudent = {
   id: string
   name: string
   initials: string
-  university: string
-  major: string
-  gpa: number
-  graduationYear: string
-  location: string
-  skills: string[]
-  softSkills: string[]
+  email: string
+  university: string | null
+  degree: string | null
+  graduationYear: string | null
+  gpa: number | null
+  bio: string | null
+  tagline: string | null
+  photo: string | null
   projectCount: number
-  aiScore: number
-  availability: string
-  fieldOfStudy?: string
-  languages?: string[]
-  verificationScore?: number
+  topProjects: StudentProject[]
+}
+
+type Message = {
+  id: string
+  role: 'user' | 'assistant'
+  content: string
+  timestamp: Date
+  searchCriteria?: SearchCriteria
+  candidates?: APIStudent[]
+  loading?: boolean
+  error?: string
 }
 
 const exampleQueries = [
@@ -79,87 +80,12 @@ const exampleQueries = [
   "Show me Business Administration candidates who speak 3+ languages, remote work"
 ]
 
-const mockCandidates: Candidate[] = [
-  {
-    id: '1',
-    name: 'Marco Rossi',
-    initials: 'M.R.',
-    university: 'Politecnico di Milano',
-    major: 'Computer Science',
-    gpa: 3.85,
-    graduationYear: '2024',
-    location: 'Milan, Italy',
-    skills: ['Python', 'Machine Learning', 'TensorFlow', 'React'],
-    softSkills: ['Leadership', 'Communication', 'Teamwork'],
-    projectCount: 8,
-    aiScore: 94,
-    availability: 'Available immediately',
-    fieldOfStudy: 'Engineering',
-    languages: ['Italian', 'English', 'Spanish'],
-    verificationScore: 100
-  },
-  {
-    id: '2',
-    name: 'Sofia Bianchi',
-    initials: 'S.B.',
-    university: 'Università di Bologna',
-    major: 'Data Science',
-    gpa: 3.92,
-    graduationYear: '2024',
-    location: 'Bologna, Italy',
-    skills: ['Python', 'Deep Learning', 'PyTorch', 'NLP'],
-    softSkills: ['Problem-solving', 'Innovation', 'Collaboration'],
-    projectCount: 12,
-    aiScore: 97,
-    availability: 'Available immediately',
-    fieldOfStudy: 'Data Science',
-    languages: ['Italian', 'English', 'French'],
-    verificationScore: 100
-  },
-  {
-    id: '3',
-    name: 'Giulia Ferrari',
-    initials: 'G.F.',
-    university: 'Sapienza Università di Roma',
-    major: 'Business Administration',
-    gpa: 3.78,
-    graduationYear: '2025',
-    location: 'Rome, Italy',
-    skills: ['Marketing', 'Strategy', 'Analytics', 'Excel'],
-    softSkills: ['Analytical thinking', 'Communication', 'Presentation'],
-    projectCount: 7,
-    aiScore: 89,
-    availability: 'Open to offers',
-    fieldOfStudy: 'Business Administration',
-    languages: ['Italian', 'English', 'German', 'Chinese'],
-    verificationScore: 95
-  },
-  {
-    id: '4',
-    name: 'Alessandro Conti',
-    initials: 'A.C.',
-    university: 'Politecnico di Torino',
-    major: 'Engineering',
-    gpa: 3.88,
-    graduationYear: '2024',
-    location: 'Remote',
-    skills: ['Python', 'Java', 'AWS', 'Docker'],
-    softSkills: ['Adaptability', 'Problem-solving', 'Teamwork'],
-    projectCount: 10,
-    aiScore: 92,
-    availability: 'Available',
-    fieldOfStudy: 'Engineering',
-    languages: ['Italian', 'English'],
-    verificationScore: 100
-  }
-]
-
 export default function AISearchPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
       role: 'assistant',
-      content: "👋 Hi! I'm your AI recruiting assistant. Tell me who you're looking for, and I'll find the perfect candidates for you. \n\nYou can describe your needs in plain English - mention skills, universities, experience level, location, soft skills, or anything else that matters to your company!",
+      content: "Hi! I'm your AI recruiting assistant. Tell me who you're looking for, and I'll find the perfect candidates for you. \n\nYou can describe your needs in plain English - mention skills, universities, experience level, location, soft skills, or anything else that matters to your company!",
       timestamp: new Date()
     }
   ])
@@ -196,10 +122,10 @@ export default function AISearchPage() {
     if (lowerQuery.includes('politecnico') || lowerQuery.includes('polimi')) {
       criteria.universities = ['Politecnico di Milano', 'Politecnico di Torino']
     }
-    if (lowerQuery.includes('bologna')) criteria.universities = ['Università di Bologna']
-    if (lowerQuery.includes('sapienza') || lowerQuery.includes('roma')) criteria.universities = ['Sapienza Università di Roma']
+    if (lowerQuery.includes('bologna')) criteria.universities = ['Universita di Bologna']
+    if (lowerQuery.includes('sapienza') || lowerQuery.includes('roma')) criteria.universities = ['Sapienza Universita di Roma']
     if (lowerQuery.includes('top universit') || lowerQuery.includes('best universit')) {
-      criteria.universities = ['Politecnico di Milano', 'Università di Bologna', 'Sapienza Università di Roma']
+      criteria.universities = ['Politecnico di Milano', 'Universita di Bologna', 'Sapienza Universita di Roma']
     }
 
     // Location - Italian cities
@@ -233,7 +159,7 @@ export default function AISearchPage() {
 
     // Graduation year
     if (lowerQuery.includes('recent grad') || lowerQuery.includes('new grad')) {
-      criteria.graduationYear = '2024-2025'
+      criteria.graduationYear = '2024'
     }
     if (lowerQuery.match(/202[4-7]/)) {
       criteria.graduationYear = lowerQuery.match(/202[4-7]/)?.[0]
@@ -243,75 +169,40 @@ export default function AISearchPage() {
     if (lowerQuery.includes('junior') || lowerQuery.includes('entry')) criteria.experienceLevel = 'entry'
     if (lowerQuery.includes('senior')) criteria.experienceLevel = 'senior'
 
+    // Build general search term from the query for broader matching
+    criteria.search = query.slice(0, 100)
+
     return criteria
   }
 
-  const filterCandidates = (criteria: SearchCriteria): Candidate[] => {
-    return mockCandidates.filter(candidate => {
-      // Skills match
-      if (criteria.skills && criteria.skills.length > 0) {
-        const hasSkill = criteria.skills.some(skill =>
-          candidate.skills.some(cs => cs.toLowerCase().includes(skill.toLowerCase()))
-        )
-        if (!hasSkill) return false
-      }
+  const searchAPI = async (criteria: SearchCriteria): Promise<APIStudent[]> => {
+    const params = new URLSearchParams()
 
-      // Soft skills match
-      if (criteria.softSkills && criteria.softSkills.length > 0) {
-        const hasSoftSkill = criteria.softSkills.some(skill =>
-          candidate.softSkills.some(css => css.toLowerCase().includes(skill.toLowerCase()))
-        )
-        if (!hasSoftSkill) return false
-      }
+    // Map parsed criteria to API query params
+    if (criteria.search) params.set('search', criteria.search)
+    if (criteria.universities && criteria.universities.length > 0) {
+      params.set('university', criteria.universities[0])
+    }
+    if (criteria.skills && criteria.skills.length > 0) {
+      params.set('skills', criteria.skills.join(','))
+    }
+    if (criteria.gpaMin) params.set('gpaMin', String(criteria.gpaMin))
+    if (criteria.graduationYear) params.set('graduationYear', criteria.graduationYear)
+    if (criteria.location) params.set('location', criteria.location)
+    if (criteria.fieldOfStudy && criteria.fieldOfStudy.length > 0) {
+      params.set('major', criteria.fieldOfStudy[0])
+    }
 
-      // Field of study match
-      if (criteria.fieldOfStudy && criteria.fieldOfStudy.length > 0) {
-        const hasField = criteria.fieldOfStudy.some(field =>
-          candidate.fieldOfStudy?.toLowerCase().includes(field.toLowerCase()) ||
-          candidate.major.toLowerCase().includes(field.toLowerCase())
-        )
-        if (!hasField) return false
-      }
+    params.set('limit', '10')
 
-      // University match
-      if (criteria.universities && criteria.universities.length > 0) {
-        const hasUniversity = criteria.universities.some(uni =>
-          candidate.university.includes(uni)
-        )
-        if (!hasUniversity) return false
-      }
+    const res = await fetch(`/api/dashboard/recruiter/search/students?${params.toString()}`)
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}))
+      throw new Error(errData.error || `Search failed (${res.status})`)
+    }
 
-      // Location match
-      if (criteria.location && !candidate.location.includes(criteria.location)) {
-        return false
-      }
-
-      // Languages match
-      if (criteria.languages && criteria.languages.length > 0) {
-        const hasLanguage = criteria.languages.some(lang =>
-          candidate.languages?.some(cl => cl.toLowerCase().includes(lang.toLowerCase()))
-        )
-        if (!hasLanguage) return false
-      }
-
-      // Availability match
-      if (criteria.availability && !candidate.availability.toLowerCase().includes(criteria.availability.toLowerCase())) {
-        return false
-      }
-
-      // Verification level
-      if (criteria.verificationLevel) {
-        if (criteria.verificationLevel === '100' && candidate.verificationScore !== 100) return false
-        if (criteria.verificationLevel === '90+' && (candidate.verificationScore || 0) < 90) return false
-      }
-
-      // GPA filter
-      if (criteria.gpaMin && candidate.gpa < criteria.gpaMin) {
-        return false
-      }
-
-      return true
-    })
+    const data = await res.json()
+    return data.students || []
   }
 
   const handleSend = async () => {
@@ -328,44 +219,40 @@ export default function AISearchPage() {
     setInput('')
     setIsTyping(true)
 
-    // Simulate AI processing
-    setTimeout(() => {
+    try {
       const criteria = parseQuery(input)
-      const matchedCandidates = filterCandidates(criteria)
+      const matchedCandidates = await searchAPI(criteria)
 
       let responseContent = ''
       if (matchedCandidates.length > 0) {
         responseContent = `Great! I found **${matchedCandidates.length} candidate${matchedCandidates.length > 1 ? 's' : ''}** matching your requirements:\n\n`
 
         if (criteria.fieldOfStudy && criteria.fieldOfStudy.length > 0) {
-          responseContent += `✅ Field: ${criteria.fieldOfStudy.join(', ')}\n`
+          responseContent += `Field: ${criteria.fieldOfStudy.join(', ')}\n`
         }
         if (criteria.skills && criteria.skills.length > 0) {
-          responseContent += `✅ Skills: ${criteria.skills.join(', ')}\n`
+          responseContent += `Skills: ${criteria.skills.join(', ')}\n`
         }
         if (criteria.softSkills && criteria.softSkills.length > 0) {
-          responseContent += `✅ Soft Skills: ${criteria.softSkills.join(', ')}\n`
+          responseContent += `Soft Skills: ${criteria.softSkills.join(', ')}\n`
         }
         if (criteria.universities) {
-          responseContent += `✅ Universities: ${criteria.universities.join(', ')}\n`
+          responseContent += `Universities: ${criteria.universities.join(', ')}\n`
         }
         if (criteria.location) {
-          responseContent += `✅ Location: ${criteria.location}\n`
+          responseContent += `Location: ${criteria.location}\n`
         }
         if (criteria.languages && criteria.languages.length > 0) {
-          responseContent += `✅ Languages: ${criteria.languages.join(', ')}\n`
+          responseContent += `Languages: ${criteria.languages.join(', ')}\n`
         }
         if (criteria.availability) {
-          responseContent += `✅ Availability: ${criteria.availability}\n`
-        }
-        if (criteria.verificationLevel) {
-          responseContent += `✅ Verification: ${criteria.verificationLevel}% verified\n`
+          responseContent += `Availability: ${criteria.availability}\n`
         }
         if (criteria.gpaMin) {
-          responseContent += `✅ GPA: ${criteria.gpaMin}+\n`
+          responseContent += `GPA: ${criteria.gpaMin}+\n`
         }
 
-        responseContent += `\n💡 You can refine your search by asking me to:\n- Add field of study or language requirements\n- Filter by specific Italian universities or cities\n- Focus on verification level or availability\n- Adjust GPA, soft skills, or technical skills`
+        responseContent += `\nYou can refine your search by asking me to:\n- Add field of study or language requirements\n- Filter by specific universities or cities\n- Focus on verification level or availability\n- Adjust GPA, soft skills, or technical skills`
       } else {
         responseContent = "I couldn't find any candidates matching those exact criteria. Would you like to:\n\n1. Broaden the search parameters?\n2. Try different skills or qualifications?\n3. Search across more universities?"
       }
@@ -380,8 +267,18 @@ export default function AISearchPage() {
       }
 
       setMessages(prev => [...prev, assistantMessage])
+    } catch (err) {
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: `I encountered an error while searching: ${err instanceof Error ? err.message : 'Unknown error'}. Please try again.`,
+        timestamp: new Date(),
+        error: err instanceof Error ? err.message : 'Unknown error'
+      }
+      setMessages(prev => [...prev, errorMessage])
+    } finally {
       setIsTyping(false)
-    }, 1500)
+    }
   }
 
   const handleExampleClick = (example: string) => {
@@ -429,6 +326,8 @@ export default function AISearchPage() {
                         <div className={`rounded-2xl px-4 py-3 ${
                           message.role === 'user'
                             ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white'
+                            : message.error
+                            ? 'bg-red-50 text-red-800 border border-red-200'
                             : 'bg-gray-100 text-gray-900'
                         }`}>
                           <p className="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</p>
@@ -450,59 +349,55 @@ export default function AISearchPage() {
                                       {candidate.initials}
                                     </div>
                                     <div>
-                                      <h3 className="font-semibold text-gray-900">Contact Locked</h3>
-                                      <p className="text-sm text-gray-600">{candidate.university}</p>
+                                      <h3 className="font-semibold text-gray-900">{candidate.name}</h3>
+                                      <p className="text-sm text-gray-600">{candidate.university || 'University N/A'}</p>
                                     </div>
                                   </div>
                                   <Badge className="bg-green-100 text-green-800 border-green-200">
                                     <Star className="h-3 w-3 mr-1" />
-                                    {candidate.aiScore}% Match
+                                    {candidate.projectCount} project{candidate.projectCount !== 1 ? 's' : ''}
                                   </Badge>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-2 text-sm mb-3">
                                   <div className="flex items-center text-gray-600">
                                     <GraduationCap className="h-4 w-4 mr-2" />
-                                    {candidate.major}
+                                    {candidate.degree || 'Degree N/A'}
                                   </div>
-                                  <div className="flex items-center text-gray-600">
-                                    <Award className="h-4 w-4 mr-2" />
-                                    GPA: {candidate.gpa}
-                                  </div>
+                                  {candidate.gpa !== null && (
+                                    <div className="flex items-center text-gray-600">
+                                      <Award className="h-4 w-4 mr-2" />
+                                      GPA: {candidate.gpa}
+                                    </div>
+                                  )}
                                   <div className="flex items-center text-gray-600">
                                     <Calendar className="h-4 w-4 mr-2" />
-                                    Class of {candidate.graduationYear}
+                                    Class of {candidate.graduationYear || 'N/A'}
                                   </div>
-                                  <div className="flex items-center text-gray-600">
-                                    <MapPin className="h-4 w-4 mr-2" />
-                                    {candidate.location}
-                                  </div>
+                                  {candidate.tagline && (
+                                    <div className="flex items-center text-gray-600">
+                                      <MapPin className="h-4 w-4 mr-2" />
+                                      {candidate.tagline}
+                                    </div>
+                                  )}
                                 </div>
 
-                                <div className="mb-3">
-                                  <p className="text-xs text-gray-500 mb-2">Hard Skills:</p>
-                                  <div className="flex flex-wrap gap-1">
-                                    {candidate.skills.slice(0, 4).map((skill) => (
-                                      <Badge key={skill} variant="secondary" className="text-xs">
-                                        {skill}
-                                      </Badge>
-                                    ))}
+                                {candidate.topProjects.length > 0 && (
+                                  <div className="mb-3">
+                                    <p className="text-xs text-gray-500 mb-2">Top Projects:</p>
+                                    <div className="flex flex-wrap gap-1">
+                                      {candidate.topProjects.slice(0, 3).map((project) => (
+                                        <Badge key={project.id} variant="secondary" className="text-xs">
+                                          {project.title}
+                                          {project.innovationScore !== null && ` (${project.innovationScore}/10)`}
+                                        </Badge>
+                                      ))}
+                                    </div>
                                   </div>
-                                </div>
-
-                                <div className="mb-3">
-                                  <p className="text-xs text-gray-500 mb-2">Soft Skills:</p>
-                                  <div className="flex flex-wrap gap-1">
-                                    {candidate.softSkills.slice(0, 3).map((skill) => (
-                                      <Badge key={skill} className="text-xs bg-purple-100 text-purple-800 border-purple-200">
-                                        {skill}
-                                      </Badge>
-                                    ))}
-                                  </div>
-                                </div>
+                                )}
 
                                 <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                                  Unlock Contact for €10
+                                  View Full Profile
                                   <ArrowRight className="h-4 w-4 ml-2" />
                                 </Button>
                               </motion.div>
@@ -551,9 +446,11 @@ export default function AISearchPage() {
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                     placeholder="Describe who you're looking for..."
                     className="flex-1"
+                    disabled={isTyping}
                   />
                   <Button
                     onClick={handleSend}
+                    disabled={isTyping || !input.trim()}
                     className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
                   >
                     <Send className="h-4 w-4" />
@@ -605,8 +502,8 @@ export default function AISearchPage() {
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-gray-900">Complete Profiles</p>
-                    <p className="text-gray-600">Matches hard skills AND soft skills automatically</p>
+                    <p className="font-semibold text-gray-900">Real Database</p>
+                    <p className="text-gray-600">Searches actual student profiles, not mock data</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
