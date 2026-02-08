@@ -6,9 +6,10 @@ import prisma from '@/lib/prisma'
 // PATCH /api/dashboard/university/placements/[id]
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const session = await getServerSession(authOptions)
     if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
@@ -19,7 +20,7 @@ export async function PATCH(
 
     const universityName = user.company || ''
     const placement = await prisma.placement.findFirst({
-      where: { id: params.id, universityName },
+      where: { id, universityName },
     })
 
     if (!placement) {
@@ -28,7 +29,7 @@ export async function PATCH(
 
     const body = await req.json()
     const updated = await prisma.placement.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         ...(body.companyName && { companyName: body.companyName }),
         ...(body.jobTitle && { jobTitle: body.jobTitle }),
@@ -50,9 +51,10 @@ export async function PATCH(
 // DELETE /api/dashboard/university/placements/[id]
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const session = await getServerSession(authOptions)
     if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
@@ -63,14 +65,14 @@ export async function DELETE(
 
     const universityName = user.company || ''
     const placement = await prisma.placement.findFirst({
-      where: { id: params.id, universityName },
+      where: { id, universityName },
     })
 
     if (!placement) {
       return NextResponse.json({ error: 'Placement not found' }, { status: 404 })
     }
 
-    await prisma.placement.delete({ where: { id: params.id } })
+    await prisma.placement.delete({ where: { id } })
 
     return NextResponse.json({ success: true })
   } catch (error) {
