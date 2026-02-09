@@ -3950,44 +3950,44 @@
   },
   "mission": {
     "hero": {
-      "badge": "Il Nostro Manifesto",
+      "badge": "La Nostra Missione",
       "title": "Stage: Trampolino o Trappola",
       "titleHighlight": "per i Giovani?",
-      "description": "In Italia, il sistema degli stage è diventato uno strumento di sfruttamento. Milioni di giovani lavorano gratis o quasi, senza alcuna garanzia di apprendimento, crescita o occupazione. InTransparency è nata per cambiare questo."
+      "description": "Il passaggio dal mondo accademico a quello professionale dovrebbe valorizzare le competenze reali. InTransparency nasce per rendere questo percorso più trasparente, equo e basato sul merito."
     },
     "problem": {
-      "badge": "La Realtà",
-      "title": "Il Problema degli Stage in Italia",
+      "badge": "Il Contesto",
+      "title": "La Sfida del Mercato del Lavoro Giovanile",
       "stats": {
-        "0": { "value": "300K+", "label": "Stage non pagati o sottopagati ogni anno" },
-        "1": { "value": "68%", "label": "Stagisti mai assunti dall'azienda ospitante" },
-        "2": { "value": "€0-300", "label": "Tipico 'rimborso spese' mensile" }
+        "0": { "value": "300K+", "label": "Stage attivati ogni anno in Italia" },
+        "1": { "value": "68%", "label": "Stagisti che non proseguono con l'azienda" },
+        "2": { "value": "€0-300", "label": "Rimborso spese mensile medio" }
       },
       "paragraphs": {
-        "0": "Ogni anno, centinaia di migliaia di giovani italiani entrano in programmi di stage che promettono esperienza e opportunità di carriera. La realtà è diversa: molti finiscono per svolgere il lavoro di dipendenti regolari, senza retribuzione equa, senza un vero tutoraggio e senza prospettive realistiche di assunzione.",
-        "1": "Le aziende hanno imparato a usare gli stage come una porta girevole di manodopera gratuita. Quando finisce il periodo di uno stagista, ne inizia un altro — svolgendo le stesse mansioni, ricevendo le stesse promesse vuote. Il sistema premia lo sfruttamento e penalizza chi investe nei giovani talenti.",
-        "2": "Le università e le istituzioni, nonostante le migliori intenzioni, spesso non hanno gli strumenti per monitorare cosa succede ai loro studenti dopo il placement. La mancanza di dati rende impossibile ritenere qualcuno responsabile."
+        "0": "Ogni anno, centinaia di migliaia di giovani italiani iniziano percorsi di stage con la speranza di costruire una carriera. Tuttavia, il sistema attuale non sempre riesce a valorizzare le competenze acquisite durante gli studi, creando un divario tra formazione e opportunità lavorative.",
+        "1": "Spesso manca un collegamento efficace tra ciò che gli studenti sanno fare e ciò che le aziende cercano. Senza strumenti adeguati per rendere visibili le competenze verificate, il talento rischia di rimanere nascosto.",
+        "2": "Le università e le istituzioni formative, pur investendo nella qualità della didattica, spesso non dispongono di strumenti per monitorare i risultati occupazionali dei propri studenti. Questa mancanza di dati rende difficile migliorare il sistema."
       }
     },
     "position": {
-      "badge": "La Nostra Posizione",
+      "badge": "La Nostra Visione",
       "title": "In Cosa Crede InTransparency",
       "points": {
         "0": {
-          "title": "Competenze, Non Ore",
-          "description": "Il valore di uno studente dovrebbe essere misurato da ciò che sa fare — progetti verificati, competenze reali, endorsement istituzionali — non da quante ore non retribuite ha accumulato."
+          "title": "Competenze Prima di Tutto",
+          "description": "Il valore di uno studente dovrebbe essere misurato da ciò che sa fare — progetti verificati, competenze reali, endorsement istituzionali — non solo dal percorso formativo."
         },
         "1": {
-          "title": "Le Aziende Devono Pagare per il Talento, Non Sfruttarlo",
-          "description": "Se un'azienda vuole accedere a candidati verificati e qualificati, dovrebbe investire nella scoperta — non nell'estrarre lavoro gratuito attraverso programmi di stage."
+          "title": "Investire nella Scoperta del Talento",
+          "description": "Le aziende che cercano candidati qualificati meritano strumenti efficaci per trovarli. Un sistema basato su competenze verificate rende il processo più efficiente per tutti."
         },
         "2": {
-          "title": "Studenti e Università Non Devono Mai Pagare",
-          "description": "Le persone che creano valore — studenti che costruiscono competenze, istituzioni che le verificano — devono accedere alla piattaforma gratuitamente. Sempre. Il costo spetta a chi beneficia delle assunzioni."
+          "title": "Collegare Formazione e Lavoro",
+          "description": "Crediamo che università e aziende possano collaborare meglio. Quando le competenze degli studenti sono visibili e verificate, il matching diventa naturale e più rapido."
         },
         "3": {
-          "title": "La Trasparenza Crea Responsabilità",
-          "description": "Quando i dati di placement sono visibili, quando le competenze sono verificate e quando i risultati sono tracciati, lo sfruttamento diventa più difficile da nascondere. La trasparenza non è solo un valore — è un meccanismo di cambiamento."
+          "title": "La Trasparenza Migliora il Sistema",
+          "description": "Quando i dati di placement sono visibili, quando le competenze sono verificate e i risultati tracciati, tutti gli attori del sistema possono prendere decisioni migliori."
         }
       }
     },
@@ -3995,27 +3995,27 @@
       "title": "I Nostri Valori",
       "items": {
         "0": {
-          "title": "Trasparenza Contro lo Sfruttamento",
-          "description": "Ogni interazione sulla nostra piattaforma è tracciabile. Le aziende vedono competenze verificate. Gli studenti vedono chi è interessato. Le istituzioni vedono i risultati. Nessun secondo fine."
+          "title": "Trasparenza in Ogni Interazione",
+          "description": "Ogni interazione sulla nostra piattaforma è tracciabile. Le aziende vedono competenze verificate. Gli studenti vedono chi è interessato. Le istituzioni vedono i risultati."
         },
         "1": {
-          "title": "Competenze Verificate, Non Ore di Stage",
-          "description": "Crediamo che un progetto di tesi da 30/30 dica più di un candidato di 6 mesi passati a fare fotocopie. La nostra piattaforma mette al primo posto il lavoro reale."
+          "title": "Competenze Verificate, Progetti Reali",
+          "description": "Crediamo che un progetto di tesi da 30/30 racconti molto di un candidato. La nostra piattaforma mette al primo posto il lavoro concreto e verificato dalle istituzioni."
         },
         "2": {
-          "title": "Modello di Compensazione Equo",
-          "description": "Studenti: gratis. Università: gratis. Le aziende pagano solo quando contattano un candidato (€10 per contatto). Il valore va a chi lo crea."
+          "title": "Un Sistema Equo per Tutti",
+          "description": "Costruiamo un marketplace dove il valore va a chi lo crea. Ogni attore — studenti, università, aziende — trova un modello sostenibile e trasparente."
         },
         "3": {
           "title": "Meritocrazia Basata su Progetti Reali",
-          "description": "Nessun bias per il nome dell'università. Nessuna raccomandazione necessaria. I tuoi progetti verificati parlano da soli. Il miglior lavoro vince, indipendentemente dal background."
+          "description": "Nessun bias per il nome dell'università. I tuoi progetti verificati parlano da soli. Il miglior lavoro vince, indipendentemente dal background."
         }
       }
     },
     "cta": {
-      "title": "Unisciti al Movimento",
-      "subtitle": "Aiutaci a costruire un mondo dove il talento è riconosciuto, le competenze sono verificate e i giovani sono valorizzati — non sfruttati.",
-      "primaryCTA": "Inizia Gratis",
+      "title": "Costruiamo Insieme il Futuro",
+      "subtitle": "Aiutaci a creare un mondo dove il talento è riconosciuto, le competenze sono verificate e ogni giovane ha l'opportunità di farsi notare.",
+      "primaryCTA": "Inizia Ora",
       "secondaryCTA": "Scopri Come Funziona"
     }
   }
