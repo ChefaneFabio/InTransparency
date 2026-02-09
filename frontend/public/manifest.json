@@ -101,19 +101,5 @@
       ]
     }
   ],
-  "categories": ["education", "productivity", "social"],
-  "screenshots": [
-    {
-      "src": "/screenshots/desktop-dashboard.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "/screenshots/mobile-dashboard.png",
-      "sizes": "375x812",
-      "type": "image/png",
-      "form_factor": "narrow"
-    }
-  ]
+  "categories": ["education", "productivity", "social"]
 }

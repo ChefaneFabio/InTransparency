@@ -5,11 +5,6 @@ const OFFLINE_URL = '/offline';
 // Resources to cache for offline functionality
 const urlsToCache = [
   '/',
-  '/offline',
-  '/dashboard',
-  '/features',
-  '/about',
-  '/pricing',
   '/manifest.json'
 ];
 
