@@ -1,23 +1,23 @@
+import nodemailer from 'nodemailer'
+
+const transporter = process.env.SMTP_HOST
+  ? nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT || '587'),
+      secure: process.env.SMTP_SECURE === 'true',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    })
+  : null
+
 const FROM_EMAIL = process.env.SMTP_FROM || 'noreply@intransparency.com'
 const BASE_URL = process.env.NEXTAUTH_URL || 'http://localhost:3000'
 
 async function sendEmail(to: string, subject: string, html: string) {
-  if (process.env.SMTP_HOST) {
-    try {
-      const nodemailer = (await import('nodemailer')).default
-      const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: parseInt(process.env.SMTP_PORT || '587'),
-        secure: process.env.SMTP_SECURE === 'true',
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        },
-      })
-      await transporter.sendMail({ from: FROM_EMAIL, to, subject, html })
-    } catch (err) {
-      console.error('[EMAIL] Failed to send:', err)
-    }
+  if (transporter) {
+    await transporter.sendMail({ from: FROM_EMAIL, to, subject, html })
   } else {
     console.log(`[EMAIL STUB] To: ${to} | Subject: ${subject}`)
     console.log(`[EMAIL STUB] Body preview: ${html.slice(0, 200)}...`)
