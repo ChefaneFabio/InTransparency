@@ -62,6 +62,7 @@ export function Footer() {
     ],
     company: [
       { name: tNav('about'), href: '/about' },
+      { name: tNav('mission'), href: '/mission' },
       { name: tNav('contact'), href: '/contact' },
     ],
     legal: [

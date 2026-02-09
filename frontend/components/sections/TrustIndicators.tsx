@@ -2,33 +2,36 @@
 
 import { motion } from 'framer-motion'
 import { Shield, GraduationCap, Building2, CheckCircle, Zap, Users } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 export function TrustIndicators() {
+  const t = useTranslations('home')
+
   const features = [
     {
-      title: 'Verified Skills',
-      description: 'Every project authenticated by institutions',
+      titleKey: 'trustIndicators.features.0.title' as const,
+      descriptionKey: 'trustIndicators.features.0.description' as const,
       icon: CheckCircle,
       color: 'text-green-600',
       bg: 'bg-green-100'
     },
     {
-      title: 'Direct Contact',
-      description: 'Companies reach out to you first',
+      titleKey: 'trustIndicators.features.1.title' as const,
+      descriptionKey: 'trustIndicators.features.1.description' as const,
       icon: Users,
       color: 'text-blue-600',
       bg: 'bg-blue-100'
     },
     {
-      title: 'Freemium',
-      description: 'No cost for students and universities',
+      titleKey: 'trustIndicators.features.2.title' as const,
+      descriptionKey: 'trustIndicators.features.2.description' as const,
       icon: GraduationCap,
       color: 'text-purple-600',
       bg: 'bg-purple-100'
     },
     {
-      title: 'Pay Per Contact',
-      description: 'Companies pay only when they reach out',
+      titleKey: 'trustIndicators.features.3.title' as const,
+      descriptionKey: 'trustIndicators.features.3.description' as const,
       icon: Zap,
       color: 'text-orange-600',
       bg: 'bg-orange-100'
@@ -49,33 +52,40 @@ export function TrustIndicators() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.05, y: -5 }}
                 className="text-center"
               >
                 <div className={`inline-flex p-3 rounded-xl ${feature.bg} mb-3`}>
                   <Icon className={`h-6 w-6 ${feature.color}`} />
                 </div>
-                <div className="text-lg font-semibold text-gray-900">{feature.title}</div>
-                <div className="text-sm text-gray-600">{feature.description}</div>
+                <div className="text-lg font-semibold text-gray-900">{t(feature.titleKey)}</div>
+                <div className="text-sm text-gray-600">{t(feature.descriptionKey)}</div>
               </motion.div>
             )
           })}
         </div>
 
         {/* Trust Badges */}
-        <div className="flex flex-wrap justify-center gap-3">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="flex flex-wrap justify-center gap-3"
+        >
           <div className="flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-full text-sm font-medium">
             <CheckCircle className="h-4 w-4" />
-            Freemium
+            {t('trustIndicators.badges.freemium')}
           </div>
           <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
             <Shield className="h-4 w-4" />
-            GDPR Compliant
+            {t('trustIndicators.badges.gdpr')}
           </div>
           <div className="flex items-center gap-2 px-4 py-2 bg-purple-50 text-purple-700 rounded-full text-sm font-medium">
             <Building2 className="h-4 w-4" />
-            Institution Verified
+            {t('trustIndicators.badges.verified')}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

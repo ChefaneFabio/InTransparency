@@ -341,7 +341,7 @@ export default function NewProjectPage() {
                 value={projectType}
                 onChange={(e) => setProjectType(e.target.value)}
                 required
-                className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
               >
                 <option value="">Select a project type</option>
                 {selectedDiscipline?.types.map(type => (
@@ -366,7 +366,7 @@ export default function NewProjectPage() {
                   onChange={(e) => setTitle(e.target.value)}
                   required
                   placeholder="Give your project a clear, descriptive title"
-                  className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                  className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                 />
               </div>
 
@@ -380,7 +380,7 @@ export default function NewProjectPage() {
                   required
                   rows={6}
                   placeholder="Describe what you built, the problem you solved, your approach, and the results"
-                  className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                  className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                 />
               </div>
             </div>
@@ -401,7 +401,7 @@ export default function NewProjectPage() {
                     value={githubUrl}
                     onChange={(e) => setGithubUrl(e.target.value)}
                     placeholder="https://github.com/username/repo"
-                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                 </div>
 
@@ -414,7 +414,7 @@ export default function NewProjectPage() {
                     value={liveUrl}
                     onChange={(e) => setLiveUrl(e.target.value)}
                     placeholder="https://your-project.com"
-                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                 </div>
 
@@ -434,7 +434,7 @@ export default function NewProjectPage() {
                         }
                       }}
                       placeholder="React, Python, PostgreSQL..."
-                      className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                      className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                     />
                     <button
                       type="button"
@@ -487,7 +487,7 @@ export default function NewProjectPage() {
                       }
                     }}
                     placeholder="Data Analysis, Problem Solving, Communication..."
-                    className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                   <button
                     type="button"
@@ -532,7 +532,7 @@ export default function NewProjectPage() {
                       }
                     }}
                     placeholder="Excel, Figma, SolidWorks, Adobe Suite..."
-                    className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                   <button
                     type="button"
@@ -578,7 +578,7 @@ export default function NewProjectPage() {
                   value={imageUrl}
                   onChange={(e) => setImageUrl(e.target.value)}
                   placeholder="https://example.com/image.jpg"
-                  className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                  className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                 />
                 <p className="text-xs text-gray-600 mt-1">
                   File upload coming soon - for now, paste an image URL
@@ -601,7 +601,7 @@ export default function NewProjectPage() {
                       }
                     }}
                     placeholder="https://youtube.com/watch?v=..."
-                    className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                   <button
                     type="button"
@@ -647,7 +647,7 @@ export default function NewProjectPage() {
                     value={duration}
                     onChange={(e) => setDuration(e.target.value)}
                     placeholder="3 months, 1 semester..."
-                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                 </div>
 
@@ -661,7 +661,7 @@ export default function NewProjectPage() {
                     onChange={(e) => setTeamSize(e.target.value ? parseInt(e.target.value) : '')}
                     placeholder="1 (solo), 2, 3..."
                     min="1"
-                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                 </div>
 
@@ -674,7 +674,7 @@ export default function NewProjectPage() {
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
                     placeholder="Lead Developer, Analyst, Designer..."
-                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                 </div>
 
@@ -687,7 +687,7 @@ export default function NewProjectPage() {
                     value={client}
                     onChange={(e) => setClient(e.target.value)}
                     placeholder="Company X, University, Personal..."
-                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                 </div>
               </div>
@@ -701,7 +701,7 @@ export default function NewProjectPage() {
                   onChange={(e) => setOutcome(e.target.value)}
                   rows={3}
                   placeholder="What was the impact? What did you achieve?"
-                  className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                  className="w-full px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                 />
               </div>
             </div>
@@ -818,7 +818,7 @@ export default function NewProjectPage() {
                     }
                   }}
                   placeholder="Data Analysis, Project Management, Critical Thinking..."
-                  className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                  className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                 />
                 <button
                   type="button"
@@ -866,7 +866,7 @@ export default function NewProjectPage() {
                       }
                     }}
                     placeholder="AWS Certified, OSHA 30, CPR Certified..."
-                    className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400"
+                    className="flex-1 px-4 py-2 border-2 border-gray-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-400 bg-white"
                   />
                   <button
                     type="button"

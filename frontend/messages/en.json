@@ -11,7 +11,8 @@
     "signIn": "Sign In",
     "getStarted": "Get Started",
     "dashboard": "Dashboard",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "mission": "Mission"
   },
   "home": {
     "hero": {
@@ -291,7 +292,53 @@
           "2": "Cancel anytime"
         }
       },
-      "trustIndicator": "Connect with top universities and companies"
+      "trustIndicator": "Connect with top universities and companies",
+      "trustIndicators": {
+        "features": {
+          "0": { "title": "Verified Skills", "description": "Every project authenticated by institutions" },
+          "1": { "title": "Direct Contact", "description": "Companies reach out to you first" },
+          "2": { "title": "Freemium", "description": "No cost for students and universities" },
+          "3": { "title": "Pay Per Contact", "description": "Companies pay only when they reach out" }
+        },
+        "badges": {
+          "freemium": "Freemium",
+          "gdpr": "GDPR Compliant",
+          "verified": "Institution Verified"
+        }
+      },
+      "valueProposition": {
+        "title": "Built for Everyone",
+        "subtitle": "A marketplace that works for students, universities, and companies - with transparent value for each.",
+        "cards": {
+          "students": {
+            "title": "For Students",
+            "benefits": {
+              "0": "Build a verified portfolio from your projects",
+              "1": "Get discovered by companies looking for your skills",
+              "2": "No applications needed - companies contact you",
+              "3": "Always free, no hidden costs"
+            }
+          },
+          "universities": {
+            "title": "For Universities",
+            "benefits": {
+              "0": "Verify student projects and achievements",
+              "1": "Track placement outcomes with analytics",
+              "2": "Connect students directly to employers",
+              "3": "Free for all partner institutions"
+            }
+          },
+          "companies": {
+            "title": "For Companies",
+            "benefits": {
+              "0": "Search verified talent by real skills",
+              "1": "See actual projects, not resume claims",
+              "2": "Pay only when you contact candidates",
+              "3": "No subscriptions, no commitments"
+            }
+          }
+        }
+      }
     },
     "howItWorksPage": {
       "title": "How",
@@ -3858,5 +3905,76 @@
     "suggestions": "Try asking:",
     "applied": "Applied",
     "apply": "Apply"
+  },
+  "mission": {
+    "hero": {
+      "badge": "Our Manifesto",
+      "title": "Internships: Springboard or Trap",
+      "titleHighlight": "for Young People?",
+      "description": "In Italy, the internship system has become a tool for exploitation. Millions of young people work for free or near-free, with no guarantee of learning, growth, or employment. InTransparency was born to change this."
+    },
+    "problem": {
+      "badge": "The Reality",
+      "title": "The Internship Problem in Italy",
+      "stats": {
+        "0": { "value": "300K+", "label": "Unpaid or underpaid internships every year" },
+        "1": { "value": "68%", "label": "Interns who never get hired by host company" },
+        "2": { "value": "€0-300", "label": "Typical monthly 'reimbursement'" }
+      },
+      "paragraphs": {
+        "0": "Every year, hundreds of thousands of young Italians enter internship programs promising experience and career opportunities. The reality is different: many end up doing the work of regular employees, without fair pay, without real mentorship, and without realistic prospects of being hired.",
+        "1": "Companies have learned to use internships as a revolving door of free labor. When one intern's period ends, the next one starts — performing the same tasks, receiving the same empty promises. The system rewards exploitation and punishes those who invest in young talent.",
+        "2": "Universities and institutions, despite their best intentions, often lack the tools to track what happens to their students after placement. The data gap makes it impossible to hold anyone accountable."
+      }
+    },
+    "position": {
+      "badge": "Our Position",
+      "title": "What InTransparency Believes",
+      "points": {
+        "0": {
+          "title": "Skills Over Hours",
+          "description": "A student's value should be measured by what they can do — verified projects, real competencies, institutional endorsements — not by how many unpaid hours they've logged."
+        },
+        "1": {
+          "title": "Companies Should Pay for Talent, Not Exploit It",
+          "description": "If a company wants access to verified, skilled candidates, they should invest in discovery — not in extracting free labor through internship programs."
+        },
+        "2": {
+          "title": "Students and Universities Should Never Pay",
+          "description": "The people who create value — students building skills, institutions verifying them — should access the platform for free. Always. The cost belongs to those who benefit from hiring."
+        },
+        "3": {
+          "title": "Transparency Creates Accountability",
+          "description": "When placement data is visible, when skills are verified, and when outcomes are tracked, exploitation becomes harder to hide. Transparency is not just a value — it's a mechanism for change."
+        }
+      }
+    },
+    "values": {
+      "title": "Our Values",
+      "items": {
+        "0": {
+          "title": "Transparency Over Exploitation",
+          "description": "Every interaction on our platform is traceable. Companies see verified skills. Students see who's interested. Institutions see outcomes. No hidden agendas."
+        },
+        "1": {
+          "title": "Verified Skills, Not Internship Hours",
+          "description": "We believe a 30/30 thesis project tells more about a candidate than 6 months of making photocopies. Our platform puts real work first."
+        },
+        "2": {
+          "title": "Fair Compensation Model",
+          "description": "Students: free. Universities: free. Companies pay only when they contact a candidate (€10 per contact). Value flows to those who create it."
+        },
+        "3": {
+          "title": "Meritocracy Based on Real Projects",
+          "description": "No name-brand university bias. No connections needed. Your verified projects speak for themselves. The best work wins, regardless of background."
+        }
+      }
+    },
+    "cta": {
+      "title": "Join the Movement",
+      "subtitle": "Help us build a world where talent is recognized, skills are verified, and young people are valued — not exploited.",
+      "primaryCTA": "Get Started Free",
+      "secondaryCTA": "Learn How It Works"
+    }
   }
 }
