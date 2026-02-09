@@ -292,50 +292,50 @@
           "2": "Cancella in qualsiasi momento"
         }
       },
-      "trustIndicator": "Connettiti con le migliori università e aziende",
-      "trustIndicators": {
-        "features": {
-          "0": { "title": "Competenze Verificate", "description": "Ogni progetto autenticato dalle istituzioni" },
-          "1": { "title": "Contatto Diretto", "description": "Le aziende ti contattano per prime" },
-          "2": { "title": "Freemium", "description": "Nessun costo per studenti e università" },
-          "3": { "title": "Pay Per Contact", "description": "Le aziende pagano solo quando contattano" }
-        },
-        "badges": {
-          "freemium": "Freemium",
-          "gdpr": "Conforme al GDPR",
-          "verified": "Verificato dall'Istituzione"
-        }
+      "trustIndicator": "Connettiti con le migliori università e aziende"
+    },
+    "trustIndicators": {
+      "features": {
+        "0": { "title": "Competenze Verificate", "description": "Ogni progetto autenticato dalle istituzioni" },
+        "1": { "title": "Contatto Diretto", "description": "Le aziende ti contattano per prime" },
+        "2": { "title": "Freemium", "description": "Nessun costo per studenti e università" },
+        "3": { "title": "Pay Per Contact", "description": "Le aziende pagano solo quando contattano" }
       },
-      "valueProposition": {
-        "title": "Costruito per Tutti",
-        "subtitle": "Un marketplace che funziona per studenti, università e aziende - con valore trasparente per ciascuno.",
-        "cards": {
-          "students": {
-            "title": "Per gli Studenti",
-            "benefits": {
-              "0": "Costruisci un portfolio verificato dai tuoi progetti",
-              "1": "Fatti scoprire dalle aziende che cercano le tue competenze",
-              "2": "Nessuna candidatura necessaria - le aziende ti contattano",
-              "3": "Sempre gratuito, nessun costo nascosto"
-            }
-          },
-          "universities": {
-            "title": "Per le Università",
-            "benefits": {
-              "0": "Verifica i progetti e i risultati degli studenti",
-              "1": "Monitora i risultati di placement con analytics",
-              "2": "Collega gli studenti direttamente ai datori di lavoro",
-              "3": "Gratuito per tutte le istituzioni partner"
-            }
-          },
-          "companies": {
-            "title": "Per le Aziende",
-            "benefits": {
-              "0": "Cerca talenti verificati per competenze reali",
-              "1": "Vedi progetti reali, non dichiarazioni nel CV",
-              "2": "Paga solo quando contatti i candidati",
-              "3": "Nessun abbonamento, nessun vincolo"
-            }
+      "badges": {
+        "freemium": "Freemium",
+        "gdpr": "Conforme al GDPR",
+        "verified": "Verificato dall'Istituzione"
+      }
+    },
+    "valueProposition": {
+      "title": "Costruito per Tutti",
+      "subtitle": "Un marketplace che funziona per studenti, università e aziende - con valore trasparente per ciascuno.",
+      "cards": {
+        "students": {
+          "title": "Per gli Studenti",
+          "benefits": {
+            "0": "Costruisci un portfolio verificato dai tuoi progetti",
+            "1": "Fatti scoprire dalle aziende che cercano le tue competenze",
+            "2": "Nessuna candidatura necessaria - le aziende ti contattano",
+            "3": "Sempre gratuito, nessun costo nascosto"
+          }
+        },
+        "universities": {
+          "title": "Per le Università",
+          "benefits": {
+            "0": "Verifica i progetti e i risultati degli studenti",
+            "1": "Monitora i risultati di placement con analytics",
+            "2": "Collega gli studenti direttamente ai datori di lavoro",
+            "3": "Gratuito per tutte le istituzioni partner"
+          }
+        },
+        "companies": {
+          "title": "Per le Aziende",
+          "benefits": {
+            "0": "Cerca talenti verificati per competenze reali",
+            "1": "Vedi progetti reali, non dichiarazioni nel CV",
+            "2": "Paga solo quando contatti i candidati",
+            "3": "Nessun abbonamento, nessun vincolo"
           }
         }
       }

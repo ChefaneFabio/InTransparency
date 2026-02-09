@@ -292,50 +292,50 @@
           "2": "Cancel anytime"
         }
       },
-      "trustIndicator": "Connect with top universities and companies",
-      "trustIndicators": {
-        "features": {
-          "0": { "title": "Verified Skills", "description": "Every project authenticated by institutions" },
-          "1": { "title": "Direct Contact", "description": "Companies reach out to you first" },
-          "2": { "title": "Freemium", "description": "No cost for students and universities" },
-          "3": { "title": "Pay Per Contact", "description": "Companies pay only when they reach out" }
-        },
-        "badges": {
-          "freemium": "Freemium",
-          "gdpr": "GDPR Compliant",
-          "verified": "Institution Verified"
-        }
+      "trustIndicator": "Connect with top universities and companies"
+    },
+    "trustIndicators": {
+      "features": {
+        "0": { "title": "Verified Skills", "description": "Every project authenticated by institutions" },
+        "1": { "title": "Direct Contact", "description": "Companies reach out to you first" },
+        "2": { "title": "Freemium", "description": "No cost for students and universities" },
+        "3": { "title": "Pay Per Contact", "description": "Companies pay only when they reach out" }
       },
-      "valueProposition": {
-        "title": "Built for Everyone",
-        "subtitle": "A marketplace that works for students, universities, and companies - with transparent value for each.",
-        "cards": {
-          "students": {
-            "title": "For Students",
-            "benefits": {
-              "0": "Build a verified portfolio from your projects",
-              "1": "Get discovered by companies looking for your skills",
-              "2": "No applications needed - companies contact you",
-              "3": "Always free, no hidden costs"
-            }
-          },
-          "universities": {
-            "title": "For Universities",
-            "benefits": {
-              "0": "Verify student projects and achievements",
-              "1": "Track placement outcomes with analytics",
-              "2": "Connect students directly to employers",
-              "3": "Free for all partner institutions"
-            }
-          },
-          "companies": {
-            "title": "For Companies",
-            "benefits": {
-              "0": "Search verified talent by real skills",
-              "1": "See actual projects, not resume claims",
-              "2": "Pay only when you contact candidates",
-              "3": "No subscriptions, no commitments"
-            }
+      "badges": {
+        "freemium": "Freemium",
+        "gdpr": "GDPR Compliant",
+        "verified": "Institution Verified"
+      }
+    },
+    "valueProposition": {
+      "title": "Built for Everyone",
+      "subtitle": "A marketplace that works for students, universities, and companies - with transparent value for each.",
+      "cards": {
+        "students": {
+          "title": "For Students",
+          "benefits": {
+            "0": "Build a verified portfolio from your projects",
+            "1": "Get discovered by companies looking for your skills",
+            "2": "No applications needed - companies contact you",
+            "3": "Always free, no hidden costs"
+          }
+        },
+        "universities": {
+          "title": "For Universities",
+          "benefits": {
+            "0": "Verify student projects and achievements",
+            "1": "Track placement outcomes with analytics",
+            "2": "Connect students directly to employers",
+            "3": "Free for all partner institutions"
+          }
+        },
+        "companies": {
+          "title": "For Companies",
+          "benefits": {
+            "0": "Search verified talent by real skills",
+            "1": "See actual projects, not resume claims",
+            "2": "Pay only when you contact candidates",
+            "3": "No subscriptions, no commitments"
           }
         }
       }
