@@ -1,16 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { analyzeProject, type ProjectData, type Discipline } from '@/lib/ai-analysis'
 
 // POST /api/projects - Create a new project
 export async function POST(request: NextRequest) {
   try {
-    // Get user ID from headers (assuming authentication middleware sets this)
-    const userId = request.headers.get('x-user-id')
+    const session = await getServerSession(authOptions)
 
-    if (!userId) {
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+
+    const userId = session.user.id
 
     // Parse request body
     const body = await request.json()

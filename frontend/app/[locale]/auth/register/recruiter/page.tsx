@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
+import { Link } from '@/navigation'
+import { useTranslations } from 'next-intl'
 import { signIn } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -11,6 +12,7 @@ import { Label } from '@/components/ui/label'
 import { Building2, Loader2, CheckCircle, Shield, Search, Clock, Zap, Users } from 'lucide-react'
 
 export default function RecruiterRegisterPage() {
+  const t = useTranslations('auth')
   const router = useRouter()
   const [formData, setFormData] = useState({
     firstName: '',
@@ -59,28 +61,7 @@ export default function RecruiterRegisterPage() {
     }
   }
 
-  const benefits = [
-    {
-      icon: Shield,
-      title: 'Verified Skills Only',
-      description: 'Every skill backed by university projects'
-    },
-    {
-      icon: Search,
-      title: 'AI-Powered Matching',
-      description: 'Match candidates based on verified skills'
-    },
-    {
-      icon: Clock,
-      title: 'Faster Screening',
-      description: 'See verified work samples directly'
-    },
-    {
-      icon: Zap,
-      title: 'Pay Per Contact',
-      description: 'Browse profiles free. Pay only when you connect.'
-    }
-  ]
+  const benefitIcons = [Shield, Search, Clock, Zap]
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4">
@@ -91,47 +72,44 @@ export default function RecruiterRegisterPage() {
             <div className="sticky top-8">
               <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
                 <Search className="h-4 w-4" />
-                Browse Free, Pay Per Contact
+                {t('recruiter.browseBadge')}
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Hire Verified Talent, Not Resumes
+                {t('recruiter.heroTitle')}
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Access university-verified graduates. Every skill is traceable to actual coursework and projects.
+                {t('recruiter.heroSubtitle')}
               </p>
 
               <div className="space-y-4 mb-8">
-                {benefits.map((benefit, index) => {
-                  const Icon = benefit.icon
-                  return (
-                    <div key={index} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm">
-                      <div className="flex-shrink-0 p-2 bg-blue-100 rounded-lg">
-                        <Icon className="h-5 w-5 text-blue-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">{benefit.title}</h3>
-                        <p className="text-sm text-gray-600">{benefit.description}</p>
-                      </div>
+                {benefitIcons.map((Icon, index) => (
+                  <div key={index} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm">
+                    <div className="flex-shrink-0 p-2 bg-blue-100 rounded-lg">
+                      <Icon className="h-5 w-5 text-blue-600" />
                     </div>
-                  )
-                })}
+                    <div>
+                      <h3 className="font-semibold text-gray-900">{t(`recruiter.benefits.${index}.title`)}</h3>
+                      <p className="text-sm text-gray-600">{t(`recruiter.benefits.${index}.description`)}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
 
               {/* Pricing */}
               <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl mb-6">
-                <h4 className="font-semibold text-gray-900 mb-3">Simple, Transparent Pricing</h4>
+                <h4 className="font-semibold text-gray-900 mb-3">{t('recruiter.pricing.title')}</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Browse all candidates</span>
-                    <span className="font-medium text-green-600">Free</span>
+                    <span className="text-gray-600">{t('recruiter.pricing.browse')}</span>
+                    <span className="font-medium text-green-600">{t('recruiter.pricing.browseCost')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Contact a candidate</span>
-                    <span className="font-medium text-gray-900">€10</span>
+                    <span className="text-gray-600">{t('recruiter.pricing.contact')}</span>
+                    <span className="font-medium text-gray-900">{t('recruiter.pricing.contactCost')}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Post job listings</span>
-                    <span className="font-medium text-green-600">Free</span>
+                    <span className="text-gray-600">{t('recruiter.pricing.postJobs')}</span>
+                    <span className="font-medium text-green-600">{t('recruiter.pricing.postJobsCost')}</span>
                   </div>
                 </div>
               </div>
@@ -145,27 +123,27 @@ export default function RecruiterRegisterPage() {
               <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl mb-4">
                 <Building2 className="h-7 w-7 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">Create Company Account</h1>
-              <p className="text-gray-600 mt-1">Start hiring verified talent today</p>
+              <h1 className="text-2xl font-bold text-gray-900">{t('recruiter.createTitle')}</h1>
+              <p className="text-gray-600 mt-1">{t('recruiter.createSubtitle')}</p>
             </div>
 
             {/* Mobile Benefits */}
             <div className="lg:hidden mb-6 p-4 bg-white rounded-xl shadow-sm">
               <div className="flex items-center gap-2 text-blue-600 mb-2">
                 <CheckCircle className="h-4 w-4" />
-                <span className="font-medium text-sm">Why companies choose us:</span>
+                <span className="font-medium text-sm">{t('recruiter.mobileBenefitsTitle')}</span>
               </div>
               <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Browse candidates free</li>
-                <li>• University-verified skills</li>
-                <li>• Pay per contact</li>
+                <li>{t('recruiter.mobileBenefits.0')}</li>
+                <li>{t('recruiter.mobileBenefits.1')}</li>
+                <li>{t('recruiter.mobileBenefits.2')}</li>
               </ul>
             </div>
 
             <Card>
               <CardHeader className="pb-4">
-                <CardTitle className="text-lg">Your Details</CardTitle>
-                <CardDescription>Create your recruiter account</CardDescription>
+                <CardTitle className="text-lg">{t('recruiter.formTitle')}</CardTitle>
+                <CardDescription>{t('recruiter.formDescription')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -177,7 +155,7 @@ export default function RecruiterRegisterPage() {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="firstName">First Name</Label>
+                      <Label htmlFor="firstName">{t('fields.firstName')}</Label>
                       <Input
                         id="firstName"
                         value={formData.firstName}
@@ -187,7 +165,7 @@ export default function RecruiterRegisterPage() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="lastName">Last Name</Label>
+                      <Label htmlFor="lastName">{t('fields.lastName')}</Label>
                       <Input
                         id="lastName"
                         value={formData.lastName}
@@ -199,7 +177,7 @@ export default function RecruiterRegisterPage() {
                   </div>
 
                   <div>
-                    <Label htmlFor="email">Work Email</Label>
+                    <Label htmlFor="email">{t('recruiter.workEmail')}</Label>
                     <Input
                       id="email"
                       type="email"
@@ -211,11 +189,11 @@ export default function RecruiterRegisterPage() {
                   </div>
 
                   <div>
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password">{t('fields.password')}</Label>
                     <Input
                       id="password"
                       type="password"
-                      placeholder="At least 8 characters"
+                      placeholder={t('recruiter.passwordPlaceholder')}
                       value={formData.password}
                       onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                       required
@@ -232,23 +210,23 @@ export default function RecruiterRegisterPage() {
                     {isLoading ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Creating Account...
+                        {t('recruiter.submittingButton')}
                       </>
                     ) : (
-                      'Start Hiring - Free to Browse'
+                      t('recruiter.submitButton')
                     )}
                   </Button>
 
                   <p className="text-xs text-center text-gray-500">
-                    No credit card required. Browse candidates immediately.
+                    {t('recruiter.noCreditCard')}
                   </p>
                 </form>
 
                 <div className="mt-4 text-center">
                   <p className="text-sm text-gray-600">
-                    Already have an account?{' '}
+                    {t('recruiter.alreadyHaveAccount')}{' '}
                     <Link href="/auth/login" className="text-blue-600 hover:text-blue-500">
-                      Sign in
+                      {t('recruiter.signIn')}
                     </Link>
                   </p>
                 </div>

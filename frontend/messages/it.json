@@ -943,21 +943,99 @@
     "terms": "Termini di Servizio",
     "and": "e la",
     "privacy": "Informativa sulla Privacy",
+    "register": {
+      "badge": "Unisciti a InTransparency",
+      "title": "Scegli il Tuo Ruolo",
+      "subtitle": "Seleziona l'opzione che ti descrive meglio per iniziare",
+      "signUpAs": "Registrati come",
+      "alreadyHaveAccount": "Hai già un account?",
+      "signIn": "Accedi",
+      "roles": {
+        "recruiter": {
+          "name": "Azienda",
+          "description": "Trova talenti verificati dalle università",
+          "benefits": { "0": "Cerca profili verificati", "1": "Paga per contatto", "2": "Integrazione ATS", "3": "Dashboard analytics" }
+        },
+        "university": {
+          "name": "Università / ITS",
+          "description": "Verifica i progetti degli studenti e traccia i placement",
+          "benefits": { "0": "Modello freemium", "1": "Analytics studenti", "2": "Tracciamento placement", "3": "Visibilità aziende" }
+        },
+        "student": {
+          "name": "Studente",
+          "description": "Costruisci il tuo portfolio e fatti scoprire dalle aziende",
+          "benefits": { "0": "Modello freemium", "1": "Portfolio verificato", "2": "Scoperta da aziende", "3": "Analytics profilo" }
+        }
+      },
+      "trust": {
+        "0": { "title": "Freemium", "subtitle": "Per Studenti" },
+        "1": { "title": "GDPR", "subtitle": "Conforme" },
+        "2": { "title": "AI-Powered", "subtitle": "Matching" },
+        "3": { "title": "Credenziali", "subtitle": "Verificate" }
+      }
+    },
     "student": {
       "title": "Registrazione Studente",
       "subtitle": "Unisciti a InTransparency - Gratis Per Sempre",
       "cardTitle": "Crea il Tuo Account Studente",
       "cardDescription": "Lancia la tua carriera con credenziali verificate",
       "submitButton": "Crea Account Studente Gratuito",
-      "submittingButton": "Creazione Account..."
+      "submittingButton": "Creazione Account...",
+      "heroTitle": "Fatti Scoprire dalle Aziende",
+      "heroSubtitle": "Costruisci un portfolio verificato. Lascia che le aziende ti trovino in base alle tue competenze reali e ai tuoi progetti.",
+      "freeBadge": "Freemium",
+      "benefits": {
+        "0": { "title": "Fatti Scoprire", "description": "500+ aziende alla ricerca attiva di talenti come te" },
+        "1": { "title": "Le Aziende Ti Contattano", "description": "Smetti di inviare candidature - lascia che le opportunità vengano da te" },
+        "2": { "title": "Portfolio Verificato", "description": "Progetti supportati dall'università di cui i datori di lavoro si fidano" },
+        "3": { "title": "Sfide Reali", "description": "Lavora su progetti aziendali come parte del tuo percorso di studi" }
+      },
+      "createTitle": "Crea il Tuo Account",
+      "createSubtitle": "Costruisci il tuo portfolio verificato",
+      "formTitle": "I Tuoi Dati",
+      "formDescription": "Ci vogliono meno di 2 minuti",
+      "mobileBenefitsTitle": "Perché gli studenti ci scelgono:",
+      "mobileBenefits": { "0": "Le aziende ti scoprono per prime", "1": "Portfolio verificato di cui i datori si fidano", "2": "Modello freemium" },
+      "passwordPlaceholder": "Almeno 8 caratteri",
+      "alreadyHaveAccount": "Hai già un account?",
+      "signIn": "Accedi"
     },
     "recruiter": {
       "title": "Registrazione Azienda",
       "subtitle": "Trova talenti verificati - Sfoglia Gratis, Paga Per Contatto",
       "cardTitle": "Crea il Tuo Account Aziendale",
       "cardDescription": "Scopri candidati verificati con ricerca AI",
-      "submitButton": "Crea Account Aziendale Gratuito",
-      "submittingButton": "Creazione Account..."
+      "submitButton": "Inizia ad Assumere - Sfoglia Gratis",
+      "submittingButton": "Creazione Account...",
+      "heroTitle": "Assumi Talenti Verificati, Non CV",
+      "heroSubtitle": "Accedi a laureati verificati dalle università. Ogni competenza è tracciabile a corsi e progetti reali.",
+      "browseBadge": "Sfoglia Gratis, Paga Per Contatto",
+      "benefits": {
+        "0": { "title": "Solo Competenze Verificate", "description": "Ogni competenza supportata da progetti universitari" },
+        "1": { "title": "Matching AI", "description": "Abbina candidati in base a competenze verificate" },
+        "2": { "title": "Screening Più Veloce", "description": "Vedi campioni di lavoro verificati direttamente" },
+        "3": { "title": "Pay Per Contact", "description": "Sfoglia i profili gratis. Paga solo quando ti colleghi." }
+      },
+      "createTitle": "Crea Account Aziendale",
+      "createSubtitle": "Inizia ad assumere talenti verificati oggi",
+      "formTitle": "I Tuoi Dati",
+      "formDescription": "Crea il tuo account recruiter",
+      "workEmail": "Email Aziendale",
+      "pricing": {
+        "title": "Prezzi Semplici e Trasparenti",
+        "browse": "Sfoglia tutti i candidati",
+        "browseCost": "Gratis",
+        "contact": "Contatta un candidato",
+        "contactCost": "€10",
+        "postJobs": "Pubblica offerte di lavoro",
+        "postJobsCost": "Gratis"
+      },
+      "mobileBenefitsTitle": "Perché le aziende ci scelgono:",
+      "mobileBenefits": { "0": "Sfoglia candidati gratis", "1": "Competenze verificate dall'università", "2": "Pay per contact" },
+      "noCreditCard": "Nessuna carta di credito richiesta. Sfoglia i candidati subito.",
+      "passwordPlaceholder": "Almeno 8 caratteri",
+      "alreadyHaveAccount": "Hai già un account?",
+      "signIn": "Accedi"
     },
     "university": {
       "title": "Registrazione Istituzione",
@@ -965,7 +1043,27 @@
       "cardTitle": "Crea il Tuo Account Istituzione",
       "cardDescription": "Verifica studenti e traccia placement",
       "submitButton": "Crea Account Istituzione Gratuito",
-      "submittingButton": "Creazione Account..."
+      "submittingButton": "Creazione Account...",
+      "heroTitle": "Collega Studenti e Datori di Lavoro",
+      "heroSubtitle": "Verifica i progetti degli studenti e aiutali a farsi scoprire dalle aziende che cercano competenze reali.",
+      "freeBadge": "Freemium",
+      "benefits": {
+        "0": { "title": "Maggiore Visibilità", "description": "Gli studenti vengono scoperti direttamente dalle aziende" },
+        "1": { "title": "Marketplace Talenti", "description": "Le aziende scoprono i tuoi studenti direttamente" },
+        "2": { "title": "Analytics Placement", "description": "Traccia i risultati per la conformità MIUR e i report" },
+        "3": { "title": "Credenziali Verificate", "description": "Il tuo badge istituzionale su ogni profilo studente" }
+      },
+      "createTitle": "Crea Account Istituzione",
+      "createSubtitle": "Inizia con il piano freemium",
+      "formTitle": "Dettagli Istituzione",
+      "formDescription": "Verificheremo la tua email istituzionale",
+      "freemiumNote": "Piattaforma Freemium - Nessun costo di attivazione, nessun costo nascosto",
+      "institutionalEmail": "Email Istituzionale",
+      "mobileBenefitsTitle": "Perché le università ci scelgono:",
+      "mobileBenefits": { "0": "Portfolio studenti verificati", "1": "Analytics placement", "2": "Tracciamento visibilità aziende", "3": "Modello freemium" },
+      "passwordPlaceholder": "Almeno 8 caratteri",
+      "alreadyHaveAccount": "Hai già un account?",
+      "signIn": "Accedi"
     },
     "login": {
       "title": "Bentornato",

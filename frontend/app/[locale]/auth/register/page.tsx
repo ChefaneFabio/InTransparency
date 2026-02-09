@@ -14,51 +14,30 @@ import { useTranslations } from 'next-intl'
 
 const roles = [
   {
-    id: 'recruiter',
-    name: 'Company',
-    description: 'Find verified talent from universities',
+    id: 'recruiter' as const,
     icon: Users,
     color: 'from-green-500 to-emerald-500',
     href: '/auth/register/recruiter',
-    benefits: [
-      'Search verified profiles',
-      'Pay per contact',
-      'ATS integration',
-      'Analytics dashboard'
-    ]
+    benefitCount: 4
   },
   {
-    id: 'university',
-    name: 'University / ITS',
-    description: 'Verify student projects and track placements',
+    id: 'university' as const,
     icon: Building2,
     color: 'from-purple-500 to-indigo-500',
     href: '/auth/register/university',
-    benefits: [
-      'Freemium model',
-      'Student analytics',
-      'Placement tracking',
-      'Company visibility'
-    ]
+    benefitCount: 4
   },
   {
-    id: 'student',
-    name: 'Student',
-    description: 'Build your portfolio and get discovered by companies',
+    id: 'student' as const,
     icon: GraduationCap,
     color: 'from-blue-500 to-cyan-500',
     href: '/auth/register/student',
-    benefits: [
-      'Freemium model',
-      'Verified portfolio',
-      'Company discovery',
-      'Profile analytics'
-    ]
+    benefitCount: 4
   }
 ]
 
 export default function RegisterPage() {
-  const t = useTranslations('nav')
+  const t = useTranslations('auth')
   const router = useRouter()
   const searchParams = useSearchParams()
   const role = searchParams.get('role')
@@ -94,13 +73,13 @@ export default function RegisterPage() {
             className="text-center mb-16"
           >
             <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white">
-              Join InTransparency
+              {t('register.badge')}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
-              Choose Your Role
+              {t('register.title')}
             </h1>
             <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-              Select the option that best describes you to get started
+              {t('register.subtitle')}
             </p>
           </motion.div>
 
@@ -121,23 +100,25 @@ export default function RegisterPage() {
                       <div className={`bg-gradient-to-r ${roleOption.color} p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto`}>
                         <Icon className="h-8 w-8 text-white" />
                       </div>
-                      <CardTitle className="text-2xl text-center">{roleOption.name}</CardTitle>
+                      <CardTitle className="text-2xl text-center">
+                        {t(`register.roles.${roleOption.id}.name`)}
+                      </CardTitle>
                       <CardDescription className="text-center">
-                        {roleOption.description}
+                        {t(`register.roles.${roleOption.id}.description`)}
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <ul className="space-y-3 mb-6">
-                        {roleOption.benefits.map((benefit, i) => (
+                        {Array.from({ length: roleOption.benefitCount }, (_, i) => (
                           <li key={i} className="flex items-start text-sm text-gray-700">
                             <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0" />
-                            <span>{benefit}</span>
+                            <span>{t(`register.roles.${roleOption.id}.benefits.${i}`)}</span>
                           </li>
                         ))}
                       </ul>
                       <Button asChild className={`w-full bg-gradient-to-r ${roleOption.color}`}>
                         <Link href={roleOption.href}>
-                          Sign Up as {roleOption.name}
+                          {t('register.signUpAs')} {t(`register.roles.${roleOption.id}.name`)}
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>
@@ -151,9 +132,9 @@ export default function RegisterPage() {
           {/* Already Have Account */}
           <div className="text-center">
             <p className="text-gray-600">
-              Already have an account?{' '}
+              {t('register.alreadyHaveAccount')}{' '}
               <Link href="/auth/login" className="text-primary hover:underline font-semibold">
-                Sign in
+                {t('register.signIn')}
               </Link>
             </p>
           </div>
@@ -161,22 +142,14 @@ export default function RegisterPage() {
           {/* Trust Indicators */}
           <div className="mt-16 pt-8 border-t border-gray-200">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-sm text-gray-600">
-              <div>
-                <div className="font-bold text-2xl text-primary mb-1">Freemium</div>
-                <div>For Students</div>
-              </div>
-              <div>
-                <div className="font-bold text-2xl text-primary mb-1">GDPR</div>
-                <div>Compliant</div>
-              </div>
-              <div>
-                <div className="font-bold text-2xl text-primary mb-1">AI-Powered</div>
-                <div>Matching</div>
-              </div>
-              <div>
-                <div className="font-bold text-2xl text-primary mb-1">Verified</div>
-                <div>Credentials</div>
-              </div>
+              {Array.from({ length: 4 }, (_, i) => (
+                <div key={i}>
+                  <div className="font-bold text-2xl text-primary mb-1">
+                    {t(`register.trust.${i}.title`)}
+                  </div>
+                  <div>{t(`register.trust.${i}.subtitle`)}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
+import { Link } from '@/navigation'
+import { useTranslations } from 'next-intl'
 import { signIn } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -10,7 +11,10 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { School, Loader2, CheckCircle, TrendingUp, Users, BarChart3, Shield } from 'lucide-react'
 
+const benefitIcons = [TrendingUp, Users, BarChart3, Shield]
+
 export default function UniversityRegisterPage() {
+  const t = useTranslations('auth')
   const router = useRouter()
   const [formData, setFormData] = useState({
     firstName: '',
@@ -59,29 +63,6 @@ export default function UniversityRegisterPage() {
     }
   }
 
-  const benefits = [
-    {
-      icon: TrendingUp,
-      title: 'Better Visibility',
-      description: 'Students get discovered by companies directly'
-    },
-    {
-      icon: Users,
-      title: 'Free Talent Marketplace',
-      description: 'Companies discover your students directly'
-    },
-    {
-      icon: BarChart3,
-      title: 'Placement Analytics',
-      description: 'Track outcomes for MIUR compliance & reporting'
-    },
-    {
-      icon: Shield,
-      title: 'Verified Credentials',
-      description: 'Your institutional badge on every student profile'
-    }
-  ]
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-50 py-12 px-4">
       <div className="max-w-4xl w-full">
@@ -91,35 +72,36 @@ export default function UniversityRegisterPage() {
             <div className="sticky top-8">
               <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
                 <CheckCircle className="h-4 w-4" />
-                Freemium
+                {t('university.freeBadge')}
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Connect Students with Employers
+                {t('university.heroTitle')}
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Verify student projects and help them get discovered by companies looking for real skills.
+                {t('university.heroSubtitle')}
               </p>
 
               <div className="space-y-4 mb-8">
-                {benefits.map((benefit, index) => {
-                  const Icon = benefit.icon
-                  return (
-                    <div key={index} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm">
-                      <div className="flex-shrink-0 p-2 bg-indigo-100 rounded-lg">
-                        <Icon className="h-5 w-5 text-indigo-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">{benefit.title}</h3>
-                        <p className="text-sm text-gray-600">{benefit.description}</p>
-                      </div>
+                {benefitIcons.map((Icon, index) => (
+                  <div key={index} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm">
+                    <div className="flex-shrink-0 p-2 bg-indigo-100 rounded-lg">
+                      <Icon className="h-5 w-5 text-indigo-600" />
                     </div>
-                  )
-                })}
+                    <div>
+                      <h3 className="font-semibold text-gray-900">
+                        {t(`university.benefits.${index}.title`)}
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        {t(`university.benefits.${index}.description`)}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
 
               <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl">
                 <p className="text-sm text-amber-800">
-                  <span className="font-semibold">Freemium Platform</span> - No setup fees, no hidden charges
+                  {t('university.freemiumNote')}
                 </p>
               </div>
             </div>
@@ -131,28 +113,28 @@ export default function UniversityRegisterPage() {
               <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl mb-4">
                 <School className="h-7 w-7 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">Create Institution Account</h1>
-              <p className="text-gray-600 mt-1">Get started with the freemium plan</p>
+              <h1 className="text-2xl font-bold text-gray-900">{t('university.createTitle')}</h1>
+              <p className="text-gray-600 mt-1">{t('university.createSubtitle')}</p>
             </div>
 
             {/* Mobile Benefits */}
             <div className="lg:hidden mb-6 p-4 bg-white rounded-xl shadow-sm">
               <div className="flex items-center gap-2 text-green-600 mb-2">
                 <CheckCircle className="h-4 w-4" />
-                <span className="font-medium text-sm">Why universities choose us:</span>
+                <span className="font-medium text-sm">{t('university.mobileBenefitsTitle')}</span>
               </div>
               <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Verified student portfolios</li>
-                <li>• Placement analytics</li>
-                <li>• Company visibility tracking</li>
-                <li>• Freemium model</li>
+                <li>{t('university.mobileBenefits.0')}</li>
+                <li>{t('university.mobileBenefits.1')}</li>
+                <li>{t('university.mobileBenefits.2')}</li>
+                <li>{t('university.mobileBenefits.3')}</li>
               </ul>
             </div>
 
             <Card>
               <CardHeader className="pb-4">
-                <CardTitle className="text-lg">Institution Details</CardTitle>
-                <CardDescription>We'll verify your institutional email</CardDescription>
+                <CardTitle className="text-lg">{t('university.formTitle')}</CardTitle>
+                <CardDescription>{t('university.formDescription')}</CardDescription>
               </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -164,7 +146,7 @@ export default function UniversityRegisterPage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="firstName">First Name</Label>
+                  <Label htmlFor="firstName">{t('fields.firstName')}</Label>
                   <Input
                     id="firstName"
                     value={formData.firstName}
@@ -174,7 +156,7 @@ export default function UniversityRegisterPage() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="lastName">Last Name</Label>
+                  <Label htmlFor="lastName">{t('fields.lastName')}</Label>
                   <Input
                     id="lastName"
                     value={formData.lastName}
@@ -186,7 +168,7 @@ export default function UniversityRegisterPage() {
               </div>
 
               <div>
-                <Label htmlFor="email">Institutional Email</Label>
+                <Label htmlFor="email">{t('university.institutionalEmail')}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -198,11 +180,11 @@ export default function UniversityRegisterPage() {
               </div>
 
               <div>
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t('fields.password')}</Label>
                 <Input
                   id="password"
                   type="password"
-                  placeholder="At least 8 characters"
+                  placeholder={t('university.passwordPlaceholder')}
                   value={formData.password}
                   onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                   required
@@ -219,19 +201,19 @@ export default function UniversityRegisterPage() {
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Creating Account...
+                    {t('university.submittingButton')}
                   </>
                 ) : (
-                  'Create Institution Account'
+                  t('university.submitButton')
                 )}
               </Button>
             </form>
 
             <div className="mt-4 text-center">
               <p className="text-sm text-gray-600">
-                Already have an account?{' '}
+                {t('university.alreadyHaveAccount')}{' '}
                 <Link href="/auth/login" className="text-blue-600 hover:text-blue-500">
-                  Sign in
+                  {t('university.signIn')}
                 </Link>
               </p>
             </div>

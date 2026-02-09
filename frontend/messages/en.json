@@ -912,21 +912,99 @@
     }
   },
   "auth": {
+    "register": {
+      "badge": "Join InTransparency",
+      "title": "Choose Your Role",
+      "subtitle": "Select the option that best describes you to get started",
+      "signUpAs": "Sign Up as",
+      "alreadyHaveAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "roles": {
+        "recruiter": {
+          "name": "Company",
+          "description": "Find verified talent from universities",
+          "benefits": { "0": "Search verified profiles", "1": "Pay per contact", "2": "ATS integration", "3": "Analytics dashboard" }
+        },
+        "university": {
+          "name": "University / ITS",
+          "description": "Verify student projects and track placements",
+          "benefits": { "0": "Freemium model", "1": "Student analytics", "2": "Placement tracking", "3": "Company visibility" }
+        },
+        "student": {
+          "name": "Student",
+          "description": "Build your portfolio and get discovered by companies",
+          "benefits": { "0": "Freemium model", "1": "Verified portfolio", "2": "Company discovery", "3": "Profile analytics" }
+        }
+      },
+      "trust": {
+        "0": { "title": "Freemium", "subtitle": "For Students" },
+        "1": { "title": "GDPR", "subtitle": "Compliant" },
+        "2": { "title": "AI-Powered", "subtitle": "Matching" },
+        "3": { "title": "Verified", "subtitle": "Credentials" }
+      }
+    },
     "student": {
       "title": "Student Registration",
       "subtitle": "Join InTransparency - Free Forever",
       "cardTitle": "Create Your Student Account",
       "cardDescription": "Launch your career with verified credentials",
       "submitButton": "Create Free Student Account",
-      "submittingButton": "Creating Account..."
+      "submittingButton": "Creating Account...",
+      "heroTitle": "Get Discovered by Companies",
+      "heroSubtitle": "Build a verified portfolio. Let companies find you based on your real skills and projects.",
+      "freeBadge": "Freemium",
+      "benefits": {
+        "0": { "title": "Get Discovered", "description": "500+ companies actively searching for talent like you" },
+        "1": { "title": "Companies Message You", "description": "Stop applying endlessly - let opportunities come to you" },
+        "2": { "title": "Verified Portfolio", "description": "University-backed projects that employers trust" },
+        "3": { "title": "Real Challenges", "description": "Work on company projects as part of your coursework" }
+      },
+      "createTitle": "Create Your Account",
+      "createSubtitle": "Build your verified portfolio",
+      "formTitle": "Your Details",
+      "formDescription": "Takes less than 2 minutes",
+      "mobileBenefitsTitle": "Why students love us:",
+      "mobileBenefits": { "0": "Companies discover you first", "1": "Verified portfolio employers trust", "2": "Freemium model" },
+      "passwordPlaceholder": "At least 8 characters",
+      "alreadyHaveAccount": "Already have an account?",
+      "signIn": "Sign in"
     },
     "recruiter": {
       "title": "Company Registration",
       "subtitle": "Find verified talent - Browse Free, Pay Per Contact",
       "cardTitle": "Create Your Company Account",
       "cardDescription": "Discover verified candidates with AI search",
-      "submitButton": "Create Free Company Account",
-      "submittingButton": "Creating Account..."
+      "submitButton": "Start Hiring - Free to Browse",
+      "submittingButton": "Creating Account...",
+      "heroTitle": "Hire Verified Talent, Not Resumes",
+      "heroSubtitle": "Access university-verified graduates. Every skill is traceable to actual coursework and projects.",
+      "browseBadge": "Browse Free, Pay Per Contact",
+      "benefits": {
+        "0": { "title": "Verified Skills Only", "description": "Every skill backed by university projects" },
+        "1": { "title": "AI-Powered Matching", "description": "Match candidates based on verified skills" },
+        "2": { "title": "Faster Screening", "description": "See verified work samples directly" },
+        "3": { "title": "Pay Per Contact", "description": "Browse profiles free. Pay only when you connect." }
+      },
+      "createTitle": "Create Company Account",
+      "createSubtitle": "Start hiring verified talent today",
+      "formTitle": "Your Details",
+      "formDescription": "Create your recruiter account",
+      "workEmail": "Work Email",
+      "pricing": {
+        "title": "Simple, Transparent Pricing",
+        "browse": "Browse all candidates",
+        "browseCost": "Free",
+        "contact": "Contact a candidate",
+        "contactCost": "€10",
+        "postJobs": "Post job listings",
+        "postJobsCost": "Free"
+      },
+      "mobileBenefitsTitle": "Why companies choose us:",
+      "mobileBenefits": { "0": "Browse candidates free", "1": "University-verified skills", "2": "Pay per contact" },
+      "noCreditCard": "No credit card required. Browse candidates immediately.",
+      "passwordPlaceholder": "At least 8 characters",
+      "alreadyHaveAccount": "Already have an account?",
+      "signIn": "Sign in"
     },
     "university": {
       "title": "Institution Registration",
@@ -934,7 +1012,27 @@
       "cardTitle": "Create Your Institution Account",
       "cardDescription": "Verify students and track placements",
       "submitButton": "Create Free Institution Account",
-      "submittingButton": "Creating Account..."
+      "submittingButton": "Creating Account...",
+      "heroTitle": "Connect Students with Employers",
+      "heroSubtitle": "Verify student projects and help them get discovered by companies looking for real skills.",
+      "freeBadge": "Freemium",
+      "benefits": {
+        "0": { "title": "Better Visibility", "description": "Students get discovered by companies directly" },
+        "1": { "title": "Free Talent Marketplace", "description": "Companies discover your students directly" },
+        "2": { "title": "Placement Analytics", "description": "Track outcomes for MIUR compliance & reporting" },
+        "3": { "title": "Verified Credentials", "description": "Your institutional badge on every student profile" }
+      },
+      "createTitle": "Create Institution Account",
+      "createSubtitle": "Get started with the freemium plan",
+      "formTitle": "Institution Details",
+      "formDescription": "We'll verify your institutional email",
+      "freemiumNote": "Freemium Platform - No setup fees, no hidden charges",
+      "institutionalEmail": "Institutional Email",
+      "mobileBenefitsTitle": "Why universities choose us:",
+      "mobileBenefits": { "0": "Verified student portfolios", "1": "Placement analytics", "2": "Company visibility tracking", "3": "Freemium model" },
+      "passwordPlaceholder": "At least 8 characters",
+      "alreadyHaveAccount": "Already have an account?",
+      "signIn": "Sign in"
     },
     "login": {
       "title": "Welcome Back",

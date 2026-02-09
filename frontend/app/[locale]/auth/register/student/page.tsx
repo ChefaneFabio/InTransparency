@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { signIn } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -11,6 +12,7 @@ import { Label } from '@/components/ui/label'
 import { GraduationCap, Loader2, CheckCircle, Sparkles, Eye, MessageSquare, Briefcase, Star } from 'lucide-react'
 
 export default function StudentRegisterPage() {
+  const t = useTranslations('auth')
   const router = useRouter()
   const [formData, setFormData] = useState({
     firstName: '',
@@ -63,28 +65,7 @@ export default function StudentRegisterPage() {
     }
   }
 
-  const benefits = [
-    {
-      icon: Eye,
-      title: 'Get Discovered',
-      description: '500+ companies actively searching for talent like you'
-    },
-    {
-      icon: MessageSquare,
-      title: 'Companies Message You',
-      description: 'Stop applying endlessly - let opportunities come to you'
-    },
-    {
-      icon: Sparkles,
-      title: 'Verified Portfolio',
-      description: 'University-backed projects that employers trust'
-    },
-    {
-      icon: Briefcase,
-      title: 'Real Challenges',
-      description: 'Work on company projects as part of your coursework'
-    }
-  ]
+  const benefitIcons = [Eye, MessageSquare, Sparkles, Briefcase]
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-50 to-blue-50 py-12 px-4">
@@ -95,26 +76,26 @@ export default function StudentRegisterPage() {
             <div className="sticky top-8">
               <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
                 <CheckCircle className="h-4 w-4" />
-                Freemium
+                {t('student.freeBadge')}
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Get Discovered by Companies
+                {t('student.heroTitle')}
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Build a verified portfolio. Let companies find you based on your real skills and projects.
+                {t('student.heroSubtitle')}
               </p>
 
               <div className="space-y-4 mb-8">
-                {benefits.map((benefit, index) => {
-                  const Icon = benefit.icon
+                {[0, 1, 2, 3].map((i) => {
+                  const Icon = benefitIcons[i]
                   return (
-                    <div key={index} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm">
+                    <div key={i} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm">
                       <div className="flex-shrink-0 p-2 bg-teal-100 rounded-lg">
                         <Icon className="h-5 w-5 text-teal-600" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">{benefit.title}</h3>
-                        <p className="text-sm text-gray-600">{benefit.description}</p>
+                        <h3 className="font-semibold text-gray-900">{t(`student.benefits.${i}.title`)}</h3>
+                        <p className="text-sm text-gray-600">{t(`student.benefits.${i}.description`)}</p>
                       </div>
                     </div>
                   )
@@ -130,27 +111,27 @@ export default function StudentRegisterPage() {
               <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-r from-teal-500 to-blue-600 rounded-2xl mb-4">
                 <GraduationCap className="h-7 w-7 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">Create Your Account</h1>
-              <p className="text-gray-600 mt-1">Build your verified portfolio</p>
+              <h1 className="text-2xl font-bold text-gray-900">{t('student.createTitle')}</h1>
+              <p className="text-gray-600 mt-1">{t('student.createSubtitle')}</p>
             </div>
 
             {/* Mobile Benefits */}
             <div className="lg:hidden mb-6 p-4 bg-white rounded-xl shadow-sm">
               <div className="flex items-center gap-2 text-teal-600 mb-2">
                 <CheckCircle className="h-4 w-4" />
-                <span className="font-medium text-sm">Why students love us:</span>
+                <span className="font-medium text-sm">{t('student.mobileBenefitsTitle')}</span>
               </div>
               <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Companies discover you first</li>
-                <li>• Verified portfolio employers trust</li>
-                <li>• Freemium model</li>
+                {[0, 1, 2].map((i) => (
+                  <li key={i}>{t(`student.mobileBenefits.${i}`)}</li>
+                ))}
               </ul>
             </div>
 
             <Card>
               <CardHeader className="pb-4">
-                <CardTitle className="text-lg">Your Details</CardTitle>
-                <CardDescription>Takes less than 2 minutes</CardDescription>
+                <CardTitle className="text-lg">{t('student.formTitle')}</CardTitle>
+                <CardDescription>{t('student.formDescription')}</CardDescription>
               </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -162,7 +143,7 @@ export default function StudentRegisterPage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="firstName">First Name</Label>
+                  <Label htmlFor="firstName">{t('fields.firstName')}</Label>
                   <Input
                     id="firstName"
                     value={formData.firstName}
@@ -172,7 +153,7 @@ export default function StudentRegisterPage() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="lastName">Last Name</Label>
+                  <Label htmlFor="lastName">{t('fields.lastName')}</Label>
                   <Input
                     id="lastName"
                     value={formData.lastName}
@@ -184,7 +165,7 @@ export default function StudentRegisterPage() {
               </div>
 
               <div>
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t('fields.email')}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -196,11 +177,11 @@ export default function StudentRegisterPage() {
               </div>
 
               <div>
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t('fields.password')}</Label>
                 <Input
                   id="password"
                   type="password"
-                  placeholder="At least 8 characters"
+                  placeholder={t('student.passwordPlaceholder')}
                   value={formData.password}
                   onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                   required
@@ -217,19 +198,19 @@ export default function StudentRegisterPage() {
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Creating Account...
+                    {t('student.submittingButton')}
                   </>
                 ) : (
-                  'Create Free Student Account'
+                  t('student.submitButton')
                 )}
               </Button>
             </form>
 
             <div className="mt-4 text-center">
               <p className="text-sm text-gray-600">
-                Already have an account?{' '}
+                {t('student.alreadyHaveAccount')}{' '}
                 <Link href="/auth/login" className="text-blue-600 hover:text-blue-500">
-                  Sign in
+                  {t('student.signIn')}
                 </Link>
               </p>
             </div>
