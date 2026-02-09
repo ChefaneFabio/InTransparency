@@ -22,8 +22,10 @@ import {
   Building2,
   FileText,
   Mail,
-  TrendingUp
+  TrendingUp,
+  LogOut
 } from 'lucide-react'
+import { signOut } from 'next-auth/react'
 import { Progress } from '@/components/ui/progress'
 
 interface ContactUsage {
@@ -545,6 +547,15 @@ export default function RecruiterDashboard() {
               </p>
             </CardContent>
           </Card>
+
+          {/* Sign out */}
+          <button
+            onClick={() => signOut({ callbackUrl: '/' })}
+            className="flex items-center gap-2 p-3 rounded-lg hover:bg-red-50 transition-colors w-full text-left border"
+          >
+            <LogOut className="h-4 w-4 text-red-500" />
+            <span className="text-sm font-medium text-red-600">Sign out</span>
+          </button>
         </div>
       </div>
     </div>

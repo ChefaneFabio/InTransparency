@@ -20,8 +20,10 @@ import {
   Upload,
   BarChart3,
   BookOpen,
-  RefreshCw
+  RefreshCw,
+  LogOut
 } from 'lucide-react'
+import { signOut } from 'next-auth/react'
 
 interface UniversityStats {
   totalStudents: number
@@ -427,6 +429,17 @@ export default function UniversityDashboard() {
                 </div>
                 <ChevronRight className="h-4 w-4 text-gray-400" />
               </Link>
+
+              <div className="border-t my-1" />
+              <button
+                onClick={() => signOut({ callbackUrl: '/' })}
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-red-50 transition-colors w-full text-left"
+              >
+                <div className="p-2 bg-red-50 rounded-lg">
+                  <LogOut className="h-4 w-4 text-red-500" />
+                </div>
+                <p className="text-sm font-medium text-red-600">Sign out</p>
+              </button>
             </CardContent>
           </Card>
 

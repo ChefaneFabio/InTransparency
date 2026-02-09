@@ -20,8 +20,10 @@ import {
   MessageSquare,
   FolderOpen,
   TrendingUp,
-  Sparkles
+  Sparkles,
+  LogOut
 } from 'lucide-react'
+import { signOut } from 'next-auth/react'
 import { Link } from '@/navigation'
 
 interface DashboardStats {
@@ -284,6 +286,14 @@ export default function StudentDashboard() {
                   <span className="text-sm">Public profile</span>
                   <ExternalLink className="h-4 w-4 text-gray-400" />
                 </Link>
+                <div className="border-t my-1" />
+                <button
+                  onClick={() => signOut({ callbackUrl: '/' })}
+                  className="flex items-center justify-between p-2 rounded hover:bg-red-50 transition-colors w-full text-left"
+                >
+                  <span className="text-sm text-red-600">Sign out</span>
+                  <LogOut className="h-4 w-4 text-red-400" />
+                </button>
               </div>
             </CardContent>
           </Card>
