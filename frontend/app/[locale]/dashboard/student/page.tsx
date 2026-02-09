@@ -24,6 +24,7 @@ import {
   LogOut
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
+import { useLocale } from 'next-intl'
 import { Link } from '@/navigation'
 
 interface DashboardStats {
@@ -46,6 +47,7 @@ interface JobOpportunity {
 
 export default function StudentDashboard() {
   const { data: session } = useSession()
+  const locale = useLocale()
   const user = session?.user
   const [projects, setProjects] = useState<any[]>([])
   const [stats, setStats] = useState<DashboardStats>({
@@ -288,7 +290,7 @@ export default function StudentDashboard() {
                 </Link>
                 <div className="border-t my-1" />
                 <button
-                  onClick={() => signOut({ callbackUrl: '/' })}
+                  onClick={() => signOut({ callbackUrl: `/${locale}` })}
                   className="flex items-center justify-between p-2 rounded hover:bg-red-50 transition-colors w-full text-left"
                 >
                   <span className="text-sm text-red-600">Sign out</span>

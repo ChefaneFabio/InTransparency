@@ -26,6 +26,7 @@ import {
   LogOut
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
+import { useLocale } from 'next-intl'
 import { Progress } from '@/components/ui/progress'
 
 interface ContactUsage {
@@ -68,6 +69,7 @@ interface JobPosting {
 
 export default function RecruiterDashboard() {
   const { data: session } = useSession()
+  const locale = useLocale()
   const user = session?.user
   const [loading, setLoading] = useState(true)
   const [stats, setStats] = useState<RecruiterStats>({
@@ -550,7 +552,7 @@ export default function RecruiterDashboard() {
 
           {/* Sign out */}
           <button
-            onClick={() => signOut({ callbackUrl: '/' })}
+            onClick={() => signOut({ callbackUrl: `/${locale}` })}
             className="flex items-center gap-2 p-3 rounded-lg hover:bg-red-50 transition-colors w-full text-left border"
           >
             <LogOut className="h-4 w-4 text-red-500" />

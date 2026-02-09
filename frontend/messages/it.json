@@ -968,14 +968,28 @@
       "submittingButton": "Creazione Account..."
     },
     "login": {
-      "title": "Benvenuto",
-      "subtitle": "Accedi al tuo account",
+      "title": "Bentornato",
+      "subtitle": "Accedi al tuo account InTransparency",
       "cardTitle": "Accedi",
-      "cardDescription": "Inserisci le tue credenziali per accedere",
+      "cardDescription": "Inserisci email e password per accedere al tuo account",
       "submitButton": "Accedi",
       "submittingButton": "Accesso in corso...",
       "noAccount": "Non hai un account?",
-      "register": "Registrati"
+      "register": "Registrati",
+      "forgotPassword": "Password dimenticata?",
+      "emailPlaceholder": "Inserisci la tua email",
+      "passwordPlaceholder": "Inserisci la tua password",
+      "emailRequired": "L'email è obbligatoria",
+      "invalidEmail": "Inserisci un indirizzo email valido",
+      "passwordRequired": "La password è obbligatoria",
+      "passwordTooShort": "La password deve contenere almeno 6 caratteri",
+      "invalidCredentials": "Email o password non validi",
+      "unexpectedError": "Si è verificato un errore imprevisto. Riprova.",
+      "roles": {
+        "student": "Studente",
+        "university": "Università",
+        "recruiter": "Azienda"
+      }
     },
     "fields": {
       "firstName": "Nome",

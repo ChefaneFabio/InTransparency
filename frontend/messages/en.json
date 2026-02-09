@@ -938,13 +938,27 @@
     },
     "login": {
       "title": "Welcome Back",
-      "subtitle": "Sign in to your account",
+      "subtitle": "Sign in to your InTransparency account",
       "cardTitle": "Sign In",
-      "cardDescription": "Enter your credentials to access your account",
+      "cardDescription": "Enter your email and password to access your account",
       "submitButton": "Sign In",
       "submittingButton": "Signing in...",
       "noAccount": "Don't have an account?",
-      "register": "Register"
+      "register": "Register",
+      "forgotPassword": "Forgot password?",
+      "emailPlaceholder": "Enter your email",
+      "passwordPlaceholder": "Enter your password",
+      "emailRequired": "Email is required",
+      "invalidEmail": "Please enter a valid email address",
+      "passwordRequired": "Password is required",
+      "passwordTooShort": "Password must be at least 6 characters",
+      "invalidCredentials": "Invalid email or password",
+      "unexpectedError": "An unexpected error occurred. Please try again.",
+      "roles": {
+        "student": "Student",
+        "university": "University",
+        "recruiter": "Company"
+      }
     },
     "fields": {
       "firstName": "First Name",

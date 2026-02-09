@@ -24,6 +24,7 @@ import {
   LogOut
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
+import { useLocale } from 'next-intl'
 
 interface UniversityStats {
   totalStudents: number
@@ -51,6 +52,7 @@ interface Recruiter {
 
 export default function UniversityDashboard() {
   const { data: session } = useSession()
+  const locale = useLocale()
   const user = session?.user
   const [loading, setLoading] = useState(true)
   const [stats, setStats] = useState<UniversityStats>({
@@ -432,7 +434,7 @@ export default function UniversityDashboard() {
 
               <div className="border-t my-1" />
               <button
-                onClick={() => signOut({ callbackUrl: '/' })}
+                onClick={() => signOut({ callbackUrl: `/${locale}` })}
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-red-50 transition-colors w-full text-left"
               >
                 <div className="p-2 bg-red-50 rounded-lg">

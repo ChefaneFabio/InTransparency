@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { signIn } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -16,11 +17,15 @@ import {
   Lock,
   AlertCircle,
   Loader2,
-  ArrowRight
+  ArrowRight,
+  GraduationCap,
+  Building2,
+  Users
 } from 'lucide-react'
 
 export default function LoginPage() {
   const router = useRouter()
+  const t = useTranslations('auth')
 
   const [formData, setFormData] = useState({
     email: '',
@@ -45,15 +50,15 @@ export default function LoginPage() {
     const newErrors: any = {}
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required'
+      newErrors.email = t('login.emailRequired')
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address'
+      newErrors.email = t('login.invalidEmail')
     }
 
     if (!formData.password.trim()) {
-      newErrors.password = 'Password is required'
+      newErrors.password = t('login.passwordRequired')
     } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters'
+      newErrors.password = t('login.passwordTooShort')
     }
 
     setErrors(newErrors)
@@ -77,37 +82,57 @@ export default function LoginPage() {
 
       if (result?.error) {
         setLoginError(result.error === 'CredentialsSignin'
-          ? 'Invalid email or password'
+          ? t('login.invalidCredentials')
           : result.error)
       } else if (result?.ok) {
-        // Redirect to dashboard on success
         router.push('/dashboard')
         router.refresh()
       }
     } catch (error: any) {
-      setLoginError('An unexpected error occurred. Please try again.')
+      setLoginError(t('login.unexpectedError'))
     } finally {
       setIsLoading(false)
     }
   }
+
+  const roles = [
+    {
+      id: 'student',
+      icon: GraduationCap,
+      href: '/auth/register/student' as const,
+      color: 'text-blue-600 bg-blue-50',
+    },
+    {
+      id: 'university',
+      icon: Building2,
+      href: '/auth/register/university' as const,
+      color: 'text-purple-600 bg-purple-50',
+    },
+    {
+      id: 'recruiter',
+      icon: Users,
+      href: '/auth/register/recruiter' as const,
+      color: 'text-green-600 bg-green-50',
+    },
+  ]
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">Welcome back</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t('login.title')}</h1>
           <p className="mt-2 text-gray-600">
-            Sign in to your InTransparency account
+            {t('login.subtitle')}
           </p>
         </div>
 
         {/* Login Form */}
         <Card>
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl text-center">Sign in</CardTitle>
+            <CardTitle className="text-2xl text-center">{t('login.cardTitle')}</CardTitle>
             <CardDescription className="text-center">
-              Enter your email and password to access your account
+              {t('login.cardDescription')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -122,13 +147,13 @@ export default function LoginPage() {
 
               {/* Email Field */}
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t('fields.email')}</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
                   <Input
                     id="email"
                     type="email"
-                    placeholder="Enter your email"
+                    placeholder={t('login.emailPlaceholder')}
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     className={`pl-10 ${errors.email ? 'border-red-500' : ''}`}
@@ -143,12 +168,12 @@ export default function LoginPage() {
               {/* Password Field */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password">{t('fields.password')}</Label>
                   <Link
                     href="/auth/forgot-password"
                     className="text-sm text-blue-600 hover:text-blue-500"
                   >
-                    Forgot password?
+                    {t('login.forgotPassword')}
                   </Link>
                 </div>
                 <div className="relative">
@@ -156,7 +181,7 @@ export default function LoginPage() {
                   <Input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="Enter your password"
+                    placeholder={t('login.passwordPlaceholder')}
                     value={formData.password}
                     onChange={(e) => handleInputChange('password', e.target.value)}
                     className={`pl-10 pr-10 ${errors.password ? 'border-red-500' : ''}`}
@@ -185,11 +210,11 @@ export default function LoginPage() {
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Signing in...
+                    {t('login.submittingButton')}
                   </>
                 ) : (
                   <>
-                    Sign in
+                    {t('login.submitButton')}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </>
                 )}
@@ -198,17 +223,25 @@ export default function LoginPage() {
           </CardContent>
         </Card>
 
-        {/* Sign Up Link */}
-        <div className="text-center">
-          <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
-            <Link
-              href="/auth/register"
-              className="font-medium text-blue-600 hover:text-blue-500"
-            >
-              Sign up here
-            </Link>
-          </p>
+        {/* Registration Options */}
+        <div className="text-center space-y-4">
+          <p className="text-sm text-gray-600">{t('login.noAccount')}</p>
+          <div className="grid grid-cols-3 gap-3">
+            {roles.map((role) => (
+              <Link
+                key={role.id}
+                href={role.href}
+                className="flex flex-col items-center gap-2 p-4 rounded-lg border bg-white hover:border-gray-300 hover:shadow-sm transition-all"
+              >
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${role.color}`}>
+                  <role.icon className="h-5 w-5" />
+                </div>
+                <span className="text-sm font-medium text-gray-900">
+                  {t(`login.roles.${role.id}`)}
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </div>
