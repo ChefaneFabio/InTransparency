@@ -57,7 +57,7 @@ export function Hero() {
   const tBenefits = (index: number) => t(`${segment}.benefits.${index}`)
 
   return (
-    <section className="relative overflow-hidden hero-bg py-20 sm:py-32">
+    <section className="relative overflow-hidden hero-bg py-16 sm:py-24">
       {/* Atmospheric orbs - teal and amber */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl"></div>
@@ -192,7 +192,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-16 pt-8 border-t border-gray-200"
+            className="mt-12 pt-6 border-t border-gray-200"
           >
             <p className="text-sm font-medium text-gray-700 text-center flex items-center justify-center gap-2 mb-2">
               <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
@@ -204,7 +204,7 @@ export function Hero() {
           </motion.div>
 
           {/* Feature cards - Dynamic based on segment */}
-          <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
             <AnimatePresence mode="wait">
               {[0, 1, 2].map((index) => (
                 <motion.div

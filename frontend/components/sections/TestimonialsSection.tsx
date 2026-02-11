@@ -13,7 +13,7 @@ export function TestimonialsSection() {
   const bgs = ['bg-blue-100', 'bg-purple-100', 'bg-green-100']
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 to-slate-100">
+    <section className="py-14 bg-gradient-to-br from-slate-50 to-slate-100">
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">

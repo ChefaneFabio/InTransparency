@@ -195,104 +195,26 @@
       "placementBoost": "aumento placement istituzionale"
     },
     "cta": {
-      "main": {
-        "title": "Trasforma i tuoi progetti in",
-        "titleHighlight": "opportunità di carriera",
-        "subtitle": "Usa InTransparency per mostrare il tuo lavoro, connetterti con opportunità e far progredire la tua carriera.",
-        "benefits": {
-          "0": "Analisi progetti AI-powered",
-          "1": "Generazione storie professionali",
-          "2": "Matching intelligente con aziende",
-          "3": "Connessioni dirette con recruiter",
-          "4": "Tracciamento progressi carriera",
-          "5": "Network collaborazione tra pari"
+      "title": "Inizia con",
+      "titleHighlight": "InTransparency",
+      "subtitle": "Che tu sia uno studente, un'università o un'azienda — c'è un percorso pensato per te.",
+      "segments": {
+        "students": {
+          "title": "Per gli Studenti",
+          "description": "Costruisci un portfolio verificato dai tuoi progetti accademici, collegati con la tua università e fatti scoprire dalle aziende che cercano le tue competenze.",
+          "cta": "Inizia Gratis"
         },
-        "primaryCTA": "Inizia Gratis",
-        "secondaryCTA": "Guarda Demo",
-        "finePrint": "Nessuna carta di credito richiesta • Inizia a mostrare il tuo lavoro in minuti • Comincia oggi"
-      },
-      "pricing": {
-        "title": "Scegli il tuo piano",
-        "subtitle": "Inizia gratis e aggiorna man mano che la tua carriera cresce",
-        "mostPopular": "Più Popolare",
-        "tiers": {
-          "0": {
-            "name": "Studente",
-            "price": "Gratis",
-            "description": "Perfetto per studenti che iniziano",
-            "features": {
-              "0": "Carica fino a 5 progetti",
-              "1": "Analisi AI base",
-              "2": "Storie professionali",
-              "3": "Accesso alla community",
-              "4": "Supporto email"
-            },
-            "cta": "Inizia Gratis"
-          },
-          "1": {
-            "name": "Premium Studente",
-            "price": "€9",
-            "period": "/mese",
-            "description": "Funzionalità avanzate per studenti seri",
-            "features": {
-              "0": "Progetti illimitati",
-              "1": "Analisi AI avanzata",
-              "2": "Matching prioritario con aziende",
-              "3": "Creazione portfolio video",
-              "4": "Messaggistica diretta recruiter",
-              "5": "Supporto prioritario"
-            },
-            "cta": "Aggiorna a Premium"
-          },
-          "2": {
-            "name": "Università",
-            "price": "Personalizzato",
-            "description": "Soluzione enterprise per istituzioni",
-            "features": {
-              "0": "Accesso per tutta l'istituzione",
-              "1": "Dashboard analytics studenti",
-              "2": "Tracciamento placement",
-              "3": "Partnership con industrie",
-              "4": "Branding personalizzato",
-              "5": "Supporto dedicato"
-            },
-            "cta": "Contatta Vendite"
-          }
+        "universities": {
+          "title": "Per le Università",
+          "description": "Verifica i progetti degli studenti, monitora i risultati di placement e collega i tuoi studenti direttamente ai datori di lavoro. Gratuito per le istituzioni partner.",
+          "cta": "Diventa Partner"
         },
-        "allPlansInclude": "Tutti i piani includono sicurezza SSL, backup dati e conformità GDPR"
-      },
-      "socialProof": {
-        "title": "Vedi Cosa Stanno Costruendo gli Studenti",
-        "subtitle": "Studenti reali. Progetti reali. Risultati reali. Sfoglia portfolio verificati della tua università.",
-        "stats": {
-          "0": {
-            "value": "Portfolio Verificati",
-            "label": "Competenze confermate dall'istituzione"
-          },
-          "1": {
-            "value": "Zero Candidature",
-            "label": "Le aziende ti contattano per prime"
-          },
-          "2": {
-            "value": "98% Risparmio",
-            "label": "vs agenzie interinali tradizionali"
-          }
-        },
-        "readStories": "Leggi Storie di Successo",
-        "browsePortfolios": "Sfoglia Portfolio Studenti"
-      },
-      "finalBanner": {
-        "title": "Pronto a sbloccare il tuo potenziale?",
-        "subtitle": "Trasforma i tuoi progetti accademici in storie di carriera convincenti. Inizia il tuo viaggio con InTransparency oggi.",
-        "createAccount": "Crea Account Gratuito",
-        "schedulDemo": "Prenota Demo",
-        "benefits": {
-          "0": "Piano gratuito per sempre",
-          "1": "Nessun costo di setup",
-          "2": "Cancella in qualsiasi momento"
+        "companies": {
+          "title": "Per le Aziende",
+          "description": "Cerca talenti verificati per competenze reali e progetti concreti. Paga solo quando contatti un candidato — nessun abbonamento.",
+          "cta": "Inizia ad Assumere"
         }
-      },
-      "trustIndicator": "Connettiti con le migliori università e aziende"
+      }
     },
     "trustIndicators": {
       "features": {
@@ -339,6 +261,12 @@
           }
         }
       }
+    },
+    "booking": {
+      "title": "Prenota una Demo",
+      "subtitle": "Scopri come InTransparency può funzionare per la tua università o azienda. Prenota una chiamata gratuita con il nostro team.",
+      "cta": "Prenota un Incontro",
+      "note": "Gratuito, senza impegno - chiamata di 15 min"
     },
     "howItWorksPage": {
       "title": "Come Funziona",

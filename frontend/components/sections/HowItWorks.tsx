@@ -83,10 +83,10 @@ export function HowItWorks() {
   const currentStep = steps[activeStep]
 
   return (
-    <section id="how-it-works" className="relative py-24 overflow-hidden hero-bg">
+    <section id="how-it-works" className="relative py-16 overflow-hidden hero-bg">
       <div className="container max-w-7xl mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="text-4xl font-display font-bold text-foreground mb-6">
             {t('title')} {' '}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -142,7 +142,7 @@ export function HowItWorks() {
         </div>
 
         {/* Current Step Display */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
           {/* Left: Step Details */}
           <div className="space-y-6">
             <div className="flex items-center space-x-4">
@@ -296,8 +296,8 @@ export function HowItWorks() {
         </div>
 
         {/* Benefits Grid */}
-        <div className="mb-16">
-          <h3 className="text-3xl font-display font-bold text-center text-foreground mb-12">
+        <div className="mb-12">
+          <h3 className="text-3xl font-display font-bold text-center text-foreground mb-8">
             {t('benefits.title')}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
