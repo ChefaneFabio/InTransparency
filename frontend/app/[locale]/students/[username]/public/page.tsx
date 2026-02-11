@@ -8,7 +8,8 @@ interface PageProps {
 }
 
 async function fetchPublicPortfolio(username: string) {
-  const apiUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+  const apiUrl = process.env.NEXT_PUBLIC_APP_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
 
   try {
     const response = await fetch(`${apiUrl}/api/students/${username}/public`, {
