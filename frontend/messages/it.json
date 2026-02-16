@@ -3563,36 +3563,39 @@
         "title": "Demo Ricerca Lavoro AI",
         "subtitle": "Per Studenti",
         "placeholder": "Descrivi il tuo lavoro ideale...",
-        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI per la ricerca di lavoro. Dimmi che tipo di lavoro stai cercando in italiano!\n\nProva: \"Trova lavori frontend developer a Milano in startup\" o \"Stage curriculare in data science\""
+        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI per la ricerca di lavoro. Dimmi cosa cerchi — qualsiasi campo, qualsiasi città!\n\nProva: \"Stage in graphic design a Milano\" o \"Lavori marketing a Roma\" o \"Tirocinio data science\""
       },
       "company": {
         "title": "Demo Ricerca Candidati AI",
         "subtitle": "Per Aziende",
         "placeholder": "Descrivi chi stai cercando...",
-        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI per il recruiting. Descrivi il candidato che ti serve in italiano!\n\nProva: \"Studenti cybersecurity Roma Network Security 30/30\""
+        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI per il recruiting. Descrivi il candidato che cerchi — competenze, corso di laurea, città!\n\nProva: \"Studenti con competenze Figma e UI/UX\" o \"Laureati marketing con esperienza social media\""
       },
       "university": {
         "title": "Demo Hub Ricerca AI",
         "subtitle": "Per Istituti (Università e ITS)",
         "placeholder": "Cerca studenti o lavori...",
-        "initialMessage": "👋 Ciao! Sono Transparenty, l'assistente AI del tuo istituto. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Mostrami studenti CS con media 3.8+\" o \"Trova aziende tech che assumono\""
+        "initialMessage": "👋 Ciao! Sono Transparenty, l'assistente AI del tuo istituto. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Studenti design\" o \"Opportunità marketing per laureati\" o \"Studenti CS con media 3.8+\""
       }
     },
     "exampleQueries": {
       "student": [
-        "Stage curriculare informatica a Milano",
-        "Tirocinio data science per la mia laurea",
-        "Lavori frontend developer entry-level a Milano"
+        "Stage in graphic design a Milano",
+        "Tirocinio marketing digitale a Roma",
+        "Lavori frontend developer entry-level a Milano",
+        "Business analyst a Torino"
       ],
       "company": [
-        "Studenti cybersecurity Politecnico con Network Security 30/30",
-        "Data engineer con Python e Spark, media 27+, zona Milano",
-        "Frontend developer con React e TypeScript, ottime capacità comunicative"
+        "Studenti con competenze graphic design e Figma",
+        "Laureati marketing con competenze social media",
+        "Studenti cybersecurity Politecnico con Network Security",
+        "Studenti economia e business a Milano"
       ],
       "university": [
-        "Mostrami studenti CS con media 3.8+ non ancora contattati",
-        "Quali studenti sono stati assunti da aziende tech questo mese?",
-        "Trova aziende tech che cercano ML engineer a Milano"
+        "Studenti design con media alta",
+        "Opportunità marketing per laureati",
+        "Mostrami studenti CS con media 3.8+",
+        "Trova aziende che assumono a Milano"
       ]
     },
     "ui": {

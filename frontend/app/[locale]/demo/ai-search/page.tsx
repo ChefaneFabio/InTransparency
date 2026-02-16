@@ -50,35 +50,52 @@ type Message = {
 
 const mockResults = {
   studentJobs: [
-    { id: '1', title: 'Frontend Developer', company: 'TechStartup', location: 'Milan, IT', salary: '€35,000 - €45,000', type: 'Full-time', match: 94, coordinates: { lat: 45.4642, lng: 9.1900 } },
-    { id: '2', title: 'Junior Software Engineer', company: 'InnovateCo', location: 'Remote', salary: '€30,000 - €40,000', type: 'Full-time', match: 89, coordinates: { lat: 41.9028, lng: 12.4964 } },
-    { id: '3', title: 'React Developer', company: 'StartupHub', location: 'Rome, IT', salary: '€32,000 - €42,000', type: 'Full-time', match: 87, coordinates: { lat: 41.9028, lng: 12.4964 } },
-    { id: '4', title: 'Full Stack Developer', company: 'TechCo', location: 'Turin, IT', salary: '€38,000 - €48,000', type: 'Full-time', match: 91, coordinates: { lat: 45.0703, lng: 7.6869 } },
-    { id: '5', title: 'Backend Engineer', company: 'DevShop', location: 'Florence, IT', salary: '€35,000 - €45,000', type: 'Full-time', match: 85, coordinates: { lat: 43.7696, lng: 11.2558 } }
+    { id: '1', title: 'Frontend Developer', company: 'TechStartup', location: 'Milan, IT', salary: '€35,000 - €45,000', type: 'Full-time', match: 94, field: 'tech', coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '2', title: 'Full Stack Developer', company: 'TechCo', location: 'Turin, IT', salary: '€38,000 - €48,000', type: 'Full-time', match: 91, field: 'tech', coordinates: { lat: 45.0703, lng: 7.6869 } },
+    { id: '3', title: 'Backend Engineer', company: 'DevShop', location: 'Florence, IT', salary: '€35,000 - €45,000', type: 'Full-time', match: 85, field: 'tech', coordinates: { lat: 43.7696, lng: 11.2558 } },
+    { id: '4', title: 'Graphic Designer', company: 'CreativeStudio', location: 'Milan, IT', salary: '€28,000 - €36,000', type: 'Full-time', match: 92, field: 'design', coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '5', title: 'UX Designer', company: 'DesignLab', location: 'Rome, IT', salary: '€32,000 - €42,000', type: 'Full-time', match: 90, field: 'design', coordinates: { lat: 41.9028, lng: 12.4964 } },
+    { id: '6', title: 'Marketing Intern', company: 'BrandCo', location: 'Milan, IT', salary: '€25,000 - €32,000', type: 'Full-time', match: 88, field: 'marketing', coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '7', title: 'Digital Marketing Specialist', company: 'MediaGroup', location: 'Rome, IT', salary: '€28,000 - €35,000', type: 'Full-time', match: 86, field: 'marketing', coordinates: { lat: 41.9028, lng: 12.4964 } },
+    { id: '8', title: 'Business Analyst', company: 'ConsultingPro', location: 'Milan, IT', salary: '€33,000 - €43,000', type: 'Full-time', match: 89, field: 'business', coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '9', title: 'Junior Financial Analyst', company: 'FinanceCo', location: 'Turin, IT', salary: '€30,000 - €38,000', type: 'Full-time', match: 84, field: 'business', coordinates: { lat: 45.0703, lng: 7.6869 } },
+    { id: '10', title: 'Legal Assistant', company: 'Studio Legale Bianchi', location: 'Rome, IT', salary: '€26,000 - €34,000', type: 'Full-time', match: 87, field: 'law', coordinates: { lat: 41.9028, lng: 12.4964 } }
   ],
   internships: [
-    { id: '101', title: 'Stage Curriculare - Software Development', company: 'Microsoft Italia', location: 'Milan, IT', salary: '€800/month', type: 'Internship', duration: '6 months', match: 96, coordinates: { lat: 45.4642, lng: 9.1900 }, validForDegree: true },
-    { id: '102', title: 'Tirocinio Data Science', company: 'IBM Rome', location: 'Rome, IT', salary: '€900/month', type: 'Internship', duration: '6 months', match: 93, coordinates: { lat: 41.9028, lng: 12.4964 }, validForDegree: true },
-    { id: '103', title: 'Stage in AI/Machine Learning', company: 'Accenture', location: 'Turin, IT', salary: '€850/month', type: 'Internship', duration: '6 months', match: 91, coordinates: { lat: 45.0703, lng: 7.6869 }, validForDegree: true },
-    { id: '104', title: 'Internship - Frontend Development', company: 'Deloitte Digital', location: 'Milan, IT', salary: '€900/month', type: 'Internship', duration: '6 months', match: 89, coordinates: { lat: 45.4642, lng: 9.1900 }, validForDegree: true },
-    { id: '105', title: 'Stage Curriculare - Cybersecurity', company: 'Leonardo SpA', location: 'Rome, IT', salary: '€1000/month', type: 'Internship', duration: '6 months', match: 94, coordinates: { lat: 41.9028, lng: 12.4964 }, validForDegree: true },
-    { id: '106', title: 'Tirocinio Full Stack', company: 'Reply', location: 'Turin, IT', salary: '€800/month', type: 'Internship', duration: '3-6 months', match: 88, coordinates: { lat: 45.0703, lng: 7.6869 }, validForDegree: true }
+    { id: '101', title: 'Stage Curriculare - Software Development', company: 'Microsoft Italia', location: 'Milan, IT', salary: '€800/month', type: 'Internship', duration: '6 months', match: 96, field: 'tech', coordinates: { lat: 45.4642, lng: 9.1900 }, validForDegree: true },
+    { id: '102', title: 'Tirocinio Data Science', company: 'IBM Rome', location: 'Rome, IT', salary: '€900/month', type: 'Internship', duration: '6 months', match: 93, field: 'tech', coordinates: { lat: 41.9028, lng: 12.4964 }, validForDegree: true },
+    { id: '103', title: 'Stage in AI/Machine Learning', company: 'Accenture', location: 'Turin, IT', salary: '€850/month', type: 'Internship', duration: '6 months', match: 91, field: 'tech', coordinates: { lat: 45.0703, lng: 7.6869 }, validForDegree: true },
+    { id: '104', title: 'Stage Curriculare - Cybersecurity', company: 'Leonardo SpA', location: 'Rome, IT', salary: '€1000/month', type: 'Internship', duration: '6 months', match: 94, field: 'tech', coordinates: { lat: 41.9028, lng: 12.4964 }, validForDegree: true },
+    { id: '105', title: 'Stage in Graphic Design', company: 'Publicis Italia', location: 'Milan, IT', salary: '€700/month', type: 'Internship', duration: '6 months', match: 93, field: 'design', coordinates: { lat: 45.4642, lng: 9.1900 }, validForDegree: true },
+    { id: '106', title: 'Tirocinio UX/UI Design', company: 'Frog Design', location: 'Milan, IT', salary: '€800/month', type: 'Internship', duration: '6 months', match: 90, field: 'design', coordinates: { lat: 45.4642, lng: 9.1900 }, validForDegree: true },
+    { id: '107', title: 'Tirocinio Marketing Digitale', company: 'Mediaset', location: 'Milan, IT', salary: '€750/month', type: 'Internship', duration: '6 months', match: 89, field: 'marketing', coordinates: { lat: 45.4642, lng: 9.1900 }, validForDegree: true },
+    { id: '108', title: 'Stage in Comunicazione', company: 'Edelman Italia', location: 'Rome, IT', salary: '€700/month', type: 'Internship', duration: '3-6 months', match: 87, field: 'marketing', coordinates: { lat: 41.9028, lng: 12.4964 }, validForDegree: true },
+    { id: '109', title: 'Stage in Consulenza Aziendale', company: 'McKinsey Italy', location: 'Milan, IT', salary: '€1000/month', type: 'Internship', duration: '6 months', match: 95, field: 'business', coordinates: { lat: 45.4642, lng: 9.1900 }, validForDegree: true },
+    { id: '110', title: 'Tirocinio Studio Legale', company: 'Bonelli Erede', location: 'Rome, IT', salary: '€800/month', type: 'Internship', duration: '6 months', match: 88, field: 'law', coordinates: { lat: 41.9028, lng: 12.4964 }, validForDegree: true }
   ],
   companyResults: [
-    { id: '1', initials: 'M.R.', university: 'Politecnico di Milano', major: 'Cybersecurity', gpa: 30, skills: ['Network Security', 'Python', 'Cryptography'], softSkills: ['Problem-solving', 'Teamwork'], match: 96, coordinates: { lat: 45.4642, lng: 9.1900 } },
-    { id: '2', initials: 'S.B.', university: 'Sapienza Roma', major: 'Computer Science', gpa: 29, skills: ['Cybersecurity', 'Linux', 'Ethical Hacking'], softSkills: ['Leadership', 'Communication'], match: 92, coordinates: { lat: 41.9028, lng: 12.4964 } },
-    { id: '3', initials: 'L.V.', university: 'Politecnico di Torino', major: 'Software Engineering', gpa: 29, skills: ['Network Security', 'Java', 'Cloud'], softSkills: ['Analytical', 'Detail-oriented'], match: 89, coordinates: { lat: 45.0703, lng: 7.6869 } },
-    { id: '4', initials: 'G.M.', university: 'Università di Bologna', major: 'Cybersecurity', gpa: 28, skills: ['Security', 'Python', 'Penetration Testing'], softSkills: ['Problem-solving', 'Communication'], match: 88, coordinates: { lat: 44.4949, lng: 11.3426 } }
+    { id: '1', initials: 'M.R.', university: 'Politecnico di Milano', major: 'Cybersecurity', gpa: 30, skills: ['Network Security', 'Python', 'Cryptography'], softSkills: ['Problem-solving', 'Teamwork'], match: 96, field: 'tech', coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '2', initials: 'S.B.', university: 'Sapienza Roma', major: 'Computer Science', gpa: 29, skills: ['Cybersecurity', 'Linux', 'Ethical Hacking'], softSkills: ['Leadership', 'Communication'], match: 92, field: 'tech', coordinates: { lat: 41.9028, lng: 12.4964 } },
+    { id: '3', initials: 'L.V.', university: 'Politecnico di Torino', major: 'Software Engineering', gpa: 29, skills: ['Network Security', 'Java', 'Cloud'], softSkills: ['Analytical', 'Detail-oriented'], match: 89, field: 'tech', coordinates: { lat: 45.0703, lng: 7.6869 } },
+    { id: '4', initials: 'A.C.', university: 'NABA Milano', major: 'Graphic Design', gpa: 29, skills: ['Photoshop', 'Illustrator', 'Figma', 'UI/UX'], softSkills: ['Creativity', 'Attention to detail'], match: 95, field: 'design', coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '5', initials: 'F.D.', university: 'IED Roma', major: 'Visual Communication', gpa: 28, skills: ['InDesign', 'Figma', 'Branding', 'Typography'], softSkills: ['Teamwork', 'Creativity'], match: 91, field: 'design', coordinates: { lat: 41.9028, lng: 12.4964 } },
+    { id: '6', initials: 'G.P.', university: 'Bocconi Milano', major: 'Marketing & Communications', gpa: 29, skills: ['Social Media', 'SEO', 'Content Strategy', 'Google Ads'], softSkills: ['Communication', 'Strategic thinking'], match: 93, field: 'marketing', coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '7', initials: 'E.R.', university: 'LUISS Roma', major: 'Business & Economics', gpa: 28, skills: ['Excel', 'Financial Modeling', 'Data Analysis', 'SAP'], softSkills: ['Analytical', 'Leadership'], match: 90, field: 'business', coordinates: { lat: 41.9028, lng: 12.4964 } },
+    { id: '8', initials: 'C.M.', university: 'Università di Bologna', major: 'Law (Giurisprudenza)', gpa: 29, skills: ['Legal Writing', 'Contract Review', 'Research', 'EU Law'], softSkills: ['Critical thinking', 'Communication'], match: 88, field: 'law', coordinates: { lat: 44.4949, lng: 11.3426 } }
   ],
   universityStudents: [
-    { id: '1', name: 'Marco Rossi', major: 'Computer Science', gpa: 3.85, contacted: 2, hired: false, coordinates: { lat: 45.4642, lng: 9.1900 } },
-    { id: '2', name: 'Sofia Bianchi', major: 'Data Science', gpa: 3.92, contacted: 8, hired: true, company: 'TechCorp', coordinates: { lat: 41.9028, lng: 12.4964 } },
-    { id: '3', name: 'Luca Verdi', major: 'Software Engineering', gpa: 3.78, contacted: 5, hired: false, coordinates: { lat: 45.0703, lng: 7.6869 } }
+    { id: '1', name: 'Marco Rossi', major: 'Computer Science', gpa: 3.85, contacted: 2, hired: false, field: 'tech', coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '2', name: 'Sofia Bianchi', major: 'Data Science', gpa: 3.92, contacted: 8, hired: true, company: 'TechCorp', field: 'tech', coordinates: { lat: 41.9028, lng: 12.4964 } },
+    { id: '3', name: 'Luca Verdi', major: 'Graphic Design', gpa: 3.78, contacted: 5, hired: false, field: 'design', coordinates: { lat: 45.0703, lng: 7.6869 } },
+    { id: '4', name: 'Giulia Moretti', major: 'Marketing', gpa: 3.80, contacted: 3, hired: true, company: 'MediaGroup', field: 'marketing', coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '5', name: 'Alessandro Conti', major: 'Business Administration', gpa: 3.70, contacted: 4, hired: false, field: 'business', coordinates: { lat: 41.9028, lng: 12.4964 } }
   ],
   universityJobs: [
-    { id: '1', title: 'ML Engineer', company: 'TechCorp Italy', location: 'Milan', salary: '€45,000 - €60,000', matchedStudents: 12, coordinates: { lat: 45.4642, lng: 9.1900 } },
-    { id: '2', title: 'Data Analyst', company: 'DataCo', location: 'Rome', salary: '€35,000 - €45,000', matchedStudents: 8, coordinates: { lat: 41.9028, lng: 12.4964 } },
-    { id: '3', title: 'Software Engineer', company: 'DevHub', location: 'Turin', salary: '€40,000 - €55,000', matchedStudents: 15, coordinates: { lat: 45.0703, lng: 7.6869 } }
+    { id: '1', title: 'ML Engineer', company: 'TechCorp Italy', location: 'Milan', salary: '€45,000 - €60,000', matchedStudents: 12, field: 'tech', coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '2', title: 'Data Analyst', company: 'DataCo', location: 'Rome', salary: '€35,000 - €45,000', matchedStudents: 8, field: 'tech', coordinates: { lat: 41.9028, lng: 12.4964 } },
+    { id: '3', title: 'Graphic Designer', company: 'CreativeStudio', location: 'Milan', salary: '€28,000 - €36,000', matchedStudents: 6, field: 'design', coordinates: { lat: 45.4642, lng: 9.1900 } },
+    { id: '4', title: 'Marketing Coordinator', company: 'BrandCo', location: 'Rome', salary: '€30,000 - €38,000', matchedStudents: 10, field: 'marketing', coordinates: { lat: 41.9028, lng: 12.4964 } },
+    { id: '5', title: 'Business Consultant', company: 'ConsultingPro', location: 'Milan', salary: '€40,000 - €55,000', matchedStudents: 9, field: 'business', coordinates: { lat: 45.4642, lng: 9.1900 } }
   ]
 }
 
@@ -146,6 +163,36 @@ export default function AISearchDemoPage() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
+  // Stopwords to ignore when scoring results
+  const stopWords = new Set(['i', 'want', 'to', 'find', 'the', 'a', 'an', 'in', 'for', 'and', 'or', 'with', 'at', 'of', 'my',
+    'me', 'looking', 'search', 'show', 'get', 'need', 'who', 'are', 'is', 'good', 'great', 'best', 'top',
+    'people', 'person', 'students', 'jobs', 'job', 'work', 'find', 'some', 'that', 'this', 'those',
+    'voglio', 'cerco', 'cerca', 'trovami', 'trova', 'mostrami', 'per', 'con', 'che', 'di', 'il', 'la', 'un', 'una',
+    'dei', 'delle', 'del', 'dalla', 'dal', 'le', 'lo', 'gli', 'sono', 'da', 'su', 'come', 'mi', 'si'])
+
+  // Synonyms map: query word → words to also match in results
+  const synonyms: Record<string, string[]> = {
+    'graphics': ['graphic', 'design', 'designer', 'visual', 'creative', 'photoshop', 'illustrator', 'figma', 'ui', 'ux'],
+    'graphic': ['design', 'designer', 'visual', 'creative', 'photoshop', 'illustrator', 'figma'],
+    'design': ['designer', 'graphic', 'creative', 'ui', 'ux', 'figma', 'visual'],
+    'creative': ['design', 'graphic', 'designer', 'visual', 'branding'],
+    'marketing': ['social media', 'seo', 'content', 'digital', 'comunicazione', 'communication', 'brand'],
+    'comunicazione': ['marketing', 'communication', 'social media', 'content', 'digital'],
+    'business': ['economics', 'finance', 'analyst', 'consulting', 'economia', 'financial', 'consulenza'],
+    'economia': ['business', 'economics', 'finance', 'financial'],
+    'finance': ['financial', 'business', 'economics', 'analyst', 'accounting'],
+    'law': ['legal', 'giurisprudenza', 'diritto', 'legale', 'contract'],
+    'legal': ['law', 'giurisprudenza', 'diritto', 'legale', 'contract'],
+    'giurisprudenza': ['law', 'legal', 'diritto', 'legale'],
+    'security': ['cybersecurity', 'network', 'hacking', 'penetration'],
+    'cybersecurity': ['security', 'network', 'hacking', 'ethical'],
+    'frontend': ['react', 'vue', 'javascript', 'typescript', 'ui'],
+    'backend': ['node', 'python', 'java', 'server', 'api'],
+    'fullstack': ['full stack', 'frontend', 'backend'],
+    'data': ['data science', 'machine learning', 'ml', 'analytics', 'analysis'],
+    'engineering': ['engineer', 'mechanical', 'civil', 'electrical', 'ingegneria'],
+  }
+
   const parseQuery = (query: string) => {
     const lowerQuery = query.toLowerCase()
 
@@ -163,16 +210,61 @@ export default function AISearchDemoPage() {
       florence: lowerQuery.includes('florence') || lowerQuery.includes('firenze')
     }
 
-    // Detect skills/fields
-    const fields = {
-      frontend: lowerQuery.includes('frontend') || lowerQuery.includes('react') || lowerQuery.includes('vue'),
-      backend: lowerQuery.includes('backend') || lowerQuery.includes('node') || lowerQuery.includes('python'),
-      dataScience: lowerQuery.includes('data science') || lowerQuery.includes('data') || lowerQuery.includes('ml') || lowerQuery.includes('machine learning'),
-      cybersecurity: lowerQuery.includes('cybersecurity') || lowerQuery.includes('security'),
-      fullstack: lowerQuery.includes('full stack') || lowerQuery.includes('fullstack')
+    return { isInternship, isRemote, isFullTime, locations, originalQuery: query }
+  }
+
+  // Score how well a result matches query tokens
+  const scoreResult = (result: any, query: string): number => {
+    const lowerQuery = query.toLowerCase()
+    const tokens = lowerQuery.split(/\s+/).filter(t => t.length > 1 && !stopWords.has(t))
+    if (tokens.length === 0) return 0
+
+    // Build searchable text from all result fields
+    const searchFields: string[] = []
+    if (result.title) searchFields.push(result.title.toLowerCase())
+    if (result.company) searchFields.push(result.company.toLowerCase())
+    if (result.location) searchFields.push(result.location.toLowerCase())
+    if (result.major) searchFields.push(result.major.toLowerCase())
+    if (result.university) searchFields.push(result.university.toLowerCase())
+    if (result.name) searchFields.push(result.name.toLowerCase())
+    if (result.field) searchFields.push(result.field.toLowerCase())
+    if (result.skills) {
+      result.skills.forEach((s: string) => searchFields.push(s.toLowerCase()))
+    }
+    if (result.softSkills) {
+      result.softSkills.forEach((s: string) => searchFields.push(s.toLowerCase()))
+    }
+    const searchText = searchFields.join(' ')
+
+    let score = 0
+    for (const token of tokens) {
+      // Direct match
+      if (searchText.includes(token)) {
+        score += 10
+      }
+      // Synonym match
+      const syns = synonyms[token]
+      if (syns) {
+        for (const syn of syns) {
+          if (searchText.includes(syn)) {
+            score += 6
+            break // count only one synonym match per token
+          }
+        }
+      }
+      // Partial match (token is start of a word in search text)
+      if (token.length >= 3 && !searchText.includes(token)) {
+        const words = searchText.split(/\s+/)
+        for (const word of words) {
+          if (word.startsWith(token) || token.startsWith(word)) {
+            score += 3
+            break
+          }
+        }
+      }
     }
 
-    return { isInternship, isRemote, isFullTime, locations, fields, originalQuery: query }
+    return score
   }
 
   const handleSend = () => {
@@ -195,60 +287,57 @@ export default function AISearchDemoPage() {
       let responseContent = ''
       const parsed = parseQuery(currentInput)
 
+      // Helper: filter by location
+      const filterByLocation = (items: any[]) => {
+        if (parsed.locations.milan) return items.filter((r: any) => (r.location || '').toLowerCase().includes('milan'))
+        if (parsed.locations.rome) return items.filter((r: any) => (r.location || '').toLowerCase().includes('rom'))
+        if (parsed.locations.turin) return items.filter((r: any) => (r.location || '').toLowerCase().includes('turi'))
+        if (parsed.locations.florence) return items.filter((r: any) => (r.location || '').toLowerCase().includes('floren'))
+        return items
+      }
+
+      // Helper: score, sort, and filter results by relevance
+      const rankResults = (items: any[], query: string) => {
+        const scored = items.map(item => ({ item, score: scoreResult(item, query) }))
+        scored.sort((a, b) => b.score - a.score)
+        const topScore = scored[0]?.score || 0
+        // If best score > 0, only return items with meaningful scores
+        if (topScore > 0) {
+          return scored.filter(s => s.score > 0).map(s => s.item)
+        }
+        return [] // no matches
+      }
+
       if (activeDemo === 'student') {
-        // Intelligent job search
+        const pool = parsed.isInternship ? mockResults.internships : mockResults.studentJobs
+        let ranked = rankResults(pool, currentInput)
+        ranked = filterByLocation(ranked.length > 0 ? ranked : pool)
+
+        const hasRelevantResults = ranked.length > 0 && scoreResult(ranked[0], currentInput) > 0
+        results = hasRelevantResults ? ranked : pool.slice(0, 4)
+
+        const topResults = results.slice(0, 3)
         if (parsed.isInternship) {
-          results = mockResults.internships
-
-          // Filter by location if specified
-          if (parsed.locations.milan) {
-            results = results.filter((r: any) => r.location.includes('Milan'))
-          } else if (parsed.locations.rome) {
-            results = results.filter((r: any) => r.location.includes('Rome'))
-          } else if (parsed.locations.turin) {
-            results = results.filter((r: any) => r.location.includes('Turin'))
+          if (hasRelevantResults) {
+            responseContent = `Perfect! I found **${results.length} stage curriculare** positions matching your search:\n\n`
+          } else {
+            responseContent = `Here are some **popular internship opportunities** to explore. Try being more specific about your field or location!\n\n`
           }
-
-          // Filter by field if specified
-          if (parsed.fields.dataScience) {
-            results = results.filter((r: any) => r.title.toLowerCase().includes('data'))
-          } else if (parsed.fields.cybersecurity) {
-            results = results.filter((r: any) => r.title.toLowerCase().includes('cybersecurity'))
-          } else if (parsed.fields.frontend) {
-            results = results.filter((r: any) => r.title.toLowerCase().includes('frontend'))
-          }
-
-          if (results.length === 0) results = mockResults.internships.slice(0, 3)
-
-          const topResults = results.slice(0, 3)
-          responseContent = `Perfect! I found **${results.length} stage curriculare** positions valid for your university degree:\n\n`
           topResults.forEach((r: any) => {
             responseContent += `🎓 ${r.title} at ${r.company} - ${r.location} - ${r.salary}\n   ✓ Valid for degree | ${r.duration}\n\n`
           })
           if (results.length > 3) {
             responseContent += `...and ${results.length - 3} more internships!\n\n`
           }
-          responseContent += `✨ All positions are recognized as valid "stage curriculare" by universities!\n💡 Switch to Map View to see locations!`
+          if (hasRelevantResults) {
+            responseContent += `✨ All positions are recognized as valid "stage curriculare" by universities!\n💡 Switch to Map View to see locations!`
+          }
         } else {
-          // Full-time jobs
-          results = mockResults.studentJobs
-
-          // Filter by location
-          if (parsed.locations.milan) {
-            results = results.filter((r: any) => r.location.includes('Milan'))
-          } else if (parsed.locations.rome) {
-            results = results.filter((r: any) => r.location.includes('Rome'))
+          if (hasRelevantResults) {
+            responseContent = `Perfect! I found **${results.length} jobs** matching your search:\n\n`
+          } else {
+            responseContent = `Here are some **popular job opportunities** to explore. Try specifying a field like "graphic design", "marketing", or "business"!\n\n`
           }
-
-          // Filter by field
-          if (parsed.fields.frontend) {
-            results = results.filter((r: any) => r.title.toLowerCase().includes('frontend') || r.title.toLowerCase().includes('react'))
-          }
-
-          if (results.length === 0) results = mockResults.studentJobs.slice(0, 3)
-
-          const topResults = results.slice(0, 3)
-          responseContent = `Perfect! I found **${results.length} jobs** matching "${currentInput}":\n\n`
           topResults.forEach((r: any) => {
             responseContent += `💼 ${r.title} at ${r.company} - ${r.location} - ${r.salary}\n`
           })
@@ -258,43 +347,59 @@ export default function AISearchDemoPage() {
           responseContent += `\n✨ Switch to Map View to see locations!`
         }
       } else if (activeDemo === 'company') {
-        results = mockResults.companyResults
-
-        // Filter by location
+        let ranked = rankResults(mockResults.companyResults, currentInput)
+        // Also filter by location for university city
         if (parsed.locations.milan) {
-          results = results.filter((r: any) => r.university.includes('Milano'))
-        } else if (parsed.locations.rome || parsed.locations.turin) {
-          results = results.filter((r: any) => r.university.includes('Roma') || r.university.includes('Torino'))
+          ranked = ranked.filter((r: any) => r.university.includes('Milano') || r.university.includes('Milan'))
+        } else if (parsed.locations.rome) {
+          ranked = ranked.filter((r: any) => r.university.includes('Roma') || r.university.includes('Rome'))
         }
 
-        // Filter by field
-        if (parsed.fields.cybersecurity) {
-          results = results.filter((r: any) => r.major.includes('Cybersecurity') || r.skills.some((s: string) => s.toLowerCase().includes('security')))
-        }
-
-        if (results.length === 0) results = mockResults.companyResults
+        const hasRelevantResults = ranked.length > 0
+        results = hasRelevantResults ? ranked : mockResults.companyResults.slice(0, 4)
 
         const topResults = results.slice(0, 3)
-        responseContent = `Great! I found **${results.length} verified candidates** matching "${currentInput}":\n\n`
+        if (hasRelevantResults) {
+          responseContent = `Great! I found **${results.length} verified candidates** matching your search:\n\n`
+        } else {
+          responseContent = `Here are some **top candidates** across various fields. Try searching for a specific skill like "Figma", "SEO", or "Python"!\n\n`
+        }
         topResults.forEach((r: any) => {
-          responseContent += `🎓 ${r.initials} - ${r.university}, ${r.major}, ${r.gpa}/30 GPA\n   Skills: ${r.skills.slice(0, 2).join(', ')}\n\n`
+          responseContent += `🎓 ${r.initials} - ${r.university}, ${r.major}, ${r.gpa}/30 GPA\n   Skills: ${r.skills.slice(0, 3).join(', ')}\n\n`
         })
         if (results.length > 3) {
           responseContent += `...and ${results.length - 3} more!\n\n`
         }
         responseContent += `💡 View on map to see geographic distribution!\n✨ Register to unlock contacts for €10 each!`
       } else {
-        const isStudentQuery = currentInput.toLowerCase().includes('student') || currentInput.toLowerCase().includes('gpa')
-        if (isStudentQuery) {
-          results = mockResults.universityStudents
-          responseContent = `📊 Found **${results.length} students** matching "${currentInput}":\n\n`
+        // University demo: search both students and jobs, return whichever scores better
+        const isStudentQuery = currentInput.toLowerCase().includes('student') || currentInput.toLowerCase().includes('gpa') || currentInput.toLowerCase().includes('studenti')
+        const isJobQuery = currentInput.toLowerCase().includes('hiring') || currentInput.toLowerCase().includes('companies') || currentInput.toLowerCase().includes('aziend') || currentInput.toLowerCase().includes('opportunit')
+
+        if (isStudentQuery || (!isJobQuery && rankResults(mockResults.universityStudents, currentInput).length > 0)) {
+          const ranked = rankResults(mockResults.universityStudents, currentInput)
+          const hasRelevantResults = ranked.length > 0
+          results = hasRelevantResults ? ranked : mockResults.universityStudents
+
+          if (hasRelevantResults) {
+            responseContent = `📊 Found **${results.length} students** matching your search:\n\n`
+          } else {
+            responseContent = `📊 Here are your **students overview**. Try searching by major like "design" or "marketing"!\n\n`
+          }
           results.forEach((r: any) => {
             responseContent += `👤 ${r.name} - ${r.major}, ${r.gpa} GPA, ${r.contacted} contacts${r.hired ? `, hired at ${r.company}` : ''}\n`
           })
           responseContent += `\n✨ View locations on the map!`
         } else {
-          results = mockResults.universityJobs
-          responseContent = `💼 Found **${results.length} job opportunities** for your students:\n\n`
+          const ranked = rankResults(mockResults.universityJobs, currentInput)
+          const hasRelevantResults = ranked.length > 0
+          results = hasRelevantResults ? ranked : mockResults.universityJobs
+
+          if (hasRelevantResults) {
+            responseContent = `💼 Found **${results.length} job opportunities** matching your search:\n\n`
+          } else {
+            responseContent = `💼 Here are **current job opportunities** for your students. Try specifying a field!\n\n`
+          }
           results.forEach((r: any) => {
             responseContent += `🏢 ${r.title} at ${r.company} - ${r.location} - ${r.matchedStudents} students match\n`
           })
