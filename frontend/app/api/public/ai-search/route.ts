@@ -116,7 +116,68 @@ function extractSearchTerms(query: string): string[] {
     .filter((w) => w.length >= 3 && !STOP_WORDS.has(w))
 }
 
+// --- Levenshtein distance for fuzzy matching ---
+function levenshtein(a: string, b: string): number {
+  if (a.length === 0) return b.length
+  if (b.length === 0) return a.length
+  const matrix: number[][] = []
+  for (let i = 0; i <= b.length; i++) matrix[i] = [i]
+  for (let j = 0; j <= a.length; j++) matrix[0][j] = j
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      const cost = b[i - 1] === a[j - 1] ? 0 : 1
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,
+        matrix[i][j - 1] + 1,
+        matrix[i - 1][j - 1] + cost
+      )
+    }
+  }
+  return matrix[b.length][a.length]
+}
+
+/** Try to fuzzy-match a word against a list of keywords (max distance 2) */
+function fuzzyMatchKeyword(word: string, keywords: string[]): string | null {
+  if (word.length < 4) return null // too short for fuzzy
+  let bestMatch: string | null = null
+  let bestDist = 3 // threshold: max distance 2
+  for (const kw of keywords) {
+    // Only compare words of similar length (avoid matching "ai" to "design")
+    if (Math.abs(word.length - kw.length) > 2) continue
+    const dist = levenshtein(word, kw)
+    if (dist < bestDist) {
+      bestDist = dist
+      bestMatch = kw
+    }
+  }
+  return bestMatch
+}
+
 // --- Fallback entity extraction (keyword-based) ---
+
+const SKILL_KEYWORDS = [
+  // Tech
+  'react', 'vue', 'angular', 'javascript', 'typescript', 'python', 'java',
+  'node', 'figma', 'photoshop', 'illustrator', 'ui', 'ux', 'design',
+  'graphic', 'graphics', 'cybersecurity', 'security', 'network', 'cloud',
+  'aws', 'docker', 'sql', 'database', 'devops', 'mobile', 'ios', 'android',
+  'flutter', 'swift', 'kotlin', 'machine learning', 'deep learning',
+  // Business & Finance
+  'marketing', 'seo', 'data', 'ml', 'ai', 'excel', 'financial',
+  'accounting', 'legal', 'law', 'communication', 'consulting', 'business',
+  'analytics', 'economics', 'management', 'entrepreneurship',
+  // Sciences & Engineering
+  'biomedical', 'biotechnology', 'biology', 'chemistry', 'physics',
+  'pharmaceutical', 'medicine', 'medical', 'nursing', 'health',
+  'mechanical', 'electrical', 'civil', 'environmental', 'aerospace',
+  'chemical', 'materials', 'robotics', 'automation', 'energy',
+  // Architecture & Design
+  'architecture', 'urban', 'interior', 'industrial design',
+  // Humanities & Social
+  'psychology', 'sociology', 'philosophy', 'literature', 'linguistics',
+  'political', 'international relations', 'education', 'pedagogy',
+]
+
 function extractBasicEntities(query: string) {
   const lower = query.toLowerCase()
 
@@ -156,32 +217,25 @@ function extractBasicEntities(query: string) {
     jobTypes.push('CONTRACT')
   }
 
-  const skillKeywords = [
-    // Tech
-    'react', 'vue', 'angular', 'javascript', 'typescript', 'python', 'java',
-    'node', 'figma', 'photoshop', 'illustrator', 'ui', 'ux', 'design',
-    'graphic', 'cybersecurity', 'security', 'network', 'cloud', 'aws',
-    'docker', 'sql', 'database', 'devops', 'mobile', 'ios', 'android',
-    'flutter', 'swift', 'kotlin', 'machine learning', 'deep learning',
-    // Business & Finance
-    'marketing', 'seo', 'data', 'ml', 'ai', 'excel', 'financial',
-    'accounting', 'legal', 'law', 'communication', 'consulting', 'business',
-    'analytics', 'economics', 'management', 'entrepreneurship',
-    // Sciences & Engineering
-    'biomedical', 'biotechnology', 'biology', 'chemistry', 'physics',
-    'pharmaceutical', 'medicine', 'medical', 'nursing', 'health',
-    'mechanical', 'electrical', 'civil', 'environmental', 'aerospace',
-    'chemical', 'materials', 'robotics', 'automation', 'energy',
-    // Architecture & Design
-    'architecture', 'urban', 'interior', 'industrial design',
-    // Humanities & Social
-    'psychology', 'sociology', 'philosophy', 'literature', 'linguistics',
-    'political', 'international relations', 'education', 'pedagogy',
-  ]
-
+  // Exact keyword matching
   const skills: string[] = []
-  for (const skill of skillKeywords) {
-    if (lower.includes(skill)) skills.push(skill)
+  const matchedWords = new Set<string>()
+  for (const skill of SKILL_KEYWORDS) {
+    if (lower.includes(skill)) {
+      skills.push(skill)
+      matchedWords.add(skill)
+    }
+  }
+
+  // Fuzzy matching for remaining query words that didn't match any keyword
+  const queryWords = lower.split(/\s+/).filter((w) => w.length >= 4)
+  for (const word of queryWords) {
+    if (matchedWords.has(word)) continue
+    if (STOP_WORDS.has(word)) continue
+    const fuzzyMatch = fuzzyMatchKeyword(word, SKILL_KEYWORDS)
+    if (fuzzyMatch && !skills.includes(fuzzyMatch)) {
+      skills.push(fuzzyMatch)
+    }
   }
 
   const universities: string[] = []
@@ -236,45 +290,37 @@ async function searchJobs(
     }
   }
 
-  // Skills filter via OR on multiple fields
-  if (entities.skills && entities.skills.length > 0) {
-    const skillTerms = entities.skills
+  // Build combined search terms from entities + raw query
+  const allTerms = Array.from(new Set([
+    ...(entities.skills || []),
+    ...searchTerms,
+  ]))
+
+  // Combined skill + text search
+  if (allTerms.length > 0) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const skillConditions: any[] = [
-      { requiredSkills: { hasSome: skillTerms } },
-      { preferredSkills: { hasSome: skillTerms } },
-    ]
-    for (const term of skillTerms) {
-      skillConditions.push({ title: { contains: term, mode: 'insensitive' } })
-      skillConditions.push({
-        description: { contains: term, mode: 'insensitive' },
-      })
+    const conditions: any[] = []
+
+    // Array element exact matches
+    if (entities.skills && entities.skills.length > 0) {
+      conditions.push({ requiredSkills: { hasSome: entities.skills } })
+      conditions.push({ preferredSkills: { hasSome: entities.skills } })
+    }
+
+    // Text-based search (contains) for title, description, tags
+    for (const term of allTerms) {
+      conditions.push({ title: { contains: term, mode: 'insensitive' } })
+      conditions.push({ description: { contains: term, mode: 'insensitive' } })
     }
 
     if (where.OR) {
-      where.AND = [{ OR: where.OR }, { OR: skillConditions }]
+      where.AND = [{ OR: where.OR }, { OR: conditions }]
       delete where.OR
     } else {
-      where.OR = skillConditions
+      where.OR = conditions
     }
-  }
-
-  // Text search fallback: use raw query terms against title/description
-  if (!hasEntityFilters && searchTerms.length > 0) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const textConditions: any[] = []
-    for (const term of searchTerms) {
-      textConditions.push({ title: { contains: term, mode: 'insensitive' } })
-      textConditions.push({ description: { contains: term, mode: 'insensitive' } })
-      textConditions.push({ requiredSkills: { hasSome: [term] } })
-      textConditions.push({ preferredSkills: { hasSome: [term] } })
-      textConditions.push({ tags: { hasSome: [term] } })
-    }
-    where.OR = textConditions
-  }
-
-  // If no filters at all, return empty instead of dumping all jobs
-  if (!hasEntityFilters && searchTerms.length === 0) {
+  } else if (!hasEntityFilters) {
+    // No filters at all — return empty instead of dumping all jobs
     return []
   }
 
@@ -338,47 +384,55 @@ async function searchCandidates(
     }
   }
 
-  // Skills filter via projects
-  if (entities.skills && entities.skills.length > 0) {
-    where.projects = {
-      some: {
-        isPublic: true,
-        OR: [
-          { skills: { hasSome: entities.skills } },
-          { technologies: { hasSome: entities.skills } },
-          { tools: { hasSome: entities.skills } },
-        ],
-      },
-    }
-  }
+  // Build search terms: combine entity skills + raw search terms for text matching
+  const allSearchTerms = Array.from(new Set([
+    ...(entities.skills || []),
+    ...searchTerms,
+  ]))
 
-  // Text search fallback: when no entity filters matched, use raw query terms
-  // to search against degree, bio, tagline, and project descriptions
-  if (!hasEntityFilters && searchTerms.length > 0) {
+  // When we have any search terms (from entities or raw query), use a combined
+  // approach: hasSome for exact array matches + contains for text search
+  if (allSearchTerms.length > 0) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const textConditions: any[] = []
-    for (const term of searchTerms) {
-      textConditions.push({ degree: { contains: term, mode: 'insensitive' } })
-      textConditions.push({ bio: { contains: term, mode: 'insensitive' } })
-      textConditions.push({ tagline: { contains: term, mode: 'insensitive' } })
-      textConditions.push({
+    const conditions: any[] = []
+
+    // Array element exact matches (hasSome)
+    if (entities.skills && entities.skills.length > 0) {
+      conditions.push({
+        projects: {
+          some: {
+            isPublic: true,
+            OR: [
+              { skills: { hasSome: entities.skills } },
+              { technologies: { hasSome: entities.skills } },
+              { tools: { hasSome: entities.skills } },
+            ],
+          },
+        },
+      })
+    }
+
+    // Text-based search (contains) for degree, bio, project title/description
+    for (const term of allSearchTerms) {
+      conditions.push({ degree: { contains: term, mode: 'insensitive' } })
+      conditions.push({ bio: { contains: term, mode: 'insensitive' } })
+      conditions.push({ tagline: { contains: term, mode: 'insensitive' } })
+      conditions.push({
         projects: {
           some: {
             isPublic: true,
             OR: [
               { title: { contains: term, mode: 'insensitive' } },
               { description: { contains: term, mode: 'insensitive' } },
-              { discipline: { equals: term.toUpperCase() } },
             ],
           },
         },
       })
     }
-    where.OR = textConditions
-  }
 
-  // If we still have no filters beyond base, return empty instead of ALL students
-  if (!hasEntityFilters && searchTerms.length === 0) {
+    where.OR = conditions
+  } else if (!hasEntityFilters) {
+    // No filters at all — return empty instead of ALL students
     return []
   }
 
