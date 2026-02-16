@@ -77,28 +77,59 @@ async function callAIService(
   }
 }
 
+// --- Conversational follow-up detection ---
+const FOLLOWUP_PATTERNS = [
+  /^[?!.…]+$/,                    // just punctuation
+  /^(yes|no|ok|sure|thanks|thank|grazie|si|sì|no|va bene)[\s?!.]*$/i,
+  /^(are you sure|sei sicuro|really|davvero|what|cosa|why|perché|how|come)[\s?!.]*$/i,
+  /^(show me more|more|altro|altri|di più|tell me more)[\s?!.]*$/i,
+  /^(they don.?t match|not what i|non è quello|wrong|sbagliato)[\s?!.]*$/i,
+]
+
+function isFollowUp(query: string): boolean {
+  const trimmed = query.trim()
+  if (trimmed.length <= 2) return true
+  const words = trimmed.split(/\s+/)
+  if (words.length <= 2 && !extractSearchTerms(trimmed).length) return true
+  return FOLLOWUP_PATTERNS.some((p) => p.test(trimmed))
+}
+
+// --- Stop words for extracting search terms ---
+const STOP_WORDS = new Set([
+  'i', 'we', 'you', 'want', 'to', 'find', 'the', 'a', 'an', 'in', 'for',
+  'and', 'or', 'with', 'at', 'of', 'my', 'me', 'looking', 'search', 'show',
+  'get', 'need', 'who', 'are', 'is', 'good', 'great', 'best', 'top', 'some',
+  'that', 'this', 'those', 'people', 'person', 'students', 'student',
+  'graduated', 'graduates', 'from', 'have', 'has', 'their', 'our', 'can',
+  'voglio', 'cerco', 'cerca', 'trovami', 'trova', 'mostrami', 'per', 'con',
+  'che', 'di', 'il', 'la', 'un', 'una', 'dei', 'delle', 'del', 'dalla',
+  'dal', 'le', 'lo', 'gli', 'sono', 'da', 'su', 'come', 'mi', 'si',
+  'looking', 'hire', 'hiring', 'jobs', 'job', 'work', 'experience',
+])
+
+/** Extract meaningful search terms (non-stopword tokens >= 3 chars) */
+function extractSearchTerms(query: string): string[] {
+  return query
+    .toLowerCase()
+    .replace(/[^\w\s]/g, ' ')
+    .split(/\s+/)
+    .filter((w) => w.length >= 3 && !STOP_WORDS.has(w))
+}
+
 // --- Fallback entity extraction (keyword-based) ---
 function extractBasicEntities(query: string) {
   const lower = query.toLowerCase()
 
   const cityKeywords: Record<string, string> = {
-    milano: 'Milan',
-    milan: 'Milan',
-    roma: 'Rome',
-    rome: 'Rome',
-    torino: 'Turin',
-    turin: 'Turin',
-    firenze: 'Florence',
-    florence: 'Florence',
+    milano: 'Milan', milan: 'Milan',
+    roma: 'Rome', rome: 'Rome',
+    torino: 'Turin', turin: 'Turin',
+    firenze: 'Florence', florence: 'Florence',
     bologna: 'Bologna',
-    napoli: 'Naples',
-    naples: 'Naples',
-    venezia: 'Venice',
-    venice: 'Venice',
-    padova: 'Padova',
-    genova: 'Genova',
-    bari: 'Bari',
-    palermo: 'Palermo',
+    napoli: 'Naples', naples: 'Naples',
+    venezia: 'Venice', venice: 'Venice',
+    padova: 'Padova', genova: 'Genova',
+    bari: 'Bari', palermo: 'Palermo',
   }
 
   const locations: string[] = []
@@ -126,13 +157,26 @@ function extractBasicEntities(query: string) {
   }
 
   const skillKeywords = [
+    // Tech
     'react', 'vue', 'angular', 'javascript', 'typescript', 'python', 'java',
     'node', 'figma', 'photoshop', 'illustrator', 'ui', 'ux', 'design',
-    'graphic', 'marketing', 'seo', 'data', 'machine learning', 'ml', 'ai',
-    'cybersecurity', 'security', 'network', 'cloud', 'aws', 'docker',
-    'sql', 'database', 'excel', 'financial', 'accounting', 'legal', 'law',
-    'communication', 'consulting', 'business', 'analytics', 'devops',
-    'mobile', 'ios', 'android', 'flutter', 'swift', 'kotlin',
+    'graphic', 'cybersecurity', 'security', 'network', 'cloud', 'aws',
+    'docker', 'sql', 'database', 'devops', 'mobile', 'ios', 'android',
+    'flutter', 'swift', 'kotlin', 'machine learning', 'deep learning',
+    // Business & Finance
+    'marketing', 'seo', 'data', 'ml', 'ai', 'excel', 'financial',
+    'accounting', 'legal', 'law', 'communication', 'consulting', 'business',
+    'analytics', 'economics', 'management', 'entrepreneurship',
+    // Sciences & Engineering
+    'biomedical', 'biotechnology', 'biology', 'chemistry', 'physics',
+    'pharmaceutical', 'medicine', 'medical', 'nursing', 'health',
+    'mechanical', 'electrical', 'civil', 'environmental', 'aerospace',
+    'chemical', 'materials', 'robotics', 'automation', 'energy',
+    // Architecture & Design
+    'architecture', 'urban', 'interior', 'industrial design',
+    // Humanities & Social
+    'psychology', 'sociology', 'philosophy', 'literature', 'linguistics',
+    'political', 'international relations', 'education', 'pedagogy',
   ]
 
   const skills: string[] = []
@@ -154,9 +198,17 @@ function extractBasicEntities(query: string) {
 
 // --- Prisma search functions ---
 
-async function searchJobs(entities: NonNullable<AIResponse['entities']>) {
+async function searchJobs(
+  entities: NonNullable<AIResponse['entities']>,
+  searchTerms: string[] = []
+) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const where: any = { isPublic: true, status: 'ACTIVE' }
+
+  const hasEntityFilters =
+    (entities.skills && entities.skills.length > 0) ||
+    (entities.locations && entities.locations.length > 0) ||
+    (entities.job_types && entities.job_types.length > 0)
 
   // Job type filter
   if (entities.job_types && entities.job_types.length > 0) {
@@ -207,6 +259,25 @@ async function searchJobs(entities: NonNullable<AIResponse['entities']>) {
     }
   }
 
+  // Text search fallback: use raw query terms against title/description
+  if (!hasEntityFilters && searchTerms.length > 0) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const textConditions: any[] = []
+    for (const term of searchTerms) {
+      textConditions.push({ title: { contains: term, mode: 'insensitive' } })
+      textConditions.push({ description: { contains: term, mode: 'insensitive' } })
+      textConditions.push({ requiredSkills: { hasSome: [term] } })
+      textConditions.push({ preferredSkills: { hasSome: [term] } })
+      textConditions.push({ tags: { hasSome: [term] } })
+    }
+    where.OR = textConditions
+  }
+
+  // If no filters at all, return empty instead of dumping all jobs
+  if (!hasEntityFilters && searchTerms.length === 0) {
+    return []
+  }
+
   const jobs = await prisma.job.findMany({
     where,
     select: {
@@ -248,10 +319,16 @@ async function searchJobs(entities: NonNullable<AIResponse['entities']>) {
 }
 
 async function searchCandidates(
-  entities: NonNullable<AIResponse['entities']>
+  entities: NonNullable<AIResponse['entities']>,
+  searchTerms: string[] = []
 ) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const where: any = { role: 'STUDENT', profilePublic: true }
+
+  const hasEntityFilters =
+    (entities.skills && entities.skills.length > 0) ||
+    (entities.universities && entities.universities.length > 0) ||
+    (entities.locations && entities.locations.length > 0)
 
   // University filter
   if (entities.universities && entities.universities.length > 0) {
@@ -273,6 +350,36 @@ async function searchCandidates(
         ],
       },
     }
+  }
+
+  // Text search fallback: when no entity filters matched, use raw query terms
+  // to search against degree, bio, tagline, and project descriptions
+  if (!hasEntityFilters && searchTerms.length > 0) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const textConditions: any[] = []
+    for (const term of searchTerms) {
+      textConditions.push({ degree: { contains: term, mode: 'insensitive' } })
+      textConditions.push({ bio: { contains: term, mode: 'insensitive' } })
+      textConditions.push({ tagline: { contains: term, mode: 'insensitive' } })
+      textConditions.push({
+        projects: {
+          some: {
+            isPublic: true,
+            OR: [
+              { title: { contains: term, mode: 'insensitive' } },
+              { description: { contains: term, mode: 'insensitive' } },
+              { discipline: { equals: term.toUpperCase() } },
+            ],
+          },
+        },
+      })
+    }
+    where.OR = textConditions
+  }
+
+  // If we still have no filters beyond base, return empty instead of ALL students
+  if (!hasEntityFilters && searchTerms.length === 0) {
+    return []
   }
 
   const students = await prisma.user.findMany({
@@ -325,7 +432,8 @@ async function searchCandidates(
 async function searchUniversity(
   entities: NonNullable<AIResponse['entities']>,
   intent: string | undefined,
-  query: string
+  query: string,
+  searchTerms: string[] = []
 ) {
   const lower = query.toLowerCase()
   const isStudentQuery =
@@ -337,9 +445,9 @@ async function searchUniversity(
     lower.includes('candidat')
 
   if (isStudentQuery) {
-    return { type: 'candidates' as const, results: await searchCandidates(entities) }
+    return { type: 'candidates' as const, results: await searchCandidates(entities, searchTerms) }
   }
-  return { type: 'jobs' as const, results: await searchJobs(entities) }
+  return { type: 'jobs' as const, results: await searchJobs(entities, searchTerms) }
 }
 
 // --- Helper functions ---
@@ -450,9 +558,25 @@ export async function POST(request: NextRequest) {
 
     const sessionId = incomingSessionId || generateSessionId()
 
-    // 1. Call AI service (with fallback)
+    // 0. Detect conversational follow-ups (without AI service they can't be handled)
     const aiResult = await callAIService(query, type, sessionId)
+
+    if (!aiResult && isFollowUp(query)) {
+      // Without AI service, we can't handle conversational follow-ups
+      return NextResponse.json({
+        message:
+          'I can only process search queries in demo mode. Try describing what you\'re looking for — e.g. skills, field of study, or location!',
+        results: [],
+        suggestedActions: [],
+        sessionId,
+        resultCount: 0,
+        resultType: type === 'company' ? 'candidates' : 'jobs',
+      })
+    }
+
+    // 1. Extract entities and search terms
     const entities = aiResult?.entities || extractBasicEntities(query)
+    const searchTerms = extractSearchTerms(query)
     const aiMessage = aiResult?.message || null
     const intent = aiResult?.intent
     const suggestedActions = aiResult?.suggested_actions || []
@@ -462,30 +586,32 @@ export async function POST(request: NextRequest) {
     let resultType = 'jobs'
 
     if (type === 'student') {
-      results = await searchJobs(entities)
+      results = await searchJobs(entities, searchTerms)
       resultType = 'jobs'
     } else if (type === 'company') {
-      results = await searchCandidates(entities)
+      results = await searchCandidates(entities, searchTerms)
       resultType = 'candidates'
     } else {
-      const uniResult = await searchUniversity(entities, intent, query)
+      const uniResult = await searchUniversity(entities, intent, query, searchTerms)
       results = uniResult.results
       resultType = uniResult.type
     }
 
     // 3. Build response message
+    const queryTermsDisplay = searchTerms.slice(0, 3).join(', ')
     let message = aiMessage || ''
     if (!message) {
       // Fallback message when AI service is unavailable
       if (results.length > 0) {
         if (resultType === 'jobs') {
-          message = `I found **${results.length} jobs** matching your search. Here are the top results:`
+          message = `I found **${results.length} jobs** matching "${queryTermsDisplay}". Here are the top results:`
         } else {
-          message = `I found **${results.length} candidates** matching your criteria. Here are the top profiles:`
+          message = `I found **${results.length} candidates** matching "${queryTermsDisplay}". Here are the top profiles:`
         }
       } else {
-        message =
-          'No results found for your search. Try broadening your criteria or using different keywords.'
+        message = queryTermsDisplay
+          ? `No results found for "${queryTermsDisplay}". Try different keywords, a broader field of study, or check your spelling.`
+          : 'I couldn\'t understand your search. Try describing what you\'re looking for — e.g. "biomedical engineering students" or "React developer jobs in Milan".'
       }
     }
 
