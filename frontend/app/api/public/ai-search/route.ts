@@ -498,10 +498,30 @@ async function searchUniversity(
     lower.includes('candidate') ||
     lower.includes('candidat')
 
+  // Try primary search first, fallback to the other type if empty
   if (isStudentQuery) {
-    return { type: 'candidates' as const, results: await searchCandidates(entities, searchTerms) }
+    const candidates = await searchCandidates(entities, searchTerms)
+    if (candidates.length > 0) {
+      return { type: 'candidates' as const, results: candidates }
+    }
+    // Fallback: try jobs
+    const jobs = await searchJobs(entities, searchTerms)
+    if (jobs.length > 0) {
+      return { type: 'jobs' as const, results: jobs }
+    }
+    return { type: 'candidates' as const, results: [] }
   }
-  return { type: 'jobs' as const, results: await searchJobs(entities, searchTerms) }
+
+  const jobs = await searchJobs(entities, searchTerms)
+  if (jobs.length > 0) {
+    return { type: 'jobs' as const, results: jobs }
+  }
+  // Fallback: try candidates
+  const candidates = await searchCandidates(entities, searchTerms)
+  if (candidates.length > 0) {
+    return { type: 'candidates' as const, results: candidates }
+  }
+  return { type: 'jobs' as const, results: [] }
 }
 
 // --- Helper functions ---
@@ -635,7 +655,7 @@ export async function POST(request: NextRequest) {
     const intent = aiResult?.intent
     const suggestedActions = aiResult?.suggested_actions || []
 
-    // 2. Run Prisma queries based on demo type
+    // 2. Run Prisma queries based on demo type (with cross-search fallback)
     let results: unknown[] = []
     let resultType = 'jobs'
 
@@ -655,17 +675,22 @@ export async function POST(request: NextRequest) {
     const queryTermsDisplay = searchTerms.slice(0, 3).join(', ')
     let message = aiMessage || ''
     if (!message) {
-      // Fallback message when AI service is unavailable
       if (results.length > 0) {
         if (resultType === 'jobs') {
-          message = `I found **${results.length} jobs** matching "${queryTermsDisplay}". Here are the top results:`
+          message = `I found **${results.length} job${results.length > 1 ? 's' : ''}** matching "${queryTermsDisplay}". Here are the top results:`
         } else {
-          message = `I found **${results.length} candidates** matching "${queryTermsDisplay}". Here are the top profiles:`
+          message = `I found **${results.length} candidate${results.length > 1 ? 's' : ''}** matching "${queryTermsDisplay}". Here are the top profiles:`
         }
       } else {
-        message = queryTermsDisplay
-          ? `No results found for "${queryTermsDisplay}". Try different keywords, a broader field of study, or check your spelling.`
-          : 'I couldn\'t understand your search. Try describing what you\'re looking for — e.g. "biomedical engineering students" or "React developer jobs in Milan".'
+        // Better no-results message with context
+        const suggestions = []
+        if (queryTermsDisplay) {
+          suggestions.push(`No results found for "${queryTermsDisplay}".`)
+        }
+        suggestions.push(
+          'The demo searches real database entries. Try one of the example queries on the right, or use broader keywords like "design", "marketing", or "engineering".'
+        )
+        message = suggestions.join(' ')
       }
     }
 
