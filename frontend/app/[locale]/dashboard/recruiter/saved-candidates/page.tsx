@@ -25,6 +25,7 @@ import {
   SortDesc,
   AlertCircle
 } from 'lucide-react'
+import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 
 interface SavedCandidate {
   id: string
@@ -155,7 +156,7 @@ export default function SavedCandidatesPage() {
 
   const getFolderColor = (color: string) => {
     const colors: Record<string, string> = {
-      gray: 'bg-gray-100 text-gray-800',
+      gray: 'bg-muted text-foreground',
       red: 'bg-red-100 text-red-800',
       blue: 'bg-blue-100 text-blue-800',
       purple: 'bg-purple-100 text-purple-800',
@@ -171,10 +172,10 @@ export default function SavedCandidatesPage() {
     : 0
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-muted/50 via-white to-slate-50 space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Saved Candidates</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold text-foreground">Saved Candidates</h1>
+        <p className="text-muted-foreground mt-2">
           Manage and organize your saved candidate profiles
         </p>
       </div>
@@ -188,11 +189,11 @@ export default function SavedCandidatesPage() {
                 <Bookmark className="h-4 w-4 text-blue-600" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Total Saved</p>
+                <p className="text-sm font-medium text-muted-foreground">Total Saved</p>
                 {loading ? (
                   <Skeleton className="h-8 w-12 mt-1" />
                 ) : (
-                  <p className="text-2xl font-bold text-gray-900">{totalSaved}</p>
+                  <p className="text-2xl font-bold text-foreground">{totalSaved}</p>
                 )}
               </div>
             </div>
@@ -206,11 +207,11 @@ export default function SavedCandidatesPage() {
                 <Heart className="h-4 w-4 text-red-600" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Favorites</p>
+                <p className="text-sm font-medium text-muted-foreground">Favorites</p>
                 {loading ? (
                   <Skeleton className="h-8 w-12 mt-1" />
                 ) : (
-                  <p className="text-2xl font-bold text-gray-900">{favoritesCount}</p>
+                  <p className="text-2xl font-bold text-foreground">{favoritesCount}</p>
                 )}
               </div>
             </div>
@@ -224,11 +225,11 @@ export default function SavedCandidatesPage() {
                 <Star className="h-4 w-4 text-green-600" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Avg Rating</p>
+                <p className="text-sm font-medium text-muted-foreground">Avg Rating</p>
                 {loading ? (
                   <Skeleton className="h-8 w-12 mt-1" />
                 ) : (
-                  <p className="text-2xl font-bold text-gray-900">{avgRating}</p>
+                  <p className="text-2xl font-bold text-foreground">{avgRating}</p>
                 )}
               </div>
             </div>
@@ -242,11 +243,11 @@ export default function SavedCandidatesPage() {
                 <Users className="h-4 w-4 text-purple-600" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Folders</p>
+                <p className="text-sm font-medium text-muted-foreground">Folders</p>
                 {loading ? (
                   <Skeleton className="h-8 w-12 mt-1" />
                 ) : (
-                  <p className="text-2xl font-bold text-gray-900">{allFolders.length}</p>
+                  <p className="text-2xl font-bold text-foreground">{allFolders.length}</p>
                 )}
               </div>
             </div>
@@ -266,7 +267,7 @@ export default function SavedCandidatesPage() {
                   className={`px-3 py-1.5 text-sm rounded-lg transition-colors flex items-center space-x-2 ${
                     selectedFolder === folder.id
                       ? getFolderColor(folder.color)
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      : 'bg-muted text-muted-foreground hover:bg-muted'
                   }`}
                 >
                   <span>{folder.name}</span>
@@ -279,26 +280,26 @@ export default function SavedCandidatesPage() {
 
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <input
                   type="text"
                   placeholder="Search candidates..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="pl-10 pr-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
                 />
               </div>
 
-              <div className="flex items-center border border-gray-300 rounded-lg">
+              <div className="flex items-center border border-border rounded-lg">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-2 ${viewMode === 'grid' ? 'bg-blue-100 text-blue-600' : 'text-gray-600'}`}
+                  className={`p-2 ${viewMode === 'grid' ? 'bg-blue-100 text-blue-600' : 'text-muted-foreground'}`}
                 >
                   <Grid className="h-4 w-4" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`p-2 ${viewMode === 'list' ? 'bg-blue-100 text-blue-600' : 'text-gray-600'}`}
+                  className={`p-2 ${viewMode === 'list' ? 'bg-blue-100 text-blue-600' : 'text-muted-foreground'}`}
                 >
                   <List className="h-4 w-4" />
                 </button>
@@ -348,8 +349,8 @@ export default function SavedCandidatesPage() {
           ) : error ? (
             <div className="text-center py-12">
               <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">Failed to load candidates</h3>
-              <p className="text-gray-600 mb-4">{error}</p>
+              <h3 className="text-lg font-medium text-foreground mb-2">Failed to load candidates</h3>
+              <p className="text-muted-foreground mb-4">{error}</p>
               <Button onClick={() => fetchSavedCandidates(selectedFolder)}>
                 Try Again
               </Button>
@@ -373,8 +374,8 @@ export default function SavedCandidatesPage() {
                           </div>
                           {viewMode === 'grid' && (
                             <div>
-                              <h3 className="font-semibold text-gray-900">{name}</h3>
-                              <p className="text-gray-600 text-sm">{candidate.degree}</p>
+                              <h3 className="font-semibold text-foreground">{name}</h3>
+                              <p className="text-muted-foreground text-sm">{candidate.degree}</p>
                             </div>
                           )}
                         </div>
@@ -384,15 +385,15 @@ export default function SavedCandidatesPage() {
                           {viewMode === 'list' && (
                             <div className="flex items-center justify-between mb-2">
                               <div>
-                                <h3 className="font-semibold text-gray-900">{name}</h3>
-                                <p className="text-gray-600 text-sm">{candidate.degree}</p>
+                                <h3 className="font-semibold text-foreground">{name}</h3>
+                                <p className="text-muted-foreground text-sm">{candidate.degree}</p>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <div className="flex items-center">
                                   <Star className="h-4 w-4 text-yellow-400 mr-1" />
-                                  <span className="text-sm text-gray-600">{sc.rating || '-'}</span>
+                                  <span className="text-sm text-muted-foreground">{sc.rating || '-'}</span>
                                 </div>
-                                <span className="text-sm font-medium text-gray-600">
+                                <span className="text-sm font-medium text-muted-foreground">
                                   GPA: {candidate.gpa}
                                 </span>
                               </div>
@@ -400,7 +401,7 @@ export default function SavedCandidatesPage() {
                           )}
 
                           <div className={viewMode === 'grid' ? 'space-y-3' : 'space-y-2'}>
-                            <div className="flex items-center text-sm text-gray-600">
+                            <div className="flex items-center text-sm text-muted-foreground">
                               <GraduationCap className="h-4 w-4 mr-1" />
                               {candidate.university}
                               <span className="mx-2">&bull;</span>
@@ -413,16 +414,16 @@ export default function SavedCandidatesPage() {
                                 <div className="flex items-center justify-between text-sm">
                                   <div className="flex items-center">
                                     <Star className="h-4 w-4 text-yellow-400 mr-1" />
-                                    <span className="text-gray-600">{sc.rating || '-'}</span>
+                                    <span className="text-muted-foreground">{sc.rating || '-'}</span>
                                   </div>
-                                  <span className="font-medium text-gray-600">
+                                  <span className="font-medium text-muted-foreground">
                                     GPA: {candidate.gpa}
                                   </span>
                                 </div>
 
                                 <div>
-                                  <p className="text-sm text-gray-700 font-medium mb-1">Projects:</p>
-                                  <p className="text-sm text-gray-600">{candidate.projectCount} project{candidate.projectCount !== 1 ? 's' : ''}</p>
+                                  <p className="text-sm text-foreground/80 font-medium mb-1">Projects:</p>
+                                  <p className="text-sm text-muted-foreground">{candidate.projectCount} project{candidate.projectCount !== 1 ? 's' : ''}</p>
                                 </div>
                               </>
                             )}
@@ -472,7 +473,7 @@ export default function SavedCandidatesPage() {
                               <Heart className="h-4 w-4" />
                             </button>
                             <button
-                              className="p-2 text-gray-600 hover:bg-gray-50 rounded-full transition-colors"
+                              className="p-2 text-muted-foreground hover:bg-muted rounded-full transition-colors"
                               onClick={() => handleUnsave(sc.candidateId)}
                               disabled={isRemoving}
                               title="Remove from saved"
@@ -488,20 +489,15 @@ export default function SavedCandidatesPage() {
               })}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <Bookmark className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No saved candidates found</h3>
-              <p className="text-gray-600 mb-4">
-                {searchQuery ? 'Try adjusting your search criteria' : 'Start saving candidates you\'re interested in'}
-              </p>
-              {!searchQuery && (
-                <Button asChild>
-                  <Link href="/dashboard/recruiter/candidates">
-                    Browse Candidates
-                  </Link>
-                </Button>
-              )}
-            </div>
+            <EmptyState
+              icon={Bookmark}
+              title="No saved candidates"
+              description="Save candidates from search results to review later"
+              action={{
+                label: 'Browse Candidates',
+                href: '/dashboard/recruiter/candidates',
+              }}
+            />
           )}
         </CardContent>
       </Card>

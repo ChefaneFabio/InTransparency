@@ -130,10 +130,10 @@ export default function ITSInstitutesPage() {
                 Companies Seeking Verified Skills
               </span>
             </h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-4">
+            <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-4">
               Marketplace connecting your ITS students to companies actively hiring. Your institutional verification gives graduates a competitive edge. Track placement success with analytics.
             </p>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
               Freemium model for institutions.
             </p>
 
@@ -180,7 +180,7 @@ export default function ITSInstitutesPage() {
                   </div>
                   <CardTitle className="text-lg">Students Get Discovered</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
@@ -209,7 +209,7 @@ export default function ITSInstitutesPage() {
                   </div>
                   <CardTitle className="text-lg">AI-Powered Matching</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
@@ -238,7 +238,7 @@ export default function ITSInstitutesPage() {
                   </div>
                   <CardTitle className="text-lg">Track Your Impact</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <BarChart3 className="h-4 w-4 text-purple-600 mr-2 mt-0.5" />
@@ -272,7 +272,7 @@ export default function ITSInstitutesPage() {
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-4">
               Four Free Services
             </h2>
-            <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
               Marketplace platform with verification quality layer
             </p>
 
@@ -287,7 +287,7 @@ export default function ITSInstitutesPage() {
                   <CardTitle className="text-lg">Discovery Service</CardTitle>
                   <Badge variant="secondary" className="mt-2 text-xs">Browse FREE, €10/contact</Badge>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700 space-y-2">
+                <CardContent className="text-sm text-foreground/80 space-y-2">
                   <p className="font-semibold text-green-700">Reverse Recruitment</p>
                   <ul className="space-y-1.5">
                     <li>• Companies search verified ITS talent pool</li>
@@ -295,7 +295,7 @@ export default function ITSInstitutesPage() {
                     <li>• Your verification badge = quality signal</li>
                     <li>• Companies pay €10 to contact, you get credit</li>
                   </ul>
-                  <p className="text-xs italic pt-2 border-t text-gray-600">
+                  <p className="text-xs italic pt-2 border-t text-muted-foreground">
                     University-verified credentials employers trust
                   </p>
                 </CardContent>
@@ -311,7 +311,7 @@ export default function ITSInstitutesPage() {
                   <CardTitle className="text-lg">Matching Service</CardTitle>
                   <Badge variant="secondary" className="mt-2 text-xs">FREE for Students</Badge>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700 space-y-2">
+                <CardContent className="text-sm text-foreground/80 space-y-2">
                   <p className="font-semibold text-secondary">Transparent AI Matching</p>
                   <ul className="space-y-1.5">
                     <li>• AI matches skills to job requirements</li>
@@ -319,7 +319,7 @@ export default function ITSInstitutesPage() {
                     <li>• Companies see your institutional endorsement</li>
                     <li>• Transparent matching explanations</li>
                   </ul>
-                  <p className="text-xs italic pt-2 border-t text-gray-600">
+                  <p className="text-xs italic pt-2 border-t text-muted-foreground">
                     Faster candidate screening with verified data
                   </p>
                 </CardContent>
@@ -328,7 +328,7 @@ export default function ITSInstitutesPage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               {/* Verification Service - SECONDARY (Smaller card) */}
-              <Card className="border border-gray-200 hover:border-gray-300 transition-all hover:shadow-md">
+              <Card className="border border-border hover:border-border transition-all hover:shadow-md">
                 <CardHeader className="text-center py-4">
                   <div className="bg-gradient-to-br from-gray-400 to-gray-600 p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
                     <Shield className="h-6 w-6 text-white" />
@@ -336,8 +336,8 @@ export default function ITSInstitutesPage() {
                   <CardTitle className="text-base">Verification Service</CardTitle>
                   <Badge variant="outline" className="mt-1 text-xs">Quality Layer</Badge>
                 </CardHeader>
-                <CardContent className="text-xs text-gray-700 space-y-1.5">
-                  <p className="font-semibold text-gray-900">Enables Marketplace Trust</p>
+                <CardContent className="text-xs text-foreground/80 space-y-1.5">
+                  <p className="font-semibold text-foreground">Enables Marketplace Trust</p>
                   <ul className="space-y-1">
                     <li>• Manual or API verification workflow</li>
                     <li>• You verify projects/grades</li>
@@ -348,7 +348,7 @@ export default function ITSInstitutesPage() {
               </Card>
 
               {/* Analytics Service - SECONDARY (Smaller card) */}
-              <Card className="border border-gray-200 hover:border-gray-300 transition-all hover:shadow-md">
+              <Card className="border border-border hover:border-border transition-all hover:shadow-md">
                 <CardHeader className="text-center py-4">
                   <div className="bg-gradient-to-br from-gray-400 to-gray-600 p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
                     <BarChart3 className="h-6 w-6 text-white" />
@@ -356,8 +356,8 @@ export default function ITSInstitutesPage() {
                   <CardTitle className="text-base">Analytics Service</CardTitle>
                   <Badge variant="outline" className="mt-1 text-xs">Track Impact</Badge>
                 </CardHeader>
-                <CardContent className="text-xs text-gray-700 space-y-1.5">
-                  <p className="font-semibold text-gray-900">Measure Placement Success</p>
+                <CardContent className="text-xs text-foreground/80 space-y-1.5">
+                  <p className="font-semibold text-foreground">Measure Placement Success</p>
                   <ul className="space-y-1">
                     <li>• "Siemens viewed 23 ITS students"</li>
                     <li>• "PLC skills searched 76x"</li>
@@ -381,7 +381,7 @@ export default function ITSInstitutesPage() {
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-4">
               All ITS Areas Supported
             </h2>
-            <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
               From mechatronics to biotech - companies actively hiring ITS graduates
             </p>
 
@@ -396,7 +396,7 @@ export default function ITSInstitutesPage() {
                     className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       selectedArea.area === area.area
                         ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 bg-white border border-gray-200'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted bg-card border border-border'
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -419,17 +419,17 @@ export default function ITSInstitutesPage() {
                     </h3>
                     <div className="space-y-4">
                       <div>
-                        <p className="font-semibold text-gray-900 mb-2">Verified Skills Companies Seek:</p>
+                        <p className="font-semibold text-foreground mb-2">Verified Skills Companies Seek:</p>
                         <div className="flex flex-wrap gap-2">
                           {selectedArea.skills.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-white">
+                            <Badge key={skill} variant="secondary" className="bg-card">
                               {skill}
                             </Badge>
                           ))}
                         </div>
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-900 mb-2">Companies Hiring:</p>
+                        <p className="font-semibold text-foreground mb-2">Companies Hiring:</p>
                         <div className="flex flex-wrap gap-2">
                           {selectedArea.companies.map((company) => (
                             <Badge key={company} className="bg-green-100 text-green-800">
@@ -438,8 +438,8 @@ export default function ITSInstitutesPage() {
                           ))}
                         </div>
                       </div>
-                      <div className="bg-white p-4 rounded-lg border border-gray-200">
-                        <p className="text-sm text-gray-700">
+                      <div className="bg-card p-4 rounded-lg border border-border">
+                        <p className="text-sm text-foreground/80">
                           <strong className="text-primary">{selectedArea.searchVolume} company searches/month</strong> for skills in this area
                         </p>
                       </div>
@@ -458,7 +458,7 @@ export default function ITSInstitutesPage() {
                           </div>
                           <div>
                             <p className="font-semibold">1. Student Uploads ITS Project</p>
-                            <p className="text-xs text-gray-600">Project on {selectedArea.skills[0]}, grade 28/30</p>
+                            <p className="text-xs text-muted-foreground">Project on {selectedArea.skills[0]}, grade 28/30</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
@@ -467,7 +467,7 @@ export default function ITSInstitutesPage() {
                           </div>
                           <div>
                             <p className="font-semibold">2. Your ITS Verifies</p>
-                            <p className="text-xs text-gray-600">Badge: "Verified by {selectedArea.area.split(' ')[0]} ITS"</p>
+                            <p className="text-xs text-muted-foreground">Badge: "Verified by {selectedArea.area.split(' ')[0]} ITS"</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
@@ -476,7 +476,7 @@ export default function ITSInstitutesPage() {
                           </div>
                           <div>
                             <p className="font-semibold">3. Companies Discover</p>
-                            <p className="text-xs text-gray-600">Siemens searches "{selectedArea.skills[0]}" → finds student</p>
+                            <p className="text-xs text-muted-foreground">Siemens searches "{selectedArea.skills[0]}" → finds student</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
@@ -485,7 +485,7 @@ export default function ITSInstitutesPage() {
                           </div>
                           <div>
                             <p className="font-semibold">4. Student Gets Hired</p>
-                            <p className="text-xs text-gray-600">Company pays €10 to contact → Interview → Hired in 47 days</p>
+                            <p className="text-xs text-muted-foreground">Company pays €10 to contact → Interview → Hired in 47 days</p>
                           </div>
                         </div>
                       </CardContent>
@@ -516,7 +516,7 @@ export default function ITSInstitutesPage() {
                   </div>
                   <CardTitle className="text-lg">Better Placement Outcomes</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
@@ -545,7 +545,7 @@ export default function ITSInstitutesPage() {
                   </div>
                   <CardTitle className="text-lg">Freemium Model</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
@@ -574,7 +574,7 @@ export default function ITSInstitutesPage() {
                   </div>
                   <CardTitle className="text-lg">Track Impact for MIUR</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
@@ -675,7 +675,7 @@ export default function ITSInstitutesPage() {
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-4">
               ITS That Could Benefit
             </h2>
-            <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
               Examples of ITS that would increase student placement through verified marketplace
             </p>
 
@@ -688,14 +688,14 @@ export default function ITSInstitutesPage() {
                       <Badge variant="secondary">{its.students} students</Badge>
                     </div>
                     <CardTitle className="text-base">{its.name}</CardTitle>
-                    <p className="text-xs text-gray-600">{its.area}</p>
-                    <p className="text-xs text-gray-500">{its.location}</p>
+                    <p className="text-xs text-muted-foreground">{its.area}</p>
+                    <p className="text-xs text-muted-foreground">{its.location}</p>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-xs font-semibold text-gray-900 mb-2">Skills Companies Seek:</p>
+                    <p className="text-xs font-semibold text-foreground mb-2">Skills Companies Seek:</p>
                     <div className="space-y-1">
                       {its.topSkills.map((skill) => (
-                        <div key={skill} className="flex items-center text-xs text-gray-700">
+                        <div key={skill} className="flex items-center text-xs text-foreground/80">
                           <CheckCircle className="h-3 w-3 text-green-600 mr-1" />
                           {skill}
                         </div>
@@ -724,7 +724,7 @@ export default function ITSInstitutesPage() {
                 <CardHeader>
                   <CardTitle className="text-base">How does the marketplace help our students?</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <p>
                     Companies browse 10K+ verified graduates and proactively reach out to students with matching skills.
                     Students don't apply - they get discovered. Your institutional verification gives them a competitive edge.
@@ -736,7 +736,7 @@ export default function ITSInstitutesPage() {
                 <CardHeader>
                   <CardTitle className="text-base">What does freemium mean?</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <p>
                     Core features are included at no cost. Companies pay per contact.
                     Enterprise features available for larger institutions.
@@ -748,7 +748,7 @@ export default function ITSInstitutesPage() {
                 <CardHeader>
                   <CardTitle className="text-base">How does verification work?</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <p>
                     Students manually upload projects and you verify them through our simple dashboard.
                     For larger institutions, we can set up API integration (contact us for details). Zero IT work for you after setup.
@@ -760,7 +760,7 @@ export default function ITSInstitutesPage() {
                 <CardHeader>
                   <CardTitle className="text-base">Can we add Career Day tools?</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <p>
                     Yes! Optional Premium Embed add-on (€500/year) includes Career Day platform with QR codes, interview booking, and branded widgets.
                     But core marketplace is always free. See pricing page for details.
@@ -772,7 +772,7 @@ export default function ITSInstitutesPage() {
                 <CardHeader>
                   <CardTitle className="text-base">How do we track placement for MIUR reporting?</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <p>
                     Analytics dashboard tracks time-to-hire, students contacted, and placement outcomes.
                     Export reports for MIUR with verifiable data.
@@ -784,7 +784,7 @@ export default function ITSInstitutesPage() {
                 <CardHeader>
                   <CardTitle className="text-base">What if students don't get discovered?</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <p>
                     Analytics show you early warnings: "Student X: 0 views in 30 days - skills mismatch?"
                     You can intervene early, update skills/projects, or offer career counseling. Prevention vs reaction.
@@ -807,7 +807,7 @@ export default function ITSInstitutesPage() {
                 <h3 className="text-3xl font-display font-bold text-foreground mb-4">
                   Ready to Get Your ITS Students Hired?
                 </h3>
-                <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+                <p className="text-lg text-foreground/80 mb-8 max-w-2xl mx-auto">
                   Join the free marketplace connecting verified ITS graduates to companies actively hiring.
                   Setup in 5 minutes. Zero costs. Track placement success.
                 </p>
@@ -832,7 +832,7 @@ export default function ITSInstitutesPage() {
                     </Link>
                   </Button>
                 </div>
-                <p className="text-sm text-gray-600 mt-6">
+                <p className="text-sm text-muted-foreground mt-6">
                   Track placements for MIUR reporting
                 </p>
               </CardContent>

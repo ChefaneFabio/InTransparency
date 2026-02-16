@@ -52,7 +52,7 @@ interface ReferralData {
 
 const tierColors = {
   BRONZE: 'bg-orange-100 text-orange-700 border-orange-300',
-  SILVER: 'bg-gray-200 text-gray-700 border-gray-400',
+  SILVER: 'bg-muted text-foreground/80 border-gray-400',
   GOLD: 'bg-yellow-100 text-yellow-700 border-yellow-400',
   PLATINUM: 'bg-purple-100 text-purple-700 border-purple-400'
 }
@@ -139,7 +139,7 @@ export default function StudentReferralsPage() {
 
   if (loading) {
     return (
-      <div className="p-8 bg-gray-50 min-h-screen flex items-center justify-center">
+      <div className="p-8 bg-muted min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
     )
@@ -150,7 +150,7 @@ export default function StudentReferralsPage() {
   const referralsToNextTier = nextTier ? nextTier.referralsNeeded - totalReferrals : 0
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
+    <div className="p-8 bg-muted min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -158,7 +158,7 @@ export default function StudentReferralsPage() {
             <Gift className="h-8 w-8 text-primary" />
             <h1 className="text-3xl font-display font-bold">Referral Program</h1>
           </div>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             Invite friends and unlock Premium features for FREE! Every successful referral brings you closer to amazing rewards.
           </p>
         </div>
@@ -214,9 +214,9 @@ export default function StudentReferralsPage() {
                 </div>
 
                 {/* Sharing Tips */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-900 mb-2">💡 Tips for Success:</h4>
-                  <ul className="text-sm text-blue-800 space-y-1">
+                <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
+                  <h4 className="font-semibold text-primary mb-2">💡 Tips for Success:</h4>
+                  <ul className="text-sm text-primary/80 space-y-1">
                     <li>• Share on your university WhatsApp/Discord groups</li>
                     <li>• Post on LinkedIn with your success story</li>
                     <li>• Email classmates from your project teams</li>
@@ -246,7 +246,7 @@ export default function StudentReferralsPage() {
                         value={(totalReferrals / nextTier.referralsNeeded) * 100}
                         className="h-3"
                       />
-                      <div className="flex justify-between text-sm text-gray-600 mt-2">
+                      <div className="flex justify-between text-sm text-muted-foreground mt-2">
                         <span>{totalReferrals} referrals</span>
                         <span>{nextTier.referralsNeeded} for {nextTier.tier}</span>
                       </div>
@@ -257,15 +257,15 @@ export default function StudentReferralsPage() {
                   <div className="grid grid-cols-3 gap-4">
                     <div className="bg-primary/10 rounded-lg p-4 text-center">
                       <div className="text-2xl font-bold text-primary">{totalReferrals}</div>
-                      <div className="text-xs text-gray-600 mt-1">Total Invited</div>
+                      <div className="text-xs text-muted-foreground mt-1">Total Invited</div>
                     </div>
                     <div className="bg-green-100 rounded-lg p-4 text-center">
                       <div className="text-2xl font-bold text-green-600">{referralData?.activeReferrals || 0}</div>
-                      <div className="text-xs text-gray-600 mt-1">Active Users</div>
+                      <div className="text-xs text-muted-foreground mt-1">Active Users</div>
                     </div>
                     <div className="bg-yellow-100 rounded-lg p-4 text-center">
                       <div className="text-2xl font-bold text-yellow-600">{referralData?.pendingReferrals || 0}</div>
-                      <div className="text-xs text-gray-600 mt-1">Pending</div>
+                      <div className="text-xs text-muted-foreground mt-1">Pending</div>
                     </div>
                   </div>
 
@@ -304,8 +304,8 @@ export default function StudentReferralsPage() {
                           isUnlocked
                             ? 'bg-green-50 border-green-500'
                             : isNextTier
-                            ? 'bg-blue-50 border-blue-500 ring-2 ring-blue-200'
-                            : 'bg-gray-50 border-gray-200'
+                            ? 'bg-primary/10 border-primary ring-2 ring-primary/20'
+                            : 'bg-muted border-border'
                         }`}
                       >
                         <div className="flex items-start justify-between mb-3">
@@ -320,17 +320,17 @@ export default function StudentReferralsPage() {
                             </Badge>
                           )}
                           {isNextTier && !isUnlocked && (
-                            <Badge className="bg-blue-500 text-white">
+                            <Badge className="bg-primary text-white">
                               Next Goal
                             </Badge>
                           )}
                         </div>
-                        <p className="text-sm font-semibold text-gray-900 mb-1">{reward}</p>
-                        <p className="text-xs text-gray-600">{referrals} successful referrals</p>
+                        <p className="text-sm font-semibold text-foreground mb-1">{reward}</p>
+                        <p className="text-xs text-muted-foreground">{referrals} successful referrals</p>
                         {!isUnlocked && (
                           <div className="mt-3">
                             <Progress value={(totalReferrals / referrals) * 100} className="h-1" />
-                            <p className="text-xs text-gray-500 mt-1">
+                            <p className="text-xs text-muted-foreground mt-1">
                               {referrals - totalReferrals} more to go
                             </p>
                           </div>
@@ -353,9 +353,9 @@ export default function StudentReferralsPage() {
               <CardContent>
                 {!referralData?.referrals || referralData.referrals.length === 0 ? (
                   <div className="text-center py-12">
-                    <Users className="h-16 w-16 mx-auto mb-4 text-gray-300" />
+                    <Users className="h-16 w-16 mx-auto mb-4 text-muted-foreground/60" />
                     <h3 className="text-lg font-semibold mb-2">No Referrals Yet</h3>
-                    <p className="text-gray-600 mb-6">
+                    <p className="text-muted-foreground mb-6">
                       Start sharing your referral link to see your network grow here
                     </p>
                   </div>
@@ -364,7 +364,7 @@ export default function StudentReferralsPage() {
                     {referralData.referrals.map((referral) => (
                       <div
                         key={referral.id}
-                        className="border rounded-lg p-4 hover:bg-gray-50 transition-colors"
+                        className="border rounded-lg p-4 hover:bg-muted transition-colors"
                       >
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex-1">
@@ -372,10 +372,10 @@ export default function StudentReferralsPage() {
                               <h4 className="font-semibold">{referral.name}</h4>
                               {getStatusBadge(referral.status)}
                             </div>
-                            <p className="text-sm text-gray-600">{referral.email}</p>
+                            <p className="text-sm text-muted-foreground">{referral.email}</p>
                           </div>
                         </div>
-                        <div className="flex items-center justify-between text-xs text-gray-500 mt-2">
+                        <div className="flex items-center justify-between text-xs text-muted-foreground mt-2">
                           <span>Joined {new Date(referral.signupDate).toLocaleDateString()}</span>
                           {referral.profileCompleted && (
                             <span className="text-green-600 flex items-center gap-1">
@@ -420,33 +420,33 @@ export default function StudentReferralsPage() {
                         <div
                           key={entry.rank}
                           className={`flex items-center gap-3 p-3 rounded-lg ${
-                            isTopThree ? 'bg-white shadow-md' : 'bg-white/50'
+                            isTopThree ? 'bg-card shadow-md' : 'bg-white/50'
                           }`}
                         >
                           <div
                             className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
                               isTopThree
                                 ? medalColors[entry.rank as keyof typeof medalColors]
-                                : 'bg-gray-200 text-gray-600'
+                                : 'bg-muted text-muted-foreground'
                             }`}
                           >
                             {entry.rank}
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="font-semibold text-sm truncate">{entry.name}</div>
-                            <div className="text-xs text-gray-600 truncate">{entry.university}</div>
+                            <div className="text-xs text-muted-foreground truncate">{entry.university}</div>
                           </div>
                           <div className="text-right">
                             <div className="font-bold text-primary">{entry.referrals}</div>
-                            <div className="text-xs text-gray-600">refs</div>
+                            <div className="text-xs text-muted-foreground">refs</div>
                           </div>
                         </div>
                       )
                     })}
                   </div>
                 ) : (
-                  <div className="text-center py-6 text-gray-600">
-                    <Trophy className="h-12 w-12 mx-auto mb-2 text-gray-300" />
+                  <div className="text-center py-6 text-muted-foreground">
+                    <Trophy className="h-12 w-12 mx-auto mb-2 text-muted-foreground/60" />
                     <p className="text-sm">Be the first on the leaderboard!</p>
                   </div>
                 )}
@@ -466,7 +466,7 @@ export default function StudentReferralsPage() {
                     </div>
                     <div>
                       <p className="font-medium text-sm">Share Your Link</p>
-                      <p className="text-xs text-gray-600">Copy and share your unique referral link with friends</p>
+                      <p className="text-xs text-muted-foreground">Copy and share your unique referral link with friends</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -475,7 +475,7 @@ export default function StudentReferralsPage() {
                     </div>
                     <div>
                       <p className="font-medium text-sm">Friends Sign Up</p>
-                      <p className="text-xs text-gray-600">They create an account using your referral link</p>
+                      <p className="text-xs text-muted-foreground">They create an account using your referral link</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -484,7 +484,7 @@ export default function StudentReferralsPage() {
                     </div>
                     <div>
                       <p className="font-medium text-sm">They Complete Profile</p>
-                      <p className="text-xs text-gray-600">Once they finish setting up, the referral counts</p>
+                      <p className="text-xs text-muted-foreground">Once they finish setting up, the referral counts</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -493,14 +493,14 @@ export default function StudentReferralsPage() {
                     </div>
                     <div>
                       <p className="font-medium text-sm">You Earn Rewards</p>
-                      <p className="text-xs text-gray-600">Premium features unlock automatically at each milestone</p>
+                      <p className="text-xs text-muted-foreground">Premium features unlock automatically at each milestone</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-6 pt-4 border-t">
-                  <p className="text-xs text-gray-600 mb-2">🎁 <strong>Bonus:</strong></p>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-muted-foreground mb-2">🎁 <strong>Bonus:</strong></p>
+                  <p className="text-xs text-muted-foreground">
                     Premium rewards are applied immediately when you hit each tier. No waiting, no hassle!
                   </p>
                 </div>

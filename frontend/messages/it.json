@@ -14,6 +14,89 @@
     "signOut": "Esci",
     "mission": "Missione"
   },
+  "dashboardNav": {
+    "home": "Home",
+    "student": {
+      "portfolio": "Portfolio",
+      "career": "Carriera",
+      "messages": "Messaggi",
+      "insights": "Statistiche",
+      "more": "Altro",
+      "items": {
+        "projects": "Progetti",
+        "profile": "Profilo",
+        "profileOptimizer": "Ottimizza Profilo",
+        "jobs": "Lavori",
+        "applications": "Candidature",
+        "skillPath": "Percorso Competenze",
+        "aiJobSearch": "Ricerca Lavoro AI",
+        "messages": "Messaggi",
+        "analytics": "Analytics",
+        "activity": "Attività",
+        "courses": "Corsi",
+        "challenges": "Sfide",
+        "referrals": "Referral",
+        "feedback": "Feedback",
+        "upgrade": "Upgrade",
+        "privacy": "Privacy"
+      }
+    },
+    "recruiter": {
+      "talent": "Talenti",
+      "jobs": "Lavori",
+      "messages": "Messaggi",
+      "insights": "Statistiche",
+      "more": "Altro",
+      "items": {
+        "candidates": "Candidati",
+        "talentDiscovery": "Scopri Talenti",
+        "advancedSearch": "Ricerca Avanzata",
+        "aiSearch": "Ricerca AI",
+        "geographicSearch": "Ricerca Geografica",
+        "courseSearch": "Ricerca Corsi",
+        "savedCandidates": "Candidati Salvati",
+        "savedSearches": "Ricerche Salvate",
+        "listings": "Annunci Lavoro",
+        "postJob": "Pubblica Annuncio",
+        "messages": "Messaggi",
+        "analytics": "Analytics",
+        "talentAnalytics": "Analytics Talenti",
+        "marketIntelligence": "Intelligence Mercato",
+        "challenges": "Sfide",
+        "settings": "Impostazioni"
+      }
+    },
+    "university": {
+      "students": "Studenti",
+      "academics": "Accademici",
+      "career": "Carriera",
+      "insights": "Statistiche",
+      "more": "Altro",
+      "items": {
+        "list": "Lista Studenti",
+        "addStudent": "Aggiungi Studente",
+        "importStudents": "Importa Studenti",
+        "courses": "Corsi",
+        "departments": "Dipartimenti",
+        "projects": "Progetti",
+        "placements": "Placement",
+        "recruiters": "Recruiter",
+        "alumni": "Alumni",
+        "analytics": "Analytics",
+        "challenges": "Sfide",
+        "aiSearch": "Ricerca AI",
+        "sync": "Sincronizzazione",
+        "settings": "Impostazioni"
+      }
+    },
+    "institution": {
+      "features": "Funzionalità",
+      "items": {
+        "careerDay": "Career Day",
+        "embedConfig": "Configurazione Embed"
+      }
+    }
+  },
   "home": {
     "hero": {
       "serviceBadge": "Servizio Senza Abbonamenti • Abilitato dai Partner",
@@ -113,7 +196,14 @@
         "statsLabel": "Accedi a talento verificato da",
         "statsValue": "università, accademie ITS e scuole professionali"
       },
-      "bottomText": "Quattro Servizi, Zero Abbonamenti"
+      "bottomText": "Quattro Servizi, Zero Abbonamenti",
+      "unifiedHeadline1": "Scoperta di",
+      "unifiedHeadline2": "Talenti Trasparente",
+      "unifiedSubheadline": "Dove le competenze verificate incontrano le opportunità reali. Certificato dalle istituzioni, analizzato dall'AI, dimostrato dai progetti.",
+      "unifiedPrimaryCTA": "Inizia Gratis",
+      "unifiedSecondaryCTA": "Vedi Come Funziona",
+      "unifiedBenefits": ["100% Competenze Verificate", "Matching con AI", "Gratis per Studenti e Università"],
+      "exploreByRole": "Esplora per ruolo"
     },
     "problem": {
       "badge": "Il Problema",
@@ -333,47 +423,7 @@
             "realTimeNotifications": "Notifiche in tempo reale per nuove opportunità"
           }
         }
-      ],
-      "benefits": {
-        "title": "Vantaggi per Tutti",
-        "forStudents": {
-          "title": "Per Studenti",
-          "description": "Mostra il tuo lavoro professionalmente e vieni scoperto da aziende top",
-          "features": [
-            "Portfolio potenziati da AI",
-            "Connessioni dirette con recruiter",
-            "Insights carriera",
-            "Verifica competenze"
-          ]
-        },
-        "forCompanies": {
-          "title": "Per Aziende",
-          "description": "Trova e assumi i migliori talenti basandoti su progetti reali e competenze verificate",
-          "features": [
-            "Candidati pre-selezionati",
-            "Valutazione basata su progetti",
-            "Messaggistica diretta",
-            "Analytics assunzioni"
-          ]
-        },
-        "forInstitutes": {
-          "title": "Per Istituti (Università e ITS)",
-          "description": "Trasforma il tuo Career Center in un hub di intelligence strategica. Smetti di indovinare. Inizia a sapere.",
-          "features": [
-            "Vedi quali aziende cercano i tuoi studenti (Deloitte ha visualizzato 31 studenti Economia → momento per contatti?)",
-            "Consigli carriera basati su dati (Excel cercato 89x → dì agli studenti di impararlo)",
-            "Correggi profili a rischio prima della laurea (87 senior con zero visualizzazioni = intervento precoce)",
-            "Feedback curriculum ai dipartimenti (Aggiungi Docker → assunti 60% più veloce)",
-            "Prova il tuo impatto (Dashboard: 156 contatti → 23 assunzioni → media 47 giorni)"
-          ]
-        }
-      },
-      "finalCTA": {
-        "title": "Pronto a Iniziare?",
-        "subtitle": "Unisciti a studenti e aziende che usano InTransparency",
-        "getStarted": "Inizia Gratis",
-        "viewPricing": "Vedi Prezzi"
-      }
+      ]
     }
   },
   "footer": {
@@ -3475,21 +3525,17 @@
     "demoTitles": {
       "student": {
         "title": "Ricerca Avanzata Lavori",
-        "subtitle": "Filtra per posizione, salario, tipo e altro",
-        "totalCount": "5.240"
+        "subtitle": "Filtra per posizione, salario, tipo e altro"
       },
       "company": {
         "title": "Ricerca Avanzata Candidati",
-        "subtitle": "Tutte le discipline: Business, Ingegneria, STEM, Legge, Creative, Umanistiche & altro",
-        "totalCount": "12.847"
+        "subtitle": "Tutte le discipline: Business, Ingegneria, STEM, Legge, Creative, Umanistiche & altro"
       },
       "university": {
         "titleStudents": "Cerca i Tuoi Studenti",
         "titleJobs": "Cerca Opportunità di Lavoro",
         "subtitleStudents": "Filtra studenti per competenze, corsi, progetti e altro",
-        "subtitleJobs": "Trova opportunità di lavoro europee per i tuoi studenti",
-        "totalCountStudents": "12.847",
-        "totalCountJobs": "18.934"
+        "subtitleJobs": "Trova opportunità di lavoro europee per i tuoi studenti"
       }
     }
   },
@@ -4057,6 +4103,27 @@
       "subtitle": "Aiutaci a creare un mondo dove il talento è riconosciuto, le competenze sono verificate e ogni giovane ha l'opportunità di farsi notare.",
       "primaryCTA": "Inizia Ora",
       "secondaryCTA": "Scopri Come Funziona"
+    }
+  },
+  "dashboard": {
+    "recruiter": {
+      "messages": {
+        "title": "Messaggi",
+        "subtitle": "Comunica con i candidati",
+        "refresh": "Aggiorna",
+        "newMessage": "Nuovo Messaggio",
+        "searchPlaceholder": "Cerca messaggi...",
+        "noMessages": "Nessun messaggio",
+        "noMessagesInThread": "Nessun messaggio in questa conversazione",
+        "selectMessage": "Seleziona un messaggio",
+        "selectMessageDesc": "Scegli una conversazione dalla lista per visualizzarla",
+        "you": "Tu",
+        "replyPlaceholder": "Scrivi una risposta...",
+        "attachFile": "Allega File",
+        "send": "Invia",
+        "sending": "Invio...",
+        "retry": "Riprova"
+      }
     }
   }
 }

@@ -14,6 +14,89 @@
     "signOut": "Sign Out",
     "mission": "Mission"
   },
+  "dashboardNav": {
+    "home": "Home",
+    "student": {
+      "portfolio": "Portfolio",
+      "career": "Career",
+      "messages": "Messages",
+      "insights": "Insights",
+      "more": "More",
+      "items": {
+        "projects": "Projects",
+        "profile": "Profile",
+        "profileOptimizer": "Profile Optimizer",
+        "jobs": "Jobs",
+        "applications": "Applications",
+        "skillPath": "Skill Path",
+        "aiJobSearch": "AI Job Search",
+        "messages": "Messages",
+        "analytics": "Analytics",
+        "activity": "Activity",
+        "courses": "Courses",
+        "challenges": "Challenges",
+        "referrals": "Referrals",
+        "feedback": "Feedback",
+        "upgrade": "Upgrade",
+        "privacy": "Privacy"
+      }
+    },
+    "recruiter": {
+      "talent": "Talent",
+      "jobs": "Jobs",
+      "messages": "Messages",
+      "insights": "Insights",
+      "more": "More",
+      "items": {
+        "candidates": "Candidates",
+        "talentDiscovery": "Talent Discovery",
+        "advancedSearch": "Advanced Search",
+        "aiSearch": "AI Search",
+        "geographicSearch": "Geographic Search",
+        "courseSearch": "Course Search",
+        "savedCandidates": "Saved Candidates",
+        "savedSearches": "Saved Searches",
+        "listings": "Job Listings",
+        "postJob": "Post a Job",
+        "messages": "Messages",
+        "analytics": "Analytics",
+        "talentAnalytics": "Talent Analytics",
+        "marketIntelligence": "Market Intelligence",
+        "challenges": "Challenges",
+        "settings": "Settings"
+      }
+    },
+    "university": {
+      "students": "Students",
+      "academics": "Academics",
+      "career": "Career",
+      "insights": "Insights",
+      "more": "More",
+      "items": {
+        "list": "Student List",
+        "addStudent": "Add Student",
+        "importStudents": "Import Students",
+        "courses": "Courses",
+        "departments": "Departments",
+        "projects": "Projects",
+        "placements": "Placements",
+        "recruiters": "Recruiters",
+        "alumni": "Alumni",
+        "analytics": "Analytics",
+        "challenges": "Challenges",
+        "aiSearch": "AI Search",
+        "sync": "Sync",
+        "settings": "Settings"
+      }
+    },
+    "institution": {
+      "features": "Features",
+      "items": {
+        "careerDay": "Career Day",
+        "embedConfig": "Embed Config"
+      }
+    }
+  },
   "home": {
     "hero": {
       "serviceBadge": "Subscription-Free Service • Partner-Enabled",
@@ -113,7 +196,14 @@
         "statsLabel": "Access verified talent from",
         "statsValue": "universities, ITS academies, and vocational schools"
       },
-      "bottomText": "Four Services, Zero Subscriptions"
+      "bottomText": "Four Services, Zero Subscriptions",
+      "unifiedHeadline1": "Transparent",
+      "unifiedHeadline2": "Talent Discovery",
+      "unifiedSubheadline": "Where verified skills meet real opportunities. Institution-backed, AI-analyzed, project-proven.",
+      "unifiedPrimaryCTA": "Get Started Free",
+      "unifiedSecondaryCTA": "See How It Works",
+      "unifiedBenefits": ["100% Verified Skills", "AI-Powered Matching", "Free for Students & Universities"],
+      "exploreByRole": "Explore by role"
     },
     "problem": {
       "badge": "The Problem",
@@ -333,47 +423,7 @@
             "realTimeNotifications": "Real-time notifications for new opportunities"
           }
         }
-      ],
-      "benefits": {
-        "title": "Benefits for Everyone",
-        "forStudents": {
-          "title": "For Students",
-          "description": "Showcase your work professionally and get discovered by top companies",
-          "features": [
-            "AI-enhanced portfolios",
-            "Direct recruiter connections",
-            "Career insights",
-            "Skill verification"
-          ]
-        },
-        "forCompanies": {
-          "title": "For Companies",
-          "description": "Find and hire the best talent based on real projects and verified skills",
-          "features": [
-            "Pre-screened candidates",
-            "Project-based assessment",
-            "Direct messaging",
-            "Hiring analytics"
-          ]
-        },
-        "forInstitutes": {
-          "title": "For Institutes (Universities & ITS)",
-          "description": "Turn your Career Center into a strategic intelligence hub. Stop guessing. Start knowing.",
-          "features": [
-            "See which companies search your students (Deloitte viewed 31 Economics students → time for outreach?)",
-            "Data-driven career advice (Excel searched 89x → tell students to learn it)",
-            "Fix at-risk profiles before graduation (87 seniors with zero views = early intervention)",
-            "Give departments curriculum feedback (Add Docker → hired 60% faster)",
-            "Prove your impact (Dashboard: 156 contacts → 23 hires → 47 days avg)"
-          ]
-        }
-      },
-      "finalCTA": {
-        "title": "Ready to Get Started?",
-        "subtitle": "Join thousands of students and hundreds of companies already using InTransparency",
-        "getStarted": "Get Started Free",
-        "viewPricing": "View Pricing"
-      }
+      ]
     }
   },
   "footer": {
@@ -3433,21 +3483,17 @@
     "demoTitles": {
       "student": {
         "title": "Advanced Job Search",
-        "subtitle": "Filter by location, salary, type, and more",
-        "totalCount": "5,240"
+        "subtitle": "Filter by location, salary, type, and more"
       },
       "company": {
         "title": "Advanced Candidate Search",
-        "subtitle": "All disciplines: Business, Engineering, STEM, Law, Creative, Humanities & more",
-        "totalCount": "12,847"
+        "subtitle": "All disciplines: Business, Engineering, STEM, Law, Creative, Humanities & more"
       },
       "university": {
         "titleStudents": "Search Your Students",
         "titleJobs": "Search Job Opportunities",
         "subtitleStudents": "Filter students by skills, courses, projects, and more",
-        "subtitleJobs": "Find European job opportunities for your students",
-        "totalCountStudents": "12,847",
-        "totalCountJobs": "18,934"
+        "subtitleJobs": "Find European job opportunities for your students"
       }
     }
   },
@@ -4015,6 +4061,27 @@
       "subtitle": "Help us create a world where talent is recognized, skills are verified, and every young person has the opportunity to be noticed.",
       "primaryCTA": "Get Started",
       "secondaryCTA": "Learn How It Works"
+    }
+  },
+  "dashboard": {
+    "recruiter": {
+      "messages": {
+        "title": "Messages",
+        "subtitle": "Communicate with candidates",
+        "refresh": "Refresh",
+        "newMessage": "New Message",
+        "searchPlaceholder": "Search messages...",
+        "noMessages": "No messages",
+        "noMessagesInThread": "No messages in this conversation",
+        "selectMessage": "Select a message",
+        "selectMessageDesc": "Choose a conversation from the list to view it",
+        "you": "You",
+        "replyPlaceholder": "Write a reply...",
+        "attachFile": "Attach File",
+        "send": "Send",
+        "sending": "Sending...",
+        "retry": "Try again"
+      }
     }
   }
 }

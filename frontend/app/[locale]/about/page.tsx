@@ -42,7 +42,7 @@ export default function AboutPage() {
               <h1 className="text-5xl font-display font-bold text-foreground mb-6">
                 {t('hero.title')}
               </h1>
-              <p className="text-xl text-gray-700 leading-relaxed whitespace-pre-line">
+              <p className="text-xl text-foreground/80 leading-relaxed whitespace-pre-line">
                 {t('hero.description')}
               </p>
             </motion.div>
@@ -53,7 +53,7 @@ export default function AboutPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-              <Card className="bg-white hover:shadow-lg transition-shadow h-full">
+              <Card className="bg-card hover:shadow-lg transition-shadow h-full">
                 <CardContent className="p-8">
                   <div className="relative w-16 h-16 mb-4 rounded-lg overflow-hidden shadow-md">
                     <Image
@@ -64,8 +64,8 @@ export default function AboutPage() {
                       className="object-cover"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{t('resumeProblem.title')}</h3>
-                  <ul className="space-y-2 text-gray-700">
+                  <h3 className="text-xl font-bold text-foreground mb-3">{t('resumeProblem.title')}</h3>
+                  <ul className="space-y-2 text-foreground/80">
                     <li>{t('resumeProblem.items.0')}</li>
                     <li>{t('resumeProblem.items.1')}</li>
                     <li>{t('resumeProblem.items.2')}</li>
@@ -92,8 +92,8 @@ export default function AboutPage() {
                       className="object-cover"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{t('intransparencyWay.title')}</h3>
-                  <ul className="space-y-2 text-gray-700">
+                  <h3 className="text-xl font-bold text-foreground mb-3">{t('intransparencyWay.title')}</h3>
+                  <ul className="space-y-2 text-foreground/80">
                     <li>{t('intransparencyWay.items.0')}</li>
                     <li>{t('intransparencyWay.items.1')}</li>
                     <li>{t('intransparencyWay.items.2')}</li>
@@ -108,7 +108,7 @@ export default function AboutPage() {
         </section>
 
         {/* Why We're Different - Against Opaque Competitors */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <section className="py-20 bg-gradient-to-br from-muted/50 to-white">
           <div className="container max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -126,7 +126,7 @@ export default function AboutPage() {
                   {t('whyDifferent.titleHighlight')}
                 </span>
               </h2>
-              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
                 {t('whyDifferent.subtitle')}
               </p>
             </motion.div>
@@ -138,39 +138,39 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <Card className="bg-gray-50 border-2 border-gray-200 h-full">
+                <Card className="bg-muted border-2 border-border h-full">
                   <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                    <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
                       <FileX2 className="h-6 w-6" />
                       {t('whyDifferent.challenge.title')}
                     </h3>
                     <ul className="space-y-4">
                       <li className="flex items-start gap-3">
-                        <span className="text-gray-600 font-bold">→</span>
+                        <span className="text-muted-foreground font-bold">→</span>
                         <div>
-                          <strong className="text-gray-900">{t('whyDifferent.challenge.items.0.title')}</strong>
-                          <p className="text-gray-700 text-sm">{t('whyDifferent.challenge.items.0.description')}</p>
+                          <strong className="text-foreground">{t('whyDifferent.challenge.items.0.title')}</strong>
+                          <p className="text-foreground/80 text-sm">{t('whyDifferent.challenge.items.0.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="text-gray-600 font-bold">→</span>
+                        <span className="text-muted-foreground font-bold">→</span>
                         <div>
-                          <strong className="text-gray-900">{t('whyDifferent.challenge.items.1.title')}</strong>
-                          <p className="text-gray-700 text-sm">{t('whyDifferent.challenge.items.1.description')}</p>
+                          <strong className="text-foreground">{t('whyDifferent.challenge.items.1.title')}</strong>
+                          <p className="text-foreground/80 text-sm">{t('whyDifferent.challenge.items.1.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="text-gray-600 font-bold">→</span>
+                        <span className="text-muted-foreground font-bold">→</span>
                         <div>
-                          <strong className="text-gray-900">{t('whyDifferent.challenge.items.2.title')}</strong>
-                          <p className="text-gray-700 text-sm">{t('whyDifferent.challenge.items.2.description')}</p>
+                          <strong className="text-foreground">{t('whyDifferent.challenge.items.2.title')}</strong>
+                          <p className="text-foreground/80 text-sm">{t('whyDifferent.challenge.items.2.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="text-gray-600 font-bold">→</span>
+                        <span className="text-muted-foreground font-bold">→</span>
                         <div>
-                          <strong className="text-gray-900">{t('whyDifferent.challenge.items.3.title')}</strong>
-                          <p className="text-gray-700 text-sm">{t('whyDifferent.challenge.items.3.description')}</p>
+                          <strong className="text-foreground">{t('whyDifferent.challenge.items.3.title')}</strong>
+                          <p className="text-foreground/80 text-sm">{t('whyDifferent.challenge.items.3.description')}</p>
                         </div>
                       </li>
                     </ul>
@@ -195,28 +195,28 @@ export default function AboutPage() {
                         <span className="text-green-600 font-bold">✅</span>
                         <div>
                           <strong className="text-green-900">{t('whyDifferent.solution.items.0.title')}</strong>
-                          <p className="text-gray-700 text-sm">{t('whyDifferent.solution.items.0.description')}</p>
+                          <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.0.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="text-green-600 font-bold">✅</span>
                         <div>
                           <strong className="text-green-900">{t('whyDifferent.solution.items.1.title')}</strong>
-                          <p className="text-gray-700 text-sm">{t('whyDifferent.solution.items.1.description')}</p>
+                          <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.1.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="text-green-600 font-bold">✅</span>
                         <div>
                           <strong className="text-green-900">{t('whyDifferent.solution.items.2.title')}</strong>
-                          <p className="text-gray-700 text-sm">{t('whyDifferent.solution.items.2.description')}</p>
+                          <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.2.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="text-green-600 font-bold">✅</span>
                         <div>
                           <strong className="text-green-900">{t('whyDifferent.solution.items.3.title')}</strong>
-                          <p className="text-gray-700 text-sm">{t('whyDifferent.solution.items.3.description')}</p>
+                          <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.3.description')}</p>
                         </div>
                       </li>
                     </ul>
@@ -279,7 +279,7 @@ export default function AboutPage() {
               <h2 className="text-4xl font-display font-bold text-foreground mb-4">
                 {t('mission.title')}
               </h2>
-              <p className="text-xl text-gray-700 leading-relaxed">
+              <p className="text-xl text-foreground/80 leading-relaxed">
                 {t('mission.description')}
               </p>
             </motion.div>
@@ -296,16 +296,16 @@ export default function AboutPage() {
             {/* Our Story */}
             <div className="prose prose-lg max-w-none">
               <h3 className="text-2xl font-display font-bold text-foreground mb-4">{t('mission.story.title')}</h3>
-              <p className="text-gray-700 leading-relaxed mb-4">
+              <p className="text-foreground/80 leading-relaxed mb-4">
                 {t('mission.story.paragraphs.0')}
               </p>
-              <p className="text-gray-700 leading-relaxed mb-4">
+              <p className="text-foreground/80 leading-relaxed mb-4">
                 {t('mission.story.paragraphs.1')}
               </p>
-              <p className="text-gray-700 leading-relaxed mb-8">
+              <p className="text-foreground/80 leading-relaxed mb-8">
                 {t('mission.story.paragraphs.2')}
               </p>
-              <p className="text-gray-700 leading-relaxed font-semibold">
+              <p className="text-foreground/80 leading-relaxed font-semibold">
                 {t('mission.story.paragraphs.3')}
               </p>
             </div>
@@ -362,10 +362,10 @@ export default function AboutPage() {
                           className="object-cover"
                         />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      <h3 className="text-xl font-bold text-foreground mb-3">
                         {value.title}
                       </h3>
-                      <p className="text-gray-700 leading-relaxed">
+                      <p className="text-foreground/80 leading-relaxed">
                         {value.description}
                       </p>
                     </CardContent>
@@ -390,52 +390,52 @@ export default function AboutPage() {
             <h2 className="text-4xl font-display font-bold text-foreground text-center mb-4">
               Why Is Everything Free?
             </h2>
-            <p className="text-xl text-gray-700 text-center mb-12">
+            <p className="text-xl text-foreground/80 text-center mb-12">
               We believe talent shouldn't be locked behind paywalls
             </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <Card className="bg-white">
+              <Card className="bg-card">
                 <CardContent className="p-8 text-center">
                   <div className="text-5xl mb-4">🎓</div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-xl font-bold text-foreground mb-3">
                     Students: Freemium
                   </h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-foreground/80 leading-relaxed mb-4">
                     Core features included. Build your verified portfolio.
                   </p>
-                  <div className="text-sm text-gray-600 bg-green-50 rounded-lg p-3">
+                  <div className="text-sm text-muted-foreground bg-green-50 rounded-lg p-3">
                     <strong>Premium options:</strong> Priority visibility, advanced analytics
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white">
+              <Card className="bg-card">
                 <CardContent className="p-8 text-center">
                   <div className="text-5xl mb-4">🏫</div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-xl font-bold text-foreground mb-3">
                     Universities: Freemium
                   </h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-foreground/80 leading-relaxed mb-4">
                     Verify student projects. Track placements.
                   </p>
-                  <div className="text-sm text-gray-600 bg-blue-50 rounded-lg p-3">
+                  <div className="text-sm text-muted-foreground bg-blue-50 rounded-lg p-3">
                     <strong>Enterprise:</strong> API integrations, white-label, custom features
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white">
+              <Card className="bg-card">
                 <CardContent className="p-8 text-center">
                   <div className="text-5xl mb-4">💼</div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-xl font-bold text-foreground mb-3">
                     Companies: Pay Per Contact
                   </h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-foreground/80 leading-relaxed mb-4">
                     Browse profiles. Pay when you reach out.
                   </p>
-                  <div className="text-sm text-gray-600 bg-purple-50 rounded-lg p-3">
+                  <div className="text-sm text-muted-foreground bg-purple-50 rounded-lg p-3">
                     <strong>Enterprise:</strong> API access, ATS integration
                   </div>
                 </CardContent>
@@ -474,7 +474,7 @@ export default function AboutPage() {
             <h2 className="text-4xl font-display font-bold text-foreground text-center mb-4">
               Join Us in Early Access
             </h2>
-            <p className="text-xl text-gray-700 text-center mb-16">
+            <p className="text-xl text-foreground/80 text-center mb-16">
               We're building the future of student recruitment - be among the first to shape it
             </p>
             </motion.div>
@@ -494,8 +494,8 @@ export default function AboutPage() {
                   className="text-center"
                 >
                   <div className="text-5xl mb-4">{stat.emoji}</div>
-                  <div className="text-lg font-semibold text-gray-900 mb-1">{stat.label}</div>
-                  <div className="text-sm text-gray-700">{stat.sublabel}</div>
+                  <div className="text-lg font-semibold text-foreground mb-1">{stat.label}</div>
+                  <div className="text-sm text-foreground/80">{stat.sublabel}</div>
                 </motion.div>
               ))}
             </div>
@@ -513,7 +513,7 @@ export default function AboutPage() {
                 <h3 className="text-2xl font-display font-bold text-foreground mb-4">
                   Help Us Build the Platform
                 </h3>
-                <p className="text-gray-800 mb-6 leading-relaxed max-w-2xl mx-auto">
+                <p className="text-foreground mb-6 leading-relaxed max-w-2xl mx-auto">
                   We're in early development and looking for students, universities, and companies to help shape the platform. Your feedback will directly influence what we build.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -558,7 +558,7 @@ export default function AboutPage() {
               Students deserve to be judged on what they've built, not how well they write bullet points. Companies deserve to hire based on verified skills, not polished claims.
             </p>
 
-            <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100" asChild>
+            <Button size="lg" className="bg-card text-foreground hover:bg-muted" asChild>
               <Link href="/auth/register">
                 Get Started Free - Show Your Work
               </Link>
@@ -573,7 +573,7 @@ export default function AboutPage() {
             <h2 className="text-4xl font-display font-bold text-foreground mb-6">
               Join the Movement
             </h2>
-            <p className="text-xl text-gray-700 mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-foreground/80 mb-12 max-w-2xl mx-auto">
               We're just getting started. Help us build a world where talent beats pedigree, and proof beats promises.
             </p>
 
@@ -586,7 +586,7 @@ export default function AboutPage() {
               </Button>
             </div>
 
-            <p className="mt-8 text-sm text-gray-700">
+            <p className="mt-8 text-sm text-foreground/80">
               For companies: <Link href="/auth/register" className="text-primary hover:underline font-medium">Browse free, pay only for contacts →</Link>
             </p>
           </div>

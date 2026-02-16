@@ -13,13 +13,13 @@ export function TestimonialsSection() {
   const bgs = ['bg-blue-100', 'bg-purple-100', 'bg-green-100']
 
   return (
-    <section className="py-14 bg-gradient-to-br from-slate-50 to-slate-100">
+    <section className="py-14 bg-gradient-to-br from-muted/50 to-muted">
       <div className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-foreground mb-4">
             {t('valueProposition.title')}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('valueProposition.subtitle')}
           </p>
         </div>
@@ -35,12 +35,12 @@ export function TestimonialsSection() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.03, y: -5 }}
-                className="bg-white rounded-2xl shadow-sm p-6 hover:shadow-md transition-shadow"
+                className="bg-card rounded-2xl shadow-sm p-6 hover:shadow-md transition-shadow"
               >
                 <div className={`inline-flex p-3 rounded-xl ${bgs[index]} mb-4`}>
                   <Icon className={`h-6 w-6 ${colors[index]}`} />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                <h3 className="text-xl font-semibold text-foreground mb-4">
                   {t(`valueProposition.cards.${key}.title`)}
                 </h3>
                 <ul className="space-y-3">
@@ -51,7 +51,7 @@ export function TestimonialsSection() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 + i * 0.05 }}
-                      className="flex items-start gap-2 text-gray-600"
+                      className="flex items-start gap-2 text-muted-foreground"
                     >
                       <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
                       <span>{t(`valueProposition.cards.${key}.benefits.${i}`)}</span>

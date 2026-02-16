@@ -279,17 +279,17 @@ export default function ExplorePage() {
               <h1 className="text-5xl font-display font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 {t('hero.title')}
               </h1>
-              <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto mb-8">
+              <p className="text-xl text-foreground/80 leading-relaxed max-w-3xl mx-auto mb-8">
                 {t('hero.subtitle')}
               </p>
 
               {/* Search Bar */}
               <div className="relative max-w-2xl mx-auto">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground/60" />
                 <Input
                   type="text"
                   placeholder={t('hero.searchPlaceholder')}
-                  className="pl-12 py-6 text-lg bg-white text-gray-900 shadow-md border-2 hover:border-primary/30 transition-colors"
+                  className="pl-12 py-6 text-lg bg-card text-foreground shadow-md border-2 hover:border-primary/30 transition-colors"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -300,7 +300,7 @@ export default function ExplorePage() {
                 <div className="flex justify-center space-x-8 mt-12">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-primary">{students.length}</div>
-                    <div className="text-sm text-gray-700">{t('hero.stats.students')}</div>
+                    <div className="text-sm text-foreground/80">{t('hero.stats.students')}</div>
                   </div>
                 </div>
               )}
@@ -312,7 +312,7 @@ export default function ExplorePage() {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Filters Sidebar */}
             <aside className="lg:w-64 flex-shrink-0">
-              <Card className="sticky top-4 bg-white hover:shadow-lg transition-shadow border-2">
+              <Card className="sticky top-4 bg-card hover:shadow-lg transition-shadow border-2">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="flex items-center gap-2">
@@ -335,12 +335,12 @@ export default function ExplorePage() {
                 <CardContent className="space-y-6">
                   {/* Field of Study Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
                       <BookOpen className="h-4 w-4" />
                       {t('filters.fieldOfStudy')}
                     </h3>
                     <select
-                      className="w-full p-2 border border-gray-300 rounded-md text-sm bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
+                      className="w-full p-2 border border-border rounded-md text-sm bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
                       value={selectedField}
                       onChange={(e) => setSelectedField(e.target.value)}
                     >
@@ -353,12 +353,12 @@ export default function ExplorePage() {
 
                   {/* University Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
                       <GraduationCap className="h-4 w-4" />
                       {t('filters.university')}
                     </h3>
                     <select
-                      className="w-full p-2 border border-gray-300 rounded-md text-sm bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
+                      className="w-full p-2 border border-border rounded-md text-sm bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
                       value={selectedUniversity}
                       onChange={(e) => setSelectedUniversity(e.target.value)}
                     >
@@ -371,12 +371,12 @@ export default function ExplorePage() {
 
                   {/* Location Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
                       <MapPin className="h-4 w-4" />
                       {t('filters.location')}
                     </h3>
                     <select
-                      className="w-full p-2 border border-gray-300 rounded-md text-sm bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
+                      className="w-full p-2 border border-border rounded-md text-sm bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
                       value={selectedLocation}
                       onChange={(e) => setSelectedLocation(e.target.value)}
                     >
@@ -389,12 +389,12 @@ export default function ExplorePage() {
 
                   {/* Graduation Year Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
                       <Calendar className="h-4 w-4" />
                       {t('filters.graduationYear')}
                     </h3>
                     <select
-                      className="w-full p-2 border border-gray-300 rounded-md text-sm bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
+                      className="w-full p-2 border border-border rounded-md text-sm bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
                       value={selectedYear}
                       onChange={(e) => setSelectedYear(e.target.value)}
                     >
@@ -407,12 +407,12 @@ export default function ExplorePage() {
 
                   {/* Language Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
                       <Globe className="h-4 w-4" />
                       {t('filters.language')}
                     </h3>
                     <select
-                      className="w-full p-2 border border-gray-300 rounded-md text-sm bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
+                      className="w-full p-2 border border-border rounded-md text-sm bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
                       value={selectedLanguage}
                       onChange={(e) => setSelectedLanguage(e.target.value)}
                     >
@@ -425,12 +425,12 @@ export default function ExplorePage() {
 
                   {/* Availability Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
                       <Briefcase className="h-4 w-4" />
                       {t('filters.availability')}
                     </h3>
                     <select
-                      className="w-full p-2 border border-gray-300 rounded-md text-sm bg-white text-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
+                      className="w-full p-2 border border-border rounded-md text-sm bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
                       value={selectedAvailability}
                       onChange={(e) => setSelectedAvailability(e.target.value)}
                     >
@@ -443,7 +443,7 @@ export default function ExplorePage() {
 
                   {/* Verification Status */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
                       <Shield className="h-4 w-4" />
                       {t('filters.verification')}
                     </h3>
@@ -469,7 +469,7 @@ export default function ExplorePage() {
 
                   {/* Skills Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-gray-900">
+                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
                       <Award className="h-4 w-4" />
                       {t('filters.skills', { count: popularSkills.length })}
                     </h3>
@@ -478,7 +478,7 @@ export default function ExplorePage() {
                     <Input
                       type="text"
                       placeholder={t('filters.searchSkills')}
-                      className="mb-3 text-sm bg-white text-gray-900 border-gray-300"
+                      className="mb-3 text-sm bg-card text-foreground border-border"
                       value={skillSearchQuery}
                       onChange={(e) => setSkillSearchQuery(e.target.value)}
                     />
@@ -502,7 +502,7 @@ export default function ExplorePage() {
                       {popularSkills.filter(skill =>
                         skill.toLowerCase().includes(skillSearchQuery.toLowerCase())
                       ).length === 0 && (
-                        <p className="text-sm text-gray-500 text-center py-4">
+                        <p className="text-sm text-muted-foreground text-center py-4">
                           {t('filters.noSkillsFound', { query: skillSearchQuery })}
                         </p>
                       )}
@@ -516,11 +516,11 @@ export default function ExplorePage() {
             <div className="flex-1">
               {/* Results Header */}
               <div className="mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-2xl font-bold text-foreground">
                   {loading ? t('results.loading') : t('results.studentsFound', { count: students.length })}
                 </h2>
                 {hasActiveFilters && (
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm text-muted-foreground mt-1">
                     {t('results.filtered')}
                   </p>
                 )}
@@ -530,13 +530,13 @@ export default function ExplorePage() {
               {loading ? (
                 <div className="text-center py-12">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-                  <p className="mt-4 text-gray-600">{t('results.loadingPortfolios')}</p>
+                  <p className="mt-4 text-muted-foreground">{t('results.loadingPortfolios')}</p>
                 </div>
               ) : students.length === 0 ? (
-                <Card className="p-12 text-center bg-white hover:shadow-lg transition-shadow">
-                  <GraduationCap className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('empty.title')}</h3>
-                  <p className="text-gray-600 mb-6">{t('empty.description')}</p>
+                <Card className="p-12 text-center bg-card hover:shadow-lg transition-shadow">
+                  <GraduationCap className="h-16 w-16 text-muted-foreground/60 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-foreground mb-2">{t('empty.title')}</h3>
+                  <p className="text-muted-foreground mb-6">{t('empty.description')}</p>
                   <Button onClick={clearFilters}>{t('empty.clearFilters')}</Button>
                 </Card>
               ) : (
@@ -548,7 +548,7 @@ export default function ExplorePage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                      <Card className="bg-white hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 h-full">
+                      <Card className="bg-card hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 h-full">
                         <CardHeader>
                           <div className="flex items-start gap-4">
                             <Avatar className="w-16 h-16 border-2 border-white shadow-md">
@@ -562,7 +562,7 @@ export default function ExplorePage() {
                               <CardTitle className="text-lg mb-1">
                                 {student.firstName} {student.lastName}
                               </CardTitle>
-                              <div className="space-y-1 text-sm text-gray-600">
+                              <div className="space-y-1 text-sm text-muted-foreground">
                                 <div className="flex items-center gap-1">
                                   <GraduationCap className="h-3 w-3" />
                                   {student.university}
@@ -579,24 +579,24 @@ export default function ExplorePage() {
 
                         <CardContent className="space-y-4">
                           {/* Stats */}
-                          <div className="grid grid-cols-3 gap-2 text-center py-2 bg-gray-50 rounded-lg">
+                          <div className="grid grid-cols-3 gap-2 text-center py-2 bg-muted rounded-lg">
                             <div>
                               <div className="text-xl font-bold text-primary">{student.projectsCount}</div>
-                              <div className="text-xs text-gray-600">{t('card.stats.projects')}</div>
+                              <div className="text-xs text-muted-foreground">{t('card.stats.projects')}</div>
                             </div>
                             <div>
                               <div className="text-xl font-bold text-green-600">{student.verificationScore}%</div>
-                              <div className="text-xs text-gray-600">{t('card.stats.verified')}</div>
+                              <div className="text-xs text-muted-foreground">{t('card.stats.verified')}</div>
                             </div>
                             <div>
                               <div className="text-xl font-bold text-blue-600">{student.skillsCount}</div>
-                              <div className="text-xs text-gray-600">{t('card.stats.skills')}</div>
+                              <div className="text-xs text-muted-foreground">{t('card.stats.skills')}</div>
                             </div>
                           </div>
 
                           {/* Top Skills */}
                           <div>
-                            <p className="text-xs font-medium text-gray-700 mb-2">{t('card.topSkills')}</p>
+                            <p className="text-xs font-medium text-foreground/80 mb-2">{t('card.topSkills')}</p>
                             <div className="flex flex-wrap gap-2">
                               {student.topSkills.slice(0, 3).map((skill) => (
                                 <Badge key={skill} variant="secondary" className="text-xs">

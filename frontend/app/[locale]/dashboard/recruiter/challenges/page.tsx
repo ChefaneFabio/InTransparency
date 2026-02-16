@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ChallengeCard } from '@/components/challenges/ChallengeCard'
 import { Plus, Search, Loader2, Trophy } from 'lucide-react'
+import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 
 interface Challenge {
   id: string
@@ -214,20 +215,16 @@ export default function RecruiterChallengesPage() {
         </div>
       ) : (
         <Card>
-          <CardContent className="py-12">
-            <div className="text-center">
-              <Trophy className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-              <h3 className="font-medium text-gray-900 mb-2">No challenges yet</h3>
-              <p className="text-gray-600 mb-4">
-                Create your first challenge to start collaborating with universities and students
-              </p>
-              <Button asChild>
-                <Link href="/dashboard/recruiter/challenges/create">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Create Your First Challenge
-                </Link>
-              </Button>
-            </div>
+          <CardContent>
+            <EmptyState
+              icon={Trophy}
+              title="No challenges yet"
+              description="Create a challenge to evaluate candidates' skills"
+              action={{
+                label: 'Create Challenge',
+                href: '/dashboard/recruiter/challenges/new',
+              }}
+            />
           </CardContent>
         </Card>
       )}

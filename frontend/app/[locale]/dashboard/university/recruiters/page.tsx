@@ -166,13 +166,13 @@ export default function UniversityRecruitersPage() {
   const industries = Array.from(new Set(recruiters.map(r => r.industry)))
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-muted/50 via-white to-slate-50 py-8">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Recruiter</h1>
-            <p className="text-gray-600">Gestisci le relazioni con le aziende</p>
+            <h1 className="text-3xl font-bold text-foreground">Recruiter</h1>
+            <p className="text-muted-foreground">Gestisci le relazioni con le aziende</p>
           </div>
           <Button>
             <Building2 className="h-4 w-4 mr-2" />
@@ -193,7 +193,7 @@ export default function UniversityRecruitersPage() {
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.total}</p>
-                    <p className="text-sm text-gray-600">Aziende Totali</p>
+                    <p className="text-sm text-muted-foreground">Aziende Totali</p>
                   </div>
                 </div>
               </CardContent>
@@ -206,7 +206,7 @@ export default function UniversityRecruitersPage() {
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.partners}</p>
-                    <p className="text-sm text-gray-600">Partner Ufficiali</p>
+                    <p className="text-sm text-muted-foreground">Partner Ufficiali</p>
                   </div>
                 </div>
               </CardContent>
@@ -219,7 +219,7 @@ export default function UniversityRecruitersPage() {
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.totalHired}</p>
-                    <p className="text-sm text-gray-600">Studenti Assunti</p>
+                    <p className="text-sm text-muted-foreground">Studenti Assunti</p>
                   </div>
                 </div>
               </CardContent>
@@ -232,7 +232,7 @@ export default function UniversityRecruitersPage() {
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.activeThisMonth}</p>
-                    <p className="text-sm text-gray-600">Attivi Questo Mese</p>
+                    <p className="text-sm text-muted-foreground">Attivi Questo Mese</p>
                   </div>
                 </div>
               </CardContent>
@@ -243,7 +243,7 @@ export default function UniversityRecruitersPage() {
         {/* Filters */}
         <div className="flex flex-wrap gap-4 mb-6">
           <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
             <Input
               placeholder="Cerca azienda o contatto..."
               value={searchQuery}
@@ -297,12 +297,12 @@ export default function UniversityRecruitersPage() {
                         </Avatar>
                         <div>
                           <div className="flex items-center gap-2">
-                            <h3 className="font-semibold text-gray-900">{recruiter.companyName}</h3>
+                            <h3 className="font-semibold text-foreground">{recruiter.companyName}</h3>
                             {recruiter.isPartner && (
                               <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
                             )}
                           </div>
-                          <p className="text-sm text-gray-600">{recruiter.industry}</p>
+                          <p className="text-sm text-muted-foreground">{recruiter.industry}</p>
                         </div>
                       </div>
                       <Badge
@@ -314,11 +314,11 @@ export default function UniversityRecruitersPage() {
                     </div>
 
                     <div className="space-y-2 mb-4">
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <Users className="h-4 w-4" />
                         <span>{recruiter.contactName}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <MapPin className="h-4 w-4" />
                         <span>{recruiter.location}</span>
                       </div>
@@ -326,20 +326,20 @@ export default function UniversityRecruitersPage() {
 
                     <div className="flex items-center justify-between pt-4 border-t">
                       <div className="text-center">
-                        <p className="text-lg font-bold text-gray-900">{recruiter.studentsHired}</p>
-                        <p className="text-xs text-gray-600">Assunti</p>
+                        <p className="text-lg font-bold text-foreground">{recruiter.studentsHired}</p>
+                        <p className="text-xs text-muted-foreground">Assunti</p>
                       </div>
                       <div className="text-center">
-                        <p className="text-lg font-bold text-gray-900">{recruiter.studentsContacted}</p>
-                        <p className="text-xs text-gray-600">Contattati</p>
+                        <p className="text-lg font-bold text-foreground">{recruiter.studentsContacted}</p>
+                        <p className="text-xs text-muted-foreground">Contattati</p>
                       </div>
                       <div className="text-center">
-                        <p className="text-lg font-bold text-gray-900">{"€"}{(recruiter.avgSalaryOffered / 1000).toFixed(0)}k</p>
-                        <p className="text-xs text-gray-600">RAL Media</p>
+                        <p className="text-lg font-bold text-foreground">{"€"}{(recruiter.avgSalaryOffered / 1000).toFixed(0)}k</p>
+                        <p className="text-xs text-muted-foreground">RAL Media</p>
                       </div>
                     </div>
 
-                    <p className="text-xs text-gray-500 mt-4">
+                    <p className="text-xs text-muted-foreground mt-4">
                       Ultima attività: {formatRelativeTime(recruiter.lastActivity)}
                     </p>
                   </CardContent>
@@ -349,11 +349,11 @@ export default function UniversityRecruitersPage() {
 
             {filteredRecruiters.length === 0 && (
               <Card className="p-8 text-center">
-                <Building2 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <Building2 className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   Nessun recruiter trovato
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Prova a modificare i filtri di ricerca
                 </p>
               </Card>
@@ -387,40 +387,40 @@ export default function UniversityRecruitersPage() {
                 </DialogHeader>
 
                 <div className="space-y-4 py-4">
-                  <div className="grid grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
+                  <div className="grid grid-cols-3 gap-4 p-4 bg-muted rounded-lg">
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-gray-900">{selectedRecruiter.studentsHired}</p>
-                      <p className="text-sm text-gray-600">Assunti</p>
+                      <p className="text-2xl font-bold text-foreground">{selectedRecruiter.studentsHired}</p>
+                      <p className="text-sm text-muted-foreground">Assunti</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-gray-900">{selectedRecruiter.studentsContacted}</p>
-                      <p className="text-sm text-gray-600">Contattati</p>
+                      <p className="text-2xl font-bold text-foreground">{selectedRecruiter.studentsContacted}</p>
+                      <p className="text-sm text-muted-foreground">Contattati</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-gray-900">{"€"}{selectedRecruiter.avgSalaryOffered.toLocaleString()}</p>
-                      <p className="text-sm text-gray-600">RAL Media</p>
+                      <p className="text-2xl font-bold text-foreground">{"€"}{selectedRecruiter.avgSalaryOffered.toLocaleString()}</p>
+                      <p className="text-sm text-muted-foreground">RAL Media</p>
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <h4 className="font-medium text-gray-900">Contatto</h4>
-                    <div className="flex items-center gap-2 text-gray-600">
+                    <h4 className="font-medium text-foreground">Contatto</h4>
+                    <div className="flex items-center gap-2 text-muted-foreground">
                       <Users className="h-4 w-4" />
                       <span>{selectedRecruiter.contactName}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600">
+                    <div className="flex items-center gap-2 text-muted-foreground">
                       <Mail className="h-4 w-4" />
-                      <a href={`mailto:${selectedRecruiter.contactEmail}`} className="text-blue-600 hover:underline">
+                      <a href={`mailto:${selectedRecruiter.contactEmail}`} className="text-primary hover:underline">
                         {selectedRecruiter.contactEmail}
                       </a>
                     </div>
                     {selectedRecruiter.contactPhone && (
-                      <div className="flex items-center gap-2 text-gray-600">
+                      <div className="flex items-center gap-2 text-muted-foreground">
                         <Phone className="h-4 w-4" />
                         <span>{selectedRecruiter.contactPhone}</span>
                       </div>
                     )}
-                    <div className="flex items-center gap-2 text-gray-600">
+                    <div className="flex items-center gap-2 text-muted-foreground">
                       <MapPin className="h-4 w-4" />
                       <span>{selectedRecruiter.location}</span>
                     </div>

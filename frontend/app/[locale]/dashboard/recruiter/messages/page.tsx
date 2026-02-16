@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -10,6 +11,7 @@ import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Skeleton } from '@/components/ui/skeleton'
+import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import {
   Search,
   Send,
@@ -62,6 +64,7 @@ interface ThreadMessage {
 }
 
 export default function RecruiterMessagesPage() {
+  const t = useTranslations('dashboard.recruiter.messages')
   const { data: session } = useSession()
   const currentUserId = session?.user?.id
 
@@ -196,17 +199,17 @@ export default function RecruiterMessagesPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Messaggi</h1>
-            <p className="text-gray-600">Comunica con i candidati</p>
+            <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
+            <p className="text-gray-600">{t('subtitle')}</p>
           </div>
           <div className="flex gap-2">
             <Button variant="outline" onClick={fetchConversations}>
               <RefreshCw className="h-4 w-4 mr-2" />
-              Aggiorna
+              {t('refresh')}
             </Button>
             <Button>
               <MessageSquare className="h-4 w-4 mr-2" />
-              Nuovo Messaggio
+              {t('newMessage')}
             </Button>
           </div>
         </div>
@@ -238,7 +241,7 @@ export default function RecruiterMessagesPage() {
                 <div className="relative mt-4">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
-                    placeholder="Cerca messaggi..."
+                    placeholder={t('searchPlaceholder')}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10"
@@ -266,14 +269,11 @@ export default function RecruiterMessagesPage() {
                       <AlertCircle className="h-8 w-8 mx-auto mb-2 opacity-50" />
                       <p className="text-sm">{errorConversations}</p>
                       <Button variant="outline" size="sm" className="mt-2" onClick={fetchConversations}>
-                        Riprova
+                        {t('retry')}
                       </Button>
                     </div>
                   ) : filteredConversations.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500">
-                      <MessageSquare className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                      <p>Nessun messaggio</p>
-                    </div>
+                    <EmptyState icon={MessageSquare} title={t('noMessages')} description={t('selectMessageDesc')} />
                   ) : (
                     filteredConversations.map(conv => {
                       const other = getOtherParticipant(conv)
@@ -394,18 +394,16 @@ export default function RecruiterMessagesPage() {
                           className="mt-2"
                           onClick={() => fetchThread(selectedConversation.threadId)}
                         >
-                          Riprova
+                          {t('retry')}
                         </Button>
                       </div>
                     ) : threadMessages.length === 0 ? (
-                      <div className="text-center py-8 text-gray-500">
-                        <p>Nessun messaggio in questa conversazione</p>
-                      </div>
+                      <EmptyState icon={MessageSquare} title={t('noMessagesInThread')} description="" />
                     ) : (
                       threadMessages.map(msg => {
                         const isMe = msg.senderId === currentUserId
                         const senderName = isMe
-                          ? 'Tu'
+                          ? t('you')
                           : `${msg.sender.firstName} ${msg.sender.lastName}`
                         return (
                           <div
@@ -435,7 +433,7 @@ export default function RecruiterMessagesPage() {
                   {/* Reply */}
                   <div className="border-t pt-4">
                     <Textarea
-                      placeholder="Scrivi una risposta..."
+                      placeholder={t('replyPlaceholder')}
                       value={replyContent}
                       onChange={(e) => setReplyContent(e.target.value)}
                       rows={4}
@@ -443,14 +441,14 @@ export default function RecruiterMessagesPage() {
                     />
                     <div className="flex justify-end gap-2">
                       <Button variant="outline">
-                        Allega File
+                        {t('attachFile')}
                       </Button>
                       <Button
                         onClick={handleSendReply}
                         disabled={!replyContent.trim() || sendingReply}
                       >
                         <Send className="h-4 w-4 mr-2" />
-                        {sendingReply ? 'Invio...' : 'Invia'}
+                        {sendingReply ? t('sending') : t('send')}
                       </Button>
                     </div>
                   </div>
@@ -458,15 +456,7 @@ export default function RecruiterMessagesPage() {
               </Card>
             ) : (
               <Card className="h-full flex items-center justify-center">
-                <div className="text-center py-16">
-                  <MessageSquare className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    Seleziona un messaggio
-                  </h3>
-                  <p className="text-gray-600">
-                    Scegli una conversazione dalla lista per visualizzarla
-                  </p>
-                </div>
+                <EmptyState icon={MessageSquare} title={t('selectMessage')} description={t('selectMessageDesc')} />
               </Card>
             )}
           </div>

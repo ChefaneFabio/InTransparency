@@ -8,8 +8,9 @@ import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { Search, Plus, MoreVertical, Users, Eye, Calendar, DollarSign, MapPin, Clock, AlertCircle } from 'lucide-react'
+import { Search, Plus, MoreVertical, Users, Eye, Calendar, DollarSign, MapPin, Clock, AlertCircle, Briefcase } from 'lucide-react'
 import { Link } from '@/navigation'
+import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 
 interface Job {
   id: string
@@ -303,10 +304,16 @@ export default function RecruiterJobs() {
       {/* Jobs List */}
       {filteredJobs.length === 0 ? (
         <Card>
-          <CardContent className="pt-6 text-center py-12">
-            <p className="text-muted-foreground">
-              {jobs.length === 0 ? 'No jobs posted yet. Create your first job listing!' : 'No jobs match your filters.'}
-            </p>
+          <CardContent>
+            <EmptyState
+              icon={Briefcase}
+              title="No jobs posted"
+              description="Post your first job to start finding candidates"
+              action={{
+                label: 'Post a Job',
+                href: '/dashboard/recruiter/jobs/new',
+              }}
+            />
           </CardContent>
         </Card>
       ) : (

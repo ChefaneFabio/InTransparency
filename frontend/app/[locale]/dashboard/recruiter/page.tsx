@@ -113,7 +113,7 @@ export default function RecruiterDashboard() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <div className="animate-pulse text-4xl mb-4">🔍</div>
-          <p className="text-gray-500">Loading dashboard...</p>
+          <p className="text-muted-foreground">Loading dashboard...</p>
         </div>
       </div>
     )
@@ -124,10 +124,10 @@ export default function RecruiterDashboard() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">
+          <h1 className="text-2xl font-semibold text-foreground">
             Welcome back{user?.firstName ? `, ${user.firstName}` : ''}
           </h1>
-          <p className="text-gray-600 mt-1">
+          <p className="text-muted-foreground mt-1">
             Find and connect with talented graduates
           </p>
         </div>
@@ -151,7 +151,7 @@ export default function RecruiterDashboard() {
       {stats.contactUsage && (
         <Card className={`border-2 ${
           stats.contactUsage.limit === 0
-            ? 'border-gray-200 bg-gray-50'
+            ? 'border-border bg-muted'
             : stats.contactUsage.remaining <= 10 && stats.contactUsage.limit !== -1
               ? 'border-amber-200 bg-amber-50'
               : 'border-blue-200 bg-blue-50'
@@ -160,14 +160,14 @@ export default function RecruiterDashboard() {
             <div className="flex items-start justify-between">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
-                  <Mail className="h-5 w-5 text-blue-600" />
-                  <h3 className="font-semibold text-gray-900">Contact Credits</h3>
+                  <Mail className="h-5 w-5 text-primary" />
+                  <h3 className="font-semibold text-foreground">Contact Credits</h3>
                 </div>
                 {stats.contactUsage.limit === -1 ? (
-                  <p className="text-sm text-gray-600">Unlimited contacts with your plan</p>
+                  <p className="text-sm text-muted-foreground">Unlimited contacts with your plan</p>
                 ) : stats.contactUsage.limit === 0 ? (
                   <div>
-                    <p className="text-sm text-gray-600 mb-3">Upgrade to contact candidates directly</p>
+                    <p className="text-sm text-muted-foreground mb-3">Upgrade to contact candidates directly</p>
                     <Button size="sm" asChild>
                       <Link href="/pricing?for=recruiters">
                         <TrendingUp className="h-4 w-4 mr-1" />
@@ -178,7 +178,7 @@ export default function RecruiterDashboard() {
                 ) : (
                   <div className="space-y-3">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">
+                      <span className="text-muted-foreground">
                         {stats.contactUsage.used} of {stats.contactUsage.limit} used
                       </span>
                       <span className={`font-medium ${
@@ -216,7 +216,7 @@ export default function RecruiterDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.activeJobs}</p>
-                <p className="text-sm text-gray-600">Active jobs</p>
+                <p className="text-sm text-muted-foreground">Active jobs</p>
               </div>
               <div className="p-2 bg-green-100 rounded-lg">
                 <Briefcase className="h-5 w-5 text-green-600" />
@@ -230,10 +230,10 @@ export default function RecruiterDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.totalApplications}</p>
-                <p className="text-sm text-gray-600">Applications</p>
+                <p className="text-sm text-muted-foreground">Applications</p>
               </div>
               <div className="p-2 bg-blue-100 rounded-lg">
-                <FileText className="h-5 w-5 text-blue-600" />
+                <FileText className="h-5 w-5 text-primary" />
               </div>
             </div>
           </CardContent>
@@ -244,7 +244,7 @@ export default function RecruiterDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.pendingReview}</p>
-                <p className="text-sm text-gray-600">To review</p>
+                <p className="text-sm text-muted-foreground">To review</p>
               </div>
               <div className="p-2 bg-purple-100 rounded-lg">
                 <Eye className="h-5 w-5 text-purple-600" />
@@ -258,7 +258,7 @@ export default function RecruiterDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.shortlisted}</p>
-                <p className="text-sm text-gray-600">Shortlisted</p>
+                <p className="text-sm text-muted-foreground">Shortlisted</p>
               </div>
               <div className="p-2 bg-orange-100 rounded-lg">
                 <Star className="h-5 w-5 text-orange-600" />
@@ -304,13 +304,13 @@ export default function RecruiterDashboard() {
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
-                        <h4 className="font-medium text-gray-900">{candidate.name}</h4>
-                        <Button size="sm" variant="ghost" className="text-gray-400 hover:text-yellow-500">
+                        <h4 className="font-medium text-foreground">{candidate.name}</h4>
+                        <Button size="sm" variant="ghost" className="text-muted-foreground/60 hover:text-yellow-500">
                           <Star className="h-4 w-4" />
                         </Button>
                       </div>
 
-                      <div className="flex items-center gap-3 text-sm text-gray-600 mb-2">
+                      <div className="flex items-center gap-3 text-sm text-muted-foreground mb-2">
                         <span className="flex items-center gap-1">
                           <GraduationCap className="h-3.5 w-3.5" />
                           {candidate.university}
@@ -335,7 +335,7 @@ export default function RecruiterDashboard() {
 
                       <div className="flex items-center justify-between">
                         {candidate.topProject && (
-                          <p className="text-xs text-blue-600 truncate max-w-[200px]">
+                          <p className="text-xs text-primary truncate max-w-[200px]">
                             Top project: {candidate.topProject}
                           </p>
                         )}
@@ -356,9 +356,9 @@ export default function RecruiterDashboard() {
                 ))
               ) : (
                 <div className="text-center py-8">
-                  <Users className="h-12 w-12 mx-auto text-gray-300 mb-3" />
-                  <h3 className="font-medium text-gray-900 mb-1">No candidates yet</h3>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <Users className="h-12 w-12 mx-auto text-muted-foreground/60 mb-3" />
+                  <h3 className="font-medium text-foreground mb-1">No candidates yet</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
                     Students will appear here as they create profiles
                   </p>
                   <Button asChild>
@@ -397,10 +397,10 @@ export default function RecruiterDashboard() {
                     href={`/dashboard/recruiter/jobs/${job.id}`}
                     className="block"
                   >
-                    <div className="flex items-center justify-between p-4 rounded-lg border hover:bg-gray-50 transition-colors">
+                    <div className="flex items-center justify-between p-4 rounded-lg border hover:bg-muted transition-colors">
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="font-medium text-gray-900">{job.title}</h4>
+                          <h4 className="font-medium text-foreground">{job.title}</h4>
                           <Badge
                             variant={job.status === 'ACTIVE' ? 'default' : 'secondary'}
                             className="text-xs"
@@ -408,7 +408,7 @@ export default function RecruiterDashboard() {
                             {job.status}
                           </Badge>
                         </div>
-                        <div className="flex items-center gap-3 text-sm text-gray-500 mt-1">
+                        <div className="flex items-center gap-3 text-sm text-muted-foreground mt-1">
                           <span className="flex items-center gap-1">
                             <Clock className="h-3.5 w-3.5" />
                             {job.posted}
@@ -417,14 +417,14 @@ export default function RecruiterDashboard() {
                       </div>
                       <div className="flex items-center gap-6 text-center">
                         <div>
-                          <p className="text-lg font-semibold text-gray-900">{job.applications}</p>
-                          <p className="text-xs text-gray-500">applications</p>
+                          <p className="text-lg font-semibold text-foreground">{job.applications}</p>
+                          <p className="text-xs text-muted-foreground">applications</p>
                         </div>
                         <div>
-                          <p className="text-lg font-semibold text-gray-900">{job.views}</p>
-                          <p className="text-xs text-gray-500">views</p>
+                          <p className="text-lg font-semibold text-foreground">{job.views}</p>
+                          <p className="text-xs text-muted-foreground">views</p>
                         </div>
-                        <ChevronRight className="h-4 w-4 text-gray-400" />
+                        <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
                       </div>
                     </div>
                   </Link>
@@ -432,8 +432,8 @@ export default function RecruiterDashboard() {
               ) : (
                 <div className="text-center py-8">
                   <div className="text-4xl mb-3">📋</div>
-                  <h3 className="font-medium text-gray-900 mb-1">No job postings yet</h3>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <h3 className="font-medium text-foreground mb-1">No job postings yet</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
                     Post a job to start receiving applications from qualified candidates
                   </p>
                   <Button asChild>
@@ -458,58 +458,58 @@ export default function RecruiterDashboard() {
             <CardContent className="space-y-2">
               <Link
                 href="/dashboard/recruiter/candidates"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
               >
                 <div className="p-2 bg-blue-100 rounded-lg">
-                  <Search className="h-4 w-4 text-blue-600" />
+                  <Search className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">Search candidates</p>
-                  <p className="text-xs text-gray-500">Find the right talent</p>
+                  <p className="text-xs text-muted-foreground">Find the right talent</p>
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
 
               <Link
                 href="/dashboard/recruiter/post-job"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
               >
                 <div className="p-2 bg-green-100 rounded-lg">
                   <Plus className="h-4 w-4 text-green-600" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">Post a job</p>
-                  <p className="text-xs text-gray-500">Reach qualified graduates</p>
+                  <p className="text-xs text-muted-foreground">Reach qualified graduates</p>
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
 
               <Link
                 href="/dashboard/recruiter/messages"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
               >
                 <div className="p-2 bg-purple-100 rounded-lg">
                   <MessageSquare className="h-4 w-4 text-purple-600" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">Messages</p>
-                  <p className="text-xs text-gray-500">Conversations with candidates</p>
+                  <p className="text-xs text-muted-foreground">Conversations with candidates</p>
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
 
               <Link
                 href="/dashboard/recruiter/settings"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
               >
-                <div className="p-2 bg-gray-100 rounded-lg">
-                  <Building2 className="h-4 w-4 text-gray-600" />
+                <div className="p-2 bg-muted rounded-lg">
+                  <Building2 className="h-4 w-4 text-muted-foreground" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">Company settings</p>
-                  <p className="text-xs text-gray-500">Update your profile</p>
+                  <p className="text-xs text-muted-foreground">Update your profile</p>
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
             </CardContent>
           </Card>
@@ -521,22 +521,22 @@ export default function RecruiterDashboard() {
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">New applications</span>
+                <span className="text-sm text-muted-foreground">New applications</span>
                 <span className="font-semibold">{stats.newApplicationsThisWeek}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Interviews scheduled</span>
+                <span className="text-sm text-muted-foreground">Interviews scheduled</span>
                 <span className="font-semibold">{stats.interviewsScheduled}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Pending review</span>
+                <span className="text-sm text-muted-foreground">Pending review</span>
                 <span className="font-semibold text-orange-600">{stats.pendingReview}</span>
               </div>
             </CardContent>
           </Card>
 
           {/* Tips */}
-          <Card className="bg-gradient-to-br from-slate-50 to-slate-100 border-slate-200">
+          <Card className="bg-gradient-to-br from-muted/50 to-slate-100 border-slate-200">
             <CardHeader className="pb-3">
               <CardTitle className="text-lg flex items-center gap-2">
                 <span>💡</span>
@@ -544,7 +544,7 @@ export default function RecruiterDashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-gray-700 leading-relaxed">
+              <p className="text-sm text-foreground/80 leading-relaxed">
                 Candidates with verified university projects are <span className="font-medium">2.5x more likely</span> to succeed in technical interviews. Look for the verified badge.
               </p>
             </CardContent>

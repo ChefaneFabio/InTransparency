@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
@@ -236,6 +236,16 @@ export default function AdvancedSearchPage() {
   const [showFilters, setShowFilters] = useState(true)
   const [universitySearchType, setUniversitySearchType] = useState<'students' | 'companies'>('students')
 
+  // Real DB counts
+  const [counts, setCounts] = useState<{ jobCount: number; studentCount: number } | null>(null)
+
+  useEffect(() => {
+    fetch('/api/public/demo-stats')
+      .then(res => res.ok ? res.json() : null)
+      .then(data => { if (data) setCounts(data) })
+      .catch(() => {})
+  }, [])
+
   // Student filters
   const [jobType, setJobType] = useState<string[]>([])
   const [selectedCities, setSelectedCities] = useState<string[]>([])
@@ -257,7 +267,7 @@ export default function AdvancedSearchPage() {
       color: 'from-teal-600 to-blue-600',
       icon: GraduationCap,
       results: mockJobs,
-      totalCount: t('demoTitles.student.totalCount')
+      totalCount: counts?.jobCount.toLocaleString() ?? '—'
     },
     company: {
       title: t('demoTitles.company.title'),
@@ -265,7 +275,7 @@ export default function AdvancedSearchPage() {
       color: 'from-blue-600 to-purple-600',
       icon: Building2,
       results: mockCandidates,
-      totalCount: t('demoTitles.company.totalCount')
+      totalCount: counts?.studentCount.toLocaleString() ?? '—'
     },
     university: {
       title: universitySearchType === 'students' ? t('demoTitles.university.titleStudents') : t('demoTitles.university.titleJobs'),
@@ -275,7 +285,7 @@ export default function AdvancedSearchPage() {
       color: 'from-indigo-600 to-purple-600',
       icon: Users,
       results: universitySearchType === 'students' ? mockCandidates : mockJobs,
-      totalCount: universitySearchType === 'students' ? t('demoTitles.university.totalCountStudents') : t('demoTitles.university.totalCountJobs')
+      totalCount: universitySearchType === 'students' ? (counts?.studentCount.toLocaleString() ?? '—') : (counts?.jobCount.toLocaleString() ?? '—')
     }
   }
 
@@ -325,7 +335,7 @@ export default function AdvancedSearchPage() {
               {t('verifiedResults')}
             </span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             {t('subtitle')}
           </p>
         </div>
@@ -375,7 +385,7 @@ export default function AdvancedSearchPage() {
           <CardContent className="p-4">
             <div className="flex gap-3">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground/60" />
                 <Input
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -452,7 +462,7 @@ export default function AdvancedSearchPage() {
                                 type="checkbox"
                                 checked={jobType.includes(type.label)}
                                 onChange={() => toggleFilter(jobType, type.label, setJobType)}
-                                className="rounded border-gray-300"
+                                className="rounded border-border"
                               />
                               <span className="text-sm">{type.label}</span>
                             </label>
@@ -473,7 +483,7 @@ export default function AdvancedSearchPage() {
                                 type="checkbox"
                                 checked={selectedCities.includes(city)}
                                 onChange={() => toggleFilter(selectedCities, city, setSelectedCities)}
-                                className="rounded border-gray-300"
+                                className="rounded border-border"
                               />
                               <span className="text-sm">{city}</span>
                             </label>
@@ -487,7 +497,7 @@ export default function AdvancedSearchPage() {
                           <DollarSign className="h-4 w-4" />
                           {t('filters.salaryRange.title')}
                         </h3>
-                        <p className="text-sm text-gray-600 mb-2">
+                        <p className="text-sm text-muted-foreground mb-2">
                           €{salaryRange[0].toLocaleString()} - €{salaryRange[1].toLocaleString()}
                         </p>
                         <input
@@ -519,7 +529,7 @@ export default function AdvancedSearchPage() {
                                 type="checkbox"
                                 checked={selectedFields.includes(field)}
                                 onChange={() => toggleFilter(selectedFields, field, setSelectedFields)}
-                                className="rounded border-gray-300"
+                                className="rounded border-border"
                               />
                               <span className="text-sm">{field}</span>
                             </label>
@@ -540,7 +550,7 @@ export default function AdvancedSearchPage() {
                                 type="checkbox"
                                 checked={selectedUniversities.includes(uni)}
                                 onChange={() => toggleFilter(selectedUniversities, uni, setSelectedUniversities)}
-                                className="rounded border-gray-300"
+                                className="rounded border-border"
                               />
                               <span className="text-sm">{uni}</span>
                             </label>
@@ -561,9 +571,9 @@ export default function AdvancedSearchPage() {
                                 type="checkbox"
                                 checked={selectedMajors.includes(major)}
                                 onChange={() => toggleFilter(selectedMajors, major, setSelectedMajors)}
-                                className="rounded border-gray-300"
+                                className="rounded border-border"
                               />
-                              <span className="text-sm text-gray-700">{major}</span>
+                              <span className="text-sm text-foreground/80">{major}</span>
                             </label>
                           ))}
                         </div>
@@ -575,7 +585,7 @@ export default function AdvancedSearchPage() {
                           <TrendingUp className="h-4 w-4" />
                           {t('filters.gpa.title')}
                         </h3>
-                        <p className="text-sm text-gray-600 mb-2">{gpaMin}/30</p>
+                        <p className="text-sm text-muted-foreground mb-2">{gpaMin}/30</p>
                         <input
                           type="range"
                           min="18"
@@ -592,7 +602,7 @@ export default function AdvancedSearchPage() {
                           <Filter className="h-4 w-4" />
                           {t('filters.skills.title')}
                         </h3>
-                        <p className="text-xs text-gray-500 mb-2">{t('filters.skills.subtitle')}</p>
+                        <p className="text-xs text-muted-foreground mb-2">{t('filters.skills.subtitle')}</p>
                         <div className="space-y-2 max-h-48 overflow-y-auto">
                           {allSkills.slice(0, 20).map((skill) => (
                             <label key={skill} className="flex items-center gap-2 cursor-pointer">
@@ -600,13 +610,13 @@ export default function AdvancedSearchPage() {
                                 type="checkbox"
                                 checked={selectedSkills.includes(skill)}
                                 onChange={() => toggleFilter(selectedSkills, skill, setSelectedSkills)}
-                                className="rounded border-gray-300"
+                                className="rounded border-border"
                               />
-                              <span className="text-sm text-gray-700">{skill}</span>
+                              <span className="text-sm text-foreground/80">{skill}</span>
                             </label>
                           ))}
                         </div>
-                        <p className="text-xs text-gray-500 mt-2">{allSkills.length}+ {t('filters.skills.available')}</p>
+                        <p className="text-xs text-muted-foreground mt-2">{allSkills.length}+ {t('filters.skills.available')}</p>
                       </div>
 
                       {/* Courses */}
@@ -615,7 +625,7 @@ export default function AdvancedSearchPage() {
                           <GraduationCap className="h-4 w-4" />
                           {t('filters.courses.title')}
                         </h3>
-                        <p className="text-xs text-gray-500 mb-2">{t('filters.courses.subtitle')}</p>
+                        <p className="text-xs text-muted-foreground mb-2">{t('filters.courses.subtitle')}</p>
                         <div className="space-y-2 max-h-48 overflow-y-auto">
                           {courses.map((course) => (
                             <label key={course} className="flex items-center gap-2 cursor-pointer">
@@ -623,13 +633,13 @@ export default function AdvancedSearchPage() {
                                 type="checkbox"
                                 checked={selectedCourses.includes(course)}
                                 onChange={() => toggleFilter(selectedCourses, course, setSelectedCourses)}
-                                className="rounded border-gray-300"
+                                className="rounded border-border"
                               />
-                              <span className="text-sm text-gray-700">{course}</span>
+                              <span className="text-sm text-foreground/80">{course}</span>
                             </label>
                           ))}
                         </div>
-                        <p className="text-xs text-gray-500 mt-2">{courses.length} {t('filters.courses.available')}</p>
+                        <p className="text-xs text-muted-foreground mt-2">{courses.length} {t('filters.courses.available')}</p>
                       </div>
 
                       {/* Project Types */}
@@ -638,7 +648,7 @@ export default function AdvancedSearchPage() {
                           <Briefcase className="h-4 w-4" />
                           {t('filters.projectTypes.title')}
                         </h3>
-                        <p className="text-xs text-gray-500 mb-2">{t('filters.projectTypes.subtitle')}</p>
+                        <p className="text-xs text-muted-foreground mb-2">{t('filters.projectTypes.subtitle')}</p>
                         <div className="space-y-2 max-h-48 overflow-y-auto">
                           {projectTypes.map((projectType) => (
                             <label key={projectType} className="flex items-center gap-2 cursor-pointer">
@@ -646,13 +656,13 @@ export default function AdvancedSearchPage() {
                                 type="checkbox"
                                 checked={selectedProjectTypes.includes(projectType)}
                                 onChange={() => toggleFilter(selectedProjectTypes, projectType, setSelectedProjectTypes)}
-                                className="rounded border-gray-300"
+                                className="rounded border-border"
                               />
-                              <span className="text-sm text-gray-700">{projectType}</span>
+                              <span className="text-sm text-foreground/80">{projectType}</span>
                             </label>
                           ))}
                         </div>
-                        <p className="text-xs text-gray-500 mt-2">{projectTypes.length} {t('filters.projectTypes.available')}</p>
+                        <p className="text-xs text-muted-foreground mt-2">{projectTypes.length} {t('filters.projectTypes.available')}</p>
                       </div>
                     </>
                   )}
@@ -676,7 +686,7 @@ export default function AdvancedSearchPage() {
                                     type="checkbox"
                                     checked={selectedFields.includes(field)}
                                     onChange={() => toggleFilter(selectedFields, field, setSelectedFields)}
-                                    className="rounded border-gray-300"
+                                    className="rounded border-border"
                                   />
                                   <span className="text-sm">{field}</span>
                                 </label>
@@ -697,9 +707,9 @@ export default function AdvancedSearchPage() {
                                     type="checkbox"
                                     checked={selectedMajors.includes(major)}
                                     onChange={() => toggleFilter(selectedMajors, major, setSelectedMajors)}
-                                    className="rounded border-gray-300"
+                                    className="rounded border-border"
                                   />
-                                  <span className="text-sm text-gray-700">{major}</span>
+                                  <span className="text-sm text-foreground/80">{major}</span>
                                 </label>
                               ))}
                             </div>
@@ -711,7 +721,7 @@ export default function AdvancedSearchPage() {
                               <TrendingUp className="h-4 w-4" />
                               {t('filters.gpa.title')}
                             </h3>
-                            <p className="text-sm text-gray-600 mb-2">{gpaMin}/30</p>
+                            <p className="text-sm text-muted-foreground mb-2">{gpaMin}/30</p>
                             <input
                               type="range"
                               min="18"
@@ -728,7 +738,7 @@ export default function AdvancedSearchPage() {
                               <Filter className="h-4 w-4" />
                               {t('filters.skills.title')}
                             </h3>
-                            <p className="text-xs text-gray-500 mb-2">{t('filters.skills.subtitle')}</p>
+                            <p className="text-xs text-muted-foreground mb-2">{t('filters.skills.subtitle')}</p>
                             <div className="space-y-2 max-h-48 overflow-y-auto">
                               {allSkills.slice(0, 20).map((skill) => (
                                 <label key={skill} className="flex items-center gap-2 cursor-pointer">
@@ -736,13 +746,13 @@ export default function AdvancedSearchPage() {
                                     type="checkbox"
                                     checked={selectedSkills.includes(skill)}
                                     onChange={() => toggleFilter(selectedSkills, skill, setSelectedSkills)}
-                                    className="rounded border-gray-300"
+                                    className="rounded border-border"
                                   />
-                                  <span className="text-sm text-gray-700">{skill}</span>
+                                  <span className="text-sm text-foreground/80">{skill}</span>
                                 </label>
                               ))}
                             </div>
-                            <p className="text-xs text-gray-500 mt-2">{allSkills.length}+ {t('filters.skills.available')}</p>
+                            <p className="text-xs text-muted-foreground mt-2">{allSkills.length}+ {t('filters.skills.available')}</p>
                           </div>
 
                           {/* Courses */}
@@ -751,7 +761,7 @@ export default function AdvancedSearchPage() {
                               <GraduationCap className="h-4 w-4" />
                               {t('filters.courses.title')}
                             </h3>
-                            <p className="text-xs text-gray-500 mb-2">{t('filters.courses.subtitle')}</p>
+                            <p className="text-xs text-muted-foreground mb-2">{t('filters.courses.subtitle')}</p>
                             <div className="space-y-2 max-h-48 overflow-y-auto">
                               {courses.map((course) => (
                                 <label key={course} className="flex items-center gap-2 cursor-pointer">
@@ -759,13 +769,13 @@ export default function AdvancedSearchPage() {
                                     type="checkbox"
                                     checked={selectedCourses.includes(course)}
                                     onChange={() => toggleFilter(selectedCourses, course, setSelectedCourses)}
-                                    className="rounded border-gray-300"
+                                    className="rounded border-border"
                                   />
-                                  <span className="text-sm text-gray-700">{course}</span>
+                                  <span className="text-sm text-foreground/80">{course}</span>
                                 </label>
                               ))}
                             </div>
-                            <p className="text-xs text-gray-500 mt-2">{courses.length} {t('filters.courses.available')}</p>
+                            <p className="text-xs text-muted-foreground mt-2">{courses.length} {t('filters.courses.available')}</p>
                           </div>
 
                           {/* Project Types */}
@@ -774,7 +784,7 @@ export default function AdvancedSearchPage() {
                               <Briefcase className="h-4 w-4" />
                               {t('filters.projectTypes.title')}
                             </h3>
-                            <p className="text-xs text-gray-500 mb-2">{t('filters.projectTypes.subtitle')}</p>
+                            <p className="text-xs text-muted-foreground mb-2">{t('filters.projectTypes.subtitle')}</p>
                             <div className="space-y-2 max-h-48 overflow-y-auto">
                               {projectTypes.map((projectType) => (
                                 <label key={projectType} className="flex items-center gap-2 cursor-pointer">
@@ -782,13 +792,13 @@ export default function AdvancedSearchPage() {
                                     type="checkbox"
                                     checked={selectedProjectTypes.includes(projectType)}
                                     onChange={() => toggleFilter(selectedProjectTypes, projectType, setSelectedProjectTypes)}
-                                    className="rounded border-gray-300"
+                                    className="rounded border-border"
                                   />
-                                  <span className="text-sm text-gray-700">{projectType}</span>
+                                  <span className="text-sm text-foreground/80">{projectType}</span>
                                 </label>
                               ))}
                             </div>
-                            <p className="text-xs text-gray-500 mt-2">{projectTypes.length} {t('filters.projectTypes.available')}</p>
+                            <p className="text-xs text-muted-foreground mt-2">{projectTypes.length} {t('filters.projectTypes.available')}</p>
                           </div>
                         </>
                       ) : (
@@ -811,7 +821,7 @@ export default function AdvancedSearchPage() {
                                     type="checkbox"
                                     checked={jobType.includes(type.label)}
                                     onChange={() => toggleFilter(jobType, type.label, setJobType)}
-                                    className="rounded border-gray-300"
+                                    className="rounded border-border"
                                   />
                                   <span className="text-sm">{type.label}</span>
                                 </label>
@@ -832,7 +842,7 @@ export default function AdvancedSearchPage() {
                                     type="checkbox"
                                     checked={selectedCities.includes(city)}
                                     onChange={() => toggleFilter(selectedCities, city, setSelectedCities)}
-                                    className="rounded border-gray-300"
+                                    className="rounded border-border"
                                   />
                                   <span className="text-sm">{city}</span>
                                 </label>
@@ -846,7 +856,7 @@ export default function AdvancedSearchPage() {
                               <DollarSign className="h-4 w-4" />
                               {t('filters.salaryRange.title')}
                             </h3>
-                            <p className="text-sm text-gray-600 mb-2">
+                            <p className="text-sm text-muted-foreground mb-2">
                               €{salaryRange[0].toLocaleString()} - €{salaryRange[1].toLocaleString()}
                             </p>
                             <input
@@ -871,8 +881,8 @@ export default function AdvancedSearchPage() {
           {/* Results */}
           <div className={showFilters ? 'lg:col-span-3' : 'lg:col-span-4'}>
             <div className="mb-4 flex items-center justify-between">
-              <p className="text-gray-600">
-                <span className="font-bold text-gray-900">{config.results.length}</span> {t('results.found')}
+              <p className="text-muted-foreground">
+                <span className="font-bold text-foreground">{config.results.length}</span> {t('results.found')}
                 {activeFiltersCount > 0 && ` ${t('results.withFilters', { count: activeFiltersCount })}`}
                 {activeDemo === 'company' && <span className="text-primary ml-2">• {t('results.allDisciplines')}</span>}
               </p>
@@ -901,9 +911,9 @@ export default function AdvancedSearchPage() {
                                 {result.company[0]}
                               </div>
                               <div className="flex-1">
-                                <h3 className="text-xl font-bold text-gray-900 mb-1">{result.title}</h3>
-                                <p className="text-gray-600 mb-2">{result.company}</p>
-                                <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600 mb-3">
+                                <h3 className="text-xl font-bold text-foreground mb-1">{result.title}</h3>
+                                <p className="text-muted-foreground mb-2">{result.company}</p>
+                                <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground mb-3">
                                   <span className="flex items-center gap-1">
                                     <MapPin className="h-4 w-4" />
                                     {result.location}
@@ -918,14 +928,14 @@ export default function AdvancedSearchPage() {
                                   </span>
                                 </div>
                                 <div className="flex flex-wrap gap-2">
-                                  <Badge className="bg-blue-100 text-blue-800">{result.type}</Badge>
+                                  <Badge className="bg-primary/10 text-primary">{result.type}</Badge>
                                   {result.validForDegree && (
                                     <Badge className="bg-purple-100 text-purple-800">✓ {t('jobCard.validForDegree')}</Badge>
                                   )}
                                   {result.duration && (
-                                    <Badge className="bg-gray-100 text-gray-800">{result.duration}</Badge>
+                                    <Badge className="bg-muted text-foreground">{result.duration}</Badge>
                                   )}
-                                  <Badge className="bg-gray-100 text-gray-700">{result.applicants} {t('jobCard.applicants')}</Badge>
+                                  <Badge className="bg-muted text-foreground/80">{result.applicants} {t('jobCard.applicants')}</Badge>
                                 </div>
                               </div>
                             </div>
@@ -950,25 +960,25 @@ export default function AdvancedSearchPage() {
                             </div>
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-1">
-                                <h3 className="text-lg font-bold text-gray-900">{t('candidateCard.contactLocked')}</h3>
+                                <h3 className="text-lg font-bold text-foreground">{t('candidateCard.contactLocked')}</h3>
                                 <Badge className="bg-green-100 text-green-800 text-xs">{t('candidateCard.available')}</Badge>
                               </div>
-                              <p className="text-gray-600 mb-2">{result.university}</p>
-                              <p className="text-sm text-gray-700 mb-3">
+                              <p className="text-muted-foreground mb-2">{result.university}</p>
+                              <p className="text-sm text-foreground/80 mb-3">
                                 <strong>{t('candidateCard.major')}:</strong> {result.major} • <strong>{t('candidateCard.gpa')}:</strong> {result.gpa}/30
                               </p>
                               <div className="mb-2">
-                                <p className="text-sm font-semibold text-gray-700 mb-1">{t('candidateCard.technicalSkills')}:</p>
+                                <p className="text-sm font-semibold text-foreground/80 mb-1">{t('candidateCard.technicalSkills')}:</p>
                                 <div className="flex flex-wrap gap-1">
                                   {result.skills.map((skill: string) => (
-                                    <Badge key={skill} className="bg-blue-100 text-blue-800 text-xs">
+                                    <Badge key={skill} className="bg-primary/10 text-primary text-xs">
                                       {skill}
                                     </Badge>
                                   ))}
                                 </div>
                               </div>
                               <div className="mb-2">
-                                <p className="text-sm font-semibold text-gray-700 mb-1">{t('candidateCard.softSkills')}:</p>
+                                <p className="text-sm font-semibold text-foreground/80 mb-1">{t('candidateCard.softSkills')}:</p>
                                 <div className="flex flex-wrap gap-1">
                                   {result.softSkills.map((skill: string) => (
                                     <Badge key={skill} className="bg-purple-100 text-purple-800 text-xs">
@@ -979,7 +989,7 @@ export default function AdvancedSearchPage() {
                               </div>
                               {result.courses && (
                                 <div className="mb-2">
-                                  <p className="text-sm font-semibold text-gray-700 mb-1">{t('candidateCard.relevantCourses')}:</p>
+                                  <p className="text-sm font-semibold text-foreground/80 mb-1">{t('candidateCard.relevantCourses')}:</p>
                                   <div className="flex flex-wrap gap-1">
                                     {result.courses.map((course: string) => (
                                       <Badge key={course} className="bg-green-100 text-green-800 text-xs">
@@ -991,7 +1001,7 @@ export default function AdvancedSearchPage() {
                               )}
                               {result.projects && (
                                 <div>
-                                  <p className="text-sm font-semibold text-gray-700 mb-1">{t('candidateCard.projectExperience')}:</p>
+                                  <p className="text-sm font-semibold text-foreground/80 mb-1">{t('candidateCard.projectExperience')}:</p>
                                   <div className="flex flex-wrap gap-1">
                                     {result.projects.map((project: string) => (
                                       <Badge key={project} className="bg-orange-100 text-orange-800 text-xs">
@@ -1021,13 +1031,13 @@ export default function AdvancedSearchPage() {
 
             {/* Load More */}
             <div className="mt-8 text-center">
-              <p className="text-gray-600 mb-4">
+              <p className="text-muted-foreground mb-4">
                 {t('loadMore.showing', { current: config.results.length, total: config.totalCount })}
               </p>
               <Button variant="outline" size="lg" className="px-8">
                 {t('loadMore.button')}
               </Button>
-              <p className="text-sm text-gray-500 mt-4">
+              <p className="text-sm text-muted-foreground mt-4">
                 {t('loadMore.registerPrompt')}
               </p>
             </div>

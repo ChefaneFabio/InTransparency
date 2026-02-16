@@ -23,6 +23,7 @@ import {
   RefreshCw,
 } from 'lucide-react'
 import { Link } from '@/navigation'
+import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 
 interface SavedSearchFilters {
   search?: string
@@ -307,16 +308,11 @@ export default function SavedSearchesPage() {
         </CardHeader>
         <CardContent>
           {savedSearches.length === 0 ? (
-            <div className="text-center py-12">
-              <Search className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">No saved searches yet</h3>
-              <p className="text-gray-600 mb-4">
-                Save your searches to quickly access them later and get alerts on new matches
-              </p>
-              <Button asChild>
-                <Link href="/dashboard/recruiter/advanced-search">Create Your First Search</Link>
-              </Button>
-            </div>
+            <EmptyState
+              icon={Search}
+              title="No saved searches"
+              description="Save your search criteria to quickly find candidates later"
+            />
           ) : (
             <div className="space-y-4">
               {savedSearches.map((search) => {

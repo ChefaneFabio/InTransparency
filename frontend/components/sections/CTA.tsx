@@ -25,7 +25,7 @@ export function CTA() {
               {t('titleHighlight')}
             </span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('subtitle')}
           </p>
         </div>
@@ -40,15 +40,15 @@ export function CTA() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col hover:shadow-md transition-shadow"
+                className="bg-card rounded-2xl shadow-sm border border-border p-6 flex flex-col hover:shadow-md transition-shadow"
               >
                 <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${seg.color} mb-4 self-start`}>
                   <Icon className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                <h3 className="text-xl font-bold text-foreground mb-2">
                   {t(`segments.${seg.key}.title`)}
                 </h3>
-                <p className="text-gray-600 mb-4 flex-1">
+                <p className="text-muted-foreground mb-4 flex-1">
                   {t(`segments.${seg.key}.description`)}
                 </p>
                 <Button

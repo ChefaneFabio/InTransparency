@@ -15,7 +15,7 @@ export default function LegalPage() {
   const [activeTab, setActiveTab] = useState('privacy')
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       <Header />
 
       <main className="pt-20">
@@ -61,15 +61,15 @@ export default function LegalPage() {
               <TabsContent value="privacy">
                 <Card>
                   <CardContent className="p-8 prose prose-blue max-w-none">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">Privacy Policy</h2>
-                    <p className="text-sm text-gray-600 mb-6">Last updated: October 2025</p>
+                    <h2 className="text-2xl font-bold text-foreground mb-4">Privacy Policy</h2>
+                    <p className="text-sm text-muted-foreground mb-6">Last updated: October 2025</p>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">1. Information We Collect</h3>
-                      <p className="text-gray-700 mb-4">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">1. Information We Collect</h3>
+                      <p className="text-foreground/80 mb-4">
                         We collect information that you provide directly to us, including:
                       </p>
-                      <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                      <ul className="list-disc pl-6 text-foreground/80 space-y-2">
                         <li>Account information (name, email, university affiliation)</li>
                         <li>Academic records (grades, courses, projects)</li>
                         <li>Professional information (skills, experience, achievements)</li>
@@ -79,11 +79,11 @@ export default function LegalPage() {
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">2. How We Use Your Information</h3>
-                      <p className="text-gray-700 mb-4">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">2. How We Use Your Information</h3>
+                      <p className="text-foreground/80 mb-4">
                         We use the information we collect to:
                       </p>
-                      <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                      <ul className="list-disc pl-6 text-foreground/80 space-y-2">
                         <li>Provide, maintain, and improve our services</li>
                         <li>Connect students with educational and career opportunities</li>
                         <li>Verify academic credentials and achievements</li>
@@ -94,11 +94,11 @@ export default function LegalPage() {
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">3. Information Sharing</h3>
-                      <p className="text-gray-700 mb-4">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">3. Information Sharing</h3>
+                      <p className="text-foreground/80 mb-4">
                         We share information in the following circumstances:
                       </p>
-                      <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                      <ul className="list-disc pl-6 text-foreground/80 space-y-2">
                         <li><strong>With Universities:</strong> To verify academic credentials</li>
                         <li><strong>With Recruiters:</strong> Based on your privacy settings and consent</li>
                         <li><strong>With Service Providers:</strong> Who help us operate our platform</li>
@@ -107,11 +107,11 @@ export default function LegalPage() {
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">4. Your Privacy Controls</h3>
-                      <p className="text-gray-700 mb-4">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">4. Your Privacy Controls</h3>
+                      <p className="text-foreground/80 mb-4">
                         You have control over your information:
                       </p>
-                      <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                      <ul className="list-disc pl-6 text-foreground/80 space-y-2">
                         <li>Choose what information to share publicly</li>
                         <li>Control who can view your profile and projects</li>
                         <li>Access, update, or delete your information</li>
@@ -121,8 +121,8 @@ export default function LegalPage() {
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">5. Data Security</h3>
-                      <p className="text-gray-700">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">5. Data Security</h3>
+                      <p className="text-foreground/80">
                         We implement industry-standard security measures to protect your information, including encryption,
                         secure servers, and regular security audits. However, no method of transmission over the internet
                         is 100% secure.
@@ -130,18 +130,18 @@ export default function LegalPage() {
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">6. GDPR Compliance</h3>
-                      <p className="text-gray-700">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">6. GDPR Compliance</h3>
+                      <p className="text-foreground/80">
                         For users in the European Union, we comply with GDPR requirements. You have the right to access,
                         rectify, erase, restrict processing, data portability, and object to processing of your personal data.
                       </p>
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">7. Contact Us</h3>
-                      <p className="text-gray-700">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">7. Contact Us</h3>
+                      <p className="text-foreground/80">
                         For questions about this Privacy Policy, please contact us at{' '}
-                        <a href="mailto:privacy@intransparency.com" className="text-blue-600 hover:underline">
+                        <a href="mailto:privacy@intransparency.com" className="text-primary hover:underline">
                           privacy@intransparency.com
                         </a>
                       </p>
@@ -153,23 +153,23 @@ export default function LegalPage() {
               <TabsContent value="terms">
                 <Card>
                   <CardContent className="p-8 prose prose-blue max-w-none">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">Terms of Service</h2>
-                    <p className="text-sm text-gray-600 mb-6">Last updated: October 2025</p>
+                    <h2 className="text-2xl font-bold text-foreground mb-4">Terms of Service</h2>
+                    <p className="text-sm text-muted-foreground mb-6">Last updated: October 2025</p>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">1. Acceptance of Terms</h3>
-                      <p className="text-gray-700">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">1. Acceptance of Terms</h3>
+                      <p className="text-foreground/80">
                         By accessing or using InTransparency, you agree to be bound by these Terms of Service.
                         If you do not agree to these terms, please do not use our services.
                       </p>
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">2. User Accounts</h3>
-                      <p className="text-gray-700 mb-4">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">2. User Accounts</h3>
+                      <p className="text-foreground/80 mb-4">
                         When creating an account, you agree to:
                       </p>
-                      <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                      <ul className="list-disc pl-6 text-foreground/80 space-y-2">
                         <li>Provide accurate and complete information</li>
                         <li>Maintain the security of your account credentials</li>
                         <li>Notify us immediately of any unauthorized access</li>
@@ -178,11 +178,11 @@ export default function LegalPage() {
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">3. Content Guidelines</h3>
-                      <p className="text-gray-700 mb-4">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">3. Content Guidelines</h3>
+                      <p className="text-foreground/80 mb-4">
                         You are responsible for the content you post. You agree not to:
                       </p>
-                      <ul className="list-disc pl-6 text-gray-700 space-y-2">
+                      <ul className="list-disc pl-6 text-foreground/80 space-y-2">
                         <li>Post false, misleading, or fraudulent information</li>
                         <li>Upload copyrighted material without permission</li>
                         <li>Share content that is offensive, harmful, or illegal</li>
@@ -192,8 +192,8 @@ export default function LegalPage() {
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">4. Academic Integrity</h3>
-                      <p className="text-gray-700">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">4. Academic Integrity</h3>
+                      <p className="text-foreground/80">
                         InTransparency is built on trust and transparency. All academic credentials, grades, and
                         projects must be genuine. Falsifying academic records is grounds for immediate account termination
                         and may be reported to relevant institutions.
@@ -201,8 +201,8 @@ export default function LegalPage() {
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">5. Intellectual Property</h3>
-                      <p className="text-gray-700">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">5. Intellectual Property</h3>
+                      <p className="text-foreground/80">
                         You retain ownership of content you upload. By posting content, you grant InTransparency
                         a license to display, distribute, and promote your work on the platform. The InTransparency
                         platform, logo, and features are our intellectual property.
@@ -210,42 +210,42 @@ export default function LegalPage() {
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">6. Paid Services</h3>
-                      <p className="text-gray-700">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">6. Paid Services</h3>
+                      <p className="text-foreground/80">
                         Some features require paid subscriptions. Payments are non-refundable except as required by law.
                         We reserve the right to change pricing with 30 days notice to active subscribers.
                       </p>
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">7. Termination</h3>
-                      <p className="text-gray-700">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">7. Termination</h3>
+                      <p className="text-foreground/80">
                         We may suspend or terminate your account for violations of these terms, illegal activity,
                         or at our discretion with notice. You may close your account at any time.
                       </p>
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">8. Limitation of Liability</h3>
-                      <p className="text-gray-700">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">8. Limitation of Liability</h3>
+                      <p className="text-foreground/80">
                         InTransparency is provided "as is" without warranties. We are not liable for indirect,
                         incidental, or consequential damages arising from your use of the platform.
                       </p>
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">9. Changes to Terms</h3>
-                      <p className="text-gray-700">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">9. Changes to Terms</h3>
+                      <p className="text-foreground/80">
                         We may update these terms from time to time. We will notify users of significant changes
                         via email or platform notification.
                       </p>
                     </section>
 
                     <section className="mb-8">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">10. Contact</h3>
-                      <p className="text-gray-700">
+                      <h3 className="text-xl font-semibold text-foreground mb-3">10. Contact</h3>
+                      <p className="text-foreground/80">
                         Questions about these Terms? Contact us at{' '}
-                        <a href="mailto:legal@intransparency.com" className="text-blue-600 hover:underline">
+                        <a href="mailto:legal@intransparency.com" className="text-primary hover:underline">
                           legal@intransparency.com
                         </a>
                       </p>

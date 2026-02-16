@@ -116,7 +116,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-muted flex items-center justify-center">
         <div className="flex items-center space-x-2">
           <Loader2 className="h-8 w-8 animate-spin" />
           <span className="text-lg">Loading company...</span>
@@ -127,10 +127,10 @@ export default function CompanyPage({ params }: CompanyPageProps) {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-muted flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Error Loading Company</h2>
-          <p className="text-gray-600 mb-4">{error}</p>
+          <h2 className="text-2xl font-bold text-foreground mb-2">Error Loading Company</h2>
+          <p className="text-muted-foreground mb-4">{error}</p>
           <Button onClick={() => window.location.reload()}>Try Again</Button>
         </div>
       </div>
@@ -142,9 +142,9 @@ export default function CompanyPage({ params }: CompanyPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       {/* Header */}
-      <div className="bg-white border-b">
+      <div className="bg-card border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-start justify-between">
             <div className="flex items-center space-x-6">
@@ -152,9 +152,9 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                 {company.name.charAt(0)}
               </div>
               <div>
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">{company.name}</h1>
-                <p className="text-xl text-gray-600 mb-4">{company.tagline}</p>
-                <div className="flex items-center space-x-4 text-gray-600">
+                <h1 className="text-4xl font-bold text-foreground mb-2">{company.name}</h1>
+                <p className="text-xl text-muted-foreground mb-4">{company.tagline}</p>
+                <div className="flex items-center space-x-4 text-muted-foreground">
                   <div className="flex items-center">
                     <MapPin className="h-4 w-4 mr-1" />
                     {company.headquarters}
@@ -202,24 +202,24 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                 <CardTitle>About {company.name}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 mb-6">{company.description}</p>
+                <p className="text-foreground/80 mb-6">{company.description}</p>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-blue-600">{company.stats.employees?.toLocaleString() || company.size}</div>
-                    <div className="text-sm text-gray-600">Employees</div>
+                    <div className="text-sm text-muted-foreground">Employees</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-green-600">{company.jobsCount}</div>
-                    <div className="text-sm text-gray-600">Open Positions</div>
+                    <div className="text-sm text-muted-foreground">Open Positions</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-orange-600">{company.stats.rating}</div>
-                    <div className="text-sm text-gray-600">Company Rating</div>
+                    <div className="text-sm text-muted-foreground">Company Rating</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-purple-600">{company.locations?.length || 0}</div>
-                    <div className="text-sm text-gray-600">Global Offices</div>
+                    <div className="text-sm text-muted-foreground">Global Offices</div>
                   </div>
                 </div>
               </CardContent>
@@ -236,9 +236,9 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {(company.values || []).map((value: any, index: number) => (
-                    <div key={index} className="p-4 bg-gray-50 rounded-lg">
-                      <h3 className="font-semibold text-gray-900 mb-2">{value.name}</h3>
-                      <p className="text-gray-600 text-sm">{value.description}</p>
+                    <div key={index} className="p-4 bg-muted rounded-lg">
+                      <h3 className="font-semibold text-foreground mb-2">{value.name}</h3>
+                      <p className="text-muted-foreground text-sm">{value.description}</p>
                     </div>
                   ))}
                 </div>
@@ -258,7 +258,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                   {(company.benefits || []).map((benefit: string, index: number) => (
                     <div key={index} className="flex items-start">
                       <Shield className="h-4 w-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
-                      <span className="text-gray-700">{benefit}</span>
+                      <span className="text-foreground/80">{benefit}</span>
                     </div>
                   ))}
                 </div>
@@ -295,15 +295,15 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               <CardContent>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-700">Remote Work</span>
-                    <Badge className={company.workCulture.remote ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}>
+                    <span className="text-foreground/80">Remote Work</span>
+                    <Badge className={company.workCulture.remote ? 'bg-green-100 text-green-800' : 'bg-muted text-foreground'}>
                       {company.workCulture.remote ? 'Available' : 'Office-based'}
                     </Badge>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-700">Diversity Score</span>
+                    <span className="text-foreground/80">Diversity Score</span>
                     <div className="flex items-center">
-                      <div className="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                      <div className="w-20 bg-muted rounded-full h-2 mr-2">
                         <div
                           className="bg-blue-600 h-2 rounded-full"
                           style={{ width: `${company.workCulture.diversity}%` }}
@@ -313,14 +313,14 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-700">Work-Life Balance</span>
+                    <span className="text-foreground/80">Work-Life Balance</span>
                     <div className="flex items-center">
                       <Star className="h-4 w-4 text-yellow-500 mr-1" />
                       <span className="font-semibold">{company.workCulture.workLifeBalance}/5</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-700">Career Growth</span>
+                    <span className="text-foreground/80">Career Growth</span>
                     <div className="flex items-center">
                       <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
                       <span className="font-semibold">{company.workCulture.careerGrowth}/5</span>
@@ -341,10 +341,10 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               <CardContent>
                 <div className="space-y-3">
                   {(company.recentNews || []).map((news: any, index: number) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={index} className="flex items-center justify-between p-3 bg-muted rounded-lg">
                       <div>
-                        <h3 className="font-medium text-gray-900">{news.title}</h3>
-                        <p className="text-sm text-gray-600">{new Date(news.date).toLocaleDateString()}</p>
+                        <h3 className="font-medium text-foreground">{news.title}</h3>
+                        <p className="text-sm text-muted-foreground">{new Date(news.date).toLocaleDateString()}</p>
                       </div>
                       <Button variant="outline" size="sm">
                         <ExternalLink className="h-3 w-3 mr-1" />
@@ -393,19 +393,19 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-600">Industry</span>
+                  <span className="text-muted-foreground">Industry</span>
                   <span className="font-semibold">{company.industry}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-600">Average Salary</span>
+                  <span className="text-muted-foreground">Average Salary</span>
                   <span className="font-semibold">{company.averageSalary}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-600">Global Offices</span>
+                  <span className="text-muted-foreground">Global Offices</span>
                   <span className="font-semibold">{company.locations?.length || 0}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-600">Company Size</span>
+                  <span className="text-muted-foreground">Company Size</span>
                   <span className="font-semibold">{company.size}</span>
                 </div>
               </CardContent>
@@ -432,18 +432,18 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center">
-                  <Mail className="h-4 w-4 text-gray-600 mr-2" />
-                  <p className="text-sm text-gray-900">{company.contact.email}</p>
+                  <Mail className="h-4 w-4 text-muted-foreground mr-2" />
+                  <p className="text-sm text-foreground">{company.contact.email}</p>
                 </div>
                 {company.contact.phone && (
                   <div className="flex items-center">
-                    <Phone className="h-4 w-4 text-gray-600 mr-2" />
-                    <p className="text-sm text-gray-900">{company.contact.phone}</p>
+                    <Phone className="h-4 w-4 text-muted-foreground mr-2" />
+                    <p className="text-sm text-foreground">{company.contact.phone}</p>
                   </div>
                 )}
                 <div className="flex items-center">
-                  <Globe className="h-4 w-4 text-gray-600 mr-2" />
-                  <a href={company.website} className="text-sm text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">
+                  <Globe className="h-4 w-4 text-muted-foreground mr-2" />
+                  <a href={company.website} className="text-sm text-primary hover:text-primary/80" target="_blank" rel="noopener noreferrer">
                     {company.website}
                   </a>
                 </div>

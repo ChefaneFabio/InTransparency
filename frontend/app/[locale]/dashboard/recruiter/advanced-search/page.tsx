@@ -37,6 +37,7 @@ import {
   MessageCircle,
   CheckCircle2
 } from 'lucide-react'
+import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 
 interface StudentProject {
   id: string
@@ -885,12 +886,14 @@ export default function AdvancedSearchPage() {
 
           {/* No results state */}
           {!searchLoading && hasSearched && searchResults.length === 0 && !searchError && (
-            <Card className="p-12 text-center">
-              <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">No candidates found</h3>
-              <p className="text-gray-600">
-                Try adjusting your filters to see more results
-              </p>
+            <Card>
+              <CardContent>
+                <EmptyState
+                  icon={Search}
+                  title="No candidates found"
+                  description="Try adjusting your search criteria"
+                />
+              </CardContent>
             </Card>
           )}
         </div>

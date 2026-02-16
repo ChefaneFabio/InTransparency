@@ -28,6 +28,7 @@ import {
   CheckCircle,
   ArrowLeft
 } from 'lucide-react'
+import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 
 const DISCIPLINES = [
   { value: 'all', label: 'All Disciplines' },
@@ -366,15 +367,17 @@ export default function CandidatesPage() {
       {/* Results */}
       {filteredCandidates.length === 0 ? (
         <Card>
-          <CardContent className="p-12 text-center">
-            <Users className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No candidates found</h3>
-            <p className="text-gray-600 mb-6">
-              Try adjusting your search criteria or filters.
-            </p>
-            <Button variant="outline" onClick={clearFilters}>
-              Clear Filters
-            </Button>
+          <CardContent>
+            <EmptyState
+              icon={Users}
+              title="No candidates found"
+              description="Try adjusting your search filters"
+              action={{
+                label: 'Clear Filters',
+                onClick: clearFilters,
+                variant: 'outline',
+              }}
+            />
           </CardContent>
         </Card>
       ) : viewMode === 'grid' ? (

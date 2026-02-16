@@ -210,7 +210,7 @@ export default function ProfilePage() {
           <CardContent className="p-12 text-center">
             <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
             <h2 className="text-xl font-bold mb-2">Unable to Load Profile</h2>
-            <p className="text-gray-600 mb-4">{error || 'Profile not found'}</p>
+            <p className="text-muted-foreground mb-4">{error || 'Profile not found'}</p>
             <Button onClick={fetchProfile}>Try Again</Button>
           </CardContent>
         </Card>
@@ -240,7 +240,7 @@ export default function ProfilePage() {
               <Button
                 size="sm"
                 variant="outline"
-                className="absolute bottom-0 right-0 rounded-full w-10 h-10 p-0 bg-white"
+                className="absolute bottom-0 right-0 rounded-full w-10 h-10 p-0 bg-card"
               >
                 <Camera className="h-4 w-4" />
               </Button>
@@ -249,14 +249,14 @@ export default function ProfilePage() {
             <div className="flex-1 pt-16 sm:pt-0">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-900">
+                  <h1 className="text-3xl font-bold text-foreground">
                     {user.firstName || ''} {user.lastName || ''}
                   </h1>
-                  {user.tagline && <p className="text-gray-600 italic">{user.tagline}</p>}
+                  {user.tagline && <p className="text-muted-foreground italic">{user.tagline}</p>}
                   {user.degree && user.university && (
-                    <p className="text-gray-600">{user.degree} - {user.university}</p>
+                    <p className="text-muted-foreground">{user.degree} - {user.university}</p>
                   )}
-                  {user.graduationYear && <p className="text-gray-700 text-sm">Class of {user.graduationYear}</p>}
+                  {user.graduationYear && <p className="text-foreground/80 text-sm">Class of {user.graduationYear}</p>}
                 </div>
 
                 <div className="flex items-center space-x-2 mt-4 sm:mt-0">
@@ -288,7 +288,7 @@ export default function ProfilePage() {
                   >
                     {generatingCV ? (
                       <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-900 mr-2"></div>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-foreground mr-2"></div>
                         Generating...
                       </>
                     ) : (
@@ -387,20 +387,20 @@ export default function ProfilePage() {
                     <>
                       <div className="space-y-3">
                         <div className="flex items-center space-x-3">
-                          <Mail className="h-4 w-4 text-gray-600" />
+                          <Mail className="h-4 w-4 text-muted-foreground" />
                           <span>{user.email}</span>
                         </div>
                       </div>
 
                       {user.bio && (
                         <div className="pt-4 border-t">
-                          <h4 className="font-medium text-gray-900 mb-2">About</h4>
-                          <p className="text-gray-700 leading-relaxed">{user.bio}</p>
+                          <h4 className="font-medium text-foreground mb-2">About</h4>
+                          <p className="text-foreground/80 leading-relaxed">{user.bio}</p>
                         </div>
                       )}
 
                       {!user.bio && (
-                        <div className="pt-4 border-t text-gray-500 italic text-sm">
+                        <div className="pt-4 border-t text-muted-foreground italic text-sm">
                           No bio yet. Click &quot;Edit Profile&quot; to add one.
                         </div>
                       )}
@@ -420,15 +420,15 @@ export default function ProfilePage() {
                 <CardContent>
                   {user.university || user.degree ? (
                     <div className="space-y-2">
-                      {user.degree && <h3 className="font-semibold text-gray-900">{user.degree}</h3>}
-                      {user.university && <p className="text-gray-600">{user.university}</p>}
-                      <div className="flex items-center space-x-4 text-sm text-gray-700">
+                      {user.degree && <h3 className="font-semibold text-foreground">{user.degree}</h3>}
+                      {user.university && <p className="text-muted-foreground">{user.university}</p>}
+                      <div className="flex items-center space-x-4 text-sm text-foreground/80">
                         {user.graduationYear && <span>Class of {user.graduationYear}</span>}
                         {user.gpa && user.gpaPublic && <span>GPA: {user.gpa}</span>}
                       </div>
                     </div>
                   ) : (
-                    <p className="text-gray-500 italic text-sm">No education info added yet.</p>
+                    <p className="text-muted-foreground italic text-sm">No education info added yet.</p>
                   )}
                 </CardContent>
               </Card>
@@ -457,7 +457,7 @@ export default function ProfilePage() {
                       </Button>
                     )}
                     {!githubUrl && !user.portfolioUrl && (
-                      <p className="text-gray-500 italic text-sm">No links yet. Add projects with GitHub URLs to show them here.</p>
+                      <p className="text-muted-foreground italic text-sm">No links yet. Add projects with GitHub URLs to show them here.</p>
                     )}
                   </div>
                 </CardContent>
@@ -478,8 +478,8 @@ export default function ProfilePage() {
                       {skills.map((skill) => (
                         <div key={skill.name}>
                           <div className="flex justify-between items-center mb-2">
-                            <span className="font-medium text-gray-900">{skill.name}</span>
-                            <span className="text-sm text-gray-700">
+                            <span className="font-medium text-foreground">{skill.name}</span>
+                            <span className="text-sm text-foreground/80">
                               {skill.level}% ({skill.projectCount} {skill.projectCount === 1 ? 'project' : 'projects'})
                             </span>
                           </div>
@@ -489,9 +489,9 @@ export default function ProfilePage() {
                     </div>
                   ) : (
                     <div className="text-center py-8">
-                      <Briefcase className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium text-gray-900 mb-2">No skills detected</h3>
-                      <p className="text-gray-600">Upload projects to have your skills automatically analyzed.</p>
+                      <Briefcase className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
+                      <h3 className="text-lg font-medium text-foreground mb-2">No skills detected</h3>
+                      <p className="text-muted-foreground">Upload projects to have your skills automatically analyzed.</p>
                     </div>
                   )}
                 </CardContent>
@@ -505,7 +505,7 @@ export default function ProfilePage() {
                     <CardHeader>
                       <div className="flex items-start justify-between">
                         <CardTitle className="text-lg">{project.title}</CardTitle>
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <Eye className="h-4 w-4" />
                           {project.views} views
                         </div>
@@ -517,7 +517,7 @@ export default function ProfilePage() {
                           <Badge key={s} variant="secondary" className="text-xs">{s}</Badge>
                         ))}
                       </div>
-                      <div className="flex items-center gap-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <span className="flex items-center gap-1">
                           <Users className="h-3 w-3" />
                           {project.recruiterViews} recruiter views
@@ -527,7 +527,7 @@ export default function ProfilePage() {
                             href={project.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-blue-600 hover:underline"
+                            className="flex items-center gap-1 text-primary hover:underline"
                           >
                             <Github className="h-3 w-3" />
                             Source
@@ -540,9 +540,9 @@ export default function ProfilePage() {
               ) : (
                 <Card>
                   <CardContent className="p-12 text-center">
-                    <Briefcase className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h3>
-                    <p className="text-gray-600">Upload your first project to build your portfolio.</p>
+                    <Briefcase className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
+                    <h3 className="text-lg font-medium text-foreground mb-2">No projects yet</h3>
+                    <p className="text-muted-foreground">Upload your first project to build your portfolio.</p>
                   </CardContent>
                 </Card>
               )}
@@ -559,19 +559,19 @@ export default function ProfilePage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Profile Views (30d)</span>
+                <span className="text-sm text-muted-foreground">Profile Views (30d)</span>
                 <span className="font-semibold">{stats.profileViews}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Recruiter Views (30d)</span>
+                <span className="text-sm text-muted-foreground">Recruiter Views (30d)</span>
                 <span className="font-semibold">{stats.recruiterViews}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Total Projects</span>
+                <span className="text-sm text-muted-foreground">Total Projects</span>
                 <span className="font-semibold">{stats.totalProjects}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Total Applications</span>
+                <span className="text-sm text-muted-foreground">Total Applications</span>
                 <span className="font-semibold">{stats.totalApplications}</span>
               </div>
             </CardContent>
@@ -593,8 +593,8 @@ export default function ProfilePage() {
                 <div className="space-y-2 text-sm mt-4">
                   {completionItems.map((item) => (
                     <div key={item.field} className="flex items-center space-x-2">
-                      <div className={`w-2 h-2 rounded-full ${item.filled ? 'bg-green-500' : 'bg-gray-300'}`}></div>
-                      <span className={item.filled ? 'text-gray-600' : 'text-gray-400'}>
+                      <div className={`w-2 h-2 rounded-full ${item.filled ? 'bg-green-500' : 'bg-muted-foreground/60'}`}></div>
+                      <span className={item.filled ? 'text-muted-foreground' : 'text-muted-foreground/60'}>
                         {item.label}
                       </span>
                     </div>

@@ -17,7 +17,7 @@ export function BookingSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 sm:p-10 text-center"
+          className="bg-card rounded-2xl shadow-lg border border-border p-8 sm:p-10 text-center"
         >
           <div className="inline-flex p-3 rounded-xl bg-primary/10 mb-4">
             <Calendar className="h-6 w-6 text-primary" />
@@ -25,7 +25,7 @@ export function BookingSection() {
           <h2 className="text-3xl font-display font-bold text-foreground mb-3">
             {t('title')}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
             {t('subtitle')}
           </p>
           <Button
@@ -38,7 +38,7 @@ export function BookingSection() {
               <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </Button>
-          <p className="text-sm text-gray-500 mt-4">
+          <p className="text-sm text-muted-foreground mt-4">
             {t('note')}
           </p>
         </motion.div>

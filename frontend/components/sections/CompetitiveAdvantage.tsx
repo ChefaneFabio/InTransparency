@@ -7,14 +7,14 @@ export function CompetitiveAdvantage() {
   const t = useTranslations('competitiveAdvantage')
 
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50">
+    <section className="py-24 bg-gradient-to-br from-muted/50 via-white to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             {t('header.title')}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             {t('header.subtitle')}
           </p>
         </div>
@@ -22,13 +22,13 @@ export function CompetitiveAdvantage() {
         {/* Comparison Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {/* VS LinkedIn */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-gray-200 hover:border-blue-500 transition-all">
+          <div className="bg-card rounded-2xl shadow-xl p-8 border-2 border-border hover:border-blue-500 transition-all">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
                 <div className="p-3 bg-blue-100 rounded-lg">
-                  <Linkedin className="text-blue-600" size={28} />
+                  <Linkedin className="text-primary" size={28} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">{t('linkedin.title')}</h3>
+                <h3 className="text-xl font-bold text-foreground">{t('linkedin.title')}</h3>
               </div>
               <div className="text-4xl">🤝</div>
             </div>
@@ -37,38 +37,38 @@ export function CompetitiveAdvantage() {
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">{t('linkedin.issues.selfReported.title')}</p>
-                  <p className="text-sm text-gray-600">{t('linkedin.issues.selfReported.description')}</p>
+                  <p className="font-semibold text-foreground">{t('linkedin.issues.selfReported.title')}</p>
+                  <p className="text-sm text-muted-foreground">{t('linkedin.issues.selfReported.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">{t('linkedin.issues.noProof.title')}</p>
-                  <p className="text-sm text-gray-600">{t('linkedin.issues.noProof.description')}</p>
+                  <p className="font-semibold text-foreground">{t('linkedin.issues.noProof.title')}</p>
+                  <p className="text-sm text-muted-foreground">{t('linkedin.issues.noProof.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">{t('linkedin.issues.noGrades.title')}</p>
-                  <p className="text-sm text-gray-600">{t('linkedin.issues.noGrades.description')}</p>
+                  <p className="font-semibold text-foreground">{t('linkedin.issues.noGrades.title')}</p>
+                  <p className="text-sm text-muted-foreground">{t('linkedin.issues.noGrades.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">{t('linkedin.issues.premiumRequired.title')}</p>
-                  <p className="text-sm text-gray-600">{t('linkedin.issues.premiumRequired.description')}</p>
+                  <p className="font-semibold text-foreground">{t('linkedin.issues.premiumRequired.title')}</p>
+                  <p className="text-sm text-muted-foreground">{t('linkedin.issues.premiumRequired.description')}</p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-gray-200">
-              <div className="flex items-center gap-2 text-blue-600 font-semibold">
+            <div className="mt-6 pt-6 border-t border-border">
+              <div className="flex items-center gap-2 text-primary font-semibold">
                 <Shield size={20} />
                 <span>{t('linkedin.advantage')}</span>
               </div>
@@ -76,13 +76,13 @@ export function CompetitiveAdvantage() {
           </div>
 
           {/* VS GitHub */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-gray-200 hover:border-blue-500 transition-all">
+          <div className="bg-card rounded-2xl shadow-xl p-8 border-2 border-border hover:border-blue-500 transition-all">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
                 <div className="p-3 bg-gray-800 rounded-lg">
                   <Github className="text-white" size={28} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">{t('github.title')}</h3>
+                <h3 className="text-xl font-bold text-foreground">{t('github.title')}</h3>
               </div>
               <div className="text-4xl">💻</div>
             </div>
@@ -91,30 +91,30 @@ export function CompetitiveAdvantage() {
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">{t('github.issues.techOnly.title')}</p>
-                  <p className="text-sm text-gray-600">{t('github.issues.techOnly.description')}</p>
+                  <p className="font-semibold text-foreground">{t('github.issues.techOnly.title')}</p>
+                  <p className="text-sm text-muted-foreground">{t('github.issues.techOnly.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">{t('github.issues.codeOnly.title')}</p>
-                  <p className="text-sm text-gray-600">{t('github.issues.codeOnly.description')}</p>
+                  <p className="font-semibold text-foreground">{t('github.issues.codeOnly.title')}</p>
+                  <p className="text-sm text-muted-foreground">{t('github.issues.codeOnly.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">{t('github.issues.excluded.title')}</p>
-                  <p className="text-sm text-gray-600">{t('github.issues.excluded.description')}</p>
+                  <p className="font-semibold text-foreground">{t('github.issues.excluded.title')}</p>
+                  <p className="text-sm text-muted-foreground">{t('github.issues.excluded.description')}</p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-gray-200">
-              <div className="flex items-center gap-2 text-blue-600 font-semibold">
+            <div className="mt-6 pt-6 border-t border-border">
+              <div className="flex items-center gap-2 text-primary font-semibold">
                 <Globe size={20} />
                 <span>{t('github.advantage')}</span>
               </div>
@@ -122,13 +122,13 @@ export function CompetitiveAdvantage() {
           </div>
 
           {/* VS Traditional Resumes */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 border-2 border-gray-200 hover:border-blue-500 transition-all">
+          <div className="bg-card rounded-2xl shadow-xl p-8 border-2 border-border hover:border-blue-500 transition-all">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
                 <div className="p-3 bg-green-100 rounded-lg">
                   <FileText className="text-green-600" size={28} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">{t('resumes.title')}</h3>
+                <h3 className="text-xl font-bold text-foreground">{t('resumes.title')}</h3>
               </div>
               <div className="text-4xl">📄</div>
             </div>
@@ -137,30 +137,30 @@ export function CompetitiveAdvantage() {
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">{t('resumes.issues.bulletPoints.title')}</p>
-                  <p className="text-sm text-gray-600">{t('resumes.issues.bulletPoints.description')}</p>
+                  <p className="font-semibold text-foreground">{t('resumes.issues.bulletPoints.title')}</p>
+                  <p className="text-sm text-muted-foreground">{t('resumes.issues.bulletPoints.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">{t('resumes.issues.noProof.title')}</p>
-                  <p className="text-sm text-gray-600">{t('resumes.issues.noProof.description')}</p>
+                  <p className="font-semibold text-foreground">{t('resumes.issues.noProof.title')}</p>
+                  <p className="text-sm text-muted-foreground">{t('resumes.issues.noProof.description')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
                 <div>
-                  <p className="font-semibold text-gray-900">{t('resumes.issues.oneSize.title')}</p>
-                  <p className="text-sm text-gray-600">{t('resumes.issues.oneSize.description')}</p>
+                  <p className="font-semibold text-foreground">{t('resumes.issues.oneSize.title')}</p>
+                  <p className="text-sm text-muted-foreground">{t('resumes.issues.oneSize.description')}</p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-gray-200">
-              <div className="flex items-center gap-2 text-blue-600 font-semibold">
+            <div className="mt-6 pt-6 border-t border-border">
+              <div className="flex items-center gap-2 text-primary font-semibold">
                 <GraduationCap size={20} />
                 <span>{t('resumes.advantage')}</span>
               </div>
@@ -245,54 +245,54 @@ export function CompetitiveAdvantage() {
 
         {/* Pricing Model Comparison */}
         <div className="mt-16">
-          <h3 className="text-3xl font-bold text-gray-900 text-center mb-8">
+          <h3 className="text-3xl font-bold text-foreground text-center mb-8">
             {t('pricing.title')}
           </h3>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* LinkedIn */}
-            <div className="bg-white rounded-xl shadow-md p-6 border-2 border-gray-200">
+            <div className="bg-card rounded-xl shadow-md p-6 border-2 border-border">
               <div className="flex items-center gap-2 mb-4">
-                <Linkedin className="text-blue-600" size={24} />
-                <h4 className="font-bold text-gray-900">{t('pricing.linkedinRecruiter.title')}</h4>
+                <Linkedin className="text-primary" size={24} />
+                <h4 className="font-bold text-foreground">{t('pricing.linkedinRecruiter.title')}</h4>
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">{t('pricing.linkedinRecruiter.price')}</div>
-              <p className="text-sm text-gray-600 mb-4">{t('pricing.linkedinRecruiter.period')}</p>
+              <div className="text-3xl font-bold text-foreground mb-2">{t('pricing.linkedinRecruiter.price')}</div>
+              <p className="text-sm text-muted-foreground mb-4">{t('pricing.linkedinRecruiter.period')}</p>
               <div className="space-y-2 text-sm">
                 <div className="flex items-start gap-2">
                   <XCircle className="text-red-500 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">{t('pricing.linkedinRecruiter.issues.upfront')}</span>
+                  <span className="text-foreground/80">{t('pricing.linkedinRecruiter.issues.upfront')}</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <XCircle className="text-red-500 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">{t('pricing.linkedinRecruiter.issues.contracts')}</span>
+                  <span className="text-foreground/80">{t('pricing.linkedinRecruiter.issues.contracts')}</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <XCircle className="text-red-500 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">{t('pricing.linkedinRecruiter.issues.expensive')}</span>
+                  <span className="text-foreground/80">{t('pricing.linkedinRecruiter.issues.expensive')}</span>
                 </div>
               </div>
             </div>
 
             {/* Indeed */}
-            <div className="bg-white rounded-xl shadow-md p-6 border-2 border-gray-200">
+            <div className="bg-card rounded-xl shadow-md p-6 border-2 border-border">
               <div className="flex items-center gap-2 mb-4">
                 <Globe className="text-blue-700" size={24} />
-                <h4 className="font-bold text-gray-900">{t('pricing.jobBoards.title')}</h4>
+                <h4 className="font-bold text-foreground">{t('pricing.jobBoards.title')}</h4>
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">{t('pricing.jobBoards.price')}</div>
-              <p className="text-sm text-gray-600 mb-4">{t('pricing.jobBoards.period')}</p>
+              <div className="text-3xl font-bold text-foreground mb-2">{t('pricing.jobBoards.price')}</div>
+              <p className="text-sm text-muted-foreground mb-4">{t('pricing.jobBoards.period')}</p>
               <div className="space-y-2 text-sm">
                 <div className="flex items-start gap-2">
                   <XCircle className="text-red-500 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">{t('pricing.jobBoards.issues.perPost')}</span>
+                  <span className="text-foreground/80">{t('pricing.jobBoards.issues.perPost')}</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <XCircle className="text-red-500 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">{t('pricing.jobBoards.issues.unqualified')}</span>
+                  <span className="text-foreground/80">{t('pricing.jobBoards.issues.unqualified')}</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <XCircle className="text-red-500 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">{t('pricing.jobBoards.issues.noVerification')}</span>
+                  <span className="text-foreground/80">{t('pricing.jobBoards.issues.noVerification')}</span>
                 </div>
               </div>
             </div>
@@ -301,29 +301,29 @@ export function CompetitiveAdvantage() {
             <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl shadow-lg p-6 border-2 border-green-300">
               <div className="flex items-center gap-2 mb-4">
                 <Shield className="text-green-600" size={24} />
-                <h4 className="font-bold text-gray-900">{t('pricing.inTransparency.title')}</h4>
+                <h4 className="font-bold text-foreground">{t('pricing.inTransparency.title')}</h4>
               </div>
               <div className="text-3xl font-bold text-green-600 mb-2">{t('pricing.inTransparency.price')}</div>
-              <p className="text-sm text-gray-700 mb-4">{t('pricing.inTransparency.period')}</p>
+              <p className="text-sm text-foreground/80 mb-4">{t('pricing.inTransparency.period')}</p>
               <div className="space-y-2 text-sm">
                 <div className="flex items-start gap-2">
                   <CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">{t('pricing.inTransparency.benefits.browseFree')}</span>
+                  <span className="text-foreground/80">{t('pricing.inTransparency.benefits.browseFree')}</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">{t('pricing.inTransparency.benefits.payWhenFound')}</span>
+                  <span className="text-foreground/80">{t('pricing.inTransparency.benefits.payWhenFound')}</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={16} />
-                  <span className="text-gray-700">{t('pricing.inTransparency.benefits.noSubscription')}</span>
+                  <span className="text-foreground/80">{t('pricing.inTransparency.benefits.noSubscription')}</span>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="mt-8 text-center">
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
               {t('pricing.summary')}
             </p>
           </div>
@@ -331,7 +331,7 @@ export function CompetitiveAdvantage() {
 
         {/* Unique Features NOT on LinkedIn */}
         <div className="mt-16">
-          <h3 className="text-3xl font-bold text-gray-900 text-center mb-8">
+          <h3 className="text-3xl font-bold text-foreground text-center mb-8">
             {t('uniqueFeatures.title')}
           </h3>
           <div className="grid md:grid-cols-5 gap-6 max-w-6xl mx-auto">
@@ -342,10 +342,10 @@ export function CompetitiveAdvantage() {
               { key: 'academicFilters', icon: '🎯' },
               { key: 'portfolioCoverage', icon: '📁' }
             ].map((feature) => (
-              <div key={feature.key} className="bg-white rounded-xl p-6 shadow-md border-2 border-blue-200 text-center">
+              <div key={feature.key} className="bg-card rounded-xl p-6 shadow-md border-2 border-blue-200 text-center">
                 <div className="text-4xl mb-3">{feature.icon}</div>
-                <h4 className="font-bold text-gray-900 mb-2">{t(`uniqueFeatures.features.${feature.key}.title`)}</h4>
-                <p className="text-sm text-gray-600">{t(`uniqueFeatures.features.${feature.key}.description`)}</p>
+                <h4 className="font-bold text-foreground mb-2">{t(`uniqueFeatures.features.${feature.key}.title`)}</h4>
+                <p className="text-sm text-muted-foreground">{t(`uniqueFeatures.features.${feature.key}.description`)}</p>
               </div>
             ))}
           </div>
@@ -353,10 +353,10 @@ export function CompetitiveAdvantage() {
 
         {/* When InTransparency Beats LinkedIn */}
         <div className="mt-16">
-          <h3 className="text-3xl font-bold text-gray-900 text-center mb-4">
+          <h3 className="text-3xl font-bold text-foreground text-center mb-4">
             {t('useCases.title')}
           </h3>
-          <p className="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-center text-muted-foreground mb-8 max-w-3xl mx-auto">
             {t('useCases.subtitle')}
           </p>
 
@@ -392,8 +392,8 @@ export function CompetitiveAdvantage() {
 
         {/* Disciplines Supported - ALL SECTORS */}
         <div className="mt-16 text-center">
-          <h3 className="text-3xl font-bold text-gray-900 mb-4">{t('disciplines.title')}</h3>
-          <p className="text-gray-600 font-medium mb-6 max-w-3xl mx-auto">
+          <h3 className="text-3xl font-bold text-foreground mb-4">{t('disciplines.title')}</h3>
+          <p className="text-muted-foreground font-medium mb-6 max-w-3xl mx-auto">
             {t('disciplines.subtitle')}
           </p>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
@@ -408,7 +408,7 @@ export function CompetitiveAdvantage() {
                   {category === 'other' && '📊 '}
                   {t(`disciplines.categories.${category}.title`)}
                 </h4>
-                <ul className="space-y-1 text-sm text-gray-700">
+                <ul className="space-y-1 text-sm text-foreground/80">
                   {t.raw(`disciplines.categories.${category}.items`).map((item: string) => (
                     <li key={item}>• {item}</li>
                   ))}
@@ -416,7 +416,7 @@ export function CompetitiveAdvantage() {
               </div>
             ))}
           </div>
-          <p className="mt-6 text-lg font-semibold text-gray-900">
+          <p className="mt-6 text-lg font-semibold text-foreground">
             🎯 {t('disciplines.conclusion')}
           </p>
         </div>
