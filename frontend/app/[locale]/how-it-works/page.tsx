@@ -2,18 +2,17 @@
 
 import React, { useState } from 'react'
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { motion, AnimatePresence } from 'framer-motion'
-import { IMAGES, getAvatarUrl } from '@/lib/images'
 import {
   Users,
   Building2,
   Search,
+  Brain,
   FileText,
   Upload,
   Download,
@@ -320,10 +319,10 @@ export default function HowItWorksPage() {
             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
               {t('hero.title')}
             </h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-2">
+            <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-2">
               {t('hero.subtitle')}
             </p>
-            <p className="text-base text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
               {t('hero.tagline')}
             </p>
           </motion.div>
@@ -345,7 +344,7 @@ export default function HowItWorksPage() {
                   <CardTitle className="text-lg">{t('services.verification.title')}</CardTitle>
                   <Badge variant="secondary" className="mt-2">{t('services.verification.badge')}</Badge>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700 space-y-2">
+                <CardContent className="text-sm text-foreground/80 space-y-2">
                   <p className="font-semibold text-primary">{t('services.verification.heading')}</p>
                   <ul className="space-y-1 text-xs">
                     <li>• {t('services.verification.features.0')}</li>
@@ -368,7 +367,7 @@ export default function HowItWorksPage() {
                   <CardTitle className="text-lg">{t('services.matching.title')}</CardTitle>
                   <Badge variant="secondary" className="mt-2">{t('services.matching.badge')}</Badge>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700 space-y-2">
+                <CardContent className="text-sm text-foreground/80 space-y-2">
                   <p className="font-semibold text-secondary">{t('services.matching.heading')}</p>
                   <ul className="space-y-1 text-xs">
                     <li>• {t('services.matching.features.0')}</li>
@@ -391,7 +390,7 @@ export default function HowItWorksPage() {
                   <CardTitle className="text-lg">{t('services.discovery.title')}</CardTitle>
                   <Badge variant="secondary" className="mt-2">{t('services.discovery.badge')}</Badge>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700 space-y-2">
+                <CardContent className="text-sm text-foreground/80 space-y-2">
                   <p className="font-semibold text-green-700">{t('services.discovery.heading')}</p>
                   <ul className="space-y-1 text-xs">
                     <li>• {t('services.discovery.features.0')}</li>
@@ -414,7 +413,7 @@ export default function HowItWorksPage() {
                   <CardTitle className="text-lg">{t('services.analytics.title')}</CardTitle>
                   <Badge variant="secondary" className="mt-2">{t('services.analytics.badge')}</Badge>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700 space-y-2">
+                <CardContent className="text-sm text-foreground/80 space-y-2">
                   <p className="font-semibold text-purple-700">{t('services.analytics.heading')}</p>
                   <ul className="space-y-1 text-xs">
                     <li>• {t('services.analytics.features.0')}</li>
@@ -442,7 +441,7 @@ export default function HowItWorksPage() {
                         className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                           selectedUserType === type.id
                             ? type.color
-                            : 'text-gray-800 hover:text-gray-900 hover:bg-slate-100'
+                            : 'text-gray-800 hover:text-foreground hover:bg-slate-100'
                         }`}
                       >
                         <Icon className="h-4 w-4 mr-2" />
@@ -475,7 +474,7 @@ export default function HowItWorksPage() {
                               <div className="bg-white p-4 rounded-lg shadow-md mb-2 w-48 hover:shadow-lg transition-shadow">
                                 <Icon className={`h-8 w-8 mx-auto mb-2 ${step.color}`} />
                                 <p className="text-sm font-semibold">{step.title}</p>
-                                <p className="text-xs text-gray-600">{step.description}</p>
+                                <p className="text-xs text-muted-foreground">{step.description}</p>
                               </div>
                             </div>
                             {index < getCurrentWorkflow().steps.length - 1 && (
@@ -486,7 +485,7 @@ export default function HowItWorksPage() {
                       })}
                     </div>
                     <div className="text-center mt-6">
-                      <p className="text-sm text-gray-700">
+                      <p className="text-sm text-foreground/80">
                         <strong>{t('workflow.result')}</strong> {getCurrentWorkflow().result}
                       </p>
                     </div>
@@ -507,7 +506,7 @@ export default function HowItWorksPage() {
             <h2 className="text-3xl font-display font-bold text-foreground mb-4">
               {getHeaderContent().title}
             </h2>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
               {getHeaderContent().subtitle}
             </p>
           </motion.div>
@@ -521,7 +520,7 @@ export default function HowItWorksPage() {
                     <Database className="h-6 w-6 mr-2" />
                     {t('studentDataImport.title')}
                   </CardTitle>
-                  <p className="text-gray-700">
+                  <p className="text-foreground/80">
                     {t('studentDataImport.description')}
                   </p>
                 </CardHeader>
@@ -562,23 +561,13 @@ export default function HowItWorksPage() {
                     <Card className={`${step.color} transition-all hover:shadow-lg relative overflow-hidden h-full`}>
                   {/* Step Number Badge */}
                   <div className="absolute top-4 right-4 bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-md">
-                    <span className="text-2xl font-bold text-gray-700">{step.id}</span>
+                    <span className="text-2xl font-bold text-foreground/80">{step.id}</span>
                   </div>
 
                   <CardHeader>
                     <div className="flex items-center mb-4">
-                      <div className="relative w-16 h-16 mr-4 rounded-lg overflow-hidden shadow-md">
-                        <Image
-                          src={
-                            step.id === 1 ? (selectedUserType === 'student' ? IMAGES.companies.office1 : selectedUserType === 'recruiter' ? IMAGES.features.search : IMAGES.universities.campus1) :
-                            step.id === 2 ? (selectedUserType === 'student' ? IMAGES.features.aiAnalysis : selectedUserType === 'recruiter' ? IMAGES.features.matching : IMAGES.features.dataAnalytics) :
-                            selectedUserType === 'student' ? IMAGES.success.handshake : selectedUserType === 'recruiter' ? IMAGES.features.collaboration : IMAGES.companies.team
-                          }
-                          alt={step.title}
-                          width={64}
-                          height={64}
-                          className="object-cover"
-                        />
+                      <div className="w-14 h-14 mr-4 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
+                        <Icon className="h-7 w-7 text-primary" />
                       </div>
                       {step.duration && (
                         <Badge variant="secondary" className="text-xs">
@@ -587,13 +576,13 @@ export default function HowItWorksPage() {
                         </Badge>
                       )}
                     </div>
-                    <CardTitle className="text-gray-900 text-xl mb-2">{step.title}</CardTitle>
-                    <p className="text-gray-700 text-sm leading-relaxed">{step.description}</p>
+                    <CardTitle className="text-foreground text-xl mb-2">{step.title}</CardTitle>
+                    <p className="text-foreground/80 text-sm leading-relaxed">{step.description}</p>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2 mb-4">
                       {(step.features || []).map((feature: string, featureIndex: number) => (
-                        <li key={featureIndex} className="flex items-start text-sm text-gray-700">
+                        <li key={featureIndex} className="flex items-start text-sm text-foreground/80">
                           <CheckCircle className="h-4 w-4 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
                           <span>{feature}</span>
                         </li>
@@ -603,7 +592,7 @@ export default function HowItWorksPage() {
                     {/* Example */}
                     {step.example && (
                       <div className="bg-white bg-opacity-70 rounded-lg p-3 border border-gray-200">
-                        <p className="text-xs font-mono text-gray-700 italic">
+                        <p className="text-xs font-mono text-foreground/80 italic">
                           {step.example}
                         </p>
                       </div>
@@ -631,39 +620,34 @@ export default function HowItWorksPage() {
             <div className="grid md:grid-cols-4 gap-6">
               {[
                 {
-                  image: IMAGES.students.student4,
+                  icon: GraduationCap,
                   title: t('benefits.0.title'),
                   description: t('benefits.0.description')
                 },
                 {
-                  image: IMAGES.universities.campus1,
+                  icon: Building2,
                   title: t('benefits.1.title'),
                   description: t('benefits.1.description')
                 },
                 {
-                  image: IMAGES.features.aiAnalysis,
+                  icon: Brain,
                   title: t('benefits.2.title'),
                   description: t('benefits.2.description')
                 },
                 {
-                  image: IMAGES.features.collaboration,
+                  icon: Users,
                   title: t('benefits.3.title'),
                   description: t('benefits.3.description')
                 }
               ].map((benefit, index) => {
+                const BenefitIcon = benefit.icon
                 return (
                   <div key={index} className="text-center">
-                    <div className="relative w-16 h-16 mx-auto mb-4 rounded-full overflow-hidden shadow-md">
-                      <Image
-                        src={benefit.image}
-                        alt={benefit.title}
-                        width={64}
-                        height={64}
-                        className="object-cover"
-                      />
+                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                      <BenefitIcon className="h-7 w-7 text-white" />
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">{benefit.title}</h4>
-                    <p className="text-sm text-gray-700">{benefit.description}</p>
+                    <h4 className="font-semibold text-foreground mb-2">{benefit.title}</h4>
+                    <p className="text-sm text-foreground/80">{benefit.description}</p>
                   </div>
                 )
               })}

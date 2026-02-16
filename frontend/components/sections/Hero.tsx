@@ -2,38 +2,18 @@
 
 import { useState } from 'react'
 import { Link } from '@/navigation'
-import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, CheckCircle2, GraduationCap, Building2, Briefcase, Star } from 'lucide-react'
+import { ArrowRight, CheckCircle2, GraduationCap, Building2, Briefcase, Star, Brain, Shield, Search, Users, BarChart3, FileCheck, MessageSquare } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { IMAGES } from '@/lib/images'
 import { useTranslations } from 'next-intl'
 
 type Segment = 'students' | 'universities' | 'companies'
 
-// Image mappings for each segment
-const segmentImages = {
-  students: {
-    features: [
-      IMAGES.features.aiAnalysis,
-      IMAGES.students.student4,
-      IMAGES.universityCampuses.graduation
-    ]
-  },
-  universities: {
-    features: [
-      IMAGES.features.search,
-      IMAGES.recruiters.recruiter2,
-      IMAGES.universityCampuses.campus
-    ]
-  },
-  companies: {
-    features: [
-      IMAGES.features.search,
-      IMAGES.universityCampuses.library,
-      IMAGES.success.handshake
-    ]
-  }
+// Icon mappings for each segment's 3 features
+const segmentFeatureIcons = {
+  students: [Brain, GraduationCap, Briefcase],
+  universities: [Shield, Users, BarChart3],
+  companies: [Search, FileCheck, MessageSquare]
 }
 
 const segmentIcons = {
@@ -204,18 +184,15 @@ export function Hero() {
                     whileHover={{ scale: 1.05, y: -5 }}
                     className="flex flex-col items-center group"
                   >
-                    <motion.div
-                      className="relative rounded-full overflow-hidden w-16 h-16 shadow-md group-hover:shadow-lg transition-all duration-300"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Image
-                        src={segmentImages[segment].features[index]}
-                        alt={tFeatures(index, 'title')}
-                        fill
-                        className="object-cover"
-                      />
-                    </motion.div>
+                    {(() => { const FeatureIcon = segmentFeatureIcons[segment][index]; return (
+                      <motion.div
+                        className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <FeatureIcon className="h-7 w-7 text-white" />
+                      </motion.div>
+                    ) })()}
                     <h3 className="mt-4 text-lg font-semibold text-foreground">{tFeatures(index, 'title')}</h3>
                     <p className="text-sm text-muted-foreground text-center">
                       {tFeatures(index, 'description')}

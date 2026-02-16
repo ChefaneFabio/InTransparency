@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -12,15 +11,9 @@ import {
   Target,
   Clock
 } from 'lucide-react'
-import { IMAGES } from '@/lib/images'
 import { useTranslations } from 'next-intl'
 
-const stepImages = [
-  IMAGES.students.student1,
-  IMAGES.features.aiAnalysis,
-  IMAGES.companies.team,
-  IMAGES.success.handshake
-]
+const stepIcons = [Upload, Brain, Target]
 
 export function HowItWorks() {
   const [activeStep, setActiveStep] = useState(0)
@@ -49,7 +42,6 @@ export function HowItWorks() {
         key2: statsKeys[1] as string,
         value2: statsValues[1] as string
       },
-      image: stepImages[index],
       color: 'from-primary to-secondary'
     }
   }
@@ -113,14 +105,7 @@ export function HowItWorks() {
                       : 'bg-card text-muted-foreground hover:bg-muted shadow border'
                   }`}
                 >
-                  <div className="relative w-5 h-5 mr-2 rounded-full overflow-hidden">
-                    <Image
-                      src={step.image}
-                      alt={step.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+                  {(() => { const StepIcon = stepIcons[index]; return <StepIcon className="h-4 w-4 mr-2" /> })()}
                   <span className="font-medium">{step.title}</span>
                 </button>
               )
@@ -133,14 +118,11 @@ export function HowItWorks() {
           {/* Left: Step Details */}
           <div className="space-y-6">
             <div className="flex items-center space-x-4">
-              <div className="relative w-16 h-16 rounded-2xl overflow-hidden shadow-lg">
-                <Image
-                  src={currentStep.image}
-                  alt={currentStep.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              {(() => { const StepIcon = stepIcons[activeStep]; return (
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                  <StepIcon className="h-7 w-7 text-white" />
+                </div>
+              ) })()}
               <div>
                 <div className="text-sm font-medium text-foreground/80 mb-1">{t('step')} {currentStep.id}</div>
                 <h3 className="text-3xl font-bold text-foreground">{currentStep.title}</h3>

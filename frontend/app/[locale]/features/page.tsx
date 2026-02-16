@@ -8,7 +8,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
 import {
   GraduationCap,
@@ -34,8 +33,6 @@ import {
   Sparkles,
   Target
 } from 'lucide-react'
-import { IMAGES } from '@/lib/images'
-
 // TODO: Add translations for features array data
 type TargetAudience = 'students' | 'institutes' | 'companies' | 'all'
 
@@ -44,7 +41,6 @@ interface Feature {
   title: string
   description: string
   icon: any
-  image: string
   targets: TargetAudience[]
   benefits: string[]
   status: 'live' | 'beta'
@@ -57,15 +53,11 @@ const features: Feature[] = [
     title: 'Institution-Verified Profiles (Replaces Opaque CVs)',
     description: 'No more self-reported CVs with inflated claims. Upload projects (theses, stage curriculare, code) → Your institution authenticates them → Companies see verified competencies with source proof.',
     icon: Shield,
-    image: IMAGES.universityCampuses.graduation,
     targets: ['students', 'institutes', 'companies'],
     benefits: [
       'Every skill traceable to institution',
-      'Skills verified by institutions with project grades',
-      'Project excerpts shown to companies with institutional stamp',
-      'Verified skills reduce false positives',
-      'Faster screening with verified data',
-      'Higher credibility with verified portfolio'
+      'Skills verified with project grades',
+      'Faster screening with verified data'
     ],
     status: 'live'
   },
@@ -74,15 +66,11 @@ const features: Feature[] = [
     title: 'AI Analysis + Institution Verification Workflow',
     description: 'Upload projects (code, theses, stage curriculare) → AI extracts skills (e.g., "Python in web app") → Institution reviews via dashboard → Approve with stamp → Profile goes live with verified badge.',
     icon: Brain,
-    image: IMAGES.features.aiAnalysis,
     targets: ['students', 'institutes'],
     benefits: [
-      'AI initial scan: "Excel model built" extracted from uploaded project PDF',
-      'Institution dashboard: "Endorse this project? Y/N" button (batch 50 in 1 hour)',
-      'Final validation: "Verified by Politecnico Milano, 30/30 in ML thesis"',
-      'Free core feature for institutions (manual upload or API)',
-      'Works for ALL disciplines: Tech, Business, Law, Engineering, Design',
-      'EU AI Act compliant: Every skill traced to authenticated source'
+      'AI extracts skills, institution endorses with one click',
+      'Works for ALL disciplines: Tech, Business, Law, Design',
+      'EU AI Act compliant: every skill traced to source'
     ],
     status: 'live'
   },
@@ -91,12 +79,10 @@ const features: Feature[] = [
     title: 'Complete Skill Profile',
     description: 'Comprehensive skill profile with hard skills, soft skills, courses, grades, and projects - all verified by university or AI.',
     icon: Award,
-    image: IMAGES.students.student3,
     targets: ['students'],
     benefits: [
       'Hard + soft skills verified from projects',
-      'University verification (if partner, with consent)',
-      'Project portfolio included',
+      'University verification with consent',
       'Course history with grades'
     ],
     status: 'live'
@@ -106,13 +92,11 @@ const features: Feature[] = [
     title: 'AI Job Search',
     description: 'Conversational AI search to find jobs that match your skills, location, and preferences.',
     icon: Search,
-    image: IMAGES.features.search,
     targets: ['students'],
     benefits: [
       'Natural language search ("Marketing intern Milan")',
       'Matches based on your verified skills',
-      'Location and availability filters',
-      'Direct contact with recruiters'
+      'Location and availability filters'
     ],
     status: 'live'
   },
@@ -121,12 +105,10 @@ const features: Feature[] = [
     title: 'Profile Visibility Analytics',
     description: 'See exactly which companies viewed your profile and when - complete transparency.',
     icon: Eye,
-    image: IMAGES.features.dataAnalytics,
     targets: ['students'],
     benefits: [
       'See who viewed your profile',
       'Track company interest',
-      'Understand which skills attracted views',
       'No hidden algorithms'
     ],
     status: 'live'
@@ -136,13 +118,11 @@ const features: Feature[] = [
     title: 'Verified Portfolios',
     description: 'Your work is verified by your university (if partner) or our AI, proving skills are real.',
     icon: Shield,
-    image: IMAGES.universities.library,
     targets: ['students'],
     benefits: [
       'University-backed verification',
       'AI skill validation',
-      'Authenticated grades',
-      'Trustworthy credentials'
+      'Authenticated grades'
     ],
     status: 'live'
   },
@@ -153,11 +133,9 @@ const features: Feature[] = [
     title: 'AI Candidate Search',
     description: 'Conversational search across ALL disciplines: "Marketing intern Milan creative portfolio" or "Civil Engineer Rome AutoCAD 28/30"',
     icon: Search,
-    image: IMAGES.companies.office1,
     targets: ['companies'],
     benefits: [
-      'Natural language search',
-      'Search across ALL fields (Tech, Business, Law, etc.)',
+      'Natural language search across all fields',
       'Filter by skills, location, grades',
       'See verified projects + soft skills'
     ],
@@ -168,12 +146,10 @@ const features: Feature[] = [
     title: 'Browse Free, Pay Per Contact',
     description: 'Unlimited free browsing of all profiles. Only pay €10 when you decide to contact a specific candidate.',
     icon: Zap,
-    image: IMAGES.success.handshake,
     targets: ['companies'],
     benefits: [
-      'Free registration (no credit card)',
-      'Unlimited database exploration',
-      'See all profiles (anonymized)',
+      'Free registration, no credit card',
+      'Unlimited browsing of anonymized profiles',
       'Pay €10 only when you contact'
     ],
     status: 'live'
@@ -183,13 +159,11 @@ const features: Feature[] = [
     title: 'Verified Skills & Projects',
     description: 'See actual verified projects and institution-authenticated portfolios. Both hard and soft skills verified through academic work.',
     icon: Shield,
-    image: IMAGES.universityCampuses.campus,
     targets: ['companies'],
     benefits: [
       'View real project work (code, designs, research)',
       'Institution-verified grades and achievements',
-      'Hard and soft skills verified through coursework',
-      'AI-analyzed competencies from projects'
+      'Hard and soft skills verified through coursework'
     ],
     status: 'live'
   },
@@ -198,13 +172,11 @@ const features: Feature[] = [
     title: 'Direct Candidate Contact',
     description: 'Message candidates directly after unlocking contact. Get full name, email, phone, and LinkedIn.',
     icon: MessageSquare,
-    image: IMAGES.recruiters.recruiter1,
     targets: ['companies'],
     benefits: [
       'Direct messaging system',
-      'Full contact information',
-      'AI-generated candidate CV',
-      'Fast response times'
+      'Full contact information revealed',
+      'AI-generated candidate CV'
     ],
     status: 'live'
   },
@@ -215,13 +187,11 @@ const features: Feature[] = [
     title: 'Company Search Intelligence',
     description: 'See which companies search your students: "Deloitte viewed 31 Economics students" = warm outreach opportunity.',
     icon: TrendingUp,
-    image: IMAGES.features.dataAnalytics,
     targets: ['institutes'],
     benefits: [
       'Track which companies view students',
       'Identify warm outreach opportunities',
-      'Understand employer interest patterns',
-      'Build strategic partnerships'
+      'Understand employer interest patterns'
     ],
     status: 'live'
   },
@@ -230,13 +200,11 @@ const features: Feature[] = [
     title: 'Data-Driven Career Advice',
     description: 'Show students what skills are trending: "Excel searched 89x this month" = tell Business students to learn it.',
     icon: BarChart3,
-    image: IMAGES.recruiters.recruiter2,
     targets: ['institutes'],
     benefits: [
       'See which skills companies search for',
-      'Provide evidence-based career guidance',
-      'Help students focus on in-demand skills',
-      'Improve placement outcomes'
+      'Evidence-based career guidance',
+      'Help students focus on in-demand skills'
     ],
     status: 'live'
   },
@@ -245,13 +213,11 @@ const features: Feature[] = [
     title: 'Early Intervention Alerts',
     description: 'Flag at-risk students: "87 seniors graduating in 60 days with zero views" = proactive career support needed.',
     icon: Users,
-    image: IMAGES.universityCampuses.campus,
     targets: ['institutes'],
     benefits: [
       'Identify students with low visibility',
       'Intervene before graduation',
-      'Improve placement statistics',
-      'Proactive career services'
+      'Improve placement statistics'
     ],
     status: 'live'
   },
@@ -260,12 +226,10 @@ const features: Feature[] = [
     title: 'Placement Analytics Dashboard',
     description: 'Real-time statistics: contacts, hires, average time to hire. Prove your Career Center impact with data.',
     icon: BarChart3,
-    image: IMAGES.features.matching,
     targets: ['institutes'],
     benefits: [
-      'Track contacts → hires conversion',
+      'Track contacts to hires conversion',
       'Measure average time to hire',
-      'Monitor student profile quality',
       'Generate impact reports'
     ],
     status: 'live'
@@ -275,13 +239,11 @@ const features: Feature[] = [
     title: 'Always Free Platform',
     description: 'Zero cost forever for universities and ITS. You supply talent, we handle everything else.',
     icon: GraduationCap,
-    image: IMAGES.universities.library,
     targets: ['institutes'],
     benefits: [
-      'No setup fees',
-      'Core features included',
+      'No setup fees, core features included',
       'Enterprise options available',
-      'Freemium model'
+      'You supply talent, we handle the rest'
     ],
     status: 'live'
   },
@@ -292,17 +254,11 @@ const features: Feature[] = [
     title: 'All Disciplines Supported',
     description: 'Tech, Business, Law, Engineering, Architecture, Design, Psychology, Fashion - we analyze EVERYTHING.',
     icon: Award,
-    image: IMAGES.students.student4,
     targets: ['all'],
     benefits: [
-      'Computer Science & Tech',
-      'Business & Economics',
-      'Law & Legal Studies',
-      'Engineering (Civil, Mechanical, etc.)',
-      'Architecture & Design',
-      'Psychology & Social Sciences',
-      'Fashion & Creative Arts',
-      'And more...'
+      'Tech, Business, Law, Engineering',
+      'Architecture, Design, Psychology',
+      'Fashion, Creative Arts, and more'
     ],
     status: 'live'
   },
@@ -313,12 +269,9 @@ const features: Feature[] = [
     title: 'Explainable AI Matching',
     description: 'Every match shows exactly WHY it was made. Companies state requirements clearly, AI explains alignment, and you get actionable feedback.',
     icon: Lightbulb,
-    image: IMAGES.features.aiAnalysis,
     targets: ['all'],
     benefits: [
-      'Transparent match scoring',
-      'Clear alignment explanations',
-      'Companies can leave feedback notes',
+      'Transparent match scoring with explanations',
       'No hidden criteria or bias',
       'GDPR-compliant AI transparency'
     ],
@@ -329,13 +282,11 @@ const features: Feature[] = [
     title: 'Institution-Verified Skills',
     description: 'Hard skills (Python, Excel, CAD) and soft skills (teamwork, leadership, communication) verified through projects, courses, and institutional data.',
     icon: FileCheck,
-    image: IMAGES.universityCampuses.campus,
     targets: ['companies', 'students'],
     benefits: [
-      'Hard skills verified through projects and coursework',
-      'Soft skills analyzed from teamwork and presentations',
-      'Institution-authenticated grades and achievements',
-      'Higher match accuracy with verified data'
+      'Hard skills verified through projects',
+      'Soft skills analyzed from teamwork',
+      'Institution-authenticated grades'
     ],
     status: 'live'
   },
@@ -344,15 +295,11 @@ const features: Feature[] = [
     title: 'Bidirectional Requirement Visibility (Solves Company Opacity)',
     description: 'Companies MUST define 3-5 specific requirements (e.g., "Excel + communication for Milan marketing intern"). Students see exact needs. Institutions see aggregate trends. Every match shows reasoning via Transparency Panel.',
     icon: Eye,
-    image: IMAGES.features.dataAnalytics,
     targets: ['all'],
     benefits: [
       'Companies specify clear requirements',
       'Transparency Panel explains match reasoning',
-      'Students see which skills match job requirements',
-      'Institutions see search trends by skill',
-      'Full disclosure: every match explained (EU AI Act compliant)',
-      'Clear requirements reduce mismatches'
+      'Full disclosure: every match explained'
     ],
     status: 'live'
   },
@@ -361,15 +308,11 @@ const features: Feature[] = [
     title: 'Verification Log & Audit Trail',
     description: 'Complete transparency into who verified your competencies and when. See audit trail: "Your leadership skill from group project verified by Sapienza Roma on Oct 29, 2025—shared with BMW."',
     icon: FileCheck,
-    image: IMAGES.students.student2,
     targets: ['students', 'institutes', 'companies'],
     benefits: [
-      'Full audit trail: "Python skill verified by ITS G. Natta, Oct 29, 2025, 28/30 grade"',
-      'Institutional stamp visible: "Competency authenticated by Politecnico Milano"',
-      'Verification logs for students: "Your AutoCAD project endorsed—shared with 3 recruiters"',
-      'Companies see source: "This skill verified Oct 29, 2025 via institution dashboard"',
-      'GDPR Article 15 compliant: Complete data transparency',
-      'Full traceability: Every skill → institution → date → context'
+      'Full audit trail for every verified skill',
+      'Institutional stamp visible to all parties',
+      'GDPR Article 15 compliant transparency'
     ],
     status: 'live'
   },
@@ -380,15 +323,11 @@ const features: Feature[] = [
     title: '24/7 AI Career Assistant',
     description: 'Conversational chatbot helps build your profile, find jobs, and get personalized career advice - all while gathering data transparently.',
     icon: Bot,
-    image: IMAGES.features.aiAnalysis,
     targets: ['students'],
     benefits: [
-      'Profile building guidance (projects, skills, courses)',
-      'Job recommendations based on your verified skills',
+      'Profile building and job recommendations',
       'Career advice specific to your discipline',
-      'Skill demand insights',
-      'Improved onboarding completion',
-      'Transparent data collection with GDPR compliance'
+      'Transparent data collection, GDPR compliant'
     ],
     status: 'live'
   },
@@ -397,15 +336,11 @@ const features: Feature[] = [
     title: 'Institutional Feedback Loop',
     description: 'Learn from every interaction with structured feedback from companies, shared with you and your career center for continuous professional growth.',
     icon: MessageSquare,
-    image: IMAGES.features.dataAnalytics,
     targets: ['students', 'companies', 'institutes'],
     benefits: [
-      'Structured feedback after interviews (skills, performance, growth areas)',
-      'Shared visibility: student + institution career center',
-      'Actionable recommendations for skill development',
-      'Company notes help students improve professionally',
-      'Career centers gain market intelligence',
-      'Institution-verified growth tracking'
+      'Structured feedback after interviews',
+      'Shared visibility: student + career center',
+      'Actionable skill development recommendations'
     ],
     status: 'live'
   },
@@ -414,15 +349,11 @@ const features: Feature[] = [
     title: 'Smart Application Assistant',
     description: 'AI-powered guidance during job applications. Get project suggestions, skill matching, and form completion help based on your verified profile.',
     icon: Bot,
-    image: IMAGES.features.aiAnalysis,
     targets: ['students'],
     benefits: [
-      'Smart form assistance with verified data auto-fill',
-      'Project recommendations matching job requirements',
-      'Skill gap analysis and suggestions',
-      'Draft save & resume - never lose progress',
-      'Fewer abandoned applications',
-      'Completion tracking with actionable tips'
+      'Smart form assistance with auto-fill',
+      'Project recommendations matching jobs',
+      'Skill gap analysis and suggestions'
     ],
     status: 'live'
   },
@@ -431,14 +362,10 @@ const features: Feature[] = [
     title: 'Academic Advocacy Network',
     description: 'Institution-verified alumni success stories and student networking. Build professional connections through verified career journeys and peer referrals.',
     icon: Users,
-    image: IMAGES.features.matching,
     targets: ['students', 'institutes'],
     benefits: [
-      'Verified alumni success stories with career paths',
-      'Institution-authenticated via .edu email verification',
-      'Professional student networking (no gamification)',
-      'Alumni advice for current students',
-      'Career center insights from network growth',
+      'Verified alumni success stories',
+      'Professional networking, no gamification',
       'Privacy-first with anonymization options'
     ],
     status: 'live'
@@ -448,14 +375,10 @@ const features: Feature[] = [
     title: 'AI Recruiting Assistant',
     description: 'Intelligent chatbot helps source candidates, explains match scores, and provides transparent recruiting guidance 24/7.',
     icon: Sparkles,
-    image: IMAGES.features.matching,
     targets: ['companies'],
     benefits: [
-      'Candidate sourcing tips across all disciplines',
+      'Candidate sourcing across all disciplines',
       'Match score explanations',
-      'Job description optimization guidance',
-      'Skill demand trend insights',
-      'Higher candidate engagement',
       'Transparent AI that shows reasoning'
     ],
     status: 'live'
@@ -465,15 +388,11 @@ const features: Feature[] = [
     title: 'AI Partnership Assistant',
     description: 'Institutional chatbot guides setup, explains analytics, and helps universities maximize student placements through data insights.',
     icon: MessageSquare,
-    image: IMAGES.features.dataAnalytics,
     targets: ['institutes'],
     benefits: [
       'Free partnership onboarding guidance',
       'Dashboard analytics explanations',
-      'Early intervention alert management',
-      'European job opportunities search help',
-      'Better data gathering with interactive forms',
-      'Transparent conversation logging (GDPR compliant)'
+      'Early intervention alert management'
     ],
     status: 'live'
   }
@@ -528,7 +447,7 @@ export default function FeaturesPage() {
             >
               {t('hero.title')}
             </motion.h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-8">
               {t('hero.subtitle')}
             </p>
 
@@ -536,21 +455,21 @@ export default function FeaturesPage() {
             <div className="flex justify-center space-x-8 mb-8">
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary">{features.length}</div>
-                <div className="text-sm text-gray-700">Total Features</div>
+                <div className="text-sm text-foreground/80">Total Features</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-600">{features.filter(f => f.status === 'live').length}</div>
-                <div className="text-sm text-gray-700">Live Now</div>
+                <div className="text-sm text-foreground/80">Live Now</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary">3</div>
-                <div className="text-sm text-gray-700">Target Audiences</div>
+                <div className="text-sm text-foreground/80">Target Audiences</div>
               </div>
             </div>
 
             {/* Service Model Badge */}
             <div className="flex justify-center mb-4">
-              <div className="text-xs text-gray-600 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200 shadow-sm">
+              <div className="text-xs text-muted-foreground bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200 shadow-sm">
                 Freemium Model
               </div>
             </div>
@@ -566,7 +485,7 @@ export default function FeaturesPage() {
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-4">
               Four Services - Marketplace Platform
             </h2>
-            <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
               Marketplace services (Discovery, Matching) powered by verification quality layer (Verification, Analytics)
             </p>
 
@@ -582,7 +501,7 @@ export default function FeaturesPage() {
                   <CardTitle className="text-lg">Discovery Service</CardTitle>
                   <Badge variant="secondary" className="mt-2 text-xs">Browse FREE, €10/contact</Badge>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <p className="mb-2 font-semibold text-green-700">Reverse Recruitment Marketplace</p>
                   <ul className="space-y-1.5">
                     <li>• Companies discover verified student profiles</li>
@@ -590,7 +509,7 @@ export default function FeaturesPage() {
                     <li>• AI candidate/job search with filters</li>
                     <li>• Profile visibility analytics for students</li>
                   </ul>
-                  <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
+                  <p className="text-xs italic pt-2 mt-2 border-t text-muted-foreground">
                     Verified skills reduce fake applications
                   </p>
                 </CardContent>
@@ -606,7 +525,7 @@ export default function FeaturesPage() {
                   <CardTitle className="text-lg">Matching Service</CardTitle>
                   <Badge variant="secondary" className="mt-2 text-xs">FREE for Students</Badge>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <p className="mb-2 font-semibold text-secondary">AI-Powered Connections</p>
                   <ul className="space-y-1.5">
                     <li>• Explainable AI matching</li>
@@ -614,7 +533,7 @@ export default function FeaturesPage() {
                     <li>• Higher accuracy with institutional data</li>
                     <li>• Full reasoning shown for every match</li>
                   </ul>
-                  <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
+                  <p className="text-xs italic pt-2 mt-2 border-t text-muted-foreground">
                     Transparent AI: Every match fully explained
                   </p>
                 </CardContent>
@@ -632,15 +551,15 @@ export default function FeaturesPage() {
                   <CardTitle className="text-base">Verification Service</CardTitle>
                   <Badge variant="outline" className="mt-1 text-xs">Quality Layer</Badge>
                 </CardHeader>
-                <CardContent className="text-xs text-gray-700">
-                  <p className="mb-2 font-semibold text-gray-900">Enables Marketplace Trust</p>
+                <CardContent className="text-xs text-foreground/80">
+                  <p className="mb-2 font-semibold text-foreground">Enables Marketplace Trust</p>
                   <ul className="space-y-1">
                     <li>• Institution-verified profiles (not self-reported)</li>
                     <li>• Manual verification or API integration</li>
                     <li>• Audit trails & verification logs</li>
                     <li>• Fully traceable competencies to source</li>
                   </ul>
-                  <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
+                  <p className="text-xs italic pt-2 mt-2 border-t text-muted-foreground">
                     Freemium for universities
                   </p>
                 </CardContent>
@@ -655,15 +574,15 @@ export default function FeaturesPage() {
                   <CardTitle className="text-base">Analytics Service</CardTitle>
                   <Badge variant="outline" className="mt-1 text-xs">Track Impact</Badge>
                 </CardHeader>
-                <CardContent className="text-xs text-gray-700">
-                  <p className="mb-2 font-semibold text-gray-900">Measure Marketplace Success</p>
+                <CardContent className="text-xs text-foreground/80">
+                  <p className="mb-2 font-semibold text-foreground">Measure Marketplace Success</p>
                   <ul className="space-y-1">
                     <li>• Company search insights (who viewed students)</li>
                     <li>• Data-driven career counseling for institutions</li>
                     <li>• Early intervention alerts (zero-view students)</li>
                     <li>• Placement dashboards & MIUR reports</li>
                   </ul>
-                  <p className="text-xs italic pt-2 mt-2 border-t text-gray-600">
+                  <p className="text-xs italic pt-2 mt-2 border-t text-muted-foreground">
                     Analytics included in freemium
                   </p>
                 </CardContent>
@@ -694,7 +613,7 @@ export default function FeaturesPage() {
                     className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                       selectedAudience === audience
                         ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 bg-white border border-gray-200'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-gray-100 bg-white border border-gray-200'
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -725,13 +644,8 @@ export default function FeaturesPage() {
                   <Card className="transition-all hover:shadow-2xl h-full bg-white/90 backdrop-blur-sm border-gray-200">
                     <CardHeader>
                       <div className="flex items-start justify-between mb-4">
-                        <div className="relative w-16 h-16 rounded-xl overflow-hidden shadow-md">
-                          <Image
-                            src={feature.image}
-                            alt={feature.title}
-                            fill
-                            className="object-cover"
-                          />
+                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
+                          <Icon className="h-7 w-7 text-primary" />
                         </div>
                         <div className="flex flex-wrap gap-1 justify-end">
                           {targetBadges.map((badge, idx) => (
@@ -742,15 +656,15 @@ export default function FeaturesPage() {
                         </div>
                       </div>
                       <CardTitle className="text-foreground text-lg">{feature.title}</CardTitle>
-                      <p className="text-gray-700 text-sm">{feature.description}</p>
+                      <p className="text-foreground/80 text-sm">{feature.description}</p>
                     </CardHeader>
                     <CardContent>
                       {/* Benefits List */}
                       <div className="mb-4">
-                        <h4 className="font-medium text-gray-900 mb-2 text-sm">Key Benefits:</h4>
+                        <h4 className="font-medium text-foreground mb-2 text-sm">Key Benefits:</h4>
                         <ul className="space-y-2">
                           {feature.benefits.map((benefit, idx) => (
-                            <li key={idx} className="flex items-start text-sm text-gray-700">
+                            <li key={idx} className="flex items-start text-sm text-foreground/80">
                               <CheckCircle className="h-4 w-4 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
                               {benefit}
                             </li>
