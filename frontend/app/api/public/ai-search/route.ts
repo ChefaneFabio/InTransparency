@@ -600,6 +600,96 @@ function generateSessionId(): string {
   return `demo_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`
 }
 
+// --- Sample data fallback (used when real DB is empty) ---
+
+const SAMPLE_JOBS = [
+  { id: 's1', title: 'Frontend Developer', company: 'TechStartup Srl', location: 'Milan, IT', type: 'Full-time', salary: '\u20AC35k - \u20AC45k', skills: ['React', 'TypeScript', 'CSS'], coordinates: { lat: 45.4642, lng: 9.19 }, field: 'tech' },
+  { id: 's2', title: 'Full Stack Developer', company: 'InnovateTech', location: 'Turin, IT', type: 'Full-time', salary: '\u20AC38k - \u20AC48k', skills: ['Node.js', 'React', 'PostgreSQL'], coordinates: { lat: 45.0703, lng: 7.6869 }, field: 'tech' },
+  { id: 's3', title: 'UX/UI Designer', company: 'DesignLab Italia', location: 'Milan, IT', type: 'Full-time', salary: '\u20AC32k - \u20AC42k', skills: ['Figma', 'UI/UX', 'Prototyping'], coordinates: { lat: 45.4642, lng: 9.19 }, field: 'design' },
+  { id: 's4', title: 'Graphic Designer', company: 'CreativeStudio', location: 'Rome, IT', type: 'Full-time', salary: '\u20AC28k - \u20AC36k', skills: ['Photoshop', 'Illustrator', 'Branding'], coordinates: { lat: 41.9028, lng: 12.4964 }, field: 'design' },
+  { id: 's5', title: 'Digital Marketing Specialist', company: 'MediaGroup Italia', location: 'Rome, IT', type: 'Full-time', salary: '\u20AC30k - \u20AC38k', skills: ['SEO', 'Google Ads', 'Social Media'], coordinates: { lat: 41.9028, lng: 12.4964 }, field: 'marketing' },
+  { id: 's6', title: 'Marketing Intern', company: 'BrandCo', location: 'Milan, IT', type: 'Internship', salary: '\u20AC800/month', skills: ['Content Strategy', 'Analytics', 'Social Media'], coordinates: { lat: 45.4642, lng: 9.19 }, field: 'marketing' },
+  { id: 's7', title: 'Business Analyst', company: 'ConsultingPro', location: 'Turin, IT', type: 'Full-time', salary: '\u20AC33k - \u20AC43k', skills: ['Excel', 'SQL', 'Data Analysis'], coordinates: { lat: 45.0703, lng: 7.6869 }, field: 'business' },
+  { id: 's8', title: 'Stage Curriculare - Software Development', company: 'Accenture Italia', location: 'Milan, IT', type: 'Internship', salary: '\u20AC850/month', skills: ['Java', 'Spring', 'Git'], coordinates: { lat: 45.4642, lng: 9.19 }, field: 'tech' },
+  { id: 's9', title: 'Stage Data Science', company: 'IBM Italia', location: 'Rome, IT', type: 'Internship', salary: '\u20AC900/month', skills: ['Python', 'Machine Learning', 'SQL'], coordinates: { lat: 41.9028, lng: 12.4964 }, field: 'tech' },
+  { id: 's10', title: 'Junior Financial Analyst', company: 'FinanceCo', location: 'Milan, IT', type: 'Full-time', salary: '\u20AC30k - \u20AC38k', skills: ['Financial Modeling', 'Excel', 'Bloomberg'], coordinates: { lat: 45.4642, lng: 9.19 }, field: 'business' },
+  { id: 's11', title: 'Backend Engineer', company: 'CloudTech Srl', location: 'Florence, IT', type: 'Full-time', salary: '\u20AC35k - \u20AC45k', skills: ['Python', 'Django', 'AWS'], coordinates: { lat: 43.7696, lng: 11.2558 }, field: 'tech' },
+  { id: 's12', title: 'Biomedical Engineer', company: 'MedTech Italia', location: 'Bologna, IT', type: 'Full-time', salary: '\u20AC36k - \u20AC46k', skills: ['MATLAB', 'Medical Devices', 'R&D'], coordinates: { lat: 44.4949, lng: 11.3426 }, field: 'engineering' },
+  { id: 's13', title: 'Mechanical Engineer', company: 'Ferrari SpA', location: 'Modena, IT', type: 'Full-time', salary: '\u20AC40k - \u20AC55k', skills: ['SolidWorks', 'CAD', 'FEA'], coordinates: { lat: 44.6471, lng: 10.9252 }, field: 'engineering' },
+  { id: 's14', title: 'Legal Assistant', company: 'Studio Legale Bianchi', location: 'Rome, IT', type: 'Full-time', salary: '\u20AC26k - \u20AC34k', skills: ['Legal Research', 'EU Law', 'Contract Review'], coordinates: { lat: 41.9028, lng: 12.4964 }, field: 'law' },
+  { id: 's15', title: 'Stage in Comunicazione', company: 'Edelman Italia', location: 'Milan, IT', type: 'Internship', salary: '\u20AC700/month', skills: ['PR', 'Content Writing', 'Events'], coordinates: { lat: 45.4642, lng: 9.19 }, field: 'marketing' },
+]
+
+const SAMPLE_CANDIDATES = [
+  { id: 'c1', initials: 'M.R.', university: 'Politecnico di Milano', major: 'Computer Science', gpa: 28.5, skills: ['React', 'Python', 'TypeScript', 'Docker'], coordinates: { lat: 45.4642, lng: 9.19 }, field: 'tech' },
+  { id: 'c2', initials: 'S.B.', university: 'Sapienza Roma', major: 'Cybersecurity', gpa: 29, skills: ['Network Security', 'Linux', 'Ethical Hacking'], coordinates: { lat: 41.9028, lng: 12.4964 }, field: 'tech' },
+  { id: 'c3', initials: 'L.V.', university: 'Politecnico di Torino', major: 'Mechanical Engineering', gpa: 27.5, skills: ['SolidWorks', 'MATLAB', 'AutoCAD'], coordinates: { lat: 45.0703, lng: 7.6869 }, field: 'engineering' },
+  { id: 'c4', initials: 'A.C.', university: 'NABA Milano', major: 'Graphic Design', gpa: 29, skills: ['Photoshop', 'Illustrator', 'Figma', 'UI/UX'], coordinates: { lat: 45.4642, lng: 9.19 }, field: 'design' },
+  { id: 'c5', initials: 'F.D.', university: 'IED Roma', major: 'Visual Communication', gpa: 28, skills: ['InDesign', 'Figma', 'Branding', 'Typography'], coordinates: { lat: 41.9028, lng: 12.4964 }, field: 'design' },
+  { id: 'c6', initials: 'G.P.', university: 'Bocconi Milano', major: 'Marketing & Communications', gpa: 29.5, skills: ['Social Media', 'SEO', 'Content Strategy', 'Google Ads'], coordinates: { lat: 45.4642, lng: 9.19 }, field: 'marketing' },
+  { id: 'c7', initials: 'E.R.', university: 'LUISS Roma', major: 'Business & Economics', gpa: 28, skills: ['Excel', 'Financial Modeling', 'Data Analysis', 'SAP'], coordinates: { lat: 41.9028, lng: 12.4964 }, field: 'business' },
+  { id: 'c8', initials: 'C.M.', university: 'Universit\u00E0 di Bologna', major: 'Biomedical Engineering', gpa: 29, skills: ['MATLAB', 'Medical Devices', 'Python', 'R&D'], coordinates: { lat: 44.4949, lng: 11.3426 }, field: 'engineering' },
+  { id: 'c9', initials: 'P.L.', university: 'Universit\u00E0 di Bologna', major: 'Law (Giurisprudenza)', gpa: 28.5, skills: ['Legal Writing', 'Contract Review', 'EU Law'], coordinates: { lat: 44.4949, lng: 11.3426 }, field: 'law' },
+  { id: 'c10', initials: 'D.F.', university: 'Politecnico di Milano', major: 'Data Science', gpa: 30, skills: ['Python', 'Machine Learning', 'TensorFlow', 'SQL'], coordinates: { lat: 45.4642, lng: 9.19 }, field: 'tech' },
+]
+
+/** Score a sample result against search terms + entities for relevance ranking */
+function scoreSample(item: Record<string, unknown>, terms: string[]): number {
+  if (terms.length === 0) return 0
+  const text = [
+    item.title, item.company, item.location, item.field,
+    item.major, item.university,
+    ...(Array.isArray(item.skills) ? item.skills : []),
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase()
+
+  let score = 0
+  for (const term of terms) {
+    if (text.includes(term.toLowerCase())) score += 10
+    // Partial match (prefix)
+    if (term.length >= 4) {
+      const words = text.split(/[\s,/]+/)
+      for (const w of words) {
+        if (w.startsWith(term.toLowerCase()) || term.toLowerCase().startsWith(w)) {
+          score += 4
+          break
+        }
+      }
+    }
+  }
+  return score
+}
+
+/** Get sample results filtered and ranked by relevance to the query */
+function getSampleResults(
+  type: 'jobs' | 'candidates',
+  entities: NonNullable<AIResponse['entities']>,
+  searchTerms: string[]
+): unknown[] {
+  const pool = type === 'jobs' ? SAMPLE_JOBS : SAMPLE_CANDIDATES
+  const allTerms = Array.from(new Set([
+    ...(entities.skills || []),
+    ...(entities.locations || []),
+    ...(entities.job_types || []),
+    ...searchTerms,
+  ]))
+
+  if (allTerms.length === 0) return pool.slice(0, 5)
+
+  const scored = pool.map((item) => ({
+    item,
+    score: scoreSample(item as Record<string, unknown>, allTerms),
+  }))
+  scored.sort((a, b) => b.score - a.score)
+
+  // Return items with score > 0, or top 5 if nothing matches well
+  const relevant = scored.filter((s) => s.score > 0)
+  if (relevant.length > 0) return relevant.slice(0, 8).map((s) => s.item)
+  return scored.slice(0, 5).map((s) => s.item)
+}
+
 // --- Main handler ---
 
 export async function POST(request: NextRequest) {
@@ -671,26 +761,44 @@ export async function POST(request: NextRequest) {
       resultType = uniResult.type
     }
 
-    // 3. Build response message
+    // 3. Fallback to sample data if DB returned nothing
+    let usingSamples = false
+    if (results.length === 0) {
+      const sampleType = resultType === 'candidates' ? 'candidates' : 'jobs'
+      results = getSampleResults(sampleType as 'jobs' | 'candidates', entities, searchTerms)
+      if (results.length > 0) usingSamples = true
+
+      // For university tab with no results, try the other sample type too
+      if (results.length === 0 && type === 'university') {
+        const altType = sampleType === 'jobs' ? 'candidates' : 'jobs'
+        results = getSampleResults(altType, entities, searchTerms)
+        if (results.length > 0) {
+          resultType = altType
+          usingSamples = true
+        }
+      }
+    }
+
+    // 4. Build response message
     const queryTermsDisplay = searchTerms.slice(0, 3).join(', ')
     let message = aiMessage || ''
     if (!message) {
-      if (results.length > 0) {
+      if (results.length > 0 && !usingSamples) {
         if (resultType === 'jobs') {
           message = `I found **${results.length} job${results.length > 1 ? 's' : ''}** matching "${queryTermsDisplay}". Here are the top results:`
         } else {
           message = `I found **${results.length} candidate${results.length > 1 ? 's' : ''}** matching "${queryTermsDisplay}". Here are the top profiles:`
         }
-      } else {
-        // Better no-results message with context
-        const suggestions = []
-        if (queryTermsDisplay) {
-          suggestions.push(`No results found for "${queryTermsDisplay}".`)
+      } else if (results.length > 0 && usingSamples) {
+        if (resultType === 'jobs') {
+          message = `Here are **${results.length} sample job${results.length > 1 ? 's' : ''}** matching "${queryTermsDisplay}" to show how the platform works. Register to post and discover real listings!`
+        } else {
+          message = `Here are **${results.length} sample candidate${results.length > 1 ? 's' : ''}** matching "${queryTermsDisplay}" to show how the platform works. Register to discover real profiles!`
         }
-        suggestions.push(
-          'The demo searches real database entries. Try one of the example queries on the right, or use broader keywords like "design", "marketing", or "engineering".'
-        )
-        message = suggestions.join(' ')
+      } else {
+        message = queryTermsDisplay
+          ? `No results found for "${queryTermsDisplay}". Try different keywords or one of the example queries.`
+          : 'Try describing what you\'re looking for \u2014 e.g. "biomedical engineering students" or "React developer jobs in Milan".'
       }
     }
 
