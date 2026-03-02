@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Skeleton } from '@/components/ui/skeleton'
 import { ReferralPrompt } from '@/components/referrals/ReferralPrompt'
 import {
   Users,
@@ -13,31 +15,77 @@ import {
   GraduationCap,
   Code,
   ExternalLink,
-  Star
+  Star,
+  CheckCircle,
+  Eye
 } from 'lucide-react'
 import { trackUpgradePrompt, trackUpgradeInteraction, ConversionTrigger, PlanType } from '@/lib/analytics'
 
+interface StatsData {
+  totalStudents: number
+  verifiedStudents: number
+  activeProfiles: number
+  recruiterViews: number
+}
+
+interface RecentStudent {
+  id: string
+  name: string
+  initials: string
+  course: string
+  year: string | number
+  projects: number
+  verified: boolean
+  photo: string | null
+}
+
+interface TopRecruiter {
+  name: string
+  views: number
+  contacts: number
+}
+
 export default function InstitutionDashboard() {
   const router = useRouter()
-  const [userPlan, setUserPlan] = useState<'free' | 'premium_embed' | 'enterprise'>('free')
-  const [stats, setStats] = useState({
-    activeStudents: 234,
-    verifiedProjects: 487,
-    companyInterests: 23,
-    placementRate: 78
-  })
+  const { data: session } = useSession()
+  const [loading, setLoading] = useState(true)
+  const [stats, setStats] = useState<StatsData | null>(null)
+  const [recentStudents, setRecentStudents] = useState<RecentStudent[]>([])
+  const [topRecruiters, setTopRecruiters] = useState<TopRecruiter[]>([])
   const [showUpgradePrompt, setShowUpgradePrompt] = useState(false)
 
+  const subscriptionTier = (session?.user as any)?.subscriptionTier || 'FREE'
+  const isFree = subscriptionTier === 'FREE' || subscriptionTier === 'INSTITUTION_ENTERPRISE' ? subscriptionTier === 'FREE' : true
+  const institutionName = (session?.user as any)?.company || 'Your Institution'
+
   useEffect(() => {
-    // Trigger Premium Embed promotion after viewing dashboard
-    if (userPlan === 'free' && stats.activeStudents > 100) {
+    const fetchStats = async () => {
+      try {
+        const res = await fetch('/api/dashboard/university/stats')
+        if (!res.ok) throw new Error('Failed to fetch stats')
+        const data = await res.json()
+        setStats(data.stats)
+        setRecentStudents(data.recentStudents || [])
+        setTopRecruiters(data.topRecruiters || [])
+      } catch (err) {
+        console.error('Error loading institution stats:', err)
+        setStats({ totalStudents: 0, verifiedStudents: 0, activeProfiles: 0, recruiterViews: 0 })
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchStats()
+  }, [])
+
+  useEffect(() => {
+    if (isFree && stats && stats.totalStudents > 0) {
       setShowUpgradePrompt(true)
       trackUpgradePrompt(ConversionTrigger.EMBED_PROMPT, PlanType.PREMIUM_EMBED, {
-        activeStudents: stats.activeStudents,
-        companyInterests: stats.companyInterests
+        activeStudents: stats.totalStudents,
+        companyInterests: topRecruiters.length
       })
     }
-  }, [userPlan, stats])
+  }, [isFree, stats, topRecruiters.length])
 
   const handleUpgradeClick = () => {
     trackUpgradeInteraction(
@@ -66,10 +114,10 @@ export default function InstitutionDashboard() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold">Politecnico di Milano</h1>
+          <h1 className="text-3xl font-bold">{institutionName}</h1>
           <p className="text-gray-600">Student placement analytics and company connections</p>
         </div>
-        {userPlan === 'free' && (
+        {isFree && (
           <Button onClick={() => router.push('/pricing')} className="gap-2">
             <Code className="h-4 w-4" />
             Get Embeddable Widget
@@ -78,12 +126,12 @@ export default function InstitutionDashboard() {
       </div>
 
       {/* Upgrade Prompt - Premium Embed */}
-      {showUpgradePrompt && userPlan === 'free' && (
+      {showUpgradePrompt && isFree && (
         <div className="mb-6">
           <ReferralPrompt
             triggerType="institution-company-interest"
             contextData={{
-              companyName: `${stats.companyInterests} companies`
+              companyName: `${topRecruiters.length} companies`
             }}
             onDismiss={handleDismissPrompt}
             onAction={handleUpgradeClick}
@@ -93,105 +141,144 @@ export default function InstitutionDashboard() {
 
       {/* Stats Overview */}
       <div className="grid md:grid-cols-4 gap-4 mb-8">
-        <Card className="p-4">
-          <div className="flex items-center gap-3">
-            <Users className="h-8 w-8 text-blue-600" />
-            <div>
-              <div className="text-2xl font-bold">{stats.activeStudents}</div>
-              <div className="text-sm text-gray-600">Active Students</div>
-            </div>
-          </div>
-        </Card>
+        {loading ? (
+          Array.from({ length: 4 }).map((_, i) => (
+            <Card key={i} className="p-4">
+              <div className="flex items-center gap-3">
+                <Skeleton className="h-8 w-8 rounded" />
+                <div className="space-y-2">
+                  <Skeleton className="h-6 w-16" />
+                  <Skeleton className="h-4 w-24" />
+                </div>
+              </div>
+            </Card>
+          ))
+        ) : (
+          <>
+            <Card className="p-4">
+              <div className="flex items-center gap-3">
+                <Users className="h-8 w-8 text-blue-600" />
+                <div>
+                  <div className="text-2xl font-bold">{stats?.totalStudents ?? 0}</div>
+                  <div className="text-sm text-gray-600">Total Students</div>
+                </div>
+              </div>
+            </Card>
 
-        <Card className="p-4">
-          <div className="flex items-center gap-3">
-            <GraduationCap className="h-8 w-8 text-green-600" />
-            <div>
-              <div className="text-2xl font-bold">{stats.verifiedProjects}</div>
-              <div className="text-sm text-gray-600">Verified Projects</div>
-            </div>
-          </div>
-        </Card>
+            <Card className="p-4">
+              <div className="flex items-center gap-3">
+                <CheckCircle className="h-8 w-8 text-green-600" />
+                <div>
+                  <div className="text-2xl font-bold">{stats?.verifiedStudents ?? 0}</div>
+                  <div className="text-sm text-gray-600">Verified Students</div>
+                </div>
+              </div>
+            </Card>
 
-        <Card className="p-4">
-          <div className="flex items-center gap-3">
-            <Briefcase className="h-8 w-8 text-purple-600" />
-            <div>
-              <div className="text-2xl font-bold">{stats.companyInterests}</div>
-              <div className="text-sm text-gray-600">Company Interests</div>
-            </div>
-          </div>
-        </Card>
+            <Card className="p-4">
+              <div className="flex items-center gap-3">
+                <GraduationCap className="h-8 w-8 text-purple-600" />
+                <div>
+                  <div className="text-2xl font-bold">{stats?.activeProfiles ?? 0}</div>
+                  <div className="text-sm text-gray-600">Active Profiles</div>
+                </div>
+              </div>
+            </Card>
 
-        <Card className="p-4">
-          <div className="flex items-center gap-3">
-            <TrendingUp className="h-8 w-8 text-orange-600" />
-            <div>
-              <div className="text-2xl font-bold">{stats.placementRate}%</div>
-              <div className="text-sm text-gray-600">Placement Rate</div>
-            </div>
-          </div>
-        </Card>
+            <Card className="p-4">
+              <div className="flex items-center gap-3">
+                <Eye className="h-8 w-8 text-orange-600" />
+                <div>
+                  <div className="text-2xl font-bold">{stats?.recruiterViews ?? 0}</div>
+                  <div className="text-sm text-gray-600">Recruiter Views</div>
+                </div>
+              </div>
+            </Card>
+          </>
+        )}
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
         {/* Main Content */}
         <div className="md:col-span-2 space-y-6">
-          {/* Recent Student Activity */}
+          {/* Recent Students */}
           <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Recent Student Activity</h2>
+            <h2 className="text-xl font-semibold mb-4">Recent Students</h2>
 
-            <div className="space-y-3">
-              {[
-                { name: 'Marco Rossi', action: 'uploaded project', title: 'ML Classifier', time: '2h ago' },
-                { name: 'Sofia Bianchi', action: 'received company interest from', title: 'BMW Italia', time: '3h ago' },
-                { name: 'Alessandro Costa', action: 'completed profile', title: 'Software Engineering', time: '5h ago' },
-                { name: 'Giulia Ferrari', action: 'uploaded project', title: 'E-commerce Platform', time: '1d ago' }
-              ].map((activity, i) => (
-                <div key={i} className="flex items-center gap-4 p-4 border rounded-lg hover:bg-gray-50">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-800 font-bold text-sm flex items-center justify-center">
-                    {activity.name.split(' ').map(n => n[0]).join('')}
+            {loading ? (
+              <div className="space-y-3">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="flex items-center gap-4 p-4 border rounded-lg">
+                    <Skeleton className="h-10 w-10 rounded-full" />
+                    <div className="flex-1 space-y-2">
+                      <Skeleton className="h-4 w-48" />
+                      <Skeleton className="h-3 w-32" />
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <p className="text-sm">
-                      <span className="font-medium">{activity.name}</span> {activity.action}{' '}
-                      <span className="font-medium">{activity.title}</span>
-                    </p>
-                    <p className="text-xs text-gray-500">{activity.time}</p>
+                ))}
+              </div>
+            ) : recentStudents.length === 0 ? (
+              <p className="text-gray-500 text-sm py-4">No students found yet. Students will appear here once they register and associate with your institution.</p>
+            ) : (
+              <div className="space-y-3">
+                {recentStudents.map((student) => (
+                  <div key={student.id} className="flex items-center gap-4 p-4 border rounded-lg hover:bg-gray-50">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-800 font-bold text-sm flex items-center justify-center">
+                      {student.initials}
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">
+                        {student.name}
+                        {student.verified && (
+                          <CheckCircle className="inline-block h-3.5 w-3.5 text-green-500 ml-1" />
+                        )}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {student.course} {student.year ? `· ${student.year}` : ''} · {student.projects} project{student.projects !== 1 ? 's' : ''}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </Card>
 
-          {/* Company Interest Tracker */}
+          {/* Top Recruiters */}
           <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Top Companies Interested</h2>
+            <h2 className="text-xl font-semibold mb-4">Top Recruiters (Last 30 Days)</h2>
 
-            <div className="space-y-3">
-              {[
-                { company: 'BMW Italia', interests: 12, contacted: 8 },
-                { company: 'Pirelli', interests: 9, contacted: 6 },
-                { company: 'Leonardo S.p.A.', interests: 7, contacted: 4 },
-                { company: 'Enel', interests: 5, contacted: 3 }
-              ].map((company, i) => (
-                <div key={i} className="flex items-center gap-4 p-4 border rounded-lg">
-                  <div className="flex-1">
-                    <h3 className="font-medium">{company.company}</h3>
-                    <p className="text-sm text-gray-600">
-                      {company.interests} students viewed • {company.contacted} contacted
-                    </p>
+            {loading ? (
+              <div className="space-y-3">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="flex items-center gap-4 p-4 border rounded-lg">
+                    <div className="flex-1 space-y-2">
+                      <Skeleton className="h-4 w-40" />
+                      <Skeleton className="h-3 w-56" />
+                    </div>
                   </div>
-                  <Button size="sm" variant="outline">
-                    View Details
-                  </Button>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : topRecruiters.length === 0 ? (
+              <p className="text-gray-500 text-sm py-4">No recruiter activity yet. Recruiters viewing your students will appear here.</p>
+            ) : (
+              <div className="space-y-3">
+                {topRecruiters.map((recruiter, i) => (
+                  <div key={i} className="flex items-center gap-4 p-4 border rounded-lg">
+                    <Briefcase className="h-5 w-5 text-gray-400 flex-shrink-0" />
+                    <div className="flex-1">
+                      <h3 className="font-medium">{recruiter.name}</h3>
+                      <p className="text-sm text-gray-600">
+                        {recruiter.views} views · {recruiter.contacts} contacts
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </Card>
 
           {/* Premium Embed Preview */}
-          {userPlan === 'free' && (
+          {isFree && (
             <Card className="p-6 bg-gradient-to-br from-purple-50 to-blue-50 border-purple-200">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-purple-600 text-white flex items-center justify-center">
@@ -203,11 +290,11 @@ export default function InstitutionDashboard() {
                   </h3>
                   <p className="text-sm text-purple-800 mb-4">
                     Add the InTransparency widget to your career portal showing live matches like
-                    "3 students matched to BMW today". €500/year vs. €2,500+ for competitors.
+                    &quot;3 students matched to BMW today&quot;. &euro;500/year vs. &euro;2,500+ for competitors.
                   </p>
                   <div className="flex gap-2">
                     <Button onClick={handleUpgradeClick} className="bg-purple-600 hover:bg-purple-700">
-                      Get Widget - €500/year
+                      Get Widget - &euro;500/year
                     </Button>
                     <Button variant="outline" onClick={() => window.open('/embed/demo', '_blank')}>
                       <ExternalLink className="h-4 w-4 mr-2" />
@@ -220,7 +307,7 @@ export default function InstitutionDashboard() {
           )}
 
           {/* Widget Config (Premium users) */}
-          {userPlan !== 'free' && (
+          {!isFree && (
             <Card className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-semibold">Your Embeddable Widget</h2>
@@ -233,19 +320,11 @@ export default function InstitutionDashboard() {
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="text-gray-600">Active:</span>
-                      <span className="ml-2 font-medium text-green-600">✓ Live</span>
+                      <span className="ml-2 font-medium text-green-600">Live</span>
                     </div>
                     <div>
-                      <span className="text-gray-600">Views today:</span>
-                      <span className="ml-2 font-medium">1,234</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-600">New signups:</span>
-                      <span className="ml-2 font-medium text-green-600">+12 this week</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-600">ROI:</span>
-                      <span className="ml-2 font-medium text-green-600">+47% signups</span>
+                      <span className="text-gray-600">Students:</span>
+                      <span className="ml-2 font-medium">{stats?.totalStudents ?? 0}</span>
                     </div>
                   </div>
                 </div>
@@ -264,13 +343,17 @@ export default function InstitutionDashboard() {
           {/* Plan Info */}
           <Card className="p-6">
             <div className="flex items-center gap-2 mb-4">
-              {userPlan === 'free' && <Badge variant="secondary">Free Plan</Badge>}
-              {userPlan === 'premium_embed' && <Badge className="bg-purple-600">Premium Embed</Badge>}
-              {userPlan === 'enterprise' && <Badge className="bg-blue-600">Enterprise</Badge>}
+              {isFree ? (
+                <Badge variant="secondary">Free Plan</Badge>
+              ) : (
+                <Badge className="bg-purple-600">
+                  {subscriptionTier === 'INSTITUTION_ENTERPRISE' ? 'Enterprise' : 'Premium Embed'}
+                </Badge>
+              )}
             </div>
 
             <div className="space-y-3 text-sm">
-              {userPlan === 'free' ? (
+              {isFree ? (
                 <>
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-green-500" />
@@ -288,14 +371,14 @@ export default function InstitutionDashboard() {
                   <div className="pt-4 border-t">
                     <p className="text-xs text-gray-600 mb-3">Upgrade for:</p>
                     <ul className="space-y-2 text-xs text-gray-700">
-                      <li>🌐 Embeddable widget (+40% signups)</li>
-                      <li>📊 Custom placement reports</li>
-                      <li>🎨 Branded integration</li>
+                      <li>Embeddable widget (+40% signups)</li>
+                      <li>Custom placement reports</li>
+                      <li>Branded integration</li>
                     </ul>
                   </div>
 
                   <Button onClick={handleUpgradeClick} className="w-full mt-4">
-                    Upgrade - €500/year
+                    Upgrade - &euro;500/year
                   </Button>
                 </>
               ) : (
@@ -335,7 +418,7 @@ export default function InstitutionDashboard() {
               </div>
               <div className="flex justify-between pt-2 border-t border-green-300">
                 <span>Optional Widget:</span>
-                <span className="font-medium">€500</span>
+                <span className="font-medium">&euro;500</span>
               </div>
               <p className="text-xs text-green-700 mt-2">
                 All core features included at no cost
@@ -347,7 +430,7 @@ export default function InstitutionDashboard() {
           <Card className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200">
             <h3 className="font-semibold text-blue-900 mb-2">Institutional Referrals</h3>
             <p className="text-sm text-blue-800 mb-4">
-              Refer other universities and earn €250 per signup to ITS network!
+              Refer other universities and earn &euro;250 per signup to ITS network!
             </p>
             <Button
               variant="outline"

@@ -19,7 +19,7 @@
     "student": {
       "portfolio": "Portfolio",
       "career": "Carriera",
-      "messages": "Messaggi",
+      "community": "Comunità",
       "insights": "Statistiche",
       "more": "Altro",
       "items": {
@@ -31,11 +31,13 @@
         "skillPath": "Percorso Competenze",
         "aiJobSearch": "Ricerca Lavoro AI",
         "messages": "Messaggi",
+        "mentoring": "Mentoring",
         "analytics": "Analytics",
         "activity": "Attività",
         "courses": "Corsi",
         "challenges": "Sfide",
         "referrals": "Referral",
+        "employerReviews": "Recensioni Aziende",
         "feedback": "Feedback",
         "upgrade": "Upgrade",
         "privacy": "Privacy"
@@ -46,6 +48,7 @@
       "jobs": "Lavori",
       "messages": "Messaggi",
       "insights": "Statistiche",
+      "hiring": "Strumenti Assunzione",
       "more": "Altro",
       "items": {
         "candidates": "Candidati",
@@ -62,6 +65,8 @@
         "analytics": "Analytics",
         "talentAnalytics": "Analytics Talenti",
         "marketIntelligence": "Intelligence Mercato",
+        "decisionPacks": "Decision Pack",
+        "compareCandidates": "Confronta Candidati",
         "challenges": "Sfide",
         "settings": "Impostazioni"
       }
@@ -86,14 +91,22 @@
         "challenges": "Sfide",
         "aiSearch": "Ricerca AI",
         "sync": "Sincronizzazione",
-        "settings": "Impostazioni"
-      }
+        "settings": "Impostazioni",
+        "partnerships": "Partnership di Scambio",
+        "skillsGap": "Mappa Competenze",
+        "events": "Eventi Carriera"
+      },
+      "exchange": "Scambio"
     },
     "institution": {
       "features": "Funzionalità",
+      "exchange": "Scambio",
       "items": {
         "careerDay": "Career Day",
-        "embedConfig": "Configurazione Embed"
+        "embedConfig": "Configurazione Embed",
+        "partnerships": "Partnership di Scambio",
+        "events": "Eventi Carriera",
+        "skillsGap": "Mappa Competenze"
       }
     }
   },
@@ -832,6 +845,21 @@
       "skills": "Competenze ({count}+)",
       "searchSkills": "Cerca competenze...",
       "noSkillsFound": "Nessuna competenza trovata per '{query}'",
+      "skillCategories": {
+        "engineeringTech": "Ingegneria & Tecnologia",
+        "businessManagement": "Business & Management",
+        "financeAccounting": "Finanza & Contabilità",
+        "marketingComms": "Marketing & Comunicazione",
+        "designCreative": "Design & Creatività",
+        "healthcareLifeSciences": "Sanità & Scienze della Vita",
+        "lawLegal": "Diritto & Legale",
+        "sciences": "Scienze",
+        "educationTraining": "Istruzione & Formazione",
+        "languages": "Lingue",
+        "softSkills": "Soft Skills",
+        "hospitalityTourism": "Ospitalità & Turismo",
+        "agricultureEnvironment": "Agricoltura & Ambiente"
+      },
       "filtered": "Risultati filtrati"
     },
     "results": {

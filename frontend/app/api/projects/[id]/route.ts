@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { runAIAnalysis, buildProjectData } from '@/lib/run-ai-analysis'
 
 // GET /api/projects/[id] - Get a single project by ID
 export async function GET(
@@ -22,7 +25,8 @@ export async function GET(
             degree: true,
             graduationYear: true,
             photo: true,
-            subscriptionTier: true
+            subscriptionTier: true,
+            country: true
           }
         },
         endorsements: {
@@ -57,8 +61,10 @@ export async function GET(
       return NextResponse.json({ error: 'Project not found' }, { status: 404 })
     }
 
-    // Check if project is public or user owns it
-    const requestingUserId = request.headers.get('x-user-id')
+    // Use session for ownership check
+    const session = await getServerSession(authOptions)
+    const requestingUserId = (session?.user as any)?.id
+
     if (!project.isPublic && project.userId !== requestingUserId) {
       return NextResponse.json({ error: 'Access denied' }, { status: 403 })
     }
@@ -108,7 +114,8 @@ export async function PATCH(
 ) {
   try {
     const { id } = await params
-    const userId = request.headers.get('x-user-id')
+    const session = await getServerSession(authOptions)
+    const userId = (session?.user as any)?.id
 
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -130,6 +137,15 @@ export async function PATCH(
 
     // Parse request body
     const body = await request.json()
+
+    // Check if content fields changed (triggers re-analysis)
+    const contentFields = [
+      'title', 'description', 'discipline', 'projectType',
+      'technologies', 'skills', 'tools', 'competencies', 'certifications',
+      'githubUrl', 'liveUrl', 'duration', 'teamSize', 'role', 'outcome',
+      'courseName', 'courseCode', 'grade', 'professor'
+    ]
+    const contentChanged = contentFields.some(f => body[f] !== undefined)
 
     // Update project
     const updatedProject = await prisma.project.update({
@@ -176,6 +192,12 @@ export async function PATCH(
       }
     })
 
+    // Re-run AI analysis asynchronously if content fields changed
+    if (contentChanged) {
+      runAIAnalysis(updatedProject.id, buildProjectData(updatedProject))
+        .catch(err => console.error('AI re-analysis after update failed:', err))
+    }
+
     return NextResponse.json({
       success: true,
       message: 'Project updated successfully',
@@ -198,7 +220,8 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params
-    const userId = request.headers.get('x-user-id')
+    const session = await getServerSession(authOptions)
+    const userId = (session?.user as any)?.id
 
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

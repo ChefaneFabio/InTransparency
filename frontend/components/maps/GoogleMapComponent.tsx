@@ -33,9 +33,11 @@ function GoogleMapInner({
 
   useEffect(() => {
     if (ref.current && !map) {
+      const mapId = process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID || 'DEMO_MAP_ID'
       const newMap = new window.google.maps.Map(ref.current, {
         center,
         zoom,
+        mapId,
         mapTypeId: mapTypeId || window.google.maps.MapTypeId.SATELLITE,
         mapTypeControl: true,
         mapTypeControlOptions: {
@@ -175,7 +177,7 @@ export function MapMarker({ position, map, title, icon, onClick, zIndex }: Marke
         }
 
         if (onClick) {
-          newMarker.addListener('click', onClick)
+          newMarker.addListener('gmp-click', onClick)
         }
 
         setMarker(newMarker)

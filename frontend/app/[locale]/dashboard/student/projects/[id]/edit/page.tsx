@@ -2,32 +2,83 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { ProjectForm } from '@/components/forms/project/ProjectForm'
+import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
-import { 
-  ArrowLeft, 
-  Save, 
+import { TagSelector } from '@/components/forms/project/TagSelector'
+import {
+  ArrowLeft,
+  Save,
   AlertTriangle,
   CheckCircle,
-  RefreshCw
+  Loader2,
+  Plus,
+  X
 } from 'lucide-react'
+
+const SKILLS_LIST = [
+  'Data Analysis', 'Problem Solving', 'Critical Thinking', 'Research', 'Statistical Analysis',
+  'Written Communication', 'Presentation', 'Public Speaking', 'Technical Writing',
+  'Project Management', 'Team Leadership', 'Time Management', 'Agile/Scrum', 'Strategic Planning',
+  'Programming', 'Database Management', 'Data Visualization', 'Machine Learning', 'Web Development',
+  'UX Design', 'UI Design', 'Graphic Design', 'Product Design', 'Prototyping',
+  'Collaboration', 'Creativity', 'Adaptability', 'Attention to Detail', 'Decision Making',
+  'Negotiation', 'Customer Service', 'Marketing', 'Financial Analysis', 'Quality Assurance',
+  'Business Development',
+]
+
+const TOOLS_LIST = [
+  'Microsoft Excel', 'Microsoft Word', 'Microsoft PowerPoint', 'Google Sheets', 'Google Docs',
+  'Figma', 'Adobe Photoshop', 'Adobe Illustrator', 'Adobe InDesign', 'Adobe Premiere Pro',
+  'Canva', 'Sketch', 'AutoCAD', 'SolidWorks', 'MATLAB', 'Revit', 'SketchUp', 'Blender',
+  'Tableau', 'Power BI', 'SPSS', 'R Studio', 'Jupyter Notebook', 'Google Analytics',
+  'Jira', 'Trello', 'Asana', 'Notion', 'Monday.com', 'Slack', 'Microsoft Teams',
+  'VS Code', 'Git', 'GitHub', 'Docker', 'Postman',
+  'SAP', 'Salesforce', 'HubSpot', 'Miro', 'Airtable', 'Zoom',
+  'WordPress', 'Shopify', 'Final Cut Pro',
+]
 
 export default function EditProjectPage() {
   const params = useParams()
   const router = useRouter()
-  const [project, setProject] = useState<any>(null)
   const [loading, setLoading] = useState(true)
-  const [currentStep, setCurrentStep] = useState(0)
+  const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
 
+  // Form fields
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [discipline, setDiscipline] = useState('')
+  const [projectType, setProjectType] = useState('')
+  const [technologies, setTechnologies] = useState<string[]>([])
+  const [techInput, setTechInput] = useState('')
+  const [skills, setSkills] = useState<string[]>([])
+  const [tools, setTools] = useState<string[]>([])
+  const [githubUrl, setGithubUrl] = useState('')
+  const [liveUrl, setLiveUrl] = useState('')
+  const [duration, setDuration] = useState('')
+  const [teamSize, setTeamSize] = useState('')
+  const [role, setRole] = useState('')
+  const [client, setClient] = useState('')
+  const [outcome, setOutcome] = useState('')
+  const [courseName, setCourseName] = useState('')
+  const [courseCode, setCourseCode] = useState('')
+  const [semester, setSemester] = useState('')
+  const [academicYear, setAcademicYear] = useState('')
+  const [grade, setGrade] = useState('')
+  const [professor, setProfessor] = useState('')
+  const [isPublic, setIsPublic] = useState(true)
+  const [images, setImages] = useState<string[]>([])
+  const [imageInput, setImageInput] = useState('')
+
   useEffect(() => {
-    fetchProject()
+    if (params.id) {
+      fetchProject()
+    }
   }, [params.id])
 
   useEffect(() => {
@@ -37,7 +88,6 @@ export default function EditProjectPage() {
         e.returnValue = ''
       }
     }
-
     window.addEventListener('beforeunload', handleBeforeUnload)
     return () => window.removeEventListener('beforeunload', handleBeforeUnload)
   }, [hasUnsavedChanges])
@@ -45,82 +95,138 @@ export default function EditProjectPage() {
   const fetchProject = async () => {
     try {
       setLoading(true)
-      // Mock project data - in real app, fetch from API
-      const mockProject = {
-        id: params.id,
-        title: "AI-Powered Task Management System",
-        description: "A comprehensive task management application built with React, Node.js, and OpenAI GPT-4. Features include intelligent task categorization, priority suggestions, and automated deadline estimates based on project complexity.",
-        category: "web-development",
-        technologies: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "OpenAI API", "Tailwind CSS", "Docker"],
-        repositoryUrl: "https://github.com/username/ai-task-manager",
-        liveUrl: "https://ai-task-manager.vercel.app",
-        tags: ["productivity", "ai", "automation", "real-time"],
-        isPublic: true,
-        collaborators: ["john.doe@university.edu", "jane.smith@university.edu"],
-        images: [
-          "/api/placeholder/800/600",
-          "/api/placeholder/800/600"
-        ]
+      setError(null)
+      const response = await fetch(`/api/projects/${params.id}`)
+      const data = await response.json()
+
+      if (!response.ok) {
+        setError(data.error || 'Failed to fetch project')
+        return
       }
-      setProject(mockProject)
-    } catch (error) {
-      console.error('Failed to fetch project:', error)
+
+      const p = data.project
+      setTitle(p.title || '')
+      setDescription(p.description || '')
+      setDiscipline(p.discipline || '')
+      setProjectType(p.projectType || '')
+      setTechnologies(p.technologies || [])
+      setSkills(p.skills || [])
+      setTools(p.tools || [])
+      setGithubUrl(p.githubUrl || '')
+      setLiveUrl(p.liveUrl || '')
+      setDuration(p.duration || '')
+      setTeamSize(p.teamSize != null ? String(p.teamSize) : '')
+      setRole(p.role || '')
+      setClient(p.client || '')
+      setOutcome(p.outcome || '')
+      setCourseName(p.courseName || '')
+      setCourseCode(p.courseCode || '')
+      setSemester(p.semester || '')
+      setAcademicYear(p.academicYear || '')
+      setGrade(p.grade || '')
+      setProfessor(p.professor || '')
+      setIsPublic(p.isPublic ?? true)
+      setImages(p.images || [])
+    } catch (err) {
+      console.error('Failed to fetch project:', err)
+      setError('Failed to load project')
     } finally {
       setLoading(false)
     }
   }
 
-  const handleProjectUpdate = async (projectData: any) => {
+  const markChanged = () => {
+    if (!hasUnsavedChanges) setHasUnsavedChanges(true)
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
     setIsSubmitting(true)
     setSaveStatus('saving')
-    
+
     try {
+      const body: any = {
+        title,
+        description,
+        projectType: projectType || null,
+        technologies,
+        skills,
+        tools,
+        githubUrl: githubUrl || null,
+        liveUrl: liveUrl || null,
+        duration: duration || null,
+        teamSize: teamSize ? parseInt(teamSize, 10) : null,
+        role: role || null,
+        client: client || null,
+        outcome: outcome || null,
+        courseName: courseName || null,
+        courseCode: courseCode || null,
+        semester: semester || null,
+        academicYear: academicYear || null,
+        grade: grade || null,
+        professor: professor || null,
+        isPublic,
+        images,
+      }
+
       const response = await fetch(`/api/projects/${params.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(projectData),
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
       })
 
       if (response.ok) {
         setSaveStatus('saved')
         setHasUnsavedChanges(false)
-        
-        // Show success message briefly, then redirect
         setTimeout(() => {
           router.push(`/dashboard/student/projects/${params.id}`)
-        }, 2000)
+        }, 1500)
       } else {
-        throw new Error('Failed to update project')
+        const data = await response.json()
+        throw new Error(data.error || 'Failed to update project')
       }
-    } catch (error) {
-      console.error('Project update error:', error)
+    } catch (err: any) {
+      console.error('Project update error:', err)
       setSaveStatus('error')
+      setError(err.message || 'Failed to update project')
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  const regenerateAnalysis = async () => {
-    try {
-      const response = await fetch(`/api/projects/${params.id}/analyze`, {
-        method: 'POST',
-      })
-      
-      if (response.ok) {
-        alert('AI analysis has been queued for regeneration. You will be notified when it\'s complete.')
-      }
-    } catch (error) {
-      console.error('Failed to regenerate analysis:', error)
+  const addTech = () => {
+    const trimmed = techInput.trim()
+    if (trimmed && !technologies.includes(trimmed)) {
+      setTechnologies([...technologies, trimmed])
+      setTechInput('')
+      markChanged()
     }
+  }
+
+  const removeTech = (tech: string) => {
+    setTechnologies(technologies.filter(t => t !== tech))
+    markChanged()
+  }
+
+  const addImage = () => {
+    const trimmed = imageInput.trim()
+    if (trimmed && !images.includes(trimmed)) {
+      setImages([...images, trimmed])
+      setImageInput('')
+      markChanged()
+    }
+  }
+
+  const removeImage = (url: string) => {
+    setImages(images.filter(i => i !== url))
+    markChanged()
   }
 
   if (loading) {
     return (
       <div className="max-w-4xl mx-auto space-y-8 animate-pulse">
         <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+        <div className="space-y-6">
           <div className="h-64 bg-gray-200 rounded"></div>
           <div className="h-32 bg-gray-200 rounded"></div>
         </div>
@@ -128,11 +234,17 @@ export default function EditProjectPage() {
     )
   }
 
-  if (!project) {
+  if (error && !title) {
     return (
       <div className="max-w-4xl mx-auto text-center py-12">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
-        <p className="text-gray-600 mb-6">The project you're trying to edit doesn't exist or you don't have permission to edit it.</p>
+        <h1 className="text-2xl font-bold text-gray-900 mb-4">
+          {error === 'Access denied' ? 'Access Denied' : 'Project Not Found'}
+        </h1>
+        <p className="text-gray-600 mb-6">
+          {error === 'Access denied'
+            ? 'You don\'t have permission to edit this project.'
+            : 'The project you\'re trying to edit doesn\'t exist.'}
+        </p>
         <Button asChild>
           <Link href="/dashboard/student/projects">
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -152,18 +264,11 @@ export default function EditProjectPage() {
               <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
             <h1 className="text-2xl font-bold text-gray-900 mb-4">
-              Project Updated Successfully! 🎉
+              Project Updated Successfully!
             </h1>
             <p className="text-gray-600 mb-6">
-              Your changes have been saved and the project has been updated. 
-              You'll be redirected to the project page shortly.
+              Your changes have been saved. Redirecting to the project page...
             </p>
-            
-            <div className="flex items-center justify-center space-x-2 text-sm text-gray-700 mb-8">
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-              <span>Updating project analysis...</span>
-            </div>
-
             <div className="flex gap-4 justify-center">
               <Button asChild>
                 <Link href={`/dashboard/student/projects/${params.id}`}>
@@ -183,7 +288,7 @@ export default function EditProjectPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="max-w-4xl mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
@@ -194,26 +299,17 @@ export default function EditProjectPage() {
             </Link>
           </Button>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Edit Project</h1>
-            <p className="text-gray-600 mt-1">
-              Update your project information and regenerate AI analysis
-            </p>
+            <h1 className="text-2xl font-bold text-gray-900">Edit Project</h1>
+            {discipline && (
+              <Badge variant="outline" className="mt-1">
+                {discipline.replace(/_/g, ' ')}
+              </Badge>
+            )}
           </div>
         </div>
-        
-        {/* Save Status */}
-        {saveStatus !== 'idle' && (
-          <div className="flex items-center space-x-2">
-            {saveStatus === 'saving' && (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-                <span className="text-sm text-gray-600">Saving...</span>
-              </>
-            )}
-            {saveStatus === 'error' && (
-              <span className="text-sm text-red-600">Save failed</span>
-            )}
-          </div>
+
+        {saveStatus === 'error' && (
+          <span className="text-sm text-red-600">Save failed. Please try again.</span>
         )}
       </div>
 
@@ -222,143 +318,363 @@ export default function EditProjectPage() {
         <Alert>
           <AlertTriangle className="h-4 w-4" />
           <AlertDescription>
-            You have unsaved changes. Make sure to save your work before leaving this page.
+            You have unsaved changes. Make sure to save before leaving.
           </AlertDescription>
         </Alert>
       )}
 
-      {/* AI Analysis Notice */}
-      <Card className="bg-blue-50 border-blue-200">
-        <CardContent className="p-6">
-          <div className="flex items-start space-x-4">
-            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <RefreshCw className="h-5 w-5 text-blue-600" />
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Basic Info */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Basic Information</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => { setTitle(e.target.value); markChanged() }}
+                required
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
             </div>
-            <div className="flex-1">
-              <h3 className="font-semibold text-gray-900 mb-2">AI Analysis Update</h3>
-              <p className="text-sm text-gray-600 mb-4">
-                When you save changes to your project, our AI system will automatically regenerate 
-                the analysis, innovation score, skill identification, and job matches based on your 
-                updated information.
-              </p>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                onClick={regenerateAnalysis}
-                className="bg-white"
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+              <textarea
+                value={description}
+                onChange={(e) => { setDescription(e.target.value); markChanged() }}
+                required
+                rows={5}
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Project Type</label>
+              <input
+                type="text"
+                value={projectType}
+                onChange={(e) => { setProjectType(e.target.value); markChanged() }}
+                placeholder="e.g., Web Application, Case Study, Research Paper"
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+            </div>
+
+            <div className="flex items-center space-x-3">
+              <label className="text-sm font-medium text-gray-700">Public</label>
+              <button
+                type="button"
+                onClick={() => { setIsPublic(!isPublic); markChanged() }}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  isPublic ? 'bg-blue-600' : 'bg-gray-300'
+                }`}
               >
-                <RefreshCw className="mr-2 h-4 w-4" />
-                Regenerate Analysis Now
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    isPublic ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+              <span className="text-sm text-gray-500">
+                {isPublic ? 'Visible to everyone' : 'Only visible to you'}
+              </span>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Technologies (for tech projects) */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Technologies</CardTitle>
+            <CardDescription>Add the technology stack used in your project</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {technologies.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {technologies.map((tech) => (
+                  <Badge key={tech} variant="secondary" className="flex items-center gap-1">
+                    {tech}
+                    <button type="button" onClick={() => removeTech(tech)}>
+                      <X className="h-3 w-3" />
+                    </button>
+                  </Badge>
+                ))}
+              </div>
+            )}
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={techInput}
+                onChange={(e) => setTechInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    addTech()
+                  }
+                }}
+                placeholder="e.g., React, Python, PostgreSQL"
+                className="flex-1 px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+              <Button type="button" variant="outline" onClick={addTech} disabled={!techInput.trim()}>
+                <Plus className="h-4 w-4" />
               </Button>
             </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
-      {/* Edit Form */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Project Information</CardTitle>
-          <CardDescription>
-            Update your project details below. All changes will trigger a new AI analysis.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ProjectForm 
-            onSubmit={handleProjectUpdate}
-            isSubmitting={isSubmitting}
-            onStepChange={setCurrentStep}
-            currentStep={currentStep}
-            initialData={project}
-          />
-        </CardContent>
-      </Card>
+        {/* Skills & Tools */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Skills & Tools</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <TagSelector
+              items={SKILLS_LIST}
+              selected={skills}
+              onChange={(v) => { setSkills(v); markChanged() }}
+              label="Skills"
+              placeholder="Search skills..."
+              color="green"
+            />
+            <TagSelector
+              items={TOOLS_LIST}
+              selected={tools}
+              onChange={(v) => { setTools(v); markChanged() }}
+              label="Tools"
+              placeholder="Search tools..."
+              color="purple"
+            />
+          </CardContent>
+        </Card>
 
-      {/* Tips for Better Analysis */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Tips for Better Analysis</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Links */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Links</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
             <div>
-              <h4 className="font-medium text-gray-900 mb-2">Project Description</h4>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Include specific problems you solved</li>
-                <li>• Mention measurable outcomes or results</li>
-                <li>• Describe unique features or innovations</li>
-                <li>• Explain your development process</li>
-              </ul>
+              <label className="block text-sm font-medium text-gray-700 mb-1">GitHub URL</label>
+              <input
+                type="url"
+                value={githubUrl}
+                onChange={(e) => { setGithubUrl(e.target.value); markChanged() }}
+                placeholder="https://github.com/..."
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
             </div>
             <div>
-              <h4 className="font-medium text-gray-900 mb-2">Technical Details</h4>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• List all technologies and frameworks used</li>
-                <li>• Include deployment and hosting platforms</li>
-                <li>• Mention any APIs or integrations</li>
-                <li>• Add testing frameworks and tools</li>
-              </ul>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Live URL</label>
+              <input
+                type="url"
+                value={liveUrl}
+                onChange={(e) => { setLiveUrl(e.target.value); markChanged() }}
+                placeholder="https://..."
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
             </div>
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">Documentation</h4>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Ensure your repository has a clear README</li>
-                <li>• Include setup and installation instructions</li>
-                <li>• Add code comments for complex sections</li>
-                <li>• Document any architectural decisions</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">Showcase Elements</h4>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Upload high-quality screenshots</li>
-                <li>• Show different features and use cases</li>
-                <li>• Include mobile views if responsive</li>
-                <li>• Consider adding demo videos</li>
-              </ul>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
-      {/* History and Versions */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Project History</CardTitle>
-          <CardDescription>
-            Track changes and analysis updates over time
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-              <div>
-                <p className="font-medium text-gray-900">Current Version</p>
-                <p className="text-sm text-gray-700">Last updated today at 2:30 PM</p>
+        {/* Project Context */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Project Context</CardTitle>
+          </CardHeader>
+          <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Duration</label>
+              <input
+                type="text"
+                value={duration}
+                onChange={(e) => { setDuration(e.target.value); markChanged() }}
+                placeholder="e.g., 3 months"
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Team Size</label>
+              <input
+                type="number"
+                value={teamSize}
+                onChange={(e) => { setTeamSize(e.target.value); markChanged() }}
+                min="1"
+                placeholder="e.g., 4"
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Your Role</label>
+              <input
+                type="text"
+                value={role}
+                onChange={(e) => { setRole(e.target.value); markChanged() }}
+                placeholder="e.g., Lead Developer"
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Client</label>
+              <input
+                type="text"
+                value={client}
+                onChange={(e) => { setClient(e.target.value); markChanged() }}
+                placeholder="e.g., University, Company X"
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Outcome</label>
+              <textarea
+                value={outcome}
+                onChange={(e) => { setOutcome(e.target.value); markChanged() }}
+                rows={3}
+                placeholder="Describe the results achieved..."
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Academic Context */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Academic Context</CardTitle>
+            <CardDescription>Optional - fill in if this is a course-based project</CardDescription>
+          </CardHeader>
+          <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Course Name</label>
+              <input
+                type="text"
+                value={courseName}
+                onChange={(e) => { setCourseName(e.target.value); markChanged() }}
+                placeholder="e.g., Financial Modeling 401"
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Course Code</label>
+              <input
+                type="text"
+                value={courseCode}
+                onChange={(e) => { setCourseCode(e.target.value); markChanged() }}
+                placeholder="e.g., FIN401"
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Semester</label>
+              <input
+                type="text"
+                value={semester}
+                onChange={(e) => { setSemester(e.target.value); markChanged() }}
+                placeholder="e.g., Fall 2024"
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Academic Year</label>
+              <input
+                type="text"
+                value={academicYear}
+                onChange={(e) => { setAcademicYear(e.target.value); markChanged() }}
+                placeholder="e.g., 2023-2024"
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Grade</label>
+              <input
+                type="text"
+                value={grade}
+                onChange={(e) => { setGrade(e.target.value); markChanged() }}
+                placeholder="e.g., A, 95%"
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Professor</label>
+              <input
+                type="text"
+                value={professor}
+                onChange={(e) => { setProfessor(e.target.value); markChanged() }}
+                placeholder="Professor name"
+                className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Images */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Images</CardTitle>
+            <CardDescription>Add image URLs for project screenshots</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {images.length > 0 && (
+              <div className="grid grid-cols-2 gap-3">
+                {images.map((url, i) => (
+                  <div key={i} className="relative group aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                    <img src={url} alt={`Image ${i + 1}`} className="w-full h-full object-cover" />
+                    <button
+                      type="button"
+                      onClick={() => removeImage(url)}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </div>
+                ))}
               </div>
-              <Badge variant="default">Active</Badge>
-            </div>
-            <div className="flex items-center justify-between p-3 border rounded-lg">
-              <div>
-                <p className="font-medium text-gray-900">Previous Version</p>
-                <p className="text-sm text-gray-700">Updated 3 days ago - Innovation Score: 82</p>
-              </div>
-              <Button variant="outline" size="sm">
-                View Diff
+            )}
+            <div className="flex gap-2">
+              <input
+                type="url"
+                value={imageInput}
+                onChange={(e) => setImageInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    addImage()
+                  }
+                }}
+                placeholder="Paste image URL..."
+                className="flex-1 px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary bg-card"
+              />
+              <Button type="button" variant="outline" onClick={addImage} disabled={!imageInput.trim()}>
+                <Plus className="h-4 w-4" />
               </Button>
             </div>
-            <div className="flex items-center justify-between p-3 border rounded-lg">
-              <div>
-                <p className="font-medium text-gray-900">Initial Version</p>
-                <p className="text-sm text-gray-700">Created 1 week ago - Innovation Score: 75</p>
-              </div>
-              <Button variant="outline" size="sm">
-                View Original
-              </Button>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+
+        {/* Submit */}
+        <div className="flex items-center justify-between">
+          <Button type="button" variant="outline" asChild>
+            <Link href={`/dashboard/student/projects/${params.id}`}>
+              Cancel
+            </Link>
+          </Button>
+          <Button type="submit" disabled={isSubmitting || !title.trim() || !description.trim()}>
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              <>
+                <Save className="mr-2 h-4 w-4" />
+                Save Changes
+              </>
+            )}
+          </Button>
+        </div>
+      </form>
     </div>
   )
 }

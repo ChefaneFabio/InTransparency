@@ -191,6 +191,18 @@ function extractBasicEntities(query: string) {
     venezia: 'Venice', venice: 'Venice',
     padova: 'Padova', genova: 'Genova',
     bari: 'Bari', palermo: 'Palermo',
+    // Germany
+    berlin: 'Berlin', münchen: 'Munich', munich: 'Munich',
+    frankfurt: 'Frankfurt', hamburg: 'Hamburg', aachen: 'Aachen',
+    // France
+    paris: 'Paris', toulouse: 'Toulouse', lyon: 'Lyon', marseille: 'Marseille',
+    // Spain
+    madrid: 'Madrid', barcelona: 'Barcelona', valencia: 'Valencia',
+    sevilla: 'Seville', seville: 'Seville',
+    // Netherlands
+    amsterdam: 'Amsterdam', rotterdam: 'Rotterdam',
+    // UK
+    london: 'London', oxford: 'Oxford', cambridge: 'Cambridge', edinburgh: 'Edinburgh',
   }
 
   const locations: string[] = []
@@ -578,6 +590,32 @@ function getCoordinatesForLocation(
     bocconi: { lat: 45.4506, lng: 9.1888 },
     sapienza: { lat: 41.9013, lng: 12.5148 },
     luiss: { lat: 41.9244, lng: 12.4969 },
+    // Germany
+    berlin: { lat: 52.52, lng: 13.405 },
+    munich: { lat: 48.1351, lng: 11.582 },
+    münchen: { lat: 48.1351, lng: 11.582 },
+    frankfurt: { lat: 50.1109, lng: 8.6821 },
+    hamburg: { lat: 53.5511, lng: 9.9937 },
+    aachen: { lat: 50.7753, lng: 6.0839 },
+    // France
+    paris: { lat: 48.8566, lng: 2.3522 },
+    toulouse: { lat: 43.6047, lng: 1.4442 },
+    lyon: { lat: 45.764, lng: 4.8357 },
+    marseille: { lat: 43.2965, lng: 5.3698 },
+    // Spain
+    madrid: { lat: 40.4168, lng: -3.7038 },
+    barcelona: { lat: 41.3874, lng: 2.1686 },
+    valencia: { lat: 39.4699, lng: -0.3763 },
+    seville: { lat: 37.3891, lng: -5.9845 },
+    sevilla: { lat: 37.3891, lng: -5.9845 },
+    // Netherlands
+    amsterdam: { lat: 52.3676, lng: 4.9041 },
+    rotterdam: { lat: 51.9225, lng: 4.4792 },
+    // UK
+    london: { lat: 51.5074, lng: -0.1278 },
+    oxford: { lat: 51.752, lng: -1.2577 },
+    cambridge: { lat: 52.2053, lng: 0.1218 },
+    edinburgh: { lat: 55.9533, lng: -3.1883 },
   }
 
   for (const [key, coords] of Object.entries(cities)) {
@@ -618,6 +656,17 @@ const SAMPLE_JOBS = [
   { id: 's13', title: 'Mechanical Engineer', company: 'Ferrari SpA', location: 'Modena, IT', type: 'Full-time', salary: '\u20AC40k - \u20AC55k', skills: ['SolidWorks', 'CAD', 'FEA'], coordinates: { lat: 44.6471, lng: 10.9252 }, field: 'engineering' },
   { id: 's14', title: 'Legal Assistant', company: 'Studio Legale Bianchi', location: 'Rome, IT', type: 'Full-time', salary: '\u20AC26k - \u20AC34k', skills: ['Legal Research', 'EU Law', 'Contract Review'], coordinates: { lat: 41.9028, lng: 12.4964 }, field: 'law' },
   { id: 's15', title: 'Stage in Comunicazione', company: 'Edelman Italia', location: 'Milan, IT', type: 'Internship', salary: '\u20AC700/month', skills: ['PR', 'Content Writing', 'Events'], coordinates: { lat: 45.4642, lng: 9.19 }, field: 'marketing' },
+  // --- Germany ---
+  { id: 's16', title: 'Software Engineer', company: 'SAP SE', location: 'Berlin, DE', type: 'Full-time', salary: '\u20AC55k - \u20AC70k', skills: ['Java', 'Spring Boot', 'Kubernetes'], coordinates: { lat: 52.52, lng: 13.405 }, field: 'tech' },
+  { id: 's17', title: 'Automotive Engineer', company: 'BMW Group', location: 'Munich, DE', type: 'Full-time', salary: '\u20AC50k - \u20AC65k', skills: ['MATLAB', 'CAD', 'Vehicle Dynamics'], coordinates: { lat: 48.1351, lng: 11.582 }, field: 'engineering' },
+  { id: 's18', title: 'Werkstudent Data Science', company: 'Siemens AG', location: 'Munich, DE', type: 'Internship', salary: '\u20AC1200/month', skills: ['Python', 'TensorFlow', 'SQL'], coordinates: { lat: 48.1351, lng: 11.582 }, field: 'tech' },
+  // --- France ---
+  { id: 's19', title: 'Développeur Full Stack', company: 'BlaBlaCar', location: 'Paris, FR', type: 'Full-time', salary: '\u20AC45k - \u20AC58k', skills: ['React', 'Node.js', 'GraphQL'], coordinates: { lat: 48.8566, lng: 2.3522 }, field: 'tech' },
+  { id: 's20', title: 'Stage Marketing Digital', company: 'L\'Oréal', location: 'Paris, FR', type: 'Internship', salary: '\u20AC1000/month', skills: ['SEO', 'Social Media', 'Analytics'], coordinates: { lat: 48.8566, lng: 2.3522 }, field: 'marketing' },
+  { id: 's21', title: 'Ingénieur Aéronautique', company: 'Airbus', location: 'Toulouse, FR', type: 'Full-time', salary: '\u20AC42k - \u20AC55k', skills: ['CATIA', 'CFD', 'Structural Analysis'], coordinates: { lat: 43.6047, lng: 1.4442 }, field: 'engineering' },
+  // --- Spain ---
+  { id: 's22', title: 'Desarrollador Backend', company: 'Cabify', location: 'Madrid, ES', type: 'Full-time', salary: '\u20AC35k - \u20AC48k', skills: ['Go', 'PostgreSQL', 'Docker'], coordinates: { lat: 40.4168, lng: -3.7038 }, field: 'tech' },
+  { id: 's23', title: 'Prácticas UX Design', company: 'Glovo', location: 'Barcelona, ES', type: 'Internship', salary: '\u20AC800/month', skills: ['Figma', 'User Research', 'Prototyping'], coordinates: { lat: 41.3874, lng: 2.1686 }, field: 'design' },
 ]
 
 const SAMPLE_CANDIDATES = [
@@ -631,6 +680,15 @@ const SAMPLE_CANDIDATES = [
   { id: 'c8', initials: 'C.M.', university: 'Universit\u00E0 di Bologna', major: 'Biomedical Engineering', gpa: 29, skills: ['MATLAB', 'Medical Devices', 'Python', 'R&D'], coordinates: { lat: 44.4949, lng: 11.3426 }, field: 'engineering' },
   { id: 'c9', initials: 'P.L.', university: 'Universit\u00E0 di Bologna', major: 'Law (Giurisprudenza)', gpa: 28.5, skills: ['Legal Writing', 'Contract Review', 'EU Law'], coordinates: { lat: 44.4949, lng: 11.3426 }, field: 'law' },
   { id: 'c10', initials: 'D.F.', university: 'Politecnico di Milano', major: 'Data Science', gpa: 30, skills: ['Python', 'Machine Learning', 'TensorFlow', 'SQL'], coordinates: { lat: 45.4642, lng: 9.19 }, field: 'tech' },
+  // --- Germany ---
+  { id: 'c11', initials: 'K.M.', university: 'TU München', major: 'Informatik', gpa: 1.3, skills: ['Java', 'Kubernetes', 'Spring Boot', 'AWS'], coordinates: { lat: 48.1351, lng: 11.582 }, field: 'tech' },
+  { id: 'c12', initials: 'H.S.', university: 'RWTH Aachen', major: 'Maschinenbau', gpa: 1.7, skills: ['SolidWorks', 'MATLAB', 'FEA', 'CFD'], coordinates: { lat: 50.7753, lng: 6.0839 }, field: 'engineering' },
+  // --- France ---
+  { id: 'c13', initials: 'P.D.', university: 'École Polytechnique', major: 'Ingénierie Informatique', gpa: 16, skills: ['Python', 'C++', 'Deep Learning', 'Docker'], coordinates: { lat: 48.7128, lng: 2.2089 }, field: 'tech' },
+  { id: 'c14', initials: 'C.L.', university: 'HEC Paris', major: 'Marketing & Strategy', gpa: 15.5, skills: ['Brand Strategy', 'Data Analytics', 'Market Research'], coordinates: { lat: 48.7551, lng: 2.1704 }, field: 'marketing' },
+  // --- Spain ---
+  { id: 'c15', initials: 'J.G.', university: 'UPM Madrid', major: 'Ingeniería de Software', gpa: 8.5, skills: ['Go', 'React', 'PostgreSQL', 'CI/CD'], coordinates: { lat: 40.4168, lng: -3.7038 }, field: 'tech' },
+  { id: 'c16', initials: 'M.H.', university: 'UPC Barcelona', major: 'Diseño Industrial', gpa: 9.0, skills: ['Figma', 'Rhino 3D', 'Prototyping', 'UX Research'], coordinates: { lat: 41.3874, lng: 2.1686 }, field: 'design' },
 ]
 
 /** Score a sample result against search terms + entities for relevance ranking */
@@ -676,7 +734,8 @@ function getSampleResults(
     ...searchTerms,
   ]))
 
-  if (allTerms.length === 0) return pool.slice(0, 5)
+  // No recognizable terms — don't show random samples for gibberish
+  if (allTerms.length === 0) return []
 
   const scored = pool.map((item) => ({
     item,
@@ -684,10 +743,9 @@ function getSampleResults(
   }))
   scored.sort((a, b) => b.score - a.score)
 
-  // Return items with score > 0, or top 5 if nothing matches well
+  // Only return items that actually match the query (score > 0)
   const relevant = scored.filter((s) => s.score > 0)
-  if (relevant.length > 0) return relevant.slice(0, 8).map((s) => s.item)
-  return scored.slice(0, 5).map((s) => s.item)
+  return relevant.slice(0, 8).map((s) => s.item)
 }
 
 // --- Main handler ---
@@ -722,8 +780,41 @@ export async function POST(request: NextRequest) {
 
     const sessionId = incomingSessionId || generateSessionId()
 
-    // 0. Detect conversational follow-ups (without AI service they can't be handled)
+    // 0. Detect conversational follow-ups and gibberish
     const aiResult = await callAIService(query, type, sessionId)
+
+    // Without AI service, check if query is gibberish (no recognizable words at all)
+    if (!aiResult) {
+      const entities = extractBasicEntities(query)
+      const terms = extractSearchTerms(query)
+      const hasAnyRecognizable =
+        terms.length > 0 ||
+        entities.skills.length > 0 ||
+        entities.locations.length > 0 ||
+        entities.job_types.length > 0 ||
+        entities.universities.length > 0
+      // Check if the "terms" are actually just random characters (no fuzzy match to any keyword)
+      const hasRealWord = hasAnyRecognizable && (
+        entities.skills.length > 0 ||
+        entities.locations.length > 0 ||
+        entities.job_types.length > 0 ||
+        entities.universities.length > 0 ||
+        terms.some((t) => fuzzyMatchKeyword(t, SKILL_KEYWORDS) !== null) ||
+        terms.some((t) => /^[a-zA-Z]{3,}$/.test(t)) // at least one purely alphabetic word
+      )
+
+      if (!hasRealWord) {
+        return NextResponse.json({
+          message:
+            'I couldn\'t understand that query. Try describing what you\'re looking for \u2014 e.g. "graphic design internship in Milan" or "React developer jobs in Rome".',
+          results: [],
+          suggestedActions: [],
+          sessionId,
+          resultCount: 0,
+          resultType: type === 'company' ? 'candidates' : 'jobs',
+        })
+      }
+    }
 
     if (!aiResult && isFollowUp(query)) {
       // Without AI service, we can't handle conversational follow-ups

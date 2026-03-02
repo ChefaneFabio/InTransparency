@@ -195,6 +195,7 @@ model User {
   graduationYear String?
   gpa            String?
   gpaPublic      Boolean @default(false)
+  country        String  @default("IT") // ISO 3166-1 alpha-2
 
   // Company Info (for recruiters)
   company  String?
@@ -264,6 +265,26 @@ model User {
   savedSearches        SavedSearch[]
   recruiterSettings    RecruiterSettings?
   campuses             Campus[]
+  predictions          PlacementPrediction[]  @relation("StudentPredictions")
+  decisionPacksMade    DecisionPack[]         @relation("RecruiterDecisionPacks")
+  decisionPacksOf      DecisionPack[]         @relation("CandidateDecisionPacks")
+
+  // Mentoring
+  mentorshipsAsMentor  MentorshipConnection[] @relation("Mentor")
+  mentorshipsAsMentee  MentorshipConnection[] @relation("Mentee")
+
+  // Employer Reviews
+  employerReviews      EmployerReview[]
+
+  // Portfolio Score
+  portfolioScores      PortfolioScore[]
+
+  // Career Events
+  eventRSVPs           EventRSVP[]
+  eventSlotBookings    EventSlot[]            @relation("SlotBookedBy")
+
+  // Notifications
+  notifications        Notification[]
 
   @@index([email])
   @@index([username])
@@ -282,6 +303,7 @@ model UniversityConnection {
   universityName String
   universityType String  @default("university") // "university" or "its"
   city           String?
+  country        String  @default("IT") // ISO 3166-1 alpha-2
 
   // Verification
   institutionalEmail String
@@ -432,6 +454,7 @@ model Project {
   semester           String? // "Fall 2024"
   academicYear       String? // "2023-2024"
   grade              String? // "A", "A-", "95%"
+  normalizedGrade    Float?  // 0-100 normalized score for cross-country comparison
   professor          String? // Professor name
   universityVerified Boolean @default(false) // Did university verify this?
   courseId           String? // Link to Course model
@@ -466,6 +489,7 @@ model Project {
   // Relations
   endorsements        ProfessorEndorsement[]
   challengeSubmission ChallengeSubmission?
+  portableBadges      PortableBadge[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -816,6 +840,7 @@ model Course {
   description String?      @db.Text
   syllabus    String? // URL to syllabus
   credits     Int?
+  ectsCredits Int?         // ECTS credit value (European Credit Transfer System)
   level       CourseLevel?
 
   // Competencies taught in this course
@@ -827,8 +852,10 @@ model Course {
   verifiedAt         DateTime?
 
   // Relations
-  projects           Project[]
-  challengeApprovals ChallengeUniversityApproval[]
+  projects             Project[]
+  challengeApprovals   ChallengeUniversityApproval[]
+  sourceEquivalencies  CourseEquivalency[] @relation("SourceEquivalency")
+  targetEquivalencies  CourseEquivalency[] @relation("TargetEquivalency")
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -847,6 +874,10 @@ enum CourseLevel {
   UNDERGRADUATE_400 // 400-level
   GRADUATE // Graduate level
   DOCTORAL // PhD level
+  // Bologna Process levels
+  BACHELOR   // EQF Level 6 (180-240 ECTS)
+  MASTER     // EQF Level 7 (90-120 ECTS)
+  DOCTORATE  // EQF Level 8
 }
 
 // Competency Model (Skills verified through courses/projects)
@@ -1705,6 +1736,7 @@ model UniversitySettings {
   address     String?
   city        String?
   region      String?
+  country     String  @default("IT") // ISO 3166-1 alpha-2
   logo        String?
 
   // Branding
@@ -1723,6 +1755,16 @@ model UniversitySettings {
   allowStudentDiscovery    Boolean @default(true)
   shareAnalytics           Boolean @default(false)
   requireEmailVerification Boolean @default(false)
+
+  // Partnerships
+  partnershipsAsA InstitutionPartnership[] @relation("PartnershipA")
+  partnershipsAsB InstitutionPartnership[] @relation("PartnershipB")
+
+  // Skills Gap Reports
+  skillGapReports SkillGapReport[]
+
+  // Career Events
+  careerEvents CareerEvent[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -1984,4 +2026,473 @@ model ApiKey {
 
   @@index([userId])
   @@index([keyHash])
+}
+
+// ============================================
+// MOAT FEATURES: Skills Translation + Prediction + Badges + Decision Packs
+// ============================================
+
+// SkillMapping — academic term <-> industry term mapping
+model SkillMapping {
+  id String @id @default(cuid())
+
+  // Academic term (what students write)
+  academicTerm String
+
+  // Industry equivalents
+  industryTerms String[] @default([]) // ["Predictive Maintenance", "Condition Monitoring"]
+  synonyms      String[] @default([]) // Alternate phrasings
+
+  // Ontology
+  parentId String?       // For hierarchy (e.g., "ML" parent of "Predictive Maintenance ML")
+  parent   SkillMapping? @relation("SkillHierarchy", fields: [parentId], references: [id])
+  children SkillMapping[] @relation("SkillHierarchy")
+
+  // Metadata
+  locale      String  @default("en") // ISO 639-1
+  demandScore Int     @default(0)    // 0-100, computed from Job frequency
+  aiGenerated Boolean @default(false)
+  verified    Boolean @default(false)
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([academicTerm, locale])
+  @@index([locale])
+  @@index([demandScore])
+  @@index([parentId])
+}
+
+// PlacementPrediction — per-student placement probability cache
+model PlacementPrediction {
+  id        String @id @default(cuid())
+  studentId String
+  student   User   @relation("StudentPredictions", fields: [studentId], references: [id], onDelete: Cascade)
+
+  // Prediction
+  probability   Float // 0.0 - 0.99
+  signalWeights Json  // { signal: weight } breakdown
+  signalValues  Json  // { signal: rawValue } used in computation
+  topFactors    Json  // [{ factor, impact, description }] top 3-5
+
+  // Cache management
+  generatedAt DateTime @default(now())
+  expiresAt   DateTime // 48h TTL
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([studentId])
+  @@index([expiresAt])
+}
+
+// DecisionPack — recruiter <-> candidate hiring dossier cache
+model DecisionPack {
+  id          String @id @default(cuid())
+  recruiterId String
+  recruiter   User   @relation("RecruiterDecisionPacks", fields: [recruiterId], references: [id], onDelete: Cascade)
+  candidateId String
+  candidate   User   @relation("CandidateDecisionPacks", fields: [candidateId], references: [id], onDelete: Cascade)
+
+  // Optional job context
+  jobId String?
+
+  // Dossier content (cached JSON)
+  content    Json   // Full dossier: profile, skills, projects, endorsements, grades, prediction
+  matchScore Float? // 0-100 match confidence vs job (if jobId provided)
+  pdfUrl     String?
+
+  // Cache management
+  generatedAt DateTime @default(now())
+  expiresAt   DateTime // 7-day TTL
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([recruiterId, candidateId, jobId])
+  @@index([recruiterId])
+  @@index([candidateId])
+  @@index([expiresAt])
+}
+
+// PortableBadge — per-project verification badge for external sharing
+model PortableBadge {
+  id        String  @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  // Verification hash
+  contentHash String // SHA-256 of project content at badge issuance time
+
+  // Open Badges 3.0 metadata
+  ob3Metadata Json? // JSON-LD VerifiableCredential payload
+
+  // Stats
+  viewCount   Int @default(0)
+  exportCount Int @default(0)
+
+  // Issuance
+  issuedAt  DateTime @default(now())
+  issuedBy  String?  // userId of issuer (project owner or university admin)
+  revokedAt DateTime?
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+  @@index([contentHash])
+}
+
+// InstitutionPartnership — bilateral agreement between universities/ITS for student exchange
+model InstitutionPartnership {
+  id String @id @default(cuid())
+
+  // Initiating institution
+  institutionAId String
+  institutionA   UniversitySettings @relation("PartnershipA", fields: [institutionAId], references: [id], onDelete: Cascade)
+
+  // Partner institution
+  institutionBId String
+  institutionB   UniversitySettings @relation("PartnershipB", fields: [institutionBId], references: [id], onDelete: Cascade)
+
+  // Partnership details
+  status        String  @default("PENDING") // PENDING, ACTIVE, EXPIRED, REVOKED
+  exchangeType  String  @default("BILATERAL") // BILATERAL, UNIDIRECTIONAL
+  maxStudents   Int?    // Max students per academic year per direction
+  startDate     DateTime?
+  endDate       DateTime?
+  notes         String?
+
+  // Course equivalencies under this partnership
+  courseEquivalencies CourseEquivalency[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([institutionAId, institutionBId])
+  @@index([institutionAId])
+  @@index([institutionBId])
+  @@index([status])
+}
+
+// CourseEquivalency — maps courses between partner institutions
+model CourseEquivalency {
+  id String @id @default(cuid())
+
+  partnershipId String
+  partnership   InstitutionPartnership @relation(fields: [partnershipId], references: [id], onDelete: Cascade)
+
+  // Source course
+  sourceCourseId   String?
+  sourceCourse     Course? @relation("SourceEquivalency", fields: [sourceCourseId], references: [id])
+  sourceCourseName String  // Denormalized for display when course isn't in DB
+
+  // Equivalent course at partner institution
+  targetCourseId   String?
+  targetCourse     Course? @relation("TargetEquivalency", fields: [targetCourseId], references: [id])
+  targetCourseName String
+
+  // ECTS credit mapping
+  sourceCredits Int?
+  targetCredits Int?
+
+  // Approval
+  approved    Boolean @default(false)
+  approvedBy  String?
+  approvedAt  DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([partnershipId])
+  @@index([sourceCourseId])
+  @@index([targetCourseId])
+}
+
+// ─── Feature 1: Student-to-Student Mentoring ─────────────────────────────────
+
+model MentorshipConnection {
+  id String @id @default(cuid())
+
+  mentorId String
+  mentor   User   @relation("Mentor", fields: [mentorId], references: [id], onDelete: Cascade)
+
+  menteeId String
+  mentee   User   @relation("Mentee", fields: [menteeId], references: [id], onDelete: Cascade)
+
+  // Status flow: PENDING → ACTIVE → COMPLETED / DECLINED / CANCELLED
+  status     String @default("PENDING")
+  message    String? @db.Text // Initial request message from mentee
+
+  // Mentoring context
+  topics     String[] @default([]) // e.g. ["thesis", "career", "skills"]
+  university String?              // Shared institution
+
+  // Tracking
+  startedAt    DateTime?
+  completedAt  DateTime?
+  mentorRating Int?      // 1-5 rating by mentee
+  menteeRating Int?      // 1-5 rating by mentor
+  feedback     String?   @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([mentorId, menteeId])
+  @@index([mentorId])
+  @@index([menteeId])
+  @@index([status])
+  @@index([university])
+}
+
+// ─── Feature 2: Employer Reviews & Ratings ───────────────────────────────────
+
+model EmployerReview {
+  id String @id @default(cuid())
+
+  reviewerId String
+  reviewer   User   @relation(fields: [reviewerId], references: [id], onDelete: Cascade)
+
+  // Employer being reviewed
+  companyName  String
+  companyId    String?  // Links to recruiter user ID if on platform
+  jobTitle     String?  // Role held during placement
+  department   String?
+
+  // Placement context
+  placementId  String?  // Optional link to Placement record
+  startDate    DateTime?
+  endDate      DateTime?
+  isCurrentRole Boolean @default(false)
+
+  // Ratings (1-5)
+  overallRating       Int
+  workLifeBalance     Int?
+  mentorship          Int?
+  learningOpportunity Int?
+  compensation        Int?
+  cultureFit          Int?
+
+  // Written review
+  title       String?
+  reviewText  String   @db.Text
+  pros        String?  @db.Text
+  cons        String?  @db.Text
+
+  // Moderation
+  isAnonymous Boolean @default(false)
+  isVerified  Boolean @default(false) // Verified via placement record
+  isPublished Boolean @default(true)
+  flagged     Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([reviewerId])
+  @@index([companyName])
+  @@index([companyId])
+  @@index([overallRating])
+}
+
+// ─── Feature 3: Skills Gap Report (cached per university) ────────────────────
+
+model SkillGapReport {
+  id String @id @default(cuid())
+
+  universitySettingsId String
+  university           UniversitySettings @relation(fields: [universitySettingsId], references: [id], onDelete: Cascade)
+
+  // Report data (JSON blobs for flexibility)
+  studentSkills   Json   // { skill: count } — skills present in student projects
+  marketDemand    Json   // { skill: demandScore } — from SkillMapping + Job data
+  gaps            Json   // [{ skill, demandScore, studentCount, gapSeverity }]
+  strengths       Json   // [{ skill, demandScore, studentCount }] — where supply > demand
+  recommendations Json?  // AI-generated recommendations
+
+  // Metadata
+  studentCount Int    // Students analyzed
+  jobCount     Int    // Jobs analyzed
+  generatedAt  DateTime @default(now())
+  expiresAt    DateTime // Cache TTL
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([universitySettingsId])
+  @@index([expiresAt])
+}
+
+// ─── Feature 4: Automated Portfolio Score (Trust Score) ──────────────────────
+
+model PortfolioScore {
+  id String @id @default(cuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Overall score (0-100)
+  score Int
+
+  // Component scores (0-100 each)
+  verificationScore  Int  // % of projects verified
+  endorsementScore   Int  // Quality + quantity of endorsements
+  completenessScore  Int  // Profile completeness
+  aiAnalysisScore    Int  // Average AI analysis scores
+  activityScore      Int  // Recency + engagement
+  predictionScore    Int  // Placement prediction mapped to 0-100
+
+  // Weights used (for transparency)
+  weights Json
+
+  // Badge level derived from score
+  badgeLevel String // BRONZE (0-39), SILVER (40-59), GOLD (60-79), PLATINUM (80-100)
+
+  generatedAt DateTime @default(now())
+  expiresAt   DateTime // 24h cache
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([score])
+  @@index([expiresAt])
+}
+
+// ─── Feature 5: Event / Career Day Management ───────────────────────────────
+
+model CareerEvent {
+  id String @id @default(cuid())
+
+  // Organizer (university/institution user)
+  organizerId String
+  organizer   UniversitySettings @relation(fields: [organizerId], references: [id], onDelete: Cascade)
+
+  // Event details
+  title       String
+  description String?  @db.Text
+  eventType   String   @default("CAREER_DAY") // CAREER_DAY, WORKSHOP, WEBINAR, NETWORKING, INFO_SESSION
+  location    String?  // Physical location or "Online"
+  isOnline    Boolean  @default(false)
+  meetingUrl  String?  // Zoom/Teams link for online events
+
+  // Schedule
+  startDate DateTime
+  endDate   DateTime
+  timezone  String   @default("Europe/Rome")
+
+  // Capacity
+  maxAttendees    Int?
+  maxRecruiters   Int?
+
+  // Status
+  status      String @default("DRAFT") // DRAFT, PUBLISHED, CANCELLED, COMPLETED
+  publishedAt DateTime?
+
+  // Registration
+  registrationDeadline DateTime?
+  requiresApproval     Boolean @default(false)
+
+  // Relations
+  rsvps EventRSVP[]
+  slots EventSlot[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([organizerId])
+  @@index([startDate])
+  @@index([status])
+}
+
+model EventRSVP {
+  id String @id @default(cuid())
+
+  eventId String
+  event   CareerEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // RSVP type
+  role    String // RECRUITER, STUDENT
+  status  String @default("PENDING") // PENDING, CONFIRMED, DECLINED, WAITLISTED, CANCELLED
+
+  // Recruiter-specific
+  companyName  String?
+  boothRequest Boolean @default(false)
+
+  // Notes
+  notes String? @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([eventId, userId])
+  @@index([eventId])
+  @@index([userId])
+  @@index([status])
+}
+
+model EventSlot {
+  id String @id @default(cuid())
+
+  eventId String
+  event   CareerEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  // Slot details
+  title       String  // e.g. "1-on-1 with Google", "Resume Review"
+  description String?
+  startTime   DateTime
+  endTime     DateTime
+  location    String? // Room/booth number
+  capacity    Int     @default(1)
+
+  // Recruiter hosting the slot (optional)
+  recruiterId String?
+
+  // Students who booked
+  bookedById  String?
+  bookedBy    User?   @relation("SlotBookedBy", fields: [bookedById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([eventId])
+  @@index([startTime])
+  @@index([bookedById])
+}
+
+// ─── Feature 6: Notification System ──────────────────────────────────────────
+
+model Notification {
+  id String @id @default(cuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Content
+  type    String  // VERIFICATION_UPDATE, MESSAGE_RECEIVED, BADGE_ISSUED, MENTORSHIP_REQUEST, EVENT_RSVP, REVIEW_POSTED, SCORE_UPDATE, GENERAL
+  title   String
+  body    String  @db.Text
+  link    String? // Deep link to relevant page
+
+  // Status
+  read      Boolean  @default(false)
+  readAt    DateTime?
+  dismissed Boolean  @default(false)
+
+  // Grouping
+  groupKey String? // For batching related notifications (e.g. "project:abc:verification")
+
+  createdAt DateTime @default(now())
+
+  @@index([userId, read])
+  @@index([userId, createdAt])
+  @@index([type])
+  @@index([groupKey])
 }

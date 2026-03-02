@@ -19,7 +19,7 @@
     "student": {
       "portfolio": "Portfolio",
       "career": "Career",
-      "messages": "Messages",
+      "community": "Community",
       "insights": "Insights",
       "more": "More",
       "items": {
@@ -31,11 +31,13 @@
         "skillPath": "Skill Path",
         "aiJobSearch": "AI Job Search",
         "messages": "Messages",
+        "mentoring": "Mentoring",
         "analytics": "Analytics",
         "activity": "Activity",
         "courses": "Courses",
         "challenges": "Challenges",
         "referrals": "Referrals",
+        "employerReviews": "Employer Reviews",
         "feedback": "Feedback",
         "upgrade": "Upgrade",
         "privacy": "Privacy"
@@ -46,6 +48,7 @@
       "jobs": "Jobs",
       "messages": "Messages",
       "insights": "Insights",
+      "hiring": "Hiring Tools",
       "more": "More",
       "items": {
         "candidates": "Candidates",
@@ -62,6 +65,8 @@
         "analytics": "Analytics",
         "talentAnalytics": "Talent Analytics",
         "marketIntelligence": "Market Intelligence",
+        "decisionPacks": "Decision Packs",
+        "compareCandidates": "Compare Candidates",
         "challenges": "Challenges",
         "settings": "Settings"
       }
@@ -86,14 +91,22 @@
         "challenges": "Challenges",
         "aiSearch": "AI Search",
         "sync": "Sync",
-        "settings": "Settings"
-      }
+        "settings": "Settings",
+        "partnerships": "Exchange Partnerships",
+        "skillsGap": "Skills Gap Heatmap",
+        "events": "Career Events"
+      },
+      "exchange": "Exchange"
     },
     "institution": {
       "features": "Features",
+      "exchange": "Exchange",
       "items": {
         "careerDay": "Career Day",
-        "embedConfig": "Embed Config"
+        "embedConfig": "Embed Config",
+        "partnerships": "Exchange Partnerships",
+        "events": "Career Events",
+        "skillsGap": "Skills Gap Heatmap"
       }
     }
   },
@@ -832,6 +845,21 @@
       "skills": "Skills ({count}+)",
       "searchSkills": "Search skills...",
       "noSkillsFound": "No skills found for '{query}'",
+      "skillCategories": {
+        "engineeringTech": "Engineering & Technology",
+        "businessManagement": "Business & Management",
+        "financeAccounting": "Finance & Accounting",
+        "marketingComms": "Marketing & Communications",
+        "designCreative": "Design & Creative",
+        "healthcareLifeSciences": "Healthcare & Life Sciences",
+        "lawLegal": "Law & Legal",
+        "sciences": "Sciences",
+        "educationTraining": "Education & Training",
+        "languages": "Languages",
+        "softSkills": "Soft Skills",
+        "hospitalityTourism": "Hospitality & Tourism",
+        "agricultureEnvironment": "Agriculture & Environment"
+      },
       "filtered": "Showing filtered results"
     },
     "results": {

@@ -21,10 +21,12 @@ import {
   BarChart3,
   BookOpen,
   RefreshCw,
-  LogOut
+  LogOut,
+  TrendingUp
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import { useLocale } from 'next-intl'
+import PlacementProbabilityBadge from '@/components/predictions/PlacementProbabilityBadge'
 
 interface UniversityStats {
   totalStudents: number
@@ -302,6 +304,43 @@ export default function UniversityDashboard() {
               )}
             </CardContent>
           </Card>
+
+          {/* Top Placement Candidates */}
+          {recentStudents.length > 0 && (
+            <Card>
+              <CardHeader className="pb-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      <TrendingUp className="h-5 w-5 text-green-600" />
+                      Top Placement Candidates
+                    </CardTitle>
+                    <CardDescription>
+                      Students most likely to be placed based on profile strength
+                    </CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {recentStudents.slice(0, 5).map((student) => (
+                  <div
+                    key={`prediction-${student.id}`}
+                    className="flex items-center gap-4 p-3 rounded-lg border hover:bg-gray-50 transition-colors"
+                  >
+                    <Avatar className="h-8 w-8">
+                      <AvatarFallback className="bg-gradient-to-br from-green-500 to-emerald-500 text-white text-xs">
+                        {student.initials}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-gray-900 truncate">{student.name}</p>
+                    </div>
+                    <PlacementProbabilityBadge studentId={student.id} compact />
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          )}
 
           {/* Bulk Import */}
           <Card className="border-dashed">

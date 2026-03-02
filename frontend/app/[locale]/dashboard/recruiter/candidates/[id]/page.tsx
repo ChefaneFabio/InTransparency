@@ -24,6 +24,9 @@ import {
 import { Textarea } from '@/components/ui/textarea'
 import { Input } from '@/components/ui/input'
 import { Link } from '@/navigation'
+import PlacementProbabilityBadge from '@/components/predictions/PlacementProbabilityBadge'
+import DecisionPackCard from '@/components/dashboard/recruiter/DecisionPackCard'
+import TrustScoreBadge from '@/components/portfolio/TrustScoreBadge'
 
 interface Project {
   id: string
@@ -540,6 +543,20 @@ export default function CandidateProfilePage() {
               </Button>
             </CardContent>
           </Card>
+
+          {/* Trust Score */}
+          <TrustScoreBadge userId={candidate.id} />
+
+          {/* Placement Prediction */}
+          <PlacementProbabilityBadge studentId={candidate.id} />
+
+          {/* Decision Pack */}
+          <DecisionPackCard
+            candidateId={candidate.id}
+            candidateName={`${candidate.firstName || ''} ${candidate.lastName || ''}`.trim()}
+            university={candidate.university || undefined}
+            verifiedProjects={candidate.projects.filter((p: Project) => p.innovationScore !== null).length}
+          />
 
           {/* Profile Summary */}
           <Card>

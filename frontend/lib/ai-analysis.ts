@@ -7,12 +7,7 @@
  * Integrates with OpenAI GPT-4 for intelligent project analysis.
  */
 
-import OpenAI from 'openai'
-
-// Initialize OpenAI client
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null
+import { openai } from './openai-shared'
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -72,6 +67,12 @@ export interface ProjectData {
   certifications?: string[]
 }
 
+export interface RatedSkill {
+  name: string
+  score: number
+  evidence: string
+}
+
 export interface AnalysisResult {
   // Overall scores (0-100)
   innovationScore: number
@@ -93,8 +94,11 @@ export interface AnalysisResult {
   // AI-generated summary
   summary: string
 
-  // Competencies detected/validated
-  detectedCompetencies: string[]
+  // Competencies detected/validated — each with a proficiency score
+  detectedCompetencies: RatedSkill[]
+
+  // Soft skills inferred from project context
+  softSkills: RatedSkill[]
 
   // Recommendations
   recommendations: string[]
@@ -175,7 +179,8 @@ Provide:
 - 3 key strengths
 - 3 areas for improvement
 - 2 standout highlights
-- 3-5 detected competencies (e.g., "Full-Stack Development", "API Design")
+- 3-5 detected competencies with a proficiency score (0-100) and brief evidence
+- 3-5 soft skills (e.g., Teamwork, Leadership, Communication, Time Management, Problem Solving, Adaptability) inferred from team size, role, duration, outcome, and description — each with score (0-100) and evidence
 - 2 recommendations for advancement
 - Brief summary (2-3 sentences)
 
@@ -189,7 +194,8 @@ Return JSON format:
   "strengths": ["...", "...", "..."],
   "improvements": ["...", "...", "..."],
   "highlights": ["...", "..."],
-  "detectedCompetencies": ["...", "...", "..."],
+  "detectedCompetencies": [{"name": "...", "score": 0-100, "evidence": "..."}],
+  "softSkills": [{"name": "...", "score": 0-100, "evidence": "..."}],
   "recommendations": ["...", "..."],
   "summary": "..."
 }`
@@ -267,12 +273,13 @@ function heuristicTechnologyAnalysis(project: ProjectData): AnalysisResult {
       `Achieved ${project.grade || 'strong'} academic performance`
     ],
     summary: `${project.projectType || 'Technology'} project demonstrating proficiency in ${project.technologies?.slice(0, 3).join(', ') || 'modern technologies'}. ${hasLive ? 'Successfully deployed to production. ' : ''}Shows solid technical foundation and practical implementation skills.`,
-    detectedCompetencies: [
+    detectedCompetencies: toRatedCompetencies([
       ...project.technologies?.slice(0, 3) || [],
       'Software Development',
       'Problem Solving',
       ...(hasGithub ? ['Version Control'] : [])
-    ],
+    ], 75),
+    softSkills: inferSoftSkills(project),
     recommendations: [
       'Consider open-sourcing the project for community feedback',
       'Add performance metrics and optimization analysis'
@@ -308,11 +315,12 @@ Provide:
 - 3 key strengths
 - 3 areas for improvement
 - 2 standout highlights
-- 3-5 detected competencies (e.g., "Financial Modeling", "Strategic Analysis")
+- 3-5 detected competencies with a proficiency score (0-100) and brief evidence
+- 3-5 soft skills (e.g., Teamwork, Leadership, Communication, Time Management, Problem Solving) inferred from context — each with score (0-100) and evidence
 - 2 recommendations
 - Brief summary (2-3 sentences)
 
-Return JSON format with scores and insights.`
+Return JSON with: complexityScore, innovationScore, qualityScore, relevanceScore, strengths, improvements, highlights, detectedCompetencies (array of {name, score, evidence}), softSkills (array of {name, score, evidence}), recommendations, summary.`
 
   try {
     const analysis = await callOpenAI(prompt)
@@ -377,12 +385,13 @@ function heuristicBusinessAnalysis(project: ProjectData): AnalysisResult {
       hasGoodGrade ? `Achieved ${project.grade} demonstrating excellence` : 'Strong academic foundation'
     ],
     summary: `${project.projectType || 'Business'} project demonstrating strong analytical and quantitative skills. ${hasFinancialTools ? 'Uses professional tools and methodologies. ' : ''}Shows clear business acumen and practical application of concepts.`,
-    detectedCompetencies: [
+    detectedCompetencies: toRatedCompetencies([
       ...(project.skills?.slice(0, 3) || []),
       'Business Analysis',
       'Critical Thinking',
       ...(hasQuantSkills ? ['Quantitative Analysis'] : [])
-    ],
+    ], 70),
+    softSkills: inferSoftSkills(project),
     recommendations: [
       'Expand analysis to include more real-world scenarios',
       'Consider presenting findings to industry professionals'
@@ -418,11 +427,12 @@ Provide:
 - 3 key strengths
 - 3 areas for improvement
 - 2 standout highlights
-- 3-5 detected competencies (e.g., "UX Research", "Visual Design", "Prototyping")
+- 3-5 detected competencies with a proficiency score (0-100) and brief evidence
+- 3-5 soft skills inferred from context — each with score (0-100) and evidence
 - 2 recommendations
 - Brief summary (2-3 sentences)
 
-Return JSON format.`
+Return JSON with: complexityScore, innovationScore, qualityScore, relevanceScore, strengths, improvements, highlights, detectedCompetencies (array of {name, score, evidence}), softSkills (array of {name, score, evidence}), recommendations, summary.`
 
   try {
     const analysis = await callOpenAI(prompt)
@@ -487,12 +497,13 @@ function heuristicDesignAnalysis(project: ProjectData): AnalysisResult {
       project.outcome || 'Demonstrates design thinking process'
     ],
     summary: `${project.projectType || 'Design'} project showcasing strong visual design and ${hasUXSkills ? 'user experience' : 'creative'} skills. ${hasDesignTools ? 'Uses industry-standard tools. ' : ''}Portfolio-ready work with clear design rationale.`,
-    detectedCompetencies: [
+    detectedCompetencies: toRatedCompetencies([
       ...(project.skills?.slice(0, 3) || []),
       'Visual Design',
       'Design Thinking',
       ...(hasUXSkills ? ['User Research'] : ['Creative Problem Solving'])
-    ],
+    ], 72),
+    softSkills: inferSoftSkills(project),
     recommendations: [
       'Consider conducting A/B testing on design variations',
       'Build case study with full design process documentation'
@@ -527,11 +538,12 @@ Provide:
 - 3 key strengths
 - 3 areas for improvement
 - 2 standout highlights
-- 3-5 detected competencies (e.g., "Clinical Assessment", "Evidence-Based Practice")
+- 3-5 detected competencies with a proficiency score (0-100) and brief evidence
+- 3-5 soft skills inferred from context — each with score (0-100) and evidence
 - 2 recommendations
 - Brief summary (2-3 sentences)
 
-Return JSON format.`
+Return JSON with: complexityScore, innovationScore, qualityScore, relevanceScore, strengths, improvements, highlights, detectedCompetencies (array of {name, score, evidence}), softSkills (array of {name, score, evidence}), recommendations, summary.`
 
   try {
     const analysis = await callOpenAI(prompt)
@@ -590,12 +602,13 @@ function heuristicHealthcareAnalysis(project: ProjectData): AnalysisResult {
       hasCertifications ? `Holds ${project.certifications?.length} professional certification(s)` : 'Patient safety focus'
     ],
     summary: `${project.projectType || 'Healthcare'} project demonstrating strong clinical reasoning and ${hasEvidenceBased ? 'evidence-based practice' : 'patient-centered care'}. ${hasOutcomes ? 'Achieved measurable positive outcomes. ' : ''}Shows professional competency and commitment to quality care.`,
-    detectedCompetencies: [
+    detectedCompetencies: toRatedCompetencies([
       ...(project.skills?.slice(0, 3) || []),
       'Clinical Assessment',
       'Professional Ethics',
       ...(hasEvidenceBased ? ['Evidence-Based Practice'] : ['Patient Care'])
-    ],
+    ], 72),
+    softSkills: inferSoftSkills(project),
     recommendations: [
       'Consider publishing findings in professional journal',
       'Present at healthcare conference or grand rounds'
@@ -631,11 +644,12 @@ Provide:
 - 3 key strengths
 - 3 areas for improvement
 - 2 standout highlights
-- 3-5 detected competencies (e.g., "CAD Design", "FEA Analysis", "System Design")
+- 3-5 detected competencies with a proficiency score (0-100) and brief evidence
+- 3-5 soft skills inferred from context — each with score (0-100) and evidence
 - 2 recommendations
 - Brief summary (2-3 sentences)
 
-Return JSON format.`
+Return JSON with: complexityScore, innovationScore, qualityScore, relevanceScore, strengths, improvements, highlights, detectedCompetencies (array of {name, score, evidence}), softSkills (array of {name, score, evidence}), recommendations, summary.`
 
   try {
     const analysis = await callOpenAI(prompt)
@@ -702,12 +716,13 @@ function heuristicEngineeringAnalysis(project: ProjectData): AnalysisResult {
       hasOptimization ? 'Includes optimization and performance improvement' : 'Technically sound solution'
     ],
     summary: `${project.projectType || 'Engineering'} project demonstrating strong technical skills and ${hasSimulation ? 'advanced analysis capabilities' : 'practical design thinking'}. ${hasCADTools ? 'Uses industry-standard tools. ' : ''}Shows solid engineering fundamentals and professional approach.`,
-    detectedCompetencies: [
+    detectedCompetencies: toRatedCompetencies([
       ...(project.skills?.slice(0, 3) || []),
       'Engineering Design',
       'Technical Analysis',
       ...(hasCADTools ? ['CAD Modeling'] : ['Problem Solving'])
-    ],
+    ], 73),
+    softSkills: inferSoftSkills(project),
     recommendations: [
       'Consider entering design in engineering competition',
       'Prototype and test physical implementation'
@@ -814,6 +829,91 @@ export async function analyzeGenericProject(project: ProjectData): Promise<Analy
 // ============================================================================
 
 /**
+ * Generate heuristic soft skills from project metadata
+ */
+function inferSoftSkills(project: ProjectData): RatedSkill[] {
+  const skills: RatedSkill[] = []
+  const desc = (project.description || '').toLowerCase()
+
+  if (project.teamSize && project.teamSize > 1) {
+    skills.push({
+      name: 'Teamwork',
+      score: Math.min(100, 60 + project.teamSize * 5),
+      evidence: `Collaborated in a team of ${project.teamSize} members`
+    })
+    skills.push({
+      name: 'Collaboration',
+      score: Math.min(100, 55 + project.teamSize * 5),
+      evidence: 'Multi-member team project requiring coordination'
+    })
+  }
+
+  const role = (project.role || '').toLowerCase()
+  if (role.includes('lead') || role.includes('manager') || role.includes('captain') || role.includes('director')) {
+    skills.push({
+      name: 'Leadership',
+      score: 75,
+      evidence: `Held leadership role: ${project.role}`
+    })
+  }
+
+  if (project.duration) {
+    skills.push({
+      name: 'Time Management',
+      score: 65,
+      evidence: `Managed project timeline over ${project.duration}`
+    })
+  }
+
+  if (project.outcome) {
+    skills.push({
+      name: 'Problem Solving',
+      score: 70,
+      evidence: `Achieved measurable outcome: ${project.outcome.slice(0, 80)}`
+    })
+  }
+
+  if (desc.includes('present') || desc.includes('pitch') || desc.includes('demo')) {
+    skills.push({
+      name: 'Communication',
+      score: 70,
+      evidence: 'Project involved presentation or demonstration'
+    })
+  }
+
+  if (desc.includes('adapt') || desc.includes('pivot') || desc.includes('change') || desc.includes('iterati')) {
+    skills.push({
+      name: 'Adaptability',
+      score: 65,
+      evidence: 'Project required adapting to changing requirements'
+    })
+  }
+
+  // Always include at least 2 soft skills
+  if (skills.length === 0) {
+    skills.push(
+      { name: 'Critical Thinking', score: 60, evidence: 'Demonstrated through project analysis and execution' },
+      { name: 'Self-Management', score: 60, evidence: 'Completed project independently' }
+    )
+  } else if (skills.length === 1) {
+    skills.push({ name: 'Critical Thinking', score: 60, evidence: 'Demonstrated through project analysis and execution' })
+  }
+
+  return skills
+}
+
+/**
+ * Convert string competencies to rated skills for heuristic fallbacks
+ */
+function toRatedCompetencies(names: string[], baseScore: number): RatedSkill[] {
+  return names.map((name, i) => ({
+    name,
+    score: Math.max(50, baseScore - i * 5),
+    evidence: `Identified from project context`
+  }))
+}
+
+/**
  * Call OpenAI API for intelligent analysis
  */
 async function callOpenAI(prompt: string): Promise<any> {
@@ -826,7 +926,7 @@ async function callOpenAI(prompt: string): Promise<any> {
     messages: [
       {
         role: 'system',
-        content: 'You are an expert academic project evaluator with deep knowledge across multiple disciplines. Analyze projects objectively and provide constructive feedback. Always return valid JSON.'
+        content: 'You are an expert academic project evaluator with deep knowledge across multiple disciplines. Analyze projects objectively and provide constructive feedback. Always return valid JSON. For detectedCompetencies and softSkills, return arrays of objects with {name, score (0-100), evidence} format.'
       },
       {
         role: 'user',
@@ -913,10 +1013,11 @@ function createHeuristicAnalysis(
       `Completed in ${project.courseName || 'academic setting'}`
     ],
     summary: `${project.projectType || project.discipline} project demonstrating competency in ${config.focusAreas[0].toLowerCase()} and ${config.focusAreas[1].toLowerCase()}. Shows academic rigor and practical application of concepts.`,
-    detectedCompetencies: [
+    detectedCompetencies: toRatedCompetencies([
       ...(project.skills?.slice(0, 2) || []),
       ...config.keyCompetencies.slice(0, 3)
-    ],
+    ], 68),
+    softSkills: inferSoftSkills(project),
     recommendations: [
       'Consider expanding scope to include additional challenges',
       'Document lessons learned and best practices'

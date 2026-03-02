@@ -22,12 +22,15 @@ import {
   BookOpen,
   Globe,
   Briefcase,
-  Shield
+  Shield,
+  ChevronDown,
+  ChevronRight
 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { IMAGES } from '@/lib/images'
+import TrustScoreBadge from '@/components/portfolio/TrustScoreBadge'
 
 interface Student {
   id: string
@@ -117,94 +120,99 @@ export default function ExplorePage() {
     'Not looking'
   ]
 
-  // Comprehensive skills covering all disciplines
-  const popularSkills = [
-    // === ENGINEERING & TECHNOLOGY ===
-    // Programming
-    'Python', 'JavaScript', 'Java', 'C++', 'C#', 'SQL', 'R', 'MATLAB',
-    // Software Development
-    'React', 'Node.js', 'Machine Learning', 'Data Analysis', 'AWS', 'Docker',
-    // Engineering
-    'CAD', 'AutoCAD', 'SolidWorks', 'CATIA', 'Revit', 'Civil 3D',
-    'Structural Analysis', 'FEM/FEA', 'CFD', 'ANSYS', 'Simulink',
-    'PLC Programming', 'SCADA', 'Industrial Automation', 'Robotics',
-    'Electrical Design', 'PCB Design', 'Embedded Systems', 'IoT',
-    'BIM', 'GIS', 'Project Engineering', 'Quality Control',
+  // Skills organized by macro categories
+  const skillCategories: Record<string, string[]> = {
+    engineeringTech: [
+      'Python', 'JavaScript', 'Java', 'C++', 'C#', 'SQL', 'R', 'MATLAB',
+      'React', 'Node.js', 'Machine Learning', 'Data Analysis', 'AWS', 'Docker',
+      'CAD', 'AutoCAD', 'SolidWorks', 'CATIA', 'Revit', 'Civil 3D',
+      'Structural Analysis', 'FEM/FEA', 'CFD', 'ANSYS', 'Simulink',
+      'PLC Programming', 'SCADA', 'Industrial Automation', 'Robotics',
+      'Electrical Design', 'PCB Design', 'Embedded Systems', 'IoT',
+      'BIM', 'GIS', 'Project Engineering', 'Quality Control',
+    ],
+    businessManagement: [
+      'Business Strategy', 'Business Development', 'Market Analysis', 'Competitive Analysis',
+      'Financial Modeling', 'Budgeting', 'Forecasting', 'Business Planning',
+      'Operations Management', 'Supply Chain', 'Logistics', 'Procurement',
+      'Project Management', 'Agile', 'Scrum', 'Lean Six Sigma',
+      'Change Management', 'Risk Management', 'Stakeholder Management',
+      'Consulting', 'Management Consulting', 'Strategy Consulting',
+    ],
+    financeAccounting: [
+      'Financial Analysis', 'Financial Reporting', 'IFRS', 'GAAP',
+      'Accounting', 'Auditing', 'Tax Planning', 'Corporate Finance',
+      'Investment Analysis', 'Portfolio Management', 'Valuation', 'M&A',
+      'Risk Analysis', 'Credit Analysis', 'Treasury', 'Controlling',
+      'SAP', 'Bloomberg Terminal', 'Excel Advanced', 'Power BI',
+    ],
+    marketingComms: [
+      'Digital Marketing', 'SEO', 'SEM', 'Social Media Marketing',
+      'Content Marketing', 'Brand Management', 'Product Marketing',
+      'Marketing Strategy', 'Market Research', 'Consumer Insights',
+      'Public Relations', 'Corporate Communications', 'Event Management',
+      'Copywriting', 'Content Creation', 'Video Production', 'Photography',
+      'Google Analytics', 'HubSpot', 'Salesforce',
+    ],
+    designCreative: [
+      'Graphic Design', 'UI/UX Design', 'Web Design', 'Brand Identity',
+      'Adobe Photoshop', 'Adobe Illustrator', 'Adobe InDesign', 'Figma', 'Sketch',
+      'Motion Graphics', 'Video Editing', 'Adobe Premiere', 'After Effects',
+      '3D Modeling', 'Blender', 'Maya', 'Cinema 4D', 'Rendering',
+      'Interior Design', 'Product Design', 'Fashion Design', 'Packaging Design',
+    ],
+    healthcareLifeSciences: [
+      'Clinical Research', 'Clinical Trials', 'GCP', 'Regulatory Affairs',
+      'Medical Writing', 'Pharmacovigilance', 'Drug Development',
+      'Laboratory Techniques', 'PCR', 'HPLC', 'Mass Spectrometry',
+      'Biotechnology', 'Molecular Biology', 'Cell Culture', 'Bioinformatics',
+      'Healthcare Management', 'Patient Care', 'Medical Imaging',
+      'Nursing', 'Physiotherapy', 'Nutrition', 'Public Health',
+    ],
+    lawLegal: [
+      'Legal Research', 'Contract Law', 'Corporate Law', 'Commercial Law',
+      'Intellectual Property', 'Patent Law', 'Trademark', 'Copyright',
+      'Labor Law', 'Employment Law', 'GDPR', 'Privacy Law',
+      'Litigation', 'Legal Writing', 'Due Diligence', 'Compliance',
+    ],
+    sciences: [
+      'Research Methodology', 'Statistical Analysis', 'SPSS', 'Stata',
+      'Laboratory Management', 'Scientific Writing', 'Peer Review',
+      'Physics', 'Chemistry', 'Biology', 'Environmental Science',
+      'Geology', 'Materials Science', 'Nanotechnology',
+    ],
+    educationTraining: [
+      'Teaching', 'Curriculum Development', 'Instructional Design',
+      'E-Learning', 'Training Delivery', 'Educational Technology',
+      'Assessment Design', 'Student Mentoring', 'Academic Writing',
+    ],
+    languages: [
+      'English', 'Italian', 'Spanish', 'French', 'German', 'Chinese', 'Arabic',
+      'Translation', 'Interpretation', 'Localization', 'Technical Translation',
+    ],
+    softSkills: [
+      'Leadership', 'Team Management', 'Communication', 'Presentation',
+      'Negotiation', 'Problem Solving', 'Critical Thinking', 'Analytical Thinking',
+      'Creativity', 'Innovation', 'Adaptability', 'Time Management',
+      'Emotional Intelligence', 'Conflict Resolution', 'Cross-cultural Communication',
+    ],
+    hospitalityTourism: [
+      'Hotel Management', 'Event Planning', 'Tourism Management',
+      'Customer Service', 'Front Office', 'Food & Beverage',
+    ],
+    agricultureEnvironment: [
+      'Agronomy', 'Sustainable Agriculture', 'Food Science',
+      'Environmental Management', 'Sustainability', 'Renewable Energy',
+      'Waste Management', 'Water Management', 'Climate Science',
+    ],
+  }
 
-    // === BUSINESS & MANAGEMENT ===
-    'Business Strategy', 'Business Development', 'Market Analysis', 'Competitive Analysis',
-    'Financial Modeling', 'Budgeting', 'Forecasting', 'Business Planning',
-    'Operations Management', 'Supply Chain', 'Logistics', 'Procurement',
-    'Project Management', 'Agile', 'Scrum', 'Lean Six Sigma',
-    'Change Management', 'Risk Management', 'Stakeholder Management',
-    'Consulting', 'Management Consulting', 'Strategy Consulting',
+  const allSkills = Object.values(skillCategories).flat()
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({})
 
-    // === FINANCE & ACCOUNTING ===
-    'Financial Analysis', 'Financial Reporting', 'IFRS', 'GAAP',
-    'Accounting', 'Auditing', 'Tax Planning', 'Corporate Finance',
-    'Investment Analysis', 'Portfolio Management', 'Valuation', 'M&A',
-    'Risk Analysis', 'Credit Analysis', 'Treasury', 'Controlling',
-    'SAP', 'Bloomberg Terminal', 'Excel Advanced', 'Power BI',
-
-    // === MARKETING & COMMUNICATIONS ===
-    'Digital Marketing', 'SEO', 'SEM', 'Social Media Marketing',
-    'Content Marketing', 'Brand Management', 'Product Marketing',
-    'Marketing Strategy', 'Market Research', 'Consumer Insights',
-    'Public Relations', 'Corporate Communications', 'Event Management',
-    'Copywriting', 'Content Creation', 'Video Production', 'Photography',
-    'Google Analytics', 'HubSpot', 'Salesforce',
-
-    // === DESIGN & CREATIVE ===
-    'Graphic Design', 'UI/UX Design', 'Web Design', 'Brand Identity',
-    'Adobe Photoshop', 'Adobe Illustrator', 'Adobe InDesign', 'Figma', 'Sketch',
-    'Motion Graphics', 'Video Editing', 'Adobe Premiere', 'After Effects',
-    '3D Modeling', 'Blender', 'Maya', 'Cinema 4D', 'Rendering',
-    'Interior Design', 'Product Design', 'Fashion Design', 'Packaging Design',
-
-    // === HEALTHCARE & LIFE SCIENCES ===
-    'Clinical Research', 'Clinical Trials', 'GCP', 'Regulatory Affairs',
-    'Medical Writing', 'Pharmacovigilance', 'Drug Development',
-    'Laboratory Techniques', 'PCR', 'HPLC', 'Mass Spectrometry',
-    'Biotechnology', 'Molecular Biology', 'Cell Culture', 'Bioinformatics',
-    'Healthcare Management', 'Patient Care', 'Medical Imaging',
-    'Nursing', 'Physiotherapy', 'Nutrition', 'Public Health',
-
-    // === LAW & LEGAL ===
-    'Legal Research', 'Contract Law', 'Corporate Law', 'Commercial Law',
-    'Intellectual Property', 'Patent Law', 'Trademark', 'Copyright',
-    'Labor Law', 'Employment Law', 'GDPR', 'Privacy Law',
-    'Litigation', 'Legal Writing', 'Due Diligence', 'Compliance',
-
-    // === SCIENCES ===
-    'Research Methodology', 'Statistical Analysis', 'SPSS', 'Stata',
-    'Laboratory Management', 'Scientific Writing', 'Peer Review',
-    'Physics', 'Chemistry', 'Biology', 'Environmental Science',
-    'Geology', 'Materials Science', 'Nanotechnology',
-
-    // === EDUCATION & TRAINING ===
-    'Teaching', 'Curriculum Development', 'Instructional Design',
-    'E-Learning', 'Training Delivery', 'Educational Technology',
-    'Assessment Design', 'Student Mentoring', 'Academic Writing',
-
-    // === LANGUAGES ===
-    'English', 'Italian', 'Spanish', 'French', 'German', 'Chinese', 'Arabic',
-    'Translation', 'Interpretation', 'Localization', 'Technical Translation',
-
-    // === SOFT SKILLS ===
-    'Leadership', 'Team Management', 'Communication', 'Presentation',
-    'Negotiation', 'Problem Solving', 'Critical Thinking', 'Analytical Thinking',
-    'Creativity', 'Innovation', 'Adaptability', 'Time Management',
-    'Emotional Intelligence', 'Conflict Resolution', 'Cross-cultural Communication',
-
-    // === HOSPITALITY & TOURISM ===
-    'Hotel Management', 'Event Planning', 'Tourism Management',
-    'Customer Service', 'Front Office', 'Food & Beverage',
-
-    // === AGRICULTURE & ENVIRONMENT ===
-    'Agronomy', 'Sustainable Agriculture', 'Food Science',
-    'Environmental Management', 'Sustainability', 'Renewable Energy',
-    'Waste Management', 'Water Management', 'Climate Science'
-  ]
+  const toggleCategory = (key: string) => {
+    setExpandedCategories(prev => ({ ...prev, [key]: !prev[key] }))
+  }
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -471,7 +479,7 @@ export default function ExplorePage() {
                   <div>
                     <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
                       <Award className="h-4 w-4" />
-                      {t('filters.skills', { count: popularSkills.length })}
+                      {t('filters.skills', { count: allSkills.length })}
                     </h3>
 
                     {/* Skills Search */}
@@ -483,28 +491,69 @@ export default function ExplorePage() {
                       onChange={(e) => setSkillSearchQuery(e.target.value)}
                     />
 
-                    {/* Skills List */}
+                    {/* Categorized Skills List */}
                     <div className="max-h-96 overflow-y-auto pr-2 space-y-1">
-                      {popularSkills
-                        .filter(skill =>
-                          skill.toLowerCase().includes(skillSearchQuery.toLowerCase())
-                        )
-                        .map((skill) => (
-                          <Badge
-                            key={skill}
-                            variant={selectedSkill === skill ? 'default' : 'outline'}
-                            className="cursor-pointer hover:bg-primary hover:text-white transition-colors mr-2 mb-2 inline-flex"
-                            onClick={() => setSelectedSkill(selectedSkill === skill ? '' : skill)}
-                          >
-                            {skill}
-                          </Badge>
-                        ))}
-                      {popularSkills.filter(skill =>
-                        skill.toLowerCase().includes(skillSearchQuery.toLowerCase())
-                      ).length === 0 && (
-                        <p className="text-sm text-muted-foreground text-center py-4">
-                          {t('filters.noSkillsFound', { query: skillSearchQuery })}
-                        </p>
+                      {skillSearchQuery ? (
+                        // Flat filtered view when searching
+                        <>
+                          {allSkills
+                            .filter(skill =>
+                              skill.toLowerCase().includes(skillSearchQuery.toLowerCase())
+                            )
+                            .map((skill) => (
+                              <Badge
+                                key={skill}
+                                variant={selectedSkill === skill ? 'default' : 'outline'}
+                                className="cursor-pointer hover:bg-primary hover:text-white transition-colors mr-1 mb-1.5 inline-flex text-xs"
+                                onClick={() => setSelectedSkill(selectedSkill === skill ? '' : skill)}
+                              >
+                                {skill}
+                              </Badge>
+                            ))}
+                          {allSkills.filter(skill =>
+                            skill.toLowerCase().includes(skillSearchQuery.toLowerCase())
+                          ).length === 0 && (
+                            <p className="text-sm text-muted-foreground text-center py-4">
+                              {t('filters.noSkillsFound', { query: skillSearchQuery })}
+                            </p>
+                          )}
+                        </>
+                      ) : (
+                        // Categorized accordion view
+                        <div className="space-y-1">
+                          {Object.entries(skillCategories).map(([categoryKey, skills]) => (
+                            <div key={categoryKey} className="border border-border rounded-md overflow-hidden">
+                              <button
+                                type="button"
+                                className="w-full flex items-center justify-between px-2.5 py-2 text-xs font-semibold text-foreground hover:bg-muted/50 transition-colors"
+                                onClick={() => toggleCategory(categoryKey)}
+                              >
+                                <span>{t(`filters.skillCategories.${categoryKey}`)}</span>
+                                <span className="flex items-center gap-1 text-muted-foreground">
+                                  <span className="text-[10px]">{skills.length}</span>
+                                  {expandedCategories[categoryKey]
+                                    ? <ChevronDown className="h-3.5 w-3.5" />
+                                    : <ChevronRight className="h-3.5 w-3.5" />
+                                  }
+                                </span>
+                              </button>
+                              {expandedCategories[categoryKey] && (
+                                <div className="px-2.5 pb-2 pt-1 border-t border-border bg-muted/20">
+                                  {skills.map((skill) => (
+                                    <Badge
+                                      key={skill}
+                                      variant={selectedSkill === skill ? 'default' : 'outline'}
+                                      className="cursor-pointer hover:bg-primary hover:text-white transition-colors mr-1 mb-1.5 inline-flex text-xs"
+                                      onClick={() => setSelectedSkill(selectedSkill === skill ? '' : skill)}
+                                    >
+                                      {skill}
+                                    </Badge>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
                       )}
                     </div>
                   </div>
@@ -572,6 +621,9 @@ export default function ExplorePage() {
                                   <Calendar className="h-3 w-3" />
                                   {t('card.classOf', { year: student.graduationYear })}
                                 </div>
+                              </div>
+                              <div className="mt-1.5">
+                                <TrustScoreBadge userId={student.id} compact />
                               </div>
                             </div>
                           </div>

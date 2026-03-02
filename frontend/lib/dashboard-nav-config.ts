@@ -1,0 +1,215 @@
+export type DashboardRole = 'student' | 'recruiter' | 'university' | 'institution'
+
+export interface NavItem {
+  labelKey: string
+  href: string
+}
+
+export interface NavGroup {
+  labelKey: string
+  items: NavItem[]
+}
+
+export interface NavConfig {
+  groups: NavGroup[]
+}
+
+const student: NavConfig = {
+  groups: [
+    {
+      labelKey: 'portfolio',
+      items: [
+        { labelKey: 'projects', href: '/dashboard/student/projects' },
+        { labelKey: 'profile', href: '/dashboard/student/profile' },
+        { labelKey: 'profileOptimizer', href: '/dashboard/student/profile-optimizer' },
+      ],
+    },
+    {
+      labelKey: 'career',
+      items: [
+        { labelKey: 'jobs', href: '/dashboard/student/jobs' },
+        { labelKey: 'applications', href: '/dashboard/student/applications' },
+        { labelKey: 'skillPath', href: '/dashboard/student/skill-path' },
+        { labelKey: 'aiJobSearch', href: '/dashboard/student/ai-job-search' },
+      ],
+    },
+    {
+      labelKey: 'community',
+      items: [
+        { labelKey: 'messages', href: '/dashboard/student/messages' },
+        { labelKey: 'mentoring', href: '/dashboard/student/mentoring' },
+      ],
+    },
+    {
+      labelKey: 'insights',
+      items: [
+        { labelKey: 'analytics', href: '/dashboard/student/analytics' },
+        { labelKey: 'activity', href: '/dashboard/student/activity' },
+      ],
+    },
+    {
+      labelKey: 'more',
+      items: [
+        { labelKey: 'courses', href: '/dashboard/student/courses' },
+        { labelKey: 'challenges', href: '/dashboard/student/challenges' },
+        { labelKey: 'referrals', href: '/dashboard/student/referrals' },
+        { labelKey: 'employerReviews', href: '/dashboard/student/reviews' },
+        { labelKey: 'feedback', href: '/dashboard/student/feedback' },
+        { labelKey: 'upgrade', href: '/dashboard/student/upgrade' },
+        { labelKey: 'privacy', href: '/dashboard/student/privacy' },
+      ],
+    },
+  ],
+}
+
+const recruiter: NavConfig = {
+  groups: [
+    {
+      labelKey: 'talent',
+      items: [
+        { labelKey: 'candidates', href: '/dashboard/recruiter/candidates' },
+        { labelKey: 'talentDiscovery', href: '/dashboard/recruiter/talent-discovery' },
+        { labelKey: 'advancedSearch', href: '/dashboard/recruiter/advanced-search' },
+        { labelKey: 'aiSearch', href: '/dashboard/recruiter/ai-search' },
+        { labelKey: 'geographicSearch', href: '/dashboard/recruiter/geographic-search' },
+        { labelKey: 'courseSearch', href: '/dashboard/recruiter/course-search' },
+        { labelKey: 'savedCandidates', href: '/dashboard/recruiter/saved-candidates' },
+        { labelKey: 'savedSearches', href: '/dashboard/recruiter/saved-searches' },
+      ],
+    },
+    {
+      labelKey: 'jobs',
+      items: [
+        { labelKey: 'listings', href: '/dashboard/recruiter/jobs' },
+        { labelKey: 'postJob', href: '/dashboard/recruiter/post-job' },
+      ],
+    },
+    {
+      labelKey: 'messages',
+      items: [
+        { labelKey: 'messages', href: '/dashboard/recruiter/messages' },
+      ],
+    },
+    {
+      labelKey: 'insights',
+      items: [
+        { labelKey: 'analytics', href: '/dashboard/recruiter/analytics' },
+        { labelKey: 'talentAnalytics', href: '/dashboard/recruiter/talent-analytics' },
+        { labelKey: 'marketIntelligence', href: '/dashboard/recruiter/market-intelligence' },
+      ],
+    },
+    {
+      labelKey: 'hiring',
+      items: [
+        { labelKey: 'decisionPacks', href: '/dashboard/recruiter/decision-pack' },
+        { labelKey: 'compareCandidates', href: '/dashboard/recruiter/compare' },
+      ],
+    },
+    {
+      labelKey: 'more',
+      items: [
+        { labelKey: 'challenges', href: '/dashboard/recruiter/challenges' },
+        { labelKey: 'settings', href: '/dashboard/recruiter/settings' },
+      ],
+    },
+  ],
+}
+
+const university: NavConfig = {
+  groups: [
+    {
+      labelKey: 'students',
+      items: [
+        { labelKey: 'list', href: '/dashboard/university/students' },
+        { labelKey: 'addStudent', href: '/dashboard/university/students/add' },
+        { labelKey: 'importStudents', href: '/dashboard/university/students/import' },
+      ],
+    },
+    {
+      labelKey: 'academics',
+      items: [
+        { labelKey: 'courses', href: '/dashboard/university/courses' },
+        { labelKey: 'departments', href: '/dashboard/university/departments' },
+        { labelKey: 'projects', href: '/dashboard/university/projects' },
+      ],
+    },
+    {
+      labelKey: 'career',
+      items: [
+        { labelKey: 'placements', href: '/dashboard/university/placements' },
+        { labelKey: 'recruiters', href: '/dashboard/university/recruiters' },
+        { labelKey: 'alumni', href: '/dashboard/university/alumni' },
+      ],
+    },
+    {
+      labelKey: 'exchange',
+      items: [
+        { labelKey: 'partnerships', href: '/dashboard/university/partnerships' },
+        { labelKey: 'events', href: '/dashboard/university/events' },
+      ],
+    },
+    {
+      labelKey: 'insights',
+      items: [
+        { labelKey: 'analytics', href: '/dashboard/university/analytics' },
+        { labelKey: 'skillsGap', href: '/dashboard/university/skills-gap' },
+      ],
+    },
+    {
+      labelKey: 'more',
+      items: [
+        { labelKey: 'challenges', href: '/dashboard/university/challenges' },
+        { labelKey: 'aiSearch', href: '/dashboard/university/ai-search' },
+        { labelKey: 'sync', href: '/dashboard/university/sync' },
+        { labelKey: 'settings', href: '/dashboard/university/settings' },
+      ],
+    },
+  ],
+}
+
+const institution: NavConfig = {
+  groups: [
+    {
+      labelKey: 'students',
+      items: [
+        { labelKey: 'list', href: '/dashboard/university/students' },
+        { labelKey: 'projects', href: '/dashboard/university/projects' },
+      ],
+    },
+    {
+      labelKey: 'career',
+      items: [
+        { labelKey: 'placements', href: '/dashboard/university/placements' },
+        { labelKey: 'careerDay', href: '/dashboard/institution/career-day' },
+      ],
+    },
+    {
+      labelKey: 'exchange',
+      items: [
+        { labelKey: 'partnerships', href: '/dashboard/university/partnerships' },
+        { labelKey: 'events', href: '/dashboard/university/events' },
+      ],
+    },
+    {
+      labelKey: 'insights',
+      items: [
+        { labelKey: 'analytics', href: '/dashboard/university/analytics' },
+        { labelKey: 'skillsGap', href: '/dashboard/university/skills-gap' },
+      ],
+    },
+    {
+      labelKey: 'more',
+      items: [
+        { labelKey: 'embedConfig', href: '/dashboard/institution/embed-config' },
+        { labelKey: 'settings', href: '/dashboard/university/settings' },
+      ],
+    },
+  ],
+}
+
+export const dashboardNavConfig: Record<DashboardRole, NavConfig> = {
+  student,
+  recruiter,
+  university,
+  institution,
+}

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
-import { analyzeProject, type ProjectData, type Discipline } from '@/lib/ai-analysis'
+import { runAIAnalysis, buildProjectData } from '@/lib/run-ai-analysis'
 
 // POST /api/projects - Create a new project
 export async function POST(request: NextRequest) {
@@ -113,27 +113,8 @@ export async function POST(request: NextRequest) {
     })
 
     // Trigger AI analysis asynchronously (non-blocking)
-    runAIAnalysis(project.id, {
-      title: project.title,
-      description: project.description,
-      discipline: project.discipline as Discipline,
-      projectType: project.projectType || undefined,
-      technologies: project.technologies,
-      githubUrl: project.githubUrl || undefined,
-      liveUrl: project.liveUrl || undefined,
-      skills: project.skills,
-      tools: project.tools,
-      competencies: project.competencies,
-      courseName: project.courseName || undefined,
-      courseCode: project.courseCode || undefined,
-      grade: project.grade || undefined,
-      professor: project.professor || undefined,
-      duration: project.duration || undefined,
-      teamSize: project.teamSize || undefined,
-      role: project.role || undefined,
-      outcome: project.outcome || undefined,
-      certifications: project.certifications
-    }).catch(err => console.error('AI analysis failed:', err))
+    runAIAnalysis(project.id, buildProjectData(project))
+      .catch(err => console.error('AI analysis failed:', err))
 
     // Invalidate skill path cache so recommendations update with new project
     await prisma.skillPathRecommendation.deleteMany({
@@ -273,65 +254,3 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// ============================================================================
-// AI ANALYSIS - Asynchronous Processing
-// ============================================================================
-
-/**
- * Run AI analysis on a project asynchronously
- * Updates the project with analysis results without blocking the API response
- */
-async function runAIAnalysis(projectId: string, projectData: ProjectData) {
-  try {
-    console.log(`[AI Analysis] Starting analysis for project ${projectId}`)
-
-    // Run the AI analysis
-    const analysis = await analyzeProject(projectData)
-
-    console.log(`[AI Analysis] Analysis complete for project ${projectId}:`, {
-      overallScore: analysis.overallScore,
-      innovationScore: analysis.innovationScore,
-      complexityScore: analysis.complexityScore
-    })
-
-    // Update the project with analysis results
-    await prisma.project.update({
-      where: { id: projectId },
-      data: {
-        // AI Scores (using schema fields)
-        innovationScore: analysis.innovationScore,
-        complexityScore: analysis.complexityScore,
-        marketRelevance: analysis.relevanceScore,
-
-        // AI Insights (store all analysis data in JSON field)
-        aiInsights: {
-          summary: analysis.summary,
-          strengths: analysis.strengths,
-          improvements: analysis.improvements,
-          highlights: analysis.highlights,
-          qualityScore: analysis.qualityScore,
-          overallScore: analysis.overallScore,
-          detectedCompetencies: analysis.detectedCompetencies,
-          analyzedAt: new Date().toISOString()
-        },
-
-        // Mark as analyzed
-        aiAnalyzed: true
-      }
-    })
-
-    console.log(`[AI Analysis] Project ${projectId} updated with analysis results`)
-
-  } catch (error) {
-    console.error(`[AI Analysis] Failed for project ${projectId}:`, error)
-
-    // Mark analysis as attempted but failed
-    await prisma.project.update({
-      where: { id: projectId },
-      data: {
-        aiAnalyzed: false,
-        // Could add an aiAnalysisError field to track failures
-      }
-    }).catch(err => console.error('Failed to update project after AI error:', err))
-  }
-}

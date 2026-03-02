@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { z } from 'zod'
+import { createNotification } from '@/lib/notifications'
 
 const sendMessageSchema = z.object({
   recipientId: z.string().optional().nullable(),
@@ -215,6 +216,19 @@ export async function POST(req: NextRequest) {
             return message
           })
 
+          // Notify the recipient
+          if (recipientId) {
+            const senderName = [result.sender.firstName, result.sender.lastName].filter(Boolean).join(' ') || 'A recruiter'
+            await createNotification({
+              userId: recipientId,
+              type: 'MESSAGE_RECEIVED',
+              title: 'New Message from Recruiter',
+              body: `${senderName} sent you a message${validatedData.subject ? `: ${validatedData.subject}` : ''}`,
+              link: `/dashboard/student/messages?thread=${threadId}`,
+              groupKey: `msg-${threadId}`,
+            }).catch(() => {})
+          }
+
           return NextResponse.json({
             success: true,
             message: result,
@@ -275,6 +289,19 @@ export async function POST(req: NextRequest) {
         }
       })
 
+      // Notify the recipient
+      if (recipientId) {
+        const senderName = [message.sender.firstName, message.sender.lastName].filter(Boolean).join(' ') || 'A recruiter'
+        await createNotification({
+          userId: recipientId,
+          type: 'MESSAGE_RECEIVED',
+          title: 'New Message from Recruiter',
+          body: `${senderName} sent you a message${validatedData.subject ? `: ${validatedData.subject}` : ''}`,
+          link: `/dashboard/student/messages?thread=${threadId}`,
+          groupKey: `msg-${threadId}`,
+        }).catch(() => {})
+      }
+
       return NextResponse.json({
         success: true,
         message,
@@ -331,6 +358,19 @@ export async function POST(req: NextRequest) {
         }
       }
     })
+
+    // Notify the recipient
+    if (validatedData.recipientId) {
+      const senderName = [message.sender.firstName, message.sender.lastName].filter(Boolean).join(' ') || 'Someone'
+      await createNotification({
+        userId: validatedData.recipientId,
+        type: 'MESSAGE_RECEIVED',
+        title: 'New Message',
+        body: `${senderName} sent you a message${validatedData.subject ? `: ${validatedData.subject}` : ''}`,
+        link: `/dashboard/${session.user.role?.toLowerCase() || 'student'}/messages?thread=${threadId}`,
+        groupKey: `msg-${threadId}`,
+      }).catch(() => {}) // Don't fail the message send if notification fails
+    }
 
     return NextResponse.json({
       success: true,

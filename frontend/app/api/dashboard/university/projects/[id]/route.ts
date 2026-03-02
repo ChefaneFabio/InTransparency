@@ -3,6 +3,8 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { z } from 'zod'
+import crypto from 'crypto'
+import { createNotification } from '@/lib/notifications'
 
 const verificationActionSchema = z.object({
   action: z.enum(['verify', 'reject', 'request_info']),
@@ -271,7 +273,57 @@ export async function POST(
       }
     })
 
-    // TODO: Send notification to student about verification status change
+    // Auto-issue portable badge on verification
+    if (action === 'verify') {
+      const fullProject = await prisma.project.findUnique({
+        where: { id: projectId },
+        select: { id: true, title: true, description: true, grade: true, skills: true },
+      })
+      if (fullProject) {
+        const contentHash = crypto
+          .createHash('sha256')
+          .update(JSON.stringify({
+            id: fullProject.id,
+            title: fullProject.title,
+            description: fullProject.description,
+            grade: fullProject.grade,
+            skills: fullProject.skills,
+          }))
+          .digest('hex')
+
+        // Upsert: only create if no badge with same hash exists
+        const existing = await prisma.portableBadge.findFirst({
+          where: { projectId, contentHash },
+        })
+        if (!existing) {
+          await prisma.portableBadge.create({
+            data: {
+              projectId,
+              contentHash,
+              issuedBy: session.user.id,
+            },
+          })
+        }
+      }
+    }
+
+    // Notify student about verification status change
+    await createNotification({
+      userId: project.userId,
+      type: 'VERIFICATION_UPDATE',
+      title: action === 'verify'
+        ? 'Project Verified!'
+        : action === 'reject'
+          ? 'Project Verification Rejected'
+          : 'More Information Requested',
+      body: action === 'verify'
+        ? `Your project has been verified by ${universityName}. You can now export your verification badge.`
+        : action === 'reject'
+          ? `Your project verification was not approved. ${message || 'Please review the requirements.'}`
+          : `Your university has requested additional information. ${message || 'Please check the feedback.'}`,
+      link: `/dashboard/student/projects/${projectId}`,
+      groupKey: `project:${projectId}:verification`,
+    })
 
     return NextResponse.json({
       success: true,
