@@ -1,35 +1,29 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Check, Award, Brain, Users, TrendingUp, Shield, Clock, Star, Sparkles, Target, CheckCircle2 } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
-import { trackFakeDoorClick, getABTestVariant, getVariantPricing } from '@/lib/analytics'
+import { useSession } from 'next-auth/react'
 
 export default function CertificationPage() {
   const router = useRouter()
-  const [variant, setVariant] = useState<'A' | 'B' | 'C' | 'D'>('A')
-  const [pricing, setPricing] = useState({ price: 99, model: 'one-time', label: '€99 One-Time' })
+  const { data: session } = useSession()
 
-  useEffect(() => {
-    // Assign A/B test variant on client side
-    const assignedVariant = getABTestVariant()
-    setVariant(assignedVariant)
-    setPricing(getVariantPricing(assignedVariant))
-  }, [])
-
-  const handleGetCertified = async () => {
-    // Track fake door click with analytics
-    trackFakeDoorClick('certification', pricing.price, variant)
-
-    // Redirect to waitlist
-    router.push('/certification-waitlist?variant=' + variant)
+  const handleGetCertified = () => {
+    if (session?.user) {
+      // Logged-in: go straight to the assessment dashboard
+      router.push('/dashboard/student/certifications')
+    } else {
+      // Not logged in: send to register, then redirect after
+      router.push('/auth/register?callbackUrl=/dashboard/student/certifications')
+    }
   }
 
   const softSkills = [
@@ -150,7 +144,7 @@ export default function CertificationPage() {
                 className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-xl text-lg px-8 py-6"
               >
                 <Award className="mr-2 h-5 w-5" />
-                Get Certified - {pricing.label}
+                Get Certified — Free
               </Button>
 
               <Button size="lg" variant="outline" asChild>
@@ -270,8 +264,8 @@ export default function CertificationPage() {
                 <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
                   <div className="text-center">
                     <CardTitle className="text-3xl mb-4">What You Get</CardTitle>
-                    <div className="text-5xl font-bold text-gray-900 mb-2">€{pricing.price}</div>
-                    <p className="text-gray-600">{pricing.model === 'one-time' ? 'One-time payment, lifetime access' : 'Monthly subscription'}</p>
+                    <div className="text-5xl font-bold text-gray-900 mb-2">Free</div>
+                    <p className="text-gray-600">Take assessments at no cost during early access</p>
                   </div>
                 </CardHeader>
                 <CardContent className="p-8">
@@ -391,7 +385,7 @@ export default function CertificationPage() {
                   className="text-lg px-8 py-6"
                 >
                   <Award className="mr-2 h-5 w-5" />
-                  Get Certified - {pricing.label}
+                  Get Certified — Free
                 </Button>
                 <p className="text-sm text-white mt-6">
                   ✓ Complete in 30 minutes  ✓ Instant certification  ✓ Lifetime access
