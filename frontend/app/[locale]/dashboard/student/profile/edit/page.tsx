@@ -26,7 +26,9 @@ import {
   Globe,
   Github,
   Linkedin,
-  Link as LinkIcon
+  Link as LinkIcon,
+  Loader2,
+  Sparkles
 } from 'lucide-react'
 
 export default function EditProfilePage() {
@@ -57,6 +59,10 @@ export default function EditProfilePage() {
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState<any>({})
   const [successMessage, setSuccessMessage] = useState('')
+  const [courseUrl, setCourseUrl] = useState('')
+  const [isFetchingCourse, setIsFetchingCourse] = useState(false)
+  const [suggestedSkills, setSuggestedSkills] = useState<string[]>([])
+  const [suggestedInterests, setSuggestedInterests] = useState<string[]>([])
 
   useEffect(() => {
     if (user) {
@@ -191,8 +197,18 @@ export default function EditProfilePage() {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
           bio: formData.bio,
           tagline: formData.bio?.slice(0, 120),
+          university: formData.university,
+          degree: formData.major,
+          location: formData.location,
+          linkedinUrl: formData.linkedinUrl,
+          githubUrl: formData.githubUrl,
+          portfolioUrl: formData.portfolioUrl,
+          skills: formData.skills,
+          interests: formData.interests,
         }),
       })
 
@@ -212,6 +228,42 @@ export default function EditProfilePage() {
       setErrors({ general: 'Failed to update profile. Please try again.' })
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  const handleFetchCourseInfo = async () => {
+    if (!courseUrl.trim()) return
+    setIsFetchingCourse(true)
+    setErrors((prev: any) => ({ ...prev, courseUrl: null }))
+
+    try {
+      const res = await fetch('/api/course-info/extract', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: courseUrl.trim() }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Could not extract info from this URL')
+      }
+
+      const data = await res.json()
+
+      setFormData(prev => ({
+        ...prev,
+        university: data.university || prev.university,
+        major: data.major || prev.major,
+        graduationYear: data.graduationYear || prev.graduationYear,
+      }))
+
+      // Store suggested skills/interests for the Skills tab
+      if (data.skills?.length) setSuggestedSkills(data.skills)
+      if (data.interests?.length) setSuggestedInterests(data.interests)
+    } catch (error: any) {
+      setErrors((prev: any) => ({ ...prev, courseUrl: error.message }))
+    } finally {
+      setIsFetchingCourse(false)
     }
   }
 
@@ -404,6 +456,42 @@ export default function EditProfilePage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
+                {/* Auto-fill from course URL */}
+                <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg space-y-3">
+                  <Label htmlFor="courseUrl" className="flex items-center gap-2 text-blue-800 font-medium">
+                    <Sparkles className="h-4 w-4" />
+                    Auto-fill from course URL
+                  </Label>
+                  <p className="text-sm text-blue-600">
+                    Paste a link to your university course page and we&apos;ll extract the details for you
+                  </p>
+                  <div className="flex gap-2">
+                    <Input
+                      id="courseUrl"
+                      placeholder="https://www.unibocconi.it/en/programmes/master-science..."
+                      value={courseUrl}
+                      onChange={(e) => setCourseUrl(e.target.value)}
+                      onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleFetchCourseInfo())}
+                      className="bg-white"
+                    />
+                    <Button
+                      type="button"
+                      onClick={handleFetchCourseInfo}
+                      disabled={!courseUrl.trim() || isFetchingCourse}
+                      size="sm"
+                    >
+                      {isFetchingCourse ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        'Extract'
+                      )}
+                    </Button>
+                  </div>
+                  {errors.courseUrl && (
+                    <p className="text-sm text-red-600">{errors.courseUrl}</p>
+                  )}
+                </div>
+
                 <div className="space-y-2">
                   <Label htmlFor="university">University</Label>
                   <Input
@@ -493,6 +581,34 @@ export default function EditProfilePage() {
                       ))}
                     </div>
 
+                    {suggestedSkills.length > 0 && (
+                      <div className="space-y-2">
+                        <p className="text-sm text-blue-700 flex items-center gap-1">
+                          <Sparkles className="h-3 w-3" />
+                          Suggested from your course:
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {suggestedSkills
+                            .filter(s => !formData.skills.includes(s))
+                            .map((skill, i) => (
+                              <Badge
+                                key={i}
+                                variant="outline"
+                                className="cursor-pointer border-blue-300 text-blue-700 hover:bg-blue-50"
+                                onClick={() => {
+                                  if (formData.skills.length < 20) {
+                                    setFormData(prev => ({ ...prev, skills: [...prev.skills, skill] }))
+                                  }
+                                }}
+                              >
+                                <Plus className="h-3 w-3 mr-1" />
+                                {skill}
+                              </Badge>
+                            ))}
+                        </div>
+                      </div>
+                    )}
+
                     <p className="text-xs text-gray-700">
                       {formData.skills.length}/20 skills added
                     </p>
@@ -540,6 +656,34 @@ export default function EditProfilePage() {
                         </Badge>
                       ))}
                     </div>
+
+                    {suggestedInterests.length > 0 && (
+                      <div className="space-y-2">
+                        <p className="text-sm text-blue-700 flex items-center gap-1">
+                          <Sparkles className="h-3 w-3" />
+                          Suggested from your course:
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {suggestedInterests
+                            .filter(i => !formData.interests.includes(i))
+                            .map((interest, idx) => (
+                              <Badge
+                                key={idx}
+                                variant="outline"
+                                className="cursor-pointer border-blue-300 text-blue-700 hover:bg-blue-50"
+                                onClick={() => {
+                                  if (formData.interests.length < 10) {
+                                    setFormData(prev => ({ ...prev, interests: [...prev.interests, interest] }))
+                                  }
+                                }}
+                              >
+                                <Plus className="h-3 w-3 mr-1" />
+                                {interest}
+                              </Badge>
+                            ))}
+                        </div>
+                      </div>
+                    )}
 
                     <p className="text-xs text-gray-700">
                       {formData.interests.length}/10 interests added
