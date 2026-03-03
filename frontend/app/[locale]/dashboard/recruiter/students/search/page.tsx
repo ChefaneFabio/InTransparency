@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { useAuth } from '@/lib/auth/AuthContext'
+import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -63,7 +63,8 @@ interface SearchResponse {
 }
 
 export default function StudentSearchPage() {
-  const { user } = useAuth()
+  const { data: session } = useSession()
+  const user = session?.user as any
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<Student[]>([])
   const [loading, setLoading] = useState(false)

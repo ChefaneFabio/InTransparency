@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import { Award, CheckCircle2, Sparkles, Mail, User, Clock } from 'lucide-react'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 
 export default function CertificationWaitlistPage() {
   const [formData, setFormData] = useState({

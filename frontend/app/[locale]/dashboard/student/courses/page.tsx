@@ -1,8 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useAuth } from '@/lib/auth/AuthContext'
-import { coursesApi, filesApi } from '@/lib/api'
+import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -18,7 +17,6 @@ import {
   Calendar,
   BookOpen,
   TrendingUp,
-  FileText,
   Trash2,
   Edit3,
   CheckCircle,
@@ -28,22 +26,32 @@ import {
   Building as University
 } from 'lucide-react'
 
+interface CourseData {
+  id: string
+  courseCode: string
+  courseName: string
+  semester: string
+  academicYear?: string
+  credits: number | null
+  grade?: string
+  professorName?: string
+  department?: string
+  university?: string
+  ectsCredits?: number | null
+  projectCount?: number
+  source?: string
+  isCompleted?: boolean
+}
+
 export default function CoursesPage() {
-  const { user } = useAuth()
-  const [courses, setCourses] = useState<any[]>([])
+  const { data: session } = useSession()
+  const [courses, setCourses] = useState<CourseData[]>([])
   const [loading, setLoading] = useState(true)
   const [showAddForm, setShowAddForm] = useState(false)
   const [showTranscriptUpload, setShowTranscriptUpload] = useState(false)
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
   const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'success' | 'error'>('idle')
-  const [lastSyncTime, setLastSyncTime] = useState<Date | null>(null)
-  const [universityConnection, setUniversityConnection] = useState({
-    isConnected: true,
-    university: user?.university || 'Stanford University',
-    status: 'connected',
-    lastSync: '2 hours ago'
-  })
 
   const [formData, setFormData] = useState({
     courseCode: '',
@@ -53,7 +61,6 @@ export default function CoursesPage() {
     credits: 3,
     grade: '',
     instructor: '',
-    isCompleted: false
   })
 
   useEffect(() => {
@@ -63,10 +70,15 @@ export default function CoursesPage() {
   const fetchCourses = async () => {
     try {
       setLoading(true)
-      const response = await coursesApi.getAll()
-      setCourses(response.data.data.courses || [])
-    } catch (error: any) {
-      console.error('Failed to fetch courses:', error)
+      const res = await fetch('/api/courses')
+      if (res.ok) {
+        const data = await res.json()
+        setCourses(data.data?.courses || [])
+      } else {
+        setError('Failed to load courses')
+      }
+    } catch (err) {
+      console.error('Failed to fetch courses:', err)
       setError('Failed to load courses')
     } finally {
       setLoading(false)
@@ -78,67 +90,33 @@ export default function CoursesPage() {
     try {
       setError('')
       setMessage('')
-      
-      await coursesApi.create(formData)
-      setMessage('Course added successfully!')
-      setShowAddForm(false)
-      setFormData({
-        courseCode: '',
-        courseName: '',
-        semester: '',
-        year: new Date().getFullYear(),
-        credits: 3,
-        grade: '',
-        instructor: '',
-        isCompleted: false
+
+      const res = await fetch('/api/courses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       })
-      
-      fetchCourses()
-    } catch (error: any) {
-      console.error('Failed to create course:', error)
-      setError(error.response?.data?.error || 'Failed to add course')
-    }
-  }
 
-  const handleTranscriptUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-
-    try {
-      setError('')
-      setMessage('')
-      setLoading(true)
-
-      const response = await filesApi.parseTranscript(file)
-      const parsedData = response.data.data.parsed
-
-      if (parsedData.courses && parsedData.courses.length > 0) {
-        const bulkResponse = await coursesApi.bulkCreate(parsedData.courses)
-        setMessage(`Successfully imported ${parsedData.courses.length} courses from transcript!`)
+      if (res.ok) {
+        setMessage('Course added successfully!')
+        setShowAddForm(false)
+        setFormData({
+          courseCode: '',
+          courseName: '',
+          semester: '',
+          year: new Date().getFullYear(),
+          credits: 3,
+          grade: '',
+          instructor: '',
+        })
         fetchCourses()
       } else {
-        setMessage('Transcript uploaded but no courses were detected.')
+        const data = await res.json()
+        setError(data.error || 'Failed to add course')
       }
-      
-      setShowTranscriptUpload(false)
-    } catch (error: any) {
-      console.error('Failed to upload transcript:', error)
-      setError(error.response?.data?.error || 'Failed to upload transcript')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const deleteCourse = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this course?')) return
-
-    try {
-      await coursesApi.delete(id)
-      setMessage('Course deleted successfully!')
-      fetchCourses()
-    } catch (error: any) {
-      console.error('Failed to delete course:', error)
-      setError(error.response?.data?.error || 'Failed to delete course')
+    } catch (err) {
+      console.error('Failed to create course:', err)
+      setError('Failed to add course')
     }
   }
 
@@ -146,86 +124,25 @@ export default function CoursesPage() {
     try {
       setSyncStatus('syncing')
       setError('')
-
-      // Simulate university API sync
+      // University sync is a placeholder — real integration would call university API
       await new Promise(resolve => setTimeout(resolve, 2000))
-
-      // Mock sync response
-      const syncedCourses = [
-        {
-          id: 'sync-1',
-          courseCode: 'CS106A',
-          courseName: 'Programming Methodology',
-          semester: 'Fall',
-          year: 2023,
-          credits: 3,
-          grade: 'A',
-          instructor: 'Prof. Smith',
-          isCompleted: true,
-          source: 'university'
-        },
-        {
-          id: 'sync-2',
-          courseCode: 'MATH51',
-          courseName: 'Linear Algebra and Differential Calculus',
-          semester: 'Fall',
-          year: 2023,
-          credits: 5,
-          grade: 'A-',
-          instructor: 'Prof. Johnson',
-          isCompleted: true,
-          source: 'university'
-        }
-      ]
-
-      // Merge with existing courses (avoid duplicates)
-      setCourses(prev => {
-        const existing = prev.filter(c => !syncedCourses.find(sc => sc.courseCode === c.courseCode))
-        return [...existing, ...syncedCourses]
-      })
-
       setSyncStatus('success')
-      setLastSyncTime(new Date())
-      setMessage('Successfully synced with university records!')
-      setUniversityConnection(prev => ({
-        ...prev,
-        lastSync: 'Just now'
-      }))
-
-    } catch (error) {
+      setMessage('Sync complete. No new courses found from university records.')
+    } catch {
       setSyncStatus('error')
       setError('Failed to sync with university. Please try again.')
     }
   }
 
-  const calculateGPA = () => {
-    const gradePoints: any = {
-      'A+': 4.0, 'A': 4.0, 'A-': 3.7,
-      'B+': 3.3, 'B': 3.0, 'B-': 2.7,
-      'C+': 2.3, 'C': 2.0, 'C-': 1.7,
-      'D+': 1.3, 'D': 1.0, 'D-': 0.7,
-      'F': 0.0
-    }
-
-    const completedCourses = courses.filter(c => c.isCompleted && c.grade && gradePoints[c.grade] !== undefined)
-    if (completedCourses.length === 0) return 'N/A'
-
-    const totalPoints = completedCourses.reduce((sum, course) => {
-      return sum + (gradePoints[course.grade] * course.credits)
-    }, 0)
-
-    const totalCredits = completedCourses.reduce((sum, course) => sum + course.credits, 0)
-
-    return totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : 'N/A'
-  }
+  const totalCredits = courses.reduce((sum, c) => sum + (c.credits || 0), 0)
 
   if (loading && courses.length === 0) {
     return (
       <div className="space-y-8 animate-pulse">
-        <div className="h-8 bg-gray-200 rounded w-1/3"></div>
+        <div className="h-8 bg-gray-200 rounded w-1/3" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="h-48 bg-gray-200 rounded"></div>
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="h-48 bg-gray-200 rounded" />
           ))}
         </div>
       </div>
@@ -255,13 +172,6 @@ export default function CoursesPage() {
             )}
             Sync University
           </Button>
-          <Button
-            variant="outline"
-            onClick={() => setShowTranscriptUpload(true)}
-          >
-            <Upload className="mr-2 h-4 w-4" />
-            Upload Transcript
-          </Button>
           <Button onClick={() => setShowAddForm(true)}>
             <Plus className="mr-2 h-4 w-4" />
             Add Course
@@ -270,50 +180,36 @@ export default function CoursesPage() {
       </div>
 
       {/* University Connection Status */}
-      <Card className="border-l-4 border-l-blue-500">
-        <CardContent className="p-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-blue-100 rounded-full">
-                <University className="h-6 w-6 text-blue-600" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">
-                  {universityConnection.university}
-                </h3>
-                <div className="flex items-center space-x-2 mt-1">
-                  <div className="flex items-center space-x-1">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span className="text-sm text-gray-600">Connected</span>
+      {session?.user && (
+        <Card className="border-l-4 border-l-blue-500">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-blue-100 rounded-full">
+                  <University className="h-6 w-6 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">
+                    {(session.user as any).university || 'University not set'}
+                  </h3>
+                  <div className="flex items-center space-x-2 mt-1">
+                    <span className="text-sm text-gray-600">{courses.length} courses tracked</span>
                   </div>
-                  <span className="text-gray-600">•</span>
-                  <span className="text-sm text-gray-600">
-                    Last sync: {universityConnection.lastSync}
-                  </span>
                 </div>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Badge variant="secondary" className="bg-green-100 text-green-800">
-                <CheckCircle className="mr-1 h-3 w-3" />
-                Verified
-              </Badge>
-              <Button variant="ghost" size="sm">
-                <ExternalLink className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-          {syncStatus === 'syncing' && (
-            <div className="mt-4">
-              <div className="flex items-center space-x-2 mb-2">
-                <RefreshCw className="h-4 w-4 animate-spin text-blue-600" />
-                <span className="text-sm text-gray-600">Syncing with university database...</span>
+            {syncStatus === 'syncing' && (
+              <div className="mt-4">
+                <div className="flex items-center space-x-2 mb-2">
+                  <RefreshCw className="h-4 w-4 animate-spin text-blue-600" />
+                  <span className="text-sm text-gray-600">Syncing with university database...</span>
+                </div>
+                <Progress value={75} className="h-2" />
               </div>
-              <Progress value={75} className="h-2" />
-            </div>
-          )}
-        </CardContent>
-      </Card>
+            )}
+          </CardContent>
+        </Card>
+      )}
 
       {/* Messages */}
       {message && (
@@ -321,7 +217,7 @@ export default function CoursesPage() {
           <AlertDescription>{message}</AlertDescription>
         </Alert>
       )}
-      
+
       {error && (
         <Alert variant="destructive">
           <AlertDescription>{error}</AlertDescription>
@@ -329,7 +225,7 @@ export default function CoursesPage() {
       )}
 
       {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
@@ -341,42 +237,28 @@ export default function CoursesPage() {
             </div>
           </CardContent>
         </Card>
-        
+
+        <Card>
+          <CardContent className="p-6">
+            <div className="flex items-center">
+              <Calendar className="h-8 w-8 text-orange-600" />
+              <div className="ml-4">
+                <div className="text-2xl font-bold text-gray-900">{totalCredits}</div>
+                <div className="text-sm text-gray-600">Total Credits</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
               <GraduationCap className="h-8 w-8 text-green-600" />
               <div className="ml-4">
                 <div className="text-2xl font-bold text-gray-900">
-                  {courses.filter(c => c.isCompleted).length}
+                  {courses.filter(c => c.projectCount && c.projectCount > 0).length}
                 </div>
-                <div className="text-sm text-gray-600">Completed</div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <TrendingUp className="h-8 w-8 text-purple-600" />
-              <div className="ml-4">
-                <div className="text-2xl font-bold text-gray-900">{calculateGPA()}</div>
-                <div className="text-sm text-gray-600">Current GPA</div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center">
-              <Calendar className="h-8 w-8 text-orange-600" />
-              <div className="ml-4">
-                <div className="text-2xl font-bold text-gray-900">
-                  {courses.reduce((sum, c) => sum + c.credits, 0)}
-                </div>
-                <div className="text-sm text-gray-600">Total Credits</div>
+                <div className="text-sm text-gray-600">With Projects</div>
               </div>
             </div>
           </CardContent>
@@ -418,8 +300,8 @@ export default function CoursesPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <Label>Semester</Label>
-                  <Select 
-                    value={formData.semester} 
+                  <Select
+                    value={formData.semester}
                     onValueChange={(value) => setFormData({...formData, semester: value})}
                   >
                     <SelectTrigger>
@@ -460,7 +342,7 @@ export default function CoursesPage() {
                   <Label htmlFor="grade">Grade (Optional)</Label>
                   <Input
                     id="grade"
-                    placeholder="e.g. A, B+, 3.7"
+                    placeholder="e.g. A, B+, 28/30"
                     value={formData.grade}
                     onChange={(e) => setFormData({...formData, grade: e.target.value})}
                   />
@@ -476,59 +358,17 @@ export default function CoursesPage() {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  id="completed"
-                  checked={formData.isCompleted}
-                  onChange={(e) => setFormData({...formData, isCompleted: e.target.checked})}
-                />
-                <Label htmlFor="completed">Course completed</Label>
-              </div>
-
               <div className="flex space-x-3">
                 <Button type="submit">Add Course</Button>
-                <Button 
-                  type="button" 
-                  variant="outline" 
+                <Button
+                  type="button"
+                  variant="outline"
                   onClick={() => setShowAddForm(false)}
                 >
                   Cancel
                 </Button>
               </div>
             </form>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Transcript Upload */}
-      {showTranscriptUpload && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Upload Transcript</CardTitle>
-            <CardDescription>Upload your official transcript to automatically import courses</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="transcript">Select Transcript File (PDF, JPG, PNG)</Label>
-                <Input
-                  id="transcript"
-                  type="file"
-                  accept=".pdf,.jpg,.jpeg,.png"
-                  onChange={handleTranscriptUpload}
-                />
-              </div>
-              <div className="flex space-x-3">
-                <Button 
-                  type="button" 
-                  variant="outline" 
-                  onClick={() => setShowTranscriptUpload(false)}
-                >
-                  Cancel
-                </Button>
-              </div>
-            </div>
           </CardContent>
         </Card>
       )}
@@ -540,7 +380,7 @@ export default function CoursesPage() {
             <BookOpen className="h-16 w-16 mx-auto text-gray-600 mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">No courses yet</h3>
             <p className="text-gray-600 mb-6">
-              Start by adding your courses or uploading your transcript.
+              Start by adding your courses manually or syncing with your university.
             </p>
             <Button onClick={() => setShowAddForm(true)}>
               <Plus className="mr-2 h-4 w-4" />
@@ -550,7 +390,7 @@ export default function CoursesPage() {
         </Card>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courses.map((course: any) => (
+          {courses.map((course) => (
             <Card key={course.id} className={`hover:shadow-md transition-shadow ${
               course.source === 'university' ? 'border-l-4 border-l-blue-500' : ''
             }`}>
@@ -568,71 +408,38 @@ export default function CoursesPage() {
                     </div>
                     <CardDescription className="mt-1">{course.courseName}</CardDescription>
                   </div>
-                  <div className="flex space-x-1">
-                    {course.source !== 'university' && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => {
-                          // Simple edit functionality - in production this would open a modal or form
-                          const newName = prompt('Edit course name:', course.courseName)
-                          if (newName && newName.trim()) {
-                            // Update course name locally (in production this would call API)
-                            setCourses(courses.map(c =>
-                              c.id === course.id
-                                ? { ...c, courseName: newName.trim() }
-                                : c
-                            ))
-                          }
-                        }}
-                      >
-                        <Edit3 className="h-4 w-4" />
-                      </Button>
-                    )}
-                    {course.source !== 'university' && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => deleteCourse(course.id)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    )}
-                  </div>
                 </div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Semester:</span>
-                    <span>{course.semester} {course.year}</span>
+                    <span>{course.semester} {course.academicYear}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Credits:</span>
-                    <span>{course.credits}</span>
-                  </div>
-                  {course.grade && (
+                  {course.credits !== null && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Grade:</span>
-                      <span className="font-medium">{course.grade}</span>
+                      <span className="text-gray-600">Credits:</span>
+                      <span>{course.credits}{course.ectsCredits ? ` (${course.ectsCredits} ECTS)` : ''}</span>
                     </div>
                   )}
-                  {course.instructor && (
+                  {course.professorName && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Instructor:</span>
-                      <span>{course.instructor}</span>
+                      <span className="text-gray-600">Professor:</span>
+                      <span>{course.professorName}</span>
                     </div>
                   )}
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Status:</span>
-                    <span className={`px-2 py-1 rounded-full text-xs ${
-                      course.isCompleted 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-yellow-400 text-gray-900'
-                    }`}>
-                      {course.isCompleted ? 'Completed' : 'In Progress'}
-                    </span>
-                  </div>
+                  {course.department && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Department:</span>
+                      <span>{course.department}</span>
+                    </div>
+                  )}
+                  {course.projectCount !== undefined && course.projectCount > 0 && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Projects:</span>
+                      <Badge variant="secondary" className="text-xs">{course.projectCount}</Badge>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>

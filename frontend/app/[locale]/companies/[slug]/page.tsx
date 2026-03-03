@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { companiesApi } from '@/lib/api'
 import { Loader2 } from 'lucide-react'
 import {

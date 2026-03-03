@@ -1,6 +1,6 @@
 'use client'
 
-import { useAuth } from '@/lib/auth/AuthContext'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
@@ -23,34 +23,36 @@ import {
 import { Link } from '@/navigation'
 
 export default function SubscriptionPage() {
-  const { user: authUser, isAuthenticated, isLoading: authLoading } = useAuth()
+  const { data: session, status } = useSession()
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [subscriptionData, setSubscriptionData] = useState<any>(null)
 
   useEffect(() => {
-    if (!authLoading && !isAuthenticated) {
+    if (status === 'unauthenticated') {
       router.push('/auth/login')
     }
-  }, [authLoading, isAuthenticated, router])
+  }, [status, router])
 
   useEffect(() => {
-    if (isAuthenticated && authUser) {
-      // Fetch user subscription data
+    if (status === 'authenticated') {
       fetchUserData()
     }
-  }, [isAuthenticated, authUser])
+  }, [status])
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch('/api/user/subscription', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
+      const response = await fetch('/api/dashboard/student/profile')
       if (response.ok) {
         const data = await response.json()
-        setSubscriptionData(data)
+        const user = data.user || data
+        setSubscriptionData({
+          subscriptionTier: user.subscriptionTier || 'FREE',
+          subscriptionStatus: user.subscriptionStatus || 'INACTIVE',
+          premiumUntil: user.premiumUntil,
+          projectCount: user.projectCount || 0,
+          contactBalance: user.contactBalance || 0,
+        })
       }
     } catch (error) {
       console.error('Error fetching user data:', error)
@@ -80,7 +82,7 @@ export default function SubscriptionPage() {
     }
   }
 
-  if (authLoading || !subscriptionData) {
+  if (status === 'loading' || !subscriptionData) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />

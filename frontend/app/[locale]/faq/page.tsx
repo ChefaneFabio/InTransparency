@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ChevronDown, ChevronUp, Search, GraduationCap, Building2, Briefcase, CreditCard, Shield, HelpCircle } from 'lucide-react'
 import { Input } from '@/components/ui/input'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 
 interface FAQItem {
   question: string

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useAuth } from '@/lib/auth/AuthContext'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -11,19 +11,19 @@ import { Check, Sparkles, Zap, Crown, Loader2, ArrowLeft } from 'lucide-react'
 import { Link } from '@/navigation'
 
 export default function UpgradePage() {
-  const { user, isAuthenticated, isLoading: authLoading } = useAuth()
+  const { data: session, status } = useSession()
   const router = useRouter()
   const [interval, setInterval] = useState<'monthly' | 'annual'>('monthly')
   const [loading, setLoading] = useState<string | null>(null)
 
   useEffect(() => {
-    if (!authLoading && !isAuthenticated) {
+    if (status === 'unauthenticated') {
       router.push('/auth/login?redirect=/dashboard/student/upgrade')
     }
-  }, [authLoading, isAuthenticated, router])
+  }, [status, router])
 
   const handleUpgrade = async (priceId: string, tier: string) => {
-    if (!isAuthenticated) {
+    if (status !== 'authenticated') {
       router.push('/auth/login?redirect=/dashboard/student/upgrade')
       return
     }

@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { stripe, STRIPE_PRICES } from '@/lib/stripe'
 
@@ -10,11 +12,11 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Stripe not configured' }, { status: 503 })
     }
 
-    const userId = request.headers.get('x-user-id')
-
-    if (!userId) {
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+    const userId = session.user.id
 
     const user = await prisma.user.findUnique({
       where: { id: userId },
@@ -70,11 +72,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Stripe not configured' }, { status: 503 })
     }
 
-    const userId = request.headers.get('x-user-id')
-
-    if (!userId) {
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+    const userId = session.user.id
 
     const body = await request.json()
     const { tier, interval, successUrl, cancelUrl } = body
@@ -120,7 +122,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create Stripe Checkout Session
-    const session = await stripe.checkout.sessions.create({
+    const checkoutSession = await stripe.checkout.sessions.create({
       customer: customerId,
       mode: 'subscription',
       payment_method_types: ['card'],
@@ -146,8 +148,8 @@ export async function POST(request: NextRequest) {
     })
 
     return NextResponse.json({
-      sessionId: session.id,
-      url: session.url
+      sessionId: checkoutSession.id,
+      url: checkoutSession.url
     })
   } catch (error) {
     console.error('Error creating subscription:', error)

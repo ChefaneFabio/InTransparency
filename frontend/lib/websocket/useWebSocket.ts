@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState, useCallback } from 'react'
-import { useAuth } from '@/lib/auth/AuthContext'
+import { useSession } from 'next-auth/react'
 
 interface WebSocketMessage {
   id?: string
@@ -32,7 +32,9 @@ export function useWebSocket(url: string, options: UseWebSocketOptions = {}) {
     maxReconnectAttempts = 5
   } = options
 
-  const { user, isAuthenticated } = useAuth()
+  const { data: session } = useSession()
+  const user = session?.user as any
+  const isAuthenticated = !!session?.user
   const ws = useRef<WebSocket | null>(null)
   const reconnectAttempts = useRef(0)
   const reconnectTimeoutRef = useRef<NodeJS.Timeout>()

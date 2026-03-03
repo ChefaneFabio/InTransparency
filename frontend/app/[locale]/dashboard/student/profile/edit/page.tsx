@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuth } from '@/lib/auth/AuthContext'
+import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -31,7 +31,8 @@ import {
 
 export default function EditProfilePage() {
   const router = useRouter()
-  const { user, updateUser } = useAuth()
+  const { data: session } = useSession()
+  const user = session?.user as any
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -186,11 +187,19 @@ export default function EditProfilePage() {
     setSuccessMessage('')
 
     try {
-      // Simulate API call for now
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      const res = await fetch('/api/dashboard/student/profile', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bio: formData.bio,
+          tagline: formData.bio?.slice(0, 120),
+        }),
+      })
 
-      // Update user context
-      updateUser(formData)
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Failed to update profile')
+      }
 
       setSuccessMessage('Profile updated successfully!')
 

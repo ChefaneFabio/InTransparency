@@ -5,14 +5,17 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Menu, X, User } from 'lucide-react'
-import { useAuth } from '@/lib/auth/AuthContext'
+import { useSession, signOut } from 'next-auth/react'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { useTranslations } from 'next-intl'
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { user, isAuthenticated, logout } = useAuth()
+  const { data: session } = useSession()
+  const isAuthenticated = !!session?.user
   const t = useTranslations('nav')
+
+  const logout = () => signOut({ callbackUrl: '/' })
 
   const navigation = [
     { name: t('features'), href: '/features' },

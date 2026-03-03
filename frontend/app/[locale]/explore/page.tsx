@@ -26,7 +26,7 @@ import {
   ChevronDown,
   ChevronRight
 } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { IMAGES } from '@/lib/images'

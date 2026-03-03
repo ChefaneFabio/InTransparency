@@ -15,7 +15,7 @@ import {
   X
 } from 'lucide-react'
 import { useWebSocket } from '@/lib/websocket/useWebSocket'
-import { useAuth } from '@/lib/auth/AuthContext'
+import { useSession } from 'next-auth/react'
 
 interface Message {
   id: string
@@ -44,7 +44,9 @@ interface Conversation {
 }
 
 export function MessageCenter() {
-  const { user, isAuthenticated } = useAuth()
+  const { data: session } = useSession()
+  const user = session?.user as any
+  const isAuthenticated = !!session?.user
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [activeConversation, setActiveConversation] = useState<string | null>(null)
   const [messages, setMessages] = useState<Message[]>([])

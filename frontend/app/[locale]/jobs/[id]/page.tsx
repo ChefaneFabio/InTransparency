@@ -28,7 +28,7 @@ import {
   Edit,
   Trash2
 } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 
 interface Job {
   id: string

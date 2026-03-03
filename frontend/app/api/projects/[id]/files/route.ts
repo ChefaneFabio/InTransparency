@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 
 // POST /api/projects/[id]/files - Upload files to a project
@@ -8,11 +10,11 @@ export async function POST(
 ) {
   try {
     const { id: projectId } = await params
-    const userId = request.headers.get('x-user-id')
-
-    if (!userId) {
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+    const userId = session.user.id
 
     // Check if user owns the project
     const project = await prisma.project.findUnique({
@@ -158,7 +160,8 @@ export async function GET(
     }
 
     // Check access
-    const requestingUserId = request.headers.get('x-user-id')
+    const getSession = await getServerSession(authOptions)
+    const requestingUserId = getSession?.user?.id
     if (!project.isPublic && project.userId !== requestingUserId) {
       return NextResponse.json({ error: 'Access denied' }, { status: 403 })
     }
@@ -190,11 +193,11 @@ export async function DELETE(
 ) {
   try {
     const { id: projectId } = await params
-    const userId = request.headers.get('x-user-id')
-
-    if (!userId) {
+    const deleteSession = await getServerSession(authOptions)
+    if (!deleteSession?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+    const userId = deleteSession.user.id
 
     // Get fileId from URL
     const fileId = request.nextUrl.searchParams.get('fileId')

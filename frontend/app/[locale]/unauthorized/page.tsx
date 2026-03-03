@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import { Link } from "@/navigation"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { useTranslations } from "next-intl"

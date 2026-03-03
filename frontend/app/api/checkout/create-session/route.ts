@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { requireAuth } from '@/lib/auth/jwt-verify'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { STRIPE_PRICE_IDS, STRIPE_CONFIG } from '@/lib/config/pricing'
 
@@ -16,13 +17,14 @@ export async function POST(req: NextRequest) {
     const stripe = getStripe()
 
     // Get authenticated user ID
-    const userId = await requireAuth(req)
-    if (!userId) {
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.id) {
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
       )
     }
+    const userId = session.user.id
 
     // Get request body
     const body = await req.json()

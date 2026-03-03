@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { GraduationCap, Building2, Mail, Plus, Trash2, CheckCircle, AlertCircle } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 
 interface CareerStep {
   role: string

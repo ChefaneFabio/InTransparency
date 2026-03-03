@@ -49,6 +49,48 @@ export async function sendVerificationEmail(
   await sendEmail(to, `Verify your email - ${universityName}`, html)
 }
 
+export async function sendEndorsementRequestEmail(
+  to: string,
+  professorName: string,
+  studentName: string,
+  studentEmail: string,
+  projectTitle: string,
+  courseName: string,
+  courseCode: string,
+  semester: string,
+  verificationToken: string,
+  personalMessage?: string
+) {
+  const verifyUrl = `${BASE_URL}/endorsements/verify/${verificationToken}`
+  const messageBlock = personalMessage
+    ? `<p style="background: #F3F4F6; padding: 12px; border-radius: 8px; font-style: italic;">"${personalMessage}"</p>`
+    : ''
+  const html = `
+    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2>Endorsement Request from ${studentName}</h2>
+      <p>Dear Professor ${professorName},</p>
+      <p>Your student <strong>${studentName}</strong> (${studentEmail}) has requested your endorsement for their project on InTransparency.</p>
+      ${messageBlock}
+      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 16px 0;">
+        <p style="margin: 4px 0;"><strong>Project:</strong> ${projectTitle}</p>
+        <p style="margin: 4px 0;"><strong>Course:</strong> ${courseName} (${courseCode}) — ${semester}</p>
+      </div>
+      <p>To provide your endorsement (or decline), please click the button below:</p>
+      <a href="${verifyUrl}" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
+        Review &amp; Endorse
+      </a>
+      <p style="color: #666; font-size: 14px;">This link expires in 7 days.</p>
+      <p style="color: #666; font-size: 12px;">Or copy this link: ${verifyUrl}</p>
+      <hr style="border: none; border-top: 1px solid #E5E7EB; margin: 24px 0;" />
+      <p style="color: #999; font-size: 12px;">
+        InTransparency is a verified talent marketplace connecting students with recruiters.
+        If you didn't expect this email, you can safely ignore it.
+      </p>
+    </div>
+  `
+  await sendEmail(to, `${studentName} is requesting your endorsement`, html)
+}
+
 export async function sendWelcomeEmail(
   to: string,
   tempPassword: string,

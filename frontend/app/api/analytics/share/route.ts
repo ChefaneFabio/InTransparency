@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 
 
@@ -12,7 +14,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
-    const userId = request.headers.get('x-user-id')
+    const session = await getServerSession(authOptions)
+    const userId = session?.user?.id
     const sessionId = request.headers.get('x-session-id')
     const ipAddress = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip')
     const userAgent = request.headers.get('user-agent')

@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { useAuth } from '@/lib/auth/AuthContext'
+import { Link } from '@/navigation'
+import { useSession } from 'next-auth/react'
 import { ProjectCard } from '@/components/dashboard/student/ProjectCard'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -28,7 +28,7 @@ import {
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
 export default function ProjectsPage() {
-  const { user } = useAuth()
+  const { data: session } = useSession()
   const [projects, setProjects] = useState<any[]>([])
   const [filteredProjects, setFilteredProjects] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
@@ -41,7 +41,7 @@ export default function ProjectsPage() {
 
   useEffect(() => {
     fetchProjects()
-  }, [user])
+  }, [session])
 
   useEffect(() => {
     filterAndSortProjects()
@@ -50,7 +50,7 @@ export default function ProjectsPage() {
   const fetchProjects = async () => {
     try {
       setLoading(true)
-      const response = await fetch(`/api/projects?userId=${user?.id}`)
+      const response = await fetch('/api/projects')
       const data = await response.json()
       setProjects(data.projects || [])
     } catch (error) {

@@ -20,7 +20,7 @@ import {
   Calendar
 } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 
 interface ActivityItem {
   id: string

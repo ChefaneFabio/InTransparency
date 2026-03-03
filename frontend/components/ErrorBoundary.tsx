@@ -3,7 +3,7 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react'
 import { Button } from '@/components/ui/button'
 import { AlertCircle, RefreshCw, Home } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 
 interface Props {
   children: ReactNode

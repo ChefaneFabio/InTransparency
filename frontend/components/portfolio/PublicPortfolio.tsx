@@ -16,7 +16,7 @@ import {
   GraduationCap,
   Shield
 } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 
 interface PublicPortfolioProps {
   user: {

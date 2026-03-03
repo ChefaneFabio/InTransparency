@@ -4175,5 +4175,26 @@
       "deleteFailed": "Failed to delete account",
       "typeDeleteToConfirm": "Please type DELETE to confirm"
     }
+  },
+  "upload": {
+    "dropFilesHere": "Drop files here",
+    "dragAndDrop": "Drag and drop files here",
+    "orClickToSelect": "or click to select files",
+    "maxSize": "Max size",
+    "maxFiles": "Max files",
+    "uploading": "Uploading...",
+    "upload": "Upload"
+  },
+  "errors": {
+    "accessDenied": "Access Denied",
+    "unauthorizedMessage": "You don't have permission to access this page. Please check your account or contact support.",
+    "goBack": "Go Back",
+    "goHome": "Go Home",
+    "whyAmISeeingThis": "Why am I seeing this?",
+    "reasonInsufficientPermissions": "You may not have the required permissions for this page",
+    "reasonWrongAccountType": "You may be logged in with the wrong account type",
+    "reasonSubscriptionRequired": "This feature may require a premium subscription",
+    "needHelp": "Need help?",
+    "contactSupport": "Contact Support"
   }
 }

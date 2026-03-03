@@ -13,7 +13,7 @@ import { Switch } from '@/components/ui/switch'
 import { Badge } from '@/components/ui/badge'
 import { useToast } from '@/components/ui/use-toast'
 import { ArrowLeft, Plus, X } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 
 export default function NewJobPage() {
   const { data: session } = useSession()

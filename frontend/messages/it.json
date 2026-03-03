@@ -4217,5 +4217,26 @@
       "deleteFailed": "Impossibile eliminare l'account",
       "typeDeleteToConfirm": "Scrivi DELETE per confermare"
     }
+  },
+  "upload": {
+    "dropFilesHere": "Rilascia i file qui",
+    "dragAndDrop": "Trascina e rilascia i file qui",
+    "orClickToSelect": "oppure clicca per selezionare",
+    "maxSize": "Dimensione massima",
+    "maxFiles": "File massimi",
+    "uploading": "Caricamento...",
+    "upload": "Carica"
+  },
+  "errors": {
+    "accessDenied": "Accesso Negato",
+    "unauthorizedMessage": "Non hai i permessi per accedere a questa pagina. Verifica il tuo account o contatta il supporto.",
+    "goBack": "Torna Indietro",
+    "goHome": "Vai alla Home",
+    "whyAmISeeingThis": "Perché vedo questa pagina?",
+    "reasonInsufficientPermissions": "Potresti non avere i permessi necessari per questa pagina",
+    "reasonWrongAccountType": "Potresti aver effettuato l'accesso con il tipo di account sbagliato",
+    "reasonSubscriptionRequired": "Questa funzione potrebbe richiedere un abbonamento premium",
+    "needHelp": "Hai bisogno di aiuto?",
+    "contactSupport": "Contatta il Supporto"
   }
 }

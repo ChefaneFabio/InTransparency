@@ -1,7 +1,7 @@
 'use client'
 
 import { CheckCircle2, Star, Award, Zap } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 

@@ -145,7 +145,14 @@
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(gh api:*)",
-      "Bash(git show:*)"
+      "Bash(git show:*)",
+      "Bash(git -C /mnt/c/Users/chefa/InTransparency status)",
+      "Bash(git -C /mnt/c/Users/chefa/InTransparency diff --stat)",
+      "Bash(git -C /mnt/c/Users/chefa/InTransparency log --oneline -10)",
+      "Bash(git -C /mnt/c/Users/chefa/InTransparency commit -m \"$\\(cat <<''EOF''\nfeat: add student skill-path, recruiter dashboard APIs, and subscription improvements\n\n- Add student skill-path feature with career comparison, hireability gauge, skill radar, and roadmap components\n- Create real API routes for recruiter dashboard \\(analytics, candidates, jobs, saved searches, settings, talent analytics, search\\)\n- Add university campus and batch project API routes\n- Refactor recruiter dashboard pages to use real API data instead of mock data\n- Update subscription/pricing system with revised tiers and Stripe integration improvements\n- Add API key management and support ticket endpoints\n- Update Prisma schema with new models and relations\n- Update en/it translations for new features\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(wc:*)",
+      "WebFetch(domain:www.novahiring.com)",
+      "Bash(sample jobs matching Y to show how the platform works\"\n- Real DB results always take priority when they exist\n- University tab tries both sample types if primary is empty\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")"
     ],
     "defaultMode": "acceptEdits"
   }

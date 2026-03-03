@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
-import { requireAuth } from '@/lib/auth/jwt-verify'
 
 // PATCH /api/user/profile - Update user profile
 export async function PATCH(request: NextRequest) {
   try {
-    const userId = await requireAuth(request)
-
-    if (!userId) {
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+    const userId = session.user.id
 
     const body = await request.json()
     const { profilePublic, portfolioUrl } = body
@@ -66,11 +67,11 @@ export async function PATCH(request: NextRequest) {
 // GET /api/user/profile - Get user profile
 export async function GET(request: NextRequest) {
   try {
-    const userId = await requireAuth(request)
-
-    if (!userId) {
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
+    const userId = session.user.id
 
     const user = await prisma.user.findUnique({
       where: { id: userId },

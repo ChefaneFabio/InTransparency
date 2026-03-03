@@ -1,11 +1,11 @@
 'use client'
 
-import { useAuth } from '@/lib/auth/AuthContext'
+import { useSession } from 'next-auth/react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Users, Building, GraduationCap, TrendingUp } from 'lucide-react'
 
 export default function AdminDashboard() {
-  const { user } = useAuth()
+  const { data: session } = useSession()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">

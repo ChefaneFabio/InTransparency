@@ -28,6 +28,3 @@ export {
   useRequireAdmin,
   useIsResourceOwner,
 } from "./client"
-
-// Export legacy JWT verify (for backward compatibility during migration)
-export { verifyAuth, requireAuth as requireAuthLegacy } from "./jwt-verify"

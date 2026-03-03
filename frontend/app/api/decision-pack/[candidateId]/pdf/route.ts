@@ -2,11 +2,257 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
 import { generateDecisionPack } from '@/lib/decision-pack'
+import React from 'react'
+import { renderToBuffer, Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer'
+
+const styles = StyleSheet.create({
+  page: {
+    padding: 40,
+    fontFamily: 'Helvetica',
+    fontSize: 10,
+    color: '#1f2937',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 22,
+    fontFamily: 'Helvetica-Bold',
+    color: '#1e40af',
+  },
+  subtitle: {
+    fontSize: 11,
+    color: '#6b7280',
+    marginTop: 2,
+  },
+  badge: {
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 3,
+    fontSize: 9,
+    fontFamily: 'Helvetica-Bold',
+    marginBottom: 3,
+  },
+  badgeGreen: {
+    backgroundColor: '#dcfce7',
+    color: '#166534',
+  },
+  badgeBlue: {
+    backgroundColor: '#dbeafe',
+    color: '#1e40af',
+  },
+  sectionTitle: {
+    fontSize: 14,
+    fontFamily: 'Helvetica-Bold',
+    color: '#374151',
+    borderBottomWidth: 2,
+    borderBottomColor: '#e5e7eb',
+    paddingBottom: 4,
+    marginTop: 20,
+    marginBottom: 8,
+  },
+  metricRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 4,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f3f4f6',
+  },
+  metricLabel: {
+    fontSize: 10,
+    color: '#6b7280',
+  },
+  metricValue: {
+    fontSize: 10,
+    fontFamily: 'Helvetica-Bold',
+  },
+  tableHeader: {
+    flexDirection: 'row',
+    backgroundColor: '#f9fafb',
+    paddingVertical: 6,
+    paddingHorizontal: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e7eb',
+  },
+  tableHeaderCell: {
+    fontSize: 9,
+    fontFamily: 'Helvetica-Bold',
+    color: '#6b7280',
+  },
+  tableRow: {
+    flexDirection: 'row',
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e7eb',
+  },
+  tableCell: {
+    fontSize: 9,
+  },
+  projectCard: {
+    borderWidth: 1,
+    borderColor: '#e5e7eb',
+    borderRadius: 6,
+    padding: 10,
+    marginBottom: 6,
+  },
+  projectTitle: {
+    fontSize: 11,
+    fontFamily: 'Helvetica-Bold',
+  },
+  skillTag: {
+    backgroundColor: '#f3f4f6',
+    paddingHorizontal: 4,
+    paddingVertical: 1,
+    borderRadius: 2,
+    fontSize: 8,
+    marginRight: 3,
+    marginTop: 2,
+  },
+  skillRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 4,
+  },
+  footer: {
+    marginTop: 30,
+    paddingTop: 10,
+    borderTopWidth: 2,
+    borderTopColor: '#e5e7eb',
+    textAlign: 'center',
+    fontSize: 9,
+    color: '#9ca3af',
+  },
+  scores: {
+    fontSize: 8,
+    color: '#6b7280',
+    marginTop: 3,
+  },
+})
+
+function DecisionPackPDF({ pack }: { pack: any }) {
+  const fullName = [pack.candidate.firstName, pack.candidate.lastName]
+    .filter(Boolean)
+    .join(' ')
+
+  return React.createElement(Document, null,
+    React.createElement(Page, { size: 'A4', style: styles.page },
+      // Header
+      React.createElement(View, { style: styles.header },
+        React.createElement(View, null,
+          React.createElement(Text, { style: styles.title }, fullName),
+          React.createElement(Text, { style: styles.subtitle },
+            [pack.candidate.university, pack.candidate.degree].filter(Boolean).join(' · ')
+          ),
+        ),
+        React.createElement(View, { style: { alignItems: 'flex-end' as any } },
+          pack.prediction
+            ? React.createElement(Text, { style: { ...styles.badge, ...styles.badgeGreen } },
+              `${Math.round(pack.prediction.probability * 100)}% Placement`)
+            : null,
+          pack.matchScore !== null
+            ? React.createElement(Text, { style: { ...styles.badge, ...styles.badgeBlue } },
+              `${pack.matchScore}% Job Match`)
+            : null,
+          pack.trustScore.universityVerified
+            ? React.createElement(Text, { style: { ...styles.badge, ...styles.badgeGreen } },
+              'University Verified')
+            : null,
+        ),
+      ),
+
+      // Trust Score
+      React.createElement(Text, { style: styles.sectionTitle }, 'Trust Score'),
+      React.createElement(View, { style: styles.metricRow },
+        React.createElement(Text, { style: styles.metricLabel }, 'Verified Projects'),
+        React.createElement(Text, { style: styles.metricValue },
+          `${pack.trustScore.verifiedProjects}/${pack.trustScore.totalProjects}`),
+      ),
+      React.createElement(View, { style: styles.metricRow },
+        React.createElement(Text, { style: styles.metricLabel }, 'Professor Endorsements'),
+        React.createElement(Text, { style: styles.metricValue },
+          String(pack.trustScore.endorsementCount)),
+      ),
+
+      // Skills Evidence Map
+      React.createElement(Text, { style: styles.sectionTitle }, 'Skills Evidence Map'),
+      React.createElement(View, { style: styles.tableHeader },
+        React.createElement(Text, { style: { ...styles.tableHeaderCell, width: '25%' } }, 'Skill'),
+        React.createElement(Text, { style: { ...styles.tableHeaderCell, width: '30%' } }, 'Industry Terms'),
+        React.createElement(Text, { style: { ...styles.tableHeaderCell, width: '30%' } }, 'Evidence'),
+        React.createElement(Text, { style: { ...styles.tableHeaderCell, width: '15%' } }, 'Level'),
+      ),
+      ...pack.skills.slice(0, 15).map((s: any, i: number) =>
+        React.createElement(View, { key: `skill-${i}`, style: styles.tableRow },
+          React.createElement(Text, { style: { ...styles.tableCell, width: '25%', fontFamily: 'Helvetica-Bold' } }, s.name),
+          React.createElement(Text, { style: { ...styles.tableCell, width: '30%' } }, s.industryTerms.slice(0, 3).join(', ')),
+          React.createElement(Text, { style: { ...styles.tableCell, width: '30%' } }, s.evidenceSources.slice(0, 2).join(', ')),
+          React.createElement(Text, { style: { ...styles.tableCell, width: '15%' } }, s.verifiedLevel),
+        )
+      ),
+
+      // Grade Provenance
+      ...(pack.grades.length > 0 ? [
+        React.createElement(Text, { key: 'grades-title', style: styles.sectionTitle }, 'Grade Provenance'),
+        React.createElement(View, { key: 'grades-header', style: styles.tableHeader },
+          React.createElement(Text, { style: { ...styles.tableHeaderCell, width: '25%' } }, 'Project'),
+          React.createElement(Text, { style: { ...styles.tableHeaderCell, width: '20%' } }, 'Original'),
+          React.createElement(Text, { style: { ...styles.tableHeaderCell, width: '15%' } }, 'Normalized'),
+          React.createElement(Text, { style: { ...styles.tableHeaderCell, width: '13%' } }, 'IT'),
+          React.createElement(Text, { style: { ...styles.tableHeaderCell, width: '13%' } }, 'DE'),
+          React.createElement(Text, { style: { ...styles.tableHeaderCell, width: '14%' } }, 'UK'),
+        ),
+        ...pack.grades.map((g: any, i: number) =>
+          React.createElement(View, { key: `grade-${i}`, style: styles.tableRow },
+            React.createElement(Text, { style: { ...styles.tableCell, width: '25%' } }, g.projectTitle),
+            React.createElement(Text, { style: { ...styles.tableCell, width: '20%' } }, `${g.originalGrade} (${g.country})`),
+            React.createElement(Text, { style: { ...styles.tableCell, width: '15%', fontFamily: 'Helvetica-Bold' } },
+              g.normalizedGrade !== null ? `${g.normalizedGrade}/100` : '-'),
+            React.createElement(Text, { style: { ...styles.tableCell, width: '13%' } }, g.displayInCountry.IT || '-'),
+            React.createElement(Text, { style: { ...styles.tableCell, width: '13%' } }, g.displayInCountry.DE || '-'),
+            React.createElement(Text, { style: { ...styles.tableCell, width: '14%' } }, g.displayInCountry.UK || '-'),
+          )
+        ),
+      ] : []),
+
+      // Projects
+      React.createElement(Text, { style: styles.sectionTitle }, `Projects (${pack.projects.length})`),
+      ...pack.projects.slice(0, 10).map((p: any, i: number) =>
+        React.createElement(View, { key: `proj-${i}`, style: styles.projectCard },
+          React.createElement(View, { style: { flexDirection: 'row', alignItems: 'center', gap: 6 } },
+            React.createElement(Text, { style: styles.projectTitle }, p.title),
+            p.verificationStatus === 'VERIFIED'
+              ? React.createElement(Text, { style: { ...styles.badge, ...styles.badgeGreen } }, 'Verified')
+              : null,
+            p.grade
+              ? React.createElement(Text, { style: { ...styles.badge, ...styles.badgeBlue } }, `Grade: ${p.grade}`)
+              : null,
+          ),
+          React.createElement(View, { style: styles.skillRow },
+            ...p.skills.slice(0, 8).map((s: string, j: number) =>
+              React.createElement(Text, { key: `ps-${j}`, style: styles.skillTag }, s)
+            ),
+          ),
+          p.innovationScore !== null
+            ? React.createElement(Text, { style: styles.scores },
+              `Innovation: ${p.innovationScore} | Complexity: ${p.complexityScore || '-'} | Relevance: ${p.marketRelevance || '-'}`)
+            : null,
+        )
+      ),
+
+      // Footer
+      React.createElement(Text, { style: styles.footer },
+        `Generated by InTransparency Decision Pack · ${new Date().toLocaleDateString('en-GB')} · intransparency.eu`
+      ),
+    )
+  )
+}
 
 /**
  * GET /api/decision-pack/[candidateId]/pdf
- * Returns a simplified JSON representation that can be rendered as PDF client-side.
- * In production, use @react-pdf/renderer for server-side PDF generation.
+ * Returns a real PDF document generated with @react-pdf/renderer.
  * RECRUITER auth required.
  */
 export async function GET(
@@ -30,107 +276,14 @@ export async function GET(
       .filter(Boolean)
       .join(' ')
 
-    // Generate a simple HTML-based printable PDF
-    const html = `<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Decision Pack - ${fullName}</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 0 auto; padding: 40px; color: #1f2937; }
-    h1 { color: #1e40af; font-size: 24px; margin-bottom: 4px; }
-    h2 { color: #374151; font-size: 18px; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; margin-top: 32px; }
-    .header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 24px; }
-    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-    .badge-green { background: #dcfce7; color: #166534; }
-    .badge-blue { background: #dbeafe; color: #1e40af; }
-    .badge-gray { background: #f3f4f6; color: #374151; }
-    table { width: 100%; border-collapse: collapse; margin: 12px 0; }
-    th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid #e5e7eb; font-size: 14px; }
-    th { background: #f9fafb; font-weight: 600; color: #6b7280; }
-    .metric { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f3f4f6; }
-    .metric-label { color: #6b7280; font-size: 14px; }
-    .metric-value { font-weight: 600; font-size: 14px; }
-    .section { margin-bottom: 24px; }
-    .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #e5e7eb; color: #9ca3af; font-size: 12px; text-align: center; }
-    .project-card { border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; margin: 8px 0; }
-    .skill-tag { display: inline-block; padding: 2px 6px; margin: 2px; border-radius: 3px; background: #f3f4f6; font-size: 12px; }
-    @media print { body { padding: 20px; } }
-  </style>
-</head>
-<body>
-  <div class="header">
-    <div>
-      <h1>${fullName}</h1>
-      <p style="color: #6b7280; margin: 0;">${pack.candidate.university || ''} ${pack.candidate.degree ? '· ' + pack.candidate.degree : ''}</p>
-    </div>
-    <div style="text-align: right;">
-      ${pack.prediction ? `<span class="badge badge-green">${Math.round(pack.prediction.probability * 100)}% Placement</span><br>` : ''}
-      ${pack.matchScore !== null ? `<span class="badge badge-blue">${pack.matchScore}% Job Match</span><br>` : ''}
-      ${pack.trustScore.universityVerified ? '<span class="badge badge-green">University Verified</span>' : ''}
-    </div>
-  </div>
+    const pdfBuffer = await renderToBuffer(
+      React.createElement(DecisionPackPDF, { pack }) as any
+    )
 
-  <h2>Trust Score</h2>
-  <div class="section">
-    <div class="metric"><span class="metric-label">Verified Projects</span><span class="metric-value">${pack.trustScore.verifiedProjects}/${pack.trustScore.totalProjects}</span></div>
-    <div class="metric"><span class="metric-label">Professor Endorsements</span><span class="metric-value">${pack.trustScore.endorsementCount}</span></div>
-  </div>
-
-  <h2>Skills Evidence Map</h2>
-  <table>
-    <thead><tr><th>Skill</th><th>Industry Terms</th><th>Evidence</th><th>Level</th></tr></thead>
-    <tbody>
-    ${pack.skills.slice(0, 15).map((s) => `
-      <tr>
-        <td><strong>${s.name}</strong></td>
-        <td>${s.industryTerms.slice(0, 3).join(', ')}</td>
-        <td>${s.evidenceSources.slice(0, 2).join(', ')}</td>
-        <td>${s.verifiedLevel}</td>
-      </tr>`).join('')}
-    </tbody>
-  </table>
-
-  ${pack.grades.length > 0 ? `
-  <h2>Grade Provenance</h2>
-  <table>
-    <thead><tr><th>Project</th><th>Original</th><th>Normalized</th><th>IT</th><th>DE</th><th>UK</th></tr></thead>
-    <tbody>
-    ${pack.grades.map((g) => `
-      <tr>
-        <td>${g.projectTitle}</td>
-        <td>${g.originalGrade} (${g.country})</td>
-        <td><strong>${g.normalizedGrade !== null ? g.normalizedGrade + '/100' : '-'}</strong></td>
-        <td>${g.displayInCountry.IT || '-'}</td>
-        <td>${g.displayInCountry.DE || '-'}</td>
-        <td>${g.displayInCountry.UK || '-'}</td>
-      </tr>`).join('')}
-    </tbody>
-  </table>` : ''}
-
-  <h2>Projects (${pack.projects.length})</h2>
-  ${pack.projects.map((p) => `
-  <div class="project-card">
-    <strong>${p.title}</strong>
-    <span class="badge badge-gray">${p.discipline.replace(/_/g, ' ')}</span>
-    ${p.verificationStatus === 'VERIFIED' ? '<span class="badge badge-green">Verified</span>' : ''}
-    ${p.grade ? `<span class="badge badge-blue">Grade: ${p.grade}</span>` : ''}
-    <div style="margin-top: 6px;">
-      ${p.skills.slice(0, 8).map((s) => `<span class="skill-tag">${s}</span>`).join('')}
-    </div>
-    ${p.innovationScore !== null ? `<div style="margin-top: 4px; font-size: 12px; color: #6b7280;">Innovation: ${p.innovationScore} | Complexity: ${p.complexityScore || '-'} | Relevance: ${p.marketRelevance || '-'}</div>` : ''}
-  </div>`).join('')}
-
-  <div class="footer">
-    <p>Generated by InTransparency Decision Pack &middot; ${new Date().toLocaleDateString('en-GB')} &middot; intransparency.eu</p>
-  </div>
-</body>
-</html>`
-
-    return new NextResponse(html, {
+    return new NextResponse(Buffer.from(pdfBuffer) as any, {
       headers: {
-        'Content-Type': 'text/html; charset=utf-8',
-        'Content-Disposition': `inline; filename="decision-pack-${fullName.replace(/\s+/g, '-').toLowerCase()}.html"`,
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': `inline; filename="decision-pack-${fullName.replace(/\s+/g, '-').toLowerCase()}.pdf"`,
       },
     })
   } catch (error) {

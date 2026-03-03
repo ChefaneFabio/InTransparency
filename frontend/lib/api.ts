@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { secureStorage } from './secure-storage'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || (process.env.NODE_ENV === 'development' ? '' : 'https://api-intransparency.onrender.com')
 
@@ -10,80 +9,6 @@ export const api = axios.create({
     'Content-Type': 'application/json',
   },
 })
-
-api.interceptors.request.use(
-  (config) => {
-    const token = secureStorage.getAccessToken()
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`
-    }
-    return config
-  },
-  (error) => Promise.reject(error)
-)
-
-api.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config
-
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true
-
-      // Try to refresh token
-      const refreshToken = secureStorage.getRefreshToken()
-      if (refreshToken) {
-        try {
-          const response = await api.post('/api/auth/refresh', {
-            refreshToken
-          })
-
-          const { accessToken, refreshToken: newRefreshToken } = response.data
-          const user = secureStorage.getUserInfo()
-
-          secureStorage.setAuthData({
-            accessToken,
-            refreshToken: newRefreshToken,
-            user,
-            expiresAt: Date.now() + (60 * 60 * 1000) // 1 hour
-          })
-
-          // Retry original request
-          originalRequest.headers.Authorization = `Bearer ${accessToken}`
-          return api(originalRequest)
-        } catch (refreshError) {
-          // Refresh failed, redirect to login
-          secureStorage.clearAuthData()
-          if (typeof window !== 'undefined') {
-            window.location.href = '/auth/login'
-          }
-        }
-      } else {
-        // No refresh token, redirect to login
-        secureStorage.clearAuthData()
-        if (typeof window !== 'undefined') {
-          window.location.href = '/auth/login'
-        }
-      }
-    }
-
-    return Promise.reject(error)
-  }
-)
-
-export const authApi = {
-  login: (email: string, password: string) =>
-    api.post('/api/auth/login', { email, password }),
-  
-  register: (userData: any) =>
-    api.post('/api/auth/register', userData),
-  
-  me: () =>
-    api.get('/api/auth/me'),
-  
-  logout: () =>
-    api.post('/api/auth/logout'),
-}
 
 export const projectsApi = {
   getAll: (params?: any) =>

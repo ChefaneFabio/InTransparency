@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useAuth } from '@/lib/auth/AuthContext'
+import { useSession } from 'next-auth/react'
 
 export interface PushNotification {
   id: string
@@ -32,7 +32,9 @@ interface UsePushNotificationsReturn {
 }
 
 export function usePushNotifications(): UsePushNotificationsReturn {
-  const { user, isAuthenticated } = useAuth()
+  const { data: session } = useSession()
+  const user = session?.user as any
+  const isAuthenticated = !!session?.user
   const [isSupported, setIsSupported] = useState(false)
   const [permission, setPermission] = useState<NotificationPermission>('default')
   const [isSubscribed, setIsSubscribed] = useState(false)

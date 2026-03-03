@@ -39,6 +39,11 @@ export async function GET(req: NextRequest) {
           profilePublic: true,
           portfolioUrl: true,
           subscriptionTier: true,
+          emailNotifications: true,
+          messageNotifications: true,
+          jobAlertNotifications: true,
+          mentorshipNotifications: true,
+          marketingEmails: true,
           showLocation: true,
           showEmail: true,
           showPhone: true,
@@ -200,6 +205,7 @@ export async function PATCH(req: NextRequest) {
     const {
       bio, tagline, portfolioUrl, profilePublic, showLocation, showEmail, showPhone, gpaPublic,
       showLastActive, anonymousBrowsing, allowMessagesFrom, indexInSearchEngines, showProjects, blockedCompanies,
+      emailNotifications, messageNotifications, jobAlertNotifications, mentorshipNotifications, marketingEmails,
     } = body
 
     // Gate portfolioUrl behind STUDENT_PREMIUM
@@ -236,6 +242,11 @@ export async function PATCH(req: NextRequest) {
     if (indexInSearchEngines !== undefined) updateData.indexInSearchEngines = indexInSearchEngines
     if (showProjects !== undefined) updateData.showProjects = showProjects
     if (blockedCompanies !== undefined) updateData.blockedCompanies = blockedCompanies
+    if (emailNotifications !== undefined) updateData.emailNotifications = emailNotifications
+    if (messageNotifications !== undefined) updateData.messageNotifications = messageNotifications
+    if (jobAlertNotifications !== undefined) updateData.jobAlertNotifications = jobAlertNotifications
+    if (mentorshipNotifications !== undefined) updateData.mentorshipNotifications = mentorshipNotifications
+    if (marketingEmails !== undefined) updateData.marketingEmails = marketingEmails
 
     const updatedUser = await prisma.user.update({
       where: { id: userId },
@@ -246,6 +257,11 @@ export async function PATCH(req: NextRequest) {
         tagline: true,
         portfolioUrl: true,
         profilePublic: true,
+        emailNotifications: true,
+        messageNotifications: true,
+        jobAlertNotifications: true,
+        mentorshipNotifications: true,
+        marketingEmails: true,
         showLocation: true,
         showEmail: true,
         showPhone: true,

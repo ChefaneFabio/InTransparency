@@ -222,6 +222,13 @@ model User {
   profilePublic   Boolean   @default(false)
   portfolioUrl    String?   @unique // custom subdomain
 
+  // Notification Preferences
+  emailNotifications      Boolean @default(true)
+  messageNotifications    Boolean @default(true)
+  jobAlertNotifications   Boolean @default(true)
+  mentorshipNotifications Boolean @default(true)
+  marketingEmails         Boolean @default(false)
+
   // Privacy Settings
   showLocation         Boolean  @default(true)
   showEmail            Boolean  @default(false)

@@ -28,7 +28,7 @@ import {
   MessageSquare
 } from 'lucide-react'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 
 type ReferralSegment = 'student' | 'institution' | 'company'
 

@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import crypto from 'crypto'
+import { sendEndorsementRequestEmail } from '@/lib/email'
 
 // POST /api/endorsements/request - Request professor endorsement
 export async function POST(request: NextRequest) {
   try {
-    const userId = request.headers.get('x-user-id')
+    const session = await getServerSession(authOptions)
+    const userId = session?.user?.id
 
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -74,34 +78,19 @@ export async function POST(request: NextRequest) {
     })
 
     // Send verification email to professor
-    const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/endorsements/verify/${verificationToken}`
-
-    // TODO: Send email to professor
-    // For now, we'll just log the email content
-    const emailContent = {
-      to: professorEmail,
-      subject: `${student?.firstName} ${student?.lastName} is requesting your endorsement`,
-      body: `
-Dear Professor ${professorName},
-
-Your student ${student?.firstName} ${student?.lastName} (${student?.email}) has requested your endorsement for their project "${project.title}" on InTransparency.
-
-${message || 'They would appreciate your feedback on their work in your course.'}
-
-Course: ${courseName} (${courseCode}) - ${semester}
-Project: ${project.title}
-
-To provide your endorsement, please click the link below:
-${verificationUrl}
-
-This link will expire in 7 days.
-
-Best regards,
-The InTransparency Team
-      `
-    }
-
-    console.log('Email to send:', emailContent)
+    const studentName = [student?.firstName, student?.lastName].filter(Boolean).join(' ') || 'A student'
+    await sendEndorsementRequestEmail(
+      professorEmail,
+      professorName,
+      studentName,
+      student?.email || '',
+      project.title,
+      courseName || '',
+      courseCode || '',
+      semester || '',
+      verificationToken,
+      message || undefined
+    )
 
     // Track analytics
     await prisma.analytics.create({

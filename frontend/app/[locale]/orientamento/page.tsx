@@ -17,7 +17,7 @@ import {
   Building2,
   Sparkles
 } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
 
 interface PageProps {

@@ -24,7 +24,7 @@ import {
   Target,
   Award
 } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 
 interface Project {
   id: string
