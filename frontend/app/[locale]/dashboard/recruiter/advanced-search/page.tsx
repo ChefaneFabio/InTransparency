@@ -84,6 +84,8 @@ export default function AdvancedSearchPage() {
   const [showSaveDialog, setShowSaveDialog] = useState(false)
   const [savingSearch, setSavingSearch] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState<string | null>(null)
+  const [alertsEnabled, setAlertsEnabled] = useState(true)
+  const [alertFrequency, setAlertFrequency] = useState('daily')
 
   // Skill Categories
   const skillCategories = {
@@ -233,7 +235,8 @@ export default function AdvancedSearchPage() {
             minProjects: filters.minProjects > 0 ? String(filters.minProjects) : undefined,
             location: filters.locations.length > 0 ? filters.locations[0] : undefined,
           },
-          alertsEnabled: false,
+          alertsEnabled,
+          alertFrequency: alertsEnabled ? alertFrequency : 'never',
         }),
       })
 
@@ -715,23 +718,48 @@ export default function AdvancedSearchPage() {
                     <span>{saveSuccess}</span>
                   </div>
                 ) : (
-                  <div className="flex items-center space-x-3">
-                    <div className="flex-1">
-                      <Label htmlFor="searchName">Search Name</Label>
-                      <Input
-                        id="searchName"
-                        placeholder="e.g., ML Engineers - Bay Area"
-                        value={saveSearchName}
-                        onChange={(e) => setSaveSearchName(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && handleSaveSearch()}
-                      />
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="flex-1">
+                        <Label htmlFor="searchName">Search Name</Label>
+                        <Input
+                          id="searchName"
+                          placeholder="e.g., ML Engineers - Bay Area"
+                          value={saveSearchName}
+                          onChange={(e) => setSaveSearchName(e.target.value)}
+                          onKeyDown={(e) => e.key === 'Enter' && handleSaveSearch()}
+                        />
+                      </div>
+                      <Button onClick={handleSaveSearch} disabled={savingSearch || !saveSearchName.trim()}>
+                        {savingSearch ? 'Saving...' : 'Save'}
+                      </Button>
+                      <Button variant="outline" onClick={() => setShowSaveDialog(false)}>
+                        Cancel
+                      </Button>
                     </div>
-                    <Button onClick={handleSaveSearch} disabled={savingSearch || !saveSearchName.trim()}>
-                      {savingSearch ? 'Saving...' : 'Save'}
-                    </Button>
-                    <Button variant="outline" onClick={() => setShowSaveDialog(false)}>
-                      Cancel
-                    </Button>
+                    <div className="flex items-center gap-4">
+                      <label className="flex items-center gap-2 text-sm cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={alertsEnabled}
+                          onChange={(e) => setAlertsEnabled(e.target.checked)}
+                          className="rounded border-gray-300"
+                        />
+                        <Bell className="h-4 w-4 text-gray-500" />
+                        Notify me of new matches
+                      </label>
+                      {alertsEnabled && (
+                        <select
+                          value={alertFrequency}
+                          onChange={(e) => setAlertFrequency(e.target.value)}
+                          className="text-sm border rounded-md px-2 py-1"
+                        >
+                          <option value="daily">Daily</option>
+                          <option value="weekly">Weekly</option>
+                          <option value="monthly">Monthly</option>
+                        </select>
+                      )}
+                    </div>
                   </div>
                 )}
               </CardContent>

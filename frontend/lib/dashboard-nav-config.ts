@@ -45,6 +45,7 @@ const student: NavConfig = {
       items: [
         { labelKey: 'analytics', href: '/dashboard/student/analytics' },
         { labelKey: 'activity', href: '/dashboard/student/activity' },
+        { labelKey: 'certifications', href: '/dashboard/student/certifications' },
       ],
     },
     {
@@ -57,6 +58,7 @@ const student: NavConfig = {
         { labelKey: 'feedback', href: '/dashboard/student/feedback' },
         { labelKey: 'upgrade', href: '/dashboard/student/upgrade' },
         { labelKey: 'privacy', href: '/dashboard/student/privacy' },
+        { labelKey: 'settings', href: '/dashboard/student/settings' },
       ],
     },
   ],
@@ -103,6 +105,7 @@ const recruiter: NavConfig = {
       items: [
         { labelKey: 'decisionPacks', href: '/dashboard/recruiter/decision-pack' },
         { labelKey: 'compareCandidates', href: '/dashboard/recruiter/compare' },
+        { labelKey: 'hiringOutcomes', href: '/dashboard/recruiter/hiring-outcomes' },
       ],
     },
     {

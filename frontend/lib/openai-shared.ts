@@ -1,10 +1,13 @@
 /**
- * Shared OpenAI client initialization.
+ * Shared Anthropic (Claude) client initialization.
  * Import from here instead of creating new instances in each module.
  */
 
-import OpenAI from 'openai'
+import Anthropic from '@anthropic-ai/sdk'
 
-export const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+export const anthropic = process.env.ANTHROPIC_API_KEY
+  ? new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
   : null
+
+/** Default model for all AI calls */
+export const AI_MODEL = 'claude-sonnet-4-20250514'

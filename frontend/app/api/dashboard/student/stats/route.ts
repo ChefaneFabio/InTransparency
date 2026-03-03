@@ -23,7 +23,9 @@ export async function GET(req: NextRequest) {
       profileViews,
       unreadMessages,
       jobMatches,
-      recentJobs
+      recentJobs,
+      endorsementCount,
+      universityConnection,
     ] = await Promise.all([
       // Get user profile for completion calculation
       prisma.user.findUnique({
@@ -92,7 +94,18 @@ export async function GET(req: NextRequest) {
         },
         orderBy: { createdAt: 'desc' },
         take: 5
-      })
+      }),
+
+      // Count verified endorsements for onboarding checklist
+      prisma.professorEndorsement.count({
+        where: { studentId: userId, status: 'VERIFIED' }
+      }),
+
+      // Check university connection status
+      prisma.universityConnection.findUnique({
+        where: { userId },
+        select: { verificationStatus: true }
+      }),
     ])
 
     // Calculate profile completion percentage
@@ -131,7 +144,13 @@ export async function GET(req: NextRequest) {
         jobMatches: Math.min(jobMatches, 50), // Cap at 50 for display
         profileCompletion,
       },
-      recentJobs: formattedJobs
+      recentJobs: formattedJobs,
+      onboarding: {
+        profile: user,
+        projectCount,
+        endorsementCount,
+        universityVerified: universityConnection?.verificationStatus === 'VERIFIED',
+      },
     })
 
   } catch (error) {

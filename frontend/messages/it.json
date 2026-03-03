@@ -34,13 +34,15 @@
         "mentoring": "Mentoring",
         "analytics": "Analytics",
         "activity": "Attività",
+        "certifications": "Certificazioni",
         "courses": "Corsi",
         "challenges": "Sfide",
         "referrals": "Referral",
         "employerReviews": "Recensioni Aziende",
         "feedback": "Feedback",
         "upgrade": "Upgrade",
-        "privacy": "Privacy"
+        "privacy": "Privacy",
+        "settings": "Impostazioni"
       }
     },
     "recruiter": {
@@ -67,6 +69,7 @@
         "marketIntelligence": "Intelligence Mercato",
         "decisionPacks": "Decision Pack",
         "compareCandidates": "Confronta Candidati",
+        "hiringOutcomes": "Esiti Assunzione",
         "challenges": "Sfide",
         "settings": "Impostazioni"
       }
@@ -4155,6 +4158,64 @@
         "sending": "Invio...",
         "retry": "Riprova"
       }
+    }
+  },
+  "studentSettings": {
+    "title": "Impostazioni Account",
+    "subtitle": "Gestisci il tuo account, le notifiche e la privacy",
+    "saved": "Impostazioni salvate",
+    "savedDescription": "Le tue impostazioni sono state aggiornate",
+    "error": "Errore",
+    "saveFailed": "Impossibile salvare le impostazioni",
+    "saving": "Salvataggio...",
+    "saveChanges": "Salva Modifiche",
+    "account": {
+      "title": "Informazioni Account",
+      "description": "Aggiorna i tuoi dati personali",
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "email": "Indirizzo Email",
+      "emailHint": "Contatta il supporto per cambiare la tua email",
+      "publicProfile": "Profilo Pubblico",
+      "publicProfileHint": "Consenti a recruiter e altri utenti di visualizzare il tuo profilo"
+    },
+    "notifications": {
+      "title": "Preferenze Notifiche",
+      "description": "Scegli di cosa vuoi essere notificato",
+      "email": "Notifiche Email",
+      "emailHint": "Ricevi aggiornamenti importanti via email",
+      "messages": "Notifiche Messaggi",
+      "messagesHint": "Ricevi notifiche quando ricevi nuovi messaggi",
+      "jobAlerts": "Avvisi Lavoro",
+      "jobAlertsHint": "Ricevi notifiche su nuove opportunità di lavoro corrispondenti",
+      "mentorship": "Notifiche Mentoring",
+      "mentorshipHint": "Ricevi notifiche su richieste e aggiornamenti di mentoring",
+      "marketing": "Email Promozionali",
+      "marketingHint": "Ricevi consigli, novità e contenuti promozionali"
+    },
+    "password": {
+      "title": "Cambia Password",
+      "description": "Aggiorna la password del tuo account",
+      "current": "Password Attuale",
+      "new": "Nuova Password",
+      "confirm": "Conferma Nuova Password",
+      "change": "Cambia Password",
+      "changing": "Modifica in corso...",
+      "passwordMismatch": "Le password non corrispondono",
+      "passwordTooShort": "La password deve essere di almeno 8 caratteri",
+      "passwordChanged": "Password cambiata",
+      "passwordChangedDescription": "La tua password è stata aggiornata",
+      "passwordChangeFailed": "Impossibile cambiare la password"
+    },
+    "danger": {
+      "title": "Zona Pericolosa",
+      "description": "Azioni irreversibili per il tuo account",
+      "warning": "L'eliminazione del tuo account rimuoverà permanentemente tutti i tuoi dati, inclusi progetti, candidature e messaggi. Questa azione non può essere annullata.",
+      "typeDelete": "Scrivi DELETE per confermare",
+      "deleteAccount": "Elimina Account",
+      "deleting": "Eliminazione...",
+      "deleteFailed": "Impossibile eliminare l'account",
+      "typeDeleteToConfirm": "Scrivi DELETE per confermare"
     }
   }
 }

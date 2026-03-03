@@ -7,7 +7,7 @@
  */
 
 import prisma from '@/lib/prisma'
-import { openai } from './openai-shared'
+import { anthropic, AI_MODEL } from './openai-shared'
 
 export interface TranslatedSkill {
   original: string
@@ -40,7 +40,7 @@ export async function translateSkill(
     }
   }
 
-  // 2. GPT-4 fallback
+  // 2. Claude fallback
   const generated = await generateSkillMapping(academicTerm, locale)
 
   // 3. Cache in DB
@@ -107,28 +107,23 @@ export async function translateSkills(
 }
 
 /**
- * Use GPT-4 to map an academic term to industry equivalents.
+ * Use Claude to map an academic term to industry equivalents.
  */
 export async function generateSkillMapping(
   term: string,
   locale: string = 'en'
 ): Promise<{ industryTerms: string[]; synonyms: string[] }> {
-  if (!openai) {
+  if (!anthropic) {
     // Fallback: return term as-is
     return { industryTerms: [term], synonyms: [] }
   }
 
   try {
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4-turbo-preview',
-      response_format: { type: 'json_object' },
-      temperature: 0.3,
+    const response = await anthropic.messages.create({
+      model: AI_MODEL,
       max_tokens: 300,
+      system: `You are a skills taxonomy expert. Given an academic skill or course term, return its industry-standard equivalents and synonyms. Return JSON only, no markdown: { "industryTerms": string[], "synonyms": string[] }. industryTerms = how recruiters/job postings refer to this skill. synonyms = alternate phrasings, including ${locale !== 'en' ? `translations from ${locale} to English and vice versa` : 'common abbreviations'}.`,
       messages: [
-        {
-          role: 'system',
-          content: `You are a skills taxonomy expert. Given an academic skill or course term, return its industry-standard equivalents and synonyms. Return JSON: { "industryTerms": string[], "synonyms": string[] }. industryTerms = how recruiters/job postings refer to this skill. synonyms = alternate phrasings, including ${locale !== 'en' ? `translations from ${locale} to English and vice versa` : 'common abbreviations'}.`,
-        },
         {
           role: 'user',
           content: `Map this academic term to industry equivalents: "${term}"`,
@@ -136,10 +131,15 @@ export async function generateSkillMapping(
       ],
     })
 
-    const content = response.choices[0]?.message?.content
-    if (!content) return { industryTerms: [term], synonyms: [] }
+    const textBlock = response.content.find((block) => block.type === 'text')
+    if (!textBlock || textBlock.type !== 'text') return { industryTerms: [term], synonyms: [] }
 
-    const parsed = JSON.parse(content)
+    let text = textBlock.text.trim()
+    if (text.startsWith('```')) {
+      text = text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '')
+    }
+
+    const parsed = JSON.parse(text)
     return {
       industryTerms: Array.isArray(parsed.industryTerms) ? parsed.industryTerms : [term],
       synonyms: Array.isArray(parsed.synonyms) ? parsed.synonyms : [],

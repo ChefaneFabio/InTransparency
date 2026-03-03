@@ -33,6 +33,7 @@ import {
 } from 'lucide-react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import BadgeExportPanel from '@/components/badges/BadgeExportPanel'
+import EndorsementRequestForm from '@/components/dashboard/student/EndorsementRequestForm'
 
 export default function ProjectDetailPage() {
   const params = useParams()
@@ -766,6 +767,18 @@ export default function ProjectDetailPage() {
               )}
             </CardContent>
           </Card>
+
+          {/* Professor Endorsement - request or view status */}
+          {isOwner && (
+            <EndorsementRequestForm
+              projectId={project.id}
+              projectTitle={project.title}
+              courseName={project.courseName}
+              professor={project.professor}
+              university={project.user?.university}
+              existingEndorsements={project.endorsements || []}
+            />
+          )}
 
           {/* Verification Badge Export */}
           {project.universityVerified && project.verificationStatus === 'VERIFIED' && (

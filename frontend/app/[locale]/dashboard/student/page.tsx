@@ -21,8 +21,9 @@ import {
   FolderOpen,
   TrendingUp,
   Sparkles,
-  LogOut
+  LogOut,
 } from 'lucide-react'
+import OnboardingChecklist from '@/components/dashboard/student/OnboardingChecklist'
 import { signOut } from 'next-auth/react'
 import { useLocale } from 'next-intl'
 import { Link } from '@/navigation'
@@ -58,6 +59,7 @@ export default function StudentDashboard() {
     profileCompletion: 0
   })
   const [recentJobs, setRecentJobs] = useState<JobOpportunity[]>([])
+  const [onboarding, setOnboarding] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -72,6 +74,7 @@ export default function StudentDashboard() {
           const statsData = await statsResponse.json()
           setStats(statsData.stats)
           setRecentJobs(statsData.recentJobs || [])
+          if (statsData.onboarding) setOnboarding(statsData.onboarding)
         }
 
         if (projectsResponse && projectsResponse.ok) {
@@ -136,19 +139,14 @@ export default function StudentDashboard() {
         </div>
       </div>
 
-      {/* Profile completion - compact */}
-      {stats.profileCompletion < 100 && (
-        <div className="flex items-center gap-3 p-3 mb-5 bg-amber-50 border border-amber-100 rounded-lg">
-          <div className="flex-1">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-sm font-medium text-amber-900">Profile {stats.profileCompletion}% complete</span>
-              <Link href="/dashboard/student/profile/edit" className="text-xs text-amber-700 hover:underline">
-                Complete it
-              </Link>
-            </div>
-            <Progress value={stats.profileCompletion} className="h-1.5" />
-          </div>
-        </div>
+      {/* Onboarding checklist — replaces old plain completion bar */}
+      {onboarding && (
+        <OnboardingChecklist
+          profile={onboarding.profile}
+          projectCount={onboarding.projectCount}
+          endorsementCount={onboarding.endorsementCount}
+          universityVerified={onboarding.universityVerified}
+        />
       )}
 
       <div className="grid lg:grid-cols-5 gap-5">

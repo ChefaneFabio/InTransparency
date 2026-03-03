@@ -700,11 +700,19 @@ model ContactUsage {
   messageId          String?
   createdAt          DateTime @default(now())
 
+  // Hiring outcome tracking
+  outcome            String?  // "hired", "interviewed", "no_response", "rejected", "withdrawn"
+  outcomeNote        String?  @db.Text
+  outcomeAt          DateTime?
+  hiringPosition     String?  // Job title they were hired/interviewed for
+  responseTimeHours  Int?     // How fast the student responded
+
   recruiter User @relation("RecruiterContacts", fields: [recruiterId], references: [id], onDelete: Cascade)
   recipient User @relation("RecipientContacts", fields: [recipientId], references: [id], onDelete: Cascade)
 
   @@unique([recruiterId, recipientId, billingPeriodStart])
   @@index([recruiterId, billingPeriodStart])
+  @@index([outcome])
 }
 
 // Professor Endorsements

@@ -34,13 +34,15 @@
         "mentoring": "Mentoring",
         "analytics": "Analytics",
         "activity": "Activity",
+        "certifications": "Certifications",
         "courses": "Courses",
         "challenges": "Challenges",
         "referrals": "Referrals",
         "employerReviews": "Employer Reviews",
         "feedback": "Feedback",
         "upgrade": "Upgrade",
-        "privacy": "Privacy"
+        "privacy": "Privacy",
+        "settings": "Settings"
       }
     },
     "recruiter": {
@@ -67,6 +69,7 @@
         "marketIntelligence": "Market Intelligence",
         "decisionPacks": "Decision Packs",
         "compareCandidates": "Compare Candidates",
+        "hiringOutcomes": "Hiring Outcomes",
         "challenges": "Challenges",
         "settings": "Settings"
       }
@@ -4113,6 +4116,64 @@
         "sending": "Sending...",
         "retry": "Try again"
       }
+    }
+  },
+  "studentSettings": {
+    "title": "Account Settings",
+    "subtitle": "Manage your account, notifications, and privacy",
+    "saved": "Settings saved",
+    "savedDescription": "Your settings have been updated successfully",
+    "error": "Error",
+    "saveFailed": "Failed to save settings",
+    "saving": "Saving...",
+    "saveChanges": "Save Changes",
+    "account": {
+      "title": "Account Information",
+      "description": "Update your personal details",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "emailHint": "Contact support to change your email",
+      "publicProfile": "Public Profile",
+      "publicProfileHint": "Allow recruiters and other users to view your profile"
+    },
+    "notifications": {
+      "title": "Notification Preferences",
+      "description": "Choose what you want to be notified about",
+      "email": "Email Notifications",
+      "emailHint": "Receive important updates via email",
+      "messages": "Message Notifications",
+      "messagesHint": "Get notified when you receive new messages",
+      "jobAlerts": "Job Alert Notifications",
+      "jobAlertsHint": "Get notified about new matching job opportunities",
+      "mentorship": "Mentorship Notifications",
+      "mentorshipHint": "Get notified about mentorship requests and updates",
+      "marketing": "Marketing Emails",
+      "marketingHint": "Receive tips, news, and promotional content"
+    },
+    "password": {
+      "title": "Change Password",
+      "description": "Update your account password",
+      "current": "Current Password",
+      "new": "New Password",
+      "confirm": "Confirm New Password",
+      "change": "Change Password",
+      "changing": "Changing...",
+      "passwordMismatch": "Passwords do not match",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordChanged": "Password changed",
+      "passwordChangedDescription": "Your password has been updated successfully",
+      "passwordChangeFailed": "Failed to change password"
+    },
+    "danger": {
+      "title": "Danger Zone",
+      "description": "Irreversible actions for your account",
+      "warning": "Deleting your account will permanently remove all your data including projects, applications, and messages. This action cannot be undone.",
+      "typeDelete": "Type DELETE to confirm",
+      "deleteAccount": "Delete Account",
+      "deleting": "Deleting...",
+      "deleteFailed": "Failed to delete account",
+      "typeDeleteToConfirm": "Please type DELETE to confirm"
     }
   }
 }

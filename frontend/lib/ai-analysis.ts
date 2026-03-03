@@ -4,10 +4,10 @@
  * This module provides discipline-specific AI analysis for student projects.
  * Each discipline has custom scoring criteria and evaluation methods.
  *
- * Integrates with OpenAI GPT-4 for intelligent project analysis.
+ * Integrates with Claude (Anthropic) for intelligent project analysis.
  */
 
-import { openai } from './openai-shared'
+import { anthropic, AI_MODEL } from './openai-shared'
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -201,7 +201,7 @@ Return JSON format:
 }`
 
   try {
-    const analysis = await callOpenAI(prompt)
+    const analysis = await callClaude(prompt)
     return {
       ...analysis,
       overallScore: calculateOverallScore({
@@ -323,7 +323,7 @@ Provide:
 Return JSON with: complexityScore, innovationScore, qualityScore, relevanceScore, strengths, improvements, highlights, detectedCompetencies (array of {name, score, evidence}), softSkills (array of {name, score, evidence}), recommendations, summary.`
 
   try {
-    const analysis = await callOpenAI(prompt)
+    const analysis = await callClaude(prompt)
     return {
       ...analysis,
       overallScore: calculateOverallScore({
@@ -435,7 +435,7 @@ Provide:
 Return JSON with: complexityScore, innovationScore, qualityScore, relevanceScore, strengths, improvements, highlights, detectedCompetencies (array of {name, score, evidence}), softSkills (array of {name, score, evidence}), recommendations, summary.`
 
   try {
-    const analysis = await callOpenAI(prompt)
+    const analysis = await callClaude(prompt)
     return {
       ...analysis,
       overallScore: calculateOverallScore({
@@ -546,7 +546,7 @@ Provide:
 Return JSON with: complexityScore, innovationScore, qualityScore, relevanceScore, strengths, improvements, highlights, detectedCompetencies (array of {name, score, evidence}), softSkills (array of {name, score, evidence}), recommendations, summary.`
 
   try {
-    const analysis = await callOpenAI(prompt)
+    const analysis = await callClaude(prompt)
     return {
       ...analysis,
       overallScore: calculateOverallScore({
@@ -652,7 +652,7 @@ Provide:
 Return JSON with: complexityScore, innovationScore, qualityScore, relevanceScore, strengths, improvements, highlights, detectedCompetencies (array of {name, score, evidence}), softSkills (array of {name, score, evidence}), recommendations, summary.`
 
   try {
-    const analysis = await callOpenAI(prompt)
+    const analysis = await callClaude(prompt)
     return {
       ...analysis,
       overallScore: calculateOverallScore({
@@ -914,32 +914,35 @@ function toRatedCompetencies(names: string[], baseScore: number): RatedSkill[] {
 }
 
 /**
- * Call OpenAI API for intelligent analysis
+ * Call Claude API for intelligent analysis
  */
-async function callOpenAI(prompt: string): Promise<any> {
-  if (!openai) {
-    throw new Error('OpenAI API key not configured')
+async function callClaude(prompt: string): Promise<any> {
+  if (!anthropic) {
+    throw new Error('Anthropic API key not configured')
   }
 
-  const response = await openai.chat.completions.create({
-    model: 'gpt-4-turbo-preview',
+  const response = await anthropic.messages.create({
+    model: AI_MODEL,
+    max_tokens: 1500,
+    system: 'You are an expert academic project evaluator with deep knowledge across multiple disciplines. Analyze projects objectively and provide constructive feedback. Always return valid JSON only, with no markdown formatting or code fences. For detectedCompetencies and softSkills, return arrays of objects with {name, score (0-100), evidence} format.',
     messages: [
       {
-        role: 'system',
-        content: 'You are an expert academic project evaluator with deep knowledge across multiple disciplines. Analyze projects objectively and provide constructive feedback. Always return valid JSON. For detectedCompetencies and softSkills, return arrays of objects with {name, score (0-100), evidence} format.'
-      },
-      {
         role: 'user',
-        content: prompt
-      }
+        content: prompt,
+      },
     ],
-    response_format: { type: 'json_object' },
-    temperature: 0.7,
-    max_tokens: 1500
   })
 
-  const content = response.choices[0].message.content
-  return content ? JSON.parse(content) : null
+  const textBlock = response.content.find((block) => block.type === 'text')
+  if (!textBlock || textBlock.type !== 'text') return null
+
+  // Strip any markdown code fences if present
+  let text = textBlock.text.trim()
+  if (text.startsWith('```')) {
+    text = text.replace(/^```(?:json)?\n?/, '').replace(/\n?```$/, '')
+  }
+
+  return JSON.parse(text)
 }
 
 /**
