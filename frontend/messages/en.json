@@ -980,6 +980,11 @@
           "name": "Student",
           "description": "Build your portfolio and get discovered by companies",
           "benefits": { "0": "Freemium model", "1": "Verified portfolio", "2": "Company discovery", "3": "Profile analytics" }
+        },
+        "professor": {
+          "name": "Professor",
+          "description": "Endorse student work and track your endorsements",
+          "benefits": { "0": "Endorse student projects", "1": "Track all your endorsements", "2": "Build your endorsement profile", "3": "Support student careers" }
         }
       },
       "trust": {
@@ -4906,6 +4911,46 @@
         "description": "Premium features unlock automatically at each milestone"
       },
       "bonus": "Premium rewards are applied immediately when you hit each tier. No waiting, no hassle!"
+    }
+  },
+  "professorDashboard": {
+    "title": "Professor Dashboard",
+    "subtitle": "Manage your endorsements and student interactions",
+    "stats": {
+      "total": "Total Endorsements",
+      "pending": "Pending Requests",
+      "avgRating": "Avg. Rating Given",
+      "students": "Students Endorsed"
+    },
+    "pendingRequests": "Pending Endorsement Requests",
+    "noPending": "No pending endorsement requests",
+    "pending": "Pending",
+    "review": "Review",
+    "links": {
+      "allEndorsements": "All Endorsements",
+      "allEndorsementsDesc": "View all your endorsements by status",
+      "students": "Students",
+      "studentsDesc": "Students you have endorsed"
+    },
+    "endorsements": {
+      "title": "My Endorsements",
+      "subtitle": "All endorsements you have given or been requested for",
+      "all": "All",
+      "empty": "No endorsements found"
+    },
+    "students": {
+      "title": "Endorsed Students",
+      "subtitle": "Students you have endorsed with their projects",
+      "empty": "No students endorsed yet"
+    },
+    "nav": {
+      "endorsements": "Endorsements",
+      "overview": "Overview",
+      "allEndorsements": "All Endorsements",
+      "people": "People",
+      "students": "Students",
+      "more": "More",
+      "settings": "Settings"
     }
   }
 }

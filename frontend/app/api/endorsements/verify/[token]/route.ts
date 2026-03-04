@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
+import { sendEndorsementResponseEmail } from '@/lib/email'
+import { createNotification } from '@/lib/notifications'
 
 // GET /api/endorsements/verify/[token] - Get endorsement request details
 export async function GET(
@@ -79,10 +81,13 @@ export async function POST(
   try {
     const { token } = await params
     const body = await request.json()
-    const { endorsementText, skills, rating, grade, action } = body
+    const { endorsementText, skills, rating, grade, action, competencyRatings } = body
 
     const endorsement = await prisma.professorEndorsement.findUnique({
-      where: { verificationToken: token }
+      where: { verificationToken: token },
+      include: {
+        project: { select: { id: true, title: true } },
+      },
     })
 
     if (!endorsement) {
@@ -103,6 +108,12 @@ export async function POST(
       return NextResponse.json({ error: 'Token expired' }, { status: 400 })
     }
 
+    // Fetch student info for notifications
+    const student = await prisma.user.findUnique({
+      where: { id: endorsement.studentId },
+      select: { email: true, firstName: true, lastName: true },
+    })
+
     if (action === 'decline') {
       // Professor declined
       await prisma.professorEndorsement.update({
@@ -113,6 +124,29 @@ export async function POST(
         }
       })
 
+      // Notify student
+      if (student?.email) {
+        try {
+          await sendEndorsementResponseEmail(
+            student.email,
+            student.firstName || 'Student',
+            endorsement.professorName,
+            endorsement.project.title,
+            'DECLINED',
+            endorsement.projectId
+          )
+        } catch (e) {
+          console.error('Failed to send decline notification email:', e)
+        }
+        await createNotification({
+          userId: endorsement.studentId,
+          type: 'ENDORSEMENT_RESPONSE',
+          title: 'Endorsement Declined',
+          body: `Prof. ${endorsement.professorName} declined to endorse "${endorsement.project.title}"`,
+          link: '/dashboard/student/projects',
+        })
+      }
+
       return NextResponse.json({
         success: true,
         message: 'Thank you for your response'
@@ -120,13 +154,14 @@ export async function POST(
     }
 
     // Professor verified
-    const updated = await prisma.professorEndorsement.update({
+    await prisma.professorEndorsement.update({
       where: { id: endorsement.id },
       data: {
         endorsementText,
         skills: skills || [],
         rating,
         grade,
+        competencyRatings: competencyRatings || undefined,
         verified: true,
         status: 'VERIFIED',
         verifiedAt: new Date()
@@ -142,10 +177,34 @@ export async function POST(
         properties: {
           projectId: endorsement.projectId,
           rating,
-          skills: skills || []
+          skills: skills || [],
+          competencyRatings: competencyRatings || {},
         }
       }
     })
+
+    // Notify student
+    if (student?.email) {
+      try {
+        await sendEndorsementResponseEmail(
+          student.email,
+          student.firstName || 'Student',
+          endorsement.professorName,
+          endorsement.project.title,
+          'VERIFIED',
+          endorsement.projectId
+        )
+      } catch (e) {
+        console.error('Failed to send endorsement notification email:', e)
+      }
+      await createNotification({
+        userId: endorsement.studentId,
+        type: 'ENDORSEMENT_RESPONSE',
+        title: 'Endorsement Received!',
+        body: `Prof. ${endorsement.professorName} endorsed your project "${endorsement.project.title}"`,
+        link: '/dashboard/student/projects',
+      })
+    }
 
     return NextResponse.json({
       success: true,

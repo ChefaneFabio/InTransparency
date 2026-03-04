@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Link } from '@/navigation'
-import { GraduationCap, Building2, Users, ArrowRight, CheckCircle } from 'lucide-react'
+import { GraduationCap, Building2, Users, BookOpen, ArrowRight, CheckCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 
@@ -33,6 +33,13 @@ const roles = [
     color: 'from-blue-500 to-cyan-500',
     href: '/auth/register/student',
     benefitCount: 4
+  },
+  {
+    id: 'professor' as const,
+    icon: BookOpen,
+    color: 'from-orange-500 to-amber-500',
+    href: '/auth/register/professor',
+    benefitCount: 4
   }
 ]
 
@@ -50,7 +57,8 @@ export default function RegisterPage() {
         'company': '/auth/register/recruiter',
         'recruiter': '/auth/register/recruiter',
         'university': '/auth/register/university',
-        'institute': '/auth/register/university'
+        'institute': '/auth/register/university',
+        'professor': '/auth/register/professor'
       }
       const targetPath = roleMap[role.toLowerCase()]
       if (targetPath) {
@@ -84,7 +92,7 @@ export default function RegisterPage() {
           </motion.div>
 
           {/* Role Selection Cards */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {roles.map((roleOption, index) => {
               const Icon = roleOption.icon
               return (

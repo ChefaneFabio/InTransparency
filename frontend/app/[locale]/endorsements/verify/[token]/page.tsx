@@ -56,6 +56,29 @@ export default function EndorsementVerifyPage() {
   const [skills, setSkills] = useState<string[]>([])
   const [skillInput, setSkillInput] = useState('')
 
+  // Per-competency ratings
+  const predefinedCompetencies = [
+    'Critical Thinking', 'Teamwork', 'Technical Skills',
+    'Communication', 'Creativity', 'Problem Solving'
+  ]
+  const [competencyRatings, setCompetencyRatings] = useState<Record<string, number>>({})
+
+  const toggleCompetency = (competency: string) => {
+    setCompetencyRatings(prev => {
+      const next = { ...prev }
+      if (competency in next) {
+        delete next[competency]
+      } else {
+        next[competency] = 3 // default rating
+      }
+      return next
+    })
+  }
+
+  const setCompetencyRating = (competency: string, value: number) => {
+    setCompetencyRatings(prev => ({ ...prev, [competency]: value }))
+  }
+
   useEffect(() => {
     const fetchEndorsement = async () => {
       try {
@@ -91,6 +114,7 @@ export default function EndorsementVerifyPage() {
           rating: rating || undefined,
           grade: grade || undefined,
           skills,
+          competencyRatings: Object.keys(competencyRatings).length > 0 ? competencyRatings : undefined,
         }),
       })
 
@@ -295,6 +319,56 @@ export default function EndorsementVerifyPage() {
                  rating === 3 ? 'Average' :
                  rating === 4 ? 'Above average' : 'Exceptional'}
               </p>
+            </div>
+
+            {/* Per-Competency Ratings */}
+            <div>
+              <Label>Competency Ratings</Label>
+              <p className="text-xs text-gray-500 mt-1 mb-3">
+                Select competencies to rate. Click a chip to add it, then set a 1-5 rating.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-3">
+                {predefinedCompetencies.map((comp) => {
+                  const isActive = comp in competencyRatings
+                  return (
+                    <Badge
+                      key={comp}
+                      variant={isActive ? 'default' : 'outline'}
+                      className={`cursor-pointer transition-colors ${
+                        isActive ? 'bg-blue-600 hover:bg-blue-700' : 'hover:bg-gray-100'
+                      }`}
+                      onClick={() => toggleCompetency(comp)}
+                    >
+                      {comp}
+                    </Badge>
+                  )
+                })}
+              </div>
+              {Object.keys(competencyRatings).length > 0 && (
+                <div className="space-y-3 bg-gray-50 rounded-lg p-4">
+                  {Array.from(Object.entries(competencyRatings)).map(([comp, val]) => (
+                    <div key={comp} className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-gray-700">{comp}</span>
+                      <div className="flex gap-0.5">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <button
+                            key={star}
+                            type="button"
+                            onClick={() => setCompetencyRating(comp, star)}
+                            className="p-0.5 hover:scale-110 transition-transform"
+                          >
+                            <Star
+                              className={`h-5 w-5 ${
+                                star <= val ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
+                              }`}
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Written endorsement */}

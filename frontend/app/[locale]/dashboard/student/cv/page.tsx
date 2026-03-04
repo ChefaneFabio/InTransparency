@@ -33,6 +33,7 @@ export default function CvPage() {
   const [profile, setProfile] = useState<ProfileData | null>(null)
   const [loading, setLoading] = useState(true)
   const [downloading, setDownloading] = useState(false)
+  const [downloadError, setDownloadError] = useState('')
   const [style, setStyle] = useState<CvStyle>('classic')
 
   useEffect(() => {
@@ -53,9 +54,17 @@ export default function CvPage() {
 
   const handleDownload = useCallback(async () => {
     setDownloading(true)
+    setDownloadError('')
     try {
       const res = await fetch(`/api/dashboard/student/cv?style=${style}`)
-      if (!res.ok) throw new Error('Download failed')
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({ error: 'Download failed' }))
+        throw new Error(errorData.error || 'Download failed')
+      }
+      const contentType = res.headers.get('Content-Type') || ''
+      if (!contentType.includes('application/pdf')) {
+        throw new Error('Server returned an invalid response. Please try again.')
+      }
       const blob = await res.blob()
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
@@ -66,8 +75,9 @@ export default function CvPage() {
       a.click()
       document.body.removeChild(a)
       URL.revokeObjectURL(url)
-    } catch (err) {
+    } catch (err: any) {
       console.error('Download error:', err)
+      setDownloadError(err.message || 'Failed to generate CV. Please try again.')
     } finally {
       setDownloading(false)
     }
@@ -187,6 +197,13 @@ export default function CvPage() {
               <Download className="h-4 w-4 mr-2" />
               {downloading ? t('downloading') : t('download')}
             </Button>
+
+            {downloadError && (
+              <div className="flex items-center gap-2 text-sm text-red-600 bg-red-50 p-3 rounded">
+                <AlertCircle className="h-4 w-4 shrink-0" />
+                {downloadError}
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>

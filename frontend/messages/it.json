@@ -1011,6 +1011,11 @@
           "name": "Studente",
           "description": "Costruisci il tuo portfolio e fatti scoprire dalle aziende",
           "benefits": { "0": "Modello freemium", "1": "Portfolio verificato", "2": "Scoperta da aziende", "3": "Analytics profilo" }
+        },
+        "professor": {
+          "name": "Professore",
+          "description": "Valuta il lavoro degli studenti e gestisci le tue raccomandazioni",
+          "benefits": { "0": "Raccomanda progetti degli studenti", "1": "Monitora tutte le raccomandazioni", "2": "Costruisci il tuo profilo di raccomandazioni", "3": "Supporta le carriere degli studenti" }
         }
       },
       "trust": {
@@ -4948,6 +4953,46 @@
         "description": "Le funzionalità Premium si sbloccano automaticamente ad ogni traguardo"
       },
       "bonus": "I premi Premium vengono applicati immediatamente quando raggiungi ogni livello. Nessuna attesa, nessun problema!"
+    }
+  },
+  "professorDashboard": {
+    "title": "Dashboard Professore",
+    "subtitle": "Gestisci le tue raccomandazioni e le interazioni con gli studenti",
+    "stats": {
+      "total": "Raccomandazioni Totali",
+      "pending": "Richieste in Attesa",
+      "avgRating": "Valutazione Media",
+      "students": "Studenti Raccomandati"
+    },
+    "pendingRequests": "Richieste di Raccomandazione in Attesa",
+    "noPending": "Nessuna richiesta di raccomandazione in attesa",
+    "pending": "In attesa",
+    "review": "Rivedi",
+    "links": {
+      "allEndorsements": "Tutte le Raccomandazioni",
+      "allEndorsementsDesc": "Visualizza tutte le raccomandazioni per stato",
+      "students": "Studenti",
+      "studentsDesc": "Studenti che hai raccomandato"
+    },
+    "endorsements": {
+      "title": "Le Mie Raccomandazioni",
+      "subtitle": "Tutte le raccomandazioni che hai dato o per cui sei stato richiesto",
+      "all": "Tutte",
+      "empty": "Nessuna raccomandazione trovata"
+    },
+    "students": {
+      "title": "Studenti Raccomandati",
+      "subtitle": "Studenti che hai raccomandato con i loro progetti",
+      "empty": "Nessuno studente raccomandato"
+    },
+    "nav": {
+      "endorsements": "Raccomandazioni",
+      "overview": "Panoramica",
+      "allEndorsements": "Tutte le Raccomandazioni",
+      "people": "Persone",
+      "students": "Studenti",
+      "more": "Altro",
+      "settings": "Impostazioni"
     }
   }
 }

@@ -1,4 +1,4 @@
-export type DashboardRole = 'student' | 'recruiter' | 'university' | 'institution'
+export type DashboardRole = 'student' | 'recruiter' | 'university' | 'institution' | 'professor'
 
 export interface NavItem {
   labelKey: string
@@ -215,9 +215,34 @@ const institution: NavConfig = {
   ],
 }
 
+const professor: NavConfig = {
+  groups: [
+    {
+      labelKey: 'endorsements',
+      items: [
+        { labelKey: 'overview', href: '/dashboard/professor' },
+        { labelKey: 'allEndorsements', href: '/dashboard/professor/endorsements' },
+      ],
+    },
+    {
+      labelKey: 'people',
+      items: [
+        { labelKey: 'students', href: '/dashboard/professor/students' },
+      ],
+    },
+    {
+      labelKey: 'more',
+      items: [
+        { labelKey: 'settings', href: '/dashboard/professor/settings' },
+      ],
+    },
+  ],
+}
+
 export const dashboardNavConfig: Record<DashboardRole, NavConfig> = {
   student,
   recruiter,
   university,
   institution,
+  professor,
 }

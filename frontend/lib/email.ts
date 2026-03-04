@@ -255,6 +255,107 @@ export async function sendProfileViewAlertEmail(
   await sendEmail(to, `A recruiter from ${viewerCompany} viewed your profile`, html)
 }
 
+// --- Endorsement Response Email (to student) ---
+
+export async function sendEndorsementResponseEmail(
+  to: string,
+  studentName: string,
+  professorName: string,
+  projectTitle: string,
+  status: 'VERIFIED' | 'DECLINED',
+  projectId: string
+) {
+  const projectUrl = `${BASE_URL}/dashboard/student/projects`
+  const isVerified = status === 'VERIFIED'
+
+  const html = emailWrapper(`
+    <h2>${isVerified ? 'Your endorsement request was approved!' : 'Endorsement Request Update'}</h2>
+    <p>Hi ${escapeHtml(studentName)},</p>
+    <p>
+      Professor <strong>${escapeHtml(professorName)}</strong> has
+      ${isVerified ? 'endorsed' : 'declined to endorse'} your project
+      <strong>${escapeHtml(projectTitle)}</strong>.
+    </p>
+    ${isVerified ? `
+      <div style="background: #ECFDF5; padding: 16px; border-radius: 8px; margin: 16px 0; border: 1px solid #A7F3D0;">
+        <p style="margin: 0; color: #065F46;">
+          Great news! This endorsement is now visible on your profile and will boost your trust score with recruiters.
+        </p>
+      </div>
+    ` : `
+      <div style="background: #FEF2F2; padding: 16px; border-radius: 8px; margin: 16px 0; border: 1px solid #FECACA;">
+        <p style="margin: 0; color: #991B1B;">
+          Don't worry — you can request endorsements from other professors or update your project and try again.
+        </p>
+      </div>
+    `}
+    <a href="${projectUrl}" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
+      View Your Projects
+    </a>
+  `)
+  await sendEmail(
+    to,
+    isVerified
+      ? `Prof. ${professorName} endorsed your project "${projectTitle}"`
+      : `Endorsement update for "${projectTitle}"`,
+    html
+  )
+}
+
+// --- Endorsement Expiry Reminder Email (to professor) ---
+
+export async function sendEndorsementExpiryReminderEmail(
+  to: string,
+  professorName: string,
+  studentName: string,
+  projectTitle: string,
+  verificationToken: string
+) {
+  const verifyUrl = `${BASE_URL}/endorsements/verify/${verificationToken}`
+
+  const html = emailWrapper(`
+    <h2>Reminder: Endorsement Request Expiring Soon</h2>
+    <p>Dear Professor ${escapeHtml(professorName)},</p>
+    <p>
+      You have a pending endorsement request from <strong>${escapeHtml(studentName)}</strong>
+      for their project <strong>${escapeHtml(projectTitle)}</strong> that will expire in 2 days.
+    </p>
+    <div style="background: #FFFBEB; padding: 16px; border-radius: 8px; margin: 16px 0; border: 1px solid #FDE68A;">
+      <p style="margin: 0; color: #92400E;">
+        This link will expire soon. Please review and respond at your earliest convenience.
+      </p>
+    </div>
+    <a href="${verifyUrl}" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
+      Review &amp; Endorse
+    </a>
+    <p style="color: #666; font-size: 12px;">Or copy this link: ${verifyUrl}</p>
+  `)
+  await sendEmail(to, `Reminder: ${studentName}'s endorsement request expires soon`, html)
+}
+
+// --- Endorsement Expiry Notice Email (to student) ---
+
+export async function sendEndorsementExpiryNoticeEmail(
+  to: string,
+  studentName: string,
+  professorName: string,
+  projectTitle: string
+) {
+  const html = emailWrapper(`
+    <h2>Endorsement Request Expiring Soon</h2>
+    <p>Hi ${escapeHtml(studentName)},</p>
+    <p>
+      Your endorsement request to <strong>Professor ${escapeHtml(professorName)}</strong>
+      for project <strong>${escapeHtml(projectTitle)}</strong> will expire in 2 days.
+    </p>
+    <p>If the professor hasn't responded yet, you may want to reach out to them directly as a reminder.</p>
+    <a href="${BASE_URL}/dashboard/student/projects" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
+      View Your Projects
+    </a>
+  `)
+  await sendEmail(to, `Endorsement request for "${projectTitle}" expiring soon`, html)
+}
+
 // --- Shared email wrapper ---
 
 function emailWrapper(content: string): string {

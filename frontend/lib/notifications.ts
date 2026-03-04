@@ -8,6 +8,8 @@ type NotificationType =
   | 'EVENT_RSVP'
   | 'REVIEW_POSTED'
   | 'SCORE_UPDATE'
+  | 'ENDORSEMENT_RESPONSE'
+  | 'ENDORSEMENT_EXPIRING'
   | 'GENERAL'
 
 interface CreateNotificationParams {

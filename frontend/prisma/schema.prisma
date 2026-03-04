@@ -361,6 +361,7 @@ enum UserRole {
   STUDENT
   RECRUITER
   UNIVERSITY
+  PROFESSOR
   ADMIN
 }
 
@@ -756,9 +757,10 @@ model ProfessorEndorsement {
   grade      String? // e.g., "A", "A-"
 
   // Endorsement
-  endorsementText String?  @db.Text
-  skills          String[] // Skills professor endorses
-  rating          Int? // 1-5 rating
+  endorsementText    String?  @db.Text
+  skills             String[] // Skills professor endorses
+  rating             Int? // 1-5 overall rating
+  competencyRatings  Json? // Per-competency ratings: { "Teamwork": 4, "Problem Solving": 5 }
 
   // Verification
   verified          Boolean   @default(false)

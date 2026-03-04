@@ -30,6 +30,9 @@ export default function DashboardPage() {
         case 'university':
           router.push('/dashboard/institution')
           break
+        case 'professor':
+          router.push('/dashboard/professor')
+          break
         case 'admin':
           router.push('/dashboard/admin')
           break

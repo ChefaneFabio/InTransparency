@@ -38,6 +38,7 @@ export default async function VerifyProjectPage({ params }: Props) {
           endorsementText: true,
           rating: true,
           skills: true,
+          competencyRatings: true,
           verifiedAt: true,
         },
       },
@@ -225,6 +226,25 @@ export default async function VerifyProjectPage({ params }: Props) {
                 </div>
                 {e.endorsementText && (
                   <p className="text-gray-700 text-sm mt-2">{e.endorsementText}</p>
+                )}
+                {e.competencyRatings && typeof e.competencyRatings === 'object' && Object.keys(e.competencyRatings as Record<string, number>).length > 0 && (
+                  <div className="mt-3 pt-3 border-t">
+                    <p className="text-xs font-medium text-gray-500 mb-2">Competency Ratings</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {Array.from(Object.entries(e.competencyRatings as Record<string, number>)).map(([comp, val]) => (
+                        <div key={comp} className="flex items-center gap-2">
+                          <span className="text-xs text-gray-600 w-28 truncate">{comp}</span>
+                          <div className="flex-1 bg-gray-200 rounded-full h-2">
+                            <div
+                              className="bg-blue-500 h-2 rounded-full"
+                              style={{ width: `${(val / 5) * 100}%` }}
+                            />
+                          </div>
+                          <span className="text-xs text-gray-500 w-6 text-right">{val}/5</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 )}
                 {e.skills && e.skills.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-2">

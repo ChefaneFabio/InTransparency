@@ -9,7 +9,7 @@ const registerSchema = z.object({
   password: z.string().min(8, "Password must be at least 8 characters"),
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
-  role: z.enum(["STUDENT", "RECRUITER", "UNIVERSITY"]),
+  role: z.enum(["STUDENT", "RECRUITER", "UNIVERSITY", "PROFESSOR"]),
 })
 
 export async function POST(req: NextRequest) {

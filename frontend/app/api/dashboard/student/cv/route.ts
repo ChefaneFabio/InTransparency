@@ -246,11 +246,14 @@ export async function GET(request: NextRequest) {
     const pdfBuffer = await renderToBuffer(
       React.createElement(CvDocument, { data: cvData, style }) as any
     )
+    const uint8 = new Uint8Array(pdfBuffer)
 
-    return new NextResponse(Buffer.from(pdfBuffer) as any, {
+    return new Response(uint8, {
+      status: 200,
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': `inline; filename="cv-${fullName.replace(/\s+/g, '-').toLowerCase()}.pdf"`,
+        'Content-Disposition': `attachment; filename="cv-${fullName.replace(/\s+/g, '-').toLowerCase()}.pdf"`,
+        'Cache-Control': 'no-store',
       },
     })
   } catch (error) {
