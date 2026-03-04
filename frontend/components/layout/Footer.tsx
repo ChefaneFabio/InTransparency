@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { Facebook, Twitter, Linkedin, Github, Instagram, Mail, MapPin, Phone, Shield } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useToast } from '@/components/ui/use-toast'
+import { trackEvent } from '@/lib/analytics'
 
 // Social links - to be added when official profiles are created
 const social: { name: string; href: string; icon: typeof Facebook }[] = []
@@ -32,18 +33,24 @@ export function Footer() {
     setIsSubscribing(true)
 
     try {
-      // TODO: Replace with actual newsletter API endpoint
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      await trackEvent({
+        eventType: 'WAITLIST_SIGNUP',
+        eventName: 'newsletter_signup',
+        properties: {
+          email: newsletterEmail,
+          source: 'footer',
+        },
+      })
 
       toast({
-        title: 'Successfully subscribed!',
-        description: 'Thank you for subscribing to our newsletter.',
+        title: tFooter('newsletter.successTitle'),
+        description: tFooter('newsletter.successDescription'),
       })
       setNewsletterEmail('')
     } catch (error) {
       toast({
-        title: 'Subscription failed',
-        description: 'Please try again later.',
+        title: tFooter('newsletter.errorTitle'),
+        description: tFooter('newsletter.errorDescription'),
         variant: 'destructive'
       })
     } finally {

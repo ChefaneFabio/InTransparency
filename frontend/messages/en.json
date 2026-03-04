@@ -473,7 +473,11 @@
       "title": "Stay Updated",
       "description": "Get the latest updates on new features and career opportunities.",
       "placeholder": "Enter your email",
-      "subscribe": "Subscribe"
+      "subscribe": "Subscribe",
+      "successTitle": "Successfully subscribed!",
+      "successDescription": "Thank you for subscribing to our newsletter.",
+      "errorTitle": "Subscription failed",
+      "errorDescription": "Please try again later."
     },
     "compliance": {
       "operational": "All systems operational",
@@ -4624,6 +4628,33 @@
       "bigFiveOverTime": "Personality Traits Over Time",
       "competencyOverTime": "Competencies Over Time",
       "retakeCta": "Retake Assessment"
+    }
+  },
+  "socialProof": {
+    "title": "Built for Italian Universities and ITS Academies",
+    "subtitle": "The only platform connecting verified student talent with employers — free for students, free for universities, pay-per-contact for companies.",
+    "stats": {
+      "universities": {
+        "value": "120+",
+        "label": "ITS Academies in Italy"
+      },
+      "profiles": {
+        "value": "8+",
+        "label": "Sectors Covered"
+      },
+      "verified": {
+        "value": "100%",
+        "label": "Institution-Verified Skills"
+      },
+      "sectors": {
+        "value": "6",
+        "label": "EU Grade Systems Supported"
+      }
+    },
+    "badges": {
+      "verified": "Institution-Verified Profiles",
+      "freeForStudents": "Free for Students & Universities",
+      "noSubscription": "No Subscription Required"
     }
   }
 }

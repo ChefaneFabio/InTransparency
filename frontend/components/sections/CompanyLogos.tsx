@@ -1,58 +1,76 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
+import { GraduationCap, Building2, Shield, FileCheck2 } from 'lucide-react'
+
 export function CompanyLogos() {
-  const targetCompanies = [
-    { name: 'Google', category: 'Tech Giants' },
-    { name: 'Microsoft', category: 'Tech Giants' },
-    { name: 'Meta', category: 'Tech Giants' },
-    { name: 'Amazon', category: 'Tech Giants' },
-    { name: 'Stripe', category: 'Scale-ups' },
-    { name: 'Spotify', category: 'Scale-ups' },
-    { name: 'Notion', category: 'Scale-ups' },
-    { name: 'Vercel', category: 'Scale-ups' },
-    { name: 'OpenAI', category: 'AI Companies' },
-    { name: 'Anthropic', category: 'AI Companies' },
-    { name: 'Hugging Face', category: 'AI Companies' },
-    { name: 'DeepMind', category: 'AI Companies' }
+  const t = useTranslations('socialProof')
+
+  const stats = [
+    {
+      icon: GraduationCap,
+      value: t('stats.universities.value'),
+      label: t('stats.universities.label'),
+      color: 'text-blue-600 bg-blue-50',
+    },
+    {
+      icon: FileCheck2,
+      value: t('stats.profiles.value'),
+      label: t('stats.profiles.label'),
+      color: 'text-cyan-600 bg-cyan-50',
+    },
+    {
+      icon: Shield,
+      value: t('stats.verified.value'),
+      label: t('stats.verified.label'),
+      color: 'text-green-600 bg-green-50',
+    },
+    {
+      icon: Building2,
+      value: t('stats.sectors.value'),
+      label: t('stats.sectors.label'),
+      color: 'text-purple-600 bg-purple-50',
+    },
   ]
 
   return (
     <section className="py-16 bg-white border-y border-gray-100">
       <div className="container">
         <div className="text-center mb-12">
-          <div className="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-            🚀 Building Our Network
-          </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Where Our Students Want to Work
+            {t('title')}
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            We're building partnerships with top companies. Join early access to help shape our recruiter network.
+            {t('subtitle')}
           </p>
         </div>
 
-        {/* Company Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center opacity-60">
-          {targetCompanies.map((company, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center p-4 rounded-lg"
-            >
-              <span className="text-lg font-bold text-gray-400">
-                {company.name}
-              </span>
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full ${stat.color} mb-3`}>
+                <stat.icon className="h-6 w-6" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
+              <div className="text-sm text-gray-600">{stat.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Value Proposition for Companies */}
+        {/* Trust Badges */}
         <div className="mt-12 flex flex-wrap justify-center gap-4">
-          <div className="px-4 py-2 bg-blue-50 rounded-full text-sm text-blue-700 font-medium">
-            💼 Verified Portfolios
+          <div className="px-4 py-2 bg-blue-50 rounded-full text-sm text-blue-700 font-medium flex items-center gap-2">
+            <Shield className="h-4 w-4" />
+            {t('badges.verified')}
           </div>
-          <div className="px-4 py-2 bg-purple-50 rounded-full text-sm text-purple-700 font-medium">
-            🎓 University-Backed Skills
+          <div className="px-4 py-2 bg-green-50 rounded-full text-sm text-green-700 font-medium flex items-center gap-2">
+            <GraduationCap className="h-4 w-4" />
+            {t('badges.freeForStudents')}
           </div>
-          <div className="px-4 py-2 bg-green-50 rounded-full text-sm text-green-700 font-medium">
-            🤝 Early Partner Program
+          <div className="px-4 py-2 bg-purple-50 rounded-full text-sm text-purple-700 font-medium flex items-center gap-2">
+            <Building2 className="h-4 w-4" />
+            {t('badges.noSubscription')}
           </div>
         </div>
       </div>

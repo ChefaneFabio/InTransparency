@@ -20,10 +20,16 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'InTransparency - AI-Powered Academic Showcase',
-  description: 'Connect students and professionals through intelligent project matching and storytelling',
-  keywords: ['academic projects', 'AI matching', 'student portfolio', 'professional networking'],
-  authors: [{ name: 'InTransparency Team' }],
+  metadataBase: new URL('https://intransparency.eu'),
+  title: {
+    default: 'InTransparency — Verified Student Profiles | University-to-Work Platform',
+    template: '%s | InTransparency',
+  },
+  description: 'Hire verified graduates with institution-backed skills and AI-analyzed project portfolios. Pay per contact, no annual commitment. Trusted by Italian universities and ITS academies.',
+  keywords: ['verified student profiles', 'university recruitment Italy', 'hire graduates Europe', 'pay per contact recruiting', 'ITS Academy platform', 'Bologna Process grades', 'student portfolio', 'institutional verification'],
+  authors: [{ name: 'InTransparency' }],
+  creator: 'InTransparency',
+  publisher: 'InTransparency',
   viewport: 'width=device-width, initial-scale=1',
   manifest: '/manifest.json',
   themeColor: '#0891b2',
@@ -35,6 +41,26 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: 'default',
     title: 'InTransparency',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    alternateLocale: 'it_IT',
+    url: 'https://intransparency.eu',
+    siteName: 'InTransparency',
+    title: 'InTransparency — Verified Student Profiles | University-to-Work Platform',
+    description: 'Hire verified graduates with institution-backed skills and AI-analyzed project portfolios. Pay per contact, no annual commitment.',
+    images: [{ url: '/logo.jpeg', width: 340, height: 438, alt: 'InTransparency' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'InTransparency — Verified Student Profiles',
+    description: 'Hire verified graduates with institution-backed skills. Pay per contact, no subscription.',
+    images: ['/logo.jpeg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 }
 

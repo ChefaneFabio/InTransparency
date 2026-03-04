@@ -471,9 +471,13 @@
     "cookies": "Politica Cookie",
     "newsletter": {
       "title": "Rimani Aggiornato",
-      "description": "Ricevi gli ultimi aggiornamenti su nuove funzionalità e opportunità di carriera.",
+      "description": "Ricevi gli ultimi aggiornamenti su nuove funzionalit\u00e0 e opportunit\u00e0 di carriera.",
       "placeholder": "Inserisci la tua email",
-      "subscribe": "Iscriviti"
+      "subscribe": "Iscriviti",
+      "successTitle": "Iscrizione riuscita!",
+      "successDescription": "Grazie per esserti iscritto alla nostra newsletter.",
+      "errorTitle": "Iscrizione fallita",
+      "errorDescription": "Riprova pi\u00f9 tardi."
     },
     "compliance": {
       "operational": "Tutti i sistemi operativi",
@@ -4666,6 +4670,33 @@
       "bigFiveOverTime": "Tratti di Personalit\u00e0 nel Tempo",
       "competencyOverTime": "Competenze nel Tempo",
       "retakeCta": "Ripeti Valutazione"
+    }
+  },
+  "socialProof": {
+    "title": "Pensato per Universit\u00e0 e ITS Academy Italiani",
+    "subtitle": "L'unica piattaforma che connette talenti studenteschi verificati con i datori di lavoro \u2014 gratis per studenti, gratis per universit\u00e0, pay-per-contact per le aziende.",
+    "stats": {
+      "universities": {
+        "value": "120+",
+        "label": "ITS Academy in Italia"
+      },
+      "profiles": {
+        "value": "8+",
+        "label": "Settori Coperti"
+      },
+      "verified": {
+        "value": "100%",
+        "label": "Competenze Verificate"
+      },
+      "sectors": {
+        "value": "6",
+        "label": "Sistemi di Voto EU Supportati"
+      }
+    },
+    "badges": {
+      "verified": "Profili Verificati dall'Istituto",
+      "freeForStudents": "Gratis per Studenti e Universit\u00e0",
+      "noSubscription": "Nessun Abbonamento Richiesto"
     }
   }
 }
