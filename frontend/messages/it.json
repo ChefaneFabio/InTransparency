@@ -2535,12 +2535,132 @@
   "pricingPage": {
     "hero": {
       "title": "Prezzi",
-      "subtitle": "Freemium per studenti e universita. Le aziende pagano per contatto.",
-      "description": "Prezzi semplici e trasparenti.",
+      "subtitle": "Gratis per studenti e università. In fase pilota — i partner fondatori accedono gratis.",
+      "description": "Prezzi semplici e trasparenti. Nessuna sorpresa.",
       "segments": {
         "students": "Studenti",
         "institutes": "Istituti",
         "companies": "Aziende"
+      }
+    },
+    "founding": {
+      "badge": "Limitato — 10 posti",
+      "title": "Programma Partner Fondatori",
+      "subtitle": "Siamo in fase pilota con l'Università di Bergamo. Unisciti come Partner Fondatore e ottieni accesso gratuito illimitato ai laureati verificati mentre costruiamo massa critica — in cambio del tuo feedback e una testimonianza.",
+      "features": {
+        "0": "Contatti illimitati gratuiti durante la fase pilota (Q4 2025 – Q1 2026)",
+        "1": "Sconto permanente del 50% sui crediti dopo la fine del pilota",
+        "2": "Il tuo logo in evidenza come Partner Fondatore sulla piattaforma",
+        "3": "Input diretto sulle funzionalità — costruiamo ciò di cui hai bisogno"
+      },
+      "cta": "Candidati come Partner Fondatore",
+      "demoCta": "Prova la Demo AI Search",
+      "priceNote": "durante la fase pilota",
+      "perk1": "Contatti illimitati",
+      "perk2": "50% di sconto per sempre",
+      "perk3": "Logo in evidenza",
+      "afterPilotLabel": "Dopo la fase pilota — prezzi standard"
+    },
+    "plans": {
+      "company": {
+        "browse": {
+          "name": "Sfoglia Gratis",
+          "badge": "Gratis",
+          "cta": "Inizia a Esplorare",
+          "features": {
+            "0": "Sfogliamento profili illimitato",
+            "1": "Filtri di ricerca avanzati",
+            "2": "Salva candidati",
+            "3": "Visualizza competenze verificate",
+            "4": "Nessuna carta di credito richiesta"
+          }
+        },
+        "payPerContact": {
+          "name": "Paga Per Contatto",
+          "badge": "Più Popolare",
+          "period": "/contatto",
+          "cta": "Inizia",
+          "features": {
+            "0": "Tutto in Sfoglia Gratis",
+            "1": "Sblocca dettagli contatto completi",
+            "2": "Visualizza info progetto complete",
+            "3": "I crediti non scadono mai",
+            "4": "Sconti volume disponibili"
+          }
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "badge": "Team",
+          "period": "/mese",
+          "cta": "Contatta Vendite",
+          "features": {
+            "0": "Contatti illimitati",
+            "1": "Accesso API",
+            "2": "Integrazione ATS",
+            "3": "Supporto dedicato",
+            "4": "Analytics personalizzati"
+          }
+        }
+      },
+      "student": {
+        "badge": "Per Studenti",
+        "title": "Sempre Gratis",
+        "subtitle": "Costruisci il tuo portfolio verificato. Fatti scoprire dalle aziende.",
+        "free": {
+          "name": "Gratis",
+          "badge": "Gratis Per Sempre",
+          "cta": "Inizia",
+          "features": {
+            "0": "Upload progetti illimitati",
+            "1": "Verifica universitaria",
+            "2": "Pagina portfolio pubblica",
+            "3": "Scoperta aziende",
+            "4": "Analytics profilo"
+          }
+        },
+        "premium": {
+          "name": "Premium",
+          "badge": "Opzionale",
+          "period": "/mese",
+          "cta": "Inizia Prova Gratuita",
+          "features": {
+            "0": "Tutto nel piano Gratis",
+            "1": "Priorità nei risultati di ricerca",
+            "2": "URL portfolio personalizzato",
+            "3": "Contatta recruiter direttamente",
+            "4": "Analytics avanzati"
+          }
+        }
+      },
+      "institute": {
+        "badge": "Per Università e ITS",
+        "title": "Gratis Per Sempre",
+        "subtitle": "Verifica i progetti degli studenti. Monitora i risultati di placement. Zero costi vs AlmaLaurea.",
+        "free": {
+          "name": "Gratis",
+          "badge": "Gratis Per Sempre",
+          "cta": "Inizia",
+          "features": {
+            "0": "Verifica progetti studenti",
+            "1": "Dashboard approvazione batch",
+            "2": "Analytics placement",
+            "3": "Tracking visibilità aziende",
+            "4": "Nessuna carta di credito richiesta"
+          }
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "badge": "Enterprise",
+          "period": "/anno",
+          "cta": "Contatta Vendite",
+          "features": {
+            "0": "Tutto nel piano Gratis",
+            "1": "Integrazione API",
+            "2": "Opzione white-label",
+            "3": "Supporto multi-campus",
+            "4": "Account manager dedicato"
+          }
+        }
       }
     },
     "faq": {
@@ -2573,11 +2693,11 @@
       }
     },
     "finalCta": {
-      "title": "Pronto per Iniziare?",
-      "subtitle": "Inizia a esplorare gratis. Paga solo quando trovi il candidato perfetto.",
-      "primaryButton": "Inizia a Esplorare Gratis",
-      "secondaryButton": "Parla con le Vendite",
-      "benefits": "✓ Nessuna carta richiesta  ✓ Sfogliamento gratis illimitato  ✓ Paga solo per contatti sbloccati"
+      "title": "Unisciti al Pilota",
+      "subtitle": "I Partner Fondatori ottengono accesso gratuito illimitato. Studenti e università sono sempre gratis.",
+      "primaryButton": "Candidati come Partner Fondatore",
+      "secondaryButton": "Prova la Demo AI",
+      "benefits": "✓ Nessuna carta richiesta  ✓ Gratis durante il pilota  ✓ Sconto permanente dopo"
     }
   },
   "submitStory": {

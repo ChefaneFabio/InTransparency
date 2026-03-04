@@ -2492,12 +2492,132 @@
   "pricingPage": {
     "hero": {
       "title": "Pricing",
-      "subtitle": "Freemium for students and universities. Companies pay per contact.",
-      "description": "Simple, transparent pricing.",
+      "subtitle": "Free for students and universities. Currently in pilot — founding partners get free access.",
+      "description": "Simple, transparent pricing. No surprises.",
       "segments": {
         "students": "Students",
         "institutes": "Institutes",
         "companies": "Companies"
+      }
+    },
+    "founding": {
+      "badge": "Limited — 10 spots",
+      "title": "Founding Partner Program",
+      "subtitle": "We're in pilot with Università di Bergamo. Join as a Founding Partner and get free unlimited access to verified graduates while we build critical mass — in exchange for your feedback and a testimonial.",
+      "features": {
+        "0": "Unlimited free contacts during the pilot phase (Q4 2025 – Q1 2026)",
+        "1": "Permanent 50% discount on credits after the pilot ends",
+        "2": "Your logo featured as a Founding Partner on the platform",
+        "3": "Direct input on features — we build what you need"
+      },
+      "cta": "Apply as Founding Partner",
+      "demoCta": "Try the AI Search Demo",
+      "priceNote": "during pilot phase",
+      "perk1": "Unlimited contacts",
+      "perk2": "50% off forever after",
+      "perk3": "Featured logo",
+      "afterPilotLabel": "After pilot phase — standard pricing"
+    },
+    "plans": {
+      "company": {
+        "browse": {
+          "name": "Browse Free",
+          "badge": "Free",
+          "cta": "Start Exploring",
+          "features": {
+            "0": "Unlimited profile browsing",
+            "1": "Advanced search filters",
+            "2": "Save candidates",
+            "3": "View verified skills",
+            "4": "No credit card required"
+          }
+        },
+        "payPerContact": {
+          "name": "Pay Per Contact",
+          "badge": "Most Popular",
+          "period": "/contact",
+          "cta": "Get Started",
+          "features": {
+            "0": "Everything in Browse Free",
+            "1": "Unlock full contact details",
+            "2": "View complete project info",
+            "3": "Credits never expire",
+            "4": "Volume discounts available"
+          }
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "badge": "Teams",
+          "period": "/month",
+          "cta": "Contact Sales",
+          "features": {
+            "0": "Unlimited contacts",
+            "1": "API access",
+            "2": "ATS integration",
+            "3": "Dedicated support",
+            "4": "Custom analytics"
+          }
+        }
+      },
+      "student": {
+        "badge": "For Students",
+        "title": "Always Free",
+        "subtitle": "Build your verified portfolio. Get discovered by companies.",
+        "free": {
+          "name": "Free",
+          "badge": "Free Forever",
+          "cta": "Get Started",
+          "features": {
+            "0": "Unlimited project uploads",
+            "1": "University verification",
+            "2": "Public portfolio page",
+            "3": "Company discovery",
+            "4": "Profile analytics"
+          }
+        },
+        "premium": {
+          "name": "Premium",
+          "badge": "Optional",
+          "period": "/month",
+          "cta": "Start Free Trial",
+          "features": {
+            "0": "Everything in Free",
+            "1": "Priority in search results",
+            "2": "Custom portfolio URL",
+            "3": "Contact recruiters directly",
+            "4": "Advanced analytics"
+          }
+        }
+      },
+      "institute": {
+        "badge": "For Universities & ITS",
+        "title": "Free Forever",
+        "subtitle": "Verify student projects. Track placement outcomes. Zero cost vs AlmaLaurea.",
+        "free": {
+          "name": "Free",
+          "badge": "Free Forever",
+          "cta": "Get Started",
+          "features": {
+            "0": "Verify student projects",
+            "1": "Batch approval dashboard",
+            "2": "Placement analytics",
+            "3": "Company visibility tracking",
+            "4": "No credit card required"
+          }
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "badge": "Enterprise",
+          "period": "/year",
+          "cta": "Contact Sales",
+          "features": {
+            "0": "Everything in Free",
+            "1": "API integration",
+            "2": "White-label option",
+            "3": "Multi-campus support",
+            "4": "Dedicated account manager"
+          }
+        }
       }
     },
     "faq": {
@@ -2530,11 +2650,11 @@
       }
     },
     "finalCta": {
-      "title": "Ready to Get Started?",
-      "subtitle": "Start exploring for free. Only pay when you find the perfect candidate.",
-      "primaryButton": "Start Exploring Free",
-      "secondaryButton": "Talk to Sales",
-      "benefits": "✓ No credit card required  ✓ Unlimited free browsing  ✓ Only pay for contacts you unlock"
+      "title": "Join the Pilot",
+      "subtitle": "Founding Partners get free unlimited access. Students and universities are always free.",
+      "primaryButton": "Apply as Founding Partner",
+      "secondaryButton": "Try the AI Demo",
+      "benefits": "✓ No credit card required  ✓ Free during pilot  ✓ Permanent discount after"
     }
   },
   "submitStory": {
