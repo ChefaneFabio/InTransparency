@@ -40,7 +40,7 @@ const promptConfig: Record<ReferralTriggerType, {
 }> = {
   'student-after-match': {
     title: 'Share with Friends & Earn €5',
-    description: 'You got a 92% match! Share InTransparency with classmates - earn €5 per Pro upgrade + they get 1 month free.',
+    description: 'You got a great match! Share InTransparency with classmates - earn €5 per Pro upgrade + they get 1 month free.',
     reward: '€5 per friend',
     cta: 'Get Referral Link',
     icon: Share2,

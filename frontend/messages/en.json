@@ -127,7 +127,7 @@
   },
   "home": {
     "hero": {
-      "serviceBadge": "Subscription-Free Service • Partner-Enabled",
+      "serviceBadge": "Verified Talent from Top Universities • Start Cup Bergamo 2025 Winners",
       "segmentLabels": {
         "students": "Students",
         "institutes": "Institutes",
@@ -217,8 +217,8 @@
             "description": "Every profile shows: \"Verified by Politecnico Milano\" or \"ITS G. Natta endorsed\" - trust the source, not the student claim"
           },
           {
-            "title": "92% Match Accuracy",
-            "description": "Institution-verified competencies = 30-40% fewer mismatches vs. self-reported Indeed CVs - hire confidently"
+            "title": "Verified Match Quality",
+            "description": "Institution-verified competencies mean fewer mismatches vs. self-reported CVs — hire with confidence"
           }
         ],
         "statsLabel": "Access verified talent from",
@@ -231,7 +231,11 @@
       "unifiedPrimaryCTA": "Get Started Free",
       "unifiedSecondaryCTA": "See How It Works",
       "unifiedBenefits": ["100% Verified Skills", "AI-Powered Matching", "Free for Students & Universities"],
-      "exploreByRole": "Explore by role"
+      "exploreByRole": "Explore by role",
+      "socialProof": {
+        "startCup": "Start Cup Bergamo 2025 Winners",
+        "unibgPilot": "Pilot program with Università degli Studi di Bergamo"
+      }
     },
     "problem": {
       "badge": "The Problem",
@@ -251,7 +255,7 @@
         "realWork": "See real work, not claims",
         "aiAnalysis": "AI analysis of complex projects",
         "noApplications": "Zero applications → Companies find you",
-        "accuracy": "92% match accuracy (vs 60% on resumes)"
+        "accuracy": "Verified skill matching (vs self-reported resumes)"
       }
     },
     "howItWorks": {
@@ -301,7 +305,7 @@
       },
       "transparency": {
         "title": "Bidirectional Transparency",
-        "description": "See exactly WHY you match: '92% because Python thesis'"
+        "description": "See exactly WHY you match: 'Python thesis verified by Politecnico'"
       }
     },
     "stats": {
@@ -541,7 +545,7 @@
     "companies": {
       "badge": "For Companies - Pay Only What You Use",
       "title": "Transparent Talent Sourcing Service - No Subscriptions",
-      "subtitle": "Browse 100% institution-verified profiles FREE. Search 'AutoCAD, 28/30 by ITS Rizzoli' with project excerpts. Pay €10 only when you contact verified candidates. 80% faster screening, 92% accuracy.",
+      "subtitle": "Browse 100% institution-verified profiles FREE. Search 'AutoCAD, 28/30 by ITS Rizzoli' with project excerpts. Pay €10 only when you contact verified candidates. Faster screening, verified accuracy.",
       "browseFree": {
         "name": "Browse Free",
         "price": "€0",
@@ -1143,9 +1147,9 @@
         "badge": "FREE for Students",
         "heading": "AI-Powered Connections",
         "features": {
-          "0": "92% verified accuracy",
+          "0": "Institution-verified accuracy",
           "1": "Transparent explanations",
-          "2": "\"92% fit: Python thesis matches\"",
+          "2": "\"High fit: Python thesis verified by university\"",
           "3": "Bidirectional requirements"
         },
         "comparison": "vs Manatal: Opaque resume parsing"
@@ -1209,7 +1213,7 @@
         },
         "step3": {
           "title": "3. AI Matches",
-          "description": "92% verified accuracy"
+          "description": "Institution-verified accuracy"
         },
         "step4": {
           "title": "4. Companies Discover",
@@ -1253,7 +1257,7 @@
           "title": "4. Contact Directly",
           "description": "No CV screening"
         },
-        "result": "Companies save 80% screening time • 92% match accuracy • See verified work upfront"
+        "result": "Companies save screening time • Verified match quality • See verified work upfront"
       }
     },
     "studentDataImport": {
@@ -1748,7 +1752,7 @@
         "1": {
           "title": "AI-Powered Matching",
           "items": {
-            "0": "Companies see \"92% fit: AutoCAD from ITS project\"",
+            "0": "Companies see \"High fit: AutoCAD verified from ITS project\"",
             "1": "Verified skills = higher match scores",
             "2": "Transparent AI explanations",
             "3": "80% faster screening vs CVs"
@@ -1787,7 +1791,7 @@
         "priceBadge": "FREE for Students",
         "subtitle": "Transparent AI Matching",
         "items": {
-          "0": "\"92% fit: AutoCAD from ITS project\"",
+          "0": "\"High fit: AutoCAD verified from ITS project\"",
           "1": "Verified skills = higher match scores",
           "2": "Companies see your institutional endorsement",
           "3": "25% more successful placements"
@@ -2080,7 +2084,7 @@
             "0": "Hard skills: Verified through projects, code, designs, research",
             "1": "Soft skills: Analyzed from teamwork, leadership, presentations",
             "2": "Institution-authenticated grades, courses, and achievements",
-            "3": "92% match accuracy vs 65% for traditional methods"
+            "3": "Verified data outperforms traditional self-reported methods"
           }
         },
         "1": {
@@ -2133,7 +2137,7 @@
           "0": "Verified skills, not resume inflation",
           "1": "Explainable matches with reasoning",
           "2": "See actual project work before contacting",
-          "3": "92% match accuracy saves time",
+          "3": "Verified match quality saves time",
           "4": "€10 per contact vs €8K/year subscriptions"
         }
       },
@@ -2153,9 +2157,9 @@
       "subtitle": "Real data showing how transparency improves outcomes for everyone",
       "metrics": {
         "0": {
-          "value": "92%",
-          "label": "Match Accuracy",
-          "note": "(vs 65% for ATS)"
+          "value": "3x",
+          "label": "Faster Screening",
+          "note": "(vs traditional CV review)"
         },
         "1": {
           "value": "85%",
@@ -2413,7 +2417,7 @@
         "items": {
           "0": {
             "title": "Institution-Verified Skills:",
-            "description": "Hard skills (Python, AutoCAD, Excel) and soft skills (teamwork, leadership, communication) verified through projects, courses, and institutional data. 92% match accuracy."
+            "description": "Hard skills (Python, AutoCAD, Excel) and soft skills (teamwork, leadership, communication) verified through projects, courses, and institutional data."
           },
           "1": {
             "title": "Explainable AI:",
@@ -2437,8 +2441,8 @@
             "label": "Average time to hire (vs 42+ days traditional)"
           },
           "1": {
-            "value": "92%",
-            "label": "Match accuracy (vs 65% for ATS tools)"
+            "value": "100%",
+            "label": "Institution-verified skills data"
           },
           "2": {
             "value": "€10",

@@ -191,7 +191,7 @@ export default function TransparencyPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                      <strong>92% match accuracy</strong> with verified institutional data
+                      <strong>Verified match quality</strong> with institutional data
                     </li>
                   </ul>
                 </CardContent>
@@ -334,7 +334,7 @@ export default function TransparencyPage() {
                     <li>• Verified skills, not resume inflation</li>
                     <li>• Explainable matches with reasoning</li>
                     <li>• See actual project work before contacting</li>
-                    <li>• 92% match accuracy saves time</li>
+                    <li>• Verified match quality saves time</li>
                     <li>• €10 per contact, no annual fees</li>
                   </ul>
                 </CardContent>
@@ -373,9 +373,9 @@ export default function TransparencyPage() {
 
                 <div className="grid md:grid-cols-4 gap-8">
                   <div>
-                    <div className="text-5xl font-bold mb-2">92%</div>
-                    <div className="text-white/90">Match Accuracy</div>
-                    <div className="text-sm text-white/70 mt-1">(with verified data)</div>
+                    <div className="text-5xl font-bold mb-2">100%</div>
+                    <div className="text-white/90">Verified Skills</div>
+                    <div className="text-sm text-white/70 mt-1">(institution-confirmed)</div>
                   </div>
                   <div>
                     <div className="text-5xl font-bold mb-2">85%</div>

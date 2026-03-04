@@ -127,7 +127,7 @@
   },
   "home": {
     "hero": {
-      "serviceBadge": "Servizio Senza Abbonamenti • Abilitato dai Partner",
+      "serviceBadge": "Talenti Verificati dalle Migliori Università • Vincitori Start Cup Bergamo 2025",
       "segmentLabels": {
         "students": "Studenti",
         "institutes": "Istituti",
@@ -217,8 +217,8 @@
             "description": "Ogni profilo mostra: \"Verificato da Politecnico Milano\" o \"ITS G. Natta endorsato\" - fidati della fonte, non dell'affermazione dello studente"
           },
           {
-            "title": "92% Accuratezza Corrispondenze",
-            "description": "Competenze verificate dall'istituzione = 30-40% meno mismatch vs CV auto-dichiarati su Indeed - assumi con fiducia"
+            "title": "Qualità Match Verificata",
+            "description": "Competenze verificate dall'istituzione significano meno mismatch vs CV auto-dichiarati — assumi con fiducia"
           }
         ],
         "statsLabel": "Accedi a talento verificato da",
@@ -231,7 +231,11 @@
       "unifiedPrimaryCTA": "Inizia Gratis",
       "unifiedSecondaryCTA": "Vedi Come Funziona",
       "unifiedBenefits": ["100% Competenze Verificate", "Matching con AI", "Gratis per Studenti e Università"],
-      "exploreByRole": "Esplora per ruolo"
+      "exploreByRole": "Esplora per ruolo",
+      "socialProof": {
+        "startCup": "Vincitori Start Cup Bergamo 2025",
+        "unibgPilot": "In fase pilota con l'Università degli Studi di Bergamo"
+      }
     },
     "problem": {
       "badge": "Il Problema",
@@ -251,7 +255,7 @@
         "realWork": "Vedi il lavoro reale, non affermazioni",
         "aiAnalysis": "Analisi AI di progetti complessi",
         "noApplications": "Zero candidature → Le aziende ti trovano",
-        "accuracy": "92% di accuratezza nelle corrispondenze (vs 60% nei CV)"
+        "accuracy": "Matching competenze verificate (vs CV auto-dichiarati)"
       }
     },
     "howItWorks": {
@@ -301,7 +305,7 @@
       },
       "transparency": {
         "title": "Trasparenza Bidirezionale",
-        "description": "Vedi esattamente PERCHÉ corrispondere: '92% perché tesi Python'"
+        "description": "Vedi esattamente PERCHÉ corrispondere: 'Tesi Python verificata dal Politecnico'"
       }
     },
     "stats": {
@@ -541,7 +545,7 @@
     "companies": {
       "badge": "Per Aziende - Paga Solo Ciò Che Usi",
       "title": "Servizio Trasparente Ricerca Talenti - Niente Abbonamenti",
-      "subtitle": "Sfoglia profili verificati 100% dall'istituzione GRATIS. Cerca 'AutoCAD, 28/30 da ITS Rizzoli' con estratti progetti. Paga €10 solo quando contatti candidati verificati. Screening 80% più veloce, 92% accuratezza.",
+      "subtitle": "Sfoglia profili verificati 100% dall'istituzione GRATIS. Cerca 'AutoCAD, 28/30 da ITS Rizzoli' con estratti progetti. Paga €10 solo quando contatti candidati verificati. Screening più veloce, accuratezza verificata.",
       "browseFree": {
         "name": "Sfoglia Gratis",
         "price": "€0",
@@ -1186,9 +1190,9 @@
         "badge": "GRATIS per Studenti",
         "heading": "Connessioni Basate su AI",
         "features": {
-          "0": "92% accuratezza verificata",
+          "0": "Accuratezza verificata dall'istituzione",
           "1": "Spiegazioni trasparenti",
-          "2": "\"92% compatibilità: tesi Python corrisponde\"",
+          "2": "\"Alta compatibilità: tesi Python verificata dall'università\"",
           "3": "Requisiti bidirezionali"
         },
         "comparison": "vs Manatal: Parsing curriculum opaco"
@@ -1252,7 +1256,7 @@
         },
         "step3": {
           "title": "3. L'AI Trova Corrispondenze",
-          "description": "92% accuratezza verificata"
+          "description": "Accuratezza verificata dall'istituzione"
         },
         "step4": {
           "title": "4. Le Aziende Scoprono",
@@ -1296,7 +1300,7 @@
           "title": "4. Contatta Direttamente",
           "description": "Nessuno screening CV"
         },
-        "result": "Le aziende risparmiano 80% tempo screening • 92% accuratezza matching • Vedono lavoro verificato in anticipo"
+        "result": "Le aziende risparmiano tempo screening • Qualità match verificata • Vedono lavoro verificato in anticipo"
       }
     },
     "studentDataImport": {
@@ -1791,7 +1795,7 @@
         "1": {
           "title": "Matching Potenziato da AI",
           "items": {
-            "0": "Aziende vedono \"92% compatibilità: AutoCAD da progetto ITS\"",
+            "0": "Aziende vedono \"Alta compatibilità: AutoCAD verificato da progetto ITS\"",
             "1": "Competenze verificate = punteggi di match più alti",
             "2": "Spiegazioni AI trasparenti",
             "3": "80% più veloce dello screening CV"
@@ -1830,7 +1834,7 @@
         "priceBadge": "GRATIS per Studenti",
         "subtitle": "Matching AI Trasparente",
         "items": {
-          "0": "\"92% compatibilità: AutoCAD da progetto ITS\"",
+          "0": "\"Alta compatibilità: AutoCAD verificato da progetto ITS\"",
           "1": "Competenze verificate = punteggi match più alti",
           "2": "Aziende vedono il tuo endorsement istituzionale",
           "3": "25% più placement di successo"
@@ -2123,7 +2127,7 @@
             "0": "Hard skills: Verificate attraverso progetti, codice, design, ricerca",
             "1": "Soft skills: Analizzate da teamwork, leadership, presentazioni",
             "2": "Voti, corsi e traguardi autenticati dall'istituzione",
-            "3": "92% accuratezza match vs 65% per metodi tradizionali"
+            "3": "Dati verificati superano i metodi tradizionali auto-dichiarati"
           }
         },
         "1": {
@@ -2176,7 +2180,7 @@
           "0": "Competenze verificate, non inflazione CV",
           "1": "Match spiegabili con ragionamento",
           "2": "Vedi il lavoro reale su progetti prima di contattare",
-          "3": "92% accuratezza match fa risparmiare tempo",
+          "3": "Qualità match verificata fa risparmiare tempo",
           "4": "€10 per contatto vs €8K/anno abbonamenti"
         }
       },
@@ -2196,9 +2200,9 @@
       "subtitle": "Dati reali che mostrano come la trasparenza migliora i risultati per tutti",
       "metrics": {
         "0": {
-          "value": "92%",
-          "label": "Accuratezza Match",
-          "note": "(vs 65% per ATS)"
+          "value": "3x",
+          "label": "Screening Più Veloce",
+          "note": "(vs revisione CV tradizionale)"
         },
         "1": {
           "value": "85%",
@@ -2456,7 +2460,7 @@
         "items": {
           "0": {
             "title": "Competenze Verificate dall'Istituzione:",
-            "description": "Competenze hard (Python, AutoCAD, Excel) e soft (teamwork, leadership, comunicazione) verificate tramite progetti, corsi e dati istituzionali. 92% accuratezza match."
+            "description": "Competenze hard (Python, AutoCAD, Excel) e soft (teamwork, leadership, comunicazione) verificate tramite progetti, corsi e dati istituzionali."
           },
           "1": {
             "title": "AI Spiegabile:",
@@ -2480,8 +2484,8 @@
             "label": "Tempo medio per assunzione (vs 42+ giorni tradizionale)"
           },
           "1": {
-            "value": "92%",
-            "label": "Accuratezza match (vs 65% per strumenti ATS)"
+            "value": "100%",
+            "label": "Competenze verificate dall'istituzione"
           },
           "2": {
             "value": "€10",

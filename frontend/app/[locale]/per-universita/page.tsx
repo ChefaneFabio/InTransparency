@@ -172,7 +172,7 @@ export default function PerUniversitaPage() {
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
-                      <span>"92% match: Python dal progetto di tesi"</span>
+                      <span>"Alta compatibilità: Python verificato dalla tesi"</span>
                     </li>
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />

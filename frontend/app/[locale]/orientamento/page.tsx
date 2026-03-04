@@ -79,7 +79,7 @@ export default function OrientamentoPage({ params }: PageProps) {
 
       statsTitle: 'Perché Funziona',
       stats: [
-        { value: '92%', label: 'Match Accuracy', desc: 'Precisione nel matching competenze-richieste' },
+        { value: '100%', label: 'Competenze Verificate', desc: 'Dati confermati dall\'istituzione' },
         { value: '€10', label: 'Per Contatto', desc: 'Le aziende pagano per contattarti' },
         { value: '0€', label: 'Per Te', desc: 'Completamente gratuito per gli studenti' }
       ],
@@ -154,7 +154,7 @@ export default function OrientamentoPage({ params }: PageProps) {
 
       statsTitle: 'Why It Works',
       stats: [
-        { value: '92%', label: 'Match Accuracy', desc: 'Precision in skills-requirements matching' },
+        { value: '100%', label: 'Verified Skills', desc: 'Institution-confirmed data' },
         { value: '€10', label: 'Per Contact', desc: 'Companies pay to contact you' },
         { value: '€0', label: 'For You', desc: 'Completely free for students' }
       ],

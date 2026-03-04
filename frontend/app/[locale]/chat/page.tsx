@@ -326,7 +326,7 @@ Want me to walk you through adding your first project?`
 
 🎯 **Top matches for your profile:**
 - Software Developer positions in Milan (89% match)
-- Frontend roles requiring React/TypeScript (92% match)
+- Frontend roles requiring React/TypeScript (high match)
 
 📊 **What companies are asking for:**
 - Excel + Power BI: 89 job posts require this combo
@@ -365,7 +365,7 @@ Would you like me to refine the search by location or skills?`
 3. Get transparent match scores with explanations
 
 📊 **Sample Results:**
-- 23 cybersecurity students in Rome (92% avg match)
+- 23 cybersecurity students in Rome (high avg match)
 - All with verified projects (penetration testing, network security)
 - Explainable scores: "85% match - 3/4 required skills, strong portfolio"
 
@@ -381,7 +381,7 @@ Want to run a specific search?`
 - **Cultural Fit:** Based on career goals and work style
 
 **Example:**
-"Sarah - 92% match"
+"Sarah - High match"
 ✅ Python expert (3 verified projects)
 ✅ Located in Rome (your requirement)
 ✅ Graduates May 2025 (perfect timing)
