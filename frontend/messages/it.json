@@ -43,6 +43,8 @@
         "feedback": "Feedback",
         "upgrade": "Upgrade",
         "privacy": "Privacy",
+        "cv": "Il Mio CV",
+        "personality": "Profilo Personalit\u00e0",
         "settings": "Impostazioni"
       }
     },
@@ -4469,5 +4471,201 @@
     "reasonSubscriptionRequired": "Questa funzione potrebbe richiedere un abbonamento premium",
     "needHelp": "Hai bisogno di aiuto?",
     "contactSupport": "Contatta il Supporto"
+  },
+  "studentCv": {
+    "title": "Il Mio CV",
+    "subtitle": "Generato automaticamente dal tuo profilo verificato e dai tuoi progetti",
+    "download": "Scarica PDF",
+    "downloading": "Generazione...",
+    "style": {
+      "label": "Stile CV",
+      "classic": "Classico",
+      "classicDesc": "Layout tradizionale e pulito",
+      "modern": "Moderno",
+      "modernDesc": "Design contemporaneo e audace"
+    },
+    "preview": {
+      "title": "Cosa è incluso",
+      "included": "Incluso",
+      "profile": "Profilo e contatti",
+      "education": "Dettagli istruzione",
+      "skills": "Competenze dai tuoi progetti",
+      "projects": "Migliori progetti verificati",
+      "exchange": "Programma di scambio (se applicabile)",
+      "personality": "Personalità e competenze trasversali (se valutate)"
+    },
+    "missing": {
+      "bio": "Aggiungi una bio per rendere il tuo CV più forte",
+      "projects": "Aggiungi almeno un progetto per generare il tuo CV"
+    },
+    "footer": "Generato da InTransparency — dati verificati dall'istituzione"
+  },
+  "personalityInsights": {
+    "title": "Profilo Personalit\u00e0",
+    "subtitle": "Scopri i tuoi punti di forza, il tuo stile di lavoro e le carriere adatte a te",
+    "noAssessments": {
+      "title": "Nessuna valutazione ancora",
+      "description": "Completa una valutazione della personalit\u00e0 o delle competenze trasversali per sbloccare i tuoi insight",
+      "cta": "Inizia Valutazione"
+    },
+    "overview": {
+      "personalityType": "Tipo di Personalit\u00e0",
+      "workStyle": "Stile di Lavoro",
+      "softSkills": "Punteggio Competenze"
+    },
+    "bigFive": {
+      "title": "Profilo di Personalit\u00e0",
+      "strengths": "I Tuoi Punti di Forza",
+      "development": "Aree di Crescita",
+      "percentile": "Top {value}%"
+    },
+    "disc": {
+      "title": "Stile di Lavoro e Comunicazione",
+      "howYouWork": "Come Lavori",
+      "howYouCommunicate": "Come Comunichi",
+      "motivators": "Cosa Ti Motiva",
+      "stressors": "Cosa Ti Affatica",
+      "teamRole": "Il Tuo Ruolo Ideale nel Team"
+    },
+    "career": {
+      "title": "Carriera e Crescita",
+      "fitSuggestions": "Carriere Adatte a Te",
+      "topStrengths": "Competenze Principali",
+      "coachingTips": "Consigli di Coaching",
+      "exploreCourse": "Esplora: {course}"
+    },
+    "export": {
+      "pdf": "Esporta PDF"
+    },
+    "narrative": {
+      "title": "Il Tuo Profilo in Sintesi",
+      "personalityIntro": "Il tuo profilo di personalit\u00e0 ti identifica come {type}.",
+      "highTrait": "Hai un punteggio particolarmente alto in {trait}, che influenza come affronti sfide e relazioni.",
+      "discStyle": "Il tuo stile di lavoro \u00e8 descritto come {style} \u2014 questo influenza come guidi, collabori e prendi decisioni.",
+      "strongCompetency": "Le tue competenze trasversali sono ben sviluppate, posizionandoti in una posizione forte per la crescita professionale.",
+      "growingCompetency": "Le tue competenze trasversali mostrano una base solida con aree chiare per lo sviluppo mirato.",
+      "strengthHighlight": "I tuoi punti di forza principali includono {strengths}, che puoi sfruttare sia in ambito accademico che professionale.",
+      "careerHint": "In base al tuo profilo, carriere in {careers} si allineano bene con le tue capacit\u00e0 naturali."
+    },
+    "peerComparison": {
+      "title": "Confronto con i Colleghi",
+      "subtitle": "Come ti confronti con {count} studenti di {university}",
+      "personalityTraits": "Tratti di Personalit\u00e0",
+      "competencies": "Competenze",
+      "youVsPeers": "Tu: {you} | Colleghi: {peers}",
+      "you": "Tu",
+      "peerAvg": "Media Colleghi",
+      "vsPeers": "vs colleghi"
+    },
+    "teamCompat": {
+      "title": "Compatibilit\u00e0 di Team",
+      "bestWith": "Lavori Meglio Con",
+      "challengeWith": "Attenzione Con"
+    },
+    "interview": {
+      "title": "Preparazione al Colloquio",
+      "subtitle": "In base al tuo stile di personalit\u00e0, ecco come presentare il tuo meglio nei colloqui.",
+      "yourStrengths": "I Tuoi Punti di Forza nel Colloquio",
+      "watchOuts": "Fai Attenzione A",
+      "prepTips": "Consigli di Preparazione"
+    },
+    "projects": {
+      "title": "Idee Progetto per Te",
+      "subtitle": "Progetti che valorizzano i tuoi punti di forza naturali e ti fanno distinguere.",
+      "basedOn": "Basato su: {strength}",
+      "viewProjects": "Vedi i Tuoi Progetti"
+    },
+    "microChallenges": {
+      "title": "Le Sfide di Oggi",
+      "subtitle": "Piccoli esercizi quotidiani su misura per le tue aree di crescita. Un nuovo set ogni giorno.",
+      "refreshNote": "Le sfide si aggiornano ogni giorno \u2014 torna domani per nuove sfide!"
+    },
+    "jobMatching": {
+      "title": "Lavori che Corrispondono alla Tua Personalit\u00e0",
+      "subtitle": "Il tuo profilo suggerisce che potresti eccellere in ruoli legati a {careers}.",
+      "browseJobs": "Cerca Lavori",
+      "aiSearch": "Ricerca AI"
+    },
+    "famousPersonalities": {
+      "title": "Condividi Tratti Con",
+      "subtitle": "Personaggi famosi che condividono il tuo stile di personalit\u00e0 e i tuoi punti di forza."
+    },
+    "studyStyle": {
+      "title": "Il Tuo Stile di Studio Ideale",
+      "subtitle": "In base alla tua personalit\u00e0, ecco come impari in modo pi\u00f9 efficace."
+    },
+    "commPlaybook": {
+      "title": "Guida alla Comunicazione",
+      "subtitle": "Come comunicare efficacemente con ogni tipo di personalit\u00e0 nel tuo team.",
+      "withStyle": "Con i tipi {style}"
+    },
+    "reflection": {
+      "title": "Riflessione Settimanale",
+      "subtitle": "Spunti di riflessione su misura per le tue aree di crescita. Un nuovo set ogni settimana.",
+      "refreshNote": "Gli spunti si aggiornano settimanalmente \u2014 rifletti prima della fine della settimana!"
+    },
+    "networking": {
+      "title": "Consigli per il Networking",
+      "iceBreakers": "Spunti di Conversazione",
+      "tips": "Strategia di Networking",
+      "followUp": "Mossa di Follow-Up"
+    },
+    "decisionStyle": {
+      "title": "Il Tuo Stile Decisionale",
+      "strengths": "Punti di Forza",
+      "blindSpots": "Punti Ciechi",
+      "tip": "Consiglio Pro"
+    },
+    "workEnv": {
+      "title": "Il Tuo Ambiente di Lavoro Ideale",
+      "ideal": "Ideale per Te",
+      "tolerable": "Tollerabile",
+      "avoid": "Da Evitare"
+    },
+    "conflictStyle": {
+      "title": "Il Tuo Stile nei Conflitti",
+      "naturalResponse": "La Tua Risposta Naturale",
+      "strengths": "Punti di Forza",
+      "growthAreas": "Aree di Crescita",
+      "tip": "Consiglio Pro"
+    },
+    "energy": {
+      "title": "Gestione dell'Energia",
+      "energizers": "Cosa Ti D\u00e0 Energia",
+      "drainers": "Cosa Ti Toglie Energia",
+      "peakTime": "Orario di Massima Produttivit\u00e0",
+      "recoveryTip": "Strategia di Recupero"
+    },
+    "mentorship": {
+      "title": "Il Tuo Profilo di Mentorship",
+      "idealMentor": "Il Tuo Mentore Ideale",
+      "asaMentee": "Tu come Mentee",
+      "menteeStrengths": "I Tuoi Punti di Forza",
+      "menteeGrowth": "Opportunit\u00e0 di Crescita",
+      "findMentor": "Trova un Mentore"
+    },
+    "personalBrand": {
+      "title": "Il Tuo Personal Brand",
+      "subtitle": "Un elevator pitch pronto all'uso basato sul tuo profilo di personalit\u00e0. Usalo su LinkedIn, nei colloqui o come tagline professionale.",
+      "strengthAdd": "Conosciuto per eccezionale {strength}.",
+      "competencyAdd": "Supportato da competenze trasversali solide e complete.",
+      "copy": "Copia negli Appunti"
+    },
+    "goalSetting": {
+      "title": "Obiettivi SMART per la Tua Crescita",
+      "subtitle": "Modelli di obiettivi personalizzati basati sulle tue aree di sviluppo. Clicca per espandere.",
+      "specific": "Specifico",
+      "measurable": "Misurabile",
+      "achievable": "Raggiungibile",
+      "relevant": "Rilevante",
+      "timebound": "Temporizzato"
+    },
+    "comparison": {
+      "title": "I Tuoi Progressi nel Tempo",
+      "subtitle": "Scopri come i tuoi punteggi sono cambiati tra le valutazioni",
+      "bigFiveOverTime": "Tratti di Personalit\u00e0 nel Tempo",
+      "competencyOverTime": "Competenze nel Tempo",
+      "retakeCta": "Ripeti Valutazione"
+    }
   }
 }

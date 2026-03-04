@@ -22,6 +22,7 @@ const student: NavConfig = {
         { labelKey: 'projects', href: '/dashboard/student/projects' },
         { labelKey: 'profile', href: '/dashboard/student/profile' },
         { labelKey: 'profileOptimizer', href: '/dashboard/student/profile-optimizer' },
+        { labelKey: 'cv', href: '/dashboard/student/cv' },
       ],
     },
     {
@@ -46,6 +47,7 @@ const student: NavConfig = {
         { labelKey: 'analytics', href: '/dashboard/student/analytics' },
         { labelKey: 'activity', href: '/dashboard/student/activity' },
         { labelKey: 'certifications', href: '/dashboard/student/certifications' },
+        { labelKey: 'personality', href: '/dashboard/student/personality' },
       ],
     },
     {
