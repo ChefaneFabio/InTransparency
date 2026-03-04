@@ -37,6 +37,7 @@ const staticRoutes = [
   '/terms',
   '/support',
   '/advocacy/alumni-stories',
+  '/blog',
   '/certification',
   '/for-engineering',
   '/for-consulting',

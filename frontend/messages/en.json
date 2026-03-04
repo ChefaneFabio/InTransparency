@@ -485,7 +485,17 @@
       "poweredBy": "Powered by AI"
     },
     "copyright": "© 2025-2026 InTransparency. All rights reserved.",
-    "support": "Support"
+    "support": "Support",
+    "blog": "Blog"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Insights on verified credentials, career development, and the future of university-to-work transitions.",
+    "featured": "Featured",
+    "readMore": "Read more",
+    "backToBlog": "Back to blog",
+    "rssSubscribe": "Subscribe via RSS",
+    "noPosts": "No posts yet. Check back soon!"
   },
   "pricing": {
     "students": {
@@ -4809,6 +4819,93 @@
       "title": "Pronto ad Assumere?",
       "subtitle": "Registrati gratis e inizia a cercare il tuo prossimo collaboratore oggi stesso.",
       "button": "Registrati Gratis"
+    }
+  },
+  "ambassador": {
+    "title": "Ambassador Program",
+    "subtitle": "Invite friends and unlock Premium features for FREE! Every successful referral brings you closer to amazing rewards.",
+    "status": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "registered": "Registered"
+    },
+    "ambassadorBadge": {
+      "title": "Campus Ambassador",
+      "tier": "{tier} Tier",
+      "totalReferrals": "total referrals"
+    },
+    "earnings": {
+      "totalEarned": "Total Earned",
+      "months": "months Premium",
+      "pending": "Pending Referrals",
+      "referrals": "referrals",
+      "active": "Active Users",
+      "users": "users"
+    },
+    "referralLink": {
+      "title": "Your Referral Link",
+      "description": "Share this link with friends to earn rewards",
+      "copied": "Copied!",
+      "copy": "Copy",
+      "shareOn": "Share on social media:"
+    },
+    "shareTemplates": {
+      "title": "Ready-to-Share Messages",
+      "description": "Copy these pre-written messages to share on your favorite platforms"
+    },
+    "shareMessages": {
+      "whatsapp": "Hey! I'm using InTransparency to showcase my verified university projects to top companies. Join me and build your professional portfolio too! {link}",
+      "linkedin": "Excited to be part of @InTransparency — a platform that verifies your academic projects and connects you directly with recruiters. If you're a student or recent graduate, check it out: {link}",
+      "instagram": "Building my verified portfolio on InTransparency — where your real skills speak louder than a polished CV. Join me! Link in bio or: {link}",
+      "email": "Hi! I wanted to share InTransparency with you — it's a platform where universities verify your projects and skills, making it easier for companies to find and hire you. Sign up here: {link}"
+    },
+    "progress": {
+      "title": "Your Progress",
+      "nextTier": "{count} more referral(s) to unlock {reward}",
+      "maxTier": "Amazing! You've reached the maximum tier!",
+      "forTier": "for {tier}"
+    },
+    "tiers": {
+      "title": "Reward Tiers",
+      "description": "Unlock amazing rewards as you refer more friends",
+      "unlocked": "Unlocked",
+      "nextGoal": "Next Goal",
+      "successfulReferrals": "successful referrals",
+      "moreToGo": "more to go"
+    },
+    "activity": {
+      "title": "Activity Timeline",
+      "total": "total",
+      "noReferrals": "No Referrals Yet",
+      "noReferralsDescription": "Start sharing your referral link to see your network grow here",
+      "joined": "Joined",
+      "profileComplete": "Profile Complete"
+    },
+    "leaderboard": {
+      "title": "Top Referrers",
+      "description": "See who's leading the way",
+      "refs": "refs",
+      "beFirst": "Be the first on the leaderboard!"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Share Your Link",
+        "description": "Copy and share your unique referral link with friends"
+      },
+      "step2": {
+        "title": "Friends Sign Up",
+        "description": "They create an account using your referral link"
+      },
+      "step3": {
+        "title": "They Complete Profile",
+        "description": "Once they finish setting up, the referral counts"
+      },
+      "step4": {
+        "title": "You Earn Rewards",
+        "description": "Premium features unlock automatically at each milestone"
+      },
+      "bonus": "Premium rewards are applied immediately when you hit each tier. No waiting, no hassle!"
     }
   }
 }

@@ -70,6 +70,7 @@ export function Footer() {
     company: [
       { name: tNav('about'), href: '/about' },
       { name: tNav('mission'), href: '/mission' },
+      { name: tFooter('blog'), href: '/blog' },
       { name: tNav('contact'), href: '/contact' },
     ],
     legal: [

@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Progress } from '@/components/ui/progress'
 import { ShareButtons } from '@/components/social/ShareButtons'
+import { useTranslations } from 'next-intl'
 import {
   Users,
   TrendingUp,
@@ -18,7 +19,12 @@ import {
   Crown,
   Share2,
   Award,
-  Check
+  Check,
+  DollarSign,
+  MessageCircle,
+  Star,
+  Sparkles,
+  Clipboard
 } from 'lucide-react'
 
 interface ReferralData {
@@ -34,6 +40,7 @@ interface ReferralData {
     reward: string
   }
   premiumMonthsEarned: number
+  cashRewardEarned?: number
   referrals: Array<{
     id: string
     name: string
@@ -50,14 +57,21 @@ interface ReferralData {
   }>
 }
 
-const tierColors = {
+const tierColors: Record<string, string> = {
   BRONZE: 'bg-orange-100 text-orange-700 border-orange-300',
   SILVER: 'bg-muted text-foreground/80 border-gray-400',
   GOLD: 'bg-yellow-100 text-yellow-700 border-yellow-400',
   PLATINUM: 'bg-purple-100 text-purple-700 border-purple-400'
 }
 
-const tierIcons = {
+const tierGradients: Record<string, string> = {
+  BRONZE: 'from-orange-500 to-amber-600',
+  SILVER: 'from-gray-400 to-gray-500',
+  GOLD: 'from-yellow-400 to-amber-500',
+  PLATINUM: 'from-purple-500 to-pink-500'
+}
+
+const tierIcons: Record<string, typeof Trophy> = {
   BRONZE: Trophy,
   SILVER: Trophy,
   GOLD: Crown,
@@ -75,6 +89,8 @@ export default function StudentReferralsPage() {
   const [referralData, setReferralData] = useState<ReferralData | null>(null)
   const [loading, setLoading] = useState(true)
   const [copied, setCopied] = useState(false)
+  const [copiedMessage, setCopiedMessage] = useState<number | null>(null)
+  const t = useTranslations('ambassador')
 
   useEffect(() => {
     fetchReferralData()
@@ -121,13 +137,24 @@ export default function StudentReferralsPage() {
     }
   }
 
+  const copyShareMessage = async (index: number, message: string) => {
+    try {
+      await navigator.clipboard.writeText(message)
+      setCopiedMessage(index)
+      setTimeout(() => setCopiedMessage(null), 2000)
+    } catch (err) {
+      console.error('Failed to copy:', err)
+    }
+  }
+
   const getStatusBadge = (status: string) => {
-    const config = {
-      'pending': { color: 'bg-yellow-100 text-yellow-800', label: 'Pending', icon: Clock },
-      'completed': { color: 'bg-green-100 text-green-800', label: 'Completed', icon: CheckCircle }
+    const config: Record<string, { color: string; label: string; icon: typeof Clock }> = {
+      'pending': { color: 'bg-yellow-100 text-yellow-800', label: t('status.pending'), icon: Clock },
+      'completed': { color: 'bg-green-100 text-green-800', label: t('status.completed'), icon: CheckCircle },
+      'registered': { color: 'bg-blue-100 text-blue-800', label: t('status.registered'), icon: Users }
     }
 
-    const { color, label, icon: Icon } = config[status as keyof typeof config] || config.pending
+    const { color, label, icon: Icon } = config[status] || config.pending
 
     return (
       <Badge className={color}>
@@ -148,19 +175,121 @@ export default function StudentReferralsPage() {
   const totalReferrals = referralData?.totalReferrals || 0
   const nextTier = referralData?.nextTier
   const referralsToNextTier = nextTier ? nextTier.referralsNeeded - totalReferrals : 0
+  const currentTier = referralData?.currentTier || 'BRONZE'
+  const TierIcon = tierIcons[currentTier] || Trophy
+  const cashEarned = (referralData?.cashRewardEarned || 0) / 100
+
+  const shareMessages = [
+    {
+      platform: 'WhatsApp',
+      icon: MessageCircle,
+      message: t('shareMessages.whatsapp', { link: referralData?.referralLink || '' })
+    },
+    {
+      platform: 'LinkedIn',
+      icon: Share2,
+      message: t('shareMessages.linkedin', { link: referralData?.referralLink || '' })
+    },
+    {
+      platform: 'Instagram',
+      icon: Star,
+      message: t('shareMessages.instagram', { link: referralData?.referralLink || '' })
+    },
+    {
+      platform: 'Email',
+      icon: Gift,
+      message: t('shareMessages.email', { link: referralData?.referralLink || '' })
+    }
+  ]
 
   return (
     <div className="p-8 bg-muted min-h-screen">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
+        {/* Header with Ambassador Badge */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
             <Gift className="h-8 w-8 text-primary" />
-            <h1 className="text-3xl font-display font-bold">Referral Program</h1>
+            <h1 className="text-3xl font-display font-bold">{t('title')}</h1>
           </div>
           <p className="text-muted-foreground">
-            Invite friends and unlock Premium features for FREE! Every successful referral brings you closer to amazing rewards.
+            {t('subtitle')}
           </p>
+        </div>
+
+        {/* Ambassador Badge Card */}
+        <Card className="mb-6 overflow-hidden">
+          <div className={`bg-gradient-to-r ${tierGradients[currentTier] || 'from-primary to-secondary'} p-6 text-white`}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="bg-white/20 rounded-full p-3">
+                  <TierIcon className="h-8 w-8" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-bold">{t('ambassadorBadge.title')}</h2>
+                    <Sparkles className="h-5 w-5" />
+                  </div>
+                  <p className="text-white/80 text-sm">
+                    {t('ambassadorBadge.tier', { tier: currentTier })}
+                  </p>
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="text-3xl font-bold">{totalReferrals}</div>
+                <div className="text-white/80 text-sm">{t('ambassadorBadge.totalReferrals')}</div>
+              </div>
+            </div>
+          </div>
+        </Card>
+
+        {/* Earnings Summary */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-3">
+                <div className="bg-green-100 rounded-full p-2">
+                  <DollarSign className="h-5 w-5 text-green-600" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">{t('earnings.totalEarned')}</p>
+                  <p className="text-2xl font-bold text-green-600">
+                    {referralData?.premiumMonthsEarned || 0} {t('earnings.months')}
+                    {cashEarned > 0 && ` + €${cashEarned}`}
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-3">
+                <div className="bg-yellow-100 rounded-full p-2">
+                  <Clock className="h-5 w-5 text-yellow-600" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">{t('earnings.pending')}</p>
+                  <p className="text-2xl font-bold text-yellow-600">
+                    {referralData?.pendingReferrals || 0} {t('earnings.referrals')}
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-3">
+                <div className="bg-primary/10 rounded-full p-2">
+                  <TrendingUp className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">{t('earnings.active')}</p>
+                  <p className="text-2xl font-bold text-primary">
+                    {referralData?.activeReferrals || 0} {t('earnings.users')}
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-6">
@@ -171,10 +300,10 @@ export default function StudentReferralsPage() {
               <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
                 <CardTitle className="flex items-center gap-2">
                   <Share2 className="h-5 w-5 text-primary" />
-                  Your Referral Link
+                  {t('referralLink.title')}
                 </CardTitle>
                 <CardDescription>
-                  Share this link with friends to earn rewards
+                  {t('referralLink.description')}
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-6 space-y-4">
@@ -192,12 +321,12 @@ export default function StudentReferralsPage() {
                     {copied ? (
                       <>
                         <Check className="h-4 w-4 mr-2" />
-                        Copied!
+                        {t('referralLink.copied')}
                       </>
                     ) : (
                       <>
                         <Copy className="h-4 w-4 mr-2" />
-                        Copy
+                        {t('referralLink.copy')}
                       </>
                     )}
                   </Button>
@@ -205,41 +334,75 @@ export default function StudentReferralsPage() {
 
                 {/* Share Buttons */}
                 <div>
-                  <p className="text-sm font-medium mb-2">Share on social media:</p>
+                  <p className="text-sm font-medium mb-2">{t('referralLink.shareOn')}</p>
                   <ShareButtons
                     url={referralData?.referralLink || ''}
-                    title="Join me on InTransparency! 🎓"
+                    title="Join me on InTransparency!"
                     description="Build your verified portfolio and get discovered by top companies. Sign up with my link to get started!"
                   />
-                </div>
-
-                {/* Sharing Tips */}
-                <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-                  <h4 className="font-semibold text-primary mb-2">💡 Tips for Success:</h4>
-                  <ul className="text-sm text-primary/80 space-y-1">
-                    <li>• Share on your university WhatsApp/Discord groups</li>
-                    <li>• Post on LinkedIn with your success story</li>
-                    <li>• Email classmates from your project teams</li>
-                    <li>• Add to your Instagram/Twitter bio</li>
-                  </ul>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Progress Tracker */}
+            {/* Pre-written Share Messages */}
             <Card>
               <CardHeader>
-                <CardTitle>Your Progress</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  <Clipboard className="h-5 w-5 text-primary" />
+                  {t('shareTemplates.title')}
+                </CardTitle>
+                <CardDescription>{t('shareTemplates.description')}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {shareMessages.map((msg, index) => {
+                    const MsgIcon = msg.icon
+                    return (
+                      <div key={index} className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            <MsgIcon className="h-4 w-4 text-muted-foreground" />
+                            <span className="font-medium text-sm">{msg.platform}</span>
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => copyShareMessage(index, msg.message)}
+                          >
+                            {copiedMessage === index ? (
+                              <>
+                                <Check className="h-3 w-3 mr-1" />
+                                {t('referralLink.copied')}
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="h-3 w-3 mr-1" />
+                                {t('referralLink.copy')}
+                              </>
+                            )}
+                          </Button>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{msg.message}</p>
+                      </div>
+                    )
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Progress & Tiers */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('progress.title')}</CardTitle>
                 <CardDescription>
                   {referralsToNextTier > 0
-                    ? `${referralsToNextTier} more referral${referralsToNextTier === 1 ? '' : 's'} to unlock ${nextTier?.reward}`
-                    : 'Amazing! You\'ve reached the maximum tier!'
+                    ? t('progress.nextTier', { count: referralsToNextTier, reward: nextTier?.reward || '' })
+                    : t('progress.maxTier')
                   }
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {/* Progress Bar */}
                   {nextTier && (
                     <div>
                       <Progress
@@ -247,36 +410,9 @@ export default function StudentReferralsPage() {
                         className="h-3"
                       />
                       <div className="flex justify-between text-sm text-muted-foreground mt-2">
-                        <span>{totalReferrals} referrals</span>
-                        <span>{nextTier.referralsNeeded} for {nextTier.tier}</span>
+                        <span>{totalReferrals} {t('earnings.referrals')}</span>
+                        <span>{nextTier.referralsNeeded} {t('progress.forTier', { tier: nextTier.tier })}</span>
                       </div>
-                    </div>
-                  )}
-
-                  {/* Stats Grid */}
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="bg-primary/10 rounded-lg p-4 text-center">
-                      <div className="text-2xl font-bold text-primary">{totalReferrals}</div>
-                      <div className="text-xs text-muted-foreground mt-1">Total Invited</div>
-                    </div>
-                    <div className="bg-green-100 rounded-lg p-4 text-center">
-                      <div className="text-2xl font-bold text-green-600">{referralData?.activeReferrals || 0}</div>
-                      <div className="text-xs text-muted-foreground mt-1">Active Users</div>
-                    </div>
-                    <div className="bg-yellow-100 rounded-lg p-4 text-center">
-                      <div className="text-2xl font-bold text-yellow-600">{referralData?.pendingReferrals || 0}</div>
-                      <div className="text-xs text-muted-foreground mt-1">Pending</div>
-                    </div>
-                  </div>
-
-                  {/* Current Tier Badge */}
-                  {referralData?.currentTier && (
-                    <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg p-4">
-                      <Award className="h-5 w-5 text-primary" />
-                      <span className="font-semibold">Current Tier:</span>
-                      <Badge className={tierColors[referralData.currentTier as keyof typeof tierColors]}>
-                        {referralData.currentTier}
-                      </Badge>
                     </div>
                   )}
                 </div>
@@ -286,10 +422,8 @@ export default function StudentReferralsPage() {
             {/* Reward Tiers */}
             <Card>
               <CardHeader>
-                <CardTitle>Reward Tiers</CardTitle>
-                <CardDescription>
-                  Unlock amazing rewards as you refer more friends
-                </CardDescription>
+                <CardTitle>{t('tiers.title')}</CardTitle>
+                <CardDescription>{t('tiers.description')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -316,22 +450,22 @@ export default function StudentReferralsPage() {
                           {isUnlocked && (
                             <Badge className="bg-green-500 text-white">
                               <CheckCircle className="h-3 w-3 mr-1" />
-                              Unlocked
+                              {t('tiers.unlocked')}
                             </Badge>
                           )}
                           {isNextTier && !isUnlocked && (
                             <Badge className="bg-primary text-white">
-                              Next Goal
+                              {t('tiers.nextGoal')}
                             </Badge>
                           )}
                         </div>
                         <p className="text-sm font-semibold text-foreground mb-1">{reward}</p>
-                        <p className="text-xs text-muted-foreground">{referrals} successful referrals</p>
+                        <p className="text-xs text-muted-foreground">{referrals} {t('tiers.successfulReferrals')}</p>
                         {!isUnlocked && (
                           <div className="mt-3">
                             <Progress value={(totalReferrals / referrals) * 100} className="h-1" />
                             <p className="text-xs text-muted-foreground mt-1">
-                              {referrals - totalReferrals} more to go
+                              {referrals - totalReferrals} {t('tiers.moreToGo')}
                             </p>
                           </div>
                         )}
@@ -342,50 +476,60 @@ export default function StudentReferralsPage() {
               </CardContent>
             </Card>
 
-            {/* Referrals List */}
+            {/* Activity Timeline */}
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle>Your Referrals</CardTitle>
-                  <Badge variant="outline">{totalReferrals} total</Badge>
+                  <CardTitle>{t('activity.title')}</CardTitle>
+                  <Badge variant="outline">{totalReferrals} {t('activity.total')}</Badge>
                 </div>
               </CardHeader>
               <CardContent>
                 {!referralData?.referrals || referralData.referrals.length === 0 ? (
                   <div className="text-center py-12">
                     <Users className="h-16 w-16 mx-auto mb-4 text-muted-foreground/60" />
-                    <h3 className="text-lg font-semibold mb-2">No Referrals Yet</h3>
+                    <h3 className="text-lg font-semibold mb-2">{t('activity.noReferrals')}</h3>
                     <p className="text-muted-foreground mb-6">
-                      Start sharing your referral link to see your network grow here
+                      {t('activity.noReferralsDescription')}
                     </p>
                   </div>
                 ) : (
-                  <div className="space-y-3">
-                    {referralData.referrals.map((referral) => (
-                      <div
-                        key={referral.id}
-                        className="border rounded-lg p-4 hover:bg-muted transition-colors"
-                      >
-                        <div className="flex items-start justify-between mb-2">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
-                              <h4 className="font-semibold">{referral.name}</h4>
-                              {getStatusBadge(referral.status)}
+                  <div className="relative">
+                    {/* Timeline line */}
+                    <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-border" />
+                    <div className="space-y-4">
+                      {referralData.referrals.map((referral) => (
+                        <div
+                          key={referral.id}
+                          className="relative pl-10"
+                        >
+                          {/* Timeline dot */}
+                          <div className={`absolute left-2.5 w-3 h-3 rounded-full border-2 border-background ${
+                            referral.profileCompleted ? 'bg-green-500' : referral.status === 'pending' ? 'bg-yellow-500' : 'bg-blue-500'
+                          }`} />
+                          <div className="border rounded-lg p-4 hover:bg-muted transition-colors">
+                            <div className="flex items-start justify-between mb-2">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <h4 className="font-semibold">{referral.name}</h4>
+                                  {getStatusBadge(referral.status)}
+                                </div>
+                                <p className="text-sm text-muted-foreground">{referral.email}</p>
+                              </div>
                             </div>
-                            <p className="text-sm text-muted-foreground">{referral.email}</p>
+                            <div className="flex items-center justify-between text-xs text-muted-foreground mt-2">
+                              <span>{t('activity.joined')} {new Date(referral.signupDate).toLocaleDateString()}</span>
+                              {referral.profileCompleted && (
+                                <span className="text-green-600 flex items-center gap-1">
+                                  <CheckCircle className="h-3 w-3" />
+                                  {t('activity.profileComplete')}
+                                </span>
+                              )}
+                            </div>
                           </div>
                         </div>
-                        <div className="flex items-center justify-between text-xs text-muted-foreground mt-2">
-                          <span>Joined {new Date(referral.signupDate).toLocaleDateString()}</span>
-                          {referral.profileCompleted && (
-                            <span className="text-green-600 flex items-center gap-1">
-                              <CheckCircle className="h-3 w-3" />
-                              Profile Complete
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 )}
               </CardContent>
@@ -399,17 +543,17 @@ export default function StudentReferralsPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-purple-900">
                   <Trophy className="h-5 w-5" />
-                  Top Referrers
+                  {t('leaderboard.title')}
                 </CardTitle>
                 <CardDescription>
-                  See who's leading the way
+                  {t('leaderboard.description')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {referralData?.leaderboard && referralData.leaderboard.length > 0 ? (
                   <div className="space-y-3">
                     {referralData.leaderboard.slice(0, 10).map((entry) => {
-                      const medalColors = {
+                      const medalColors: Record<number, string> = {
                         1: 'bg-yellow-400 text-yellow-900',
                         2: 'bg-gray-300 text-gray-700',
                         3: 'bg-orange-400 text-orange-900'
@@ -426,7 +570,7 @@ export default function StudentReferralsPage() {
                           <div
                             className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
                               isTopThree
-                                ? medalColors[entry.rank as keyof typeof medalColors]
+                                ? medalColors[entry.rank]
                                 : 'bg-muted text-muted-foreground'
                             }`}
                           >
@@ -438,7 +582,7 @@ export default function StudentReferralsPage() {
                           </div>
                           <div className="text-right">
                             <div className="font-bold text-primary">{entry.referrals}</div>
-                            <div className="text-xs text-muted-foreground">refs</div>
+                            <div className="text-xs text-muted-foreground">{t('leaderboard.refs')}</div>
                           </div>
                         </div>
                       )
@@ -447,7 +591,7 @@ export default function StudentReferralsPage() {
                 ) : (
                   <div className="text-center py-6 text-muted-foreground">
                     <Trophy className="h-12 w-12 mx-auto mb-2 text-muted-foreground/60" />
-                    <p className="text-sm">Be the first on the leaderboard!</p>
+                    <p className="text-sm">{t('leaderboard.beFirst')}</p>
                   </div>
                 )}
               </CardContent>
@@ -456,52 +600,26 @@ export default function StudentReferralsPage() {
             {/* How It Works */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">How It Works</CardTitle>
+                <CardTitle className="text-lg">{t('howItWorks.title')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="bg-primary rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-bold text-white">1</span>
+                  {[1, 2, 3, 4].map((step) => (
+                    <div key={step} className="flex items-start gap-3">
+                      <div className="bg-primary rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-xs font-bold text-white">{step}</span>
+                      </div>
+                      <div>
+                        <p className="font-medium text-sm">{t(`howItWorks.step${step}.title`)}</p>
+                        <p className="text-xs text-muted-foreground">{t(`howItWorks.step${step}.description`)}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-medium text-sm">Share Your Link</p>
-                      <p className="text-xs text-muted-foreground">Copy and share your unique referral link with friends</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="bg-primary rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-bold text-white">2</span>
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">Friends Sign Up</p>
-                      <p className="text-xs text-muted-foreground">They create an account using your referral link</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="bg-primary rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-bold text-white">3</span>
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">They Complete Profile</p>
-                      <p className="text-xs text-muted-foreground">Once they finish setting up, the referral counts</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="bg-primary rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-xs font-bold text-white">4</span>
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">You Earn Rewards</p>
-                      <p className="text-xs text-muted-foreground">Premium features unlock automatically at each milestone</p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
 
                 <div className="mt-6 pt-4 border-t">
-                  <p className="text-xs text-muted-foreground mb-2">🎁 <strong>Bonus:</strong></p>
                   <p className="text-xs text-muted-foreground">
-                    Premium rewards are applied immediately when you hit each tier. No waiting, no hassle!
+                    {t('howItWorks.bonus')}
                   </p>
                 </div>
               </CardContent>

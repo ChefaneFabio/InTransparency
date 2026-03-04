@@ -485,7 +485,17 @@
       "poweredBy": "Powered by AI"
     },
     "copyright": "© 2025-2026 InTransparency. Tutti i diritti riservati.",
-    "support": "Supporto"
+    "support": "Supporto",
+    "blog": "Blog"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Approfondimenti su credenziali verificate, sviluppo professionale e il futuro della transizione università-lavoro.",
+    "featured": "In evidenza",
+    "readMore": "Leggi di più",
+    "backToBlog": "Torna al blog",
+    "rssSubscribe": "Iscriviti via RSS",
+    "noPosts": "Nessun articolo ancora. Torna presto!"
   },
   "pricing": {
     "students": {
@@ -4851,6 +4861,93 @@
       "title": "Pronto ad Assumere?",
       "subtitle": "Registrati gratis e inizia a cercare il tuo prossimo collaboratore oggi stesso.",
       "button": "Registrati Gratis"
+    }
+  },
+  "ambassador": {
+    "title": "Programma Ambassador",
+    "subtitle": "Invita amici e sblocca funzionalità Premium GRATIS! Ogni referral riuscito ti avvicina a premi fantastici.",
+    "status": {
+      "pending": "In attesa",
+      "completed": "Completato",
+      "registered": "Registrato"
+    },
+    "ambassadorBadge": {
+      "title": "Ambassador Campus",
+      "tier": "Livello {tier}",
+      "totalReferrals": "referral totali"
+    },
+    "earnings": {
+      "totalEarned": "Totale Guadagnato",
+      "months": "mesi Premium",
+      "pending": "Referral in Attesa",
+      "referrals": "referral",
+      "active": "Utenti Attivi",
+      "users": "utenti"
+    },
+    "referralLink": {
+      "title": "Il Tuo Link Referral",
+      "description": "Condividi questo link con gli amici per guadagnare premi",
+      "copied": "Copiato!",
+      "copy": "Copia",
+      "shareOn": "Condividi sui social:"
+    },
+    "shareTemplates": {
+      "title": "Messaggi Pronti da Condividere",
+      "description": "Copia questi messaggi pre-scritti per condividere sulle tue piattaforme preferite"
+    },
+    "shareMessages": {
+      "whatsapp": "Ciao! Sto usando InTransparency per mostrare i miei progetti universitari verificati alle migliori aziende. Unisciti e costruisci anche tu il tuo portfolio professionale! {link}",
+      "linkedin": "Entusiasta di far parte di @InTransparency — una piattaforma che verifica i tuoi progetti accademici e ti connette direttamente con i recruiter. Se sei studente o neolaureato, dai un'occhiata: {link}",
+      "instagram": "Sto costruendo il mio portfolio verificato su InTransparency — dove le tue vere competenze parlano più forte di un CV curato. Unisciti! Link in bio o: {link}",
+      "email": "Ciao! Volevo condividere InTransparency con te — è una piattaforma dove le università verificano i tuoi progetti e competenze, facilitando alle aziende trovarti e assumerti. Registrati qui: {link}"
+    },
+    "progress": {
+      "title": "I Tuoi Progressi",
+      "nextTier": "Ancora {count} referral per sbloccare {reward}",
+      "maxTier": "Fantastico! Hai raggiunto il livello massimo!",
+      "forTier": "per {tier}"
+    },
+    "tiers": {
+      "title": "Livelli Premio",
+      "description": "Sblocca premi fantastici man mano che inviti più amici",
+      "unlocked": "Sbloccato",
+      "nextGoal": "Prossimo Obiettivo",
+      "successfulReferrals": "referral riusciti",
+      "moreToGo": "ancora"
+    },
+    "activity": {
+      "title": "Cronologia Attività",
+      "total": "totale",
+      "noReferrals": "Nessun Referral Ancora",
+      "noReferralsDescription": "Inizia a condividere il tuo link referral per vedere crescere la tua rete qui",
+      "joined": "Iscritto il",
+      "profileComplete": "Profilo Completo"
+    },
+    "leaderboard": {
+      "title": "Top Referrer",
+      "description": "Scopri chi è in testa",
+      "refs": "refs",
+      "beFirst": "Sii il primo nella classifica!"
+    },
+    "howItWorks": {
+      "title": "Come Funziona",
+      "step1": {
+        "title": "Condividi il Tuo Link",
+        "description": "Copia e condividi il tuo link referral unico con gli amici"
+      },
+      "step2": {
+        "title": "Gli Amici si Iscrivono",
+        "description": "Creano un account usando il tuo link referral"
+      },
+      "step3": {
+        "title": "Completano il Profilo",
+        "description": "Una volta completata la configurazione, il referral viene conteggiato"
+      },
+      "step4": {
+        "title": "Guadagni Premi",
+        "description": "Le funzionalità Premium si sbloccano automaticamente ad ogni traguardo"
+      },
+      "bonus": "I premi Premium vengono applicati immediatamente quando raggiungi ogni livello. Nessuna attesa, nessun problema!"
     }
   }
 }

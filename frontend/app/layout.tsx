@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Fraunces, DM_Sans } from 'next/font/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import './globals.css'
 import { Providers } from './providers'
 import { Toaster } from '@/components/ui/toaster'
@@ -104,6 +105,9 @@ export default function RootLayout({
           }}
         />
       </body>
+      {process.env.NEXT_PUBLIC_GA_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+      )}
     </html>
   )
 }
