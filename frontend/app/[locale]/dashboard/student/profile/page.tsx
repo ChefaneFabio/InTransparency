@@ -25,8 +25,10 @@ import {
   Sparkles,
   AlertCircle,
   Users,
-  Briefcase
+  Briefcase,
+  Share2,
 } from 'lucide-react'
+import { LinkedInShareButton } from '@/components/linkedin/LinkedInShareButton'
 
 interface ProfileData {
   user: {
@@ -280,6 +282,12 @@ export default function ProfilePage() {
                       Cancel
                     </Button>
                   )}
+
+                  <LinkedInShareButton
+                    url={'https://intransparency.eu/explore'}
+                    variant="outline"
+                    size="default"
+                  />
 
                   <Button
                     variant="outline"

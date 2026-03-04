@@ -24,6 +24,7 @@ import {
   LogOut,
 } from 'lucide-react'
 import OnboardingChecklist from '@/components/dashboard/student/OnboardingChecklist'
+import { AchievementsPanel } from '@/components/dashboard/student/AchievementsPanel'
 import { signOut } from 'next-auth/react'
 import { useLocale } from 'next-intl'
 import { Link } from '@/navigation'
@@ -320,6 +321,9 @@ export default function StudentDashboard() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Achievements */}
+          <AchievementsPanel />
 
           {/* University status - minimal */}
           <div className="p-3 bg-gray-50 rounded-lg border text-sm">

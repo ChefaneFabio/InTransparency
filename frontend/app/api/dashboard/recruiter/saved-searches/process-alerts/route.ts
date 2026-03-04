@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 import { createNotification } from '@/lib/notifications'
+import { sendSavedSearchAlertEmail } from '@/lib/email'
 
 /**
  * POST /api/dashboard/recruiter/saved-searches/process-alerts
@@ -78,6 +79,18 @@ export async function POST(req: NextRequest) {
           link: `/dashboard/recruiter/saved-searches`,
           groupKey: `saved-search-${search.id}`,
         })
+
+        // Send email alert
+        if (search.recruiter.email) {
+          await sendSavedSearchAlertEmail(
+            search.recruiter.email,
+            search.recruiter.firstName || 'Recruiter',
+            search.name,
+            newMatches,
+            currentCount
+          )
+        }
+
         notified++
       }
     }
