@@ -75,7 +75,7 @@ export default function ForUniversitiesPage() {
           <div className="text-center max-w-3xl mx-auto">
             <Badge variant="secondary" className="mb-6 bg-white/10 text-white border-white/20">
               <Building2 className="h-3 w-3 mr-1" />
-              For Career Services Directors
+              {t('hero.badge')}
             </Badge>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
               {t('hero.title')}

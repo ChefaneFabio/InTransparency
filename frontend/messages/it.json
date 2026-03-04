@@ -890,7 +890,12 @@
     "empty": {
       "title": "Nessuno studente trovato",
       "description": "Prova a modificare i tuoi filtri o la query di ricerca",
-      "clearFilters": "Cancella Tutti i Filtri"
+      "clearFilters": "Cancella Tutti i Filtri",
+      "pilotTitle": "Stiamo Inserendo le Prime Università",
+      "pilotDescription": "InTransparency è in fase pilota con l'Università di Bergamo. I profili studenti verificati vengono aggiunti man mano che le università aderiscono alla piattaforma.",
+      "pilotCta": "Vuoi vedere cosa può fare la piattaforma? Prova la nostra demo di ricerca AI.",
+      "tryDemo": "Prova la Demo AI Search",
+      "foundingPartner": "Diventa Partner Fondatore"
     },
     "card": {
       "classOf": "Classe del {year}",
@@ -3151,6 +3156,7 @@
   },
   "forUniversities": {
     "hero": {
+      "badge": "Per i Direttori dei Servizi di Carriera",
       "title": "Sostituisci i sondaggi con prove in tempo reale",
       "subtitle": "InTransparency offre ai direttori dei servizi di carriera analytics di placement in tempo reale, normalizzazione dei voti transfrontaliera e profili studenti verificati — per dimostrare l'impatto invece di stimarlo.",
       "registerCta": "Registra la tua Università",

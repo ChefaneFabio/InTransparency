@@ -890,7 +890,12 @@
     "empty": {
       "title": "No students found",
       "description": "Try adjusting your filters or search query",
-      "clearFilters": "Clear All Filters"
+      "clearFilters": "Clear All Filters",
+      "pilotTitle": "We're Onboarding Our First Universities",
+      "pilotDescription": "InTransparency is currently in pilot with Università di Bergamo. Verified student profiles are being added as universities join the platform.",
+      "pilotCta": "Want to see what the platform can do? Try our AI-powered search demo.",
+      "tryDemo": "Try the AI Search Demo",
+      "foundingPartner": "Become a Founding Partner"
     },
     "card": {
       "classOf": "Class of {year}",
@@ -3108,6 +3113,7 @@
   },
   "forUniversities": {
     "hero": {
+      "badge": "For Career Services Directors",
       "title": "Replace surveys with real-time proof",
       "subtitle": "InTransparency gives career services directors live placement analytics, cross-border grade normalization, and verified student profiles — so you can prove impact instead of estimating it.",
       "registerCta": "Register as University",

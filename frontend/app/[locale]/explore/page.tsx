@@ -582,12 +582,41 @@ export default function ExplorePage() {
                   <p className="mt-4 text-muted-foreground">{t('results.loadingPortfolios')}</p>
                 </div>
               ) : students.length === 0 ? (
-                <Card className="p-12 text-center bg-card hover:shadow-lg transition-shadow">
-                  <GraduationCap className="h-16 w-16 text-muted-foreground/60 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-foreground mb-2">{t('empty.title')}</h3>
-                  <p className="text-muted-foreground mb-6">{t('empty.description')}</p>
-                  <Button onClick={clearFilters}>{t('empty.clearFilters')}</Button>
-                </Card>
+                <div className="space-y-6">
+                  {/* Primary: if filters active, offer to clear */}
+                  {hasActiveFilters ? (
+                    <Card className="p-12 text-center bg-card hover:shadow-lg transition-shadow">
+                      <Search className="h-16 w-16 text-muted-foreground/60 mx-auto mb-4" />
+                      <h3 className="text-xl font-semibold text-foreground mb-2">{t('empty.title')}</h3>
+                      <p className="text-muted-foreground mb-6">{t('empty.description')}</p>
+                      <Button onClick={clearFilters}>{t('empty.clearFilters')}</Button>
+                    </Card>
+                  ) : (
+                    /* No filters, database is just empty — redirect to demo */
+                    <Card className="p-12 text-center bg-gradient-to-br from-primary/5 via-white to-secondary/5 border-2 border-primary/20">
+                      <div className="mx-auto mb-6 w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
+                        <GraduationCap className="h-10 w-10 text-primary" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-foreground mb-3">{t('empty.pilotTitle')}</h3>
+                      <p className="text-muted-foreground mb-2 max-w-lg mx-auto">{t('empty.pilotDescription')}</p>
+                      <p className="text-sm text-primary font-medium mb-8">{t('empty.pilotCta')}</p>
+                      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                        <Button size="lg" className="bg-gradient-to-r from-primary to-secondary" asChild>
+                          <Link href="/demo/ai-search">
+                            <Search className="mr-2 h-5 w-5" />
+                            {t('empty.tryDemo')}
+                          </Link>
+                        </Button>
+                        <Button size="lg" variant="outline" asChild>
+                          <Link href="/contact?subject=founding-partner">
+                            <Briefcase className="mr-2 h-5 w-5" />
+                            {t('empty.foundingPartner')}
+                          </Link>
+                        </Button>
+                      </div>
+                    </Card>
+                  )}
+                </div>
               ) : (
                 <div className="grid md:grid-cols-2 gap-6">
                   {students.map((student, index) => (
