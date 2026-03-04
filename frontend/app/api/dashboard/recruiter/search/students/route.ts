@@ -58,9 +58,23 @@ export async function GET(req: NextRequest) {
       ]
     }
 
-    // University filter (contains match)
+    // University filter — also match exchange students at this university
     if (university) {
-      where.university = { contains: university, mode: 'insensitive' }
+      where.OR = [
+        ...(where.OR || []),
+        { university: { contains: university, mode: 'insensitive' } },
+        {
+          exchangeEnrollments: {
+            some: {
+              status: 'ACTIVE',
+              OR: [
+                { homeUniversityName: { contains: university, mode: 'insensitive' } },
+                { hostUniversityName: { contains: university, mode: 'insensitive' } },
+              ],
+            },
+          },
+        },
+      ]
     }
 
     // Major / degree filter (contains match)
@@ -130,6 +144,17 @@ export async function GET(req: NextRequest) {
           photo: true,
           createdAt: true,
           subscriptionTier: true,
+          exchangeEnrollments: {
+            where: { status: 'ACTIVE' },
+            select: {
+              programType: true,
+              homeUniversityName: true,
+              homeCountry: true,
+              hostUniversityName: true,
+              hostCountry: true,
+            },
+            take: 1,
+          },
           _count: {
             select: { projects: true },
           },
@@ -194,27 +219,40 @@ export async function GET(req: NextRequest) {
       : filtered
 
     // Format the response
-    const formattedStudents = paginatedResults.map(s => ({
-      id: s.id,
-      name: [s.firstName, s.lastName].filter(Boolean).join(' ') || 'Anonymous',
-      initials: getInitials(s.firstName, s.lastName),
-      email: s.email,
-      university: s.university || null,
-      degree: s.degree || null,
-      graduationYear: s.graduationYear || null,
-      gpa: s.gpaPublic && s.gpa ? parseFloat(s.gpa) : null,
-      bio: s.bio || null,
-      tagline: s.tagline || null,
-      photo: s.photo || null,
-      projectCount: s._count.projects,
-      isPremium: s.subscriptionTier === 'STUDENT_PREMIUM',
-      topProjects: s.projects.map(p => ({
-        id: p.id,
-        title: p.title,
-        technologies: p.technologies,
-        innovationScore: p.innovationScore,
-      })),
-    }))
+    const formattedStudents = paginatedResults.map((s: any) => {
+      const exchange = s.exchangeEnrollments?.[0] || null
+      return {
+        id: s.id,
+        name: [s.firstName, s.lastName].filter(Boolean).join(' ') || 'Anonymous',
+        initials: getInitials(s.firstName, s.lastName),
+        email: s.email,
+        university: s.university || null,
+        degree: s.degree || null,
+        graduationYear: s.graduationYear || null,
+        gpa: s.gpaPublic && s.gpa ? parseFloat(s.gpa) : null,
+        bio: s.bio || null,
+        tagline: s.tagline || null,
+        photo: s.photo || null,
+        projectCount: s._count.projects,
+        isPremium: s.subscriptionTier === 'STUDENT_PREMIUM',
+        isErasmus: !!exchange,
+        exchange: exchange
+          ? {
+              programType: exchange.programType,
+              homeUniversity: exchange.homeUniversityName,
+              homeCountry: exchange.homeCountry,
+              hostUniversity: exchange.hostUniversityName,
+              hostCountry: exchange.hostCountry,
+            }
+          : null,
+        topProjects: s.projects.map((p: any) => ({
+          id: p.id,
+          title: p.title,
+          technologies: p.technologies,
+          innovationScore: p.innovationScore,
+        })),
+      }
+    })
 
     return NextResponse.json({
       students: formattedStudents,
