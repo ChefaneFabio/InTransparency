@@ -38,6 +38,11 @@ export async function GET(req: NextRequest) {
           gpaPublic: true,
           profilePublic: true,
           portfolioUrl: true,
+          location: true,
+          linkedinUrl: true,
+          githubUrl: true,
+          skills: true,
+          interests: true,
           subscriptionTier: true,
           emailNotifications: true,
           messageNotifications: true,
@@ -203,6 +208,7 @@ export async function PATCH(req: NextRequest) {
     const userId = session.user.id
     const body = await req.json()
     const {
+      firstName, lastName, university, degree, location, linkedinUrl, githubUrl, skills, interests,
       bio, tagline, portfolioUrl, profilePublic, showLocation, showEmail, showPhone, gpaPublic,
       showLastActive, anonymousBrowsing, allowMessagesFrom, indexInSearchEngines, showProjects, blockedCompanies,
       emailNotifications, messageNotifications, jobAlertNotifications, mentorshipNotifications, marketingEmails,
@@ -228,6 +234,15 @@ export async function PATCH(req: NextRequest) {
 
     // Build update data — only include fields that were provided
     const updateData: Record<string, any> = {}
+    if (firstName !== undefined) updateData.firstName = firstName
+    if (lastName !== undefined) updateData.lastName = lastName
+    if (university !== undefined) updateData.university = university || null
+    if (degree !== undefined) updateData.degree = degree || null
+    if (location !== undefined) updateData.location = location || null
+    if (linkedinUrl !== undefined) updateData.linkedinUrl = linkedinUrl || null
+    if (githubUrl !== undefined) updateData.githubUrl = githubUrl || null
+    if (skills !== undefined) updateData.skills = skills
+    if (interests !== undefined) updateData.interests = interests
     if (bio !== undefined) updateData.bio = bio
     if (tagline !== undefined) updateData.tagline = tagline
     if (portfolioUrl !== undefined) updateData.portfolioUrl = portfolioUrl || null
@@ -253,6 +268,15 @@ export async function PATCH(req: NextRequest) {
       data: updateData,
       select: {
         id: true,
+        firstName: true,
+        lastName: true,
+        university: true,
+        degree: true,
+        location: true,
+        linkedinUrl: true,
+        githubUrl: true,
+        skills: true,
+        interests: true,
         bio: true,
         tagline: true,
         portfolioUrl: true,

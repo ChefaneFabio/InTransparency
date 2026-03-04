@@ -35,6 +35,7 @@
         "analytics": "Analytics",
         "activity": "Activity",
         "certifications": "Certifications",
+        "exchange": "Exchange Program",
         "courses": "Courses",
         "challenges": "Challenges",
         "referrals": "Referrals",
@@ -97,19 +98,30 @@
         "settings": "Settings",
         "partnerships": "Exchange Partnerships",
         "skillsGap": "Skills Gap Heatmap",
-        "events": "Career Events"
+        "placementAnalytics": "Placement Analytics",
+        "events": "Career Events",
+        "exchangeStudents": "Exchange Students"
       },
       "exchange": "Exchange"
     },
     "institution": {
       "features": "Features",
+      "students": "Students",
+      "career": "Career",
       "exchange": "Exchange",
+      "insights": "Insights",
+      "more": "More",
       "items": {
+        "list": "Student List",
+        "projects": "Projects",
+        "placements": "Placements",
         "careerDay": "Career Day",
-        "embedConfig": "Embed Config",
         "partnerships": "Exchange Partnerships",
         "events": "Career Events",
-        "skillsGap": "Skills Gap Heatmap"
+        "analytics": "Analytics",
+        "skillsGap": "Skills Gap Heatmap",
+        "embedConfig": "Embed Config",
+        "settings": "Settings"
       }
     }
   },
@@ -2939,6 +2951,95 @@
       "available": {
         "title": "24/7 Available",
         "description": "Get instant help anytime - no waiting for business hours or human support."
+      }
+    }
+  },
+  "erasmusBridge": {
+    "title": "Exchange Programs",
+    "subtitle": "Manage your exchange and Erasmus+ enrollments",
+    "addExchange": "Add Exchange",
+    "noExchanges": "No exchange programs yet",
+    "noExchangesDescription": "Register an exchange program to make your profile visible to recruiters in both your home and host countries.",
+    "university": {
+      "title": "Exchange Students",
+      "subtitle": "Manage incoming and outgoing exchange students",
+      "incoming": "Incoming Students",
+      "outgoing": "Outgoing Students",
+      "active": "Active Exchanges",
+      "countries": "Partner Countries",
+      "noIncoming": "No incoming exchange students",
+      "noOutgoing": "No outgoing exchange students"
+    }
+  },
+  "universityAnalytics": {
+    "title": "Placement Analytics",
+    "subtitle": "Real-time recruiter engagement with your students",
+    "stats": {
+      "viewed": "Profiles Viewed",
+      "contacted": "Students Contacted",
+      "hired": "Students Hired",
+      "avgTime": "Avg. Time to Hire"
+    },
+    "gradeComparison": "GPA Comparison"
+  },
+  "forUniversities": {
+    "hero": {
+      "title": "Replace surveys with real-time proof",
+      "subtitle": "InTransparency gives career services directors live placement analytics, cross-border grade normalization, and verified student profiles — so you can prove impact instead of estimating it.",
+      "registerCta": "Register as University",
+      "demoCta": "Book a Demo",
+      "stats": {
+        "students": "Student profiles",
+        "companies": "Active recruiters",
+        "countries": "EU grading systems",
+        "placementRate": "Placement rate"
+      }
+    },
+    "countries": {
+      "title": "Built for European higher education",
+      "subtitle": "Every country has unique challenges. We solve them all.",
+      "painLabel": "The problem today",
+      "valueLabel": "With InTransparency"
+    },
+    "demos": {
+      "badge": "Interactive Demos",
+      "title": "See it in action",
+      "subtitle": "These are real features you get on day one. Try them now.",
+      "decisionPack": {
+        "title": "Decision Pack",
+        "description": "Recruiters see a complete, verified dossier for every student — grades, projects, endorsements, and placement prediction."
+      },
+      "gradeNormalizer": {
+        "title": "Grade Normalizer",
+        "description": "Instantly translate grades across all European systems. Enter a grade below and see it converted."
+      },
+      "analytics": {
+        "title": "Placement Analytics",
+        "description": "See exactly which companies view, contact, and hire your students — in real time."
+      }
+    },
+    "socialProof": {
+      "title": "Trusted by innovators",
+      "unibg": {
+        "title": "Università degli Studi di Bergamo",
+        "subtitle": "Pilot Partner",
+        "description": "UniBG career services uses InTransparency to track recruiter engagement with Computer Science and Engineering students across Lombardy employers."
+      },
+      "startCup": {
+        "title": "Start Cup Bergamo 2024",
+        "subtitle": "Competition Finalist",
+        "description": "InTransparency was selected as a finalist at Start Cup Bergamo, Italy's university startup competition, for innovation in graduate employability."
+      }
+    },
+    "cta": {
+      "title": "Ready to prove your placement impact?",
+      "subtitle": "Join universities across Europe already using real-time data instead of year-end surveys.",
+      "registerButton": "Get Started Free",
+      "demoButton": "Schedule a Demo",
+      "features": {
+        "free": "Free for universities",
+        "gdpr": "GDPR compliant",
+        "setup": "5-minute setup"
       }
     }
   },

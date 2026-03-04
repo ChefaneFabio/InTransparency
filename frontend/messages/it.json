@@ -35,6 +35,7 @@
         "analytics": "Analytics",
         "activity": "Attività",
         "certifications": "Certificazioni",
+        "exchange": "Programma di Scambio",
         "courses": "Corsi",
         "challenges": "Sfide",
         "referrals": "Referral",
@@ -97,19 +98,30 @@
         "settings": "Impostazioni",
         "partnerships": "Partnership di Scambio",
         "skillsGap": "Mappa Competenze",
-        "events": "Eventi Carriera"
+        "placementAnalytics": "Analytics Placement",
+        "events": "Eventi Carriera",
+        "exchangeStudents": "Studenti in Scambio"
       },
       "exchange": "Scambio"
     },
     "institution": {
       "features": "Funzionalità",
+      "students": "Studenti",
+      "career": "Carriera",
       "exchange": "Scambio",
+      "insights": "Statistiche",
+      "more": "Altro",
       "items": {
+        "list": "Lista Studenti",
+        "projects": "Progetti",
+        "placements": "Placement",
         "careerDay": "Career Day",
-        "embedConfig": "Configurazione Embed",
         "partnerships": "Partnership di Scambio",
         "events": "Eventi Carriera",
-        "skillsGap": "Mappa Competenze"
+        "analytics": "Analytics",
+        "skillsGap": "Mappa Competenze",
+        "embedConfig": "Configurazione Embed",
+        "settings": "Impostazioni"
       }
     }
   },
@@ -2982,6 +2994,95 @@
       "available": {
         "title": "Disponibile 24/7",
         "description": "Ricevi aiuto istantaneo in qualsiasi momento - senza aspettare orari d'ufficio o supporto umano."
+      }
+    }
+  },
+  "erasmusBridge": {
+    "title": "Programmi di Scambio",
+    "subtitle": "Gestisci le tue iscrizioni Erasmus+ e scambi",
+    "addExchange": "Aggiungi Scambio",
+    "noExchanges": "Nessun programma di scambio",
+    "noExchangesDescription": "Registra un programma di scambio per rendere il tuo profilo visibile ai recruiter sia nel paese di origine che in quello ospitante.",
+    "university": {
+      "title": "Studenti in Scambio",
+      "subtitle": "Gestisci studenti in arrivo e in partenza",
+      "incoming": "Studenti in Arrivo",
+      "outgoing": "Studenti in Partenza",
+      "active": "Scambi Attivi",
+      "countries": "Paesi Partner",
+      "noIncoming": "Nessuno studente in arrivo",
+      "noOutgoing": "Nessuno studente in partenza"
+    }
+  },
+  "universityAnalytics": {
+    "title": "Analytics Placement",
+    "subtitle": "Engagement dei recruiter con i tuoi studenti in tempo reale",
+    "stats": {
+      "viewed": "Profili Visualizzati",
+      "contacted": "Studenti Contattati",
+      "hired": "Studenti Assunti",
+      "avgTime": "Tempo Medio Assunzione"
+    },
+    "gradeComparison": "Confronto GPA"
+  },
+  "forUniversities": {
+    "hero": {
+      "title": "Sostituisci i sondaggi con prove in tempo reale",
+      "subtitle": "InTransparency offre ai direttori dei servizi di carriera analytics di placement in tempo reale, normalizzazione dei voti transfrontaliera e profili studenti verificati — per dimostrare l'impatto invece di stimarlo.",
+      "registerCta": "Registra la tua Università",
+      "demoCta": "Prenota una Demo",
+      "stats": {
+        "students": "Profili studenti",
+        "companies": "Recruiter attivi",
+        "countries": "Sistemi di voto UE",
+        "placementRate": "Tasso di placement"
+      }
+    },
+    "countries": {
+      "title": "Progettato per l'istruzione superiore europea",
+      "subtitle": "Ogni paese ha sfide uniche. Le risolviamo tutte.",
+      "painLabel": "Il problema oggi",
+      "valueLabel": "Con InTransparency"
+    },
+    "demos": {
+      "badge": "Demo Interattive",
+      "title": "Guardalo in azione",
+      "subtitle": "Queste sono funzionalità reali disponibili dal primo giorno. Provale ora.",
+      "decisionPack": {
+        "title": "Decision Pack",
+        "description": "I recruiter vedono un dossier completo e verificato per ogni studente — voti, progetti, referenze e previsione di placement."
+      },
+      "gradeNormalizer": {
+        "title": "Normalizzatore Voti",
+        "description": "Traduci istantaneamente i voti tra tutti i sistemi europei. Inserisci un voto qui sotto e vedi la conversione."
+      },
+      "analytics": {
+        "title": "Analytics Placement",
+        "description": "Vedi esattamente quali aziende visualizzano, contattano e assumono i tuoi studenti — in tempo reale."
+      }
+    },
+    "socialProof": {
+      "title": "Scelto dagli innovatori",
+      "unibg": {
+        "title": "Università degli Studi di Bergamo",
+        "subtitle": "Partner Pilota",
+        "description": "I servizi di carriera di UniBG usano InTransparency per tracciare l'engagement dei recruiter con studenti di Informatica e Ingegneria presso i datori di lavoro lombardi."
+      },
+      "startCup": {
+        "title": "Start Cup Bergamo 2024",
+        "subtitle": "Finalista Competizione",
+        "description": "InTransparency è stata selezionata come finalista a Start Cup Bergamo, la competizione startup universitaria italiana, per l'innovazione nell'occupabilità dei laureati."
+      }
+    },
+    "cta": {
+      "title": "Pronto a dimostrare il tuo impatto di placement?",
+      "subtitle": "Unisciti alle università in tutta Europa che già usano dati in tempo reale invece di sondaggi di fine anno.",
+      "registerButton": "Inizia Gratis",
+      "demoButton": "Prenota una Demo",
+      "features": {
+        "free": "Gratuito per le università",
+        "gdpr": "Conforme al GDPR",
+        "setup": "Setup in 5 minuti"
       }
     }
   },

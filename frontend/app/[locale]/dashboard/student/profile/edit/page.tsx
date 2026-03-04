@@ -194,7 +194,7 @@ export default function EditProfilePage() {
 
     try {
       const res = await fetch('/api/dashboard/student/profile', {
-        method: 'PUT',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           firstName: formData.firstName,

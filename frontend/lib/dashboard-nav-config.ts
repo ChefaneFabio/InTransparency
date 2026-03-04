@@ -51,6 +51,7 @@ const student: NavConfig = {
     {
       labelKey: 'more',
       items: [
+        { labelKey: 'exchange', href: '/dashboard/student/exchange' },
         { labelKey: 'courses', href: '/dashboard/student/courses' },
         { labelKey: 'challenges', href: '/dashboard/student/challenges' },
         { labelKey: 'referrals', href: '/dashboard/student/referrals' },
@@ -148,6 +149,7 @@ const university: NavConfig = {
       labelKey: 'exchange',
       items: [
         { labelKey: 'partnerships', href: '/dashboard/university/partnerships' },
+        { labelKey: 'exchangeStudents', href: '/dashboard/university/exchange-students' },
         { labelKey: 'events', href: '/dashboard/university/events' },
       ],
     },
@@ -155,6 +157,7 @@ const university: NavConfig = {
       labelKey: 'insights',
       items: [
         { labelKey: 'analytics', href: '/dashboard/university/analytics' },
+        { labelKey: 'placementAnalytics', href: '/dashboard/university/placement-analytics' },
         { labelKey: 'skillsGap', href: '/dashboard/university/skills-gap' },
       ],
     },
