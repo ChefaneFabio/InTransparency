@@ -44,7 +44,13 @@ export async function GET() {
         },
         email: {
           available: true,
-          address: isDedicatedSupport ? 'enterprise@intransparency.com' : 'support@intransparency.com',
+          address: isDedicatedSupport
+            ? 'institutions@intransparency.it'
+            : user.role === 'RECRUITER'
+              ? 'companies@intransparency.it'
+              : user.role === 'UNIVERSITY' || user.role === 'INSTITUTION'
+                ? 'institutions@intransparency.it'
+                : 'students@intransparency.it',
           responseTime: isDedicatedSupport ? '4 hours' : isPrioritySupport ? '24 hours' : '48 hours',
           label: isDedicatedSupport ? 'Priority Email Support' : 'Email Support',
         },

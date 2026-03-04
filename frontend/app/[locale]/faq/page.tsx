@@ -244,8 +244,8 @@ export default function FAQPage() {
                 </Link>
               </Button>
               <Button variant="outline" asChild>
-                <a href="mailto:support@in-transparency.com">
-                  support@in-transparency.com
+                <a href="mailto:students@intransparency.it">
+                  students@intransparency.it
                 </a>
               </Button>
             </div>

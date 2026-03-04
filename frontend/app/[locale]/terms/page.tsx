@@ -214,8 +214,8 @@ export default function TermsPage() {
                 Per domande su questi Termini di Servizio, contattaci a:
               </p>
               <ul>
-                <li>Email: legal@in-transparency.com</li>
-                <li>Sito web: www.in-transparency.com</li>
+                <li>Email: legal@intransparency.it</li>
+                <li>Sito web: www.intransparency.it</li>
               </ul>
             </CardContent>
           </Card>

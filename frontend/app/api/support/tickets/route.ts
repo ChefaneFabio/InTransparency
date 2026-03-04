@@ -90,7 +90,13 @@ export async function POST(req: NextRequest) {
         priority: effectivePriority,
         status: 'open',
         expectedResponseTime: responseTime,
-        supportEmail: isDedicatedSupport ? 'enterprise@intransparency.com' : 'support@intransparency.com',
+        supportEmail: isDedicatedSupport
+          ? 'institutions@intransparency.it'
+          : user.role === 'RECRUITER'
+            ? 'companies@intransparency.it'
+            : user.role === 'UNIVERSITY' || user.role === 'INSTITUTION'
+              ? 'institutions@intransparency.it'
+              : 'students@intransparency.it',
       },
       message: `Support ticket ${ticketRef} created. Expected response within ${responseTime}.`,
     }, { status: 201 })

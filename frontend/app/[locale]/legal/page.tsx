@@ -141,8 +141,8 @@ export default function LegalPage() {
                       <h3 className="text-xl font-semibold text-foreground mb-3">7. Contact Us</h3>
                       <p className="text-foreground/80">
                         For questions about this Privacy Policy, please contact us at{' '}
-                        <a href="mailto:privacy@intransparency.com" className="text-primary hover:underline">
-                          privacy@intransparency.com
+                        <a href="mailto:privacy@intransparency.it" className="text-primary hover:underline">
+                          privacy@intransparency.it
                         </a>
                       </p>
                     </section>
@@ -245,8 +245,8 @@ export default function LegalPage() {
                       <h3 className="text-xl font-semibold text-foreground mb-3">10. Contact</h3>
                       <p className="text-foreground/80">
                         Questions about these Terms? Contact us at{' '}
-                        <a href="mailto:legal@intransparency.com" className="text-primary hover:underline">
-                          legal@intransparency.com
+                        <a href="mailto:legal@intransparency.it" className="text-primary hover:underline">
+                          legal@intransparency.it
                         </a>
                       </p>
                     </section>
