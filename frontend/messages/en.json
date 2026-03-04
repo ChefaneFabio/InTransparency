@@ -1702,7 +1702,7 @@
     "contact": {
       "title": "Questions About Your Data?",
       "description": "Contact our Data Protection Officer (DPO) for any privacy concerns or to exercise your GDPR rights.",
-      "emailButton": "privacy@intransparency.it",
+      "emailButton": "institutions@intransparency.it",
       "contactButton": "Contact Form",
       "responseTime": "Response time: Within 30 days as required by GDPR"
     }

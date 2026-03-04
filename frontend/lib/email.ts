@@ -12,7 +12,7 @@ const transporter = process.env.SMTP_HOST
     })
   : null
 
-const FROM_EMAIL = process.env.SMTP_FROM || 'noreply@intransparency.it'
+const FROM_EMAIL = process.env.SMTP_FROM || 'students@intransparency.it'
 const BASE_URL = process.env.NEXTAUTH_URL || 'http://localhost:3000'
 
 async function sendEmail(to: string, subject: string, html: string) {
