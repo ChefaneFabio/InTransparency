@@ -23,9 +23,11 @@ import {
   Grid,
   List,
   SortDesc,
-  AlertCircle
+  AlertCircle,
+  Download
 } from 'lucide-react'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
+import { exportSavedCandidatesToCsv } from '@/lib/export-csv'
 
 interface SavedCandidate {
   id: string
@@ -173,11 +175,37 @@ export default function SavedCandidatesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-muted/50 via-white to-slate-50 space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-foreground">Saved Candidates</h1>
-        <p className="text-muted-foreground mt-2">
-          Manage and organize your saved candidate profiles
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground">Saved Candidates</h1>
+          <p className="text-muted-foreground mt-2">
+            Manage and organize your saved candidate profiles
+          </p>
+        </div>
+        {filteredCandidates.length > 0 && (
+          <Button
+            variant="outline"
+            onClick={() => {
+              const dataToExport = filteredCandidates.map((sc) => ({
+                firstName: sc.candidate.firstName,
+                lastName: sc.candidate.lastName,
+                email: '',
+                university: sc.candidate.university,
+                degree: sc.candidate.degree,
+                graduationYear: String(sc.candidate.graduationYear || ''),
+                savedDate: sc.savedAt ? new Date(sc.savedAt).toLocaleDateString() : '',
+                notes: sc.notes || '',
+                folder: sc.folder || '',
+                rating: sc.rating || '',
+                tags: sc.tags.join('; '),
+              }))
+              exportSavedCandidatesToCsv(dataToExport)
+            }}
+          >
+            <Download className="h-4 w-4 mr-2" />
+            Export CSV
+          </Button>
+        )}
       </div>
 
       {/* Summary Stats */}

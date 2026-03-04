@@ -4698,5 +4698,159 @@
       "freeForStudents": "Gratis per Studenti e Universit\u00e0",
       "noSubscription": "Nessun Abbonamento Richiesto"
     }
+  },
+  "forEngineering": {
+    "badge": "Per Ingegneria e Manifattura",
+    "hero": {
+      "title": "Assumi Ingegneri Che Sanno Davvero Costruire",
+      "subtitle": "Vedi portfolio di progetti verificati \u2014 modelli CAD, analisi FEA, prototipi di meccatronica \u2014 non solo CV. Da universit\u00e0 e ITS Academy italiani.",
+      "browseCta": "Cerca Studenti di Ingegneria",
+      "demoCta": "Prenota una Demo"
+    },
+    "pain": {
+      "title": "Perch\u00e9 l'Assunzione di Ingegneri \u00e8 Complicata",
+      "cantCompete": "Non puoi competere con Siemens o ABB per i talenti \u2014 ma hai bisogno di 3 ingegneri quest'anno",
+      "cvsDontShow": "I CV non mostrano se qualcuno sa davvero progettare un circuito o eseguire una simulazione",
+      "costPerHire": "AlmaLaurea costa \u20ac2.500/anno anche se assumi solo 2 persone"
+    },
+    "solution": {
+      "title": "Vedi il Lavoro, Non Solo le Parole",
+      "subtitle": "InTransparency ti mostra cosa hanno effettivamente costruito gli studenti di ingegneria \u2014 verificato dai professori.",
+      "verifiedProjects": {
+        "title": "Portfolio Progetti Verificati",
+        "desc": "Vedi progetti CAD reali, risultati di simulazione e prototipi \u2014 ciascuno verificato dall'istituto dello studente."
+      },
+      "technicalPortfolios": {
+        "title": "Analisi di Profondit\u00e0 Tecnica",
+        "desc": "L'AI analizza complessit\u00e0, strumenti utilizzati e livello di innovazione di ogni progetto ingegneristico."
+      },
+      "institutionBacked": {
+        "title": "Voti Verificati dall'Universit\u00e0",
+        "desc": "Voti normalizzati tra universit\u00e0 usando il Processo di Bologna. Confronta studenti di istituti diversi in modo equo."
+      },
+      "personalityInsights": {
+        "title": "Valutazione Team Fit",
+        "desc": "Profili di personalit\u00e0 DISC mostrano come i candidati lavorano in team \u2014 critico per lavoro ingegneristico basato su progetti."
+      }
+    },
+    "sectors": {
+      "title": "Settori Ingegneristici Coperti",
+      "mechatronics": "Meccatronica",
+      "automation": "Automazione Industriale",
+      "aerospace": "Aerospaziale",
+      "automotive": "Automotive",
+      "energy": "Energia e Rinnovabili",
+      "biomedical": "Ingegneria Biomedica",
+      "civilEngineering": "Ingegneria Civile",
+      "electronics": "Elettronica e IoT"
+    },
+    "pricing": {
+      "title": "Prezzi Semplici per le PMI",
+      "price": "\u20ac10",
+      "perContact": "per contatto \u2014 nessun abbonamento, nessun costo annuale",
+      "noSubscription": "Nessun abbonamento richiesto",
+      "browseFree": "Cerca tutti i profili gratis",
+      "noMinimum": "Nessun impegno minimo",
+      "cta": "Inizia ad Assumere Ingegneri"
+    }
+  },
+  "forConsulting": {
+    "badge": "Per Consulenza e Servizi Professionali",
+    "hero": {
+      "title": "Assumi Consulenti con Soft Skill Verificate",
+      "subtitle": "Profili di personalit\u00e0 DISC, voti normalizzati e competenze verificate dall'istituto. Smetti di indovinare sulle soft skill.",
+      "browseCta": "Cerca Candidati",
+      "demoCta": "Prenota una Demo"
+    },
+    "pain": {
+      "title": "Il Problema del Recruiting nella Consulenza",
+      "tooManyCvs": "500 CV per posizione analyst \u2014 nessun modo per filtrare il vero potenziale",
+      "cantVerifySoftSkills": "Comunicazione, teamwork, leadership \u2014 impossibili da verificare da un CV",
+      "gradesNotComparable": "Un 28/30 alla Bocconi non \u00e8 uguale a un 28/30 in un'universit\u00e0 regionale"
+    },
+    "solution": {
+      "title": "Recruiting Data-Driven per la Consulenza",
+      "subtitle": "Vai oltre i CV con profili di personalit\u00e0 verificati, voti normalizzati e endorsement istituzionali.",
+      "discProfiles": {
+        "title": "Profili di Personalit\u00e0 DISC",
+        "desc": "Vedi stile comunicativo, motivatori, fattori di stress e ruolo ideale nel team \u2014 valutati e verificati, non auto-dichiarati."
+      },
+      "normalizedGrades": {
+        "title": "Normalizzazione Voti Processo di Bologna",
+        "desc": "Confronta candidati di universit\u00e0 diverse in modo equo. Voti normalizzati agli standard ECTS in 6 sistemi europei."
+      },
+      "verifiedSkills": {
+        "title": "Competenze Verificate dall'Istituto",
+        "desc": "Soft skill valutate e verificate dall'universit\u00e0 \u2014 comunicazione, teamwork, leadership, problem solving e altro."
+      },
+      "decisionPack": {
+        "title": "Decision Pack PDF",
+        "desc": "Genera un PDF comparativo completo con tutti i profili, punteggi e insight \u2014 perfetto per i comitati di assunzione."
+      }
+    },
+    "howItWorks": {
+      "title": "Come Funziona",
+      "step1": {
+        "title": "Cerca Gratis",
+        "desc": "Sfoglia profili verificati filtrati per universit\u00e0, competenze, voti e tratti di personalit\u00e0."
+      },
+      "step2": {
+        "title": "Confronta i Candidati",
+        "desc": "Usa i Decision Pack per confrontare i candidati selezionati fianco a fianco con tutti i dati verificati."
+      },
+      "step3": {
+        "title": "Contatta a \u20ac10",
+        "desc": "Sblocca i dettagli di contatto solo per i candidati che vuoi intervistare. Nessun abbonamento richiesto."
+      }
+    },
+    "pricing": {
+      "title": "Prezzi Trasparenti",
+      "price": "\u20ac10",
+      "perContact": "per contatto \u2014 confrontalo con \u20ac8.000/anno di LinkedIn Recruiter",
+      "noSubscription": "Nessun abbonamento annuale",
+      "browseFree": "Cerca e confronta gratis",
+      "decisionPackIncluded": "Decision Pack PDF incluso",
+      "cta": "Inizia a Reclutare"
+    }
+  },
+  "perAziendePmi": {
+    "badge": "Per le PMI Italiane",
+    "hero": {
+      "title": "Assumi Laureati a \u20ac10 per Contatto",
+      "subtitle": "Nessun abbonamento annuale. Nessun rischio. Cerca gratis, paga solo quando trovi il candidato giusto.",
+      "browseCta": "Cerca Studenti Gratis",
+      "pricingCta": "Vedi i Prezzi"
+    },
+    "comparison": {
+      "title": "Confronta i Costi",
+      "annualRequired": "Abbonamento annuale obbligatorio",
+      "noCommitment": "Nessun impegno",
+      "bestValue": "Miglior rapporto qualit\u00e0-prezzo"
+    },
+    "benefits": {
+      "title": "Perch\u00e9 InTransparency per la Tua PMI",
+      "subtitle": "Pensato per le piccole e medie imprese che hanno bisogno di assumere senza rischi.",
+      "searchFree": {
+        "title": "Cerca Gratis",
+        "desc": "Sfoglia tutti i profili verificati senza pagare nulla. Nessuna registrazione necessaria per esplorare."
+      },
+      "verified": {
+        "title": "Profili Verificati dall'Universit\u00e0",
+        "desc": "Competenze confermate dai professori, non auto-dichiarate. Vedi i progetti reali degli studenti."
+      },
+      "aiSearch": {
+        "title": "Ricerca AI Intelligente",
+        "desc": "Descrivi il candidato ideale in linguaggio naturale. L'AI trova i profili pi\u00f9 compatibili."
+      },
+      "payPerContact": {
+        "title": "Paga Solo \u20ac10 per Contatto",
+        "desc": "Nessun abbonamento, nessun costo fisso. Paghi solo quando vuoi contattare un candidato."
+      }
+    },
+    "cta": {
+      "title": "Pronto ad Assumere?",
+      "subtitle": "Registrati gratis e inizia a cercare il tuo prossimo collaboratore oggi stesso.",
+      "button": "Registrati Gratis"
+    }
   }
 }

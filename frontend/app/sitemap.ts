@@ -38,6 +38,9 @@ const staticRoutes = [
   '/support',
   '/advocacy/alumni-stories',
   '/certification',
+  '/for-engineering',
+  '/for-consulting',
+  '/per-aziende-pmi',
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -26,9 +26,11 @@ import {
   Plus,
   GraduationCap,
   CheckCircle,
-  ArrowLeft
+  ArrowLeft,
+  Download
 } from 'lucide-react'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
+import { exportCandidatesToCsv } from '@/lib/export-csv'
 
 const DISCIPLINES = [
   { value: 'all', label: 'All Disciplines' },
@@ -187,6 +189,23 @@ export default function CandidatesPage() {
     setUniversityFilter('all')
   }
 
+  const handleExportCsv = () => {
+    const dataToExport = filteredCandidates.map((c) => ({
+      firstName: c.firstName,
+      lastName: c.lastName,
+      email: c.email,
+      university: c.university,
+      degree: c.degree,
+      graduationYear: c.graduationYear,
+      projects: c._count.projects,
+      topProject: c.projects[0]?.title || '',
+      avgInnovationScore: c.projects.length > 0
+        ? Math.round(c.projects.reduce((sum, p) => sum + (p.innovationScore || 0), 0) / c.projects.length)
+        : 0,
+    }))
+    exportCandidatesToCsv(dataToExport)
+  }
+
   if (loading) {
     return (
       <div className="space-y-8">
@@ -235,6 +254,12 @@ export default function CandidatesPage() {
           </div>
         </div>
         <div className="flex gap-3">
+          {filteredCandidates.length > 0 && (
+            <Button variant="outline" onClick={handleExportCsv}>
+              <Download className="h-4 w-4 mr-2" />
+              Export CSV
+            </Button>
+          )}
           <Button variant="outline" asChild>
             <Link href="/dashboard/recruiter/post-job">
               <Plus className="h-4 w-4 mr-2" />

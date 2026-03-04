@@ -4656,5 +4656,159 @@
       "freeForStudents": "Free for Students & Universities",
       "noSubscription": "No Subscription Required"
     }
+  },
+  "forEngineering": {
+    "badge": "For Engineering & Manufacturing",
+    "hero": {
+      "title": "Hire Engineers Who Can Actually Build Things",
+      "subtitle": "See verified project portfolios — CAD models, FEA analyses, mechatronics prototypes — not just CVs. From Italian universities and ITS academies.",
+      "browseCta": "Browse Engineering Students",
+      "demoCta": "Schedule a Demo"
+    },
+    "pain": {
+      "title": "Why Engineering Hiring Is Broken",
+      "cantCompete": "You can't compete with Siemens or ABB for talent — but you need 3 engineers this year",
+      "cvsDontShow": "CVs don't show if someone can actually design a circuit or run a simulation",
+      "costPerHire": "AlmaLaurea costs €2,500/year even if you only hire 2 people"
+    },
+    "solution": {
+      "title": "See the Work, Not Just the Words",
+      "subtitle": "InTransparency shows you what engineering students actually built — verified by their professors.",
+      "verifiedProjects": {
+        "title": "Verified Project Portfolios",
+        "desc": "See actual CAD designs, simulation results, and prototypes — each verified by the student's institution."
+      },
+      "technicalPortfolios": {
+        "title": "Technical Depth Analysis",
+        "desc": "AI analyses complexity, tools used, and innovation level of each engineering project."
+      },
+      "institutionBacked": {
+        "title": "University-Verified Grades",
+        "desc": "Grades normalized across universities using the Bologna Process. Compare students from different institutions fairly."
+      },
+      "personalityInsights": {
+        "title": "Team Fit Assessment",
+        "desc": "DISC personality profiles show how candidates work in teams — critical for project-based engineering work."
+      }
+    },
+    "sectors": {
+      "title": "Engineering Sectors We Cover",
+      "mechatronics": "Mechatronics",
+      "automation": "Industrial Automation",
+      "aerospace": "Aerospace",
+      "automotive": "Automotive",
+      "energy": "Energy & Renewables",
+      "biomedical": "Biomedical Engineering",
+      "civilEngineering": "Civil Engineering",
+      "electronics": "Electronics & IoT"
+    },
+    "pricing": {
+      "title": "Simple Pricing for SMEs",
+      "price": "€10",
+      "perContact": "per contact — no subscription, no annual fee",
+      "noSubscription": "No subscription required",
+      "browseFree": "Browse all profiles free",
+      "noMinimum": "No minimum commitment",
+      "cta": "Start Hiring Engineers"
+    }
+  },
+  "forConsulting": {
+    "badge": "For Consulting & Professional Services",
+    "hero": {
+      "title": "Hire Consultants With Verified Soft Skills",
+      "subtitle": "DISC personality profiles, normalized grades, and institution-verified competencies. Stop guessing about soft skills.",
+      "browseCta": "Browse Candidates",
+      "demoCta": "Schedule a Demo"
+    },
+    "pain": {
+      "title": "The Consulting Hiring Problem",
+      "tooManyCvs": "500 CVs per analyst opening — no way to filter for actual potential",
+      "cantVerifySoftSkills": "Communication, teamwork, leadership — impossible to verify from a CV",
+      "gradesNotComparable": "A 28/30 at Bocconi isn't the same as a 28/30 at a regional university"
+    },
+    "solution": {
+      "title": "Data-Driven Consulting Recruitment",
+      "subtitle": "Go beyond CVs with verified personality profiles, normalized grades, and institutional endorsements.",
+      "discProfiles": {
+        "title": "DISC Personality Profiles",
+        "desc": "See communication style, motivators, stressors, and ideal team role — assessed and verified, not self-reported."
+      },
+      "normalizedGrades": {
+        "title": "Bologna Process Grade Normalization",
+        "desc": "Compare candidates from different universities fairly. Grades normalized to ECTS standards across 6 European systems."
+      },
+      "verifiedSkills": {
+        "title": "Institution-Verified Competencies",
+        "desc": "Soft skills scored and verified by the university — communication, teamwork, leadership, problem solving, and more."
+      },
+      "decisionPack": {
+        "title": "Decision Pack PDF",
+        "desc": "Generate a comprehensive candidate comparison PDF with all profiles, scores, and insights — perfect for hiring committees."
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Search Free",
+        "desc": "Browse verified profiles filtered by university, skills, grades, and personality traits."
+      },
+      "step2": {
+        "title": "Compare Candidates",
+        "desc": "Use Decision Packs to compare shortlisted candidates side-by-side with all verified data."
+      },
+      "step3": {
+        "title": "Contact at €10",
+        "desc": "Unlock contact details only for candidates you want to interview. No subscription required."
+      }
+    },
+    "pricing": {
+      "title": "Transparent Pricing",
+      "price": "€10",
+      "perContact": "per contact — compare that to €8,000/year for LinkedIn Recruiter",
+      "noSubscription": "No annual subscription",
+      "browseFree": "Search and compare for free",
+      "decisionPackIncluded": "Decision Pack PDF included",
+      "cta": "Start Recruiting"
+    }
+  },
+  "perAziendePmi": {
+    "badge": "Per le PMI Italiane",
+    "hero": {
+      "title": "Assumi Laureati a €10 per Contatto",
+      "subtitle": "Nessun abbonamento annuale. Nessun rischio. Cerca gratis, paga solo quando trovi il candidato giusto.",
+      "browseCta": "Cerca Studenti Gratis",
+      "pricingCta": "Vedi i Prezzi"
+    },
+    "comparison": {
+      "title": "Confronta i Costi",
+      "annualRequired": "Abbonamento annuale obbligatorio",
+      "noCommitment": "Nessun impegno",
+      "bestValue": "Miglior rapporto qualit\u00e0-prezzo"
+    },
+    "benefits": {
+      "title": "Perch\u00e9 InTransparency per la Tua PMI",
+      "subtitle": "Pensato per le piccole e medie imprese che hanno bisogno di assumere senza rischi.",
+      "searchFree": {
+        "title": "Cerca Gratis",
+        "desc": "Sfoglia tutti i profili verificati senza pagare nulla. Nessuna registrazione necessaria per esplorare."
+      },
+      "verified": {
+        "title": "Profili Verificati dall'Universit\u00e0",
+        "desc": "Competenze confermate dai professori, non auto-dichiarate. Vedi i progetti reali degli studenti."
+      },
+      "aiSearch": {
+        "title": "Ricerca AI Intelligente",
+        "desc": "Descrivi il candidato ideale in linguaggio naturale. L'AI trova i profili pi\u00f9 compatibili."
+      },
+      "payPerContact": {
+        "title": "Paga Solo €10 per Contatto",
+        "desc": "Nessun abbonamento, nessun costo fisso. Paghi solo quando vuoi contattare un candidato."
+      }
+    },
+    "cta": {
+      "title": "Pronto ad Assumere?",
+      "subtitle": "Registrati gratis e inizia a cercare il tuo prossimo collaboratore oggi stesso.",
+      "button": "Registrati Gratis"
+    }
   }
 }
