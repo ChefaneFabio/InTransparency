@@ -94,7 +94,7 @@ export async function POST(req: NextRequest) {
           ? 'institutions@intransparency.it'
           : user.role === 'RECRUITER'
             ? 'companies@intransparency.it'
-            : user.role === 'UNIVERSITY' || user.role === 'INSTITUTION'
+            : (user.role as string) === 'UNIVERSITY' || (user.role as string) === 'INSTITUTION'
               ? 'institutions@intransparency.it'
               : 'students@intransparency.it',
       },

@@ -7,7 +7,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Check, Building2, GraduationCap, ArrowRight, Zap, Crown, School, Star, Handshake } from 'lucide-react'
+import { Check, Building2, GraduationCap, ArrowRight, Zap, Crown, School, Star, Heart } from 'lucide-react'
 import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
 
@@ -107,7 +107,7 @@ export default function PricingPage() {
                           <div className="flex-1">
                             <div className="flex items-center gap-3 mb-4">
                               <div className="p-2 bg-amber-100 rounded-full">
-                                <Handshake className="h-6 w-6 text-amber-700" />
+                                <Heart className="h-6 w-6 text-amber-700" />
                               </div>
                               <Badge className="bg-amber-100 text-amber-800 border-amber-300 text-sm">
                                 {t('founding.badge')}
