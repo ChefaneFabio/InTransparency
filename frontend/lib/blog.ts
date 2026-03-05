@@ -2,6 +2,10 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import rehypeStringify from 'rehype-stringify'
 
 const contentDirectory = path.join(process.cwd(), 'content', 'blog')
 
@@ -16,6 +20,16 @@ export interface BlogPost {
   featured?: boolean
   readingTime: string
   content: string
+  contentHtml: string
+}
+
+async function renderMarkdown(markdown: string): Promise<string> {
+  const result = await unified()
+    .use(remarkParse)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeStringify, { allowDangerousHtml: true })
+    .process(markdown)
+  return String(result)
 }
 
 export interface BlogPostMeta {
@@ -38,13 +52,14 @@ export function getPostSlugs(locale: string): string[] {
     .map((file) => file.replace(/\.mdx$/, ''))
 }
 
-export function getPostBySlug(slug: string, locale: string): BlogPost | null {
+export async function getPostBySlug(slug: string, locale: string): Promise<BlogPost | null> {
   const filePath = path.join(contentDirectory, locale, `${slug}.mdx`)
   if (!fs.existsSync(filePath)) return null
 
   const fileContents = fs.readFileSync(filePath, 'utf8')
   const { data, content } = matter(fileContents)
   const stats = readingTime(content)
+  const contentHtml = await renderMarkdown(content)
 
   return {
     slug,
@@ -57,19 +72,18 @@ export function getPostBySlug(slug: string, locale: string): BlogPost | null {
     featured: data.featured || false,
     readingTime: stats.text,
     content,
+    contentHtml,
   }
 }
 
-export function getAllPosts(locale: string): BlogPostMeta[] {
+export async function getAllPosts(locale: string): Promise<BlogPostMeta[]> {
   const slugs = getPostSlugs(locale)
-  const posts = slugs
-    .map((slug) => {
-      const post = getPostBySlug(slug, locale)
-      if (!post) return null
-      const { content: _, ...meta } = post
-      return meta
-    })
-    .filter((post): post is BlogPostMeta => post !== null)
+  const postsRaw = await Promise.all(
+    slugs.map((slug) => getPostBySlug(slug, locale))
+  )
+  const posts = postsRaw
+    .filter((post): post is BlogPost => post !== null)
+    .map(({ content: _, contentHtml: _html, ...meta }) => meta)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   return posts

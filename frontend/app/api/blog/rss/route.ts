@@ -5,7 +5,7 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const locale = searchParams.get('locale') || 'en'
 
-  const posts = getAllPosts(locale)
+  const posts = await getAllPosts(locale)
   const rssFeed = generateRssFeed(posts, locale)
 
   return new NextResponse(rssFeed, {

@@ -9,7 +9,7 @@ import { Footer } from '@/components/layout/Footer'
 export default async function BlogPage() {
   const locale = useLocale()
   const t = await getTranslations('blog')
-  const posts = getAllPosts(locale)
+  const posts = await getAllPosts(locale)
 
   const featuredPost = posts.find((p) => p.featured)
   const regularPosts = posts.filter((p) => p !== featuredPost)

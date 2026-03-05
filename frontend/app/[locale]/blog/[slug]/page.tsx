@@ -1,5 +1,4 @@
 import { getPostBySlug, getPostSlugs } from '@/lib/blog'
-import { compileMDX } from 'next-mdx-remote/rsc'
 import { Link } from '@/navigation'
 import { getTranslations } from 'next-intl/server'
 import { CalendarDays, Clock, ArrowLeft, User } from 'lucide-react'
@@ -14,7 +13,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params
-  const post = getPostBySlug(slug, locale)
+  const post = await getPostBySlug(slug, locale)
   if (!post) return {}
 
   return {
@@ -48,14 +47,12 @@ export async function generateStaticParams() {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug, locale } = await params
-  const post = getPostBySlug(slug, locale)
+  const post = await getPostBySlug(slug, locale)
   const t = await getTranslations('blog')
 
   if (!post) {
     notFound()
   }
-
-  const { content: mdxContent } = await compileMDX({ source: post.content })
 
   return (
     <>
@@ -112,10 +109,11 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
           </header>
 
-          {/* MDX Content */}
-          <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:font-display prose-headings:font-bold prose-a:text-primary prose-img:rounded-xl">
-            {mdxContent}
-          </div>
+          {/* Blog Content */}
+          <div
+            className="prose prose-slate dark:prose-invert max-w-none prose-headings:font-display prose-headings:font-bold prose-a:text-primary prose-img:rounded-xl"
+            dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+          />
 
           {/* Footer */}
           <div className="mt-16 pt-8 border-t">
