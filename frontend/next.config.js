@@ -85,12 +85,13 @@ const nextConfig = {
     } : false
   },
 
+  // Server external packages (moved from experimental in Next.js 15+)
+  serverExternalPackages: ['@prisma/client'],
+
   // Experimental features
   experimental: {
     // Enable modern JavaScript output
     esmExternals: true,
-    // Server components
-    serverComponentsExternalPackages: ['@prisma/client'],
   },
 
   // Webpack configuration to handle process.env in client

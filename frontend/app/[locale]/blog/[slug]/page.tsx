@@ -1,7 +1,6 @@
 import { getPostBySlug, getPostSlugs } from '@/lib/blog'
-import { MDXRemote } from 'next-mdx-remote/rsc'
+import { compileMDX } from 'next-mdx-remote/rsc'
 import { Link } from '@/navigation'
-import { useLocale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { CalendarDays, Clock, ArrowLeft, User } from 'lucide-react'
 import { Header } from '@/components/layout/Header'
@@ -55,6 +54,8 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) {
     notFound()
   }
+
+  const { content: mdxContent } = await compileMDX({ source: post.content })
 
   return (
     <>
@@ -113,7 +114,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           {/* MDX Content */}
           <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:font-display prose-headings:font-bold prose-a:text-primary prose-img:rounded-xl">
-            <MDXRemote source={post.content} />
+            {mdxContent}
           </div>
 
           {/* Footer */}
