@@ -852,44 +852,20 @@ export async function POST(request: NextRequest) {
       resultType = uniResult.type
     }
 
-    // 3. Fallback to sample data if DB returned nothing
-    let usingSamples = false
-    if (results.length === 0) {
-      const sampleType = resultType === 'candidates' ? 'candidates' : 'jobs'
-      results = getSampleResults(sampleType as 'jobs' | 'candidates', entities, searchTerms)
-      if (results.length > 0) usingSamples = true
-
-      // For university tab with no results, try the other sample type too
-      if (results.length === 0 && type === 'university') {
-        const altType = sampleType === 'jobs' ? 'candidates' : 'jobs'
-        results = getSampleResults(altType, entities, searchTerms)
-        if (results.length > 0) {
-          resultType = altType
-          usingSamples = true
-        }
-      }
-    }
-
-    // 4. Build response message
+    // 3. Build response message
     const queryTermsDisplay = searchTerms.slice(0, 3).join(', ')
     let message = aiMessage || ''
     if (!message) {
-      if (results.length > 0 && !usingSamples) {
+      if (results.length > 0) {
         if (resultType === 'jobs') {
           message = `I found **${results.length} job${results.length > 1 ? 's' : ''}** matching "${queryTermsDisplay}". Here are the top results:`
         } else {
           message = `I found **${results.length} candidate${results.length > 1 ? 's' : ''}** matching "${queryTermsDisplay}". Here are the top profiles:`
         }
-      } else if (results.length > 0 && usingSamples) {
-        if (resultType === 'jobs') {
-          message = `Here are **${results.length} sample job${results.length > 1 ? 's' : ''}** matching "${queryTermsDisplay}" to show how the platform works. Register to post and discover real listings!`
-        } else {
-          message = `Here are **${results.length} sample candidate${results.length > 1 ? 's' : ''}** matching "${queryTermsDisplay}" to show how the platform works. Register to discover real profiles!`
-        }
       } else {
         message = queryTermsDisplay
-          ? `No results found for "${queryTermsDisplay}". Try different keywords or one of the example queries.`
-          : 'Try describing what you\'re looking for \u2014 e.g. "biomedical engineering students" or "React developer jobs in Milan".'
+          ? `There are currently **no ${resultType === 'candidates' ? 'candidates' : 'positions'}** matching "${queryTermsDisplay}" on the platform. We're still in early launch — new listings are added regularly. Register to get notified when matching opportunities appear!`
+          : 'Try describing what you\'re looking for — e.g. "biomedical engineering students" or "React developer jobs in Milan".'
       }
     }
 
