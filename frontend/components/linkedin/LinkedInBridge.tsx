@@ -201,9 +201,9 @@ export default function LinkedInBridge({ userType, userId, onSyncComplete }: Lin
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'completed':
-        return <FaCheck className="text-green-600" />;
+        return <FaCheck className="text-primary" />;
       case 'syncing':
-        return <FaSync className="text-blue-600 animate-spin" />;
+        return <FaSync className="text-primary animate-spin" />;
       case 'error':
         return <FaTimes className="text-red-600" />;
       default:
@@ -214,9 +214,9 @@ export default function LinkedInBridge({ userType, userId, onSyncComplete }: Lin
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed':
-        return 'text-green-600 bg-green-50 border-green-200';
+        return 'text-primary bg-primary/5 border-primary/20';
       case 'syncing':
-        return 'text-blue-600 bg-blue-50 border-blue-200';
+        return 'text-primary bg-primary/5 border-primary/20';
       case 'error':
         return 'text-red-600 bg-red-50 border-red-200';
       default:
@@ -295,7 +295,7 @@ export default function LinkedInBridge({ userType, userId, onSyncComplete }: Lin
                   className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                     isSyncing
                       ? 'bg-gray-300 text-gray-700 cursor-not-allowed'
-                      : 'bg-blue-600 text-white hover:bg-blue-700'
+                      : 'bg-primary text-white hover:bg-blue-700'
                   }`}
                 >
                   {isSyncing ? (
@@ -316,7 +316,7 @@ export default function LinkedInBridge({ userType, userId, onSyncComplete }: Lin
                     type="checkbox"
                     checked={autoSync}
                     onChange={(e) => setAutoSync(e.target.checked)}
-                    className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                    className="w-4 h-4 text-primary rounded focus:ring-blue-500"
                   />
                   <span className="text-sm text-gray-700">Auto-sync every 30 minutes</span>
                 </label>
@@ -362,7 +362,7 @@ export default function LinkedInBridge({ userType, userId, onSyncComplete }: Lin
 
             {/* Sync Results */}
             {Object.values(syncStatus).some(status => status === 'completed') && (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
                 <h4 className="font-semibold text-green-800 mb-2">Synchronization Results</h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
                   <div>
@@ -390,14 +390,14 @@ export default function LinkedInBridge({ userType, userId, onSyncComplete }: Lin
             )}
 
             {/* Sync Recommendations */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
               <h4 className="font-semibold text-blue-800 mb-3">
                 {userType === 'student' ? '🎓 Student' : userType === 'recruiter' ? '💼 Recruiter' : '🏫 University'} Sync Tips
               </h4>
               <ul className="space-y-2">
                 {(getSyncRecommendations() || []).map((tip, index) => (
                   <li key={index} className="flex items-start space-x-2 text-sm text-blue-700">
-                    <FaCheck className="text-blue-600 mt-1 flex-shrink-0" />
+                    <FaCheck className="text-primary mt-1 flex-shrink-0" />
                     <span>{tip}</span>
                   </li>
                 ))}

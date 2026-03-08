@@ -40,9 +40,9 @@ const Step = ({ title, description, icon: Icon, isActive, isCompleted }: StepPro
           className={cn(
             "flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors",
             isCompleted
-              ? "bg-green-500 border-green-500 text-white"
+              ? "bg-primary/50 border-green-500 text-white"
               : isActive
-              ? "bg-blue-500 border-blue-500 text-white"
+              ? "bg-primary/50 border-blue-500 text-white"
               : "bg-white border-gray-300 text-gray-700"
           )}
         >
@@ -62,7 +62,7 @@ const Step = ({ title, description, icon: Icon, isActive, isCompleted }: StepPro
           <div
             className={cn(
               "h-full transition-all duration-300",
-              isCompleted ? "bg-green-500" : "bg-gray-200"
+              isCompleted ? "bg-primary/50" : "bg-gray-200"
             )}
           />
         </div>

@@ -42,7 +42,7 @@ export function LoadingAnimation({
   const animations = {
     upload: {
       icon: Upload,
-      color: 'from-blue-500 to-blue-600',
+      color: 'bg-primary',
       defaultMessage: 'Uploading your projects...',
       defaultSteps: [
         'Scanning files...',
@@ -54,7 +54,7 @@ export function LoadingAnimation({
     },
     analysis: {
       icon: Brain,
-      color: 'from-purple-500 to-purple-600',
+      color: 'bg-primary/80',
       defaultMessage: 'AI analyzing your code...',
       defaultSteps: [
         'Reading code structure...',
@@ -66,7 +66,7 @@ export function LoadingAnimation({
     },
     generation: {
       icon: FileText,
-      color: 'from-green-500 to-green-600',
+      color: 'bg-primary/60',
       defaultMessage: 'Generating professional story...',
       defaultSteps: [
         'Understanding context...',
@@ -90,7 +90,7 @@ export function LoadingAnimation({
     },
     processing: {
       icon: Zap,
-      color: 'from-indigo-500 to-indigo-600',
+      color: 'bg-primary/70',
       defaultMessage: 'Processing request...',
       defaultSteps: [
         'Initializing...',
@@ -149,7 +149,7 @@ export function LoadingAnimation({
 
             {/* Success Indicator */}
             {isComplete && (
-              <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center animate-bounce">
+              <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary/50 rounded-full flex items-center justify-center animate-bounce">
                 <CheckCircle className="h-5 w-5 text-white" />
               </div>
             )}
@@ -310,8 +310,8 @@ export function FloatingElements() {
               animationDuration: '6s'
             }}
           >
-            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center shadow-lg">
-              <Icon className="h-4 w-4 text-blue-600" />
+            <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center shadow-lg">
+              <Icon className="h-4 w-4 text-primary" />
             </div>
           </div>
         )
@@ -339,8 +339,8 @@ export function PulseButton({ children, className = "", ...props }: any) {
       {...props}
     >
       <span className="relative z-10">{children}</span>
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-75"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 animate-ping opacity-20"></div>
+      <div className="absolute inset-0 bg-primary opacity-75"></div>
+      <div className="absolute inset-0 bg-primary animate-ping opacity-20"></div>
     </button>
   )
 }

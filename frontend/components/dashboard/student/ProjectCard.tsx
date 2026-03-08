@@ -50,11 +50,11 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
   const getComplexityColor = (level: string) => {
     switch (level.toLowerCase()) {
       case 'beginner':
-        return 'bg-green-100 text-green-700 border-green-200'
+        return 'bg-primary/10 text-green-700 border-primary/20'
       case 'intermediate':
-        return 'bg-blue-100 text-blue-700 border-blue-200'
+        return 'bg-primary/10 text-blue-700 border-primary/20'
       case 'advanced':
-        return 'bg-purple-100 text-purple-700 border-purple-200'
+        return 'bg-primary/10 text-purple-700 border-primary/20'
       case 'expert':
         return 'bg-red-100 text-red-700 border-red-200'
       default:
@@ -63,9 +63,9 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
   }
 
   const getInnovationColor = (score: number) => {
-    if (score >= 80) return 'text-green-600'
-    if (score >= 60) return 'text-blue-600'
-    if (score >= 40) return 'text-yellow-600'
+    if (score >= 80) return 'text-primary'
+    if (score >= 60) return 'text-primary'
+    if (score >= 40) return 'text-secondary'
     return 'text-gray-600'
   }
 
@@ -109,7 +109,7 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
     <Card className="hover:shadow-lg transition-all duration-300 group">
       <div className="relative">
         {/* Project Image/Thumbnail */}
-        <div className="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 rounded-t-lg relative overflow-hidden">
+        <div className="aspect-video bg-primary/10 rounded-t-lg relative overflow-hidden">
           {images.length > 0 ? (
             <img
               src={images[0]}
@@ -157,7 +157,7 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between">
             <div className="flex-1 min-w-0">
-              <CardTitle className="line-clamp-1 group-hover:text-blue-600 transition-colors">
+              <CardTitle className="line-clamp-1 group-hover:text-primary transition-colors">
                 <Link href={`/dashboard/student/projects/${id}`}>
                   {title}
                 </Link>
@@ -224,7 +224,7 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div
-                className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
+                className="bg-primary h-2 rounded-full transition-all duration-300"
                 style={{ width: `${innovationScore}%` }}
               />
             </div>

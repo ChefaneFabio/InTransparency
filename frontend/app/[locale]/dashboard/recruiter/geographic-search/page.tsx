@@ -166,7 +166,7 @@ export default function RecruiterGeographicSearchPage() {
                   {talentPool.toLocaleString()}
                 </p>
               </div>
-              <Users className="h-8 w-8 text-blue-500" />
+              <Users className="h-8 w-8 text-primary" />
             </div>
             <div className="mt-2 text-sm text-gray-600">
               Public student profiles
@@ -183,7 +183,7 @@ export default function RecruiterGeographicSearchPage() {
                   {universityDistribution.length}
                 </p>
               </div>
-              <GraduationCap className="h-8 w-8 text-purple-500" />
+              <GraduationCap className="h-8 w-8 text-primary" />
             </div>
             <div className="mt-2 text-sm text-gray-600">
               With registered students
@@ -200,7 +200,7 @@ export default function RecruiterGeographicSearchPage() {
                   {totalStudentsInTop.toLocaleString()}
                 </p>
               </div>
-              <Globe className="h-8 w-8 text-green-500" />
+              <Globe className="h-8 w-8 text-primary" />
             </div>
             <div className="mt-2 text-sm text-gray-600">
               Across top {universityDistribution.length} universities
@@ -261,7 +261,7 @@ export default function RecruiterGeographicSearchPage() {
                   <div key={uni.university} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 font-semibold text-sm">
+                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-blue-700 font-semibold text-sm">
                           {index + 1}
                         </div>
                         <div>
@@ -280,7 +280,7 @@ export default function RecruiterGeographicSearchPage() {
                     <div className="mt-3">
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
-                          className="bg-blue-600 h-2 rounded-full"
+                          className="bg-primary h-2 rounded-full"
                           style={{ width: `${Math.min(parseFloat(percentage), 100)}%` }}
                         />
                       </div>

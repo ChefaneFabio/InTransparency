@@ -181,7 +181,7 @@ export default function ProjectVerificationDetailPage() {
     switch (status) {
       case 'VERIFIED':
         return (
-          <Badge className="bg-green-100 text-green-700">
+          <Badge className="bg-primary/10 text-primary">
             <CheckCircle className="h-3 w-3 mr-1" />
             Verified
           </Badge>
@@ -213,7 +213,7 @@ export default function ProjectVerificationDetailPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     )
   }
@@ -251,7 +251,7 @@ export default function ProjectVerificationDetailPage() {
                 className="w-16 h-16 rounded-lg object-cover"
               />
             ) : (
-              <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center">
                 <FolderOpen className="h-8 w-8 text-blue-400" />
               </div>
             )}
@@ -391,13 +391,13 @@ export default function ProjectVerificationDetailPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Award className="h-5 w-5 text-purple-500" />
+                  <Award className="h-5 w-5 text-primary" />
                   Professor Endorsements
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {verifiedEndorsements.map((endorsement) => (
-                  <div key={endorsement.id} className="p-4 bg-purple-50 rounded-lg">
+                  <div key={endorsement.id} className="p-4 bg-primary/5 rounded-lg">
                     <div className="flex items-start justify-between">
                       <div>
                         <p className="font-medium text-gray-900">{endorsement.professorName}</p>
@@ -407,7 +407,7 @@ export default function ProjectVerificationDetailPage() {
                           {endorsement.university}
                         </p>
                       </div>
-                      <Badge className="bg-purple-100 text-purple-700">
+                      <Badge className="bg-primary/10 text-primary">
                         <CheckCircle className="h-3 w-3 mr-1" />
                         Verified
                       </Badge>
@@ -475,7 +475,7 @@ export default function ProjectVerificationDetailPage() {
               <div className="flex items-center gap-3 mb-4">
                 <Avatar className="h-12 w-12">
                   <AvatarImage src={student.photo || undefined} />
-                  <AvatarFallback className="bg-blue-100 text-blue-700">
+                  <AvatarFallback className="bg-primary/10 text-primary">
                     {student.name.split(' ').map(n => n[0]).join('')}
                   </AvatarFallback>
                 </Avatar>
@@ -600,7 +600,7 @@ export default function ProjectVerificationDetailPage() {
                       </div>
                       <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                         <div
-                          className="h-full bg-blue-500 rounded-full"
+                          className="h-full bg-primary rounded-full"
                           style={{ width: `${project.complexityScore}%` }}
                         />
                       </div>
@@ -614,7 +614,7 @@ export default function ProjectVerificationDetailPage() {
                       </div>
                       <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                         <div
-                          className="h-full bg-purple-500 rounded-full"
+                          className="h-full bg-primary/50 rounded-full"
                           style={{ width: `${project.innovationScore}%` }}
                         />
                       </div>
@@ -628,7 +628,7 @@ export default function ProjectVerificationDetailPage() {
                       </div>
                       <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                         <div
-                          className="h-full bg-green-500 rounded-full"
+                          className="h-full bg-primary/50 rounded-full"
                           style={{ width: `${project.marketRelevance}%` }}
                         />
                       </div>

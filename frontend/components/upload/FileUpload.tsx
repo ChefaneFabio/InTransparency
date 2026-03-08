@@ -193,7 +193,7 @@ export function FileUpload({
               {/* File icon */}
               <div className="flex-shrink-0">
                 {uploadedFile.status === "success" ? (
-                  <FaCheck className="w-5 h-5 text-green-500" />
+                  <FaCheck className="w-5 h-5 text-primary" />
                 ) : uploadedFile.status === "error" ? (
                   <FaTimes className="w-5 h-5 text-red-500" />
                 ) : (

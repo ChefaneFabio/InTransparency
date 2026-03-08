@@ -84,8 +84,8 @@ export default function ForgotPasswordPage() {
           <Card>
             <CardContent className="pt-8 pb-6">
               <div className="text-center space-y-6">
-                <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center">
-                  <CheckCircle className="h-8 w-8 text-green-600" />
+                <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
+                  <CheckCircle className="h-8 w-8 text-primary" />
                 </div>
 
                 <div>
@@ -100,11 +100,11 @@ export default function ForgotPasswordPage() {
                   </p>
                 </div>
 
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h3 className="text-sm font-medium text-blue-900 mb-2">
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+                  <h3 className="text-sm font-medium text-foreground mb-2">
                     What to do next:
                   </h3>
-                  <ol className="text-sm text-blue-800 space-y-1 list-decimal list-inside">
+                  <ol className="text-sm text-foreground/80 space-y-1 list-decimal list-inside">
                     <li>Check your email inbox</li>
                     <li>Look for an email from InTransparency</li>
                     <li>Click the reset link in the email</li>
@@ -139,7 +139,7 @@ export default function ForgotPasswordPage() {
                 <div className="pt-4 border-t border-gray-200">
                   <Link
                     href="/auth/login"
-                    className="text-sm text-blue-600 hover:text-blue-500 font-medium"
+                    className="text-sm text-primary hover:text-primary font-medium"
                   >
                     Return to sign in
                   </Link>
@@ -260,7 +260,7 @@ export default function ForgotPasswordPage() {
             Don't have an account?{' '}
             <Link
               href="/auth/register"
-              className="font-medium text-blue-600 hover:text-blue-500"
+              className="font-medium text-primary hover:text-primary"
             >
               Sign up here
             </Link>

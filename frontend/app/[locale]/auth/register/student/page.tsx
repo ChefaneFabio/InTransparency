@@ -68,13 +68,13 @@ export default function StudentRegisterPage() {
   const benefitIcons = [Eye, MessageSquare, Sparkles, Briefcase]
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-50 to-blue-50 py-12 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-primary/10 py-12 px-4">
       <div className="max-w-4xl w-full">
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column - Value Proposition */}
           <div className="hidden lg:block">
             <div className="sticky top-8">
-              <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
                 <CheckCircle className="h-4 w-4" />
                 {t('student.freeBadge')}
               </div>
@@ -90,8 +90,8 @@ export default function StudentRegisterPage() {
                   const Icon = benefitIcons[i]
                   return (
                     <div key={i} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm">
-                      <div className="flex-shrink-0 p-2 bg-teal-100 rounded-lg">
-                        <Icon className="h-5 w-5 text-teal-600" />
+                      <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg">
+                        <Icon className="h-5 w-5 text-primary" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">{t(`student.benefits.${i}.title`)}</h3>
@@ -108,7 +108,7 @@ export default function StudentRegisterPage() {
           {/* Right Column - Form */}
           <div>
             <div className="text-center mb-6 lg:text-left">
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-r from-teal-500 to-blue-600 rounded-2xl mb-4">
+              <div className="inline-flex items-center justify-center w-14 h-14 bg-primary rounded-2xl mb-4">
                 <GraduationCap className="h-7 w-7 text-white" />
               </div>
               <h1 className="text-2xl font-bold text-gray-900">{t('student.createTitle')}</h1>
@@ -117,7 +117,7 @@ export default function StudentRegisterPage() {
 
             {/* Mobile Benefits */}
             <div className="lg:hidden mb-6 p-4 bg-white rounded-xl shadow-sm">
-              <div className="flex items-center gap-2 text-teal-600 mb-2">
+              <div className="flex items-center gap-2 text-primary mb-2">
                 <CheckCircle className="h-4 w-4" />
                 <span className="font-medium text-sm">{t('student.mobileBenefitsTitle')}</span>
               </div>
@@ -192,7 +192,7 @@ export default function StudentRegisterPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700"
+                className="w-full bg-primary"
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -209,7 +209,7 @@ export default function StudentRegisterPage() {
             <div className="mt-4 text-center">
               <p className="text-sm text-gray-600">
                 {t('student.alreadyHaveAccount')}{' '}
-                <Link href="/auth/login" className="text-blue-600 hover:text-blue-500">
+                <Link href="/auth/login" className="text-primary hover:text-primary">
                   {t('student.signIn')}
                 </Link>
               </p>

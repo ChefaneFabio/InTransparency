@@ -69,15 +69,15 @@ export default function CertificationWaitlistPage() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="border-2 border-green-200 shadow-2xl">
+              <Card className="border-2 border-primary/20 shadow-lg">
                 <CardContent className="p-12 text-center">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                    className="mx-auto mb-6 rounded-full bg-green-100 p-6 w-24 h-24 flex items-center justify-center"
+                    className="mx-auto mb-6 rounded-full bg-primary/10 p-6 w-24 h-24 flex items-center justify-center"
                   >
-                    <CheckCircle2 className="h-12 w-12 text-green-600" />
+                    <CheckCircle2 className="h-12 w-12 text-primary" />
                   </motion.div>
 
                   <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -85,27 +85,27 @@ export default function CertificationWaitlistPage() {
                   </h1>
 
                   <p className="text-xl text-gray-700 mb-8">
-                    We'll notify you at <span className="font-semibold text-blue-600">{formData.email}</span> when
+                    We'll notify you at <span className="font-semibold text-primary">{formData.email}</span> when
                     soft skills certification launches.
                   </p>
 
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+                  <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 mb-8">
                     <h3 className="font-bold text-lg text-gray-900 mb-3">What happens next?</h3>
                     <ul className="text-left space-y-3">
                       <li className="flex items-start">
-                        <CheckCircle2 className="h-5 w-5 text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
                         <span className="text-gray-700">
                           You'll receive an email confirmation in the next few minutes
                         </span>
                       </li>
                       <li className="flex items-start">
-                        <CheckCircle2 className="h-5 w-5 text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
                         <span className="text-gray-700">
                           We'll send you early access when certification launches (expected: 4-6 weeks)
                         </span>
                       </li>
                       <li className="flex items-start">
-                        <CheckCircle2 className="h-5 w-5 text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
                         <span className="text-gray-700">
                           <span className="font-semibold">Early bird bonus:</span> First 100 signups get 20% off (€79 instead of €99)
                         </span>
@@ -160,7 +160,7 @@ export default function CertificationWaitlistPage() {
             transition={{ duration: 0.6 }}
           >
             <div className="text-center mb-8">
-              <Badge className="mb-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm px-6 py-2 border-0">
+              <Badge className="mb-4 bg-primary text-white text-sm px-6 py-2 border-0">
                 <Sparkles className="inline h-4 w-4 mr-2" />
                 Early Access
               </Badge>
@@ -180,9 +180,9 @@ export default function CertificationWaitlistPage() {
             </div>
 
             <Card className="border-2 border-gray-200 shadow-xl">
-              <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
+              <CardHeader className="bg-primary/5">
                 <div className="flex items-center justify-center mb-4">
-                  <Award className="h-12 w-12 text-purple-600" />
+                  <Award className="h-12 w-12 text-primary" />
                 </div>
                 <CardTitle className="text-center text-2xl">
                   Reserve Your Spot
@@ -274,9 +274,9 @@ export default function CertificationWaitlistPage() {
                     />
                   </div>
 
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
                     <div className="flex items-start">
-                      <CheckCircle2 className="h-5 w-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
                       <div>
                         <p className="font-semibold text-green-900">Early Bird Discount</p>
                         <p className="text-sm text-green-700 mt-1">
@@ -290,7 +290,7 @@ export default function CertificationWaitlistPage() {
                     type="submit"
                     size="lg"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-lg py-6"
+                    className="w-full bg-primary text-white text-lg py-6"
                   >
                     {isSubmitting ? 'Joining...' : 'Join Waitlist'}
                   </Button>

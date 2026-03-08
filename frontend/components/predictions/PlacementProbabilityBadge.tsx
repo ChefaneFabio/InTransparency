@@ -49,8 +49,8 @@ export default function PlacementProbabilityBadge({ studentId, compact = false }
   const pct = Math.round(data.probability * 100)
 
   const getColor = (p: number) => {
-    if (p >= 75) return { bg: 'bg-green-100', text: 'text-green-700', border: 'border-green-300' }
-    if (p >= 50) return { bg: 'bg-blue-100', text: 'text-blue-700', border: 'border-blue-300' }
+    if (p >= 75) return { bg: 'bg-primary/10', text: 'text-green-700', border: 'border-green-300' }
+    if (p >= 50) return { bg: 'bg-primary/10', text: 'text-blue-700', border: 'border-blue-300' }
     if (p >= 25) return { bg: 'bg-yellow-100', text: 'text-yellow-700', border: 'border-yellow-300' }
     return { bg: 'bg-gray-100', text: 'text-gray-700', border: 'border-gray-300' }
   }
@@ -93,7 +93,7 @@ export default function PlacementProbabilityBadge({ studentId, compact = false }
               <div key={i} className="flex items-start gap-2 text-sm">
                 <span
                   className={`inline-block w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${
-                    factor.impact > 0 ? 'bg-green-500' : 'bg-red-400'
+                    factor.impact > 0 ? 'bg-primary/50' : 'bg-red-400'
                   }`}
                 />
                 <span className="text-gray-700">{factor.description}</span>

@@ -122,11 +122,11 @@ export default function RecruiterJobs() {
 
   const getStatusBadge = (status: string) => {
     const colors: Record<string, string> = {
-      'ACTIVE': 'bg-green-500',
+      'ACTIVE': 'bg-primary/50',
       'PAUSED': 'bg-yellow-500',
       'CLOSED': 'bg-red-500',
       'DRAFT': 'bg-gray-500',
-      'FILLED': 'bg-blue-500',
+      'FILLED': 'bg-primary/50',
       'CANCELLED': 'bg-red-700',
     }
     const label = status.charAt(0) + status.slice(1).toLowerCase()

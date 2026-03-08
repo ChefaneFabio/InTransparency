@@ -27,8 +27,8 @@ interface ExchangeEnrollment {
 
 const STATUS_CONFIG: Record<string, { icon: typeof Clock; color: string; label: string }> = {
   PLANNED: { icon: Clock, color: 'text-amber-600', label: 'Planned' },
-  ACTIVE: { icon: CheckCircle, color: 'text-green-600', label: 'Active' },
-  COMPLETED: { icon: CheckCircle, color: 'text-blue-600', label: 'Completed' },
+  ACTIVE: { icon: CheckCircle, color: 'text-primary', label: 'Active' },
+  COMPLETED: { icon: CheckCircle, color: 'text-primary', label: 'Completed' },
   CANCELLED: { icon: XCircle, color: 'text-red-600', label: 'Cancelled' },
 }
 
@@ -76,7 +76,7 @@ export default function StudentExchangePage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Globe className="h-7 w-7 text-blue-600" />
+          <Globe className="h-7 w-7 text-primary" />
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
             <p className="text-sm text-gray-600">{t('subtitle')}</p>

@@ -198,7 +198,7 @@ export function MessageCenter() {
       {!isExpanded ? (
         <Button
           onClick={() => setIsExpanded(true)}
-          className="h-12 w-12 rounded-full bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700 shadow-lg relative"
+          className="h-12 w-12 rounded-full bg-primary shadow-lg relative"
         >
           <MessageSquare className="h-5 w-5" />
           {getTotalUnreadCount() > 0 && (
@@ -213,7 +213,7 @@ export function MessageCenter() {
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium">Messages</CardTitle>
               <div className="flex items-center space-x-2">
-                <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`} />
+                <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-primary/50' : 'bg-red-500'}`} />
                 <Button
                   variant="ghost"
                   size="sm"
@@ -238,7 +238,7 @@ export function MessageCenter() {
                     key={conv.id}
                     onClick={() => selectConversation(conv.id)}
                     className={`p-3 cursor-pointer border-b hover:bg-gray-50 ${
-                      activeConversation === conv.id ? 'bg-teal-50 border-l-2 border-l-teal-500' : ''
+                      activeConversation === conv.id ? 'bg-primary/5 border-l-2 border-l-teal-500' : ''
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1">
@@ -249,7 +249,7 @@ export function MessageCenter() {
                         </span>
                       </div>
                       {conv.unreadCount > 0 && (
-                        <Badge className="h-4 w-4 rounded-full p-0 bg-teal-500 text-xs">
+                        <Badge className="h-4 w-4 rounded-full p-0 bg-primary/50 text-xs">
                           {conv.unreadCount}
                         </Badge>
                       )}
@@ -279,7 +279,7 @@ export function MessageCenter() {
                       <div
                         className={`max-w-[70%] px-3 py-2 rounded-lg text-sm ${
                           message.senderId === user?.id
-                            ? 'bg-teal-600 text-white'
+                            ? 'bg-primary text-white'
                             : 'bg-gray-100 text-gray-800'
                         }`}
                       >

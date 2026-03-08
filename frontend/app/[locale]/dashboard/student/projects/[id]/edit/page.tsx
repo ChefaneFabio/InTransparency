@@ -260,8 +260,8 @@ export default function EditProjectPage() {
       <div className="max-w-2xl mx-auto">
         <Card>
           <CardContent className="p-12 text-center">
-            <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-6">
-              <CheckCircle className="h-8 w-8 text-green-600" />
+            <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6">
+              <CheckCircle className="h-8 w-8 text-primary" />
             </div>
             <h1 className="text-2xl font-bold text-gray-900 mb-4">
               Project Updated Successfully!
@@ -369,7 +369,7 @@ export default function EditProjectPage() {
                 type="button"
                 onClick={() => { setIsPublic(!isPublic); markChanged() }}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  isPublic ? 'bg-blue-600' : 'bg-gray-300'
+                  isPublic ? 'bg-primary' : 'bg-gray-300'
                 }`}
               >
                 <span

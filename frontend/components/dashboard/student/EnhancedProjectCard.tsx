@@ -76,7 +76,7 @@ export function EnhancedProjectCard({
     if (score >= 80) return 'from-red-500 to-red-600'
     if (score >= 60) return 'from-orange-500 to-orange-600'
     if (score >= 40) return 'from-yellow-500 to-yellow-600'
-    return 'from-green-500 to-green-600'
+    return 'bg-primary'
   }
 
   const getComplexityLabel = (score: number) => {
@@ -87,8 +87,8 @@ export function EnhancedProjectCard({
   }
 
   return (
-    <Card className={`group hover:shadow-2xl transition-all duration-500 overflow-hidden ${
-      project.featured ? 'ring-2 ring-blue-500 ring-opacity-50' : ''
+    <Card className={`group hover:shadow-lg transition-all duration-500 overflow-hidden ${
+      project.featured ? 'ring-2 ring-primary ring-opacity-50' : ''
     } ${isExpanded ? 'transform scale-[1.02]' : ''}`}>
       {/* Project Header */}
       <div className="relative">
@@ -105,7 +105,7 @@ export function EnhancedProjectCard({
         {/* Featured Badge */}
         {project.featured && (
           <div className="absolute top-4 left-4">
-            <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white shadow-lg">
+            <Badge className="bg-secondary text-white shadow-lg">
               <Star className="w-3 h-3 mr-1" />
               Featured
             </Badge>
@@ -117,7 +117,7 @@ export function EnhancedProjectCard({
           <div className="absolute top-4 right-4">
             <Button
               size="sm"
-              className="bg-blue-600/90 hover:bg-blue-700 backdrop-blur-sm text-white shadow-lg"
+              className="bg-primary/90 hover:bg-primary backdrop-blur-sm text-white shadow-lg"
               asChild
             >
               <Link href={project.liveUrl} target="_blank">
@@ -147,7 +147,7 @@ export function EnhancedProjectCard({
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-xs font-medium text-blue-600">
+                  <div className="text-xs font-medium text-primary">
                     {project.aiAnalysis.industryRelevance.length} Industries
                   </div>
                   <div className="text-xs text-gray-600">
@@ -165,7 +165,7 @@ export function EnhancedProjectCard({
           {/* Project Title and Category */}
           <div className="flex items-start justify-between">
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+              <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">
                 {project.title}
               </h3>
               <Badge variant="outline" className="mt-1">
@@ -198,7 +198,7 @@ export function EnhancedProjectCard({
               <Badge
                 key={index}
                 variant="secondary"
-                className="bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 border-blue-200"
+                className="bg-primary/5 text-primary border-primary/20"
               >
                 {tech}
               </Badge>
@@ -257,7 +257,7 @@ export function EnhancedProjectCard({
                   <div className="space-y-3">
                     <div className="bg-gray-50 rounded-lg p-3">
                       <h4 className="text-sm font-medium text-gray-800 mb-2 flex items-center">
-                        <Lightbulb className="w-4 h-4 mr-1 text-yellow-500" />
+                        <Lightbulb className="w-4 h-4 mr-1 text-secondary" />
                         Skills Detected
                       </h4>
                       <div className="flex flex-wrap gap-1">
@@ -269,14 +269,14 @@ export function EnhancedProjectCard({
                       </div>
                     </div>
 
-                    <div className="bg-blue-50 rounded-lg p-3">
+                    <div className="bg-primary/5 rounded-lg p-3">
                       <h4 className="text-sm font-medium text-gray-800 mb-2 flex items-center">
-                        <Target className="w-4 h-4 mr-1 text-blue-500" />
+                        <Target className="w-4 h-4 mr-1 text-primary" />
                         Industry Relevance
                       </h4>
                       <div className="flex flex-wrap gap-1">
                         {(project.aiAnalysis?.industryRelevance || []).map((industry, index) => (
-                          <Badge key={index} className="bg-blue-100 text-blue-800 text-xs">
+                          <Badge key={index} className="bg-primary/10 text-primary text-xs">
                             {industry}
                           </Badge>
                         ))}
@@ -289,9 +289,9 @@ export function EnhancedProjectCard({
               <TabsContent value="impact" className="space-y-3">
                 {project.aiAnalysis && (
                   <div className="space-y-3">
-                    <div className="bg-green-50 rounded-lg p-3">
+                    <div className="bg-primary/5 rounded-lg p-3">
                       <h4 className="text-sm font-medium text-gray-800 mb-2 flex items-center">
-                        <Award className="w-4 h-4 mr-1 text-green-500" />
+                        <Award className="w-4 h-4 mr-1 text-primary" />
                         Career Impact
                       </h4>
                       <p className="text-sm text-gray-700">{project.aiAnalysis.careerImpact}</p>
@@ -314,17 +314,17 @@ export function EnhancedProjectCard({
 
                     {project.metrics && (
                       <div className="grid grid-cols-2 gap-2">
-                        <div className="bg-purple-50 rounded-lg p-2 text-center">
-                          <div className="text-lg font-bold text-purple-600">
+                        <div className="bg-primary/5 rounded-lg p-2 text-center">
+                          <div className="text-lg font-bold text-primary">
                             {project.metrics.similarityToJobs}%
                           </div>
-                          <div className="text-xs text-purple-700">Job Match</div>
+                          <div className="text-xs text-muted-foreground">Job Match</div>
                         </div>
-                        <div className="bg-indigo-50 rounded-lg p-2 text-center">
-                          <div className="text-lg font-bold text-indigo-600">
+                        <div className="bg-primary/5 rounded-lg p-2 text-center">
+                          <div className="text-lg font-bold text-primary">
                             {project.metrics.recruiterInterest}
                           </div>
-                          <div className="text-xs text-indigo-700">Recruiter Interest</div>
+                          <div className="text-xs text-muted-foreground">Recruiter Interest</div>
                         </div>
                       </div>
                     )}
@@ -340,7 +340,7 @@ export function EnhancedProjectCard({
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-gray-700 hover:text-blue-600"
+                className="text-gray-700 hover:text-primary"
               >
                 <MessageCircle className="w-4 h-4 mr-1" />
                 Comment
@@ -348,7 +348,7 @@ export function EnhancedProjectCard({
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-gray-700 hover:text-green-600"
+                className="text-gray-700 hover:text-primary"
               >
                 <Share2 className="w-4 h-4 mr-1" />
                 Share
@@ -357,7 +357,7 @@ export function EnhancedProjectCard({
 
             <Button
               onClick={handleViewProject}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg"
+              className="bg-primary hover:bg-primary/90 text-white shadow-lg"
               size="sm"
             >
               View Details
@@ -368,7 +368,7 @@ export function EnhancedProjectCard({
           {/* Powered by InTransparency - Viral Branding */}
           <div className="text-center mt-4 pt-4 border-t border-gray-100">
             <p className="text-xs text-gray-500">
-              Analyzed by <a href="/" className="text-blue-600 hover:text-blue-700 hover:underline font-medium">InTransparency AI</a>
+              Analyzed by <a href="/" className="text-primary hover:text-primary/80 hover:underline font-medium">InTransparency AI</a>
             </p>
           </div>
         </div>

@@ -157,13 +157,13 @@ export default function OnboardingPage() {
   if (status === 'loading') {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12">
+    <div className="min-h-screen bg-muted/30 py-12">
       <div className="container max-w-2xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8">
@@ -181,17 +181,17 @@ export default function OnboardingPage() {
             {currentSteps.map((step, index) => (
               <div
                 key={step}
-                className={`flex items-center ${index <= currentStep ? 'text-blue-600' : 'text-gray-400'}`}
+                className={`flex items-center ${index <= currentStep ? 'text-primary' : 'text-gray-400'}`}
               >
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                  index < currentStep ? 'bg-blue-600 text-white' :
-                  index === currentStep ? 'bg-blue-100 text-blue-600 border-2 border-blue-600' :
+                  index < currentStep ? 'bg-primary text-white' :
+                  index === currentStep ? 'bg-primary/10 text-primary border-2 border-blue-600' :
                   'bg-gray-100 text-gray-400'
                 }`}>
                   {index < currentStep ? <Check className="h-4 w-4" /> : index + 1}
                 </div>
                 {index < currentSteps.length - 1 && (
-                  <div className={`h-0.5 w-12 mx-2 ${index < currentStep ? 'bg-blue-600' : 'bg-gray-200'}`} />
+                  <div className={`h-0.5 w-12 mx-2 ${index < currentStep ? 'bg-primary' : 'bg-gray-200'}`} />
                 )}
               </div>
             ))}
@@ -260,7 +260,7 @@ export default function OnboardingPage() {
             {currentStep === 1 && userRole === 'STUDENT' && (
               <div className="space-y-6">
                 <div className="text-center mb-6">
-                  <GraduationCap className="h-12 w-12 text-blue-600 mx-auto mb-2" />
+                  <GraduationCap className="h-12 w-12 text-primary mx-auto mb-2" />
                   <h2 className="text-xl font-semibold">Informazioni Universitarie</h2>
                 </div>
 
@@ -301,7 +301,7 @@ export default function OnboardingPage() {
             {currentStep === 1 && userRole === 'RECRUITER' && (
               <div className="space-y-6">
                 <div className="text-center mb-6">
-                  <Building2 className="h-12 w-12 text-blue-600 mx-auto mb-2" />
+                  <Building2 className="h-12 w-12 text-primary mx-auto mb-2" />
                   <h2 className="text-xl font-semibold">Informazioni Aziendali</h2>
                 </div>
 
@@ -348,7 +348,7 @@ export default function OnboardingPage() {
             {currentStep === 1 && userRole === 'UNIVERSITY' && (
               <div className="space-y-6">
                 <div className="text-center mb-6">
-                  <Building2 className="h-12 w-12 text-blue-600 mx-auto mb-2" />
+                  <Building2 className="h-12 w-12 text-primary mx-auto mb-2" />
                   <h2 className="text-xl font-semibold">Informazioni Istituzione</h2>
                 </div>
 
@@ -390,7 +390,7 @@ export default function OnboardingPage() {
             {currentStep === 2 && userRole === 'STUDENT' && (
               <div className="space-y-6">
                 <div className="text-center mb-6">
-                  <Briefcase className="h-12 w-12 text-blue-600 mx-auto mb-2" />
+                  <Briefcase className="h-12 w-12 text-primary mx-auto mb-2" />
                   <h2 className="text-xl font-semibold">Le tue Competenze</h2>
                   <p className="text-gray-600 text-sm">Seleziona le competenze che possiedi</p>
                 </div>
@@ -418,7 +418,7 @@ export default function OnboardingPage() {
             {currentStep === 2 && userRole !== 'STUDENT' && (
               <div className="space-y-6">
                 <div className="text-center mb-6">
-                  <Briefcase className="h-12 w-12 text-blue-600 mx-auto mb-2" />
+                  <Briefcase className="h-12 w-12 text-primary mx-auto mb-2" />
                   <h2 className="text-xl font-semibold">Preferenze</h2>
                 </div>
 
@@ -431,8 +431,8 @@ export default function OnboardingPage() {
             {/* Step 3: Complete */}
             {currentStep === 3 && (
               <div className="text-center space-y-6">
-                <div className="w-20 h-20 bg-green-100 rounded-full mx-auto flex items-center justify-center">
-                  <Check className="h-10 w-10 text-green-600" />
+                <div className="w-20 h-20 bg-primary/10 rounded-full mx-auto flex items-center justify-center">
+                  <Check className="h-10 w-10 text-primary" />
                 </div>
                 <h2 className="text-2xl font-semibold text-gray-900">
                   Profilo Quasi Pronto!

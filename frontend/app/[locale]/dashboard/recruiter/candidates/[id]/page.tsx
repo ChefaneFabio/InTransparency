@@ -243,14 +243,14 @@ export default function CandidateProfilePage() {
 
         <div className="flex items-center space-x-2">
           {messageSent && (
-            <span className="text-sm text-green-600 font-medium">Message sent!</span>
+            <span className="text-sm text-primary font-medium">Message sent!</span>
           )}
           <Button
             variant="outline"
             size="sm"
             onClick={toggleBookmark}
             disabled={bookmarkLoading}
-            className={isBookmarked ? 'text-yellow-600 border-yellow-600' : ''}
+            className={isBookmarked ? 'text-secondary border-yellow-600' : ''}
           >
             <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current' : ''}`} />
             {isBookmarked ? 'Saved' : 'Save'}
@@ -265,7 +265,7 @@ export default function CandidateProfilePage() {
       {/* Profile Header */}
       <div className="relative">
         {/* Cover Image */}
-        <div className="h-48 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg relative">
+        <div className="h-48 bg-primary rounded-lg relative">
           <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg"></div>
         </div>
 
@@ -301,11 +301,11 @@ export default function CandidateProfilePage() {
 
                 <div className="flex items-center space-x-6">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">{candidate.projectCount}</div>
+                    <div className="text-2xl font-bold text-primary">{candidate.projectCount}</div>
                     <div className="text-sm text-gray-700">Projects</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">{allSkills.length}</div>
+                    <div className="text-2xl font-bold text-primary">{allSkills.length}</div>
                     <div className="text-sm text-gray-700">Skills</div>
                   </div>
                 </div>
@@ -538,7 +538,7 @@ export default function CandidateProfilePage() {
                 onClick={toggleBookmark}
                 disabled={bookmarkLoading}
               >
-                <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current text-yellow-600' : ''}`} />
+                <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current text-secondary' : ''}`} />
                 {isBookmarked ? 'Saved' : 'Save Candidate'}
               </Button>
             </CardContent>

@@ -101,11 +101,11 @@ export default function StudentFeedbackPage() {
                 <CardTitle className="text-sm font-medium text-gray-600">
                   Skills Evaluated
                 </CardTitle>
-                <TrendingUp className="h-5 w-5 text-green-600" />
+                <TrendingUp className="h-5 w-5 text-primary" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-green-600">{skillsEvaluated}</div>
+              <div className="text-3xl font-bold text-primary">{skillsEvaluated}</div>
               <p className="text-xs text-gray-600 mt-1">
                 {skillsEvaluated === 0 ? 'No skills evaluated yet' : 'Verified through interviews'}
               </p>
@@ -155,7 +155,7 @@ export default function StudentFeedbackPage() {
         )}
 
         {/* How It Works */}
-        <Card className="bg-gradient-to-r from-primary/5 to-secondary/5 border-2 border-primary/20">
+        <Card className="bg-primary/5 border-2 border-primary/20">
           <CardContent className="p-6">
             <h3 className="text-lg font-semibold mb-3">How Institutional Feedback Works</h3>
             <div className="grid md:grid-cols-3 gap-4 text-sm">

@@ -102,7 +102,7 @@ export function TourTrigger({
           <HelpCircle className="h-5 w-5" />
           {showLabel && <span className="sr-only">Start Tour</span>}
           {tourId && shouldShowTour(tourId) && (
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full animate-pulse" />
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary/50 rounded-full animate-pulse" />
           )}
         </Button>
         {showTourSelector && <TourSelector onSelect={handleStartTour} onClose={() => setShowTourSelector(false)} />}
@@ -116,15 +116,15 @@ export function TourTrigger({
         <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={handleOpenSelector}>
           <CardContent className="p-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                <Play className="h-5 w-5 text-blue-600" />
+              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                <Play className="h-5 w-5 text-primary" />
               </div>
               <div className="flex-1">
                 <h4 className="font-medium text-gray-900">Take a Tour</h4>
                 <p className="text-sm text-gray-600">Learn how to use the platform</p>
               </div>
               {tourId && shouldShowTour(tourId) && (
-                <Badge variant="secondary" className="bg-blue-100 text-blue-800">
+                <Badge variant="secondary" className="bg-primary/10 text-blue-800">
                   New
                 </Badge>
               )}
@@ -147,7 +147,7 @@ export function TourTrigger({
         <Play className="h-4 w-4 mr-2" />
         {showLabel && 'Take Tour'}
         {tourId && shouldShowTour(tourId) && (
-          <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full animate-pulse" />
+          <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary/50 rounded-full animate-pulse" />
         )}
       </Button>
       {showTourSelector && <TourSelector onSelect={handleStartTour} onClose={() => setShowTourSelector(false)} />}
@@ -181,7 +181,7 @@ function TourSelector({ onSelect, onClose }: { onSelect: (id: string) => void; o
                 >
                   <CardContent className="p-4">
                     <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
                         <Icon className="h-6 w-6 text-white" />
                       </div>
 
@@ -220,10 +220,10 @@ function TourSelector({ onSelect, onClose }: { onSelect: (id: string) => void; o
             })}
           </div>
 
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+          <div className="mt-6 p-4 bg-primary/5 rounded-lg">
             <div className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <Lightbulb className="h-4 w-4 text-blue-600" />
+              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                <Lightbulb className="h-4 w-4 text-primary" />
               </div>
               <div>
                 <h5 className="font-medium text-blue-900">Pro Tip</h5>

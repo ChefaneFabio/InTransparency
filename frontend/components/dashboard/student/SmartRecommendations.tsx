@@ -187,14 +187,14 @@ export function SmartRecommendations({ studentProfile }: SmartRecommendationsPro
     switch (urgency) {
       case 'high': return 'bg-red-100 text-red-800'
       case 'medium': return 'bg-yellow-400 text-gray-900'
-      case 'low': return 'bg-green-100 text-green-800'
+      case 'low': return 'bg-primary/10 text-green-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
 
   const getMatchScoreColor = (score: number) => {
-    if (score >= 90) return 'text-green-600'
-    if (score >= 80) return 'text-yellow-600'
+    if (score >= 90) return 'text-primary'
+    if (score >= 80) return 'text-secondary'
     return 'text-orange-600'
   }
 
@@ -222,10 +222,10 @@ export function SmartRecommendations({ studentProfile }: SmartRecommendationsPro
   return (
     <div className="space-y-6">
       {/* AI Insights Header */}
-      <Card className="bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
+      <Card className="bg-primary/5 border-primary/20">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Brain className="h-5 w-5 text-purple-600" />
+            <Brain className="h-5 w-5 text-primary" />
             AI-Powered Job Matching
           </CardTitle>
           <CardDescription>
@@ -235,17 +235,17 @@ export function SmartRecommendations({ studentProfile }: SmartRecommendationsPro
         <CardContent>
           <div className="grid grid-cols-4 gap-4 text-center">
             <div>
-              <div className="text-2xl font-bold text-blue-600">{recommendations.length}</div>
+              <div className="text-2xl font-bold text-primary">{recommendations.length}</div>
               <div className="text-sm text-gray-600">Perfect Matches</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-green-600">
+              <div className="text-2xl font-bold text-primary">
                 {Math.round(recommendations.reduce((acc, rec) => acc + rec.matchScore, 0) / recommendations.length)}%
               </div>
               <div className="text-sm text-gray-600">Avg Match Score</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-purple-600">
+              <div className="text-2xl font-bold text-primary">
                 {recommendations.filter(rec => rec.urgency === 'high').length}
               </div>
               <div className="text-sm text-gray-600">Urgent Applications</div>
@@ -291,7 +291,7 @@ export function SmartRecommendations({ studentProfile }: SmartRecommendationsPro
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">
                         {job.title}
                       </h3>
                       <Badge className={getUrgencyColor(job.urgency)}>
@@ -311,7 +311,7 @@ export function SmartRecommendations({ studentProfile }: SmartRecommendationsPro
                         <Briefcase className="h-4 w-4" />
                         {job.type}
                       </div>
-                      <div className="font-medium text-green-600">{job.salaryRange}</div>
+                      <div className="font-medium text-primary">{job.salaryRange}</div>
                     </div>
                   </div>
                   <div className="text-right">
@@ -331,7 +331,7 @@ export function SmartRecommendations({ studentProfile }: SmartRecommendationsPro
                   </TabsList>
 
                   <TabsContent value="insights" className="space-y-3">
-                    <div className="bg-green-50 rounded-lg p-3">
+                    <div className="bg-primary/5 rounded-lg p-3">
                       <h4 className="text-sm font-medium text-green-800 mb-2 flex items-center gap-1">
                         <Sparkles className="h-4 w-4" />
                         Why You're a Perfect Match
@@ -365,7 +365,7 @@ export function SmartRecommendations({ studentProfile }: SmartRecommendationsPro
 
                   <TabsContent value="requirements" className="space-y-3">
                     <div className="grid grid-cols-3 gap-3">
-                      <div className="bg-blue-50 rounded-lg p-3">
+                      <div className="bg-primary/5 rounded-lg p-3">
                         <h5 className="text-sm font-medium text-blue-800 mb-2 flex items-center gap-1">
                           <BookOpen className="h-3 w-3" />
                           Courses
@@ -376,7 +376,7 @@ export function SmartRecommendations({ studentProfile }: SmartRecommendationsPro
                           ))}
                         </div>
                       </div>
-                      <div className="bg-purple-50 rounded-lg p-3">
+                      <div className="bg-primary/5 rounded-lg p-3">
                         <h5 className="text-sm font-medium text-purple-800 mb-2 flex items-center gap-1">
                           <Code className="h-3 w-3" />
                           Projects
@@ -402,11 +402,11 @@ export function SmartRecommendations({ studentProfile }: SmartRecommendationsPro
                   </TabsContent>
 
                   <TabsContent value="company" className="space-y-3">
-                    <div className="bg-indigo-50 rounded-lg p-3">
+                    <div className="bg-primary/5 rounded-lg p-3">
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <h5 className="text-sm font-medium text-indigo-800 mb-2">Company Info</h5>
-                          <div className="space-y-1 text-xs text-indigo-700">
+                          <div className="space-y-1 text-xs text-primary">
                             <div>Size: {job.companyInsights.size}</div>
                             <div>Growth: {job.companyInsights.growth}</div>
                           </div>
@@ -415,7 +415,7 @@ export function SmartRecommendations({ studentProfile }: SmartRecommendationsPro
                           <h5 className="text-sm font-medium text-indigo-800 mb-2">Culture</h5>
                           <div className="flex flex-wrap gap-1">
                             {job.companyInsights.culture.map((trait, i) => (
-                              <Badge key={i} variant="outline" className="text-xs bg-indigo-100 text-indigo-700">
+                              <Badge key={i} variant="outline" className="text-xs bg-primary/10 text-primary">
                                 {trait}
                               </Badge>
                             ))}
@@ -426,17 +426,17 @@ export function SmartRecommendations({ studentProfile }: SmartRecommendationsPro
                   </TabsContent>
 
                   <TabsContent value="growth" className="space-y-3">
-                    <div className="bg-emerald-50 rounded-lg p-3">
+                    <div className="bg-primary/5 rounded-lg p-3">
                       <h4 className="text-sm font-medium text-emerald-800 mb-2 flex items-center gap-1">
                         <Award className="h-4 w-4" />
                         Career Impact
                       </h4>
-                      <p className="text-xs text-emerald-700 mb-3">{job.aiInsights.careerImpact}</p>
+                      <p className="text-xs text-primary mb-3">{job.aiInsights.careerImpact}</p>
                       <h5 className="text-sm font-medium text-emerald-800 mb-2">You'll Learn:</h5>
                       <div className="grid grid-cols-2 gap-1">
                         {job.aiInsights.learningOpportunities.map((opportunity, i) => (
-                          <div key={i} className="text-xs text-emerald-700 flex items-center gap-1">
-                            <div className="w-1 h-1 bg-emerald-600 rounded-full"></div>
+                          <div key={i} className="text-xs text-primary flex items-center gap-1">
+                            <div className="w-1 h-1 bg-primary rounded-full"></div>
                             {opportunity}
                           </div>
                         ))}
@@ -458,7 +458,7 @@ export function SmartRecommendations({ studentProfile }: SmartRecommendationsPro
                       <Users className="h-4 w-4 mr-1" />
                       View Company
                     </Button>
-                    <Button size="sm" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    <Button size="sm" className="bg-primary">
                       Apply Now
                       <ArrowRight className="h-4 w-4 ml-1" />
                     </Button>

@@ -70,10 +70,10 @@ export default async function VerifyProjectPage({ params }: Props) {
   return (
     <div className="space-y-6">
       {/* Verification Banner */}
-      <Card className="border-green-200 bg-green-50">
+      <Card className="border-primary/20 bg-primary/5">
         <CardContent className="p-6">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
               <Shield className="h-6 w-6 text-white" />
             </div>
             <div>
@@ -83,7 +83,7 @@ export default async function VerifyProjectPage({ params }: Props) {
                 All information has been authenticated.
               </p>
               {project.verifiedAt && (
-                <p className="text-green-600 text-xs mt-2 flex items-center gap-1">
+                <p className="text-primary text-xs mt-2 flex items-center gap-1">
                   <Calendar className="h-3 w-3" />
                   Verified on {new Date(project.verifiedAt).toLocaleDateString('en-GB', {
                     day: 'numeric',
@@ -109,7 +109,7 @@ export default async function VerifyProjectPage({ params }: Props) {
                 </Badge>
               )}
             </div>
-            <Badge className="bg-green-100 text-green-700 border-green-300">
+            <Badge className="bg-primary/10 text-green-700 border-green-300">
               <CheckCircle className="mr-1 h-3 w-3" />
               Verified
             </Badge>
@@ -140,7 +140,7 @@ export default async function VerifyProjectPage({ params }: Props) {
         <Card>
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
-              <User className="h-5 w-5 text-blue-500" />
+              <User className="h-5 w-5 text-primary" />
               Student
             </CardTitle>
           </CardHeader>
@@ -160,7 +160,7 @@ export default async function VerifyProjectPage({ params }: Props) {
         <Card>
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-blue-500" />
+              <BookOpen className="h-5 w-5 text-primary" />
               Academic Context
             </CardTitle>
           </CardHeader>
@@ -202,7 +202,7 @@ export default async function VerifyProjectPage({ params }: Props) {
         <Card>
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
-              <Award className="h-5 w-5 text-green-500" />
+              <Award className="h-5 w-5 text-primary" />
               Professor Endorsements ({project.endorsements.length})
             </CardTitle>
           </CardHeader>
@@ -236,7 +236,7 @@ export default async function VerifyProjectPage({ params }: Props) {
                           <span className="text-xs text-gray-600 w-28 truncate">{comp}</span>
                           <div className="flex-1 bg-gray-200 rounded-full h-2">
                             <div
-                              className="bg-blue-500 h-2 rounded-full"
+                              className="bg-primary/50 h-2 rounded-full"
                               style={{ width: `${(val / 5) * 100}%` }}
                             />
                           </div>

@@ -69,11 +69,11 @@ export function CandidateVideoSection({
   return (
     <div className={`space-y-4 ${className}`}>
       {/* Hero Badge */}
-      <Card className="bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
+      <Card className="bg-primary/5 border-primary/20">
         <CardContent className="pt-6">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-              <Sparkles className="h-6 w-6 text-purple-600" />
+            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+              <Sparkles className="h-6 w-6 text-primary" />
             </div>
             <div className="flex-1">
               <p className="font-semibold text-purple-900">
@@ -83,7 +83,7 @@ export function CandidateVideoSection({
                 See their communication skills and passion for their work
               </p>
             </div>
-            <Badge variant="secondary" className="bg-purple-100 text-purple-700">
+            <Badge variant="secondary" className="bg-primary/10 text-primary">
               <TrendingUp className="h-3 w-3 mr-1" />
               3x Higher Response Rate
             </Badge>
@@ -98,7 +98,7 @@ export function CandidateVideoSection({
             <div className="flex items-start justify-between">
               <div className="flex-1">
                 <CardTitle className="flex items-center gap-2">
-                  <Video className="h-5 w-5 text-blue-600" />
+                  <Video className="h-5 w-5 text-primary" />
                   {candidateName} Explains: {selectedVideo.projectTitle}
                 </CardTitle>
                 <div className="flex items-center gap-3 mt-2">
@@ -133,7 +133,7 @@ export function CandidateVideoSection({
               controls={true}
             />
 
-            <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="mt-4 bg-primary/5 border border-primary/20 rounded-lg p-4">
               <p className="text-sm text-blue-900">
                 <strong>💡 Watch this video to:</strong>
               </p>
@@ -163,7 +163,7 @@ export function CandidateVideoSection({
                   className={`
                     w-full flex items-center gap-4 p-3 rounded-lg border-2 transition-all
                     ${selectedVideo?.id === video.id
-                      ? 'border-blue-500 bg-blue-50'
+                      ? 'border-blue-500 bg-primary/5'
                       : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
                     }
                   `}
@@ -216,7 +216,7 @@ export function CandidateVideoSection({
       )}
 
       {/* Call to Action */}
-      <Card className="bg-gradient-to-r from-green-50 to-blue-50 border-green-200">
+      <Card className="bg-primary/5 border-primary/20">
         <CardContent className="pt-6">
           <div className="flex items-center justify-between">
             <div>
@@ -227,7 +227,7 @@ export function CandidateVideoSection({
                 Contact them now to schedule an interview. Only €10 to unlock full contact details.
               </p>
             </div>
-            <Button className="bg-green-600 hover:bg-green-700">
+            <Button className="bg-primary hover:bg-green-700">
               Contact Candidate (€10)
             </Button>
           </div>

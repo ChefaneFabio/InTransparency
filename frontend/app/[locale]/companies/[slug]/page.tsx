@@ -148,7 +148,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-start justify-between">
             <div className="flex items-center space-x-6">
-              <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-blue-500 rounded-xl flex items-center justify-center text-white text-2xl font-bold">
+              <div className="w-24 h-24 bg-primary rounded-xl flex items-center justify-center text-white text-2xl font-bold">
                 {company.name.charAt(0)}
               </div>
               <div>
@@ -168,7 +168,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                     {company.size}
                   </div>
                   <div className="flex items-center">
-                    <Star className="h-4 w-4 mr-1 text-yellow-500" />
+                    <Star className="h-4 w-4 mr-1 text-secondary" />
                     {company.stats.rating} ({company.stats.reviews} reviews)
                   </div>
                 </div>
@@ -206,11 +206,11 @@ export default function CompanyPage({ params }: CompanyPageProps) {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">{company.stats.employees?.toLocaleString() || company.size}</div>
+                    <div className="text-2xl font-bold text-primary">{company.stats.employees?.toLocaleString() || company.size}</div>
                     <div className="text-sm text-muted-foreground">Employees</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">{company.jobsCount}</div>
+                    <div className="text-2xl font-bold text-primary">{company.jobsCount}</div>
                     <div className="text-sm text-muted-foreground">Open Positions</div>
                   </div>
                   <div className="text-center">
@@ -218,7 +218,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                     <div className="text-sm text-muted-foreground">Company Rating</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">{company.locations?.length || 0}</div>
+                    <div className="text-2xl font-bold text-primary">{company.locations?.length || 0}</div>
                     <div className="text-sm text-muted-foreground">Global Offices</div>
                   </div>
                 </div>
@@ -257,7 +257,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {(company.benefits || []).map((benefit: string, index: number) => (
                     <div key={index} className="flex items-start">
-                      <Shield className="h-4 w-4 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                      <Shield className="h-4 w-4 text-primary mr-2 mt-1 flex-shrink-0" />
                       <span className="text-foreground/80">{benefit}</span>
                     </div>
                   ))}
@@ -296,7 +296,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-foreground/80">Remote Work</span>
-                    <Badge className={company.workCulture.remote ? 'bg-green-100 text-green-800' : 'bg-muted text-foreground'}>
+                    <Badge className={company.workCulture.remote ? 'bg-primary/10 text-green-800' : 'bg-muted text-foreground'}>
                       {company.workCulture.remote ? 'Available' : 'Office-based'}
                     </Badge>
                   </div>
@@ -305,7 +305,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                     <div className="flex items-center">
                       <div className="w-20 bg-muted rounded-full h-2 mr-2">
                         <div
-                          className="bg-blue-600 h-2 rounded-full"
+                          className="bg-primary h-2 rounded-full"
                           style={{ width: `${company.workCulture.diversity}%` }}
                         />
                       </div>
@@ -315,14 +315,14 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                   <div className="flex items-center justify-between">
                     <span className="text-foreground/80">Work-Life Balance</span>
                     <div className="flex items-center">
-                      <Star className="h-4 w-4 text-yellow-500 mr-1" />
+                      <Star className="h-4 w-4 text-secondary mr-1" />
                       <span className="font-semibold">{company.workCulture.workLifeBalance}/5</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-foreground/80">Career Growth</span>
                     <div className="flex items-center">
-                      <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
+                      <TrendingUp className="h-4 w-4 text-primary mr-1" />
                       <span className="font-semibold">{company.workCulture.careerGrowth}/5</span>
                     </div>
                   </div>
@@ -461,7 +461,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                     <span className="mr-2">💼</span>
                     LinkedIn
                   </a>
-                  <a href={`https://twitter.com/${company.socialMedia.twitter}`} className="flex items-center text-blue-500 hover:text-blue-700" target="_blank" rel="noopener noreferrer">
+                  <a href={`https://twitter.com/${company.socialMedia.twitter}`} className="flex items-center text-primary hover:text-blue-700" target="_blank" rel="noopener noreferrer">
                     <span className="mr-2">🐦</span>
                     {company.socialMedia.twitter}
                   </a>

@@ -284,8 +284,8 @@ export function InstitutionalVerification({
 
   const getApiStatusColor = (status: string) => {
     switch (status) {
-      case 'active': return 'text-green-600 bg-green-100'
-      case 'maintenance': return 'text-yellow-600 bg-yellow-100'
+      case 'active': return 'text-primary bg-primary/10'
+      case 'maintenance': return 'text-secondary bg-yellow-100'
       case 'limited': return 'text-orange-600 bg-orange-100'
       default: return 'text-gray-600 bg-gray-100'
     }
@@ -304,7 +304,7 @@ export function InstitutionalVerification({
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Shield className="h-5 w-5 text-blue-600" />
+          <Shield className="h-5 w-5 text-primary" />
           Institutional Verification
         </CardTitle>
         <CardDescription>
@@ -314,12 +314,12 @@ export function InstitutionalVerification({
       <CardContent>
         {step === 'search' && (
           <div className="space-y-6">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-2">
-                <Database className="h-4 w-4 text-blue-600" />
-                <span className="text-sm font-medium text-blue-900">Database Integration</span>
+                <Database className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-foreground">Database Integration</span>
               </div>
-              <p className="text-sm text-blue-800">
+              <p className="text-sm text-muted-foreground">
                 InTransparency connects with universities worldwide. We'll help verify your
                 academic credentials and showcase your achievements.
               </p>
@@ -383,7 +383,7 @@ export function InstitutionalVerification({
                         <div className="flex items-center gap-2 mb-1">
                           <h4 className="font-semibold text-gray-900 truncate">{university.fullName}</h4>
                           {university.hasDirectIntegration && (
-                            <CheckCircle className="h-4 w-4 text-green-600" />
+                            <CheckCircle className="h-4 w-4 text-primary" />
                           )}
                         </div>
                         <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
@@ -405,7 +405,7 @@ export function InstitutionalVerification({
                             {getApiStatusText(university.apiStatus)}
                           </Badge>
                           {university.ranking && (
-                            <Badge variant="outline" className="text-purple-600 bg-purple-100">
+                            <Badge variant="outline" className="text-primary bg-primary/10">
                               #{university.ranking.national} National
                             </Badge>
                           )}
@@ -520,39 +520,39 @@ export function InstitutionalVerification({
         {step === 'complete' && verifiedStudent && selectedUniversity && (
           <div className="space-y-6">
             <div className="text-center">
-              <CheckCircle className="h-12 w-12 text-green-600 mx-auto mb-4" />
+              <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Verification Successful!</h3>
               <p className="text-gray-600">
                 Your academic credentials have been verified and your transcripts imported.
               </p>
             </div>
 
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <h4 className="font-semibold text-green-900 mb-3">Imported Data Summary</h4>
+            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+              <h4 className="font-semibold text-foreground mb-3">Imported Data Summary</h4>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <span className="text-green-700 font-medium">Student ID:</span>
-                  <span className="ml-2 text-green-800">{verifiedStudent.studentId}</span>
+                  <span className="text-primary font-medium">Student ID:</span>
+                  <span className="ml-2 text-muted-foreground">{verifiedStudent.studentId}</span>
                 </div>
                 <div>
-                  <span className="text-green-700 font-medium">Major:</span>
-                  <span className="ml-2 text-green-800">{verifiedStudent.major}</span>
+                  <span className="text-primary font-medium">Major:</span>
+                  <span className="ml-2 text-muted-foreground">{verifiedStudent.major}</span>
                 </div>
                 <div>
-                  <span className="text-green-700 font-medium">Year:</span>
-                  <span className="ml-2 text-green-800">{verifiedStudent.year}</span>
+                  <span className="text-primary font-medium">Year:</span>
+                  <span className="ml-2 text-muted-foreground">{verifiedStudent.year}</span>
                 </div>
                 <div>
-                  <span className="text-green-700 font-medium">GPA:</span>
-                  <span className="ml-2 text-green-800">{verifiedStudent.gpa}/30</span>
+                  <span className="text-primary font-medium">GPA:</span>
+                  <span className="ml-2 text-muted-foreground">{verifiedStudent.gpa}/30</span>
                 </div>
                 <div>
-                  <span className="text-green-700 font-medium">Courses:</span>
-                  <span className="ml-2 text-green-800">{verifiedStudent.courses.length} imported</span>
+                  <span className="text-primary font-medium">Courses:</span>
+                  <span className="ml-2 text-muted-foreground">{verifiedStudent.courses.length} imported</span>
                 </div>
                 <div>
-                  <span className="text-green-700 font-medium">Status:</span>
-                  <span className="ml-2 text-green-800 capitalize">{verifiedStudent.status}</span>
+                  <span className="text-primary font-medium">Status:</span>
+                  <span className="ml-2 text-muted-foreground capitalize">{verifiedStudent.status}</span>
                 </div>
               </div>
             </div>
@@ -561,7 +561,7 @@ export function InstitutionalVerification({
               <Award className="h-4 w-4" />
               <AlertDescription>
                 Your verified academic profile will be visible to recruiters with the
-                <Badge variant="outline" className="mx-1 text-green-600 bg-green-100">Verified</Badge>
+                <Badge variant="outline" className="mx-1 text-primary bg-primary/10">Verified</Badge>
                 badge, increasing your credibility and match rates.
               </AlertDescription>
             </Alert>

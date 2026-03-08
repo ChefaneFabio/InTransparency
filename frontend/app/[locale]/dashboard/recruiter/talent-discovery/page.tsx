@@ -153,7 +153,7 @@ export default function TalentDiscoveryPage() {
                 <p className="text-2xl font-bold text-gray-900">{talentPool.toLocaleString()}</p>
                 <p className="text-xs text-gray-600">Public student profiles</p>
               </div>
-              <Users className="h-8 w-8 text-blue-500" />
+              <Users className="h-8 w-8 text-primary" />
             </div>
           </CardContent>
         </Card>
@@ -166,7 +166,7 @@ export default function TalentDiscoveryPage() {
                 <p className="text-2xl font-bold text-gray-900">{universityDistribution.length}</p>
                 <p className="text-xs text-gray-600">With registered students</p>
               </div>
-              <GraduationCap className="h-8 w-8 text-purple-500" />
+              <GraduationCap className="h-8 w-8 text-primary" />
             </div>
           </CardContent>
         </Card>

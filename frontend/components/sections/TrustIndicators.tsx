@@ -12,22 +12,22 @@ export function TrustIndicators() {
       titleKey: 'trustIndicators.features.0.title' as const,
       descriptionKey: 'trustIndicators.features.0.description' as const,
       icon: CheckCircle,
-      color: 'text-green-600',
-      bg: 'bg-green-100'
+      color: 'text-primary',
+      bg: 'bg-primary/10'
     },
     {
       titleKey: 'trustIndicators.features.1.title' as const,
       descriptionKey: 'trustIndicators.features.1.description' as const,
       icon: Users,
-      color: 'text-blue-600',
-      bg: 'bg-blue-100'
+      color: 'text-primary',
+      bg: 'bg-primary/10'
     },
     {
       titleKey: 'trustIndicators.features.2.title' as const,
       descriptionKey: 'trustIndicators.features.2.description' as const,
       icon: GraduationCap,
-      color: 'text-purple-600',
-      bg: 'bg-purple-100'
+      color: 'text-primary',
+      bg: 'bg-primary/10'
     },
     {
       titleKey: 'trustIndicators.features.3.title' as const,
@@ -52,7 +52,6 @@ export function TrustIndicators() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -5 }}
                 className="text-center"
               >
                 <div className={`inline-flex p-3 rounded-xl ${feature.bg} mb-3`}>
@@ -73,15 +72,15 @@ export function TrustIndicators() {
           transition={{ delay: 0.4 }}
           className="flex flex-wrap justify-center gap-3"
         >
-          <div className="flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-full text-sm font-medium">
+          <div className="flex items-center gap-2 px-4 py-2 bg-primary/5 text-primary rounded-full text-sm font-medium">
             <CheckCircle className="h-4 w-4" />
             {t('trustIndicators.badges.freemium')}
           </div>
-          <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
+          <div className="flex items-center gap-2 px-4 py-2 bg-primary/5 text-primary rounded-full text-sm font-medium">
             <Shield className="h-4 w-4" />
             {t('trustIndicators.badges.gdpr')}
           </div>
-          <div className="flex items-center gap-2 px-4 py-2 bg-purple-50 text-purple-700 rounded-full text-sm font-medium">
+          <div className="flex items-center gap-2 px-4 py-2 bg-primary/5 text-primary rounded-full text-sm font-medium">
             <Building2 className="h-4 w-4" />
             {t('trustIndicators.badges.verified')}
           </div>

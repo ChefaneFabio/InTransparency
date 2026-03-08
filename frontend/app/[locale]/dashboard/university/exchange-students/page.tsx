@@ -119,7 +119,7 @@ export default function UniversityExchangeStudentsPage() {
               <CardContent className="pt-4 pb-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-medium text-sm">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium text-sm">
                       {(enrollment.student.firstName?.[0] || '') + (enrollment.student.lastName?.[0] || '')}
                     </div>
                     <div>
@@ -152,7 +152,7 @@ export default function UniversityExchangeStudentsPage() {
                         Verify
                       </Button>
                     ) : (
-                      <Badge className="bg-green-100 text-green-700 text-xs">
+                      <Badge className="bg-primary/10 text-primary text-xs">
                         <CheckCircle className="h-3 w-3 mr-1" />
                         Verified
                       </Badge>
@@ -171,7 +171,7 @@ export default function UniversityExchangeStudentsPage() {
     <div className="container max-w-7xl mx-auto px-4 py-8 space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <Globe className="h-7 w-7 text-blue-600" />
+        <Globe className="h-7 w-7 text-primary" />
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t('university.title')}</h1>
           <p className="text-sm text-gray-600">{t('university.subtitle')}</p>
@@ -183,8 +183,8 @@ export default function UniversityExchangeStudentsPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-green-50">
-                <ArrowDownLeft className="h-5 w-5 text-green-600" />
+              <div className="p-2 rounded-lg bg-primary/5">
+                <ArrowDownLeft className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <p className="text-2xl font-bold">{data.stats.totalIncoming}</p>
@@ -196,8 +196,8 @@ export default function UniversityExchangeStudentsPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-blue-50">
-                <ArrowUpRight className="h-5 w-5 text-blue-600" />
+              <div className="p-2 rounded-lg bg-primary/5">
+                <ArrowUpRight className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <p className="text-2xl font-bold">{data.stats.totalOutgoing}</p>
@@ -209,8 +209,8 @@ export default function UniversityExchangeStudentsPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-purple-50">
-                <Users className="h-5 w-5 text-purple-600" />
+              <div className="p-2 rounded-lg bg-primary/5">
+                <Users className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <p className="text-2xl font-bold">{data.stats.activeIncoming + data.stats.activeOutgoing}</p>

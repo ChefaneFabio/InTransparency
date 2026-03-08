@@ -291,9 +291,9 @@ export default function EditProfilePage() {
 
       {/* Success Message */}
       {successMessage && (
-        <Alert className="mb-6 border-green-200 bg-green-50">
-          <CheckCircle className="h-4 w-4 text-green-600" />
-          <AlertDescription className="text-green-800">
+        <Alert className="mb-6 border-primary/20 bg-primary/5">
+          <CheckCircle className="h-4 w-4 text-primary" />
+          <AlertDescription className="text-primary">
             {successMessage}
           </AlertDescription>
         </Alert>
@@ -457,12 +457,12 @@ export default function EditProfilePage() {
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* Auto-fill from course URL */}
-                <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg space-y-3">
-                  <Label htmlFor="courseUrl" className="flex items-center gap-2 text-blue-800 font-medium">
+                <div className="p-4 bg-primary/5 border border-primary/20 rounded-lg space-y-3">
+                  <Label htmlFor="courseUrl" className="flex items-center gap-2 text-primary font-medium">
                     <Sparkles className="h-4 w-4" />
                     Auto-fill from course URL
                   </Label>
-                  <p className="text-sm text-blue-600">
+                  <p className="text-sm text-primary">
                     Paste a link to your university course page and we&apos;ll extract the details for you
                   </p>
                   <div className="flex gap-2">
@@ -539,7 +539,7 @@ export default function EditProfilePage() {
 
           {/* Skills and Interests */}
           <TabsContent value="skills">
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+            <div className="min-h-screen space-y-6">
               <Card>
                 <CardHeader>
                   <CardTitle>Skills</CardTitle>
@@ -583,7 +583,7 @@ export default function EditProfilePage() {
 
                     {suggestedSkills.length > 0 && (
                       <div className="space-y-2">
-                        <p className="text-sm text-blue-700 flex items-center gap-1">
+                        <p className="text-sm text-primary flex items-center gap-1">
                           <Sparkles className="h-3 w-3" />
                           Suggested from your course:
                         </p>
@@ -594,7 +594,7 @@ export default function EditProfilePage() {
                               <Badge
                                 key={i}
                                 variant="outline"
-                                className="cursor-pointer border-blue-300 text-blue-700 hover:bg-blue-50"
+                                className="cursor-pointer border-primary/30 text-primary hover:bg-primary/5"
                                 onClick={() => {
                                   if (formData.skills.length < 20) {
                                     setFormData(prev => ({ ...prev, skills: [...prev.skills, skill] }))
@@ -659,7 +659,7 @@ export default function EditProfilePage() {
 
                     {suggestedInterests.length > 0 && (
                       <div className="space-y-2">
-                        <p className="text-sm text-blue-700 flex items-center gap-1">
+                        <p className="text-sm text-primary flex items-center gap-1">
                           <Sparkles className="h-3 w-3" />
                           Suggested from your course:
                         </p>
@@ -670,7 +670,7 @@ export default function EditProfilePage() {
                               <Badge
                                 key={idx}
                                 variant="outline"
-                                className="cursor-pointer border-blue-300 text-blue-700 hover:bg-blue-50"
+                                className="cursor-pointer border-primary/30 text-primary hover:bg-primary/5"
                                 onClick={() => {
                                   if (formData.interests.length < 10) {
                                     setFormData(prev => ({ ...prev, interests: [...prev.interests, interest] }))

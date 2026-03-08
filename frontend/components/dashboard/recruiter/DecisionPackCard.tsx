@@ -30,12 +30,12 @@ export default function DecisionPackCard({
   }
 
   return (
-    <Card className="border-blue-100 hover:border-blue-300 transition-colors">
+    <Card className="border-primary/10 hover:border-primary/30 transition-colors">
       <CardContent className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-              <FileText className="h-5 w-5 text-blue-600" />
+            <div className="w-10 h-10 bg-primary/5 rounded-lg flex items-center justify-center">
+              <FileText className="h-5 w-5 text-primary" />
             </div>
             <div>
               <p className="font-medium text-gray-900 text-sm">{candidateName}</p>
@@ -48,13 +48,13 @@ export default function DecisionPackCard({
           <div className="flex items-center gap-2">
             {verifiedProjects > 0 && (
               <Badge variant="outline" className="text-xs">
-                <Shield className="mr-1 h-3 w-3 text-green-500" />
+                <Shield className="mr-1 h-3 w-3 text-primary" />
                 {verifiedProjects} verified
               </Badge>
             )}
             {endorsements > 0 && (
               <Badge variant="outline" className="text-xs">
-                <TrendingUp className="mr-1 h-3 w-3 text-blue-500" />
+                <TrendingUp className="mr-1 h-3 w-3 text-primary" />
                 {endorsements} endorsed
               </Badge>
             )}

@@ -39,9 +39,9 @@ export default function PerAziendePMIPage() {
       <Header />
       <main>
         {/* Hero */}
-        <section className="py-20 bg-gradient-to-br from-green-900 via-emerald-800 to-teal-900 text-white">
+        <section className="py-20 bg-foreground text-white">
           <div className="container text-center max-w-4xl">
-            <Badge className="mb-6 bg-green-500/20 text-green-200 border-green-400/30">
+            <Badge className="mb-6 bg-primary/50/20 text-green-200 border-green-400/30">
               {t('badge')}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -72,21 +72,21 @@ export default function PerAziendePMIPage() {
             <h2 className="text-3xl font-bold text-center mb-8">{t('comparison.title')}</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {competitors.map((comp, i) => (
-                <Card key={i} className={`${comp.name === 'InTransparency' ? 'border-2 border-green-500 shadow-lg' : ''}`}>
+                <Card key={i} className={`${comp.name === 'InTransparency' ? 'border-2 border-primary shadow-lg' : ''}`}>
                   <CardContent className="p-6 text-center">
                     <h3 className="font-semibold text-lg mb-2">{comp.name}</h3>
-                    <div className={`text-3xl font-bold mb-3 ${comp.name === 'InTransparency' ? 'text-green-600' : 'text-red-600'}`}>
+                    <div className={`text-3xl font-bold mb-3 ${comp.name === 'InTransparency' ? 'text-primary' : 'text-red-600'}`}>
                       {comp.cost}
                     </div>
                     <div className="flex items-center justify-center gap-2 text-sm">
                       {comp.hasSubscription ? (
                         <><X className="h-4 w-4 text-red-500" /> {t('comparison.annualRequired')}</>
                       ) : (
-                        <><CheckCircle className="h-4 w-4 text-green-500" /> {t('comparison.noCommitment')}</>
+                        <><CheckCircle className="h-4 w-4 text-primary" /> {t('comparison.noCommitment')}</>
                       )}
                     </div>
                     {comp.name === 'InTransparency' && (
-                      <Badge className="mt-3 bg-green-100 text-green-700">{t('comparison.bestValue')}</Badge>
+                      <Badge className="mt-3 bg-primary/10 text-primary">{t('comparison.bestValue')}</Badge>
                     )}
                   </CardContent>
                 </Card>
@@ -105,8 +105,8 @@ export default function PerAziendePMIPage() {
                 <Card key={i} className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
-                        <ben.icon className="h-5 w-5 text-green-600" />
+                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+                        <ben.icon className="h-5 w-5 text-primary" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg mb-1">{ben.title}</h3>

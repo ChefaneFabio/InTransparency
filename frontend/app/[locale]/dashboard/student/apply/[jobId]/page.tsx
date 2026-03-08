@@ -264,7 +264,7 @@ export default function JobApplicationPage() {
         <div className="mb-6">
           <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-500"
+              className="h-full bg-primary transition-all duration-500"
               style={{ width: `${completionPercentage}%` }}
             />
           </div>
@@ -414,7 +414,7 @@ export default function JobApplicationPage() {
               <Button
                 onClick={handleSubmit}
                 disabled={submitting || completionPercentage < 80}
-                className="flex-1 bg-gradient-to-r from-primary to-secondary"
+                className="flex-1 bg-primary"
               >
                 <Send className="h-4 w-4 mr-2" />
                 {submitting ? 'Submitting...' : 'Submit Application'}
@@ -422,7 +422,7 @@ export default function JobApplicationPage() {
             </div>
 
             {completionPercentage < 80 && (
-              <p className="text-sm text-center text-yellow-600">
+              <p className="text-sm text-center text-secondary">
                 Complete at least 80% to submit ({Math.max(0, 80 - completionPercentage)}% remaining)
               </p>
             )}

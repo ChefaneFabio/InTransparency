@@ -64,13 +64,13 @@ export default function RecruiterRegisterPage() {
   const benefitIcons = [Shield, Search, Clock, Zap]
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-primary/10 py-12 px-4">
       <div className="max-w-4xl w-full">
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column - Value Proposition */}
           <div className="hidden lg:block">
             <div className="sticky top-8">
-              <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
                 <Search className="h-4 w-4" />
                 {t('recruiter.browseBadge')}
               </div>
@@ -84,8 +84,8 @@ export default function RecruiterRegisterPage() {
               <div className="space-y-4 mb-8">
                 {benefitIcons.map((Icon, index) => (
                   <div key={index} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm">
-                    <div className="flex-shrink-0 p-2 bg-blue-100 rounded-lg">
-                      <Icon className="h-5 w-5 text-blue-600" />
+                    <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg">
+                      <Icon className="h-5 w-5 text-primary" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900">{t(`recruiter.benefits.${index}.title`)}</h3>
@@ -96,12 +96,12 @@ export default function RecruiterRegisterPage() {
               </div>
 
               {/* Pricing */}
-              <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl mb-6">
+              <div className="p-4 bg-primary/10 border border-primary/20 rounded-xl mb-6">
                 <h4 className="font-semibold text-gray-900 mb-3">{t('recruiter.pricing.title')}</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">{t('recruiter.pricing.browse')}</span>
-                    <span className="font-medium text-green-600">{t('recruiter.pricing.browseCost')}</span>
+                    <span className="font-medium text-primary">{t('recruiter.pricing.browseCost')}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">{t('recruiter.pricing.contact')}</span>
@@ -109,7 +109,7 @@ export default function RecruiterRegisterPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">{t('recruiter.pricing.postJobs')}</span>
-                    <span className="font-medium text-green-600">{t('recruiter.pricing.postJobsCost')}</span>
+                    <span className="font-medium text-primary">{t('recruiter.pricing.postJobsCost')}</span>
                   </div>
                 </div>
               </div>
@@ -120,7 +120,7 @@ export default function RecruiterRegisterPage() {
           {/* Right Column - Form */}
           <div>
             <div className="text-center mb-6 lg:text-left">
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl mb-4">
+              <div className="inline-flex items-center justify-center w-14 h-14 bg-primary rounded-2xl mb-4">
                 <Building2 className="h-7 w-7 text-white" />
               </div>
               <h1 className="text-2xl font-bold text-gray-900">{t('recruiter.createTitle')}</h1>
@@ -129,7 +129,7 @@ export default function RecruiterRegisterPage() {
 
             {/* Mobile Benefits */}
             <div className="lg:hidden mb-6 p-4 bg-white rounded-xl shadow-sm">
-              <div className="flex items-center gap-2 text-blue-600 mb-2">
+              <div className="flex items-center gap-2 text-primary mb-2">
                 <CheckCircle className="h-4 w-4" />
                 <span className="font-medium text-sm">{t('recruiter.mobileBenefitsTitle')}</span>
               </div>
@@ -204,7 +204,7 @@ export default function RecruiterRegisterPage() {
 
                   <Button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                    className="w-full bg-primary"
                     disabled={isLoading}
                   >
                     {isLoading ? (
@@ -225,7 +225,7 @@ export default function RecruiterRegisterPage() {
                 <div className="mt-4 text-center">
                   <p className="text-sm text-gray-600">
                     {t('recruiter.alreadyHaveAccount')}{' '}
-                    <Link href="/auth/login" className="text-blue-600 hover:text-blue-500">
+                    <Link href="/auth/login" className="text-primary hover:text-primary">
                       {t('recruiter.signIn')}
                     </Link>
                   </p>

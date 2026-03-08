@@ -149,7 +149,7 @@ export function PlacesAutocomplete({
     const parts = text.split(new RegExp(`(${query})`, 'gi'))
     return (parts || []).map((part, i) =>
       part.toLowerCase() === query.toLowerCase() ? (
-        <strong key={i} className="text-blue-600">{part}</strong>
+        <strong key={i} className="text-primary">{part}</strong>
       ) : (
         <span key={i}>{part}</span>
       )

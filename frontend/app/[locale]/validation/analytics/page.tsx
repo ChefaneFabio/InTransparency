@@ -63,7 +63,7 @@ export default function ValidationAnalyticsPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <RefreshCw className="h-8 w-8 animate-spin text-blue-600 mx-auto mb-4" />
+          <RefreshCw className="h-8 w-8 animate-spin text-primary mx-auto mb-4" />
           <p className="text-gray-600">Loading analytics...</p>
         </div>
       </div>
@@ -108,43 +108,43 @@ export default function ValidationAnalyticsPage() {
 
             {/* Key Metrics */}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <Card className="border-2 border-blue-200">
+              <Card className="border-2 border-primary/20">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-gray-600 mb-1">Fake Door Clicks</p>
                       <p className="text-3xl font-bold text-gray-900">{analytics.fakeDoorClicks}</p>
                     </div>
-                    <div className="rounded-full bg-blue-100 p-3">
-                      <TrendingUp className="h-6 w-6 text-blue-600" />
+                    <div className="rounded-full bg-primary/10 p-3">
+                      <TrendingUp className="h-6 w-6 text-primary" />
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-green-200">
+              <Card className="border-2 border-primary/20">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-gray-600 mb-1">Waitlist Signups</p>
                       <p className="text-3xl font-bold text-gray-900">{analytics.waitlistSignups}</p>
                     </div>
-                    <div className="rounded-full bg-green-100 p-3">
-                      <Users className="h-6 w-6 text-green-600" />
+                    <div className="rounded-full bg-primary/10 p-3">
+                      <Users className="h-6 w-6 text-primary" />
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-purple-200">
+              <Card className="border-2 border-primary/20">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-gray-600 mb-1">Interview Signups</p>
                       <p className="text-3xl font-bold text-gray-900">{analytics.interviewSignups}</p>
                     </div>
-                    <div className="rounded-full bg-purple-100 p-3">
-                      <MessageCircle className="h-6 w-6 text-purple-600" />
+                    <div className="rounded-full bg-primary/10 p-3">
+                      <MessageCircle className="h-6 w-6 text-primary" />
                     </div>
                   </div>
                 </CardContent>
@@ -173,10 +173,10 @@ export default function ValidationAnalyticsPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="mb-8"
               >
-                <Card className="border-2 border-green-200 bg-gradient-to-r from-green-50 to-blue-50">
+                <Card className="border-2 border-primary/20 bg-primary/5">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <DollarSign className="mr-2 h-6 w-6 text-green-600" />
+                      <DollarSign className="mr-2 h-6 w-6 text-primary" />
                       Van Westendorp Price Analysis
                     </CardTitle>
                   </CardHeader>
@@ -208,7 +208,7 @@ export default function ValidationAnalyticsPage() {
                         </div>
                         <div className="flex items-center justify-between p-3 bg-white rounded-lg">
                           <span className="text-sm text-gray-600">Good Bargain:</span>
-                          <Badge className="bg-green-500">€{Math.round(optimalPrice.avgBargain)}</Badge>
+                          <Badge className="bg-primary/50">€{Math.round(optimalPrice.avgBargain)}</Badge>
                         </div>
                         <div className="flex items-center justify-between p-3 bg-white rounded-lg">
                           <span className="text-sm text-gray-600">Too Cheap:</span>
@@ -285,7 +285,7 @@ export default function ValidationAnalyticsPage() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="mt-8"
             >
-              <Card className="border-2 border-blue-200">
+              <Card className="border-2 border-primary/20">
                 <CardHeader>
                   <CardTitle>Validation Success Criteria</CardTitle>
                 </CardHeader>
@@ -295,15 +295,15 @@ export default function ValidationAnalyticsPage() {
                       <h3 className="font-semibold text-gray-900 mb-2">Target Metrics</h3>
                       <ul className="space-y-2 text-sm">
                         <li className="flex items-center">
-                          <div className={`w-3 h-3 rounded-full mr-2 ${analytics.fakeDoorClicks >= 100 ? 'bg-green-500' : 'bg-gray-300'}`} />
+                          <div className={`w-3 h-3 rounded-full mr-2 ${analytics.fakeDoorClicks >= 100 ? 'bg-primary/50' : 'bg-gray-300'}`} />
                           100+ fake door clicks
                         </li>
                         <li className="flex items-center">
-                          <div className={`w-3 h-3 rounded-full mr-2 ${analytics.waitlistSignups >= 40 ? 'bg-green-500' : 'bg-gray-300'}`} />
+                          <div className={`w-3 h-3 rounded-full mr-2 ${analytics.waitlistSignups >= 40 ? 'bg-primary/50' : 'bg-gray-300'}`} />
                           40+ waitlist signups (40% conversion)
                         </li>
                         <li className="flex items-center">
-                          <div className={`w-3 h-3 rounded-full mr-2 ${analytics.interviewSignups >= 30 ? 'bg-green-500' : 'bg-gray-300'}`} />
+                          <div className={`w-3 h-3 rounded-full mr-2 ${analytics.interviewSignups >= 30 ? 'bg-primary/50' : 'bg-gray-300'}`} />
                           30+ interviews (15 students + 15 recruiters)
                         </li>
                       </ul>
@@ -322,7 +322,7 @@ export default function ValidationAnalyticsPage() {
                       <h3 className="font-semibold text-gray-900 mb-2">GO/NO-GO Decision</h3>
                       <div className={`p-4 rounded-lg ${
                         analytics.waitlistSignups >= 40 && analytics.interviewSignups >= 30
-                          ? 'bg-green-100 border-2 border-green-500'
+                          ? 'bg-primary/10 border-2 border-green-500'
                           : 'bg-gray-100 border-2 border-gray-300'
                       }`}>
                         <p className="font-bold text-lg">

@@ -118,7 +118,7 @@ export default function PrivacySettingsPage() {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-              <Shield className="h-8 w-8 text-blue-600" />
+              <Shield className="h-8 w-8 text-primary" />
               Privacy & Visibility Settings
             </h1>
             <p className="text-gray-600 mt-2">
@@ -128,9 +128,9 @@ export default function PrivacySettingsPage() {
 
           {/* Save Message */}
           {saveMessage && (
-            <Alert className={`mb-6 ${saveMessage.type === 'success' ? 'border-green-300 bg-green-50' : 'border-red-300 bg-red-50'}`}>
+            <Alert className={`mb-6 ${saveMessage.type === 'success' ? 'border-green-300 bg-primary/5' : 'border-red-300 bg-red-50'}`}>
               {saveMessage.type === 'success' ? (
-                <CheckCircle className="h-4 w-4 text-green-600" />
+                <CheckCircle className="h-4 w-4 text-primary" />
               ) : (
                 <AlertCircle className="h-4 w-4 text-red-600" />
               )}
@@ -153,7 +153,7 @@ export default function PrivacySettingsPage() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Globe className="h-5 w-5 text-blue-600" />
+                <Globe className="h-5 w-5 text-primary" />
                 Profile Visibility
               </CardTitle>
               <CardDescription>
@@ -210,7 +210,7 @@ export default function PrivacySettingsPage() {
                         value={option}
                         checked={settings.showProjects === option}
                         onChange={(e) => setSettings({ ...settings, showProjects: e.target.value })}
-                        className="h-4 w-4 text-blue-600"
+                        className="h-4 w-4 text-primary"
                       />
                       <Label htmlFor={`projects-${option}`} className="font-normal cursor-pointer">
                         {option === 'all' && 'Show all projects'}
@@ -228,7 +228,7 @@ export default function PrivacySettingsPage() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Eye className="h-5 w-5 text-blue-600" />
+                <Eye className="h-5 w-5 text-primary" />
                 Personal Information Visibility
               </CardTitle>
               <CardDescription>
@@ -294,7 +294,7 @@ export default function PrivacySettingsPage() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <EyeOff className="h-5 w-5 text-blue-600" />
+                <EyeOff className="h-5 w-5 text-primary" />
                 Activity & Analytics
               </CardTitle>
               <CardDescription>
@@ -342,7 +342,7 @@ export default function PrivacySettingsPage() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Lock className="h-5 w-5 text-blue-600" />
+                <Lock className="h-5 w-5 text-primary" />
                 Messaging Preferences
               </CardTitle>
               <CardDescription>
@@ -365,7 +365,7 @@ export default function PrivacySettingsPage() {
                       value={option.value}
                       checked={settings.allowMessagesFrom === option.value}
                       onChange={(e) => setSettings({ ...settings, allowMessagesFrom: e.target.value })}
-                      className="h-4 w-4 text-blue-600"
+                      className="h-4 w-4 text-primary"
                     />
                     <Label htmlFor={`messages-${option.value}`} className="font-normal cursor-pointer">
                       {option.label}
@@ -380,7 +380,7 @@ export default function PrivacySettingsPage() {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <UserX className="h-5 w-5 text-blue-600" />
+                <UserX className="h-5 w-5 text-primary" />
                 Block Specific Companies
               </CardTitle>
               <CardDescription>

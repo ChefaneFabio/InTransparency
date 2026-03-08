@@ -90,7 +90,7 @@ function getStatusBadge(status: Alumni['employmentStatus']) {
   switch (status) {
     case 'EMPLOYED':
       return (
-        <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
+        <Badge className="bg-primary/10 text-primary hover:bg-primary/10">
           <Briefcase className="h-3 w-3 mr-1" />
           Occupato
         </Badge>
@@ -104,7 +104,7 @@ function getStatusBadge(status: Alumni['employmentStatus']) {
       )
     case 'FURTHER_STUDY':
       return (
-        <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">
+        <Badge className="bg-primary/10 text-primary hover:bg-primary/10">
           <BookOpen className="h-3 w-3 mr-1" />
           Studio Avanzato
         </Badge>
@@ -267,8 +267,8 @@ export default function UniversityAlumniPage() {
               <Card>
                 <CardContent className="p-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
-                      <Users className="h-5 w-5 text-indigo-600" />
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <Users className="h-5 w-5 text-primary" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold">{stats?.total ?? 0}</p>
@@ -281,8 +281,8 @@ export default function UniversityAlumniPage() {
               <Card>
                 <CardContent className="p-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                      <TrendingUp className="h-5 w-5 text-green-600" />
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <TrendingUp className="h-5 w-5 text-primary" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold">
@@ -297,8 +297,8 @@ export default function UniversityAlumniPage() {
               <Card>
                 <CardContent className="p-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <DollarSign className="h-5 w-5 text-blue-600" />
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <DollarSign className="h-5 w-5 text-primary" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold">
@@ -315,7 +315,7 @@ export default function UniversityAlumniPage() {
                 <CardContent className="p-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                      <Briefcase className="h-5 w-5 text-yellow-600" />
+                      <Briefcase className="h-5 w-5 text-secondary" />
                     </div>
                     <div>
                       <p className="text-2xl font-bold">{stats?.seeking ?? 0}</p>
@@ -392,7 +392,7 @@ export default function UniversityAlumniPage() {
                         </div>
                         <div className="w-full bg-gray-100 rounded-full h-2.5">
                           <div
-                            className="bg-indigo-500 h-2.5 rounded-full transition-all duration-500"
+                            className="bg-primary/50 h-2.5 rounded-full transition-all duration-500"
                             style={{ width: `${percentage}%` }}
                           />
                         </div>
@@ -441,7 +441,7 @@ export default function UniversityAlumniPage() {
                       {person.photo && (
                         <AvatarImage src={person.photo} alt={person.name} />
                       )}
-                      <AvatarFallback className="bg-indigo-100 text-indigo-700 font-semibold">
+                      <AvatarFallback className="bg-primary/10 text-primary font-semibold">
                         {getInitials(person.name)}
                       </AvatarFallback>
                     </Avatar>
@@ -457,7 +457,7 @@ export default function UniversityAlumniPage() {
                             href={person.linkedInUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800 flex-shrink-0"
+                            className="text-primary hover:text-primary/80 flex-shrink-0"
                             aria-label={`Profilo LinkedIn di ${person.name}`}
                           >
                             <Linkedin className="h-4 w-4" />

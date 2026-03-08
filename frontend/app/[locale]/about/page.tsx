@@ -284,7 +284,7 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-12 text-white text-center mb-16">
+            <div className="bg-primary rounded-2xl p-12 text-white text-center mb-16">
               <blockquote className="text-2xl font-medium italic mb-4">
                 {t('mission.quote')}
               </blockquote>
@@ -405,7 +405,7 @@ export default function AboutPage() {
                   <p className="text-foreground/80 leading-relaxed mb-4">
                     Core features included. Build your verified portfolio.
                   </p>
-                  <div className="text-sm text-muted-foreground bg-green-50 rounded-lg p-3">
+                  <div className="text-sm text-muted-foreground bg-primary/5 rounded-lg p-3">
                     <strong>Premium options:</strong> Priority visibility, advanced analytics
                   </div>
                 </CardContent>
@@ -420,7 +420,7 @@ export default function AboutPage() {
                   <p className="text-foreground/80 leading-relaxed mb-4">
                     Verify student projects. Track placements.
                   </p>
-                  <div className="text-sm text-muted-foreground bg-blue-50 rounded-lg p-3">
+                  <div className="text-sm text-muted-foreground bg-primary/5 rounded-lg p-3">
                     <strong>Enterprise:</strong> API integrations, white-label, custom features
                   </div>
                 </CardContent>
@@ -435,7 +435,7 @@ export default function AboutPage() {
                   <p className="text-foreground/80 leading-relaxed mb-4">
                     Browse profiles. Pay when you reach out.
                   </p>
-                  <div className="text-sm text-muted-foreground bg-purple-50 rounded-lg p-3">
+                  <div className="text-sm text-muted-foreground bg-primary/5 rounded-lg p-3">
                     <strong>Enterprise:</strong> API access, ATS integration
                   </div>
                 </CardContent>

@@ -781,7 +781,7 @@ export default function NewProjectPage() {
                 {competencies.map((comp, index) => (
                   <span
                     key={index}
-                    className="inline-flex items-center gap-1 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium"
+                    className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
                   >
                     {comp}
                     <button

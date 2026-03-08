@@ -147,7 +147,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-start justify-between">
             <div className="flex items-center space-x-6">
-              <div className="w-24 h-24 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold">
+              <div className="w-24 h-24 bg-primary rounded-xl flex items-center justify-center text-white text-2xl font-bold">
                 {university.shortName.charAt(0)}
               </div>
               <div>
@@ -162,7 +162,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                     {t('header.founded', { year: university.founded })}
                   </div>
                   <div className="flex items-center">
-                    <Star className="h-4 w-4 mr-1 text-yellow-500" />
+                    <Star className="h-4 w-4 mr-1 text-secondary" />
                     {t('header.globalRanking', { rank: university.ranking.global })}
                   </div>
                 </div>
@@ -200,11 +200,11 @@ export default function UniversityPage({ params }: UniversityPageProps) {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">{university.stats.students.toLocaleString()}</div>
+                    <div className="text-2xl font-bold text-primary">{university.stats.students.toLocaleString()}</div>
                     <div className="text-sm text-gray-600">{t('overview.stats.totalStudents')}</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">{university.stats.faculty.toLocaleString()}</div>
+                    <div className="text-2xl font-bold text-primary">{university.stats.faculty.toLocaleString()}</div>
                     <div className="text-sm text-gray-600">{t('overview.stats.faculty')}</div>
                   </div>
                   <div className="text-center">
@@ -212,7 +212,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                     <div className="text-sm text-gray-600">{t('overview.stats.acceptanceRate')}</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">{university.employmentRate}%</div>
+                    <div className="text-2xl font-bold text-primary">{university.employmentRate}%</div>
                     <div className="text-sm text-gray-600">{t('overview.stats.employmentRate')}</div>
                   </div>
                 </div>
@@ -230,15 +230,15 @@ export default function UniversityPage({ params }: UniversityPageProps) {
               <CardContent>
                 <div className="grid grid-cols-3 gap-6">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-yellow-600">#{university.ranking.global}</div>
+                    <div className="text-3xl font-bold text-secondary">#{university.ranking.global}</div>
                     <div className="text-sm text-gray-600">{t('rankings.global')}</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-blue-600">#{university.ranking.national}</div>
+                    <div className="text-3xl font-bold text-primary">#{university.ranking.national}</div>
                     <div className="text-sm text-gray-600">{t('rankings.national')}</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-green-600">#{university.ranking.engineering}</div>
+                    <div className="text-3xl font-bold text-primary">#{university.ranking.engineering}</div>
                     <div className="text-sm text-gray-600">{t('rankings.engineering')}</div>
                   </div>
                 </div>
@@ -262,7 +262,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                         <p className="text-sm text-gray-600">{t('programs.students', { count: program.students })}</p>
                       </div>
                       <div className="text-right">
-                        <div className="flex items-center text-yellow-600 mb-1">
+                        <div className="flex items-center text-secondary mb-1">
                           <Star className="h-4 w-4 mr-1" />
                           <span className="font-semibold">#{program.ranking}</span>
                         </div>
@@ -361,7 +361,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                 </div>
                 <div className="flex items-center">
                   <Globe className="h-4 w-4 text-gray-600 mr-2" />
-                  <a href={university.website} className="text-sm text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">
+                  <a href={university.website} className="text-sm text-primary hover:text-blue-800" target="_blank" rel="noopener noreferrer">
                     {t('quickActions.officialWebsite')}
                   </a>
                 </div>
@@ -389,7 +389,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  <a href={`https://twitter.com/${university.socialMedia.twitter}`} className="flex items-center text-blue-500 hover:text-blue-700" target="_blank" rel="noopener noreferrer">
+                  <a href={`https://twitter.com/${university.socialMedia.twitter}`} className="flex items-center text-primary hover:text-blue-700" target="_blank" rel="noopener noreferrer">
                     <span className="mr-2">🐦</span>
                     {university.socialMedia.twitter}
                   </a>
@@ -397,7 +397,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                     <span className="mr-2">💼</span>
                     {t('socialMedia.linkedin')}
                   </a>
-                  <a href={`https://facebook.com/${university.socialMedia.facebook}`} className="flex items-center text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">
+                  <a href={`https://facebook.com/${university.socialMedia.facebook}`} className="flex items-center text-primary hover:text-blue-800" target="_blank" rel="noopener noreferrer">
                     <span className="mr-2">👥</span>
                     {t('socialMedia.facebook')}
                   </a>

@@ -226,7 +226,7 @@ export default function ProfilePage() {
     <div className="max-w-6xl mx-auto space-y-8">
       {/* Header */}
       <div className="relative">
-        <div className="h-32 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg relative">
+        <div className="h-32 bg-primary rounded-lg relative">
           <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg"></div>
         </div>
 
@@ -601,7 +601,7 @@ export default function ProfilePage() {
                 <div className="space-y-2 text-sm mt-4">
                   {completionItems.map((item) => (
                     <div key={item.field} className="flex items-center space-x-2">
-                      <div className={`w-2 h-2 rounded-full ${item.filled ? 'bg-green-500' : 'bg-muted-foreground/60'}`}></div>
+                      <div className={`w-2 h-2 rounded-full ${item.filled ? 'bg-primary' : 'bg-muted-foreground/60'}`}></div>
                       <span className={item.filled ? 'text-muted-foreground' : 'text-muted-foreground/60'}>
                         {item.label}
                       </span>

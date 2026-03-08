@@ -123,7 +123,7 @@ export default function EmbedConfigPage() {
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-2">
           <h1 className="text-3xl font-bold">Embeddable Widget</h1>
-          <Badge variant="secondary" className="bg-purple-100 text-purple-800">
+          <Badge variant="secondary" className="bg-primary/10 text-primary">
             Premium Embed
           </Badge>
         </div>
@@ -296,7 +296,7 @@ export default function EmbedConfigPage() {
           </Card>
 
           {/* ROI Info */}
-          <Card className="p-6 bg-green-50 border-green-200">
+          <Card className="p-6 bg-primary/5 border-primary/20">
             <h3 className="font-semibold text-green-900 mb-2">Expected Impact</h3>
             <ul className="space-y-1 text-sm text-green-800">
               <li><strong>40% increase</strong> in student sign-ups</li>
@@ -325,7 +325,7 @@ export default function EmbedConfigPage() {
               refreshInterval={refreshInterval}
             />
 
-            <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-lg">
               <p className="text-sm text-blue-900">
                 <strong>Tip:</strong> Change colors above to match your institution branding.
                 The widget updates in real-time!

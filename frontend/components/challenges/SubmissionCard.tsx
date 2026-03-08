@@ -76,17 +76,17 @@ export function SubmissionCard({ submission, variant = 'recruiter', onAction }: 
     const configs: Record<string, { label: string; className: string; icon: React.ReactNode }> = {
       APPLIED: {
         label: 'Applied',
-        className: 'bg-blue-100 text-blue-700',
+        className: 'bg-primary/10 text-primary',
         icon: <Clock className="h-3.5 w-3.5" />
       },
       SELECTED: {
         label: 'Selected',
-        className: 'bg-green-100 text-green-700',
+        className: 'bg-primary/10 text-primary',
         icon: <CheckCircle className="h-3.5 w-3.5" />
       },
       IN_PROGRESS: {
         label: 'In Progress',
-        className: 'bg-purple-100 text-purple-700',
+        className: 'bg-primary/10 text-primary',
         icon: <Clock className="h-3.5 w-3.5" />
       },
       SUBMITTED: {
@@ -101,7 +101,7 @@ export function SubmissionCard({ submission, variant = 'recruiter', onAction }: 
       },
       APPROVED: {
         label: 'Approved',
-        className: 'bg-green-100 text-green-700',
+        className: 'bg-primary/10 text-primary',
         icon: <CheckCircle className="h-3.5 w-3.5" />
       },
       REJECTED: {
@@ -142,7 +142,7 @@ export function SubmissionCard({ submission, variant = 'recruiter', onAction }: 
             <div className="flex items-center gap-3 flex-1 min-w-0">
               <Avatar className="h-10 w-10">
                 <AvatarImage src={student.photo || undefined} />
-                <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-sm">
+                <AvatarFallback className="bg-primary text-white text-sm">
                   {getInitials(student.firstName, student.lastName)}
                 </AvatarFallback>
               </Avatar>
@@ -161,7 +161,7 @@ export function SubmissionCard({ submission, variant = 'recruiter', onAction }: 
           {variant === 'student' && submission.challenge && (
             <div className="flex-1 min-w-0">
               <Link href={`/dashboard/student/challenges/${submission.challenge.id}`}>
-                <h4 className="font-medium hover:text-blue-600 transition-colors">
+                <h4 className="font-medium hover:text-primary transition-colors">
                   {submission.challenge.title}
                 </h4>
               </Link>
@@ -208,7 +208,7 @@ export function SubmissionCard({ submission, variant = 'recruiter', onAction }: 
                   href={submission.submissionUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-blue-600 hover:underline flex items-center gap-1"
+                  className="text-xs text-primary hover:underline flex items-center gap-1"
                 >
                   <ExternalLink className="h-3 w-3" />
                   View Submission
@@ -219,7 +219,7 @@ export function SubmissionCard({ submission, variant = 'recruiter', onAction }: 
                   href={submission.documentationUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-blue-600 hover:underline flex items-center gap-1"
+                  className="text-xs text-primary hover:underline flex items-center gap-1"
                 >
                   <FileText className="h-3 w-3" />
                   Documentation
@@ -230,7 +230,7 @@ export function SubmissionCard({ submission, variant = 'recruiter', onAction }: 
         )}
 
         {submission.companyFeedback && (
-          <div className="p-3 rounded-lg bg-blue-50 border border-blue-100">
+          <div className="p-3 rounded-lg bg-primary/5 border border-primary/10">
             <div className="flex items-center justify-between mb-1">
               <span className="text-xs font-medium text-blue-700">Company Feedback</span>
               {submission.companyRating && (
@@ -253,7 +253,7 @@ export function SubmissionCard({ submission, variant = 'recruiter', onAction }: 
         )}
 
         {submission.convertedToProject && (
-          <Badge className="bg-green-100 text-green-700">
+          <Badge className="bg-primary/10 text-primary">
             <CheckCircle className="h-3.5 w-3.5 mr-1" />
             Added to Portfolio
           </Badge>

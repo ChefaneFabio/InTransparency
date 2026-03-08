@@ -100,19 +100,19 @@ export default function LoginPage() {
       id: 'student',
       icon: GraduationCap,
       href: '/auth/register/student' as const,
-      color: 'text-blue-600 bg-blue-50',
+      color: 'text-primary bg-primary/10',
     },
     {
       id: 'university',
       icon: Building2,
       href: '/auth/register/university' as const,
-      color: 'text-purple-600 bg-purple-50',
+      color: 'text-primary bg-primary/10',
     },
     {
       id: 'recruiter',
       icon: Users,
       href: '/auth/register/recruiter' as const,
-      color: 'text-green-600 bg-green-50',
+      color: 'text-primary bg-primary/10',
     },
   ]
 
@@ -171,7 +171,7 @@ export default function LoginPage() {
                   <Label htmlFor="password">{t('fields.password')}</Label>
                   <Link
                     href="/auth/forgot-password"
-                    className="text-sm text-blue-600 hover:text-blue-500"
+                    className="text-sm text-primary hover:text-primary"
                   >
                     {t('login.forgotPassword')}
                   </Link>

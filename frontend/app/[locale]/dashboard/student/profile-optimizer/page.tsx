@@ -62,9 +62,9 @@ export default function ProfileOptimizerPage() {
   }, [])
 
   const getScoreColor = (score: number) => {
-    if (score >= 90) return 'text-green-600'
-    if (score >= 80) return 'text-blue-600'
-    if (score >= 70) return 'text-yellow-600'
+    if (score >= 90) return 'text-primary'
+    if (score >= 80) return 'text-primary'
+    if (score >= 70) return 'text-secondary'
     return 'text-red-600'
   }
 
@@ -94,7 +94,7 @@ export default function ProfileOptimizerPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+      <div className="min-h-screen bg-background space-y-6">
         <div>
           <Skeleton className="h-9 w-64 mb-2" />
           <Skeleton className="h-5 w-96" />
@@ -113,10 +113,10 @@ export default function ProfileOptimizerPage() {
 
   if (error || !data) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <Card className="max-w-md">
           <CardContent className="pt-6 text-center">
-            <AlertTriangle className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
+            <AlertTriangle className="h-12 w-12 text-secondary mx-auto mb-4" />
             <p className="text-gray-600">{error || 'Failed to load profile data'}</p>
             <Button className="mt-4" onClick={() => window.location.reload()}>
               Try Again
@@ -172,7 +172,7 @@ export default function ProfileOptimizerPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+    <div className="min-h-screen bg-background space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Profile Optimizer</h1>
         <p className="text-gray-600 mt-2">
@@ -181,7 +181,7 @@ export default function ProfileOptimizerPage() {
       </div>
 
       {/* Profile Score Overview */}
-      <Card className="bg-gradient-to-br from-blue-50 to-purple-50">
+      <Card className="bg-primary/5">
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-6">
             <div>
@@ -224,7 +224,7 @@ export default function ProfileOptimizerPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-gray-600">{insight.metric}</p>
-                <TrendingUp className="h-4 w-4 text-green-500" />
+                <TrendingUp className="h-4 w-4 text-primary" />
               </div>
               <p className="text-2xl font-bold text-gray-900 mb-1">{insight.value}</p>
               <p className="text-sm text-gray-500">{insight.subtitle}</p>
@@ -287,7 +287,7 @@ export default function ProfileOptimizerPage() {
                 <div className="space-y-4">
                   {strengths.map((label) => (
                     <div key={label} className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                      <CheckCircle className="h-5 w-5 text-primary mr-3 mt-0.5" />
                       <div>
                         <p className="font-medium text-gray-900">{label}</p>
                         <p className="text-sm text-gray-600">Completed</p>
@@ -296,7 +296,7 @@ export default function ProfileOptimizerPage() {
                   ))}
                   {skills.length > 0 && (
                     <div className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                      <CheckCircle className="h-5 w-5 text-primary mr-3 mt-0.5" />
                       <div>
                         <p className="font-medium text-gray-900">Technical Skills ({skills.length})</p>
                         <p className="text-sm text-gray-600">
@@ -314,14 +314,14 @@ export default function ProfileOptimizerPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
-                <AlertTriangle className="h-5 w-5 mr-2 text-yellow-600" />
+                <AlertTriangle className="h-5 w-5 mr-2 text-secondary" />
                 Quick Wins
               </CardTitle>
             </CardHeader>
             <CardContent>
               {suggestions.length === 0 ? (
                 <div className="text-center py-4">
-                  <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-3" />
+                  <CheckCircle className="h-12 w-12 text-primary mx-auto mb-3" />
                   <p className="font-medium text-gray-900">Profile is complete!</p>
                   <p className="text-sm text-gray-600">Great job! Your profile has all key fields filled in.</p>
                 </div>
@@ -330,10 +330,10 @@ export default function ProfileOptimizerPage() {
                   {suggestions.slice(0, 3).map((suggestion, idx) => (
                     <div key={suggestion.field} className="flex items-start">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 mt-0.5 ${
-                        idx === 0 ? 'bg-red-100' : idx === 1 ? 'bg-yellow-100' : 'bg-blue-100'
+                        idx === 0 ? 'bg-red-100' : idx === 1 ? 'bg-yellow-100' : 'bg-primary/10'
                       }`}>
                         <span className={`font-bold text-sm ${
-                          idx === 0 ? 'text-red-600' : idx === 1 ? 'text-yellow-600' : 'text-blue-600'
+                          idx === 0 ? 'text-red-600' : idx === 1 ? 'text-secondary' : 'text-primary'
                         }`}>{idx + 1}</span>
                       </div>
                       <div>
@@ -357,7 +357,7 @@ export default function ProfileOptimizerPage() {
                 <Brain className="h-5 w-5 mr-2" />
                 Optimization Suggestions
               </span>
-              <Badge className="bg-blue-100 text-blue-800">
+              <Badge className="bg-primary/10 text-primary">
                 {suggestions.length} Pending
               </Badge>
             </CardTitle>
@@ -365,7 +365,7 @@ export default function ProfileOptimizerPage() {
           <CardContent>
             {suggestions.length === 0 ? (
               <div className="text-center py-12">
-                <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                <CheckCircle className="h-16 w-16 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">All Done!</h3>
                 <p className="text-gray-600">Your profile is fully optimized. Keep your projects and skills up to date!</p>
               </div>
@@ -379,7 +379,7 @@ export default function ProfileOptimizerPage() {
                           <Badge className={
                             suggestion.priority === 'high' ? 'bg-red-100 text-red-800' :
                             suggestion.priority === 'medium' ? 'bg-yellow-400 text-gray-900' :
-                            'bg-green-100 text-green-800'
+                            'bg-primary/10 text-primary'
                           }>
                             {suggestion.priority.toUpperCase()}
                           </Badge>
@@ -418,12 +418,12 @@ export default function ProfileOptimizerPage() {
               </p>
             </CardHeader>
             <CardContent>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+              <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6">
                 <div className="flex items-center">
-                  <Lightbulb className="h-5 w-5 text-blue-600 mr-2" />
+                  <Lightbulb className="h-5 w-5 text-primary mr-2" />
                   <div>
-                    <p className="font-medium text-blue-900">Smart CV Generation</p>
-                    <p className="text-sm text-blue-700">
+                    <p className="font-medium text-primary">Smart CV Generation</p>
+                    <p className="text-sm text-primary">
                       Our AI analyzes job requirements and optimizes your CV for maximum impact
                     </p>
                   </div>

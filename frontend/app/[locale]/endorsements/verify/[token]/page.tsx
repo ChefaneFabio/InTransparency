@@ -147,7 +147,7 @@ export default function EndorsementVerifyPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin text-blue-600 mx-auto mb-4" />
+          <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto mb-4" />
           <p className="text-gray-600">Loading endorsement request...</p>
         </div>
       </div>
@@ -178,7 +178,7 @@ export default function EndorsementVerifyPage() {
           <CardContent className="p-8 text-center">
             {action === 'verify' ? (
               <>
-                <CheckCircle className="h-12 w-12 text-green-600 mx-auto mb-4" />
+                <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
                 <h2 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h2>
                 <p className="text-gray-600">
                   Your endorsement has been submitted successfully. The student will be notified.
@@ -193,7 +193,7 @@ export default function EndorsementVerifyPage() {
                 </p>
               </>
             )}
-            <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+            <div className="mt-6 p-4 bg-primary/5 rounded-lg">
               <p className="text-sm text-blue-800">
                 <strong>InTransparency</strong> is a verified talent marketplace connecting students with recruiters through transparent, verified credentials.
               </p>
@@ -212,7 +212,7 @@ export default function EndorsementVerifyPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm mb-4">
-            <Award className="h-5 w-5 text-purple-600" />
+            <Award className="h-5 w-5 text-primary" />
             <span className="font-semibold text-gray-900">InTransparency</span>
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Professor Endorsement Request</h1>
@@ -223,7 +223,7 @@ export default function EndorsementVerifyPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <GraduationCap className="h-5 w-5 text-blue-600" />
+              <GraduationCap className="h-5 w-5 text-primary" />
               Student Information
             </CardTitle>
           </CardHeader>
@@ -252,7 +252,7 @@ export default function EndorsementVerifyPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-green-600" />
+              <BookOpen className="h-5 w-5 text-primary" />
               Project: {endorsement.project.title}
             </CardTitle>
             <CardDescription>{endorsement.project.description}</CardDescription>
@@ -271,13 +271,13 @@ export default function EndorsementVerifyPage() {
             <div className="flex gap-3">
               {endorsement.project.githubUrl && (
                 <a href={endorsement.project.githubUrl} target="_blank" rel="noopener noreferrer"
-                   className="text-sm text-blue-600 hover:underline flex items-center gap-1">
+                   className="text-sm text-primary hover:underline flex items-center gap-1">
                   <ExternalLink className="h-3 w-3" /> GitHub
                 </a>
               )}
               {endorsement.project.liveUrl && (
                 <a href={endorsement.project.liveUrl} target="_blank" rel="noopener noreferrer"
-                   className="text-sm text-blue-600 hover:underline flex items-center gap-1">
+                   className="text-sm text-primary hover:underline flex items-center gap-1">
                   <ExternalLink className="h-3 w-3" /> Live Demo
                 </a>
               )}
@@ -303,7 +303,7 @@ export default function EndorsementVerifyPage() {
                     key={star}
                     type="button"
                     onClick={() => setRating(star)}
-                    className="p-1 hover:scale-110 transition-transform"
+                    className="p-1 transition-transform"
                   >
                     <Star
                       className={`h-8 w-8 ${
@@ -335,7 +335,7 @@ export default function EndorsementVerifyPage() {
                       key={comp}
                       variant={isActive ? 'default' : 'outline'}
                       className={`cursor-pointer transition-colors ${
-                        isActive ? 'bg-blue-600 hover:bg-blue-700' : 'hover:bg-gray-100'
+                        isActive ? 'bg-primary hover:bg-blue-700' : 'hover:bg-gray-100'
                       }`}
                       onClick={() => toggleCompetency(comp)}
                     >
@@ -355,7 +355,7 @@ export default function EndorsementVerifyPage() {
                             key={star}
                             type="button"
                             onClick={() => setCompetencyRating(comp, star)}
-                            className="p-0.5 hover:scale-110 transition-transform"
+                            className="p-0.5 transition-transform"
                           >
                             <Star
                               className={`h-5 w-5 ${
@@ -424,7 +424,7 @@ export default function EndorsementVerifyPage() {
               <Button
                 onClick={() => handleSubmit('verify')}
                 disabled={submitting}
-                className="flex-1 bg-green-600 hover:bg-green-700"
+                className="flex-1 bg-primary hover:bg-green-700"
               >
                 {submitting && action === 'verify' ? (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />

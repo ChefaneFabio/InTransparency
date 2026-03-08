@@ -133,7 +133,7 @@ export default function CompanySearchInterface() {
 
             {/* AI Interpretation */}
             {searchQuery && (
-              <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+              <div className="mt-4 p-3 bg-primary/5 rounded-lg">
                 <p className="text-sm text-blue-800">
                   <Sparkles className="inline h-4 w-4 mr-1" />
                   AI Understanding: Looking for <Badge variant="secondary">Computer Engineering</Badge> graduates with
@@ -245,12 +245,12 @@ export default function CompanySearchInterface() {
                         <div className="flex items-center gap-3">
                           <h3 className="text-xl font-semibold">{candidate.name}</h3>
                           {candidate.verified && (
-                            <Badge className="bg-green-100 text-green-800">
+                            <Badge className="bg-primary/10 text-green-800">
                               <Award className="h-3 w-3 mr-1" />
                               Verified
                             </Badge>
                           )}
-                          <Badge variant="outline" className="text-blue-600">
+                          <Badge variant="outline" className="text-primary">
                             {candidate.matchScore}% Match
                           </Badge>
                         </div>

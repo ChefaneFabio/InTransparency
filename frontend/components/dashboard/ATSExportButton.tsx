@@ -97,7 +97,7 @@ export function ATSExportButton({ candidateId, candidateName }: ATSExportButtonP
             <DialogTitle className="flex items-center gap-2">
               {result ? (
                 <>
-                  <CheckCircle2 className="h-5 w-5 text-green-600" />
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
                   Export Successful
                 </>
               ) : (
@@ -114,7 +114,7 @@ export function ATSExportButton({ candidateId, candidateName }: ATSExportButtonP
 
           {result && (
             <div className="space-y-4">
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
                 <p className="text-sm text-gray-700 mb-3">
                   The candidate has been successfully added to your {result.ats} account.
                 </p>

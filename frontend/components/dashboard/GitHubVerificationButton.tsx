@@ -81,7 +81,7 @@ export function GitHubVerificationButton({
           </>
         ) : verification?.isVerified ? (
           <>
-            <CheckCircle2 className="h-4 w-4 text-green-600" />
+            <CheckCircle2 className="h-4 w-4 text-primary" />
             Verified
           </>
         ) : (
@@ -103,12 +103,12 @@ export function GitHubVerificationButton({
             <DialogTitle className="flex items-center gap-2">
               {verification?.isVerified ? (
                 <>
-                  <CheckCircle2 className="h-6 w-6 text-green-600" />
+                  <CheckCircle2 className="h-6 w-6 text-primary" />
                   GitHub Verification Successful
                 </>
               ) : (
                 <>
-                  <AlertTriangle className="h-6 w-6 text-yellow-600" />
+                  <AlertTriangle className="h-6 w-6 text-secondary" />
                   Verification Issues Detected
                 </>
               )}
@@ -156,7 +156,7 @@ export function GitHubVerificationButton({
                     </div>
                     <div>
                       <div className="text-sm text-gray-600 mb-1">Your Commits</div>
-                      <div className="text-xl font-semibold text-blue-600">{verification.userCommits}</div>
+                      <div className="text-xl font-semibold text-primary">{verification.userCommits}</div>
                     </div>
                     <div>
                       <div className="text-sm text-gray-600 mb-1">First Commit</div>
@@ -252,7 +252,7 @@ export function GitHubVerificationButton({
                   Close
                 </Button>
                 {verification.isVerified && (
-                  <Button onClick={() => setOpen(false)} className="bg-green-600 hover:bg-green-700">
+                  <Button onClick={() => setOpen(false)} className="bg-primary hover:bg-primary/90">
                     <CheckCircle2 className="h-4 w-4 mr-2" />
                     Looks Good!
                   </Button>

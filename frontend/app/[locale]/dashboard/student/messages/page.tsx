@@ -273,9 +273,9 @@ export default function StudentMessages() {
                           onClick={() => handleSelectConversation(conv)}
                           className={`p-3 rounded-lg cursor-pointer transition-colors ${
                             selectedConversation?.threadId === conv.threadId
-                              ? 'bg-blue-50 border border-blue-200'
+                              ? 'bg-primary/5 border border-primary/20'
                               : conv.unreadCount > 0
-                                ? 'bg-blue-50/50 hover:bg-blue-50'
+                                ? 'bg-primary/5/50 hover:bg-primary/5'
                                 : 'hover:bg-gray-50'
                           }`}
                         >
@@ -402,7 +402,7 @@ export default function StudentMessages() {
                             key={msg.id}
                             className={`p-4 rounded-lg ${
                               isMe
-                                ? 'bg-blue-50 ml-8'
+                                ? 'bg-primary/5 ml-8'
                                 : 'bg-gray-50 mr-8'
                             }`}
                           >

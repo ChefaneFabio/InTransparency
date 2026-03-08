@@ -105,7 +105,7 @@ export function ProductTour({ isOpen, onClose, steps, autoPlay = false }: Produc
         {step.highlight && (
           <div className="absolute inset-0">
             <div
-              className="absolute bg-blue-500/20 border-2 border-blue-500 rounded-lg animate-pulse"
+              className="absolute bg-primary/50/20 border-2 border-blue-500 rounded-lg animate-pulse"
               style={{
                 // Positioning would be calculated based on step.target in real implementation
                 top: '20%',
@@ -119,7 +119,7 @@ export function ProductTour({ isOpen, onClose, steps, autoPlay = false }: Produc
       </div>
 
       {/* Tour Card */}
-      <Card className="absolute z-10 w-96 shadow-2xl border-0 bg-white/95 backdrop-blur-sm"
+      <Card className="absolute z-10 w-96 shadow-lg border-0 bg-white/95 backdrop-blur-sm"
         style={{
           // Position based on step.position - simplified for demo
           top: step.position === 'top' ? '10%' : step.position === 'bottom' ? '70%' : '40%',
@@ -133,7 +133,7 @@ export function ProductTour({ isOpen, onClose, steps, autoPlay = false }: Produc
               <Badge variant="outline" className="text-xs">
                 Step {currentStep + 1} of {steps.length}
               </Badge>
-              <Sparkles className="h-4 w-4 text-blue-500" />
+              <Sparkles className="h-4 w-4 text-primary" />
             </div>
             <Button variant="ghost" size="sm" onClick={onClose}>
               <X className="h-4 w-4" />
@@ -143,7 +143,7 @@ export function ProductTour({ isOpen, onClose, steps, autoPlay = false }: Produc
           {/* Content */}
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
-              <Target className="h-5 w-5 text-blue-500 mr-2" />
+              <Target className="h-5 w-5 text-primary mr-2" />
               {step.title}
             </h3>
             <p className="text-gray-600 leading-relaxed">
@@ -153,7 +153,7 @@ export function ProductTour({ isOpen, onClose, steps, autoPlay = false }: Produc
 
           {/* Action Hint */}
           {step.action && (
-            <div className="mb-6 p-3 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="mb-6 p-3 bg-primary/5 rounded-lg border border-primary/20">
               <div className="flex items-center text-sm text-blue-700">
                 <MousePointer className="h-4 w-4 mr-2" />
                 <span className="capitalize">{step.action.type}</span> on {step.action.element}
@@ -169,7 +169,7 @@ export function ProductTour({ isOpen, onClose, steps, autoPlay = false }: Produc
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div
-                className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-500"
+                className="bg-primary h-2 rounded-full transition-all duration-500"
                 style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
               />
             </div>
@@ -183,9 +183,9 @@ export function ProductTour({ isOpen, onClose, steps, autoPlay = false }: Produc
                 onClick={() => handleStepClick(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentStep
-                    ? 'bg-blue-500 scale-125'
+                    ? 'bg-primary/50 scale-125'
                     : completedSteps.includes(index)
-                    ? 'bg-green-500'
+                    ? 'bg-primary/50'
                     : 'bg-gray-300 hover:bg-gray-400'
                 }`}
               />
@@ -226,7 +226,7 @@ export function ProductTour({ isOpen, onClose, steps, autoPlay = false }: Produc
                   <ArrowRight className="h-4 w-4 ml-1" />
                 </Button>
               ) : (
-                <Button size="sm" onClick={onClose} className="bg-green-600 hover:bg-green-700">
+                <Button size="sm" onClick={onClose} className="bg-primary hover:bg-green-700">
                   <CheckCircle className="h-4 w-4 mr-1" />
                   Complete
                 </Button>
@@ -239,7 +239,7 @@ export function ProductTour({ isOpen, onClose, steps, autoPlay = false }: Produc
       {/* Completion Celebration */}
       {currentStep === steps.length - 1 && (
         <div className="absolute top-4 right-4">
-          <div className="flex items-center space-x-2 bg-green-100 text-green-800 px-4 py-2 rounded-lg">
+          <div className="flex items-center space-x-2 bg-primary/10 text-green-800 px-4 py-2 rounded-lg">
             <CheckCircle className="h-5 w-5" />
             <span className="font-medium">Tour Complete!</span>
           </div>

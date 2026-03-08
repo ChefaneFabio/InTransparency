@@ -92,9 +92,9 @@ function formatDateShort(dateStr: string): string {
 function getSyncTypeBadge(syncType: SyncLog['syncType']) {
   switch (syncType) {
     case 'MANUAL':
-      return <Badge className="bg-blue-100 text-blue-800 border-blue-200">Manuale</Badge>
+      return <Badge className="bg-primary/10 text-primary border-primary/20">Manuale</Badge>
     case 'SCHEDULED':
-      return <Badge className="bg-purple-100 text-purple-800 border-purple-200">Programmata</Badge>
+      return <Badge className="bg-primary/10 text-primary border-primary/20">Programmata</Badge>
     case 'WEBHOOK':
       return <Badge className="bg-orange-100 text-orange-800 border-orange-200">Webhook</Badge>
     default:
@@ -104,10 +104,10 @@ function getSyncTypeBadge(syncType: SyncLog['syncType']) {
 
 function getDataTypeBadge(dataType: SyncLog['dataType']) {
   const map: Record<string, { label: string; className: string }> = {
-    STUDENTS: { label: 'Studenti', className: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
+    STUDENTS: { label: 'Studenti', className: 'bg-primary/5 text-primary border-primary/20' },
     COURSES: { label: 'Corsi', className: 'bg-cyan-50 text-cyan-700 border-cyan-200' },
     GRADES: { label: 'Voti', className: 'bg-amber-50 text-amber-700 border-amber-200' },
-    PROJECTS: { label: 'Progetti', className: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+    PROJECTS: { label: 'Progetti', className: 'bg-primary/5 text-primary border-emerald-200' },
     CERTIFICATES: { label: 'Certificati', className: 'bg-rose-50 text-rose-700 border-rose-200' },
   }
   const entry = map[dataType] || { label: dataType, className: '' }
@@ -118,7 +118,7 @@ function getStatusBadge(status: SyncLog['status']) {
   switch (status) {
     case 'SUCCESS':
       return (
-        <Badge className="bg-green-100 text-green-800 border-green-200">
+        <Badge className="bg-primary/10 text-green-800 border-primary/20">
           <CheckCircle className="h-3 w-3 mr-1" />Completata
         </Badge>
       )
@@ -313,8 +313,8 @@ export default function UniversitySyncPage() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <Database className="h-5 w-5 text-blue-600" />
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Database className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats?.totalSyncs ?? 0}</p>
@@ -326,8 +326,8 @@ export default function UniversitySyncPage() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                    <CheckCircle className="h-5 w-5 text-green-600" />
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <CheckCircle className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats?.successfulSyncs ?? 0}</p>
@@ -352,8 +352,8 @@ export default function UniversitySyncPage() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <Clock className="h-5 w-5 text-purple-600" />
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Clock className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold text-base">
@@ -395,7 +395,7 @@ export default function UniversitySyncPage() {
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
                         <div className={`w-3 h-3 rounded-full ${
-                          conn.syncEnabled ? 'bg-green-500' : 'bg-gray-300'
+                          conn.syncEnabled ? 'bg-primary/50' : 'bg-gray-300'
                         }`} />
                         <div>
                           <p className="font-medium text-gray-900">
@@ -409,7 +409,7 @@ export default function UniversitySyncPage() {
                       </div>
                       <div className="flex items-center gap-2">
                         {conn.verificationStatus === 'VERIFIED' ? (
-                          <Badge className="bg-green-100 text-green-800 border-green-200">
+                          <Badge className="bg-primary/10 text-green-800 border-primary/20">
                             <CheckCircle className="h-3 w-3 mr-1" />Verificata
                           </Badge>
                         ) : (
@@ -427,20 +427,20 @@ export default function UniversitySyncPage() {
                     )}
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                      <div className="bg-indigo-50 rounded-lg p-3 text-center">
-                        <BookOpen className="h-4 w-4 text-indigo-600 mx-auto mb-1" />
+                      <div className="bg-primary/5 rounded-lg p-3 text-center">
+                        <BookOpen className="h-4 w-4 text-primary mx-auto mb-1" />
                         <p className="text-lg font-semibold text-indigo-900">{conn.coursesCount ?? 0}</p>
-                        <p className="text-xs text-indigo-600">Corsi</p>
+                        <p className="text-xs text-primary">Corsi</p>
                       </div>
                       <div className="bg-amber-50 rounded-lg p-3 text-center">
                         <FileText className="h-4 w-4 text-amber-600 mx-auto mb-1" />
                         <p className="text-lg font-semibold text-amber-900">{conn.gradesCount ?? 0}</p>
                         <p className="text-xs text-amber-600">Voti</p>
                       </div>
-                      <div className="bg-emerald-50 rounded-lg p-3 text-center">
-                        <Database className="h-4 w-4 text-emerald-600 mx-auto mb-1" />
+                      <div className="bg-primary/5 rounded-lg p-3 text-center">
+                        <Database className="h-4 w-4 text-primary mx-auto mb-1" />
                         <p className="text-lg font-semibold text-emerald-900">{conn.projectsCount ?? 0}</p>
-                        <p className="text-xs text-emerald-600">Progetti</p>
+                        <p className="text-xs text-primary">Progetti</p>
                       </div>
                       <div className="bg-rose-50 rounded-lg p-3 text-center">
                         <CheckCircle className="h-4 w-4 text-rose-600 mx-auto mb-1" />
@@ -465,8 +465,8 @@ export default function UniversitySyncPage() {
           </CardHeader>
           <CardContent>
             {successMessage && (
-              <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+              <div className="mb-4 p-3 bg-primary/5 border border-primary/20 rounded-lg flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                 <p className="text-sm text-green-800">{successMessage}</p>
               </div>
             )}
@@ -484,14 +484,14 @@ export default function UniversitySyncPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Button
                 variant="outline"
-                className="h-auto py-4 flex flex-col items-center gap-2 hover:border-blue-300 hover:bg-blue-50"
+                className="h-auto py-4 flex flex-col items-center gap-2 hover:border-primary/30 hover:bg-primary/5"
                 disabled={syncingType !== null}
                 onClick={() => handleManualSync('STUDENTS')}
               >
                 {syncingType === 'STUDENTS' ? (
-                  <Loader2 className="h-6 w-6 text-blue-600 animate-spin" />
+                  <Loader2 className="h-6 w-6 text-primary animate-spin" />
                 ) : (
-                  <Users className="h-6 w-6 text-blue-600" />
+                  <Users className="h-6 w-6 text-primary" />
                 )}
                 <span className="font-medium">Sincronizza Studenti</span>
                 <span className="text-xs text-gray-500">Aggiorna dati studenti</span>
@@ -499,14 +499,14 @@ export default function UniversitySyncPage() {
 
               <Button
                 variant="outline"
-                className="h-auto py-4 flex flex-col items-center gap-2 hover:border-purple-300 hover:bg-purple-50"
+                className="h-auto py-4 flex flex-col items-center gap-2 hover:border-primary/30 hover:bg-primary/5"
                 disabled={syncingType !== null}
                 onClick={() => handleManualSync('COURSES')}
               >
                 {syncingType === 'COURSES' ? (
-                  <Loader2 className="h-6 w-6 text-purple-600 animate-spin" />
+                  <Loader2 className="h-6 w-6 text-primary animate-spin" />
                 ) : (
-                  <BookOpen className="h-6 w-6 text-purple-600" />
+                  <BookOpen className="h-6 w-6 text-primary" />
                 )}
                 <span className="font-medium">Sincronizza Corsi</span>
                 <span className="text-xs text-gray-500">Aggiorna catalogo corsi</span>
@@ -514,14 +514,14 @@ export default function UniversitySyncPage() {
 
               <Button
                 variant="outline"
-                className="h-auto py-4 flex flex-col items-center gap-2 hover:border-emerald-300 hover:bg-emerald-50"
+                className="h-auto py-4 flex flex-col items-center gap-2 hover:border-emerald-300 hover:bg-primary/5"
                 disabled={syncingType !== null}
                 onClick={() => handleManualSync('PROJECTS')}
               >
                 {syncingType === 'PROJECTS' ? (
-                  <Loader2 className="h-6 w-6 text-emerald-600 animate-spin" />
+                  <Loader2 className="h-6 w-6 text-primary animate-spin" />
                 ) : (
-                  <FileText className="h-6 w-6 text-emerald-600" />
+                  <FileText className="h-6 w-6 text-primary" />
                 )}
                 <span className="font-medium">Sincronizza Progetti</span>
                 <span className="text-xs text-gray-500">Aggiorna progetti studenti</span>
@@ -587,8 +587,8 @@ export default function UniversitySyncPage() {
                             <span className="text-gray-500"> elaborati</span>
                           </div>
                           <div className="flex gap-2 mt-1 text-xs text-gray-500">
-                            <span className="text-green-600">+{log.recordsCreated} nuovi</span>
-                            <span className="text-blue-600">{log.recordsUpdated} aggiornati</span>
+                            <span className="text-primary">+{log.recordsCreated} nuovi</span>
+                            <span className="text-primary">{log.recordsUpdated} aggiornati</span>
                             {log.recordsFailed > 0 && (
                               <span className="text-red-600">{log.recordsFailed} falliti</span>
                             )}

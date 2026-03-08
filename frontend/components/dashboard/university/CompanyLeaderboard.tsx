@@ -18,7 +18,7 @@ export default function CompanyLeaderboard({ companies }: CompanyLeaderboardProp
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Building2 className="h-5 w-5 text-purple-500" />
+          <Building2 className="h-5 w-5 text-primary" />
           Top Recruiting Companies
         </CardTitle>
       </CardHeader>
@@ -43,7 +43,7 @@ export default function CompanyLeaderboard({ companies }: CompanyLeaderboardProp
                     </Badge>
                   )}
                   {c.hires > 0 && (
-                    <Badge className="bg-green-100 text-green-700 text-xs">
+                    <Badge className="bg-primary/10 text-primary text-xs">
                       {c.hires} hires
                     </Badge>
                   )}

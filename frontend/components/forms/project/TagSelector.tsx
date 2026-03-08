@@ -5,24 +5,24 @@ import { Plus, X, Search } from 'lucide-react'
 
 const colorStyles = {
   green: {
-    badge: 'bg-green-100 text-green-700',
+    badge: 'bg-primary/10 text-green-700',
     badgeHover: 'hover:text-green-900',
-    selected: 'bg-green-600 text-white border-green-600',
+    selected: 'bg-primary text-white border-green-600',
   },
   purple: {
-    badge: 'bg-purple-100 text-purple-700',
+    badge: 'bg-primary/10 text-purple-700',
     badgeHover: 'hover:text-purple-900',
-    selected: 'bg-purple-600 text-white border-purple-600',
+    selected: 'bg-primary text-white border-purple-600',
   },
   blue: {
-    badge: 'bg-blue-100 text-blue-700',
+    badge: 'bg-primary/10 text-blue-700',
     badgeHover: 'hover:text-blue-900',
-    selected: 'bg-blue-600 text-white border-blue-600',
+    selected: 'bg-primary text-white border-blue-600',
   },
   indigo: {
-    badge: 'bg-indigo-100 text-indigo-700',
+    badge: 'bg-primary/10 text-primary',
     badgeHover: 'hover:text-indigo-900',
-    selected: 'bg-indigo-600 text-white border-indigo-600',
+    selected: 'bg-primary text-white border-indigo-600',
   },
 }
 

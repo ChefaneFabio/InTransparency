@@ -99,16 +99,16 @@ export function PublicPortfolio({ user }: PublicPortfolioProps) {
 
             <Card className="text-center border-2 hover:shadow-lg transition-shadow">
               <CardContent className="pt-6">
-                <Shield className="h-12 w-12 mx-auto mb-3 text-green-600" />
-                <div className="text-4xl font-bold text-green-600 mb-2">{user.stats.verificationScore}%</div>
+                <Shield className="h-12 w-12 mx-auto mb-3 text-primary" />
+                <div className="text-4xl font-bold text-primary mb-2">{user.stats.verificationScore}%</div>
                 <div className="text-gray-600">Verification Score</div>
               </CardContent>
             </Card>
 
             <Card className="text-center border-2 hover:shadow-lg transition-shadow">
               <CardContent className="pt-6">
-                <Award className="h-12 w-12 mx-auto mb-3 text-blue-600" />
-                <div className="text-4xl font-bold text-blue-600 mb-2">{user.stats.skillsCount}</div>
+                <Award className="h-12 w-12 mx-auto mb-3 text-primary" />
+                <div className="text-4xl font-bold text-primary mb-2">{user.stats.skillsCount}</div>
                 <div className="text-gray-600">Skills Mastered</div>
               </CardContent>
             </Card>
@@ -150,7 +150,7 @@ export function PublicPortfolio({ user }: PublicPortfolioProps) {
                     <div className="flex items-start justify-between mb-2">
                       <CardTitle className="text-lg line-clamp-2">{project.title}</CardTitle>
                       {project.grade && (
-                        <Badge className="ml-2 bg-green-500 text-white flex-shrink-0">
+                        <Badge className="ml-2 bg-primary/50 text-white flex-shrink-0">
                           {project.grade}
                         </Badge>
                       )}
@@ -174,7 +174,7 @@ export function PublicPortfolio({ user }: PublicPortfolioProps) {
                         {project.universityVerified && (
                           <Badge
                             variant="outline"
-                            className="border-green-500 text-green-700 bg-green-50"
+                            className="border-green-500 text-green-700 bg-primary/5"
                           >
                             <CheckCircle className="h-3 w-3 mr-1" />
                             University Verified
@@ -183,7 +183,7 @@ export function PublicPortfolio({ user }: PublicPortfolioProps) {
                         {project.endorsements && project.endorsements.length > 0 && (
                           <Badge
                             variant="outline"
-                            className="border-blue-500 text-blue-700 bg-blue-50"
+                            className="border-blue-500 text-blue-700 bg-primary/5"
                           >
                             <CheckCircle className="h-3 w-3 mr-1" />
                             {project.endorsements.length} Endorsement{project.endorsements.length > 1 ? 's' : ''}
@@ -260,7 +260,7 @@ export function PublicPortfolio({ user }: PublicPortfolioProps) {
         )}
 
         {/* Viral CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-primary to-secondary rounded-2xl text-white text-center mb-12">
+        <section className="py-16 bg-primary rounded-2xl text-white text-center mb-12">
           <h3 className="text-3xl font-bold mb-4">
             Build Your Own Verified Portfolio
           </h3>
@@ -283,7 +283,7 @@ export function PublicPortfolio({ user }: PublicPortfolioProps) {
       </div>
 
       {/* Fixed Share Buttons */}
-      <div className="fixed bottom-6 right-6 bg-white rounded-lg shadow-2xl p-4 border-2 border-gray-200 z-50">
+      <div className="fixed bottom-6 right-6 bg-white rounded-lg shadow-lg p-4 border-2 border-gray-200 z-50">
         <p className="text-sm font-medium mb-2 text-gray-700">Share this portfolio:</p>
         <ShareButtons
           url={portfolioUrl}

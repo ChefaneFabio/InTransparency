@@ -254,8 +254,8 @@ export default function AddStudentsPage() {
         <div className="container max-w-2xl mx-auto px-4">
           <Card className="text-center py-12">
             <CardContent>
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="h-8 w-8 text-green-600" />
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="h-8 w-8 text-primary" />
               </div>
 
               {activeTab === 'single' ? (
@@ -277,7 +277,7 @@ export default function AddStudentsPage() {
                   {importResult && (
                     <div className="space-y-3 mt-4">
                       <div className="flex items-center justify-center gap-4 text-sm">
-                        <Badge variant="default" className="bg-green-100 text-green-800 hover:bg-green-100">
+                        <Badge variant="default" className="bg-primary/10 text-primary hover:bg-primary/10">
                           {importResult.success} importati
                         </Badge>
                         {importResult.skipped > 0 && (
@@ -501,11 +501,11 @@ export default function AddStudentsPage() {
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* Download Template */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
                   <div className="flex items-center justify-between">
                     <div>
                       <h4 className="font-medium text-blue-900">Scarica il Template</h4>
-                      <p className="text-sm text-blue-700">
+                      <p className="text-sm text-primary">
                         Usa questo template per formattare correttamente i dati
                       </p>
                     </div>
@@ -519,12 +519,12 @@ export default function AddStudentsPage() {
                 {/* Upload Area */}
                 <div
                   className={`border-2 border-dashed rounded-lg p-8 text-center ${
-                    bulkFile ? 'border-green-300 bg-green-50' : 'border-gray-300 hover:border-blue-400'
+                    bulkFile ? 'border-green-300 bg-primary/5' : 'border-gray-300 hover:border-blue-400'
                   }`}
                 >
                   {bulkFile ? (
                     <div>
-                      <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
+                      <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
                       <p className="font-medium text-gray-900">{bulkFile.name}</p>
                       <p className="text-sm text-gray-600">{bulkPreview.length} studenti trovati</p>
                       <Button

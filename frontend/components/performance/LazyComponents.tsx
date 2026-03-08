@@ -7,7 +7,7 @@ import { Loader2 } from 'lucide-react'
 const LoadingSpinner = ({ message = 'Loading...' }: { message?: string }) => (
   <div className="flex items-center justify-center py-8">
     <div className="text-center">
-      <Loader2 className="h-8 w-8 animate-spin mx-auto text-teal-600 mb-2" />
+      <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary mb-2" />
       <p className="text-gray-600 text-sm">{message}</p>
     </div>
   </div>
@@ -248,7 +248,7 @@ export function SuspenseWrapper({
               setHasError(false)
               window.location.reload()
             }}
-            className="text-sm text-teal-600 hover:text-teal-700 underline"
+            className="text-sm text-primary hover:text-teal-700 underline"
           >
             Try again
           </button>

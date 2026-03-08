@@ -25,7 +25,7 @@ export function PulseButton({
     <div className="relative inline-block">
       {/* Pulsing glow effect */}
       <motion.div
-        className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400 opacity-75 blur-lg"
+        className="absolute inset-0 rounded-lg bg-primary opacity-75 blur-lg"
         animate={{
           scale: [1, 1.1, 1],
           opacity: [0.5, 0.8, 0.5],
@@ -39,7 +39,6 @@ export function PulseButton({
 
       {/* Button */}
       <motion.div
-        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className="relative"
       >

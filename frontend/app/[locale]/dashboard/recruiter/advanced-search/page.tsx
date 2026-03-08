@@ -489,9 +489,9 @@ export default function AdvancedSearchPage() {
                             onClick={() => handleSkillToggle(skill, isRequired ? 'required' : 'preferred')}
                             className={`w-full px-3 py-2 text-sm rounded-lg border transition-colors ${
                               isRequired
-                                ? 'bg-blue-100 border-blue-300 text-blue-700'
+                                ? 'bg-primary/10 border-blue-300 text-blue-700'
                                 : isPreferred
-                                ? 'bg-green-50 border-green-300 text-green-700'
+                                ? 'bg-primary/5 border-green-300 text-green-700'
                                 : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
                             }`}
                           >
@@ -513,12 +513,12 @@ export default function AdvancedSearchPage() {
                             </button>
                           )}
                           {isRequired && (
-                            <Badge className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 text-xs bg-blue-600">
+                            <Badge className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 text-xs bg-primary">
                               Required
                             </Badge>
                           )}
                           {isPreferred && (
-                            <Badge className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 text-xs bg-green-600">
+                            <Badge className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 text-xs bg-primary">
                               Preferred
                             </Badge>
                           )}
@@ -531,8 +531,8 @@ export default function AdvancedSearchPage() {
 
               <div className="flex items-center justify-between pt-4 border-t">
                 <div className="text-sm text-gray-600">
-                  <span className="font-medium text-blue-600">{filters.requiredSkills.length}</span> required,{' '}
-                  <span className="font-medium text-green-600">{filters.preferredSkills.length}</span> preferred skills
+                  <span className="font-medium text-primary">{filters.requiredSkills.length}</span> required,{' '}
+                  <span className="font-medium text-primary">{filters.preferredSkills.length}</span> preferred skills
                 </div>
                 <Button variant="outline" size="sm">
                   Add Custom Skill
@@ -654,7 +654,7 @@ export default function AdvancedSearchPage() {
           </Card>
 
           {/* Search Summary & Actions */}
-          <Card className="bg-blue-50 border-blue-200">
+          <Card className="bg-primary/5 border-primary/20">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -686,7 +686,7 @@ export default function AdvancedSearchPage() {
                   </div>
                   {hasSearched && (
                     <p className="text-sm text-gray-600 mt-3">
-                      Found: <span className="font-semibold text-blue-600">{totalResults} candidates</span>
+                      Found: <span className="font-semibold text-primary">{totalResults} candidates</span>
                     </p>
                   )}
                 </div>
@@ -696,7 +696,7 @@ export default function AdvancedSearchPage() {
                     Save Search
                   </Button>
                   <Button
-                    className="bg-blue-600 hover:bg-blue-700"
+                    className="bg-primary hover:bg-blue-700"
                     onClick={() => runSearch(1)}
                     disabled={searchLoading}
                   >
@@ -710,10 +710,10 @@ export default function AdvancedSearchPage() {
 
           {/* Save Search Dialog */}
           {showSaveDialog && (
-            <Card className="border-blue-200">
+            <Card className="border-primary/20">
               <CardContent className="p-6">
                 {saveSuccess ? (
-                  <div className="flex items-center space-x-2 text-green-600">
+                  <div className="flex items-center space-x-2 text-primary">
                     <CheckCircle2 className="h-5 w-5" />
                     <span>{saveSuccess}</span>
                   </div>
@@ -821,7 +821,7 @@ export default function AdvancedSearchPage() {
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
+                        <div className="w-12 h-12 bg-primary/50 rounded-full flex items-center justify-center text-white font-semibold">
                           {student.initials}
                         </div>
                         <div>
@@ -861,7 +861,7 @@ export default function AdvancedSearchPage() {
                                 {project.title}
                               </Badge>
                               {project.innovationScore !== null && (
-                                <span className="text-xs text-green-600">{project.innovationScore}/10</span>
+                                <span className="text-xs text-primary">{project.innovationScore}/10</span>
                               )}
                             </div>
                           ))}

@@ -11,7 +11,7 @@ interface ProjectIdeaCardProps {
 }
 
 const difficultyConfig = {
-  beginner: { color: 'bg-green-100 text-green-700', label: 'Beginner' },
+  beginner: { color: 'bg-primary/10 text-green-700', label: 'Beginner' },
   intermediate: { color: 'bg-yellow-100 text-yellow-700', label: 'Intermediate' },
   advanced: { color: 'bg-red-100 text-red-700', label: 'Advanced' },
 }

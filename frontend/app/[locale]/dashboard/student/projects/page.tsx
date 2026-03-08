@@ -182,7 +182,7 @@ export default function ProjectsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
+      <div className="min-h-screen bg-background space-y-8">
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Projects</h1>
@@ -210,7 +210,7 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
+    <div className="min-h-screen bg-background space-y-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -240,7 +240,7 @@ export default function ProjectsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-green-600">
+              <div className="text-2xl font-bold text-primary">
                 {projects.filter(p => p.status === 'analyzed').length}
               </div>
               <div className="ml-2 text-sm text-gray-700 font-medium">Analyzed</div>
@@ -250,7 +250,7 @@ export default function ProjectsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-blue-600">
+              <div className="text-2xl font-bold text-primary">
                 {Math.round(projects.reduce((acc, p) => acc + (p.innovationScore || 0), 0) / projects.length) || 0}
               </div>
               <div className="ml-2 text-sm text-gray-700 font-medium">Avg Score</div>
@@ -260,7 +260,7 @@ export default function ProjectsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-purple-600">
+              <div className="text-2xl font-bold text-primary">
                 {projects.reduce((acc, p) => acc + (p.stats?.views || 0), 0)}
               </div>
               <div className="ml-2 text-sm text-gray-700 font-medium">Total Views</div>
@@ -431,14 +431,14 @@ export default function ProjectsPage() {
                     <div className="flex items-start justify-between">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start space-x-4">
-                          <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                             <span className="text-2xl">🚀</span>
                           </div>
                           <div className="flex-1 min-w-0">
                             <h3 className="text-lg font-semibold text-gray-900 truncate">
                               <Link 
                                 href={`/dashboard/student/projects/${project.id}`}
-                                className="hover:text-blue-600 transition-colors"
+                                className="hover:text-primary transition-colors"
                               >
                                 {project.title}
                               </Link>
@@ -486,7 +486,7 @@ export default function ProjectsPage() {
                       
                       <div className="flex items-center space-x-2 ml-4">
                         <div className="text-right">
-                          <div className="text-lg font-semibold text-blue-600">
+                          <div className="text-lg font-semibold text-primary">
                             {project.innovationScore}/100
                           </div>
                           <div className="text-xs text-gray-800 font-medium">Innovation</div>

@@ -182,7 +182,7 @@ export function CourseFilters({ filters, onChange, onApply, resultCount }: Cours
         </Button>
 
         {/* Info banner */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+        <div className="bg-primary/5 border border-primary/20 rounded-lg p-3">
           <p className="text-xs text-blue-800">
             <strong>💡 Demo Mode:</strong> Using mock data. When ITS partnerships are active,
             you'll see real course grades verified by institutions.

@@ -274,7 +274,7 @@ export default function CandidatesPage() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-2">
-              <Users className="h-5 w-5 text-blue-600" />
+              <Users className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{filteredCandidates.length}</p>
                 <p className="text-xs text-gray-600">Candidates</p>
@@ -285,7 +285,7 @@ export default function CandidatesPage() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-2">
-              <Code className="h-5 w-5 text-purple-600" />
+              <Code className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">
                   {filteredCandidates.reduce((acc, c) => acc + c._count.projects, 0)}
@@ -298,7 +298,7 @@ export default function CandidatesPage() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-green-600" />
+              <CheckCircle className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">
                   {filteredCandidates.filter(c => c.projects.some(p => p.universityVerified)).length}
@@ -311,7 +311,7 @@ export default function CandidatesPage() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-2">
-              <Bookmark className="h-5 w-5 text-yellow-600" />
+              <Bookmark className="h-5 w-5 text-secondary" />
               <div>
                 <p className="text-2xl font-bold">{bookmarked.size}</p>
                 <p className="text-xs text-gray-600">Saved</p>
@@ -414,7 +414,7 @@ export default function CandidatesPage() {
                   <div className="flex items-center gap-3">
                     <Avatar className="h-12 w-12">
                       <AvatarImage src={candidate.photo || undefined} />
-                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white">
+                      <AvatarFallback className="bg-primary text-white">
                         {getInitials(candidate.firstName, candidate.lastName)}
                       </AvatarFallback>
                     </Avatar>
@@ -429,7 +429,7 @@ export default function CandidatesPage() {
                     variant="ghost"
                     size="icon"
                     onClick={() => toggleBookmark(candidate.id)}
-                    className={bookmarked.has(candidate.id) ? 'text-yellow-500' : 'text-gray-400'}
+                    className={bookmarked.has(candidate.id) ? 'text-secondary' : 'text-gray-400'}
                   >
                     <Star className={`h-4 w-4 ${bookmarked.has(candidate.id) ? 'fill-current' : ''}`} />
                   </Button>
@@ -455,7 +455,7 @@ export default function CandidatesPage() {
                         {candidate.projects[0].title}
                       </h4>
                       {candidate.projects[0].universityVerified && (
-                        <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                       )}
                     </div>
                     <Badge variant="outline" className="text-xs">
@@ -488,7 +488,7 @@ export default function CandidatesPage() {
                   <div className="flex items-center gap-4">
                     <Avatar className="h-14 w-14">
                       <AvatarImage src={candidate.photo || undefined} />
-                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white">
+                      <AvatarFallback className="bg-primary text-white">
                         {getInitials(candidate.firstName, candidate.lastName)}
                       </AvatarFallback>
                     </Avatar>
@@ -498,7 +498,7 @@ export default function CandidatesPage() {
                           {candidate.firstName} {candidate.lastName}
                         </h3>
                         {candidate.projects.some(p => p.universityVerified) && (
-                          <CheckCircle className="h-4 w-4 text-green-600" />
+                          <CheckCircle className="h-4 w-4 text-primary" />
                         )}
                       </div>
                       <p className="text-sm text-gray-600">{candidate.university}</p>
@@ -515,7 +515,7 @@ export default function CandidatesPage() {
                       variant="ghost"
                       size="icon"
                       onClick={() => toggleBookmark(candidate.id)}
-                      className={bookmarked.has(candidate.id) ? 'text-yellow-500' : 'text-gray-400'}
+                      className={bookmarked.has(candidate.id) ? 'text-secondary' : 'text-gray-400'}
                     >
                       <Star className={`h-4 w-4 ${bookmarked.has(candidate.id) ? 'fill-current' : ''}`} />
                     </Button>

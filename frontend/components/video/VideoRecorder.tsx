@@ -336,7 +336,7 @@ export function VideoRecorder({
 
         {/* What to Cover */}
         {!isRecording && !recordedBlob && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
             <h4 className="font-semibold text-blue-900 mb-2">What to explain:</h4>
             <ol className="space-y-1 text-sm text-blue-800">
               <li>1. What problem did you solve?</li>
@@ -430,7 +430,7 @@ export function VideoRecorder({
 
               <Button
                 onClick={() => onVideoRecorded?.(recordedBlob, duration)}
-                className="bg-green-500 hover:bg-green-600"
+                className="bg-primary/50 hover:bg-primary"
               >
                 <CheckCircle2 className="h-4 w-4 mr-2" />
                 Use This Video

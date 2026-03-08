@@ -115,11 +115,11 @@ export default function UniversityDashboard() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'verified':
-        return <Badge className="bg-green-100 text-green-800">Verified</Badge>
+        return <Badge className="bg-primary/10 text-green-800">Verified</Badge>
       case 'pending':
         return <Badge className="bg-yellow-400 text-gray-900">Pending Review</Badge>
       case 'published':
-        return <Badge className="bg-blue-100 text-blue-800">Published</Badge>
+        return <Badge className="bg-primary/10 text-blue-800">Published</Badge>
       default:
         return <Badge variant="outline">Draft</Badge>
     }
@@ -143,7 +143,7 @@ export default function UniversityDashboard() {
                   <p className="text-sm font-medium text-gray-600">Active Students</p>
                   <p className="text-3xl font-bold">127</p>
                 </div>
-                <Users className="h-8 w-8 text-blue-600" />
+                <Users className="h-8 w-8 text-primary" />
               </div>
               <div className="mt-4">
                 <Progress value={82} className="h-2" />
@@ -159,10 +159,10 @@ export default function UniversityDashboard() {
                   <p className="text-sm font-medium text-gray-600">Placement Rate</p>
                   <p className="text-3xl font-bold">94%</p>
                 </div>
-                <TrendingUp className="h-8 w-8 text-green-600" />
+                <TrendingUp className="h-8 w-8 text-primary" />
               </div>
               <div className="mt-4">
-                <p className="text-xs text-green-600">+12% vs last year</p>
+                <p className="text-xs text-primary">+12% vs last year</p>
               </div>
             </CardContent>
           </Card>
@@ -174,10 +174,10 @@ export default function UniversityDashboard() {
                   <p className="text-sm font-medium text-gray-600">Company Partners</p>
                   <p className="text-3xl font-bold">45</p>
                 </div>
-                <Building2 className="h-8 w-8 text-purple-600" />
+                <Building2 className="h-8 w-8 text-primary" />
               </div>
               <div className="mt-4">
-                <p className="text-xs text-purple-600">15 new this month</p>
+                <p className="text-xs text-primary">15 new this month</p>
               </div>
             </CardContent>
           </Card>
@@ -233,14 +233,14 @@ export default function UniversityDashboard() {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
                       <div className="flex-1">
                         <p className="text-sm font-medium">Microsoft interviewed Sofia Romano</p>
                         <p className="text-xs text-gray-700">2 hours ago</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
                       <div className="flex-1">
                         <p className="text-sm font-medium">New company partner: Tech Startup Inc.</p>
                         <p className="text-xs text-gray-700">1 day ago</p>
@@ -459,21 +459,21 @@ export default function UniversityDashboard() {
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5" />
+                      <CheckCircle2 className="h-5 w-5 text-primary mt-0.5" />
                       <div>
                         <h4 className="font-medium">Academic Records</h4>
                         <p className="text-sm text-gray-600">Verify transcript authenticity and course grades</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5" />
+                      <CheckCircle2 className="h-5 w-5 text-primary mt-0.5" />
                       <div>
                         <h4 className="font-medium">Project Validation</h4>
                         <p className="text-sm text-gray-600">Confirm project descriptions and outcomes</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5" />
+                      <CheckCircle2 className="h-5 w-5 text-primary mt-0.5" />
                       <div>
                         <h4 className="font-medium">Identity Verification</h4>
                         <p className="text-sm text-gray-600">Ensure student identity matches university records</p>

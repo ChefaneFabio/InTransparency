@@ -67,7 +67,7 @@ export default function ProfessorStudentsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     )
   }
@@ -92,8 +92,8 @@ export default function ProfessorStudentsPage() {
             <Card key={student.studentName} className="hover:shadow-md transition-shadow">
               <CardContent className="p-5">
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <GraduationCap className="h-5 w-5 text-blue-600" />
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <GraduationCap className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">{student.studentName}</p>
@@ -116,7 +116,7 @@ export default function ProfessorStudentsPage() {
                         <Badge
                           variant="outline"
                           className={`text-xs ${
-                            p.status === 'VERIFIED' ? 'text-green-600' :
+                            p.status === 'VERIFIED' ? 'text-primary' :
                             p.status === 'PENDING' ? 'text-amber-600' : 'text-gray-500'
                           }`}
                         >

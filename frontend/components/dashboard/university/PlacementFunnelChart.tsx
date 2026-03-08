@@ -35,11 +35,11 @@ export default function PlacementFunnelChart({ funnel, timeToHire }: PlacementFu
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <TrendingUp className="h-5 w-5 text-blue-500" />
+          <TrendingUp className="h-5 w-5 text-primary" />
           Placement Funnel
         </CardTitle>
         <div className="flex gap-6 text-sm text-gray-600">
-          <span>Conversion: <strong className="text-green-600">{conversionRate}%</strong></span>
+          <span>Conversion: <strong className="text-primary">{conversionRate}%</strong></span>
           {timeToHire.dataPoints > 0 && (
             <span>Avg. time to hire: <strong>{timeToHire.averageDays} days</strong></span>
           )}

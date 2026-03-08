@@ -92,15 +92,15 @@ export default function PricingSurveyPage() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="border-2 border-green-200 shadow-2xl">
+              <Card className="border-2 border-primary/20 shadow-lg">
                 <CardContent className="p-12 text-center">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                    className="mx-auto mb-6 rounded-full bg-green-100 p-6 w-24 h-24 flex items-center justify-center"
+                    className="mx-auto mb-6 rounded-full bg-primary/10 p-6 w-24 h-24 flex items-center justify-center"
                   >
-                    <CheckCircle2 className="h-12 w-12 text-green-600" />
+                    <CheckCircle2 className="h-12 w-12 text-primary" />
                   </motion.div>
 
                   <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -111,23 +111,23 @@ export default function PricingSurveyPage() {
                     Your feedback helps us create fair, student-friendly pricing.
                   </p>
 
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+                  <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 mb-8">
                     <h3 className="font-bold text-lg text-gray-900 mb-3">What's next?</h3>
                     <ul className="text-left space-y-3">
                       <li className="flex items-start">
-                        <CheckCircle2 className="h-5 w-5 text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
                         <span className="text-gray-700">
                           We'll analyze pricing data from all respondents
                         </span>
                       </li>
                       <li className="flex items-start">
-                        <CheckCircle2 className="h-5 w-5 text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
                         <span className="text-gray-700">
                           You'll get early access when we launch (email: {formData.email})
                         </span>
                       </li>
                       <li className="flex items-start">
-                        <CheckCircle2 className="h-5 w-5 text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
                         <span className="text-gray-700">
                           <span className="font-semibold">Bonus:</span> 20% early bird discount
                         </span>
@@ -162,7 +162,7 @@ export default function PricingSurveyPage() {
             transition={{ duration: 0.6 }}
           >
             <div className="text-center mb-8">
-              <Badge className="mb-4 bg-gradient-to-r from-green-600 to-blue-600 text-white text-sm px-6 py-2 border-0">
+              <Badge className="mb-4 bg-primary text-white text-sm px-6 py-2 border-0">
                 <TrendingUp className="inline h-4 w-4 mr-2" />
                 Pricing Research
               </Badge>
@@ -188,7 +188,7 @@ export default function PricingSurveyPage() {
               </div>
               <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-green-600 to-blue-600"
+                  className="h-full bg-primary"
                   initial={{ width: 0 }}
                   animate={{ width: `${(step / totalSteps) * 100}%` }}
                   transition={{ duration: 0.3 }}
@@ -360,11 +360,11 @@ export default function PricingSurveyPage() {
                     transition={{ duration: 0.3 }}
                   >
                     <div className="mb-6">
-                      <Badge className="bg-green-100 text-green-800">Van Westendorp Question 3/4</Badge>
+                      <Badge className="bg-primary/10 text-green-800">Van Westendorp Question 3/4</Badge>
                     </div>
 
                     <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                      At what price would it be a <span className="text-green-600">bargain</span>?
+                      At what price would it be a <span className="text-primary">bargain</span>?
                     </h2>
 
                     <p className="text-gray-700 mb-8">
@@ -375,7 +375,7 @@ export default function PricingSurveyPage() {
                       <div>
                         <div className="flex justify-between items-center mb-4">
                           <Label>Price: €{formData.bargain}</Label>
-                          <span className="text-3xl font-bold text-green-600">€{formData.bargain}</span>
+                          <span className="text-3xl font-bold text-primary">€{formData.bargain}</span>
                         </div>
                         <Slider
                           value={[formData.bargain]}
@@ -506,14 +506,14 @@ export default function PricingSurveyPage() {
                               onClick={() => toggleMostValuable(feature)}
                               className={`p-3 border rounded-lg cursor-pointer transition-all ${
                                 formData.mostValuable.includes(feature)
-                                  ? 'border-blue-500 bg-blue-50'
+                                  ? 'border-blue-500 bg-primary/5'
                                   : 'border-gray-200 hover:border-gray-300'
                               }`}
                             >
                               <div className="flex items-center">
                                 <div className={`w-5 h-5 rounded border-2 mr-3 flex items-center justify-center ${
                                   formData.mostValuable.includes(feature)
-                                    ? 'border-blue-500 bg-blue-500'
+                                    ? 'border-blue-500 bg-primary/50'
                                     : 'border-gray-300'
                                 }`}>
                                   {formData.mostValuable.includes(feature) && (
@@ -588,7 +588,7 @@ export default function PricingSurveyPage() {
                     <Button
                       onClick={handleSubmit}
                       disabled={isSubmitting || !formData.willingToPay || !formData.paymentPreference}
-                      className="ml-auto bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
+                      className="ml-auto bg-primary"
                     >
                       {isSubmitting ? 'Submitting...' : 'Submit Survey'}
                     </Button>

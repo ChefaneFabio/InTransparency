@@ -131,7 +131,7 @@ export default function CvPage() {
           <CardContent className="space-y-3">
             {previewItems.map((item) => (
               <div key={item.key} className="flex items-center gap-3">
-                <item.icon className={`h-4 w-4 ${item.available ? 'text-green-600' : 'text-muted-foreground'}`} />
+                <item.icon className={`h-4 w-4 ${item.available ? 'text-primary' : 'text-muted-foreground'}`} />
                 <span className={item.available ? '' : 'text-muted-foreground'}>
                   {t(`preview.${item.key}`)}
                 </span>
@@ -156,7 +156,7 @@ export default function CvPage() {
                 onClick={() => setStyle('classic')}
                 className={`p-4 rounded-lg border-2 text-center transition-colors ${
                   style === 'classic'
-                    ? 'border-blue-600 bg-blue-50'
+                    ? 'border-primary bg-primary/5'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
               >
@@ -167,7 +167,7 @@ export default function CvPage() {
                 onClick={() => setStyle('modern')}
                 className={`p-4 rounded-lg border-2 text-center transition-colors ${
                   style === 'modern'
-                    ? 'border-purple-600 bg-purple-50'
+                    ? 'border-primary bg-primary/5'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
               >

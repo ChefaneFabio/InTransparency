@@ -193,7 +193,7 @@ export default function UniversityChallengeDetailPage() {
     }
     if (status === 'APPROVED') {
       return (
-        <Badge className="bg-green-100 text-green-700">
+        <Badge className="bg-primary/10 text-primary">
           <CheckCircle className="h-3 w-3 mr-1" />
           Approved
         </Badge>
@@ -218,7 +218,7 @@ export default function UniversityChallengeDetailPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     )
   }
@@ -256,7 +256,7 @@ export default function UniversityChallengeDetailPage() {
                 className="w-16 h-16 rounded-lg object-cover"
               />
             ) : (
-              <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-lg bg-primary flex items-center justify-center">
                 <Building2 className="h-8 w-8 text-white" />
               </div>
             )}
@@ -499,7 +499,7 @@ export default function UniversityChallengeDetailPage() {
             </CardHeader>
             <CardContent className="space-y-2">
               {challenge.mentorshipOffered && (
-                <Badge variant="secondary" className="bg-green-50 text-green-700">
+                <Badge variant="secondary" className="bg-primary/5 text-green-700">
                   Mentorship Provided
                 </Badge>
               )}

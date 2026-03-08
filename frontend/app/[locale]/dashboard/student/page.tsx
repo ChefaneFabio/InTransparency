@@ -155,7 +155,7 @@ export default function StudentDashboard() {
         <div className="lg:col-span-3">
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-medium text-gray-900">Projects</h2>
-            <Link href="/dashboard/student/projects" className="text-sm text-blue-600 hover:underline">
+            <Link href="/dashboard/student/projects" className="text-sm text-primary hover:underline">
               View all
             </Link>
           </div>
@@ -203,7 +203,7 @@ export default function StudentDashboard() {
           <div className="mt-6">
             <div className="flex items-center justify-between mb-3">
               <h2 className="font-medium text-gray-900">Job matches</h2>
-              <Link href="/dashboard/student/jobs" className="text-sm text-blue-600 hover:underline">
+              <Link href="/dashboard/student/jobs" className="text-sm text-primary hover:underline">
                 Browse jobs
               </Link>
             </div>
@@ -275,7 +275,7 @@ export default function StudentDashboard() {
                   className="flex items-center justify-between p-2 rounded hover:bg-gray-50 transition-colors"
                 >
                   <span className="text-sm flex items-center gap-1.5">
-                    <Sparkles className="h-3.5 w-3.5 text-purple-500" />
+                    <Sparkles className="h-3.5 w-3.5 text-primary" />
                     Skill Path
                   </span>
                   <ChevronRight className="h-4 w-4 text-gray-400" />
@@ -331,7 +331,7 @@ export default function StudentDashboard() {
               <span className="text-gray-600">University</span>
               <Badge variant="outline" className="text-xs">Not verified</Badge>
             </div>
-            <Link href="/dashboard/student/profile/edit#university" className="text-xs text-blue-600 hover:underline mt-1 inline-block">
+            <Link href="/dashboard/student/profile/edit#university" className="text-xs text-primary hover:underline mt-1 inline-block">
               Connect university email
             </Link>
           </div>

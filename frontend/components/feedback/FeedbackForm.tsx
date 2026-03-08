@@ -110,9 +110,9 @@ export function FeedbackForm({
 
   if (success) {
     return (
-      <Card className="bg-green-50 border-2 border-green-300">
+      <Card className="bg-primary/5 border-2 border-green-300">
         <CardContent className="p-8 text-center">
-          <CheckCircle className="h-16 w-16 text-green-600 mx-auto mb-4" />
+          <CheckCircle className="h-16 w-16 text-primary mx-auto mb-4" />
           <h3 className="text-2xl font-bold text-green-900 mb-2">Feedback Submitted!</h3>
           <p className="text-gray-700">
             Your institutional feedback has been shared with {studentName} and their career center.
@@ -279,9 +279,9 @@ export function FeedbackForm({
           </div>
 
           {/* Submit */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
             <div className="flex items-start gap-3">
-              <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+              <AlertCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
               <div className="text-sm text-gray-700">
                 <strong className="text-blue-900">Institutional Feedback Loop:</strong> Your feedback helps
                 students improve and provides valuable market insights to career centers. All feedback is
@@ -293,7 +293,7 @@ export function FeedbackForm({
           <Button
             type="submit"
             disabled={loading || !constructiveFeedback.trim()}
-            className="w-full bg-gradient-to-r from-primary to-secondary"
+            className="w-full bg-primary"
             size="lg"
           >
             {loading ? 'Submitting...' : 'Submit Institutional Feedback'}

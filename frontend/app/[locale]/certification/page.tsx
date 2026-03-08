@@ -83,7 +83,7 @@ export default function CertificationPage() {
       {/* Animated Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
-          className="absolute top-20 right-20 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+          className="absolute top-20 right-20 w-96 h-96 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
           animate={{
             x: [0, 100, 0],
             y: [0, -50, 0],
@@ -95,7 +95,7 @@ export default function CertificationPage() {
           }}
         />
         <motion.div
-          className="absolute bottom-20 left-20 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+          className="absolute bottom-20 left-20 w-96 h-96 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
           animate={{
             x: [0, -100, 0],
             y: [0, 50, 0],
@@ -120,14 +120,14 @@ export default function CertificationPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <Badge className="mb-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm px-6 py-2 border-0">
+            <Badge className="mb-4 bg-primary text-white text-sm px-6 py-2 border-0">
               <Sparkles className="inline h-4 w-4 mr-2" />
               NEW: Soft Skills Certification
             </Badge>
 
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
               Stand Out With{' '}
-              <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="text-primary">
                 Certified Soft Skills
               </span>
             </h1>
@@ -141,7 +141,7 @@ export default function CertificationPage() {
               <Button
                 size="lg"
                 onClick={handleGetCertified}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-xl text-lg px-8 py-6"
+                className="bg-primary hover:bg-primary/90 text-white shadow-lg text-lg px-8 py-6"
               >
                 <Award className="mr-2 h-5 w-5" />
                 Get Certified — Free
@@ -181,16 +181,13 @@ export default function CertificationPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ y: -10, scale: 1.03 }}
                   >
-                    <Card className="h-full hover:shadow-2xl transition-all duration-300 border-gray-200 bg-white/90 backdrop-blur-sm">
+                    <Card className="h-full hover:shadow-lg transition-all duration-300 border-gray-200 bg-white/90 backdrop-blur-sm">
                       <CardContent className="p-6 text-center">
                         <motion.div
-                          className="mx-auto mb-4 rounded-full bg-purple-100 p-4 w-16 h-16 flex items-center justify-center"
-                          whileHover={{ rotate: 360, scale: 1.15 }}
-                          transition={{ duration: 0.6 }}
+                          className="mx-auto mb-4 rounded-full bg-primary/10 p-4 w-16 h-16 flex items-center justify-center"
                         >
-                          <Icon className="h-8 w-8 text-purple-600" />
+                          <Icon className="h-8 w-8 text-primary" />
                         </motion.div>
                         <h3 className="font-bold text-lg mb-2">{skill.title}</h3>
                         <p className="text-sm text-gray-600">{skill.description}</p>
@@ -232,11 +229,11 @@ export default function CertificationPage() {
                   <Card className="h-full border-gray-200 hover:shadow-lg transition-shadow">
                     <CardHeader>
                       <div className="flex items-center justify-between mb-4">
-                        <Badge variant="secondary" className="bg-blue-100 text-blue-800">
+                        <Badge variant="secondary" className="bg-primary/10 text-primary">
                           <Clock className="h-3 w-3 mr-1" />
                           {assessment.duration}
                         </Badge>
-                        <Shield className="h-6 w-6 text-green-600" />
+                        <Shield className="h-6 w-6 text-primary" />
                       </div>
                       <CardTitle className="text-xl">{assessment.name}</CardTitle>
                     </CardHeader>
@@ -260,8 +257,8 @@ export default function CertificationPage() {
             className="mb-20"
           >
             <div className="max-w-4xl mx-auto">
-              <Card className="border-2 border-purple-200 shadow-xl">
-                <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50">
+              <Card className="border-2 border-primary/20 shadow-xl">
+                <CardHeader className="bg-primary/5">
                   <div className="text-center">
                     <CardTitle className="text-3xl mb-4">What You Get</CardTitle>
                     <div className="text-5xl font-bold text-gray-900 mb-2">Free</div>
@@ -279,7 +276,7 @@ export default function CertificationPage() {
                         transition={{ duration: 0.4, delay: index * 0.05 }}
                         className="flex items-start"
                       >
-                        <CheckCircle2 className="h-5 w-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
                         <span className="text-gray-700">{benefit}</span>
                       </motion.li>
                     ))}
@@ -289,7 +286,7 @@ export default function CertificationPage() {
                     <Button
                       size="lg"
                       onClick={handleGetCertified}
-                      className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-lg text-lg px-8 py-6"
+                      className="bg-primary text-white shadow-lg text-lg px-8 py-6"
                     >
                       <Award className="mr-2 h-5 w-5" />
                       Get Certified Now
@@ -370,7 +367,7 @@ export default function CertificationPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Card className="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 text-white border-0 shadow-2xl">
+            <Card className="bg-primary text-white border-0 shadow-lg">
               <CardContent className="p-12 text-center">
                 <h2 className="text-4xl font-bold mb-4">
                   Ready to Stand Out?

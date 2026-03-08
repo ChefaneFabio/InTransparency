@@ -91,11 +91,11 @@ export function VerificationDetailsModal({
   const getVerificationColor = (type: string) => {
     switch (type) {
       case 'university':
-        return 'text-green-600'
+        return 'text-primary'
       case 'professor':
-        return 'text-blue-600'
+        return 'text-primary'
       case 'ai':
-        return 'text-purple-600'
+        return 'text-primary'
       default:
         return 'text-gray-600'
     }
@@ -168,10 +168,10 @@ export function VerificationDetailsModal({
                   variant="outline"
                   className={`${
                     details.verificationType === 'university'
-                      ? 'bg-green-100 text-green-700 border-green-300'
+                      ? 'bg-primary/10 text-green-700 border-green-300'
                       : details.verificationType === 'professor'
-                      ? 'bg-blue-100 text-blue-700 border-blue-300'
-                      : 'bg-purple-100 text-purple-700 border-purple-300'
+                      ? 'bg-primary/10 text-blue-700 border-blue-300'
+                      : 'bg-primary/10 text-purple-700 border-purple-300'
                   } text-base px-4 py-2`}
                 >
                   <VerificationIcon className="h-4 w-4 mr-2" />
@@ -238,7 +238,7 @@ export function VerificationDetailsModal({
                   {details.grade && (
                     <div>
                       <p className="text-muted-foreground mb-1">Final Grade</p>
-                      <p className="font-semibold text-lg text-green-600">{details.grade}</p>
+                      <p className="font-semibold text-lg text-primary">{details.grade}</p>
                     </div>
                   )}
                   {details.professor && (
@@ -323,8 +323,8 @@ export function VerificationDetailsModal({
               <Card>
                 <CardContent className="pt-6 space-y-3">
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-                      <User className="h-5 w-5 text-blue-600" />
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <User className="h-5 w-5 text-primary" />
                     </div>
                     <div className="flex-1">
                       <p className="font-semibold">{details.endorsement.professorName}</p>
@@ -338,7 +338,7 @@ export function VerificationDetailsModal({
                     </div>
                     {details.endorsement.rating && (
                       <div className="text-center">
-                        <p className="text-2xl font-bold text-blue-600">{details.endorsement.rating}/5</p>
+                        <p className="text-2xl font-bold text-primary">{details.endorsement.rating}/5</p>
                         <p className="text-xs text-muted-foreground">Rating</p>
                       </div>
                     )}
@@ -347,7 +347,7 @@ export function VerificationDetailsModal({
                   {details.endorsement.endorsementText && (
                     <>
                       <Separator />
-                      <div className="bg-blue-50 p-4 rounded-lg">
+                      <div className="bg-primary/5 p-4 rounded-lg">
                         <p className="text-sm italic">"{details.endorsement.endorsementText}"</p>
                       </div>
                     </>
@@ -378,9 +378,9 @@ export function VerificationDetailsModal({
           </div>
 
           {/* Trust Notice */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
             <div className="flex gap-3">
-              <ShieldCheck className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+              <ShieldCheck className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
               <div className="text-sm text-green-800">
                 <p className="font-semibold mb-1">This verification is authentic and cannot be faked</p>
                 <p className="text-xs">

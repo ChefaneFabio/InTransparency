@@ -64,11 +64,11 @@ export function ChallengeCard({ challenge, variant = 'student', onAction }: Chal
     const statusConfig: Record<string, { label: string; className: string }> = {
       DRAFT: { label: 'Draft', className: 'bg-gray-100 text-gray-700' },
       PENDING_REVIEW: { label: 'Pending Review', className: 'bg-yellow-100 text-yellow-700' },
-      APPROVED: { label: 'Approved', className: 'bg-blue-100 text-blue-700' },
-      ACTIVE: { label: 'Active', className: 'bg-green-100 text-green-700' },
-      IN_PROGRESS: { label: 'In Progress', className: 'bg-purple-100 text-purple-700' },
+      APPROVED: { label: 'Approved', className: 'bg-primary/10 text-primary' },
+      ACTIVE: { label: 'Active', className: 'bg-primary/10 text-primary' },
+      IN_PROGRESS: { label: 'In Progress', className: 'bg-primary/10 text-primary' },
       CLOSED: { label: 'Closed', className: 'bg-gray-100 text-gray-700' },
-      COMPLETED: { label: 'Completed', className: 'bg-green-100 text-green-700' },
+      COMPLETED: { label: 'Completed', className: 'bg-primary/10 text-primary' },
       CANCELLED: { label: 'Cancelled', className: 'bg-red-100 text-red-700' }
     }
     const config = statusConfig[status] || statusConfig.DRAFT
@@ -117,13 +117,13 @@ export function ChallengeCard({ challenge, variant = 'student', onAction }: Chal
                 className="w-12 h-12 rounded-lg object-cover"
               />
             ) : (
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center">
                 <Building2 className="h-6 w-6 text-white" />
               </div>
             )}
             <div className="min-w-0 flex-1">
               <Link href={linkPath}>
-                <h3 className="font-semibold text-lg hover:text-blue-600 transition-colors line-clamp-1">
+                <h3 className="font-semibold text-lg hover:text-primary transition-colors line-clamp-1">
                   {challenge.title}
                 </h3>
               </Link>
@@ -141,7 +141,7 @@ export function ChallengeCard({ challenge, variant = 'student', onAction }: Chal
           <div className="flex items-center gap-2 flex-shrink-0">
             {getStatusBadge(challenge.status)}
             {challenge.hasApplied && (
-              <Badge className="bg-blue-100 text-blue-700">Applied</Badge>
+              <Badge className="bg-primary/10 text-primary">Applied</Badge>
             )}
           </div>
         </div>
@@ -160,7 +160,7 @@ export function ChallengeCard({ challenge, variant = 'student', onAction }: Chal
             {getDisciplineLabel(challenge.discipline)}
           </Badge>
           {challenge.mentorshipOffered && (
-            <Badge variant="secondary" className="bg-green-50 text-green-700 border-green-200">
+            <Badge variant="secondary" className="bg-primary/5 text-primary border-primary/20">
               <GraduationCap className="h-3 w-3 mr-1" />
               Mentorship
             </Badge>
@@ -226,13 +226,13 @@ export function ChallengeCard({ challenge, variant = 'student', onAction }: Chal
               <span className="flex items-center gap-1 text-xs">
                 {challenge.isApprovedByMyUniversity ? (
                   <>
-                    <CheckCircle className="h-3.5 w-3.5 text-green-600" />
-                    <span className="text-green-600">Approved</span>
+                    <CheckCircle className="h-3.5 w-3.5 text-primary" />
+                    <span className="text-primary">Approved</span>
                   </>
                 ) : (
                   <>
-                    <AlertCircle className="h-3.5 w-3.5 text-yellow-600" />
-                    <span className="text-yellow-600">Pending</span>
+                    <AlertCircle className="h-3.5 w-3.5 text-secondary" />
+                    <span className="text-secondary">Pending</span>
                   </>
                 )}
               </span>

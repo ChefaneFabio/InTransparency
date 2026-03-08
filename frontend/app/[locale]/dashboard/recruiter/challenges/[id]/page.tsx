@@ -145,11 +145,11 @@ export default function ChallengeDetailPage() {
     const configs: Record<string, { label: string; className: string }> = {
       DRAFT: { label: 'Draft', className: 'bg-gray-100 text-gray-700' },
       PENDING_REVIEW: { label: 'Pending Review', className: 'bg-yellow-100 text-yellow-700' },
-      APPROVED: { label: 'Approved', className: 'bg-blue-100 text-blue-700' },
-      ACTIVE: { label: 'Active', className: 'bg-green-100 text-green-700' },
-      IN_PROGRESS: { label: 'In Progress', className: 'bg-purple-100 text-purple-700' },
+      APPROVED: { label: 'Approved', className: 'bg-primary/10 text-blue-700' },
+      ACTIVE: { label: 'Active', className: 'bg-primary/10 text-green-700' },
+      IN_PROGRESS: { label: 'In Progress', className: 'bg-primary/10 text-purple-700' },
       CLOSED: { label: 'Closed', className: 'bg-gray-100 text-gray-700' },
-      COMPLETED: { label: 'Completed', className: 'bg-green-100 text-green-700' }
+      COMPLETED: { label: 'Completed', className: 'bg-primary/10 text-green-700' }
     }
     const config = configs[status] || configs.DRAFT
     return <Badge className={config.className}>{config.label}</Badge>
@@ -158,7 +158,7 @@ export default function ChallengeDetailPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     )
   }
@@ -203,7 +203,7 @@ export default function ChallengeDetailPage() {
                 className="w-16 h-16 rounded-lg object-cover"
               />
             ) : (
-              <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-lg bg-primary flex items-center justify-center">
                 <Building2 className="h-8 w-8 text-white" />
               </div>
             )}
@@ -231,7 +231,7 @@ export default function ChallengeDetailPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <Users className="h-5 w-5 text-blue-600" />
+              <Users className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{submissions.length}</p>
                 <p className="text-xs text-gray-600">Submissions</p>
@@ -242,7 +242,7 @@ export default function ChallengeDetailPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <GraduationCap className="h-5 w-5 text-green-600" />
+              <GraduationCap className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{challenge.universityApprovals.length}</p>
                 <p className="text-xs text-gray-600">Universities</p>
@@ -253,7 +253,7 @@ export default function ChallengeDetailPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <Eye className="h-5 w-5 text-purple-600" />
+              <Eye className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{challenge.views}</p>
                 <p className="text-xs text-gray-600">Views</p>
@@ -264,7 +264,7 @@ export default function ChallengeDetailPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <Trophy className="h-5 w-5 text-yellow-600" />
+              <Trophy className="h-5 w-5 text-secondary" />
               <div>
                 <p className="text-2xl font-bold">{groupedSubmissions.approved.length}</p>
                 <p className="text-xs text-gray-600">Approved</p>
@@ -432,7 +432,7 @@ export default function ChallengeDetailPage() {
                 </div>
               )}
               {challenge.mentorshipOffered && (
-                <Badge variant="secondary" className="bg-green-50 text-green-700">
+                <Badge variant="secondary" className="bg-primary/5 text-green-700">
                   Mentorship Offered
                 </Badge>
               )}
@@ -459,7 +459,7 @@ export default function ChallengeDetailPage() {
                         <Badge
                           className={
                             approval.status === 'APPROVED'
-                              ? 'bg-green-100 text-green-700'
+                              ? 'bg-primary/10 text-green-700'
                               : 'bg-yellow-100 text-yellow-700'
                           }
                         >

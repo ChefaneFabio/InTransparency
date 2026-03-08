@@ -262,14 +262,14 @@ export default function CertificationsPage() {
                     onClick={() => handleAnswer(q.id, option.value)}
                     className={`w-full flex items-center gap-3 p-3 rounded-lg border text-left transition-colors ${
                       answers[q.id] === option.value
-                        ? 'border-blue-500 bg-blue-50 text-blue-700'
+                        ? 'border-primary bg-primary/5 text-primary'
                         : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
                     }`}
                   >
                     <div
                       className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
                         answers[q.id] === option.value
-                          ? 'border-blue-500 bg-blue-500'
+                          ? 'border-primary bg-primary'
                           : 'border-gray-300'
                       }`}
                     >
@@ -308,7 +308,7 @@ export default function CertificationsPage() {
               <Button
                 onClick={submitAssessment}
                 disabled={!allAnswered || submitting}
-                className="bg-green-600 hover:bg-green-700"
+                className="bg-primary hover:bg-primary/90"
               >
                 {submitting ? (
                   <>
@@ -334,9 +334,9 @@ export default function CertificationsPage() {
               onClick={() => setCurrentIndex(i)}
               className={`w-3 h-3 rounded-full transition-colors ${
                 i === currentIndex
-                  ? 'bg-blue-600'
+                  ? 'bg-primary'
                   : answers[q.id] !== undefined
-                    ? 'bg-green-400'
+                    ? 'bg-primary'
                     : 'bg-gray-200'
               }`}
               title={`Question ${i + 1}`}
@@ -354,8 +354,8 @@ export default function CertificationsPage() {
   if (completed) {
     return (
       <div className="max-w-2xl mx-auto py-12 text-center">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle2 className="h-8 w-8 text-green-600" />
+        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <CheckCircle2 className="h-8 w-8 text-primary" />
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Assessment Complete!</h2>
         <p className="text-gray-600 mb-6">
@@ -402,7 +402,7 @@ export default function CertificationsPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Brain className="h-4 w-4 text-blue-500" />
+                  <Brain className="h-4 w-4 text-primary" />
                   Big Five Personality
                 </CardTitle>
                 {latestBigFive.bigFiveProfile.personality && (
@@ -447,7 +447,7 @@ export default function CertificationsPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Users className="h-4 w-4 text-purple-500" />
+                  <Users className="h-4 w-4 text-primary" />
                   DISC Profile
                 </CardTitle>
                 {latestDISC.discProfile.primaryStyle && (
@@ -460,8 +460,8 @@ export default function CertificationsPage() {
                 {[
                   { label: 'Dominance', value: latestDISC.discProfile.dominance, color: 'bg-red-500' },
                   { label: 'Influence', value: latestDISC.discProfile.influence, color: 'bg-yellow-500' },
-                  { label: 'Steadiness', value: latestDISC.discProfile.steadiness, color: 'bg-green-500' },
-                  { label: 'Compliance', value: latestDISC.discProfile.compliance, color: 'bg-blue-500' },
+                  { label: 'Steadiness', value: latestDISC.discProfile.steadiness, color: 'bg-primary/50' },
+                  { label: 'Compliance', value: latestDISC.discProfile.compliance, color: 'bg-primary/50' },
                 ].map((dim) => (
                   <div key={dim.label}>
                     <div className="flex justify-between text-xs mb-1">
@@ -482,7 +482,7 @@ export default function CertificationsPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Target className="h-4 w-4 text-green-500" />
+                  <Target className="h-4 w-4 text-primary" />
                   Core Competencies
                 </CardTitle>
                 {latestCompetency.competencyProfile.overallScore && (
@@ -499,7 +499,7 @@ export default function CertificationsPage() {
                       : []
                     ).map((s: string, i: number) => (
                       <div key={i} className="flex items-center gap-2 text-sm">
-                        <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
+                        <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
                         <span className="text-gray-700">{s}</span>
                       </div>
                     ))}
@@ -536,7 +536,7 @@ export default function CertificationsPage() {
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="font-medium text-gray-900">{at.label}</h3>
                       {existing && (
-                        <Badge className="bg-green-100 text-green-700 text-xs">Completed</Badge>
+                        <Badge className="bg-primary/10 text-green-700 text-xs">Completed</Badge>
                       )}
                       {inProgress && (
                         <Badge className="bg-amber-100 text-amber-700 text-xs">In Progress</Badge>
@@ -604,7 +604,7 @@ export default function CertificationsPage() {
                   <Badge
                     variant="outline"
                     className={`text-xs ${
-                      a.status === 'COMPLETED' ? 'text-green-600' : 'text-amber-600'
+                      a.status === 'COMPLETED' ? 'text-primary' : 'text-amber-600'
                     }`}
                   >
                     {a.status === 'COMPLETED' ? (
@@ -614,7 +614,7 @@ export default function CertificationsPage() {
                     )}
                   </Badge>
                   {a.certificateId && (
-                    <Badge className="bg-blue-100 text-blue-700 text-xs">
+                    <Badge className="bg-primary/10 text-primary text-xs">
                       <Award className="h-3 w-3 mr-1" />
                       Certified
                     </Badge>

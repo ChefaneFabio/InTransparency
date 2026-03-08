@@ -286,12 +286,12 @@ export default function AISearchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-6">
+    <div className="min-h-screen bg-muted/30 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl">
+            <div className="p-3 bg-primary rounded-xl">
               <Sparkles className="h-6 w-6 text-white" />
             </div>
             <div>
@@ -317,7 +317,7 @@ export default function AISearchPage() {
                       className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       {message.role === 'assistant' && (
-                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                           <Bot className="h-5 w-5 text-white" />
                         </div>
                       )}
@@ -325,7 +325,7 @@ export default function AISearchPage() {
                       <div className={`flex flex-col max-w-[70%] ${message.role === 'user' ? 'items-end' : 'items-start'}`}>
                         <div className={`rounded-2xl px-4 py-3 ${
                           message.role === 'user'
-                            ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white'
+                            ? 'bg-primary text-white'
                             : message.error
                             ? 'bg-red-50 text-red-800 border border-red-200'
                             : 'bg-gray-100 text-gray-900'
@@ -345,7 +345,7 @@ export default function AISearchPage() {
                               >
                                 <div className="flex items-start justify-between mb-3">
                                   <div className="flex items-center gap-3">
-                                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-teal-400 to-blue-500 flex items-center justify-center text-white font-bold">
+                                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                                       {candidate.initials}
                                     </div>
                                     <div>
@@ -353,7 +353,7 @@ export default function AISearchPage() {
                                       <p className="text-sm text-gray-600">{candidate.university || 'University N/A'}</p>
                                     </div>
                                   </div>
-                                  <Badge className="bg-green-100 text-green-800 border-green-200">
+                                  <Badge className="bg-primary/10 text-green-800 border-primary/20">
                                     <Star className="h-3 w-3 mr-1" />
                                     {candidate.projectCount} project{candidate.projectCount !== 1 ? 's' : ''}
                                   </Badge>
@@ -396,7 +396,7 @@ export default function AISearchPage() {
                                   </div>
                                 )}
 
-                                <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                                <Button className="w-full bg-primary">
                                   View Full Profile
                                   <ArrowRight className="h-4 w-4 ml-2" />
                                 </Button>
@@ -421,7 +421,7 @@ export default function AISearchPage() {
 
                 {isTyping && (
                   <div className="flex gap-3">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                       <Bot className="h-5 w-5 text-white" />
                     </div>
                     <div className="bg-gray-100 rounded-2xl px-4 py-3">
@@ -451,7 +451,7 @@ export default function AISearchPage() {
                   <Button
                     onClick={handleSend}
                     disabled={isTyping || !input.trim()}
-                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                    className="bg-primary"
                   >
                     <Send className="h-4 w-4" />
                   </Button>
@@ -466,7 +466,7 @@ export default function AISearchPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
-                  <Lightbulb className="h-5 w-5 mr-2 text-yellow-500" />
+                  <Lightbulb className="h-5 w-5 mr-2 text-secondary" />
                   Try These Examples
                 </CardTitle>
               </CardHeader>
@@ -475,7 +475,7 @@ export default function AISearchPage() {
                   <button
                     key={index}
                     onClick={() => handleExampleClick(example)}
-                    className="w-full text-left p-3 rounded-lg bg-gray-50 hover:bg-blue-50 hover:border-blue-200 border border-gray-200 transition-colors text-sm"
+                    className="w-full text-left p-3 rounded-lg bg-gray-50 hover:bg-primary/5 hover:border-primary/20 border border-gray-200 transition-colors text-sm"
                   >
                     {example}
                   </button>
@@ -484,37 +484,37 @@ export default function AISearchPage() {
             </Card>
 
             {/* Benefits */}
-            <Card className="bg-gradient-to-br from-blue-50 to-purple-50">
+            <Card className="bg-primary/5">
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
-                  <Zap className="h-5 w-5 mr-2 text-blue-600" />
+                  <Zap className="h-5 w-5 mr-2 text-primary" />
                   Why Use AI Search?
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold text-gray-900">Natural Language</p>
                     <p className="text-gray-600">Describe requirements like talking to a person</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold text-gray-900">Real Database</p>
                     <p className="text-gray-600">Searches actual student profiles, not mock data</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold text-gray-900">Instant Results</p>
                     <p className="text-gray-600">Get matched candidates in seconds</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold text-gray-900">Refine Easily</p>
                     <p className="text-gray-600">Ask follow-up questions to narrow down</p>

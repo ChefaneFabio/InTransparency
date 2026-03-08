@@ -255,11 +255,11 @@ export default function OrientamentoPage({ params }: PageProps) {
             {t.solutions.map((solution, i) => {
               const Icon = solution.icon
               return (
-                <Card key={i} className="border-green-200 bg-green-50/30">
+                <Card key={i} className="border-primary/20 bg-primary/5/30">
                   <CardContent className="pt-6">
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                        <Icon className="h-6 w-6 text-green-600" />
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Icon className="h-6 w-6 text-primary" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-2">{solution.title}</h3>
@@ -275,7 +275,7 @@ export default function OrientamentoPage({ params }: PageProps) {
       </section>
 
       {/* How It Works */}
-      <section className="py-16 px-4 bg-gradient-to-r from-blue-50 to-purple-50">
+      <section className="py-16 px-4 bg-primary/5">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.howTitle}</h2>
@@ -335,7 +335,7 @@ export default function OrientamentoPage({ params }: PageProps) {
                   <ul className="space-y-2">
                     {path.roles.map((role, j) => (
                       <li key={j} className="text-sm text-gray-600 flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-500" />
+                        <CheckCircle2 className="h-4 w-4 text-primary" />
                         {role}
                       </li>
                     ))}

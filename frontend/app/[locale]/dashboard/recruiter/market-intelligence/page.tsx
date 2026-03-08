@@ -140,45 +140,45 @@ export default function MarketIntelligencePage() {
 
         {/* Key Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <Card className="border-2 border-blue-200 bg-blue-50">
+          <Card className="border-2 border-primary/20 bg-primary/5">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Users className="h-4 w-4 text-blue-600" />
+                <Users className="h-4 w-4 text-primary" />
                 Total Talent Pool
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-blue-600">
+              <div className="text-3xl font-bold text-primary">
                 {talentPool.toLocaleString()}
               </div>
               <p className="text-xs text-gray-600 mt-1">Public student profiles</p>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-green-200 bg-green-50">
+          <Card className="border-2 border-primary/20 bg-primary/5">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <GraduationCap className="h-4 w-4 text-green-600" />
+                <GraduationCap className="h-4 w-4 text-primary" />
                 Universities
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-green-600">
+              <div className="text-3xl font-bold text-primary">
                 {universityDistribution.length}
               </div>
               <p className="text-xs text-gray-600 mt-1">With active students</p>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-purple-200 bg-purple-50">
+          <Card className="border-2 border-primary/20 bg-primary/5">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Zap className="h-4 w-4 text-purple-600" />
+                <Zap className="h-4 w-4 text-primary" />
                 Skills Tracked
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-purple-600">
+              <div className="text-3xl font-bold text-primary">
                 {skillsFrequency.length}
               </div>
               <p className="text-xs text-gray-600 mt-1">
@@ -234,7 +234,7 @@ export default function MarketIntelligencePage() {
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
                           <div
-                            className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all"
+                            className="bg-primary h-2 rounded-full transition-all"
                             style={{ width: `${Math.min(percentage * 3, 100)}%` }}
                           />
                         </div>

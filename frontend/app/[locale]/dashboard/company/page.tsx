@@ -96,7 +96,7 @@ export default function CompanyDashboard() {
       <div className="grid md:grid-cols-4 gap-4 mb-8">
         <Card className="p-4">
           <div className="flex items-center gap-3">
-            <Mail className="h-8 w-8 text-blue-600" />
+            <Mail className="h-8 w-8 text-primary" />
             <div>
               <div className="text-2xl font-bold">{stats.contactsUsed}</div>
               <div className="text-sm text-gray-600">
@@ -111,7 +111,7 @@ export default function CompanyDashboard() {
 
         <Card className="p-4">
           <div className="flex items-center gap-3">
-            <Users className="h-8 w-8 text-green-600" />
+            <Users className="h-8 w-8 text-primary" />
             <div>
               <div className="text-2xl font-bold">{stats.savedCandidates}</div>
               <div className="text-sm text-gray-600">Saved Candidates</div>
@@ -121,7 +121,7 @@ export default function CompanyDashboard() {
 
         <Card className="p-4">
           <div className="flex items-center gap-3">
-            <Search className="h-8 w-8 text-purple-600" />
+            <Search className="h-8 w-8 text-primary" />
             <div>
               <div className="text-2xl font-bold">{stats.activeSearches}</div>
               <div className="text-sm text-gray-600">Active Searches</div>
@@ -160,7 +160,7 @@ export default function CompanyDashboard() {
                 { name: 'Alessandro Costa', degree: 'Software Engineering', score: 89, skills: ['React', 'Node.js', 'Docker'] }
               ].map((candidate, i) => (
                 <div key={i} className="flex items-center gap-4 p-4 border rounded-lg hover:bg-gray-50">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 text-blue-800 font-bold text-lg flex items-center justify-center">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 text-gray-700 font-bold text-lg flex items-center justify-center">
                     {candidate.score}%
                   </div>
                   <div className="flex-1">
@@ -189,8 +189,8 @@ export default function CompanyDashboard() {
             </div>
 
             {userPlan === 'pay_per_contact' && (
-              <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-sm text-blue-900">
+              <div className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-lg">
+                <p className="text-sm text-gray-900">
                   <strong>💡 Enterprise Tip:</strong> Unlimited contacts for €99/month. You have spent €{stats.contactsUsed * 10} already this month.
                 </p>
               </div>
@@ -251,7 +251,7 @@ export default function CompanyDashboard() {
               {userPlan === 'pay_per_contact' ? (
                 <Badge variant="secondary">Pay Per Contact</Badge>
               ) : (
-                <Badge className="bg-purple-600">Enterprise Plan</Badge>
+                <Badge className="bg-primary">Enterprise Plan</Badge>
               )}
             </div>
 
@@ -283,19 +283,19 @@ export default function CompanyDashboard() {
               ) : (
                 <>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-yellow-500" />
+                    <Star className="h-4 w-4 text-secondary" />
                     <span className="text-gray-600">Unlimited contacts</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-yellow-500" />
+                    <Star className="h-4 w-4 text-secondary" />
                     <span className="text-gray-600">Advanced filters</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-yellow-500" />
+                    <Star className="h-4 w-4 text-secondary" />
                     <span className="text-gray-600">API access</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-yellow-500" />
+                    <Star className="h-4 w-4 text-secondary" />
                     <span className="text-gray-600">Priority support</span>
                   </div>
                 </>
@@ -304,9 +304,9 @@ export default function CompanyDashboard() {
           </Card>
 
           {/* Referral CTA */}
-          <Card className="p-6 bg-gradient-to-br from-green-50 to-blue-50 border-green-200">
-            <h3 className="font-semibold text-green-900 mb-2">Refer & Earn Credits</h3>
-            <p className="text-sm text-green-800 mb-4">
+          <Card className="p-6 bg-primary/5 border-primary/20">
+            <h3 className="font-semibold text-gray-900 mb-2">Refer & Earn Credits</h3>
+            <p className="text-sm text-gray-700 mb-4">
               Refer other companies and earn 50 contact credits per signup!
             </p>
             <Button
@@ -333,7 +333,7 @@ export default function CompanyDashboard() {
               <div className="border-t pt-2 mt-2">
                 <div className="flex justify-between font-semibold">
                   <span>Enterprise would save:</span>
-                  <span className="text-green-600">
+                  <span className="text-primary">
                     {stats.contactsUsed >= 10 ? `€${(stats.contactsUsed * 10) - 99}` : '-'}
                   </span>
                 </div>

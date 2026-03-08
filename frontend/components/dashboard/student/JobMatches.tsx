@@ -61,8 +61,8 @@ export function JobMatches({ matches }: JobMatchesProps) {
   }
 
   const getMatchScoreColor = (score: number) => {
-    if (score >= 90) return 'bg-green-100 text-green-700 border-green-200'
-    if (score >= 75) return 'bg-blue-100 text-blue-700 border-blue-200'
+    if (score >= 90) return 'bg-primary/10 text-primary border-primary/20'
+    if (score >= 75) return 'bg-primary/10 text-primary border-primary/20'
     if (score >= 60) return 'bg-yellow-100 text-yellow-700 border-yellow-200'
     return 'bg-gray-100 text-gray-700 border-gray-200'
   }
@@ -70,11 +70,11 @@ export function JobMatches({ matches }: JobMatchesProps) {
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'full-time':
-        return 'bg-blue-100 text-blue-700'
+        return 'bg-primary/10 text-primary'
       case 'part-time':
-        return 'bg-green-100 text-green-700'
+        return 'bg-primary/10 text-primary'
       case 'internship':
-        return 'bg-purple-100 text-purple-700'
+        return 'bg-primary/10 text-primary'
       case 'contract':
         return 'bg-orange-100 text-orange-700'
       default:
@@ -130,7 +130,7 @@ export function JobMatches({ matches }: JobMatchesProps) {
                       <h3 className="text-lg font-semibold text-gray-900 truncate">
                         <Link 
                           href={`/dashboard/student/jobs/${job.id}`}
-                          className="hover:text-blue-600 transition-colors"
+                          className="hover:text-primary transition-colors"
                         >
                           {job.title}
                         </Link>
@@ -244,14 +244,14 @@ export function JobMatches({ matches }: JobMatchesProps) {
 
             {/* Why This Match */}
             {job.matchScore >= 80 && (
-              <div className="mt-4 p-3 bg-green-50 rounded-lg">
+              <div className="mt-4 p-3 bg-primary/5 rounded-lg">
                 <div className="flex items-center">
-                  <Star className="h-4 w-4 text-green-600 mr-2" />
-                  <span className="text-sm font-medium text-green-900">
+                  <Star className="h-4 w-4 text-primary mr-2" />
+                  <span className="text-sm font-medium text-foreground">
                     High Match Score
                   </span>
                 </div>
-                <p className="text-sm text-green-700 mt-1">
+                <p className="text-sm text-muted-foreground mt-1">
                   Your skills in React and Node.js align perfectly with this role's requirements.
                 </p>
               </div>

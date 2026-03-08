@@ -157,7 +157,7 @@ export default function InstitutionDashboard() {
           <>
             <Card className="p-4">
               <div className="flex items-center gap-3">
-                <Users className="h-8 w-8 text-blue-600" />
+                <Users className="h-8 w-8 text-primary" />
                 <div>
                   <div className="text-2xl font-bold">{stats?.totalStudents ?? 0}</div>
                   <div className="text-sm text-gray-600">Total Students</div>
@@ -167,7 +167,7 @@ export default function InstitutionDashboard() {
 
             <Card className="p-4">
               <div className="flex items-center gap-3">
-                <CheckCircle className="h-8 w-8 text-green-600" />
+                <CheckCircle className="h-8 w-8 text-primary" />
                 <div>
                   <div className="text-2xl font-bold">{stats?.verifiedStudents ?? 0}</div>
                   <div className="text-sm text-gray-600">Verified Students</div>
@@ -177,7 +177,7 @@ export default function InstitutionDashboard() {
 
             <Card className="p-4">
               <div className="flex items-center gap-3">
-                <GraduationCap className="h-8 w-8 text-purple-600" />
+                <GraduationCap className="h-8 w-8 text-primary" />
                 <div>
                   <div className="text-2xl font-bold">{stats?.activeProfiles ?? 0}</div>
                   <div className="text-sm text-gray-600">Active Profiles</div>
@@ -223,14 +223,14 @@ export default function InstitutionDashboard() {
               <div className="space-y-3">
                 {recentStudents.map((student) => (
                   <div key={student.id} className="flex items-center gap-4 p-4 border rounded-lg hover:bg-gray-50">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-800 font-bold text-sm flex items-center justify-center">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-gray-700 font-bold text-sm flex items-center justify-center">
                       {student.initials}
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-medium">
                         {student.name}
                         {student.verified && (
-                          <CheckCircle className="inline-block h-3.5 w-3.5 text-green-500 ml-1" />
+                          <CheckCircle className="inline-block h-3.5 w-3.5 text-primary ml-1" />
                         )}
                       </p>
                       <p className="text-xs text-gray-500">
@@ -279,21 +279,21 @@ export default function InstitutionDashboard() {
 
           {/* Premium Embed Preview */}
           {isFree && (
-            <Card className="p-6 bg-gradient-to-br from-purple-50 to-blue-50 border-purple-200">
+            <Card className="p-6 bg-primary/5 border-primary/20">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-purple-600 text-white flex items-center justify-center">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary text-white flex items-center justify-center">
                   <Code className="h-6 w-6" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-purple-900 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Drive 40% More Student Sign-ups with Embeddable Widget
                   </h3>
-                  <p className="text-sm text-purple-800 mb-4">
+                  <p className="text-sm text-gray-700 mb-4">
                     Add the InTransparency widget to your career portal showing live matches like
                     &quot;3 students matched to BMW today&quot;. &euro;500/year vs. &euro;2,500+ for competitors.
                   </p>
                   <div className="flex gap-2">
-                    <Button onClick={handleUpgradeClick} className="bg-purple-600 hover:bg-purple-700">
+                    <Button onClick={handleUpgradeClick} className="bg-primary hover:bg-primary/90">
                       Get Widget - &euro;500/year
                     </Button>
                     <Button variant="outline" onClick={() => window.open('/embed/demo', '_blank')}>
@@ -311,7 +311,7 @@ export default function InstitutionDashboard() {
             <Card className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-semibold">Your Embeddable Widget</h2>
-                <Badge className="bg-purple-600">Premium Embed</Badge>
+                <Badge className="bg-primary">Premium Embed</Badge>
               </div>
 
               <div className="space-y-4">
@@ -320,7 +320,7 @@ export default function InstitutionDashboard() {
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="text-gray-600">Active:</span>
-                      <span className="ml-2 font-medium text-green-600">Live</span>
+                      <span className="ml-2 font-medium text-primary">Live</span>
                     </div>
                     <div>
                       <span className="text-gray-600">Students:</span>
@@ -346,7 +346,7 @@ export default function InstitutionDashboard() {
               {isFree ? (
                 <Badge variant="secondary">Free Plan</Badge>
               ) : (
-                <Badge className="bg-purple-600">
+                <Badge className="bg-primary">
                   {subscriptionTier === 'INSTITUTION_ENTERPRISE' ? 'Enterprise' : 'Premium Embed'}
                 </Badge>
               )}
@@ -356,15 +356,15 @@ export default function InstitutionDashboard() {
               {isFree ? (
                 <>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-green-500" />
+                    <Star className="h-4 w-4 text-primary" />
                     <span className="text-gray-600">Unlimited students</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-green-500" />
+                    <Star className="h-4 w-4 text-primary" />
                     <span className="text-gray-600">Basic analytics</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-green-500" />
+                    <Star className="h-4 w-4 text-primary" />
                     <span className="text-gray-600">Company connections</span>
                   </div>
 
@@ -384,15 +384,15 @@ export default function InstitutionDashboard() {
               ) : (
                 <>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-yellow-500" />
+                    <Star className="h-4 w-4 text-secondary" />
                     <span className="text-gray-600">Embeddable widget</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-yellow-500" />
+                    <Star className="h-4 w-4 text-secondary" />
                     <span className="text-gray-600">Custom branding</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-yellow-500" />
+                    <Star className="h-4 w-4 text-secondary" />
                     <span className="text-gray-600">Placement reports</span>
                   </div>
                 </>
@@ -401,35 +401,35 @@ export default function InstitutionDashboard() {
           </Card>
 
           {/* Pricing Info */}
-          <Card className="p-6 bg-green-50 border-green-200">
-            <h3 className="font-semibold text-green-900 mb-2">Your Plan</h3>
-            <div className="space-y-2 text-sm text-green-800">
+          <Card className="p-6 bg-primary/5 border-primary/20">
+            <h3 className="font-semibold text-gray-900 mb-2">Your Plan</h3>
+            <div className="space-y-2 text-sm text-gray-700">
               <div className="flex justify-between">
                 <span>Platform Access:</span>
-                <span className="font-medium text-green-600">FREE</span>
+                <span className="font-medium text-primary">FREE</span>
               </div>
               <div className="flex justify-between">
                 <span>Student Verification:</span>
-                <span className="font-medium text-green-600">FREE</span>
+                <span className="font-medium text-primary">FREE</span>
               </div>
               <div className="flex justify-between">
                 <span>Analytics Dashboard:</span>
-                <span className="font-medium text-green-600">FREE</span>
+                <span className="font-medium text-primary">FREE</span>
               </div>
-              <div className="flex justify-between pt-2 border-t border-green-300">
+              <div className="flex justify-between pt-2 border-t border-primary/20">
                 <span>Optional Widget:</span>
                 <span className="font-medium">&euro;500</span>
               </div>
-              <p className="text-xs text-green-700 mt-2">
+              <p className="text-xs text-gray-600 mt-2">
                 All core features included at no cost
               </p>
             </div>
           </Card>
 
           {/* Referral Program */}
-          <Card className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200">
-            <h3 className="font-semibold text-blue-900 mb-2">Institutional Referrals</h3>
-            <p className="text-sm text-blue-800 mb-4">
+          <Card className="p-6 bg-primary/5 border-primary/20">
+            <h3 className="font-semibold text-gray-900 mb-2">Institutional Referrals</h3>
+            <p className="text-sm text-gray-700 mb-4">
               Refer other universities and earn &euro;250 per signup to ITS network!
             </p>
             <Button

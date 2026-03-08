@@ -114,11 +114,11 @@ export function AutomaticProfileDemo() {
   const getStatusIcon = (status: ProfileSection['status']) => {
     switch (status) {
       case 'importing':
-        return <RefreshCw className="h-4 w-4 animate-spin text-blue-600" />
+        return <RefreshCw className="h-4 w-4 animate-spin text-primary" />
       case 'analyzing':
-        return <Brain className="h-4 w-4 text-purple-600 animate-pulse" />
+        return <Brain className="h-4 w-4 text-primary animate-pulse" />
       case 'complete':
-        return <CheckCircle className="h-4 w-4 text-green-600" />
+        return <CheckCircle className="h-4 w-4 text-primary" />
       default:
         return <Clock className="h-4 w-4 text-gray-600" />
     }
@@ -149,30 +149,30 @@ export function AutomaticProfileDemo() {
         </p>
         <div className="flex justify-center items-center space-x-6 text-sm text-gray-700">
           <div className="flex items-center">
-            <Zap className="h-4 w-4 mr-1 text-yellow-500" />
+            <Zap className="h-4 w-4 mr-1 text-secondary" />
             30 seconds to complete profile
           </div>
           <div className="flex items-center">
-            <Shield className="h-4 w-4 mr-1 text-green-500" />
+            <Shield className="h-4 w-4 mr-1 text-primary" />
             100% verified data
           </div>
           <div className="flex items-center">
-            <Sparkles className="h-4 w-4 mr-1 text-purple-500" />
+            <Sparkles className="h-4 w-4 mr-1 text-primary" />
             AI-enhanced descriptions
           </div>
         </div>
       </div>
 
       {/* Import Card */}
-      <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <Card className="border-2 border-primary/20 bg-primary/5">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
             <div className="flex items-center">
-              <Database className="h-6 w-6 mr-2 text-blue-600" />
+              <Database className="h-6 w-6 mr-2 text-primary" />
               University Data Integration
             </div>
             {profileComplete && (
-              <Badge className="bg-green-100 text-green-800">
+              <Badge className="bg-primary/10 text-green-800">
                 Profile Complete!
               </Badge>
             )}
@@ -182,8 +182,8 @@ export function AutomaticProfileDemo() {
           {!isImporting && !profileComplete ? (
             <div className="text-center py-8">
               <div className="mb-6">
-                <div className="w-24 h-24 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                  <Link className="h-12 w-12 text-blue-600" />
+                <div className="w-24 h-24 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                  <Link className="h-12 w-12 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
                   Consent & Connect Your University Data
@@ -195,7 +195,7 @@ export function AutomaticProfileDemo() {
               <Button
                 size="lg"
                 onClick={startImport}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
+                className="bg-primary hover:bg-blue-700 text-white"
               >
                 <Database className="h-5 w-5 mr-2" />
                 Connect University & Import Data
@@ -235,20 +235,20 @@ export function AutomaticProfileDemo() {
                       key={section.id}
                       className={`p-4 rounded-lg border transition-all ${
                         section.status === 'complete'
-                          ? 'bg-green-50 border-green-200'
+                          ? 'bg-primary/5 border-primary/20'
                           : section.status === 'importing'
-                          ? 'bg-blue-50 border-blue-200 animate-pulse'
+                          ? 'bg-primary/5 border-primary/20 animate-pulse'
                           : section.status === 'analyzing'
-                          ? 'bg-purple-50 border-purple-200'
+                          ? 'bg-primary/5 border-primary/20'
                           : 'bg-gray-50 border-gray-200'
                       }`}
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex items-center">
                           <Icon className={`h-5 w-5 mr-2 ${
-                            section.status === 'complete' ? 'text-green-600' :
-                            section.status === 'importing' ? 'text-blue-600' :
-                            section.status === 'analyzing' ? 'text-purple-600' :
+                            section.status === 'complete' ? 'text-primary' :
+                            section.status === 'importing' ? 'text-primary' :
+                            section.status === 'analyzing' ? 'text-primary' :
                             'text-gray-600'
                           }`} />
                           <div>
@@ -270,10 +270,10 @@ export function AutomaticProfileDemo() {
 
               {/* Completion Summary */}
               {profileComplete && (
-                <div className="mt-6 p-6 bg-green-50 rounded-lg border border-green-200">
+                <div className="mt-6 p-6 bg-primary/5 rounded-lg border border-primary/20">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-green-100 rounded-full p-3">
-                      <CheckCircle className="h-8 w-8 text-green-600" />
+                    <div className="bg-primary/10 rounded-full p-3">
+                      <CheckCircle className="h-8 w-8 text-primary" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -285,20 +285,20 @@ export function AutomaticProfileDemo() {
                           <span>{totalItems} data points imported</span>
                         </div>
                         <div className="flex items-center text-sm text-gray-700">
-                          <Brain className="h-4 w-4 mr-2 text-purple-500" />
+                          <Brain className="h-4 w-4 mr-2 text-primary" />
                           <span>12 projects AI-analyzed</span>
                         </div>
                         <div className="flex items-center text-sm text-gray-700">
-                          <TrendingUp className="h-4 w-4 mr-2 text-blue-500" />
+                          <TrendingUp className="h-4 w-4 mr-2 text-primary" />
                           <span>45 skills identified</span>
                         </div>
                         <div className="flex items-center text-sm text-gray-700">
-                          <Award className="h-4 w-4 mr-2 text-yellow-500" />
+                          <Award className="h-4 w-4 mr-2 text-secondary" />
                           <span>100% profile complete</span>
                         </div>
                       </div>
                       <div className="flex space-x-3">
-                        <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                        <Button className="bg-primary hover:bg-blue-700 text-white">
                           View Profile
                           <ArrowRight className="h-4 w-4 ml-2" />
                         </Button>
@@ -318,11 +318,11 @@ export function AutomaticProfileDemo() {
 
       {/* Key Benefits */}
       <div className="grid md:grid-cols-3 gap-6">
-        <Card className="bg-gradient-to-br from-blue-50 to-white">
+        <Card className="bg-primary/5">
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="bg-blue-100 rounded-full p-3 w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                <Clock className="h-6 w-6 text-blue-600" />
+              <div className="bg-primary/10 rounded-full p-3 w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                <Clock className="h-6 w-6 text-primary" />
               </div>
               <h4 className="font-semibold text-gray-900 mb-2">Save 15+ Hours</h4>
               <p className="text-sm text-gray-600">
@@ -331,11 +331,11 @@ export function AutomaticProfileDemo() {
             </div>
           </CardContent>
         </Card>
-        <Card className="bg-gradient-to-br from-purple-50 to-white">
+        <Card className="bg-primary/5">
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="bg-purple-100 rounded-full p-3 w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                <Brain className="h-6 w-6 text-purple-600" />
+              <div className="bg-primary/10 rounded-full p-3 w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                <Brain className="h-6 w-6 text-primary" />
               </div>
               <h4 className="font-semibold text-gray-900 mb-2">AI-Enhanced</h4>
               <p className="text-sm text-gray-600">
@@ -344,11 +344,11 @@ export function AutomaticProfileDemo() {
             </div>
           </CardContent>
         </Card>
-        <Card className="bg-gradient-to-br from-green-50 to-white">
+        <Card className="bg-primary/5">
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="bg-green-100 rounded-full p-3 w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                <RefreshCw className="h-6 w-6 text-green-600" />
+              <div className="bg-primary/10 rounded-full p-3 w-12 h-12 mx-auto mb-3 flex items-center justify-center">
+                <RefreshCw className="h-6 w-6 text-primary" />
               </div>
               <h4 className="font-semibold text-gray-900 mb-2">Always Current</h4>
               <p className="text-sm text-gray-600">

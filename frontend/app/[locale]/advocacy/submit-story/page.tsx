@@ -127,9 +127,9 @@ export default function SubmitAlumniStoryPage() {
             </CardHeader>
             <CardContent className="py-8">
               <div className="space-y-6">
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
                   <div className="flex items-start gap-3">
-                    <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5" />
+                    <AlertCircle className="h-5 w-5 text-primary mt-0.5" />
                     <div>
                       <h3 className="font-semibold text-blue-900 mb-1">Verification Email Sent</h3>
                       <p className="text-sm text-blue-800">
@@ -188,7 +188,7 @@ export default function SubmitAlumniStoryPage() {
                   </Link>
                   <Button
                     onClick={() => setStep('success')}
-                    className="flex-1 bg-gradient-to-r from-primary to-secondary"
+                    className="flex-1 bg-primary"
                   >
                     Got It
                   </Button>
@@ -207,8 +207,8 @@ export default function SubmitAlumniStoryPage() {
         <div className="max-w-2xl mx-auto px-4">
           <Card className="border-2 border-green-500">
             <CardContent className="py-12 text-center">
-              <div className="bg-green-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="h-12 w-12 text-green-600" />
+              <div className="bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                <CheckCircle className="h-12 w-12 text-primary" />
               </div>
               <h2 className="text-3xl font-bold mb-3">Thank You!</h2>
               <p className="text-gray-600 mb-8 max-w-md mx-auto">
@@ -237,7 +237,7 @@ export default function SubmitAlumniStoryPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero */}
-      <section className="bg-gradient-to-r from-primary to-secondary text-white py-12">
+      <section className="bg-primary text-white py-12">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <GraduationCap className="h-12 w-12 mx-auto mb-4" />
           <h1 className="text-4xl font-display font-bold mb-4">
@@ -536,7 +536,7 @@ export default function SubmitAlumniStoryPage() {
               <Button
                 type="submit"
                 disabled={submitting}
-                className="flex-1 bg-gradient-to-r from-primary to-secondary"
+                className="flex-1 bg-primary"
               >
                 {submitting ? 'Submitting...' : 'Submit Story'}
               </Button>

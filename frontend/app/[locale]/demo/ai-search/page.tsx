@@ -59,7 +59,7 @@ export default function AISearchDemoPage() {
     student: {
       title: t('demoConfigs.student.title'),
       subtitle: t('demoConfigs.student.subtitle'),
-      color: 'from-primary to-secondary',
+      color: 'bg-primary',
       icon: GraduationCap,
       placeholder: t('demoConfigs.student.placeholder'),
       initialMessage: t('demoConfigs.student.initialMessage'),
@@ -68,7 +68,7 @@ export default function AISearchDemoPage() {
     company: {
       title: t('demoConfigs.company.title'),
       subtitle: t('demoConfigs.company.subtitle'),
-      color: 'from-primary to-secondary',
+      color: 'bg-primary',
       icon: Building2,
       placeholder: t('demoConfigs.company.placeholder'),
       initialMessage: t('demoConfigs.company.initialMessage'),
@@ -77,7 +77,7 @@ export default function AISearchDemoPage() {
     university: {
       title: t('demoConfigs.university.title'),
       subtitle: t('demoConfigs.university.subtitle'),
-      color: 'from-primary to-secondary',
+      color: 'bg-primary',
       icon: Users,
       placeholder: t('demoConfigs.university.placeholder'),
       initialMessage: t('demoConfigs.university.initialMessage'),
@@ -192,7 +192,7 @@ export default function AISearchDemoPage() {
           </div>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
             {t('banner.title')}{' '}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <span className="text-primary">
               {t('banner.titleHighlight')}
             </span>
           </h1>
@@ -250,7 +250,7 @@ export default function AISearchDemoPage() {
                 onClick={() => setViewMode('list')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-md transition-all ${
                   viewMode === 'list'
-                    ? `bg-gradient-to-r ${config.color} text-white shadow-sm`
+                    ? `${config.color} text-white shadow-sm`
                     : 'text-gray-700 hover:bg-gray-100'
                 }`}
               >
@@ -261,7 +261,7 @@ export default function AISearchDemoPage() {
                 onClick={() => setViewMode('map')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-md transition-all ${
                   viewMode === 'map'
-                    ? `bg-gradient-to-r ${config.color} text-white shadow-sm`
+                    ? `${config.color} text-white shadow-sm`
                     : 'text-gray-700 hover:bg-gray-100'
                 }`}
               >
@@ -276,8 +276,8 @@ export default function AISearchDemoPage() {
           {/* Chat Interface */}
           {viewMode === 'list' && (
             <div className="lg:col-span-2">
-              <Card className="shadow-xl">
-                <CardHeader className={`bg-gradient-to-r ${config.color} text-white`}>
+              <Card className="shadow-lg">
+                <CardHeader className={`${config.color} text-white`}>
                   <div className="flex items-center gap-3">
                     <Icon className="h-6 w-6" />
                     <div>
@@ -299,7 +299,7 @@ export default function AISearchDemoPage() {
                         className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                       >
                         {message.role === 'assistant' && (
-                          <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r ${config.color} flex items-center justify-center`}>
+                          <div className={`flex-shrink-0 w-10 h-10 rounded-full ${config.color} flex items-center justify-center`}>
                             <Bot className="h-5 w-5 text-white" />
                           </div>
                         )}
@@ -307,7 +307,7 @@ export default function AISearchDemoPage() {
                         <div className={`flex flex-col max-w-[70%] ${message.role === 'user' ? 'items-end' : 'items-start'}`}>
                           <div className={`rounded-2xl px-4 py-3 ${
                             message.role === 'user'
-                              ? `bg-gradient-to-r ${config.color} text-white`
+                              ? `${config.color} text-white`
                               : 'bg-gray-100 text-gray-900'
                           }`}>
                             <p className="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</p>
@@ -324,7 +324,7 @@ export default function AISearchDemoPage() {
                                         <div>
                                           <p className="font-semibold text-gray-900">{result.title}</p>
                                           {result.type === 'Internship' && result.validForDegree && (
-                                            <Badge className="bg-purple-100 text-purple-800 text-xs mt-1">
+                                            <Badge className="bg-primary/10 text-primary text-xs mt-1">
                                               {t('results.validForDegree')}
                                             </Badge>
                                           )}
@@ -333,7 +333,7 @@ export default function AISearchDemoPage() {
                                       {result.name && <p className="font-semibold text-gray-900">{result.name}</p>}
                                       {result.initials && (
                                         <div className="flex items-center gap-2">
-                                          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold text-xs">
+                                          <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xs">
                                             {result.initials}
                                           </div>
                                           <span className="text-gray-600">{t('results.contactLocked')}</span>
@@ -358,14 +358,14 @@ export default function AISearchDemoPage() {
                                       )}
                                     </div>
                                     {result.match && (
-                                      <Badge className="bg-green-100 text-green-800 text-xs">
+                                      <Badge className="bg-primary/10 text-primary text-xs">
                                         {t('results.match', { score: result.match })}
                                       </Badge>
                                     )}
                                   </div>
                                 </div>
                               ))}
-                              <Button className={`w-full bg-gradient-to-r ${config.color}`} size="sm" asChild>
+                              <Button className={`w-full ${config.color}`} size="sm" asChild>
                                 <Link href={config.registrationLink}>
                                   {t('ui.registerToSeeAll')}
                                   <ArrowRight className="h-3 w-3 ml-2" />
@@ -390,7 +390,7 @@ export default function AISearchDemoPage() {
 
                   {isTyping && (
                     <div className="flex gap-3">
-                      <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r ${config.color} flex items-center justify-center`}>
+                      <div className={`flex-shrink-0 w-10 h-10 rounded-full ${config.color} flex items-center justify-center`}>
                         <Bot className="h-5 w-5 text-white" />
                       </div>
                       <div className="bg-gray-100 rounded-2xl px-4 py-3">
@@ -418,7 +418,7 @@ export default function AISearchDemoPage() {
                     />
                     <Button
                       onClick={handleSend}
-                      className={`bg-gradient-to-r ${config.color}`}
+                      className={`${config.color}`}
                     >
                       <Send className="h-4 w-4" />
                     </Button>
@@ -433,7 +433,7 @@ export default function AISearchDemoPage() {
           {viewMode === 'map' && (
             <div className="lg:col-span-2">
               <Card className="shadow-xl">
-                <CardHeader className={`bg-gradient-to-r ${config.color} text-white`}>
+                <CardHeader className={`${config.color} text-white`}>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <MapPin className="h-6 w-6" />
@@ -511,7 +511,7 @@ export default function AISearchDemoPage() {
                     {/* Selected Marker Info Overlay */}
                     {selectedMarker && (
                       <div className="absolute bottom-4 left-4 right-4 max-w-md">
-                        <Card className="shadow-2xl">
+                        <Card className="shadow-lg">
                           <CardContent className="p-4">
                             {(() => {
                               const selected = getCurrentResults().find((r: any) => r.id === selectedMarker)
@@ -527,7 +527,7 @@ export default function AISearchDemoPage() {
                                         <h3 className="font-bold text-lg">{selected.title}</h3>
                                         <p className="text-gray-600">{selected.company}</p>
                                         {isInternship && selected.validForDegree && (
-                                          <Badge className="bg-purple-100 text-purple-800 mt-1 text-xs">
+                                          <Badge className="bg-primary/10 text-primary mt-1 text-xs">
                                             {t('results.validForUniversityDegree')}
                                           </Badge>
                                         )}
@@ -557,22 +557,22 @@ export default function AISearchDemoPage() {
                                         </p>
                                       )}
                                       {selected.type && (
-                                        <Badge className="bg-blue-100 text-blue-800 mt-2">
+                                        <Badge className="bg-primary/10 text-primary mt-2">
                                           {selected.type}
                                         </Badge>
                                       )}
                                       {selected.match && (
-                                        <Badge className="bg-green-100 text-green-800 mt-2">
+                                        <Badge className="bg-primary/10 text-primary mt-2">
                                           {t('results.match', { score: selected.match })}
                                         </Badge>
                                       )}
                                       {selected.matchedStudents && (
-                                        <Badge className="bg-blue-100 text-blue-800 mt-2">
+                                        <Badge className="bg-primary/10 text-primary mt-2">
                                           {t('results.studentsMatch', { count: selected.matchedStudents })}
                                         </Badge>
                                       )}
                                     </div>
-                                    <Button className={`w-full mt-3 bg-gradient-to-r ${config.color}`} size="sm" asChild>
+                                    <Button className={`w-full mt-3 ${config.color}`} size="sm" asChild>
                                       <Link href={config.registrationLink}>
                                         {isInternship ? t('results.applyForStage') : t('results.registerToApply')}
                                       </Link>
@@ -585,7 +585,7 @@ export default function AISearchDemoPage() {
                                   <div>
                                     <div className="flex items-start justify-between mb-2">
                                       <div className="flex items-center gap-3">
-                                        <div className="w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold">
+                                        <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold">
                                           {selected.initials}
                                         </div>
                                         <div>
@@ -605,12 +605,12 @@ export default function AISearchDemoPage() {
                                       {selected.gpa != null && <p><strong>{t('mapInfo.gpa')}:</strong> {selected.gpa}/30</p>}
                                       {selected.skills && selected.skills.length > 0 && <p><strong>{t('mapInfo.skills')}:</strong> {selected.skills.slice(0, 3).join(', ')}</p>}
                                       {selected.match && (
-                                      <Badge className="bg-green-100 text-green-800 mt-2">
+                                      <Badge className="bg-primary/10 text-primary mt-2">
                                         {t('results.match', { score: selected.match })}
                                       </Badge>
                                       )}
                                     </div>
-                                    <Button className={`w-full mt-3 bg-gradient-to-r ${config.color}`} size="sm" asChild>
+                                    <Button className={`w-full mt-3 ${config.color}`} size="sm" asChild>
                                       <Link href={config.registrationLink}>{t('results.unlockContact')}</Link>
                                     </Button>
                                   </div>
@@ -635,12 +635,12 @@ export default function AISearchDemoPage() {
                                       <p><strong>{t('mapInfo.gpa')}:</strong> {selected.gpa}/4.0</p>
                                       <p><strong>{t('mapInfo.contacted')}:</strong> {selected.contacted} {t('mapInfo.times')}</p>
                                       {selected.hired && (
-                                        <Badge className="bg-green-100 text-green-800 mt-2">
+                                        <Badge className="bg-primary/10 text-primary mt-2">
                                           {t('results.hiredAt', { company: selected.company })}
                                         </Badge>
                                       )}
                                     </div>
-                                    <Button className={`w-full mt-3 bg-gradient-to-r ${config.color}`} size="sm" asChild>
+                                    <Button className={`w-full mt-3 ${config.color}`} size="sm" asChild>
                                       <Link href={config.registrationLink}>{t('results.viewFullProfile')}</Link>
                                     </Button>
                                   </div>
@@ -663,7 +663,7 @@ export default function AISearchDemoPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
-                  <Lightbulb className="h-5 w-5 mr-2 text-yellow-500" />
+                  <Lightbulb className="h-5 w-5 mr-2 text-secondary" />
                   {t('ui.exampleQueriesTitle')}
                 </CardTitle>
               </CardHeader>
@@ -672,7 +672,7 @@ export default function AISearchDemoPage() {
                   <button
                     key={index}
                     onClick={() => handleExampleClick(example)}
-                    className="w-full text-left p-3 rounded-lg bg-gray-50 hover:bg-blue-50 hover:border-blue-200 border border-gray-200 transition-colors text-sm"
+                    className="w-full text-left p-3 rounded-lg bg-gray-50 hover:bg-primary/5 hover:border-primary/20 border border-gray-200 transition-colors text-sm"
                   >
                     {example}
                   </button>
@@ -681,7 +681,7 @@ export default function AISearchDemoPage() {
             </Card>
 
             {/* CTA Card */}
-            <Card className={`bg-gradient-to-br ${config.color.replace('from-', 'from-').replace('to-', 'to-')}/10 border-2`}>
+            <Card className="bg-primary/5 border-2">
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
                   <Zap className="h-5 w-5 mr-2" />
@@ -691,15 +691,15 @@ export default function AISearchDemoPage() {
               <CardContent className="space-y-4">
                 <div className="space-y-3 text-sm">
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                     <span>{t('features.accessFullResults')}</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                     <span>{t('features.saveSearches')}</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                     <span>
                       {activeDemo === 'student' && t('features.studentFeature')}
                       {activeDemo === 'company' && t('features.companyFeature')}
@@ -708,7 +708,7 @@ export default function AISearchDemoPage() {
                   </div>
                 </div>
 
-                <Button className={`w-full bg-gradient-to-r ${config.color}`} size="lg" asChild>
+                <Button className={`w-full ${config.color}`} size="lg" asChild>
                   <Link href={config.registrationLink}>
                     {t('ui.registerFree')}
                     <ArrowRight className="h-4 w-4 ml-2" />

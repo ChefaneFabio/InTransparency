@@ -406,7 +406,7 @@ export default function CourseSearchPage() {
 
                                       <div className="flex items-center gap-2">
                                         {student.courseGrade && (
-                                          <Badge className="bg-green-100 text-green-700">
+                                          <Badge className="bg-primary/10 text-green-700">
                                             <Award className="h-3 w-3 mr-1" />
                                             {student.courseGrade}
                                           </Badge>

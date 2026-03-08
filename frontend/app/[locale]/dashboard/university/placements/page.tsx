@@ -108,7 +108,7 @@ export default function UniversityPlacementsPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'confirmed':
-        return <Badge className="bg-green-100 text-green-800"><CheckCircle className="h-3 w-3 mr-1" />Confermato</Badge>
+        return <Badge className="bg-primary/10 text-primary"><CheckCircle className="h-3 w-3 mr-1" />Confermato</Badge>
       case 'pending':
         return <Badge className="bg-yellow-100 text-yellow-800"><Clock className="h-3 w-3 mr-1" />In Attesa</Badge>
       case 'declined':
@@ -125,7 +125,7 @@ export default function UniversityPlacementsPage() {
       case 'internship':
         return <Badge variant="outline" className="border-purple-300 text-purple-700">Stage</Badge>
       case 'part-time':
-        return <Badge variant="outline" className="border-blue-300 text-blue-700">Part-time</Badge>
+        return <Badge variant="outline" className="border-primary/30 text-primary">Part-time</Badge>
       default:
         return null
     }
@@ -151,8 +151,8 @@ export default function UniversityPlacementsPage() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <CheckCircle className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   {loading ? (
@@ -174,7 +174,7 @@ export default function UniversityPlacementsPage() {
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                  <Clock className="h-5 w-5 text-yellow-600" />
+                  <Clock className="h-5 w-5 text-secondary" />
                 </div>
                 <div>
                   {loading ? (
@@ -195,8 +195,8 @@ export default function UniversityPlacementsPage() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <DollarSign className="h-5 w-5 text-blue-600" />
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <DollarSign className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   {loading ? (
@@ -219,8 +219,8 @@ export default function UniversityPlacementsPage() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                  <TrendingUp className="h-5 w-5 text-purple-600" />
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <TrendingUp className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   {loading ? (

@@ -232,7 +232,7 @@ export default function LinkedInPlugin({
     >
       <button
         onClick={() => setIsExpanded(true)}
-        className="bg-[#0077B5] hover:bg-[#005885] text-white p-4 rounded-full shadow-lg transition-all duration-200 transform hover:scale-110"
+        className="bg-[#0077B5] hover:bg-[#005885] text-white p-4 rounded-full shadow-lg transition-all duration-200 transform"
         title="Open LinkedIn Integration"
       >
         <FaLinkedin className="text-2xl" />
@@ -242,7 +242,7 @@ export default function LinkedInPlugin({
 
   const renderExpandedPlugin = () => (
     <div className={`${getPositionClasses()} ${mode === 'standalone' ? 'relative' : ''}`}>
-      <div className={`bg-white rounded-lg shadow-2xl border ${
+      <div className={`bg-white rounded-lg shadow-lg border ${
         mode === 'plugin' ? 'w-96 h-[500px]' : 'w-full h-full'
       } transition-all duration-300`}>
         <div className="flex items-center justify-between p-4 border-b bg-[#0077B5] text-white rounded-t-lg">
@@ -293,7 +293,7 @@ export default function LinkedInPlugin({
                     onClick={() => setActiveTab(tab as any)}
                     className={`flex-1 px-4 py-2 text-sm font-medium transition-colors ${
                       activeTab === tab
-                        ? 'bg-blue-50 text-blue-600 border-b-2 border-blue-600'
+                        ? 'bg-primary/5 text-primary border-b-2 border-blue-600'
                         : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
                     }`}
                   >
@@ -325,7 +325,7 @@ export default function LinkedInPlugin({
                           <p className="text-sm text-gray-600">{linkedInProfile.headline}</p>
                         )}
                         {linkedInProfile.connections && (
-                          <p className="text-sm text-blue-600">{linkedInProfile.connections} connections</p>
+                          <p className="text-sm text-primary">{linkedInProfile.connections} connections</p>
                         )}
                       </div>
                     </div>
@@ -343,7 +343,7 @@ export default function LinkedInPlugin({
                     <button
                       onClick={loadConnections}
                       disabled={loading}
-                      className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                      className="w-full bg-primary text-white py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
                     >
                       {loading ? 'Loading...' : 'Load Connections'}
                     </button>
@@ -369,7 +369,7 @@ export default function LinkedInPlugin({
                             </div>
                           </div>
                           {connection.isInTransparencyUser && (
-                            <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">
+                            <span className="text-xs bg-primary/10 text-green-800 px-2 py-1 rounded">
                               InTransparency User
                             </span>
                           )}
@@ -393,7 +393,7 @@ export default function LinkedInPlugin({
                       <button
                         onClick={searchLinkedIn}
                         disabled={loading || !searchQuery.trim()}
-                        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                        className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
                       >
                         <FaSearch />
                       </button>
@@ -417,7 +417,7 @@ export default function LinkedInPlugin({
                               {person.headline && (
                                 <p className="text-xs text-gray-600">{person.headline}</p>
                               )}
-                              <p className="text-xs text-blue-600">
+                              <p className="text-xs text-primary">
                                 {person.connectionType} degree connection
                               </p>
                             </div>
@@ -436,7 +436,7 @@ export default function LinkedInPlugin({
 
                 {activeTab === 'invite' && (
                   <div className="space-y-4">
-                    <div className="bg-blue-50 p-3 rounded-lg">
+                    <div className="bg-primary/5 p-3 rounded-lg">
                       <p className="text-sm text-blue-800">
                         Select connections to invite to InTransparency
                       </p>
@@ -461,7 +461,7 @@ export default function LinkedInPlugin({
                                 setSelectedConnections(selectedConnections.filter(id => id !== connection.id));
                               }
                             }}
-                            className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                            className="w-4 h-4 text-primary rounded focus:ring-blue-500"
                           />
                           {connection.pictureUrl && (
                             <img
@@ -479,7 +479,7 @@ export default function LinkedInPlugin({
                             )}
                           </div>
                           {connection.isInTransparencyUser && (
-                            <FaCheck className="text-green-600" />
+                            <FaCheck className="text-primary" />
                           )}
                         </div>
                       ))}
@@ -489,7 +489,7 @@ export default function LinkedInPlugin({
                       <button
                         onClick={inviteToInTransparency}
                         disabled={loading}
-                        className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50"
+                        className="w-full bg-primary text-white py-2 rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50"
                       >
                         {loading ? 'Sending...' : `Invite ${selectedConnections.length} Connection${selectedConnections.length > 1 ? 's' : ''}`}
                       </button>

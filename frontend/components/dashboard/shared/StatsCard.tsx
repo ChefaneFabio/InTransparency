@@ -28,33 +28,33 @@ export function StatsCard({
     switch (color) {
       case 'blue':
         return {
-          icon: 'text-blue-600 bg-blue-100',
-          trend: trendDirection === 'up' ? 'text-green-600' : trendDirection === 'down' ? 'text-red-600' : 'text-gray-600'
+          icon: 'text-primary bg-primary/10',
+          trend: trendDirection === 'up' ? 'text-primary' : trendDirection === 'down' ? 'text-red-600' : 'text-gray-600'
         }
       case 'green':
         return {
-          icon: 'text-green-600 bg-green-100',
-          trend: trendDirection === 'up' ? 'text-green-600' : trendDirection === 'down' ? 'text-red-600' : 'text-gray-600'
+          icon: 'text-primary bg-primary/10',
+          trend: trendDirection === 'up' ? 'text-primary' : trendDirection === 'down' ? 'text-red-600' : 'text-gray-600'
         }
       case 'purple':
         return {
-          icon: 'text-purple-600 bg-purple-100',
-          trend: trendDirection === 'up' ? 'text-green-600' : trendDirection === 'down' ? 'text-red-600' : 'text-gray-600'
+          icon: 'text-primary bg-primary/10',
+          trend: trendDirection === 'up' ? 'text-primary' : trendDirection === 'down' ? 'text-red-600' : 'text-gray-600'
         }
       case 'orange':
         return {
           icon: 'text-orange-600 bg-orange-100',
-          trend: trendDirection === 'up' ? 'text-green-600' : trendDirection === 'down' ? 'text-red-600' : 'text-gray-600'
+          trend: trendDirection === 'up' ? 'text-primary' : trendDirection === 'down' ? 'text-red-600' : 'text-gray-600'
         }
       case 'red':
         return {
           icon: 'text-red-600 bg-red-100',
-          trend: trendDirection === 'up' ? 'text-green-600' : trendDirection === 'down' ? 'text-red-600' : 'text-gray-600'
+          trend: trendDirection === 'up' ? 'text-primary' : trendDirection === 'down' ? 'text-red-600' : 'text-gray-600'
         }
       default:
         return {
           icon: 'text-gray-600 bg-gray-100',
-          trend: trendDirection === 'up' ? 'text-green-600' : trendDirection === 'down' ? 'text-red-600' : 'text-gray-600'
+          trend: trendDirection === 'up' ? 'text-primary' : trendDirection === 'down' ? 'text-red-600' : 'text-gray-600'
         }
     }
   }

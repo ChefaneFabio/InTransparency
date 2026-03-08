@@ -83,19 +83,19 @@ export function ProjectVideoStep({
   return (
     <div className={`space-y-6 ${className}`}>
       {/* Header with Stats */}
-      <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
+      <Card className="bg-primary/5 border-primary/20">
         <CardHeader>
           <div className="flex items-start justify-between">
             <div>
               <CardTitle className="flex items-center gap-2 text-2xl">
-                <Video className="h-6 w-6 text-blue-600" />
+                <Video className="h-6 w-6 text-primary" />
                 Add Your Project Explanation Video
               </CardTitle>
               <p className="text-muted-foreground mt-2">
                 Stand out from the crowd! Recruiters are 3x more likely to contact candidates with video explanations.
               </p>
             </div>
-            <Badge variant="secondary" className="bg-blue-100 text-blue-700">
+            <Badge variant="secondary" className="bg-primary/10 text-blue-700">
               Optional but Recommended
             </Badge>
           </div>
@@ -103,8 +103,8 @@ export function ProjectVideoStep({
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="flex items-center gap-3 p-3 bg-white rounded-lg">
-              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                <Sparkles className="h-5 w-5 text-blue-600" />
+              <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                <Sparkles className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <p className="font-semibold text-lg">3x</p>
@@ -112,8 +112,8 @@ export function ProjectVideoStep({
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 bg-white rounded-lg">
-              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                <TrendingUp className="h-5 w-5 text-green-600" />
+              <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                <TrendingUp className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <p className="font-semibold text-lg">85%</p>
@@ -121,8 +121,8 @@ export function ProjectVideoStep({
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 bg-white rounded-lg">
-              <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                <Video className="h-5 w-5 text-purple-600" />
+              <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                <Video className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <p className="font-semibold text-lg">2 min</p>
@@ -173,8 +173,8 @@ export function ProjectVideoStep({
 
       {/* Success Message */}
       {videoUrl && (
-        <Alert className="bg-green-50 border-green-200">
-          <Sparkles className="h-4 w-4 text-green-600" />
+        <Alert className="bg-primary/5 border-primary/20">
+          <Sparkles className="h-4 w-4 text-primary" />
           <AlertDescription className="text-green-800">
             <strong>Great job!</strong> Your video has been added. Recruiters will now see your personality and communication skills.
           </AlertDescription>
@@ -203,7 +203,7 @@ export function ProjectVideoStep({
           <Button
             onClick={handleContinue}
             disabled={!videoUrl}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700"
+            className="flex items-center gap-2 bg-primary hover:bg-blue-700"
           >
             {videoUrl ? 'Continue' : 'Add Video to Continue'}
             <ArrowRight className="h-4 w-4" />

@@ -250,12 +250,12 @@ export default function AIJobSearchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-blue-50 p-6">
+    <div className="min-h-screen bg-muted/30 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-3 bg-gradient-to-r from-teal-600 to-blue-600 rounded-xl">
+            <div className="p-3 bg-primary rounded-xl">
               <Sparkles className="h-6 w-6 text-white" />
             </div>
             <div>
@@ -280,7 +280,7 @@ export default function AIJobSearchPage() {
                       className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       {message.role === 'assistant' && (
-                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-teal-600 to-blue-600 flex items-center justify-center">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                           <Bot className="h-5 w-5 text-white" />
                         </div>
                       )}
@@ -288,7 +288,7 @@ export default function AIJobSearchPage() {
                       <div className={`flex flex-col max-w-[70%] ${message.role === 'user' ? 'items-end' : 'items-start'}`}>
                         <div className={`rounded-2xl px-4 py-3 ${
                           message.role === 'user'
-                            ? 'bg-gradient-to-r from-teal-600 to-blue-600 text-white'
+                            ? 'bg-primary text-white'
                             : 'bg-gray-100 text-gray-900'
                         }`}>
                           <p className="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</p>
@@ -312,7 +312,7 @@ export default function AIJobSearchPage() {
                                       {job.company}
                                     </p>
                                   </div>
-                                  <Badge className="bg-green-100 text-green-800 border-green-200">
+                                  <Badge className="bg-primary/10 text-green-800 border-primary/20">
                                     {job.matchScore}% Match
                                   </Badge>
                                 </div>
@@ -350,7 +350,7 @@ export default function AIJobSearchPage() {
                                 )}
 
                                 <div className="flex gap-2">
-                                  <Button className="flex-1 bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700">
+                                  <Button className="flex-1 bg-primary">
                                     Apply Now
                                     <ArrowRight className="h-4 w-4 ml-2" />
                                   </Button>
@@ -379,7 +379,7 @@ export default function AIJobSearchPage() {
 
                 {isTyping && (
                   <div className="flex gap-3">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-teal-600 to-blue-600 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                       <Bot className="h-5 w-5 text-white" />
                     </div>
                     <div className="bg-gray-100 rounded-2xl px-4 py-3">
@@ -408,7 +408,7 @@ export default function AIJobSearchPage() {
                   <Button
                     onClick={handleSend}
                     disabled={isTyping || !input.trim()}
-                    className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700"
+                    className="bg-primary"
                   >
                     <Send className="h-4 w-4" />
                   </Button>
@@ -422,7 +422,7 @@ export default function AIJobSearchPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
-                  <Lightbulb className="h-5 w-5 mr-2 text-yellow-500" />
+                  <Lightbulb className="h-5 w-5 mr-2 text-secondary" />
                   Try These Examples
                 </CardTitle>
               </CardHeader>
@@ -431,7 +431,7 @@ export default function AIJobSearchPage() {
                   <button
                     key={index}
                     onClick={() => handleExampleClick(example)}
-                    className="w-full text-left p-3 rounded-lg bg-gray-50 hover:bg-teal-50 hover:border-teal-200 border border-gray-200 transition-colors text-sm"
+                    className="w-full text-left p-3 rounded-lg bg-gray-50 hover:bg-primary/5 hover:border-teal-200 border border-gray-200 transition-colors text-sm"
                   >
                     {example}
                   </button>
@@ -439,37 +439,37 @@ export default function AIJobSearchPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-teal-50 to-blue-50">
+            <Card className="bg-primary/5">
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
-                  <Zap className="h-5 w-5 mr-2 text-teal-600" />
+                  <Zap className="h-5 w-5 mr-2 text-primary" />
                   Why Use AI Job Search?
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold text-gray-900">Conversational</p>
                     <p className="text-gray-600">Just describe what you want in plain English</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold text-gray-900">Real Results</p>
                     <p className="text-gray-600">Searches actual job listings in our database</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold text-gray-900">Quick Results</p>
                     <p className="text-gray-600">Get personalized job matches instantly</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold text-gray-900">Easy Refinement</p>
                     <p className="text-gray-600">Chat to narrow down your perfect job</p>

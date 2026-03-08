@@ -41,8 +41,8 @@ export default function ErasmusBadge({
         variant="outline"
         className={`text-xs ${
           isFullyVerified
-            ? 'border-green-200 bg-green-50 text-green-700'
-            : 'border-blue-200 bg-blue-50 text-blue-700'
+            ? 'border-primary/20 bg-primary/5 text-green-700'
+            : 'border-primary/20 bg-primary/5 text-blue-700'
         }`}
       >
         <Globe className="h-3 w-3 mr-1" />
@@ -53,13 +53,13 @@ export default function ErasmusBadge({
   }
 
   return (
-    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
-      <Globe className="h-4 w-4 text-blue-600" />
+    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border bg-primary/5 border-primary/20">
+      <Globe className="h-4 w-4 text-primary" />
       <span className="text-sm font-medium text-blue-800">
         {label}: {homeFlag} {homeCountry} → {hostFlag} {hostCountry}
       </span>
       {isFullyVerified && (
-        <CheckCircle className="h-4 w-4 text-green-500" />
+        <CheckCircle className="h-4 w-4 text-primary" />
       )}
       {!isFullyVerified && (verifiedByHome || verifiedByHost) && (
         <span className="text-xs text-amber-600">Partially verified</span>

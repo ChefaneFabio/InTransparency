@@ -133,12 +133,12 @@ export default function ImportStudentsPage() {
         <CardContent>
           <div
             className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-              file ? 'border-green-300 bg-green-50' : 'border-gray-300 hover:border-blue-400'
+              file ? 'border-green-300 bg-primary/5' : 'border-gray-300 hover:border-blue-400'
             }`}
           >
             {file ? (
               <div className="space-y-2">
-                <FileText className="h-12 w-12 mx-auto text-green-600" />
+                <FileText className="h-12 w-12 mx-auto text-primary" />
                 <p className="font-medium text-gray-900">{file.name}</p>
                 <p className="text-sm text-gray-500">
                   {(file.size / 1024).toFixed(1)} KB
@@ -196,14 +196,14 @@ export default function ImportStudentsPage() {
       {/* Result */}
       {result && (
         <Card className={`${
-          result.failed > 0 ? 'border-amber-200' : 'border-green-200'
+          result.failed > 0 ? 'border-amber-200' : 'border-primary/20'
         }`}>
           <CardContent className="pt-6">
             <div className="flex items-start gap-4">
               {result.failed > 0 ? (
                 <AlertCircle className="h-6 w-6 text-amber-500 flex-shrink-0" />
               ) : (
-                <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0" />
+                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0" />
               )}
               <div className="flex-1">
                 <p className="font-medium text-gray-900">Import Complete</p>
@@ -212,7 +212,7 @@ export default function ImportStudentsPage() {
                 {/* Stats */}
                 <div className="flex flex-wrap gap-4 mt-4 text-sm">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                    <div className="w-3 h-3 rounded-full bg-primary/50" />
                     <span>{result.success} imported</span>
                   </div>
                   {result.skipped > 0 && (

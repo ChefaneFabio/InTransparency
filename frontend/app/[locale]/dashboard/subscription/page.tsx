@@ -109,10 +109,10 @@ export default function SubscriptionPage() {
 
   const getStatusBadge = () => {
     if (isTrialing) {
-      return <Badge className="bg-blue-100 text-blue-700">Trial Active</Badge>
+      return <Badge className="bg-primary/10 text-primary">Trial Active</Badge>
     }
     if (isActive) {
-      return <Badge className="bg-green-100 text-green-700">Active</Badge>
+      return <Badge className="bg-primary/10 text-primary">Active</Badge>
     }
     if (isPastDue) {
       return <Badge className="bg-orange-100 text-orange-700">Past Due</Badge>
@@ -156,14 +156,14 @@ export default function SubscriptionPage() {
                 </div>
 
                 {premiumUntil && isActive && (
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                  <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6">
                     <div className="flex items-start gap-3">
-                      <Calendar className="h-5 w-5 text-blue-600 mt-0.5" />
+                      <Calendar className="h-5 w-5 text-primary mt-0.5" />
                       <div>
-                        <p className="font-medium text-blue-900">
+                        <p className="font-medium text-gray-900">
                           {isTrialing ? 'Trial ends on' : 'Next billing date'}
                         </p>
-                        <p className="text-sm text-blue-700">
+                        <p className="text-sm text-gray-700">
                           {premiumUntil.toLocaleDateString('en-US', {
                             weekday: 'long',
                             year: 'numeric',
@@ -206,7 +206,7 @@ export default function SubscriptionPage() {
                   <ul className="space-y-2">
                     {tierInfo?.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                         <span className="text-sm text-gray-700">{feature}</span>
                       </li>
                     ))}

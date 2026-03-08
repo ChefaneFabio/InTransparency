@@ -183,7 +183,7 @@ export default function TermsPage() {
                 in conformità con il GDPR e altre normative applicabili.
               </p>
               <p>
-                Consulta la nostra <a href="/privacy" className="text-blue-600 hover:underline">
+                Consulta la nostra <a href="/privacy" className="text-primary hover:underline">
                 Informativa sulla Privacy</a> per maggiori dettagli.
               </p>
             </CardContent>

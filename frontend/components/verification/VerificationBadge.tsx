@@ -46,8 +46,8 @@ export function VerificationBadge({
     university: {
       icon: ShieldCheck,
       label: 'University Verified',
-      color: 'bg-green-100 text-green-700 border-green-300 hover:bg-green-200',
-      iconColor: 'text-green-600',
+      color: 'bg-primary/10 text-green-700 border-green-300 hover:bg-green-200',
+      iconColor: 'text-primary',
       tooltip: institutionName
         ? `Authenticated via ${institutionName}'s official system`
         : 'Verified by university records'
@@ -55,8 +55,8 @@ export function VerificationBadge({
     professor: {
       icon: Award,
       label: 'Professor Endorsed',
-      color: 'bg-blue-100 text-blue-700 border-blue-300 hover:bg-blue-200',
-      iconColor: 'text-blue-600',
+      color: 'bg-primary/10 text-blue-700 border-blue-300 hover:bg-blue-200',
+      iconColor: 'text-primary',
       tooltip: professorName
         ? `Endorsed by ${professorName}`
         : 'Endorsed by course professor'
@@ -64,8 +64,8 @@ export function VerificationBadge({
     ai: {
       icon: CheckCircle2,
       label: 'AI Validated',
-      color: 'bg-purple-100 text-purple-700 border-purple-300 hover:bg-purple-200',
-      iconColor: 'text-purple-600',
+      color: 'bg-primary/10 text-purple-700 border-purple-300 hover:bg-purple-200',
+      iconColor: 'text-primary',
       tooltip: 'Skills extracted and validated by AI analysis'
     },
     unverified: {
@@ -175,22 +175,22 @@ export function TrustScoreBadge({
 }: TrustScoreBadgeProps) {
   const getScoreColor = (score: number) => {
     if (score >= 90) return {
-      bg: 'bg-green-100',
+      bg: 'bg-primary/10',
       text: 'text-green-700',
       border: 'border-green-300',
-      icon: 'text-green-600'
+      icon: 'text-primary'
     }
     if (score >= 75) return {
-      bg: 'bg-blue-100',
+      bg: 'bg-primary/10',
       text: 'text-blue-700',
       border: 'border-blue-300',
-      icon: 'text-blue-600'
+      icon: 'text-primary'
     }
     if (score >= 50) return {
       bg: 'bg-yellow-100',
       text: 'text-yellow-700',
       border: 'border-yellow-300',
-      icon: 'text-yellow-600'
+      icon: 'text-secondary'
     }
     return {
       bg: 'bg-gray-100',
@@ -254,7 +254,7 @@ export function FraudProofBadge({ onClick, className = '' }: { onClick?: () => v
             variant="outline"
             onClick={onClick}
             className={`
-              bg-gradient-to-r from-green-100 to-blue-100
+              bg-primary/10
               text-green-800 border-green-300
               ${onClick ? 'cursor-pointer hover:shadow-md' : ''}
               inline-flex items-center gap-1.5 px-3 py-1.5 font-semibold
@@ -262,7 +262,7 @@ export function FraudProofBadge({ onClick, className = '' }: { onClick?: () => v
               ${className}
             `}
           >
-            <ShieldCheck className="h-4 w-4 text-green-600" />
+            <ShieldCheck className="h-4 w-4 text-primary" />
             FRAUD-PROOF PROFILE
           </Badge>
         </TooltipTrigger>

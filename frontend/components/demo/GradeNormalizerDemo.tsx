@@ -36,7 +36,7 @@ export default function GradeNormalizerDemo() {
   const sourceInfo = getGradingSystemInfo(country)
 
   return (
-    <Card className="border-2 border-indigo-200">
+    <Card className="border-2 border-primary/20">
       <CardHeader>
         <CardTitle className="text-lg">Grade Normalizer</CardTitle>
         <p className="text-sm text-gray-600">
@@ -74,9 +74,9 @@ export default function GradeNormalizerDemo() {
         {/* Results */}
         {normalized !== null ? (
           <div className="space-y-4">
-            <div className="text-center p-4 bg-indigo-50 rounded-lg">
+            <div className="text-center p-4 bg-primary/5 rounded-lg">
               <p className="text-sm text-gray-600">Normalized Score</p>
-              <p className="text-4xl font-bold text-indigo-600">{normalized}/100</p>
+              <p className="text-4xl font-bold text-primary">{normalized}/100</p>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -95,7 +95,7 @@ export default function GradeNormalizerDemo() {
             </div>
 
             <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
-              <Badge variant="outline" className="text-indigo-600">
+              <Badge variant="outline" className="text-primary">
                 {COUNTRY_FLAGS[country]} {grade}
               </Badge>
               <ArrowRight className="h-4 w-4" />

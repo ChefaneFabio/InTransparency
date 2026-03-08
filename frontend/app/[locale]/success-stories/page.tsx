@@ -36,7 +36,7 @@ export default function SuccessStoriesPage() {
                 {t('comingSoon')}
               </div>
 
-              <h1 className="text-5xl font-display font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h1 className="text-5xl font-display font-bold mb-6 text-primary">
                 {t('title')}
               </h1>
 
@@ -84,7 +84,7 @@ export default function SuccessStoriesPage() {
               </div>
 
               {/* CTA */}
-              <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 max-w-2xl mx-auto">
+              <div className="bg-primary/10 rounded-2xl p-8 max-w-2xl mx-auto">
                 <h2 className="text-2xl font-bold mb-4">{t('cta.title')}</h2>
                 <p className="text-gray-700 mb-6">
                   {t('cta.description')}

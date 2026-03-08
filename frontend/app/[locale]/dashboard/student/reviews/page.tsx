@@ -93,9 +93,9 @@ export default function ReviewsPage() {
   if (submitted) {
     return (
       <div className="max-w-2xl mx-auto">
-        <Card className="border-green-200">
+        <Card className="border-primary/20">
           <CardContent className="py-12 text-center">
-            <CheckCircle className="h-12 w-12 mx-auto text-green-500 mb-4" />
+            <CheckCircle className="h-12 w-12 mx-auto text-primary mb-4" />
             <h2 className="text-xl font-bold text-gray-900 mb-2">Review Submitted!</h2>
             <p className="text-gray-600">
               Thank you for sharing your experience. Your review helps other students make informed decisions.
@@ -119,7 +119,7 @@ export default function ReviewsPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-lg flex items-center gap-2">
-            <Building2 className="h-5 w-5 text-blue-600" />
+            <Building2 className="h-5 w-5 text-primary" />
             Company Information
           </CardTitle>
         </CardHeader>
@@ -189,7 +189,7 @@ export default function ReviewsPage() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-sm font-medium text-green-700 mb-1 block">Pros</label>
+              <label className="text-sm font-medium text-primary mb-1 block">Pros</label>
               <Textarea
                 value={pros}
                 onChange={(e) => setPros(e.target.value)}

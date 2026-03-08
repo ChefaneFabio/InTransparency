@@ -42,7 +42,7 @@ const showcaseItems: ShowcaseItem[] = [
     title: 'AI-Powered Code Analysis',
     description: 'Advanced algorithms analyze your code quality, complexity, and innovation level in real-time',
     icon: Brain,
-    color: 'from-purple-500 to-purple-600',
+    color: 'bg-primary/80',
     stats: [
       { label: 'Accuracy', value: '94%' },
       { label: 'Languages', value: '25+' },
@@ -51,9 +51,9 @@ const showcaseItems: ShowcaseItem[] = [
     animation: {
       type: 'progress',
       data: [
-        { label: 'Code Quality', value: 92, color: 'bg-green-500' },
-        { label: 'Innovation', value: 85, color: 'bg-blue-500' },
-        { label: 'Complexity', value: 78, color: 'bg-purple-500' },
+        { label: 'Code Quality', value: 92, color: 'bg-primary/50' },
+        { label: 'Innovation', value: 85, color: 'bg-primary/50' },
+        { label: 'Complexity', value: 78, color: 'bg-primary/50' },
         { label: 'Best Practices', value: 96, color: 'bg-orange-500' }
       ]
     }
@@ -63,7 +63,7 @@ const showcaseItems: ShowcaseItem[] = [
     title: 'Professional Story Generation',
     description: 'Transform technical projects into compelling narratives that recruiters understand and appreciate',
     icon: FileText,
-    color: 'from-blue-500 to-blue-600',
+    color: 'bg-primary',
     stats: [
       { label: 'Stories Generated', value: '89K+' },
       { label: 'Engagement Boost', value: '+40%' },
@@ -82,7 +82,7 @@ const showcaseItems: ShowcaseItem[] = [
     title: 'Smart Candidate Matching',
     description: 'AI algorithms match students with relevant opportunities based on projects, skills, and preferences',
     icon: Target,
-    color: 'from-green-500 to-green-600',
+    color: 'bg-primary/60',
     stats: [
       { label: 'Successful Matches', value: '8.5K+' },
       { label: 'Success Rate', value: '78%' },
@@ -201,7 +201,7 @@ export function AnimatedShowcase({
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Platform Features in{' '}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-primary">
               Action
             </span>
           </h2>
@@ -257,7 +257,7 @@ export function AnimatedShowcase({
               <div>
                 <h3 className="text-2xl font-bold text-gray-900">{activeItem.title}</h3>
                 <div className="flex items-center mt-1">
-                  <Sparkles className="h-4 w-4 text-yellow-500 mr-1" />
+                  <Sparkles className="h-4 w-4 text-secondary mr-1" />
                   <span className="text-sm text-gray-700">AI-Powered</span>
                 </div>
               </div>
@@ -288,7 +288,7 @@ export function AnimatedShowcase({
           </div>
 
           {/* Right: Animation */}
-          <Card className="p-6 shadow-2xl border-0 bg-gradient-to-br from-white to-gray-50/50">
+          <Card className="p-6 shadow-lg border-0 bg-gradient-to-br from-white to-gray-50/50">
             <CardContent className="p-0">
               {renderAnimation(activeItem)}
             </CardContent>
@@ -345,7 +345,7 @@ function TypewriterText({ text, speed }: { text: string; speed: number }) {
       <div className="flex items-center mb-2">
         <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
         <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-        <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+        <div className="w-3 h-3 bg-primary/50 rounded-full mr-2"></div>
         <span className="text-gray-600 text-xs ml-2">story-generator.ai</span>
       </div>
       <div className="min-h-[100px]">
@@ -370,7 +370,7 @@ function MatchSlideshow({ matches }: { matches: any[] }) {
     <div className="space-y-4">
       <div className="text-center">
         <h4 className="font-semibold text-gray-900 mb-2">Perfect Matches Found</h4>
-        <Badge className="bg-green-100 text-green-800">Live Matching</Badge>
+        <Badge className="bg-primary/10 text-green-800">Live Matching</Badge>
       </div>
 
       <div className="space-y-3">
@@ -379,7 +379,7 @@ function MatchSlideshow({ matches }: { matches: any[] }) {
             key={index}
             className={`p-4 rounded-lg border transition-all duration-500 ${
               index === currentMatch
-                ? 'bg-blue-50 border-blue-300 shadow-md scale-105'
+                ? 'bg-primary/5 border-blue-300 shadow-md scale-105'
                 : 'bg-white border-gray-200'
             }`}
           >
@@ -392,7 +392,7 @@ function MatchSlideshow({ matches }: { matches: any[] }) {
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-lg font-bold text-green-600">{match.match}%</div>
+                <div className="text-lg font-bold text-primary">{match.match}%</div>
                 <div className="text-xs text-gray-700">match</div>
               </div>
             </div>
@@ -431,8 +431,8 @@ function CounterGrid({ counters }: { counters: any[] }) {
   return (
     <div className="grid grid-cols-2 gap-4">
       {(counters || []).map((counter, index) => (
-        <div key={index} className="text-center p-4 bg-blue-50 rounded-lg">
-          <div className="text-2xl font-bold text-blue-600">
+        <div key={index} className="text-center p-4 bg-primary/5 rounded-lg">
+          <div className="text-2xl font-bold text-primary">
             {animatedValues[index]}{counter.suffix}
           </div>
           <div className="text-sm text-gray-600">{counter.label}</div>

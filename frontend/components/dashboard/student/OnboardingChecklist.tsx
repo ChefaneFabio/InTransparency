@@ -139,7 +139,7 @@ export default function OnboardingChecklist({
   if (dismissed || allDone) return null
 
   return (
-    <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50 mb-6">
+    <Card className="border-primary/20 bg-primary/5 mb-6">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -151,7 +151,7 @@ export default function OnboardingChecklist({
           <div className="flex items-center gap-1">
             <button
               onClick={() => setExpanded(!expanded)}
-              className="p-1 hover:bg-blue-100 rounded transition-colors"
+              className="p-1 hover:bg-primary/10 rounded transition-colors"
             >
               {expanded ? (
                 <ChevronUp className="h-4 w-4 text-gray-500" />
@@ -165,7 +165,7 @@ export default function OnboardingChecklist({
                   setDismissed(true)
                   onDismiss()
                 }}
-                className="p-1 hover:bg-blue-100 rounded transition-colors"
+                className="p-1 hover:bg-primary/10 rounded transition-colors"
               >
                 <X className="h-4 w-4 text-gray-400" />
               </button>
@@ -192,7 +192,7 @@ export default function OnboardingChecklist({
                 } ${item.id === nextItem?.id ? 'bg-white/80 shadow-sm' : ''}`}
               >
                 {item.completed ? (
-                  <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
                 ) : (
                   <Circle className="h-5 w-5 text-gray-300 flex-shrink-0" />
                 )}
@@ -205,7 +205,7 @@ export default function OnboardingChecklist({
                   )}
                 </div>
                 {item.id === nextItem?.id && !item.completed && (
-                  <Badge className="text-xs bg-blue-600 flex-shrink-0">Next</Badge>
+                  <Badge className="text-xs bg-primary flex-shrink-0">Next</Badge>
                 )}
               </Link>
             ))}

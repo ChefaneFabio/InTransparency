@@ -153,13 +153,13 @@ export default function PrivacyPage() {
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
-              <Badge className="bg-gradient-to-r from-blue-600 to-green-600 text-white border-0 px-6 py-2">
+              <Badge className="bg-primary text-white border-0 px-6 py-2">
                 <Shield className="inline h-4 w-4 mr-2" />
                 {t('hero.badge')}
               </Badge>
             </motion.div>
 
-            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-green-600 to-teal-600 bg-clip-text text-transparent">
+            <h1 className="text-5xl font-bold mb-6 text-primary">
               {t('hero.title')}
             </h1>
 
@@ -169,15 +169,15 @@ export default function PrivacyPage() {
 
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <Badge variant="outline" className="text-sm px-4 py-2">
-                <CheckCircle className="inline h-4 w-4 mr-2 text-green-600" />
+                <CheckCircle className="inline h-4 w-4 mr-2 text-primary" />
                 EU GDPR Compliant
               </Badge>
               <Badge variant="outline" className="text-sm px-4 py-2">
-                <CheckCircle className="inline h-4 w-4 mr-2 text-green-600" />
+                <CheckCircle className="inline h-4 w-4 mr-2 text-primary" />
                 End-to-End Encryption
               </Badge>
               <Badge variant="outline" className="text-sm px-4 py-2">
-                <CheckCircle className="inline h-4 w-4 mr-2 text-green-600" />
+                <CheckCircle className="inline h-4 w-4 mr-2 text-primary" />
                 Data Portability
               </Badge>
             </div>
@@ -209,7 +209,7 @@ export default function PrivacyPage() {
                       onClick={() => setSelectedStakeholder(stakeholder)}
                       className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                         selectedStakeholder === stakeholder
-                          ? 'bg-gradient-to-r from-blue-600 to-green-600 text-white shadow-md'
+                          ? 'bg-primary text-white shadow-md'
                           : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                       }`}
                     >
@@ -232,11 +232,9 @@ export default function PrivacyPage() {
                 <CardHeader>
                   <div className="flex items-center gap-4">
                     <motion.div
-                      className="p-4 rounded-full bg-blue-100"
-                      whileHover={{ rotate: 360, scale: 1.1 }}
-                      transition={{ duration: 0.6 }}
+                      className="p-4 rounded-full bg-primary/10"
                     >
-                      <Icon className="h-8 w-8 text-blue-600" />
+                      <Icon className="h-8 w-8 text-primary" />
                     </motion.div>
                     <div>
                       <CardTitle className="text-2xl">{currentStakeholder.title}</CardTitle>
@@ -249,7 +247,7 @@ export default function PrivacyPage() {
                     {/* What You Can Do */}
                     <div>
                       <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                        <CheckCircle className="h-5 w-5 text-green-600" />
+                        <CheckCircle className="h-5 w-5 text-primary" />
                         Access & Controls
                       </h3>
                       <ul className="space-y-3">
@@ -262,7 +260,7 @@ export default function PrivacyPage() {
                             className="flex items-start gap-2"
                           >
                             {control.available ? (
-                              <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                              <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                             ) : (
                               <EyeOff className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
                             )}
@@ -277,7 +275,7 @@ export default function PrivacyPage() {
                     {/* Data Sharing */}
                     <div>
                       <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                        <Database className="h-5 w-5 text-blue-600" />
+                        <Database className="h-5 w-5 text-primary" />
                         Data Sharing
                       </h3>
                       <div className="space-y-4">
@@ -290,7 +288,7 @@ export default function PrivacyPage() {
                             className="bg-gray-50 rounded-lg p-4"
                           >
                             <div className="flex items-center gap-2 mb-2">
-                              <ArrowRight className="h-4 w-4 text-blue-600" />
+                              <ArrowRight className="h-4 w-4 text-primary" />
                               <span className="font-semibold text-sm">Shared with: {share.with}</span>
                             </div>
                             <p className="text-sm text-gray-600 mb-1">
@@ -300,7 +298,7 @@ export default function PrivacyPage() {
                               <strong>Purpose:</strong> {share.purpose}
                             </p>
                             <p className="text-sm text-gray-600">
-                              <strong>Consent:</strong> <span className="text-green-600">{share.consent}</span>
+                              <strong>Consent:</strong> <span className="text-primary">{share.consent}</span>
                             </p>
                           </motion.div>
                         ))}
@@ -325,12 +323,12 @@ export default function PrivacyPage() {
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <motion.div whileHover={{ y: -5 }}>
-                <Card className="h-full hover:shadow-xl transition-all">
+              <motion.div>
+                <Card className="h-full hover:shadow-lg transition-all">
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="p-3 rounded-full bg-purple-100">
-                        <GraduationCap className="h-6 w-6 text-purple-600" />
+                      <div className="p-3 rounded-full bg-primary/10">
+                        <GraduationCap className="h-6 w-6 text-primary" />
                       </div>
                       <CardTitle className="text-lg">1. Student Creates Profile</CardTitle>
                     </div>
@@ -338,15 +336,15 @@ export default function PrivacyPage() {
                   <CardContent>
                     <ul className="space-y-2 text-sm text-gray-600">
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                         <span>Student enters academic info voluntarily</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                         <span>University verifies authenticity</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                         <span>Data encrypted at rest and in transit</span>
                       </li>
                     </ul>
@@ -354,12 +352,12 @@ export default function PrivacyPage() {
                 </Card>
               </motion.div>
 
-              <motion.div whileHover={{ y: -5 }}>
-                <Card className="h-full hover:shadow-xl transition-all">
+              <motion.div>
+                <Card className="h-full hover:shadow-lg transition-all">
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="p-3 rounded-full bg-blue-100">
-                        <Eye className="h-6 w-6 text-blue-600" />
+                      <div className="p-3 rounded-full bg-primary/10">
+                        <Eye className="h-6 w-6 text-primary" />
                       </div>
                       <CardTitle className="text-lg">2. Companies Browse</CardTitle>
                     </div>
@@ -371,7 +369,7 @@ export default function PrivacyPage() {
                         <span>See initials only (e.g., "M.R.")</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <Eye className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <Eye className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                         <span>See university, courses, grades</span>
                       </li>
                       <li className="flex items-start gap-2">
@@ -383,12 +381,12 @@ export default function PrivacyPage() {
                 </Card>
               </motion.div>
 
-              <motion.div whileHover={{ y: -5 }}>
-                <Card className="h-full hover:shadow-xl transition-all">
+              <motion.div>
+                <Card className="h-full hover:shadow-lg transition-all">
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="p-3 rounded-full bg-green-100">
-                        <Key className="h-6 w-6 text-green-600" />
+                      <div className="p-3 rounded-full bg-primary/10">
+                        <Key className="h-6 w-6 text-primary" />
                       </div>
                       <CardTitle className="text-lg">3. Contact Unlock</CardTitle>
                     </div>
@@ -396,15 +394,15 @@ export default function PrivacyPage() {
                   <CardContent>
                     <ul className="space-y-2 text-sm text-gray-600">
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                         <span>Company pays €10 to unlock contact</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                         <span>Student gets notified immediately</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                         <span>Student can block future contact</span>
                       </li>
                     </ul>
@@ -439,16 +437,15 @@ export default function PrivacyPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    whileHover={{ y: -5, scale: 1.02 }}
                   >
-                    <Card className="h-full hover:shadow-xl transition-all bg-white/90 backdrop-blur-sm">
+                    <Card className="h-full hover:shadow-lg transition-all bg-white/90 backdrop-blur-sm">
                       <CardHeader>
                         <motion.div
-                          className="p-3 rounded-full bg-blue-100 w-12 h-12 flex items-center justify-center mb-3"
+                          className="p-3 rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-3"
                           whileHover={{ rotate: 360, scale: 1.1 }}
                           transition={{ duration: 0.6 }}
                         >
-                          <RightIcon className="h-6 w-6 text-blue-600" />
+                          <RightIcon className="h-6 w-6 text-primary" />
                         </motion.div>
                         <CardTitle className="text-lg">{right.title}</CardTitle>
                       </CardHeader>
@@ -473,7 +470,7 @@ export default function PrivacyPage() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <Card className="bg-gradient-to-r from-blue-600 to-green-600 text-white border-0">
+            <Card className="bg-primary text-white border-0">
               <CardContent className="p-12">
                 <h2 className="text-3xl font-bold mb-4 text-center">
                   {t('security.title')}
@@ -501,8 +498,6 @@ export default function PrivacyPage() {
                       >
                         <motion.div
                           className="bg-white/20 backdrop-blur-sm rounded-full p-4 w-16 h-16 flex items-center justify-center mx-auto mb-3"
-                          whileHover={{ scale: 1.1, rotate: 360 }}
-                          transition={{ duration: 0.6 }}
                         >
                           <MeasureIcon className="h-8 w-8 text-white" />
                         </motion.div>
@@ -523,9 +518,9 @@ export default function PrivacyPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Card className="border-2 border-blue-200 bg-blue-50/50">
+            <Card className="border-2 border-primary/20 bg-primary/5">
               <CardContent className="p-8 text-center">
-                <Mail className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <Mail className="h-12 w-12 text-primary mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
                   {t('contact.title')}
                 </h3>
@@ -533,7 +528,7 @@ export default function PrivacyPage() {
                   {t('contact.subtitle')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-blue-600 hover:bg-blue-700" asChild>
+                  <Button className="bg-primary hover:bg-primary/90" asChild>
                     <Link href="mailto:institutions@intransparency.it">
                       <Mail className="h-4 w-4 mr-2" />
                       institutions@intransparency.it

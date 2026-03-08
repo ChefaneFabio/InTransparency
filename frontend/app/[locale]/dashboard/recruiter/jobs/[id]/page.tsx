@@ -268,7 +268,7 @@ export default function JobDetailPage() {
                 <p className="text-2xl font-bold">{appCount}</p>
                 <p className="text-sm text-gray-600">Applications</p>
               </div>
-              <Users className="h-8 w-8 text-blue-500" />
+              <Users className="h-8 w-8 text-primary" />
             </div>
           </CardContent>
         </Card>
@@ -279,7 +279,7 @@ export default function JobDetailPage() {
                 <p className="text-2xl font-bold">{job.views}</p>
                 <p className="text-sm text-gray-600">Views</p>
               </div>
-              <Eye className="h-8 w-8 text-green-500" />
+              <Eye className="h-8 w-8 text-primary" />
             </div>
           </CardContent>
         </Card>
@@ -290,7 +290,7 @@ export default function JobDetailPage() {
                 <p className="text-2xl font-bold">{conversionRate}%</p>
                 <p className="text-sm text-gray-600">Conversion</p>
               </div>
-              <div className="h-8 w-8 flex items-center justify-center text-purple-500 font-bold text-lg">%</div>
+              <div className="h-8 w-8 flex items-center justify-center text-primary font-bold text-lg">%</div>
             </div>
           </CardContent>
         </Card>

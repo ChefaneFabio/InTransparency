@@ -264,7 +264,7 @@ export default function AdvancedSearchPage() {
     student: {
       title: t('demoTitles.student.title'),
       subtitle: t('demoTitles.student.subtitle'),
-      color: 'from-teal-600 to-blue-600',
+      color: 'bg-primary',
       icon: GraduationCap,
       results: mockJobs,
       totalCount: counts?.jobCount.toLocaleString() ?? '—'
@@ -272,7 +272,7 @@ export default function AdvancedSearchPage() {
     company: {
       title: t('demoTitles.company.title'),
       subtitle: t('demoTitles.company.subtitle'),
-      color: 'from-blue-600 to-purple-600',
+      color: 'bg-primary',
       icon: Building2,
       results: mockCandidates,
       totalCount: counts?.studentCount.toLocaleString() ?? '—'
@@ -282,7 +282,7 @@ export default function AdvancedSearchPage() {
       subtitle: universitySearchType === 'students'
         ? t('demoTitles.university.subtitleStudents')
         : t('demoTitles.university.subtitleJobs'),
-      color: 'from-indigo-600 to-purple-600',
+      color: 'bg-primary',
       icon: Users,
       results: universitySearchType === 'students' ? mockCandidates : mockJobs,
       totalCount: universitySearchType === 'students' ? (counts?.studentCount.toLocaleString() ?? '—') : (counts?.jobCount.toLocaleString() ?? '—')
@@ -331,7 +331,7 @@ export default function AdvancedSearchPage() {
           </div>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
             {config.totalCount}{' '}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <span className="text-primary">
               {t('verifiedResults')}
             </span>
           </h1>
@@ -364,7 +364,7 @@ export default function AdvancedSearchPage() {
             <Button
               variant={universitySearchType === 'students' ? 'default' : 'outline'}
               onClick={() => setUniversitySearchType('students')}
-              className={universitySearchType === 'students' ? 'bg-gradient-to-r from-primary to-secondary' : ''}
+              className={universitySearchType === 'students' ? 'bg-primary' : ''}
             >
               <Users className="h-4 w-4 mr-2" />
               {t('universityToggle.searchStudents')}
@@ -372,7 +372,7 @@ export default function AdvancedSearchPage() {
             <Button
               variant={universitySearchType === 'companies' ? 'default' : 'outline'}
               onClick={() => setUniversitySearchType('companies')}
-              className={universitySearchType === 'companies' ? 'bg-gradient-to-r from-primary to-secondary' : ''}
+              className={universitySearchType === 'companies' ? 'bg-primary' : ''}
             >
               <Briefcase className="h-4 w-4 mr-2" />
               {t('universityToggle.searchCompanies')}
@@ -409,7 +409,7 @@ export default function AdvancedSearchPage() {
                 <SlidersHorizontal className="h-5 w-5 mr-2" />
                 {t('filters.title')}
                 {activeFiltersCount > 0 && (
-                  <Badge className="ml-2 bg-gradient-to-r from-primary to-secondary text-white">{activeFiltersCount}</Badge>
+                  <Badge className="ml-2 bg-primary text-white">{activeFiltersCount}</Badge>
                 )}
               </Button>
             </div>
@@ -898,7 +898,6 @@ export default function AdvancedSearchPage() {
                   key={result.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  whileHover={{ scale: 1.01 }}
                 >
                   <Card className="hover:shadow-lg transition-shadow cursor-pointer">
                     <CardContent className="p-6">
@@ -907,7 +906,7 @@ export default function AdvancedSearchPage() {
                         <div className="flex justify-between">
                           <div className="flex-1">
                             <div className="flex items-start gap-3">
-                              <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${config.color} flex items-center justify-center text-white font-bold`}>
+                              <div className={`w-12 h-12 rounded-lg ${config.color} flex items-center justify-center text-white font-bold`}>
                                 {result.company[0]}
                               </div>
                               <div className="flex-1">
@@ -930,7 +929,7 @@ export default function AdvancedSearchPage() {
                                 <div className="flex flex-wrap gap-2">
                                   <Badge className="bg-primary/10 text-primary">{result.type}</Badge>
                                   {result.validForDegree && (
-                                    <Badge className="bg-purple-100 text-purple-800">✓ {t('jobCard.validForDegree')}</Badge>
+                                    <Badge className="bg-primary/10 text-primary">✓ {t('jobCard.validForDegree')}</Badge>
                                   )}
                                   {result.duration && (
                                     <Badge className="bg-muted text-foreground">{result.duration}</Badge>
@@ -941,10 +940,10 @@ export default function AdvancedSearchPage() {
                             </div>
                           </div>
                           <div className="ml-4 flex flex-col items-end justify-between">
-                            <Badge className="bg-green-100 text-green-800 text-base px-3 py-1">
+                            <Badge className="bg-primary/10 text-primary text-base px-3 py-1">
                               {result.match}% {t('jobCard.match')}
                             </Badge>
-                            <Button className={`bg-gradient-to-r ${config.color}`}>
+                            <Button className={`${config.color}`}>
                               {t('jobCard.applyNow')}
                             </Button>
                           </div>
@@ -955,13 +954,13 @@ export default function AdvancedSearchPage() {
                       {result.initials && (
                         <div className="flex justify-between">
                           <div className="flex items-start gap-4">
-                            <div className="w-16 h-16 rounded-full bg-gradient-to-r from-teal-400 to-blue-500 flex items-center justify-center text-white font-bold text-xl">
+                            <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl">
                               {result.initials}
                             </div>
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-1">
                                 <h3 className="text-lg font-bold text-foreground">{t('candidateCard.contactLocked')}</h3>
-                                <Badge className="bg-green-100 text-green-800 text-xs">{t('candidateCard.available')}</Badge>
+                                <Badge className="bg-primary/10 text-primary text-xs">{t('candidateCard.available')}</Badge>
                               </div>
                               <p className="text-muted-foreground mb-2">{result.university}</p>
                               <p className="text-sm text-foreground/80 mb-3">
@@ -981,7 +980,7 @@ export default function AdvancedSearchPage() {
                                 <p className="text-sm font-semibold text-foreground/80 mb-1">{t('candidateCard.softSkills')}:</p>
                                 <div className="flex flex-wrap gap-1">
                                   {result.softSkills.map((skill: string) => (
-                                    <Badge key={skill} className="bg-purple-100 text-purple-800 text-xs">
+                                    <Badge key={skill} className="bg-primary/10 text-primary text-xs">
                                       {skill}
                                     </Badge>
                                   ))}
@@ -992,7 +991,7 @@ export default function AdvancedSearchPage() {
                                   <p className="text-sm font-semibold text-foreground/80 mb-1">{t('candidateCard.relevantCourses')}:</p>
                                   <div className="flex flex-wrap gap-1">
                                     {result.courses.map((course: string) => (
-                                      <Badge key={course} className="bg-green-100 text-green-800 text-xs">
+                                      <Badge key={course} className="bg-primary/10 text-primary text-xs">
                                         {course}
                                       </Badge>
                                     ))}
@@ -1014,10 +1013,10 @@ export default function AdvancedSearchPage() {
                             </div>
                           </div>
                           <div className="ml-4 flex flex-col items-end justify-between">
-                            <Badge className="bg-green-100 text-green-800 text-base px-3 py-1 mb-2">
+                            <Badge className="bg-primary/10 text-primary text-base px-3 py-1 mb-2">
                               {result.match}% {t('candidateCard.match')}
                             </Badge>
-                            <Button className={`bg-gradient-to-r ${config.color}`}>
+                            <Button className={`${config.color}`}>
                               {t('candidateCard.unlock')}
                             </Button>
                           </div>

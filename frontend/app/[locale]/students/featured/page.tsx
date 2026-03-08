@@ -75,7 +75,7 @@ export default function FeaturedPortfoliosPage() {
 
       <main className="flex-1 pt-20">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-primary to-secondary text-white py-16">
+        <section className="bg-primary text-white py-16">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -207,18 +207,18 @@ export default function FeaturedPortfoliosPage() {
                           <div className="text-xs text-gray-600">{t('card.projects')}</div>
                         </div>
                         <div>
-                          <div className="text-2xl font-bold text-green-600">{student.verificationScore}%</div>
+                          <div className="text-2xl font-bold text-primary">{student.verificationScore}%</div>
                           <div className="text-xs text-gray-600">{t('card.verified')}</div>
                         </div>
                         <div>
-                          <div className="text-2xl font-bold text-blue-600">{student.skillsCount}</div>
+                          <div className="text-2xl font-bold text-primary">{student.skillsCount}</div>
                           <div className="text-xs text-gray-600">{t('card.skills')}</div>
                         </div>
                       </div>
 
                       {/* Verification Badge */}
                       {student.verificationScore === 100 && (
-                        <Badge className="w-full justify-center bg-green-500 hover:bg-green-600 text-white">
+                        <Badge className="w-full justify-center bg-primary/50 hover:bg-primary text-white">
                           <Award className="h-3 w-3 mr-1" />
                           {t('card.fullyVerified')}
                         </Badge>
@@ -240,7 +240,7 @@ export default function FeaturedPortfoliosPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-gradient-to-r from-primary to-secondary text-white py-16">
+        <section className="bg-primary text-white py-16">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-3xl font-display font-bold mb-4">
               {t('cta.title')}

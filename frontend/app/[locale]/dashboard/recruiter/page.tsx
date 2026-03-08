@@ -154,7 +154,7 @@ export default function RecruiterDashboard() {
             ? 'border-border bg-muted'
             : stats.contactUsage.remaining <= 10 && stats.contactUsage.limit !== -1
               ? 'border-amber-200 bg-amber-50'
-              : 'border-blue-200 bg-blue-50'
+              : 'border-primary/20 bg-primary/5'
         }`}>
           <CardContent className="pt-6">
             <div className="flex items-start justify-between">
@@ -182,7 +182,7 @@ export default function RecruiterDashboard() {
                         {stats.contactUsage.used} of {stats.contactUsage.limit} used
                       </span>
                       <span className={`font-medium ${
-                        stats.contactUsage.remaining <= 10 ? 'text-amber-600' : 'text-green-600'
+                        stats.contactUsage.remaining <= 10 ? 'text-amber-600' : 'text-primary'
                       }`}>
                         {stats.contactUsage.remaining} remaining
                       </span>
@@ -218,8 +218,8 @@ export default function RecruiterDashboard() {
                 <p className="text-2xl font-bold">{stats.activeJobs}</p>
                 <p className="text-sm text-muted-foreground">Active jobs</p>
               </div>
-              <div className="p-2 bg-green-100 rounded-lg">
-                <Briefcase className="h-5 w-5 text-green-600" />
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <Briefcase className="h-5 w-5 text-primary" />
               </div>
             </div>
           </CardContent>
@@ -232,7 +232,7 @@ export default function RecruiterDashboard() {
                 <p className="text-2xl font-bold">{stats.totalApplications}</p>
                 <p className="text-sm text-muted-foreground">Applications</p>
               </div>
-              <div className="p-2 bg-blue-100 rounded-lg">
+              <div className="p-2 bg-primary/10 rounded-lg">
                 <FileText className="h-5 w-5 text-primary" />
               </div>
             </div>
@@ -246,8 +246,8 @@ export default function RecruiterDashboard() {
                 <p className="text-2xl font-bold">{stats.pendingReview}</p>
                 <p className="text-sm text-muted-foreground">To review</p>
               </div>
-              <div className="p-2 bg-purple-100 rounded-lg">
-                <Eye className="h-5 w-5 text-purple-600" />
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <Eye className="h-5 w-5 text-primary" />
               </div>
             </div>
           </CardContent>
@@ -293,11 +293,11 @@ export default function RecruiterDashboard() {
                 topCandidates.map((candidate) => (
                   <div
                     key={candidate.id}
-                    className="flex items-start gap-4 p-4 rounded-lg border hover:border-blue-200 hover:bg-blue-50/30 transition-all"
+                    className="flex items-start gap-4 p-4 rounded-lg border hover:border-primary/20 hover:bg-primary/5 transition-all"
                   >
                     <Avatar className="h-12 w-12">
                       <AvatarImage src={candidate.photo || undefined} />
-                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white">
+                      <AvatarFallback className="bg-primary text-white">
                         {candidate.initials}
                       </AvatarFallback>
                     </Avatar>
@@ -305,7 +305,7 @@ export default function RecruiterDashboard() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
                         <h4 className="font-medium text-foreground">{candidate.name}</h4>
-                        <Button size="sm" variant="ghost" className="text-muted-foreground/60 hover:text-yellow-500">
+                        <Button size="sm" variant="ghost" className="text-muted-foreground/60 hover:text-secondary">
                           <Star className="h-4 w-4" />
                         </Button>
                       </div>
@@ -327,7 +327,7 @@ export default function RecruiterDashboard() {
                           </Badge>
                         )}
                         {candidate.score > 0 && (
-                          <Badge variant="secondary" className="text-xs bg-green-100 text-green-700">
+                          <Badge variant="secondary" className="text-xs bg-primary/10 text-primary">
                             Score: {candidate.score}
                           </Badge>
                         )}
@@ -460,7 +460,7 @@ export default function RecruiterDashboard() {
                 href="/dashboard/recruiter/candidates"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
               >
-                <div className="p-2 bg-blue-100 rounded-lg">
+                <div className="p-2 bg-primary/10 rounded-lg">
                   <Search className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
@@ -474,8 +474,8 @@ export default function RecruiterDashboard() {
                 href="/dashboard/recruiter/post-job"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
               >
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <Plus className="h-4 w-4 text-green-600" />
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Plus className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">Post a job</p>
@@ -488,8 +488,8 @@ export default function RecruiterDashboard() {
                 href="/dashboard/recruiter/messages"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
               >
-                <div className="p-2 bg-purple-100 rounded-lg">
-                  <MessageSquare className="h-4 w-4 text-purple-600" />
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <MessageSquare className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">Messages</p>
@@ -515,7 +515,7 @@ export default function RecruiterDashboard() {
           </Card>
 
           {/* This Week Summary */}
-          <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-100">
+          <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/10">
             <CardHeader className="pb-3">
               <CardTitle className="text-lg">This week</CardTitle>
             </CardHeader>

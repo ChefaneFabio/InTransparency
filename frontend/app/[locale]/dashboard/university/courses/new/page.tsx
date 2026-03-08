@@ -155,8 +155,8 @@ export default function NewCoursePage() {
         <div className="container mx-auto px-4 max-w-3xl">
           <Card className="text-center py-12">
             <CardContent>
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="h-8 w-8 text-green-600" />
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="h-8 w-8 text-primary" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
                 Corso Creato!
@@ -187,8 +187,8 @@ export default function NewCoursePage() {
 
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-              <BookOpen className="h-5 w-5 text-blue-600" />
+            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+              <BookOpen className="h-5 w-5 text-primary" />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Nuovo Corso</h1>

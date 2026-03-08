@@ -84,7 +84,7 @@ export function PWAInstallBanner() {
     <Card className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-96 z-50 shadow-lg border-teal-200">
       <CardContent className="p-4">
         <div className="flex items-start space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-r from-teal-600 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
             <Smartphone className="h-5 w-5 text-white" />
           </div>
 
@@ -100,7 +100,7 @@ export function PWAInstallBanner() {
               <Button
                 size="sm"
                 onClick={handleInstall}
-                className="bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700"
+                className="bg-primary"
               >
                 <Download className="h-3 w-3 mr-1" />
                 Install

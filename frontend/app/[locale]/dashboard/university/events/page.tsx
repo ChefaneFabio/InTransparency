@@ -38,9 +38,9 @@ interface EventData {
 
 const statusConfig: Record<string, { label: string; color: string }> = {
   DRAFT: { label: 'Draft', color: 'bg-gray-100 text-gray-600' },
-  PUBLISHED: { label: 'Published', color: 'bg-green-100 text-green-700' },
+  PUBLISHED: { label: 'Published', color: 'bg-primary/10 text-primary' },
   CANCELLED: { label: 'Cancelled', color: 'bg-red-100 text-red-700' },
-  COMPLETED: { label: 'Completed', color: 'bg-blue-100 text-blue-700' },
+  COMPLETED: { label: 'Completed', color: 'bg-primary/10 text-primary' },
 }
 
 const eventTypeLabels: Record<string, string> = {
@@ -153,7 +153,7 @@ export default function EventsPage() {
 
       {/* Create Event Form */}
       {showCreate && (
-        <Card className="border-blue-200">
+        <Card className="border-primary/20">
           <CardHeader>
             <CardTitle className="text-lg">Create New Event</CardTitle>
           </CardHeader>
@@ -230,8 +230,8 @@ export default function EventsPage() {
                   <CardContent className="p-5">
                     <div className="flex items-start justify-between">
                       <div className="flex items-start gap-4">
-                        <div className="p-3 bg-blue-50 rounded-lg">
-                          <Calendar className="h-6 w-6 text-blue-600" />
+                        <div className="p-3 bg-primary/5 rounded-lg">
+                          <Calendar className="h-6 w-6 text-primary" />
                         </div>
                         <div>
                           <div className="flex items-center gap-2">

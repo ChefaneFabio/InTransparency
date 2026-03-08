@@ -76,7 +76,7 @@ export default function ProfessorRegisterPage() {
             {/* Benefits */}
             <div className="space-y-6">
               <div>
-                <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
+                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
                   <BookOpen className="h-4 w-4" />
                   {t('register.roles.professor.name')}
                 </div>
@@ -93,8 +93,8 @@ export default function ProfessorRegisterPage() {
                   const Icon = benefit.icon
                   return (
                     <div key={i} className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Icon className="h-4 w-4 text-purple-600" />
+                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Icon className="h-4 w-4 text-primary" />
                       </div>
                       <p className="text-gray-700">{benefit.text}</p>
                     </div>
@@ -156,7 +156,7 @@ export default function ProfessorRegisterPage() {
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     />
                   </div>
-                  <Button type="submit" className="w-full bg-gradient-to-r from-purple-500 to-indigo-500" disabled={isLoading}>
+                  <Button type="submit" className="w-full bg-primary" disabled={isLoading}>
                     {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                     {t('register.signUpAs')} {t('register.roles.professor.name')}
                   </Button>

@@ -109,7 +109,7 @@ export default function CompanyReviewPage() {
         <Building2 className="h-12 w-12 mx-auto text-gray-300 mb-4" />
         <h1 className="text-2xl font-bold text-gray-900 mb-2">{companyName}</h1>
         <p className="text-gray-600 mb-6">No reviews yet for this company.</p>
-        <Link href="/explore" className="text-blue-600 hover:underline flex items-center justify-center gap-1">
+        <Link href="/explore" className="text-primary hover:underline flex items-center justify-center gap-1">
           <ArrowLeft className="h-4 w-4" /> Back to Explore
         </Link>
       </div>
@@ -127,8 +127,8 @@ export default function CompanyReviewPage() {
       <Card>
         <CardContent className="p-6">
           <div className="flex items-start gap-4">
-            <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center">
-              <Building2 className="h-8 w-8 text-blue-600" />
+            <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center">
+              <Building2 className="h-8 w-8 text-primary" />
             </div>
             <div className="flex-1">
               <h1 className="text-2xl font-bold text-gray-900">{data.company}</h1>
@@ -178,7 +178,7 @@ export default function CompanyReviewPage() {
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <Avatar className="h-9 w-9">
-                      <AvatarFallback className="bg-gradient-to-br from-blue-400 to-purple-500 text-white text-xs">
+                      <AvatarFallback className="bg-primary text-white text-xs">
                         {review.isAnonymous
                           ? '?'
                           : `${review.reviewer.firstName?.[0] || ''}${review.reviewer.lastName?.[0] || ''}`}
@@ -192,7 +192,7 @@ export default function CompanyReviewPage() {
                             : `${review.reviewer.firstName || ''} ${review.reviewer.lastName || ''}`}
                         </span>
                         {review.isVerified && (
-                          <Badge className="bg-green-100 text-green-700 text-xs">
+                          <Badge className="bg-primary/10 text-green-700 text-xs">
                             <CheckCircle className="mr-0.5 h-2.5 w-2.5" /> Verified
                           </Badge>
                         )}

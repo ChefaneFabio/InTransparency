@@ -79,7 +79,7 @@ const itsFocusAreas = [
   {
     area: 'ICT e Tecnologie Digitali',
     icon: Code,
-    color: 'from-blue-500 to-cyan-500',
+    color: 'bg-primary',
     skills: ['Web Development', 'Cybersecurity', 'Cloud', 'IoT'],
     companies: ['Reply', 'Engineering', 'Accenture', 'IBM'],
     avgPlacement: 92,
@@ -88,7 +88,7 @@ const itsFocusAreas = [
   {
     area: 'Chimica e Biotecnologie',
     icon: Award,
-    color: 'from-green-500 to-emerald-500',
+    color: 'bg-primary/80',
     skills: ['Process Control', 'GMP', 'Lab Techniques', 'Regulatory Affairs'],
     companies: ['Sanofi', 'Novartis', 'BASF', 'Enel Green Power'],
     avgPlacement: 85,
@@ -97,7 +97,7 @@ const itsFocusAreas = [
   {
     area: 'Design e Comunicazione',
     icon: Palette,
-    color: 'from-purple-500 to-pink-500',
+    color: 'bg-primary/60',
     skills: ['Graphic Design', 'UX/UI', 'Video Editing', 'Social Media'],
     companies: ['Design Studios', 'Agencies', 'Media Companies'],
     avgPlacement: 78,
@@ -141,7 +141,7 @@ export default function ITSInstitutesPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button
                 size="lg"
-                className="bg-primary hover:from-green-600 hover:to-emerald-700 shadow-lg"
+                className="bg-primary shadow-lg"
                 asChild
               >
                 <Link href="/auth/register">
@@ -173,7 +173,7 @@ export default function ITSInstitutesPage() {
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-lg">
+              <Card className="border-2 border-primary/20 hover:border-green-400 transition-all hover:shadow-lg">
                 <CardHeader className="text-center">
                   <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Briefcase className="h-8 w-8 text-white" />
@@ -231,7 +231,7 @@ export default function ITSInstitutesPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-lg">
+              <Card className="border-2 border-primary/20 hover:border-purple-400 transition-all hover:shadow-lg">
                 <CardHeader className="text-center">
                   <div className="bg-primary/80 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <TrendingUp className="h-8 w-8 text-white" />
@@ -278,12 +278,12 @@ export default function ITSInstitutesPage() {
 
             <div className="grid md:grid-cols-2 gap-8 mb-6">
               {/* Discovery Service - PRIMARY (Larger card) */}
-              <Card className="border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-xl">
+              <Card className="border-2 border-primary/20 hover:border-green-400 transition-all hover:shadow-xl">
                 <CardHeader className="text-center pb-3">
                   <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                     <Search className="h-8 w-8 text-white" />
                   </div>
-                  <Badge className="mb-2 bg-green-600 text-white">PRIMARY SERVICE</Badge>
+                  <Badge className="mb-2 bg-primary text-white">PRIMARY SERVICE</Badge>
                   <CardTitle className="text-lg">Discovery Service</CardTitle>
                   <Badge variant="secondary" className="mt-2 text-xs">Browse FREE, €10/contact</Badge>
                 </CardHeader>
@@ -432,7 +432,7 @@ export default function ITSInstitutesPage() {
                         <p className="font-semibold text-foreground mb-2">Companies Hiring:</p>
                         <div className="flex flex-wrap gap-2">
                           {selectedArea.companies.map((company) => (
-                            <Badge key={company} className="bg-green-100 text-green-800">
+                            <Badge key={company} className="bg-primary/10 text-green-800">
                               {company}
                             </Badge>
                           ))}
@@ -453,7 +453,7 @@ export default function ITSInstitutesPage() {
                       </CardHeader>
                       <CardContent className="text-sm space-y-3">
                         <div className="flex items-start gap-3">
-                          <div className="bg-green-500/10 rounded-full p-2">
+                          <div className="bg-primary/50/10 rounded-full p-2">
                             <GraduationCap className="h-4 w-4 text-primary" />
                           </div>
                           <div>
@@ -480,7 +480,7 @@ export default function ITSInstitutesPage() {
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
-                          <div className="bg-purple-500/10 rounded-full p-2">
+                          <div className="bg-primary/50/10 rounded-full p-2">
                             <Briefcase className="h-4 w-4 text-primary/70" />
                           </div>
                           <div>
@@ -509,9 +509,9 @@ export default function ITSInstitutesPage() {
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="border-2 border-green-200">
+              <Card className="border-2 border-primary/20">
                 <CardHeader className="text-center">
-                  <div className="bg-green-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <TrendingUp className="h-8 w-8 text-primary" />
                   </div>
                   <CardTitle className="text-lg">Better Placement Outcomes</CardTitle>
@@ -814,7 +814,7 @@ export default function ITSInstitutesPage() {
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <Button
                     size="lg"
-                    className="bg-primary hover:from-green-600 hover:to-emerald-700 shadow-lg"
+                    className="bg-primary shadow-lg"
                     asChild
                   >
                     <Link href="/auth/register">

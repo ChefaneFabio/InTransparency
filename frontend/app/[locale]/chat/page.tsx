@@ -15,7 +15,7 @@ const chatbotConfig = {
   student: {
     title: 'Career Assistant',
     icon: GraduationCap,
-    color: 'from-blue-500 to-cyan-500',
+    color: 'bg-primary',
     greeting: "👋 Hi! I'm Transparenty, your AI career assistant. I'm here to help you build a stellar profile, discover perfect-fit jobs, and get personalized career advice - all while being transparent about how your data helps improve your experience.",
     examples: [
       "Help me build my profile",
@@ -27,7 +27,7 @@ const chatbotConfig = {
   company: {
     title: 'Recruiting Assistant',
     icon: Building2,
-    color: 'from-purple-500 to-pink-500',
+    color: 'bg-primary',
     greeting: "👋 Hi! I'm Transparenty, your AI recruiting assistant. I help you find top talent, understand match scores, and craft compelling job descriptions. Every search is logged transparently to improve your experience.",
     examples: [
       "Find cybersecurity students in Rome",
@@ -39,7 +39,7 @@ const chatbotConfig = {
   institution: {
     title: 'Partnership Assistant',
     icon: School,
-    color: 'from-green-500 to-emerald-500',
+    color: 'bg-primary',
     greeting: "👋 Hi! I'm Transparenty, your institutional assistant. I help you set up partnerships, analyze placement data, identify at-risk students, and showcase European job opportunities. All interactions are GDPR-compliant and transparent.",
     examples: [
       "How does the free partnership work?",
@@ -100,7 +100,7 @@ export default function ChatPage() {
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <Bot className="h-12 w-12 text-primary" />
-              <h1 className="text-5xl font-display font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h1 className="text-5xl font-display font-bold text-primary">
                 AI Assistant Hub
               </h1>
             </div>
@@ -118,7 +118,7 @@ export default function ChatPage() {
                     onClick={() => handleRoleChange(role)}
                     className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                       selectedRole === role
-                        ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
+                        ? 'bg-primary text-white shadow-md'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                     }`}
                   >
@@ -140,9 +140,9 @@ export default function ChatPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="shadow-2xl border-2 border-primary/20 overflow-hidden">
+              <Card className="shadow-lg border-2 border-primary/20 overflow-hidden">
                 {/* Chat Header */}
-                <CardHeader className={`bg-gradient-to-r ${config.color} text-white`}>
+                <CardHeader className={`${config.color} text-white`}>
                   <div className="flex items-center gap-3">
                     <div className="bg-white/20 p-3 rounded-full">
                       <config.icon className="h-6 w-6" />
@@ -168,7 +168,7 @@ export default function ChatPage() {
                         <div
                           className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                             message.role === 'user'
-                              ? 'bg-gradient-to-r from-primary to-secondary text-white'
+                              ? 'bg-primary text-white'
                               : 'bg-white text-gray-900 border border-gray-200 shadow-sm'
                           }`}
                         >
@@ -237,7 +237,7 @@ export default function ChatPage() {
                       <Button
                         onClick={handleSendMessage}
                         disabled={!inputMessage.trim()}
-                        className="bg-gradient-to-r from-primary to-secondary text-white rounded-full px-6"
+                        className="bg-primary text-white rounded-full px-6"
                       >
                         <Send className="h-5 w-5" />
                       </Button>

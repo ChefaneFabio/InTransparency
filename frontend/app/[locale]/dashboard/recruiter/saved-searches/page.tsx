@@ -230,8 +230,8 @@ export default function SavedSearchesPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <Search className="h-4 w-4 text-blue-600" />
+              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                <Search className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-600">Active Searches</p>
@@ -244,8 +244,8 @@ export default function SavedSearchesPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                <Users className="h-4 w-4 text-green-600" />
+              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                <Users className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-600">Total Matches</p>
@@ -272,8 +272,8 @@ export default function SavedSearchesPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                <Bell className="h-4 w-4 text-purple-600" />
+              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                <Bell className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-600">Active Alerts</p>
@@ -328,7 +328,7 @@ export default function SavedSearchesPage() {
                             <h3 className="text-lg font-semibold text-gray-900">{search.name}</h3>
                             <div className="flex items-center space-x-2">
                               {search.isActive ? (
-                                <Badge className="bg-green-100 text-green-800">
+                                <Badge className="bg-primary/10 text-green-800">
                                   <Play className="h-3 w-3 mr-1" />
                                   Active
                                 </Badge>
@@ -339,7 +339,7 @@ export default function SavedSearchesPage() {
                                 </Badge>
                               )}
                               {search.alertsEnabled && (
-                                <Badge className="bg-blue-100 text-blue-800">
+                                <Badge className="bg-primary/10 text-blue-800">
                                   <Bell className="h-3 w-3 mr-1" />
                                   Alerts {search.alertFrequency}
                                 </Badge>
@@ -414,8 +414,8 @@ export default function SavedSearchesPage() {
                               </div>
                               {search.newMatches > 0 && (
                                 <div className="flex items-center">
-                                  <TrendingUp className="h-4 w-4 mr-1 text-green-600" />
-                                  <span className="text-green-600 font-medium">{search.newMatches} new</span>
+                                  <TrendingUp className="h-4 w-4 mr-1 text-primary" />
+                                  <span className="text-primary font-medium">{search.newMatches} new</span>
                                 </div>
                               )}
                               <div className="flex items-center">
@@ -450,7 +450,7 @@ export default function SavedSearchesPage() {
                               disabled={isActioning}
                               onClick={() => handleToggleAlerts(search)}
                             >
-                              <Bell className={`h-3 w-3 mr-1 ${search.alertsEnabled ? 'text-blue-600' : ''}`} />
+                              <Bell className={`h-3 w-3 mr-1 ${search.alertsEnabled ? 'text-primary' : ''}`} />
                               {search.alertsEnabled ? 'Alerts On' : 'Alerts Off'}
                             </Button>
                           </div>

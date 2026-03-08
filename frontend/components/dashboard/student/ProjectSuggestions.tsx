@@ -42,7 +42,7 @@ const categoryIcons: Record<string, typeof FileText> = {
 const priorityConfig: Record<string, { color: string; icon: typeof AlertTriangle; label: string }> = {
   high: { color: 'bg-red-100 text-red-700', icon: AlertTriangle, label: 'High' },
   medium: { color: 'bg-yellow-100 text-yellow-700', icon: ArrowUp, label: 'Medium' },
-  low: { color: 'bg-green-100 text-green-700', icon: CheckCircle, label: 'Low' },
+  low: { color: 'bg-primary/10 text-green-700', icon: CheckCircle, label: 'Low' },
 }
 
 export function ProjectSuggestions({ projectId, onAction }: ProjectSuggestionsProps) {
@@ -82,7 +82,7 @@ export function ProjectSuggestions({ projectId, onAction }: ProjectSuggestionsPr
     return (
       <Card>
         <CardContent className="py-8 text-center">
-          <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-3" />
+          <CheckCircle className="h-12 w-12 text-primary mx-auto mb-3" />
           <p className="font-medium text-green-700">Your project looks great!</p>
           <p className="text-sm text-muted-foreground mt-1">No improvement suggestions at this time.</p>
         </CardContent>
@@ -99,7 +99,7 @@ export function ProjectSuggestions({ projectId, onAction }: ProjectSuggestionsPr
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="flex items-center gap-2 text-base">
-              <Lightbulb className="h-5 w-5 text-yellow-500" />
+              <Lightbulb className="h-5 w-5 text-secondary" />
               Improvement Suggestions
             </CardTitle>
             <CardDescription>
@@ -122,11 +122,11 @@ export function ProjectSuggestions({ projectId, onAction }: ProjectSuggestionsPr
               <div
                 key={suggestion.id}
                 className={`flex items-start gap-3 p-3 rounded-lg border ${
-                  suggestion.completed ? 'bg-green-50 border-green-200 opacity-60' : 'hover:bg-muted/50'
+                  suggestion.completed ? 'bg-primary/5 border-primary/20 opacity-60' : 'hover:bg-muted/50'
                 }`}
               >
                 <div className="flex-shrink-0 mt-0.5">
-                  <CategoryIcon className={`h-4 w-4 ${suggestion.completed ? 'text-green-500' : 'text-muted-foreground'}`} />
+                  <CategoryIcon className={`h-4 w-4 ${suggestion.completed ? 'text-primary' : 'text-muted-foreground'}`} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">

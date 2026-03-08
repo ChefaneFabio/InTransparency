@@ -44,8 +44,8 @@ interface AvailableMentor extends Person {
 
 const statusColors: Record<string, string> = {
   PENDING: 'bg-yellow-100 text-yellow-700',
-  ACTIVE: 'bg-green-100 text-green-700',
-  COMPLETED: 'bg-blue-100 text-blue-700',
+  ACTIVE: 'bg-primary/10 text-primary',
+  COMPLETED: 'bg-primary/10 text-primary',
   DECLINED: 'bg-red-100 text-red-700',
   CANCELLED: 'bg-gray-100 text-gray-600',
 }
@@ -118,7 +118,7 @@ export default function MentoringPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <Users className="h-10 w-10 mx-auto text-blue-300 animate-pulse mb-4" />
+          <Users className="h-10 w-10 mx-auto text-primary/30 animate-pulse mb-4" />
           <p className="text-gray-500">Loading mentoring...</p>
         </div>
       </div>
@@ -153,8 +153,8 @@ export default function MentoringPage() {
                 <p className="text-2xl font-bold">{activeMentorships.length}</p>
                 <p className="text-sm text-gray-600">Active mentorships</p>
               </div>
-              <div className="p-2 bg-green-100 rounded-lg">
-                <Users className="h-5 w-5 text-green-600" />
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <Users className="h-5 w-5 text-primary" />
               </div>
             </div>
           </CardContent>
@@ -167,7 +167,7 @@ export default function MentoringPage() {
                 <p className="text-sm text-gray-600">Pending requests</p>
               </div>
               <div className="p-2 bg-yellow-100 rounded-lg">
-                <Clock className="h-5 w-5 text-yellow-600" />
+                <Clock className="h-5 w-5 text-secondary" />
               </div>
             </div>
           </CardContent>
@@ -179,8 +179,8 @@ export default function MentoringPage() {
                 <p className="text-2xl font-bold">{filteredMentors.length}</p>
                 <p className="text-sm text-gray-600">Available mentors</p>
               </div>
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <UserPlus className="h-5 w-5 text-blue-600" />
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <UserPlus className="h-5 w-5 text-primary" />
               </div>
             </div>
           </CardContent>
@@ -192,7 +192,7 @@ export default function MentoringPage() {
         <Card className="border-yellow-200">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
-              <Clock className="h-5 w-5 text-yellow-600" />
+              <Clock className="h-5 w-5 text-secondary" />
               Pending Requests
             </CardTitle>
           </CardHeader>
@@ -201,7 +201,7 @@ export default function MentoringPage() {
               <div key={m.id} className="flex items-center gap-4 p-4 rounded-lg border">
                 <Avatar className="h-10 w-10">
                   <AvatarImage src={m.partner.photo || undefined} />
-                  <AvatarFallback className="bg-gradient-to-br from-yellow-400 to-orange-500 text-white text-sm">
+                  <AvatarFallback className="bg-primary text-white text-sm">
                     {getInitials(m.partner)}
                   </AvatarFallback>
                 </Avatar>
@@ -244,7 +244,7 @@ export default function MentoringPage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
-              <Users className="h-5 w-5 text-green-600" />
+              <Users className="h-5 w-5 text-primary" />
               Active Mentorships
             </CardTitle>
           </CardHeader>
@@ -253,7 +253,7 @@ export default function MentoringPage() {
               <div key={m.id} className="flex items-center gap-4 p-4 rounded-lg border hover:bg-gray-50 transition-colors">
                 <Avatar className="h-10 w-10">
                   <AvatarImage src={m.partner.photo || undefined} />
-                  <AvatarFallback className="bg-gradient-to-br from-green-400 to-emerald-500 text-white text-sm">
+                  <AvatarFallback className="bg-primary text-white text-sm">
                     {getInitials(m.partner)}
                   </AvatarFallback>
                 </Avatar>
@@ -298,7 +298,7 @@ export default function MentoringPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-lg flex items-center gap-2">
-            <GraduationCap className="h-5 w-5 text-blue-600" />
+            <GraduationCap className="h-5 w-5 text-primary" />
             Find a Mentor
           </CardTitle>
           <CardDescription>
@@ -312,7 +312,7 @@ export default function MentoringPage() {
                 <div key={mentor.id} className="flex items-center gap-4 p-4 rounded-lg border hover:bg-gray-50 transition-colors">
                   <Avatar className="h-10 w-10">
                     <AvatarImage src={mentor.photo || undefined} />
-                    <AvatarFallback className="bg-gradient-to-br from-blue-400 to-indigo-500 text-white text-sm">
+                    <AvatarFallback className="bg-primary text-white text-sm">
                       {getInitials(mentor)}
                     </AvatarFallback>
                   </Avatar>
@@ -324,7 +324,7 @@ export default function MentoringPage() {
                     </p>
                     {mentor._count.mentorshipsAsMentor > 0 && (
                       <div className="flex items-center gap-1 mt-0.5">
-                        <Star className="h-3 w-3 text-yellow-500" />
+                        <Star className="h-3 w-3 text-secondary" />
                         <span className="text-xs text-gray-500">
                           {mentor._count.mentorshipsAsMentor} mentee{mentor._count.mentorshipsAsMentor !== 1 ? 's' : ''}
                         </span>

@@ -113,7 +113,7 @@ export default function UniversityProjectsPage() {
     switch (status) {
       case 'VERIFIED':
         return (
-          <Badge className="bg-green-100 text-green-700">
+          <Badge className="bg-primary/10 text-primary">
             <CheckCircle className="h-3 w-3 mr-1" />
             Verified
           </Badge>
@@ -146,7 +146,7 @@ export default function UniversityProjectsPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin mx-auto text-blue-600 mb-4" />
+          <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary mb-4" />
           <p className="text-gray-500">Loading projects...</p>
         </div>
       </div>
@@ -172,7 +172,7 @@ export default function UniversityProjectsPage() {
                 <p className="text-2xl font-bold">{stats.total}</p>
                 <p className="text-sm text-gray-600">Total</p>
               </div>
-              <FolderOpen className="h-8 w-8 text-blue-500" />
+              <FolderOpen className="h-8 w-8 text-primary" />
             </div>
           </CardContent>
         </Card>
@@ -183,7 +183,7 @@ export default function UniversityProjectsPage() {
                 <p className="text-2xl font-bold">{stats.pending}</p>
                 <p className="text-sm text-gray-600">Pending</p>
               </div>
-              <Clock className="h-8 w-8 text-yellow-500" />
+              <Clock className="h-8 w-8 text-secondary" />
             </div>
           </CardContent>
         </Card>
@@ -194,7 +194,7 @@ export default function UniversityProjectsPage() {
                 <p className="text-2xl font-bold">{stats.verified}</p>
                 <p className="text-sm text-gray-600">Verified</p>
               </div>
-              <CheckCircle className="h-8 w-8 text-green-500" />
+              <CheckCircle className="h-8 w-8 text-primary" />
             </div>
           </CardContent>
         </Card>
@@ -308,7 +308,7 @@ function ProjectsList({
           href={`/dashboard/university/projects/${project.id}`}
           className="block"
         >
-          <div className="flex items-start gap-4 p-4 rounded-lg border hover:border-blue-200 hover:bg-blue-50/30 transition-all">
+          <div className="flex items-start gap-4 p-4 rounded-lg border hover:border-primary/20 hover:bg-primary/5 transition-all">
             {/* Project Image */}
             {project.imageUrl ? (
               <img
@@ -317,7 +317,7 @@ function ProjectsList({
                 className="w-20 h-20 rounded-lg object-cover flex-shrink-0"
               />
             ) : (
-              <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center flex-shrink-0">
+              <div className="w-20 h-20 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <FolderOpen className="h-8 w-8 text-blue-400" />
               </div>
             )}
@@ -343,7 +343,7 @@ function ProjectsList({
                 <div className="flex items-center gap-2">
                   <Avatar className="h-6 w-6">
                     <AvatarImage src={project.student.photo || undefined} />
-                    <AvatarFallback className="text-xs bg-blue-100 text-blue-700">
+                    <AvatarFallback className="text-xs bg-primary/10 text-primary">
                       {project.student.name.split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
@@ -363,7 +363,7 @@ function ProjectsList({
 
                 {/* Professor Endorsement */}
                 {project.hasProfessorEndorsement && (
-                  <Badge variant="secondary" className="bg-purple-50 text-purple-700 text-xs">
+                  <Badge variant="secondary" className="bg-primary/5 text-purple-700 text-xs">
                     <Award className="h-3 w-3 mr-1" />
                     Endorsed
                   </Badge>

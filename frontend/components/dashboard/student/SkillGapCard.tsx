@@ -13,7 +13,7 @@ const priorityConfig = {
   critical: { color: 'bg-red-100 text-red-700', icon: AlertTriangle, label: 'Critical' },
   high: { color: 'bg-orange-100 text-orange-700', icon: ArrowUp, label: 'High' },
   medium: { color: 'bg-yellow-100 text-yellow-700', icon: TrendingUp, label: 'Medium' },
-  low: { color: 'bg-green-100 text-green-700', icon: TrendingUp, label: 'Low' },
+  low: { color: 'bg-primary/10 text-green-700', icon: TrendingUp, label: 'Low' },
 }
 
 export function SkillGapCard({ gap }: SkillGapCardProps) {

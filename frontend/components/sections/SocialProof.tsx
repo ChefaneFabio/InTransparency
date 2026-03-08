@@ -29,10 +29,10 @@ export function SocialProof() {
   ]
 
   return (
-    <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+    <section className="py-16 bg-gradient-to-br from-primary/5 to-primary/10">
       <div className="container">
         <div className="text-center mb-12">
-          <div className="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
             Early Access
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -69,17 +69,17 @@ export function SocialProof() {
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="text-3xl mb-2">💼</div>
-              <div className="text-lg font-bold text-blue-600 mb-2">Portfolio First</div>
+              <div className="text-lg font-bold text-primary mb-2">Portfolio First</div>
               <p className="text-sm text-gray-600">Turn academic projects into career opportunities</p>
             </div>
             <div>
               <div className="text-3xl mb-2">🔒</div>
-              <div className="text-lg font-bold text-blue-600 mb-2">Verified Work</div>
+              <div className="text-lg font-bold text-primary mb-2">Verified Work</div>
               <p className="text-sm text-gray-600">University-backed project authentication</p>
             </div>
             <div>
               <div className="text-3xl mb-2">🎯</div>
-              <div className="text-lg font-bold text-blue-600 mb-2">Get Discovered</div>
+              <div className="text-lg font-bold text-primary mb-2">Get Discovered</div>
               <p className="text-sm text-gray-600">Recruiters find you based on real skills</p>
             </div>
           </div>

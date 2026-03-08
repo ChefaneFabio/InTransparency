@@ -100,7 +100,7 @@ export default function SupportPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white">
+            <Badge className="mb-4 bg-primary text-white">
               Support Center
             </Badge>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
@@ -155,8 +155,8 @@ export default function SupportPage() {
 
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
-                <div className="bg-green-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                  <Users className="h-6 w-6 text-green-600" />
+                <div className="bg-primary/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                  <Users className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle>Community</CardTitle>
               </CardHeader>
@@ -243,7 +243,7 @@ export default function SupportPage() {
           </Card>
 
           {/* Still Need Help */}
-          <Card className="mt-12 bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
+          <Card className="mt-12 bg-primary/10 border-primary/20">
             <CardContent className="py-12 text-center">
               <h3 className="text-2xl font-bold mb-4">Still need help?</h3>
               <p className="text-gray-700 mb-6 max-w-2xl mx-auto">

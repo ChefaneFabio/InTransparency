@@ -154,11 +154,11 @@ export function BidirectionalCommunication({ locale = 'it' }: BidirectionalCommu
           </Card>
 
           {/* InTransparency */}
-          <Card className="border-green-200 bg-green-50/50">
+          <Card className="border-primary/20 bg-primary/5/50">
             <CardContent className="pt-6">
               <div className="text-center mb-6">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-100 mb-3">
-                  <CheckCircle className="h-6 w-6 text-green-500" />
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-3">
+                  <CheckCircle className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="font-bold text-lg text-green-900">{t.ourTitle}</h3>
                 <p className="text-sm text-green-700">{t.ourSubtitle}</p>
@@ -168,8 +168,8 @@ export function BidirectionalCommunication({ locale = 'it' }: BidirectionalCommu
                   const Icon = step.icon
                   return (
                     <div key={i} className="flex items-center gap-3 text-sm">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-                        <Icon className="h-4 w-4 text-green-500" />
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <Icon className="h-4 w-4 text-primary" />
                       </div>
                       <span className="text-green-800">{step.text}</span>
                     </div>
@@ -192,9 +192,9 @@ export function BidirectionalCommunication({ locale = 'it' }: BidirectionalCommu
             ].map((step, i) => {
               const Icon = step.icon
               const colors: Record<string, string> = {
-                blue: 'bg-blue-100 text-blue-600 border-blue-200',
-                purple: 'bg-purple-100 text-purple-600 border-purple-200',
-                green: 'bg-green-100 text-green-600 border-green-200',
+                blue: 'bg-primary/10 text-primary border-primary/20',
+                purple: 'bg-primary/10 text-primary border-primary/20',
+                green: 'bg-primary/10 text-primary border-primary/20',
                 orange: 'bg-orange-100 text-orange-600 border-orange-200'
               }
               return (

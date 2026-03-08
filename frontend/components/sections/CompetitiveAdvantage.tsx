@@ -7,7 +7,7 @@ export function CompetitiveAdvantage() {
   const t = useTranslations('competitiveAdvantage')
 
   return (
-    <section className="py-24 bg-gradient-to-br from-muted/50 via-white to-blue-50">
+    <section className="py-24 bg-gradient-to-br from-muted/50 via-white to-primary/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -22,10 +22,10 @@ export function CompetitiveAdvantage() {
         {/* Comparison Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {/* VS LinkedIn */}
-          <div className="bg-card rounded-2xl shadow-xl p-8 border-2 border-border hover:border-blue-500 transition-all">
+          <div className="bg-card rounded-2xl shadow-lg p-8 border-2 border-border hover:border-primary transition-all">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-blue-100 rounded-lg">
+                <div className="p-3 bg-primary/10 rounded-lg">
                   <Linkedin className="text-primary" size={28} />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">{t('linkedin.title')}</h3>
@@ -76,7 +76,7 @@ export function CompetitiveAdvantage() {
           </div>
 
           {/* VS GitHub */}
-          <div className="bg-card rounded-2xl shadow-xl p-8 border-2 border-border hover:border-blue-500 transition-all">
+          <div className="bg-card rounded-2xl shadow-lg p-8 border-2 border-border hover:border-primary transition-all">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
                 <div className="p-3 bg-gray-800 rounded-lg">
@@ -122,11 +122,11 @@ export function CompetitiveAdvantage() {
           </div>
 
           {/* VS Traditional Resumes */}
-          <div className="bg-card rounded-2xl shadow-xl p-8 border-2 border-border hover:border-blue-500 transition-all">
+          <div className="bg-card rounded-2xl shadow-lg p-8 border-2 border-border hover:border-primary transition-all">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-green-100 rounded-lg">
-                  <FileText className="text-green-600" size={28} />
+                <div className="p-3 bg-primary/10 rounded-lg">
+                  <FileText className="text-primary" size={28} />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">{t('resumes.title')}</h3>
               </div>
@@ -169,7 +169,7 @@ export function CompetitiveAdvantage() {
         </div>
 
         {/* The InTransparency Way */}
-        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl shadow-2xl p-12 text-white">
+        <div className="bg-primary rounded-3xl shadow-lg p-12 text-white">
           <div className="text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-bold mb-4">
               {t('advantage.title')}
@@ -298,24 +298,24 @@ export function CompetitiveAdvantage() {
             </div>
 
             {/* InTransparency */}
-            <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl shadow-lg p-6 border-2 border-green-300">
+            <div className="bg-primary/5 rounded-xl shadow-lg p-6 border-2 border-primary/30">
               <div className="flex items-center gap-2 mb-4">
-                <Shield className="text-green-600" size={24} />
+                <Shield className="text-primary" size={24} />
                 <h4 className="font-bold text-foreground">{t('pricing.inTransparency.title')}</h4>
               </div>
-              <div className="text-3xl font-bold text-green-600 mb-2">{t('pricing.inTransparency.price')}</div>
+              <div className="text-3xl font-bold text-primary mb-2">{t('pricing.inTransparency.price')}</div>
               <p className="text-sm text-foreground/80 mb-4">{t('pricing.inTransparency.period')}</p>
               <div className="space-y-2 text-sm">
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={16} />
+                  <CheckCircle className="text-primary flex-shrink-0 mt-0.5" size={16} />
                   <span className="text-foreground/80">{t('pricing.inTransparency.benefits.browseFree')}</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={16} />
+                  <CheckCircle className="text-primary flex-shrink-0 mt-0.5" size={16} />
                   <span className="text-foreground/80">{t('pricing.inTransparency.benefits.payWhenFound')}</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={16} />
+                  <CheckCircle className="text-primary flex-shrink-0 mt-0.5" size={16} />
                   <span className="text-foreground/80">{t('pricing.inTransparency.benefits.noSubscription')}</span>
                 </div>
               </div>
@@ -342,7 +342,7 @@ export function CompetitiveAdvantage() {
               { key: 'academicFilters', icon: '🎯' },
               { key: 'portfolioCoverage', icon: '📁' }
             ].map((feature) => (
-              <div key={feature.key} className="bg-card rounded-xl p-6 shadow-md border-2 border-blue-200 text-center">
+              <div key={feature.key} className="bg-card rounded-xl p-6 shadow-md border-2 border-primary/20 text-center">
                 <div className="text-4xl mb-3">{feature.icon}</div>
                 <h4 className="font-bold text-foreground mb-2">{t(`uniqueFeatures.features.${feature.key}.title`)}</h4>
                 <p className="text-sm text-muted-foreground">{t(`uniqueFeatures.features.${feature.key}.description`)}</p>
@@ -362,16 +362,16 @@ export function CompetitiveAdvantage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {[
-              { key: 'juniorHires', color: 'from-blue-500 to-blue-600' },
-              { key: 'verifiedSkills', color: 'from-purple-500 to-purple-600' },
-              { key: 'universityFilters', color: 'from-green-500 to-green-600' },
+              { key: 'juniorHires', color: 'bg-primary' },
+              { key: 'verifiedSkills', color: 'bg-primary/80' },
+              { key: 'universityFilters', color: 'bg-primary/60' },
               { key: 'smbBudget', color: 'from-orange-500 to-orange-600' },
-              { key: 'volumeHiring', color: 'from-teal-500 to-teal-600' },
+              { key: 'volumeHiring', color: 'bg-primary/70' },
               { key: 'fasterHiring', color: 'from-pink-500 to-pink-600' },
-              { key: 'italyEU', color: 'from-indigo-500 to-indigo-600' },
+              { key: 'italyEU', color: 'bg-primary/70' },
               { key: 'realProjects', color: 'from-red-500 to-red-600' }
             ].map((useCase) => (
-              <div key={useCase.key} className={`bg-gradient-to-br ${useCase.color} text-white rounded-xl p-6 shadow-lg`}>
+              <div key={useCase.key} className="bg-primary text-white rounded-xl p-6 shadow-lg">
                 <div className="flex items-center mb-2">
                   <CheckCircle className="h-5 w-5 mr-2 flex-shrink-0" />
                   <h4 className="font-bold">{t(`useCases.cases.${useCase.key}.title`)}</h4>
@@ -382,8 +382,8 @@ export function CompetitiveAdvantage() {
           </div>
 
           <div className="mt-8 text-center">
-            <div className="inline-block bg-green-100 border-2 border-green-300 rounded-xl p-6">
-              <p className="text-lg font-semibold text-green-900">
+            <div className="inline-block bg-primary/10 border-2 border-primary/30 rounded-xl p-6">
+              <p className="text-lg font-semibold text-primary">
                 🏆 {t('useCases.conclusion')}
               </p>
             </div>
@@ -398,7 +398,7 @@ export function CompetitiveAdvantage() {
           </p>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
             {['stem', 'business', 'creative', 'legal', 'humanities', 'other'].map((category) => (
-              <div key={category} className={`bg-${category === 'stem' ? 'blue' : category === 'business' ? 'green' : category === 'creative' ? 'purple' : category === 'legal' ? 'orange' : category === 'humanities' ? 'pink' : 'cyan'}-50 rounded-lg p-6`}>
+              <div key={category} className="bg-primary/5 rounded-lg p-6">
                 <h4 className="font-bold mb-3">
                   {category === 'stem' && '🔬 '}
                   {category === 'business' && '💼 '}

@@ -37,7 +37,7 @@ const referralPrograms = {
     title: 'Student Referral Program',
     subtitle: 'Earn rewards by inviting your institution and fellow students',
     icon: GraduationCap,
-    color: 'from-blue-500 to-cyan-500',
+    color: 'bg-primary',
     programs: [
       {
         id: 'refer-institution',
@@ -94,7 +94,7 @@ const referralPrograms = {
     title: 'Institution Partner Program',
     subtitle: 'Earn bonuses by promoting Pro upgrades and company partnerships',
     icon: Building2,
-    color: 'from-purple-500 to-pink-500',
+    color: 'bg-primary/60',
     programs: [
       {
         id: 'student-upgrade-bonus',
@@ -150,7 +150,7 @@ const referralPrograms = {
     title: 'Company Referral Program',
     subtitle: 'Earn credits by referring institutions and other companies',
     icon: Briefcase,
-    color: 'from-green-500 to-emerald-500',
+    color: 'bg-primary/80',
     programs: [
       {
         id: 'refer-institution',
@@ -233,12 +233,12 @@ export default function ReferralsPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white">
+            <Badge className="mb-4 bg-primary text-white">
               {t('hero.badge')}
             </Badge>
             <h1 className="text-5xl font-display font-bold mb-6">
               {t('hero.title')}{' '}
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <span className="text-primary">
                 {t('hero.titleHighlight')}
               </span>
             </h1>
@@ -272,7 +272,7 @@ export default function ReferralsPage() {
                       onClick={() => setSelectedSegment(segment)}
                       className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                         selectedSegment === segment
-                          ? 'bg-gradient-to-r from-primary to-secondary text-white'
+                          ? 'bg-primary text-white'
                           : 'text-gray-800 hover:text-gray-900 hover:bg-slate-100'
                       }`}
                     >
@@ -293,7 +293,7 @@ export default function ReferralsPage() {
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <Card className={`border-2 bg-gradient-to-r ${currentProgram.color} text-white border-0`}>
+            <Card className="border-2 bg-primary text-white border-0">
               <CardContent className="py-8 text-center">
                 <Icon className="h-16 w-16 mx-auto mb-4" />
                 <h2 className="text-3xl font-display font-bold mb-2">{currentProgram.title}</h2>
@@ -313,13 +313,13 @@ export default function ReferralsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="h-full hover:shadow-xl transition-all border-2 border-gray-200 hover:border-primary/40">
+                  <Card className="h-full hover:shadow-lg transition-all border-2 border-gray-200 hover:border-primary/40">
                     <CardHeader>
                       <div className="flex items-start justify-between mb-3">
-                        <div className="bg-gradient-to-br from-primary to-secondary p-3 rounded-lg">
+                        <div className="bg-primary p-3 rounded-lg">
                           <ProgramIcon className="h-6 w-6 text-white" />
                         </div>
-                        <Badge className="bg-green-100 text-green-800">
+                        <Badge className="bg-primary/10 text-primary">
                           {program.reward}
                         </Badge>
                       </div>
@@ -331,7 +331,7 @@ export default function ReferralsPage() {
                         <p className="text-xs font-semibold text-gray-900 mb-2">How It Works:</p>
                         {program.details.map((detail, idx) => (
                           <div key={idx} className="flex items-start text-xs text-gray-700">
-                            <CheckCircle className="h-3 w-3 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                            <CheckCircle className="h-3 w-3 text-primary mr-2 mt-0.5 flex-shrink-0" />
                             <span>{detail}</span>
                           </div>
                         ))}
@@ -347,7 +347,7 @@ export default function ReferralsPage() {
 
                       {/* CTA */}
                       <Button
-                        className="w-full bg-gradient-to-r from-primary to-secondary text-white"
+                        className="w-full bg-primary text-white"
                         onClick={() => handleCopyCode(program.id)}
                       >
                         {copiedCode === program.id ? (
@@ -381,11 +381,11 @@ export default function ReferralsPage() {
               Your Referral Dashboard
             </h2>
 
-            <Card className="bg-gradient-to-r from-primary/5 to-secondary/5 border-2 border-primary/20">
+            <Card className="bg-primary/5 border-2 border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <span>Referral Performance</span>
-                  <Badge className="bg-gradient-to-r from-primary to-secondary text-white">
+                  <Badge className="bg-primary text-white">
                     Live Demo
                   </Badge>
                 </CardTitle>
@@ -395,7 +395,7 @@ export default function ReferralsPage() {
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                     <div className="flex items-center justify-between mb-2">
                       <Users className="h-5 w-5 text-primary" />
-                      <TrendingUp className="h-4 w-4 text-green-600" />
+                      <TrendingUp className="h-4 w-4 text-primary" />
                     </div>
                     <div className="text-2xl font-bold text-gray-900">23</div>
                     <div className="text-xs text-gray-600">Total Referrals</div>
@@ -403,8 +403,8 @@ export default function ReferralsPage() {
 
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                     <div className="flex items-center justify-between mb-2">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span className="text-xs text-green-600">87% conversion</span>
+                      <CheckCircle className="h-5 w-5 text-primary" />
+                      <span className="text-xs text-primary">87% conversion</span>
                     </div>
                     <div className="text-2xl font-bold text-gray-900">20</div>
                     <div className="text-xs text-gray-600">Successful Sign-ups</div>
@@ -421,10 +421,10 @@ export default function ReferralsPage() {
 
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                     <div className="flex items-center justify-between mb-2">
-                      <Euro className="h-5 w-5 text-green-600" />
-                      <span className="text-xs text-green-600">+€23 pending</span>
+                      <Euro className="h-5 w-5 text-primary" />
+                      <span className="text-xs text-primary">+€23 pending</span>
                     </div>
-                    <div className="text-2xl font-bold text-green-600">€87</div>
+                    <div className="text-2xl font-bold text-primary">€87</div>
                     <div className="text-xs text-gray-600">Total Earned</div>
                   </div>
                 </div>
@@ -489,16 +489,16 @@ export default function ReferralsPage() {
             </p>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="border-2 border-blue-200">
+              <Card className="border-2 border-primary/20">
                 <CardHeader>
-                  <Badge className="w-fit mb-2 bg-blue-100 text-blue-800">Student → Institution</Badge>
+                  <Badge className="w-fit mb-2 bg-primary/10 text-primary">Student → Institution</Badge>
                   <CardTitle className="text-base">ITS G. Natta Sign-Up</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <p className="mb-3">
                     Marco (Chemistry student) referred ITS G. Natta → 120 students verified → 45 upgraded to Pro
                   </p>
-                  <div className="bg-green-50 p-3 rounded border border-green-200">
+                  <div className="bg-primary/5 p-3 rounded border border-primary/20">
                     <p className="text-xs text-green-800">
                       <strong>Marco earned:</strong> €486/year (10% of €4,860 Pro fees)
                     </p>
@@ -506,16 +506,16 @@ export default function ReferralsPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-purple-200">
+              <Card className="border-2 border-primary/20">
                 <CardHeader>
-                  <Badge className="w-fit mb-2 bg-purple-100 text-purple-800">Institution → Company</Badge>
+                  <Badge className="w-fit mb-2 bg-primary/10 text-primary">Institution → Company</Badge>
                   <CardTitle className="text-base">Politecnico → BMW Partnership</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <p className="mb-3">
                     Politecnico Milano referred BMW → Company hired 12 verified engineers → €720 Year 1 spend
                   </p>
-                  <div className="bg-green-50 p-3 rounded border border-green-200">
+                  <div className="bg-primary/5 p-3 rounded border border-primary/20">
                     <p className="text-xs text-green-800">
                       <strong>Politecnico earned:</strong> €144 (20% referral bonus for scholarships)
                     </p>
@@ -523,16 +523,16 @@ export default function ReferralsPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-green-200">
+              <Card className="border-2 border-primary/20">
                 <CardHeader>
-                  <Badge className="w-fit mb-2 bg-green-100 text-green-800">Company → Institution</Badge>
+                  <Badge className="w-fit mb-2 bg-primary/10 text-primary">Company → Institution</Badge>
                   <CardTitle className="text-base">Siemens → ITS IFOA</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700">
                   <p className="mb-3">
                     Siemens nominated ITS IFOA → 150 mechatronics students verified → Priority access granted
                   </p>
-                  <div className="bg-green-50 p-3 rounded border border-green-200">
+                  <div className="bg-primary/5 p-3 rounded border border-primary/20">
                     <p className="text-xs text-green-800">
                       <strong>Siemens earned:</strong> 50 free credits (€500 value) + "Institution Partner" badge
                     </p>
@@ -557,23 +557,23 @@ export default function ReferralsPage() {
               <CardContent className="text-sm text-gray-700 space-y-2">
                 <ul className="space-y-2">
                   <li className="flex items-start">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
                     <span><strong>Tracking:</strong> Automatic via cookies and referral codes. 90-day attribution window.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
                     <span><strong>Payouts:</strong> Quarterly via PayPal or bank transfer. Minimum €25 threshold.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
                     <span><strong>Eligibility:</strong> Active InTransparency account required. Self-referrals not allowed.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
                     <span><strong>Transparency:</strong> Full referral dashboard with real-time tracking. GDPR compliant.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
                     <span><strong>Updates:</strong> Referral rates subject to change with 30-day notice. Grandfathered for existing referrals.</span>
                   </li>
                 </ul>
@@ -588,7 +588,7 @@ export default function ReferralsPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Card className="bg-gradient-to-r from-primary to-secondary border-0 text-white">
+            <Card className="bg-primary border-0 text-white">
               <CardContent className="py-12 text-center">
                 <Gift className="h-16 w-16 mx-auto mb-4" />
                 <h3 className="text-3xl font-display font-bold mb-4">

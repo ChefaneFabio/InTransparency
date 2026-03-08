@@ -887,7 +887,7 @@ export default function UniversityAnalytics() {
                               ${(item.min / 1000).toFixed(0)}k - ${(item.max / 1000).toFixed(0)}k
                             </p>
                           </div>
-                          <Badge className="bg-green-600">
+                          <Badge className="bg-primary">
                             ${(range / 1000).toFixed(0)}k range
                           </Badge>
                         </div>

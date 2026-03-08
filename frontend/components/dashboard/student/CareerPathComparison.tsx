@@ -10,7 +10,7 @@ interface CareerPathComparisonProps {
 }
 
 const trendConfig = {
-  rising: { icon: TrendingUp, color: 'text-green-600', label: 'Rising demand' },
+  rising: { icon: TrendingUp, color: 'text-primary', label: 'Rising demand' },
   stable: { icon: Minus, color: 'text-gray-500', label: 'Stable demand' },
   declining: { icon: TrendingDown, color: 'text-red-500', label: 'Declining demand' },
 }
@@ -31,9 +31,9 @@ export function CareerPathComparison({ paths }: CareerPathComparisonProps) {
         const TrendIcon = trend.icon
 
         const matchColor = path.matchScore >= 75
-          ? 'text-green-600'
+          ? 'text-primary'
           : path.matchScore >= 50
-            ? 'text-yellow-600'
+            ? 'text-secondary'
             : 'text-red-600'
 
         return (
@@ -64,12 +64,12 @@ export function CareerPathComparison({ paths }: CareerPathComparisonProps) {
               {path.presentSkills.length > 0 && (
                 <div>
                   <p className="text-xs font-medium text-gray-600 mb-1 flex items-center gap-1">
-                    <CheckCircle2 className="h-3 w-3 text-green-500" />
+                    <CheckCircle2 className="h-3 w-3 text-primary" />
                     Skills you have
                   </p>
                   <div className="flex flex-wrap gap-1">
                     {path.presentSkills.map((skill) => (
-                      <Badge key={skill} variant="secondary" className="text-xs bg-green-50 text-green-700 px-1.5 py-0">
+                      <Badge key={skill} variant="secondary" className="text-xs bg-primary/5 text-green-700 px-1.5 py-0">
                         {skill}
                       </Badge>
                     ))}

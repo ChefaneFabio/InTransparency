@@ -69,7 +69,7 @@ export default function ProfessorDashboardPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     )
   }
@@ -85,7 +85,7 @@ export default function ProfessorDashboardPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card>
           <CardContent className="p-4 text-center">
-            <Award className="h-8 w-8 text-blue-600 mx-auto mb-2" />
+            <Award className="h-8 w-8 text-primary mx-auto mb-2" />
             <p className="text-2xl font-bold">{stats?.totalEndorsements || 0}</p>
             <p className="text-sm text-gray-500">{t('stats.total')}</p>
           </CardContent>
@@ -99,14 +99,14 @@ export default function ProfessorDashboardPage() {
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
-            <Star className="h-8 w-8 text-yellow-500 mx-auto mb-2" />
+            <Star className="h-8 w-8 text-secondary mx-auto mb-2" />
             <p className="text-2xl font-bold">{stats?.averageRating ? stats.averageRating.toFixed(1) : '—'}</p>
             <p className="text-sm text-gray-500">{t('stats.avgRating')}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
-            <Users className="h-8 w-8 text-green-600 mx-auto mb-2" />
+            <Users className="h-8 w-8 text-primary mx-auto mb-2" />
             <p className="text-2xl font-bold">{stats?.studentsEndorsed || 0}</p>
             <p className="text-sm text-gray-500">{t('stats.students')}</p>
           </CardContent>
@@ -156,7 +156,7 @@ export default function ProfessorDashboardPage() {
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <Link href="/dashboard/professor/endorsements" className="flex items-center gap-3">
-              <CheckCircle className="h-8 w-8 text-green-600" />
+              <CheckCircle className="h-8 w-8 text-primary" />
               <div>
                 <p className="font-medium">{t('links.allEndorsements')}</p>
                 <p className="text-sm text-gray-500">{t('links.allEndorsementsDesc')}</p>
@@ -167,7 +167,7 @@ export default function ProfessorDashboardPage() {
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="p-6">
             <Link href="/dashboard/professor/students" className="flex items-center gap-3">
-              <Users className="h-8 w-8 text-blue-600" />
+              <Users className="h-8 w-8 text-primary" />
               <div>
                 <p className="font-medium">{t('links.students')}</p>
                 <p className="text-sm text-gray-500">{t('links.studentsDesc')}</p>

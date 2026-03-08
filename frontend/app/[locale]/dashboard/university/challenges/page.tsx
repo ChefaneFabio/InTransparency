@@ -106,7 +106,7 @@ export default function UniversityChallengesPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin mx-auto text-blue-600 mb-4" />
+          <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary mb-4" />
           <p className="text-gray-500">Loading challenges...</p>
         </div>
       </div>
@@ -132,7 +132,7 @@ export default function UniversityChallengesPage() {
                 <p className="text-2xl font-bold">{stats.total}</p>
                 <p className="text-sm text-gray-600">Available</p>
               </div>
-              <Trophy className="h-8 w-8 text-blue-500" />
+              <Trophy className="h-8 w-8 text-primary" />
             </div>
           </CardContent>
         </Card>
@@ -143,7 +143,7 @@ export default function UniversityChallengesPage() {
                 <p className="text-2xl font-bold">{stats.pendingApproval}</p>
                 <p className="text-sm text-gray-600">Pending Review</p>
               </div>
-              <Clock className="h-8 w-8 text-yellow-500" />
+              <Clock className="h-8 w-8 text-secondary" />
             </div>
           </CardContent>
         </Card>
@@ -154,7 +154,7 @@ export default function UniversityChallengesPage() {
                 <p className="text-2xl font-bold">{stats.approved}</p>
                 <p className="text-sm text-gray-600">Approved</p>
               </div>
-              <CheckCircle className="h-8 w-8 text-green-500" />
+              <CheckCircle className="h-8 w-8 text-primary" />
             </div>
           </CardContent>
         </Card>
@@ -165,7 +165,7 @@ export default function UniversityChallengesPage() {
                 <p className="text-2xl font-bold">{stats.withSubmissions}</p>
                 <p className="text-sm text-gray-600">With Students</p>
               </div>
-              <Users className="h-8 w-8 text-purple-500" />
+              <Users className="h-8 w-8 text-primary" />
             </div>
           </CardContent>
         </Card>

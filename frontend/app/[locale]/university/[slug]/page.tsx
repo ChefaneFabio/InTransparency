@@ -138,7 +138,7 @@ export default function UniversityShowcasePage() {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div
-        className="bg-gradient-to-r from-blue-600 to-blue-800 text-white"
+        className="bg-primary text-white"
         style={{ background: `linear-gradient(135deg, ${primaryColor} 0%, ${primaryColor}dd 100%)` }}
       >
         <div className="max-w-6xl mx-auto px-4 py-12">
@@ -161,7 +161,7 @@ export default function UniversityShowcasePage() {
                 <Badge variant="secondary" className="bg-white/20 text-white border-0">
                   {university.type === 'ITS' ? 'ITS Institute' : 'University'}
                 </Badge>
-                <Badge variant="secondary" className="bg-green-500/20 text-white border-0">
+                <Badge variant="secondary" className="bg-primary/50/20 text-white border-0">
                   <CheckCircle className="h-3 w-3 mr-1" />
                   Verified Partner
                 </Badge>
@@ -207,7 +207,7 @@ export default function UniversityShowcasePage() {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h2 className="text-2xl font-bold flex items-center gap-2">
-                  <Star className="h-6 w-6 text-yellow-500" />
+                  <Star className="h-6 w-6 text-secondary" />
                   Featured Students
                 </h2>
                 <p className="text-gray-600">Top talent from {university.name}</p>
@@ -244,7 +244,7 @@ export default function UniversityShowcasePage() {
                       )}
                       <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
                         <span className="flex items-center gap-1">
-                          <Star className="h-4 w-4 text-yellow-500" />
+                          <Star className="h-4 w-4 text-secondary" />
                           {student.avgScore}/100
                         </span>
                         <span className="flex items-center gap-1">
@@ -275,7 +275,7 @@ export default function UniversityShowcasePage() {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h2 className="text-2xl font-bold flex items-center gap-2">
-                  <Award className="h-6 w-6 text-blue-500" />
+                  <Award className="h-6 w-6 text-primary" />
                   Top Projects
                 </h2>
                 <p className="text-gray-600">Best work from our students</p>
@@ -305,7 +305,7 @@ export default function UniversityShowcasePage() {
                       <p className="text-sm text-gray-600 mb-2">by {project.studentName}</p>
                       {project.innovationScore && (
                         <div className="flex items-center gap-1 text-sm">
-                          <Star className="h-4 w-4 text-yellow-500" />
+                          <Star className="h-4 w-4 text-secondary" />
                           <span className="font-medium">{project.innovationScore}/100</span>
                         </div>
                       )}
@@ -329,8 +329,8 @@ export default function UniversityShowcasePage() {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="flex items-start gap-3">
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <CheckCircle className="h-5 w-5 text-green-600" />
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <CheckCircle className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-semibold">Verified Credentials</h4>
@@ -341,8 +341,8 @@ export default function UniversityShowcasePage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <TrendingUp className="h-5 w-5 text-blue-600" />
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <TrendingUp className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-semibold">Quality Projects</h4>
@@ -353,8 +353,8 @@ export default function UniversityShowcasePage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="p-2 bg-purple-100 rounded-lg">
-                    <Award className="h-5 w-5 text-purple-600" />
+                  <div className="p-2 bg-primary/10 rounded-lg">
+                    <Award className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-semibold">Industry-Ready Skills</h4>
@@ -408,7 +408,7 @@ export default function UniversityShowcasePage() {
       <div className="bg-white border-t py-6 mt-12">
         <div className="max-w-6xl mx-auto px-4 text-center text-sm text-gray-500">
           <p>
-            Verified by <Link href="/" className="text-blue-600 hover:underline">InTransparency</Link> -
+            Verified by <Link href="/" className="text-primary hover:underline">InTransparency</Link> -
             The platform for verified academic talent
           </p>
         </div>

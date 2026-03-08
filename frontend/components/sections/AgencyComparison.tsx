@@ -119,7 +119,7 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <Badge variant="outline" className="mb-4 text-blue-600 border-blue-200">
+          <Badge variant="outline" className="mb-4 text-primary border-primary/20">
             <Calculator className="h-3 w-3 mr-1" />
             {t.badge}
           </Badge>
@@ -145,24 +145,24 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
           </Card>
 
           {/* Savings Card */}
-          <Card className="border-blue-300 bg-gradient-to-br from-blue-100 to-purple-100 shadow-lg scale-105">
+          <Card className="border-primary/30 bg-primary/10 shadow-lg">
             <CardContent className="pt-6 text-center">
-              <TrendingDown className="h-10 w-10 text-blue-600 mx-auto mb-3" />
+              <TrendingDown className="h-10 w-10 text-primary mx-auto mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">{t.savingsTitle}</h3>
-              <p className="text-4xl font-bold text-blue-600 mb-1">{t.savingsPercent}</p>
-              <p className="text-sm text-blue-700">{t.savingsNote}</p>
-              <Badge className="mt-2 bg-green-500">{t.savingsAmount}</Badge>
+              <p className="text-4xl font-bold text-primary mb-1">{t.savingsPercent}</p>
+              <p className="text-sm text-primary">{t.savingsNote}</p>
+              <Badge className="mt-2 bg-primary/50">{t.savingsAmount}</Badge>
             </CardContent>
           </Card>
 
           {/* Our Card */}
-          <Card className="border-green-200 bg-green-50">
+          <Card className="border-primary/20 bg-primary/5">
             <CardContent className="pt-6 text-center">
-              <Euro className="h-10 w-10 text-green-500 mx-auto mb-3" />
+              <Euro className="h-10 w-10 text-primary mx-auto mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">{t.ourTitle}</h3>
-              <p className="text-3xl font-bold text-green-600 mb-1">{t.ourPrice}</p>
+              <p className="text-3xl font-bold text-primary mb-1">{t.ourPrice}</p>
               <p className="text-sm text-green-700">{t.ourPer}</p>
-              <p className="text-xs text-green-600 mt-2">{t.ourNote}</p>
+              <p className="text-xs text-primary mt-2">{t.ourNote}</p>
             </CardContent>
           </Card>
         </div>
@@ -188,7 +188,7 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
           </Card>
 
           {/* Our Features */}
-          <Card className="border-green-200">
+          <Card className="border-primary/20">
             <CardContent className="pt-6">
               <h4 className="font-semibold text-lg mb-4 flex items-center gap-2 text-green-700">
                 <CheckCircle2 className="h-5 w-5" />
@@ -197,7 +197,7 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
               <ul className="space-y-3">
                 {t.ourFeatures.map((feature, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
                     <span className="text-gray-700">{feature.text}</span>
                   </li>
                 ))}
@@ -207,7 +207,7 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
         </div>
 
         {/* Real Example */}
-        <Card className="max-w-3xl mx-auto bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 mb-12">
+        <Card className="max-w-3xl mx-auto bg-primary/5 border-primary/20 mb-12">
           <CardContent className="pt-6">
             <h4 className="font-bold text-lg mb-4 text-center">{t.exampleTitle}</h4>
             <p className="text-center text-gray-700 mb-6">{t.exampleScenario}</p>
@@ -219,16 +219,16 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
                 <p className="text-xs text-red-600">{t.agencyCalc}</p>
               </div>
 
-              <div className="bg-green-100 rounded-lg p-4">
-                <p className="text-xs text-green-600 mb-1">{t.ourTitle}</p>
+              <div className="bg-primary/10 rounded-lg p-4">
+                <p className="text-xs text-primary mb-1">{t.ourTitle}</p>
                 <p className="text-xl font-bold text-green-700">{t.ourTotal}</p>
-                <p className="text-xs text-green-600">{t.ourCalc}</p>
+                <p className="text-xs text-primary">{t.ourCalc}</p>
               </div>
 
-              <div className="bg-blue-100 rounded-lg p-4">
-                <p className="text-xs text-blue-600 mb-1">{t.savingsTitle}</p>
-                <p className="text-xl font-bold text-blue-700">{t.realSavings}</p>
-                <p className="text-xs text-blue-600">{t.savingsPercent} {isItalian ? 'di risparmio' : 'savings'}</p>
+              <div className="bg-primary/10 rounded-lg p-4">
+                <p className="text-xs text-primary mb-1">{t.savingsTitle}</p>
+                <p className="text-xl font-bold text-primary">{t.realSavings}</p>
+                <p className="text-xs text-primary">{t.savingsPercent} {isItalian ? 'di risparmio' : 'savings'}</p>
               </div>
             </div>
           </CardContent>
@@ -236,7 +236,7 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
 
         {/* CTA */}
         <div className="text-center">
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700" asChild>
+          <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
             <Link href={`/${locale}/auth/register?role=company`}>
               {t.cta}
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -245,7 +245,7 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
           <p className="mt-4">
             <Link
               href={`/${locale}/pricing`}
-              className="text-sm text-blue-600 hover:underline"
+              className="text-sm text-primary hover:underline"
             >
               {t.learnMore} →
             </Link>

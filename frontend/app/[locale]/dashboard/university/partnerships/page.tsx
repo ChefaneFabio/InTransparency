@@ -47,7 +47,7 @@ interface Partnership {
 }
 
 const statusConfig: Record<string, { label: string; color: string; icon: typeof CheckCircle }> = {
-  ACTIVE: { label: 'Active', color: 'bg-green-100 text-green-700', icon: CheckCircle },
+  ACTIVE: { label: 'Active', color: 'bg-primary/10 text-primary', icon: CheckCircle },
   PENDING: { label: 'Pending', color: 'bg-yellow-100 text-yellow-700', icon: Clock },
   EXPIRED: { label: 'Expired', color: 'bg-gray-100 text-gray-600', icon: XCircle },
   REVOKED: { label: 'Revoked', color: 'bg-red-100 text-red-700', icon: XCircle },
@@ -114,8 +114,8 @@ export default function PartnershipsPage() {
                 </p>
                 <p className="text-sm text-gray-600">Active partnerships</p>
               </div>
-              <div className="p-2 bg-green-100 rounded-lg">
-                <ArrowLeftRight className="h-5 w-5 text-green-600" />
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <ArrowLeftRight className="h-5 w-5 text-primary" />
               </div>
             </div>
           </CardContent>
@@ -130,8 +130,8 @@ export default function PartnershipsPage() {
                 </p>
                 <p className="text-sm text-gray-600">Course equivalencies</p>
               </div>
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <BookOpen className="h-5 w-5 text-blue-600" />
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <BookOpen className="h-5 w-5 text-primary" />
               </div>
             </div>
           </CardContent>
@@ -146,8 +146,8 @@ export default function PartnershipsPage() {
                 </p>
                 <p className="text-sm text-gray-600">Countries connected</p>
               </div>
-              <div className="p-2 bg-purple-100 rounded-lg">
-                <Globe className="h-5 w-5 text-purple-600" />
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <Globe className="h-5 w-5 text-primary" />
               </div>
             </div>
           </CardContent>
@@ -165,8 +165,8 @@ export default function PartnershipsPage() {
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-4">
-                      <div className="p-3 bg-blue-50 rounded-lg">
-                        <Building2 className="h-6 w-6 text-blue-600" />
+                      <div className="p-3 bg-primary/5 rounded-lg">
+                        <Building2 className="h-6 w-6 text-primary" />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
@@ -207,7 +207,7 @@ export default function PartnershipsPage() {
                                 <Badge key={eq.id} variant="outline" className="text-xs">
                                   {eq.sourceCourseName} → {eq.targetCourseName}
                                   {eq.approved && (
-                                    <CheckCircle className="ml-1 h-2.5 w-2.5 text-green-500" />
+                                    <CheckCircle className="ml-1 h-2.5 w-2.5 text-primary" />
                                   )}
                                 </Badge>
                               ))}
@@ -257,10 +257,10 @@ export default function PartnershipsPage() {
       )}
 
       {/* Info Card */}
-      <Card className="bg-blue-50 border-blue-200">
+      <Card className="bg-primary/5 border-primary/20">
         <CardContent className="p-6">
           <div className="flex items-start gap-3">
-            <Globe className="h-5 w-5 text-blue-600 mt-0.5" />
+            <Globe className="h-5 w-5 text-primary mt-0.5" />
             <div>
               <h4 className="font-medium text-blue-900">European Credit Transfer System (ECTS)</h4>
               <p className="text-sm text-blue-800 mt-1">

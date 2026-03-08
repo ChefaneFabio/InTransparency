@@ -73,9 +73,9 @@ export default function PlacementAnalyticsPage() {
   if (!data) return null
 
   const statCards = [
-    { icon: Users, label: t('stats.viewed'), value: data.funnel.viewed, color: 'text-blue-600', bg: 'bg-blue-50' },
-    { icon: MessageSquare, label: t('stats.contacted'), value: data.funnel.contacted, color: 'text-purple-600', bg: 'bg-purple-50' },
-    { icon: Briefcase, label: t('stats.hired'), value: data.funnel.hired, color: 'text-green-600', bg: 'bg-green-50' },
+    { icon: Users, label: t('stats.viewed'), value: data.funnel.viewed, color: 'text-primary', bg: 'bg-primary/5' },
+    { icon: MessageSquare, label: t('stats.contacted'), value: data.funnel.contacted, color: 'text-primary', bg: 'bg-primary/5' },
+    { icon: Briefcase, label: t('stats.hired'), value: data.funnel.hired, color: 'text-primary', bg: 'bg-primary/5' },
     { icon: Clock, label: t('stats.avgTime'), value: data.timeToHire.averageDays > 0 ? `${data.timeToHire.averageDays}d` : 'N/A', color: 'text-amber-600', bg: 'bg-amber-50' },
   ]
 
@@ -83,7 +83,7 @@ export default function PlacementAnalyticsPage() {
     <div className="container max-w-7xl mx-auto px-4 py-8 space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <BarChart3 className="h-7 w-7 text-blue-600" />
+        <BarChart3 className="h-7 w-7 text-primary" />
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
           <p className="text-sm text-gray-600">{t('subtitle')}</p>
@@ -115,7 +115,7 @@ export default function PlacementAnalyticsPage() {
           <CardContent className="pt-6">
             <div className="flex items-center gap-6">
               <span className="text-sm text-gray-600">{t('gradeComparison')}</span>
-              <Badge variant="outline" className="text-blue-600 border-blue-200">
+              <Badge variant="outline" className="text-primary border-primary/20">
                 Your university: {data.gradeComparison.universityAvg}
               </Badge>
               <Badge variant="outline" className="text-gray-600">

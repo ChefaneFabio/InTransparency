@@ -20,7 +20,7 @@ export default function AdminDashboard() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Users className="h-8 w-8 text-blue-600" />
+              <Users className="h-8 w-8 text-primary" />
               <div className="ml-4">
                 <div className="text-2xl font-bold text-gray-900">1,234</div>
                 <div className="text-sm text-gray-600">Total Users</div>
@@ -32,7 +32,7 @@ export default function AdminDashboard() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <GraduationCap className="h-8 w-8 text-green-600" />
+              <GraduationCap className="h-8 w-8 text-primary" />
               <div className="ml-4">
                 <div className="text-2xl font-bold text-gray-900">89</div>
                 <div className="text-sm text-gray-600">Universities</div>
@@ -44,7 +44,7 @@ export default function AdminDashboard() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <Building className="h-8 w-8 text-purple-600" />
+              <Building className="h-8 w-8 text-primary" />
               <div className="ml-4">
                 <div className="text-2xl font-bold text-gray-900">456</div>
                 <div className="text-sm text-gray-600">Companies</div>

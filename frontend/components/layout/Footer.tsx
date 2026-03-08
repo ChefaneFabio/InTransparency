@@ -149,7 +149,7 @@ export function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-4 flex items-center gap-2">
-              <Shield className="h-4 w-4 text-green-600" />
+              <Shield className="h-4 w-4 text-primary" />
               {tFooter('legal')}
             </h3>
             <ul className="space-y-3">
@@ -192,7 +192,7 @@ export function Footer() {
               <button
                 type="submit"
                 disabled={isSubscribing}
-                className="px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:opacity-90 transition-all whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-6 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition-all whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubscribing ? 'Subscribing...' : tFooter('newsletter.subscribe')}
               </button>
@@ -244,11 +244,11 @@ export function Footer() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center space-x-6 mb-4 sm:mb-0">
                 <div className="flex items-center space-x-2 text-xs text-gray-600">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-primary/50 rounded-full"></div>
                   <span>{tFooter('compliance.operational')}</span>
                 </div>
-                <Link href="/privacy" className="text-xs text-gray-600 hover:text-green-600 font-semibold flex items-center gap-1">
-                  <Shield className="h-3 w-3 text-green-600" />
+                <Link href="/privacy" className="text-xs text-gray-600 hover:text-primary font-semibold flex items-center gap-1">
+                  <Shield className="h-3 w-3 text-primary" />
                   {tFooter('compliance.gdpr')}
                 </Link>
               </div>

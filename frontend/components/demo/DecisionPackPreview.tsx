@@ -16,7 +16,7 @@ export default function DecisionPackPreview({ data }: DecisionPackPreviewProps) 
   return (
     <div className="space-y-4">
       {/* Header */}
-      <Card className="border-2 border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+      <Card className="border-2 border-primary/20 bg-primary/5">
         <CardContent className="pt-6">
           <div className="flex items-start justify-between">
             <div>
@@ -24,12 +24,12 @@ export default function DecisionPackPreview({ data }: DecisionPackPreviewProps) 
                 {candidate.firstName} {candidate.lastName}
               </h3>
               <p className="text-sm text-gray-600">{candidate.tagline}</p>
-              <p className="text-sm text-blue-600 mt-1">
+              <p className="text-sm text-primary mt-1">
                 {candidate.university} — {candidate.degree}
               </p>
             </div>
             <div className="text-right">
-              <div className="flex items-center gap-1 text-green-600">
+              <div className="flex items-center gap-1 text-primary">
                 <Shield className="h-4 w-4" />
                 <span className="text-sm font-medium">Verified Profile</span>
               </div>
@@ -45,7 +45,7 @@ export default function DecisionPackPreview({ data }: DecisionPackPreviewProps) 
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-semibold flex items-center gap-2">
-            <Star className="h-4 w-4 text-yellow-500" />
+            <Star className="h-4 w-4 text-secondary" />
             Verified Skills
           </CardTitle>
         </CardHeader>
@@ -71,7 +71,7 @@ export default function DecisionPackPreview({ data }: DecisionPackPreviewProps) 
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-semibold flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-500" />
+              <CheckCircle className="h-4 w-4 text-primary" />
               Top Project
             </CardTitle>
           </CardHeader>
@@ -82,21 +82,21 @@ export default function DecisionPackPreview({ data }: DecisionPackPreviewProps) 
                   <p className="font-medium text-sm">{projects[0].title}</p>
                   <p className="text-xs text-gray-500">Grade: {projects[0].gradeDisplay}</p>
                 </div>
-                <Badge variant="outline" className="text-green-600 border-green-200">
+                <Badge variant="outline" className="text-primary border-primary/20">
                   {projects[0].verificationStatus}
                 </Badge>
               </div>
               <div className="grid grid-cols-3 gap-2">
-                <div className="text-center p-2 rounded bg-blue-50">
-                  <p className="text-lg font-bold text-blue-600">{projects[0].innovationScore}</p>
+                <div className="text-center p-2 rounded bg-primary/5">
+                  <p className="text-lg font-bold text-primary">{projects[0].innovationScore}</p>
                   <p className="text-xs text-gray-500">Innovation</p>
                 </div>
-                <div className="text-center p-2 rounded bg-purple-50">
-                  <p className="text-lg font-bold text-purple-600">{projects[0].complexityScore}</p>
+                <div className="text-center p-2 rounded bg-primary/5">
+                  <p className="text-lg font-bold text-primary">{projects[0].complexityScore}</p>
                   <p className="text-xs text-gray-500">Complexity</p>
                 </div>
-                <div className="text-center p-2 rounded bg-green-50">
-                  <p className="text-lg font-bold text-green-600">{projects[0].marketRelevance}</p>
+                <div className="text-center p-2 rounded bg-primary/5">
+                  <p className="text-lg font-bold text-primary">{projects[0].marketRelevance}</p>
                   <p className="text-xs text-gray-500">Market Fit</p>
                 </div>
               </div>
@@ -117,16 +117,16 @@ export default function DecisionPackPreview({ data }: DecisionPackPreviewProps) 
 
       {/* Placement Prediction */}
       {placementPrediction && (
-        <Card className="border-green-200">
+        <Card className="border-primary/20">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-semibold flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-green-500" />
+              <TrendingUp className="h-4 w-4 text-primary" />
               Placement Prediction
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4 mb-3">
-              <div className="text-3xl font-bold text-green-600">
+              <div className="text-3xl font-bold text-primary">
                 {Math.round(placementPrediction.probability * 100)}%
               </div>
               <Progress value={placementPrediction.probability * 100} className="flex-1" />

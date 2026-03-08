@@ -11,7 +11,7 @@ export function CompanyLogos() {
       icon: GraduationCap,
       value: t('stats.universities.value'),
       label: t('stats.universities.label'),
-      color: 'text-blue-600 bg-blue-50',
+      color: 'text-primary bg-primary/5',
     },
     {
       icon: FileCheck2,
@@ -23,13 +23,13 @@ export function CompanyLogos() {
       icon: Shield,
       value: t('stats.verified.value'),
       label: t('stats.verified.label'),
-      color: 'text-green-600 bg-green-50',
+      color: 'text-primary bg-primary/5',
     },
     {
       icon: Building2,
       value: t('stats.sectors.value'),
       label: t('stats.sectors.label'),
-      color: 'text-purple-600 bg-purple-50',
+      color: 'text-primary bg-primary/5',
     },
   ]
 
@@ -60,15 +60,15 @@ export function CompanyLogos() {
 
         {/* Trust Badges */}
         <div className="mt-12 flex flex-wrap justify-center gap-4">
-          <div className="px-4 py-2 bg-blue-50 rounded-full text-sm text-blue-700 font-medium flex items-center gap-2">
+          <div className="px-4 py-2 bg-primary/5 rounded-full text-sm text-primary font-medium flex items-center gap-2">
             <Shield className="h-4 w-4" />
             {t('badges.verified')}
           </div>
-          <div className="px-4 py-2 bg-green-50 rounded-full text-sm text-green-700 font-medium flex items-center gap-2">
+          <div className="px-4 py-2 bg-primary/5 rounded-full text-sm text-primary font-medium flex items-center gap-2">
             <GraduationCap className="h-4 w-4" />
             {t('badges.freeForStudents')}
           </div>
-          <div className="px-4 py-2 bg-purple-50 rounded-full text-sm text-purple-700 font-medium flex items-center gap-2">
+          <div className="px-4 py-2 bg-primary/5 rounded-full text-sm text-primary font-medium flex items-center gap-2">
             <Building2 className="h-4 w-4" />
             {t('badges.noSubscription')}
           </div>

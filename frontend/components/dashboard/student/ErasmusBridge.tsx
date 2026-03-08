@@ -79,9 +79,9 @@ export default function ErasmusBridge({ homeUniversity, homeCountry, onCreated }
 
   if (success) {
     return (
-      <Alert className="border-green-200 bg-green-50">
-        <CheckCircle className="h-4 w-4 text-green-600" />
-        <AlertDescription className="text-green-800">
+      <Alert className="border-primary/20 bg-primary/5">
+        <CheckCircle className="h-4 w-4 text-primary" />
+        <AlertDescription className="text-foreground">
           Exchange enrollment created successfully! Your home and host universities can now verify it.
         </AlertDescription>
       </Alert>
@@ -89,10 +89,10 @@ export default function ErasmusBridge({ homeUniversity, homeCountry, onCreated }
   }
 
   return (
-    <Card className="border-2 border-blue-200">
+    <Card className="border-2 border-primary/20">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Globe className="h-5 w-5 text-blue-600" />
+          <Globe className="h-5 w-5 text-primary" />
           Register Exchange Program
         </CardTitle>
         <CardDescription>
@@ -170,9 +170,9 @@ export default function ErasmusBridge({ homeUniversity, homeCountry, onCreated }
 
           {/* Grade Preview */}
           {homeCountry && hostCountry && homeCountry !== hostCountry && (
-            <div className="p-4 bg-indigo-50 rounded-lg border border-indigo-200 space-y-3">
+            <div className="p-4 bg-primary/5 rounded-lg border border-primary/20 space-y-3">
               <Label className="text-sm font-medium text-indigo-800">Grade Preview</Label>
-              <p className="text-xs text-indigo-600">
+              <p className="text-xs text-primary">
                 See how your grades will appear to recruiters in {COUNTRIES.find((c) => c.code === hostCountry)?.name}
               </p>
               <div className="flex items-center gap-3">
@@ -187,7 +187,7 @@ export default function ErasmusBridge({ homeUniversity, homeCountry, onCreated }
                 </span>
                 <ArrowRight className="h-4 w-4 text-gray-400" />
                 {previewNormalized !== null && (
-                  <Badge className="bg-indigo-100 text-indigo-700">
+                  <Badge className="bg-primary/10 text-primary">
                     {COUNTRIES.find((c) => c.code === hostCountry)?.flag}{' '}
                     {formatGradeForDisplay(previewNormalized, hostCountry)}
                   </Badge>

@@ -150,7 +150,7 @@ export default function CoursesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-8">
+    <div className="min-h-screen bg-background space-y-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -181,12 +181,12 @@ export default function CoursesPage() {
 
       {/* University Connection Status */}
       {session?.user && (
-        <Card className="border-l-4 border-l-blue-500">
+        <Card className="border-l-4 border-l-primary">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <div className="p-3 bg-blue-100 rounded-full">
-                  <University className="h-6 w-6 text-blue-600" />
+                <div className="p-3 bg-primary/10 rounded-full">
+                  <University className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">
@@ -201,7 +201,7 @@ export default function CoursesPage() {
             {syncStatus === 'syncing' && (
               <div className="mt-4">
                 <div className="flex items-center space-x-2 mb-2">
-                  <RefreshCw className="h-4 w-4 animate-spin text-blue-600" />
+                  <RefreshCw className="h-4 w-4 animate-spin text-primary" />
                   <span className="text-sm text-gray-600">Syncing with university database...</span>
                 </div>
                 <Progress value={75} className="h-2" />
@@ -229,7 +229,7 @@ export default function CoursesPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <BookOpen className="h-8 w-8 text-blue-600" />
+              <BookOpen className="h-8 w-8 text-primary" />
               <div className="ml-4">
                 <div className="text-2xl font-bold text-gray-900">{courses.length}</div>
                 <div className="text-sm text-gray-600">Total Courses</div>
@@ -253,7 +253,7 @@ export default function CoursesPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <GraduationCap className="h-8 w-8 text-green-600" />
+              <GraduationCap className="h-8 w-8 text-primary" />
               <div className="ml-4">
                 <div className="text-2xl font-bold text-gray-900">
                   {courses.filter(c => c.projectCount && c.projectCount > 0).length}
@@ -392,7 +392,7 @@ export default function CoursesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course) => (
             <Card key={course.id} className={`hover:shadow-md transition-shadow ${
-              course.source === 'university' ? 'border-l-4 border-l-blue-500' : ''
+              course.source === 'university' ? 'border-l-4 border-l-primary' : ''
             }`}>
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-start">
@@ -400,7 +400,7 @@ export default function CoursesPage() {
                     <div className="flex items-center space-x-2 mb-1">
                       <CardTitle className="text-lg">{course.courseCode}</CardTitle>
                       {course.source === 'university' && (
-                        <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
+                        <Badge variant="outline" className="text-xs bg-primary/5 text-primary border-primary/20">
                           <Database className="mr-1 h-3 w-3" />
                           Synced
                         </Badge>

@@ -68,8 +68,8 @@ const WORK_LOCATION_LABELS: Record<string, string> = {
 }
 
 const getMatchColor = (score: number) => {
-  if (score >= 80) return 'bg-green-100 text-green-800 border-green-300'
-  if (score >= 60) return 'bg-blue-100 text-blue-800 border-blue-300'
+  if (score >= 80) return 'bg-primary/10 text-green-800 border-green-300'
+  if (score >= 60) return 'bg-primary/10 text-blue-800 border-blue-300'
   if (score >= 40) return 'bg-yellow-100 text-yellow-800 border-yellow-300'
   return 'bg-muted text-muted-foreground border-border'
 }
@@ -257,7 +257,7 @@ export default function JobsPage() {
                         variant="secondary"
                         className={`text-xs ${
                           isMatched
-                            ? 'bg-green-50 text-green-700 border border-green-200'
+                            ? 'bg-primary/5 text-green-700 border border-primary/20'
                             : 'bg-red-50 text-red-700 border border-red-200'
                         }`}
                       >
@@ -285,7 +285,7 @@ export default function JobsPage() {
                     <Badge
                       key={skill}
                       variant="secondary"
-                      className="text-xs bg-blue-50 text-blue-700 border border-blue-200"
+                      className="text-xs bg-primary/5 text-primary border border-primary/20"
                     >
                       <CheckCircle2 className="h-3 w-3 mr-1" />
                       {skill} (preferred)
@@ -338,7 +338,7 @@ export default function JobsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-muted/50 via-white to-muted/50 space-y-8">
+      <div className="min-h-screen bg-background space-y-8">
         <div>
           <h1 className="text-3xl font-bold">Job Opportunities</h1>
           <p className="text-muted-foreground">Discover jobs matched to your skills and projects</p>
@@ -367,7 +367,7 @@ export default function JobsPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-muted/50 via-white to-muted/50 space-y-8">
+      <div className="min-h-screen bg-background space-y-8">
         <div>
           <h1 className="text-3xl font-bold">Job Opportunities</h1>
         </div>
@@ -383,7 +383,7 @@ export default function JobsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-muted/50 via-white to-muted/50 space-y-8">
+    <div className="min-h-screen bg-background space-y-8">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-foreground">Job Opportunities</h1>
@@ -420,7 +420,7 @@ export default function JobsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-blue-600">{jobs.length}</div>
+              <div className="text-2xl font-bold text-primary">{jobs.length}</div>
               <div className="ml-2 text-sm text-muted-foreground">Available Jobs</div>
             </div>
           </CardContent>
@@ -428,7 +428,7 @@ export default function JobsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-purple-600">{appliedJobIds.size}</div>
+              <div className="text-2xl font-bold text-primary">{appliedJobIds.size}</div>
               <div className="ml-2 text-sm text-muted-foreground">Applied</div>
             </div>
           </CardContent>
@@ -436,7 +436,7 @@ export default function JobsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-green-600">
+              <div className="text-2xl font-bold text-primary">
                 {jobs.filter(j => j.jobType === 'INTERNSHIP').length}
               </div>
               <div className="ml-2 text-sm text-muted-foreground">Internships</div>
@@ -446,7 +446,7 @@ export default function JobsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className={`text-2xl font-bold ${avgMatch >= 60 ? 'text-green-600' : avgMatch >= 40 ? 'text-yellow-600' : 'text-muted-foreground'}`}>
+              <div className={`text-2xl font-bold ${avgMatch >= 60 ? 'text-primary' : avgMatch >= 40 ? 'text-secondary' : 'text-muted-foreground'}`}>
                 {avgMatch}%
               </div>
               <div className="ml-2 text-sm text-muted-foreground">Avg Match</div>

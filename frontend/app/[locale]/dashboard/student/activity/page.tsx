@@ -82,9 +82,9 @@ export default function StudentActivityPage() {
 
   const getColorForType = (type: string) => {
     switch (type) {
-      case 'profile_view': return 'text-blue-600 bg-blue-100'
-      case 'message_received': return 'text-green-600 bg-green-100'
-      case 'application_status': return 'text-purple-600 bg-purple-100'
+      case 'profile_view': return 'text-primary bg-primary/10'
+      case 'message_received': return 'text-primary bg-primary/10'
+      case 'application_status': return 'text-primary bg-primary/10'
       default: return 'text-gray-600 bg-gray-100'
     }
   }
@@ -169,8 +169,8 @@ export default function StudentActivityPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <Eye className="h-4 w-4 text-blue-600" />
+              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                <Eye className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-600">Profile Views</p>
@@ -186,8 +186,8 @@ export default function StudentActivityPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                <MessageSquare className="h-4 w-4 text-green-600" />
+              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                <MessageSquare className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-600">Messages Received</p>
@@ -203,8 +203,8 @@ export default function StudentActivityPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                <FileText className="h-4 w-4 text-purple-600" />
+              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                <FileText className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-600">Application Updates</p>
@@ -235,7 +235,7 @@ export default function StudentActivityPage() {
                 onClick={() => setFilter(option.value)}
                 className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
                   filter === option.value
-                    ? 'bg-blue-100 text-blue-700 font-medium'
+                    ? 'bg-primary/10 text-blue-700 font-medium'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
@@ -255,7 +255,7 @@ export default function StudentActivityPage() {
                   key={activity.id}
                   className={`flex items-start space-x-4 p-4 rounded-lg border transition-colors ${
                     activity.metadata.read === false
-                      ? 'bg-blue-50 border-blue-200'
+                      ? 'bg-primary/5 border-primary/20'
                       : 'bg-white border-gray-200'
                   } hover:bg-gray-50`}
                 >
@@ -268,7 +268,7 @@ export default function StudentActivityPage() {
                       <h3 className="font-medium text-gray-900">{activity.title}</h3>
                       <div className="flex items-center space-x-2">
                         {activity.metadata.read === false && (
-                          <Badge className="bg-blue-100 text-blue-800">New</Badge>
+                          <Badge className="bg-primary/10 text-blue-800">New</Badge>
                         )}
                         <span className="text-sm text-gray-700 flex items-center">
                           <Clock className="h-3 w-3 mr-1" />

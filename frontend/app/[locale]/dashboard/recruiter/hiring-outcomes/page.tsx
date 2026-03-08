@@ -49,8 +49,8 @@ interface Stats {
 }
 
 const OUTCOMES = [
-  { value: 'hired', label: 'Hired', color: 'bg-green-100 text-green-700', icon: CheckCircle2 },
-  { value: 'interviewed', label: 'Interviewed', color: 'bg-blue-100 text-blue-700', icon: MessageCircle },
+  { value: 'hired', label: 'Hired', color: 'bg-primary/10 text-green-700', icon: CheckCircle2 },
+  { value: 'interviewed', label: 'Interviewed', color: 'bg-primary/10 text-blue-700', icon: MessageCircle },
   { value: 'no_response', label: 'No Response', color: 'bg-gray-100 text-gray-600', icon: Clock },
   { value: 'rejected', label: 'Not a Fit', color: 'bg-red-100 text-red-700', icon: XCircle },
   { value: 'withdrawn', label: 'Withdrawn', color: 'bg-amber-100 text-amber-700', icon: AlertCircle },
@@ -152,20 +152,20 @@ export default function HiringOutcomesPage() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-1">
-                <UserCheck className="h-4 w-4 text-green-500" />
+                <UserCheck className="h-4 w-4 text-primary" />
                 <span className="text-xs text-gray-500">Hired</span>
               </div>
-              <p className="text-2xl font-bold text-green-600">{stats.hired}</p>
+              <p className="text-2xl font-bold text-primary">{stats.hired}</p>
               <p className="text-xs text-gray-400">{stats.hireRate}% rate</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-1">
-                <TrendingUp className="h-4 w-4 text-blue-500" />
+                <TrendingUp className="h-4 w-4 text-primary" />
                 <span className="text-xs text-gray-500">Response Rate</span>
               </div>
-              <p className="text-2xl font-bold text-blue-600">{stats.responseRate}%</p>
+              <p className="text-2xl font-bold text-primary">{stats.responseRate}%</p>
             </CardContent>
           </Card>
           <Card>

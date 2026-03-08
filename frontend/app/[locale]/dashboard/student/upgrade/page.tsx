@@ -72,7 +72,7 @@ export default function UpgradePage() {
   const paidTiers = STUDENT_PRICING.filter(tier => tier.price.monthly > 0)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="container mx-auto px-6 py-12">
         <div className="mb-8">
@@ -107,7 +107,7 @@ export default function UpgradePage() {
               size="lg"
             >
               Annual
-              <Badge variant="secondary" className="ml-2 bg-green-100 text-green-700">
+              <Badge variant="secondary" className="ml-2 bg-primary/10 text-primary">
                 Save 17%
               </Badge>
             </Button>
@@ -128,7 +128,7 @@ export default function UpgradePage() {
                 key={tier.id}
                 className={`relative flex flex-col ${
                   tier.popular
-                    ? 'border-primary border-2 shadow-xl scale-105'
+                    ? 'border-primary border-2 shadow-lg'
                     : 'border-gray-200'
                 }`}
               >
@@ -204,7 +204,7 @@ export default function UpgradePage() {
         </div>
 
         {/* Benefits Summary */}
-        <Card className="mt-16 bg-gradient-to-r from-blue-50 to-purple-50 border-none shadow-lg max-w-5xl mx-auto">
+        <Card className="mt-16 bg-primary/5 border-none shadow-lg max-w-5xl mx-auto">
           <CardContent className="p-8">
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div>

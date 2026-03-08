@@ -139,7 +139,7 @@ export function FileUpload({
 
   const getFileIcon = (file: File) => {
     if (file.type.startsWith('image/')) {
-      return <ImageIcon className="h-8 w-8 text-blue-500" />
+      return <ImageIcon className="h-8 w-8 text-primary" />
     }
     return <File className="h-8 w-8 text-gray-700" />
   }
@@ -159,7 +159,7 @@ export function FileUpload({
         {...getRootProps()}
         className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors
           ${isDragActive 
-            ? 'border-blue-500 bg-blue-50' 
+            ? 'border-blue-500 bg-primary/5' 
             : 'border-gray-300 hover:border-gray-400'
           }
           ${uploadFiles.length >= maxFiles ? 'opacity-50 cursor-not-allowed' : ''}
@@ -170,7 +170,7 @@ export function FileUpload({
         <Upload className="h-12 w-12 text-gray-600 mx-auto mb-4" />
         
         {isDragActive ? (
-          <p className="text-blue-600 font-medium">Drop the files here...</p>
+          <p className="text-primary font-medium">Drop the files here...</p>
         ) : uploadFiles.length >= maxFiles ? (
           <p className="text-gray-700">Maximum files reached ({maxFiles})</p>
         ) : (
@@ -206,10 +206,10 @@ export function FileUpload({
                       </p>
                       <div className="flex items-center space-x-2">
                         {fileObj.status === 'completed' && (
-                          <CheckCircle className="h-4 w-4 text-green-500" />
+                          <CheckCircle className="h-4 w-4 text-primary" />
                         )}
                         {fileObj.status === 'uploading' && (
-                          <Loader2 className="h-4 w-4 animate-spin text-blue-500" />
+                          <Loader2 className="h-4 w-4 animate-spin text-primary" />
                         )}
                         {fileObj.status === 'error' && (
                           <AlertCircle className="h-4 w-4 text-red-500" />

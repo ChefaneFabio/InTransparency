@@ -43,21 +43,21 @@ const getUserTypes = (t: any) => [
     id: 'student',
     label: t('userTypes.student.label'),
     icon: GraduationCap,
-    color: 'bg-blue-100 text-blue-700',
+    color: 'bg-primary/10 text-primary',
     description: t('userTypes.student.description')
   },
   {
     id: 'institute',
     label: t('userTypes.institute.label'),
     icon: Building2,
-    color: 'bg-purple-100 text-purple-700',
+    color: 'bg-primary/10 text-primary',
     description: t('userTypes.institute.description')
   },
   {
     id: 'recruiter',
     label: t('userTypes.recruiter.label'),
     icon: Users,
-    color: 'bg-green-100 text-green-700',
+    color: 'bg-primary/10 text-primary',
     description: t('userTypes.recruiter.description')
   }
 ]
@@ -68,7 +68,7 @@ const getStudentSteps = (t: any) => [
     title: t('studentSteps.step1.title'),
     description: t('studentSteps.step1.description'),
     icon: Upload,
-    color: 'bg-blue-50 border-blue-200',
+    color: 'bg-primary/5 border-primary/20',
     duration: t('studentSteps.step1.duration'),
     features: t.raw('studentSteps.step1.features'),
     example: t('studentSteps.step1.example')
@@ -78,7 +78,7 @@ const getStudentSteps = (t: any) => [
     title: t('studentSteps.step2.title'),
     description: t('studentSteps.step2.description'),
     icon: Zap,
-    color: 'bg-purple-50 border-purple-200',
+    color: 'bg-primary/5 border-primary/20',
     duration: t('studentSteps.step2.duration'),
     features: t.raw('studentSteps.step2.features'),
     example: t('studentSteps.step2.example')
@@ -88,7 +88,7 @@ const getStudentSteps = (t: any) => [
     title: t('studentSteps.step3.title'),
     description: t('studentSteps.step3.description'),
     icon: MessageSquare,
-    color: 'bg-green-50 border-green-200',
+    color: 'bg-primary/5 border-primary/20',
     duration: t('studentSteps.step3.duration'),
     features: t.raw('studentSteps.step3.features'),
     example: t('studentSteps.step3.example')
@@ -101,7 +101,7 @@ const getRecruiterSteps = (t: any) => [
     title: t('recruiterSteps.step1.title'),
     description: t('recruiterSteps.step1.description'),
     icon: Search,
-    color: 'bg-blue-50 border-blue-200',
+    color: 'bg-primary/5 border-primary/20',
     duration: undefined,
     example: undefined,
     features: t.raw('recruiterSteps.step1.features')
@@ -111,7 +111,7 @@ const getRecruiterSteps = (t: any) => [
     title: t('recruiterSteps.step2.title'),
     description: t('recruiterSteps.step2.description'),
     icon: Target,
-    color: 'bg-green-50 border-green-200',
+    color: 'bg-primary/5 border-primary/20',
     duration: undefined,
     example: undefined,
     features: t.raw('recruiterSteps.step2.features')
@@ -121,7 +121,7 @@ const getRecruiterSteps = (t: any) => [
     title: t('recruiterSteps.step3.title'),
     description: t('recruiterSteps.step3.description'),
     icon: MessageSquare,
-    color: 'bg-purple-50 border-purple-200',
+    color: 'bg-primary/5 border-primary/20',
     duration: undefined,
     example: undefined,
     features: t.raw('recruiterSteps.step3.features')
@@ -134,7 +134,7 @@ const getInstituteSteps = (t: any) => [
     title: t('instituteSteps.step1.title'),
     description: t('instituteSteps.step1.description'),
     icon: Link,
-    color: 'bg-purple-50 border-purple-200',
+    color: 'bg-primary/5 border-primary/20',
     duration: undefined,
     example: undefined,
     features: t.raw('instituteSteps.step1.features')
@@ -144,7 +144,7 @@ const getInstituteSteps = (t: any) => [
     title: t('instituteSteps.step2.title'),
     description: t('instituteSteps.step2.description'),
     icon: TrendingUp,
-    color: 'bg-green-50 border-green-200',
+    color: 'bg-primary/5 border-primary/20',
     duration: undefined,
     example: undefined,
     features: t.raw('instituteSteps.step2.features')
@@ -154,7 +154,7 @@ const getInstituteSteps = (t: any) => [
     title: t('instituteSteps.step3.title'),
     description: t('instituteSteps.step3.description'),
     icon: Award,
-    color: 'bg-blue-50 border-blue-200',
+    color: 'bg-primary/5 border-primary/20',
     duration: undefined,
     example: undefined,
     features: t.raw('instituteSteps.step3.features')
@@ -187,7 +187,7 @@ const getWorkflows = (t: any) => ({
         icon: CheckCircle,
         title: t('workflow.student.step4.title'),
         description: t('workflow.student.step4.description'),
-        color: 'text-green-600'
+        color: 'text-primary'
       }
     ],
     result: t('workflow.student.result')
@@ -198,25 +198,25 @@ const getWorkflows = (t: any) => ({
         icon: Database,
         title: t('workflow.institute.step1.title'),
         description: t('workflow.institute.step1.description'),
-        color: 'text-purple-600'
+        color: 'text-primary'
       },
       {
         icon: Shield,
         title: t('workflow.institute.step2.title'),
         description: t('workflow.institute.step2.description'),
-        color: 'text-purple-600'
+        color: 'text-primary'
       },
       {
         icon: BarChart3,
         title: t('workflow.institute.step3.title'),
         description: t('workflow.institute.step3.description'),
-        color: 'text-blue-600'
+        color: 'text-primary'
       },
       {
         icon: TrendingUp,
         title: t('workflow.institute.step4.title'),
         description: t('workflow.institute.step4.description'),
-        color: 'text-green-600'
+        color: 'text-primary'
       }
     ],
     result: t('workflow.institute.result')
@@ -227,19 +227,19 @@ const getWorkflows = (t: any) => ({
         icon: Search,
         title: t('workflow.recruiter.step1.title'),
         description: t('workflow.recruiter.step1.description'),
-        color: 'text-green-600'
+        color: 'text-primary'
       },
       {
         icon: Target,
         title: t('workflow.recruiter.step2.title'),
         description: t('workflow.recruiter.step2.description'),
-        color: 'text-green-600'
+        color: 'text-primary'
       },
       {
         icon: Eye,
         title: t('workflow.recruiter.step3.title'),
         description: t('workflow.recruiter.step3.description'),
-        color: 'text-blue-600'
+        color: 'text-primary'
       },
       {
         icon: MessageSquare,
@@ -313,7 +313,7 @@ export default function HowItWorksPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white">
+            <Badge className="mb-4 bg-primary text-white">
               {t('hero.badge')}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
@@ -338,7 +338,7 @@ export default function HowItWorksPage() {
               {/* Verification Service */}
               <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
                 <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-primary to-secondary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <div className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Shield className="h-8 w-8 text-white" />
                   </div>
                   <CardTitle className="text-lg">{t('services.verification.title')}</CardTitle>
@@ -361,7 +361,7 @@ export default function HowItWorksPage() {
               {/* Matching Service */}
               <Card className="border-2 border-secondary/20 hover:border-secondary/40 transition-all hover:shadow-lg">
                 <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-secondary to-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <div className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Target className="h-8 w-8 text-white" />
                   </div>
                   <CardTitle className="text-lg">{t('services.matching.title')}</CardTitle>
@@ -382,16 +382,16 @@ export default function HowItWorksPage() {
               </Card>
 
               {/* Discovery Service */}
-              <Card className="border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-lg">
+              <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
                 <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <div className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Search className="h-8 w-8 text-white" />
                   </div>
                   <CardTitle className="text-lg">{t('services.discovery.title')}</CardTitle>
                   <Badge variant="secondary" className="mt-2">{t('services.discovery.badge')}</Badge>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80 space-y-2">
-                  <p className="font-semibold text-green-700">{t('services.discovery.heading')}</p>
+                  <p className="font-semibold text-primary">{t('services.discovery.heading')}</p>
                   <ul className="space-y-1 text-xs">
                     <li>• {t('services.discovery.features.0')}</li>
                     <li>• {t('services.discovery.features.1')}</li>
@@ -405,16 +405,16 @@ export default function HowItWorksPage() {
               </Card>
 
               {/* Analytics Service */}
-              <Card className="border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-lg">
+              <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
                 <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-purple-500 to-indigo-600 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <div className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <BarChart3 className="h-8 w-8 text-white" />
                   </div>
                   <CardTitle className="text-lg">{t('services.analytics.title')}</CardTitle>
                   <Badge variant="secondary" className="mt-2">{t('services.analytics.badge')}</Badge>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80 space-y-2">
-                  <p className="font-semibold text-purple-700">{t('services.analytics.heading')}</p>
+                  <p className="font-semibold text-primary">{t('services.analytics.heading')}</p>
                   <ul className="space-y-1 text-xs">
                     <li>• {t('services.analytics.features.0')}</li>
                     <li>• {t('services.analytics.features.1')}</li>
@@ -462,7 +462,7 @@ export default function HowItWorksPage() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <Card className="bg-gradient-to-r from-primary/5 to-secondary/5 border-2 border-primary/20">
+                <Card className="bg-primary/5 border-2 border-primary/20">
                   <CardContent className="py-8">
                     <h3 className="text-xl font-bold text-center mb-6">{t('workflow.title')}</h3>
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4 max-w-5xl mx-auto">
@@ -514,7 +514,7 @@ export default function HowItWorksPage() {
           {/* Student Data Import Feature (only for students) */}
           {selectedUserType === 'student' && (
             <div className="mb-16">
-              <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
+              <Card className="bg-primary/10 border-primary/20">
                 <CardHeader className="text-center">
                   <CardTitle className="flex items-center justify-center text-primary mb-2">
                     <Database className="h-6 w-6 mr-2" />
@@ -527,7 +527,7 @@ export default function HowItWorksPage() {
                 <CardContent className="text-center">
                   <Button
                     onClick={() => setShowDataImport(!showDataImport)}
-                    className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg text-white"
+                    className="bg-primary hover:shadow-lg text-white"
                   >
                     {showDataImport ? t('studentDataImport.buttonHide') : t('studentDataImport.buttonShow')}
                     <ArrowRight className="h-4 w-4 ml-2" />
@@ -556,7 +556,6 @@ export default function HowItWorksPage() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -30 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
                   >
                     <Card className={`${step.color} transition-all hover:shadow-lg relative overflow-hidden h-full`}>
                   {/* Step Number Badge */}
@@ -566,7 +565,7 @@ export default function HowItWorksPage() {
 
                   <CardHeader>
                     <div className="flex items-center mb-4">
-                      <div className="w-14 h-14 mr-4 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
+                      <div className="w-14 h-14 mr-4 rounded-xl bg-primary/10 flex items-center justify-center">
                         <Icon className="h-7 w-7 text-primary" />
                       </div>
                       {step.duration && (
@@ -583,7 +582,7 @@ export default function HowItWorksPage() {
                     <ul className="space-y-2 mb-4">
                       {(step.features || []).map((feature: string, featureIndex: number) => (
                         <li key={featureIndex} className="flex items-start text-sm text-foreground/80">
-                          <CheckCircle className="h-4 w-4 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                          <CheckCircle className="h-4 w-4 text-primary mr-2 flex-shrink-0 mt-0.5" />
                           <span>{feature}</span>
                         </li>
                       ))}
@@ -643,7 +642,7 @@ export default function HowItWorksPage() {
                 const BenefitIcon = benefit.icon
                 return (
                   <div key={index} className="text-center">
-                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary flex items-center justify-center">
                       <BenefitIcon className="h-7 w-7 text-white" />
                     </div>
                     <h4 className="font-semibold text-foreground mb-2">{benefit.title}</h4>
@@ -655,7 +654,7 @@ export default function HowItWorksPage() {
           </div>
 
           {/* Viral CTA Section */}
-          <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-12 text-center text-white mb-16">
+          <div className="bg-primary rounded-2xl p-12 text-center text-white mb-16">
             <h3 className="text-3xl font-display font-bold mb-4">
               {t('cta.title')}
             </h3>

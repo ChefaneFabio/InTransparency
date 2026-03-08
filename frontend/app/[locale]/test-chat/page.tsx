@@ -103,7 +103,7 @@ export default function TestChatPage() {
                 key={i}
                 className={`p-3 rounded-lg ${
                   msg.role === 'user'
-                    ? 'bg-blue-500 text-white ml-8'
+                    ? 'bg-primary/50 text-white ml-8'
                     : 'bg-gray-100 mr-8'
                 }`}
               >
@@ -128,7 +128,7 @@ export default function TestChatPage() {
               <button
                 onClick={sendMessage}
                 disabled={isLoading || !input.trim()}
-                className="bg-blue-500 text-white px-6 py-2 rounded-lg disabled:opacity-50"
+                className="bg-primary/50 text-white px-6 py-2 rounded-lg disabled:opacity-50"
               >
                 Send
               </button>

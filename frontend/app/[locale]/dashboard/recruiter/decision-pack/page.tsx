@@ -130,9 +130,9 @@ export default function DecisionPackListPage() {
                         variant="secondary"
                         className={`text-xs ${
                           pack.matchScore >= 80
-                            ? 'bg-green-100 text-green-700'
+                            ? 'bg-primary/10 text-green-700'
                             : pack.matchScore >= 60
-                              ? 'bg-blue-100 text-blue-700'
+                              ? 'bg-primary/10 text-blue-700'
                               : 'bg-gray-100 text-gray-600'
                         }`}
                       >

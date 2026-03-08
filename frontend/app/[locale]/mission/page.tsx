@@ -13,12 +13,12 @@ export default function MissionPage() {
   const t = useTranslations('mission')
 
   const statIcons = [AlertTriangle, TrendingDown, DollarSign]
-  const statColors = ['text-red-600', 'text-orange-600', 'text-yellow-600']
+  const statColors = ['text-red-600', 'text-orange-600', 'text-secondary']
   const statBgs = ['bg-red-100', 'bg-orange-100', 'bg-yellow-100']
 
   const positionIcons = [Target, Scale, Heart, Shield]
-  const positionColors = ['text-blue-600', 'text-green-600', 'text-purple-600', 'text-primary']
-  const positionBgs = ['bg-blue-100', 'bg-green-100', 'bg-purple-100', 'bg-primary/10']
+  const positionColors = ['text-primary', 'text-primary', 'text-primary', 'text-primary']
+  const positionBgs = ['bg-primary/10', 'bg-primary/10', 'bg-primary/10', 'bg-primary/10']
 
   const valueIcons = [Shield, Award, DollarSign, Target]
 
@@ -29,7 +29,7 @@ export default function MissionPage() {
       <main className="pt-24 pb-16">
         {/* Hero Section */}
         <section className="py-20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 opacity-50" />
+          <div className="absolute inset-0 bg-primary/5 opacity-50" />
           <div className="container max-w-4xl relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -42,7 +42,7 @@ export default function MissionPage() {
               </div>
               <h1 className="text-5xl font-display font-bold text-foreground mb-4">
                 {t('hero.title')}{' '}
-                <span className="bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+                <span className="text-primary">
                   {t('hero.titleHighlight')}
                 </span>
               </h1>
@@ -82,7 +82,6 @@ export default function MissionPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    whileHover={{ scale: 1.03, y: -5 }}
                   >
                     <Card className="text-center h-full">
                       <CardContent className="p-8">
@@ -148,7 +147,6 @@ export default function MissionPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    whileHover={{ y: -5 }}
                   >
                     <Card className="h-full hover:shadow-lg transition-shadow">
                       <CardContent className="p-8">
@@ -229,7 +227,7 @@ export default function MissionPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Card className="bg-gradient-to-r from-primary to-secondary text-white">
+              <Card className="bg-primary text-white">
                 <CardContent className="p-12 text-center">
                   <h2 className="text-3xl font-display font-bold mb-4">
                     {t('cta.title')}

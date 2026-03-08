@@ -216,7 +216,7 @@ export function AdvancedSearch() {
           <Button
             onClick={() => handleSearch()}
             disabled={isSearching}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 px-4 bg-gradient-to-r from-teal-600 to-blue-600 hover:from-teal-700 hover:to-blue-700"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 px-4 bg-primary"
           >
             {isSearching ? 'Searching...' : 'Search'}
           </Button>
@@ -307,7 +307,7 @@ export function AdvancedSearch() {
                   <Badge
                     key={`${key}-${index}`}
                     variant="secondary"
-                    className="bg-teal-50 text-teal-700 hover:bg-teal-100"
+                    className="bg-primary/5 text-teal-700 hover:bg-primary/10"
                   >
                     {value}
                     <X
@@ -336,11 +336,11 @@ export function AdvancedSearch() {
             <Card key={result.id} className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-teal-100 to-blue-100 rounded-lg flex items-center justify-center">
-                    {result.type === 'student' && <GraduationCap className="h-6 w-6 text-teal-600" />}
-                    {result.type === 'job' && <Briefcase className="h-6 w-6 text-blue-600" />}
-                    {result.type === 'project' && <Code className="h-6 w-6 text-purple-600" />}
-                    {result.type === 'university' && <Building2 className="h-6 w-6 text-green-600" />}
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                    {result.type === 'student' && <GraduationCap className="h-6 w-6 text-primary" />}
+                    {result.type === 'job' && <Briefcase className="h-6 w-6 text-primary" />}
+                    {result.type === 'project' && <Code className="h-6 w-6 text-primary" />}
+                    {result.type === 'university' && <Building2 className="h-6 w-6 text-primary" />}
                   </div>
 
                   <div className="flex-1 min-w-0">
@@ -350,7 +350,7 @@ export function AdvancedSearch() {
                         <p className="text-sm text-gray-600">{result.subtitle}</p>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Badge className="bg-green-100 text-green-800">
+                        <Badge className="bg-primary/10 text-green-800">
                           {result.relevanceScore}% match
                         </Badge>
                       </div>

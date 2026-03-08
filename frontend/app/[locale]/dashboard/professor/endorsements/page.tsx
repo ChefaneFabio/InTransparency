@@ -25,7 +25,7 @@ interface Endorsement {
 
 const statusColors: Record<string, string> = {
   PENDING: 'text-amber-600 border-amber-200 bg-amber-50',
-  VERIFIED: 'text-green-600 border-green-200 bg-green-50',
+  VERIFIED: 'text-primary border-primary/20 bg-primary/5',
   DECLINED: 'text-red-600 border-red-200 bg-red-50',
   EXPIRED: 'text-gray-500 border-gray-200 bg-gray-50',
 }
@@ -67,7 +67,7 @@ export default function ProfessorEndorsementsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     )
   }

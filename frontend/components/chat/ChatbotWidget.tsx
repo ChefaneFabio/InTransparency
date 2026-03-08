@@ -293,7 +293,7 @@ export function ChatbotWidget({
         <Button
           onClick={handleToggle}
           size="lg"
-          className="h-14 w-14 rounded-full bg-gradient-to-r from-primary to-secondary hover:shadow-2xl shadow-lg"
+          className="h-14 w-14 rounded-full bg-primary shadow-lg"
         >
           <MessageSquare className="h-6 w-6" />
         </Button>
@@ -308,9 +308,9 @@ export function ChatbotWidget({
       exit={{ opacity: 0, y: 20 }}
       className={`fixed bottom-6 right-6 z-50 ${isMinimized ? 'w-80' : 'w-96'} max-h-[600px] flex flex-col`}
     >
-      <Card className="shadow-2xl border-2 border-primary/20 flex flex-col h-full">
+      <Card className="shadow-lg border-2 border-primary/20 flex flex-col h-full">
         {/* Header */}
-        <CardHeader className={`bg-gradient-to-r ${config.color} text-white p-4 flex-shrink-0`}>
+        <CardHeader className="bg-primary text-white p-4 flex-shrink-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
@@ -381,14 +381,14 @@ export function ChatbotWidget({
                   className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {message.role === 'assistant' && (
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
                       <Bot className="h-5 w-5 text-white" />
                     </div>
                   )}
                   <div
                     className={`max-w-[80%] rounded-lg p-3 ${
                       message.role === 'user'
-                        ? 'bg-gradient-to-r from-primary to-secondary text-white'
+                        ? 'bg-primary text-white'
                         : 'bg-white border border-gray-200 text-gray-800'
                     }`}
                   >
@@ -409,7 +409,7 @@ export function ChatbotWidget({
 
               {isTyping && !messages.some(m => m.isStreaming) && (
                 <div className="flex gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
                     <Bot className="h-5 w-5 text-white" />
                   </div>
                   <div className="bg-white border border-gray-200 rounded-lg p-3">
@@ -479,7 +479,7 @@ export function ChatbotWidget({
                 />
                 <Button
                   onClick={handleSend}
-                  className="bg-gradient-to-r from-primary to-secondary"
+                  className="bg-primary"
                   disabled={!input.trim() || isLoading}
                 >
                   {isLoading ? (

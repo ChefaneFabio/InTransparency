@@ -122,7 +122,7 @@ export function UniversityConnectionModal({ isOpen, onClose, onConnect }: Univer
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <School className="h-5 w-5 text-blue-600" />
+            <School className="h-5 w-5 text-primary" />
             {step === 'search' && 'Connetti la tua Università'}
             {step === 'verify' && 'Verifica Email Istituzionale'}
             {step === 'success' && 'Connessione Completata!'}
@@ -158,13 +158,13 @@ export function UniversityConnectionModal({ isOpen, onClose, onConnect }: Univer
                   <button
                     key={inst.id}
                     onClick={() => handleSelectInstitution(inst)}
-                    className="w-full flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 hover:border-blue-300 transition-all text-left"
+                    className="w-full flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 hover:border-primary/30 transition-all text-left"
                   >
                     <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
                       {inst.type === 'university' ? (
-                        <Building2 className="h-5 w-5 text-blue-600" />
+                        <Building2 className="h-5 w-5 text-primary" />
                       ) : (
-                        <School className="h-5 w-5 text-purple-600" />
+                        <School className="h-5 w-5 text-primary" />
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -187,13 +187,13 @@ export function UniversityConnectionModal({ isOpen, onClose, onConnect }: Univer
 
         {step === 'verify' && selectedInstitution && (
           <div className="space-y-4">
-            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="p-4 bg-primary/5 rounded-lg border border-primary/20">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm">
                   {selectedInstitution.type === 'university' ? (
-                    <Building2 className="h-6 w-6 text-blue-600" />
+                    <Building2 className="h-6 w-6 text-primary" />
                   ) : (
-                    <School className="h-6 w-6 text-purple-600" />
+                    <School className="h-6 w-6 text-primary" />
                   )}
                 </div>
                 <div>
@@ -254,8 +254,8 @@ export function UniversityConnectionModal({ isOpen, onClose, onConnect }: Univer
 
         {step === 'success' && (
           <div className="text-center py-6">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CheckCircle className="h-8 w-8 text-green-600" />
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle className="h-8 w-8 text-primary" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
               Connessione Completata!

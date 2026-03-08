@@ -17,10 +17,10 @@ interface RecruiterFeedProps {
 }
 
 const ACTION_CONFIG: Record<string, { icon: typeof Eye; color: string; bg: string }> = {
-  view: { icon: Eye, color: 'text-blue-600', bg: 'bg-blue-100' },
-  contacted: { icon: MessageSquare, color: 'text-purple-600', bg: 'bg-purple-100' },
+  view: { icon: Eye, color: 'text-primary', bg: 'bg-primary/10' },
+  contacted: { icon: MessageSquare, color: 'text-primary', bg: 'bg-primary/10' },
   interviewed: { icon: UserCheck, color: 'text-amber-600', bg: 'bg-amber-100' },
-  hired: { icon: Briefcase, color: 'text-green-600', bg: 'bg-green-100' },
+  hired: { icon: Briefcase, color: 'text-primary', bg: 'bg-primary/10' },
 }
 
 function formatRelativeTime(dateStr: string): string {
@@ -67,10 +67,10 @@ export default function RecruiterFeed({ feed }: RecruiterFeedProps) {
                   <Badge
                     variant="outline"
                     className={`text-xs shrink-0 ${
-                      item.type === 'hired' ? 'border-green-200 text-green-600' :
+                      item.type === 'hired' ? 'border-primary/20 text-primary' :
                       item.type === 'interviewed' ? 'border-amber-200 text-amber-600' :
-                      item.type === 'contacted' ? 'border-purple-200 text-purple-600' :
-                      'border-blue-200 text-blue-600'
+                      item.type === 'contacted' ? 'border-primary/20 text-primary' :
+                      'border-primary/20 text-primary'
                     }`}
                   >
                     {item.type}

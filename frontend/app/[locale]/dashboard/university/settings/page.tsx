@@ -155,9 +155,9 @@ export default function UniversitySettingsPage() {
         </div>
 
         {saveSuccess && (
-          <Alert className="mb-6 bg-green-50 border-green-200">
-            <CheckCircle className="h-4 w-4 text-green-600" />
-            <AlertDescription className="text-green-800">
+          <Alert className="mb-6 bg-primary/5 border-primary/20">
+            <CheckCircle className="h-4 w-4 text-primary" />
+            <AlertDescription className="text-gray-700">
               Impostazioni salvate con successo!
             </AlertDescription>
           </Alert>

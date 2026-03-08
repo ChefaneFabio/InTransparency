@@ -257,14 +257,14 @@ export default function ProjectDetailPage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Card>
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-blue-600">{project.views || 0}</div>
+              <div className="text-2xl font-bold text-primary">{project.views || 0}</div>
               <div className="text-xs text-gray-700">Views</div>
             </CardContent>
           </Card>
           {project.innovationScore != null && (
             <Card>
               <CardContent className="p-4 text-center">
-                <div className="text-2xl font-bold text-indigo-600">{project.innovationScore}</div>
+                <div className="text-2xl font-bold text-primary">{project.innovationScore}</div>
                 <div className="text-xs text-gray-700">Innovation</div>
               </CardContent>
             </Card>
@@ -272,7 +272,7 @@ export default function ProjectDetailPage() {
           {project.complexityScore != null && (
             <Card>
               <CardContent className="p-4 text-center">
-                <div className="text-2xl font-bold text-purple-600">{project.complexityScore}</div>
+                <div className="text-2xl font-bold text-primary">{project.complexityScore}</div>
                 <div className="text-xs text-gray-700">Complexity</div>
               </CardContent>
             </Card>
@@ -280,7 +280,7 @@ export default function ProjectDetailPage() {
           {project.marketRelevance != null && (
             <Card>
               <CardContent className="p-4 text-center">
-                <div className="text-2xl font-bold text-green-600">{project.marketRelevance}</div>
+                <div className="text-2xl font-bold text-primary">{project.marketRelevance}</div>
                 <div className="text-xs text-gray-700">Market Relevance</div>
               </CardContent>
             </Card>
@@ -407,7 +407,7 @@ export default function ProjectDetailPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <Award className="mr-2 h-5 w-5 text-green-500" />
+                      <Award className="mr-2 h-5 w-5 text-primary" />
                       Verified Endorsements
                     </CardTitle>
                   </CardHeader>
@@ -460,7 +460,7 @@ export default function ProjectDetailPage() {
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center">
-                        <Zap className="mr-2 h-5 w-5 text-yellow-500" />
+                        <Zap className="mr-2 h-5 w-5 text-secondary" />
                         AI Scores
                       </CardTitle>
                     </CardHeader>
@@ -503,7 +503,7 @@ export default function ProjectDetailPage() {
                         <Card>
                           <CardHeader>
                             <CardTitle className="flex items-center">
-                              <Brain className="mr-2 h-5 w-5 text-purple-500" />
+                              <Brain className="mr-2 h-5 w-5 text-primary" />
                               AI Summary
                             </CardTitle>
                           </CardHeader>
@@ -518,7 +518,7 @@ export default function ProjectDetailPage() {
                         <Card>
                           <CardHeader>
                             <CardTitle className="flex items-center">
-                              <Award className="mr-2 h-5 w-5 text-purple-500" />
+                              <Award className="mr-2 h-5 w-5 text-primary" />
                               Key Strengths
                             </CardTitle>
                           </CardHeader>
@@ -526,7 +526,7 @@ export default function ProjectDetailPage() {
                             <ul className="space-y-2">
                               {aiInsights.strengths.map((item: string, i: number) => (
                                 <li key={i} className="flex items-start space-x-2">
-                                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div className="w-2 h-2 bg-primary/50 rounded-full mt-2 flex-shrink-0"></div>
                                   <span className="text-gray-700">{item}</span>
                                 </li>
                               ))}
@@ -539,7 +539,7 @@ export default function ProjectDetailPage() {
                         <Card>
                           <CardHeader>
                             <CardTitle className="flex items-center">
-                              <TrendingUp className="mr-2 h-5 w-5 text-blue-500" />
+                              <TrendingUp className="mr-2 h-5 w-5 text-primary" />
                               Improvement Suggestions
                             </CardTitle>
                           </CardHeader>
@@ -561,7 +561,7 @@ export default function ProjectDetailPage() {
                         <Card>
                           <CardHeader>
                             <CardTitle className="flex items-center">
-                              <Target className="mr-2 h-5 w-5 text-green-500" />
+                              <Target className="mr-2 h-5 w-5 text-primary" />
                               Detected Competencies
                             </CardTitle>
                           </CardHeader>
@@ -627,7 +627,7 @@ export default function ProjectDetailPage() {
                         <Card>
                           <CardHeader>
                             <CardTitle className="flex items-center">
-                              <Target className="mr-2 h-5 w-5 text-indigo-500" />
+                              <Target className="mr-2 h-5 w-5 text-primary" />
                               Recommendations
                             </CardTitle>
                           </CardHeader>
@@ -635,7 +635,7 @@ export default function ProjectDetailPage() {
                             <ul className="space-y-2">
                               {aiInsights.recommendations.map((rec: string, i: number) => (
                                 <li key={i} className="flex items-start space-x-2">
-                                  <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div className="w-2 h-2 bg-primary/50 rounded-full mt-2 flex-shrink-0"></div>
                                   <span className="text-gray-700">{rec}</span>
                                 </li>
                               ))}
@@ -654,7 +654,7 @@ export default function ProjectDetailPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <BookOpen className="mr-2 h-5 w-5 text-blue-500" />
+                      <BookOpen className="mr-2 h-5 w-5 text-primary" />
                       Academic Context
                     </CardTitle>
                   </CardHeader>
@@ -689,7 +689,7 @@ export default function ProjectDetailPage() {
                           <p className="text-sm font-medium text-gray-500">Grade</p>
                           <p className="text-gray-900">{project.grade}</p>
                           {project.normalizedGrade && (
-                            <p className="text-xs text-blue-600 mt-0.5">
+                            <p className="text-xs text-primary mt-0.5">
                               Normalized: {Math.round(project.normalizedGrade)}/100
                             </p>
                           )}
@@ -697,7 +697,7 @@ export default function ProjectDetailPage() {
                       )}
                     </div>
                     {project.universityVerified && (
-                      <div className="mt-4 flex items-center text-green-600">
+                      <div className="mt-4 flex items-center text-primary">
                         <Award className="h-4 w-4 mr-1" />
                         <span className="text-sm font-medium">University Verified</span>
                       </div>

@@ -82,21 +82,21 @@ export function NotificationCenter() {
   const getNotificationIcon = (type: string) => {
     switch (type) {
       case NotificationTypes.NEW_MESSAGE:
-        return <MessageSquare className="h-4 w-4 text-blue-600" />
+        return <MessageSquare className="h-4 w-4 text-primary" />
       case NotificationTypes.JOB_MATCH:
-        return <Briefcase className="h-4 w-4 text-green-600" />
+        return <Briefcase className="h-4 w-4 text-primary" />
       case NotificationTypes.PROJECT_COMMENT:
-        return <MessageSquare className="h-4 w-4 text-purple-600" />
+        return <MessageSquare className="h-4 w-4 text-primary" />
       case NotificationTypes.PROFILE_VIEW:
         return <Eye className="h-4 w-4 text-gray-600" />
       case NotificationTypes.APPLICATION_UPDATE:
         return <Briefcase className="h-4 w-4 text-orange-600" />
       case NotificationTypes.NETWORK_CONNECTION:
-        return <Users className="h-4 w-4 text-teal-600" />
+        return <Users className="h-4 w-4 text-primary" />
       case NotificationTypes.ACHIEVEMENT:
-        return <Award className="h-4 w-4 text-yellow-600" />
+        return <Award className="h-4 w-4 text-secondary" />
       case NotificationTypes.SYSTEM_UPDATE:
-        return <Info className="h-4 w-4 text-blue-600" />
+        return <Info className="h-4 w-4 text-primary" />
       default:
         return <Bell className="h-4 w-4 text-gray-600" />
     }
@@ -156,7 +156,7 @@ export function NotificationCenter() {
           className="h-10 w-10 rounded-full bg-white shadow-lg relative"
         >
           {unreadCount > 0 ? (
-            <BellRing className="h-5 w-5 text-teal-600" />
+            <BellRing className="h-5 w-5 text-primary" />
           ) : (
             <Bell className="h-5 w-5 text-gray-600" />
           )}
@@ -196,7 +196,7 @@ export function NotificationCenter() {
                   <Button
                     size="sm"
                     onClick={requestPermission}
-                    className="w-full bg-teal-600 hover:bg-teal-700"
+                    className="w-full bg-primary hover:bg-teal-700"
                   >
                     Enable Notifications
                   </Button>
@@ -205,7 +205,7 @@ export function NotificationCenter() {
                   <Button
                     size="sm"
                     onClick={handleSubscribe}
-                    className="w-full bg-teal-600 hover:bg-teal-700"
+                    className="w-full bg-primary hover:bg-teal-700"
                   >
                     Subscribe to Push Notifications
                   </Button>
@@ -218,7 +218,7 @@ export function NotificationCenter() {
               </div>
             ) : (
               <div className="flex items-center justify-between mt-2">
-                <div className="text-xs text-green-600">✓ Notifications enabled</div>
+                <div className="text-xs text-primary">✓ Notifications enabled</div>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -292,7 +292,7 @@ export function NotificationCenter() {
                       <div
                         key={notification.id}
                         className={`p-3 border-b hover:bg-gray-50 cursor-pointer ${
-                          !notification.read ? 'bg-blue-50 border-l-2 border-l-blue-500' : ''
+                          !notification.read ? 'bg-primary/5 border-l-2 border-l-blue-500' : ''
                         }`}
                         onClick={() => markAsRead(notification.id)}
                       >
@@ -335,7 +335,7 @@ export function NotificationCenter() {
                           </div>
 
                           {!notification.read && (
-                            <div className="w-2 h-2 bg-blue-500 rounded-full mt-1 flex-shrink-0" />
+                            <div className="w-2 h-2 bg-primary/50 rounded-full mt-1 flex-shrink-0" />
                           )}
                         </div>
                       </div>

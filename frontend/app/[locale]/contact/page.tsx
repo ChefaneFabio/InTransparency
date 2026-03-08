@@ -61,7 +61,7 @@ export default function ContactPage() {
 
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-primary to-secondary text-white relative overflow-hidden">
+        <section className="py-16 bg-primary text-white relative overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 opacity-10">
             <Image
@@ -127,8 +127,8 @@ export default function ContactPage() {
                   <Card>
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                          <Phone className="h-6 w-6 text-green-600" />
+                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                          <Phone className="h-6 w-6 text-primary" />
                         </div>
                         <div>
                           <h3 className="font-semibold text-foreground">{t('methods.phone.title')}</h3>
@@ -155,7 +155,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Support Resources */}
-                <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
+                <Card className="bg-primary/10 border-primary/20">
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <HelpCircle className="h-5 w-5 mr-2" />
@@ -195,8 +195,8 @@ export default function ContactPage() {
                   <CardContent>
                     {isSubmitted ? (
                       <div className="text-center py-8">
-                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <CheckCircle className="h-8 w-8 text-green-600" />
+                        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <CheckCircle className="h-8 w-8 text-primary" />
                         </div>
                         <h3 className="text-xl font-semibold text-foreground mb-2">{t('form.success.title')}</h3>
                         <p className="text-muted-foreground mb-4">
@@ -346,7 +346,7 @@ export default function ContactPage() {
         </section>
 
         {/* AI Conversational Search - How to Access */}
-        <section className="py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
+        <section className="py-16 bg-primary/10">
           <div className="container max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-display font-bold text-foreground mb-4">
@@ -384,7 +384,7 @@ export default function ContactPage() {
                       <li>4. {t('aiSearch.students.steps.3')}</li>
                     </ol>
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
+                  <Button className="w-full bg-primary hover:shadow-lg" asChild>
                     <a href="/dashboard/student/ai-job-search">
                       {t('aiSearch.students.button')}
                     </a>
@@ -423,7 +423,7 @@ export default function ContactPage() {
                       <li>4. {t('aiSearch.recruiters.steps.3')}</li>
                     </ol>
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
+                  <Button className="w-full bg-primary hover:shadow-lg" asChild>
                     <a href="/dashboard/recruiter/ai-search">
                       {t('aiSearch.recruiters.button')}
                     </a>
@@ -433,7 +433,7 @@ export default function ContactPage() {
             </div>
 
             <div className="text-center">
-              <Card className="inline-block bg-gradient-to-r from-primary to-secondary text-white">
+              <Card className="inline-block bg-primary text-white">
                 <CardContent className="p-6">
                   <p className="text-lg">
                     {t('aiSearch.proTip')}
@@ -461,7 +461,7 @@ export default function ContactPage() {
 
               <Card>
                 <CardContent className="p-6">
-                  <MessageSquare className="h-8 w-8 text-green-600 mx-auto mb-4" />
+                  <MessageSquare className="h-8 w-8 text-primary mx-auto mb-4" />
                   <h3 className="font-semibold text-foreground mb-2">{t('officeHours.responseTime.title')}</h3>
                   <p className="text-muted-foreground">{t('officeHours.responseTime.email')}</p>
                   <p className="text-muted-foreground">{t('officeHours.responseTime.phone')}</p>

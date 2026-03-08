@@ -1321,8 +1321,8 @@ const OverviewSection = ({
       <Card>
         <CardContent className="pt-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30">
-              <Brain className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            <div className="p-2 rounded-lg bg-primary/10 dark:bg-primary/10">
+              <Brain className="h-5 w-5 text-primary dark:text-primary" />
             </div>
             <div>
               <p className="text-sm text-muted-foreground">{t('overview.personalityType')}</p>
@@ -1335,8 +1335,8 @@ const OverviewSection = ({
       <Card>
         <CardContent className="pt-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900/30">
-              <Users className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+            <div className="p-2 rounded-lg bg-primary/10 dark:bg-primary/10">
+              <Users className="h-5 w-5 text-primary dark:text-primary" />
             </div>
             <div>
               <p className="text-sm text-muted-foreground">{t('overview.workStyle')}</p>
@@ -1351,8 +1351,8 @@ const OverviewSection = ({
       <Card>
         <CardContent className="pt-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/30">
-              <Target className="h-5 w-5 text-green-600 dark:text-green-400" />
+            <div className="p-2 rounded-lg bg-primary/10 dark:bg-primary/10">
+              <Target className="h-5 w-5 text-primary dark:text-primary" />
             </div>
             <div>
               <p className="text-sm text-muted-foreground">{t('overview.softSkills')}</p>
@@ -1431,10 +1431,10 @@ const NarrativeSection = ({
   if (!narrative) return null
 
   return (
-    <Card className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border-blue-200 dark:border-blue-800/50">
+    <Card className="bg-primary/5 dark:bg-primary/5 border-primary/20 dark:border-primary/20">
       <CardContent className="pt-6 pb-6">
         <div className="flex gap-3">
-          <Quote className="h-6 w-6 text-blue-500 shrink-0 mt-0.5" />
+          <Quote className="h-6 w-6 text-primary shrink-0 mt-0.5" />
           <div>
             <h3 className="font-semibold text-sm mb-2">{t('narrative.title')}</h3>
             <p className="text-sm leading-relaxed">{narrative}</p>
@@ -1472,7 +1472,7 @@ const BigFiveSection = ({ data }: { data: BigFiveData }) => {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Brain className="h-5 w-5 text-blue-600" />
+          <Brain className="h-5 w-5 text-primary" />
           {t('bigFive.title')}
         </CardTitle>
       </CardHeader>
@@ -1507,13 +1507,13 @@ const BigFiveSection = ({ data }: { data: BigFiveData }) => {
           {data.strengths.length > 0 && (
             <div className="space-y-2">
               <h3 className="font-semibold text-sm flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-green-500" />
+                <CheckCircle2 className="h-4 w-4 text-primary" />
                 {t('bigFive.strengths')}
               </h3>
               <ul className="space-y-1">
                 {data.strengths.map((s) => (
                   <li key={s} className="text-sm text-muted-foreground flex items-center gap-2">
-                    <CheckCircle2 className="h-3 w-3 text-green-500 shrink-0" />
+                    <CheckCircle2 className="h-3 w-3 text-primary shrink-0" />
                     {s}
                   </li>
                 ))}
@@ -1589,7 +1589,7 @@ const PeerComparisonSection = ({
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <BarChart3 className="h-5 w-5 text-indigo-600" />
+          <BarChart3 className="h-5 w-5 text-primary" />
           {t('peerComparison.title')}
         </CardTitle>
       </CardHeader>
@@ -1611,7 +1611,7 @@ const PeerComparisonSection = ({
                     </span>
                   </div>
                   <div className="relative h-3 rounded-full bg-muted overflow-hidden">
-                    <div className="absolute inset-y-0 left-0 bg-blue-500 rounded-full" style={{ width: `${item.you}%` }} />
+                    <div className="absolute inset-y-0 left-0 bg-primary rounded-full" style={{ width: `${item.you}%` }} />
                     <div
                       className="absolute top-0 bottom-0 w-0.5 bg-amber-500"
                       style={{ left: `${item.peers}%` }}
@@ -1621,7 +1621,7 @@ const PeerComparisonSection = ({
                 </div>
               ))}
               <div className="flex items-center gap-4 text-xs text-muted-foreground pt-1">
-                <span className="flex items-center gap-1"><span className="w-3 h-2 bg-blue-500 rounded" />{t('peerComparison.you')}</span>
+                <span className="flex items-center gap-1"><span className="w-3 h-2 bg-primary rounded" />{t('peerComparison.you')}</span>
                 <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-amber-500" />{t('peerComparison.peerAvg')}</span>
               </div>
             </div>
@@ -1636,12 +1636,12 @@ const PeerComparisonSection = ({
                 <div key={item.skill} className="space-y-1">
                   <div className="flex justify-between items-center text-xs">
                     <span className="font-medium">{item.skill}</span>
-                    <span className={item.you >= item.peers ? 'text-green-600' : 'text-amber-600'}>
+                    <span className={item.you >= item.peers ? 'text-primary' : 'text-amber-600'}>
                       {item.you >= item.peers ? '+' : ''}{item.you - item.peers} {t('peerComparison.vsPeers')}
                     </span>
                   </div>
                   <div className="relative h-3 rounded-full bg-muted overflow-hidden">
-                    <div className="absolute inset-y-0 left-0 bg-green-500 rounded-full" style={{ width: `${item.you}%` }} />
+                    <div className="absolute inset-y-0 left-0 bg-primary rounded-full" style={{ width: `${item.you}%` }} />
                     <div
                       className="absolute top-0 bottom-0 w-0.5 bg-amber-500"
                       style={{ left: `${item.peers}%` }}
@@ -1676,13 +1676,13 @@ const DISCSection = ({ data }: { data: DISCData }) => {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Users className="h-5 w-5 text-purple-600" />
+          <Users className="h-5 w-5 text-primary" />
           {t('disc.title')}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="flex items-center gap-2 flex-wrap">
-          <Badge className="bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300">
+          <Badge className="bg-primary/10 text-primary dark:bg-primary/10 dark:text-primary">
             {discStyleLabels[data.primaryStyle] || data.primaryStyle}
           </Badge>
           {data.secondaryStyle && (
@@ -1718,7 +1718,7 @@ const DISCSection = ({ data }: { data: DISCData }) => {
             <Card className="bg-muted/50">
               <CardContent className="pt-4 pb-4">
                 <h4 className="font-semibold text-sm flex items-center gap-2 mb-2">
-                  <Briefcase className="h-4 w-4 text-purple-500" />
+                  <Briefcase className="h-4 w-4 text-primary" />
                   {t('disc.howYouWork')}
                 </h4>
                 <p className="text-sm text-muted-foreground">{data.workStyle}</p>
@@ -1730,7 +1730,7 @@ const DISCSection = ({ data }: { data: DISCData }) => {
             <Card className="bg-muted/50">
               <CardContent className="pt-4 pb-4">
                 <h4 className="font-semibold text-sm flex items-center gap-2 mb-2">
-                  <MessageCircle className="h-4 w-4 text-purple-500" />
+                  <MessageCircle className="h-4 w-4 text-primary" />
                   {t('disc.howYouCommunicate')}
                 </h4>
                 <p className="text-sm text-muted-foreground">{data.communicationStyle}</p>
@@ -1743,12 +1743,12 @@ const DISCSection = ({ data }: { data: DISCData }) => {
           {data.motivators.length > 0 && (
             <div className="space-y-2">
               <h4 className="font-semibold text-sm flex items-center gap-2">
-                <Zap className="h-4 w-4 text-green-500" />
+                <Zap className="h-4 w-4 text-primary" />
                 {t('disc.motivators')}
               </h4>
               <div className="flex flex-wrap gap-2">
                 {data.motivators.map((m) => (
-                  <Badge key={m} className="bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">
+                  <Badge key={m} className="bg-primary/10 text-primary dark:bg-primary/10 dark:text-primary">
                     {m}
                   </Badge>
                 ))}
@@ -1774,10 +1774,10 @@ const DISCSection = ({ data }: { data: DISCData }) => {
         </div>
 
         {data.idealTeamRole && (
-          <Card className="bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800">
+          <Card className="bg-primary/5 dark:bg-primary/5 border-primary/20 dark:border-primary/20">
             <CardContent className="pt-4 pb-4">
               <h4 className="font-semibold text-sm flex items-center gap-2 mb-2">
-                <Sparkles className="h-4 w-4 text-purple-500" />
+                <Sparkles className="h-4 w-4 text-primary" />
                 {t('disc.teamRole')}
               </h4>
               <p className="text-sm">{data.idealTeamRole}</p>
@@ -1802,20 +1802,20 @@ const TeamCompatibilitySection = ({ primaryStyle }: { primaryStyle: string }) =>
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <UserPlus className="h-5 w-5 text-indigo-600" />
+          <UserPlus className="h-5 w-5 text-primary" />
           {t('teamCompat.title')}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <Card className="bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800/50">
+        <Card className="bg-primary/5 dark:bg-primary/5 border-primary/20 dark:border-primary/20">
           <CardContent className="pt-4 pb-4">
             <h4 className="font-semibold text-sm flex items-center gap-2 mb-2">
-              <CheckCircle2 className="h-4 w-4 text-green-500" />
+              <CheckCircle2 className="h-4 w-4 text-primary" />
               {t('teamCompat.bestWith')}
             </h4>
             <div className="flex flex-wrap gap-2 mb-2">
               {compat.bestWith.map((style) => (
-                <Badge key={style} className="bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">
+                <Badge key={style} className="bg-primary/10 text-primary dark:bg-primary/10 dark:text-primary">
                   {style}
                 </Badge>
               ))}
@@ -1867,16 +1867,16 @@ const InterviewPrepSection = ({ primaryStyle }: { primaryStyle: string }) => {
 
         <div className="grid gap-4 md:grid-cols-3">
           {/* Strengths in interview */}
-          <Card className="bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800/50">
+          <Card className="bg-primary/5 dark:bg-primary/5 border-primary/20 dark:border-primary/20">
             <CardContent className="pt-4 pb-4">
               <h4 className="font-semibold text-sm flex items-center gap-2 mb-3">
-                <CheckCircle2 className="h-4 w-4 text-green-500" />
+                <CheckCircle2 className="h-4 w-4 text-primary" />
                 {t('interview.yourStrengths')}
               </h4>
               <ul className="space-y-2">
                 {tips.strengths.map((s) => (
                   <li key={s} className="text-xs text-muted-foreground flex items-start gap-2">
-                    <CheckCircle2 className="h-3 w-3 text-green-500 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-3 w-3 text-primary shrink-0 mt-0.5" />
                     {s}
                   </li>
                 ))}
@@ -1903,16 +1903,16 @@ const InterviewPrepSection = ({ primaryStyle }: { primaryStyle: string }) => {
           </Card>
 
           {/* Action tips */}
-          <Card className="bg-blue-50 dark:bg-blue-900/10 border-blue-200 dark:border-blue-800/50">
+          <Card className="bg-primary/5 dark:bg-primary/5 border-primary/20 dark:border-primary/20">
             <CardContent className="pt-4 pb-4">
               <h4 className="font-semibold text-sm flex items-center gap-2 mb-3">
-                <Lightbulb className="h-4 w-4 text-blue-500" />
+                <Lightbulb className="h-4 w-4 text-primary" />
                 {t('interview.prepTips')}
               </h4>
               <ul className="space-y-2">
                 {tips.tips.map((tip) => (
                   <li key={tip} className="text-xs text-muted-foreground flex items-start gap-2">
-                    <ArrowRight className="h-3 w-3 text-blue-500 shrink-0 mt-0.5" />
+                    <ArrowRight className="h-3 w-3 text-primary shrink-0 mt-0.5" />
                     {tip}
                   </li>
                 ))}
@@ -1979,7 +1979,7 @@ const CareerSection = ({
               {bigFive.careerFit.map((career) => (
                 <Card key={career} className="bg-muted/50">
                   <CardContent className="pt-4 pb-4 flex items-center gap-3">
-                    <Briefcase className="h-4 w-4 text-blue-500 shrink-0" />
+                    <Briefcase className="h-4 w-4 text-primary shrink-0" />
                     <span className="text-sm font-medium">{career}</span>
                   </CardContent>
                 </Card>
@@ -2025,7 +2025,7 @@ const CareerSection = ({
                         {coachingTips[area] || defaultTip}
                       </p>
                       {resource && (
-                        <Link href="/dashboard/student/courses" className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline">
+                        <Link href="/dashboard/student/courses" className="inline-flex items-center gap-1.5 text-xs font-medium text-primary dark:text-primary hover:underline">
                           <GraduationCap className="h-3 w-3" />
                           {t('career.exploreCourse', { course: resource.course })}
                         </Link>
@@ -2133,10 +2133,10 @@ const MicroChallengesSection = ({ developmentAreas }: { developmentAreas: string
   if (challenges.length === 0) return null
 
   return (
-    <Card className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 border-emerald-200 dark:border-emerald-800/50">
+    <Card className="bg-primary/5 dark:bg-primary/5 border-primary/20 dark:border-primary/20">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Calendar className="h-5 w-5 text-emerald-600" />
+          <Calendar className="h-5 w-5 text-primary" />
           {t('microChallenges.title')}
         </CardTitle>
       </CardHeader>
@@ -2145,11 +2145,11 @@ const MicroChallengesSection = ({ developmentAreas }: { developmentAreas: string
         <div className="space-y-3">
           {challenges.map((c) => (
             <div key={c.area} className="flex items-start gap-3 p-3 bg-white/60 dark:bg-white/5 rounded-lg">
-              <div className="p-1.5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 shrink-0 mt-0.5">
-                <Target className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
+              <div className="p-1.5 rounded-full bg-primary/10 dark:bg-emerald-900/40 shrink-0 mt-0.5">
+                <Target className="h-3 w-3 text-primary dark:text-emerald-400" />
               </div>
               <div>
-                <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400">{c.area}</span>
+                <span className="text-xs font-semibold text-primary dark:text-emerald-400">{c.area}</span>
                 <p className="text-sm mt-0.5">{c.challenge}</p>
               </div>
             </div>
@@ -2169,11 +2169,11 @@ const JobMatchingSection = ({ careerFit }: { careerFit: string[] }) => {
   const t = useTranslations('personalityInsights')
 
   return (
-    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 border-blue-200 dark:border-blue-800/50">
+    <Card className="bg-primary/5 dark:bg-primary/5 border-primary/20 dark:border-primary/20">
       <CardContent className="pt-6 pb-6">
         <div className="flex flex-col sm:flex-row items-center gap-4">
-          <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900/40 shrink-0">
-            <Search className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+          <div className="p-3 rounded-xl bg-primary/10 dark:bg-primary/10 shrink-0">
+            <Search className="h-6 w-6 text-primary dark:text-primary" />
           </div>
           <div className="text-center sm:text-left flex-1">
             <h3 className="font-semibold">{t('jobMatching.title')}</h3>
@@ -2237,7 +2237,7 @@ const ComparisonSection = ({ history }: { history: HistoryData }) => {
 
   const getChangeIcon = (current: number, previous: number) => {
     const diff = current - previous
-    if (diff > 2) return <TrendingUp className="h-3 w-3 text-green-500" />
+    if (diff > 2) return <TrendingUp className="h-3 w-3 text-primary" />
     if (diff < -2) return <TrendingDown className="h-3 w-3 text-red-500" />
     return <Minus className="h-3 w-3 text-muted-foreground" />
   }
@@ -2248,7 +2248,7 @@ const ComparisonSection = ({ history }: { history: HistoryData }) => {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <TrendingUp className="h-5 w-5 text-blue-600" />
+          <TrendingUp className="h-5 w-5 text-primary" />
           {t('comparison.title')}
         </CardTitle>
       </CardHeader>
@@ -2287,7 +2287,7 @@ const ComparisonSection = ({ history }: { history: HistoryData }) => {
                     <div key={trait} className="flex items-center gap-1 text-xs">
                       {getChangeIcon(curr, prev)}
                       <span className="capitalize">{trait}</span>
-                      <span className={diff > 0 ? 'text-green-600' : diff < 0 ? 'text-red-600' : 'text-muted-foreground'}>
+                      <span className={diff > 0 ? 'text-primary' : diff < 0 ? 'text-red-600' : 'text-muted-foreground'}>
                         {diff > 0 ? `+${diff}` : diff}
                       </span>
                     </div>
@@ -2345,7 +2345,7 @@ const FamousPersonalitiesSection = ({ primaryStyle }: { primaryStyle: string }) 
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Star className="h-5 w-5 text-yellow-500" />
+          <Star className="h-5 w-5 text-secondary" />
           {t('famousPersonalities.title')}
         </CardTitle>
       </CardHeader>
@@ -2357,7 +2357,7 @@ const FamousPersonalitiesSection = ({ primaryStyle }: { primaryStyle: string }) 
               <CardContent className="pt-4 pb-4">
                 <div className="flex items-start gap-3">
                   <div className="p-2 rounded-full bg-yellow-100 dark:bg-yellow-900/30 shrink-0">
-                    <Star className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
+                    <Star className="h-4 w-4 text-secondary dark:text-yellow-400" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-sm">{person.name}</h4>
@@ -2433,14 +2433,14 @@ const CommunicationPlaybookSection = () => {
   const styleColors: Record<string, string> = {
     DOMINANCE: 'border-red-200 dark:border-red-800/50 bg-red-50/50 dark:bg-red-900/10',
     INFLUENCE: 'border-amber-200 dark:border-amber-800/50 bg-amber-50/50 dark:bg-amber-900/10',
-    STEADINESS: 'border-green-200 dark:border-green-800/50 bg-green-50/50 dark:bg-green-900/10',
-    COMPLIANCE: 'border-blue-200 dark:border-blue-800/50 bg-blue-50/50 dark:bg-blue-900/10',
+    STEADINESS: 'border-primary/20 dark:border-primary/20 bg-primary/5 dark:bg-primary/5',
+    COMPLIANCE: 'border-primary/20 dark:border-primary/20 bg-primary/5 dark:bg-primary/5',
   }
   const styleTextColors: Record<string, string> = {
     DOMINANCE: 'text-red-600 dark:text-red-400',
     INFLUENCE: 'text-amber-600 dark:text-amber-400',
-    STEADINESS: 'text-green-600 dark:text-green-400',
-    COMPLIANCE: 'text-blue-600 dark:text-blue-400',
+    STEADINESS: 'text-primary dark:text-primary',
+    COMPLIANCE: 'text-primary dark:text-primary',
   }
 
   return (
@@ -2466,7 +2466,7 @@ const CommunicationPlaybookSection = () => {
                   <div className="space-y-1">
                     {playbook.doThis.map((tip) => (
                       <div key={tip} className="flex items-start gap-1.5 text-xs">
-                        <CheckCircle2 className="h-3 w-3 text-green-500 shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-3 w-3 text-primary shrink-0 mt-0.5" />
                         <span>{tip}</span>
                       </div>
                     ))}
@@ -2506,7 +2506,7 @@ const WeeklyReflectionSection = ({ developmentAreas }: { developmentAreas: strin
   if (prompts.length === 0) return null
 
   return (
-    <Card className="bg-gradient-to-r from-violet-50 to-pink-50 dark:from-violet-950/20 dark:to-pink-950/20 border-violet-200 dark:border-violet-800/50">
+    <Card className="bg-primary/5 dark:bg-primary/5 border-primary/20 dark:border-primary/20">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Edit3 className="h-5 w-5 text-violet-600" />
@@ -2626,7 +2626,7 @@ const GoalSettingSection = ({ developmentAreas }: { developmentAreas: string[] }
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <ClipboardList className="h-5 w-5 text-teal-600" />
+          <ClipboardList className="h-5 w-5 text-primary" />
           {t('goalSetting.title')}
         </CardTitle>
       </CardHeader>
@@ -2634,7 +2634,7 @@ const GoalSettingSection = ({ developmentAreas }: { developmentAreas: string[] }
         <p className="text-sm text-muted-foreground">{t('goalSetting.subtitle')}</p>
         <div className="space-y-3">
           {goals.map((g) => (
-            <Card key={g.area} className="bg-teal-50/50 dark:bg-teal-900/10 border-teal-200 dark:border-teal-800/50">
+            <Card key={g.area} className="bg-primary/5/50 dark:bg-teal-900/10 border-teal-200 dark:border-teal-800/50">
               <CardContent className="pt-4 pb-4">
                 <button
                   onClick={() => setExpandedGoal(expandedGoal === g.area ? null : g.area)}
@@ -2645,7 +2645,7 @@ const GoalSettingSection = ({ developmentAreas }: { developmentAreas: string[] }
                       <Badge variant="secondary" className="text-xs mb-1">{g.area}</Badge>
                       <h4 className="font-medium text-sm">{g.goal}</h4>
                     </div>
-                    <ArrowRight className={`h-4 w-4 text-teal-500 transition-transform ${expandedGoal === g.area ? 'rotate-90' : ''}`} />
+                    <ArrowRight className={`h-4 w-4 text-primary transition-transform ${expandedGoal === g.area ? 'rotate-90' : ''}`} />
                   </div>
                 </button>
                 {expandedGoal === g.area && (
@@ -2707,13 +2707,13 @@ const DecisionStyleSection = ({ primaryStyle }: { primaryStyle: string }) => {
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <h4 className="font-semibold text-sm flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-green-500" />
+              <CheckCircle2 className="h-4 w-4 text-primary" />
               {t('decisionStyle.strengths')}
             </h4>
             <ul className="space-y-1">
               {ds.strengths.map((s) => (
                 <li key={s} className="text-xs text-muted-foreground flex items-start gap-2">
-                  <CheckCircle2 className="h-3 w-3 text-green-500 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="h-3 w-3 text-primary shrink-0 mt-0.5" />
                   {s}
                 </li>
               ))}
@@ -2762,13 +2762,13 @@ const WorkEnvironmentSection = ({ primaryStyle }: { primaryStyle: string }) => {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Briefcase className="h-5 w-5 text-emerald-600" />
+          <Briefcase className="h-5 w-5 text-primary" />
           {t('workEnv.title')}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid gap-4 md:grid-cols-3">
-          <Card className="bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800/50">
+          <Card className="bg-primary/5 dark:bg-primary/5 border-primary/20 dark:border-primary/20">
             <CardContent className="pt-4 pb-4">
               <h4 className="font-semibold text-sm flex items-center gap-2 mb-2 text-green-700 dark:text-green-400">
                 <CheckCircle2 className="h-4 w-4" />
@@ -2777,7 +2777,7 @@ const WorkEnvironmentSection = ({ primaryStyle }: { primaryStyle: string }) => {
               <ul className="space-y-1.5">
                 {env.ideal.map((item) => (
                   <li key={item} className="text-xs text-muted-foreground flex items-start gap-1.5">
-                    <CheckCircle2 className="h-3 w-3 text-green-500 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-3 w-3 text-primary shrink-0 mt-0.5" />
                     {item}
                   </li>
                 ))}
@@ -2857,13 +2857,13 @@ const ConflictStyleSection = ({ primaryStyle }: { primaryStyle: string }) => {
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <h4 className="font-semibold text-sm flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-green-500" />
+              <CheckCircle2 className="h-4 w-4 text-primary" />
               {t('conflictStyle.strengths')}
             </h4>
             <ul className="space-y-1">
               {cs.strengths.map((s) => (
                 <li key={s} className="text-xs text-muted-foreground flex items-start gap-2">
-                  <CheckCircle2 className="h-3 w-3 text-green-500 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="h-3 w-3 text-primary shrink-0 mt-0.5" />
                   {s}
                 </li>
               ))}
@@ -2912,13 +2912,13 @@ const EnergyManagementSection = ({ primaryStyle }: { primaryStyle: string }) => 
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Zap className="h-5 w-5 text-yellow-600" />
+          <Zap className="h-5 w-5 text-secondary" />
           {t('energy.title')}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid gap-4 md:grid-cols-2">
-          <Card className="bg-green-50 dark:bg-green-900/10 border-green-200 dark:border-green-800/50">
+          <Card className="bg-primary/5 dark:bg-primary/5 border-primary/20 dark:border-primary/20">
             <CardContent className="pt-4 pb-4">
               <h4 className="font-semibold text-sm flex items-center gap-2 mb-2 text-green-700 dark:text-green-400">
                 <Zap className="h-4 w-4" />
@@ -2927,7 +2927,7 @@ const EnergyManagementSection = ({ primaryStyle }: { primaryStyle: string }) => 
               <ul className="space-y-1.5">
                 {energy.energizers.map((item) => (
                   <li key={item} className="text-xs text-muted-foreground flex items-start gap-1.5">
-                    <Zap className="h-3 w-3 text-green-500 shrink-0 mt-0.5" />
+                    <Zap className="h-3 w-3 text-primary shrink-0 mt-0.5" />
                     {item}
                   </li>
                 ))}
@@ -2963,7 +2963,7 @@ const EnergyManagementSection = ({ primaryStyle }: { primaryStyle: string }) => 
         <Card className="bg-yellow-50 dark:bg-yellow-900/10 border-yellow-200 dark:border-yellow-800/50">
           <CardContent className="pt-3 pb-3">
             <h4 className="font-semibold text-xs flex items-center gap-1.5 mb-1">
-              <Lightbulb className="h-3 w-3 text-yellow-500" />
+              <Lightbulb className="h-3 w-3 text-secondary" />
               {t('energy.recoveryTip')}
             </h4>
             <p className="text-xs text-muted-foreground">{energy.recoveryTip}</p>
@@ -2987,7 +2987,7 @@ const MentorshipSection = ({ primaryStyle }: { primaryStyle: string }) => {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <GraduationCap className="h-5 w-5 text-indigo-600" />
+          <GraduationCap className="h-5 w-5 text-primary" />
           {t('mentorship.title')}
         </CardTitle>
       </CardHeader>
@@ -3013,7 +3013,7 @@ const MentorshipSection = ({ primaryStyle }: { primaryStyle: string }) => {
               <h5 className="text-xs font-semibold text-green-700 dark:text-green-400">{t('mentorship.menteeStrengths')}</h5>
               {profile.menteeStrengths.map((s) => (
                 <div key={s} className="text-xs text-muted-foreground flex items-start gap-1.5">
-                  <CheckCircle2 className="h-3 w-3 text-green-500 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="h-3 w-3 text-primary shrink-0 mt-0.5" />
                   {s}
                 </div>
               ))}
@@ -3080,10 +3080,10 @@ const PersonalBrandSection = ({
   }
 
   return (
-    <Card className="bg-gradient-to-r from-indigo-50 to-violet-50 dark:from-indigo-950/20 dark:to-violet-950/20 border-indigo-200 dark:border-indigo-800/50">
+    <Card className="bg-primary/5 dark:bg-primary/5 border-primary/20 dark:border-primary/20">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Star className="h-5 w-5 text-indigo-600" />
+          <Star className="h-5 w-5 text-primary" />
           {t('personalBrand.title')}
         </CardTitle>
       </CardHeader>

@@ -26,7 +26,7 @@ export default function AnalyticsPreview() {
       <Card className="border-2 border-emerald-200">
         <CardHeader>
           <CardTitle className="text-lg flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-emerald-500" />
+            <TrendingUp className="h-5 w-5 text-primary" />
             Placement Funnel — Your University
           </CardTitle>
           <p className="text-sm text-gray-600">
@@ -66,7 +66,7 @@ export default function AnalyticsPreview() {
                 <div className="flex gap-4 text-xs text-gray-500">
                   <span>{c.views} views</span>
                   <span>{c.contacts} contacts</span>
-                  <span className="font-medium text-green-600">{c.hires} hires</span>
+                  <span className="font-medium text-primary">{c.hires} hires</span>
                 </div>
               </div>
             ))}

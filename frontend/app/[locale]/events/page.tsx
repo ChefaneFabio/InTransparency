@@ -50,9 +50,9 @@ const EVENT_TYPES = [
 ]
 
 const EVENT_TYPE_COLORS: Record<string, string> = {
-  CAREER_DAY: 'bg-blue-100 text-blue-700',
-  WORKSHOP: 'bg-purple-100 text-purple-700',
-  WEBINAR: 'bg-green-100 text-green-700',
+  CAREER_DAY: 'bg-primary/10 text-blue-700',
+  WORKSHOP: 'bg-primary/10 text-purple-700',
+  WEBINAR: 'bg-primary/10 text-green-700',
   NETWORKING: 'bg-amber-100 text-amber-700',
   INFO_SESSION: 'bg-pink-100 text-pink-700',
 }
@@ -217,7 +217,7 @@ export default function EventsPage() {
                     <div className="flex gap-4">
                       {/* Date column */}
                       <div className="w-16 flex-shrink-0 text-center">
-                        <div className="text-sm font-bold text-blue-600">
+                        <div className="text-sm font-bold text-primary">
                           {new Date(event.startDate).toLocaleDateString('en-GB', { month: 'short' }).toUpperCase()}
                         </div>
                         <div className="text-2xl font-bold text-gray-900">
@@ -271,7 +271,7 @@ export default function EventsPage() {
                         {/* Actions */}
                         <div className="flex items-center gap-2">
                           {isRsvpd ? (
-                            <Badge className="bg-green-100 text-green-700 text-xs">
+                            <Badge className="bg-primary/10 text-green-700 text-xs">
                               <CheckCircle2 className="h-3 w-3 mr-1" />
                               {rsvpStatus === 'PENDING' ? 'Pending Approval' : 'Registered'}
                             </Badge>
@@ -288,7 +288,7 @@ export default function EventsPage() {
                             </Button>
                           )}
                           {event.slotCount > 0 && (
-                            <span className="text-xs text-blue-600">
+                            <span className="text-xs text-primary">
                               {event.slotCount} interview slots available
                             </span>
                           )}

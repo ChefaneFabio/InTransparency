@@ -33,9 +33,9 @@ interface ApplicationData {
 const STATUS_CONFIG: Record<string, { label: string; color: string }> = {
   PENDING: { label: 'Applied', color: 'bg-gray-500' },
   REVIEWING: { label: 'Under Review', color: 'bg-yellow-500' },
-  SHORTLISTED: { label: 'Shortlisted', color: 'bg-blue-500' },
-  INTERVIEW: { label: 'Interview', color: 'bg-indigo-500' },
-  OFFER: { label: 'Offer Received', color: 'bg-green-500' },
+  SHORTLISTED: { label: 'Shortlisted', color: 'bg-primary/50' },
+  INTERVIEW: { label: 'Interview', color: 'bg-primary/50' },
+  OFFER: { label: 'Offer Received', color: 'bg-primary/50' },
   ACCEPTED: { label: 'Accepted', color: 'bg-green-700' },
   REJECTED: { label: 'Not Selected', color: 'bg-red-500' },
   WITHDRAWN: { label: 'Withdrawn', color: 'bg-gray-400' },
@@ -315,7 +315,7 @@ export default function StudentApplications() {
                         {offer.salary && (
                           <div>
                             <p className="text-sm text-muted-foreground">Salary</p>
-                            <p className="text-xl font-bold text-green-600">{offer.salary}</p>
+                            <p className="text-xl font-bold text-primary">{offer.salary}</p>
                           </div>
                         )}
                         {offer.startDate && (

@@ -23,7 +23,7 @@ interface Props {
 }
 
 const levelConfig: Record<string, { label: string; color: string; bg: string; border: string }> = {
-  PLATINUM: { label: 'Platinum', color: 'text-purple-700', bg: 'bg-purple-100', border: 'border-purple-300' },
+  PLATINUM: { label: 'Platinum', color: 'text-purple-700', bg: 'bg-primary/10', border: 'border-purple-300' },
   GOLD: { label: 'Gold', color: 'text-yellow-700', bg: 'bg-yellow-100', border: 'border-yellow-300' },
   SILVER: { label: 'Silver', color: 'text-gray-600', bg: 'bg-gray-100', border: 'border-gray-300' },
   BRONZE: { label: 'Bronze', color: 'text-orange-700', bg: 'bg-orange-100', border: 'border-orange-300' },

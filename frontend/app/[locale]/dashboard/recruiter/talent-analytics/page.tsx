@@ -148,7 +148,7 @@ export default function TalentAnalyticsPage() {
                   {talentPool.toLocaleString()}
                 </p>
               </div>
-              <Users className="h-8 w-8 text-blue-500" />
+              <Users className="h-8 w-8 text-primary" />
             </div>
             <div className="mt-2 text-sm text-gray-600">
               Public student profiles
@@ -165,7 +165,7 @@ export default function TalentAnalyticsPage() {
                   {universityDistribution.length}
                 </p>
               </div>
-              <GraduationCap className="h-8 w-8 text-purple-500" />
+              <GraduationCap className="h-8 w-8 text-primary" />
             </div>
             <div className="mt-2 text-sm text-gray-600">
               Top universities shown

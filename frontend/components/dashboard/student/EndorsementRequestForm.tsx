@@ -95,7 +95,7 @@ export default function EndorsementRequestForm({
   const statusIcon = (status: string) => {
     switch (status) {
       case 'VERIFIED':
-        return <CheckCircle2 className="h-4 w-4 text-green-500" />
+        return <CheckCircle2 className="h-4 w-4 text-primary" />
       case 'PENDING':
         return <Clock className="h-4 w-4 text-amber-500" />
       case 'DECLINED':
@@ -111,11 +111,11 @@ export default function EndorsementRequestForm({
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center justify-between text-base">
           <span className="flex items-center gap-2">
-            <Award className="h-5 w-5 text-green-500" />
+            <Award className="h-5 w-5 text-primary" />
             Professor Endorsement
           </span>
           {hasVerified && (
-            <Badge className="bg-green-100 text-green-700 text-xs">Endorsed</Badge>
+            <Badge className="bg-primary/10 text-primary text-xs">Endorsed</Badge>
           )}
         </CardTitle>
       </CardHeader>
@@ -140,7 +140,7 @@ export default function EndorsementRequestForm({
 
         {/* Success state */}
         {sent && (
-          <div className="flex items-center gap-2 p-3 bg-green-50 text-green-700 rounded-lg text-sm">
+          <div className="flex items-center gap-2 p-3 bg-primary/5 text-green-700 rounded-lg text-sm">
             <CheckCircle2 className="h-4 w-4" />
             Request sent! Your professor will receive an email to verify.
           </div>

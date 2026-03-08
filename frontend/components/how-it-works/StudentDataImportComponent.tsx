@@ -213,7 +213,7 @@ export function StudentDataImportComponent() {
               onClick={() => uni.status === 'active' ? handleUniversitySelect(uni.name) : null}
               className={`p-4 rounded-lg border-2 transition-all text-left ${
                 uni.status === 'active'
-                  ? 'border-gray-200 hover:border-blue-300 hover:bg-blue-50'
+                  ? 'border-gray-200 hover:border-blue-300 hover:bg-primary/5'
                   : 'border-gray-100 bg-gray-50 cursor-not-allowed'
               }`}
               disabled={uni.status !== 'active'}
@@ -224,7 +224,7 @@ export function StudentDataImportComponent() {
                   <span className="font-medium text-gray-900">{uni.name}</span>
                 </div>
                 {uni.status === 'active' ? (
-                  <Badge className="bg-green-100 text-green-700">Available</Badge>
+                  <Badge className="bg-primary/10 text-green-700">Available</Badge>
                 ) : (
                   <Badge variant="secondary">Coming Soon</Badge>
                 )}
@@ -246,9 +246,9 @@ export function StudentDataImportComponent() {
         <p className="text-gray-600">Securely connect to your university's student information system</p>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
           <div className="flex items-start space-x-3">
-            <Lock className="h-5 w-5 text-blue-600 mt-0.5" />
+            <Lock className="h-5 w-5 text-primary mt-0.5" />
             <div>
               <h4 className="font-medium text-blue-900">Secure Connection</h4>
               <p className="text-sm text-blue-700 mt-1">
@@ -278,12 +278,12 @@ export function StudentDataImportComponent() {
         </div>
 
         <div className="flex items-center space-x-2 text-sm text-gray-600">
-          <CheckCircle className="h-4 w-4 text-green-600" />
+          <CheckCircle className="h-4 w-4 text-primary" />
           <span>Two-factor authentication supported</span>
         </div>
 
         <div className="flex space-x-3">
-          <Button onClick={simulateConnection} disabled={isLoading} className="bg-blue-600 hover:bg-blue-700">
+          <Button onClick={simulateConnection} disabled={isLoading} className="bg-primary hover:bg-blue-700">
             {isLoading ? (
               <>
                 <Loader className="h-4 w-4 mr-2 animate-spin" />
@@ -315,9 +315,9 @@ export function StudentDataImportComponent() {
           <p className="text-gray-600">Review the information we found in your university profile</p>
         </CardHeader>
         <CardContent>
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+          <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6">
             <div className="flex items-center space-x-3">
-              <CheckCircle className="h-5 w-5 text-green-600" />
+              <CheckCircle className="h-5 w-5 text-primary" />
               <div>
                 <h4 className="font-medium text-green-900">Connection Successful</h4>
                 <p className="text-sm text-green-700">Found complete profile data for {importedData?.personalInfo.firstName} {importedData?.personalInfo.lastName}</p>
@@ -379,7 +379,7 @@ export function StudentDataImportComponent() {
                   {importedData?.skills?.slice(0, 6).map((skill, index) => (
                     <Badge key={index} variant="secondary" className="text-xs">
                       {skill.name}
-                      {skill.verified && <CheckCircle className="h-3 w-3 ml-1 text-green-600" />}
+                      {skill.verified && <CheckCircle className="h-3 w-3 ml-1 text-primary" />}
                     </Badge>
                   ))}
                 </div>
@@ -388,7 +388,7 @@ export function StudentDataImportComponent() {
           </div>
 
           <div className="flex space-x-3 mt-6">
-            <Button onClick={handleImportData} className="bg-green-600 hover:bg-green-700">
+            <Button onClick={handleImportData} className="bg-primary hover:bg-green-700">
               <Download className="h-4 w-4 mr-2" />
               Import This Data
             </Button>
@@ -410,15 +410,15 @@ export function StudentDataImportComponent() {
         <div className="space-y-2 max-w-md mx-auto">
           <div className="flex justify-between text-sm">
             <span>Personal information</span>
-            <CheckCircle className="h-4 w-4 text-green-600" />
+            <CheckCircle className="h-4 w-4 text-primary" />
           </div>
           <div className="flex justify-between text-sm">
             <span>Academic records</span>
-            <CheckCircle className="h-4 w-4 text-green-600" />
+            <CheckCircle className="h-4 w-4 text-primary" />
           </div>
           <div className="flex justify-between text-sm">
             <span>Course history</span>
-            <Loader className="h-4 w-4 animate-spin text-blue-600" />
+            <Loader className="h-4 w-4 animate-spin text-primary" />
           </div>
           <div className="flex justify-between text-sm text-gray-600">
             <span>Projects & achievements</span>
@@ -432,13 +432,13 @@ export function StudentDataImportComponent() {
   const renderComplete = () => (
     <Card>
       <CardContent className="py-12 text-center">
-        <div className="bg-green-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-          <CheckCircle className="h-8 w-8 text-green-600" />
+        <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+          <CheckCircle className="h-8 w-8 text-primary" />
         </div>
         <h3 className="text-lg font-semibold text-gray-900 mb-2">Import Complete!</h3>
         <p className="text-gray-600 mb-6">Your profile has been created successfully with all your university data.</p>
 
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 max-w-md mx-auto">
+        <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6 max-w-md mx-auto">
           <h4 className="font-medium text-blue-900 mb-2">What was imported:</h4>
           <div className="space-y-1 text-sm text-blue-800">
             <div>✓ Personal & contact information</div>
@@ -451,7 +451,7 @@ export function StudentDataImportComponent() {
         </div>
 
         <div className="flex justify-center space-x-3">
-          <Button className="bg-blue-600 hover:bg-blue-700">
+          <Button className="bg-primary hover:bg-blue-700">
             <Eye className="h-4 w-4 mr-2" />
             View My Profile
           </Button>
@@ -489,12 +489,12 @@ export function StudentDataImportComponent() {
               return (
                 <div key={step.key} className="flex items-center">
                   <div className={`flex items-center justify-center w-8 h-8 rounded-full ${
-                    isActive ? 'bg-blue-600 text-white' :
-                    isCompleted ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-600'
+                    isActive ? 'bg-primary text-white' :
+                    isCompleted ? 'bg-primary text-white' : 'bg-gray-200 text-gray-600'
                   }`}>
                     <Icon className="h-4 w-4" />
                   </div>
-                  <span className={`ml-2 text-sm ${isActive ? 'text-blue-600 font-medium' : 'text-gray-600'}`}>
+                  <span className={`ml-2 text-sm ${isActive ? 'text-primary font-medium' : 'text-gray-600'}`}>
                     {step.label}
                   </span>
                 </div>

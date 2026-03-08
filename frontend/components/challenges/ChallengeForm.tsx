@@ -180,7 +180,7 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
           <div key={s} className="flex-1 flex items-center gap-2">
             <div
               className={`h-2 flex-1 rounded-full ${
-                s <= step ? 'bg-blue-600' : 'bg-gray-200'
+                s <= step ? 'bg-primary' : 'bg-gray-200'
               }`}
             />
           </div>

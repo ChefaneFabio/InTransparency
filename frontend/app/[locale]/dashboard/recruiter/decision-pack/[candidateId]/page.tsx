@@ -172,8 +172,8 @@ export default function DecisionPackPage() {
         <CardContent className="p-6">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                <User className="h-8 w-8 text-blue-600" />
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                <User className="h-8 w-8 text-primary" />
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">{fullName}</h1>
@@ -193,9 +193,9 @@ export default function DecisionPackPage() {
                 <Badge
                   className={`text-lg px-3 py-1 ${
                     data.prediction.probability >= 0.75
-                      ? 'bg-green-100 text-green-700'
+                      ? 'bg-primary/10 text-green-700'
                       : data.prediction.probability >= 0.5
-                      ? 'bg-blue-100 text-blue-700'
+                      ? 'bg-primary/10 text-blue-700'
                       : 'bg-yellow-100 text-yellow-700'
                   }`}
                 >
@@ -210,7 +210,7 @@ export default function DecisionPackPage() {
                 </Badge>
               )}
               {data.trustScore.universityVerified && (
-                <Badge className="bg-green-100 text-green-700">
+                <Badge className="bg-primary/10 text-green-700">
                   <Shield className="mr-1 h-3 w-3" />
                   University Verified
                 </Badge>
@@ -224,7 +224,7 @@ export default function DecisionPackPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Zap className="h-5 w-5 text-yellow-500" />
+            <Zap className="h-5 w-5 text-secondary" />
             Skills Evidence Map
           </CardTitle>
         </CardHeader>
@@ -274,7 +274,7 @@ export default function DecisionPackPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Brain className="h-5 w-5 text-purple-500" />
+              <Brain className="h-5 w-5 text-primary" />
               AI Analysis Overview
             </CardTitle>
           </CardHeader>
@@ -300,7 +300,7 @@ export default function DecisionPackPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Award className="h-5 w-5 text-green-500" />
+              <Award className="h-5 w-5 text-primary" />
               Professor Endorsements
             </CardTitle>
           </CardHeader>
@@ -332,7 +332,7 @@ export default function DecisionPackPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-blue-500" />
+              <BookOpen className="h-5 w-5 text-primary" />
               Grade Provenance
             </CardTitle>
           </CardHeader>
@@ -385,7 +385,7 @@ export default function DecisionPackPage() {
                       {p.discipline.replace(/_/g, ' ')}
                     </Badge>
                     {p.verificationStatus === 'VERIFIED' && (
-                      <Badge className="bg-green-100 text-green-700 text-xs">
+                      <Badge className="bg-primary/10 text-green-700 text-xs">
                         <Shield className="mr-1 h-3 w-3" />
                         Verified
                       </Badge>
@@ -417,7 +417,7 @@ export default function DecisionPackPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-green-500" />
+              <TrendingUp className="h-5 w-5 text-primary" />
               Placement Probability Factors
             </CardTitle>
           </CardHeader>
@@ -426,14 +426,14 @@ export default function DecisionPackPage() {
               <div key={i} className="flex items-center gap-3">
                 <div
                   className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                    f.impact > 0 ? 'bg-green-500' : 'bg-red-400'
+                    f.impact > 0 ? 'bg-primary/50' : 'bg-red-400'
                   }`}
                 />
                 <div className="flex-1">
                   <p className="text-sm text-gray-700">{f.description}</p>
                 </div>
                 <span className={`text-sm font-medium ${
-                  f.impact > 0 ? 'text-green-600' : 'text-red-500'
+                  f.impact > 0 ? 'text-primary' : 'text-red-500'
                 }`}>
                   {f.impact > 0 ? '+' : ''}{f.impact}%
                 </span>

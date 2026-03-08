@@ -187,7 +187,7 @@ export default function StudentSearchPage() {
       <CardHeader>
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
+            <div className="w-12 h-12 bg-primary/50 rounded-full flex items-center justify-center text-white font-semibold">
               {student.initials}
             </div>
             <div>
@@ -201,7 +201,7 @@ export default function StudentSearchPage() {
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <Badge variant="secondary" className="text-blue-600">
+            <Badge variant="secondary" className="text-primary">
               {student.projectCount} project{student.projectCount !== 1 ? 's' : ''}
             </Badge>
           </div>
@@ -247,8 +247,8 @@ export default function StudentSearchPage() {
                 <span className="font-medium text-sm">{student.topProjects[0]?.title}</span>
                 {student.topProjects[0]?.innovationScore !== null && (
                   <div className="flex items-center space-x-1">
-                    <TrendingUp className="h-3 w-3 text-green-500" />
-                    <span className="text-xs text-green-600">
+                    <TrendingUp className="h-3 w-3 text-primary" />
+                    <span className="text-xs text-primary">
                       {student.topProjects[0]?.innovationScore}/10
                     </span>
                   </div>
@@ -272,7 +272,7 @@ export default function StudentSearchPage() {
               variant="outline"
               size="sm"
               onClick={() => toggleStudentSelection(student.id)}
-              className={selectedStudents.includes(student.id) ? 'bg-blue-50' : ''}
+              className={selectedStudents.includes(student.id) ? 'bg-primary/5' : ''}
             >
               <CheckCircle2 className="h-4 w-4 mr-1" />
               {selectedStudents.includes(student.id) ? 'Selected' : 'Select'}
@@ -336,7 +336,7 @@ export default function StudentSearchPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             {messageSuccess ? (
-              <div className="flex items-center space-x-2 text-green-600 p-4 bg-green-50 rounded">
+              <div className="flex items-center space-x-2 text-primary p-4 bg-primary/5 rounded">
                 <CheckCircle2 className="h-5 w-5" />
                 <span>{messageSuccess}</span>
               </div>

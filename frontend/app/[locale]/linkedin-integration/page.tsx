@@ -55,7 +55,7 @@ export default function LinkedInIntegrationPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-16">
+    <div className="min-h-screen bg-muted/30 py-16">
       <div className="container max-w-4xl mx-auto px-4">
         {/* Back Button */}
         <Button
@@ -69,10 +69,10 @@ export default function LinkedInIntegrationPage() {
 
         {/* Main Card */}
         <Card className="overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-8 text-white">
+          <div className="bg-primary p-8 text-white">
             <div className="flex items-center gap-4 mb-4">
               <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center">
-                <Linkedin className="h-10 w-10 text-blue-600" />
+                <Linkedin className="h-10 w-10 text-primary" />
               </div>
               <div>
                 <Badge className="bg-white/20 text-white mb-2">Coming Soon</Badge>
@@ -97,8 +97,8 @@ export default function LinkedInIntegrationPage() {
                   key={index}
                   className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg"
                 >
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <benefit.icon className="h-5 w-5 text-blue-600" />
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <benefit.icon className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900">{benefit.title}</h3>
@@ -109,21 +109,21 @@ export default function LinkedInIntegrationPage() {
             </div>
 
             {/* Timeline */}
-            <div className="bg-blue-50 rounded-lg p-6 mb-8">
+            <div className="bg-primary/5 rounded-lg p-6 mb-8">
               <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                <Clock className="h-5 w-5 text-blue-600" />
+                <Clock className="h-5 w-5 text-primary" />
                 Roadmap
               </h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <CheckCircle className="h-5 w-5 text-primary" />
                   <span className="text-gray-700">Importazione manuale del profilo</span>
-                  <Badge variant="outline" className="bg-green-50 text-green-700">Completato</Badge>
+                  <Badge variant="outline" className="bg-primary/5 text-green-700">Completato</Badge>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-5 h-5 border-2 border-blue-400 rounded-full animate-pulse" />
                   <span className="text-gray-700">OAuth LinkedIn integration</span>
-                  <Badge variant="outline" className="bg-blue-50 text-blue-700">In sviluppo</Badge>
+                  <Badge variant="outline" className="bg-primary/5 text-blue-700">In sviluppo</Badge>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-5 h-5 border-2 border-gray-300 rounded-full" />
@@ -142,8 +142,8 @@ export default function LinkedInIntegrationPage() {
             <div className="border-t pt-8">
               {isSubscribed ? (
                 <div className="text-center py-6">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle className="h-8 w-8 text-green-600" />
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="h-8 w-8 text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     Grazie per l'interesse!

@@ -508,12 +508,12 @@ export default function UniversityAISearchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-6">
+    <div className="min-h-screen bg-primary/5 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-3 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl">
+            <div className="p-3 bg-primary rounded-xl">
               <Sparkles className="h-6 w-6 text-white" />
             </div>
             <div>
@@ -526,7 +526,7 @@ export default function UniversityAISearchPage() {
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Chat Interface */}
           <div className="lg:col-span-2">
-            <Card className="h-[calc(100vh-200px)] flex flex-col shadow-xl">
+            <Card className="h-[calc(100vh-200px)] flex flex-col shadow-lg">
               <CardContent className="flex-1 overflow-y-auto p-6 space-y-4">
                 <AnimatePresence>
                   {messages.map((message) => (
@@ -538,7 +538,7 @@ export default function UniversityAISearchPage() {
                       className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       {message.role === 'assistant' && (
-                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                           <Bot className="h-5 w-5 text-white" />
                         </div>
                       )}
@@ -546,7 +546,7 @@ export default function UniversityAISearchPage() {
                       <div className={`flex flex-col max-w-[70%] ${message.role === 'user' ? 'items-end' : 'items-start'}`}>
                         <div className={`rounded-2xl px-4 py-3 ${
                           message.role === 'user'
-                            ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white'
+                            ? 'bg-primary text-white'
                             : 'bg-gray-100 text-gray-900'
                         }`}>
                           <p className="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</p>
@@ -572,7 +572,7 @@ export default function UniversityAISearchPage() {
                                         {student.major}
                                       </p>
                                     </div>
-                                    <Badge className={student.hired ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}>
+                                    <Badge className={student.hired ? 'bg-primary/10 text-primary' : 'bg-primary/10 text-primary'}>
                                       {student.hired ? 'Hired' : `${student.contacted} applications`}
                                     </Badge>
                                   </div>
@@ -632,7 +632,7 @@ export default function UniversityAISearchPage() {
                                         {job.company}
                                       </p>
                                     </div>
-                                    <Badge className="bg-purple-100 text-purple-800">
+                                    <Badge className="bg-primary/10 text-primary">
                                       {job.matchedStudents} applications
                                     </Badge>
                                   </div>
@@ -669,7 +669,7 @@ export default function UniversityAISearchPage() {
                                     </div>
                                   )}
 
-                                  <Button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
+                                  <Button className="w-full bg-primary hover:bg-primary/90">
                                     View Matched Students
                                     <ArrowRight className="h-4 w-4 ml-2" />
                                   </Button>
@@ -695,7 +695,7 @@ export default function UniversityAISearchPage() {
 
                 {isTyping && (
                   <div className="flex gap-3">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                       <Bot className="h-5 w-5 text-white" />
                     </div>
                     <div className="bg-gray-100 rounded-2xl px-4 py-3">
@@ -724,7 +724,7 @@ export default function UniversityAISearchPage() {
                   <Button
                     onClick={handleSend}
                     disabled={isTyping}
-                    className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700"
+                    className="bg-primary hover:bg-primary/90"
                   >
                     <Send className="h-4 w-4" />
                   </Button>
@@ -738,7 +738,7 @@ export default function UniversityAISearchPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
-                  <Lightbulb className="h-5 w-5 mr-2 text-yellow-500" />
+                  <Lightbulb className="h-5 w-5 mr-2 text-secondary" />
                   Example Queries
                 </CardTitle>
               </CardHeader>
@@ -747,7 +747,7 @@ export default function UniversityAISearchPage() {
                   <button
                     key={index}
                     onClick={() => handleExampleClick(example)}
-                    className="w-full text-left p-3 rounded-lg bg-gray-50 hover:bg-indigo-50 hover:border-indigo-200 border border-gray-200 transition-colors text-sm"
+                    className="w-full text-left p-3 rounded-lg bg-gray-50 hover:bg-primary/5 hover:border-primary/20 border border-gray-200 transition-colors text-sm"
                   >
                     {example}
                   </button>
@@ -755,10 +755,10 @@ export default function UniversityAISearchPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-indigo-50 to-purple-50">
+            <Card className="bg-primary/5">
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
-                  <Zap className="h-5 w-5 mr-2 text-indigo-600" />
+                  <Zap className="h-5 w-5 mr-2 text-primary" />
                   Search Capabilities
                 </CardTitle>
               </CardHeader>
@@ -772,7 +772,7 @@ export default function UniversityAISearchPage() {
                     <li>- Find available graduates</li>
                   </ul>
                 </div>
-                <div className="pt-3 border-t border-indigo-100">
+                <div className="pt-3 border-t border-primary/10">
                   <p className="font-semibold text-gray-900 mb-2">Job Searches:</p>
                   <ul className="text-gray-600 space-y-1">
                     <li>- Find hiring companies</li>

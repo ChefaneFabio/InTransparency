@@ -10,9 +10,9 @@ interface SkillRoadmapProps {
 }
 
 const typeConfig = {
-  learn: { icon: BookOpen, color: 'bg-blue-500', bgLight: 'bg-blue-50 border-blue-200', label: 'Learn' },
-  build: { icon: Hammer, color: 'bg-green-500', bgLight: 'bg-green-50 border-green-200', label: 'Build' },
-  certify: { icon: Award, color: 'bg-purple-500', bgLight: 'bg-purple-50 border-purple-200', label: 'Certify' },
+  learn: { icon: BookOpen, color: 'bg-primary/50', bgLight: 'bg-primary/5 border-primary/20', label: 'Learn' },
+  build: { icon: Hammer, color: 'bg-primary/50', bgLight: 'bg-primary/5 border-primary/20', label: 'Build' },
+  certify: { icon: Award, color: 'bg-primary/50', bgLight: 'bg-primary/5 border-primary/20', label: 'Certify' },
   apply: { icon: Send, color: 'bg-orange-500', bgLight: 'bg-orange-50 border-orange-200', label: 'Apply' },
 }
 

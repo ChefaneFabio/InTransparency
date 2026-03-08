@@ -61,14 +61,14 @@ const tierColors: Record<string, string> = {
   BRONZE: 'bg-orange-100 text-orange-700 border-orange-300',
   SILVER: 'bg-muted text-foreground/80 border-gray-400',
   GOLD: 'bg-yellow-100 text-yellow-700 border-yellow-400',
-  PLATINUM: 'bg-purple-100 text-purple-700 border-purple-400'
+  PLATINUM: 'bg-primary/10 text-primary border-primary/40'
 }
 
 const tierGradients: Record<string, string> = {
   BRONZE: 'from-orange-500 to-amber-600',
   SILVER: 'from-gray-400 to-gray-500',
   GOLD: 'from-yellow-400 to-amber-500',
-  PLATINUM: 'from-purple-500 to-pink-500'
+  PLATINUM: 'from-primary to-primary'
 }
 
 const tierIcons: Record<string, typeof Trophy> = {
@@ -150,8 +150,8 @@ export default function StudentReferralsPage() {
   const getStatusBadge = (status: string) => {
     const config: Record<string, { color: string; label: string; icon: typeof Clock }> = {
       'pending': { color: 'bg-yellow-100 text-yellow-800', label: t('status.pending'), icon: Clock },
-      'completed': { color: 'bg-green-100 text-green-800', label: t('status.completed'), icon: CheckCircle },
-      'registered': { color: 'bg-blue-100 text-blue-800', label: t('status.registered'), icon: Users }
+      'completed': { color: 'bg-primary/10 text-primary', label: t('status.completed'), icon: CheckCircle },
+      'registered': { color: 'bg-primary/10 text-primary', label: t('status.registered'), icon: Users }
     }
 
     const { color, label, icon: Icon } = config[status] || config.pending
@@ -218,7 +218,7 @@ export default function StudentReferralsPage() {
 
         {/* Ambassador Badge Card */}
         <Card className="mb-6 overflow-hidden">
-          <div className={`bg-gradient-to-r ${tierGradients[currentTier] || 'from-primary to-secondary'} p-6 text-white`}>
+          <div className={`bg-primary p-6 text-white`}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <div className="bg-white/20 rounded-full p-3">
@@ -247,12 +247,12 @@ export default function StudentReferralsPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="bg-green-100 rounded-full p-2">
-                  <DollarSign className="h-5 w-5 text-green-600" />
+                <div className="bg-primary/10 rounded-full p-2">
+                  <DollarSign className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">{t('earnings.totalEarned')}</p>
-                  <p className="text-2xl font-bold text-green-600">
+                  <p className="text-2xl font-bold text-primary">
                     {referralData?.premiumMonthsEarned || 0} {t('earnings.months')}
                     {cashEarned > 0 && ` + €${cashEarned}`}
                   </p>
@@ -264,11 +264,11 @@ export default function StudentReferralsPage() {
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
                 <div className="bg-yellow-100 rounded-full p-2">
-                  <Clock className="h-5 w-5 text-yellow-600" />
+                  <Clock className="h-5 w-5 text-secondary" />
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">{t('earnings.pending')}</p>
-                  <p className="text-2xl font-bold text-yellow-600">
+                  <p className="text-2xl font-bold text-secondary">
                     {referralData?.pendingReferrals || 0} {t('earnings.referrals')}
                   </p>
                 </div>
@@ -297,7 +297,7 @@ export default function StudentReferralsPage() {
           <div className="lg:col-span-2 space-y-6">
             {/* Referral Link Card */}
             <Card className="border-2 border-primary shadow-lg">
-              <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
+              <CardHeader className="bg-primary/10">
                 <CardTitle className="flex items-center gap-2">
                   <Share2 className="h-5 w-5 text-primary" />
                   {t('referralLink.title')}
@@ -436,7 +436,7 @@ export default function StudentReferralsPage() {
                         key={tier}
                         className={`border-2 rounded-lg p-4 transition-all ${
                           isUnlocked
-                            ? 'bg-green-50 border-green-500'
+                            ? 'bg-primary/5 border-primary'
                             : isNextTier
                             ? 'bg-primary/10 border-primary ring-2 ring-primary/20'
                             : 'bg-muted border-border'
@@ -448,7 +448,7 @@ export default function StudentReferralsPage() {
                             <span className="font-bold text-lg">{tier}</span>
                           </div>
                           {isUnlocked && (
-                            <Badge className="bg-green-500 text-white">
+                            <Badge className="bg-primary text-white">
                               <CheckCircle className="h-3 w-3 mr-1" />
                               {t('tiers.unlocked')}
                             </Badge>
@@ -505,7 +505,7 @@ export default function StudentReferralsPage() {
                         >
                           {/* Timeline dot */}
                           <div className={`absolute left-2.5 w-3 h-3 rounded-full border-2 border-background ${
-                            referral.profileCompleted ? 'bg-green-500' : referral.status === 'pending' ? 'bg-yellow-500' : 'bg-blue-500'
+                            referral.profileCompleted ? 'bg-primary' : referral.status === 'pending' ? 'bg-yellow-500' : 'bg-primary'
                           }`} />
                           <div className="border rounded-lg p-4 hover:bg-muted transition-colors">
                             <div className="flex items-start justify-between mb-2">
@@ -520,7 +520,7 @@ export default function StudentReferralsPage() {
                             <div className="flex items-center justify-between text-xs text-muted-foreground mt-2">
                               <span>{t('activity.joined')} {new Date(referral.signupDate).toLocaleDateString()}</span>
                               {referral.profileCompleted && (
-                                <span className="text-green-600 flex items-center gap-1">
+                                <span className="text-primary flex items-center gap-1">
                                   <CheckCircle className="h-3 w-3" />
                                   {t('activity.profileComplete')}
                                 </span>
@@ -539,9 +539,9 @@ export default function StudentReferralsPage() {
           {/* Right Column - Sidebar */}
           <div className="space-y-6">
             {/* Leaderboard */}
-            <Card className="border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50">
+            <Card className="border-2 border-primary/20 bg-primary/5">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-purple-900">
+                <CardTitle className="flex items-center gap-2 text-primary">
                   <Trophy className="h-5 w-5" />
                   {t('leaderboard.title')}
                 </CardTitle>

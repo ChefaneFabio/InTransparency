@@ -82,9 +82,9 @@ export function SavingsCalculator({
 
   return (
     <Card className={`${className}`}>
-      <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
+      <CardHeader className="bg-primary/5">
         <CardTitle className="flex items-center gap-2">
-          <TrendingDown className="h-5 w-5 text-blue-600" />
+          <TrendingDown className="h-5 w-5 text-primary" />
           Calculate Your Savings
         </CardTitle>
         <p className="text-sm text-muted-foreground">
@@ -137,12 +137,12 @@ export function SavingsCalculator({
           </div>
 
           {/* Our Cost */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-green-900">
                 InTransparency
               </span>
-              <span className="text-2xl font-bold text-green-600">
+              <span className="text-2xl font-bold text-primary">
                 {formatCurrency(calculations.ourCost)}
               </span>
             </div>
@@ -152,11 +152,11 @@ export function SavingsCalculator({
           </div>
 
           {/* Savings */}
-          <div className="bg-gradient-to-r from-blue-100 to-purple-100 border-2 border-blue-300 rounded-lg p-6">
+          <div className="bg-primary/10 border-2 border-primary/20 rounded-lg p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-900 mb-1">YOUR TOTAL SAVINGS</p>
-                <p className="text-4xl font-bold text-blue-600">
+                <p className="text-4xl font-bold text-primary">
                   {formatCurrency(calculations.savings)}
                 </p>
                 <p className="text-sm text-blue-700 mt-2">
@@ -165,7 +165,7 @@ export function SavingsCalculator({
               </div>
               <div className="text-center bg-white rounded-full w-20 h-20 flex items-center justify-center border-4 border-green-500">
                 <div>
-                  <p className="text-2xl font-bold text-green-600">{calculations.savingsPercentage}%</p>
+                  <p className="text-2xl font-bold text-primary">{calculations.savingsPercentage}%</p>
                   <p className="text-xs text-green-700">OFF</p>
                 </div>
               </div>
@@ -175,7 +175,7 @@ export function SavingsCalculator({
 
         {/* What You Can Do With Savings */}
         {calculations.savings > 1000 && (
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
             <p className="font-semibold text-purple-900 mb-2 flex items-center gap-2">
               <Sparkles className="h-4 w-4" />
               What you can do with {formatCurrency(calculations.savings)}:
@@ -209,7 +209,7 @@ export function SavingsCalculator({
                 'No annual contracts or commitments'
               ].map((feature, index) => (
                 <div key={index} className="flex items-start gap-2 text-sm">
-                  <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
                   <span>{feature}</span>
                 </div>
               ))}
@@ -219,7 +219,7 @@ export function SavingsCalculator({
 
         {/* CTA */}
         <div className="flex gap-3">
-          <Button className="flex-1 bg-blue-600 hover:bg-blue-700">
+          <Button className="flex-1 bg-primary hover:bg-blue-700">
             Start Free Trial
             <ArrowRight className="h-4 w-4 ml-2" />
           </Button>
@@ -227,7 +227,7 @@ export function SavingsCalculator({
 
         {/* Break-even Note */}
         {calculations.contactsNeeded > hiresPerYear && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center">
+          <div className="bg-primary/5 border border-primary/20 rounded-lg p-3 text-center">
             <p className="text-xs text-blue-800">
               💡 <strong>Pro tip:</strong> You'd need to contact{' '}
               <strong>{calculations.contactsNeeded} candidates</strong> before InTransparency
@@ -289,13 +289,13 @@ export function SavingsCalculatorCompact({ className = '' }: { className?: strin
             <span className="text-muted-foreground">LinkedIn Recruiter:</span>
             <span className="font-semibold">€{linkedinCost.toLocaleString()}/year</span>
           </div>
-          <div className="flex justify-between text-green-600">
+          <div className="flex justify-between text-primary">
             <span>InTransparency:</span>
             <span className="font-semibold">€{ourCost}/year</span>
           </div>
           <div className="border-t pt-2 flex justify-between text-lg">
             <span className="font-bold">You Save:</span>
-            <span className="font-bold text-blue-600">
+            <span className="font-bold text-primary">
               €{savings.toLocaleString()} ({savingsPercent}%)
             </span>
           </div>

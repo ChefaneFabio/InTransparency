@@ -44,7 +44,7 @@ const promptConfig: Record<ReferralTriggerType, {
     reward: '€5 per friend',
     cta: 'Get Referral Link',
     icon: Share2,
-    color: 'from-blue-500 to-cyan-500'
+    color: 'bg-primary'
   },
   'student-project-limit': {
     title: 'Upgrade to Pro or Refer Your Institution',
@@ -52,7 +52,7 @@ const promptConfig: Record<ReferralTriggerType, {
     reward: '10% of Year 1',
     cta: 'View Options',
     icon: TrendingUp,
-    color: 'from-purple-500 to-pink-500'
+    color: 'bg-primary/80'
   },
   'student-campus-ambassador': {
     title: 'Become Campus Ambassador',
@@ -60,7 +60,7 @@ const promptConfig: Record<ReferralTriggerType, {
     reward: '€50/month',
     cta: 'Apply Now',
     icon: Users,
-    color: 'from-green-500 to-emerald-500'
+    color: 'bg-primary/60'
   },
   'institution-student-upgrade': {
     title: 'Promote Pro Upgrades to Students',
@@ -68,7 +68,7 @@ const promptConfig: Record<ReferralTriggerType, {
     reward: '10% revenue share',
     cta: 'View Dashboard',
     icon: TrendingUp,
-    color: 'from-purple-500 to-indigo-500'
+    color: 'bg-primary/60'
   },
   'institution-company-interest': {
     title: 'Invite Company to Partner',
@@ -76,7 +76,7 @@ const promptConfig: Record<ReferralTriggerType, {
     reward: '20% of revenue',
     cta: 'Send Invitation',
     icon: Building2,
-    color: 'from-green-500 to-teal-500'
+    color: 'bg-primary/70'
   },
   'company-after-contact': {
     title: 'Hired via InTransparency? Refer the Institution',
@@ -84,7 +84,7 @@ const promptConfig: Record<ReferralTriggerType, {
     reward: '50 credits (€500)',
     cta: 'Nominate Institution',
     icon: Building2,
-    color: 'from-blue-500 to-purple-500'
+    color: 'bg-primary'
   },
   'company-enterprise-upgrade': {
     title: 'Upgrade to Enterprise & Save 90%',

@@ -213,12 +213,12 @@ export default function StudentChallengeDetailPage() {
 
   const getSubmissionStatusBadge = (status: string) => {
     const configs: Record<string, { label: string; className: string; icon: React.ReactNode }> = {
-      APPLIED: { label: 'Applied', className: 'bg-blue-100 text-blue-700', icon: <Clock className="h-3 w-3" /> },
-      SELECTED: { label: 'Selected', className: 'bg-green-100 text-green-700', icon: <CheckCircle className="h-3 w-3" /> },
-      IN_PROGRESS: { label: 'In Progress', className: 'bg-purple-100 text-purple-700', icon: <Clock className="h-3 w-3" /> },
+      APPLIED: { label: 'Applied', className: 'bg-primary/10 text-primary', icon: <Clock className="h-3 w-3" /> },
+      SELECTED: { label: 'Selected', className: 'bg-primary/10 text-primary', icon: <CheckCircle className="h-3 w-3" /> },
+      IN_PROGRESS: { label: 'In Progress', className: 'bg-primary/10 text-primary', icon: <Clock className="h-3 w-3" /> },
       SUBMITTED: { label: 'Submitted', className: 'bg-orange-100 text-orange-700', icon: <Send className="h-3 w-3" /> },
       REVISION_REQUESTED: { label: 'Revision Needed', className: 'bg-yellow-100 text-yellow-700', icon: <Clock className="h-3 w-3" /> },
-      APPROVED: { label: 'Approved', className: 'bg-green-100 text-green-700', icon: <CheckCircle className="h-3 w-3" /> },
+      APPROVED: { label: 'Approved', className: 'bg-primary/10 text-primary', icon: <CheckCircle className="h-3 w-3" /> },
       REJECTED: { label: 'Rejected', className: 'bg-red-100 text-red-700', icon: <XCircle className="h-3 w-3" /> }
     }
     const config = configs[status] || configs.APPLIED
@@ -233,7 +233,7 @@ export default function StudentChallengeDetailPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     )
   }
@@ -271,7 +271,7 @@ export default function StudentChallengeDetailPage() {
               className="w-16 h-16 rounded-lg object-cover"
             />
           ) : (
-            <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-lg bg-primary flex items-center justify-center">
               <Building2 className="h-8 w-8 text-white" />
             </div>
           )}
@@ -281,7 +281,7 @@ export default function StudentChallengeDetailPage() {
             <div className="flex items-center gap-3 mt-2">
               <Badge variant="outline">{challenge.challengeType.replace(/_/g, ' ')}</Badge>
               {challenge.mentorshipOffered && (
-                <Badge className="bg-green-50 text-green-700">
+                <Badge className="bg-primary/5 text-primary">
                   <GraduationCap className="h-3 w-3 mr-1" />
                   Mentorship
                 </Badge>
@@ -409,9 +409,9 @@ export default function StudentChallengeDetailPage() {
                 {mySubmission.status === 'APPROVED' && (
                   <div className="space-y-4">
                     {mySubmission.companyFeedback && (
-                      <div className="p-4 rounded-lg bg-green-50 border border-green-200">
-                        <h4 className="font-medium text-green-800 mb-2">Company Feedback</h4>
-                        <p className="text-green-700">{mySubmission.companyFeedback}</p>
+                      <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
+                        <h4 className="font-medium text-primary mb-2">Company Feedback</h4>
+                        <p className="text-primary">{mySubmission.companyFeedback}</p>
                       </div>
                     )}
                     <Button onClick={handleConvertToProject} disabled={actionLoading}>
@@ -424,8 +424,8 @@ export default function StudentChallengeDetailPage() {
 
                 {/* Waiting states */}
                 {mySubmission.status === 'APPLIED' && (
-                  <div className="p-4 rounded-lg bg-blue-50 border border-blue-200">
-                    <p className="text-blue-700">
+                  <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
+                    <p className="text-primary">
                       Your application is being reviewed by the company. You will be notified when selected.
                     </p>
                   </div>
@@ -528,9 +528,9 @@ export default function StudentChallengeDetailPage() {
         <div className="space-y-6">
           {/* Apply CTA */}
           {!mySubmission && !showApplyForm && (
-            <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200">
+            <Card className="bg-gradient-to-br from-primary/5 to-primary/5 border-primary/20">
               <CardContent className="pt-6 text-center">
-                <Trophy className="h-12 w-12 mx-auto text-blue-600 mb-4" />
+                <Trophy className="h-12 w-12 mx-auto text-primary mb-4" />
                 <h3 className="font-semibold text-lg mb-2">Interested?</h3>
                 {canApply ? (
                   <>

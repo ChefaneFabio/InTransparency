@@ -21,11 +21,11 @@ export function QuickActions({ actions, columns = 2 }: QuickActionsProps) {
   const getColorClasses = (color: string) => {
     switch (color) {
       case 'blue':
-        return 'bg-blue-50 hover:bg-blue-100 border-blue-200 text-blue-700'
+        return 'bg-primary/5 hover:bg-primary/10 border-primary/20 text-primary'
       case 'green':
-        return 'bg-green-50 hover:bg-green-100 border-green-200 text-green-700'
+        return 'bg-primary/5 hover:bg-primary/10 border-primary/20 text-primary'
       case 'purple':
-        return 'bg-purple-50 hover:bg-purple-100 border-purple-200 text-purple-700'
+        return 'bg-primary/5 hover:bg-primary/10 border-primary/20 text-primary'
       case 'orange':
         return 'bg-orange-50 hover:bg-orange-100 border-orange-200 text-orange-700'
       case 'red':

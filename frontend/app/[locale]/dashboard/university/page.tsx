@@ -109,17 +109,17 @@ export default function UniversityDashboard() {
     <div className="max-w-6xl mx-auto space-y-8 pb-12">
       {/* Welcome Banner - Show when few students */}
       {stats.totalStudents < 10 && (
-        <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-6 text-white">
+        <div className="bg-primary rounded-2xl p-6 text-white">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h2 className="text-xl font-bold mb-1">
                 Welcome to InTransparency!
               </h2>
-              <p className="text-indigo-100">
+              <p className="text-white/80">
                 Your students are now discoverable by 500+ companies. Import your student list to boost placements by up to 25%.
               </p>
             </div>
-            <Button className="bg-white text-indigo-600 hover:bg-indigo-50 shrink-0" asChild>
+            <Button className="bg-white text-primary hover:bg-white/90 shrink-0" asChild>
               <Link href="/dashboard/university/students/import">
                 <Upload className="h-4 w-4 mr-2" />
                 Import Students
@@ -131,16 +131,16 @@ export default function UniversityDashboard() {
 
       {/* Success Metrics Banner - Show when there's activity */}
       {stats.recruiterViews > 0 && (
-        <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+        <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-green-100 rounded-lg">
-              <Eye className="h-5 w-5 text-green-600" />
+            <div className="p-2 bg-primary/10 rounded-lg">
+              <Eye className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <p className="font-medium text-green-900">
+              <p className="font-medium text-gray-900">
                 {stats.recruiterViews} companies viewed your students this month
               </p>
-              <p className="text-sm text-green-700">
+              <p className="text-sm text-gray-700">
                 Students with complete profiles get 3x more views
               </p>
             </div>
@@ -183,8 +183,8 @@ export default function UniversityDashboard() {
                 <p className="text-2xl font-bold">{stats.totalStudents}</p>
                 <p className="text-sm text-gray-600">Total students</p>
               </div>
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <GraduationCap className="h-5 w-5 text-blue-600" />
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <GraduationCap className="h-5 w-5 text-primary" />
               </div>
             </div>
           </CardContent>
@@ -197,8 +197,8 @@ export default function UniversityDashboard() {
                 <p className="text-2xl font-bold">{stats.verifiedStudents}</p>
                 <p className="text-sm text-gray-600">Verified</p>
               </div>
-              <div className="p-2 bg-green-100 rounded-lg">
-                <Award className="h-5 w-5 text-green-600" />
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <Award className="h-5 w-5 text-primary" />
               </div>
             </div>
           </CardContent>
@@ -211,8 +211,8 @@ export default function UniversityDashboard() {
                 <p className="text-2xl font-bold">{stats.activeProfiles}</p>
                 <p className="text-sm text-gray-600">Active profiles</p>
               </div>
-              <div className="p-2 bg-purple-100 rounded-lg">
-                <Users className="h-5 w-5 text-purple-600" />
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <Users className="h-5 w-5 text-primary" />
               </div>
             </div>
           </CardContent>
@@ -261,7 +261,7 @@ export default function UniversityDashboard() {
                     className="flex items-center gap-4 p-4 rounded-lg border hover:bg-gray-50 transition-colors"
                   >
                     <Avatar className="h-10 w-10">
-                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-sm">
+                      <AvatarFallback className="bg-primary text-white text-sm">
                         {student.initials}
                       </AvatarFallback>
                     </Avatar>
@@ -270,7 +270,7 @@ export default function UniversityDashboard() {
                       <div className="flex items-center gap-2">
                         <p className="font-medium text-gray-900">{student.name}</p>
                         {student.verified && (
-                          <Badge variant="secondary" className="text-xs bg-green-100 text-green-700">
+                          <Badge variant="secondary" className="text-xs bg-primary/10 text-primary">
                             Verified
                           </Badge>
                         )}
@@ -312,7 +312,7 @@ export default function UniversityDashboard() {
                 <div className="flex items-center justify-between">
                   <div>
                     <CardTitle className="text-lg flex items-center gap-2">
-                      <TrendingUp className="h-5 w-5 text-green-600" />
+                      <TrendingUp className="h-5 w-5 text-primary" />
                       Top Placement Candidates
                     </CardTitle>
                     <CardDescription>
@@ -328,7 +328,7 @@ export default function UniversityDashboard() {
                     className="flex items-center gap-4 p-3 rounded-lg border hover:bg-gray-50 transition-colors"
                   >
                     <Avatar className="h-8 w-8">
-                      <AvatarFallback className="bg-gradient-to-br from-green-500 to-emerald-500 text-white text-xs">
+                      <AvatarFallback className="bg-primary text-white text-xs">
                         {student.initials}
                       </AvatarFallback>
                     </Avatar>
@@ -346,8 +346,8 @@ export default function UniversityDashboard() {
           <Card className="border-dashed">
             <CardContent className="py-8">
               <div className="text-center">
-                <div className="mx-auto w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <Upload className="h-6 w-6 text-blue-600" />
+                <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                  <Upload className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="font-medium text-gray-900 mb-1">
                   Import students in bulk
@@ -377,8 +377,8 @@ export default function UniversityDashboard() {
                 href="/dashboard/university/students/add"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <Plus className="h-4 w-4 text-blue-600" />
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Plus className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">Add students</p>
@@ -391,8 +391,8 @@ export default function UniversityDashboard() {
                 href="/dashboard/university/analytics"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <BarChart3 className="h-4 w-4 text-green-600" />
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <BarChart3 className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">Analytics</p>
@@ -405,8 +405,8 @@ export default function UniversityDashboard() {
                 href="/dashboard/university/recruiters"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="p-2 bg-purple-100 rounded-lg">
-                  <Building2 className="h-4 w-4 text-purple-600" />
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Building2 className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">Recruiters</p>
@@ -447,8 +447,8 @@ export default function UniversityDashboard() {
                 href="/dashboard/university/sync"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="p-2 bg-teal-100 rounded-lg">
-                  <RefreshCw className="h-4 w-4 text-teal-600" />
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <RefreshCw className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">Data Sync</p>

@@ -266,21 +266,21 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
 
   const getSyncStatusColor = (status: string) => {
     switch (status) {
-      case 'success': return 'text-green-600 bg-green-100'
-      case 'warning': return 'text-yellow-600 bg-yellow-100'
+      case 'success': return 'text-primary bg-primary/10'
+      case 'warning': return 'text-secondary bg-secondary/10'
       case 'error': return 'text-red-600 bg-red-100'
-      case 'syncing': return 'text-blue-600 bg-blue-100'
+      case 'syncing': return 'text-primary bg-primary/10'
       default: return 'text-gray-600 bg-gray-100'
     }
   }
 
   const getActivityIcon = (type: string) => {
     switch (type) {
-      case 'transcript_update': return <Download className="h-4 w-4 text-blue-600" />
-      case 'new_course': return <BookOpen className="h-4 w-4 text-green-600" />
-      case 'grade_change': return <TrendingUp className="h-4 w-4 text-purple-600" />
-      case 'project_upload': return <Upload className="h-4 w-4 text-orange-600" />
-      case 'verification': return <Shield className="h-4 w-4 text-blue-600" />
+      case 'transcript_update': return <Download className="h-4 w-4 text-primary" />
+      case 'new_course': return <BookOpen className="h-4 w-4 text-primary" />
+      case 'grade_change': return <TrendingUp className="h-4 w-4 text-primary" />
+      case 'project_upload': return <Upload className="h-4 w-4 text-secondary" />
+      case 'verification': return <Shield className="h-4 w-4 text-primary" />
       default: return <Clock className="h-4 w-4 text-gray-600" />
     }
   }
@@ -354,12 +354,12 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center py-8">
-              <School className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+              <School className="h-12 w-12 text-primary mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Nessuna Università Connessa</h3>
               <p className="text-gray-600 mb-6 max-w-md mx-auto">
                 Connetti la tua università o ITS per sincronizzare automaticamente i tuoi voti, corsi e progetti accademici
               </p>
-              <Button onClick={() => setIsModalOpen(true)} className="bg-blue-600 hover:bg-blue-700">
+              <Button onClick={() => setIsModalOpen(true)} className="bg-primary hover:bg-primary/90">
                 <Plus className="mr-2 h-4 w-4" />
                 Connetti Università
               </Button>
@@ -382,7 +382,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Database className="h-5 w-5 text-blue-600" />
+            <Database className="h-5 w-5 text-primary" />
             University Integration
           </CardTitle>
           <CardDescription>
@@ -406,12 +406,12 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
                     <CheckCircle className="h-3 w-3 mr-1" />
                     Connected
                   </Badge>
-                  <Badge variant="outline" className="text-blue-600 bg-blue-100">
+                  <Badge variant="outline" className="text-primary bg-primary/10">
                     {getConnectionTypeIcon(connection.connectionType)}
                     <span className="ml-1">{getConnectionTypeLabel(connection.connectionType)}</span>
                   </Badge>
                   {connection.verificationLevel === 'verified' && (
-                    <Badge variant="outline" className="text-green-600 bg-green-100">
+                    <Badge variant="outline" className="text-primary bg-primary/10">
                       <Shield className="h-3 w-3 mr-1" />
                       Verified
                     </Badge>
@@ -448,7 +448,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
           {isSyncing && (
             <div className="mt-4">
               <div className="flex items-center gap-2 mb-2">
-                <RefreshCw className="h-4 w-4 animate-spin text-blue-600" />
+                <RefreshCw className="h-4 w-4 animate-spin text-primary" />
                 <span className="text-sm">Synchronizing with university database...</span>
               </div>
               <Progress value={syncProgress} className="w-full" />
@@ -472,8 +472,8 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
             <Card>
               <CardContent className="pt-6">
                 <div className="flex items-center">
-                  <div className="text-2xl font-bold text-blue-600">{connection.recordsCount.courses}</div>
-                  <BookOpen className="h-4 w-4 ml-2 text-blue-600" />
+                  <div className="text-2xl font-bold text-primary">{connection.recordsCount.courses}</div>
+                  <BookOpen className="h-4 w-4 ml-2 text-primary" />
                 </div>
                 <div className="text-sm text-gray-600">Courses Synced</div>
               </CardContent>
@@ -481,8 +481,8 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
             <Card>
               <CardContent className="pt-6">
                 <div className="flex items-center">
-                  <div className="text-2xl font-bold text-green-600">{connection.recordsCount.grades}</div>
-                  <Award className="h-4 w-4 ml-2 text-green-600" />
+                  <div className="text-2xl font-bold text-primary">{connection.recordsCount.grades}</div>
+                  <Award className="h-4 w-4 ml-2 text-primary" />
                 </div>
                 <div className="text-sm text-gray-600">Grade Records</div>
               </CardContent>
@@ -490,8 +490,8 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
             <Card>
               <CardContent className="pt-6">
                 <div className="flex items-center">
-                  <div className="text-2xl font-bold text-purple-600">{connection.recordsCount.projects}</div>
-                  <BarChart3 className="h-4 w-4 ml-2 text-purple-600" />
+                  <div className="text-2xl font-bold text-primary">{connection.recordsCount.projects}</div>
+                  <BarChart3 className="h-4 w-4 ml-2 text-primary" />
                 </div>
                 <div className="text-sm text-gray-600">Projects</div>
               </CardContent>
@@ -520,7 +520,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
                 {Object.entries(connection.dataTypes || {}).map(([type, enabled]) => (
                   <div key={type} className="flex items-center gap-3 p-3 border rounded-lg">
                     {enabled ? (
-                      <CheckCircle className="h-5 w-5 text-green-600" />
+                      <CheckCircle className="h-5 w-5 text-primary" />
                     ) : (
                       <AlertCircle className="h-5 w-5 text-gray-600" />
                     )}
@@ -553,9 +553,9 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
                       <div className="flex items-center gap-2 mb-1">
                         <span className="font-medium text-gray-900">{activity.description}</span>
                         <Badge variant="outline" className={
-                          activity.status === 'success' ? 'text-green-600 bg-green-100' :
+                          activity.status === 'success' ? 'text-primary bg-primary/10' :
                           activity.status === 'failed' ? 'text-red-600 bg-red-100' :
-                          'text-yellow-600 bg-yellow-100'
+                          'text-secondary bg-yellow-100'
                         }>
                           {activity.status}
                         </Badge>
@@ -588,7 +588,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
                     <h4 className="font-medium">Sync Frequency</h4>
                     <p className="text-sm text-gray-600">How often to check for updates</p>
                   </div>
-                  <Badge variant="outline" className="text-blue-600 bg-blue-100">
+                  <Badge variant="outline" className="text-primary bg-primary/10">
                     {connection.syncFrequency.replace('_', ' ')}
                   </Badge>
                 </div>
@@ -598,7 +598,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
                     <h4 className="font-medium">Automatic Grade Updates</h4>
                     <p className="text-sm text-gray-600">Sync new grades immediately</p>
                   </div>
-                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <CheckCircle className="h-5 w-5 text-primary" />
                 </div>
 
                 <div className="flex items-center justify-between">
@@ -606,7 +606,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
                     <h4 className="font-medium">Project Submissions</h4>
                     <p className="text-sm text-gray-600">Import project uploads from university portal</p>
                   </div>
-                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <CheckCircle className="h-5 w-5 text-primary" />
                 </div>
 
                 <div className="flex items-center justify-between">
@@ -614,7 +614,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
                     <h4 className="font-medium">Official Transcripts</h4>
                     <p className="text-sm text-gray-600">Download official transcripts automatically</p>
                   </div>
-                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <CheckCircle className="h-5 w-5 text-primary" />
                 </div>
               </div>
 

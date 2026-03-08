@@ -101,7 +101,7 @@ export default function SkillsGapPage() {
                 <p className="text-2xl font-bold">{data.studentCount}</p>
                 <p className="text-sm text-gray-600">Students analyzed</p>
               </div>
-              <Users className="h-5 w-5 text-blue-500" />
+              <Users className="h-5 w-5 text-primary" />
             </div>
           </CardContent>
         </Card>
@@ -112,7 +112,7 @@ export default function SkillsGapPage() {
                 <p className="text-2xl font-bold">{data.jobCount}</p>
                 <p className="text-sm text-gray-600">Active jobs scanned</p>
               </div>
-              <Briefcase className="h-5 w-5 text-purple-500" />
+              <Briefcase className="h-5 w-5 text-primary" />
             </div>
           </CardContent>
         </Card>
@@ -131,10 +131,10 @@ export default function SkillsGapPage() {
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-2xl font-bold text-green-600">{data.strengths.length}</p>
+                <p className="text-2xl font-bold text-primary">{data.strengths.length}</p>
                 <p className="text-sm text-gray-600">Strengths identified</p>
               </div>
-              <TrendingUp className="h-5 w-5 text-green-500" />
+              <TrendingUp className="h-5 w-5 text-primary" />
             </div>
           </CardContent>
         </Card>
@@ -177,7 +177,7 @@ export default function SkillsGapPage() {
                       <div className="h-full bg-red-500 rounded-l opacity-80" style={{ width: '100%' }} />
                     </div>
                     <div
-                      className="bg-green-500 rounded-r opacity-60"
+                      className="bg-primary/50 rounded-r opacity-60"
                       style={{
                         width: `${Math.min(
                           data.studentCount > 0
@@ -197,14 +197,14 @@ export default function SkillsGapPage() {
                   Market demand
                 </div>
                 <div className="flex items-center gap-1">
-                  <div className="w-3 h-3 bg-green-500 rounded opacity-60" />
+                  <div className="w-3 h-3 bg-primary/50 rounded opacity-60" />
                   Student coverage
                 </div>
               </div>
             </div>
           ) : (
             <div className="text-center py-8 text-gray-500">
-              <CheckCircle className="h-8 w-8 mx-auto mb-2 text-green-500" />
+              <CheckCircle className="h-8 w-8 mx-auto mb-2 text-primary" />
               <p>No significant skill gaps detected!</p>
             </div>
           )}
@@ -215,7 +215,7 @@ export default function SkillsGapPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <CheckCircle className="h-5 w-5 text-green-500" />
+            <CheckCircle className="h-5 w-5 text-primary" />
             Strengths — Your Students Excel Here
           </CardTitle>
           <CardDescription>
@@ -229,7 +229,7 @@ export default function SkillsGapPage() {
                 <Badge
                   key={s.skill}
                   variant="outline"
-                  className="text-green-700 border-green-300 bg-green-50 px-3 py-1"
+                  className="text-green-700 border-green-300 bg-primary/5 px-3 py-1"
                 >
                   <CheckCircle className="mr-1 h-3 w-3" />
                   <span className="capitalize">{s.skill}</span>

@@ -188,8 +188,8 @@ export default function UniversityRecruitersPage() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <Building2 className="h-5 w-5 text-blue-600" />
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Building2 className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.total}</p>
@@ -202,7 +202,7 @@ export default function UniversityRecruitersPage() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                    <Star className="h-5 w-5 text-yellow-600" />
+                    <Star className="h-5 w-5 text-secondary" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.partners}</p>
@@ -214,8 +214,8 @@ export default function UniversityRecruitersPage() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                    <Users className="h-5 w-5 text-green-600" />
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Users className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.totalHired}</p>
@@ -227,8 +227,8 @@ export default function UniversityRecruitersPage() {
             <Card>
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <TrendingUp className="h-5 w-5 text-purple-600" />
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <TrendingUp className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.activeThisMonth}</p>
@@ -291,7 +291,7 @@ export default function UniversityRecruitersPage() {
                       <div className="flex items-center gap-3">
                         <Avatar className="h-12 w-12">
                           <AvatarImage src={recruiter.companyLogo} />
-                          <AvatarFallback className="bg-blue-100 text-blue-600 font-semibold">
+                          <AvatarFallback className="bg-primary/10 text-primary font-semibold">
                             {recruiter.companyName.slice(0, 2).toUpperCase()}
                           </AvatarFallback>
                         </Avatar>
@@ -299,7 +299,7 @@ export default function UniversityRecruitersPage() {
                           <div className="flex items-center gap-2">
                             <h3 className="font-semibold text-foreground">{recruiter.companyName}</h3>
                             {recruiter.isPartner && (
-                              <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                              <Star className="h-4 w-4 text-secondary fill-yellow-500" />
                             )}
                           </div>
                           <p className="text-sm text-muted-foreground">{recruiter.industry}</p>
@@ -307,7 +307,7 @@ export default function UniversityRecruitersPage() {
                       </div>
                       <Badge
                         variant={recruiter.status === 'active' ? 'default' : 'secondary'}
-                        className={recruiter.status === 'active' ? 'bg-green-100 text-green-800' : ''}
+                        className={recruiter.status === 'active' ? 'bg-primary/10 text-primary' : ''}
                       >
                         {recruiter.status === 'active' ? 'Attivo' : 'Inattivo'}
                       </Badge>
@@ -370,7 +370,7 @@ export default function UniversityRecruitersPage() {
                   <div className="flex items-center gap-4">
                     <Avatar className="h-16 w-16">
                       <AvatarImage src={selectedRecruiter.companyLogo} />
-                      <AvatarFallback className="bg-blue-100 text-blue-600 font-semibold text-xl">
+                      <AvatarFallback className="bg-primary/10 text-primary font-semibold text-xl">
                         {selectedRecruiter.companyName.slice(0, 2).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>

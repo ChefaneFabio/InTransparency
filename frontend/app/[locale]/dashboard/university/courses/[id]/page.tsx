@@ -276,7 +276,7 @@ export default function UniversityCourseDetailPage() {
     switch (status) {
       case 'VERIFIED':
         return (
-          <Badge className="bg-green-100 text-green-700 text-xs gap-1">
+          <Badge className="bg-primary/10 text-primary text-xs gap-1">
             <CheckCircle className="h-3 w-3" />
             Verificato
           </Badge>
@@ -700,11 +700,11 @@ export default function UniversityCourseDetailPage() {
             <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
               {course.courseName}
             </h1>
-            <Badge variant="secondary" className="bg-blue-50 text-blue-700 font-mono text-xs">
+            <Badge variant="secondary" className="bg-primary/5 text-primary font-mono text-xs">
               {course.courseCode}
             </Badge>
             {course.universityVerified && (
-              <Badge className="bg-green-100 text-green-700 text-xs gap-1">
+              <Badge className="bg-primary/10 text-primary text-xs gap-1">
                 <CheckCircle className="h-3 w-3" />
                 Verificato
               </Badge>
@@ -808,7 +808,7 @@ export default function UniversityCourseDetailPage() {
             <CardContent>
               <div className="flex flex-wrap gap-2">
                 {course.competencies.map((comp, i) => (
-                  <Badge key={i} variant="secondary" className="bg-blue-50 text-blue-700">
+                  <Badge key={i} variant="secondary" className="bg-primary/5 text-primary">
                     {comp}
                   </Badge>
                 ))}
@@ -866,10 +866,10 @@ export default function UniversityCourseDetailPage() {
                       href={`/dashboard/university/projects/${project.id}`}
                       className="block"
                     >
-                      <div className="p-4 border rounded-lg hover:shadow-md hover:border-blue-200 transition-all duration-200">
+                      <div className="p-4 border rounded-lg hover:shadow-md hover:border-primary/20 transition-all duration-200">
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex-1 min-w-0">
-                            <h4 className="font-semibold text-gray-900 group-hover:text-blue-700 truncate">
+                            <h4 className="font-semibold text-gray-900 group-hover:text-primary truncate">
                               {project.title}
                             </h4>
                             <p className="text-sm text-gray-500 mt-0.5">

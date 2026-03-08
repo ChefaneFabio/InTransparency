@@ -120,9 +120,9 @@ export default function SkillPathPage() {
 
       {/* Premium upsell for FREE tier */}
       {isLimited && (
-        <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100 rounded-lg flex items-center justify-between">
+        <div className="mb-6 p-4 bg-gradient-to-r from-primary/5 to-primary/5 border border-primary/10 rounded-lg flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Sparkles className="h-5 w-5 text-blue-600" />
+            <Sparkles className="h-5 w-5 text-primary" />
             <div>
               <p className="text-sm font-medium text-gray-900">{t('premiumUpsell.title')}</p>
               <p className="text-xs text-gray-600">{t('premiumUpsell.description')}</p>
@@ -187,7 +187,7 @@ export default function SkillPathPage() {
                 <CardDescription className="text-xs">
                   {t('overview.topGapsDescription')}
                   {isLimited && (
-                    <span className="text-blue-600 ml-1">
+                    <span className="text-primary ml-1">
                       ({t('overview.showingLimited', { count: tierLimits.maxGaps, total: (data as any).totalGaps || 0 })})
                     </span>
                   )}
@@ -227,21 +227,21 @@ export default function SkillPathPage() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="p-3 bg-blue-50 rounded-lg text-center">
-                    <p className="text-2xl font-bold text-blue-700">{skillData.currentSkills.length}</p>
-                    <p className="text-xs text-blue-600">{t('overview.skillsDetected')}</p>
+                  <div className="p-3 bg-primary/5 rounded-lg text-center">
+                    <p className="text-2xl font-bold text-primary">{skillData.currentSkills.length}</p>
+                    <p className="text-xs text-primary">{t('overview.skillsDetected')}</p>
                   </div>
                   <div className="p-3 bg-orange-50 rounded-lg text-center">
                     <p className="text-2xl font-bold text-orange-700">{skillData.skillGaps.length}</p>
                     <p className="text-xs text-orange-600">{t('overview.skillGaps')}</p>
                   </div>
-                  <div className="p-3 bg-green-50 rounded-lg text-center">
-                    <p className="text-2xl font-bold text-green-700">{skillData.careerPaths.length}</p>
-                    <p className="text-xs text-green-600">{t('overview.careerMatches')}</p>
+                  <div className="p-3 bg-primary/5 rounded-lg text-center">
+                    <p className="text-2xl font-bold text-primary">{skillData.careerPaths.length}</p>
+                    <p className="text-xs text-primary">{t('overview.careerMatches')}</p>
                   </div>
-                  <div className="p-3 bg-purple-50 rounded-lg text-center">
-                    <p className="text-2xl font-bold text-purple-700">{skillData.projectIdeas.length}</p>
-                    <p className="text-xs text-purple-600">{t('overview.projectIdeas')}</p>
+                  <div className="p-3 bg-primary/5 rounded-lg text-center">
+                    <p className="text-2xl font-bold text-primary">{skillData.projectIdeas.length}</p>
+                    <p className="text-xs text-primary">{t('overview.projectIdeas')}</p>
                   </div>
                 </div>
               </CardContent>
@@ -256,7 +256,7 @@ export default function SkillPathPage() {
                 <CardContent>
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="font-medium">{skillData.careerPaths[0].title}</h4>
-                    <span className="text-xl font-bold text-green-600">
+                    <span className="text-xl font-bold text-primary">
                       {skillData.careerPaths[0].matchScore}%
                     </span>
                   </div>

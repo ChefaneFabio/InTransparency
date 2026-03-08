@@ -72,7 +72,7 @@ export default function AlumniStoriesPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-secondary text-white py-16">
+      <section className="bg-primary text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center mb-4">
@@ -235,7 +235,7 @@ export default function AlumniStoriesPage() {
                           </div>
                         </div>
                       </div>
-                      <Badge className="bg-green-100 text-green-800">
+                      <Badge className="bg-primary/10 text-green-800">
                         <CheckCircle className="h-3 w-3 mr-1" />
                         Verified
                       </Badge>
@@ -291,7 +291,7 @@ export default function AlumniStoriesPage() {
 
                     {/* Advice */}
                     {story.adviceForStudents && (
-                      <div className="bg-blue-50 border-l-4 border-blue-500 p-3 rounded">
+                      <div className="bg-primary/5 border-l-4 border-blue-500 p-3 rounded">
                         <h4 className="font-semibold text-sm mb-1 text-blue-900">
                           Advice for Students
                         </h4>
@@ -309,7 +309,7 @@ export default function AlumniStoriesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-primary to-secondary text-white">
+      <section className="py-16 bg-primary text-white">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-3xl font-bold mb-4">
             Are You an Alumni?

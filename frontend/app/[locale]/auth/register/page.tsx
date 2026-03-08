@@ -16,28 +16,28 @@ const roles = [
   {
     id: 'recruiter' as const,
     icon: Users,
-    color: 'from-green-500 to-emerald-500',
+    color: 'bg-primary',
     href: '/auth/register/recruiter',
     benefitCount: 4
   },
   {
     id: 'university' as const,
     icon: Building2,
-    color: 'from-purple-500 to-indigo-500',
+    color: 'bg-primary',
     href: '/auth/register/university',
     benefitCount: 4
   },
   {
     id: 'student' as const,
     icon: GraduationCap,
-    color: 'from-blue-500 to-cyan-500',
+    color: 'bg-primary',
     href: '/auth/register/student',
     benefitCount: 4
   },
   {
     id: 'professor' as const,
     icon: BookOpen,
-    color: 'from-orange-500 to-amber-500',
+    color: 'bg-primary',
     href: '/auth/register/professor',
     benefitCount: 4
   }
@@ -80,7 +80,7 @@ export default function RegisterPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white">
+            <Badge className="mb-4 bg-primary text-white">
               {t('register.badge')}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
@@ -101,11 +101,10 @@ export default function RegisterPage() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -10, transition: { duration: 0.2 } }}
                 >
-                  <Card className="h-full hover:shadow-2xl transition-all border-2 hover:border-primary/50">
+                  <Card className="h-full hover:shadow-lg transition-all border-2 hover:border-primary/50">
                     <CardHeader>
-                      <div className={`bg-gradient-to-r ${roleOption.color} p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto`}>
+                      <div className={`${roleOption.color} p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto`}>
                         <Icon className="h-8 w-8 text-white" />
                       </div>
                       <CardTitle className="text-2xl text-center">
@@ -119,12 +118,12 @@ export default function RegisterPage() {
                       <ul className="space-y-3 mb-6">
                         {Array.from({ length: roleOption.benefitCount }, (_, i) => (
                           <li key={i} className="flex items-start text-sm text-gray-700">
-                            <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0" />
+                            <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0" />
                             <span>{t(`register.roles.${roleOption.id}.benefits.${i}`)}</span>
                           </li>
                         ))}
                       </ul>
-                      <Button asChild className={`w-full bg-gradient-to-r ${roleOption.color}`}>
+                      <Button asChild className={`w-full ${roleOption.color}`}>
                         <Link href={roleOption.href}>
                           {t('register.signUpAs')} {t(`register.roles.${roleOption.id}.name`)}
                           <ArrowRight className="ml-2 h-4 w-4" />

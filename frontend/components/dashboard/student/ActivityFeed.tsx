@@ -181,21 +181,21 @@ export function ActivityFeed({ userId, limit = 10 }: ActivityFeedProps) {
   const getActivityIcon = (type: ActivityItem['type']) => {
     switch (type) {
       case 'view':
-        return <Eye className="h-4 w-4 text-blue-500" />
+        return <Eye className="h-4 w-4 text-primary" />
       case 'like':
         return <Heart className="h-4 w-4 text-red-500" />
       case 'comment':
-        return <MessageCircle className="h-4 w-4 text-green-500" />
+        return <MessageCircle className="h-4 w-4 text-primary" />
       case 'connection':
-        return <UserPlus className="h-4 w-4 text-purple-500" />
+        return <UserPlus className="h-4 w-4 text-primary" />
       case 'job_match':
-        return <Briefcase className="h-4 w-4 text-blue-600" />
+        return <Briefcase className="h-4 w-4 text-primary" />
       case 'project_analyzed':
-        return <TrendingUp className="h-4 w-4 text-indigo-500" />
+        return <TrendingUp className="h-4 w-4 text-primary" />
       case 'achievement':
-        return <Trophy className="h-4 w-4 text-yellow-500" />
+        return <Trophy className="h-4 w-4 text-secondary" />
       case 'application':
-        return <CheckCircle className="h-4 w-4 text-green-600" />
+        return <CheckCircle className="h-4 w-4 text-primary" />
       default:
         return <AlertCircle className="h-4 w-4 text-gray-600" />
     }
@@ -204,21 +204,21 @@ export function ActivityFeed({ userId, limit = 10 }: ActivityFeedProps) {
   const getActivityColor = (type: ActivityItem['type']) => {
     switch (type) {
       case 'view':
-        return 'bg-blue-50 border-blue-100'
+        return 'bg-primary/5 border-primary/10'
       case 'like':
         return 'bg-red-50 border-red-100'
       case 'comment':
-        return 'bg-green-50 border-green-100'
+        return 'bg-primary/5 border-primary/10'
       case 'connection':
-        return 'bg-purple-50 border-purple-100'
+        return 'bg-primary/5 border-primary/10'
       case 'job_match':
-        return 'bg-blue-50 border-blue-100'
+        return 'bg-primary/5 border-primary/10'
       case 'project_analyzed':
-        return 'bg-indigo-50 border-indigo-100'
+        return 'bg-primary/5 border-primary/10'
       case 'achievement':
-        return 'bg-yellow-50 border-yellow-100'
+        return 'bg-secondary/5 border-secondary/10'
       case 'application':
-        return 'bg-green-50 border-green-100'
+        return 'bg-primary/5 border-primary/10'
       default:
         return 'bg-gray-50 border-gray-100'
     }

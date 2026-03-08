@@ -56,10 +56,10 @@ const iconMap: Record<string, typeof User> = {
 }
 
 const categoryColors: Record<string, string> = {
-  profile: 'bg-blue-100 text-blue-700',
-  projects: 'bg-purple-100 text-purple-700',
-  engagement: 'bg-green-100 text-green-700',
-  career: 'bg-orange-100 text-orange-700',
+  profile: 'bg-primary/10 text-primary',
+  projects: 'bg-primary/10 text-primary',
+  engagement: 'bg-primary/10 text-primary',
+  career: 'bg-secondary/10 text-secondary',
 }
 
 const categoryLabels: Record<string, string> = {
@@ -110,7 +110,7 @@ export function AchievementsPanel() {
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="flex items-center gap-2">
-              <Trophy className="h-5 w-5 text-yellow-500" />
+              <Trophy className="h-5 w-5 text-secondary" />
               Achievements
             </CardTitle>
             <CardDescription>
@@ -133,14 +133,14 @@ export function AchievementsPanel() {
                 key={achievement.id}
                 className={`flex items-start gap-3 p-3 rounded-lg border transition-all ${
                   achievement.unlocked
-                    ? 'bg-green-50 border-green-200'
+                    ? 'bg-primary/5 border-primary/20'
                     : 'bg-muted/50 border-border opacity-70'
                 }`}
               >
                 <div
                   className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
                     achievement.unlocked
-                      ? 'bg-green-500 text-white'
+                      ? 'bg-primary text-white'
                       : 'bg-muted text-muted-foreground'
                   }`}
                 >

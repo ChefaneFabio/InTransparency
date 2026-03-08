@@ -245,7 +245,7 @@ export function VideoUploader({
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onClick={() => fileInputRef.current?.click()}
-            className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition-colors"
+            className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 hover:bg-primary/5/50 transition-colors"
           >
             <FileVideo className="h-12 w-12 mx-auto mb-4 text-gray-400" />
             <p className="text-lg font-medium mb-2">Drop your video here or click to browse</p>
@@ -326,7 +326,7 @@ export function VideoUploader({
             {!uploading && (
               <Button
                 onClick={uploadVideo}
-                className="w-full bg-green-500 hover:bg-green-600"
+                className="w-full bg-primary/50 hover:bg-primary"
               >
                 <Upload className="h-4 w-4 mr-2" />
                 Upload Video
@@ -359,7 +359,7 @@ export function VideoUploader({
 
         {/* Tips */}
         {!selectedFile && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
             <h4 className="font-semibold text-blue-900 mb-2">Video Tips:</h4>
             <ul className="space-y-1 text-sm text-blue-800">
               <li>• Record in landscape mode (16:9 ratio)</li>

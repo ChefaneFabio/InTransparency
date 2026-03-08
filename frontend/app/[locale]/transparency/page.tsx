@@ -83,31 +83,31 @@ export default function TransparencyPage() {
             </p>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <Card className="bg-blue-50 border-2 border-blue-200">
+              <Card className="bg-primary/5 border-2 border-primary/20">
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-lg bg-blue-500 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-lg bg-primary/50 flex items-center justify-center">
                       <FileCheck className="h-6 w-6 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-blue-900">{t('challenge.selfReported.title')}</h3>
                   </div>
                   <ul className="space-y-4 text-gray-700">
                     <li className="flex items-start gap-3">
-                      <span className="text-blue-600 font-bold mt-1">•</span>
+                      <span className="text-primary font-bold mt-1">•</span>
                       <div>
                         <strong>Hard to verify</strong> technical and soft skills
                         <p className="text-sm text-gray-600">Resume skills often don't match actual capabilities</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-blue-600 font-bold mt-1">•</span>
+                      <span className="text-primary font-bold mt-1">•</span>
                       <div>
                         <strong>30% skill mismatch</strong> in hires
                         <p className="text-sm text-gray-600">Institutional verification closes this gap</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-blue-600 font-bold mt-1">•</span>
+                      <span className="text-primary font-bold mt-1">•</span>
                       <div>
                         <strong>Time-consuming validation</strong>
                         <p className="text-sm text-gray-600">Recruiters spend hours verifying credentials</p>
@@ -117,31 +117,31 @@ export default function TransparencyPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-purple-50 border-2 border-purple-200">
+              <Card className="bg-primary/5 border-2 border-primary/20">
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-lg bg-purple-500 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-lg bg-primary/50 flex items-center justify-center">
                       <Lightbulb className="h-6 w-6 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-purple-900">Unexplained Matching</h3>
                   </div>
                   <ul className="space-y-4 text-gray-700">
                     <li className="flex items-start gap-3">
-                      <span className="text-purple-600 font-bold mt-1">•</span>
+                      <span className="text-primary font-bold mt-1">•</span>
                       <div>
                         <strong>Limited transparency</strong> in match reasons
                         <p className="text-sm text-gray-600">Students don't know what to improve</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-purple-600 font-bold mt-1">•</span>
+                      <span className="text-primary font-bold mt-1">•</span>
                       <div>
                         <strong>70% want more clarity</strong> from AI tools
                         <p className="text-sm text-gray-600">Explainable matching builds trust</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-purple-600 font-bold mt-1">•</span>
+                      <span className="text-primary font-bold mt-1">•</span>
                       <div>
                         <strong>Feedback helps everyone</strong>
                         <p className="text-sm text-gray-600">Clear requirements reduce bias by 25%</p>
@@ -178,19 +178,19 @@ export default function TransparencyPage() {
                   </p>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                       Hard skills: Verified through projects, code, designs, research
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                       Soft skills: Analyzed from teamwork, leadership, presentations
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                       Institution-authenticated grades, courses, and achievements
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                       <strong>Verified match quality</strong> with institutional data
                     </li>
                   </ul>
@@ -210,19 +210,19 @@ export default function TransparencyPage() {
                   </p>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                       Transparent match scoring (e.g., "85% match")
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                       Clear explanations ("Your Python project matches 3/4 requirements")
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                       Company notes: "Add AWS experience and you're perfect"
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                       <strong>85% higher trust</strong> in transparent AI (EU studies)
                     </li>
                   </ul>
@@ -242,19 +242,19 @@ export default function TransparencyPage() {
                   </p>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-purple-600 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                       Companies explicitly state what skills/knowledge they need
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-purple-600 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                       Companies leave notes on profiles with specific feedback
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-purple-600 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                       Students know exactly what to improve (e.g., "Add AWS experience")
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-purple-600 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
                       <strong>25% less hiring bias</strong> with transparent requirements
                     </li>
                   </ul>
@@ -425,15 +425,15 @@ export default function TransparencyPage() {
 
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600">
               <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-green-600" />
+                <Shield className="h-4 w-4 text-primary" />
                 <span>{t('cta.compliance.gdpr')}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-green-600" />
+                <Shield className="h-4 w-4 text-primary" />
                 <span>{t('cta.compliance.soc2')}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-green-600" />
+                <Shield className="h-4 w-4 text-primary" />
                 <span>{t('cta.compliance.iso')}</span>
               </div>
               <div className="flex items-center gap-2">

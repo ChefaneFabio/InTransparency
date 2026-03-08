@@ -124,8 +124,8 @@ export default function UniversityCoursesPage() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <BookOpen className="h-5 w-5 text-blue-600" />
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <BookOpen className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   {loading ? (
@@ -146,8 +146,8 @@ export default function UniversityCoursesPage() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <CheckCircle className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   {loading ? (
@@ -168,8 +168,8 @@ export default function UniversityCoursesPage() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                  <Hash className="h-5 w-5 text-purple-600" />
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <Hash className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   {loading ? (
@@ -299,15 +299,15 @@ export default function UniversityCoursesPage() {
                 href={`/dashboard/university/courses/${course.id}`}
                 className="block group"
               >
-                <Card className="h-full hover:shadow-md hover:border-blue-200 transition-all duration-200">
+                <Card className="h-full hover:shadow-md hover:border-primary/20 transition-all duration-200">
                   <CardContent className="p-5">
                     {/* Top row: course code + verified badge */}
                     <div className="flex items-center justify-between mb-3">
-                      <Badge variant="secondary" className="bg-blue-50 text-blue-700 font-mono text-xs">
+                      <Badge variant="secondary" className="bg-primary/5 text-primary font-mono text-xs">
                         {course.courseCode}
                       </Badge>
                       {course.verified ? (
-                        <Badge className="bg-green-100 text-green-700 text-xs gap-1">
+                        <Badge className="bg-primary/10 text-primary text-xs gap-1">
                           <CheckCircle className="h-3 w-3" />
                           Verificato
                         </Badge>
@@ -320,7 +320,7 @@ export default function UniversityCoursesPage() {
                     </div>
 
                     {/* Course name */}
-                    <h3 className="text-base font-semibold text-gray-900 group-hover:text-blue-700 transition-colors line-clamp-2 mb-1">
+                    <h3 className="text-base font-semibold text-gray-900 group-hover:text-primary transition-colors line-clamp-2 mb-1">
                       {course.courseName}
                     </h3>
 

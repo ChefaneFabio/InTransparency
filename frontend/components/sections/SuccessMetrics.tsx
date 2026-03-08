@@ -59,12 +59,11 @@ export function SuccessMetrics() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-white rounded-xl p-8 shadow-sm hover:shadow-2xl transition-all"
+                className="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all"
               >
                 <div className="flex items-start gap-4">
-                  <div className="rounded-full bg-blue-100 p-3 flex-shrink-0">
-                    <Icon className="h-6 w-6 text-blue-600" />
+                  <div className="rounded-full bg-primary/10 p-3 flex-shrink-0">
+                    <Icon className="h-6 w-6 text-primary" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -73,8 +72,8 @@ export function SuccessMetrics() {
                     <p className="text-gray-600 mb-4">
                       {metric.description}
                     </p>
-                    <div className="bg-blue-50 rounded-lg p-4">
-                      <div className="text-3xl font-bold text-blue-600 mb-1">
+                    <div className="bg-primary/5 rounded-lg p-4">
+                      <div className="text-3xl font-bold text-primary mb-1">
                         {metric.stat}
                       </div>
                       <div className="text-sm text-gray-600">
@@ -97,25 +96,12 @@ export function SuccessMetrics() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <motion.div
-            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-block"
           >
-            <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-2xl transition-all relative">
+            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 shadow-lg transition-all relative">
               <Link href="/auth/register/student" className="relative">
-                <motion.span
-                  className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400 to-purple-400 opacity-0"
-                  animate={{
-                    opacity: [0, 0.5, 0],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                <span className="relative z-10">Create Your Free Portfolio Now</span>
+                Create Your Free Portfolio Now
               </Link>
             </Button>
           </motion.div>

@@ -128,7 +128,7 @@ export function VideoPlayer({
         {/* Video Container */}
         <div className="relative aspect-video bg-gradient-to-br from-gray-900 to-gray-800">
           {/* Mock Video Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20">
+          <div className="absolute inset-0 bg-foreground/20">
             {poster ? (
               <img src={poster} alt={title} className="w-full h-full object-cover" />
             ) : (
@@ -148,7 +148,7 @@ export function VideoPlayer({
             onClick={handlePlayPause}
           >
             {!isPlaying && (
-              <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transform transition-transform hover:scale-110">
+              <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transform transition-transform">
                 <Play className="h-10 w-10 text-white ml-1" />
               </div>
             )}

@@ -80,10 +80,10 @@ export default function BadgeExportPanel({ projectId, projectTitle }: Props) {
   }
 
   return (
-    <Card className="border-blue-200">
+    <Card className="border-primary/20">
       <CardHeader>
         <CardTitle className="text-lg flex items-center gap-2">
-          <Shield className="h-5 w-5 text-blue-600" />
+          <Shield className="h-5 w-5 text-primary" />
           Verification Badge
         </CardTitle>
       </CardHeader>
@@ -112,7 +112,7 @@ export default function BadgeExportPanel({ projectId, projectTitle }: Props) {
         )}
 
         {issued && (
-          <Badge className="bg-green-100 text-green-700 w-full justify-center py-1">
+          <Badge className="bg-primary/10 text-primary w-full justify-center py-1">
             <CheckCircle className="mr-1 h-3 w-3" />
             Badge issued
           </Badge>
@@ -141,7 +141,7 @@ export default function BadgeExportPanel({ projectId, projectTitle }: Props) {
             onClick={() => copyToClipboard(verifyUrl, 'link')}
           >
             {copied === 'link' ? (
-              <CheckCircle className="mr-2 h-4 w-4 text-green-500" />
+              <CheckCircle className="mr-2 h-4 w-4 text-primary" />
             ) : (
               <Copy className="mr-2 h-4 w-4" />
             )}
@@ -155,7 +155,7 @@ export default function BadgeExportPanel({ projectId, projectTitle }: Props) {
             onClick={() => copyToClipboard(embedCode, 'embed')}
           >
             {copied === 'embed' ? (
-              <CheckCircle className="mr-2 h-4 w-4 text-green-500" />
+              <CheckCircle className="mr-2 h-4 w-4 text-primary" />
             ) : (
               <Code className="mr-2 h-4 w-4" />
             )}

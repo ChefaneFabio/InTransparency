@@ -111,7 +111,7 @@ export function Testimonials() {
 
         {/* Call to Action */}
         <div className="text-center">
-          <div className="bg-gradient-to-r from-teal-600 to-blue-600 rounded-2xl p-8 text-white max-w-2xl mx-auto">
+          <div className="bg-primary rounded-2xl p-8 text-white max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold mb-4">
               Ready to get started?
             </h3>

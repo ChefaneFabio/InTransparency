@@ -90,27 +90,27 @@ export function ApplicationAssistant({
     switch (type) {
       case 'project-match':
       case 'skill-match':
-        return <CheckCircle className="h-5 w-5 text-green-600" />
+        return <CheckCircle className="h-5 w-5 text-primary" />
       case 'skill-gap':
       case 'missing-field':
       case 'insufficient-content':
-        return <AlertCircle className="h-5 w-5 text-yellow-600" />
+        return <AlertCircle className="h-5 w-5 text-secondary" />
       default:
-        return <Lightbulb className="h-5 w-5 text-blue-600" />
+        return <Lightbulb className="h-5 w-5 text-primary" />
     }
   }
 
   const getSuggestionColor = (type: string) => {
-    if (type.includes('match')) return 'border-green-200 bg-green-50'
+    if (type.includes('match')) return 'border-primary/20 bg-primary/5'
     if (type.includes('gap') || type.includes('missing') || type.includes('insufficient')) {
-      return 'border-yellow-200 bg-yellow-50'
+      return 'border-secondary/20 bg-secondary/5'
     }
-    return 'border-blue-200 bg-blue-50'
+    return 'border-primary/20 bg-primary/5'
   }
 
   return (
     <Card className="border-2 border-primary/30 shadow-lg sticky top-4">
-      <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
+      <CardHeader className="bg-primary/10">
         <div className="flex items-center gap-3">
           <div className="bg-primary p-2 rounded-full">
             <Bot className="h-6 w-6 text-white" />

@@ -484,9 +484,9 @@ export function ProjectForm({
               key={step}
               className={`w-3 h-3 rounded-full ${
                 step === currentStep
-                  ? 'bg-blue-600'
+                  ? 'bg-primary'
                   : step < currentStep
-                  ? 'bg-green-500'
+                  ? 'bg-primary/50'
                   : 'bg-gray-200'
               }`}
             />

@@ -418,9 +418,9 @@ export default function FeaturesPage() {
 
     return targets.map(target => {
       const config: { [key: string]: { label: string; color: string } } = {
-        students: { label: 'Students', color: 'bg-blue-100 text-blue-800' },
-        institutes: { label: 'Institutes', color: 'bg-purple-100 text-purple-800' },
-        companies: { label: 'Companies', color: 'bg-green-100 text-green-800' }
+        students: { label: 'Students', color: 'bg-primary/10 text-blue-800' },
+        institutes: { label: 'Institutes', color: 'bg-primary/10 text-purple-800' },
+        companies: { label: 'Companies', color: 'bg-primary/10 text-green-800' }
       }
       return config[target]
     })
@@ -489,12 +489,12 @@ export default function FeaturesPage() {
             {/* PRIMARY SERVICES - Larger cards */}
             <div className="grid md:grid-cols-2 gap-8 mb-6">
               {/* Discovery Service - PRIMARY */}
-              <Card className="border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-xl">
+              <Card className="border-2 border-primary/20 hover:border-green-400 transition-all hover:shadow-xl">
                 <CardHeader className="text-center pb-3">
                   <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                     <Search className="h-8 w-8 text-white" />
                   </div>
-                  <Badge className="mb-2 bg-green-600 text-white text-xs">PRIMARY SERVICE</Badge>
+                  <Badge className="mb-2 bg-primary text-white text-xs">PRIMARY SERVICE</Badge>
                   <CardTitle className="text-lg">Discovery Service</CardTitle>
                   <Badge variant="secondary" className="mt-2 text-xs">Browse FREE, €10/contact</Badge>
                 </CardHeader>

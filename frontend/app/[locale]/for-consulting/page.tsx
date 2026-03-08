@@ -42,7 +42,7 @@ export default function ForConsultingPage() {
         {/* Hero */}
         <section className="py-20 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
           <div className="container text-center max-w-4xl">
-            <Badge className="mb-6 bg-purple-500/20 text-purple-200 border-purple-400/30">
+            <Badge className="mb-6 bg-primary/50/20 text-purple-200 border-purple-400/30">
               {t('badge')}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -96,8 +96,8 @@ export default function ForConsultingPage() {
                 <Card key={i} className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center shrink-0">
-                        <sol.icon className="h-5 w-5 text-purple-600" />
+                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+                        <sol.icon className="h-5 w-5 text-primary" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg mb-1">{sol.title}</h3>
@@ -118,7 +118,7 @@ export default function ForConsultingPage() {
             <div className="grid md:grid-cols-3 gap-8">
               {[1, 2, 3].map((step) => (
                 <div key={step} className="text-center">
-                  <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
                     {step}
                   </div>
                   <h3 className="font-semibold mb-2">{t(`howItWorks.step${step}.title`)}</h3>
@@ -133,13 +133,13 @@ export default function ForConsultingPage() {
         <section className="py-16">
           <div className="container max-w-3xl text-center">
             <h2 className="text-3xl font-bold mb-4">{t('pricing.title')}</h2>
-            <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-2xl p-8 mb-8">
+            <div className="bg-primary/5 rounded-2xl p-8 mb-8">
               <div className="text-5xl font-bold text-purple-700 mb-2">{t('pricing.price')}</div>
               <p className="text-gray-600 mb-6">{t('pricing.perContact')}</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center text-sm text-gray-700">
-                <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4 text-green-600" /> {t('pricing.noSubscription')}</span>
-                <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4 text-green-600" /> {t('pricing.browseFree')}</span>
-                <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4 text-green-600" /> {t('pricing.decisionPackIncluded')}</span>
+                <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4 text-primary" /> {t('pricing.noSubscription')}</span>
+                <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4 text-primary" /> {t('pricing.browseFree')}</span>
+                <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4 text-primary" /> {t('pricing.decisionPackIncluded')}</span>
               </div>
             </div>
             <Button size="lg" asChild>

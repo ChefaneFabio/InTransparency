@@ -925,7 +925,7 @@ export default function PostJobPage() {
                 <div
                   className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors ${
                     index <= currentStep
-                      ? 'bg-blue-600 border-blue-600 text-white'
+                      ? 'bg-primary border-blue-600 text-white'
                       : 'border-gray-300 text-gray-700'
                   }`}
                 >
@@ -945,7 +945,7 @@ export default function PostJobPage() {
                 </div>
                 {index < steps.length - 1 && (
                   <div className={`h-0.5 w-16 mt-5 ${
-                    index < currentStep ? 'bg-blue-600' : 'bg-gray-300'
+                    index < currentStep ? 'bg-primary' : 'bg-gray-300'
                   }`} />
                 )}
               </div>

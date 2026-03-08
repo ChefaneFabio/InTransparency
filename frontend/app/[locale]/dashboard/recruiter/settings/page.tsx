@@ -219,11 +219,11 @@ export default function RecruiterSettingsPage() {
       {saveMessage && (
         <div className={`flex items-center gap-2 p-4 rounded-lg ${
           saveMessage.type === 'success'
-            ? 'bg-green-50 text-green-800 border border-green-200'
+            ? 'bg-primary/5 text-green-800 border border-primary/20'
             : 'bg-red-50 text-red-800 border border-red-200'
         }`}>
           {saveMessage.type === 'success' ? (
-            <CheckCircle className="h-5 w-5 text-green-600" />
+            <CheckCircle className="h-5 w-5 text-primary" />
           ) : (
             <AlertCircle className="h-5 w-5 text-red-600" />
           )}
@@ -331,7 +331,7 @@ export default function RecruiterSettingsPage() {
               aria-checked={settings.notifyNewApplications}
               onClick={() => setSettings({ ...settings, notifyNewApplications: !settings.notifyNewApplications })}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.notifyNewApplications ? 'bg-blue-600' : 'bg-gray-200'
+                settings.notifyNewApplications ? 'bg-primary' : 'bg-gray-200'
               }`}
             >
               <span
@@ -353,7 +353,7 @@ export default function RecruiterSettingsPage() {
               aria-checked={settings.notifyMessages}
               onClick={() => setSettings({ ...settings, notifyMessages: !settings.notifyMessages })}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.notifyMessages ? 'bg-blue-600' : 'bg-gray-200'
+                settings.notifyMessages ? 'bg-primary' : 'bg-gray-200'
               }`}
             >
               <span
@@ -375,7 +375,7 @@ export default function RecruiterSettingsPage() {
               aria-checked={settings.notifySearchAlerts}
               onClick={() => setSettings({ ...settings, notifySearchAlerts: !settings.notifySearchAlerts })}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.notifySearchAlerts ? 'bg-blue-600' : 'bg-gray-200'
+                settings.notifySearchAlerts ? 'bg-primary' : 'bg-gray-200'
               }`}
             >
               <span

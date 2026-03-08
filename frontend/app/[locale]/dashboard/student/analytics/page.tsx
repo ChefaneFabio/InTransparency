@@ -174,9 +174,9 @@ export default function StudentAnalytics() {
 
       {/* Premium Upsell Banner */}
       {isLimited && (
-        <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100 rounded-lg flex items-center justify-between">
+        <div className="p-4 bg-primary/5 border border-primary/10 rounded-lg flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Sparkles className="h-5 w-5 text-blue-600" />
+            <Sparkles className="h-5 w-5 text-primary" />
             <div>
               <p className="text-sm font-medium text-gray-900">{t('premiumUpsell.title')}</p>
               <p className="text-xs text-gray-600">{t('premiumUpsell.description')}</p>
@@ -219,17 +219,17 @@ export default function StudentAnalytics() {
             <StatCard
               title={t('stats.profileViews')}
               value={data.overview.totalProfileViews.toLocaleString()}
-              icon={<Eye className="h-4 w-4 text-blue-600" />}
+              icon={<Eye className="h-4 w-4 text-primary" />}
             />
             <StatCard
               title={t('stats.projects')}
               value={data.overview.totalProjects.toString()}
-              icon={<FolderOpen className="h-4 w-4 text-green-600" />}
+              icon={<FolderOpen className="h-4 w-4 text-primary" />}
             />
             <StatCard
               title={t('stats.applications')}
               value={data.overview.totalApplications.toString()}
-              icon={<Briefcase className="h-4 w-4 text-purple-600" />}
+              icon={<Briefcase className="h-4 w-4 text-primary" />}
             />
             <StatCard
               title={t('stats.skillScore')}
@@ -576,17 +576,17 @@ export default function StudentAnalytics() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center p-3 bg-blue-50 rounded-lg">
+                  <div className="text-center p-3 bg-primary/5 rounded-lg">
                     <p className="text-2xl font-bold text-blue-700">{data.recruiterInterest.savedByCount}</p>
-                    <p className="text-xs text-blue-600">{t('career.savedBy')}</p>
+                    <p className="text-xs text-primary">{t('career.savedBy')}</p>
                   </div>
-                  <div className="text-center p-3 bg-green-50 rounded-lg">
+                  <div className="text-center p-3 bg-primary/5 rounded-lg">
                     <p className="text-2xl font-bold text-green-700">{data.recruiterInterest.contactedByCount}</p>
-                    <p className="text-xs text-green-600">{t('career.contactedBy')}</p>
+                    <p className="text-xs text-primary">{t('career.contactedBy')}</p>
                   </div>
-                  <div className="text-center p-3 bg-purple-50 rounded-lg">
+                  <div className="text-center p-3 bg-primary/5 rounded-lg">
                     <p className="text-2xl font-bold text-purple-700">{data.recruiterInterest.messagesReceived}</p>
-                    <p className="text-xs text-purple-600">{t('career.messagesReceived')}</p>
+                    <p className="text-xs text-primary">{t('career.messagesReceived')}</p>
                   </div>
                 </div>
               </CardContent>

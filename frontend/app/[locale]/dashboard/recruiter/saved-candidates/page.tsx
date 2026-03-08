@@ -160,9 +160,9 @@ export default function SavedCandidatesPage() {
     const colors: Record<string, string> = {
       gray: 'bg-muted text-foreground',
       red: 'bg-red-100 text-red-800',
-      blue: 'bg-blue-100 text-blue-800',
-      purple: 'bg-purple-100 text-purple-800',
-      green: 'bg-green-100 text-green-800'
+      blue: 'bg-primary/10 text-primary',
+      purple: 'bg-primary/10 text-primary',
+      green: 'bg-primary/10 text-primary'
     }
     return colors[color] || colors.gray
   }
@@ -213,8 +213,8 @@ export default function SavedCandidatesPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <Bookmark className="h-4 w-4 text-blue-600" />
+              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                <Bookmark className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
                 <p className="text-sm font-medium text-muted-foreground">Total Saved</p>
@@ -249,8 +249,8 @@ export default function SavedCandidatesPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                <Star className="h-4 w-4 text-green-600" />
+              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                <Star className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
                 <p className="text-sm font-medium text-muted-foreground">Avg Rating</p>
@@ -267,8 +267,8 @@ export default function SavedCandidatesPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                <Users className="h-4 w-4 text-purple-600" />
+              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                <Users className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
                 <p className="text-sm font-medium text-muted-foreground">Folders</p>
@@ -321,13 +321,13 @@ export default function SavedCandidatesPage() {
               <div className="flex items-center border border-border rounded-lg">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-2 ${viewMode === 'grid' ? 'bg-blue-100 text-blue-600' : 'text-muted-foreground'}`}
+                  className={`p-2 ${viewMode === 'grid' ? 'bg-primary/10 text-primary' : 'text-muted-foreground'}`}
                 >
                   <Grid className="h-4 w-4" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`p-2 ${viewMode === 'list' ? 'bg-blue-100 text-blue-600' : 'text-muted-foreground'}`}
+                  className={`p-2 ${viewMode === 'list' ? 'bg-primary/10 text-primary' : 'text-muted-foreground'}`}
                 >
                   <List className="h-4 w-4" />
                 </button>
@@ -397,7 +397,7 @@ export default function SavedCandidatesPage() {
                       <div className={viewMode === 'grid' ? 'space-y-4' : 'flex items-center space-x-4'}>
                         {/* Avatar and Basic Info */}
                         <div className={viewMode === 'grid' ? 'flex items-center space-x-3' : 'flex-shrink-0'}>
-                          <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center text-white font-semibold">
+                          <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
                             {initials}
                           </div>
                           {viewMode === 'grid' && (

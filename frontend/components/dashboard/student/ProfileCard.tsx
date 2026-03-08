@@ -85,8 +85,8 @@ export function ProfileCard({ user }: ProfileCardProps) {
   const avatarUrl = user.avatarUrl || user.image || user.photo
 
   const getCompletenessColor = (percentage: number) => {
-    if (percentage >= 80) return 'text-green-600'
-    if (percentage >= 60) return 'text-yellow-600'
+    if (percentage >= 80) return 'text-primary'
+    if (percentage >= 60) return 'text-secondary'
     return 'text-red-600'
   }
 
@@ -99,7 +99,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
         <div className="flex items-start space-x-4">
           <Avatar className="h-16 w-16">
             <AvatarImage src={avatarUrl} alt={displayName} />
-            <AvatarFallback className="text-lg font-semibold bg-blue-100 text-blue-600">
+            <AvatarFallback className="text-lg font-semibold bg-primary/10 text-primary">
               {initials}
             </AvatarFallback>
           </Avatar>
@@ -206,21 +206,21 @@ export function ProfileCard({ user }: ProfileCardProps) {
         <div className="mt-4 grid grid-cols-3 gap-4 pt-4 border-t border-gray-100">
           <div className="text-center">
             <div className="flex items-center justify-center mb-1">
-              <Star className="h-4 w-4 text-yellow-500" />
+              <Star className="h-4 w-4 text-secondary" />
             </div>
             <div className="text-lg font-semibold text-gray-900">4.8</div>
             <div className="text-xs text-gray-700">Rating</div>
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center mb-1">
-              <Award className="h-4 w-4 text-blue-500" />
+              <Award className="h-4 w-4 text-primary" />
             </div>
             <div className="text-lg font-semibold text-gray-900">12</div>
             <div className="text-xs text-gray-700">Projects</div>
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center mb-1">
-              <Target className="h-4 w-4 text-green-500" />
+              <Target className="h-4 w-4 text-primary" />
             </div>
             <div className="text-lg font-semibold text-gray-900">86%</div>
             <div className="text-xs text-gray-700">Match Rate</div>
@@ -245,7 +245,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
 
         {/* Profile Tips */}
         {completeness < 80 && (
-          <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+          <div className="mt-4 p-3 bg-primary/5 rounded-lg">
             <h4 className="text-sm font-medium text-blue-900 mb-1">
               Boost your profile! 
             </h4>

@@ -143,7 +143,7 @@ export default function NotificationBell() {
             {unreadCount > 0 && (
               <button
                 onClick={markAllRead}
-                className="text-xs text-blue-600 hover:text-blue-700"
+                className="text-xs text-primary hover:text-blue-700"
               >
                 Mark all read
               </button>
@@ -157,7 +157,7 @@ export default function NotificationBell() {
                 <div
                   key={n.id}
                   className={`px-4 py-3 border-b last:border-b-0 hover:bg-gray-50 cursor-pointer flex gap-3 ${
-                    !n.read ? 'bg-blue-50/50' : ''
+                    !n.read ? 'bg-primary/5/50' : ''
                   }`}
                 >
                   <div
@@ -168,7 +168,7 @@ export default function NotificationBell() {
                       <span className="text-sm">{getTypeIcon(n.type)}</span>
                       <span className="text-sm font-medium text-gray-900 line-clamp-1">{n.title}</span>
                       {!n.read && (
-                        <span className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0" />
+                        <span className="w-2 h-2 bg-primary/50 rounded-full flex-shrink-0" />
                       )}
                     </div>
                     <p className="text-xs text-gray-600 mt-0.5 line-clamp-2">{n.body}</p>
