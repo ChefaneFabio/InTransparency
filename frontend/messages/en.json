@@ -4952,5 +4952,151 @@
       "more": "More",
       "settings": "Settings"
     }
+  },
+  "universityStudents": {
+    "title": "Student Management",
+    "subtitle": "Track student progress and employment outcomes",
+    "exportData": "Export Data",
+    "addStudent": "Add Student",
+    "tabs": {
+      "overview": "Overview",
+      "students": "Students",
+      "performance": "Performance",
+      "placement": "Placement",
+      "market": "Market Context"
+    },
+    "stats": {
+      "totalStudents": "Total Students",
+      "enrolledIn": "Enrolled in your university",
+      "verifiedStudents": "Verified Students",
+      "verified": "{percentage}% verified",
+      "activeProfiles": "Active Profiles",
+      "publicProfiles": "{percentage}% public profiles"
+    },
+    "topStudents": {
+      "title": "Top Students by Projects",
+      "description": "Students with the most projects",
+      "projects": "{count} projects",
+      "applications": "{count} applications",
+      "noStudents": "No students found"
+    },
+    "recentActivity": {
+      "title": "Recent Activity",
+      "description": "Most recently active students",
+      "noActivity": "No recent activity"
+    },
+    "filters": {
+      "searchPlaceholder": "Search students...",
+      "allMajors": "All Majors",
+      "allYears": "All Years",
+      "filterByMajor": "Filter by major",
+      "filterByYear": "Filter by year",
+      "sortBy": "Sort by",
+      "gpa": "GPA",
+      "projects": "Projects",
+      "name": "Name",
+      "freshman": "Freshman",
+      "sophomore": "Sophomore",
+      "junior": "Junior",
+      "senior": "Senior"
+    },
+    "studentCard": {
+      "noMajor": "No major",
+      "publicProfile": "Public Profile",
+      "privateProfile": "Private Profile",
+      "projectsLabel": "Projects",
+      "applicationsLabel": "Applications",
+      "gpaLabel": "GPA",
+      "lastActive": "Last Active",
+      "viewProfile": "View Profile",
+      "sendMessage": "Send Message",
+      "exportReport": "Export Report"
+    },
+    "noResults": "No students found matching your filters.",
+    "pagination": {
+      "showing": "Showing {count} of {total} students",
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {current} of {total}"
+    },
+    "performance": {
+      "gpaDistribution": "GPA Distribution",
+      "gpaDescription": "Academic performance across all students",
+      "employabilityScores": "Employability Scores",
+      "employabilityDescription": "Distribution of student employability ratings",
+      "students": "{count} students ({percentage}%)",
+      "gpaRanges": {
+        "3.8-4.0": "3.8 - 4.0",
+        "3.5-3.79": "3.5 - 3.79",
+        "3.0-3.49": "3.0 - 3.49",
+        "2.5-2.99": "2.5 - 2.99",
+        "below2.5": "Below 2.5"
+      },
+      "scoreRanges": {
+        "90-100": "90-100",
+        "80-89": "80-89",
+        "70-79": "70-79",
+        "60-69": "60-69",
+        "below60": "Below 60"
+      },
+      "noData": "No data available yet"
+    },
+    "placement": {
+      "statusTitle": "Placement Status",
+      "statusDescription": "Current job placement status of students",
+      "salaryTitle": "Salary Ranges",
+      "salaryDescription": "From placements and alumni data",
+      "industryTitle": "Industry Distribution",
+      "industryDescription": "Where our graduates are working",
+      "statuses": {
+        "confirmed": "Placed",
+        "pending": "Interviewing",
+        "declined": "Declined",
+        "notStarted": "Not Started"
+      },
+      "salaryRanges": {
+        "50k+": "€50k+",
+        "35k-50k": "€35k-€50k",
+        "25k-35k": "€25k-€35k",
+        "below25k": "Below €25k"
+      },
+      "studentsCount": "{count} students",
+      "noData": "No placement data yet"
+    },
+    "market": {
+      "title": "Market Context",
+      "yourUniversity": "Your University",
+      "platformAvg": "Platform Average",
+      "eurostat": "Italy Market (Eurostat)",
+      "comparisonTitle": "Salary Benchmark",
+      "comparisonDescription": "Your graduates vs. platform average and Italian market",
+      "avgSalary": "Avg. Salary",
+      "medianSalary": "Median Salary",
+      "dataPoints": "{count} data points",
+      "abovePlatform": "{percent}% above platform avg",
+      "belowPlatform": "{percent}% below platform avg",
+      "atPlatform": "At platform average",
+      "salaryByIndustry": "Salary by Industry",
+      "salaryByIndustryDesc": "Platform-wide averages from placements, alumni, and job postings",
+      "marketBenchmarks": "Italian Market Benchmarks",
+      "marketBenchmarksDesc": "National salary averages by sector (Eurostat/ISTAT)",
+      "perYear": "/year",
+      "noMarketData": "Market data unavailable",
+      "dataSources": "Data Sources",
+      "sourcePlacements": "Placements",
+      "sourceAlumni": "Alumni records",
+      "sourceJobs": "Job postings",
+      "sourcePlatform": "Platform total",
+      "sourceEurostat": "Eurostat sectors"
+    },
+    "time": {
+      "justNow": "Just now",
+      "minutesAgo": "{count}m ago",
+      "hoursAgo": "{count}h ago",
+      "daysAgo": "{count}d ago",
+      "never": "Never"
+    },
+    "error": "An error occurred",
+    "retry": "Retry"
   }
 }

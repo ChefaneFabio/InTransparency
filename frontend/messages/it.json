@@ -4994,5 +4994,151 @@
       "more": "Altro",
       "settings": "Impostazioni"
     }
+  },
+  "universityStudents": {
+    "title": "Gestione Studenti",
+    "subtitle": "Monitora il progresso degli studenti e gli esiti occupazionali",
+    "exportData": "Esporta Dati",
+    "addStudent": "Aggiungi Studente",
+    "tabs": {
+      "overview": "Panoramica",
+      "students": "Studenti",
+      "performance": "Rendimento",
+      "placement": "Collocamento",
+      "market": "Contesto di Mercato"
+    },
+    "stats": {
+      "totalStudents": "Studenti Totali",
+      "enrolledIn": "Iscritti alla tua università",
+      "verifiedStudents": "Studenti Verificati",
+      "verified": "{percentage}% verificati",
+      "activeProfiles": "Profili Attivi",
+      "publicProfiles": "{percentage}% profili pubblici"
+    },
+    "topStudents": {
+      "title": "Migliori Studenti per Progetti",
+      "description": "Studenti con il maggior numero di progetti",
+      "projects": "{count} progetti",
+      "applications": "{count} candidature",
+      "noStudents": "Nessuno studente trovato"
+    },
+    "recentActivity": {
+      "title": "Attività Recente",
+      "description": "Studenti attivi più di recente",
+      "noActivity": "Nessuna attività recente"
+    },
+    "filters": {
+      "searchPlaceholder": "Cerca studenti...",
+      "allMajors": "Tutti i Corsi",
+      "allYears": "Tutti gli Anni",
+      "filterByMajor": "Filtra per corso",
+      "filterByYear": "Filtra per anno",
+      "sortBy": "Ordina per",
+      "gpa": "Media",
+      "projects": "Progetti",
+      "name": "Nome",
+      "freshman": "Primo Anno",
+      "sophomore": "Secondo Anno",
+      "junior": "Terzo Anno",
+      "senior": "Ultimo Anno"
+    },
+    "studentCard": {
+      "noMajor": "Nessun corso",
+      "publicProfile": "Profilo Pubblico",
+      "privateProfile": "Profilo Privato",
+      "projectsLabel": "Progetti",
+      "applicationsLabel": "Candidature",
+      "gpaLabel": "Media",
+      "lastActive": "Ultima Attività",
+      "viewProfile": "Vedi Profilo",
+      "sendMessage": "Invia Messaggio",
+      "exportReport": "Esporta Report"
+    },
+    "noResults": "Nessuno studente trovato con i filtri selezionati.",
+    "pagination": {
+      "showing": "Mostrando {count} di {total} studenti",
+      "previous": "Precedente",
+      "next": "Successivo",
+      "page": "Pagina {current} di {total}"
+    },
+    "performance": {
+      "gpaDistribution": "Distribuzione Media Voti",
+      "gpaDescription": "Rendimento accademico di tutti gli studenti",
+      "employabilityScores": "Punteggi di Occupabilità",
+      "employabilityDescription": "Distribuzione dei punteggi di occupabilità degli studenti",
+      "students": "{count} studenti ({percentage}%)",
+      "gpaRanges": {
+        "3.8-4.0": "3.8 - 4.0",
+        "3.5-3.79": "3.5 - 3.79",
+        "3.0-3.49": "3.0 - 3.49",
+        "2.5-2.99": "2.5 - 2.99",
+        "below2.5": "Sotto 2.5"
+      },
+      "scoreRanges": {
+        "90-100": "90-100",
+        "80-89": "80-89",
+        "70-79": "70-79",
+        "60-69": "60-69",
+        "below60": "Sotto 60"
+      },
+      "noData": "Nessun dato disponibile"
+    },
+    "placement": {
+      "statusTitle": "Stato Collocamento",
+      "statusDescription": "Stato attuale del collocamento lavorativo degli studenti",
+      "salaryTitle": "Fasce Salariali",
+      "salaryDescription": "Da dati di collocamento e alumni",
+      "industryTitle": "Distribuzione per Settore",
+      "industryDescription": "Dove lavorano i nostri laureati",
+      "statuses": {
+        "confirmed": "Collocati",
+        "pending": "In Colloquio",
+        "declined": "Rifiutati",
+        "notStarted": "Non Iniziato"
+      },
+      "salaryRanges": {
+        "50k+": "€50k+",
+        "35k-50k": "€35k-€50k",
+        "25k-35k": "€25k-€35k",
+        "below25k": "Sotto €25k"
+      },
+      "studentsCount": "{count} studenti",
+      "noData": "Nessun dato di collocamento"
+    },
+    "market": {
+      "title": "Contesto di Mercato",
+      "yourUniversity": "La Tua Università",
+      "platformAvg": "Media Piattaforma",
+      "eurostat": "Mercato Italia (Eurostat)",
+      "comparisonTitle": "Benchmark Salariale",
+      "comparisonDescription": "I tuoi laureati vs. media piattaforma e mercato italiano",
+      "avgSalary": "Stipendio Medio",
+      "medianSalary": "Stipendio Mediano",
+      "dataPoints": "{count} dati raccolti",
+      "abovePlatform": "{percent}% sopra la media",
+      "belowPlatform": "{percent}% sotto la media",
+      "atPlatform": "Nella media della piattaforma",
+      "salaryByIndustry": "Stipendio per Settore",
+      "salaryByIndustryDesc": "Medie piattaforma da collocamenti, alumni e offerte di lavoro",
+      "marketBenchmarks": "Benchmark Mercato Italiano",
+      "marketBenchmarksDesc": "Stipendi medi nazionali per settore (Eurostat/ISTAT)",
+      "perYear": "/anno",
+      "noMarketData": "Dati di mercato non disponibili",
+      "dataSources": "Fonti Dati",
+      "sourcePlacements": "Collocamenti",
+      "sourceAlumni": "Dati alumni",
+      "sourceJobs": "Offerte di lavoro",
+      "sourcePlatform": "Totale piattaforma",
+      "sourceEurostat": "Settori Eurostat"
+    },
+    "time": {
+      "justNow": "Adesso",
+      "minutesAgo": "{count}m fa",
+      "hoursAgo": "{count}h fa",
+      "daysAgo": "{count}g fa",
+      "never": "Mai"
+    },
+    "error": "Si è verificato un errore",
+    "retry": "Riprova"
   }
 }
