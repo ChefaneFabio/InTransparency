@@ -284,7 +284,7 @@ export default function ExplorePage() {
                 <Users className="h-4 w-4" />
                 {t('hero.badge')}
               </div>
-              <h1 className="text-5xl font-display font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h1 className="text-5xl font-display font-bold mb-6 text-foreground">
                 {t('hero.title')}
               </h1>
               <p className="text-xl text-foreground/80 leading-relaxed max-w-3xl mx-auto mb-8">
@@ -601,7 +601,7 @@ export default function ExplorePage() {
                       <p className="text-muted-foreground mb-2 max-w-lg mx-auto">{t('empty.pilotDescription')}</p>
                       <p className="text-sm text-primary font-medium mb-8">{t('empty.pilotCta')}</p>
                       <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                        <Button size="lg" className="bg-gradient-to-r from-primary to-secondary" asChild>
+                        <Button size="lg" asChild>
                           <Link href="/demo/ai-search">
                             <Search className="mr-2 h-5 w-5" />
                             {t('empty.tryDemo')}
@@ -666,11 +666,11 @@ export default function ExplorePage() {
                               <div className="text-xs text-muted-foreground">{t('card.stats.projects')}</div>
                             </div>
                             <div>
-                              <div className="text-xl font-bold text-green-600">{student.verificationScore}%</div>
+                              <div className="text-xl font-bold text-primary">{student.verificationScore}%</div>
                               <div className="text-xs text-muted-foreground">{t('card.stats.verified')}</div>
                             </div>
                             <div>
-                              <div className="text-xl font-bold text-blue-600">{student.skillsCount}</div>
+                              <div className="text-xl font-bold text-primary">{student.skillsCount}</div>
                               <div className="text-xs text-muted-foreground">{t('card.stats.skills')}</div>
                             </div>
                           </div>
@@ -705,7 +705,7 @@ export default function ExplorePage() {
         </div>
 
         {/* CTA Section */}
-        <section className="bg-gradient-to-r from-primary to-secondary text-white py-16 mt-12">
+        <section className="bg-primary text-primary-foreground py-16 mt-12">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-3xl font-bold mb-4">
               {t('cta.title')}

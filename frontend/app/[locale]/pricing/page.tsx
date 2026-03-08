@@ -26,18 +26,7 @@ export default function PricingPage() {
 
           {/* Hero Section */}
           <div className="relative">
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <motion.div
-                className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
-                animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
-                transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <motion.div
-                className="absolute top-20 right-1/4 w-96 h-96 bg-secondary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
-                animate={{ x: [0, -50, 0], y: [0, 50, 0] }}
-                transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-              />
-            </div>
+            {/* Clean layout — no floating orbs */}
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -45,14 +34,9 @@ export default function PricingPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16 relative z-10"
             >
-              <motion.h1
-                className="text-5xl font-display font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8 }}
-              >
+              <h1 className="text-5xl font-display font-bold mb-6 text-foreground">
                 {t('hero.title')}
-              </motion.h1>
+              </h1>
               <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-4">
                 {t('hero.subtitle')}
               </p>
@@ -70,7 +54,7 @@ export default function PricingPage() {
                       onClick={() => setSelectedSegment(segment)}
                       className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                         selectedSegment === segment
-                          ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
+                          ? 'bg-primary text-primary-foreground'
                           : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                       }`}
                     >
@@ -213,7 +197,7 @@ export default function PricingPage() {
                                   </li>
                                 ))}
                               </ul>
-                              <Button asChild variant={plan.highlight ? 'default' : 'outline'} size="sm" className={plan.highlight ? 'bg-gradient-to-r from-primary to-secondary' : ''}>
+                              <Button asChild variant={plan.highlight ? 'default' : 'outline'} size="sm" className={plan.highlight ? 'bg-primary' : ''}>
                                 <Link href={plan.link}>
                                   {plan.cta}
                                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -250,14 +234,13 @@ export default function PricingPage() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: index * 0.1 }}
-                          whileHover={{ y: -10, scale: 1.02 }}
-                        >
-                          <Card className={`relative ${plan.highlight ? 'border-2 border-primary shadow-xl bg-gradient-to-br from-primary/5 to-secondary/5' : 'border-gray-200 bg-white/80'} h-full flex flex-col`}>
+                                                  >
+                          <Card className={`relative ${plan.highlight ? 'border-2 border-primary shadow-xl bg-primary/5' : 'border-gray-200 bg-white/80'} h-full flex flex-col`}>
                             <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                              <Badge className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 shadow-lg">{plan.badge}</Badge>
+                              <Badge className="bg-primary text-primary-foreground px-4 py-1">{plan.badge}</Badge>
                             </div>
                             <CardHeader className="text-center pb-8 pt-8">
-                              <motion.div className={`mx-auto mb-4 rounded-full p-4 ${plan.highlight ? 'bg-primary/10' : 'bg-gray-100'}`} whileHover={{ rotate: 360, scale: 1.1 }} transition={{ duration: 0.6 }}>
+                              <motion.div className={`mx-auto mb-4 rounded-full p-4 ${plan.highlight ? 'bg-primary/10' : 'bg-gray-100'}`} >
                                 <Icon className={`h-8 w-8 ${plan.highlight ? 'text-primary' : 'text-gray-600'}`} />
                               </motion.div>
                               <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
@@ -275,7 +258,7 @@ export default function PricingPage() {
                                   </li>
                                 ))}
                               </ul>
-                              <Button asChild className={`w-full ${plan.highlight ? 'bg-gradient-to-r from-primary to-secondary hover:opacity-90' : ''}`} variant={plan.highlight ? 'default' : 'outline'}>
+                              <Button asChild className={`w-full ${plan.highlight ? 'bg-primary hover:bg-primary/90' : ''}`} variant={plan.highlight ? 'default' : 'outline'}>
                                 <Link href={plan.link}>{plan.cta}<ArrowRight className="ml-2 h-4 w-4" /></Link>
                               </Button>
                             </CardContent>
@@ -309,14 +292,13 @@ export default function PricingPage() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: index * 0.1 }}
-                          whileHover={{ y: -10, scale: 1.02 }}
-                        >
-                          <Card className={`relative ${plan.highlight ? 'border-2 border-primary shadow-xl bg-gradient-to-br from-primary/5 to-secondary/5' : 'border-gray-200 bg-white/80'} h-full flex flex-col`}>
+                                                  >
+                          <Card className={`relative ${plan.highlight ? 'border-2 border-primary shadow-xl bg-primary/5' : 'border-gray-200 bg-white/80'} h-full flex flex-col`}>
                             <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                              <Badge className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 shadow-lg">{plan.badge}</Badge>
+                              <Badge className="bg-primary text-primary-foreground px-4 py-1">{plan.badge}</Badge>
                             </div>
                             <CardHeader className="text-center pb-8 pt-8">
-                              <motion.div className={`mx-auto mb-4 rounded-full p-4 ${plan.highlight ? 'bg-primary/10' : 'bg-gray-100'}`} whileHover={{ rotate: 360, scale: 1.1 }} transition={{ duration: 0.6 }}>
+                              <motion.div className={`mx-auto mb-4 rounded-full p-4 ${plan.highlight ? 'bg-primary/10' : 'bg-gray-100'}`} >
                                 <Icon className={`h-8 w-8 ${plan.highlight ? 'text-primary' : 'text-gray-600'}`} />
                               </motion.div>
                               <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
@@ -334,7 +316,7 @@ export default function PricingPage() {
                                   </li>
                                 ))}
                               </ul>
-                              <Button asChild className={`w-full ${plan.highlight ? 'bg-gradient-to-r from-primary to-secondary hover:opacity-90' : ''}`} variant={plan.highlight ? 'default' : 'outline'}>
+                              <Button asChild className={`w-full ${plan.highlight ? 'bg-primary hover:bg-primary/90' : ''}`} variant={plan.highlight ? 'default' : 'outline'}>
                                 <Link href={plan.link}>{plan.cta}<ArrowRight className="ml-2 h-4 w-4" /></Link>
                               </Button>
                             </CardContent>
@@ -391,7 +373,7 @@ export default function PricingPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Card className="bg-gradient-to-r from-primary to-secondary text-white border-0 shadow-2xl">
+            <Card className="bg-primary text-primary-foreground border-0">
               <CardContent className="p-12 text-center">
                 <h2 className="text-4xl font-display font-bold mb-4">
                   {t('finalCta.title')}

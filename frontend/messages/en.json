@@ -229,10 +229,10 @@
       "bottomText": "Four Services, Zero Subscriptions",
       "unifiedHeadline1": "Transparent",
       "unifiedHeadline2": "Talent Discovery",
-      "unifiedSubheadline": "Where verified skills meet real opportunities. Institution-backed, AI-analyzed, project-proven.",
+      "unifiedSubheadline": "Every skill verified by institutions. Every project traceable to its source. Companies pay only when they contact a candidate.",
       "unifiedPrimaryCTA": "Get Started Free",
       "unifiedSecondaryCTA": "See How It Works",
-      "unifiedBenefits": ["100% Verified Skills", "AI-Powered Matching", "Free for Students & Universities"],
+      "unifiedBenefits": ["Institution-verified skills", "No subscriptions", "Free for students & universities"],
       "exploreByRole": "Explore by role",
       "socialProof": {
         "startCup": "Start Cup Bergamo 2025 Winners",
@@ -395,7 +395,7 @@
     "howItWorksPage": {
       "title": "How",
       "titleHighlight": "InTransparency Works",
-      "subtitle": "Our AI-powered platform transforms academic projects into professional opportunities through four simple steps",
+      "subtitle": "From university project to verified portfolio to employer contact — in three steps",
       "pauseDemo": "Pause Demo",
       "playDemo": "Play Demo",
       "autoAdvancing": "Auto-advancing every 4 seconds",
@@ -428,8 +428,8 @@
             "Technology stack analysis and recommendations"
           ],
           "stats": {
-            "accuracy": "94%",
-            "skills": "500+"
+            "analysis": "Automated",
+            "verification": "Institution-backed"
           },
           "visual": {
             "analysisTitle": "AI Analysis in Progress...",
@@ -448,8 +448,8 @@
             "Real-time opportunity notifications"
           ],
           "stats": {
-            "savings": "98%",
-            "direct": "Direct Contact"
+            "cost": "€10 per contact",
+            "model": "Pay per use"
           },
           "visual": {
             "matchesTitle": "Matches Found",

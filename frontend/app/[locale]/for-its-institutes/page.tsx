@@ -121,12 +121,12 @@ export default function ITSInstitutesPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <Badge className="mb-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white">
+            <Badge className="mb-4 bg-primary text-white">
               Free Marketplace • Get Your Students Hired
             </Badge>
             <h1 className="text-5xl font-display font-bold mb-6">
               Connect Your Graduates to{' '}
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <span className="text-primary">
                 Companies Seeking Verified Skills
               </span>
             </h1>
@@ -141,7 +141,7 @@ export default function ITSInstitutesPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-lg"
+                className="bg-primary hover:from-green-600 hover:to-emerald-700 shadow-lg"
                 asChild
               >
                 <Link href="/auth/register">
@@ -175,7 +175,7 @@ export default function ITSInstitutesPage() {
             <div className="grid md:grid-cols-3 gap-6">
               <Card className="border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-lg">
                 <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Briefcase className="h-8 w-8 text-white" />
                   </div>
                   <CardTitle className="text-lg">Students Get Discovered</CardTitle>
@@ -183,19 +183,19 @@ export default function ITSInstitutesPage() {
                 <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Companies search 10K+ verified graduates</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Students don't apply - companies reach out</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Your verification badge = trust signal</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Companies contact students directly</span>
                     </li>
                   </ul>
@@ -204,7 +204,7 @@ export default function ITSInstitutesPage() {
 
               <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
                 <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-primary to-secondary p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Target className="h-8 w-8 text-white" />
                   </div>
                   <CardTitle className="text-lg">AI-Powered Matching</CardTitle>
@@ -212,19 +212,19 @@ export default function ITSInstitutesPage() {
                 <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
+                      <Sparkles className="h-4 w-4 text-secondary mr-2 mt-0.5" />
                       <span>AI matches skills to job requirements</span>
                     </li>
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
+                      <Sparkles className="h-4 w-4 text-secondary mr-2 mt-0.5" />
                       <span>Verified skills improve visibility</span>
                     </li>
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
+                      <Sparkles className="h-4 w-4 text-secondary mr-2 mt-0.5" />
                       <span>Transparent AI explanations</span>
                     </li>
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-yellow-500 mr-2 mt-0.5" />
+                      <Sparkles className="h-4 w-4 text-secondary mr-2 mt-0.5" />
                       <span>Faster screening with verified data</span>
                     </li>
                   </ul>
@@ -233,7 +233,7 @@ export default function ITSInstitutesPage() {
 
               <Card className="border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-lg">
                 <CardHeader className="text-center">
-                  <div className="bg-gradient-to-br from-purple-500 to-indigo-600 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <div className="bg-primary/80 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <TrendingUp className="h-8 w-8 text-white" />
                   </div>
                   <CardTitle className="text-lg">Track Your Impact</CardTitle>
@@ -241,19 +241,19 @@ export default function ITSInstitutesPage() {
                 <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
-                      <BarChart3 className="h-4 w-4 text-purple-600 mr-2 mt-0.5" />
+                      <BarChart3 className="h-4 w-4 text-primary/70 mr-2 mt-0.5" />
                       <span>See which companies viewed your students</span>
                     </li>
                     <li className="flex items-start">
-                      <BarChart3 className="h-4 w-4 text-purple-600 mr-2 mt-0.5" />
+                      <BarChart3 className="h-4 w-4 text-primary/70 mr-2 mt-0.5" />
                       <span>Track time-to-hire metrics</span>
                     </li>
                     <li className="flex items-start">
-                      <BarChart3 className="h-4 w-4 text-purple-600 mr-2 mt-0.5" />
+                      <BarChart3 className="h-4 w-4 text-primary/70 mr-2 mt-0.5" />
                       <span>Generate reports for MIUR</span>
                     </li>
                     <li className="flex items-start">
-                      <BarChart3 className="h-4 w-4 text-purple-600 mr-2 mt-0.5" />
+                      <BarChart3 className="h-4 w-4 text-primary/70 mr-2 mt-0.5" />
                       <span>Early intervention alerts</span>
                     </li>
                   </ul>
@@ -280,7 +280,7 @@ export default function ITSInstitutesPage() {
               {/* Discovery Service - PRIMARY (Larger card) */}
               <Card className="border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-xl">
                 <CardHeader className="text-center pb-3">
-                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                  <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                     <Search className="h-8 w-8 text-white" />
                   </div>
                   <Badge className="mb-2 bg-green-600 text-white">PRIMARY SERVICE</Badge>
@@ -304,7 +304,7 @@ export default function ITSInstitutesPage() {
               {/* Matching Service - PRIMARY (Larger card) */}
               <Card className="border-2 border-secondary/30 hover:border-secondary/50 transition-all hover:shadow-xl">
                 <CardHeader className="text-center pb-3">
-                  <div className="bg-gradient-to-br from-secondary to-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                  <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                     <Target className="h-8 w-8 text-white" />
                   </div>
                   <Badge className="mb-2 bg-secondary text-white">PRIMARY SERVICE</Badge>
@@ -330,7 +330,7 @@ export default function ITSInstitutesPage() {
               {/* Verification Service - SECONDARY (Smaller card) */}
               <Card className="border border-border hover:border-border transition-all hover:shadow-md">
                 <CardHeader className="text-center py-4">
-                  <div className="bg-gradient-to-br from-gray-400 to-gray-600 p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
+                  <div className="bg-muted-foreground p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
                     <Shield className="h-6 w-6 text-white" />
                   </div>
                   <CardTitle className="text-base">Verification Service</CardTitle>
@@ -350,7 +350,7 @@ export default function ITSInstitutesPage() {
               {/* Analytics Service - SECONDARY (Smaller card) */}
               <Card className="border border-border hover:border-border transition-all hover:shadow-md">
                 <CardHeader className="text-center py-4">
-                  <div className="bg-gradient-to-br from-gray-400 to-gray-600 p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
+                  <div className="bg-muted-foreground p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
                     <BarChart3 className="h-6 w-6 text-white" />
                   </div>
                   <CardTitle className="text-base">Analytics Service</CardTitle>
@@ -395,7 +395,7 @@ export default function ITSInstitutesPage() {
                     onClick={() => setSelectedArea(area)}
                     className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       selectedArea.area === area.area
-                        ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
+                        ? 'bg-primary text-primary-foreground'
                         : 'text-muted-foreground hover:text-foreground hover:bg-muted bg-card border border-border'
                     }`}
                   >
@@ -407,13 +407,13 @@ export default function ITSInstitutesPage() {
             </div>
 
             {/* Selected Area Details */}
-            <Card className="bg-gradient-to-r from-primary/5 to-secondary/5 border-2 border-primary/20">
+            <Card className="bg-primary/5 border-2 border-primary/20">
               <CardContent className="py-8">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
                     <h3 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
                       {selectedArea.area}
-                      <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white">
+                      <Badge className="bg-primary text-white">
                         {selectedArea.avgPlacement}% Placement
                       </Badge>
                     </h3>
@@ -454,7 +454,7 @@ export default function ITSInstitutesPage() {
                       <CardContent className="text-sm space-y-3">
                         <div className="flex items-start gap-3">
                           <div className="bg-green-500/10 rounded-full p-2">
-                            <GraduationCap className="h-4 w-4 text-green-600" />
+                            <GraduationCap className="h-4 w-4 text-primary" />
                           </div>
                           <div>
                             <p className="font-semibold">1. Student Uploads ITS Project</p>
@@ -481,7 +481,7 @@ export default function ITSInstitutesPage() {
                         </div>
                         <div className="flex items-start gap-3">
                           <div className="bg-purple-500/10 rounded-full p-2">
-                            <Briefcase className="h-4 w-4 text-purple-600" />
+                            <Briefcase className="h-4 w-4 text-primary/70" />
                           </div>
                           <div>
                             <p className="font-semibold">4. Student Gets Hired</p>
@@ -512,26 +512,26 @@ export default function ITSInstitutesPage() {
               <Card className="border-2 border-green-200">
                 <CardHeader className="text-center">
                   <div className="bg-green-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <TrendingUp className="h-8 w-8 text-green-600" />
+                    <TrendingUp className="h-8 w-8 text-primary" />
                   </div>
                   <CardTitle className="text-lg">Better Placement Outcomes</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Students get discovered by companies</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Companies proactively reach out</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Track time-to-hire metrics</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Verified skills = competitive edge</span>
                     </li>
                   </ul>
@@ -548,19 +548,19 @@ export default function ITSInstitutesPage() {
                 <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>No setup costs</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Core features included</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Companies pay per contact</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Enterprise options available</span>
                     </li>
                   </ul>
@@ -577,19 +577,19 @@ export default function ITSInstitutesPage() {
                 <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Track placement metrics</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>See which companies hiring your grads</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Export reports for funding</span>
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5" />
+                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Early intervention alerts</span>
                     </li>
                   </ul>
@@ -606,7 +606,7 @@ export default function ITSInstitutesPage() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <Card className="bg-gradient-to-r from-primary to-secondary border-0 text-white">
+            <Card className="bg-primary border-0 text-primary-foreground">
               <CardContent className="py-12">
                 <h3 className="text-3xl font-display font-bold text-center mb-8">
                   Get Started in 3 Steps
@@ -696,7 +696,7 @@ export default function ITSInstitutesPage() {
                     <div className="space-y-1">
                       {its.topSkills.map((skill) => (
                         <div key={skill} className="flex items-center text-xs text-foreground/80">
-                          <CheckCircle className="h-3 w-3 text-green-600 mr-1" />
+                          <CheckCircle className="h-3 w-3 text-primary mr-1" />
                           {skill}
                         </div>
                       ))}
@@ -802,7 +802,7 @@ export default function ITSInstitutesPage() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200">
+            <Card className="bg-primary/5 border-2 border-primary/20">
               <CardContent className="py-12">
                 <h3 className="text-3xl font-display font-bold text-foreground mb-4">
                   Ready to Get Your ITS Students Hired?
@@ -814,7 +814,7 @@ export default function ITSInstitutesPage() {
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-lg"
+                    className="bg-primary hover:from-green-600 hover:to-emerald-700 shadow-lg"
                     asChild
                   >
                     <Link href="/auth/register">

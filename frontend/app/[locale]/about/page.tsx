@@ -81,7 +81,7 @@ export default function AboutPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-              <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-200 hover:shadow-lg transition-shadow h-full">
+              <Card className="bg-primary/5 border-2 border-primary/20 hover:shadow-lg transition-shadow h-full">
                 <CardContent className="p-8">
                   <div className="relative w-16 h-16 mb-4 rounded-lg overflow-hidden shadow-md">
                     <Image
@@ -122,7 +122,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-4xl font-display font-bold text-foreground mb-4">
                 {t('whyDifferent.title')}{' '}
-                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                <span className="text-primary">
                   {t('whyDifferent.titleHighlight')}
                 </span>
               </h2>
@@ -184,38 +184,38 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-300 h-full">
+                <Card className="bg-primary/5 border-2 border-primary/20 h-full">
                   <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold text-green-900 mb-6 flex items-center gap-2">
+                    <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
                       <Shield className="h-6 w-6" />
                       {t('whyDifferent.solution.title')}
                     </h3>
                     <ul className="space-y-4">
                       <li className="flex items-start gap-3">
-                        <span className="text-green-600 font-bold">✅</span>
+                        <span className="text-primary font-bold">✅</span>
                         <div>
-                          <strong className="text-green-900">{t('whyDifferent.solution.items.0.title')}</strong>
+                          <strong className="text-foreground">{t('whyDifferent.solution.items.0.title')}</strong>
                           <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.0.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="text-green-600 font-bold">✅</span>
+                        <span className="text-primary font-bold">✅</span>
                         <div>
-                          <strong className="text-green-900">{t('whyDifferent.solution.items.1.title')}</strong>
+                          <strong className="text-foreground">{t('whyDifferent.solution.items.1.title')}</strong>
                           <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.1.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="text-green-600 font-bold">✅</span>
+                        <span className="text-primary font-bold">✅</span>
                         <div>
-                          <strong className="text-green-900">{t('whyDifferent.solution.items.2.title')}</strong>
+                          <strong className="text-foreground">{t('whyDifferent.solution.items.2.title')}</strong>
                           <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.2.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="text-green-600 font-bold">✅</span>
+                        <span className="text-primary font-bold">✅</span>
                         <div>
-                          <strong className="text-green-900">{t('whyDifferent.solution.items.3.title')}</strong>
+                          <strong className="text-foreground">{t('whyDifferent.solution.items.3.title')}</strong>
                           <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.3.description')}</p>
                         </div>
                       </li>
@@ -231,7 +231,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Card className="bg-gradient-to-r from-primary to-secondary text-white">
+              <Card className="bg-primary text-primary-foreground">
                 <CardContent className="p-8 text-center">
                   <h3 className="text-2xl font-display font-bold mb-4">{t('whyDifferent.result.title')}</h3>
                   <div className="grid md:grid-cols-3 gap-6 mb-6">
@@ -349,7 +349,7 @@ export default function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    whileHover={{ y: -5 }}
+
                   >
                   <Card className="text-center hover:shadow-lg transition-shadow h-full">
                     <CardContent className="p-8">
@@ -442,7 +442,7 @@ export default function AboutPage() {
               </Card>
             </div>
 
-            <Card className="bg-gradient-to-r from-primary to-secondary text-white">
+            <Card className="bg-primary text-primary-foreground">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-display font-bold mb-4 text-center">The Philosophy</h3>
                 <div className="space-y-4 text-white">
@@ -507,7 +507,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-            <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20 hover:shadow-lg transition-shadow">
+            <Card className="bg-primary/5 border-primary/20 hover:shadow-lg transition-shadow">
               <CardContent className="p-8 text-center">
                 <div className="text-5xl mb-4">🎯</div>
                 <h3 className="text-2xl font-display font-bold text-foreground mb-4">
@@ -517,7 +517,7 @@ export default function AboutPage() {
                   We're in early development and looking for students, universities, and companies to help shape the platform. Your feedback will directly influence what we build.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
+                  <Button className="bg-primary hover:bg-primary/90" asChild>
                     <Link href="/auth/register">Get Started Free</Link>
                   </Button>
                   <Button variant="outline" asChild>
@@ -532,7 +532,7 @@ export default function AboutPage() {
 
         {/* The Enemy: Resumes */}
         {/* TODO: Add translations for killResume section */}
-        <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <section className="py-20 bg-foreground text-white">
           <div className="container max-w-4xl text-center">
             <h2 className="text-4xl font-bold mb-6">
               It's Time to Kill the Resume
@@ -578,7 +578,7 @@ export default function AboutPage() {
             </p>
 
             <div className="flex justify-center gap-4 flex-wrap">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
+              <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
                 <Link href="/auth/register">Get Started Free</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>

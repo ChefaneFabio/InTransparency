@@ -439,14 +439,11 @@ export default function FeaturesPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <motion.h1
-              className="text-5xl font-display font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
+            <h1
+              className="text-5xl font-display font-bold mb-6 text-foreground"
             >
               {t('hero.title')}
-            </motion.h1>
+            </h1>
             <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-8">
               {t('hero.subtitle')}
             </p>
@@ -458,7 +455,7 @@ export default function FeaturesPage() {
                 <div className="text-sm text-foreground/80">Total Features</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-green-600">{features.filter(f => f.status === 'live').length}</div>
+                <div className="text-3xl font-bold text-primary">{features.filter(f => f.status === 'live').length}</div>
                 <div className="text-sm text-foreground/80">Live Now</div>
               </div>
               <div className="text-center">
@@ -494,7 +491,7 @@ export default function FeaturesPage() {
               {/* Discovery Service - PRIMARY */}
               <Card className="border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-xl">
                 <CardHeader className="text-center pb-3">
-                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                  <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                     <Search className="h-8 w-8 text-white" />
                   </div>
                   <Badge className="mb-2 bg-green-600 text-white text-xs">PRIMARY SERVICE</Badge>
@@ -518,7 +515,7 @@ export default function FeaturesPage() {
               {/* Matching Service - PRIMARY */}
               <Card className="border-2 border-secondary/30 hover:border-secondary/50 transition-all hover:shadow-xl">
                 <CardHeader className="text-center pb-3">
-                  <div className="bg-gradient-to-br from-secondary to-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                  <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                     <Target className="h-8 w-8 text-white" />
                   </div>
                   <Badge className="mb-2 bg-secondary text-white text-xs">PRIMARY SERVICE</Badge>
@@ -545,7 +542,7 @@ export default function FeaturesPage() {
               {/* Verification Service - SECONDARY */}
               <Card className="border border-gray-200 hover:border-gray-300 transition-all hover:shadow-md">
                 <CardHeader className="text-center py-4">
-                  <div className="bg-gradient-to-br from-gray-400 to-gray-600 p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
+                  <div className="bg-muted-foreground p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
                     <Shield className="h-6 w-6 text-white" />
                   </div>
                   <CardTitle className="text-base">Verification Service</CardTitle>
@@ -568,7 +565,7 @@ export default function FeaturesPage() {
               {/* Analytics Service - SECONDARY */}
               <Card className="border border-gray-200 hover:border-gray-300 transition-all hover:shadow-md">
                 <CardHeader className="text-center py-4">
-                  <div className="bg-gradient-to-br from-gray-400 to-gray-600 p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
+                  <div className="bg-muted-foreground p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
                     <BarChart3 className="h-6 w-6 text-white" />
                   </div>
                   <CardTitle className="text-base">Analytics Service</CardTitle>
@@ -612,7 +609,7 @@ export default function FeaturesPage() {
                     onClick={() => setSelectedAudience(audience)}
                     className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                       selectedAudience === audience
-                        ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
+                        ? 'bg-primary text-primary-foreground'
                         : 'text-muted-foreground hover:text-foreground hover:bg-gray-100 bg-white border border-gray-200'
                     }`}
                   >
@@ -639,9 +636,8 @@ export default function FeaturesPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  whileHover={{ scale: 1.03, y: -8 }}
                 >
-                  <Card className="transition-all hover:shadow-2xl h-full bg-white/90 backdrop-blur-sm border-gray-200">
+                  <Card className="transition-shadow hover:shadow-md h-full bg-card border-border">
                     <CardHeader>
                       <div className="flex items-start justify-between mb-4">
                         <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
@@ -665,7 +661,7 @@ export default function FeaturesPage() {
                         <ul className="space-y-2">
                           {feature.benefits.map((benefit, idx) => (
                             <li key={idx} className="flex items-start text-sm text-foreground/80">
-                              <CheckCircle className="h-4 w-4 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                              <CheckCircle className="h-4 w-4 text-primary mr-2 flex-shrink-0 mt-0.5" />
                               {benefit}
                             </li>
                           ))}
@@ -686,7 +682,7 @@ export default function FeaturesPage() {
             transition={{ duration: 0.6 }}
             className="text-center mt-16"
           >
-            <Card className="bg-gradient-to-r from-primary to-secondary border-0 shadow-2xl">
+            <Card className="bg-primary border-0">
               <CardContent className="py-12 px-6">
                 <h3 className="text-3xl font-display font-bold text-white mb-4">
                   {t('cta.title')}

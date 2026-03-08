@@ -229,10 +229,10 @@
       "bottomText": "Quattro Servizi, Zero Abbonamenti",
       "unifiedHeadline1": "Scoperta di",
       "unifiedHeadline2": "Talenti Trasparente",
-      "unifiedSubheadline": "Dove le competenze verificate incontrano le opportunità reali. Certificato dalle istituzioni, analizzato dall'AI, dimostrato dai progetti.",
+      "unifiedSubheadline": "Ogni competenza verificata dalle istituzioni. Ogni progetto tracciabile alla fonte. Le aziende pagano solo quando contattano un candidato.",
       "unifiedPrimaryCTA": "Inizia Gratis",
       "unifiedSecondaryCTA": "Vedi Come Funziona",
-      "unifiedBenefits": ["100% Competenze Verificate", "Matching con AI", "Gratis per Studenti e Università"],
+      "unifiedBenefits": ["Competenze verificate dalle istituzioni", "Nessun abbonamento", "Gratis per studenti e università"],
       "exploreByRole": "Esplora per ruolo",
       "socialProof": {
         "startCup": "Vincitori Start Cup Bergamo 2025",
@@ -395,7 +395,7 @@
     "howItWorksPage": {
       "title": "Come Funziona",
       "titleHighlight": "InTransparency",
-      "subtitle": "La nostra piattaforma AI trasforma i progetti accademici in opportunità professionali attraverso quattro semplici passi",
+      "subtitle": "Da progetto universitario a portfolio verificato a contatto con il datore di lavoro — in tre passi",
       "pauseDemo": "Pausa Demo",
       "playDemo": "Play Demo",
       "autoAdvancing": "Avanzamento automatico ogni 4 secondi",
@@ -428,8 +428,8 @@
             "Analisi stack tecnologico e raccomandazioni"
           ],
           "stats": {
-            "accuracy": "94%",
-            "skills": "500+"
+            "analisi": "Automatizzata",
+            "verifica": "Certificata dall'istituzione"
           },
           "visual": {
             "analysisTitle": "Analisi AI in Corso...",
@@ -448,8 +448,8 @@
             "Notifiche opportunità in tempo reale"
           ],
           "stats": {
-            "savings": "98%",
-            "direct": "Contatto Diretto"
+            "costo": "€10 per contatto",
+            "modello": "Paga per utilizzo"
           },
           "visual": {
             "matchesTitle": "Match Trovati",

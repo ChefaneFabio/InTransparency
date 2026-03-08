@@ -3,23 +3,16 @@
 import { useState } from 'react'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, CheckCircle2, GraduationCap, Building2, Briefcase, Star, Brain, Shield, Search, Users, BarChart3, FileCheck, MessageSquare } from 'lucide-react'
+import { ArrowRight, GraduationCap, Building2, Briefcase } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 
 type Segment = 'students' | 'universities' | 'companies'
 
-// Icon mappings for each segment's 3 features
-const segmentFeatureIcons = {
-  students: [Brain, GraduationCap, Briefcase],
-  universities: [Shield, Users, BarChart3],
-  companies: [Search, FileCheck, MessageSquare]
-}
-
 const segmentIcons = {
   students: GraduationCap,
   universities: Building2,
-  companies: Briefcase
+  companies: Briefcase,
 }
 
 export function Hero() {
@@ -27,115 +20,64 @@ export function Hero() {
   const t = useTranslations('home.hero')
 
   const segment = selectedSegment
-  const tFeatures = (index: number, key: string) => t(`${segment}.features.${index}.${key}`)
 
   return (
-    <section className="relative overflow-hidden hero-bg py-16 sm:py-24">
-      {/* Atmospheric orbs - teal and amber */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/10 rounded-full mix-blend-multiply filter blur-3xl"></div>
-      </div>
+    <section className="py-20 sm:py-28">
+      <div className="container">
+        <div className="mx-auto max-w-3xl text-center">
+          {/* Social proof — earned, not decorative */}
+          <p className="mb-6 text-sm font-medium tracking-wide text-primary uppercase">
+            {t('serviceBadge')}
+          </p>
 
-      <div className="container relative z-10">
-        <div className="mx-auto max-w-4xl text-center">
+          {/* Headline — typography does the work, no gradients */}
+          <h1 className="text-4xl font-display font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            {t('unifiedHeadline1')}{' '}
+            <span className="text-primary">{t('unifiedHeadline2')}</span>
+          </h1>
 
-          {/* ── ABOVE FOLD: Unified content ── */}
+          <p className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
+            {t('unifiedSubheadline')}
+          </p>
 
-          {/* Service Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="mb-4 flex justify-center"
-          >
-            <div className="text-xs text-muted-foreground bg-white/40 backdrop-blur-sm px-3 py-1 rounded-full border border-border/50">
-              {t('serviceBadge')}
-            </div>
-          </motion.div>
-
-          {/* Unified headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h1 className="text-4xl font-display font-bold tracking-tight text-foreground sm:text-6xl">
-              {t('unifiedHeadline1')}{' '}
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                {t('unifiedHeadline2')}
-              </span>
-            </h1>
-
-            <p className="mt-6 text-lg leading-8 text-foreground/80 max-w-3xl mx-auto">
-              {t('unifiedSubheadline')}
-            </p>
-          </motion.div>
-
-          {/* Primary + Secondary CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-10 flex items-center justify-center gap-x-6"
-          >
-            <Button
-              asChild
-              size="lg"
-              className="bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-            >
+          {/* CTAs — clean, no hover-scale */}
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button asChild size="lg" className="shadow-sm">
               <Link href="/auth/register">
                 {t('unifiedPrimaryCTA')}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-
-            <Button variant="outline" size="lg" asChild className="border-2">
+            <Button variant="outline" size="lg" asChild>
               <Link href="/how-it-works">
                 {t('unifiedSecondaryCTA')}
               </Link>
             </Button>
-          </motion.div>
+          </div>
 
-          {/* Unified benefit pills */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm"
-          >
+          {/* Trust signals — simple text, no pills */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
             {[0, 1, 2].map((index) => (
-              <div
-                key={index}
-                className="flex items-center gap-2 bg-card/60 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm border border-border"
-              >
-                <CheckCircle2 className="h-4 w-4 text-green-600" />
-                <span className="text-foreground/80">{t(`unifiedBenefits.${index}`)}</span>
-              </div>
+              <span key={index} className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                {t(`unifiedBenefits.${index}`)}
+              </span>
             ))}
-          </motion.div>
+          </div>
 
-          {/* Social proof bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.45 }}
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm"
-          >
-            <div className="flex items-center gap-2 bg-yellow-50 border border-yellow-200 px-4 py-2 rounded-full">
-              <span className="text-yellow-600">🏆</span>
-              <span className="font-semibold text-yellow-800">{t('socialProof.startCup')}</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <GraduationCap className="h-4 w-4 text-primary" />
-              <span>{t('socialProof.unibgPilot')}</span>
-            </div>
-          </motion.div>
+          {/* Social proof — specific achievements */}
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-muted-foreground">
+            <span className="font-medium text-foreground">
+              {t('socialProof.startCup')}
+            </span>
+            <span className="hidden sm:inline text-border">|</span>
+            <span>{t('socialProof.unibgPilot')}</span>
+          </div>
+        </div>
 
-          {/* ── BELOW FOLD: Segment-specific deep dive ── */}
-
-          {/* Visual separator */}
-          <div className="mt-16 mb-8 flex items-center gap-4">
+        {/* Segment explorer — below the fold */}
+        <div className="mt-20 mx-auto max-w-4xl">
+          <div className="mb-8 flex items-center gap-4">
             <div className="flex-1 h-px bg-border" />
             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
               {t('exploreByRole')}
@@ -143,24 +85,19 @@ export function Hero() {
             <div className="flex-1 h-px bg-border" />
           </div>
 
-          {/* Segment Switcher */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mb-10 flex justify-center"
-          >
-            <div className="inline-flex bg-white/80 backdrop-blur-sm rounded-full p-1.5 shadow-lg border border-border">
+          {/* Segment tabs — no gradient active state */}
+          <div className="mb-10 flex justify-center">
+            <div className="inline-flex bg-muted/50 rounded-lg p-1 border border-border">
               {(['companies', 'universities', 'students'] as Segment[]).map((seg) => {
                 const Icon = segmentIcons[seg]
                 return (
                   <button
                     key={seg}
                     onClick={() => setSelectedSegment(seg)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                    className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                       selectedSegment === seg
-                        ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                        ? 'bg-card text-foreground shadow-sm'
+                        : 'text-muted-foreground hover:text-foreground'
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -169,65 +106,42 @@ export function Hero() {
                 )
               })}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Segment content with AnimatePresence */}
+          {/* Segment content */}
           <AnimatePresence mode="wait">
             <motion.div
               key={selectedSegment}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
             >
-              {/* Segment headline */}
-              <h2 className="text-2xl font-display font-bold text-foreground sm:text-3xl mb-2">
+              <h2 className="text-2xl font-display font-bold text-foreground text-center mb-8">
                 {t(`${segment}.headlinePart1`)}{' '}
-                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  {t(`${segment}.headlinePart2`)}
-                </span>
+                <span className="text-primary">{t(`${segment}.headlinePart2`)}</span>
                 {segment === 'companies' && ` ${t(`${segment}.headlinePart3`)}`}
               </h2>
 
-              {/* Feature cards */}
-              <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 {[0, 1, 2].map((index) => (
-                  <motion.div
+                  <div
                     key={`${selectedSegment}-${index}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.05, y: -5 }}
-                    className="flex flex-col items-center group"
+                    className="bg-card rounded-xl border border-border p-6"
                   >
-                    {(() => { const FeatureIcon = segmentFeatureIcons[segment][index]; return (
-                      <motion.div
-                        className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <FeatureIcon className="h-7 w-7 text-white" />
-                      </motion.div>
-                    ) })()}
-                    <h3 className="mt-4 text-lg font-semibold text-foreground">{tFeatures(index, 'title')}</h3>
-                    <p className="text-sm text-muted-foreground text-center">
-                      {tFeatures(index, 'description')}
+                    <h3 className="text-base font-semibold text-foreground mb-2">
+                      {t(`${segment}.features.${index}.title`)}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {t(`${segment}.features.${index}.description`)}
                     </p>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
 
-              {/* Stats */}
-              <div className="mt-10 pt-6 border-t border-border">
-                <p className="text-sm font-medium text-foreground/80 text-center flex items-center justify-center gap-2 mb-2">
-                  <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
-                  {t(`${segment}.statsLabel`)} {t(`${segment}.statsValue`)}
-                </p>
-                <p className="text-xs text-muted-foreground text-center">
-                  {t('bottomText')}
-                </p>
-              </div>
+              <p className="mt-8 text-sm text-muted-foreground text-center">
+                {t(`${segment}.statsLabel`)} {t(`${segment}.statsValue`)}
+              </p>
             </motion.div>
           </AnimatePresence>
         </div>

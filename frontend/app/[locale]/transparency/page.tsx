@@ -40,13 +40,13 @@ export default function TransparencyPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white border-0 px-6 py-2 text-base">
+              <Badge className="mb-4 bg-primary/10 text-primary border-0 px-6 py-2 text-base">
                 <Shield className="h-4 w-4 mr-2" />
                 {t('hero.badge')}
               </Badge>
 
-              <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">
-                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-6xl font-display font-bold mb-6 text-foreground">
+                <span className="text-primary">
                   {t('hero.title')}
                 </span>
                 <br />
@@ -58,7 +58,7 @@ export default function TransparencyPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
+                <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
                   <Link href="/features">
                     {t('hero.ctas.features')}
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -165,10 +165,10 @@ export default function TransparencyPage() {
             </p>
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-300">
+              <Card className="bg-card border-2 border-primary/20">
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center">
                       <FileCheck className="h-6 w-6 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-foreground">1. Verified Competencies</h3>
@@ -197,10 +197,10 @@ export default function TransparencyPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-300">
+              <Card className="bg-card border-2 border-primary/20">
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center">
                       <Lightbulb className="h-6 w-6 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-foreground">2. Explainable AI</h3>
@@ -229,10 +229,10 @@ export default function TransparencyPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-300">
+              <Card className="bg-card border-2 border-primary/20">
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-lg bg-primary/80 flex items-center justify-center">
                       <Eye className="h-6 w-6 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-foreground">3. Bidirectional Transparency</h3>
@@ -261,10 +261,10 @@ export default function TransparencyPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-orange-50 to-red-50 border-2 border-orange-300">
+              <Card className="bg-card border-2 border-primary/20">
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-lg bg-primary/60 flex items-center justify-center">
                       <Lock className="h-6 w-6 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-foreground">4. Consent & Audit Trails</h3>
@@ -307,7 +307,7 @@ export default function TransparencyPage() {
               <Card>
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center">
                       <GraduationCap className="h-6 w-6 text-white" />
                     </div>
                     <h3 className="text-xl font-bold">For Students</h3>
@@ -325,7 +325,7 @@ export default function TransparencyPage() {
               <Card>
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center">
                       <Building2 className="h-6 w-6 text-white" />
                     </div>
                     <h3 className="text-xl font-bold">For Companies</h3>
@@ -343,7 +343,7 @@ export default function TransparencyPage() {
               <Card>
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center">
                       <Users className="h-6 w-6 text-white" />
                     </div>
                     <h3 className="text-xl font-bold">For Institutions</h3>
@@ -364,7 +364,7 @@ export default function TransparencyPage() {
         {/* Impact Metrics */}
         <section className="py-20">
           <div className="container max-w-6xl">
-            <Card className="bg-gradient-to-r from-primary to-secondary text-white">
+            <Card className="bg-primary text-primary-foreground">
               <CardContent className="p-12 text-center">
                 <h2 className="text-4xl font-display font-bold mb-4">{t('impact.title')}</h2>
                 <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
@@ -409,7 +409,7 @@ export default function TransparencyPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg" asChild>
+              <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
                 <Link href="/auth/register">
                   {t('cta.buttons.getStarted')}
                   <ArrowRight className="ml-2 h-5 w-5" />
