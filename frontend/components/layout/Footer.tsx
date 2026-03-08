@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Link } from '@/navigation'
 import Image from 'next/image'
-import { Facebook, Twitter, Linkedin, Github, Instagram, Mail, MapPin, Phone, Shield } from 'lucide-react'
+import { Facebook, Linkedin, Shield } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useToast } from '@/components/ui/use-toast'
 import { trackEvent } from '@/lib/analytics'
@@ -80,183 +80,115 @@ export function Footer() {
     ]
   }
   return (
-    <footer className="relative overflow-hidden hero-bg text-foreground/80 border-t border-border">
-      <div className="container py-12 relative z-10">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-          {/* Brand Section */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center mb-6">
+    <footer className="border-t border-border bg-muted/30">
+      <div className="container py-8">
+        {/* Top row: brand + nav links inline */}
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-6">
+          <div className="flex items-center gap-4">
+            <Link href="/">
               <Image
                 src="/logo.jpeg"
                 alt="InTransparency Logo"
                 width={340}
                 height={438}
-                className="h-16 w-auto"
+                className="h-10 w-auto"
               />
             </Link>
-            <p className="text-slate-600 mb-6 max-w-sm">
+            <p className="text-sm text-muted-foreground max-w-xs hidden sm:block">
               {tFooter('tagline')}
             </p>
-            
-            {/* Contact Info */}
-            <div className="space-y-2 text-sm text-slate-600">
-              <div className="flex items-center">
-                <Mail className="h-4 w-4 mr-2" />
-                <a href="mailto:students@intransparency.it" className="hover:text-primary transition-colors">
-                  students@intransparency.it
-                </a>
-              </div>
+          </div>
+
+          <div className="flex flex-wrap gap-x-8 gap-y-4 text-sm">
+            <div>
+              <h4 className="font-medium text-foreground mb-2">{tFooter('product')}</h4>
+              <ul className="space-y-1">
+                {navigation.product.map((item) => (
+                  <li key={item.name}>
+                    <Link href={item.href} className="text-muted-foreground hover:text-primary transition-colors">
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-
-          {/* Navigation Columns */}
-          <div>
-            <h3 className="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-4">
-              {tFooter('product')}
-            </h3>
-            <ul className="space-y-3">
-              {navigation.product.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-slate-600 hover:text-primary transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-4">
-              {tFooter('company')}
-            </h3>
-            <ul className="space-y-3">
-              {navigation.company.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-slate-600 hover:text-primary transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-4 flex items-center gap-2">
-              <Shield className="h-4 w-4 text-primary" />
-              {tFooter('legal')}
-            </h3>
-            <ul className="space-y-3">
-              {navigation.legal.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className={`${item.name.includes('GDPR') ? 'text-slate-800 font-semibold' : 'text-slate-600'} hover:text-primary transition-colors`}
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div>
+              <h4 className="font-medium text-foreground mb-2">{tFooter('company')}</h4>
+              <ul className="space-y-1">
+                {navigation.company.map((item) => (
+                  <li key={item.name}>
+                    <Link href={item.href} className="text-muted-foreground hover:text-primary transition-colors">
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-medium text-foreground mb-2">{tFooter('legal')}</h4>
+              <ul className="space-y-1">
+                {navigation.legal.map((item) => (
+                  <li key={item.name}>
+                    <Link href={item.href} className="text-muted-foreground hover:text-primary transition-colors">
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
-        {/* Newsletter Signup */}
-        <div className="border-t border-slate-200 pt-8 mb-8">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-            <div className="mb-4 md:mb-0">
-              <h3 className="text-lg font-semibold text-slate-800 mb-2">
-                {tFooter('newsletter.title')}
-              </h3>
-              <p className="text-slate-600">
-                {tFooter('newsletter.description')}
-              </p>
-            </div>
+        {/* Newsletter — compact inline */}
+        <div className="border-t border-border pt-5 mb-5">
+          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row sm:items-center gap-3">
+            <span className="text-sm font-medium text-foreground shrink-0">
+              {tFooter('newsletter.title')}
+            </span>
+            <input
+              type="email"
+              value={newsletterEmail}
+              onChange={(e) => setNewsletterEmail(e.target.value)}
+              placeholder={tFooter('newsletter.placeholder')}
+              className="flex-1 max-w-xs px-3 py-1.5 bg-background border border-border rounded-md text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+              disabled={isSubscribing}
+              required
+            />
+            <button
+              type="submit"
+              disabled={isSubscribing}
+              className="px-4 py-1.5 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90 transition-colors disabled:opacity-50"
+            >
+              {isSubscribing ? '...' : tFooter('newsletter.subscribe')}
+            </button>
+          </form>
+        </div>
 
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md w-full md:w-auto">
-              <input
-                type="email"
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                placeholder={tFooter('newsletter.placeholder')}
-                className="flex-1 px-4 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                disabled={isSubscribing}
-                required
-              />
-              <button
-                type="submit"
-                disabled={isSubscribing}
-                className="px-6 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition-all whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+        {/* Bottom bar */}
+        <div className="border-t border-border pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-muted-foreground">
+          <div className="flex items-center gap-4">
+            <span>{tFooter('copyright')}</span>
+            <span className="flex items-center gap-1">
+              <Shield className="h-3 w-3 text-primary" />
+              {tFooter('compliance.gdpr')}
+            </span>
+          </div>
+          <div className="flex items-center gap-4">
+            <a href="mailto:students@intransparency.it" className="hover:text-primary transition-colors">
+              students@intransparency.it
+            </a>
+            {social.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
               >
-                {isSubscribing ? 'Subscribing...' : tFooter('newsletter.subscribe')}
-              </button>
-            </form>
-          </div>
-        </div>
-
-        {/* Bottom Section */}
-        <div className="border-t border-gray-200 pt-8">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-            <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-4 md:mb-0">
-              <p className="text-gray-600 text-sm">
-                {tFooter('copyright')}
-              </p>
-
-              {/* Additional Links */}
-              <div className="flex items-center space-x-6 text-sm">
-                <Link href="/privacy" className="text-gray-600 hover:text-primary font-semibold">
-                  {tFooter('privacy')}
-                </Link>
-                <Link href="/legal" className="text-gray-600 hover:text-primary">
-                  {tFooter('terms')}
-                </Link>
-                <Link href="/support" className="text-gray-600 hover:text-primary">
-                  {tFooter('support')}
-                </Link>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="flex items-center space-x-4">
-              {social.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-primary transition-colors"
-                >
-                  <span className="sr-only">{item.name}</span>
-                  <item.icon className="h-5 w-5" />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Compliance & Security Badges */}
-          <div className="mt-8 pt-8 border-t border-gray-200">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-center space-x-6 mb-4 sm:mb-0">
-                <div className="flex items-center space-x-2 text-xs text-gray-600">
-                  <div className="w-2 h-2 bg-primary/50 rounded-full"></div>
-                  <span>{tFooter('compliance.operational')}</span>
-                </div>
-                <Link href="/privacy" className="text-xs text-gray-600 hover:text-primary font-semibold flex items-center gap-1">
-                  <Shield className="h-3 w-3 text-primary" />
-                  {tFooter('compliance.gdpr')}
-                </Link>
-              </div>
-
-              <div className="flex items-center space-x-4 text-xs text-gray-600">
-                <span>{tFooter('compliance.poweredBy')}</span>
-              </div>
-            </div>
+                <span className="sr-only">{item.name}</span>
+                <item.icon className="h-4 w-4" />
+              </a>
+            ))}
           </div>
         </div>
       </div>
