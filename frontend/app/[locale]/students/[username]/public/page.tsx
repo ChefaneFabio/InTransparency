@@ -1,29 +1,103 @@
 import { notFound } from 'next/navigation'
 import { PublicPortfolio } from '@/components/portfolio/PublicPortfolio'
+import prisma from '@/lib/prisma'
 
 interface PageProps {
-  params: {
+  params: Promise<{
     username: string
-  }
+    locale: string
+  }>
 }
 
-async function fetchPublicPortfolio(username: string) {
-  const apiUrl = process.env.NEXT_PUBLIC_APP_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
-
+async function getPublicPortfolio(username: string) {
   try {
-    const response = await fetch(`${apiUrl}/api/students/${username}/public`, {
-      cache: 'no-store' // Always fetch fresh data for public portfolios
+    const user = await prisma.user.findUnique({
+      where: { username },
+      select: {
+        id: true,
+        username: true,
+        firstName: true,
+        lastName: true,
+        photo: true,
+        bio: true,
+        university: true,
+        degree: true,
+        graduationYear: true,
+        profilePublic: true,
+        projects: {
+          where: { isPublic: true },
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            courseCode: true,
+            courseName: true,
+            category: true,
+            skills: true,
+            technologies: true,
+            videos: true,
+            githubUrl: true,
+            liveUrl: true,
+            grade: true,
+            createdAt: true,
+            universityVerified: true,
+            professor: true,
+            endorsements: {
+              select: {
+                id: true,
+                professorName: true,
+                professorTitle: true,
+                endorsementText: true,
+                createdAt: true
+              }
+            }
+          },
+          orderBy: { createdAt: 'desc' }
+        }
+      }
     })
 
-    if (!response.ok) {
-      if (response.status === 404 || response.status === 403) {
-        return null
-      }
-      throw new Error('Failed to fetch portfolio')
+    if (!user || !user.profilePublic) {
+      return null
     }
 
-    return await response.json()
+    const projectsCount = user.projects.length
+    const verifiedProjectsCount = user.projects.filter(
+      (p) => p.universityVerified || (p.endorsements && p.endorsements.length > 0)
+    ).length
+    const verificationScore = projectsCount > 0
+      ? Math.round((verifiedProjectsCount / projectsCount) * 100)
+      : 0
+
+    const allSkills = new Set<string>()
+    user.projects.forEach(project => {
+      if (project.skills && Array.isArray(project.skills)) {
+        project.skills.forEach(skill => allSkills.add(skill as string))
+      }
+      if (project.technologies && Array.isArray(project.technologies)) {
+        project.technologies.forEach(tech => allSkills.add(tech as string))
+      }
+    })
+
+    return {
+      id: user.id,
+      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      photo: user.photo,
+      bio: user.bio,
+      university: user.university,
+      degree: user.degree,
+      graduationYear: user.graduationYear,
+      profilePublic: user.profilePublic,
+      projects: user.projects,
+      stats: {
+        projectsCount,
+        verifiedProjectsCount,
+        verificationScore,
+        skillsCount: allSkills.size
+      }
+    }
   } catch (error) {
     console.error('Error fetching public portfolio:', error)
     return null
@@ -31,8 +105,8 @@ async function fetchPublicPortfolio(username: string) {
 }
 
 export default async function PublicPortfolioPage({ params }: PageProps) {
-  const { username } = params
-  const userData = await fetchPublicPortfolio(username)
+  const { username } = await params
+  const userData = await getPublicPortfolio(username)
 
   if (!userData) {
     notFound()
@@ -41,10 +115,9 @@ export default async function PublicPortfolioPage({ params }: PageProps) {
   return <PublicPortfolio user={userData} />
 }
 
-// Generate metadata for SEO
 export async function generateMetadata({ params }: PageProps) {
-  const { username } = params
-  const userData = await fetchPublicPortfolio(username)
+  const { username } = await params
+  const userData = await getPublicPortfolio(username)
 
   if (!userData) {
     return {
@@ -63,7 +136,7 @@ export async function generateMetadata({ params }: PageProps) {
       title,
       description,
       type: 'profile',
-      url: `https://intransparency.com/students/${username}/public`,
+      url: `https://in-transparency.com/students/${username}/public`,
       images: userData.photo ? [userData.photo] : []
     },
     twitter: {
