@@ -4,6 +4,7 @@ import { ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider } from 'next-themes'
 import { SessionProvider } from 'next-auth/react'
+import { SegmentProvider } from '@/lib/segment-context'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,7 +30,9 @@ export function Providers({ children }: ProvidersProps) {
           forcedTheme="light"
           disableTransitionOnChange
         >
-          {children}
+          <SegmentProvider>
+            {children}
+          </SegmentProvider>
         </ThemeProvider>
       </SessionProvider>
     </QueryClientProvider>

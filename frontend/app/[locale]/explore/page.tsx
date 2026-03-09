@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
+import { Transparenty } from '@/components/mascot/Transparenty'
 import {
   Search,
   GraduationCap,
@@ -593,9 +594,9 @@ export default function ExplorePage() {
                     </Card>
                   ) : (
                     /* No filters, database is just empty — redirect to demo */
-                    <Card className="p-12 text-center bg-gradient-to-br from-primary/5 via-white to-secondary/5 border-2 border-primary/20">
-                      <div className="mx-auto mb-6 w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
-                        <GraduationCap className="h-10 w-10 text-primary" />
+                    <Card className="p-12 text-center bg-primary/5 border-2 border-primary/20">
+                      <div className="mx-auto mb-4 flex justify-center">
+                        <Transparenty size={140} mood="thinking" />
                       </div>
                       <h3 className="text-2xl font-bold text-foreground mb-3">{t('empty.pilotTitle')}</h3>
                       <p className="text-muted-foreground mb-2 max-w-lg mx-auto">{t('empty.pilotDescription')}</p>

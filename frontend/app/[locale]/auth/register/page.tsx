@@ -9,6 +9,7 @@ import { Link } from '@/navigation'
 import { GraduationCap, Building2, Users, BookOpen, ArrowRight, CheckCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import { Transparenty } from '@/components/mascot/Transparenty'
 
 const roles = [
   {
@@ -76,6 +77,9 @@ export default function RegisterPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
+            <div className="flex justify-center mb-4">
+              <Transparenty size={100} mood="waving" />
+            </div>
             <Badge className="mb-4 bg-primary text-white">
               {t('register.badge')}
             </Badge>

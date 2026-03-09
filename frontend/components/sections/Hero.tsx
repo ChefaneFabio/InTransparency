@@ -1,25 +1,30 @@
 'use client'
 
-import { useState } from 'react'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, GraduationCap, Building2, Briefcase } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-
-type Segment = 'students' | 'universities' | 'companies'
+import { useSegment } from '@/lib/segment-context'
 
 const segmentIcons = {
   students: GraduationCap,
-  universities: Building2,
+  institutions: Building2,
   companies: Briefcase,
 }
 
+// Map context segments to translation keys (translations still use 'universities' key)
+const segmentToTranslationKey = {
+  students: 'students',
+  institutions: 'universities',
+  companies: 'companies',
+}
+
 export function Hero() {
-  const [selectedSegment, setSelectedSegment] = useState<Segment>('companies')
+  const { segment: activeSegment, setSegment } = useSegment()
   const t = useTranslations('home.hero')
 
-  const segment = selectedSegment
+  const segment = segmentToTranslationKey[activeSegment]
 
   return (
     <section className="py-20 sm:py-28">
@@ -88,20 +93,20 @@ export function Hero() {
           {/* Segment tabs — no gradient active state */}
           <div className="mb-10 flex justify-center">
             <div className="inline-flex bg-muted/50 rounded-lg p-1 border border-border">
-              {(['companies', 'universities', 'students'] as Segment[]).map((seg) => {
+              {(['companies', 'institutions', 'students'] as const).map((seg) => {
                 const Icon = segmentIcons[seg]
                 return (
                   <button
                     key={seg}
-                    onClick={() => setSelectedSegment(seg)}
+                    onClick={() => setSegment(seg)}
                     className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                      selectedSegment === seg
+                      activeSegment === seg
                         ? 'bg-card text-foreground shadow-sm'
                         : 'text-muted-foreground hover:text-foreground'
                     }`}
                   >
                     <Icon className="h-4 w-4" />
-                    {t(`segmentLabels.${seg === 'universities' ? 'institutes' : seg}`)}
+                    {t(`segmentLabels.${seg === 'institutions' ? 'institutes' : seg}`)}
                   </button>
                 )
               })}
@@ -111,7 +116,7 @@ export function Hero() {
           {/* Segment content */}
           <AnimatePresence mode="wait">
             <motion.div
-              key={selectedSegment}
+              key={activeSegment}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -126,7 +131,7 @@ export function Hero() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 {[0, 1, 2].map((index) => (
                   <div
-                    key={`${selectedSegment}-${index}`}
+                    key={`${activeSegment}-${index}`}
                     className="bg-card rounded-xl border border-border p-6"
                   >
                     <h3 className="text-base font-semibold text-foreground mb-2">

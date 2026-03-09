@@ -7,6 +7,7 @@ import { Facebook, Linkedin, Shield } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useToast } from '@/components/ui/use-toast'
 import { trackEvent } from '@/lib/analytics'
+import { useSegment } from '@/lib/segment-context'
 
 // Social links - to be added when official profiles are created
 const social: { name: string; href: string; icon: typeof Facebook }[] = []
@@ -18,6 +19,7 @@ export function Footer() {
   const { toast } = useToast()
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [isSubscribing, setIsSubscribing] = useState(false)
+  const { segment } = useSegment()
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -58,16 +60,33 @@ export function Footer() {
     }
   }
 
-  // Navigation structure using translations
-  const navigation = {
-    product: [
+  // Navigation structure — product links adapt to segment
+  const productBySegment = {
+    students: [
       { name: tNav('features'), href: '/features' },
       { name: tNav('howItWorks'), href: '/how-it-works' },
       { name: tNav('explorePortfolios'), href: '/explore' },
-      { name: tNav('successStories'), href: '/success-stories' },
+      { name: tNav('aiJobSearch'), href: '/demo/ai-search' },
       { name: tNav('pricing'), href: '/pricing' },
-      { name: tNav('forSchools'), href: '/per-scuole-superiori' },
     ],
+    institutions: [
+      { name: tNav('features'), href: '/features' },
+      { name: tNav('howItWorks'), href: '/how-it-works' },
+      { name: tNav('forHighSchools'), href: '/per-scuole-superiori' },
+      { name: tNav('forITS'), href: '/for-its-institutes' },
+      { name: tNav('forUniversities'), href: '/per-universita' },
+      { name: tNav('pricing'), href: '/pricing' },
+    ],
+    companies: [
+      { name: tNav('features'), href: '/features' },
+      { name: tNav('howItWorks'), href: '/how-it-works' },
+      { name: tNav('searchTalent'), href: '/explore' },
+      { name: tNav('aiJobSearch'), href: '/demo/ai-search' },
+      { name: tNav('pricing'), href: '/pricing' },
+    ],
+  }
+  const navigation = {
+    product: productBySegment[segment],
     company: [
       { name: tNav('about'), href: '/about' },
       { name: tNav('mission'), href: '/mission' },
