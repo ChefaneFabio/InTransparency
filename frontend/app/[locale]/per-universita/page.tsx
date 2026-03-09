@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -69,6 +70,7 @@ const universityFaculties = [
 ]
 
 export default function PerUniversitaPage() {
+  const t = useTranslations('perUniversita')
   const [selectedFaculty, setSelectedFaculty] = useState(universityFaculties[0])
 
   return (
@@ -85,30 +87,30 @@ export default function PerUniversitaPage() {
             className="text-center mb-16"
           >
             <Badge className="mb-4 bg-primary text-white">
-              Marketplace Gratuito • Fai Assumere i Tuoi Laureati
+              {t('heroBadge')}
             </Badge>
             <h1 className="text-5xl font-display font-bold mb-6">
-              Connetti i Tuoi Laureati alle{' '}
+              {t('heroTitle')}{' '}
               <span className="text-primary">
-                Aziende che Cercano Talenti Verificati
+                {t('heroTitleHighlight')}
               </span>
             </h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-4">
-              Marketplace che connette i tuoi studenti alle aziende. La verifica istituzionale dà ai laureati un vantaggio competitivo. Traccia il successo con analytics.
+            <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-4">
+              {t('heroDescription')}
             </p>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-              Modello freemium per le istituzioni.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              {t('heroSubtext')}
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button
                 size="lg"
-                className="bg-primary hover:opacity-90 shadow-lg"
+                className="bg-primary hover:bg-primary/90 shadow-lg"
                 asChild
               >
                 <Link href="/auth/register?role=institution">
-                  Registra la Tua Istituzione
+                  {t('registerInstitution')}
                   <ArrowRight className="h-5 w-5 ml-2" />
                 </Link>
               </Button>
@@ -118,7 +120,7 @@ export default function PerUniversitaPage() {
                 asChild
               >
                 <Link href="/pricing">
-                  Scopri Come Funziona
+                  {t('seeHowItWorks')}
                 </Link>
               </Button>
             </div>
@@ -132,7 +134,7 @@ export default function PerUniversitaPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-8">
-              Come il Marketplace Aiuta la Tua Istituzione
+              {t('howMarketplaceHelps')}
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -141,21 +143,21 @@ export default function PerUniversitaPage() {
                   <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Briefcase className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-lg">Studenti Scoperti dalle Aziende</CardTitle>
+                  <CardTitle className="text-lg">{t('mp1Title')}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Le aziende cercano laureati verificati</span>
+                      <span>{t('mp1Check1')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Gli studenti non candidano - vengono contattati</span>
+                      <span>{t('mp1Check2')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>La verifica istituzionale = segnale di fiducia</span>
+                      <span>{t('mp1Check3')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -166,21 +168,21 @@ export default function PerUniversitaPage() {
                   <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Target className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-lg">Matching AI Trasparente</CardTitle>
+                  <CardTitle className="text-lg">{t('mp2Title')}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>"Alta compatibilità: Python verificato dalla tesi"</span>
+                      <span>{t('mp2Check1')}</span>
                     </li>
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Competenze verificate = punteggi più alti</span>
+                      <span>{t('mp2Check2')}</span>
                     </li>
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Spiegazioni AI trasparenti</span>
+                      <span>{t('mp2Check3')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -191,21 +193,21 @@ export default function PerUniversitaPage() {
                   <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <TrendingUp className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-lg">Traccia il Tuo Impatto</CardTitle>
+                  <CardTitle className="text-lg">{t('mp3Title')}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <BarChart3 className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Vedi quali aziende visualizzano i tuoi studenti</span>
+                      <span>{t('mp3Check1')}</span>
                     </li>
                     <li className="flex items-start">
                       <BarChart3 className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Report esportabili per ANVUR</span>
+                      <span>{t('mp3Check2')}</span>
                     </li>
                     <li className="flex items-start">
                       <BarChart3 className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Allerte per intervento precoce</span>
+                      <span>{t('mp3Check3')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -222,10 +224,10 @@ export default function PerUniversitaPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-4">
-              Tutte le Facoltà Supportate
+              {t('facultiesTitle')}
             </h2>
-            <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-              Da Ingegneria a Giurisprudenza - le aziende cercano laureati di ogni disciplina
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+              {t('facultiesSubtitle')}
             </p>
 
             {/* Faculty Selector */}
@@ -239,7 +241,7 @@ export default function PerUniversitaPage() {
                     className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       selectedFaculty.name === faculty.name
                         ? 'bg-primary text-white shadow-md'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 bg-white border border-gray-200'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted bg-card border border-border'
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -259,10 +261,10 @@ export default function PerUniversitaPage() {
                     </h3>
                     <div className="space-y-4">
                       <div>
-                        <p className="font-semibold text-gray-900 mb-2">Competenze Ricercate dalle Aziende:</p>
+                        <p className="font-semibold text-foreground mb-2">{t('skillsCompaniesSeek')}</p>
                         <div className="flex flex-wrap gap-2">
                           {selectedFaculty.skills.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-white">
+                            <Badge key={skill} variant="secondary" className="bg-card">
                               {skill}
                             </Badge>
                           ))}
@@ -274,7 +276,7 @@ export default function PerUniversitaPage() {
                   <div className="space-y-4">
                     <Card>
                       <CardHeader>
-                        <CardTitle className="text-base">Come Vengono Assunti i Laureati</CardTitle>
+                        <CardTitle className="text-base">{t('howGradsGetHired')}</CardTitle>
                       </CardHeader>
                       <CardContent className="text-sm space-y-3">
                         <div className="flex items-start gap-3">
@@ -282,8 +284,8 @@ export default function PerUniversitaPage() {
                             <GraduationCap className="h-4 w-4 text-primary" />
                           </div>
                           <div>
-                            <p className="font-semibold">1. Studente Carica Progetto/Tesi</p>
-                            <p className="text-xs text-gray-600">Con voto e competenze dimostrate</p>
+                            <p className="font-semibold">{t('hireStep1')}</p>
+                            <p className="text-xs text-muted-foreground">{t('hireStep1Desc')}</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
@@ -291,8 +293,8 @@ export default function PerUniversitaPage() {
                             <Shield className="h-4 w-4 text-primary" />
                           </div>
                           <div>
-                            <p className="font-semibold">2. L'Istituzione Verifica</p>
-                            <p className="text-xs text-gray-600">"Verificato da Politecnico di Milano, 110/110"</p>
+                            <p className="font-semibold">{t('hireStep2')}</p>
+                            <p className="text-xs text-muted-foreground">{t('hireStep2Desc')}</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
@@ -300,8 +302,8 @@ export default function PerUniversitaPage() {
                             <Search className="h-4 w-4 text-primary" />
                           </div>
                           <div>
-                            <p className="font-semibold">3. Le Aziende Scoprono</p>
-                            <p className="text-xs text-gray-600">Cercano "{selectedFaculty.skills[0]}" → trovano il laureato</p>
+                            <p className="font-semibold">{t('hireStep3')}</p>
+                            <p className="text-xs text-muted-foreground">{t('hireStep3Desc', { skill: selectedFaculty.skills[0] })}</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
@@ -309,8 +311,8 @@ export default function PerUniversitaPage() {
                             <Briefcase className="h-4 w-4 text-primary" />
                           </div>
                           <div>
-                            <p className="font-semibold">4. Laureato Assunto</p>
-                            <p className="text-xs text-gray-600">L'azienda paga €10 per contattare → Colloquio → Assunzione</p>
+                            <p className="font-semibold">{t('hireStep4')}</p>
+                            <p className="text-xs text-muted-foreground">{t('hireStep4Desc')}</p>
                           </div>
                         </div>
                       </CardContent>
@@ -330,7 +332,7 @@ export default function PerUniversitaPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-8">
-              Perché le Istituzioni Scelgono InTransparency
+              {t('whyChooseTitle')}
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -339,21 +341,21 @@ export default function PerUniversitaPage() {
                   <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Euro className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="text-lg">Modello Freemium</CardTitle>
+                  <CardTitle className="text-lg">{t('why1Title')}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Nessun costo di setup</span>
+                      <span>{t('why1Check1')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Funzionalità core incluse</span>
+                      <span>{t('why1Check2')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Le aziende pagano per contatto</span>
+                      <span>{t('why1Check3')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -364,21 +366,21 @@ export default function PerUniversitaPage() {
                   <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Users className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="text-lg">Contatto Diretto</CardTitle>
+                  <CardTitle className="text-lg">{t('why2Title')}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Nessun intermediario tra azienda e studente</span>
+                      <span>{t('why2Check1')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Le aziende contattano direttamente</span>
+                      <span>{t('why2Check2')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Contatto diretto aziende-studenti</span>
+                      <span>{t('why2Check3')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -389,21 +391,21 @@ export default function PerUniversitaPage() {
                   <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <BarChart3 className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="text-lg">Report per ANVUR</CardTitle>
+                  <CardTitle className="text-lg">{t('why3Title')}</CardTitle>
                 </CardHeader>
-                <CardContent className="text-sm text-gray-700">
+                <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Traccia il placement con dati verificabili</span>
+                      <span>{t('why3Check1')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Vedi quali aziende assumono i tuoi laureati</span>
+                      <span>{t('why3Check2')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Esporta report per accreditamento</span>
+                      <span>{t('why3Check3')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -422,7 +424,7 @@ export default function PerUniversitaPage() {
             <Card className="bg-primary border-0 text-white">
               <CardContent className="py-12">
                 <h3 className="text-3xl font-display font-bold text-center mb-8">
-                  Inizia in 3 Passaggi
+                  {t('getStartedSteps')}
                 </h3>
 
                 <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -430,9 +432,9 @@ export default function PerUniversitaPage() {
                     <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                       <span className="text-3xl font-bold">1</span>
                     </div>
-                    <h4 className="text-xl font-bold mb-2">Registra l'Istituzione</h4>
+                    <h4 className="text-xl font-bold mb-2">{t('gs1Title')}</h4>
                     <p className="text-white/90 text-sm">
-                      Crea account gratuito → Verifica email .edu → Dashboard attiva in 5 minuti
+                      {t('gs1Desc')}
                     </p>
                   </div>
 
@@ -440,9 +442,9 @@ export default function PerUniversitaPage() {
                     <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                       <span className="text-3xl font-bold">2</span>
                     </div>
-                    <h4 className="text-xl font-bold mb-2">Studenti Caricano Progetti</h4>
+                    <h4 className="text-xl font-bold mb-2">{t('gs2Title')}</h4>
                     <p className="text-white/90 text-sm">
-                      Studenti si iscrivono gratis → Caricano tesi e progetti → Tu verifichi con badge istituzionale
+                      {t('gs2Desc')}
                     </p>
                   </div>
 
@@ -450,9 +452,9 @@ export default function PerUniversitaPage() {
                     <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                       <span className="text-3xl font-bold">3</span>
                     </div>
-                    <h4 className="text-xl font-bold mb-2">Monitora le Assunzioni</h4>
+                    <h4 className="text-xl font-bold mb-2">{t('gs3Title')}</h4>
                     <p className="text-white/90 text-sm">
-                      Le aziende scoprono studenti → Analytics: "23 studenti contattati" → Traccia il successo
+                      {t('gs3Desc')}
                     </p>
                   </div>
                 </div>
@@ -465,12 +467,12 @@ export default function PerUniversitaPage() {
                     className="shadow-lg"
                   >
                     <Link href="/auth/register?role=institution">
-                      Registra la Tua Istituzione Gratis
+                      {t('registerFree')}
                       <ArrowRight className="h-5 w-5 ml-2" />
                     </Link>
                   </Button>
                   <p className="text-sm text-white/80 mt-4">
-                    ✓ Setup 5 min  ✓ €0 per sempre  ✓ Aziende che assumono  ✓ Report ANVUR
+                    {t('setupNote')}
                   </p>
                 </div>
               </CardContent>
@@ -488,20 +490,19 @@ export default function PerUniversitaPage() {
             <Card className="bg-primary/5 border-2 border-primary/20">
               <CardContent className="py-12">
                 <h3 className="text-3xl font-display font-bold text-foreground mb-4">
-                  Pronto a Far Assumere i Tuoi Laureati?
+                  {t('finalCtaTitle')}
                 </h3>
-                <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-                  Unisciti al marketplace gratuito che connette laureati verificati alle aziende.
-                  Setup in 5 minuti. Zero costi. Traccia il placement.
+                <p className="text-lg text-foreground/80 mb-8 max-w-2xl mx-auto">
+                  {t('finalCtaDescription')}
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <Button
                     size="lg"
-                    className="bg-primary hover:opacity-90 shadow-lg"
+                    className="bg-primary hover:bg-primary/90 shadow-lg"
                     asChild
                   >
                     <Link href="/auth/register?role=institution">
-                      Registra Istituzione Gratis
+                      {t('registerInstitutionFree')}
                       <ArrowRight className="h-5 w-5 ml-2" />
                     </Link>
                   </Button>
@@ -511,12 +512,12 @@ export default function PerUniversitaPage() {
                     asChild
                   >
                     <Link href="/contact">
-                      Parla con Noi
+                      {t('talkToUs')}
                     </Link>
                   </Button>
                 </div>
-                <p className="text-sm text-gray-600 mt-6">
-                  ✓ €0 per sempre  ✓ Contatto diretto  ✓ Report ANVUR
+                <p className="text-sm text-muted-foreground mt-6">
+                  {t('finalNote')}
                 </p>
               </CardContent>
             </Card>

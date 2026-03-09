@@ -60,7 +60,7 @@
         "upgrade": "Upgrade",
         "privacy": "Privacy",
         "cv": "Il Mio CV",
-        "personality": "Profilo Personalit\u00e0",
+        "personality": "Profilo Personalità",
         "settings": "Impostazioni"
       }
     },
@@ -248,7 +248,11 @@
       "unifiedSubheadline": "Ogni competenza verificata dalle istituzioni. Ogni progetto tracciabile alla fonte. Le aziende pagano solo quando contattano un candidato.",
       "unifiedPrimaryCTA": "Inizia Gratis",
       "unifiedSecondaryCTA": "Vedi Come Funziona",
-      "unifiedBenefits": ["Competenze verificate dalle istituzioni", "Nessun abbonamento", "Gratis per studenti e istituzioni"],
+      "unifiedBenefits": [
+        "Competenze verificate dalle istituzioni",
+        "Nessun abbonamento",
+        "Gratis per studenti e istituzioni"
+      ],
       "exploreByRole": "Esplora per ruolo",
       "socialProof": {
         "startCup": "Vincitori Start Cup Bergamo 2025",
@@ -358,10 +362,22 @@
     },
     "trustIndicators": {
       "features": {
-        "0": { "title": "Competenze Verificate", "description": "Ogni progetto autenticato dalle istituzioni" },
-        "1": { "title": "Contatto Diretto", "description": "Le aziende ti contattano per prime" },
-        "2": { "title": "Freemium", "description": "Nessun costo per studenti e istituzioni" },
-        "3": { "title": "Pay Per Contact", "description": "Le aziende pagano solo quando contattano" }
+        "0": {
+          "title": "Competenze Verificate",
+          "description": "Ogni progetto autenticato dalle istituzioni"
+        },
+        "1": {
+          "title": "Contatto Diretto",
+          "description": "Le aziende ti contattano per prime"
+        },
+        "2": {
+          "title": "Freemium",
+          "description": "Nessun costo per studenti e istituzioni"
+        },
+        "3": {
+          "title": "Pay Per Contact",
+          "description": "Le aziende pagano solo quando contattano"
+        }
       },
       "badges": {
         "freemium": "Freemium",
@@ -487,13 +503,13 @@
     "cookies": "Politica Cookie",
     "newsletter": {
       "title": "Rimani Aggiornato",
-      "description": "Ricevi gli ultimi aggiornamenti su nuove funzionalit\u00e0 e opportunit\u00e0 di carriera.",
+      "description": "Ricevi gli ultimi aggiornamenti su nuove funzionalità e opportunità di carriera.",
       "placeholder": "Inserisci la tua email",
       "subscribe": "Iscriviti",
       "successTitle": "Iscrizione riuscita!",
       "successDescription": "Grazie per esserti iscritto alla nostra newsletter.",
       "errorTitle": "Iscrizione fallita",
-      "errorDescription": "Riprova pi\u00f9 tardi."
+      "errorDescription": "Riprova più tardi."
     },
     "compliance": {
       "operational": "Tutti i sistemi operativi",
@@ -985,9 +1001,146 @@
     "firstName": "Nome",
     "lastName": "Cognome",
     "iAm": "Sono un/una",
-    "student": "Studente",
-    "recruiter": "Recruiter",
-    "university": "Istituzione",
+    "student": {
+      "title": "Registrazione Studente",
+      "subtitle": "Unisciti a InTransparency - Gratis Per Sempre",
+      "cardTitle": "Crea il Tuo Account Studente",
+      "cardDescription": "Lancia la tua carriera con credenziali verificate",
+      "submitButton": "Crea Account Studente Gratuito",
+      "submittingButton": "Creazione Account...",
+      "heroTitle": "Fatti Scoprire dalle Aziende",
+      "heroSubtitle": "Costruisci un portfolio verificato. Lascia che le aziende ti trovino in base alle tue competenze reali e ai tuoi progetti.",
+      "freeBadge": "Freemium",
+      "benefits": {
+        "0": {
+          "title": "Fatti Scoprire",
+          "description": "500+ aziende alla ricerca attiva di talenti come te"
+        },
+        "1": {
+          "title": "Le Aziende Ti Contattano",
+          "description": "Smetti di inviare candidature - lascia che le opportunità vengano da te"
+        },
+        "2": {
+          "title": "Portfolio Verificato",
+          "description": "Progetti supportati dall'istituzione di cui i datori di lavoro si fidano"
+        },
+        "3": {
+          "title": "Sfide Reali",
+          "description": "Lavora su progetti aziendali come parte del tuo percorso di studi"
+        }
+      },
+      "createTitle": "Crea il Tuo Account",
+      "createSubtitle": "Costruisci il tuo portfolio verificato",
+      "formTitle": "I Tuoi Dati",
+      "formDescription": "Ci vogliono meno di 2 minuti",
+      "mobileBenefitsTitle": "Perché gli studenti ci scelgono:",
+      "mobileBenefits": {
+        "0": "Le aziende ti scoprono per prime",
+        "1": "Portfolio verificato di cui i datori si fidano",
+        "2": "Modello freemium"
+      },
+      "passwordPlaceholder": "Almeno 8 caratteri",
+      "alreadyHaveAccount": "Hai già un account?",
+      "signIn": "Accedi"
+    },
+    "recruiter": {
+      "title": "Registrazione Azienda",
+      "subtitle": "Trova talenti verificati - Sfoglia Gratis, Paga Per Contatto",
+      "cardTitle": "Crea il Tuo Account Aziendale",
+      "cardDescription": "Scopri candidati verificati con ricerca AI",
+      "submitButton": "Inizia ad Assumere - Sfoglia Gratis",
+      "submittingButton": "Creazione Account...",
+      "heroTitle": "Assumi Talenti Verificati, Non CV",
+      "heroSubtitle": "Accedi a laureati verificati dalle istituzioni. Ogni competenza è tracciabile a corsi e progetti reali.",
+      "browseBadge": "Sfoglia Gratis, Paga Per Contatto",
+      "benefits": {
+        "0": {
+          "title": "Solo Competenze Verificate",
+          "description": "Ogni competenza supportata da progetti universitari"
+        },
+        "1": {
+          "title": "Matching AI",
+          "description": "Abbina candidati in base a competenze verificate"
+        },
+        "2": {
+          "title": "Screening Più Veloce",
+          "description": "Vedi campioni di lavoro verificati direttamente"
+        },
+        "3": {
+          "title": "Pay Per Contact",
+          "description": "Sfoglia i profili gratis. Paga solo quando ti colleghi."
+        }
+      },
+      "createTitle": "Crea Account Aziendale",
+      "createSubtitle": "Inizia ad assumere talenti verificati oggi",
+      "formTitle": "I Tuoi Dati",
+      "formDescription": "Crea il tuo account recruiter",
+      "workEmail": "Email Aziendale",
+      "pricing": {
+        "title": "Prezzi Semplici e Trasparenti",
+        "browse": "Sfoglia tutti i candidati",
+        "browseCost": "Gratis",
+        "contact": "Contatta un candidato",
+        "contactCost": "€10",
+        "postJobs": "Pubblica offerte di lavoro",
+        "postJobsCost": "Gratis"
+      },
+      "mobileBenefitsTitle": "Perché le aziende ci scelgono:",
+      "mobileBenefits": {
+        "0": "Sfoglia candidati gratis",
+        "1": "Competenze verificate dall'istituzione",
+        "2": "Pay per contact"
+      },
+      "noCreditCard": "Nessuna carta di credito richiesta. Sfoglia i candidati subito.",
+      "passwordPlaceholder": "Almeno 8 caratteri",
+      "alreadyHaveAccount": "Hai già un account?",
+      "signIn": "Accedi"
+    },
+    "university": {
+      "title": "Registrazione Istituzione",
+      "subtitle": "Career Intelligence Gratuito - Nessun Abbonamento Mai",
+      "cardTitle": "Crea il Tuo Account Istituzione",
+      "cardDescription": "Verifica studenti e traccia placement",
+      "submitButton": "Crea Account Istituzione Gratuito",
+      "submittingButton": "Creazione Account...",
+      "heroTitle": "Collega Studenti e Datori di Lavoro",
+      "heroSubtitle": "Verifica i progetti degli studenti e aiutali a farsi scoprire dalle aziende che cercano competenze reali.",
+      "freeBadge": "Freemium",
+      "benefits": {
+        "0": {
+          "title": "Maggiore Visibilità",
+          "description": "Gli studenti vengono scoperti direttamente dalle aziende"
+        },
+        "1": {
+          "title": "Marketplace Talenti",
+          "description": "Le aziende scoprono i tuoi studenti direttamente"
+        },
+        "2": {
+          "title": "Analytics Placement",
+          "description": "Traccia i risultati per la conformità MIUR e i report"
+        },
+        "3": {
+          "title": "Credenziali Verificate",
+          "description": "Il tuo badge istituzionale su ogni profilo studente"
+        }
+      },
+      "createTitle": "Crea Account Istituzione",
+      "createSubtitle": "Inizia con il piano freemium",
+      "formTitle": "Dettagli Istituzione",
+      "formDescription": "Verificheremo la tua email istituzionale",
+      "freemiumNote": "Piattaforma Freemium - Nessun costo di attivazione, nessun costo nascosto",
+      "institutionalEmail": "Email Istituzionale",
+      "mobileBenefitsTitle": "Perché le istituzioni ci scelgono:",
+      "mobileBenefits": {
+        "0": "Portfolio studenti verificati",
+        "1": "Analytics placement",
+        "2": "Tracciamento visibilità aziende",
+        "3": "Modello freemium"
+      },
+      "passwordPlaceholder": "Almeno 8 caratteri",
+      "alreadyHaveAccount": "Hai già un account?",
+      "signIn": "Accedi"
+    },
     "forgotPassword": "Password dimenticata?",
     "signIn": "Accedi",
     "signUp": "Registrati",
@@ -1016,121 +1169,62 @@
         "recruiter": {
           "name": "Azienda",
           "description": "Trova talenti verificati dalle istituzioni",
-          "benefits": { "0": "Cerca profili verificati", "1": "Paga per contatto", "2": "Integrazione ATS", "3": "Dashboard analytics" }
+          "benefits": {
+            "0": "Cerca profili verificati",
+            "1": "Paga per contatto",
+            "2": "Integrazione ATS",
+            "3": "Dashboard analytics"
+          }
         },
         "university": {
           "name": "Istituzione / ITS",
           "description": "Verifica i progetti degli studenti e traccia i placement",
-          "benefits": { "0": "Modello freemium", "1": "Analytics studenti", "2": "Tracciamento placement", "3": "Visibilità aziende" }
+          "benefits": {
+            "0": "Modello freemium",
+            "1": "Analytics studenti",
+            "2": "Tracciamento placement",
+            "3": "Visibilità aziende"
+          }
         },
         "student": {
           "name": "Studente",
           "description": "Costruisci il tuo portfolio e fatti scoprire dalle aziende",
-          "benefits": { "0": "Modello freemium", "1": "Portfolio verificato", "2": "Scoperta da aziende", "3": "Analytics profilo" }
+          "benefits": {
+            "0": "Modello freemium",
+            "1": "Portfolio verificato",
+            "2": "Scoperta da aziende",
+            "3": "Analytics profilo"
+          }
         },
         "professor": {
           "name": "Professore",
           "description": "Valuta il lavoro degli studenti e gestisci le tue raccomandazioni",
-          "benefits": { "0": "Raccomanda progetti degli studenti", "1": "Monitora tutte le raccomandazioni", "2": "Costruisci il tuo profilo di raccomandazioni", "3": "Supporta le carriere degli studenti" }
+          "benefits": {
+            "0": "Raccomanda progetti degli studenti",
+            "1": "Monitora tutte le raccomandazioni",
+            "2": "Costruisci il tuo profilo di raccomandazioni",
+            "3": "Supporta le carriere degli studenti"
+          }
         }
       },
       "trust": {
-        "0": { "title": "Freemium", "subtitle": "Per Studenti" },
-        "1": { "title": "GDPR", "subtitle": "Conforme" },
-        "2": { "title": "AI-Powered", "subtitle": "Matching" },
-        "3": { "title": "Credenziali", "subtitle": "Verificate" }
+        "0": {
+          "title": "Freemium",
+          "subtitle": "Per Studenti"
+        },
+        "1": {
+          "title": "GDPR",
+          "subtitle": "Conforme"
+        },
+        "2": {
+          "title": "AI-Powered",
+          "subtitle": "Matching"
+        },
+        "3": {
+          "title": "Credenziali",
+          "subtitle": "Verificate"
+        }
       }
-    },
-    "student": {
-      "title": "Registrazione Studente",
-      "subtitle": "Unisciti a InTransparency - Gratis Per Sempre",
-      "cardTitle": "Crea il Tuo Account Studente",
-      "cardDescription": "Lancia la tua carriera con credenziali verificate",
-      "submitButton": "Crea Account Studente Gratuito",
-      "submittingButton": "Creazione Account...",
-      "heroTitle": "Fatti Scoprire dalle Aziende",
-      "heroSubtitle": "Costruisci un portfolio verificato. Lascia che le aziende ti trovino in base alle tue competenze reali e ai tuoi progetti.",
-      "freeBadge": "Freemium",
-      "benefits": {
-        "0": { "title": "Fatti Scoprire", "description": "500+ aziende alla ricerca attiva di talenti come te" },
-        "1": { "title": "Le Aziende Ti Contattano", "description": "Smetti di inviare candidature - lascia che le opportunità vengano da te" },
-        "2": { "title": "Portfolio Verificato", "description": "Progetti supportati dall'istituzione di cui i datori di lavoro si fidano" },
-        "3": { "title": "Sfide Reali", "description": "Lavora su progetti aziendali come parte del tuo percorso di studi" }
-      },
-      "createTitle": "Crea il Tuo Account",
-      "createSubtitle": "Costruisci il tuo portfolio verificato",
-      "formTitle": "I Tuoi Dati",
-      "formDescription": "Ci vogliono meno di 2 minuti",
-      "mobileBenefitsTitle": "Perché gli studenti ci scelgono:",
-      "mobileBenefits": { "0": "Le aziende ti scoprono per prime", "1": "Portfolio verificato di cui i datori si fidano", "2": "Modello freemium" },
-      "passwordPlaceholder": "Almeno 8 caratteri",
-      "alreadyHaveAccount": "Hai già un account?",
-      "signIn": "Accedi"
-    },
-    "recruiter": {
-      "title": "Registrazione Azienda",
-      "subtitle": "Trova talenti verificati - Sfoglia Gratis, Paga Per Contatto",
-      "cardTitle": "Crea il Tuo Account Aziendale",
-      "cardDescription": "Scopri candidati verificati con ricerca AI",
-      "submitButton": "Inizia ad Assumere - Sfoglia Gratis",
-      "submittingButton": "Creazione Account...",
-      "heroTitle": "Assumi Talenti Verificati, Non CV",
-      "heroSubtitle": "Accedi a laureati verificati dalle istituzioni. Ogni competenza è tracciabile a corsi e progetti reali.",
-      "browseBadge": "Sfoglia Gratis, Paga Per Contatto",
-      "benefits": {
-        "0": { "title": "Solo Competenze Verificate", "description": "Ogni competenza supportata da progetti universitari" },
-        "1": { "title": "Matching AI", "description": "Abbina candidati in base a competenze verificate" },
-        "2": { "title": "Screening Più Veloce", "description": "Vedi campioni di lavoro verificati direttamente" },
-        "3": { "title": "Pay Per Contact", "description": "Sfoglia i profili gratis. Paga solo quando ti colleghi." }
-      },
-      "createTitle": "Crea Account Aziendale",
-      "createSubtitle": "Inizia ad assumere talenti verificati oggi",
-      "formTitle": "I Tuoi Dati",
-      "formDescription": "Crea il tuo account recruiter",
-      "workEmail": "Email Aziendale",
-      "pricing": {
-        "title": "Prezzi Semplici e Trasparenti",
-        "browse": "Sfoglia tutti i candidati",
-        "browseCost": "Gratis",
-        "contact": "Contatta un candidato",
-        "contactCost": "€10",
-        "postJobs": "Pubblica offerte di lavoro",
-        "postJobsCost": "Gratis"
-      },
-      "mobileBenefitsTitle": "Perché le aziende ci scelgono:",
-      "mobileBenefits": { "0": "Sfoglia candidati gratis", "1": "Competenze verificate dall'istituzione", "2": "Pay per contact" },
-      "noCreditCard": "Nessuna carta di credito richiesta. Sfoglia i candidati subito.",
-      "passwordPlaceholder": "Almeno 8 caratteri",
-      "alreadyHaveAccount": "Hai già un account?",
-      "signIn": "Accedi"
-    },
-    "university": {
-      "title": "Registrazione Istituzione",
-      "subtitle": "Career Intelligence Gratuito - Nessun Abbonamento Mai",
-      "cardTitle": "Crea il Tuo Account Istituzione",
-      "cardDescription": "Verifica studenti e traccia placement",
-      "submitButton": "Crea Account Istituzione Gratuito",
-      "submittingButton": "Creazione Account...",
-      "heroTitle": "Collega Studenti e Datori di Lavoro",
-      "heroSubtitle": "Verifica i progetti degli studenti e aiutali a farsi scoprire dalle aziende che cercano competenze reali.",
-      "freeBadge": "Freemium",
-      "benefits": {
-        "0": { "title": "Maggiore Visibilità", "description": "Gli studenti vengono scoperti direttamente dalle aziende" },
-        "1": { "title": "Marketplace Talenti", "description": "Le aziende scoprono i tuoi studenti direttamente" },
-        "2": { "title": "Analytics Placement", "description": "Traccia i risultati per la conformità MIUR e i report" },
-        "3": { "title": "Credenziali Verificate", "description": "Il tuo badge istituzionale su ogni profilo studente" }
-      },
-      "createTitle": "Crea Account Istituzione",
-      "createSubtitle": "Inizia con il piano freemium",
-      "formTitle": "Dettagli Istituzione",
-      "formDescription": "Verificheremo la tua email istituzionale",
-      "freemiumNote": "Piattaforma Freemium - Nessun costo di attivazione, nessun costo nascosto",
-      "institutionalEmail": "Email Istituzionale",
-      "mobileBenefitsTitle": "Perché le istituzioni ci scelgono:",
-      "mobileBenefits": { "0": "Portfolio studenti verificati", "1": "Analytics placement", "2": "Tracciamento visibilità aziende", "3": "Modello freemium" },
-      "passwordPlaceholder": "Almeno 8 caratteri",
-      "alreadyHaveAccount": "Hai già un account?",
-      "signIn": "Accedi"
     },
     "login": {
       "title": "Bentornato",
@@ -1173,15 +1267,15 @@
   },
   "errors": {
     "accessDenied": "Accesso Negato",
-    "unauthorizedMessage": "Non hai i permessi necessari per accedere a questa pagina.",
+    "unauthorizedMessage": "Non hai i permessi per accedere a questa pagina. Verifica il tuo account o contatta il supporto.",
     "goBack": "Torna Indietro",
     "goHome": "Vai alla Home",
-    "whyAmISeeingThis": "Perché vedo questo messaggio?",
-    "reasonInsufficientPermissions": "Non hai i permessi necessari per questa risorsa",
-    "reasonWrongAccountType": "Il tuo tipo di account non può accedere a questa funzionalità",
-    "reasonSubscriptionRequired": "Questa funzionalità richiede un piano premium",
+    "whyAmISeeingThis": "Perché vedo questa pagina?",
+    "reasonInsufficientPermissions": "Potresti non avere i permessi necessari per questa pagina",
+    "reasonWrongAccountType": "Potresti aver effettuato l'accesso con il tipo di account sbagliato",
+    "reasonSubscriptionRequired": "Questa funzione potrebbe richiedere un abbonamento premium",
     "needHelp": "Hai bisogno di aiuto?",
-    "contactSupport": "Contatta il supporto"
+    "contactSupport": "Contatta il Supporto"
   },
   "features": {
     "hero": {
@@ -4347,9 +4441,18 @@
       "badge": "Il Contesto",
       "title": "La Sfida del Mercato del Lavoro Giovanile",
       "stats": {
-        "0": { "value": "300K+", "label": "Stage attivati ogni anno in Italia" },
-        "1": { "value": "68%", "label": "Stagisti che non proseguono con l'azienda" },
-        "2": { "value": "€0-300", "label": "Rimborso spese mensile medio" }
+        "0": {
+          "value": "300K+",
+          "label": "Stage attivati ogni anno in Italia"
+        },
+        "1": {
+          "value": "68%",
+          "label": "Stagisti che non proseguono con l'azienda"
+        },
+        "2": {
+          "value": "€0-300",
+          "label": "Rimborso spese mensile medio"
+        }
       },
       "paragraphs": {
         "0": "Ogni anno, centinaia di migliaia di giovani italiani iniziano percorsi di stage con la speranza di costruire una carriera. Tuttavia, il sistema attuale non sempre riesce a valorizzare le competenze acquisite durante gli studi, creando un divario tra formazione e opportunità lavorative.",
@@ -4495,18 +4598,6 @@
     "uploading": "Caricamento...",
     "upload": "Carica"
   },
-  "errors": {
-    "accessDenied": "Accesso Negato",
-    "unauthorizedMessage": "Non hai i permessi per accedere a questa pagina. Verifica il tuo account o contatta il supporto.",
-    "goBack": "Torna Indietro",
-    "goHome": "Vai alla Home",
-    "whyAmISeeingThis": "Perché vedo questa pagina?",
-    "reasonInsufficientPermissions": "Potresti non avere i permessi necessari per questa pagina",
-    "reasonWrongAccountType": "Potresti aver effettuato l'accesso con il tipo di account sbagliato",
-    "reasonSubscriptionRequired": "Questa funzione potrebbe richiedere un abbonamento premium",
-    "needHelp": "Hai bisogno di aiuto?",
-    "contactSupport": "Contatta il Supporto"
-  },
   "studentCv": {
     "title": "Il Mio CV",
     "subtitle": "Generato automaticamente dal tuo profilo verificato e dai tuoi progetti",
@@ -4536,20 +4627,20 @@
     "footer": "Generato da InTransparency — dati verificati dall'istituzione"
   },
   "personalityInsights": {
-    "title": "Profilo Personalit\u00e0",
+    "title": "Profilo Personalità",
     "subtitle": "Scopri i tuoi punti di forza, il tuo stile di lavoro e le carriere adatte a te",
     "noAssessments": {
       "title": "Nessuna valutazione ancora",
-      "description": "Completa una valutazione della personalit\u00e0 o delle competenze trasversali per sbloccare i tuoi insight",
+      "description": "Completa una valutazione della personalità o delle competenze trasversali per sbloccare i tuoi insight",
       "cta": "Inizia Valutazione"
     },
     "overview": {
-      "personalityType": "Tipo di Personalit\u00e0",
+      "personalityType": "Tipo di Personalità",
       "workStyle": "Stile di Lavoro",
       "softSkills": "Punteggio Competenze"
     },
     "bigFive": {
-      "title": "Profilo di Personalit\u00e0",
+      "title": "Profilo di Personalità",
       "strengths": "I Tuoi Punti di Forza",
       "development": "Aree di Crescita",
       "percentile": "Top {value}%"
@@ -4574,18 +4665,18 @@
     },
     "narrative": {
       "title": "Il Tuo Profilo in Sintesi",
-      "personalityIntro": "Il tuo profilo di personalit\u00e0 ti identifica come {type}.",
+      "personalityIntro": "Il tuo profilo di personalità ti identifica come {type}.",
       "highTrait": "Hai un punteggio particolarmente alto in {trait}, che influenza come affronti sfide e relazioni.",
-      "discStyle": "Il tuo stile di lavoro \u00e8 descritto come {style} \u2014 questo influenza come guidi, collabori e prendi decisioni.",
+      "discStyle": "Il tuo stile di lavoro è descritto come {style} — questo influenza come guidi, collabori e prendi decisioni.",
       "strongCompetency": "Le tue competenze trasversali sono ben sviluppate, posizionandoti in una posizione forte per la crescita professionale.",
       "growingCompetency": "Le tue competenze trasversali mostrano una base solida con aree chiare per lo sviluppo mirato.",
       "strengthHighlight": "I tuoi punti di forza principali includono {strengths}, che puoi sfruttare sia in ambito accademico che professionale.",
-      "careerHint": "In base al tuo profilo, carriere in {careers} si allineano bene con le tue capacit\u00e0 naturali."
+      "careerHint": "In base al tuo profilo, carriere in {careers} si allineano bene con le tue capacità naturali."
     },
     "peerComparison": {
       "title": "Confronto con i Colleghi",
       "subtitle": "Come ti confronti con {count} studenti di {university}",
-      "personalityTraits": "Tratti di Personalit\u00e0",
+      "personalityTraits": "Tratti di Personalità",
       "competencies": "Competenze",
       "youVsPeers": "Tu: {you} | Colleghi: {peers}",
       "you": "Tu",
@@ -4593,13 +4684,13 @@
       "vsPeers": "vs colleghi"
     },
     "teamCompat": {
-      "title": "Compatibilit\u00e0 di Team",
+      "title": "Compatibilità di Team",
       "bestWith": "Lavori Meglio Con",
       "challengeWith": "Attenzione Con"
     },
     "interview": {
       "title": "Preparazione al Colloquio",
-      "subtitle": "In base al tuo stile di personalit\u00e0, ecco come presentare il tuo meglio nei colloqui.",
+      "subtitle": "In base al tuo stile di personalità, ecco come presentare il tuo meglio nei colloqui.",
       "yourStrengths": "I Tuoi Punti di Forza nel Colloquio",
       "watchOuts": "Fai Attenzione A",
       "prepTips": "Consigli di Preparazione"
@@ -4613,31 +4704,31 @@
     "microChallenges": {
       "title": "Le Sfide di Oggi",
       "subtitle": "Piccoli esercizi quotidiani su misura per le tue aree di crescita. Un nuovo set ogni giorno.",
-      "refreshNote": "Le sfide si aggiornano ogni giorno \u2014 torna domani per nuove sfide!"
+      "refreshNote": "Le sfide si aggiornano ogni giorno — torna domani per nuove sfide!"
     },
     "jobMatching": {
-      "title": "Lavori che Corrispondono alla Tua Personalit\u00e0",
+      "title": "Lavori che Corrispondono alla Tua Personalità",
       "subtitle": "Il tuo profilo suggerisce che potresti eccellere in ruoli legati a {careers}.",
       "browseJobs": "Cerca Lavori",
       "aiSearch": "Ricerca AI"
     },
     "famousPersonalities": {
       "title": "Condividi Tratti Con",
-      "subtitle": "Personaggi famosi che condividono il tuo stile di personalit\u00e0 e i tuoi punti di forza."
+      "subtitle": "Personaggi famosi che condividono il tuo stile di personalità e i tuoi punti di forza."
     },
     "studyStyle": {
       "title": "Il Tuo Stile di Studio Ideale",
-      "subtitle": "In base alla tua personalit\u00e0, ecco come impari in modo pi\u00f9 efficace."
+      "subtitle": "In base alla tua personalità, ecco come impari in modo più efficace."
     },
     "commPlaybook": {
       "title": "Guida alla Comunicazione",
-      "subtitle": "Come comunicare efficacemente con ogni tipo di personalit\u00e0 nel tuo team.",
+      "subtitle": "Come comunicare efficacemente con ogni tipo di personalità nel tuo team.",
       "withStyle": "Con i tipi {style}"
     },
     "reflection": {
       "title": "Riflessione Settimanale",
       "subtitle": "Spunti di riflessione su misura per le tue aree di crescita. Un nuovo set ogni settimana.",
-      "refreshNote": "Gli spunti si aggiornano settimanalmente \u2014 rifletti prima della fine della settimana!"
+      "refreshNote": "Gli spunti si aggiornano settimanalmente — rifletti prima della fine della settimana!"
     },
     "networking": {
       "title": "Consigli per il Networking",
@@ -4666,9 +4757,9 @@
     },
     "energy": {
       "title": "Gestione dell'Energia",
-      "energizers": "Cosa Ti D\u00e0 Energia",
+      "energizers": "Cosa Ti Dà Energia",
       "drainers": "Cosa Ti Toglie Energia",
-      "peakTime": "Orario di Massima Produttivit\u00e0",
+      "peakTime": "Orario di Massima Produttività",
       "recoveryTip": "Strategia di Recupero"
     },
     "mentorship": {
@@ -4676,12 +4767,12 @@
       "idealMentor": "Il Tuo Mentore Ideale",
       "asaMentee": "Tu come Mentee",
       "menteeStrengths": "I Tuoi Punti di Forza",
-      "menteeGrowth": "Opportunit\u00e0 di Crescita",
+      "menteeGrowth": "Opportunità di Crescita",
       "findMentor": "Trova un Mentore"
     },
     "personalBrand": {
       "title": "Il Tuo Personal Brand",
-      "subtitle": "Un elevator pitch pronto all'uso basato sul tuo profilo di personalit\u00e0. Usalo su LinkedIn, nei colloqui o come tagline professionale.",
+      "subtitle": "Un elevator pitch pronto all'uso basato sul tuo profilo di personalità. Usalo su LinkedIn, nei colloqui o come tagline professionale.",
       "strengthAdd": "Conosciuto per eccezionale {strength}.",
       "competencyAdd": "Supportato da competenze trasversali solide e complete.",
       "copy": "Copia negli Appunti"
@@ -4698,14 +4789,14 @@
     "comparison": {
       "title": "I Tuoi Progressi nel Tempo",
       "subtitle": "Scopri come i tuoi punteggi sono cambiati tra le valutazioni",
-      "bigFiveOverTime": "Tratti di Personalit\u00e0 nel Tempo",
+      "bigFiveOverTime": "Tratti di Personalità nel Tempo",
       "competencyOverTime": "Competenze nel Tempo",
       "retakeCta": "Ripeti Valutazione"
     }
   },
   "socialProof": {
-    "title": "Pensato per Universit\u00e0 e ITS Academy Italiani",
-    "subtitle": "L'unica piattaforma che connette talenti studenteschi verificati con i datori di lavoro \u2014 gratis per studenti, gratis per universit\u00e0, pay-per-contact per le aziende.",
+    "title": "Pensato per Università e ITS Academy Italiani",
+    "subtitle": "L'unica piattaforma che connette talenti studenteschi verificati con i datori di lavoro — gratis per studenti, gratis per università, pay-per-contact per le aziende.",
     "stats": {
       "universities": {
         "value": "120+",
@@ -4726,7 +4817,7 @@
     },
     "badges": {
       "verified": "Profili Verificati dall'Istituto",
-      "freeForStudents": "Gratis per Studenti e Universit\u00e0",
+      "freeForStudents": "Gratis per Studenti e Università",
       "noSubscription": "Nessun Abbonamento Richiesto"
     }
   },
@@ -4734,34 +4825,34 @@
     "badge": "Per Ingegneria e Manifattura",
     "hero": {
       "title": "Assumi Ingegneri Che Sanno Davvero Costruire",
-      "subtitle": "Vedi portfolio di progetti verificati \u2014 modelli CAD, analisi FEA, prototipi di meccatronica \u2014 non solo CV. Da universit\u00e0 e ITS Academy italiani.",
+      "subtitle": "Vedi portfolio di progetti verificati — modelli CAD, analisi FEA, prototipi di meccatronica — non solo CV. Da università e ITS Academy italiani.",
       "browseCta": "Cerca Studenti di Ingegneria",
       "demoCta": "Prenota una Demo"
     },
     "pain": {
-      "title": "Perch\u00e9 l'Assunzione di Ingegneri \u00e8 Complicata",
-      "cantCompete": "Non puoi competere con Siemens o ABB per i talenti \u2014 ma hai bisogno di 3 ingegneri quest'anno",
+      "title": "Perché l'Assunzione di Ingegneri è Complicata",
+      "cantCompete": "Non puoi competere con Siemens o ABB per i talenti — ma hai bisogno di 3 ingegneri quest'anno",
       "cvsDontShow": "I CV non mostrano se qualcuno sa davvero progettare un circuito o eseguire una simulazione",
-      "costPerHire": "AlmaLaurea costa \u20ac2.500/anno anche se assumi solo 2 persone"
+      "costPerHire": "AlmaLaurea costa €2.500/anno anche se assumi solo 2 persone"
     },
     "solution": {
       "title": "Vedi il Lavoro, Non Solo le Parole",
-      "subtitle": "InTransparency ti mostra cosa hanno effettivamente costruito gli studenti di ingegneria \u2014 verificato dai professori.",
+      "subtitle": "InTransparency ti mostra cosa hanno effettivamente costruito gli studenti di ingegneria — verificato dai professori.",
       "verifiedProjects": {
         "title": "Portfolio Progetti Verificati",
-        "desc": "Vedi progetti CAD reali, risultati di simulazione e prototipi \u2014 ciascuno verificato dall'istituto dello studente."
+        "desc": "Vedi progetti CAD reali, risultati di simulazione e prototipi — ciascuno verificato dall'istituto dello studente."
       },
       "technicalPortfolios": {
-        "title": "Analisi di Profondit\u00e0 Tecnica",
-        "desc": "L'AI analizza complessit\u00e0, strumenti utilizzati e livello di innovazione di ogni progetto ingegneristico."
+        "title": "Analisi di Profondità Tecnica",
+        "desc": "L'AI analizza complessità, strumenti utilizzati e livello di innovazione di ogni progetto ingegneristico."
       },
       "institutionBacked": {
-        "title": "Voti Verificati dall'Universit\u00e0",
-        "desc": "Voti normalizzati tra universit\u00e0 usando il Processo di Bologna. Confronta studenti di istituti diversi in modo equo."
+        "title": "Voti Verificati dall'Università",
+        "desc": "Voti normalizzati tra università usando il Processo di Bologna. Confronta studenti di istituti diversi in modo equo."
       },
       "personalityInsights": {
         "title": "Valutazione Team Fit",
-        "desc": "Profili di personalit\u00e0 DISC mostrano come i candidati lavorano in team \u2014 critico per lavoro ingegneristico basato su progetti."
+        "desc": "Profili di personalità DISC mostrano come i candidati lavorano in team — critico per lavoro ingegneristico basato su progetti."
       }
     },
     "sectors": {
@@ -4777,8 +4868,8 @@
     },
     "pricing": {
       "title": "Prezzi Semplici per le PMI",
-      "price": "\u20ac10",
-      "perContact": "per contatto \u2014 nessun abbonamento, nessun costo annuale",
+      "price": "€10",
+      "perContact": "per contatto — nessun abbonamento, nessun costo annuale",
       "noSubscription": "Nessun abbonamento richiesto",
       "browseFree": "Cerca tutti i profili gratis",
       "noMinimum": "Nessun impegno minimo",
@@ -4789,55 +4880,55 @@
     "badge": "Per Consulenza e Servizi Professionali",
     "hero": {
       "title": "Assumi Consulenti con Soft Skill Verificate",
-      "subtitle": "Profili di personalit\u00e0 DISC, voti normalizzati e competenze verificate dall'istituto. Smetti di indovinare sulle soft skill.",
+      "subtitle": "Profili di personalità DISC, voti normalizzati e competenze verificate dall'istituto. Smetti di indovinare sulle soft skill.",
       "browseCta": "Cerca Candidati",
       "demoCta": "Prenota una Demo"
     },
     "pain": {
       "title": "Il Problema del Recruiting nella Consulenza",
-      "tooManyCvs": "500 CV per posizione analyst \u2014 nessun modo per filtrare il vero potenziale",
-      "cantVerifySoftSkills": "Comunicazione, teamwork, leadership \u2014 impossibili da verificare da un CV",
-      "gradesNotComparable": "Un 28/30 alla Bocconi non \u00e8 uguale a un 28/30 in un'universit\u00e0 regionale"
+      "tooManyCvs": "500 CV per posizione analyst — nessun modo per filtrare il vero potenziale",
+      "cantVerifySoftSkills": "Comunicazione, teamwork, leadership — impossibili da verificare da un CV",
+      "gradesNotComparable": "Un 28/30 alla Bocconi non è uguale a un 28/30 in un'università regionale"
     },
     "solution": {
       "title": "Recruiting Data-Driven per la Consulenza",
-      "subtitle": "Vai oltre i CV con profili di personalit\u00e0 verificati, voti normalizzati e endorsement istituzionali.",
+      "subtitle": "Vai oltre i CV con profili di personalità verificati, voti normalizzati e endorsement istituzionali.",
       "discProfiles": {
-        "title": "Profili di Personalit\u00e0 DISC",
-        "desc": "Vedi stile comunicativo, motivatori, fattori di stress e ruolo ideale nel team \u2014 valutati e verificati, non auto-dichiarati."
+        "title": "Profili di Personalità DISC",
+        "desc": "Vedi stile comunicativo, motivatori, fattori di stress e ruolo ideale nel team — valutati e verificati, non auto-dichiarati."
       },
       "normalizedGrades": {
         "title": "Normalizzazione Voti Processo di Bologna",
-        "desc": "Confronta candidati di universit\u00e0 diverse in modo equo. Voti normalizzati agli standard ECTS in 6 sistemi europei."
+        "desc": "Confronta candidati di università diverse in modo equo. Voti normalizzati agli standard ECTS in 6 sistemi europei."
       },
       "verifiedSkills": {
         "title": "Competenze Verificate dall'Istituto",
-        "desc": "Soft skill valutate e verificate dall'universit\u00e0 \u2014 comunicazione, teamwork, leadership, problem solving e altro."
+        "desc": "Soft skill valutate e verificate dall'università — comunicazione, teamwork, leadership, problem solving e altro."
       },
       "decisionPack": {
         "title": "Decision Pack PDF",
-        "desc": "Genera un PDF comparativo completo con tutti i profili, punteggi e insight \u2014 perfetto per i comitati di assunzione."
+        "desc": "Genera un PDF comparativo completo con tutti i profili, punteggi e insight — perfetto per i comitati di assunzione."
       }
     },
     "howItWorks": {
       "title": "Come Funziona",
       "step1": {
         "title": "Cerca Gratis",
-        "desc": "Sfoglia profili verificati filtrati per universit\u00e0, competenze, voti e tratti di personalit\u00e0."
+        "desc": "Sfoglia profili verificati filtrati per università, competenze, voti e tratti di personalità."
       },
       "step2": {
         "title": "Confronta i Candidati",
         "desc": "Usa i Decision Pack per confrontare i candidati selezionati fianco a fianco con tutti i dati verificati."
       },
       "step3": {
-        "title": "Contatta a \u20ac10",
+        "title": "Contatta a €10",
         "desc": "Sblocca i dettagli di contatto solo per i candidati che vuoi intervistare. Nessun abbonamento richiesto."
       }
     },
     "pricing": {
       "title": "Prezzi Trasparenti",
-      "price": "\u20ac10",
-      "perContact": "per contatto \u2014 confrontalo con \u20ac8.000/anno di LinkedIn Recruiter",
+      "price": "€10",
+      "perContact": "per contatto — confrontalo con €8.000/anno di LinkedIn Recruiter",
       "noSubscription": "Nessun abbonamento annuale",
       "browseFree": "Cerca e confronta gratis",
       "decisionPackIncluded": "Decision Pack PDF incluso",
@@ -4847,7 +4938,7 @@
   "perAziendePmi": {
     "badge": "Per le PMI Italiane",
     "hero": {
-      "title": "Assumi Laureati a \u20ac10 per Contatto",
+      "title": "Assumi Laureati a €10 per Contatto",
       "subtitle": "Nessun abbonamento annuale. Nessun rischio. Cerca gratis, paga solo quando trovi il candidato giusto.",
       "browseCta": "Cerca Studenti Gratis",
       "pricingCta": "Vedi i Prezzi"
@@ -4856,25 +4947,25 @@
       "title": "Confronta i Costi",
       "annualRequired": "Abbonamento annuale obbligatorio",
       "noCommitment": "Nessun impegno",
-      "bestValue": "Miglior rapporto qualit\u00e0-prezzo"
+      "bestValue": "Miglior rapporto qualità-prezzo"
     },
     "benefits": {
-      "title": "Perch\u00e9 InTransparency per la Tua PMI",
+      "title": "Perché InTransparency per la Tua PMI",
       "subtitle": "Pensato per le piccole e medie imprese che hanno bisogno di assumere senza rischi.",
       "searchFree": {
         "title": "Cerca Gratis",
         "desc": "Sfoglia tutti i profili verificati senza pagare nulla. Nessuna registrazione necessaria per esplorare."
       },
       "verified": {
-        "title": "Profili Verificati dall'Universit\u00e0",
+        "title": "Profili Verificati dall'Università",
         "desc": "Competenze confermate dai professori, non auto-dichiarate. Vedi i progetti reali degli studenti."
       },
       "aiSearch": {
         "title": "Ricerca AI Intelligente",
-        "desc": "Descrivi il candidato ideale in linguaggio naturale. L'AI trova i profili pi\u00f9 compatibili."
+        "desc": "Descrivi il candidato ideale in linguaggio naturale. L'AI trova i profili più compatibili."
       },
       "payPerContact": {
-        "title": "Paga Solo \u20ac10 per Contatto",
+        "title": "Paga Solo €10 per Contatto",
         "desc": "Nessun abbonamento, nessun costo fisso. Paghi solo quando vuoi contattare un candidato."
       }
     },
@@ -5156,5 +5247,475 @@
     },
     "error": "Si è verificato un errore",
     "retry": "Riprova"
+  },
+  "studentsHighSchool": {
+    "badge": "PCTO • Stage • Prima Esperienza",
+    "heroTitle": "Inizia il Tuo Percorso",
+    "heroTitleHighlight": "Professionale",
+    "heroDescription": "Documenta le tue competenze PCTO, mostra i tuoi progetti alle aziende e trova il primo stage o lavoro. Tutto gratis.",
+    "heroSubtext": "La tua scuola verifica le tue competenze. Le aziende ti scoprono. Senza candidarti.",
+    "createProfile": "Crea il Tuo Profilo Gratis",
+    "howItWorks": "Come Funziona",
+    "whatYouCanDo": "Cosa Puoi Fare con InTransparency",
+    "card1Title": "Documenta i PCTO",
+    "card1Text": "Carica i progetti svolti durante stage, tirocini e alternanza. La tua scuola li verifica con un badge ufficiale.",
+    "card2Title": "Fatti Scoprire",
+    "card2Text": "Le aziende cercano studenti con competenze specifiche. Il tuo profilo verificato ti rende visibile senza candidarti.",
+    "card3Title": "Primo Stage o Lavoro",
+    "card3Text": "Quando un'azienda trova il tuo profilo, ti contatta direttamente. Stage PCTO, tirocinio o primo impiego.",
+    "stepsTitle": "Come Funziona in 4 Passi",
+    "step1Title": "Registrati Gratis",
+    "step1Desc": "Crea il tuo account in 2 minuti. Nessun costo.",
+    "step2Title": "Carica i Progetti",
+    "step2Desc": "Aggiungi attività PCTO, stage, lavori scolastici.",
+    "step3Title": "La Scuola Verifica",
+    "step3Desc": "I docenti confermano con badge istituzionale.",
+    "step4Title": "Vieni Scoperto",
+    "step4Desc": "Le aziende ti trovano e ti contattano direttamente.",
+    "pctoLabel": "PCTO",
+    "pctoTitle": "Ogni Ora PCTO Conta",
+    "pctoDescription": "La legge prevede 210 ore per istituti tecnici e 90 ore per licei. Con InTransparency, ogni progetto e attività che svolgi diventa parte del tuo portfolio professionale verificato.",
+    "pctoCheck1": "Documenta stage, tirocini e progetti scolastici",
+    "pctoCheck2": "Badge di verifica dalla tua scuola",
+    "pctoCheck3": "Utile per il curriculum e l'orientamento post-diploma",
+    "technicalInstitutes": "Istituti Tecnici",
+    "licei": "Licei",
+    "verified": "Verificato",
+    "freeForever": "Per Sempre",
+    "ctaTitle": "Pronto a Iniziare?",
+    "ctaDescription": "Crea il tuo profilo gratuito e inizia a costruire il tuo portfolio professionale. Le aziende ti stanno cercando."
+  },
+  "studentsIts": {
+    "badge": "Competenze Tecniche • Apprendistato • Job Placement",
+    "heroTitle": "Dal Diploma ITS al",
+    "heroTitleHighlight": "Lavoro",
+    "heroDescription": "Mostra le tue competenze tecniche certificate, i progetti di laboratorio e le esperienze di apprendistato. Le aziende cercano proprio te.",
+    "heroSubtext": "Il tuo ITS certifica le tue competenze tecniche. Le aziende ti trovano e ti contattano direttamente.",
+    "createProfile": "Crea il Tuo Profilo Gratis",
+    "howItWorks": "Come Funziona",
+    "whatYouCanDo": "Cosa Puoi Fare con InTransparency",
+    "card1Title": "Competenze Tecniche Certificate",
+    "card1Text": "Carica i progetti di laboratorio, le certificazioni e le competenze acquisite. Il tuo ITS le verifica ufficialmente.",
+    "card2Title": "Visibilità alle Aziende",
+    "card2Text": "Le imprese cercano tecnici specializzati. Il tuo profilo verificato ti mette in contatto diretto con chi assume.",
+    "card3Title": "Apprendistato e Lavoro",
+    "card3Text": "Dall'apprendistato in azienda al primo contratto. Le imprese ti trovano grazie alle competenze che hai dimostrato.",
+    "stepsTitle": "Come Funziona in 4 Passi",
+    "step1Title": "Registrati Gratis",
+    "step1Desc": "Crea il tuo account in 2 minuti. Nessun costo.",
+    "step2Title": "Carica i Progetti",
+    "step2Desc": "Aggiungi lavori di laboratorio, certificazioni, esperienze.",
+    "step3Title": "L'ITS Verifica",
+    "step3Desc": "I docenti confermano le competenze con badge ufficiale.",
+    "step4Title": "Vieni Contattato",
+    "step4Desc": "Le aziende ti scoprono e ti propongono apprendistato o lavoro.",
+    "itsLabel": "ITS Academy",
+    "itsTitle": "Il Vantaggio ITS",
+    "itsDescription": "Gli ITS formano tecnici superiori richiesti dal mercato del lavoro. Con InTransparency, le tue competenze pratiche diventano visibili e verificabili dalle aziende che cercano profili come il tuo.",
+    "itsCheck1": "Certificazioni tecniche verificate dall'istituto",
+    "itsCheck2": "Progetti di laboratorio con documentazione",
+    "itsCheck3": "Esperienze di apprendistato e stage aziendali",
+    "employmentRate": "Tasso Occupazione",
+    "companyInternship": "Stage in Azienda",
+    "verified": "Verificato",
+    "freeForever": "Per Sempre",
+    "ctaTitle": "Pronto a Iniziare?",
+    "ctaDescription": "Crea il tuo profilo gratuito e mostra le tue competenze tecniche alle aziende. Il tuo futuro professionale inizia qui."
+  },
+  "studentsUniversity": {
+    "badge": "Tesi • Portfolio • Graduate Jobs",
+    "heroTitle": "Dalla Laurea alla",
+    "heroTitleHighlight": "Carriera",
+    "heroDescription": "Costruisci il tuo portfolio accademico con tesi, progetti e ricerche. Le aziende cercano neolaureati con competenze verificate.",
+    "heroSubtext": "La tua università verifica il tuo lavoro. I datori di lavoro scoprono il tuo portfolio. Distinguiti dal primo giorno.",
+    "createProfile": "Crea il Tuo Profilo Gratis",
+    "howItWorks": "Come Funziona",
+    "whatYouCanDo": "Cosa Puoi Fare con InTransparency",
+    "card1Title": "Portfolio Accademico",
+    "card1Text": "Carica tesi, progetti di ricerca, pubblicazioni e lavori di gruppo. La tua università li certifica ufficialmente.",
+    "card2Title": "Distinguiti dai Colleghi",
+    "card2Text": "Un CV non basta. Il tuo portfolio verificato mostra cosa sai fare davvero, con prove concrete del tuo lavoro.",
+    "card3Title": "Graduate Jobs e Stage",
+    "card3Text": "Le aziende cercano neolaureati qualificati. Ti trovano grazie ai tuoi progetti, non solo al voto di laurea.",
+    "stepsTitle": "Come Funziona in 4 Passi",
+    "step1Title": "Registrati Gratis",
+    "step1Desc": "Crea il tuo account in 2 minuti. Nessun costo.",
+    "step2Title": "Carica i Lavori",
+    "step2Desc": "Tesi, progetti, ricerche, pubblicazioni, esperienze.",
+    "step3Title": "L'Ateneo Verifica",
+    "step3Desc": "I docenti certificano i tuoi lavori con badge ufficiale.",
+    "step4Title": "Vieni Scoperto",
+    "step4Desc": "Le aziende ti trovano e ti propongono stage o lavoro.",
+    "uniLabel": "Universitari",
+    "uniTitle": "Più di un Voto di Laurea",
+    "uniDescription": "Le aziende vogliono vedere cosa sai fare, non solo il tuo voto. Con InTransparency, il tuo lavoro accademico diventa un portfolio professionale verificato che parla per te.",
+    "uniCheck1": "Tesi e progetti di ricerca con verifica docente",
+    "uniCheck2": "Competenze trasversali e soft skills documentate",
+    "uniCheck3": "Visibilità diretta presso aziende e recruiter",
+    "portfolio": "Portfolio",
+    "portfolioSub": "Verificato",
+    "global": "Global",
+    "globalSub": "Visibilità",
+    "certified": "Certificato",
+    "freeForever": "Per Sempre",
+    "ctaTitle": "Pronto a Iniziare?",
+    "ctaDescription": "Crea il tuo portfolio accademico verificato e fatti scoprire dalle aziende. La tua carriera inizia prima della laurea."
+  },
+  "perScuoleSuperiori": {
+    "heroBadge": "PCTO • Stage • Prima Esperienza Lavorativa",
+    "heroTitle": "Collega i Tuoi Studenti alle",
+    "heroTitleHighlight": "Aziende del Territorio",
+    "heroDescription": "Piattaforma gratuita per gestire PCTO, stage e prime esperienze lavorative. Le aziende cercano studenti con competenze verificate dalla tua scuola.",
+    "heroSubtext": "Modello freemium per istituti scolastici. Nessun costo di setup.",
+    "getStarted": "Inizia Gratuitamente",
+    "seeHowItWorks": "Scopri Come Funziona",
+    "miurBadge": "Normativa MIUR",
+    "pctoFullTitle": "PCTO: Percorsi per le Competenze Trasversali e l'Orientamento",
+    "pctoLawText": "La legge 145/2018 prevede almeno {techHours} ore per gli istituti tecnici e {liceiHours} ore per i licei. InTransparency aiuta la tua scuola a:",
+    "pctoCheck1": "Trovare aziende partner per stage e tirocini",
+    "pctoCheck2": "Documentare le competenze acquisite con verifica istituzionale",
+    "pctoCheck3": "Tracciare ore e attività per il reporting MIUR",
+    "pctoCheck4": "Preparare gli studenti al primo inserimento lavorativo",
+    "techHoursLabel": "Ore minime Istituti Tecnici",
+    "liceiHoursLabel": "Ore minime Licei",
+    "yearsInvolved": "Anni coinvolti",
+    "verifiedSkills": "Competenze verificate",
+    "howPlatformHelps": "Come la Piattaforma Aiuta la Tua Scuola",
+    "card1Title": "Connessione Scuola-Azienda",
+    "card1Check1": "Aziende cercano studenti con competenze specifiche",
+    "card1Check2": "Stage e PCTO organizzati sulla piattaforma",
+    "card1Check3": "La verifica della scuola = segnale di qualità",
+    "card1Check4": "Contatto diretto azienda-studente",
+    "card2Title": "Gestione PCTO Semplificata",
+    "card2Check1": "Studenti caricano progetti e attività",
+    "card2Check2": "Docenti verificano con badge istituzionale",
+    "card2Check3": "Tracciamento ore automatico",
+    "card2Check4": "Report pronti per il MIUR",
+    "card3Title": "Orientamento e Placement",
+    "card3Check1": "Quali aziende cercano i tuoi studenti",
+    "card3Check2": "Competenze più richieste dal mercato",
+    "card3Check3": "Dati per orientare la didattica",
+    "card3Check4": "Alert: \"Studente X: 0 visualizzazioni in 30 giorni\"",
+    "servicesTitle": "Servizi per le Scuole Superiori",
+    "servicesSubtitle": "Piattaforma marketplace con livello di verifica istituzionale",
+    "primaryService": "SERVIZIO PRINCIPALE",
+    "service1Title": "Marketplace Stage e PCTO",
+    "service1Free": "Gratuito per le scuole",
+    "service1Subtitle": "Le aziende trovano i tuoi studenti",
+    "service1Item1": "Aziende cercano studenti per stage e PCTO",
+    "service1Item2": "Studenti visibili senza candidarsi",
+    "service1Item3": "Badge di verifica della scuola = fiducia",
+    "service1Item4": "Le aziende pagano per contattare, la scuola no",
+    "service2Title": "Matching Intelligente",
+    "service2Free": "Gratuito per gli studenti",
+    "service2Subtitle": "AI Trasparente per il Matching",
+    "service2Item1": "AI abbina competenze a requisiti aziendali",
+    "service2Item2": "Competenze verificate migliorano la visibilità",
+    "service2Item3": "Le aziende vedono l'endorsement della scuola",
+    "service2Item4": "Spiegazioni trasparenti del matching",
+    "verificationTitle": "Verifica Istituzionale",
+    "verificationBadge": "Livello Qualità",
+    "verificationSubtitle": "Fiducia nel Marketplace",
+    "verificationItem1": "Workflow di verifica manuale o API",
+    "verificationItem2": "Docenti verificano progetti e voti",
+    "verificationItem3": "\"Verificato da ITIS Galilei, 8/10\"",
+    "verificationItem4": "Approvazione in batch per classi intere",
+    "analyticsTitle": "Analytics e Report",
+    "analyticsBadge": "Traccia l'Impatto",
+    "analyticsSubtitle": "Misura il Successo dei PCTO",
+    "analyticsItem1": "\"Siemens ha visualizzato 15 studenti\"",
+    "analyticsItem2": "\"Competenza CAD cercata 43 volte\"",
+    "analyticsItem3": "Export report per MIUR e RAV",
+    "analyticsItem4": "Alert di intervento precoce",
+    "areasTitle": "Tutti gli Indirizzi Supportati",
+    "areasSubtitle": "Dall'informatica alla meccanica — aziende che cercano attivamente studenti",
+    "skillsCompaniesSeek": "Competenze che le aziende cercano:",
+    "companiesHiring": "Aziende che assumono:",
+    "pctoHoursForArea": "{hours} ore PCTO previste per questo indirizzo",
+    "howItWorksForStudent": "Come Funziona per lo Studente",
+    "studentStep1": "1. Lo studente carica il progetto PCTO",
+    "studentStep1Desc": "Progetto su {skill}, voto 8/10",
+    "studentStep2": "2. Il docente verifica",
+    "studentStep2Desc": "Badge: \"Verificato da {area} - ITIS\"",
+    "studentStep3": "3. L'azienda scopre lo studente",
+    "studentStep3Desc": "Cerca \"{skill}\" → trova lo studente verificato",
+    "studentStep4": "4. Stage o primo lavoro",
+    "studentStep4Desc": "Azienda contatta → Colloquio → Stage PCTO o assunzione",
+    "whyChooseTitle": "Perché le Scuole Scelgono InTransparency",
+    "why1Title": "PCTO più Efficaci",
+    "why1Check1": "Studenti scoperti dalle aziende",
+    "why1Check2": "Aziende contattano proattivamente",
+    "why1Check3": "Traccia risultati e metriche",
+    "why1Check4": "Competenze verificate = vantaggio competitivo",
+    "why2Title": "Gratuito per le Scuole",
+    "why2Check1": "Zero costi di attivazione",
+    "why2Check2": "Funzionalità core incluse",
+    "why2Check3": "Le aziende pagano per contattare",
+    "why2Check4": "Opzioni enterprise disponibili",
+    "why3Title": "Report per MIUR e RAV",
+    "why3Check1": "Metriche di placement PCTO",
+    "why3Check2": "Quali aziende assumono i tuoi diplomati",
+    "why3Check3": "Export report per il RAV",
+    "why3Check4": "Alert di intervento precoce",
+    "getStartedStepsTitle": "Inizia in 3 Passi",
+    "gs1Title": "Registra la Scuola",
+    "gs1Desc": "Account gratuito → Email .edu verificata → Dashboard attiva in 5 minuti",
+    "gs2Title": "Gli Studenti Caricano i Progetti",
+    "gs2Desc": "Studenti si iscrivono gratis → Caricano progetti PCTO → I docenti verificano",
+    "gs3Title": "Traccia i Risultati",
+    "gs3Desc": "Le aziende scoprono gli studenti → Analytics: \"15 studenti contattati\" → Monitora il successo",
+    "quickActivation": "Attivazione rapida. Report per MIUR e RAV inclusi.",
+    "examplesTitle": "Scuole che Potrebbero Beneficiarne",
+    "examplesSubtitle": "Esempi di istituti che migliorerebbero il placement degli studenti con il marketplace verificato",
+    "studentsLabel": "studenti",
+    "pctoActivities": "Attività PCTO:",
+    "faqTitle": "Domande Frequenti",
+    "faq1Q": "Come funziona per i PCTO?",
+    "faq1A": "Gli studenti caricano i progetti svolti durante i PCTO (stage, tirocini, attività in azienda). I docenti verificano con il badge istituzionale. Le aziende cercano studenti con competenze specifiche e li contattano direttamente per stage o primo impiego.",
+    "faq2Q": "Quanto costa per la scuola?",
+    "faq2A": "Il servizio base è completamente gratuito per le scuole. Le aziende pagano per contattare gli studenti. Opzioni enterprise disponibili per istituti con esigenze avanzate.",
+    "faq3Q": "Funziona anche per l'alternanza scuola-lavoro?",
+    "faq3A": "Sì, la piattaforma supporta tutte le forme di alternanza: PCTO, stage curriculari, tirocini formativi e prime esperienze lavorative. Ogni attività può essere documentata e verificata dalla scuola.",
+    "faq4Q": "Come funziona la verifica?",
+    "faq4A": "Gli studenti caricano i progetti e i docenti li verificano attraverso la dashboard. La verifica aggiunge un badge istituzionale che aumenta la visibilità e la credibilità dello studente nel marketplace.",
+    "faq5Q": "Possiamo usarlo per il RAV?",
+    "faq5A": "Sì, la dashboard analytics fornisce dati esportabili utili per il Rapporto di Autovalutazione: metriche di placement, competenze più richieste, aziende che hanno contattato gli studenti.",
+    "faq6Q": "Anche i licei possono usare la piattaforma?",
+    "faq6A": "Assolutamente sì. Anche i licei hanno l'obbligo di 90 ore PCTO. La piattaforma aiuta a documentare le competenze trasversali acquisite e a connettere gli studenti con opportunità formative e lavorative.",
+    "finalCtaTitle": "Pronto a Collegare i Tuoi Studenti alle Aziende?",
+    "finalCtaDescription": "Unisciti al marketplace gratuito che connette studenti verificati alle aziende. Attivazione in 5 minuti. Zero costi. Report per MIUR e RAV.",
+    "pricingOptions": "Prezzi e Opzioni",
+    "finalNote": "PCTO, stage e primo impiego — tutto in un'unica piattaforma"
+  },
+  "forItsInstitutes": {
+    "heroBadge": "Marketplace Gratuito • Fai Assumere i Tuoi Studenti",
+    "heroTitle": "Connetti i Tuoi Diplomati alle",
+    "heroTitleHighlight": "Aziende che Cercano Competenze Verificate",
+    "heroDescription": "Marketplace che connette i tuoi studenti ITS alle aziende che assumono. La verifica istituzionale dà ai diplomati un vantaggio competitivo. Traccia il placement con analytics.",
+    "heroSubtext": "Modello freemium per le istituzioni.",
+    "getStarted": "Inizia Ora",
+    "seeHowItWorks": "Scopri Come Funziona",
+    "howMarketplaceHelps": "Come il Marketplace Aiuta il Tuo ITS",
+    "mp1Title": "Studenti Scoperti dalle Aziende",
+    "mp1Check1": "Le aziende cercano tra 10K+ diplomati verificati",
+    "mp1Check2": "Gli studenti non candidano - vengono contattati",
+    "mp1Check3": "Il tuo badge di verifica = segnale di fiducia",
+    "mp1Check4": "Le aziende contattano gli studenti direttamente",
+    "mp2Title": "Matching AI",
+    "mp2Check1": "L'AI abbina competenze a requisiti lavorativi",
+    "mp2Check2": "Le competenze verificate migliorano la visibilità",
+    "mp2Check3": "Spiegazioni AI trasparenti",
+    "mp2Check4": "Screening più veloce con dati verificati",
+    "mp3Title": "Traccia il Tuo Impatto",
+    "mp3Check1": "Vedi quali aziende hanno visto i tuoi studenti",
+    "mp3Check2": "Traccia le metriche di tempo di assunzione",
+    "mp3Check3": "Genera report per il MIUR",
+    "mp3Check4": "Allerte di intervento precoce",
+    "fourServices": "Quattro Servizi Gratuiti",
+    "fourServicesSubtitle": "Piattaforma marketplace con livello di verifica qualità",
+    "primaryServiceLabel": "SERVIZIO PRINCIPALE",
+    "discoveryTitle": "Servizio Discovery",
+    "discoveryBadge": "Cerca GRATIS, €10/contatto",
+    "discoverySubtitle": "Recruiting Inverso",
+    "discoveryItem1": "Le aziende cercano nel pool di talenti ITS verificati",
+    "discoveryItem2": "Studenti visibili senza candidarsi",
+    "discoveryItem3": "Il tuo badge di verifica = segnale di qualità",
+    "discoveryItem4": "Le aziende pagano €10 per contattare, tu ricevi credito",
+    "discoveryNote": "Credenziali verificate dall'istituto di cui le aziende si fidano",
+    "matchingTitle": "Servizio Matching",
+    "matchingBadge": "GRATUITO per gli Studenti",
+    "matchingSubtitle": "Matching AI Trasparente",
+    "matchingItem1": "L'AI abbina competenze a requisiti lavorativi",
+    "matchingItem2": "Le competenze verificate migliorano la visibilità",
+    "matchingItem3": "Le aziende vedono il tuo endorsement istituzionale",
+    "matchingItem4": "Spiegazioni trasparenti del matching",
+    "matchingNote": "Screening candidati più veloce con dati verificati",
+    "verificationTitle": "Servizio di Verifica",
+    "verificationBadge": "Livello Qualità",
+    "verificationSubtitle": "Abilita la Fiducia nel Marketplace",
+    "verificationItem1": "Workflow di verifica manuale o API",
+    "verificationItem2": "Tu verifichi progetti e voti",
+    "verificationItem3": "\"Verificato da ITS G. Natta, 28/30\"",
+    "verificationItem4": "Approva 50 in batch in 1 ora",
+    "analyticsTitle": "Servizio Analytics",
+    "analyticsBadge": "Traccia l'Impatto",
+    "analyticsSubtitle": "Misura il Successo del Placement",
+    "analyticsItem1": "\"Siemens ha visualizzato 23 studenti ITS\"",
+    "analyticsItem2": "\"Competenza PLC cercata 76 volte\"",
+    "analyticsItem3": "Esporta report per il MIUR",
+    "analyticsItem4": "Allerte di intervento precoce",
+    "areasTitle": "Tutte le Aree ITS Supportate",
+    "areasSubtitle": "Dalla meccatronica alle biotecnologie - aziende che assumono attivamente diplomati ITS",
+    "verifiedSkillsSeek": "Competenze Verificate Cercate dalle Aziende:",
+    "companiesHiring": "Aziende che Assumono:",
+    "searchesPerMonth": "{count} ricerche aziendali/mese per competenze in quest'area",
+    "howStudentsGetHired": "Come Vengono Assunti gli Studenti",
+    "hireStep1": "1. Lo studente carica il progetto ITS",
+    "hireStep1Desc": "Progetto su {skill}, voto 28/30",
+    "hireStep2": "2. Il tuo ITS verifica",
+    "hireStep2Desc": "Badge: \"Verificato da {area} ITS\"",
+    "hireStep3": "3. Le aziende scoprono",
+    "hireStep3Desc": "Siemens cerca \"{skill}\" → trova lo studente",
+    "hireStep4": "4. Lo studente viene assunto",
+    "hireStep4Desc": "L'azienda paga €10 per contattare → Colloquio → Assunto in 47 giorni",
+    "whyChooseTitle": "Perché gli ITS Scelgono InTransparency",
+    "why1Title": "Migliori Risultati di Placement",
+    "why1Check1": "Studenti scoperti dalle aziende",
+    "why1Check2": "Le aziende contattano proattivamente",
+    "why1Check3": "Traccia le metriche di tempo di assunzione",
+    "why1Check4": "Competenze verificate = vantaggio competitivo",
+    "why2Title": "Modello Freemium",
+    "why2Check1": "Nessun costo di setup",
+    "why2Check2": "Funzionalità core incluse",
+    "why2Check3": "Le aziende pagano per contatto",
+    "why2Check4": "Opzioni enterprise disponibili",
+    "why3Title": "Traccia l'Impatto per il MIUR",
+    "why3Check1": "Traccia le metriche di placement",
+    "why3Check2": "Vedi quali aziende assumono i tuoi diplomati",
+    "why3Check3": "Esporta report per il finanziamento",
+    "why3Check4": "Allerte di intervento precoce",
+    "getStartedSteps": "Inizia in 3 Passi",
+    "gs1Title": "Registra l'ITS",
+    "gs1Desc": "Crea account gratuito → Email .edu verificata → Dashboard attiva in 5 minuti",
+    "gs2Title": "Gli Studenti Caricano i Progetti",
+    "gs2Desc": "Studenti si iscrivono gratis → Caricano progetti ITS → Tu verifichi con badge istituzionale",
+    "gs3Title": "Traccia i Placement",
+    "gs3Desc": "Le aziende scoprono studenti → Analytics: \"23 studenti contattati\" → Traccia il successo",
+    "quickSetup": "Setup rapido. Traccia i placement.",
+    "examplesTitle": "ITS che Potrebbero Beneficiarne",
+    "examplesSubtitle": "Esempi di ITS che aumenterebbero il placement degli studenti tramite il marketplace verificato",
+    "studentsLabel": "studenti",
+    "skillsSeek": "Competenze Cercate dalle Aziende:",
+    "faqTitle": "Domande Frequenti",
+    "faq1Q": "Come aiuta il marketplace i nostri studenti?",
+    "faq1A": "Le aziende cercano tra 10K+ diplomati verificati e contattano proattivamente gli studenti con competenze corrispondenti. Gli studenti non candidano - vengono scoperti. La tua verifica istituzionale dà loro un vantaggio competitivo.",
+    "faq2Q": "Cosa significa freemium?",
+    "faq2A": "Le funzionalità core sono incluse senza costi. Le aziende pagano per contatto. Funzionalità enterprise disponibili per istituzioni più grandi.",
+    "faq3Q": "Come funziona la verifica?",
+    "faq3A": "Gli studenti caricano manualmente i progetti e tu li verifichi tramite la nostra dashboard semplice. Per istituzioni più grandi, possiamo configurare l'integrazione API (contattaci per dettagli). Zero lavoro IT per te dopo il setup.",
+    "faq4Q": "Possiamo aggiungere strumenti per il Career Day?",
+    "faq4A": "Sì! L'add-on Premium Embed opzionale (€500/anno) include piattaforma Career Day con codici QR, prenotazione colloqui e widget personalizzati. Ma il marketplace core è sempre gratuito. Vedi la pagina prezzi per dettagli.",
+    "faq5Q": "Come tracciamo il placement per il reporting MIUR?",
+    "faq5A": "La dashboard analytics traccia tempo di assunzione, studenti contattati e risultati di placement. Esporta report per il MIUR con dati verificabili.",
+    "faq6Q": "E se gli studenti non vengono scoperti?",
+    "faq6A": "Le analytics mostrano avvisi precoci: \"Studente X: 0 visualizzazioni in 30 giorni - mismatch competenze?\" Puoi intervenire presto, aggiornare competenze/progetti, o offrire consulenza di carriera. Prevenzione vs reazione.",
+    "finalCtaTitle": "Pronto a Far Assumere i Tuoi Studenti ITS?",
+    "finalCtaDescription": "Unisciti al marketplace gratuito che connette diplomati ITS verificati alle aziende che assumono. Setup in 5 minuti. Zero costi. Traccia il successo del placement.",
+    "joinMarketplace": "Unisciti al Marketplace Gratuito",
+    "pricingAddons": "Vedi Prezzi e Add-on",
+    "finalNote": "Traccia i placement per il reporting MIUR"
+  },
+  "perUniversita": {
+    "heroBadge": "Marketplace Gratuito • Fai Assumere i Tuoi Laureati",
+    "heroTitle": "Connetti i Tuoi Laureati alle",
+    "heroTitleHighlight": "Aziende che Cercano Talenti Verificati",
+    "heroDescription": "Marketplace che connette i tuoi studenti alle aziende. La verifica istituzionale dà ai laureati un vantaggio competitivo. Traccia il successo con analytics.",
+    "heroSubtext": "Modello freemium per le istituzioni.",
+    "registerInstitution": "Registra la Tua Istituzione",
+    "seeHowItWorks": "Scopri Come Funziona",
+    "howMarketplaceHelps": "Come il Marketplace Aiuta la Tua Istituzione",
+    "mp1Title": "Studenti Scoperti dalle Aziende",
+    "mp1Check1": "Le aziende cercano laureati verificati",
+    "mp1Check2": "Gli studenti non candidano - vengono contattati",
+    "mp1Check3": "La verifica istituzionale = segnale di fiducia",
+    "mp2Title": "Matching AI Trasparente",
+    "mp2Check1": "\"Alta compatibilità: Python verificato dalla tesi\"",
+    "mp2Check2": "Competenze verificate = punteggi più alti",
+    "mp2Check3": "Spiegazioni AI trasparenti",
+    "mp3Title": "Traccia il Tuo Impatto",
+    "mp3Check1": "Vedi quali aziende visualizzano i tuoi studenti",
+    "mp3Check2": "Report esportabili per ANVUR",
+    "mp3Check3": "Allerte per intervento precoce",
+    "facultiesTitle": "Tutte le Facoltà Supportate",
+    "facultiesSubtitle": "Da Ingegneria a Giurisprudenza - le aziende cercano laureati di ogni disciplina",
+    "skillsCompaniesSeek": "Competenze Ricercate dalle Aziende:",
+    "howGradsGetHired": "Come Vengono Assunti i Laureati",
+    "hireStep1": "1. Studente Carica Progetto/Tesi",
+    "hireStep1Desc": "Con voto e competenze dimostrate",
+    "hireStep2": "2. L'Istituzione Verifica",
+    "hireStep2Desc": "\"Verificato da Politecnico di Milano, 110/110\"",
+    "hireStep3": "3. Le Aziende Scoprono",
+    "hireStep3Desc": "Cercano \"{skill}\" → trovano il laureato",
+    "hireStep4": "4. Laureato Assunto",
+    "hireStep4Desc": "L'azienda paga €10 per contattare → Colloquio → Assunzione",
+    "whyChooseTitle": "Perché le Istituzioni Scelgono InTransparency",
+    "why1Title": "Modello Freemium",
+    "why1Check1": "Nessun costo di setup",
+    "why1Check2": "Funzionalità core incluse",
+    "why1Check3": "Le aziende pagano per contatto",
+    "why2Title": "Contatto Diretto",
+    "why2Check1": "Nessun intermediario tra azienda e studente",
+    "why2Check2": "Le aziende contattano direttamente",
+    "why2Check3": "Contatto diretto aziende-studenti",
+    "why3Title": "Report per ANVUR",
+    "why3Check1": "Traccia il placement con dati verificabili",
+    "why3Check2": "Vedi quali aziende assumono i tuoi laureati",
+    "why3Check3": "Esporta report per accreditamento",
+    "getStartedSteps": "Inizia in 3 Passaggi",
+    "gs1Title": "Registra l'Istituzione",
+    "gs1Desc": "Crea account gratuito → Verifica email .edu → Dashboard attiva in 5 minuti",
+    "gs2Title": "Studenti Caricano Progetti",
+    "gs2Desc": "Studenti si iscrivono gratis → Caricano tesi e progetti → Tu verifichi con badge istituzionale",
+    "gs3Title": "Monitora le Assunzioni",
+    "gs3Desc": "Le aziende scoprono studenti → Analytics: \"23 studenti contattati\" → Traccia il successo",
+    "registerFree": "Registra la Tua Istituzione Gratis",
+    "setupNote": "Setup 5 min • €0 per sempre • Aziende che assumono • Report ANVUR",
+    "finalCtaTitle": "Pronto a Far Assumere i Tuoi Laureati?",
+    "finalCtaDescription": "Unisciti al marketplace gratuito che connette laureati verificati alle aziende. Setup in 5 minuti. Zero costi. Traccia il placement.",
+    "registerInstitutionFree": "Registra Istituzione Gratis",
+    "talkToUs": "Parla con Noi",
+    "finalNote": "€0 per sempre • Contatto diretto • Report ANVUR"
+  },
+  "faq": {
+    "title": "Domande Frequenti",
+    "subtitle": "Trova risposte alle domande più comuni su InTransparency",
+    "searchPlaceholder": "Cerca nelle FAQ...",
+    "categoryAll": "Tutte",
+    "categoryStudents": "Studenti",
+    "categoryCompanies": "Aziende",
+    "categoryInstitutions": "Istituzioni",
+    "categoryPayments": "Pagamenti",
+    "categoryPrivacy": "Privacy",
+    "noResults": "Nessun risultato trovato",
+    "noResultsHint": "Prova a modificare i filtri o la ricerca",
+    "contactTitle": "Non hai trovato quello che cercavi?",
+    "contactDescription": "Il nostro team di supporto è pronto ad aiutarti",
+    "contactUs": "Contattaci",
+    "sq1": "Come posso creare un account studente?",
+    "sa1": "Puoi registrarti gratuitamente cliccando su \"Registrati\" e selezionando \"Studente\". Dovrai fornire il tuo nome, email e creare una password. Dopo la registrazione, potrai completare il tuo profilo e connettere la tua istituzione.",
+    "sq2": "Come connetto la mia istituzione?",
+    "sa2": "Dalla tua dashboard, vai alla sezione \"Integrazione Università\" e clicca su \"Connetti Università\". Cerca la tua università o ITS, inserisci la tua email istituzionale e verifica il tuo account. Una volta verificato, i tuoi voti e progetti potranno essere sincronizzati automaticamente.",
+    "sq3": "I miei progetti sono visibili a tutti?",
+    "sa3": "No, hai il controllo completo sulla visibilità del tuo profilo. Puoi scegliere di rendere il tuo portfolio pubblico o privato. Puoi anche selezionare quali progetti mostrare e quali nascondere.",
+    "sq4": "Come funziona il programma referral?",
+    "sa4": "Invita i tuoi amici usando il tuo link referral. Per ogni 3 amici che si registrano, ottieni 1 mese di Premium gratuito. Con 10 referral ottieni 6 mesi, e con 50 referral ottieni Premium a vita!",
+    "sq5": "Quanto costa InTransparency per gli studenti?",
+    "sa5": "InTransparency è completamente gratuito per gli studenti! Offriamo anche piani Premium opzionali con funzionalità avanzate come analisi AI approfondite e maggiore visibilità.",
+    "cq1": "Come posso trovare candidati?",
+    "ca1": "Puoi utilizzare la nostra ricerca avanzata per filtrare candidati per competenze, università, anno di laurea, GPA e altro. Il nostro sistema di matching AI ti suggerisce automaticamente i candidati più adatti alle tue posizioni aperte.",
+    "cq2": "Quanto costa contattare un candidato?",
+    "ca2": "Con il piano Pay-per-Contact, ogni contatto costa €5. Se contatti più di 20 candidati al mese, ti consigliamo il piano Enterprise a €99/mese che include contatti illimitati, filtri avanzati e accesso API.",
+    "cq3": "Come funziona il matching AI?",
+    "ca3": "Il nostro algoritmo analizza i progetti degli studenti, le competenze verificate, i voti universitari e le preferenze per calcolare un punteggio di compatibilità. Più alto è il punteggio, migliore è il match con le tue esigenze.",
+    "cq4": "Posso pubblicare offerte di lavoro?",
+    "ca4": "Sì! Puoi pubblicare offerte di lavoro dalla tua dashboard. Gli studenti potranno candidarsi direttamente e riceverai notifiche per ogni nuova candidatura.",
+    "iq1": "Come può la mia istituzione partecipare?",
+    "ia1": "Le istituzioni possono registrarsi gratuitamente e ottenere una dashboard dedicata per monitorare il placement dei propri studenti, vedere quali aziende sono interessate e accedere ad analytics dettagliate.",
+    "iq2": "Cos'è il widget embeddabile?",
+    "ia2": "Il widget embeddabile (€500/anno) permette di integrare InTransparency direttamente nel vostro portale carriere. Mostra match in tempo reale e aumenta le registrazioni degli studenti del 40% in media.",
+    "iq3": "I dati degli studenti sono protetti?",
+    "ia3": "Assolutamente. Siamo conformi al GDPR e gli studenti hanno sempre il controllo sui propri dati. Le istituzioni possono vedere solo statistiche aggregate, non dati personali individuali senza consenso.",
+    "pq1": "Quali metodi di pagamento accettate?",
+    "pa1": "Accettiamo tutte le principali carte di credito (Visa, Mastercard, American Express), PayPal e bonifico bancario per i piani Enterprise.",
+    "pq2": "Posso cancellare il mio abbonamento?",
+    "pa2": "Sì, puoi cancellare in qualsiasi momento dalla sezione Abbonamento della tua dashboard. L'abbonamento rimarrà attivo fino alla fine del periodo di fatturazione corrente.",
+    "pq3": "Offrite rimborsi?",
+    "pa3": "Offriamo un rimborso completo entro 14 giorni dall'acquisto se non sei soddisfatto del servizio. Contatta il supporto per richiedere un rimborso.",
+    "prq1": "Come proteggete i miei dati?",
+    "pra1": "Utilizziamo crittografia end-to-end, server sicuri in Europa e seguiamo le best practice di sicurezza. Siamo conformi al GDPR e non vendiamo mai i tuoi dati a terzi.",
+    "prq2": "Posso eliminare il mio account?",
+    "pra2": "Sì, puoi richiedere l'eliminazione completa del tuo account e di tutti i dati associati in qualsiasi momento dalle impostazioni del profilo o contattando il supporto.",
+    "prq3": "Chi può vedere il mio profilo?",
+    "pra3": "Hai il controllo completo. Puoi scegliere se rendere il profilo pubblico, visibile solo alle aziende verificate, o completamente privato. Puoi anche bloccare aziende specifiche."
   }
 }

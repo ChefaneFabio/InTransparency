@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Link } from '@/navigation'
-import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -33,7 +33,6 @@ import {
   Sparkles
 } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { IMAGES } from '@/lib/images'
 
 const itsAcademies = [
   {
@@ -107,6 +106,7 @@ const itsFocusAreas = [
 
 export default function ITSInstitutesPage() {
   const [selectedArea, setSelectedArea] = useState(itsFocusAreas[0])
+  const t = useTranslations('forItsInstitutes')
 
   return (
     <div className="min-h-screen segment-university hero-bg">
@@ -122,19 +122,19 @@ export default function ITSInstitutesPage() {
             className="text-center mb-16"
           >
             <Badge className="mb-4 bg-primary text-white">
-              Free Marketplace • Get Your Students Hired
+              {t('heroBadge')}
             </Badge>
             <h1 className="text-5xl font-display font-bold mb-6">
-              Connect Your Graduates to{' '}
+              {t('heroTitle')}{' '}
               <span className="text-primary">
-                Companies Seeking Verified Skills
+                {t('heroTitleHighlight')}
               </span>
             </h1>
             <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-4">
-              Marketplace connecting your ITS students to companies actively hiring. Your institutional verification gives graduates a competitive edge. Track placement success with analytics.
+              {t('heroDescription')}
             </p>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              Freemium model for institutions.
+              {t('heroSubtext')}
             </p>
 
             {/* CTAs */}
@@ -145,7 +145,7 @@ export default function ITSInstitutesPage() {
                 asChild
               >
                 <Link href="/auth/register">
-                  Get Started
+                  {t('getStarted')}
                   <ArrowRight className="h-5 w-5 ml-2" />
                 </Link>
               </Button>
@@ -155,7 +155,7 @@ export default function ITSInstitutesPage() {
                 asChild
               >
                 <Link href="/pricing">
-                  See How It Works
+                  {t('seeHowItWorks')}
                 </Link>
               </Button>
             </div>
@@ -169,7 +169,7 @@ export default function ITSInstitutesPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-8">
-              How the Marketplace Helps Your ITS
+              {t('howMarketplaceHelps')}
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -178,25 +178,25 @@ export default function ITSInstitutesPage() {
                   <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Briefcase className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-lg">Students Get Discovered</CardTitle>
+                  <CardTitle className="text-lg">{t('mp1Title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Companies search 10K+ verified graduates</span>
+                      <span>{t('mp1Check1')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Students don't apply - companies reach out</span>
+                      <span>{t('mp1Check2')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Your verification badge = trust signal</span>
+                      <span>{t('mp1Check3')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Companies contact students directly</span>
+                      <span>{t('mp1Check4')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -207,25 +207,25 @@ export default function ITSInstitutesPage() {
                   <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Target className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-lg">AI-Powered Matching</CardTitle>
+                  <CardTitle className="text-lg">{t('mp2Title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>AI matches skills to job requirements</span>
+                      <span>{t('mp2Check1')}</span>
                     </li>
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Verified skills improve visibility</span>
+                      <span>{t('mp2Check2')}</span>
                     </li>
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Transparent AI explanations</span>
+                      <span>{t('mp2Check3')}</span>
                     </li>
                     <li className="flex items-start">
                       <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Faster screening with verified data</span>
+                      <span>{t('mp2Check4')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -236,25 +236,25 @@ export default function ITSInstitutesPage() {
                   <div className="bg-primary/80 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <TrendingUp className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-lg">Track Your Impact</CardTitle>
+                  <CardTitle className="text-lg">{t('mp3Title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <BarChart3 className="h-4 w-4 text-primary/70 mr-2 mt-0.5" />
-                      <span>See which companies viewed your students</span>
+                      <span>{t('mp3Check1')}</span>
                     </li>
                     <li className="flex items-start">
                       <BarChart3 className="h-4 w-4 text-primary/70 mr-2 mt-0.5" />
-                      <span>Track time-to-hire metrics</span>
+                      <span>{t('mp3Check2')}</span>
                     </li>
                     <li className="flex items-start">
                       <BarChart3 className="h-4 w-4 text-primary/70 mr-2 mt-0.5" />
-                      <span>Generate reports for MIUR</span>
+                      <span>{t('mp3Check3')}</span>
                     </li>
                     <li className="flex items-start">
                       <BarChart3 className="h-4 w-4 text-primary/70 mr-2 mt-0.5" />
-                      <span>Early intervention alerts</span>
+                      <span>{t('mp3Check4')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -270,10 +270,10 @@ export default function ITSInstitutesPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-4">
-              Four Free Services
+              {t('fourServices')}
             </h2>
             <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Marketplace platform with verification quality layer
+              {t('fourServicesSubtitle')}
             </p>
 
             <div className="grid md:grid-cols-2 gap-8 mb-6">
@@ -283,20 +283,20 @@ export default function ITSInstitutesPage() {
                   <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                     <Search className="h-8 w-8 text-white" />
                   </div>
-                  <Badge className="mb-2 bg-primary text-white">PRIMARY SERVICE</Badge>
-                  <CardTitle className="text-lg">Discovery Service</CardTitle>
-                  <Badge variant="secondary" className="mt-2 text-xs">Browse FREE, €10/contact</Badge>
+                  <Badge className="mb-2 bg-primary text-white">{t('primaryServiceLabel')}</Badge>
+                  <CardTitle className="text-lg">{t('discoveryTitle')}</CardTitle>
+                  <Badge variant="secondary" className="mt-2 text-xs">{t('discoveryBadge')}</Badge>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80 space-y-2">
-                  <p className="font-semibold text-green-700">Reverse Recruitment</p>
+                  <p className="font-semibold text-foreground">{t('discoverySubtitle')}</p>
                   <ul className="space-y-1.5">
-                    <li>• Companies search verified ITS talent pool</li>
-                    <li>• Students visible without applying</li>
-                    <li>• Your verification badge = quality signal</li>
-                    <li>• Companies pay €10 to contact, you get credit</li>
+                    <li>• {t('discoveryItem1')}</li>
+                    <li>• {t('discoveryItem2')}</li>
+                    <li>• {t('discoveryItem3')}</li>
+                    <li>• {t('discoveryItem4')}</li>
                   </ul>
                   <p className="text-xs italic pt-2 border-t text-muted-foreground">
-                    University-verified credentials employers trust
+                    {t('discoveryNote')}
                   </p>
                 </CardContent>
               </Card>
@@ -307,20 +307,20 @@ export default function ITSInstitutesPage() {
                   <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                     <Target className="h-8 w-8 text-white" />
                   </div>
-                  <Badge className="mb-2 bg-primary/80 text-white">PRIMARY SERVICE</Badge>
-                  <CardTitle className="text-lg">Matching Service</CardTitle>
-                  <Badge variant="secondary" className="mt-2 text-xs">FREE for Students</Badge>
+                  <Badge className="mb-2 bg-primary/80 text-white">{t('primaryServiceLabel')}</Badge>
+                  <CardTitle className="text-lg">{t('matchingTitle')}</CardTitle>
+                  <Badge variant="secondary" className="mt-2 text-xs">{t('matchingBadge')}</Badge>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80 space-y-2">
-                  <p className="font-semibold text-primary">Transparent AI Matching</p>
+                  <p className="font-semibold text-primary">{t('matchingSubtitle')}</p>
                   <ul className="space-y-1.5">
-                    <li>• AI matches skills to job requirements</li>
-                    <li>• Verified skills improve visibility</li>
-                    <li>• Companies see your institutional endorsement</li>
-                    <li>• Transparent matching explanations</li>
+                    <li>• {t('matchingItem1')}</li>
+                    <li>• {t('matchingItem2')}</li>
+                    <li>• {t('matchingItem3')}</li>
+                    <li>• {t('matchingItem4')}</li>
                   </ul>
                   <p className="text-xs italic pt-2 border-t text-muted-foreground">
-                    Faster candidate screening with verified data
+                    {t('matchingNote')}
                   </p>
                 </CardContent>
               </Card>
@@ -333,16 +333,16 @@ export default function ITSInstitutesPage() {
                   <div className="bg-muted-foreground p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
                     <Shield className="h-6 w-6 text-white" />
                   </div>
-                  <CardTitle className="text-base">Verification Service</CardTitle>
-                  <Badge variant="outline" className="mt-1 text-xs">Quality Layer</Badge>
+                  <CardTitle className="text-base">{t('verificationTitle')}</CardTitle>
+                  <Badge variant="outline" className="mt-1 text-xs">{t('verificationBadge')}</Badge>
                 </CardHeader>
                 <CardContent className="text-xs text-foreground/80 space-y-1.5">
-                  <p className="font-semibold text-foreground">Enables Marketplace Trust</p>
+                  <p className="font-semibold text-foreground">{t('verificationSubtitle')}</p>
                   <ul className="space-y-1">
-                    <li>• Manual or API verification workflow</li>
-                    <li>• You verify projects/grades</li>
-                    <li>• "Verified by ITS G. Natta, 28/30"</li>
-                    <li>• Batch approve 50 in 1 hour</li>
+                    <li>• {t('verificationItem1')}</li>
+                    <li>• {t('verificationItem2')}</li>
+                    <li>• {t('verificationItem3')}</li>
+                    <li>• {t('verificationItem4')}</li>
                   </ul>
                 </CardContent>
               </Card>
@@ -353,16 +353,16 @@ export default function ITSInstitutesPage() {
                   <div className="bg-muted-foreground p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
                     <BarChart3 className="h-6 w-6 text-white" />
                   </div>
-                  <CardTitle className="text-base">Analytics Service</CardTitle>
-                  <Badge variant="outline" className="mt-1 text-xs">Track Impact</Badge>
+                  <CardTitle className="text-base">{t('analyticsTitle')}</CardTitle>
+                  <Badge variant="outline" className="mt-1 text-xs">{t('analyticsBadge')}</Badge>
                 </CardHeader>
                 <CardContent className="text-xs text-foreground/80 space-y-1.5">
-                  <p className="font-semibold text-foreground">Measure Placement Success</p>
+                  <p className="font-semibold text-foreground">{t('analyticsSubtitle')}</p>
                   <ul className="space-y-1">
-                    <li>• "Siemens viewed 23 ITS students"</li>
-                    <li>• "PLC skills searched 76x"</li>
-                    <li>• Export reports for MIUR</li>
-                    <li>• Early intervention alerts</li>
+                    <li>• {t('analyticsItem1')}</li>
+                    <li>• {t('analyticsItem2')}</li>
+                    <li>• {t('analyticsItem3')}</li>
+                    <li>• {t('analyticsItem4')}</li>
                   </ul>
                 </CardContent>
               </Card>
@@ -379,10 +379,10 @@ export default function ITSInstitutesPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-4">
-              All ITS Areas Supported
+              {t('areasTitle')}
             </h2>
             <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-              From mechatronics to biotech - companies actively hiring ITS graduates
+              {t('areasSubtitle')}
             </p>
 
             {/* Area Selector */}
@@ -419,7 +419,7 @@ export default function ITSInstitutesPage() {
                     </h3>
                     <div className="space-y-4">
                       <div>
-                        <p className="font-semibold text-foreground mb-2">Verified Skills Companies Seek:</p>
+                        <p className="font-semibold text-foreground mb-2">{t('verifiedSkillsSeek')}</p>
                         <div className="flex flex-wrap gap-2">
                           {selectedArea.skills.map((skill) => (
                             <Badge key={skill} variant="secondary" className="bg-card">
@@ -429,10 +429,10 @@ export default function ITSInstitutesPage() {
                         </div>
                       </div>
                       <div>
-                        <p className="font-semibold text-foreground mb-2">Companies Hiring:</p>
+                        <p className="font-semibold text-foreground mb-2">{t('companiesHiring')}</p>
                         <div className="flex flex-wrap gap-2">
                           {selectedArea.companies.map((company) => (
-                            <Badge key={company} className="bg-primary/10 text-green-800">
+                            <Badge key={company} className="bg-primary/10 text-foreground">
                               {company}
                             </Badge>
                           ))}
@@ -440,7 +440,7 @@ export default function ITSInstitutesPage() {
                       </div>
                       <div className="bg-card p-4 rounded-lg border border-border">
                         <p className="text-sm text-foreground/80">
-                          <strong className="text-primary">{selectedArea.searchVolume} company searches/month</strong> for skills in this area
+                          <strong className="text-primary">{selectedArea.searchVolume} {t('searchesPerMonth')}</strong>
                         </p>
                       </div>
                     </div>
@@ -449,16 +449,16 @@ export default function ITSInstitutesPage() {
                   <div className="space-y-4">
                     <Card>
                       <CardHeader>
-                        <CardTitle className="text-base">How Students Get Hired</CardTitle>
+                        <CardTitle className="text-base">{t('howStudentsGetHired')}</CardTitle>
                       </CardHeader>
                       <CardContent className="text-sm space-y-3">
                         <div className="flex items-start gap-3">
-                          <div className="bg-primary/50/10 rounded-full p-2">
+                          <div className="bg-primary/10 rounded-full p-2">
                             <GraduationCap className="h-4 w-4 text-primary" />
                           </div>
                           <div>
-                            <p className="font-semibold">1. Student Uploads ITS Project</p>
-                            <p className="text-xs text-muted-foreground">Project on {selectedArea.skills[0]}, grade 28/30</p>
+                            <p className="font-semibold">{t('hireStep1')}</p>
+                            <p className="text-xs text-muted-foreground">{`${t('hireStep1Desc')} ${selectedArea.skills[0]}`}</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
@@ -466,8 +466,8 @@ export default function ITSInstitutesPage() {
                             <Shield className="h-4 w-4 text-primary" />
                           </div>
                           <div>
-                            <p className="font-semibold">2. Your ITS Verifies</p>
-                            <p className="text-xs text-muted-foreground">Badge: "Verified by {selectedArea.area.split(' ')[0]} ITS"</p>
+                            <p className="font-semibold">{t('hireStep2')}</p>
+                            <p className="text-xs text-muted-foreground">{`${t('hireStep2Desc')} ${selectedArea.area.split(' ')[0]}`}</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
@@ -475,17 +475,17 @@ export default function ITSInstitutesPage() {
                             <Search className="h-4 w-4 text-primary" />
                           </div>
                           <div>
-                            <p className="font-semibold">3. Companies Discover</p>
-                            <p className="text-xs text-muted-foreground">Siemens searches "{selectedArea.skills[0]}" → finds student</p>
+                            <p className="font-semibold">{t('hireStep3')}</p>
+                            <p className="text-xs text-muted-foreground">{`${t('hireStep3Desc')} "${selectedArea.skills[0]}"`}</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
-                          <div className="bg-primary/50/10 rounded-full p-2">
+                          <div className="bg-primary/10 rounded-full p-2">
                             <Briefcase className="h-4 w-4 text-primary/70" />
                           </div>
                           <div>
-                            <p className="font-semibold">4. Student Gets Hired</p>
-                            <p className="text-xs text-muted-foreground">Company pays €10 to contact → Interview → Hired in 47 days</p>
+                            <p className="font-semibold">{t('hireStep4')}</p>
+                            <p className="text-xs text-muted-foreground">{t('hireStep4Desc')}</p>
                           </div>
                         </div>
                       </CardContent>
@@ -505,7 +505,7 @@ export default function ITSInstitutesPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-8">
-              Why ITS Choose InTransparency
+              {t('whyChooseTitle')}
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -514,25 +514,25 @@ export default function ITSInstitutesPage() {
                   <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <TrendingUp className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="text-lg">Better Placement Outcomes</CardTitle>
+                  <CardTitle className="text-lg">{t('why1Title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Students get discovered by companies</span>
+                      <span>{t('why1Check1')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Companies proactively reach out</span>
+                      <span>{t('why1Check2')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Track time-to-hire metrics</span>
+                      <span>{t('why1Check3')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Verified skills = competitive edge</span>
+                      <span>{t('why1Check4')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -543,25 +543,25 @@ export default function ITSInstitutesPage() {
                   <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Euro className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="text-lg">Freemium Model</CardTitle>
+                  <CardTitle className="text-lg">{t('why2Title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>No setup costs</span>
+                      <span>{t('why2Check1')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Core features included</span>
+                      <span>{t('why2Check2')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Companies pay per contact</span>
+                      <span>{t('why2Check3')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Enterprise options available</span>
+                      <span>{t('why2Check4')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -572,25 +572,25 @@ export default function ITSInstitutesPage() {
                   <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <BarChart3 className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="text-lg">Track Impact for MIUR</CardTitle>
+                  <CardTitle className="text-lg">{t('why3Title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Track placement metrics</span>
+                      <span>{t('why3Check1')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>See which companies hiring your grads</span>
+                      <span>{t('why3Check2')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Export reports for funding</span>
+                      <span>{t('why3Check3')}</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>Early intervention alerts</span>
+                      <span>{t('why3Check4')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -609,7 +609,7 @@ export default function ITSInstitutesPage() {
             <Card className="bg-primary border-0 text-primary-foreground">
               <CardContent className="py-12">
                 <h3 className="text-3xl font-display font-bold text-center mb-8">
-                  Get Started in 3 Steps
+                  {t('getStartedSteps')}
                 </h3>
 
                 <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -617,9 +617,9 @@ export default function ITSInstitutesPage() {
                     <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                       <span className="text-3xl font-bold">1</span>
                     </div>
-                    <h4 className="text-xl font-bold mb-2">Register ITS</h4>
+                    <h4 className="text-xl font-bold mb-2">{t('gs1Title')}</h4>
                     <p className="text-white/90 text-sm">
-                      Create free account → Email .edu verified → Dashboard active in 5 minutes
+                      {t('gs1Desc')}
                     </p>
                   </div>
 
@@ -627,9 +627,9 @@ export default function ITSInstitutesPage() {
                     <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                       <span className="text-3xl font-bold">2</span>
                     </div>
-                    <h4 className="text-xl font-bold mb-2">Students Upload Projects</h4>
+                    <h4 className="text-xl font-bold mb-2">{t('gs2Title')}</h4>
                     <p className="text-white/90 text-sm">
-                      Students join free → Upload ITS projects → You verify with your institutional badge
+                      {t('gs2Desc')}
                     </p>
                   </div>
 
@@ -637,9 +637,9 @@ export default function ITSInstitutesPage() {
                     <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                       <span className="text-3xl font-bold">3</span>
                     </div>
-                    <h4 className="text-xl font-bold mb-2">Track Placements</h4>
+                    <h4 className="text-xl font-bold mb-2">{t('gs3Title')}</h4>
                     <p className="text-white/90 text-sm">
-                      Companies discover students → Analytics: "23 students contacted" → Track hiring success
+                      {t('gs3Desc')}
                     </p>
                   </div>
                 </div>
@@ -652,12 +652,12 @@ export default function ITSInstitutesPage() {
                     className="shadow-xl"
                   >
                     <Link href="/auth/register">
-                      Get Started
+                      {t('getStarted')}
                       <ArrowRight className="h-5 w-5 ml-2" />
                     </Link>
                   </Button>
                   <p className="text-sm text-white/80 mt-4">
-                    Quick setup. Track placements.
+                    {t('quickSetup')}
                   </p>
                 </div>
               </CardContent>
@@ -673,10 +673,10 @@ export default function ITSInstitutesPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-4">
-              ITS That Could Benefit
+              {t('examplesTitle')}
             </h2>
             <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Examples of ITS that would increase student placement through verified marketplace
+              {t('examplesSubtitle')}
             </p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -685,14 +685,14 @@ export default function ITSInstitutesPage() {
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
                       <Building2 className="h-8 w-8 text-primary" />
-                      <Badge variant="secondary">{its.students} students</Badge>
+                      <Badge variant="secondary">{its.students} {t('studentsLabel')}</Badge>
                     </div>
                     <CardTitle className="text-base">{its.name}</CardTitle>
                     <p className="text-xs text-muted-foreground">{its.area}</p>
                     <p className="text-xs text-muted-foreground">{its.location}</p>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-xs font-semibold text-foreground mb-2">Skills Companies Seek:</p>
+                    <p className="text-xs font-semibold text-foreground mb-2">{t('skillsSeek')}</p>
                     <div className="space-y-1">
                       {its.topSkills.map((skill) => (
                         <div key={skill} className="flex items-center text-xs text-foreground/80">
@@ -716,79 +716,61 @@ export default function ITSInstitutesPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-8">
-              Frequently Asked Questions
+              {t('faqTitle')}
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">How does the marketplace help our students?</CardTitle>
+                  <CardTitle className="text-base">{t('faq1Q')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
-                  <p>
-                    Companies browse 10K+ verified graduates and proactively reach out to students with matching skills.
-                    Students don't apply - they get discovered. Your institutional verification gives them a competitive edge.
-                  </p>
+                  <p>{t('faq1A')}</p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">What does freemium mean?</CardTitle>
+                  <CardTitle className="text-base">{t('faq2Q')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
-                  <p>
-                    Core features are included at no cost. Companies pay per contact.
-                    Enterprise features available for larger institutions.
-                  </p>
+                  <p>{t('faq2A')}</p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">How does verification work?</CardTitle>
+                  <CardTitle className="text-base">{t('faq3Q')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
-                  <p>
-                    Students manually upload projects and you verify them through our simple dashboard.
-                    For larger institutions, we can set up API integration (contact us for details). Zero IT work for you after setup.
-                  </p>
+                  <p>{t('faq3A')}</p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">Can we add Career Day tools?</CardTitle>
+                  <CardTitle className="text-base">{t('faq4Q')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
-                  <p>
-                    Yes! Optional Premium Embed add-on (€500/year) includes Career Day platform with QR codes, interview booking, and branded widgets.
-                    But core marketplace is always free. See pricing page for details.
-                  </p>
+                  <p>{t('faq4A')}</p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">How do we track placement for MIUR reporting?</CardTitle>
+                  <CardTitle className="text-base">{t('faq5Q')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
-                  <p>
-                    Analytics dashboard tracks time-to-hire, students contacted, and placement outcomes.
-                    Export reports for MIUR with verifiable data.
-                  </p>
+                  <p>{t('faq5A')}</p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">What if students don't get discovered?</CardTitle>
+                  <CardTitle className="text-base">{t('faq6Q')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
-                  <p>
-                    Analytics show you early warnings: "Student X: 0 views in 30 days - skills mismatch?"
-                    You can intervene early, update skills/projects, or offer career counseling. Prevention vs reaction.
-                  </p>
+                  <p>{t('faq6A')}</p>
                 </CardContent>
               </Card>
             </div>
@@ -805,11 +787,10 @@ export default function ITSInstitutesPage() {
             <Card className="bg-primary/5 border-2 border-primary/20">
               <CardContent className="py-12">
                 <h3 className="text-3xl font-display font-bold text-foreground mb-4">
-                  Ready to Get Your ITS Students Hired?
+                  {t('finalCtaTitle')}
                 </h3>
                 <p className="text-lg text-foreground/80 mb-8 max-w-2xl mx-auto">
-                  Join the free marketplace connecting verified ITS graduates to companies actively hiring.
-                  Setup in 5 minutes. Zero costs. Track placement success.
+                  {t('finalCtaDescription')}
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <Button
@@ -818,7 +799,7 @@ export default function ITSInstitutesPage() {
                     asChild
                   >
                     <Link href="/auth/register">
-                      Join Free Marketplace
+                      {t('joinMarketplace')}
                       <ArrowRight className="h-5 w-5 ml-2" />
                     </Link>
                   </Button>
@@ -828,12 +809,12 @@ export default function ITSInstitutesPage() {
                     asChild
                   >
                     <Link href="/pricing">
-                      See Pricing & Add-ons
+                      {t('pricingAddons')}
                     </Link>
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground mt-6">
-                  Track placements for MIUR reporting
+                  {t('finalNote')}
                 </p>
               </CardContent>
             </Card>

@@ -1,6 +1,7 @@
 'use client'
 
 import { Link } from '@/navigation'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -22,6 +23,8 @@ import { motion } from 'framer-motion'
 import { Transparenty } from '@/components/mascot/Transparenty'
 
 export default function HighSchoolStudentsPage() {
+  const t = useTranslations('studentsHighSchool')
+
   return (
     <div className="min-h-screen hero-bg">
       <Header />
@@ -37,28 +40,27 @@ export default function HighSchoolStudentsPage() {
           >
             <Transparenty size={90} mood="waving" />
             <Badge className="mt-4 mb-4 bg-primary text-white">
-              PCTO &bull; Stage &bull; Prima Esperienza
+              {t('badge')}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
-              Inizia il Tuo Percorso{' '}
-              <span className="text-primary">Professionale</span>
+              {t('heroTitle')}{' '}
+              <span className="text-primary">{t('heroTitleHighlight')}</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
-              Documenta le tue competenze PCTO, mostra i tuoi progetti alle aziende
-              e trova il primo stage o lavoro. Tutto gratis.
+              {t('heroDescription')}
             </p>
             <p className="text-base text-muted-foreground max-w-xl mx-auto mb-8">
-              Your school verifies your skills. Companies discover you. No applications needed.
+              {t('heroSubtext')}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3">
               <Button size="lg" asChild>
                 <Link href="/auth/register?role=student">
-                  Crea il Tuo Profilo Gratis
+                  {t('createProfile')}
                   <ArrowRight className="h-5 w-5 ml-2" />
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link href="/how-it-works">Come Funziona</Link>
+                <Link href="/how-it-works">{t('howItWorks')}</Link>
               </Button>
             </div>
           </motion.div>
@@ -71,24 +73,24 @@ export default function HighSchoolStudentsPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center mb-8">
-              Cosa Puoi Fare con InTransparency
+              {t('whatYouCanDo')}
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
                   icon: FileCheck,
-                  title: 'Documenta i PCTO',
-                  text: 'Carica i progetti svolti durante stage, tirocini e alternanza. La tua scuola li verifica con un badge ufficiale.',
+                  title: t('card1Title'),
+                  text: t('card1Text'),
                 },
                 {
                   icon: Star,
-                  title: 'Fatti Scoprire',
-                  text: 'Le aziende cercano studenti con competenze specifiche. Il tuo profilo verificato ti rende visibile senza candidarti.',
+                  title: t('card2Title'),
+                  text: t('card2Text'),
                 },
                 {
                   icon: Briefcase,
-                  title: 'Primo Stage o Lavoro',
-                  text: 'Quando un\'azienda trova il tuo profilo, ti contatta direttamente. Stage PCTO, tirocinio o primo impiego.',
+                  title: t('card3Title'),
+                  text: t('card3Text'),
                 },
               ].map((item, i) => {
                 const Icon = item.icon
@@ -117,14 +119,14 @@ export default function HighSchoolStudentsPage() {
             <Card className="bg-primary text-primary-foreground">
               <CardContent className="py-10">
                 <h3 className="text-2xl font-display font-bold text-center mb-8">
-                  Come Funziona in 4 Passi
+                  {t('stepsTitle')}
                 </h3>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
                   {[
-                    { step: '1', title: 'Registrati Gratis', desc: 'Crea il tuo account in 2 minuti. Nessun costo.' },
-                    { step: '2', title: 'Carica i Progetti', desc: 'Aggiungi attività PCTO, stage, lavori scolastici.' },
-                    { step: '3', title: 'La Scuola Verifica', desc: 'I docenti confermano con badge istituzionale.' },
-                    { step: '4', title: 'Vieni Scoperto', desc: 'Le aziende ti trovano e ti contattano direttamente.' },
+                    { step: '1', title: t('step1Title'), desc: t('step1Desc') },
+                    { step: '2', title: t('step2Title'), desc: t('step2Desc') },
+                    { step: '3', title: t('step3Title'), desc: t('step3Desc') },
+                    { step: '4', title: t('step4Title'), desc: t('step4Desc') },
                   ].map((item) => (
                     <div key={item.step} className="text-center">
                       <div className="bg-white/20 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
@@ -150,27 +152,25 @@ export default function HighSchoolStudentsPage() {
               <CardContent className="py-8">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <div>
-                    <Badge variant="secondary" className="mb-3">PCTO</Badge>
+                    <Badge variant="secondary" className="mb-3">{t('pctoLabel')}</Badge>
                     <h3 className="text-xl font-bold text-foreground mb-3">
-                      Ogni Ora PCTO Conta
+                      {t('pctoTitle')}
                     </h3>
                     <p className="text-muted-foreground mb-4">
-                      La legge prevede 210 ore per istituti tecnici e 90 ore per licei.
-                      Con InTransparency, ogni progetto e attività che svolgi diventa parte
-                      del tuo portfolio professionale verificato.
+                      {t('pctoDescription')}
                     </p>
                     <ul className="space-y-2 text-sm text-muted-foreground">
                       <li className="flex items-start">
                         <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                        <span>Documenta stage, tirocini e progetti scolastici</span>
+                        <span>{t('pctoCheck1')}</span>
                       </li>
                       <li className="flex items-start">
                         <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                        <span>Badge di verifica dalla tua scuola</span>
+                        <span>{t('pctoCheck2')}</span>
                       </li>
                       <li className="flex items-start">
                         <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                        <span>Utile per il curriculum e l&apos;orientamento post-diploma</span>
+                        <span>{t('pctoCheck3')}</span>
                       </li>
                     </ul>
                   </div>
@@ -178,22 +178,22 @@ export default function HighSchoolStudentsPage() {
                     <Card className="text-center p-4">
                       <CalendarDays className="h-7 w-7 text-primary mx-auto mb-2" />
                       <div className="text-2xl font-bold">210h</div>
-                      <div className="text-xs text-muted-foreground">Istituti Tecnici</div>
+                      <div className="text-xs text-muted-foreground">{t('technicalInstitutes')}</div>
                     </Card>
                     <Card className="text-center p-4">
                       <BookOpen className="h-7 w-7 text-primary mx-auto mb-2" />
                       <div className="text-2xl font-bold">90h</div>
-                      <div className="text-xs text-muted-foreground">Licei</div>
+                      <div className="text-xs text-muted-foreground">{t('licei')}</div>
                     </Card>
                     <Card className="text-center p-4">
                       <Shield className="h-7 w-7 text-primary mx-auto mb-2" />
                       <div className="text-2xl font-bold">100%</div>
-                      <div className="text-xs text-muted-foreground">Verificato</div>
+                      <div className="text-xs text-muted-foreground">{t('verified')}</div>
                     </Card>
                     <Card className="text-center p-4">
                       <TrendingUp className="h-7 w-7 text-primary mx-auto mb-2" />
                       <div className="text-2xl font-bold">Free</div>
-                      <div className="text-xs text-muted-foreground">Per Sempre</div>
+                      <div className="text-xs text-muted-foreground">{t('freeForever')}</div>
                     </Card>
                   </div>
                 </div>
@@ -209,14 +209,14 @@ export default function HighSchoolStudentsPage() {
             className="text-center"
           >
             <h3 className="text-2xl font-display font-bold mb-4">
-              Pronto a Iniziare?
+              {t('ctaTitle')}
             </h3>
             <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-              Crea il tuo profilo gratuito e inizia a costruire il tuo portfolio professionale. Le aziende ti stanno cercando.
+              {t('ctaDescription')}
             </p>
             <Button size="lg" asChild>
               <Link href="/auth/register?role=student">
-                Crea il Tuo Profilo Gratis
+                {t('createProfile')}
                 <ArrowRight className="h-5 w-5 ml-2" />
               </Link>
             </Button>
