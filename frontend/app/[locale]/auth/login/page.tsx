@@ -10,6 +10,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { motion } from 'framer-motion'
+import { useSegment } from '@/lib/segment-context'
 import {
   Eye,
   EyeOff,
@@ -20,12 +22,34 @@ import {
   ArrowRight,
   GraduationCap,
   Building2,
-  Users
+  Users,
+  Shield,
+  Target,
+  Briefcase,
 } from 'lucide-react'
+
+const segmentConfig = {
+  students: {
+    icon: GraduationCap,
+    accentIcon: Shield,
+    gradient: 'from-primary/10 to-primary/5',
+  },
+  institutions: {
+    icon: Building2,
+    accentIcon: Target,
+    gradient: 'from-primary/10 to-primary/5',
+  },
+  companies: {
+    icon: Briefcase,
+    accentIcon: Users,
+    gradient: 'from-primary/10 to-primary/5',
+  },
+}
 
 export default function LoginPage() {
   const router = useRouter()
   const t = useTranslations('auth')
+  const { segment, setSegment } = useSegment()
 
   const [formData, setFormData] = useState({
     email: '',
@@ -35,6 +59,10 @@ export default function LoginPage() {
   const [errors, setErrors] = useState<any>({})
   const [isLoading, setIsLoading] = useState(false)
   const [loginError, setLoginError] = useState('')
+
+  const config = segmentConfig[segment]
+  const SegmentIcon = config.icon
+  const AccentIcon = config.accentIcon
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
@@ -98,18 +126,21 @@ export default function LoginPage() {
   const roles = [
     {
       id: 'student',
+      segment: 'students' as const,
       icon: GraduationCap,
       href: '/auth/register/student' as const,
       color: 'text-primary bg-primary/10',
     },
     {
       id: 'university',
+      segment: 'institutions' as const,
       icon: Building2,
       href: '/auth/register/university' as const,
       color: 'text-primary bg-primary/10',
     },
     {
       id: 'recruiter',
+      segment: 'companies' as const,
       icon: Users,
       href: '/auth/register/recruiter' as const,
       color: 'text-primary bg-primary/10',
@@ -117,132 +148,221 @@ export default function LoginPage() {
   ]
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        {/* Header */}
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">{t('login.title')}</h1>
-          <p className="mt-2 text-gray-600">
+    <div className={`min-h-screen flex bg-gradient-to-br ${config.gradient} to-background`}>
+      {/* Left side — visual panel (hidden on mobile) */}
+      <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12 relative overflow-hidden">
+        <div className="absolute inset-0 bg-primary/5" />
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative z-10 max-w-md text-center"
+        >
+          {/* Animated segment icon */}
+          <motion.div
+            key={segment}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: 'spring', stiffness: 200 }}
+            className="w-24 h-24 mx-auto mb-8 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20"
+          >
+            <SegmentIcon className="h-12 w-12 text-primary" />
+          </motion.div>
+
+          <h2 className="text-2xl font-display font-bold text-foreground mb-3">
+            {t('login.title')}
+          </h2>
+          <p className="text-muted-foreground mb-8">
             {t('login.subtitle')}
           </p>
-        </div>
 
-        {/* Login Form */}
-        <Card>
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl text-center">{t('login.cardTitle')}</CardTitle>
-            <CardDescription className="text-center">
-              {t('login.cardDescription')}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Login Error */}
-              {loginError && (
-                <Alert variant="destructive">
-                  <AlertCircle className="h-4 w-4" />
-                  <AlertDescription>{loginError}</AlertDescription>
-                </Alert>
-              )}
-
-              {/* Email Field */}
-              <div className="space-y-2">
-                <Label htmlFor="email">{t('fields.email')}</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder={t('login.emailPlaceholder')}
-                    value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    className={`pl-10 ${errors.email ? 'border-red-500' : ''}`}
-                    disabled={isLoading}
-                  />
-                </div>
-                {errors.email && (
-                  <p className="text-sm text-red-600">{errors.email}</p>
-                )}
-              </div>
-
-              {/* Password Field */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="password">{t('fields.password')}</Label>
-                  <Link
-                    href="/auth/forgot-password"
-                    className="text-sm text-primary hover:text-primary"
-                  >
-                    {t('login.forgotPassword')}
-                  </Link>
-                </div>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
-                  <Input
-                    id="password"
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder={t('login.passwordPlaceholder')}
-                    value={formData.password}
-                    onChange={(e) => handleInputChange('password', e.target.value)}
-                    className={`pl-10 pr-10 ${errors.password ? 'border-red-500' : ''}`}
-                    disabled={isLoading}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-600"
-                    disabled={isLoading}
-                  >
-                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </button>
-                </div>
-                {errors.password && (
-                  <p className="text-sm text-red-600">{errors.password}</p>
-                )}
-              </div>
-
-              {/* Submit Button */}
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    {t('login.submittingButton')}
-                  </>
-                ) : (
-                  <>
-                    {t('login.submitButton')}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </>
-                )}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
-
-        {/* Registration Options */}
-        <div className="text-center space-y-4">
-          <p className="text-sm text-gray-600">{t('login.noAccount')}</p>
-          <div className="grid grid-cols-3 gap-3">
-            {roles.map((role) => (
-              <Link
-                key={role.id}
-                href={role.href}
-                className="flex flex-col items-center gap-2 p-4 rounded-lg border bg-white hover:border-gray-300 hover:shadow-sm transition-all"
-              >
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${role.color}`}>
-                  <role.icon className="h-5 w-5" />
-                </div>
-                <span className="text-sm font-medium text-gray-900">
-                  {t(`login.roles.${role.id}`)}
-                </span>
-              </Link>
-            ))}
+          {/* Segment switcher */}
+          <div className="inline-flex bg-card rounded-lg p-1 border border-border shadow-sm">
+            {(['students', 'institutions', 'companies'] as const).map((seg) => {
+              const SIcon = segmentConfig[seg].icon
+              return (
+                <button
+                  key={seg}
+                  onClick={() => setSegment(seg)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                    segment === seg
+                      ? 'bg-primary/10 text-primary'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  <SIcon className="h-3.5 w-3.5" />
+                  {seg === 'students' ? t('login.roles.student') : seg === 'institutions' ? t('login.roles.university') : t('login.roles.recruiter')}
+                </button>
+              )
+            })}
           </div>
-        </div>
+
+          {/* Trust signals */}
+          <div className="mt-10 space-y-3">
+            {[
+              { icon: Shield, text: segment === 'students' ? 'Free forever for students' : segment === 'institutions' ? 'Free for partner institutions' : 'Pay only per contact' },
+              { icon: AccentIcon, text: segment === 'students' ? 'Get discovered by companies' : segment === 'institutions' ? 'Track placement outcomes' : 'Verified talent pool' },
+            ].map((item, i) => {
+              const ItemIcon = item.icon
+              return (
+                <motion.div
+                  key={`${segment}-${i}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 + 0.3 }}
+                  className="flex items-center gap-2 text-sm text-muted-foreground justify-center"
+                >
+                  <ItemIcon className="h-4 w-4 text-primary" />
+                  <span>{item.text}</span>
+                </motion.div>
+              )
+            })}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Right side — login form */}
+      <div className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-md w-full space-y-8"
+        >
+          {/* Mobile header */}
+          <div className="text-center lg:hidden">
+            <motion.div
+              key={segment}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 200 }}
+              className="w-16 h-16 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center"
+            >
+              <SegmentIcon className="h-8 w-8 text-primary" />
+            </motion.div>
+            <h1 className="text-3xl font-bold text-foreground">{t('login.title')}</h1>
+            <p className="mt-2 text-muted-foreground">{t('login.subtitle')}</p>
+          </div>
+
+          {/* Login Form */}
+          <Card className="border-border shadow-lg">
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-2xl text-center">{t('login.cardTitle')}</CardTitle>
+              <CardDescription className="text-center">
+                {t('login.cardDescription')}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Login Error */}
+                {loginError && (
+                  <Alert variant="destructive">
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertDescription>{loginError}</AlertDescription>
+                  </Alert>
+                )}
+
+                {/* Email Field */}
+                <div className="space-y-2">
+                  <Label htmlFor="email">{t('fields.email')}</Label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder={t('login.emailPlaceholder')}
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      className={`pl-10 ${errors.email ? 'border-red-500' : ''}`}
+                      disabled={isLoading}
+                    />
+                  </div>
+                  {errors.email && (
+                    <p className="text-sm text-red-600">{errors.email}</p>
+                  )}
+                </div>
+
+                {/* Password Field */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="password">{t('fields.password')}</Label>
+                    <Link
+                      href="/auth/forgot-password"
+                      className="text-sm text-primary hover:text-primary/80"
+                    >
+                      {t('login.forgotPassword')}
+                    </Link>
+                  </div>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                    <Input
+                      id="password"
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder={t('login.passwordPlaceholder')}
+                      value={formData.password}
+                      onChange={(e) => handleInputChange('password', e.target.value)}
+                      className={`pl-10 pr-10 ${errors.password ? 'border-red-500' : ''}`}
+                      disabled={isLoading}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                      disabled={isLoading}
+                    >
+                      {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    </button>
+                  </div>
+                  {errors.password && (
+                    <p className="text-sm text-red-600">{errors.password}</p>
+                  )}
+                </div>
+
+                {/* Submit Button */}
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      {t('login.submittingButton')}
+                    </>
+                  ) : (
+                    <>
+                      {t('login.submitButton')}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+
+          {/* Registration Options */}
+          <div className="text-center space-y-4">
+            <p className="text-sm text-muted-foreground">{t('login.noAccount')}</p>
+            <div className="grid grid-cols-3 gap-3">
+              {roles.map((role) => (
+                <Link
+                  key={role.id}
+                  href={role.href}
+                  className={`flex flex-col items-center gap-2 p-4 rounded-lg border bg-card hover:border-primary/30 hover:shadow-sm transition-all ${
+                    segment === role.segment ? 'border-primary/30 ring-1 ring-primary/10' : 'border-border'
+                  }`}
+                >
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ${role.color}`}>
+                    <role.icon className="h-5 w-5" />
+                  </div>
+                  <span className="text-sm font-medium text-foreground">
+                    {t(`login.roles.${role.id}`)}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </div>
   )

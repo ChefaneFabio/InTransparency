@@ -252,6 +252,12 @@ const getWorkflows = (t: any) => ({
   }
 })
 
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+}
+
 export default function HowItWorksPage() {
   const t = useTranslations('howItWorksPage')
   const [selectedUserType, setSelectedUserType] = useState('student')
@@ -329,108 +335,155 @@ export default function HowItWorksPage() {
 
           {/* Four Services Overview */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            {...fadeInUp}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-16"
           >
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               {/* Verification Service */}
-              <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
-                <CardHeader className="text-center">
-                  <div className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Shield className="h-8 w-8 text-white" />
-                  </div>
-                  <CardTitle className="text-lg">{t('services.verification.title')}</CardTitle>
-                  <Badge variant="secondary" className="mt-2">{t('services.verification.badge')}</Badge>
-                </CardHeader>
-                <CardContent className="text-sm text-foreground/80 space-y-2">
-                  <p className="font-semibold text-primary">{t('services.verification.heading')}</p>
-                  <ul className="space-y-1 text-xs">
-                    <li>• {t('services.verification.features.0')}</li>
-                    <li>• {t('services.verification.features.1')}</li>
-                    <li>• {t('services.verification.features.2')}</li>
-                    <li>• {t('services.verification.features.3')}</li>
-                  </ul>
-                  <p className="text-xs italic pt-2 border-t">
-                    {t('services.verification.comparison')}
-                  </p>
-                </CardContent>
-              </Card>
+              <motion.div
+                {...fadeInUp}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg h-full">
+                  <CardHeader className="text-center">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
+                      className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center"
+                    >
+                      <Shield className="h-8 w-8 text-white" />
+                    </motion.div>
+                    <CardTitle className="text-lg">{t('services.verification.title')}</CardTitle>
+                    <Badge variant="secondary" className="mt-2">{t('services.verification.badge')}</Badge>
+                  </CardHeader>
+                  <CardContent className="text-sm text-foreground/80 space-y-2">
+                    <p className="font-semibold text-primary">{t('services.verification.heading')}</p>
+                    <ul className="space-y-1 text-xs">
+                      <li>• {t('services.verification.features.0')}</li>
+                      <li>• {t('services.verification.features.1')}</li>
+                      <li>• {t('services.verification.features.2')}</li>
+                      <li>• {t('services.verification.features.3')}</li>
+                    </ul>
+                    <p className="text-xs italic pt-2 border-t">
+                      {t('services.verification.comparison')}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
               {/* Matching Service */}
-              <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
-                <CardHeader className="text-center">
-                  <div className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Target className="h-8 w-8 text-white" />
-                  </div>
-                  <CardTitle className="text-lg">{t('services.matching.title')}</CardTitle>
-                  <Badge variant="secondary" className="mt-2">{t('services.matching.badge')}</Badge>
-                </CardHeader>
-                <CardContent className="text-sm text-foreground/80 space-y-2">
-                  <p className="font-semibold text-primary">{t('services.matching.heading')}</p>
-                  <ul className="space-y-1 text-xs">
-                    <li>• {t('services.matching.features.0')}</li>
-                    <li>• {t('services.matching.features.1')}</li>
-                    <li>• {t('services.matching.features.2')}</li>
-                    <li>• {t('services.matching.features.3')}</li>
-                  </ul>
-                  <p className="text-xs italic pt-2 border-t">
-                    {t('services.matching.comparison')}
-                  </p>
-                </CardContent>
-              </Card>
+              <motion.div
+                {...fadeInUp}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg h-full">
+                  <CardHeader className="text-center">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ type: 'spring', stiffness: 200, delay: 0.3 }}
+                      className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center"
+                    >
+                      <Target className="h-8 w-8 text-white" />
+                    </motion.div>
+                    <CardTitle className="text-lg">{t('services.matching.title')}</CardTitle>
+                    <Badge variant="secondary" className="mt-2">{t('services.matching.badge')}</Badge>
+                  </CardHeader>
+                  <CardContent className="text-sm text-foreground/80 space-y-2">
+                    <p className="font-semibold text-primary">{t('services.matching.heading')}</p>
+                    <ul className="space-y-1 text-xs">
+                      <li>• {t('services.matching.features.0')}</li>
+                      <li>• {t('services.matching.features.1')}</li>
+                      <li>• {t('services.matching.features.2')}</li>
+                      <li>• {t('services.matching.features.3')}</li>
+                    </ul>
+                    <p className="text-xs italic pt-2 border-t">
+                      {t('services.matching.comparison')}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
               {/* Discovery Service */}
-              <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
-                <CardHeader className="text-center">
-                  <div className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Search className="h-8 w-8 text-white" />
-                  </div>
-                  <CardTitle className="text-lg">{t('services.discovery.title')}</CardTitle>
-                  <Badge variant="secondary" className="mt-2">{t('services.discovery.badge')}</Badge>
-                </CardHeader>
-                <CardContent className="text-sm text-foreground/80 space-y-2">
-                  <p className="font-semibold text-primary">{t('services.discovery.heading')}</p>
-                  <ul className="space-y-1 text-xs">
-                    <li>• {t('services.discovery.features.0')}</li>
-                    <li>• {t('services.discovery.features.1')}</li>
-                    <li>• {t('services.discovery.features.2')}</li>
-                    <li>• {t('services.discovery.features.3')}</li>
-                  </ul>
-                  <p className="text-xs italic pt-2 border-t">
-                    {t('services.discovery.comparison')}
-                  </p>
-                </CardContent>
-              </Card>
+              <motion.div
+                {...fadeInUp}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg h-full">
+                  <CardHeader className="text-center">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ type: 'spring', stiffness: 200, delay: 0.4 }}
+                      className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center"
+                    >
+                      <Search className="h-8 w-8 text-white" />
+                    </motion.div>
+                    <CardTitle className="text-lg">{t('services.discovery.title')}</CardTitle>
+                    <Badge variant="secondary" className="mt-2">{t('services.discovery.badge')}</Badge>
+                  </CardHeader>
+                  <CardContent className="text-sm text-foreground/80 space-y-2">
+                    <p className="font-semibold text-primary">{t('services.discovery.heading')}</p>
+                    <ul className="space-y-1 text-xs">
+                      <li>• {t('services.discovery.features.0')}</li>
+                      <li>• {t('services.discovery.features.1')}</li>
+                      <li>• {t('services.discovery.features.2')}</li>
+                      <li>• {t('services.discovery.features.3')}</li>
+                    </ul>
+                    <p className="text-xs italic pt-2 border-t">
+                      {t('services.discovery.comparison')}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
               {/* Analytics Service */}
-              <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
-                <CardHeader className="text-center">
-                  <div className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <BarChart3 className="h-8 w-8 text-white" />
-                  </div>
-                  <CardTitle className="text-lg">{t('services.analytics.title')}</CardTitle>
-                  <Badge variant="secondary" className="mt-2">{t('services.analytics.badge')}</Badge>
-                </CardHeader>
-                <CardContent className="text-sm text-foreground/80 space-y-2">
-                  <p className="font-semibold text-primary">{t('services.analytics.heading')}</p>
-                  <ul className="space-y-1 text-xs">
-                    <li>• {t('services.analytics.features.0')}</li>
-                    <li>• {t('services.analytics.features.1')}</li>
-                    <li>• {t('services.analytics.features.2')}</li>
-                    <li>• {t('services.analytics.features.3')}</li>
-                  </ul>
-                  <p className="text-xs italic pt-2 border-t">
-                    {t('services.analytics.comparison')}
-                  </p>
-                </CardContent>
-              </Card>
+              <motion.div
+                {...fadeInUp}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg h-full">
+                  <CardHeader className="text-center">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ type: 'spring', stiffness: 200, delay: 0.5 }}
+                      className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center"
+                    >
+                      <BarChart3 className="h-8 w-8 text-white" />
+                    </motion.div>
+                    <CardTitle className="text-lg">{t('services.analytics.title')}</CardTitle>
+                    <Badge variant="secondary" className="mt-2">{t('services.analytics.badge')}</Badge>
+                  </CardHeader>
+                  <CardContent className="text-sm text-foreground/80 space-y-2">
+                    <p className="font-semibold text-primary">{t('services.analytics.heading')}</p>
+                    <ul className="space-y-1 text-xs">
+                      <li>• {t('services.analytics.features.0')}</li>
+                      <li>• {t('services.analytics.features.1')}</li>
+                      <li>• {t('services.analytics.features.2')}</li>
+                      <li>• {t('services.analytics.features.3')}</li>
+                    </ul>
+                    <p className="text-xs italic pt-2 border-t">
+                      {t('services.analytics.comparison')}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </div>
 
             {/* User Type Selector */}
-            <div className="flex justify-center mb-12">
-              <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-200">
+            <motion.div
+              {...fadeInUp}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex justify-center mb-12"
+            >
+              <div className="bg-card rounded-lg p-2 shadow-sm border border-border">
                 <div className="flex space-x-2">
                   {(userTypes || []).map((type) => {
                     const Icon = type.icon
@@ -441,7 +494,7 @@ export default function HowItWorksPage() {
                         className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                           selectedUserType === type.id
                             ? type.color
-                            : 'text-gray-800 hover:text-foreground hover:bg-slate-100'
+                            : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                         }`}
                       >
                         <Icon className="h-4 w-4 mr-2" />
@@ -451,7 +504,7 @@ export default function HowItWorksPage() {
                   })}
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Service Flow Diagram - Dynamic based on persona */}
             <AnimatePresence mode="wait">
@@ -470,15 +523,26 @@ export default function HowItWorksPage() {
                         const Icon = step.icon
                         return (
                           <React.Fragment key={index}>
-                            <div className="flex flex-col items-center text-center">
-                              <div className="bg-white p-4 rounded-lg shadow-md mb-2 w-48 hover:shadow-lg transition-shadow">
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ duration: 0.4, delay: index * 0.15 }}
+                              className="flex flex-col items-center text-center"
+                            >
+                              <div className="bg-card p-4 rounded-lg shadow-md mb-2 w-48 hover:shadow-lg transition-shadow border border-border">
                                 <Icon className={`h-8 w-8 mx-auto mb-2 ${step.color}`} />
                                 <p className="text-sm font-semibold">{step.title}</p>
                                 <p className="text-xs text-muted-foreground">{step.description}</p>
                               </div>
-                            </div>
+                            </motion.div>
                             {index < getCurrentWorkflow().steps.length - 1 && (
-                              <ArrowRight className="h-6 w-6 text-gray-400 rotate-90 md:rotate-0" />
+                              <motion.div
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.3, delay: index * 0.15 + 0.1 }}
+                              >
+                                <ArrowRight className="h-6 w-6 text-muted-foreground/50 rotate-90 md:rotate-0" />
+                              </motion.div>
                             )}
                           </React.Fragment>
                         )
@@ -513,7 +577,11 @@ export default function HowItWorksPage() {
 
           {/* Student Data Import Feature (only for students) */}
           {selectedUserType === 'student' && (
-            <div className="mb-16">
+            <motion.div
+              {...fadeInUp}
+              transition={{ duration: 0.5 }}
+              className="mb-16"
+            >
               <Card className="bg-primary/10 border-primary/20">
                 <CardHeader className="text-center">
                   <CardTitle className="flex items-center justify-center text-primary mb-2">
@@ -536,12 +604,20 @@ export default function HowItWorksPage() {
               </Card>
 
               {/* Student Data Import Component */}
-              {showDataImport && (
-                <div className="mt-8">
-                  <StudentDataImportComponent />
-                </div>
-              )}
-            </div>
+              <AnimatePresence>
+                {showDataImport && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="mt-8 overflow-hidden"
+                  >
+                    <StudentDataImportComponent />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           )}
 
           {/* Dynamic Steps */}
@@ -555,19 +631,29 @@ export default function HowItWorksPage() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -30 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0.5, delay: index * 0.15 }}
                   >
                     <Card className={`${step.color} transition-all hover:shadow-lg relative overflow-hidden h-full`}>
                   {/* Step Number Badge */}
-                  <div className="absolute top-4 right-4 bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-md">
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ type: 'spring', stiffness: 200, delay: index * 0.15 + 0.2 }}
+                    className="absolute top-4 right-4 bg-card rounded-full w-12 h-12 flex items-center justify-center shadow-md border border-border"
+                  >
                     <span className="text-2xl font-bold text-foreground/80">{step.id}</span>
-                  </div>
+                  </motion.div>
 
                   <CardHeader>
                     <div className="flex items-center mb-4">
-                      <div className="w-14 h-14 mr-4 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: 'spring', stiffness: 200, delay: index * 0.15 + 0.1 }}
+                        className="w-14 h-14 mr-4 rounded-xl bg-primary/10 flex items-center justify-center"
+                      >
                         <Icon className="h-7 w-7 text-primary" />
-                      </div>
+                      </motion.div>
                       {step.duration && (
                         <Badge variant="secondary" className="text-xs">
                           <Clock className="h-3 w-3 mr-1" />
@@ -581,26 +667,37 @@ export default function HowItWorksPage() {
                   <CardContent>
                     <ul className="space-y-2 mb-4">
                       {(step.features || []).map((feature: string, featureIndex: number) => (
-                        <li key={featureIndex} className="flex items-start text-sm text-foreground/80">
+                        <motion.li
+                          key={featureIndex}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.15 + featureIndex * 0.05 + 0.3 }}
+                          className="flex items-start text-sm text-foreground/80"
+                        >
                           <CheckCircle className="h-4 w-4 text-primary mr-2 flex-shrink-0 mt-0.5" />
                           <span>{feature}</span>
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
 
                     {/* Example */}
                     {step.example && (
-                      <div className="bg-white bg-opacity-70 rounded-lg p-3 border border-gray-200">
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: index * 0.15 + 0.5 }}
+                        className="bg-card/70 rounded-lg p-3 border border-border"
+                      >
                         <p className="text-xs font-mono text-foreground/80 italic">
                           {step.example}
                         </p>
-                      </div>
+                      </motion.div>
                     )}
 
                     {/* Arrow connector (except last step) */}
                     {index < getCurrentSteps().length - 1 && (
                       <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                        <ArrowRight className="h-8 w-8 text-gray-400" />
+                        <ArrowRight className="h-8 w-8 text-muted-foreground/40" />
                       </div>
                     )}
                   </CardContent>
@@ -612,7 +709,11 @@ export default function HowItWorksPage() {
           </div>
 
           {/* Platform Benefits */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 mb-16">
+          <motion.div
+            {...fadeInUp}
+            transition={{ duration: 0.6 }}
+            className="bg-card rounded-lg shadow-sm border border-border p-8 mb-16"
+          >
             <h3 className="text-2xl font-display font-bold text-foreground text-center mb-8">
               {t('benefits.title')}
             </h3>
@@ -641,20 +742,35 @@ export default function HowItWorksPage() {
               ].map((benefit, index) => {
                 const BenefitIcon = benefit.icon
                 return (
-                  <div key={index} className="text-center">
-                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary flex items-center justify-center">
+                  <motion.div
+                    key={index}
+                    {...fadeInUp}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="text-center"
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ type: 'spring', stiffness: 200, delay: index * 0.1 + 0.2 }}
+                      className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary flex items-center justify-center"
+                    >
                       <BenefitIcon className="h-7 w-7 text-white" />
-                    </div>
+                    </motion.div>
                     <h4 className="font-semibold text-foreground mb-2">{benefit.title}</h4>
                     <p className="text-sm text-foreground/80">{benefit.description}</p>
-                  </div>
+                  </motion.div>
                 )
               })}
             </div>
-          </div>
+          </motion.div>
 
           {/* Viral CTA Section */}
-          <div className="bg-primary rounded-2xl p-12 text-center text-white mb-16">
+          <motion.div
+            {...fadeInUp}
+            transition={{ duration: 0.6 }}
+            className="bg-primary rounded-2xl p-12 text-center text-white mb-16"
+          >
             <h3 className="text-3xl font-display font-bold mb-4">
               {t('cta.title')}
             </h3>
@@ -666,7 +782,7 @@ export default function HowItWorksPage() {
             <div className="flex justify-center space-x-4">
               <Button
                 size="lg"
-                className="bg-white text-primary hover:bg-gray-100"
+                className="bg-white text-primary hover:bg-white/90"
                 onClick={() => window.location.href = '/auth/register'}
               >
                 {t('cta.primaryButton')}
@@ -684,7 +800,7 @@ export default function HowItWorksPage() {
                 </Button>
               )}
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </main>

@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -53,10 +54,23 @@ const segmentHero = {
   },
 }
 
+const mascotMoods = ['happy', 'waving', 'excited', 'thinking', 'happy'] as const
+
 export default function MissionPage() {
   const t = useTranslations('mission')
   const { segment } = useSegment()
   const hero = segmentHero[segment]
+
+  const [mascotMood, setMascotMood] = useState<'happy' | 'thinking' | 'waving' | 'sad' | 'excited'>('happy')
+
+  useEffect(() => {
+    let index = 0
+    const interval = setInterval(() => {
+      index = (index + 1) % mascotMoods.length
+      setMascotMood(mascotMoods[index])
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [])
 
   // Detect language from translations
   const isItalian = t('hero.badge') === 'La Nostra Missione'
@@ -79,9 +93,13 @@ export default function MissionPage() {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <div className="flex justify-center mb-6">
-                <Transparenty size={100} mood="happy" />
-              </div>
+              <motion.div
+                className="flex justify-center mb-6"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <Transparenty size={100} mood={mascotMood} />
+              </motion.div>
               <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 {isItalian ? hero.badgeIt : hero.badge}
               </div>
