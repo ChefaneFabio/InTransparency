@@ -257,7 +257,7 @@ export function EnhancedProjectCard({
                   <div className="space-y-3">
                     <div className="bg-gray-50 rounded-lg p-3">
                       <h4 className="text-sm font-medium text-gray-800 mb-2 flex items-center">
-                        <Lightbulb className="w-4 h-4 mr-1 text-secondary" />
+                        <Lightbulb className="w-4 h-4 mr-1 text-primary" />
                         Skills Detected
                       </h4>
                       <div className="flex flex-wrap gap-1">

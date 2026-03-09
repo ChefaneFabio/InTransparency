@@ -162,7 +162,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                     {t('header.founded', { year: university.founded })}
                   </div>
                   <div className="flex items-center">
-                    <Star className="h-4 w-4 mr-1 text-secondary" />
+                    <Star className="h-4 w-4 mr-1 text-primary" />
                     {t('header.globalRanking', { rank: university.ranking.global })}
                   </div>
                 </div>
@@ -230,7 +230,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
               <CardContent>
                 <div className="grid grid-cols-3 gap-6">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-secondary">#{university.ranking.global}</div>
+                    <div className="text-3xl font-bold text-primary">#{university.ranking.global}</div>
                     <div className="text-sm text-gray-600">{t('rankings.global')}</div>
                   </div>
                   <div className="text-center">
@@ -262,7 +262,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                         <p className="text-sm text-gray-600">{t('programs.students', { count: program.students })}</p>
                       </div>
                       <div className="text-right">
-                        <div className="flex items-center text-secondary mb-1">
+                        <div className="flex items-center text-primary mb-1">
                           <Star className="h-4 w-4 mr-1" />
                           <span className="font-semibold">#{program.ranking}</span>
                         </div>

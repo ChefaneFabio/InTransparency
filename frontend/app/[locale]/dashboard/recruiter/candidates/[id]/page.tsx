@@ -250,7 +250,7 @@ export default function CandidateProfilePage() {
             size="sm"
             onClick={toggleBookmark}
             disabled={bookmarkLoading}
-            className={isBookmarked ? 'text-secondary border-yellow-600' : ''}
+            className={isBookmarked ? 'text-primary border-yellow-600' : ''}
           >
             <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current' : ''}`} />
             {isBookmarked ? 'Saved' : 'Save'}
@@ -538,7 +538,7 @@ export default function CandidateProfilePage() {
                 onClick={toggleBookmark}
                 disabled={bookmarkLoading}
               >
-                <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current text-secondary' : ''}`} />
+                <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current text-primary' : ''}`} />
                 {isBookmarked ? 'Saved' : 'Save Candidate'}
               </Button>
             </CardContent>

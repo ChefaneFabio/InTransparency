@@ -231,8 +231,8 @@ export function ChallengeCard({ challenge, variant = 'student', onAction }: Chal
                   </>
                 ) : (
                   <>
-                    <AlertCircle className="h-3.5 w-3.5 text-secondary" />
-                    <span className="text-secondary">Pending</span>
+                    <AlertCircle className="h-3.5 w-3.5 text-primary" />
+                    <span className="text-primary">Pending</span>
                   </>
                 )}
               </span>

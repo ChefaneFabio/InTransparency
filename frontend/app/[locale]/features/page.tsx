@@ -523,7 +523,7 @@ export default function FeaturesPage() {
                   <Badge variant="secondary" className="mt-2 text-xs">FREE for Students</Badge>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
-                  <p className="mb-2 font-semibold text-secondary">AI-Powered Connections</p>
+                  <p className="mb-2 font-semibold text-primary">AI-Powered Connections</p>
                   <ul className="space-y-1.5">
                     <li>• Explainable AI matching</li>
                     <li>• Bidirectional transparency (students see why)</li>

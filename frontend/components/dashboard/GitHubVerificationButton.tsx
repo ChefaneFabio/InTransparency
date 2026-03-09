@@ -108,7 +108,7 @@ export function GitHubVerificationButton({
                 </>
               ) : (
                 <>
-                  <AlertTriangle className="h-6 w-6 text-secondary" />
+                  <AlertTriangle className="h-6 w-6 text-primary" />
                   Verification Issues Detected
                 </>
               )}

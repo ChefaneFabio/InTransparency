@@ -212,19 +212,19 @@ export default function ITSInstitutesPage() {
                 <CardContent className="text-sm text-foreground/80">
                   <ul className="space-y-2">
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-secondary mr-2 mt-0.5" />
+                      <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>AI matches skills to job requirements</span>
                     </li>
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-secondary mr-2 mt-0.5" />
+                      <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Verified skills improve visibility</span>
                     </li>
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-secondary mr-2 mt-0.5" />
+                      <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Transparent AI explanations</span>
                     </li>
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-secondary mr-2 mt-0.5" />
+                      <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Faster screening with verified data</span>
                     </li>
                   </ul>
@@ -312,7 +312,7 @@ export default function ITSInstitutesPage() {
                   <Badge variant="secondary" className="mt-2 text-xs">FREE for Students</Badge>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80 space-y-2">
-                  <p className="font-semibold text-secondary">Transparent AI Matching</p>
+                  <p className="font-semibold text-primary">Transparent AI Matching</p>
                   <ul className="space-y-1.5">
                     <li>• AI matches skills to job requirements</li>
                     <li>• Verified skills improve visibility</li>
@@ -472,7 +472,7 @@ export default function ITSInstitutesPage() {
                         </div>
                         <div className="flex items-start gap-3">
                           <div className="bg-secondary/10 rounded-full p-2">
-                            <Search className="h-4 w-4 text-secondary" />
+                            <Search className="h-4 w-4 text-primary" />
                           </div>
                           <div>
                             <p className="font-semibold">3. Companies Discover</p>
@@ -570,7 +570,7 @@ export default function ITSInstitutesPage() {
               <Card className="border-2 border-secondary/20">
                 <CardHeader className="text-center">
                   <div className="bg-secondary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <BarChart3 className="h-8 w-8 text-secondary" />
+                    <BarChart3 className="h-8 w-8 text-primary" />
                   </div>
                   <CardTitle className="text-lg">Track Impact for MIUR</CardTitle>
                 </CardHeader>

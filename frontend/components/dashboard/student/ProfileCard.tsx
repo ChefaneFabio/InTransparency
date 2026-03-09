@@ -86,7 +86,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
 
   const getCompletenessColor = (percentage: number) => {
     if (percentage >= 80) return 'text-primary'
-    if (percentage >= 60) return 'text-secondary'
+    if (percentage >= 60) return 'text-primary'
     return 'text-red-600'
   }
 
@@ -206,7 +206,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
         <div className="mt-4 grid grid-cols-3 gap-4 pt-4 border-t border-gray-100">
           <div className="text-center">
             <div className="flex items-center justify-center mb-1">
-              <Star className="h-4 w-4 text-secondary" />
+              <Star className="h-4 w-4 text-primary" />
             </div>
             <div className="text-lg font-semibold text-gray-900">4.8</div>
             <div className="text-xs text-gray-700">Rating</div>

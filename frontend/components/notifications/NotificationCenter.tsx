@@ -94,7 +94,7 @@ export function NotificationCenter() {
       case NotificationTypes.NETWORK_CONNECTION:
         return <Users className="h-4 w-4 text-primary" />
       case NotificationTypes.ACHIEVEMENT:
-        return <Award className="h-4 w-4 text-secondary" />
+        return <Award className="h-4 w-4 text-primary" />
       case NotificationTypes.SYSTEM_UPDATE:
         return <Info className="h-4 w-4 text-primary" />
       default:

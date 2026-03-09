@@ -5,6 +5,7 @@ import './globals.css'
 import { Providers } from './providers'
 import { Toaster } from '@/components/ui/toaster'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { GlowEffect } from '@/components/effects/GlowEffect'
 
 // Distinctive display serif for headlines
 const fraunces = Fraunces({
@@ -85,6 +86,7 @@ export default function RootLayout({
           <Providers>
             {children}
             <Toaster />
+            <GlowEffect />
           </Providers>
         </ErrorBoundary>
         <script

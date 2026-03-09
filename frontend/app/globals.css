@@ -127,6 +127,31 @@
     @apply transition-shadow duration-200 hover:shadow-md;
   }
 
+  /* Transparent glow hover — soft light follows cursor on interactive elements */
+  .glow-hover {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glow-hover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(
+      circle 80px at var(--glow-x, 50%) var(--glow-y, 50%),
+      hsl(var(--primary) / 0.15) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .glow-hover:hover::after {
+    opacity: 1;
+  }
+
   /* Segment-specific accent colors — override --primary per audience */
   /* Students: teal (default, no override needed) */
 

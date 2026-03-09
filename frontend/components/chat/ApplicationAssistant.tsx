@@ -94,7 +94,7 @@ export function ApplicationAssistant({
       case 'skill-gap':
       case 'missing-field':
       case 'insufficient-content':
-        return <AlertCircle className="h-5 w-5 text-secondary" />
+        return <AlertCircle className="h-5 w-5 text-primary" />
       default:
         return <Lightbulb className="h-5 w-5 text-primary" />
     }

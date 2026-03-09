@@ -183,7 +183,7 @@ export default function UniversityProjectsPage() {
                 <p className="text-2xl font-bold">{stats.pending}</p>
                 <p className="text-sm text-gray-600">Pending</p>
               </div>
-              <Clock className="h-8 w-8 text-secondary" />
+              <Clock className="h-8 w-8 text-primary" />
             </div>
           </CardContent>
         </Card>

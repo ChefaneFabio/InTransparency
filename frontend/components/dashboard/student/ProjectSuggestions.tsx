@@ -99,7 +99,7 @@ export function ProjectSuggestions({ projectId, onAction }: ProjectSuggestionsPr
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="flex items-center gap-2 text-base">
-              <Lightbulb className="h-5 w-5 text-secondary" />
+              <Lightbulb className="h-5 w-5 text-primary" />
               Improvement Suggestions
             </CardTitle>
             <CardDescription>

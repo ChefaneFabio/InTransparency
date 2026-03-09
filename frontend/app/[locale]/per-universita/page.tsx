@@ -171,15 +171,15 @@ export default function PerUniversitaPage() {
                 <CardContent className="text-sm text-gray-700">
                   <ul className="space-y-2">
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-secondary mr-2 mt-0.5" />
+                      <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>"Alta compatibilità: Python verificato dalla tesi"</span>
                     </li>
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-secondary mr-2 mt-0.5" />
+                      <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Competenze verificate = punteggi più alti</span>
                     </li>
                     <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-secondary mr-2 mt-0.5" />
+                      <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
                       <span>Spiegazioni AI trasparenti</span>
                     </li>
                   </ul>
@@ -297,7 +297,7 @@ export default function PerUniversitaPage() {
                         </div>
                         <div className="flex items-start gap-3">
                           <div className="bg-secondary/10 rounded-full p-2">
-                            <Search className="h-4 w-4 text-secondary" />
+                            <Search className="h-4 w-4 text-primary" />
                           </div>
                           <div>
                             <p className="font-semibold">3. Le Aziende Scoprono</p>
@@ -387,7 +387,7 @@ export default function PerUniversitaPage() {
               <Card className="border-2 border-secondary/20">
                 <CardHeader className="text-center">
                   <div className="bg-secondary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <BarChart3 className="h-8 w-8 text-secondary" />
+                    <BarChart3 className="h-8 w-8 text-primary" />
                   </div>
                   <CardTitle className="text-lg">Report per ANVUR</CardTitle>
                 </CardHeader>

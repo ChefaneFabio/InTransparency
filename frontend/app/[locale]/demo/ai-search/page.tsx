@@ -663,7 +663,7 @@ export default function AISearchDemoPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
-                  <Lightbulb className="h-5 w-5 mr-2 text-secondary" />
+                  <Lightbulb className="h-5 w-5 mr-2 text-primary" />
                   {t('ui.exampleQueriesTitle')}
                 </CardTitle>
               </CardHeader>

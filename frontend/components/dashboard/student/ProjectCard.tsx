@@ -65,7 +65,7 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
   const getInnovationColor = (score: number) => {
     if (score >= 80) return 'text-primary'
     if (score >= 60) return 'text-primary'
-    if (score >= 40) return 'text-secondary'
+    if (score >= 40) return 'text-primary'
     return 'text-gray-600'
   }
 

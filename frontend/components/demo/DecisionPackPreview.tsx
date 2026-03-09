@@ -45,7 +45,7 @@ export default function DecisionPackPreview({ data }: DecisionPackPreviewProps) 
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-semibold flex items-center gap-2">
-            <Star className="h-4 w-4 text-secondary" />
+            <Star className="h-4 w-4 text-primary" />
             Verified Skills
           </CardTitle>
         </CardHeader>

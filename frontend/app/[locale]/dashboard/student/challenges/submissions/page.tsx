@@ -199,7 +199,7 @@ export default function StudentSubmissionsPage() {
                 <p className="text-2xl font-bold">{stats.converted}</p>
                 <p className="text-sm text-gray-600">In Portfolio</p>
               </div>
-              <FileText className="h-8 w-8 text-secondary" />
+              <FileText className="h-8 w-8 text-primary" />
             </div>
           </CardContent>
         </Card>

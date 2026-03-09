@@ -267,7 +267,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
   const getSyncStatusColor = (status: string) => {
     switch (status) {
       case 'success': return 'text-primary bg-primary/10'
-      case 'warning': return 'text-secondary bg-secondary/10'
+      case 'warning': return 'text-primary bg-secondary/10'
       case 'error': return 'text-red-600 bg-red-100'
       case 'syncing': return 'text-primary bg-primary/10'
       default: return 'text-gray-600 bg-gray-100'
@@ -279,7 +279,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
       case 'transcript_update': return <Download className="h-4 w-4 text-primary" />
       case 'new_course': return <BookOpen className="h-4 w-4 text-primary" />
       case 'grade_change': return <TrendingUp className="h-4 w-4 text-primary" />
-      case 'project_upload': return <Upload className="h-4 w-4 text-secondary" />
+      case 'project_upload': return <Upload className="h-4 w-4 text-primary" />
       case 'verification': return <Shield className="h-4 w-4 text-primary" />
       default: return <Clock className="h-4 w-4 text-gray-600" />
     }
@@ -555,7 +555,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
                         <Badge variant="outline" className={
                           activity.status === 'success' ? 'text-primary bg-primary/10' :
                           activity.status === 'failed' ? 'text-red-600 bg-red-100' :
-                          'text-secondary bg-yellow-100'
+                          'text-primary bg-yellow-100'
                         }>
                           {activity.status}
                         </Badge>

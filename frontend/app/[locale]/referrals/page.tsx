@@ -412,8 +412,8 @@ export default function ReferralsPage() {
 
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                     <div className="flex items-center justify-between mb-2">
-                      <Target className="h-5 w-5 text-secondary" />
-                      <span className="text-xs text-secondary">4 this month</span>
+                      <Target className="h-5 w-5 text-primary" />
+                      <span className="text-xs text-primary">4 this month</span>
                     </div>
                     <div className="text-2xl font-bold text-gray-900">12</div>
                     <div className="text-xs text-gray-600">Pro Upgrades</div>

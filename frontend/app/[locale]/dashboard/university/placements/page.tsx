@@ -174,7 +174,7 @@ export default function UniversityPlacementsPage() {
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                  <Clock className="h-5 w-5 text-secondary" />
+                  <Clock className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   {loading ? (

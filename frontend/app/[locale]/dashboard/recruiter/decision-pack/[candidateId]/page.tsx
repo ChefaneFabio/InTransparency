@@ -224,7 +224,7 @@ export default function DecisionPackPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Zap className="h-5 w-5 text-secondary" />
+            <Zap className="h-5 w-5 text-primary" />
             Skills Evidence Map
           </CardTitle>
         </CardHeader>

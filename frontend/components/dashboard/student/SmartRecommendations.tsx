@@ -194,7 +194,7 @@ export function SmartRecommendations({ studentProfile }: SmartRecommendationsPro
 
   const getMatchScoreColor = (score: number) => {
     if (score >= 90) return 'text-primary'
-    if (score >= 80) return 'text-secondary'
+    if (score >= 80) return 'text-primary'
     return 'text-orange-600'
   }
 

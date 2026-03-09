@@ -193,7 +193,7 @@ export function ActivityFeed({ userId, limit = 10 }: ActivityFeedProps) {
       case 'project_analyzed':
         return <TrendingUp className="h-4 w-4 text-primary" />
       case 'achievement':
-        return <Trophy className="h-4 w-4 text-secondary" />
+        return <Trophy className="h-4 w-4 text-primary" />
       case 'application':
         return <CheckCircle className="h-4 w-4 text-primary" />
       default:

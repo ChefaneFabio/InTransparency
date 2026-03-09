@@ -446,7 +446,7 @@ export default function JobsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className={`text-2xl font-bold ${avgMatch >= 60 ? 'text-primary' : avgMatch >= 40 ? 'text-secondary' : 'text-muted-foreground'}`}>
+              <div className={`text-2xl font-bold ${avgMatch >= 60 ? 'text-primary' : avgMatch >= 40 ? 'text-primary' : 'text-muted-foreground'}`}>
                 {avgMatch}%
               </div>
               <div className="ml-2 text-sm text-muted-foreground">Avg Match</div>

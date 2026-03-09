@@ -218,7 +218,7 @@ export function FeedbackForm({
           {/* Areas for Growth */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <Lightbulb className="h-5 w-5 text-secondary" />
+              <Lightbulb className="h-5 w-5 text-primary" />
               <h3 className="text-lg font-semibold">Areas for Growth</h3>
             </div>
 

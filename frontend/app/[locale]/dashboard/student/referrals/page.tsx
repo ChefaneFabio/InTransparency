@@ -264,11 +264,11 @@ export default function StudentReferralsPage() {
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
                 <div className="bg-yellow-100 rounded-full p-2">
-                  <Clock className="h-5 w-5 text-secondary" />
+                  <Clock className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">{t('earnings.pending')}</p>
-                  <p className="text-2xl font-bold text-secondary">
+                  <p className="text-2xl font-bold text-primary">
                     {referralData?.pendingReferrals || 0} {t('earnings.referrals')}
                   </p>
                 </div>

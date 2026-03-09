@@ -149,7 +149,7 @@ export function AutomaticProfileDemo() {
         </p>
         <div className="flex justify-center items-center space-x-6 text-sm text-gray-700">
           <div className="flex items-center">
-            <Zap className="h-4 w-4 mr-1 text-secondary" />
+            <Zap className="h-4 w-4 mr-1 text-primary" />
             30 seconds to complete profile
           </div>
           <div className="flex items-center">
@@ -293,7 +293,7 @@ export function AutomaticProfileDemo() {
                           <span>45 skills identified</span>
                         </div>
                         <div className="flex items-center text-sm text-gray-700">
-                          <Award className="h-4 w-4 mr-2 text-secondary" />
+                          <Award className="h-4 w-4 mr-2 text-primary" />
                           <span>100% profile complete</span>
                         </div>
                       </div>

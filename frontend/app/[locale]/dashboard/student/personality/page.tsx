@@ -2345,7 +2345,7 @@ const FamousPersonalitiesSection = ({ primaryStyle }: { primaryStyle: string }) 
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Star className="h-5 w-5 text-secondary" />
+          <Star className="h-5 w-5 text-primary" />
           {t('famousPersonalities.title')}
         </CardTitle>
       </CardHeader>
@@ -2357,7 +2357,7 @@ const FamousPersonalitiesSection = ({ primaryStyle }: { primaryStyle: string }) 
               <CardContent className="pt-4 pb-4">
                 <div className="flex items-start gap-3">
                   <div className="p-2 rounded-full bg-yellow-100 dark:bg-yellow-900/30 shrink-0">
-                    <Star className="h-4 w-4 text-secondary dark:text-yellow-400" />
+                    <Star className="h-4 w-4 text-primary dark:text-yellow-400" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-sm">{person.name}</h4>
@@ -2912,7 +2912,7 @@ const EnergyManagementSection = ({ primaryStyle }: { primaryStyle: string }) => 
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Zap className="h-5 w-5 text-secondary" />
+          <Zap className="h-5 w-5 text-primary" />
           {t('energy.title')}
         </CardTitle>
       </CardHeader>
@@ -2963,7 +2963,7 @@ const EnergyManagementSection = ({ primaryStyle }: { primaryStyle: string }) => 
         <Card className="bg-yellow-50 dark:bg-yellow-900/10 border-yellow-200 dark:border-yellow-800/50">
           <CardContent className="pt-3 pb-3">
             <h4 className="font-semibold text-xs flex items-center gap-1.5 mb-1">
-              <Lightbulb className="h-3 w-3 text-secondary" />
+              <Lightbulb className="h-3 w-3 text-primary" />
               {t('energy.recoveryTip')}
             </h4>
             <p className="text-xs text-muted-foreground">{energy.recoveryTip}</p>

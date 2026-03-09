@@ -305,7 +305,7 @@ export default function RecruiterDashboard() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
                         <h4 className="font-medium text-foreground">{candidate.name}</h4>
-                        <Button size="sm" variant="ghost" className="text-muted-foreground/60 hover:text-secondary">
+                        <Button size="sm" variant="ghost" className="text-muted-foreground/60 hover:text-primary">
                           <Star className="h-4 w-4" />
                         </Button>
                       </div>

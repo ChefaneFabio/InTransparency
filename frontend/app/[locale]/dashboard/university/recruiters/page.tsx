@@ -202,7 +202,7 @@ export default function UniversityRecruitersPage() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                    <Star className="h-5 w-5 text-secondary" />
+                    <Star className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.partners}</p>
@@ -299,7 +299,7 @@ export default function UniversityRecruitersPage() {
                           <div className="flex items-center gap-2">
                             <h3 className="font-semibold text-foreground">{recruiter.companyName}</h3>
                             {recruiter.isPartner && (
-                              <Star className="h-4 w-4 text-secondary fill-yellow-500" />
+                              <Star className="h-4 w-4 text-primary fill-yellow-500" />
                             )}
                           </div>
                           <p className="text-sm text-muted-foreground">{recruiter.industry}</p>

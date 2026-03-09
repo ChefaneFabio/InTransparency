@@ -168,7 +168,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                     {company.size}
                   </div>
                   <div className="flex items-center">
-                    <Star className="h-4 w-4 mr-1 text-secondary" />
+                    <Star className="h-4 w-4 mr-1 text-primary" />
                     {company.stats.rating} ({company.stats.reviews} reviews)
                   </div>
                 </div>
@@ -315,7 +315,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                   <div className="flex items-center justify-between">
                     <span className="text-foreground/80">Work-Life Balance</span>
                     <div className="flex items-center">
-                      <Star className="h-4 w-4 text-secondary mr-1" />
+                      <Star className="h-4 w-4 text-primary mr-1" />
                       <span className="font-semibold">{company.workCulture.workLifeBalance}/5</span>
                     </div>
                   </div>

@@ -118,11 +118,11 @@ export default function StudentFeedbackPage() {
                 <CardTitle className="text-sm font-medium text-gray-600">
                   Growth Opportunities
                 </CardTitle>
-                <Lightbulb className="h-5 w-5 text-secondary" />
+                <Lightbulb className="h-5 w-5 text-primary" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-secondary">{areasForGrowth}</div>
+              <div className="text-3xl font-bold text-primary">{areasForGrowth}</div>
               <p className="text-xs text-gray-600 mt-1">
                 {areasForGrowth === 0 ? 'No recommendations yet' : 'Actionable insights'}
               </p>

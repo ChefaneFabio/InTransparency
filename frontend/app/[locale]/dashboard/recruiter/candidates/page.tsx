@@ -311,7 +311,7 @@ export default function CandidatesPage() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-2">
-              <Bookmark className="h-5 w-5 text-secondary" />
+              <Bookmark className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{bookmarked.size}</p>
                 <p className="text-xs text-gray-600">Saved</p>
@@ -429,7 +429,7 @@ export default function CandidatesPage() {
                     variant="ghost"
                     size="icon"
                     onClick={() => toggleBookmark(candidate.id)}
-                    className={bookmarked.has(candidate.id) ? 'text-secondary' : 'text-gray-400'}
+                    className={bookmarked.has(candidate.id) ? 'text-primary' : 'text-gray-400'}
                   >
                     <Star className={`h-4 w-4 ${bookmarked.has(candidate.id) ? 'fill-current' : ''}`} />
                   </Button>
@@ -515,7 +515,7 @@ export default function CandidatesPage() {
                       variant="ghost"
                       size="icon"
                       onClick={() => toggleBookmark(candidate.id)}
-                      className={bookmarked.has(candidate.id) ? 'text-secondary' : 'text-gray-400'}
+                      className={bookmarked.has(candidate.id) ? 'text-primary' : 'text-gray-400'}
                     >
                       <Star className={`h-4 w-4 ${bookmarked.has(candidate.id) ? 'fill-current' : ''}`} />
                     </Button>

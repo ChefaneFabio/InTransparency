@@ -204,7 +204,7 @@ export default function ChatPage() {
                       className="p-6 bg-white border-t border-gray-200"
                     >
                       <p className="text-sm text-gray-600 mb-3 flex items-center gap-2">
-                        <Sparkles className="h-4 w-4 text-secondary" />
+                        <Sparkles className="h-4 w-4 text-primary" />
                         Try asking:
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -271,7 +271,7 @@ export default function ChatPage() {
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center gap-2">
-                    <Bot className="h-5 w-5 text-secondary" />
+                    <Bot className="h-5 w-5 text-primary" />
                     Always Learning
                   </CardTitle>
                 </CardHeader>

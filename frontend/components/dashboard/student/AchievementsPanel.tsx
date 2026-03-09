@@ -59,7 +59,7 @@ const categoryColors: Record<string, string> = {
   profile: 'bg-primary/10 text-primary',
   projects: 'bg-primary/10 text-primary',
   engagement: 'bg-primary/10 text-primary',
-  career: 'bg-secondary/10 text-secondary',
+  career: 'bg-secondary/10 text-primary',
 }
 
 const categoryLabels: Record<string, string> = {
@@ -110,7 +110,7 @@ export function AchievementsPanel() {
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="flex items-center gap-2">
-              <Trophy className="h-5 w-5 text-secondary" />
+              <Trophy className="h-5 w-5 text-primary" />
               Achievements
             </CardTitle>
             <CardDescription>

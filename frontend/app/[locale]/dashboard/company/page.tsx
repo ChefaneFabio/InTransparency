@@ -283,19 +283,19 @@ export default function CompanyDashboard() {
               ) : (
                 <>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-secondary" />
+                    <Star className="h-4 w-4 text-primary" />
                     <span className="text-gray-600">Unlimited contacts</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-secondary" />
+                    <Star className="h-4 w-4 text-primary" />
                     <span className="text-gray-600">Advanced filters</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-secondary" />
+                    <Star className="h-4 w-4 text-primary" />
                     <span className="text-gray-600">API access</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-secondary" />
+                    <Star className="h-4 w-4 text-primary" />
                     <span className="text-gray-600">Priority support</span>
                   </div>
                 </>

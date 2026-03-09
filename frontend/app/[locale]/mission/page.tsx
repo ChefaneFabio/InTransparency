@@ -13,7 +13,7 @@ export default function MissionPage() {
   const t = useTranslations('mission')
 
   const statIcons = [AlertTriangle, TrendingDown, DollarSign]
-  const statColors = ['text-red-600', 'text-orange-600', 'text-secondary']
+  const statColors = ['text-red-600', 'text-orange-600', 'text-primary']
   const statBgs = ['bg-red-100', 'bg-orange-100', 'bg-yellow-100']
 
   const positionIcons = [Target, Scale, Heart, Shield]

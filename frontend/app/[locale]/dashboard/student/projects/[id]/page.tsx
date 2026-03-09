@@ -460,7 +460,7 @@ export default function ProjectDetailPage() {
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center">
-                        <Zap className="mr-2 h-5 w-5 text-secondary" />
+                        <Zap className="mr-2 h-5 w-5 text-primary" />
                         AI Scores
                       </CardTitle>
                     </CardHeader>

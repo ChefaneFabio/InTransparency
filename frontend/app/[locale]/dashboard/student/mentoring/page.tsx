@@ -167,7 +167,7 @@ export default function MentoringPage() {
                 <p className="text-sm text-gray-600">Pending requests</p>
               </div>
               <div className="p-2 bg-yellow-100 rounded-lg">
-                <Clock className="h-5 w-5 text-secondary" />
+                <Clock className="h-5 w-5 text-primary" />
               </div>
             </div>
           </CardContent>
@@ -192,7 +192,7 @@ export default function MentoringPage() {
         <Card className="border-yellow-200">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
-              <Clock className="h-5 w-5 text-secondary" />
+              <Clock className="h-5 w-5 text-primary" />
               Pending Requests
             </CardTitle>
           </CardHeader>
@@ -324,7 +324,7 @@ export default function MentoringPage() {
                     </p>
                     {mentor._count.mentorshipsAsMentor > 0 && (
                       <div className="flex items-center gap-1 mt-0.5">
-                        <Star className="h-3 w-3 text-secondary" />
+                        <Star className="h-3 w-3 text-primary" />
                         <span className="text-xs text-gray-500">
                           {mentor._count.mentorshipsAsMentor} mentee{mentor._count.mentorshipsAsMentor !== 1 ? 's' : ''}
                         </span>

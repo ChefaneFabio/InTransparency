@@ -285,7 +285,7 @@ export function InstitutionalVerification({
   const getApiStatusColor = (status: string) => {
     switch (status) {
       case 'active': return 'text-primary bg-primary/10'
-      case 'maintenance': return 'text-secondary bg-yellow-100'
+      case 'maintenance': return 'text-primary bg-yellow-100'
       case 'limited': return 'text-orange-600 bg-orange-100'
       default: return 'text-gray-600 bg-gray-100'
     }

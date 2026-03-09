@@ -33,7 +33,7 @@ export function CareerPathComparison({ paths }: CareerPathComparisonProps) {
         const matchColor = path.matchScore >= 75
           ? 'text-primary'
           : path.matchScore >= 50
-            ? 'text-secondary'
+            ? 'text-primary'
             : 'text-red-600'
 
         return (

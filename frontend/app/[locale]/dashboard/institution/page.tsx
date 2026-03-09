@@ -384,15 +384,15 @@ export default function InstitutionDashboard() {
               ) : (
                 <>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-secondary" />
+                    <Star className="h-4 w-4 text-primary" />
                     <span className="text-gray-600">Embeddable widget</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-secondary" />
+                    <Star className="h-4 w-4 text-primary" />
                     <span className="text-gray-600">Custom branding</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4 text-secondary" />
+                    <Star className="h-4 w-4 text-primary" />
                     <span className="text-gray-600">Placement reports</span>
                   </div>
                 </>

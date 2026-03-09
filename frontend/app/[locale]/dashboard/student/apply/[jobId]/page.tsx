@@ -422,7 +422,7 @@ export default function JobApplicationPage() {
             </div>
 
             {completionPercentage < 80 && (
-              <p className="text-sm text-center text-secondary">
+              <p className="text-sm text-center text-primary">
                 Complete at least 80% to submit ({Math.max(0, 80 - completionPercentage)}% remaining)
               </p>
             )}

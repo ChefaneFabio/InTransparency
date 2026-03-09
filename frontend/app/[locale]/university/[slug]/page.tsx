@@ -207,7 +207,7 @@ export default function UniversityShowcasePage() {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h2 className="text-2xl font-bold flex items-center gap-2">
-                  <Star className="h-6 w-6 text-secondary" />
+                  <Star className="h-6 w-6 text-primary" />
                   Featured Students
                 </h2>
                 <p className="text-gray-600">Top talent from {university.name}</p>
@@ -244,7 +244,7 @@ export default function UniversityShowcasePage() {
                       )}
                       <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
                         <span className="flex items-center gap-1">
-                          <Star className="h-4 w-4 text-secondary" />
+                          <Star className="h-4 w-4 text-primary" />
                           {student.avgScore}/100
                         </span>
                         <span className="flex items-center gap-1">
@@ -305,7 +305,7 @@ export default function UniversityShowcasePage() {
                       <p className="text-sm text-gray-600 mb-2">by {project.studentName}</p>
                       {project.innovationScore && (
                         <div className="flex items-center gap-1 text-sm">
-                          <Star className="h-4 w-4 text-secondary" />
+                          <Star className="h-4 w-4 text-primary" />
                           <span className="font-medium">{project.innovationScore}/100</span>
                         </div>
                       )}

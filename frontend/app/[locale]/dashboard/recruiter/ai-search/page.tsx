@@ -466,7 +466,7 @@ export default function AISearchPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
-                  <Lightbulb className="h-5 w-5 mr-2 text-secondary" />
+                  <Lightbulb className="h-5 w-5 mr-2 text-primary" />
                   Try These Examples
                 </CardTitle>
               </CardHeader>

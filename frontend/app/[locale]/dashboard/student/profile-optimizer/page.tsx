@@ -64,7 +64,7 @@ export default function ProfileOptimizerPage() {
   const getScoreColor = (score: number) => {
     if (score >= 90) return 'text-primary'
     if (score >= 80) return 'text-primary'
-    if (score >= 70) return 'text-secondary'
+    if (score >= 70) return 'text-primary'
     return 'text-red-600'
   }
 
@@ -116,7 +116,7 @@ export default function ProfileOptimizerPage() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Card className="max-w-md">
           <CardContent className="pt-6 text-center">
-            <AlertTriangle className="h-12 w-12 text-secondary mx-auto mb-4" />
+            <AlertTriangle className="h-12 w-12 text-primary mx-auto mb-4" />
             <p className="text-gray-600">{error || 'Failed to load profile data'}</p>
             <Button className="mt-4" onClick={() => window.location.reload()}>
               Try Again
@@ -314,7 +314,7 @@ export default function ProfileOptimizerPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
-                <AlertTriangle className="h-5 w-5 mr-2 text-secondary" />
+                <AlertTriangle className="h-5 w-5 mr-2 text-primary" />
                 Quick Wins
               </CardTitle>
             </CardHeader>
@@ -333,7 +333,7 @@ export default function ProfileOptimizerPage() {
                         idx === 0 ? 'bg-red-100' : idx === 1 ? 'bg-yellow-100' : 'bg-primary/10'
                       }`}>
                         <span className={`font-bold text-sm ${
-                          idx === 0 ? 'text-red-600' : idx === 1 ? 'text-secondary' : 'text-primary'
+                          idx === 0 ? 'text-red-600' : idx === 1 ? 'text-primary' : 'text-primary'
                         }`}>{idx + 1}</span>
                       </div>
                       <div>

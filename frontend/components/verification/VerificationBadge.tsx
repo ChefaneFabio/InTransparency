@@ -190,7 +190,7 @@ export function TrustScoreBadge({
       bg: 'bg-yellow-100',
       text: 'text-yellow-700',
       border: 'border-yellow-300',
-      icon: 'text-secondary'
+      icon: 'text-primary'
     }
     return {
       bg: 'bg-gray-100',

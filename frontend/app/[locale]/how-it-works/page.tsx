@@ -181,7 +181,7 @@ const getWorkflows = (t: any) => ({
         icon: Target,
         title: t('workflow.student.step3.title'),
         description: t('workflow.student.step3.description'),
-        color: 'text-secondary'
+        color: 'text-primary'
       },
       {
         icon: CheckCircle,
@@ -368,7 +368,7 @@ export default function HowItWorksPage() {
                   <Badge variant="secondary" className="mt-2">{t('services.matching.badge')}</Badge>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80 space-y-2">
-                  <p className="font-semibold text-secondary">{t('services.matching.heading')}</p>
+                  <p className="font-semibold text-primary">{t('services.matching.heading')}</p>
                   <ul className="space-y-1 text-xs">
                     <li>• {t('services.matching.features.0')}</li>
                     <li>• {t('services.matching.features.1')}</li>

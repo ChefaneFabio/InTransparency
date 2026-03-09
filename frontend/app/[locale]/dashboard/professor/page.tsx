@@ -99,7 +99,7 @@ export default function ProfessorDashboardPage() {
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
-            <Star className="h-8 w-8 text-secondary mx-auto mb-2" />
+            <Star className="h-8 w-8 text-primary mx-auto mb-2" />
             <p className="text-2xl font-bold">{stats?.averageRating ? stats.averageRating.toFixed(1) : '—'}</p>
             <p className="text-sm text-gray-500">{t('stats.avgRating')}</p>
           </CardContent>
