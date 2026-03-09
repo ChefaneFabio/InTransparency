@@ -166,16 +166,16 @@
         ],
         "features": [
           {
-            "title": "Watch Your Projects Come Alive",
-            "description": "Record 2-minute videos explaining your work. Companies see your passion and skills in action - not just text on a page"
+            "title": "Video Portfolio",
+            "description": "2-min project videos that show your skills in action"
           },
           {
-            "title": "Show Verified Grades, Not Claims",
-            "description": "30/30 thesis? Your institution stamps it. Companies see authentic proof directly from your institution - no resume lies"
+            "title": "Verified Grades",
+            "description": "Institution-stamped grades companies can trust"
           },
           {
-            "title": "Companies Contact You",
-            "description": "No endless applications. Companies search the marketplace and directly contact candidates with the right skills - you get discovered for free"
+            "title": "Get Discovered",
+            "description": "Companies contact you — no applications needed"
           }
         ],
         "statsLabel": "Institution-verified portfolios -",
@@ -196,16 +196,16 @@
         ],
         "features": [
           {
-            "title": "Companies Discover Your Students",
-            "description": "10K+ companies browse verified graduates → Find matches → Contact directly. Your verification badge = trust signal that gets students noticed"
+            "title": "Student Visibility",
+            "description": "10K+ companies discover your verified graduates"
           },
           {
-            "title": "Your Verification = Competitive Edge",
-            "description": "\"Verified by Politecnico\" or \"ITS G. Natta endorsed\" increases student placement 25% vs unverified profiles - your stamp matters"
+            "title": "Verification Badge",
+            "description": "Your stamp increases placement by 25%"
           },
           {
-            "title": "Track Placement Impact",
-            "description": "Free analytics: \"47 students contacted by companies → 23 hired in 47 days avg\" - prove 85% placement boost to MIUR with data"
+            "title": "Placement Analytics",
+            "description": "Track contacts, hires, and prove impact with data"
           }
         ],
         "statsLabel": "Free marketplace connecting students to",
@@ -227,16 +227,16 @@
         ],
         "features": [
           {
-            "title": "Search Verified Talent Pools",
-            "description": "Query by skill → See \"AutoCAD: Verified by ITS Rizzoli, 28/30 project grade\" - every competency stamped by institution"
+            "title": "Verified Talent",
+            "description": "Every skill stamped by the institution"
           },
           {
-            "title": "Institution Authentication Badges",
-            "description": "Every profile shows: \"Verified by Politecnico Milano\" or \"ITS G. Natta endorsed\" - trust the source, not the student claim"
+            "title": "Trust Badges",
+            "description": "See authentic grades, not resume claims"
           },
           {
-            "title": "Verified Match Quality",
-            "description": "Institution-verified competencies mean fewer mismatches vs. self-reported CVs — hire with confidence"
+            "title": "Pay Per Contact",
+            "description": "€10 per contact — no subscriptions"
           }
         ],
         "statsLabel": "Access verified talent from",
@@ -345,17 +345,17 @@
       "segments": {
         "students": {
           "title": "For Students",
-          "description": "Build a verified portfolio from your academic projects, connect with your institution, and get discovered by companies looking for your skills.",
+          "description": "Build your verified portfolio and get discovered by companies — always free.",
           "cta": "Get Started Free"
         },
         "universities": {
           "title": "For Institutions",
-          "description": "Verify student projects, track placement outcomes, and connect your students directly to employers. Free for partner institutions.",
+          "description": "Verify student projects and track placement outcomes — free for partners.",
           "cta": "Partner With Us"
         },
         "companies": {
           "title": "For Companies",
-          "description": "Search verified talent by real skills and actual projects. Pay only when you contact a candidate — no subscriptions.",
+          "description": "Search verified talent by real skills. Pay only per contact.",
           "cta": "Start Hiring"
         }
       }
@@ -387,7 +387,7 @@
     },
     "valueProposition": {
       "title": "Built for Everyone",
-      "subtitle": "A marketplace that works for students, universities, and companies - with transparent value for each.",
+      "subtitle": "Transparent value for students, institutions, and companies.",
       "cards": {
         "students": {
           "title": "For Students",

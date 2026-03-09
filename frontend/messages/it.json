@@ -166,16 +166,16 @@
         ],
         "features": [
           {
-            "title": "Guarda i Tuoi Progetti Prendere Vita",
-            "description": "Registra video di 2 minuti che spiegano il tuo lavoro. Le aziende vedono la tua passione e competenze in azione - non solo testo su una pagina"
+            "title": "Video Portfolio",
+            "description": "Video di 2 min che mostrano le tue competenze"
           },
           {
-            "title": "Mostra Voti Verificati, Non Affermazioni",
-            "description": "Tesi 30/30? La tua istituzione la timbra. Le aziende vedono prove autentiche direttamente dalla tua istituzione - niente bugie sul CV"
+            "title": "Voti Verificati",
+            "description": "Voti certificati dall'istituto, affidabili per le aziende"
           },
           {
-            "title": "Le Aziende Ti Contattano",
-            "description": "Niente candidature infinite. Le aziende cercano nel marketplace e contattano direttamente chi ha le competenze giuste - tu vieni scoperto gratis"
+            "title": "Fatti Scoprire",
+            "description": "Le aziende ti contattano — nessuna candidatura"
           }
         ],
         "statsLabel": "Portfolio verificati dalle istituzioni -",
@@ -196,16 +196,16 @@
         ],
         "features": [
           {
-            "title": "Le Aziende Scoprono i Tuoi Studenti",
-            "description": "10K+ aziende sfogliano laureati verificati → Trovano corrispondenze → Contattano direttamente. Il tuo badge di verifica = segnale di fiducia che fa notare gli studenti"
+            "title": "Visibilità Studenti",
+            "description": "10K+ aziende scoprono i tuoi laureati verificati"
           },
           {
-            "title": "La Tua Verifica = Vantaggio Competitivo",
-            "description": "\"Verificato da Politecnico\" o \"ITS G. Natta endorsato\" aumenta il placement degli studenti del 25% vs profili non verificati - il tuo timbro conta"
+            "title": "Badge di Verifica",
+            "description": "Il tuo timbro aumenta il placement del 25%"
           },
           {
-            "title": "Traccia l'Impatto del Placement",
-            "description": "Analytics gratuiti: \"47 studenti contattati da aziende → 23 assunti in media 47 giorni\" - prova aumento placement 85% al MIUR con i dati"
+            "title": "Analytics Placement",
+            "description": "Monitora contatti, assunzioni e dimostra l'impatto"
           }
         ],
         "statsLabel": "Marketplace gratuito che collega studenti a",
@@ -227,16 +227,16 @@
         ],
         "features": [
           {
-            "title": "Cerca Pool di Talenti Verificati",
-            "description": "Query per competenza → Vedi \"AutoCAD: Verificato da ITS Rizzoli, voto progetto 28/30\" - ogni competenza timbrata dall'istituzione"
+            "title": "Talento Verificato",
+            "description": "Ogni competenza certificata dall'istituto"
           },
           {
-            "title": "Badge di Autenticazione Istituzionale",
-            "description": "Ogni profilo mostra: \"Verificato da Politecnico Milano\" o \"ITS G. Natta endorsato\" - fidati della fonte, non dell'affermazione dello studente"
+            "title": "Badge di Fiducia",
+            "description": "Voti autentici, non dichiarazioni sul CV"
           },
           {
-            "title": "Qualità Match Verificata",
-            "description": "Competenze verificate dall'istituzione significano meno mismatch vs CV auto-dichiarati — assumi con fiducia"
+            "title": "Paga per Contatto",
+            "description": "€10 per contatto — nessun abbonamento"
           }
         ],
         "statsLabel": "Accedi a talento verificato da",
@@ -345,17 +345,17 @@
       "segments": {
         "students": {
           "title": "Per gli Studenti",
-          "description": "Costruisci un portfolio verificato dai tuoi progetti accademici, collegati con la tua istituzione e fatti scoprire dalle aziende che cercano le tue competenze.",
+          "description": "Crea il tuo portfolio verificato e fatti scoprire dalle aziende — sempre gratis.",
           "cta": "Inizia Gratis"
         },
         "universities": {
           "title": "Per le Istituzioni",
-          "description": "Verifica i progetti degli studenti, monitora i risultati di placement e collega i tuoi studenti direttamente ai datori di lavoro. Gratuito per le istituzioni partner.",
+          "description": "Verifica i progetti degli studenti e monitora i risultati — gratis per i partner.",
           "cta": "Diventa Partner"
         },
         "companies": {
           "title": "Per le Aziende",
-          "description": "Cerca talenti verificati per competenze reali e progetti concreti. Paga solo quando contatti un candidato — nessun abbonamento.",
+          "description": "Cerca talento verificato per competenze reali. Paghi solo per contatto.",
           "cta": "Inizia ad Assumere"
         }
       }
@@ -387,7 +387,7 @@
     },
     "valueProposition": {
       "title": "Costruito per Tutti",
-      "subtitle": "Un marketplace che funziona per studenti, istituzioni e aziende - con valore trasparente per ciascuno.",
+      "subtitle": "Valore trasparente per studenti, istituzioni e aziende.",
       "cards": {
         "students": {
           "title": "Per gli Studenti",

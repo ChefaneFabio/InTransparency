@@ -94,7 +94,7 @@ export function HowItWorks() {
               </p>
 
               <ul className="space-y-3 mb-6">
-                {[0, 1, 2, 3].map((i) => (
+                {[0, 1].map((i) => (
                   <li key={i} className="flex items-start gap-2.5 text-sm text-muted-foreground">
                     <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/40 flex-shrink-0" />
                     {t(`steps.${activeStep}.details.${i}`)}
