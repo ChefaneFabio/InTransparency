@@ -81,15 +81,14 @@ async function getPublicPortfolio(username: string) {
 
     return {
       id: user.id,
-      username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      photo: user.photo,
-      bio: user.bio,
-      university: user.university,
-      degree: user.degree,
-      graduationYear: user.graduationYear,
-      profilePublic: user.profilePublic,
+      username: user.username ?? '',
+      firstName: user.firstName ?? '',
+      lastName: user.lastName ?? '',
+      photo: user.photo ?? undefined,
+      bio: user.bio ?? undefined,
+      university: user.university ?? '',
+      degree: user.degree ?? '',
+      graduationYear: user.graduationYear ?? 0,
       projects: user.projects,
       stats: {
         projectsCount,
@@ -109,7 +108,7 @@ export default async function PublicPortfolioPage({ params }: PageProps) {
   const userData = await getPublicPortfolio(username)
 
   if (!userData) {
-    notFound()
+    return notFound()
   }
 
   return <PublicPortfolio user={userData} />
