@@ -63,11 +63,11 @@ export function Footer() {
   // Navigation structure — product links adapt to segment
   const productBySegment = {
     students: [
-      { name: tNav('features'), href: '/features' },
-      { name: tNav('howItWorks'), href: '/how-it-works' },
+      { name: tNav('highSchoolStudents'), href: '/students/high-school' },
+      { name: tNav('itsStudents'), href: '/students/its' },
+      { name: tNav('universityStudents'), href: '/students/university' },
       { name: tNav('explorePortfolios'), href: '/explore' },
       { name: tNav('aiJobSearch'), href: '/demo/ai-search' },
-      { name: tNav('pricing'), href: '/pricing' },
     ],
     institutions: [
       { name: tNav('features'), href: '/features' },

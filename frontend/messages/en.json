@@ -25,7 +25,10 @@
     "forITS": "For ITS Institutes",
     "forUniversities": "For Universities",
     "searchTalent": "Search Talent",
-    "hireCandidates": "Hire Candidates"
+    "hireCandidates": "Hire Candidates",
+    "highSchoolStudents": "High School",
+    "itsStudents": "ITS Students",
+    "universityStudents": "University"
   },
   "dashboardNav": {
     "home": "Home",

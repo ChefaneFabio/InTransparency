@@ -28,12 +28,12 @@ export function Header() {
   // Navigation links change based on active segment
   const navigationBySegment: Record<Segment, { name: string; href: string }[]> = {
     students: [
-      { name: t('features'), href: '/features' },
       { name: t('howItWorks'), href: '/how-it-works' },
-      { name: t('buildPortfolio'), href: '/auth/register?role=student' },
+      { name: t('highSchoolStudents'), href: '/students/high-school' },
+      { name: t('itsStudents'), href: '/students/its' },
+      { name: t('universityStudents'), href: '/students/university' },
       { name: t('explorePortfolios'), href: '/explore' },
       { name: t('aiJobSearch'), href: '/demo/ai-search' },
-      { name: t('pricing'), href: '/pricing' },
       { name: t('contact'), href: '/contact' },
     ],
     institutions: [

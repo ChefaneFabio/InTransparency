@@ -25,7 +25,10 @@
     "forITS": "Per ITS",
     "forUniversities": "Per Università",
     "searchTalent": "Cerca Talenti",
-    "hireCandidates": "Assumi Candidati"
+    "hireCandidates": "Assumi Candidati",
+    "highSchoolStudents": "Scuola Superiore",
+    "itsStudents": "Studenti ITS",
+    "universityStudents": "Università"
   },
   "dashboardNav": {
     "home": "Home",
