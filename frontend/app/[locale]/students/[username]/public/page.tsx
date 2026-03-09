@@ -103,19 +103,22 @@ async function getPublicPortfolio(username: string) {
   }
 }
 
-export default async function PublicPortfolioPage({ params }: PageProps) {
-  const { username } = await params
+export default async function PublicPortfolioPage(props: PageProps) {
+  const { username } = await props.params
   const userData = await getPublicPortfolio(username)
 
   if (!userData) {
     return notFound()
   }
 
-  return <PublicPortfolio user={userData} />
+  // Serialize to plain JSON to cross RSC → client boundary cleanly
+  const serialized = JSON.parse(JSON.stringify(userData))
+
+  return <PublicPortfolio user={serialized} />
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  const { username } = await params
+export async function generateMetadata(props: PageProps) {
+  const { username } = await props.params
   const userData = await getPublicPortfolio(username)
 
   if (!userData) {
