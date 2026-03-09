@@ -88,7 +88,7 @@ async function getPublicPortfolio(username: string) {
       bio: user.bio ?? undefined,
       university: user.university ?? '',
       degree: user.degree ?? '',
-      graduationYear: user.graduationYear ?? 0,
+      graduationYear: parseInt(String(user.graduationYear || '0'), 10),
       projects: user.projects,
       stats: {
         projectsCount,
