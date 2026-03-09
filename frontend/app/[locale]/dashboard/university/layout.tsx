@@ -6,9 +6,9 @@ export default function UniversityDashboardLayout({
   children: React.ReactNode
 }) {
   return (
-    <>
+    <div className="segment-university">
       <DashboardNav role="university" />
       {children}
-    </>
+    </div>
   )
 }

@@ -69,7 +69,7 @@ export default function ProfessorRegisterPage() {
   ]
 
   return (
-    <div className="min-h-screen hero-bg">
+    <div className="segment-professor min-h-screen hero-bg">
       <main className="pt-24 pb-16">
         <div className="container max-w-5xl">
           <div className="grid md:grid-cols-2 gap-12 items-start">

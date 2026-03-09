@@ -67,7 +67,7 @@ export default function ForUniversitiesPage() {
   const [activeCountry, setActiveCountry] = useState('IT')
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen segment-university">
       {/* Hero */}
       <section className="relative overflow-hidden bg-foreground text-white">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />

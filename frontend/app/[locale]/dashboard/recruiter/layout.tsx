@@ -6,9 +6,9 @@ export default function RecruiterDashboardLayout({
   children: React.ReactNode
 }) {
   return (
-    <>
+    <div className="segment-recruiter">
       <DashboardNav role="recruiter" />
       {children}
-    </>
+    </div>
   )
 }

@@ -64,7 +64,7 @@ export default function RecruiterRegisterPage() {
   const benefitIcons = [Shield, Search, Clock, Zap]
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-primary/10 py-12 px-4">
+    <div className="segment-recruiter min-h-screen flex items-center justify-center bg-primary/10 py-12 px-4">
       <div className="max-w-4xl w-full">
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column - Value Proposition */}

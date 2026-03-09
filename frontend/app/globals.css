@@ -126,4 +126,25 @@
   .card-hover {
     @apply transition-shadow duration-200 hover:shadow-md;
   }
+
+  /* Segment-specific accent colors — override --primary per audience */
+  /* Students: teal (default, no override needed) */
+
+  /* Recruiters / Companies: warm amber-brown */
+  .segment-recruiter {
+    --primary: 25 70% 40%;
+    --ring: 25 70% 40%;
+  }
+
+  /* Universities / Institutions: deep navy */
+  .segment-university {
+    --primary: 220 60% 35%;
+    --ring: 220 60% 35%;
+  }
+
+  /* Professors: muted plum */
+  .segment-professor {
+    --primary: 270 30% 40%;
+    --ring: 270 30% 40%;
+  }
 }

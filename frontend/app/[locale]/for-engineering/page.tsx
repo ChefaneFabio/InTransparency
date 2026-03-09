@@ -48,7 +48,7 @@ export default function ForEngineeringPage() {
   ]
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen segment-recruiter">
       <Header />
       <main>
         {/* Hero */}

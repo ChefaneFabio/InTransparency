@@ -63,7 +63,7 @@ export default function CompanyDashboard() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
+    <div className="segment-recruiter container mx-auto px-4 py-8 max-w-7xl">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>

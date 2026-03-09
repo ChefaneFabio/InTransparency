@@ -36,7 +36,7 @@ export default function ForConsultingPage() {
   ]
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen segment-recruiter">
       <Header />
       <main>
         {/* Hero */}
