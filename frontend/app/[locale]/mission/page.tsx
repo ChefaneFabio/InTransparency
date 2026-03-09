@@ -7,28 +7,70 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
-import { AlertTriangle, TrendingDown, DollarSign, Target, Shield, Heart, Scale, Award } from 'lucide-react'
+import { Target, Shield, Heart, Scale, Award, DollarSign, Users, Building2, GraduationCap, Briefcase, TrendingUp, Eye } from 'lucide-react'
+import { useSegment } from '@/lib/segment-context'
+import { Transparenty } from '@/components/mascot/Transparenty'
+
+const segmentHero = {
+  students: {
+    badge: 'For Students',
+    badgeIt: 'Per gli Studenti',
+    title: 'Your Skills Deserve',
+    titleIt: 'Le Tue Competenze Meritano',
+    highlight: 'to Be Seen',
+    highlightIt: 'di Essere Viste',
+    description: 'We believe every student should be valued for what they can actually do — not just where they studied. InTransparency makes your verified projects and real skills visible to companies looking for exactly what you offer.',
+    descriptionIt: 'Crediamo che ogni studente debba essere valorizzato per ciò che sa fare davvero — non solo per dove ha studiato. InTransparency rende i tuoi progetti verificati e le tue competenze reali visibili alle aziende che cercano esattamente ciò che offri.',
+    cta: '/auth/register?role=student',
+    ctaLabel: 'Build Your Portfolio',
+    ctaLabelIt: 'Crea il Tuo Portfolio',
+  },
+  institutions: {
+    badge: 'For Institutions',
+    badgeIt: 'Per le Istituzioni',
+    title: 'Help Your Students',
+    titleIt: 'Aiuta i Tuoi Studenti a',
+    highlight: 'Launch Their Careers',
+    highlightIt: 'Lanciare la Loro Carriera',
+    description: 'Your institution invests in quality education. InTransparency helps you close the loop — verify student skills, connect them with employers, and track placement outcomes. All for free.',
+    descriptionIt: 'La tua istituzione investe nella qualità della formazione. InTransparency ti aiuta a chiudere il cerchio — verifica le competenze degli studenti, collegali alle aziende e traccia i risultati di placement. Tutto gratuitamente.',
+    cta: '/per-scuole-superiori',
+    ctaLabel: 'See How It Works',
+    ctaLabelIt: 'Scopri Come Funziona',
+  },
+  companies: {
+    badge: 'For Companies',
+    badgeIt: 'Per le Aziende',
+    title: 'Find Talent Based on',
+    titleIt: 'Trova Talenti Basandoti su',
+    highlight: 'Real, Verified Skills',
+    highlightIt: 'Competenze Reali e Verificate',
+    description: 'Hiring shouldn\'t be guesswork. InTransparency gives you access to candidates with institution-verified skills and real project portfolios — so you can make confident decisions faster.',
+    descriptionIt: 'Assumere non dovrebbe essere un\'incognita. InTransparency ti dà accesso a candidati con competenze verificate dalle istituzioni e portfolio di progetti reali — per decisioni più rapide e sicure.',
+    cta: '/explore',
+    ctaLabel: 'Search Verified Talent',
+    ctaLabelIt: 'Cerca Talenti Verificati',
+  },
+}
 
 export default function MissionPage() {
   const t = useTranslations('mission')
+  const { segment } = useSegment()
+  const hero = segmentHero[segment]
 
-  const statIcons = [AlertTriangle, TrendingDown, DollarSign]
-  const statColors = ['text-red-600', 'text-orange-600', 'text-primary']
-  const statBgs = ['bg-red-100', 'bg-orange-100', 'bg-yellow-100']
+  // Detect language from translations
+  const isItalian = t('hero.badge') === 'La Nostra Missione'
 
   const positionIcons = [Target, Scale, Heart, Shield]
-  const positionColors = ['text-primary', 'text-primary', 'text-primary', 'text-primary']
-  const positionBgs = ['bg-primary/10', 'bg-primary/10', 'bg-primary/10', 'bg-primary/10']
-
-  const valueIcons = [Shield, Award, DollarSign, Target]
+  const valueIcons = [Eye, Award, Users, Target]
 
   return (
     <div className="min-h-screen hero-bg">
       <Header />
 
       <main className="pt-24 pb-16">
-        {/* Hero Section */}
-        <section className="py-20 relative overflow-hidden">
+        {/* Hero Section — segment-aware, warm tone */}
+        <section className="py-16 relative overflow-hidden">
           <div className="absolute inset-0 bg-primary/5 opacity-50" />
           <div className="container max-w-4xl relative z-10">
             <motion.div
@@ -37,25 +79,33 @@ export default function MissionPage() {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <div className="inline-block bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                {t('hero.badge')}
+              <div className="flex justify-center mb-6">
+                <Transparenty size={100} mood="happy" />
               </div>
-              <h1 className="text-5xl font-display font-bold text-foreground mb-4">
-                {t('hero.title')}{' '}
+              <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                {isItalian ? hero.badgeIt : hero.badge}
+              </div>
+              <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
+                {isItalian ? hero.titleIt : hero.title}{' '}
                 <span className="text-primary">
-                  {t('hero.titleHighlight')}
+                  {isItalian ? hero.highlightIt : hero.highlight}
                 </span>
               </h1>
-              <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-                {t('hero.description')}
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-8">
+                {isItalian ? hero.descriptionIt : hero.description}
               </p>
+              <Button size="lg" asChild>
+                <Link href={hero.cta}>
+                  {isItalian ? hero.ctaLabelIt : hero.ctaLabel}
+                </Link>
+              </Button>
             </motion.div>
           </div>
         </section>
 
-        {/* The Problem - Stats */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-          <div className="container max-w-5xl">
+        {/* The Broader Mission — shared across segments */}
+        <section className="py-16">
+          <div className="container max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -63,18 +113,41 @@ export default function MissionPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <div className="inline-block bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                {t('problem.badge')}
-              </div>
-              <h2 className="text-4xl font-display font-bold text-foreground">
-                {t('problem.title')}
+              <h2 className="text-3xl font-display font-bold text-foreground mb-4">
+                {isItalian ? 'Collegare Formazione e Lavoro' : 'Bridging Education and Work'}
               </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                {isItalian
+                  ? 'Il passaggio dagli studi alla carriera dovrebbe valorizzare le competenze reali. InTransparency rende questo percorso più trasparente per tutti.'
+                  : 'The transition from education to career should reward real skills. InTransparency makes this journey more transparent for everyone.'}
+              </p>
             </motion.div>
 
-            {/* Stats Grid */}
-            <div className="grid md:grid-cols-3 gap-6 mb-16">
-              {[0, 1, 2].map((i) => {
-                const Icon = statIcons[i]
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              {[
+                {
+                  icon: GraduationCap,
+                  title: isItalian ? 'Per gli Studenti' : 'For Students',
+                  text: isItalian
+                    ? 'Portfolio verificati che mostrano ciò che sai fare davvero, non solo dove hai studiato.'
+                    : 'Verified portfolios that showcase what you can actually do, not just where you studied.',
+                },
+                {
+                  icon: Building2,
+                  title: isItalian ? 'Per le Istituzioni' : 'For Institutions',
+                  text: isItalian
+                    ? 'Strumenti gratuiti per verificare competenze, collegare studenti alle aziende e tracciare i risultati.'
+                    : 'Free tools to verify skills, connect students to employers, and track placement outcomes.',
+                },
+                {
+                  icon: Briefcase,
+                  title: isItalian ? 'Per le Aziende' : 'For Companies',
+                  text: isItalian
+                    ? 'Accesso a talenti con competenze verificate dalle istituzioni. Assumi con fiducia.'
+                    : 'Access talent with institution-verified skills. Hire with confidence.',
+                },
+              ].map((item, i) => {
+                const Icon = item.icon
                 return (
                   <motion.div
                     key={i}
@@ -83,44 +156,24 @@ export default function MissionPage() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
                   >
-                    <Card className="text-center h-full">
-                      <CardContent className="p-8">
-                        <div className={`inline-flex p-3 rounded-xl ${statBgs[i]} mb-4`}>
-                          <Icon className={`h-6 w-6 ${statColors[i]}`} />
+                    <Card className="h-full text-center">
+                      <CardContent className="p-6">
+                        <div className="inline-flex p-3 rounded-xl bg-primary/10 mb-4">
+                          <Icon className="h-6 w-6 text-primary" />
                         </div>
-                        <div className="text-4xl font-bold text-gray-900 mb-2">
-                          {t(`problem.stats.${i}.value`)}
-                        </div>
-                        <div className="text-gray-600">
-                          {t(`problem.stats.${i}.label`)}
-                        </div>
+                        <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
+                        <p className="text-sm text-muted-foreground">{item.text}</p>
                       </CardContent>
                     </Card>
                   </motion.div>
                 )
               })}
             </div>
-
-            {/* Problem Description */}
-            <div className="max-w-3xl mx-auto space-y-6">
-              {[0, 1, 2].map((i) => (
-                <motion.p
-                  key={i}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="text-lg text-gray-700 leading-relaxed"
-                >
-                  {t(`problem.paragraphs.${i}`)}
-                </motion.p>
-              ))}
-            </div>
           </div>
         </section>
 
-        {/* Our Position */}
-        <section className="py-20 hero-bg">
+        {/* Our Vision */}
+        <section className="py-16 bg-muted/30">
           <div className="container max-w-5xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -132,12 +185,12 @@ export default function MissionPage() {
               <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 {t('position.badge')}
               </div>
-              <h2 className="text-4xl font-display font-bold text-foreground">
+              <h2 className="text-3xl font-display font-bold text-foreground">
                 {t('position.title')}
               </h2>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-6">
               {[0, 1, 2, 3].map((i) => {
                 const Icon = positionIcons[i]
                 return (
@@ -148,15 +201,15 @@ export default function MissionPage() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
                   >
-                    <Card className="h-full hover:shadow-lg transition-shadow">
-                      <CardContent className="p-8">
-                        <div className={`inline-flex p-3 rounded-xl ${positionBgs[i]} mb-4`}>
-                          <Icon className={`h-6 w-6 ${positionColors[i]}`} />
+                    <Card className="h-full hover:shadow-md transition-shadow">
+                      <CardContent className="p-6">
+                        <div className="inline-flex p-3 rounded-xl bg-primary/10 mb-4">
+                          <Icon className="h-6 w-6 text-primary" />
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        <h3 className="text-lg font-semibold text-foreground mb-2">
                           {t(`position.points.${i}.title`)}
                         </h3>
-                        <p className="text-gray-700 leading-relaxed">
+                        <p className="text-sm text-muted-foreground leading-relaxed">
                           {t(`position.points.${i}.description`)}
                         </p>
                       </CardContent>
@@ -169,7 +222,7 @@ export default function MissionPage() {
         </section>
 
         {/* Our Values */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <section className="py-16">
           <div className="container max-w-5xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -178,33 +231,33 @@ export default function MissionPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-display font-bold text-foreground">
+              <h2 className="text-3xl font-display font-bold text-foreground">
                 {t('values.title')}
               </h2>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-6">
               {[0, 1, 2, 3].map((i) => {
                 const Icon = valueIcons[i]
                 return (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
                   >
-                    <Card className="bg-gradient-to-br from-white to-gray-50 h-full hover:shadow-lg transition-shadow">
-                      <CardContent className="p-8">
+                    <Card className="h-full">
+                      <CardContent className="p-6">
                         <div className="flex items-start gap-4">
                           <div className="inline-flex p-3 rounded-xl bg-primary/10 flex-shrink-0">
-                            <Icon className="h-6 w-6 text-primary" />
+                            <Icon className="h-5 w-5 text-primary" />
                           </div>
                           <div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">
+                            <h3 className="font-semibold text-foreground mb-2">
                               {t(`values.items.${i}.title`)}
                             </h3>
-                            <p className="text-gray-700 leading-relaxed">
+                            <p className="text-sm text-muted-foreground leading-relaxed">
                               {t(`values.items.${i}.description`)}
                             </p>
                           </div>
@@ -219,7 +272,7 @@ export default function MissionPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 hero-bg">
+        <section className="py-16">
           <div className="container max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -228,15 +281,15 @@ export default function MissionPage() {
               transition={{ duration: 0.6 }}
             >
               <Card className="bg-primary text-white">
-                <CardContent className="p-12 text-center">
+                <CardContent className="p-10 text-center">
                   <h2 className="text-3xl font-display font-bold mb-4">
                     {t('cta.title')}
                   </h2>
-                  <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                  <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
                     {t('cta.subtitle')}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100" asChild>
+                    <Button size="lg" className="bg-white text-foreground hover:bg-white/90" asChild>
                       <Link href="/auth/register">{t('cta.primaryCTA')}</Link>
                     </Button>
                     <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>

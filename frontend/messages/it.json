@@ -4336,9 +4336,9 @@
   "mission": {
     "hero": {
       "badge": "La Nostra Missione",
-      "title": "Stage: Trampolino o Trappola",
-      "titleHighlight": "per i Giovani?",
-      "description": "Il passaggio dal mondo accademico a quello professionale dovrebbe valorizzare le competenze reali. InTransparency nasce per rendere questo percorso più trasparente, equo e basato sul merito."
+      "title": "Rendere il Percorso dalla Formazione al Lavoro",
+      "titleHighlight": "Più Trasparente",
+      "description": "Crediamo che il talento debba essere riconosciuto attraverso competenze reali e verificate. InTransparency collega studenti, istituzioni e aziende in un marketplace trasparente dove tutti vincono."
     },
     "problem": {
       "badge": "Il Contesto",
@@ -4399,7 +4399,7 @@
     },
     "cta": {
       "title": "Costruiamo Insieme il Futuro",
-      "subtitle": "Aiutaci a creare un mondo dove il talento è riconosciuto, le competenze sono verificate e ogni giovane ha l'opportunità di farsi notare.",
+      "subtitle": "Unisciti a una community in crescita dove il talento è riconosciuto, le competenze sono verificate e le giuste connessioni avvengono naturalmente.",
       "primaryCTA": "Inizia Ora",
       "secondaryCTA": "Scopri Come Funziona"
     }

@@ -63,7 +63,7 @@ export function Header() {
       {/* Secondary segment bar */}
       <div className="bg-foreground/95 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-9">
+          <div className="flex items-center justify-between h-8">
             <div className="flex items-center gap-1">
               {segments.map((seg) => {
                 const Icon = seg.icon
@@ -96,7 +96,7 @@ export function Header() {
 
       {/* Primary nav */}
       <nav
-        className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 bg-background/80 backdrop-blur-md border-b border-border/50"
+        className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-1.5 bg-background/80 backdrop-blur-md border-b border-border/50"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
@@ -106,7 +106,7 @@ export function Header() {
               alt="InTransparency Logo"
               width={340}
               height={438}
-              className="h-[50px] w-auto"
+              className="h-[40px] w-auto"
               priority
             />
           </Link>

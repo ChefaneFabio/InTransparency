@@ -4294,9 +4294,9 @@
   "mission": {
     "hero": {
       "badge": "Our Mission",
-      "title": "Internships: Springboard or Trap",
-      "titleHighlight": "for Young People?",
-      "description": "The transition from education to career should reward real skills. InTransparency exists to make this journey more transparent, fair, and merit-based."
+      "title": "Making the Path from Education to Career",
+      "titleHighlight": "More Transparent",
+      "description": "We believe that talent should be recognized through real, verified skills. InTransparency connects students, institutions, and companies in a transparent marketplace where everyone wins."
     },
     "problem": {
       "badge": "The Context",
@@ -4357,7 +4357,7 @@
     },
     "cta": {
       "title": "Let's Build the Future Together",
-      "subtitle": "Help us create a world where talent is recognized, skills are verified, and every young person has the opportunity to be noticed.",
+      "subtitle": "Join a growing community where talent is recognized, skills are verified, and the right connections happen naturally.",
       "primaryCTA": "Get Started",
       "secondaryCTA": "Learn How It Works"
     }
