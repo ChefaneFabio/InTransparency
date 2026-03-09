@@ -2802,7 +2802,7 @@
     "founding": {
       "badge": "Limitato — 10 posti",
       "title": "Programma Partner Fondatori",
-      "subtitle": "Siamo in fase pilota con l'Università di Bergamo. Unisciti come Partner Fondatore e ottieni accesso gratuito illimitato ai laureati verificati mentre costruiamo massa critica — in cambio del tuo feedback e una testimonianza.",
+      "subtitle": "Pilota con Università di Bergamo. Accesso gratuito illimitato ai laureati verificati — chiediamo solo feedback.",
       "features": {
         "0": "Contatti illimitati gratuiti durante la fase pilota (Q4 2025 – Q1 2026)",
         "1": "Sconto permanente del 50% sui crediti dopo la fine del pilota",
@@ -2924,27 +2924,27 @@
       "questions": {
         "0": {
           "q": "Come creano profili gli studenti?",
-          "a": "Due modi: (1) Se la tua istituzione è partner, inviamo un'email di invito. Gli studenti cliccano per acconsentire e il loro profilo viene creato dai dati istituzionali verificati. (2) Se indipendenti, gli studenti caricano progetti + selezionano corsi, e noi li verifichiamo per creare il loro profilo completo. Entrambi i modi: 100% gratis, basato su consenso, < 5 minuti."
+          "a": "Le istituzioni partner inviano inviti; gli studenti acconsentono e ottengono profili automatici. Studenti indipendenti caricano progetti. Tutto gratis, meno di 5 minuti."
         },
         "1": {
           "q": "Il marketplace è davvero gratis per le istituzioni?",
-          "a": "Sì! Il marketplace core (verifica, scoperta, matching, analytics) è 100% gratis per sempre. Le istituzioni forniscono talenti, noi gestiamo tutto il resto: creazione profili, ricerca aziende, tracking placement. Zero costi vs AlmaLaurea €2.500/anno. Paghi solo per funzionalità enterprise opzionali (API, white-label)."
+          "a": "Sì. Verifica, scoperta, matching, analytics — tutto gratis per sempre. Si paga solo per add-on enterprise opzionali."
         },
         "2": {
           "q": "Le istituzioni possono aggiungere strumenti Career Day o widget brandizzati?",
-          "a": "Sì! Add-on Premium Embed opzionale (€500/anno) include piattaforma Career Day (codici QR, prenotazione colloqui) e widget sito web brandizzati. Ma il marketplace core è sempre gratis. La maggior parte delle istituzioni inizia con tier gratuito, poi aggiunge funzionalità premium se necessario. Contatta le vendite per dettagli."
+          "a": "Premium Embed opzionale (€500/anno) aggiunge strumenti Career Day e widget brandizzati. Il marketplace core resta gratuito."
         },
         "3": {
           "q": "Come è meglio di AlmaLaurea?",
-          "a": "AlmaLaurea fa pagare alle istituzioni €2.500/anno e raccoglie solo CV auto-dichiarati. InTransparency è GRATIS per sempre e verifica competenze tramite AI + progetti reali. Inoltre TUTTI gli studenti ottengono visibilità (non solo quelli che aggiornano il CV), e le aziende ottengono dati migliori (portfolio verificati vs auto-dichiarati)."
+          "a": "AlmaLaurea: €2.500/anno, CV auto-dichiarati. InTransparency: gratis, competenze verificate da AI, TUTTI gli studenti ottengono visibilità."
         },
         "4": {
           "q": "TUTTI gli studenti ottengono visibilità o solo i top performer?",
-          "a": "TUTTI gli studenti. I headhunter tradizionali contattano solo il top 5%. Noi diamo a OGNI studente un profilo che le aziende possono scoprire. Questo migliora drasticamente i tassi di placement dell'intera classe laureanda, non solo le stelle."
+          "a": "TUTTI gli studenti ottengono un profilo scopribile — non solo il top 5%. Tassi di placement migliori per l'intera classe."
         },
         "5": {
           "q": "Come funziona il pricing per aziende?",
-          "a": "Le aziende sfogliano l'intero database gratis - ricerca illimitata, filtri e ricerca candidati AI. Paghi solo €10 quando decidi di contattare un candidato specifico. Nessun abbonamento, nessun canone mensile, i crediti non scadono mai."
+          "a": "Sfoglia gratis. Paghi €10 solo quando contatti un candidato. Nessun abbonamento, i crediti non scadono mai."
         }
       }
     },

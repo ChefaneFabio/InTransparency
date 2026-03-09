@@ -8,6 +8,7 @@ import { BookingSection } from '@/components/sections/BookingSection'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { PWAInstallBanner } from '@/components/ui/pwa-install-banner'
+import { FloatingTransparenty } from '@/components/mascot/FloatingTransparenty'
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       </main>
       <Footer />
       <PWAInstallBanner />
+      <FloatingTransparenty />
     </div>
   )
 }

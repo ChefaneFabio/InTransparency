@@ -2762,7 +2762,7 @@
     "founding": {
       "badge": "Limited — 10 spots",
       "title": "Founding Partner Program",
-      "subtitle": "We're in pilot with Università di Bergamo. Join as a Founding Partner and get free unlimited access to verified graduates while we build critical mass — in exchange for your feedback and a testimonial.",
+      "subtitle": "Pilot with Università di Bergamo. Free unlimited access to verified graduates — we just ask for feedback.",
       "features": {
         "0": "Unlimited free contacts during the pilot phase (Q4 2025 – Q1 2026)",
         "1": "Permanent 50% discount on credits after the pilot ends",
@@ -2884,27 +2884,27 @@
       "questions": {
         "0": {
           "q": "How do students create profiles?",
-          "a": "Two ways: (1) If your institution is a partner, we send an email invitation. Students click to consent and their profile is created from verified institution data. (2) If independent, students upload projects + select courses, and we verify them to create their complete profile. Both ways: 100% free, consent-based, < 5 minutes."
+          "a": "Partner institutions send invites; students consent and get auto-profiles. Independent students upload projects. Both free, under 5 minutes."
         },
         "1": {
           "q": "Is the marketplace really free for institutions?",
-          "a": "Yes! The core marketplace (verification, discovery, matching, analytics) is 100% free forever. Institutions supply talent, we handle everything else: profile creation, company search, placement tracking. Zero cost vs AlmaLaurea €2,500/year. You only pay for optional enterprise features (API, white-label)."
+          "a": "Yes. Verification, discovery, matching, analytics — all free forever. You only pay for optional enterprise add-ons."
         },
         "2": {
           "q": "Can institutions add Career Day tools or branded widgets?",
-          "a": "Yes! Optional Premium Embed add-on (€500/year) includes Career Day platform (QR codes, interview booking) and branded website widgets. But the core marketplace is always free. Most institutions start with free tier, then add premium features if needed. Contact sales for details."
+          "a": "Optional Premium Embed (€500/year) adds Career Day tools and branded widgets. Core marketplace stays free."
         },
         "3": {
           "q": "How is this better than AlmaLaurea?",
-          "a": "AlmaLaurea charges universities €2,500/year and just collects self-reported CVs. InTransparency is FREE forever and verifies skills via AI + actual projects. Plus ALL students get exposure (not just those who update their CV), and companies get better data (verified portfolios vs self-reported)."
+          "a": "AlmaLaurea: €2,500/year, self-reported CVs. InTransparency: free, AI-verified skills, ALL students get exposure."
         },
         "4": {
           "q": "Do ALL students get exposure or just top performers?",
-          "a": "ALL students. Traditional headhunters only contact the top 5%. We give EVERY student a profile that companies can discover. This dramatically improves placement rates across your entire graduating class, not just the stars."
+          "a": "ALL students get a discoverable profile — not just top 5%. Better placement rates across your entire class."
         },
         "5": {
           "q": "How does company pricing work?",
-          "a": "Companies browse the entire database for free - unlimited searching, filtering, and AI candidate search. You only pay €10 when you decide to contact a specific candidate. No subscriptions, no monthly fees, credits never expire."
+          "a": "Browse free. Pay €10 only when you contact a candidate. No subscriptions, credits never expire."
         }
       }
     },
