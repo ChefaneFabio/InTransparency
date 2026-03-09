@@ -59,7 +59,7 @@ const categoryColors: Record<string, string> = {
   profile: 'bg-primary/10 text-primary',
   projects: 'bg-primary/10 text-primary',
   engagement: 'bg-primary/10 text-primary',
-  career: 'bg-secondary/10 text-primary',
+  career: 'bg-primary/10 text-primary',
 }
 
 const categoryLabels: Record<string, string> = {

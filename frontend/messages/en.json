@@ -12,7 +12,8 @@
     "getStarted": "Get Started",
     "dashboard": "Dashboard",
     "signOut": "Sign Out",
-    "mission": "Mission"
+    "mission": "Mission",
+    "forSchools": "For Schools"
   },
   "dashboardNav": {
     "home": "Home",
@@ -155,7 +156,7 @@
           },
           {
             "title": "Show Verified Grades, Not Claims",
-            "description": "30/30 thesis? Your university stamps it. Companies see authentic proof directly from your institution - no resume lies"
+            "description": "30/30 thesis? Your institution stamps it. Companies see authentic proof directly from your institution - no resume lies"
           },
           {
             "title": "Companies Contact You",
@@ -253,7 +254,7 @@
       },
       "solution": "The InTransparency Solution",
       "solutionPoints": {
-        "verified": "University-verified projects (30/30 in ML thesis)",
+        "verified": "Institution-verified projects (30/30 in ML thesis)",
         "realWork": "See real work, not claims",
         "aiAnalysis": "AI analysis of complex projects",
         "noApplications": "Zero applications → Companies find you",
@@ -271,7 +272,7 @@
       },
       "step2": {
         "title": "Institution Verification",
-        "description": "Your university authenticates via our dashboard"
+        "description": "Your institution authenticates via our dashboard"
       },
       "step3": {
         "title": "Companies Discover You",
@@ -294,7 +295,7 @@
       "badge": "Key Features",
       "title": "100% Verified Skills, Not Resume Claims",
       "verification": {
-        "title": "University Verification",
+        "title": "Institution Verification",
         "description": "Every skill traceable to institution"
       },
       "aiAnalysis": {
@@ -321,15 +322,15 @@
     "cta": {
       "title": "Get started with",
       "titleHighlight": "InTransparency",
-      "subtitle": "Whether you're a student, university, or company — there's a path built for you.",
+      "subtitle": "Whether you're a student, institution, or company — there's a path built for you.",
       "segments": {
         "students": {
           "title": "For Students",
-          "description": "Build a verified portfolio from your academic projects, connect with your university, and get discovered by companies looking for your skills.",
+          "description": "Build a verified portfolio from your academic projects, connect with your institution, and get discovered by companies looking for your skills.",
           "cta": "Get Started Free"
         },
         "universities": {
-          "title": "For Universities",
+          "title": "For Institutions",
           "description": "Verify student projects, track placement outcomes, and connect your students directly to employers. Free for partner institutions.",
           "cta": "Partner With Us"
         },
@@ -367,7 +368,7 @@
           }
         },
         "universities": {
-          "title": "For Universities",
+          "title": "For Institutions",
           "benefits": {
             "0": "Verify student projects and achievements",
             "1": "Track placement outcomes with analytics",
@@ -388,14 +389,14 @@
     },
     "booking": {
       "title": "Book a Demo",
-      "subtitle": "See how InTransparency can work for your university or company. Schedule a free call with our team.",
+      "subtitle": "See how InTransparency can work for your institution or company. Schedule a free call with our team.",
       "cta": "Book a Meeting",
       "note": "Free, no obligation - 15 min call"
     },
     "howItWorksPage": {
       "title": "How",
       "titleHighlight": "InTransparency Works",
-      "subtitle": "From university project to verified portfolio to employer contact — in three steps",
+      "subtitle": "From academic project to verified portfolio to employer contact — in three steps",
       "pauseDemo": "Pause Demo",
       "playDemo": "Play Demo",
       "autoAdvancing": "Auto-advancing every 4 seconds",
@@ -403,9 +404,9 @@
       "steps": [
         {
           "title": "Create Your Profile",
-          "description": "Two ways: University partner = automatic profile. Independent = upload projects + select courses for instant profile",
+          "description": "Two ways: Institution partner = automatic profile. Independent = upload projects + select courses for instant profile",
           "details": [
-            "University Integrated: Profile created automatically from university data",
+            "Institution Integrated: Profile created automatically from institution data",
             "Independent: Upload projects (code, docs, presentations) + select courses",
             "AI identifies courses and creates complete profile",
             "Both paths: Full platform access in < 5 minutes"
@@ -490,7 +491,7 @@
   },
   "blog": {
     "title": "Blog",
-    "subtitle": "Insights on verified credentials, career development, and the future of university-to-work transitions.",
+    "subtitle": "Insights on verified credentials, career development, and the future of institution-to-work transitions.",
     "featured": "Featured",
     "readMore": "Read more",
     "backToBlog": "Back to blog",
@@ -510,7 +511,7 @@
         "badge": "100% Free",
         "features": {
           "uploads": "Unlimited verified project uploads",
-          "verification": "University verification",
+          "verification": "Institution verification",
           "portfolio": "Public portfolio page",
           "discovery": "Company discovery",
           "analytics": "Basic profile analytics",
@@ -627,7 +628,7 @@
     },
     "section": {
       "title": "Let's Start a Conversation",
-      "subtitle": "Whether you're a student, recruiter, or university, we're excited to hear from you and help you succeed."
+      "subtitle": "Whether you're a student, recruiter, or institution, we're excited to hear from you and help you succeed."
     },
     "methods": {
       "email": {
@@ -659,13 +660,13 @@
       "title": "Send us a Message",
       "fullName": "Full Name",
       "emailAddress": "Email Address",
-      "companyUniversity": "Company/University",
+      "companyUniversity": "Company/Institution",
       "role": "Role",
       "roleOptions": {
         "select": "Select your role",
         "student": "Student",
         "recruiter": "Recruiter",
-        "universityAdmin": "University Admin",
+        "universityAdmin": "Institution Admin",
         "professor": "Professor",
         "other": "Other"
       },
@@ -779,7 +780,7 @@
         "projectsCount": "15",
         "verificationScore": "100",
         "quote": "InTransparency completely changed my job search. Instead of sending hundreds of applications, recruiters found ME through my verified projects. I had 3 job offers within 2 weeks!",
-        "story": "Marco uploaded his university-verified cloud computing projects to InTransparency. Within days, AWS recruiters discovered his portfolio through AI search and reached out directly. He accepted an offer without ever submitting a traditional application."
+        "story": "Marco uploaded his institution-verified cloud computing projects to InTransparency. Within days, AWS recruiters discovered his portfolio through AI search and reached out directly. He accepted an offer without ever submitting a traditional application."
       },
       "1": {
         "name": "Sofia Romano",
@@ -793,7 +794,7 @@
         "timeToHire": "3 weeks",
         "projectsCount": "10",
         "verificationScore": "95",
-        "quote": "The verification system was a game-changer. Recruiters could see my actual work from university courses, not just claims on a CV. It gave me so much credibility.",
+        "quote": "The verification system was a game-changer. Recruiters could see my actual work from academic courses, not just claims on a CV. It gave me so much credibility.",
         "story": "Sofia showcased her machine learning projects from her Master's thesis. Google recruiters used InTransparency's course-level search to find students with specific ML experience. Sofia's verified projects stood out, leading to interviews and an offer."
       },
       "2": {
@@ -809,7 +810,7 @@
         "projectsCount": "12",
         "verificationScore": "100",
         "quote": "I got hired based on my final year project! The recruiter saw it on InTransparency, loved the technical depth, and fast-tracked my interview. I started working just 2 weeks after graduating.",
-        "story": "Luca's university-verified distributed systems project caught Microsoft's attention. The detailed project documentation and 30/30 grade gave recruiters confidence in his abilities. He received an offer before most of his classmates even started applying."
+        "story": "Luca's institution-verified distributed systems project caught Microsoft's attention. The detailed project documentation and 30/30 grade gave recruiters confidence in his abilities. He received an offer before most of his classmates even started applying."
       }
     },
     "labels": {
@@ -826,7 +827,7 @@
     },
     "whyItWorks": {
       "0": {
-        "title": "University Verification",
+        "title": "Institution Verification",
         "description": "Your projects are verified by your institution, giving recruiters confidence in your work without lengthy screening."
       },
       "1": {
@@ -851,7 +852,7 @@
       "badge": "Discover Verified Talent",
       "title": "Explore Student Portfolios",
       "subtitle": "Search student portfolios with verified skills. Projects authenticated by institutions.",
-      "searchPlaceholder": "Search by name, skill, or university...",
+      "searchPlaceholder": "Search by name, skill, or institution...",
       "stats": {
         "students": "Students",
         "verified": "Verified",
@@ -863,8 +864,8 @@
       "clear": "Clear",
       "fieldOfStudy": "Field of Study",
       "allFields": "All Fields",
-      "university": "University",
-      "allUniversities": "All Universities",
+      "university": "Institution",
+      "allUniversities": "All Institutions",
       "location": "Location",
       "allLocations": "All Locations",
       "graduationYear": "Graduation Year",
@@ -907,8 +908,8 @@
       "title": "No students found",
       "description": "Try adjusting your filters or search query",
       "clearFilters": "Clear All Filters",
-      "pilotTitle": "We're Onboarding Our First Universities",
-      "pilotDescription": "InTransparency is currently in pilot with Università di Bergamo. Verified student profiles are being added as universities join the platform.",
+      "pilotTitle": "We're Onboarding Our First Institutions",
+      "pilotDescription": "InTransparency is currently in pilot with Università di Bergamo. Verified student profiles are being added as institutions join the platform.",
       "pilotCta": "Want to see what the platform can do? Try our AI-powered search demo.",
       "tryDemo": "Try the AI Search Demo",
       "foundingPartner": "Become a Founding Partner"
@@ -972,7 +973,7 @@
           "benefits": { "0": "Search verified profiles", "1": "Pay per contact", "2": "ATS integration", "3": "Analytics dashboard" }
         },
         "university": {
-          "name": "University / ITS",
+          "name": "Institution / ITS",
           "description": "Verify student projects and track placements",
           "benefits": { "0": "Freemium model", "1": "Student analytics", "2": "Placement tracking", "3": "Company visibility" }
         },
@@ -1007,7 +1008,7 @@
       "benefits": {
         "0": { "title": "Get Discovered", "description": "500+ companies actively searching for talent like you" },
         "1": { "title": "Companies Message You", "description": "Stop applying endlessly - let opportunities come to you" },
-        "2": { "title": "Verified Portfolio", "description": "University-backed projects that employers trust" },
+        "2": { "title": "Verified Portfolio", "description": "Institution-backed projects that employers trust" },
         "3": { "title": "Real Challenges", "description": "Work on company projects as part of your coursework" }
       },
       "createTitle": "Create Your Account",
@@ -1028,10 +1029,10 @@
       "submitButton": "Start Hiring - Free to Browse",
       "submittingButton": "Creating Account...",
       "heroTitle": "Hire Verified Talent, Not Resumes",
-      "heroSubtitle": "Access university-verified graduates. Every skill is traceable to actual coursework and projects.",
+      "heroSubtitle": "Access institution-verified graduates. Every skill is traceable to actual coursework and projects.",
       "browseBadge": "Browse Free, Pay Per Contact",
       "benefits": {
-        "0": { "title": "Verified Skills Only", "description": "Every skill backed by university projects" },
+        "0": { "title": "Verified Skills Only", "description": "Every skill backed by institutional projects" },
         "1": { "title": "AI-Powered Matching", "description": "Match candidates based on verified skills" },
         "2": { "title": "Faster Screening", "description": "See verified work samples directly" },
         "3": { "title": "Pay Per Contact", "description": "Browse profiles free. Pay only when you connect." }
@@ -1051,7 +1052,7 @@
         "postJobsCost": "Free"
       },
       "mobileBenefitsTitle": "Why companies choose us:",
-      "mobileBenefits": { "0": "Browse candidates free", "1": "University-verified skills", "2": "Pay per contact" },
+      "mobileBenefits": { "0": "Browse candidates free", "1": "Institution-verified skills", "2": "Pay per contact" },
       "noCreditCard": "No credit card required. Browse candidates immediately.",
       "passwordPlaceholder": "At least 8 characters",
       "alreadyHaveAccount": "Already have an account?",
@@ -1105,7 +1106,7 @@
       "unexpectedError": "An unexpected error occurred. Please try again.",
       "roles": {
         "student": "Student",
-        "university": "University",
+        "university": "Institution",
         "recruiter": "Company"
       }
     },
@@ -1175,7 +1176,7 @@
         "features": {
           "0": "Institution-verified accuracy",
           "1": "Transparent explanations",
-          "2": "\"High fit: Python thesis verified by university\"",
+          "2": "\"High fit: Python thesis verified by institution\"",
           "3": "Bidirectional requirements"
         },
         "comparison": "vs Manatal: Opaque resume parsing"
@@ -1518,7 +1519,7 @@
       "subtitle": "See exactly what each party can and cannot access",
       "stakeholders": {
         "student": "Student",
-        "university": "University",
+        "university": "Institution",
         "company": "Company"
       },
       "student": {
@@ -1532,21 +1533,21 @@
             "2": "Delete your account anytime",
             "3": "Control profile visibility",
             "4": "Choose what companies see",
-            "5": "Revoke university verification"
+            "5": "Revoke institution verification"
           }
         },
         "dataShared": {
           "title": "Data Sharing",
           "items": {
             "0": {
-              "with": "University",
+              "with": "Institution",
               "data": "Academic records, courses, grades, projects",
               "purpose": "Verification only",
               "consent": "Required"
             },
             "1": {
               "with": "Companies (Before Unlock)",
-              "data": "Initials only (M.R.), university, courses, grades, skills",
+              "data": "Initials only (M.R.), institution, courses, grades, skills",
               "purpose": "Searchable profile",
               "consent": "Automatic when profile is public"
             },
@@ -1566,7 +1567,7 @@
         }
       },
       "university": {
-        "title": "University Data Access",
+        "title": "Institution Data Access",
         "description": "Limited access for verification purposes only.",
         "controls": {
           "title": "Access & Controls",
@@ -1586,11 +1587,11 @@
               "with": "Platform",
               "data": "Student enrollment status, course catalogs, grade verification",
               "purpose": "Platform operation",
-              "consent": "University agreement"
+              "consent": "Institution agreement"
             },
             "1": {
               "with": "Students",
-              "data": "Verification status, university branding",
+              "data": "Verification status, institution branding",
               "purpose": "Profile credibility",
               "consent": "Automatic"
             },
@@ -1649,7 +1650,7 @@
           "title": "1. Student Creates Profile",
           "items": {
             "0": "Student enters academic info voluntarily",
-            "1": "University verifies authenticity",
+            "1": "Institution verifies authenticity",
             "2": "Data encrypted at rest and in transit"
           }
         },
@@ -1657,7 +1658,7 @@
           "title": "2. Companies Browse",
           "items": {
             "0": "See initials only (e.g., \"M.R.\")",
-            "1": "See university, courses, grades",
+            "1": "See institution, courses, grades",
             "2": "Cannot see email, phone, full name"
           }
         },
@@ -2001,7 +2002,7 @@
     "exampleQueries": {
       "student": {
         "0": "Stage curriculare for computer science in Milan",
-        "1": "Tirocinio data science for my university degree",
+        "1": "Tirocinio data science for my degree",
         "2": "Entry-level frontend developer jobs in Milan"
       },
       "company": {
@@ -2036,12 +2037,12 @@
       "tryExample": "Try an example:",
       "student": "Student",
       "company": "Company",
-      "university": "University"
+      "university": "Institution"
     },
     "tabs": {
       "student": "Student",
       "company": "Company",
-      "university": "University"
+      "university": "Institution"
     }
   },
   "transparency": {
@@ -2239,7 +2240,7 @@
       "programs": {
         "referInstitution": {
           "title": "Refer Your Institution",
-          "description": "Invite your university/ITS to verify student profiles",
+          "description": "Invite your institution/ITS to verify student profiles",
           "reward": "10% of first-year Premium fees",
           "details": {
             "0": "Your institution signs up and verifies students",
@@ -2267,7 +2268,7 @@
         },
         "campusAmbassador": {
           "title": "Campus Ambassador Program",
-          "description": "Become official ambassador for your university",
+          "description": "Become official ambassador for your institution",
           "reward": "€50/month + exclusive perks",
           "details": {
             "0": "Host info sessions and promote InTransparency on campus",
@@ -2486,7 +2487,7 @@
       "story": {
         "title": "How We Started",
         "paragraphs": {
-          "0": "InTransparency was born from frustration. Our founders watched talented students with incredible university projects get rejected from jobs because their resumes didn't list \"2+ years experience\" or a FAANG internship.",
+          "0": "InTransparency was born from frustration. Our founders watched talented students with incredible institutional projects get rejected from jobs because their resumes didn't list \"2+ years experience\" or a FAANG internship.",
           "1": "Meanwhile, companies complained about hiring candidates who looked great on paper but couldn't code. The disconnect was obvious: resumes reward good storytelling, not good building.",
           "2": "We asked a simple question: What if students could show their work instead of just listing it? What if recruiters could see verified projects with complete skill analysis (hard + soft), and institution endorsements?",
           "3": "InTransparency was our answer."
@@ -2595,7 +2596,7 @@
           "cta": "Get Started",
           "features": {
             "0": "Unlimited project uploads",
-            "1": "University verification",
+            "1": "Institution verification",
             "2": "Public portfolio page",
             "3": "Company discovery",
             "4": "Profile analytics"
@@ -2651,7 +2652,7 @@
       "questions": {
         "0": {
           "q": "How do students create profiles?",
-          "a": "Two ways: (1) If your university is a partner, we send an email invitation. Students click to consent and their profile is created from verified university data. (2) If independent, students upload projects + select courses, and we verify them to create their complete profile. Both ways: 100% free, consent-based, < 5 minutes."
+          "a": "Two ways: (1) If your institution is a partner, we send an email invitation. Students click to consent and their profile is created from verified institution data. (2) If independent, students upload projects + select courses, and we verify them to create their complete profile. Both ways: 100% free, consent-based, < 5 minutes."
         },
         "1": {
           "q": "Is the marketplace really free for institutions?",
@@ -2699,7 +2700,7 @@
         "institution": "Institution *",
         "institutionPlaceholder": "e.g., Politecnico di Milano",
         "verificationEmail": "Institutional Email (.edu) *",
-        "verificationEmailPlaceholder": "your.name@university.edu",
+        "verificationEmailPlaceholder": "your.name@institution.edu",
         "emailHelp": "We'll send a verification link to this email. Must be a .edu address.",
         "anonymous": "Make my story anonymous (show as \"{degree} Graduate\")",
         "emailValidation": "Please use your institutional (.edu) email address"
@@ -2890,7 +2891,7 @@
       "benefits": {
         "0": "Validated by industrial-organizational psychologists",
         "1": "Scientifically-backed assessments",
-        "2": "Percentile rankings vs. university peer group",
+        "2": "Percentile rankings vs. institution peer group",
         "3": "Shareable certificate with unique verification code",
         "4": "Integrated into your InTransparency profile",
         "5": "Helps recruiters find you for culture fit",
@@ -2970,7 +2971,7 @@
         "lastName": "Last Name *",
         "lastNamePlaceholder": "Doe",
         "email": "Email Address *",
-        "emailPlaceholder": "john.doe@university.edu",
+        "emailPlaceholder": "john.doe@institution.edu",
         "emailHelp": "We'll send you early access when certification launches",
         "university": "University (Optional)",
         "universityPlaceholder": "e.g., Politecnico di Milano",
@@ -3010,7 +3011,7 @@
     "hero": {
       "badge": "Featured Talent",
       "title": "Discover Verified Student Portfolios",
-      "subtitle": "Browse university-verified projects from top students. All portfolios are authenticated by institutional systems.",
+      "subtitle": "Browse institution-verified projects from top students. All portfolios are authenticated by institutional systems.",
       "createPortfolio": "Create Your Portfolio",
       "browseAsRecruiter": "Browse as Recruiter"
     },
@@ -3033,7 +3034,7 @@
         "verified": "Verified",
         "skills": "Skills"
       },
-      "verificationBadge": "100% University Verified",
+      "verificationBadge": "100% Institution Verified",
       "viewPortfolio": "View Portfolio"
     },
     "cta": {
@@ -3137,7 +3138,7 @@
       "badge": "For Career Services Directors",
       "title": "Replace surveys with real-time proof",
       "subtitle": "InTransparency gives career services directors live placement analytics, cross-border grade normalization, and verified student profiles — so you can prove impact instead of estimating it.",
-      "registerCta": "Register as University",
+      "registerCta": "Register as Institution",
       "demoCta": "Book a Demo",
       "stats": {
         "students": "Student profiles",
@@ -3179,7 +3180,7 @@
       "startCup": {
         "title": "Start Cup Bergamo 2024",
         "subtitle": "Competition Finalist",
-        "description": "InTransparency was selected as a finalist at Start Cup Bergamo, Italy's university startup competition, for innovation in graduate employability."
+        "description": "InTransparency was selected as a finalist at Start Cup Bergamo, Italy's startup competition, for innovation in graduate employability."
       }
     },
     "cta": {
@@ -3431,7 +3432,7 @@
           "description": "Link projects to courses, professors, and grades—show where you learned it"
         },
         "university": {
-          "title": "3. University Verified",
+          "title": "3. Institution Verified",
           "description": "Professors and universities confirm your work is real—highest credibility possible"
         }
       },
@@ -3488,7 +3489,7 @@
       "title": "5 Features LinkedIn Doesn't Have",
       "features": {
         "universityVerified": {
-          "title": "University-Verified Data",
+          "title": "Institution-Verified Data",
           "description": "Institution-verified grades and courses"
         },
         "aiAnalysis": {
@@ -3501,7 +3502,7 @@
         },
         "academicFilters": {
           "title": "Academic Filters",
-          "description": "Specific course + grade + university filters"
+          "description": "Specific course + grade + institution filters"
         },
         "portfolioCoverage": {
           "title": "100% Portfolio Coverage",
@@ -3522,7 +3523,7 @@
           "description": "See actual projects + grades, not claims"
         },
         "universityFilters": {
-          "title": "University/Course Filters",
+          "title": "Institution/Course Filters",
           "description": "Polimi CS 28/30 vs generic \"Python\""
         },
         "smbBudget": {
@@ -3539,7 +3540,7 @@
         },
         "italyEU": {
           "title": "Italy/EU Talent",
-          "description": "Deep university data coverage"
+          "description": "Deep institution data coverage"
         },
         "realProjects": {
           "title": "See Real Projects",
@@ -3606,9 +3607,9 @@
     }
   },
   "universityProfile": {
-    "loading": "Loading university...",
+    "loading": "Loading institution...",
     "error": {
-      "title": "Error Loading University",
+      "title": "Error Loading Institution",
       "tryAgain": "Try Again"
     },
     "header": {
@@ -3621,7 +3622,7 @@
       }
     },
     "overview": {
-      "title": "University Overview",
+      "title": "Institution Overview",
       "stats": {
         "totalStudents": "Total Students",
         "faculty": "Faculty",
@@ -3682,7 +3683,7 @@
     },
     "searchPlaceholders": {
       "student": "Search by job title, company, or keywords...",
-      "company": "Search by skills, major, or university...",
+      "company": "Search by skills, major, or institution...",
       "universityStudents": "Search your students by skills, courses, major...",
       "universityJobs": "Search job opportunities across Europe..."
     },
@@ -3936,7 +3937,7 @@
     "hero": {
       "badge": "Featured Talent",
       "title": "Discover Verified Student Portfolios",
-      "description": "Browse university-verified projects from top students. All portfolios are authenticated by institutional systems.",
+      "description": "Browse institution-verified projects from top students. All portfolios are authenticated by institutional systems.",
       "ctaStudent": "Create Your Portfolio",
       "ctaRecruiter": "Browse as Recruiter"
     },
@@ -3956,7 +3957,7 @@
       "projects": "Projects",
       "verified": "Verified",
       "skills": "Skills",
-      "fullyVerified": "100% University Verified",
+      "fullyVerified": "100% Institution Verified",
       "viewPortfolio": "View Portfolio"
     },
     "cta": {
@@ -4211,7 +4212,7 @@
       "bio": "Bio",
       "tagline": "Tagline",
       "portfolioUrl": "Portfolio URL",
-      "university": "University",
+      "university": "Institution",
       "degree": "Degree",
       "graduationYear": "Graduation Year",
       "gpa": "GPA"
@@ -4859,7 +4860,7 @@
       "description": "Copy these pre-written messages to share on your favorite platforms"
     },
     "shareMessages": {
-      "whatsapp": "Hey! I'm using InTransparency to showcase my verified university projects to top companies. Join me and build your professional portfolio too! {link}",
+      "whatsapp": "Hey! I'm using InTransparency to showcase my verified institutional projects to top companies. Join me and build your professional portfolio too! {link}",
       "linkedin": "Excited to be part of @InTransparency — a platform that verifies your academic projects and connects you directly with recruiters. If you're a student or recent graduate, check it out: {link}",
       "instagram": "Building my verified portfolio on InTransparency — where your real skills speak louder than a polished CV. Join me! Link in bio or: {link}",
       "email": "Hi! I wanted to share InTransparency with you — it's a platform where universities verify your projects and skills, making it easier for companies to find and hire you. Sign up here: {link}"

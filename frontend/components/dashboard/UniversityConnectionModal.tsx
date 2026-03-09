@@ -123,14 +123,14 @@ export function UniversityConnectionModal({ isOpen, onClose, onConnect }: Univer
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <School className="h-5 w-5 text-primary" />
-            {step === 'search' && 'Connetti la tua Università'}
+            {step === 'search' && 'Connetti la tua Istituzione'}
             {step === 'verify' && 'Verifica Email Istituzionale'}
             {step === 'success' && 'Connessione Completata!'}
           </DialogTitle>
           <DialogDescription>
-            {step === 'search' && 'Cerca e seleziona la tua università o ITS per sincronizzare voti e progetti'}
+            {step === 'search' && 'Cerca e seleziona la tua istituzione o ITS per sincronizzare voti e progetti'}
             {step === 'verify' && 'Inserisci la tua email istituzionale per verificare l\'appartenenza'}
-            {step === 'success' && 'La tua università è stata connessa con successo'}
+            {step === 'success' && 'La tua istituzione è stata connessa con successo'}
           </DialogDescription>
         </DialogHeader>
 
@@ -139,7 +139,7 @@ export function UniversityConnectionModal({ isOpen, onClose, onConnect }: Univer
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
-                placeholder="Cerca università o ITS..."
+                placeholder="Cerca istituzione o ITS..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10"
@@ -173,7 +173,7 @@ export function UniversityConnectionModal({ isOpen, onClose, onConnect }: Univer
                         <MapPin className="h-3 w-3" />
                         {inst.city}
                         <Badge variant="outline" className="text-xs">
-                          {inst.type === 'university' ? 'Università' : 'ITS'}
+                          {inst.type === 'university' ? 'Istituzione' : 'ITS'}
                         </Badge>
                       </div>
                     </div>
@@ -261,7 +261,7 @@ export function UniversityConnectionModal({ isOpen, onClose, onConnect }: Univer
               Connessione Completata!
             </h3>
             <p className="text-gray-600 mb-4">
-              La tua università è stata collegata. I tuoi voti e progetti verranno sincronizzati automaticamente.
+              La tua istituzione è stata collegata. I tuoi voti e progetti verranno sincronizzati automaticamente.
             </p>
             <Button onClick={handleClose} className="w-full">
               Chiudi

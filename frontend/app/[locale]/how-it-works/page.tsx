@@ -359,7 +359,7 @@ export default function HowItWorksPage() {
               </Card>
 
               {/* Matching Service */}
-              <Card className="border-2 border-secondary/20 hover:border-secondary/40 transition-all hover:shadow-lg">
+              <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
                 <CardHeader className="text-center">
                   <div className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <Target className="h-8 w-8 text-white" />

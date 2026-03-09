@@ -18,8 +18,8 @@
     --primary: 180 85% 25%;
     --primary-foreground: 35 100% 98%;
 
-    /* Warm amber accents - NOT purple! */
-    --secondary: 25 95% 53%;
+    /* Warm neutral for UI chrome (badges, secondary buttons) */
+    --secondary: 35 30% 90%;
     --secondary-foreground: 215 25% 12%;
 
     --muted: 35 40% 90%;

@@ -105,7 +105,7 @@ export function EnhancedProjectCard({
         {/* Featured Badge */}
         {project.featured && (
           <div className="absolute top-4 left-4">
-            <Badge className="bg-secondary text-white shadow-lg">
+            <Badge className="bg-primary/80 text-white shadow-lg">
               <Star className="w-3 h-3 mr-1" />
               Featured
             </Badge>

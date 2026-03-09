@@ -513,12 +513,12 @@ export default function FeaturesPage() {
               </Card>
 
               {/* Matching Service - PRIMARY */}
-              <Card className="border-2 border-secondary/30 hover:border-secondary/50 transition-all hover:shadow-xl">
+              <Card className="border-2 border-primary/30 hover:border-primary/50 transition-all hover:shadow-xl">
                 <CardHeader className="text-center pb-3">
                   <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
                     <Target className="h-8 w-8 text-white" />
                   </div>
-                  <Badge className="mb-2 bg-secondary text-white text-xs">PRIMARY SERVICE</Badge>
+                  <Badge className="mb-2 bg-primary/80 text-white text-xs">PRIMARY SERVICE</Badge>
                   <CardTitle className="text-lg">Matching Service</CardTitle>
                   <Badge variant="secondary" className="mt-2 text-xs">FREE for Students</Badge>
                 </CardHeader>

@@ -66,6 +66,7 @@ export function Footer() {
       { name: tNav('explorePortfolios'), href: '/explore' },
       { name: tNav('successStories'), href: '/success-stories' },
       { name: tNav('pricing'), href: '/pricing' },
+      { name: tNav('forSchools'), href: '/per-scuole-superiori' },
     ],
     company: [
       { name: tNav('about'), href: '/about' },

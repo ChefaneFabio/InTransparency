@@ -51,7 +51,7 @@ interface OnboardingData {
 }
 
 const steps = {
-  STUDENT: ['Profilo Base', 'Università', 'Competenze', 'Completa'],
+  STUDENT: ['Profilo Base', 'Istituzione', 'Competenze', 'Completa'],
   RECRUITER: ['Profilo Base', 'Azienda', 'Preferenze', 'Completa'],
   UNIVERSITY: ['Profilo Base', 'Istituzione', 'Dettagli', 'Completa']
 }
@@ -266,7 +266,7 @@ export default function OnboardingPage() {
 
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="university">Università / ITS</Label>
+                    <Label htmlFor="university">Istituzione / ITS</Label>
                     <Input
                       id="university"
                       value={data.university}

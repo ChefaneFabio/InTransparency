@@ -267,7 +267,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
   const getSyncStatusColor = (status: string) => {
     switch (status) {
       case 'success': return 'text-primary bg-primary/10'
-      case 'warning': return 'text-primary bg-secondary/10'
+      case 'warning': return 'text-primary bg-primary/10'
       case 'error': return 'text-red-600 bg-red-100'
       case 'syncing': return 'text-primary bg-primary/10'
       default: return 'text-gray-600 bg-gray-100'
@@ -320,7 +320,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
   }
 
   const handleDisconnect = async () => {
-    if (!confirm('Sei sicuro di voler disconnettere la tua università?')) return
+    if (!confirm('Sei sicuro di voler disconnettere la tua istituzione?')) return
 
     try {
       const response = await fetch('/api/user/university-connection', {
@@ -355,13 +355,13 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
           <CardContent className="pt-6">
             <div className="text-center py-8">
               <School className="h-12 w-12 text-primary mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Nessuna Università Connessa</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Nessuna Istituzione Connessa</h3>
               <p className="text-gray-600 mb-6 max-w-md mx-auto">
-                Connetti la tua università o ITS per sincronizzare automaticamente i tuoi voti, corsi e progetti accademici
+                Connetti la tua istituzione o ITS per sincronizzare automaticamente i tuoi voti, corsi e progetti accademici
               </p>
               <Button onClick={() => setIsModalOpen(true)} className="bg-primary hover:bg-primary/90">
                 <Plus className="mr-2 h-4 w-4" />
-                Connetti Università
+                Connetti Istituzione
               </Button>
             </div>
           </CardContent>
@@ -628,7 +628,7 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
                     <Button variant="outline" asChild>
                       <a href={connection.website} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="h-4 w-4 mr-2" />
-                        Portale Università
+                        Portale Istituzione
                       </a>
                     </Button>
                   )}

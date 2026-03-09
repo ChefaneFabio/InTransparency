@@ -216,7 +216,7 @@ export function ActivityFeed({ userId, limit = 10 }: ActivityFeedProps) {
       case 'project_analyzed':
         return 'bg-primary/5 border-primary/10'
       case 'achievement':
-        return 'bg-secondary/5 border-secondary/10'
+        return 'bg-secondary/5 border-primary/10'
       case 'application':
         return 'bg-primary/5 border-primary/10'
       default:

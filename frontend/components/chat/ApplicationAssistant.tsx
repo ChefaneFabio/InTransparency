@@ -103,7 +103,7 @@ export function ApplicationAssistant({
   const getSuggestionColor = (type: string) => {
     if (type.includes('match')) return 'border-primary/20 bg-primary/5'
     if (type.includes('gap') || type.includes('missing') || type.includes('insufficient')) {
-      return 'border-secondary/20 bg-secondary/5'
+      return 'border-primary/20 bg-secondary/5'
     }
     return 'border-primary/20 bg-primary/5'
   }

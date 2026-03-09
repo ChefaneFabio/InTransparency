@@ -193,7 +193,7 @@ export default function UniversitySettingsPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Informazioni Istituzione</CardTitle>
-                <CardDescription>Gestisci le informazioni pubbliche della tua università</CardDescription>
+                <CardDescription>Gestisci le informazioni pubbliche della tua istituzione</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-center gap-6">
@@ -398,7 +398,7 @@ export default function UniversitySettingsPage() {
                         {(settings.shortName || settings.name || '').slice(0, 2)}
                       </div>
                       <div>
-                        <h3 className="font-semibold" style={{ color: settings.primaryColor }}>{settings.name || 'Nome Università'}</h3>
+                        <h3 className="font-semibold" style={{ color: settings.primaryColor }}>{settings.name || 'Nome Istituzione'}</h3>
                         <p className="text-sm text-gray-600">{settings.city || 'Città'}</p>
                       </div>
                     </div>

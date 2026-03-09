@@ -2,8 +2,6 @@
 
 import { useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Header } from '@/components/layout/Header'
-import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -69,9 +67,7 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen hero-bg">
-      <Header />
-
-      <main className="pt-24 pb-16">
+      <div className="pt-8 pb-16">
         <div className="container max-w-6xl">
           {/* Hero Section */}
           <motion.div
@@ -160,9 +156,7 @@ export default function RegisterPage() {
             </div>
           </div>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   )
 }

@@ -135,7 +135,7 @@ export default function SupportPage() {
 
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
-                <div className="bg-secondary/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                <div className="bg-primary/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                   <MessageSquare className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle>Contact Support</CardTitle>

@@ -308,7 +308,7 @@ export function InstitutionalVerification({
           Institutional Verification
         </CardTitle>
         <CardDescription>
-          Connect with your university's database to verify your academic credentials and import your transcripts
+          Connect with your institution's database to verify your academic credentials and import your transcripts
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -326,13 +326,13 @@ export function InstitutionalVerification({
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="university-search">Search Your University</Label>
+              <Label htmlFor="university-search">Search Your Institution</Label>
               <div className="flex gap-2">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
                   <Input
                     id="university-search"
-                    placeholder="Enter university name or city..."
+                    placeholder="Enter institution name or city..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10"
@@ -349,7 +349,7 @@ export function InstitutionalVerification({
               <Alert>
                 <School className="h-4 w-4" />
                 <AlertDescription>
-                  We detected you're using an email from a university domain. We'll automatically search for your institution.
+                  We detected you're using an email from an institution domain. We'll automatically search for your institution.
                 </AlertDescription>
               </Alert>
             )}
@@ -359,7 +359,7 @@ export function InstitutionalVerification({
         {step === 'select' && (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold">Select Your University</h3>
+              <h3 className="text-lg font-semibold">Select Your Institution</h3>
               <Badge variant="outline">{universities.length} institutions found</Badge>
             </div>
 

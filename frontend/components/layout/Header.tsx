@@ -23,6 +23,7 @@ export function Header() {
     { name: t('explorePortfolios'), href: '/explore' },
     { name: t('demo'), href: '/demo/ai-search' },
     { name: t('pricing'), href: '/pricing' },
+    { name: t('forSchools'), href: '/per-scuole-superiori' },
     { name: t('mission'), href: '/mission' },
     { name: t('contact'), href: '/contact' },
   ]

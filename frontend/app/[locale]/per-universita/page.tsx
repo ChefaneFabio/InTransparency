@@ -108,7 +108,7 @@ export default function PerUniversitaPage() {
                 asChild
               >
                 <Link href="/auth/register?role=institution">
-                  Registra la Tua Università
+                  Registra la Tua Istituzione
                   <ArrowRight className="h-5 w-5 ml-2" />
                 </Link>
               </Button>
@@ -132,7 +132,7 @@ export default function PerUniversitaPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-8">
-              Come il Marketplace Aiuta la Tua Università
+              Come il Marketplace Aiuta la Tua Istituzione
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -291,12 +291,12 @@ export default function PerUniversitaPage() {
                             <Shield className="h-4 w-4 text-primary" />
                           </div>
                           <div>
-                            <p className="font-semibold">2. L'Università Verifica</p>
+                            <p className="font-semibold">2. L'Istituzione Verifica</p>
                             <p className="text-xs text-gray-600">"Verificato da Politecnico di Milano, 110/110"</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
-                          <div className="bg-secondary/10 rounded-full p-2">
+                          <div className="bg-primary/10 rounded-full p-2">
                             <Search className="h-4 w-4 text-primary" />
                           </div>
                           <div>
@@ -330,7 +330,7 @@ export default function PerUniversitaPage() {
             className="mb-16"
           >
             <h2 className="text-3xl font-display font-bold text-center text-foreground mb-8">
-              Perché le Università Scelgono InTransparency
+              Perché le Istituzioni Scelgono InTransparency
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -384,9 +384,9 @@ export default function PerUniversitaPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 border-secondary/20">
+              <Card className="border-2 border-primary/20">
                 <CardHeader className="text-center">
-                  <div className="bg-secondary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <BarChart3 className="h-8 w-8 text-primary" />
                   </div>
                   <CardTitle className="text-lg">Report per ANVUR</CardTitle>
@@ -430,7 +430,7 @@ export default function PerUniversitaPage() {
                     <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                       <span className="text-3xl font-bold">1</span>
                     </div>
-                    <h4 className="text-xl font-bold mb-2">Registra l'Università</h4>
+                    <h4 className="text-xl font-bold mb-2">Registra l'Istituzione</h4>
                     <p className="text-white/90 text-sm">
                       Crea account gratuito → Verifica email .edu → Dashboard attiva in 5 minuti
                     </p>
@@ -465,7 +465,7 @@ export default function PerUniversitaPage() {
                     className="shadow-lg"
                   >
                     <Link href="/auth/register?role=institution">
-                      Registra la Tua Università Gratis
+                      Registra la Tua Istituzione Gratis
                       <ArrowRight className="h-5 w-5 ml-2" />
                     </Link>
                   </Button>
@@ -501,7 +501,7 @@ export default function PerUniversitaPage() {
                     asChild
                   >
                     <Link href="/auth/register?role=institution">
-                      Registra Università Gratis
+                      Registra Istituzione Gratis
                       <ArrowRight className="h-5 w-5 ml-2" />
                     </Link>
                   </Button>

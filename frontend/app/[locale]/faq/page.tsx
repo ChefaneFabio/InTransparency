@@ -19,11 +19,11 @@ const faqs: FAQItem[] = [
   {
     category: 'students',
     question: 'Come posso creare un account studente?',
-    answer: 'Puoi registrarti gratuitamente cliccando su "Registrati" e selezionando "Studente". Dovrai fornire il tuo nome, email e creare una password. Dopo la registrazione, potrai completare il tuo profilo e connettere la tua università.'
+    answer: 'Puoi registrarti gratuitamente cliccando su "Registrati" e selezionando "Studente". Dovrai fornire il tuo nome, email e creare una password. Dopo la registrazione, potrai completare il tuo profilo e connettere la tua istituzione.'
   },
   {
     category: 'students',
-    question: 'Come connetto la mia università?',
+    question: 'Come connetto la mia istituzione?',
     answer: 'Dalla tua dashboard, vai alla sezione "Integrazione Università" e clicca su "Connetti Università". Cerca la tua università o ITS, inserisci la tua email istituzionale e verifica il tuo account. Una volta verificato, i tuoi voti e progetti potranno essere sincronizzati automaticamente.'
   },
   {
@@ -67,8 +67,8 @@ const faqs: FAQItem[] = [
   // Università
   {
     category: 'universities',
-    question: 'Come può la mia università partecipare?',
-    answer: 'Le università possono registrarsi gratuitamente e ottenere una dashboard dedicata per monitorare il placement dei propri studenti, vedere quali aziende sono interessate e accedere ad analytics dettagliate.'
+    question: 'Come può la mia istituzione partecipare?',
+    answer: 'Le istituzioni possono registrarsi gratuitamente e ottenere una dashboard dedicata per monitorare il placement dei propri studenti, vedere quali aziende sono interessate e accedere ad analytics dettagliate.'
   },
   {
     category: 'universities',
@@ -78,7 +78,7 @@ const faqs: FAQItem[] = [
   {
     category: 'universities',
     question: 'I dati degli studenti sono protetti?',
-    answer: 'Assolutamente. Siamo conformi al GDPR e gli studenti hanno sempre il controllo sui propri dati. Le università possono vedere solo statistiche aggregate, non dati personali individuali senza consenso.'
+    answer: 'Assolutamente. Siamo conformi al GDPR e gli studenti hanno sempre il controllo sui propri dati. Le istituzioni possono vedere solo statistiche aggregate, non dati personali individuali senza consenso.'
   },
 
   // Pagamenti
@@ -120,7 +120,7 @@ const categories = [
   { id: 'all', label: 'Tutte', icon: HelpCircle },
   { id: 'students', label: 'Studenti', icon: GraduationCap },
   { id: 'companies', label: 'Aziende', icon: Briefcase },
-  { id: 'universities', label: 'Università', icon: Building2 },
+  { id: 'universities', label: 'Istituzioni', icon: Building2 },
   { id: 'payments', label: 'Pagamenti', icon: CreditCard },
   { id: 'privacy', label: 'Privacy', icon: Shield }
 ]

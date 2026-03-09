@@ -12,7 +12,8 @@
     "getStarted": "Inizia Ora",
     "dashboard": "Dashboard",
     "signOut": "Esci",
-    "mission": "Missione"
+    "mission": "Missione",
+    "forSchools": "Per le Scuole"
   },
   "dashboardNav": {
     "home": "Home",
@@ -129,7 +130,7 @@
   },
   "home": {
     "hero": {
-      "serviceBadge": "Talenti Verificati dalle Migliori Università • Vincitori Start Cup Bergamo 2025",
+      "serviceBadge": "Talenti Verificati dalle Migliori Istituzioni • Vincitori Start Cup Bergamo 2025",
       "segmentLabels": {
         "students": "Studenti",
         "institutes": "Istituti",
@@ -155,7 +156,7 @@
           },
           {
             "title": "Mostra Voti Verificati, Non Affermazioni",
-            "description": "Tesi 30/30? La tua università la timbra. Le aziende vedono prove autentiche direttamente dalla tua istituzione - niente bugie sul CV"
+            "description": "Tesi 30/30? La tua istituzione la timbra. Le aziende vedono prove autentiche direttamente dalla tua istituzione - niente bugie sul CV"
           },
           {
             "title": "Le Aziende Ti Contattano",
@@ -166,7 +167,7 @@
         "statsValue": "le aziende ti contattano direttamente, niente CV necessari"
       },
       "universities": {
-        "badge": "Per Istituti - Università e ITS",
+        "badge": "Per Istituzioni - Scuole, Università e ITS",
         "headlinePart1": "Studenti Verificati.",
         "headlinePart2": "Aziende che Assumono.",
         "description": "",
@@ -224,7 +225,7 @@
           }
         ],
         "statsLabel": "Accedi a talento verificato da",
-        "statsValue": "università, accademie ITS e scuole professionali"
+        "statsValue": "istituzioni, accademie ITS e scuole"
       },
       "bottomText": "Quattro Servizi, Zero Abbonamenti",
       "unifiedHeadline1": "Scoperta di",
@@ -232,7 +233,7 @@
       "unifiedSubheadline": "Ogni competenza verificata dalle istituzioni. Ogni progetto tracciabile alla fonte. Le aziende pagano solo quando contattano un candidato.",
       "unifiedPrimaryCTA": "Inizia Gratis",
       "unifiedSecondaryCTA": "Vedi Come Funziona",
-      "unifiedBenefits": ["Competenze verificate dalle istituzioni", "Nessun abbonamento", "Gratis per studenti e università"],
+      "unifiedBenefits": ["Competenze verificate dalle istituzioni", "Nessun abbonamento", "Gratis per studenti e istituzioni"],
       "exploreByRole": "Esplora per ruolo",
       "socialProof": {
         "startCup": "Vincitori Start Cup Bergamo 2025",
@@ -253,7 +254,7 @@
       },
       "solution": "La Soluzione InTransparency",
       "solutionPoints": {
-        "verified": "Progetti verificati dall'università (30/30 in tesi ML)",
+        "verified": "Progetti verificati dall'istituzione (30/30 in tesi ML)",
         "realWork": "Vedi il lavoro reale, non affermazioni",
         "aiAnalysis": "Analisi AI di progetti complessi",
         "noApplications": "Zero candidature → Le aziende ti trovano",
@@ -271,7 +272,7 @@
       },
       "step2": {
         "title": "Verifica dell'Istituzione",
-        "description": "La tua università autentica tramite la nostra dashboard"
+        "description": "La tua istituzione autentica tramite la nostra dashboard"
       },
       "step3": {
         "title": "Le Aziende ti Scoprono",
@@ -294,7 +295,7 @@
       "badge": "Funzionalità Principali",
       "title": "Competenze Verificate al 100%, Non Affermazioni da CV",
       "verification": {
-        "title": "Verifica Universitaria",
+        "title": "Verifica Istituzionale",
         "description": "Ogni competenza tracciabile all'istituzione"
       },
       "aiAnalysis": {
@@ -321,15 +322,15 @@
     "cta": {
       "title": "Inizia con",
       "titleHighlight": "InTransparency",
-      "subtitle": "Che tu sia uno studente, un'università o un'azienda — c'è un percorso pensato per te.",
+      "subtitle": "Che tu sia uno studente, un'istituzione o un'azienda — c'è un percorso pensato per te.",
       "segments": {
         "students": {
           "title": "Per gli Studenti",
-          "description": "Costruisci un portfolio verificato dai tuoi progetti accademici, collegati con la tua università e fatti scoprire dalle aziende che cercano le tue competenze.",
+          "description": "Costruisci un portfolio verificato dai tuoi progetti accademici, collegati con la tua istituzione e fatti scoprire dalle aziende che cercano le tue competenze.",
           "cta": "Inizia Gratis"
         },
         "universities": {
-          "title": "Per le Università",
+          "title": "Per le Istituzioni",
           "description": "Verifica i progetti degli studenti, monitora i risultati di placement e collega i tuoi studenti direttamente ai datori di lavoro. Gratuito per le istituzioni partner.",
           "cta": "Diventa Partner"
         },
@@ -344,7 +345,7 @@
       "features": {
         "0": { "title": "Competenze Verificate", "description": "Ogni progetto autenticato dalle istituzioni" },
         "1": { "title": "Contatto Diretto", "description": "Le aziende ti contattano per prime" },
-        "2": { "title": "Freemium", "description": "Nessun costo per studenti e università" },
+        "2": { "title": "Freemium", "description": "Nessun costo per studenti e istituzioni" },
         "3": { "title": "Pay Per Contact", "description": "Le aziende pagano solo quando contattano" }
       },
       "badges": {
@@ -355,7 +356,7 @@
     },
     "valueProposition": {
       "title": "Costruito per Tutti",
-      "subtitle": "Un marketplace che funziona per studenti, università e aziende - con valore trasparente per ciascuno.",
+      "subtitle": "Un marketplace che funziona per studenti, istituzioni e aziende - con valore trasparente per ciascuno.",
       "cards": {
         "students": {
           "title": "Per gli Studenti",
@@ -367,7 +368,7 @@
           }
         },
         "universities": {
-          "title": "Per le Università",
+          "title": "Per le Istituzioni",
           "benefits": {
             "0": "Verifica i progetti e i risultati degli studenti",
             "1": "Monitora i risultati di placement con analytics",
@@ -388,14 +389,14 @@
     },
     "booking": {
       "title": "Prenota una Demo",
-      "subtitle": "Scopri come InTransparency può funzionare per la tua università o azienda. Prenota una chiamata gratuita con il nostro team.",
+      "subtitle": "Scopri come InTransparency può funzionare per la tua istituzione o azienda. Prenota una chiamata gratuita con il nostro team.",
       "cta": "Prenota un Incontro",
       "note": "Gratuito, senza impegno - chiamata di 15 min"
     },
     "howItWorksPage": {
       "title": "Come Funziona",
       "titleHighlight": "InTransparency",
-      "subtitle": "Da progetto universitario a portfolio verificato a contatto con il datore di lavoro — in tre passi",
+      "subtitle": "Da progetto accademico a portfolio verificato a contatto con il datore di lavoro — in tre passi",
       "pauseDemo": "Pausa Demo",
       "playDemo": "Play Demo",
       "autoAdvancing": "Avanzamento automatico ogni 4 secondi",
@@ -403,9 +404,9 @@
       "steps": [
         {
           "title": "Crea il Tuo Profilo",
-          "description": "Due modi: Partner universitario = profilo automatico. Indipendente = carica progetti + seleziona corsi per profilo istantaneo",
+          "description": "Due modi: Partner istituzionale = profilo automatico. Indipendente = carica progetti + seleziona corsi per profilo istantaneo",
           "details": [
-            "Integrazione Universitaria: Profilo creato automaticamente dai dati universitari",
+            "Integrazione Istituzionale: Profilo creato automaticamente dai dati istituzionali",
             "Indipendente: Carica progetti (codice, documenti, presentazioni) + seleziona corsi",
             "L'AI identifica i corsi e crea un profilo completo",
             "Entrambi i percorsi: Accesso completo alla piattaforma in < 5 minuti"
@@ -490,7 +491,7 @@
   },
   "blog": {
     "title": "Blog",
-    "subtitle": "Approfondimenti su credenziali verificate, sviluppo professionale e il futuro della transizione università-lavoro.",
+    "subtitle": "Approfondimenti su credenziali verificate, sviluppo professionale e il futuro della transizione scuola-lavoro.",
     "featured": "In evidenza",
     "readMore": "Leggi di più",
     "backToBlog": "Torna al blog",
@@ -510,7 +511,7 @@
         "badge": "100% Gratis",
         "features": {
           "uploads": "Caricamenti progetti verificati illimitati",
-          "verification": "Verifica universitaria",
+          "verification": "Verifica istituzionale",
           "portfolio": "Pagina portfolio pubblica",
           "discovery": "Scoperta da aziende",
           "analytics": "Analytics profilo base",
@@ -599,7 +600,7 @@
       }
     },
     "institutes": {
-      "badge": "Per Istituti (Università e ITS)",
+      "badge": "Per Istituzioni (Scuole, Università e ITS)",
       "title": "Servizio Gratuito Career Intelligence - Niente Abbonamenti Mai",
       "subtitle": "Servizi GRATUITI Verifica + Analytics. Dashboard di verifica semplice. Tu autentichi, noi forniamo insights. Zero costi vs AlmaLaurea (€2.500/anno). Prova aumento placement 85% al MIUR.",
       "free": {
@@ -614,7 +615,7 @@
         "name": "Enterprise Custom",
         "price": "€2.000",
         "period": "all'anno",
-        "description": "White-label completo, accesso API, integrazioni custom. Per grandi università con esigenze avanzate.",
+        "description": "White-label completo, accesso API, integrazioni custom. Per grandi istituzioni con esigenze avanzate.",
         "badge": "🏢 Enterprise",
         "cta": "Prenota Demo"
       }
@@ -627,7 +628,7 @@
     },
     "section": {
       "title": "Iniziamo una Conversazione",
-      "subtitle": "Che tu sia uno studente, un recruiter o un'università, siamo entusiasti di sentirti e aiutarti ad avere successo."
+      "subtitle": "Che tu sia uno studente, un recruiter o un'istituzione, siamo entusiasti di sentirti e aiutarti ad avere successo."
     },
     "methods": {
       "email": {
@@ -659,13 +660,13 @@
       "title": "Inviaci un Messaggio",
       "fullName": "Nome Completo",
       "emailAddress": "Indirizzo Email",
-      "companyUniversity": "Azienda/Università",
+      "companyUniversity": "Azienda/Istituzione",
       "role": "Ruolo",
       "roleOptions": {
         "select": "Seleziona il tuo ruolo",
         "student": "Studente",
         "recruiter": "Recruiter",
-        "universityAdmin": "Amministratore Universitario",
+        "universityAdmin": "Amministratore Istituzione",
         "professor": "Professore",
         "other": "Altro"
       },
@@ -779,7 +780,7 @@
         "projectsCount": "15",
         "verificationScore": "100",
         "quote": "InTransparency ha completamente cambiato la mia ricerca di lavoro. Invece di inviare centinaia di candidature, i recruiter mi hanno trovato LORO tramite i miei progetti verificati. Ho avuto 3 offerte di lavoro entro 2 settimane!",
-        "story": "Marco ha caricato i suoi progetti di cloud computing verificati dall'università su InTransparency. In pochi giorni, i recruiter AWS hanno scoperto il suo portfolio tramite ricerca AI e lo hanno contattato direttamente. Ha accettato un'offerta senza mai inviare una candidatura tradizionale."
+        "story": "Marco ha caricato i suoi progetti di cloud computing verificati dall'istituzione su InTransparency. In pochi giorni, i recruiter AWS hanno scoperto il suo portfolio tramite ricerca AI e lo hanno contattato direttamente. Ha accettato un'offerta senza mai inviare una candidatura tradizionale."
       },
       "1": {
         "name": "Sofia Romano",
@@ -809,7 +810,7 @@
         "projectsCount": "12",
         "verificationScore": "100",
         "quote": "Sono stato assunto grazie al mio progetto di tesi! Il recruiter l'ha visto su InTransparency, ha adorato la profondità tecnica, e ha accelerato il mio colloquio. Ho iniziato a lavorare solo 2 settimane dopo la laurea.",
-        "story": "Il progetto di sistemi distribuiti verificato dall'università di Luca ha attirato l'attenzione di Microsoft. La documentazione dettagliata del progetto e il voto 30/30 hanno dato ai recruiter fiducia nelle sue capacità. Ha ricevuto un'offerta prima che la maggior parte dei suoi compagni iniziasse anche a candidarsi."
+        "story": "Il progetto di sistemi distribuiti verificato dall'istituzione di Luca ha attirato l'attenzione di Microsoft. La documentazione dettagliata del progetto e il voto 30/30 hanno dato ai recruiter fiducia nelle sue capacità. Ha ricevuto un'offerta prima che la maggior parte dei suoi compagni iniziasse anche a candidarsi."
       }
     },
     "labels": {
@@ -826,7 +827,7 @@
     },
     "whyItWorks": {
       "0": {
-        "title": "Verifica Universitaria",
+        "title": "Verifica Istituzionale",
         "description": "I tuoi progetti sono verificati dalla tua istituzione, dando ai recruiter fiducia nel tuo lavoro senza lunghi screening."
       },
       "1": {
@@ -851,7 +852,7 @@
       "badge": "Scopri Talenti Verificati",
       "title": "Esplora Portfolio Studenti",
       "subtitle": "Cerca portfolio studenti con competenze verificate. Progetti autenticati dalle istituzioni.",
-      "searchPlaceholder": "Cerca per nome, competenza o università...",
+      "searchPlaceholder": "Cerca per nome, competenza o istituzione...",
       "stats": {
         "students": "Studenti",
         "verified": "Verificato",
@@ -863,8 +864,8 @@
       "clear": "Cancella",
       "fieldOfStudy": "Campo di Studio",
       "allFields": "Tutti i Campi",
-      "university": "Università",
-      "allUniversities": "Tutte le Università",
+      "university": "Istituzione",
+      "allUniversities": "Tutte le Istituzioni",
       "location": "Località",
       "allLocations": "Tutte le Località",
       "graduationYear": "Anno di Laurea",
@@ -907,8 +908,8 @@
       "title": "Nessuno studente trovato",
       "description": "Prova a modificare i tuoi filtri o la query di ricerca",
       "clearFilters": "Cancella Tutti i Filtri",
-      "pilotTitle": "Stiamo Inserendo le Prime Università",
-      "pilotDescription": "InTransparency è in fase pilota con l'Università di Bergamo. I profili studenti verificati vengono aggiunti man mano che le università aderiscono alla piattaforma.",
+      "pilotTitle": "Stiamo Inserendo le Prime Istituzioni",
+      "pilotDescription": "InTransparency è in fase pilota con l'Università di Bergamo. I profili studenti verificati vengono aggiunti man mano che le istituzioni aderiscono alla piattaforma.",
       "pilotCta": "Vuoi vedere cosa può fare la piattaforma? Prova la nostra demo di ricerca AI.",
       "tryDemo": "Prova la Demo AI Search",
       "foundingPartner": "Diventa Partner Fondatore"
@@ -971,7 +972,7 @@
     "iAm": "Sono un/una",
     "student": "Studente",
     "recruiter": "Recruiter",
-    "university": "Università",
+    "university": "Istituzione",
     "forgotPassword": "Password dimenticata?",
     "signIn": "Accedi",
     "signUp": "Registrati",
@@ -999,11 +1000,11 @@
       "roles": {
         "recruiter": {
           "name": "Azienda",
-          "description": "Trova talenti verificati dalle università",
+          "description": "Trova talenti verificati dalle istituzioni",
           "benefits": { "0": "Cerca profili verificati", "1": "Paga per contatto", "2": "Integrazione ATS", "3": "Dashboard analytics" }
         },
         "university": {
-          "name": "Università / ITS",
+          "name": "Istituzione / ITS",
           "description": "Verifica i progetti degli studenti e traccia i placement",
           "benefits": { "0": "Modello freemium", "1": "Analytics studenti", "2": "Tracciamento placement", "3": "Visibilità aziende" }
         },
@@ -1038,7 +1039,7 @@
       "benefits": {
         "0": { "title": "Fatti Scoprire", "description": "500+ aziende alla ricerca attiva di talenti come te" },
         "1": { "title": "Le Aziende Ti Contattano", "description": "Smetti di inviare candidature - lascia che le opportunità vengano da te" },
-        "2": { "title": "Portfolio Verificato", "description": "Progetti supportati dall'università di cui i datori di lavoro si fidano" },
+        "2": { "title": "Portfolio Verificato", "description": "Progetti supportati dall'istituzione di cui i datori di lavoro si fidano" },
         "3": { "title": "Sfide Reali", "description": "Lavora su progetti aziendali come parte del tuo percorso di studi" }
       },
       "createTitle": "Crea il Tuo Account",
@@ -1059,7 +1060,7 @@
       "submitButton": "Inizia ad Assumere - Sfoglia Gratis",
       "submittingButton": "Creazione Account...",
       "heroTitle": "Assumi Talenti Verificati, Non CV",
-      "heroSubtitle": "Accedi a laureati verificati dalle università. Ogni competenza è tracciabile a corsi e progetti reali.",
+      "heroSubtitle": "Accedi a laureati verificati dalle istituzioni. Ogni competenza è tracciabile a corsi e progetti reali.",
       "browseBadge": "Sfoglia Gratis, Paga Per Contatto",
       "benefits": {
         "0": { "title": "Solo Competenze Verificate", "description": "Ogni competenza supportata da progetti universitari" },
@@ -1082,7 +1083,7 @@
         "postJobsCost": "Gratis"
       },
       "mobileBenefitsTitle": "Perché le aziende ci scelgono:",
-      "mobileBenefits": { "0": "Sfoglia candidati gratis", "1": "Competenze verificate dall'università", "2": "Pay per contact" },
+      "mobileBenefits": { "0": "Sfoglia candidati gratis", "1": "Competenze verificate dall'istituzione", "2": "Pay per contact" },
       "noCreditCard": "Nessuna carta di credito richiesta. Sfoglia i candidati subito.",
       "passwordPlaceholder": "Almeno 8 caratteri",
       "alreadyHaveAccount": "Hai già un account?",
@@ -1110,7 +1111,7 @@
       "formDescription": "Verificheremo la tua email istituzionale",
       "freemiumNote": "Piattaforma Freemium - Nessun costo di attivazione, nessun costo nascosto",
       "institutionalEmail": "Email Istituzionale",
-      "mobileBenefitsTitle": "Perché le università ci scelgono:",
+      "mobileBenefitsTitle": "Perché le istituzioni ci scelgono:",
       "mobileBenefits": { "0": "Portfolio studenti verificati", "1": "Analytics placement", "2": "Tracciamento visibilità aziende", "3": "Modello freemium" },
       "passwordPlaceholder": "Almeno 8 caratteri",
       "alreadyHaveAccount": "Hai già un account?",
@@ -1136,7 +1137,7 @@
       "unexpectedError": "Si è verificato un errore imprevisto. Riprova.",
       "roles": {
         "student": "Studente",
-        "university": "Università",
+        "university": "Istituzione",
         "recruiter": "Azienda"
       }
     },
@@ -1218,7 +1219,7 @@
         "features": {
           "0": "Accuratezza verificata dall'istituzione",
           "1": "Spiegazioni trasparenti",
-          "2": "\"Alta compatibilità: tesi Python verificata dall'università\"",
+          "2": "\"Alta compatibilità: tesi Python verificata dall'istituzione\"",
           "3": "Requisiti bidirezionali"
         },
         "comparison": "vs Manatal: Parsing curriculum opaco"
@@ -1259,7 +1260,7 @@
         "label": "Istituto",
         "description": "Collega studenti con opportunità, traccia alumni",
         "title": "Come Gli Istituti Usano InTransparency",
-        "subtitle": "Collega studenti con opportunità e traccia risultati carriera tra università, ITS e istituzioni di istruzione superiore"
+        "subtitle": "Collega studenti con opportunità e traccia risultati carriera tra istituzioni, ITS e istituzioni di istruzione superiore"
       },
       "recruiter": {
         "label": "Reclutatore",
@@ -1401,7 +1402,7 @@
         "description": "Cerca candidati anche se non hanno fatto domanda per i tuoi lavori. Trova talenti basati su competenze, istruzione ed esperienza",
         "features": [
           "Cerca candidati senza candidature",
-          "Filtra per università, corsi, voti",
+          "Filtra per istituzione, corsi, voti",
           "Trova per progetti e tecnologie",
           "250+ filtri di ricerca personalizzabili",
           "Mappatura geografica talenti"
@@ -1561,7 +1562,7 @@
       "subtitle": "Vedi esattamente cosa ogni parte può e non può accedere",
       "stakeholders": {
         "student": "Studente",
-        "university": "Università",
+        "university": "Istituzione",
         "company": "Azienda"
       },
       "student": {
@@ -1575,21 +1576,21 @@
             "2": "Elimina il tuo account in qualsiasi momento",
             "3": "Controlla la visibilità del profilo",
             "4": "Scegli cosa vedono le aziende",
-            "5": "Revoca verifica università"
+            "5": "Revoca verifica istituzione"
           }
         },
         "dataShared": {
           "title": "Condivisione Dati",
           "items": {
             "0": {
-              "with": "Università",
+              "with": "Istituzione",
               "data": "Registri accademici, corsi, voti, progetti",
               "purpose": "Solo verifica",
               "consent": "Richiesto"
             },
             "1": {
               "with": "Aziende (Prima Sblocco)",
-              "data": "Solo iniziali (M.R.), università, corsi, voti, competenze",
+              "data": "Solo iniziali (M.R.), istituzione, corsi, voti, competenze",
               "purpose": "Profilo ricercabile",
               "consent": "Automatico quando profilo è pubblico"
             },
@@ -1609,7 +1610,7 @@
         }
       },
       "university": {
-        "title": "Accesso Dati Università",
+        "title": "Accesso Dati Istituzione",
         "description": "Accesso limitato solo per scopi di verifica.",
         "controls": {
           "title": "Accesso & Controlli",
@@ -1629,11 +1630,11 @@
               "with": "Piattaforma",
               "data": "Stato iscrizione studente, cataloghi corsi, verifica voti",
               "purpose": "Operatività piattaforma",
-              "consent": "Accordo università"
+              "consent": "Accordo istituzione"
             },
             "1": {
               "with": "Studenti",
-              "data": "Stato verifica, branding università",
+              "data": "Stato verifica, branding istituzione",
               "purpose": "Credibilità profilo",
               "consent": "Automatico"
             },
@@ -1692,7 +1693,7 @@
           "title": "1. Studente Crea Profilo",
           "items": {
             "0": "Studente inserisce info accademiche volontariamente",
-            "1": "Università verifica autenticità",
+            "1": "Istituzione verifica autenticità",
             "2": "Dati crittografati a riposo e in transito"
           }
         },
@@ -1700,7 +1701,7 @@
           "title": "2. Aziende Sfogliano",
           "items": {
             "0": "Vedono solo iniziali (es. \"M.R.\")",
-            "1": "Vedono università, corsi, voti",
+            "1": "Vedono istituzione, corsi, voti",
             "2": "Non possono vedere email, telefono, nome completo"
           }
         },
@@ -2035,7 +2036,7 @@
       },
       "university": {
         "title": "Demo Hub Ricerca AI",
-        "subtitle": "Per Istituti (Università & ITS)",
+        "subtitle": "Per Istituzioni (Scuole, Università Per Istituti (Università & ITS) ITS)",
         "placeholder": "Cerca studenti o lavori...",
         "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI istituzionale. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Mostrami studenti CS con GPA 3.8+\" o \"Trova aziende tech che assumono\"",
         "registrationLink": "/auth/register/university"
@@ -2079,12 +2080,12 @@
       "tryExample": "Prova un esempio:",
       "student": "Studente",
       "company": "Azienda",
-      "university": "Università"
+      "university": "Istituzione"
     },
     "tabs": {
       "student": "Studente",
       "company": "Azienda",
-      "university": "Università"
+      "university": "Istituzione"
     }
   },
   "transparency": {
@@ -2282,7 +2283,7 @@
       "programs": {
         "referInstitution": {
           "title": "Invita la Tua Istituzione",
-          "description": "Invita la tua università/ITS a verificare i profili studenti",
+          "description": "Invita la tua istituzione/ITS a verificare i profili studenti",
           "reward": "10% dei canoni Premium primo anno",
           "details": {
             "0": "La tua istituzione si iscrive e verifica gli studenti",
@@ -2310,7 +2311,7 @@
         },
         "campusAmbassador": {
           "title": "Programma Campus Ambassador",
-          "description": "Diventa ambassador ufficiale per la tua università",
+          "description": "Diventa ambassador ufficiale per la tua istituzione",
           "reward": "€50/mese + vantaggi esclusivi",
           "details": {
             "0": "Organizza sessioni info e promuovi InTransparency nel campus",
@@ -2379,7 +2380,7 @@
       "programs": {
         "referInstitution": {
           "title": "Invita Istituzioni Educative",
-          "description": "Invita università/ITS a verificare i loro studenti",
+          "description": "Invita istituzione/ITS a verificare i loro studenti",
           "reward": "50 crediti contatto gratuiti",
           "details": {
             "0": "Collabora con istituzioni da cui assumi (Politecnico, Sapienza, ITS)",
@@ -2549,7 +2550,7 @@
         },
         "2": {
           "title": "Talento Oltre Pedigree",
-          "description": "Un progetto brillante da una università statale batte un CV mediocre da una Ivy League."
+          "description": "Un progetto brillante da un'istituzione pubblica batte un CV mediocre da una Ivy League."
         },
         "3": {
           "title": "Sempre Trasparenza",
@@ -2561,7 +2562,7 @@
   "pricingPage": {
     "hero": {
       "title": "Prezzi",
-      "subtitle": "Gratis per studenti e università. In fase pilota — i partner fondatori accedono gratis.",
+      "subtitle": "Gratis per studenti e istituzioni. In fase pilota — i partner fondatori accedono gratis.",
       "description": "Prezzi semplici e trasparenti. Nessuna sorpresa.",
       "segments": {
         "students": "Studenti",
@@ -2638,7 +2639,7 @@
           "cta": "Inizia",
           "features": {
             "0": "Upload progetti illimitati",
-            "1": "Verifica universitaria",
+            "1": "Verifica istituzionale",
             "2": "Pagina portfolio pubblica",
             "3": "Scoperta aziende",
             "4": "Analytics profilo"
@@ -2659,7 +2660,7 @@
         }
       },
       "institute": {
-        "badge": "Per Università e ITS",
+        "badge": "Per Istituzioni e ITS",
         "title": "Gratis Per Sempre",
         "subtitle": "Verifica i progetti degli studenti. Monitora i risultati di placement. Zero costi vs AlmaLaurea.",
         "free": {
@@ -2694,7 +2695,7 @@
       "questions": {
         "0": {
           "q": "Come creano profili gli studenti?",
-          "a": "Due modi: (1) Se la tua università è partner, inviamo un'email di invito. Gli studenti cliccano per acconsentire e il loro profilo viene creato dai dati universitari verificati. (2) Se indipendenti, gli studenti caricano progetti + selezionano corsi, e noi li verifichiamo per creare il loro profilo completo. Entrambi i modi: 100% gratis, basato su consenso, < 5 minuti."
+          "a": "Due modi: (1) Se la tua istituzione è partner, inviamo un'email di invito. Gli studenti cliccano per acconsentire e il loro profilo viene creato dai dati istituzionali verificati. (2) Se indipendenti, gli studenti caricano progetti + selezionano corsi, e noi li verifichiamo per creare il loro profilo completo. Entrambi i modi: 100% gratis, basato su consenso, < 5 minuti."
         },
         "1": {
           "q": "Il marketplace è davvero gratis per le istituzioni?",
@@ -2706,7 +2707,7 @@
         },
         "3": {
           "q": "Come è meglio di AlmaLaurea?",
-          "a": "AlmaLaurea fa pagare alle università €2.500/anno e raccoglie solo CV auto-dichiarati. InTransparency è GRATIS per sempre e verifica competenze tramite AI + progetti reali. Inoltre TUTTI gli studenti ottengono visibilità (non solo quelli che aggiornano il CV), e le aziende ottengono dati migliori (portfolio verificati vs auto-dichiarati)."
+          "a": "AlmaLaurea fa pagare alle istituzioni €2.500/anno e raccoglie solo CV auto-dichiarati. InTransparency è GRATIS per sempre e verifica competenze tramite AI + progetti reali. Inoltre TUTTI gli studenti ottengono visibilità (non solo quelli che aggiornano il CV), e le aziende ottengono dati migliori (portfolio verificati vs auto-dichiarati)."
         },
         "4": {
           "q": "TUTTI gli studenti ottengono visibilità o solo i top performer?",
@@ -2720,7 +2721,7 @@
     },
     "finalCta": {
       "title": "Unisciti al Pilota",
-      "subtitle": "I Partner Fondatori ottengono accesso gratuito illimitato. Studenti e università sono sempre gratis.",
+      "subtitle": "I Partner Fondatori ottengono accesso gratuito illimitato. Studenti e istituzioni sono sempre gratis.",
       "primaryButton": "Candidati come Partner Fondatore",
       "secondaryButton": "Prova la Demo AI",
       "benefits": "✓ Nessuna carta richiesta  ✓ Gratis durante il pilota  ✓ Sconto permanente dopo"
@@ -3053,7 +3054,7 @@
     "hero": {
       "badge": "Talenti in Evidenza",
       "title": "Scopri Portfolio Studenti Verificati",
-      "subtitle": "Esplora progetti verificati dall'università dai migliori studenti. Tutti i portfolio sono autenticati dai sistemi istituzionali.",
+      "subtitle": "Esplora progetti verificati dall'istituzione dai migliori studenti. Tutti i portfolio sono autenticati dai sistemi istituzionali.",
       "createPortfolio": "Crea il Tuo Portfolio",
       "browseAsRecruiter": "Naviga come Recruiter"
     },
@@ -3076,7 +3077,7 @@
         "verified": "Verificato",
         "skills": "Competenze"
       },
-      "verificationBadge": "100% Verificato dall'Università",
+      "verificationBadge": "100% Verificato dall'Istituzione",
       "viewPortfolio": "Visualizza Portfolio"
     },
     "cta": {
@@ -3180,7 +3181,7 @@
       "badge": "Per i Direttori dei Servizi di Carriera",
       "title": "Sostituisci i sondaggi con prove in tempo reale",
       "subtitle": "InTransparency offre ai direttori dei servizi di carriera analytics di placement in tempo reale, normalizzazione dei voti transfrontaliera e profili studenti verificati — per dimostrare l'impatto invece di stimarlo.",
-      "registerCta": "Registra la tua Università",
+      "registerCta": "Registra la tua Istituzione",
       "demoCta": "Prenota una Demo",
       "stats": {
         "students": "Profili studenti",
@@ -3227,11 +3228,11 @@
     },
     "cta": {
       "title": "Pronto a dimostrare il tuo impatto di placement?",
-      "subtitle": "Unisciti alle università in tutta Europa che già usano dati in tempo reale invece di sondaggi di fine anno.",
+      "subtitle": "Unisciti alle istituzioni in tutta Europa che già usano dati in tempo reale invece di sondaggi di fine anno.",
       "registerButton": "Inizia Gratis",
       "demoButton": "Prenota una Demo",
       "features": {
-        "free": "Gratuito per le università",
+        "free": "Gratuito per le istituzioni",
         "gdpr": "Conforme al GDPR",
         "setup": "Setup in 5 minuti"
       }
@@ -3473,7 +3474,7 @@
           "description": "Collega progetti a corsi, professori e voti—mostra dove l'hai imparato"
         },
         "university": {
-          "title": "3. Verificato dall'Università",
+          "title": "3. Verificato dall'Istituzione",
           "description": "Professori e università confermano che il tuo lavoro è reale—massima credibilità possibile"
         }
       },
@@ -3856,7 +3857,7 @@
       },
       "university": {
         "title": "Demo Hub Ricerca AI",
-        "subtitle": "Per Istituti (Università e ITS)",
+        "subtitle": "Per Istituzioni (Scuole, Università e ITS)",
         "placeholder": "Cerca studenti o lavori...",
         "initialMessage": "👋 Ciao! Sono Transparenty, l'assistente AI del tuo istituto. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Studenti design\" o \"Opportunità marketing per laureati\" o \"Studenti CS con media 3.8+\""
       }
@@ -3978,7 +3979,7 @@
     "hero": {
       "badge": "Talenti in Primo Piano",
       "title": "Scopri Portfolio Verificati di Studenti",
-      "description": "Esplora progetti verificati dalle università dei migliori studenti. Tutti i portfolio sono autenticati dai sistemi istituzionali.",
+      "description": "Esplora progetti verificati dalle istituzioni dei migliori studenti. Tutti i portfolio sono autenticati dai sistemi istituzionali.",
       "ctaStudent": "Crea il Tuo Portfolio",
       "ctaRecruiter": "Cerca come Recruiter"
     },
@@ -3998,7 +3999,7 @@
       "projects": "Progetti",
       "verified": "Verificato",
       "skills": "Competenze",
-      "fullyVerified": "100% Verificato dall'Università",
+      "fullyVerified": "100% Verificato dall'Istituzione",
       "viewPortfolio": "Visualizza Portfolio"
     },
     "cta": {
@@ -4253,7 +4254,7 @@
       "bio": "Biografia",
       "tagline": "Slogan",
       "portfolioUrl": "URL Portfolio",
-      "university": "Università",
+      "university": "Istituzione",
       "degree": "Laurea",
       "graduationYear": "Anno di Laurea",
       "gpa": "Media Voti"
@@ -5009,7 +5010,7 @@
     },
     "stats": {
       "totalStudents": "Studenti Totali",
-      "enrolledIn": "Iscritti alla tua università",
+      "enrolledIn": "Iscritti alla tua istituzione",
       "verifiedStudents": "Studenti Verificati",
       "verified": "{percentage}% verificati",
       "activeProfiles": "Profili Attivi",
