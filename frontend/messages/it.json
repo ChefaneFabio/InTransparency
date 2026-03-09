@@ -490,6 +490,126 @@
           }
         }
       ]
+    },
+    "platformPreview": {
+      "badge": "Vedi come funziona",
+      "title": "Progettato per Come Lavori Davvero",
+      "subtitle": "Un'interfaccia pulita e intuitiva progettata per studenti, istituzioni e aziende."
+    },
+    "comparison": {
+      "badge": "Perché scegliere noi?",
+      "cta": "Inizia Gratis",
+      "students": {
+        "title": "InTransparency vs Ricerca Lavoro Tradizionale",
+        "subtitle": "Smetti di inviare CV nel vuoto. Fatti scoprire per le tue competenze verificate.",
+        "traditionalLabel": "Tradizionale",
+        "rows": [
+          {
+            "feature": "Visibilità",
+            "traditional": "Invii CV, speri in risposta",
+            "ours": "Le aziende ti trovano"
+          },
+          {
+            "feature": "Competenze",
+            "traditional": "Autodichiarate nel CV",
+            "ours": "Verificate dall'istituto"
+          },
+          {
+            "feature": "Costo",
+            "traditional": "Job board a pagamento",
+            "ours": "Gratis per sempre"
+          },
+          {
+            "feature": "Matching",
+            "traditional": "Ricerca manuale",
+            "ours": "Matching AI"
+          },
+          {
+            "feature": "Tasso risposta",
+            "traditional": "~5% in media",
+            "ours": "Contatto diretto"
+          },
+          {
+            "feature": "Portfolio",
+            "traditional": "PDF o LinkedIn",
+            "ours": "Portfolio progetti verificato"
+          }
+        ]
+      },
+      "institutions": {
+        "title": "InTransparency vs Placement Tradizionale",
+        "subtitle": "Traccia risultati reali, non solo sondaggi tra gli alumni.",
+        "traditionalLabel": "Tradizionale",
+        "rows": [
+          {
+            "feature": "Tracciamento",
+            "traditional": "Fogli Excel manuali",
+            "ours": "Dashboard in tempo reale"
+          },
+          {
+            "feature": "Connessioni",
+            "traditional": "Solo career day",
+            "ours": "Marketplace tutto l'anno"
+          },
+          {
+            "feature": "Verifica",
+            "traditional": "Certificati cartacei",
+            "ours": "Badge digitali verificati"
+          },
+          {
+            "feature": "Analytics",
+            "traditional": "Sondaggi annuali",
+            "ours": "Metriche placement live"
+          },
+          {
+            "feature": "Costo",
+            "traditional": "Budget career services",
+            "ours": "Gratis per le istituzioni"
+          },
+          {
+            "feature": "Reporting",
+            "traditional": "Report MIUR manuali",
+            "ours": "Report auto-generati"
+          }
+        ]
+      },
+      "companies": {
+        "title": "InTransparency vs Agenzie Interinali",
+        "subtitle": "Accedi a talenti verificati a una frazione del costo.",
+        "traditionalLabel": "Agenzie",
+        "rows": [
+          {
+            "feature": "Costo assunzione",
+            "traditional": "€4.500–7.500",
+            "ours": "€10 per contatto"
+          },
+          {
+            "feature": "Pool candidati",
+            "traditional": "Database agenzia",
+            "ours": "10K+ studenti verificati"
+          },
+          {
+            "feature": "Verifica skills",
+            "traditional": "Screening agenzia",
+            "ours": "Certificato dall'istituto"
+          },
+          {
+            "feature": "Tempo",
+            "traditional": "4–8 settimane",
+            "ours": "Contatto diretto, giorni"
+          },
+          {
+            "feature": "Contratti",
+            "traditional": "Annuali vincolanti",
+            "ours": "Paga quando vuoi"
+          },
+          {
+            "feature": "Trasparenza",
+            "traditional": "Processo opaco",
+            "ours": "Matching AI spiegato"
+          }
+        ]
+      }
     }
   },
   "footer": {

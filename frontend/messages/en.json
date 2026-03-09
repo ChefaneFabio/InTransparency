@@ -490,6 +490,126 @@
           }
         }
       ]
+    },
+    "platformPreview": {
+      "badge": "See it in action",
+      "title": "Built for How You Actually Work",
+      "subtitle": "A clean, intuitive interface designed for students, institutions, and companies."
+    },
+    "comparison": {
+      "badge": "Why switch?",
+      "cta": "Get Started Free",
+      "students": {
+        "title": "InTransparency vs Traditional Job Search",
+        "subtitle": "Stop sending CVs into the void. Get discovered by verified skills.",
+        "traditionalLabel": "Traditional",
+        "rows": [
+          {
+            "feature": "Visibility",
+            "traditional": "You apply, hope for reply",
+            "ours": "Companies find you"
+          },
+          {
+            "feature": "Skills proof",
+            "traditional": "Self-reported on CV",
+            "ours": "Verified by institution"
+          },
+          {
+            "feature": "Cost",
+            "traditional": "Premium job boards",
+            "ours": "Free forever"
+          },
+          {
+            "feature": "Matching",
+            "traditional": "Manual keyword search",
+            "ours": "AI-powered matching"
+          },
+          {
+            "feature": "Response rate",
+            "traditional": "~5% average",
+            "ours": "Direct company contact"
+          },
+          {
+            "feature": "Portfolio",
+            "traditional": "PDF or LinkedIn",
+            "ours": "Verified project portfolio"
+          }
+        ]
+      },
+      "institutions": {
+        "title": "InTransparency vs Traditional Placement",
+        "subtitle": "Track real outcomes, not just alumni surveys.",
+        "traditionalLabel": "Traditional",
+        "rows": [
+          {
+            "feature": "Student tracking",
+            "traditional": "Manual spreadsheets",
+            "ours": "Real-time dashboard"
+          },
+          {
+            "feature": "Company connections",
+            "traditional": "Career day only",
+            "ours": "Year-round marketplace"
+          },
+          {
+            "feature": "Verification",
+            "traditional": "Paper certificates",
+            "ours": "Digital verified badges"
+          },
+          {
+            "feature": "Analytics",
+            "traditional": "Annual surveys",
+            "ours": "Live placement metrics"
+          },
+          {
+            "feature": "Cost",
+            "traditional": "Career services budget",
+            "ours": "Free for institutions"
+          },
+          {
+            "feature": "Reporting",
+            "traditional": "Manual MIUR reports",
+            "ours": "Auto-generated reports"
+          }
+        ]
+      },
+      "companies": {
+        "title": "InTransparency vs Staffing Agencies",
+        "subtitle": "Access verified talent at a fraction of the cost.",
+        "traditionalLabel": "Agencies",
+        "rows": [
+          {
+            "feature": "Cost per hire",
+            "traditional": "€4,500–7,500",
+            "ours": "€10 per contact"
+          },
+          {
+            "feature": "Candidate pool",
+            "traditional": "Agency's database",
+            "ours": "10K+ verified students"
+          },
+          {
+            "feature": "Skills verification",
+            "traditional": "Agency screening",
+            "ours": "Institution-certified"
+          },
+          {
+            "feature": "Time to hire",
+            "traditional": "4–8 weeks",
+            "ours": "Direct contact, days"
+          },
+          {
+            "feature": "Contracts",
+            "traditional": "Annual binding",
+            "ours": "Pay as you go"
+          },
+          {
+            "feature": "Transparency",
+            "traditional": "Black box process",
+            "ours": "AI-explained matching"
+          }
+        ]
+      }
     }
   },
   "footer": {

@@ -1,5 +1,7 @@
 import { Hero } from '@/components/sections/Hero'
 import { HowItWorks } from '@/components/sections/HowItWorks'
+import { PlatformPreview } from '@/components/mockups/PlatformPreview'
+import { ComparisonTable } from '@/components/sections/ComparisonTable'
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection'
 import { CTA } from '@/components/sections/CTA'
 import { BookingSection } from '@/components/sections/BookingSection'
@@ -13,7 +15,9 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <PlatformPreview />
         <HowItWorks />
+        <ComparisonTable />
         <TestimonialsSection />
         <BookingSection />
         <CTA />
