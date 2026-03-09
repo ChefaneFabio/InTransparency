@@ -14,6 +14,7 @@ import {
 import { Menu, X, ChevronDown, ChevronRight, Home, LogOut } from 'lucide-react'
 import { dashboardNavConfig, type DashboardRole, type NavGroup } from '@/lib/dashboard-nav-config'
 import NotificationBell from '@/components/notifications/NotificationBell'
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 
 interface DashboardNavProps {
   role: DashboardRole
@@ -104,6 +105,7 @@ export function DashboardNav({ role }: DashboardNavProps) {
           })}
 
           <div className="ml-auto flex items-center gap-2">
+            <LanguageSwitcher />
             <NotificationBell />
             <Button
               variant="ghost"
@@ -206,7 +208,10 @@ export function DashboardNav({ role }: DashboardNavProps) {
               )
             })}
 
-            <div className="pt-4 border-t">
+            <div className="pt-4 border-t space-y-2">
+              <div className="px-4 py-2">
+                <LanguageSwitcher />
+              </div>
               <button
                 onClick={() => signOut({ callbackUrl: '/' })}
                 className="flex items-center gap-2 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground w-full rounded-lg hover:bg-muted transition-colors"

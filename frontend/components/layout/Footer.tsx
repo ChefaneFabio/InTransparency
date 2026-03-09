@@ -100,7 +100,7 @@ export function Footer() {
     ]
   }
   return (
-    <footer className="border-t border-border bg-muted/30">
+    <footer className="border-t border-border bg-muted/30 relative z-20">
       <div className="container py-8">
         {/* Top row: brand + nav links inline */}
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-6">
@@ -125,7 +125,7 @@ export function Footer() {
               <ul className="space-y-1">
                 {navigation.product.map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="text-muted-foreground hover:text-primary transition-colors">
+                    <Link href={item.href} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer underline-offset-2 hover:underline">
                       {item.name}
                     </Link>
                   </li>
@@ -137,7 +137,7 @@ export function Footer() {
               <ul className="space-y-1">
                 {navigation.company.map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="text-muted-foreground hover:text-primary transition-colors">
+                    <Link href={item.href} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer underline-offset-2 hover:underline">
                       {item.name}
                     </Link>
                   </li>
@@ -149,7 +149,7 @@ export function Footer() {
               <ul className="space-y-1">
                 {navigation.legal.map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="text-muted-foreground hover:text-primary transition-colors">
+                    <Link href={item.href} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer underline-offset-2 hover:underline">
                       {item.name}
                     </Link>
                   </li>

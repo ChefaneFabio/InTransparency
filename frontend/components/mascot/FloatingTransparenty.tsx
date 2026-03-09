@@ -36,7 +36,7 @@ export function FloatingTransparenty() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
           transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          className="fixed bottom-6 right-6 z-40 hidden md:block"
+          className="fixed bottom-6 right-6 z-40 hidden md:block pointer-events-none"
         >
           <motion.div
             animate={{ y: [0, -6, 0] }}
