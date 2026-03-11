@@ -1,389 +1,401 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
-import { Card, CardContent } from '@/components/ui/card'
+import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
-  Search,
-  Download,
-  TrendingUp,
-  Briefcase,
-  DollarSign,
-  Building2,
-  MapPin,
+  Users,
+  MessageSquare,
   CheckCircle,
+  TrendingUp,
   Clock,
-  XCircle
+  Building2,
+  Download,
+  Briefcase,
+  BarChart3,
 } from 'lucide-react'
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from 'recharts'
 
-interface Placement {
-  id: string
-  studentName: string
-  studentId: string
-  department: string
-  company: string
-  position: string
-  salary: number
-  salaryCurrency: string
-  salaryPeriod: string
-  location: string
-  startDate: string
-  endDate: string | null
-  status: 'confirmed' | 'pending' | 'declined'
-  type: 'full-time' | 'internship' | 'part-time'
-}
-
-interface PlacementStats {
-  confirmed: number
-  pending: number
-  avgSalary: number
-  placementRate: number
-}
-
-const currencySymbols: Record<string, string> = {
-  EUR: '\u20AC',
-  USD: '$',
-  GBP: '\u00A3',
-  CHF: 'CHF ',
-}
-
-function getCurrencySymbol(code: string): string {
-  return currencySymbols[code] || code + ' '
+interface DashboardData {
+  stats: {
+    totalStudents: number
+    studentsContacted: number
+    confirmedHired: number
+    placementRate: number
+  }
+  monthlyTrend: Array<{ month: string; contacts: number; hires: number }>
+  topCompanies: Array<{ company: string; hires: number }>
+  recentPlacements: Array<{
+    id: string
+    studentName: string
+    department: string
+    company: string
+    jobTitle: string
+    startDate: string | null
+    confirmedDate: string | null
+  }>
+  avgTimeToHireDays: number
+  departmentBreakdown: Array<{
+    department: string
+    contacted: number
+    hired: number
+    rate: number
+  }>
 }
 
 export default function UniversityPlacementsPage() {
-  const [placements, setPlacements] = useState<Placement[]>([])
-  const [stats, setStats] = useState<PlacementStats | null>(null)
+  const t = useTranslations('universityPlacements')
+  const [data, setData] = useState<DashboardData | null>(null)
   const [loading, setLoading] = useState(true)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [statusFilter, setStatusFilter] = useState('all')
-  const [typeFilter, setTypeFilter] = useState('all')
-
-  const fetchPlacements = useCallback(async () => {
-    setLoading(true)
-    try {
-      const params = new URLSearchParams()
-      if (searchQuery) params.set('search', searchQuery)
-      if (statusFilter && statusFilter !== 'all') params.set('status', statusFilter)
-      if (typeFilter && typeFilter !== 'all') params.set('type', typeFilter)
-
-      const qs = params.toString()
-      const url = `/api/dashboard/university/placements${qs ? `?${qs}` : ''}`
-      const res = await fetch(url)
-
-      if (!res.ok) {
-        console.error('Failed to fetch placements:', res.status)
-        setPlacements([])
-        setStats(null)
-        return
-      }
-
-      const data = await res.json()
-      setPlacements(data.placements ?? [])
-      setStats(data.stats ?? null)
-    } catch (err) {
-      console.error('Error fetching placements:', err)
-      setPlacements([])
-      setStats(null)
-    } finally {
-      setLoading(false)
-    }
-  }, [searchQuery, statusFilter, typeFilter])
+  const [error, setError] = useState('')
 
   useEffect(() => {
-    fetchPlacements()
-  }, [fetchPlacements])
-
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case 'confirmed':
-        return <Badge className="bg-primary/10 text-primary"><CheckCircle className="h-3 w-3 mr-1" />Confermato</Badge>
-      case 'pending':
-        return <Badge className="bg-yellow-100 text-yellow-800"><Clock className="h-3 w-3 mr-1" />In Attesa</Badge>
-      case 'declined':
-        return <Badge className="bg-red-100 text-red-800"><XCircle className="h-3 w-3 mr-1" />Rifiutato</Badge>
-      default:
-        return null
+    const fetchData = async () => {
+      try {
+        const res = await fetch('/api/dashboard/university/placements?view=dashboard')
+        if (!res.ok) {
+          const err = await res.json()
+          throw new Error(err.error || 'Failed to load')
+        }
+        setData(await res.json())
+      } catch (e: any) {
+        setError(e.message)
+      } finally {
+        setLoading(false)
+      }
     }
+    fetchData()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="container max-w-7xl mx-auto px-4 py-8 space-y-6">
+        <Skeleton className="h-8 w-72" />
+        <Skeleton className="h-5 w-96" />
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Skeleton key={i} className="h-24" />
+          ))}
+        </div>
+        <div className="grid lg:grid-cols-2 gap-6">
+          <Skeleton className="h-80" />
+          <Skeleton className="h-80" />
+        </div>
+        <Skeleton className="h-64" />
+      </div>
+    )
   }
 
-  const getTypeBadge = (type: string) => {
-    switch (type) {
-      case 'full-time':
-        return <Badge variant="outline">Full-time</Badge>
-      case 'internship':
-        return <Badge variant="outline" className="border-purple-300 text-purple-700">Stage</Badge>
-      case 'part-time':
-        return <Badge variant="outline" className="border-primary/30 text-primary">Part-time</Badge>
-      default:
-        return null
-    }
+  if (error) {
+    return (
+      <div className="container max-w-7xl mx-auto px-4 py-8">
+        <Card className="border-red-200 bg-red-50">
+          <CardContent className="pt-6 text-center text-red-700">{error}</CardContent>
+        </Card>
+      </div>
+    )
   }
+
+  if (!data) return null
+
+  const { stats, monthlyTrend, topCompanies, recentPlacements, avgTimeToHireDays, departmentBreakdown } = data
+
+  const statCards = [
+    {
+      icon: Users,
+      label: t('stats.totalStudents'),
+      value: stats.totalStudents,
+      color: 'text-blue-600',
+      bg: 'bg-blue-50',
+    },
+    {
+      icon: MessageSquare,
+      label: t('stats.studentsContacted'),
+      value: stats.studentsContacted,
+      color: 'text-primary',
+      bg: 'bg-primary/5',
+    },
+    {
+      icon: CheckCircle,
+      label: t('stats.confirmedHired'),
+      value: stats.confirmedHired,
+      color: 'text-emerald-600',
+      bg: 'bg-emerald-50',
+    },
+    {
+      icon: TrendingUp,
+      label: t('stats.placementRate'),
+      value: `${stats.placementRate}%`,
+      color: 'text-primary',
+      bg: 'bg-primary/5',
+    },
+    {
+      icon: Clock,
+      label: t('stats.avgTimeToHire'),
+      value: avgTimeToHireDays > 0 ? `${avgTimeToHireDays}d` : 'N/A',
+      color: 'text-amber-600',
+      bg: 'bg-amber-50',
+    },
+  ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+    <div className="container max-w-7xl mx-auto px-4 py-8 space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <BarChart3 className="h-7 w-7 text-primary" />
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Placement</h1>
-            <p className="text-gray-600">Monitora i placement degli studenti</p>
+            <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
+            <p className="text-sm text-gray-600">{t('subtitle')}</p>
           </div>
-          <Button variant="outline">
-            <Download className="h-4 w-4 mr-2" />
-            Esporta Report
-          </Button>
         </div>
+        <Button variant="outline" size="sm">
+          <Download className="h-4 w-4 mr-2" />
+          {t('exportReport')}
+        </Button>
+      </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <Card>
-            <CardContent className="p-4">
+      {/* Stats Row */}
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+        {statCards.map((stat) => (
+          <Card key={stat.label}>
+            <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                <div className={`p-2 rounded-lg ${stat.bg}`}>
+                  <stat.icon className={`h-5 w-5 ${stat.color}`} />
                 </div>
                 <div>
-                  {loading ? (
-                    <>
-                      <Skeleton className="h-7 w-12 mb-1" />
-                      <Skeleton className="h-4 w-20" />
-                    </>
-                  ) : (
-                    <>
-                      <p className="text-2xl font-bold">{stats?.confirmed ?? 0}</p>
-                      <p className="text-sm text-gray-600">Confermati</p>
-                    </>
-                  )}
+                  <p className="text-2xl font-bold">{stat.value}</p>
+                  <p className="text-xs text-gray-500">{stat.label}</p>
                 </div>
               </div>
             </CardContent>
           </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                  <Clock className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  {loading ? (
-                    <>
-                      <Skeleton className="h-7 w-12 mb-1" />
-                      <Skeleton className="h-4 w-20" />
-                    </>
-                  ) : (
-                    <>
-                      <p className="text-2xl font-bold">{stats?.pending ?? 0}</p>
-                      <p className="text-sm text-gray-600">In Attesa</p>
-                    </>
-                  )}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <DollarSign className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  {loading ? (
-                    <>
-                      <Skeleton className="h-7 w-16 mb-1" />
-                      <Skeleton className="h-4 w-24" />
-                    </>
-                  ) : (
-                    <>
-                      <p className="text-2xl font-bold">
-                        {'\u20AC'}{((stats?.avgSalary ?? 0) / 1000).toFixed(0)}k
-                      </p>
-                      <p className="text-sm text-gray-600">Stipendio Medio</p>
-                    </>
-                  )}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <TrendingUp className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  {loading ? (
-                    <>
-                      <Skeleton className="h-7 w-14 mb-1" />
-                      <Skeleton className="h-4 w-24" />
-                    </>
-                  ) : (
-                    <>
-                      <p className="text-2xl font-bold">{stats?.placementRate ?? 0}%</p>
-                      <p className="text-sm text-gray-600">Tasso Placement</p>
-                    </>
-                  )}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+        ))}
+      </div>
 
-        {/* Filters */}
-        <div className="flex flex-wrap gap-4 mb-6">
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              placeholder="Cerca studente, azienda o posizione..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-          <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger className="w-40">
-              <SelectValue placeholder="Stato" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Tutti gli stati</SelectItem>
-              <SelectItem value="confirmed">Confermati</SelectItem>
-              <SelectItem value="pending">In Attesa</SelectItem>
-              <SelectItem value="declined">Rifiutati</SelectItem>
-            </SelectContent>
-          </Select>
-          <Select value={typeFilter} onValueChange={setTypeFilter}>
-            <SelectTrigger className="w-40">
-              <SelectValue placeholder="Tipo" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Tutti i tipi</SelectItem>
-              <SelectItem value="full-time">Full-time</SelectItem>
-              <SelectItem value="internship">Stage</SelectItem>
-              <SelectItem value="part-time">Part-time</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Placements List */}
+      {/* Charts Row */}
+      <div className="grid lg:grid-cols-2 gap-6">
+        {/* Monthly Trend Chart */}
         <Card>
-          <CardContent className="p-0">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gray-50 border-b">
-                  <tr>
-                    <th className="text-left p-4 font-medium text-gray-600">Studente</th>
-                    <th className="text-left p-4 font-medium text-gray-600">Azienda</th>
-                    <th className="text-left p-4 font-medium text-gray-600">Posizione</th>
-                    <th className="text-left p-4 font-medium text-gray-600">Stipendio</th>
-                    <th className="text-left p-4 font-medium text-gray-600">Inizio</th>
-                    <th className="text-left p-4 font-medium text-gray-600">Tipo</th>
-                    <th className="text-left p-4 font-medium text-gray-600">Stato</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y">
-                  {loading ? (
-                    Array.from({ length: 5 }).map((_, i) => (
-                      <tr key={i}>
-                        <td className="p-4">
-                          <div className="flex items-center gap-3">
-                            <Skeleton className="h-10 w-10 rounded-full" />
-                            <div>
-                              <Skeleton className="h-4 w-28 mb-1" />
-                              <Skeleton className="h-3 w-36" />
-                            </div>
-                          </div>
-                        </td>
-                        <td className="p-4"><Skeleton className="h-4 w-24" /></td>
-                        <td className="p-4">
-                          <Skeleton className="h-4 w-32 mb-1" />
-                          <Skeleton className="h-3 w-20" />
-                        </td>
-                        <td className="p-4"><Skeleton className="h-4 w-20" /></td>
-                        <td className="p-4"><Skeleton className="h-4 w-24" /></td>
-                        <td className="p-4"><Skeleton className="h-5 w-16 rounded-full" /></td>
-                        <td className="p-4"><Skeleton className="h-5 w-20 rounded-full" /></td>
-                      </tr>
-                    ))
-                  ) : (
-                    placements.map((placement) => (
-                      <tr key={placement.id} className="hover:bg-gray-50">
-                        <td className="p-4">
-                          <div className="flex items-center gap-3">
-                            <Avatar className="h-10 w-10">
-                              <AvatarFallback>
-                                {placement.studentName.split(' ').map(n => n[0]).join('')}
-                              </AvatarFallback>
-                            </Avatar>
-                            <div>
-                              <p className="font-medium text-gray-900">{placement.studentName}</p>
-                              <p className="text-sm text-gray-600">{placement.department}</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="p-4">
-                          <div className="flex items-center gap-2">
-                            <Building2 className="h-4 w-4 text-gray-400" />
-                            <span className="font-medium">{placement.company}</span>
-                          </div>
-                        </td>
-                        <td className="p-4">
-                          <p className="text-gray-900">{placement.position}</p>
-                          {placement.location && (
-                            <p className="text-sm text-gray-600 flex items-center gap-1">
-                              <MapPin className="h-3 w-3" />
-                              {placement.location}
-                            </p>
-                          )}
-                        </td>
-                        <td className="p-4">
-                          <span className="font-semibold text-gray-900">
-                            {getCurrencySymbol(placement.salaryCurrency)}{placement.salary.toLocaleString()}
-                            {placement.type === 'internship' && '/mese'}
-                          </span>
-                        </td>
-                        <td className="p-4">
-                          <span className="text-gray-600">
-                            {new Date(placement.startDate).toLocaleDateString('it-IT', {
-                              day: 'numeric',
-                              month: 'short',
-                              year: 'numeric'
-                            })}
-                          </span>
-                        </td>
-                        <td className="p-4">{getTypeBadge(placement.type)}</td>
-                        <td className="p-4">{getStatusBadge(placement.status)}</td>
-                      </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
-            </div>
+          <CardHeader>
+            <CardTitle className="text-lg">{t('trendChart.title')}</CardTitle>
+            <p className="text-sm text-gray-500">{t('trendChart.subtitle')}</p>
+          </CardHeader>
+          <CardContent>
+            {monthlyTrend.length > 0 ? (
+              <ResponsiveContainer width="100%" height={280}>
+                <LineChart data={monthlyTrend}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                  <XAxis dataKey="month" tick={{ fontSize: 12 }} />
+                  <YAxis tick={{ fontSize: 12 }} />
+                  <Tooltip />
+                  <Legend />
+                  <Line
+                    type="monotone"
+                    dataKey="contacts"
+                    stroke="#6366f1"
+                    strokeWidth={2}
+                    name={t('trendChart.contacts')}
+                    dot={{ r: 3 }}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="hires"
+                    stroke="#10b981"
+                    strokeWidth={2}
+                    name={t('trendChart.hires')}
+                    dot={{ r: 3 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="h-[280px] flex items-center justify-center text-gray-400">
+                {t('noData')}
+              </div>
+            )}
+          </CardContent>
+        </Card>
 
-            {!loading && placements.length === 0 && (
-              <div className="text-center py-12">
-                <Briefcase className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Nessun placement trovato
-                </h3>
-                <p className="text-gray-600">
-                  Prova a modificare i filtri di ricerca
-                </p>
+        {/* Top Hiring Companies */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">{t('topCompanies.title')}</CardTitle>
+            <p className="text-sm text-gray-500">{t('topCompanies.subtitle')}</p>
+          </CardHeader>
+          <CardContent>
+            {topCompanies.length > 0 ? (
+              <ResponsiveContainer width="100%" height={280}>
+                <BarChart data={topCompanies} layout="vertical" margin={{ left: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                  <XAxis type="number" tick={{ fontSize: 12 }} />
+                  <YAxis
+                    dataKey="company"
+                    type="category"
+                    tick={{ fontSize: 11 }}
+                    width={120}
+                  />
+                  <Tooltip />
+                  <Bar dataKey="hires" fill="#10b981" radius={[0, 4, 4, 0]} name={t('topCompanies.hires')} />
+                </BarChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="h-[280px] flex items-center justify-center text-gray-400">
+                <div className="text-center">
+                  <Building2 className="h-10 w-10 mx-auto mb-2 text-gray-300" />
+                  <p>{t('noData')}</p>
+                </div>
               </div>
             )}
           </CardContent>
         </Card>
       </div>
+
+      {/* Department Breakdown + Recent Placements */}
+      <Tabs defaultValue="recent" className="space-y-4">
+        <TabsList>
+          <TabsTrigger value="recent">{t('tabs.recentPlacements')}</TabsTrigger>
+          <TabsTrigger value="departments">{t('tabs.departments')}</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="recent">
+          <Card>
+            <CardContent className="p-0">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50 border-b">
+                    <tr>
+                      <th className="text-left p-4 font-medium text-gray-600">{t('table.student')}</th>
+                      <th className="text-left p-4 font-medium text-gray-600">{t('table.company')}</th>
+                      <th className="text-left p-4 font-medium text-gray-600">{t('table.jobTitle')}</th>
+                      <th className="text-left p-4 font-medium text-gray-600">{t('table.startDate')}</th>
+                      <th className="text-left p-4 font-medium text-gray-600">{t('table.confirmedDate')}</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y">
+                    {recentPlacements.length > 0 ? (
+                      recentPlacements.map((p) => (
+                        <tr key={p.id} className="hover:bg-gray-50">
+                          <td className="p-4">
+                            <div>
+                              <p className="font-medium text-gray-900">{p.studentName}</p>
+                              {p.department && (
+                                <p className="text-sm text-gray-500">{p.department}</p>
+                              )}
+                            </div>
+                          </td>
+                          <td className="p-4">
+                            <div className="flex items-center gap-2">
+                              <Building2 className="h-4 w-4 text-gray-400" />
+                              <span className="font-medium">{p.company}</span>
+                            </div>
+                          </td>
+                          <td className="p-4 text-gray-900">{p.jobTitle || '-'}</td>
+                          <td className="p-4 text-gray-600">
+                            {p.startDate
+                              ? new Date(p.startDate).toLocaleDateString('en-GB', {
+                                  day: 'numeric',
+                                  month: 'short',
+                                  year: 'numeric',
+                                })
+                              : '-'}
+                          </td>
+                          <td className="p-4">
+                            {p.confirmedDate ? (
+                              <Badge className="bg-emerald-50 text-emerald-700 border-emerald-200">
+                                <CheckCircle className="h-3 w-3 mr-1" />
+                                {new Date(p.confirmedDate).toLocaleDateString('en-GB', {
+                                  day: 'numeric',
+                                  month: 'short',
+                                  year: 'numeric',
+                                })}
+                              </Badge>
+                            ) : (
+                              '-'
+                            )}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={5} className="p-12 text-center">
+                          <Briefcase className="h-10 w-10 text-gray-300 mx-auto mb-3" />
+                          <p className="text-gray-500">{t('noRecentPlacements')}</p>
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="departments">
+          <Card>
+            <CardContent className="p-0">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50 border-b">
+                    <tr>
+                      <th className="text-left p-4 font-medium text-gray-600">{t('deptTable.department')}</th>
+                      <th className="text-left p-4 font-medium text-gray-600">{t('deptTable.contacted')}</th>
+                      <th className="text-left p-4 font-medium text-gray-600">{t('deptTable.hired')}</th>
+                      <th className="text-left p-4 font-medium text-gray-600">{t('deptTable.placementRate')}</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y">
+                    {departmentBreakdown.length > 0 ? (
+                      departmentBreakdown.map((dept) => (
+                        <tr key={dept.department} className="hover:bg-gray-50">
+                          <td className="p-4 font-medium text-gray-900">{dept.department}</td>
+                          <td className="p-4 text-gray-600">{dept.contacted}</td>
+                          <td className="p-4">
+                            <span className="font-semibold text-emerald-600">{dept.hired}</span>
+                          </td>
+                          <td className="p-4">
+                            <div className="flex items-center gap-2">
+                              <div className="w-24 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                <div
+                                  className="h-full bg-emerald-500 rounded-full"
+                                  style={{ width: `${Math.min(dept.rate, 100)}%` }}
+                                />
+                              </div>
+                              <span className="text-sm font-medium text-gray-700">{dept.rate}%</span>
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={4} className="p-12 text-center">
+                          <Users className="h-10 w-10 text-gray-300 mx-auto mb-3" />
+                          <p className="text-gray-500">{t('noDepartmentData')}</p>
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }

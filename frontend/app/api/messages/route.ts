@@ -124,6 +124,7 @@ export async function POST(req: NextRequest) {
       const user = await prisma.user.findUnique({
         where: { id: session.user.id },
         select: {
+          email: true,
           subscriptionTier: true,
           contactBalance: true,
         }
@@ -133,16 +134,85 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'User not found' }, { status: 404 })
       }
 
-      // RECRUITER_FREE: reject with upgrade message
-      if (user.subscriptionTier === 'RECRUITER_FREE' || user.subscriptionTier === 'FREE') {
-        return NextResponse.json({
-          error: 'Upgrade required to contact candidates',
-          upgradeUrl: '/pricing?for=recruiters',
-        }, { status: 403 })
+      // Check for active position listing first (Pay-Per-Position: unlimited contacts)
+      const activePositionListing = await prisma.positionListing.findFirst({
+        where: {
+          recruiterId: session.user.id,
+          status: 'ACTIVE',
+          expiresAt: { gt: new Date() },
+        },
+        orderBy: { expiresAt: 'asc' },
+      })
+
+      if (activePositionListing) {
+        // Check dedup: already contacted = no increment
+        const existingContact = await prisma.contactUsage.findFirst({
+          where: {
+            recruiterId: session.user.id,
+            recipientId: recipientId,
+          }
+        })
+
+        if (!existingContact) {
+          // Increment contacts used on the position listing
+          await prisma.positionListing.update({
+            where: { id: activePositionListing.id },
+            data: { contactsUsed: { increment: 1 } },
+          })
+        }
+
+        // Position listing grants unlimited contacts — skip balance checks below
+        // Fall through to the message creation at the end of the function
       }
 
-      // RECRUITER_PAY_PER_CONTACT: check balance and deduct
-      if (user.subscriptionTier === 'RECRUITER_PAY_PER_CONTACT') {
+      // RECRUITER_FREE / FREE: allow first 5 unique contacts per company domain
+      const FREE_CONTACT_LIMIT = 5
+      if (!activePositionListing && (user.subscriptionTier === 'RECRUITER_FREE' || user.subscriptionTier === 'FREE')) {
+        const existingContact = await prisma.contactUsage.findFirst({
+          where: { recruiterId: session.user.id, recipientId: recipientId },
+        })
+
+        if (!existingContact) {
+          // Count free contacts across the entire company domain
+          const emailDomain = user.email.split('@')[1]?.toLowerCase()
+          const freeProviders = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'live.com', 'icloud.com', 'mail.com', 'protonmail.com']
+          const isCompanyDomain = emailDomain && !freeProviders.includes(emailDomain)
+
+          let domainContactCount = 0
+          if (isCompanyDomain) {
+            const domainRecruiters = await prisma.user.findMany({
+              where: {
+                email: { endsWith: `@${emailDomain}` },
+                role: 'RECRUITER',
+              },
+              select: { id: true },
+            })
+            const domainRecruiterIds = domainRecruiters.map(r => r.id)
+            domainContactCount = await prisma.contactUsage.count({
+              where: { recruiterId: { in: domainRecruiterIds } },
+            })
+          } else {
+            domainContactCount = await prisma.contactUsage.count({
+              where: { recruiterId: session.user.id },
+            })
+          }
+
+          if (domainContactCount >= FREE_CONTACT_LIMIT) {
+            return NextResponse.json({
+              error: isCompanyDomain
+                ? `Your company (${emailDomain}) has used all ${FREE_CONTACT_LIMIT} free contacts. Purchase credits or open a position to continue.`
+                : `You've used all ${FREE_CONTACT_LIMIT} free contacts. Purchase credits or open a position to continue.`,
+              upgradeUrl: '/pricing?for=recruiters',
+              freeContactsUsed: domainContactCount,
+              freeContactLimit: FREE_CONTACT_LIMIT,
+            }, { status: 403 })
+          }
+        }
+        // Free contact allowed — fall through to message creation
+      }
+
+      // RECRUITER_PAY_PER_CONTACT: check balance and deduct (skip if position listing active)
+      if (!activePositionListing && user.subscriptionTier === 'RECRUITER_PAY_PER_CONTACT') {
         // Check dedup: already contacted = free re-contact
         const existingContact = await prisma.contactUsage.findFirst({
           where: {

@@ -82,6 +82,62 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
     return
   }
 
+  // Handle position listing purchases (one-time payment)
+  if (type === 'position_listing' && session.mode === 'payment') {
+    const positionListingId = session.metadata?.positionListingId
+    if (!positionListingId) {
+      console.error('Missing positionListingId in session metadata')
+      return
+    }
+
+    const now = new Date()
+    const listing = await prisma.positionListing.findUnique({
+      where: { id: positionListingId },
+    })
+
+    if (!listing) {
+      console.error('PositionListing not found:', positionListingId)
+      return
+    }
+
+    const expiresAt = new Date(now.getTime() + listing.durationDays * 24 * 60 * 60 * 1000)
+
+    await prisma.positionListing.update({
+      where: { id: positionListingId },
+      data: {
+        status: 'ACTIVE',
+        activatedAt: now,
+        expiresAt,
+        stripePaymentIntentId: session.payment_intent as string,
+        stripeSessionId: session.id,
+      },
+    })
+
+    // Ensure user tier is at least PAY_PER_CONTACT so they can use contacts
+    await prisma.user.update({
+      where: { id: userId },
+      data: {
+        subscriptionTier: 'RECRUITER_PAY_PER_CONTACT',
+      },
+    })
+
+    // Track analytics
+    await prisma.analytics.create({
+      data: {
+        userId,
+        eventType: 'SUBSCRIPTION_STARTED',
+        eventName: 'position_listing_purchased',
+        properties: {
+          positionListingId,
+          amount: session.amount_total,
+          durationDays: listing.durationDays,
+          title: listing.title,
+        },
+      },
+    })
+    return
+  }
+
   // Handle contact credit purchases (one-time payment)
   if (type === 'contact_credits' && session.mode === 'payment') {
     const credits = parseInt(session.metadata?.credits || '1', 10)

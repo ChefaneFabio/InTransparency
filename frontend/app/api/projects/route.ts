@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { runAIAnalysis, buildProjectData } from '@/lib/run-ai-analysis'
+import { normalizeGrade } from '@/lib/grades/ects-normalization'
 
 // POST /api/projects - Create a new project
 export async function POST(request: NextRequest) {
@@ -38,6 +39,21 @@ export async function POST(request: NextRequest) {
         { error: 'Invalid discipline' },
         { status: 400 }
       )
+    }
+
+    // Calculate normalized grade if grade is provided
+    let computedNormalizedGrade: number | undefined = undefined
+    if (body.grade) {
+      // Look up the user's country for grade normalization
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { country: true }
+      })
+      const country = body.country || user?.country || 'IT'
+      const gradeResult = normalizeGrade(body.grade, country)
+      if (gradeResult) {
+        computedNormalizedGrade = gradeResult.normalizedScore
+      }
     }
 
     // Create project with all new fields
@@ -82,6 +98,7 @@ export async function POST(request: NextRequest) {
         semester: body.semester,
         academicYear: body.academicYear,
         grade: body.grade,
+        normalizedGrade: computedNormalizedGrade,
         professor: body.professor,
         universityVerified: false, // Will be verified later by university
         // courseId will be set when we link to Course model

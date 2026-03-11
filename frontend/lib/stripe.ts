@@ -14,6 +14,7 @@ export const STRIPE_PRICES = {
   RECRUITER_ENTERPRISE_MONTHLY: process.env.STRIPE_RECRUITER_ENTERPRISE_MONTHLY_PRICE_ID || '',
   INSTITUTION_ENTERPRISE_ANNUAL: process.env.STRIPE_INSTITUTION_ENTERPRISE_ANNUAL_PRICE_ID || '',
   CONTACT_CREDITS: process.env.STRIPE_CONTACT_CREDITS_PRICE_ID || '',
+  POSITION_LISTING: process.env.STRIPE_POSITION_LISTING_PRICE_ID || '',
 }
 
 // Pricing configuration (amounts in cents)
@@ -29,5 +30,8 @@ export const PRICING = {
   },
   CONTACT_CREDITS: {
     perCredit: 1000, // €10 per contact credit
+  },
+  POSITION_LISTING: {
+    standard: 4900, // €49 per position for 30 days
   },
 }

@@ -10,9 +10,9 @@ export function BookingSection() {
   const t = useTranslations('home.booking')
 
   return (
-    <section className="py-20">
+    <section className="py-24 sm:py-32">
       <div className="container max-w-3xl mx-auto">
-        <div className="bg-card rounded-2xl border border-border p-10 sm:p-12 text-center">
+        <div className="bg-card rounded-2xl border border-border p-12 sm:p-16 text-center">
           <div className="inline-flex p-2.5 rounded-lg bg-primary/10 mb-5">
             <Calendar className="h-5 w-5 text-primary" />
           </div>

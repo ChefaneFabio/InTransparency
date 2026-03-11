@@ -28,10 +28,11 @@ export async function POST(req: NextRequest) {
 
     // Get request body
     const body = await req.json()
-    const { priceId, tier, interval, credits } = body
+    const { priceId, tier, interval, credits, positionTitle, positionDescription, positionJobId, positionDurationDays } = body
 
     // For contact credit purchases, mode is 'payment'; otherwise 'subscription'
     const isContactCredits = priceId === STRIPE_PRICE_IDS.CONTACT_CREDITS
+    const isPositionListing = priceId === STRIPE_PRICE_IDS.POSITION_LISTING_STANDARD
 
     if (!priceId || !tier) {
       return NextResponse.json(
@@ -40,7 +41,7 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    if (!isContactCredits && !interval) {
+    if (!isContactCredits && !isPositionListing && !interval) {
       return NextResponse.json(
         { error: 'Missing required field: interval (for subscriptions)' },
         { status: 400 }
@@ -86,6 +87,65 @@ export async function POST(req: NextRequest) {
       await prisma.user.update({
         where: { id: user.id },
         data: { stripeCustomerId: customerId }
+      })
+    }
+
+    if (isPositionListing) {
+      // One-time payment for position listing
+      const title = positionTitle || 'Position Listing'
+      const durationDays = positionDurationDays || 30
+
+      // Create the position listing record (pending payment)
+      const positionListing = await prisma.positionListing.create({
+        data: {
+          recruiterId: user.id,
+          title,
+          description: positionDescription || null,
+          jobId: positionJobId || null,
+          price: 4900, // €49
+          durationDays,
+          status: 'PENDING_PAYMENT',
+        },
+      })
+
+      const checkoutSession = await stripe.checkout.sessions.create({
+        customer: customerId,
+        mode: 'payment',
+        payment_method_types: ['card'],
+        line_items: [
+          {
+            price_data: {
+              currency: 'eur',
+              unit_amount: 4900,
+              product_data: {
+                name: `Position Listing: ${title}`,
+                description: `${durationDays}-day position listing with unlimited candidate contacts`,
+              },
+            },
+            quantity: 1,
+          }
+        ],
+        success_url: `${STRIPE_CONFIG.successUrl}?session_id={CHECKOUT_SESSION_ID}&type=position_listing&position_id=${positionListing.id}`,
+        cancel_url: `${process.env.NEXT_PUBLIC_URL || ''}/dashboard/recruiter/positions?cancelled=true`,
+        metadata: {
+          userId: user.id,
+          type: 'position_listing',
+          positionListingId: positionListing.id,
+          tier: 'RECRUITER_PAY_PER_CONTACT',
+        },
+        allow_promotion_codes: true,
+        billing_address_collection: 'required',
+      })
+
+      // Update position listing with Stripe session ID
+      await prisma.positionListing.update({
+        where: { id: positionListing.id },
+        data: { stripeSessionId: checkoutSession.id },
+      })
+
+      return NextResponse.json({
+        sessionId: checkoutSession.id,
+        url: checkoutSession.url,
       })
     }
 

@@ -26,15 +26,15 @@ export function HowItWorks() {
   }
 
   return (
-    <section id="how-it-works" className="py-20 bg-muted/30">
+    <section id="how-it-works" className="py-24 sm:py-32 bg-muted/30">
       <div className="container max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-14">
-          <h2 className="text-3xl font-display font-bold text-foreground sm:text-4xl">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-display font-bold text-foreground sm:text-5xl">
             {t('title')}{' '}
             <span className="text-primary">{t('titleHighlight')}</span>
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('subtitle')}
           </p>
         </div>

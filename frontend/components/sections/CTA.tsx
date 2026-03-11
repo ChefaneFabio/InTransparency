@@ -21,27 +21,27 @@ export function CTA() {
   const translationKey = segmentToKey[segment]
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-24 sm:py-32 bg-foreground text-background">
       <div className="container max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left: text + CTA */}
           <div className="text-center lg:text-left">
-            <h2 className="text-3xl font-display font-bold tracking-tight text-foreground sm:text-4xl">
+            <h2 className="text-3xl font-display font-bold tracking-tight sm:text-5xl">
               {t('title')}{' '}
               <span className="text-primary">{t('titleHighlight')}</span>
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-lg">
+            <p className="mt-5 text-lg text-background/70 max-w-lg">
               {t('subtitle')}
             </p>
 
-            <div className="mt-8">
-              <h3 className="text-base font-semibold text-foreground mb-2">
+            <div className="mt-10">
+              <h3 className="text-base font-semibold mb-2">
                 {t(`segments.${translationKey}.title`)}
               </h3>
-              <p className="text-sm text-muted-foreground mb-4">
+              <p className="text-sm text-background/60 mb-5">
                 {t(`segments.${translationKey}.description`)}
               </p>
-              <Button asChild size="lg">
+              <Button asChild size="lg" variant="secondary" className="bg-background text-foreground hover:bg-background/90">
                 <Link href={segment === 'institutions' ? '/contact' : '/auth/register'}>
                   {t(`segments.${translationKey}.cta`)}
                   <ArrowRight className="ml-1.5 h-4 w-4" />

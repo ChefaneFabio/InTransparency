@@ -27,6 +27,7 @@ import { Link } from '@/navigation'
 import PlacementProbabilityBadge from '@/components/predictions/PlacementProbabilityBadge'
 import DecisionPackCard from '@/components/dashboard/recruiter/DecisionPackCard'
 import TrustScoreBadge from '@/components/portfolio/TrustScoreBadge'
+import { PositionUpsellBanner } from '@/components/dashboard/recruiter/PositionUpsellBanner'
 
 interface Project {
   id: string
@@ -74,6 +75,13 @@ export default function CandidateProfilePage() {
   const [contactSubject, setContactSubject] = useState('')
   const [sendingMessage, setSendingMessage] = useState(false)
   const [messageSent, setMessageSent] = useState(false)
+  const [positionUpsell, setPositionUpsell] = useState<{
+    show: boolean
+    recentContacts: number
+    spentRecently: number
+    positionPrice: number
+    savings: number
+  } | null>(null)
 
   useEffect(() => {
     if (!candidateId) return
@@ -123,6 +131,24 @@ export default function CandidateProfilePage() {
       alert(err.message)
     } finally {
       setBookmarkLoading(false)
+    }
+  }
+
+  const openContactForm = async () => {
+    setShowContactForm(true)
+    if (!candidate) return
+    try {
+      const res = await fetch('/api/recruiter/contacts/check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ studentId: candidate.id }),
+      })
+      const data = await res.json()
+      if (data.positionUpsell?.show) {
+        setPositionUpsell(data.positionUpsell)
+      }
+    } catch {
+      // Non-critical — don't block the form
     }
   }
 
@@ -255,7 +281,7 @@ export default function CandidateProfilePage() {
             <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current' : ''}`} />
             {isBookmarked ? 'Saved' : 'Save'}
           </Button>
-          <Button size="sm" onClick={() => setShowContactForm(true)}>
+          <Button size="sm" onClick={openContactForm}>
             <MessageSquare className="mr-2 h-4 w-4" />
             Contact
           </Button>
@@ -348,7 +374,7 @@ export default function CandidateProfilePage() {
                     <div className="flex items-center space-x-3">
                       <Mail className="h-4 w-4 text-gray-600" />
                       <span>{candidate.email}</span>
-                      <Button size="sm" variant="outline" onClick={() => setShowContactForm(true)}>
+                      <Button size="sm" variant="outline" onClick={openContactForm}>
                         <Mail className="h-4 w-4 mr-1" />
                         Email
                       </Button>
@@ -528,7 +554,7 @@ export default function CandidateProfilePage() {
               <CardTitle>Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <Button className="w-full justify-start" onClick={() => setShowContactForm(true)}>
+              <Button className="w-full justify-start" onClick={openContactForm}>
                 <MessageSquare className="mr-2 h-4 w-4" />
                 Send Message
               </Button>
@@ -608,6 +634,14 @@ export default function CandidateProfilePage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
+              {positionUpsell && positionUpsell.show && (
+                <PositionUpsellBanner
+                  recentContacts={positionUpsell.recentContacts}
+                  spentRecently={positionUpsell.spentRecently}
+                  positionPrice={positionUpsell.positionPrice}
+                  savings={positionUpsell.savings}
+                />
+              )}
               {!candidate.email && (
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
                   This candidate has not made their email public. The message will be sent through the platform.

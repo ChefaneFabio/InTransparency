@@ -292,13 +292,13 @@ export function PlatformPreview() {
   const t = useTranslations('home.platformPreview')
 
   return (
-    <section className="py-20">
+    <section className="py-24 sm:py-32">
       <div className="container">
-        <div className="text-center mb-12">
-          <p className="text-sm font-medium tracking-wide text-primary uppercase mb-3">
+        <div className="text-center mb-16">
+          <p className="text-sm font-medium tracking-widest text-primary uppercase mb-4">
             {t('badge')}
           </p>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-5">
             {t('title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

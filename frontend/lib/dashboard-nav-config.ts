@@ -76,6 +76,7 @@ const recruiter: NavConfig = {
         { labelKey: 'talentDiscovery', href: '/dashboard/recruiter/talent-discovery' },
         { labelKey: 'advancedSearch', href: '/dashboard/recruiter/advanced-search' },
         { labelKey: 'aiSearch', href: '/dashboard/recruiter/ai-search' },
+        { labelKey: 'aiShortlist', href: '/dashboard/recruiter/ai-shortlist' },
         { labelKey: 'geographicSearch', href: '/dashboard/recruiter/geographic-search' },
         { labelKey: 'courseSearch', href: '/dashboard/recruiter/course-search' },
         { labelKey: 'savedCandidates', href: '/dashboard/recruiter/saved-candidates' },
@@ -87,6 +88,7 @@ const recruiter: NavConfig = {
       items: [
         { labelKey: 'listings', href: '/dashboard/recruiter/jobs' },
         { labelKey: 'postJob', href: '/dashboard/recruiter/post-job' },
+        { labelKey: 'positions', href: '/dashboard/recruiter/positions' },
       ],
     },
     {

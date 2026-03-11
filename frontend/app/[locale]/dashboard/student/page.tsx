@@ -25,6 +25,7 @@ import {
 } from 'lucide-react'
 import OnboardingChecklist from '@/components/dashboard/student/OnboardingChecklist'
 import { AchievementsPanel } from '@/components/dashboard/student/AchievementsPanel'
+import { HiringConfirmationBanner } from '@/components/dashboard/student/HiringConfirmationBanner'
 import { signOut } from 'next-auth/react'
 import { useLocale } from 'next-intl'
 import { Link } from '@/navigation'
@@ -149,6 +150,9 @@ export default function StudentDashboard() {
           universityVerified={onboarding.universityVerified}
         />
       )}
+
+      {/* Hiring confirmation — asks students if they got hired after company contact */}
+      <HiringConfirmationBanner />
 
       <div className="grid lg:grid-cols-5 gap-5">
         {/* Projects - takes more space */}

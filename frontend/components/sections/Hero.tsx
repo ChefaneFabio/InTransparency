@@ -27,26 +27,26 @@ export function Hero() {
   const segment = segmentToTranslationKey[activeSegment]
 
   return (
-    <section className="py-20 sm:py-28">
+    <section className="py-24 sm:py-36">
       <div className="container">
         <div className="mx-auto max-w-3xl text-center">
           {/* Social proof — earned, not decorative */}
-          <p className="mb-6 text-sm font-medium tracking-wide text-primary uppercase">
+          <p className="mb-8 text-sm font-medium tracking-widest text-primary uppercase">
             {t('serviceBadge')}
           </p>
 
           {/* Headline — typography does the work, no gradients */}
-          <h1 className="text-4xl font-display font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-display font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl leading-[1.1]">
             {t('unifiedHeadline1')}{' '}
             <span className="text-primary">{t('unifiedHeadline2')}</span>
           </h1>
 
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-8 text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
             {t('unifiedSubheadline')}
           </p>
 
           {/* CTAs — clean, no hover-scale */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg" className="shadow-sm">
               <Link href="/auth/register">
                 {t('unifiedPrimaryCTA')}
@@ -81,8 +81,8 @@ export function Hero() {
         </div>
 
         {/* Segment explorer — below the fold */}
-        <div className="mt-20 mx-auto max-w-4xl">
-          <div className="mb-8 flex items-center gap-4">
+        <div className="mt-28 mx-auto max-w-4xl">
+          <div className="mb-10 flex items-center gap-4">
             <div className="flex-1 h-px bg-border" />
             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
               {t('exploreByRole')}
@@ -132,9 +132,9 @@ export function Hero() {
                 {[0, 1, 2].map((index) => (
                   <div
                     key={`${activeSegment}-${index}`}
-                    className="bg-card rounded-xl border border-border p-6"
+                    className="bg-card rounded-xl border border-border p-7"
                   >
-                    <h3 className="text-base font-semibold text-foreground mb-2">
+                    <h3 className="text-base font-semibold text-foreground mb-3">
                       {t(`${segment}.features.${index}.title`)}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">

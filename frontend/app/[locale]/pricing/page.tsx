@@ -7,7 +7,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Check, Building2, GraduationCap, ArrowRight, Zap, Crown, School, Star, Heart } from 'lucide-react'
+import { Check, Building2, GraduationCap, ArrowRight, Zap, Crown, School, Star, Heart, Briefcase } from 'lucide-react'
 import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
 
@@ -160,10 +160,11 @@ export default function PricingPage() {
                       {t('founding.afterPilotLabel')}
                     </p>
                   </div>
-                  <div className="grid md:grid-cols-3 gap-6 opacity-75 hover:opacity-100 transition-opacity duration-300">
+                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 opacity-75 hover:opacity-100 transition-opacity duration-300">
                     {[
                       { name: t('plans.company.browse.name'), price: '€0', period: '', icon: Zap, features: [0, 1, 2, 3, 4], highlight: false, badge: t('plans.company.browse.badge'), cta: t('plans.company.browse.cta'), link: '/auth/register', featureKey: 'plans.company.browse.features' },
-                      { name: t('plans.company.payPerContact.name'), price: '€10', period: t('plans.company.payPerContact.period'), icon: Building2, features: [0, 1, 2, 3, 4], highlight: true, badge: t('plans.company.payPerContact.badge'), cta: t('plans.company.payPerContact.cta'), link: '/auth/register', featureKey: 'plans.company.payPerContact.features' },
+                      { name: t('plans.company.payPerContact.name'), price: '€10', period: t('plans.company.payPerContact.period'), icon: Building2, features: [0, 1, 2, 3, 4], highlight: false, badge: t('plans.company.payPerContact.badge'), cta: t('plans.company.payPerContact.cta'), link: '/auth/register', featureKey: 'plans.company.payPerContact.features' },
+                      { name: t('plans.company.payPerPosition.name'), price: '€49', period: t('plans.company.payPerPosition.period'), icon: Briefcase, features: [0, 1, 2, 3, 4], highlight: true, badge: t('plans.company.payPerPosition.badge'), cta: t('plans.company.payPerPosition.cta'), link: '/dashboard/recruiter/positions', featureKey: 'plans.company.payPerPosition.features' },
                       { name: t('plans.company.enterprise.name'), price: '€99', period: t('plans.company.enterprise.period'), icon: Crown, features: [0, 1, 2, 3, 4], highlight: false, badge: t('plans.company.enterprise.badge'), cta: t('plans.company.enterprise.cta'), link: '/contact', featureKey: 'plans.company.enterprise.features' },
                     ].map((plan, index) => {
                       const Icon = plan.icon

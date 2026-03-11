@@ -18,18 +18,18 @@ export function TestimonialsSection() {
   const cardKeys = ['students', 'universities', 'companies'] as const
 
   return (
-    <section className="py-20">
+    <section className="py-24 sm:py-32">
       <div className="container">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-display font-bold text-foreground sm:text-4xl">
+        <div className="text-center mb-20">
+          <h2 className="text-3xl font-display font-bold text-foreground sm:text-5xl">
             {t('title')}
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('subtitle')}
           </p>
         </div>
 
-        <div className="space-y-20 max-w-5xl mx-auto">
+        <div className="space-y-24 max-w-5xl mx-auto">
           {cardKeys.map((key, index) => {
             const section = sections[index]
             return (

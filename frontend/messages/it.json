@@ -76,12 +76,14 @@
         "talentDiscovery": "Scopri Talenti",
         "advancedSearch": "Ricerca Avanzata",
         "aiSearch": "Ricerca AI",
+        "aiShortlist": "Shortlist AI",
         "geographicSearch": "Ricerca Geografica",
         "courseSearch": "Ricerca Corsi",
         "savedCandidates": "Candidati Salvati",
         "savedSearches": "Ricerche Salvate",
         "listings": "Annunci Lavoro",
         "postJob": "Pubblica Annuncio",
+        "positions": "Posizioni Aperte",
         "messages": "Messaggi",
         "analytics": "Analytics",
         "talentAnalytics": "Analytics Talenti",
@@ -153,16 +155,16 @@
       },
       "students": {
         "badge": "Per Studenti - Tutte le Discipline",
-        "headlinePart1": "Competenze Verificate.",
-        "headlinePart2": "Le Aziende Ti Trovano.",
+        "headlinePart1": "Mostra Quello che Hai Costruito.",
+        "headlinePart2": "Le Opportunità Arrivano a Te.",
         "description": "",
         "descriptionStrong": "",
         "primaryCTA": "Inizia Gratis",
         "secondaryCTA": "Vedi Come Funziona",
         "benefits": [
-          "Le aziende ti contattano per prime",
-          "Competenze verificate dall'istituzione",
-          "Niente credenziali false - 100% verificate"
+          "Le aziende scoprono il tuo lavoro verificato",
+          "Competenze confermate dall'istituzione",
+          "Sempre gratuito per gli studenti"
         ],
         "features": [
           {
@@ -171,87 +173,87 @@
           },
           {
             "title": "Voti Verificati",
-            "description": "Voti certificati dall'istituto, affidabili per le aziende"
+            "description": "Voti certificati dall'istituto che parlano da soli"
           },
           {
             "title": "Fatti Scoprire",
-            "description": "Le aziende ti contattano — nessuna candidatura"
+            "description": "Le aziende ti contattano direttamente"
           }
         ],
-        "statsLabel": "Portfolio verificati dalle istituzioni -",
-        "statsValue": "le aziende ti contattano direttamente, niente CV necessari"
+        "statsLabel": "Portfolio verificati dalle istituzioni —",
+        "statsValue": "aiutiamo studenti e aziende a trovarsi"
       },
       "universities": {
         "badge": "Per Istituzioni - Scuole, Università e ITS",
-        "headlinePart1": "Studenti Verificati.",
-        "headlinePart2": "Aziende che Assumono.",
+        "headlinePart1": "Dai ai Tuoi Studenti",
+        "headlinePart2": "la Visibilità che Meritano.",
         "description": "",
         "descriptionStrong": "",
         "primaryCTA": "Unisciti al Marketplace Gratuito",
         "secondaryCTA": "Vedi Come Funziona",
         "benefits": [
-          "Studenti scoperti dalle aziende",
-          "25% placement in più vs tradizionale",
-          "Traccia successo assunzioni per MIUR"
+          "Studenti scoperti dalle aziende tutto l'anno",
+          "Insight placement in tempo reale",
+          "Conforme al GDPR e privacy-first"
         ],
         "features": [
           {
             "title": "Visibilità Studenti",
-            "description": "10K+ aziende scoprono i tuoi laureati verificati"
+            "description": "Le aziende scoprono i tuoi laureati verificati"
           },
           {
             "title": "Badge di Verifica",
-            "description": "Il tuo timbro aumenta il placement del 25%"
+            "description": "Il tuo timbro istituzionale costruisce fiducia"
           },
           {
             "title": "Analytics Placement",
-            "description": "Monitora contatti, assunzioni e dimostra l'impatto"
+            "description": "Monitora contatti, assunzioni e misura l'impatto reale"
           }
         ],
-        "statsLabel": "Marketplace gratuito che collega studenti a",
-        "statsValue": "10K+ aziende che assumono attivamente talento verificato"
+        "statsLabel": "Un marketplace gratuito che collega",
+        "statsValue": "studenti, istituzioni e aziende — insieme"
       },
       "companies": {
-        "badge": "Per Aziende - Tutto il Talento",
-        "headlinePart1": "Competenze Reali.",
-        "headlinePart2": "Progetti Reali.",
-        "headlinePart3": "Assunzioni Reali.",
+        "badge": "Per Aziende - Tutti i Settori",
+        "headlinePart1": "Trova Talenti Junior",
+        "headlinePart2": "di cui Fidarti.",
+        "headlinePart3": "",
         "description": "",
         "descriptionStrong": "",
         "primaryCTA": "Inizia a Esplorare Gratis",
-        "secondaryCTA": "Vedi Prezzi",
+        "secondaryCTA": "Vedi Come Funziona",
         "benefits": [
-          "100% verificato dall'istituzione",
-          "Tracciabile alla fonte educativa",
-          "Zero gonfiaggio CV"
+          "Competenze verificate dalle istituzioni",
+          "Progetti reali, voti reali",
+          "Esplora gratis, paga solo quando ti connetti"
         ],
         "features": [
           {
             "title": "Talento Verificato",
-            "description": "Ogni competenza certificata dall'istituto"
+            "description": "Ogni competenza confermata dall'istituto dello studente"
           },
           {
-            "title": "Badge di Fiducia",
-            "description": "Voti autentici, non dichiarazioni sul CV"
+            "title": "Progetti Reali",
+            "description": "Vedi il lavoro vero — tesi, stage, codice"
           },
           {
-            "title": "Paga per Contatto",
-            "description": "€10 per contatto — nessun abbonamento"
+            "title": "Prezzi Semplici",
+            "description": "€10 per contatto — nessun abbonamento, nessun vincolo"
           }
         ],
-        "statsLabel": "Accedi a talento verificato da",
-        "statsValue": "istituzioni, accademie ITS e scuole"
+        "statsLabel": "Talento verificato da",
+        "statsValue": "università, accademie ITS e scuole di tutta Italia"
       },
       "bottomText": "Quattro Servizi, Zero Abbonamenti",
-      "unifiedHeadline1": "Scoperta di",
-      "unifiedHeadline2": "Talenti Trasparente",
-      "unifiedSubheadline": "Ogni competenza verificata dalle istituzioni. Ogni progetto tracciabile alla fonte. Le aziende pagano solo quando contattano un candidato.",
+      "unifiedHeadline1": "Collegare Talento",
+      "unifiedHeadline2": "e Opportunità",
+      "unifiedSubheadline": "Connettiamo studenti, istituzioni e aziende attraverso competenze verificate e progetti reali — perché le persone giuste si trovino.",
       "unifiedPrimaryCTA": "Inizia Gratis",
       "unifiedSecondaryCTA": "Vedi Come Funziona",
       "unifiedBenefits": [
         "Competenze verificate dalle istituzioni",
-        "Nessun abbonamento",
-        "Gratis per studenti e istituzioni"
+        "Per studenti, istituzioni e aziende",
+        "Inizia gratis"
       ],
       "exploreByRole": "Esplora per ruolo",
       "socialProof": {
@@ -497,22 +499,22 @@
       "subtitle": "Un'interfaccia pulita e intuitiva progettata per studenti, istituzioni e aziende."
     },
     "comparison": {
-      "badge": "Perché scegliere noi?",
+      "badge": "Un modo migliore",
       "cta": "Inizia Gratis",
       "students": {
-        "title": "InTransparency vs Ricerca Lavoro Tradizionale",
-        "subtitle": "Smetti di inviare CV nel vuoto. Fatti scoprire per le tue competenze verificate.",
-        "traditionalLabel": "Tradizionale",
+        "title": "Un Nuovo Modo di Iniziare la Carriera",
+        "subtitle": "Invece di inviare CV e aspettare, lascia che il tuo lavoro verificato parli per te.",
+        "traditionalLabel": "Prima",
         "rows": [
           {
             "feature": "Visibilità",
-            "traditional": "Invii CV, speri in risposta",
-            "ours": "Le aziende ti trovano"
+            "traditional": "Candidati e attendi risposte",
+            "ours": "Le aziende scoprono il tuo profilo"
           },
           {
             "feature": "Competenze",
             "traditional": "Autodichiarate nel CV",
-            "ours": "Verificate dall'istituto"
+            "ours": "Verificate dal tuo istituto"
           },
           {
             "feature": "Costo",
@@ -526,20 +528,20 @@
           },
           {
             "feature": "Tasso risposta",
-            "traditional": "~5% in media",
-            "ours": "Contatto diretto"
+            "traditional": "Spesso basso",
+            "ours": "Contatto diretto dalle aziende"
           },
           {
             "feature": "Portfolio",
-            "traditional": "PDF o LinkedIn",
+            "traditional": "PDF o profilo LinkedIn",
             "ours": "Portfolio progetti verificato"
           }
         ]
       },
       "institutions": {
-        "title": "InTransparency vs Placement Tradizionale",
-        "subtitle": "Traccia risultati reali, non solo sondaggi tra gli alumni.",
-        "traditionalLabel": "Tradizionale",
+        "title": "Un Approccio Moderno al Placement",
+        "subtitle": "Dai sondaggi annuali a insight in tempo reale sui percorsi di carriera dei tuoi studenti.",
+        "traditionalLabel": "Prima",
         "rows": [
           {
             "feature": "Tracciamento",
@@ -548,7 +550,7 @@
           },
           {
             "feature": "Connessioni",
-            "traditional": "Solo career day",
+            "traditional": "Eventi career day",
             "ours": "Marketplace tutto l'anno"
           },
           {
@@ -574,39 +576,39 @@
         ]
       },
       "companies": {
-        "title": "InTransparency vs Agenzie Interinali",
-        "subtitle": "Accedi a talenti verificati a una frazione del costo.",
-        "traditionalLabel": "Agenzie",
+        "title": "Un Modo Più Semplice per Trovare Talenti Junior",
+        "subtitle": "Esplora profili verificati da università e ITS italiani — connettiti quando sei pronto.",
+        "traditionalLabel": "Prima",
         "rows": [
           {
-            "feature": "Costo assunzione",
-            "traditional": "€4.500–7.500",
-            "ours": "€10 per contatto"
+            "feature": "Costo",
+            "traditional": "Fee agenzia o abbonamenti",
+            "ours": "€10 per contatto, senza vincoli"
           },
           {
             "feature": "Pool candidati",
-            "traditional": "Database agenzia",
-            "ours": "10K+ studenti verificati"
+            "traditional": "Candidature non verificate",
+            "ours": "Studenti verificati dall'istituto"
           },
           {
             "feature": "Verifica skills",
-            "traditional": "Screening agenzia",
-            "ours": "Certificato dall'istituto"
+            "traditional": "Screening CV",
+            "ours": "Verificato dall'istituzione"
           },
           {
             "feature": "Tempo",
-            "traditional": "4–8 settimane",
-            "ours": "Contatto diretto, giorni"
+            "traditional": "Settimane di screening",
+            "ours": "Esplora e contatta direttamente"
           },
           {
-            "feature": "Contratti",
-            "traditional": "Annuali vincolanti",
+            "feature": "Impegno",
+            "traditional": "Contratti annuali",
             "ours": "Paga quando vuoi"
           },
           {
             "feature": "Trasparenza",
-            "traditional": "Processo opaco",
-            "ours": "Matching AI spiegato"
+            "traditional": "Visibilità limitata",
+            "ours": "Vedi progetti e voti reali"
           }
         ]
       }
@@ -1518,7 +1520,7 @@
           "title": "4. Le Aziende Scoprono",
           "description": "Zero candidature"
         },
-        "result": "Gli studenti ottengono 25% più risposte • Zero candidature inviate • Vengono scoperti passivamente"
+        "result": "Gli studenti verificati si fanno notare • Zero candidature inviate • Vengono scoperti passivamente"
       },
       "institute": {
         "step1": {
@@ -2023,8 +2025,8 @@
           "label": "Tasso Medio di Placement"
         },
         "1": {
-          "value": "10K+",
-          "label": "Studenti Scoperti"
+          "value": "In crescita",
+          "label": "Comunità Studenti"
         },
         "2": {
           "value": "€0",
@@ -2042,10 +2044,10 @@
         "0": {
           "title": "Gli Studenti Vengono Scoperti",
           "items": {
-            "0": "Aziende cercano tra 10K+ diplomati verificati",
+            "0": "Le aziende cercano direttamente i diplomati verificati",
             "1": "Gli studenti non si candidano - le aziende li contattano",
             "2": "Il tuo badge di verifica = segnale di fiducia",
-            "3": "25% più placement rispetto ai metodi tradizionali"
+            "3": "Le competenze verificate aiutano gli studenti a distinguersi"
           }
         },
         "1": {
@@ -2093,7 +2095,7 @@
           "0": "\"Alta compatibilità: AutoCAD verificato da progetto ITS\"",
           "1": "Competenze verificate = punteggi match più alti",
           "2": "Aziende vedono il tuo endorsement istituzionale",
-          "3": "25% più placement di successo"
+          "3": "La verifica costruisce fiducia con i datori di lavoro"
         },
         "comparison": "vs Screening CV: 80% più veloce"
       },
@@ -2157,7 +2159,7 @@
         "0": {
           "title": "Migliori Risultati di Placement",
           "items": {
-            "0": "25% più studenti assunti vs metodi tradizionali",
+            "0": "Gli studenti verificati vengono scoperti dai datori di lavoro",
             "1": "Aziende contattano proattivamente",
             "2": "47 giorni tempo medio per assunzione",
             "3": "Competenze verificate = vantaggio competitivo"
@@ -2200,7 +2202,7 @@
         }
       },
       "cta": "Unisciti al Marketplace Gratuito Ora",
-      "benefits": "✓ Setup 5 min  ✓ €0 per sempre  ✓ 10K+ aziende che assumono  ✓ Monitora placement"
+      "benefits": "✓ Setup 5 min  ✓ €0 per sempre  ✓ Aziende scoprono talenti  ✓ Monitora placement"
     },
     "examples": {
       "title": "ITS che Potrebbero Beneficiare",
@@ -2213,7 +2215,7 @@
       "questions": {
         "0": {
           "question": "Come aiuta il marketplace i nostri studenti?",
-          "answer": "Le aziende sfogliano 10K+ diplomati verificati e contattano proattivamente studenti con competenze corrispondenti. Gli studenti non si candidano - vengono scoperti. La tua verifica istituzionale dà loro un vantaggio competitivo. 25% più placement rispetto ai job board tradizionali."
+          "answer": "Le aziende esplorano i diplomati verificati e contattano proattivamente studenti con competenze corrispondenti. Gli studenti non si candidano - vengono scoperti. La tua verifica istituzionale dà loro un vantaggio competitivo nel mercato del lavoro."
         },
         "1": {
           "question": "È davvero gratis per sempre?",
@@ -2244,7 +2246,7 @@
         "primary": "Unisciti al Marketplace Gratuito",
         "secondary": "Vedi Prezzi & Add-on"
       },
-      "benefits": "✓ €0 per sempre  ✓ 10K+ aziende  ✓ 87% placement medio  ✓ Monitora impatto per MIUR"
+      "benefits": "✓ €0 per sempre  ✓ Aziende connesse  ✓ 87% placement medio  ✓ Monitora impatto per MIUR"
     }
   },
   "demoAISearch": {
@@ -2827,13 +2829,13 @@
             "0": "Sfogliamento profili illimitato",
             "1": "Filtri di ricerca avanzati",
             "2": "Salva candidati",
-            "3": "Visualizza competenze verificate",
+            "3": "5 contatti gratuiti per iniziare",
             "4": "Nessuna carta di credito richiesta"
           }
         },
         "payPerContact": {
           "name": "Paga Per Contatto",
-          "badge": "Più Popolare",
+          "badge": "Flessibile",
           "period": "/contatto",
           "cta": "Inizia",
           "features": {
@@ -2842,6 +2844,19 @@
             "2": "Visualizza info progetto complete",
             "3": "I crediti non scadono mai",
             "4": "Sconti volume disponibili"
+          }
+        },
+        "payPerPosition": {
+          "name": "Paga Per Posizione",
+          "badge": "Miglior Valore",
+          "period": "una tantum · 30 giorni",
+          "cta": "Apri una Posizione",
+          "features": {
+            "0": "Contatti candidati illimitati",
+            "1": "Attivo per 30 giorni",
+            "2": "Ideale per un'assunzione specifica",
+            "3": "Nessun impegno ricorrente",
+            "4": "Dati completi su progetti e competenze"
           }
         },
         "enterprise": {
@@ -2944,7 +2959,7 @@
         },
         "5": {
           "q": "Come funziona il pricing per aziende?",
-          "a": "Sfoglia gratis. Paghi €10 solo quando contatti un candidato. Nessun abbonamento, i crediti non scadono mai."
+          "a": "Sfoglia gratis con 5 contatti inclusi. Poi scegli: €10 per singolo contatto, oppure €49 per contatti illimitati su una singola posizione per 30 giorni. Nessun abbonamento, i crediti non scadono mai."
         }
       }
     },
@@ -3393,6 +3408,49 @@
       "noIncoming": "Nessuno studente in arrivo",
       "noOutgoing": "Nessuno studente in partenza"
     }
+  },
+  "universityPlacements": {
+    "title": "Dashboard Placement",
+    "subtitle": "Tassi di placement in tempo reale dai dati di conferma assunzione",
+    "exportReport": "Esporta Report",
+    "stats": {
+      "totalStudents": "Studenti Totali",
+      "studentsContacted": "Studenti Contattati",
+      "confirmedHired": "Assunzioni Confermate",
+      "placementRate": "Tasso di Placement",
+      "avgTimeToHire": "Tempo Medio Assunzione"
+    },
+    "trendChart": {
+      "title": "Trend Placement",
+      "subtitle": "Contatti recruiter e assunzioni confermate negli ultimi 12 mesi",
+      "contacts": "Contatti",
+      "hires": "Assunzioni"
+    },
+    "topCompanies": {
+      "title": "Aziende che Assumono di Pi\u00f9",
+      "subtitle": "Aziende che hanno assunto il maggior numero di studenti",
+      "hires": "Assunzioni"
+    },
+    "tabs": {
+      "recentPlacements": "Placement Recenti",
+      "departments": "Per Dipartimento"
+    },
+    "table": {
+      "student": "Studente",
+      "company": "Azienda",
+      "jobTitle": "Posizione",
+      "startDate": "Data Inizio",
+      "confirmedDate": "Confermato"
+    },
+    "deptTable": {
+      "department": "Dipartimento",
+      "contacted": "Contattati",
+      "hired": "Assunti",
+      "placementRate": "Tasso di Placement"
+    },
+    "noData": "Nessun dato disponibile",
+    "noRecentPlacements": "Nessun placement confermato",
+    "noDepartmentData": "Nessun dato per dipartimento disponibile"
   },
   "universityAnalytics": {
     "title": "Analytics Placement",
@@ -4631,7 +4689,76 @@
     }
   },
   "dashboard": {
+    "student": {
+      "hiringConfirmation": {
+        "title": "Aggiornamento Assunzione",
+        "description": "Sono passati 60 giorni da quando {company} ti ha contattato. Hai ricevuto un'offerta di lavoro?",
+        "contactedOn": "Contattato il {date}",
+        "yesHired": "Sì, sono stato assunto",
+        "notHired": "No",
+        "congratulations": "Congratulazioni! Raccontaci di più sul tuo nuovo ruolo.",
+        "jobTitleLabel": "Titolo di Lavoro",
+        "jobTitlePlaceholder": "es. Ingegnere Software",
+        "startDateLabel": "Data di Inizio (opzionale)",
+        "confirm": "Conferma",
+        "cancel": "Annulla",
+        "thankYou": "Grazie per la tua risposta!",
+        "pending": "In attesa"
+      }
+    },
     "recruiter": {
+      "positions": {
+        "title": "Annunci di Posizione",
+        "subtitle": "Apri posizioni per contattare candidati illimitati",
+        "openPosition": "Apri una Posizione",
+        "activePositions": "Posizioni Attive",
+        "pastPositions": "Posizioni Passate",
+        "daysRemaining": "{days} giorni rimanenti",
+        "contactsUsed": "{count} contatti effettuati",
+        "timeProgress": "{percent}% del tempo utilizzato",
+        "pendingPayment": "In attesa del completamento del pagamento",
+        "expired": "Questo annuncio di posizione è scaduto",
+        "cancelled": "Questo annuncio di posizione è stato annullato",
+        "cancel": "Annulla",
+        "cancelling": "Annullamento...",
+        "status": {
+          "PENDING_PAYMENT": "In Attesa di Pagamento",
+          "ACTIVE": "Attiva",
+          "EXPIRED": "Scaduta",
+          "CANCELLED": "Annullata"
+        },
+        "valueProp": {
+          "title": "Paga Per Posizione",
+          "description": "Nessun abbonamento necessario. Apri una posizione, contatta candidati illimitati per 30 giorni. Perfetto per le PMI che assumono per ruoli specifici.",
+          "unlimitedContacts": "Contatti illimitati",
+          "thirtyDays": "Durata 30 giorni",
+          "noSubscription": "Nessun abbonamento"
+        },
+        "createForm": {
+          "title": "Apri una Nuova Posizione",
+          "description": "Descrivi il ruolo per cui stai assumendo. Una volta confermato il pagamento, potrai contattare candidati illimitati per 30 giorni.",
+          "positionTitle": "Titolo della Posizione",
+          "titlePlaceholder": "es. Junior Frontend Developer",
+          "positionDescription": "Descrizione (opzionale)",
+          "descriptionPlaceholder": "Descrivi brevemente il ruolo e cosa stai cercando...",
+          "perPosition": "per 30 giorni, contatti illimitati",
+          "cancel": "Annulla",
+          "processing": "Elaborazione...",
+          "payAndActivate": "Paga e Attiva"
+        },
+        "empty": {
+          "title": "Nessun annuncio di posizione",
+          "description": "Apri una posizione per iniziare a contattare candidati illimitati con una tariffa fissa. Nessun abbonamento richiesto."
+        }
+      },
+      "positionUpsell": {
+        "title": "Hai contattato {contacts} candidati di recente (€{spent})",
+        "description": "Per €{price} hai contatti illimitati per 30 giorni — niente più costi per contatto.",
+        "savings": "Avresti risparmiato €{amount} con un annuncio di posizione",
+        "cta": "Contatti illimitati — €{price}",
+        "loading": "Reindirizzamento al pagamento...",
+        "defaultPositionTitle": "Posizione Aperta"
+      },
       "messages": {
         "title": "Messaggi",
         "subtitle": "Comunica con i candidati",
@@ -4648,6 +4775,48 @@
         "send": "Invia",
         "sending": "Invio...",
         "retry": "Riprova"
+      },
+      "aiShortlist": {
+        "title": "Shortlist AI",
+        "subtitle": "Pubblica un ruolo e ottieni candidati verificati abbinati automaticamente",
+        "form": {
+          "roleTitle": "Titolo del Ruolo",
+          "roleTitlePlaceholder": "es. Junior Frontend Developer",
+          "description": "Descrizione del Ruolo",
+          "descriptionPlaceholder": "Descrivi cosa stai cercando...",
+          "skills": "Competenze Richieste",
+          "skillsPlaceholder": "Scrivi una competenza e premi Invio",
+          "location": "Località (opzionale)",
+          "locationPlaceholder": "es. Milano, Italia",
+          "minGrade": "Voto Minimo (0-100, opzionale)",
+          "findMatches": "Trova Candidati",
+          "searching": "Ricerca in corso..."
+        },
+        "results": {
+          "title": "Candidati Abbinati",
+          "matchScore": "Punteggio di Abbinamento",
+          "matchReasons": "Motivi dell'Abbinamento",
+          "verifiedProjects": "Progetti Verificati",
+          "viewProfile": "Visualizza Profilo",
+          "contact": "Contatta",
+          "noResults": "Nessun candidato trovato",
+          "noResultsDescription": "Prova ad ampliare i criteri di ricerca o a modificare le competenze richieste.",
+          "skillMatch": "Competenza corrispondente",
+          "verifiedProject": "Ha progetti verificati",
+          "highGrade": "Voto accademico alto",
+          "institutionVerified": "Progetti verificati dall'istituzione",
+          "locationMatch": "Località corrispondente"
+        },
+        "history": {
+          "title": "Shortlist Precedenti",
+          "empty": "Nessuna shortlist precedente",
+          "emptyDescription": "Le tue shortlist salvate appariranno qui.",
+          "candidates": "{count} candidati",
+          "viewResults": "Visualizza Risultati"
+        },
+        "save": "Salva Shortlist",
+        "saving": "Salvataggio...",
+        "saved": "Shortlist salvata"
       }
     }
   },
@@ -5617,7 +5786,7 @@
     "seeHowItWorks": "Scopri Come Funziona",
     "howMarketplaceHelps": "Come il Marketplace Aiuta il Tuo ITS",
     "mp1Title": "Studenti Scoperti dalle Aziende",
-    "mp1Check1": "Le aziende cercano tra 10K+ diplomati verificati",
+    "mp1Check1": "Le aziende cercano tra diplomati verificati",
     "mp1Check2": "Gli studenti non candidano - vengono contattati",
     "mp1Check3": "Il tuo badge di verifica = segnale di fiducia",
     "mp1Check4": "Le aziende contattano gli studenti direttamente",
@@ -5708,7 +5877,7 @@
     "skillsSeek": "Competenze Cercate dalle Aziende:",
     "faqTitle": "Domande Frequenti",
     "faq1Q": "Come aiuta il marketplace i nostri studenti?",
-    "faq1A": "Le aziende cercano tra 10K+ diplomati verificati e contattano proattivamente gli studenti con competenze corrispondenti. Gli studenti non candidano - vengono scoperti. La tua verifica istituzionale dà loro un vantaggio competitivo.",
+    "faq1A": "Le aziende cercano tra diplomati verificati e contattano proattivamente gli studenti con competenze corrispondenti. Gli studenti non candidano - vengono scoperti. La tua verifica istituzionale dà loro un vantaggio competitivo.",
     "faq2Q": "Cosa significa freemium?",
     "faq2A": "Le funzionalità core sono incluse senza costi. Le aziende pagano per contatto. Funzionalità enterprise disponibili per istituzioni più grandi.",
     "faq3Q": "Come funziona la verifica?",
@@ -5837,5 +6006,18 @@
     "pra2": "Sì, puoi richiedere l'eliminazione completa del tuo account e di tutti i dati associati in qualsiasi momento dalle impostazioni del profilo o contattando il supporto.",
     "prq3": "Chi può vedere il mio profilo?",
     "pra3": "Hai il controllo completo. Puoi scegliere se rendere il profilo pubblico, visibile solo alle aziende verificate, o completamente privato. Puoi anche bloccare aziende specifiche."
+  },
+  "grades": {
+    "ects": {
+      "A": "Eccellente",
+      "B": "Molto Buono",
+      "C": "Buono",
+      "D": "Soddisfacente",
+      "E": "Sufficiente",
+      "F": "Insufficiente"
+    },
+    "normalized": "Voto ECTS",
+    "originalGrade": "Voto Originale",
+    "scale": "Scala di Valutazione"
   }
 }

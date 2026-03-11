@@ -76,12 +76,14 @@
         "talentDiscovery": "Talent Discovery",
         "advancedSearch": "Advanced Search",
         "aiSearch": "AI Search",
+        "aiShortlist": "AI Shortlist",
         "geographicSearch": "Geographic Search",
         "courseSearch": "Course Search",
         "savedCandidates": "Saved Candidates",
         "savedSearches": "Saved Searches",
         "listings": "Job Listings",
         "postJob": "Post a Job",
+        "positions": "Position Listings",
         "messages": "Messages",
         "analytics": "Analytics",
         "talentAnalytics": "Talent Analytics",
@@ -153,16 +155,16 @@
       },
       "students": {
         "badge": "For Students - All Disciplines",
-        "headlinePart1": "Your Skills Verified.",
-        "headlinePart2": "Companies Find You.",
+        "headlinePart1": "Show What You've Built.",
+        "headlinePart2": "Let Opportunities Come to You.",
         "description": "",
         "descriptionStrong": "",
         "primaryCTA": "Get Started Free",
         "secondaryCTA": "See How It Works",
         "benefits": [
-          "Companies message you first",
-          "Institution-verified skills",
-          "No fake credentials - 100% verified"
+          "Companies discover your verified work",
+          "Institution-backed skills",
+          "Always free for students"
         ],
         "features": [
           {
@@ -171,87 +173,87 @@
           },
           {
             "title": "Verified Grades",
-            "description": "Institution-stamped grades companies can trust"
+            "description": "Institution-stamped grades that speak for themselves"
           },
           {
             "title": "Get Discovered",
-            "description": "Companies contact you — no applications needed"
+            "description": "Companies reach out to you directly"
           }
         ],
-        "statsLabel": "Institution-verified portfolios -",
-        "statsValue": "companies contact you directly, no resumes needed"
+        "statsLabel": "Institution-verified portfolios —",
+        "statsValue": "helping students and companies find each other"
       },
       "universities": {
-        "badge": "For Institutes - Universities & ITS",
-        "headlinePart1": "Your Students Verified.",
-        "headlinePart2": "Companies Hiring.",
+        "badge": "For Institutions - Universities & ITS",
+        "headlinePart1": "Give Your Students",
+        "headlinePart2": "the Visibility They Deserve.",
         "description": "",
         "descriptionStrong": "",
         "primaryCTA": "Join Free Marketplace",
         "secondaryCTA": "See How It Works",
         "benefits": [
-          "Students discovered by companies",
-          "25% more placements vs traditional",
-          "Track hiring success for MIUR"
+          "Students discovered by companies year-round",
+          "Real-time placement insights",
+          "GDPR-compliant and privacy-first"
         ],
         "features": [
           {
             "title": "Student Visibility",
-            "description": "10K+ companies discover your verified graduates"
+            "description": "Companies discover your verified graduates directly"
           },
           {
             "title": "Verification Badge",
-            "description": "Your stamp increases placement by 25%"
+            "description": "Your institutional stamp builds trust with employers"
           },
           {
             "title": "Placement Analytics",
-            "description": "Track contacts, hires, and prove impact with data"
+            "description": "Track contacts, hires, and measure real impact"
           }
         ],
-        "statsLabel": "Free marketplace connecting students to",
-        "statsValue": "10K+ companies actively hiring verified talent"
+        "statsLabel": "A free marketplace connecting",
+        "statsValue": "students, institutions, and companies — together"
       },
       "companies": {
-        "badge": "For Companies - All Talent",
-        "headlinePart1": "Real Skills.",
-        "headlinePart2": "Real Projects.",
-        "headlinePart3": "Real Hires.",
+        "badge": "For Companies - All Industries",
+        "headlinePart1": "Find Junior Talent",
+        "headlinePart2": "You Can Trust.",
+        "headlinePart3": "",
         "description": "",
         "descriptionStrong": "",
         "primaryCTA": "Start Exploring Free",
-        "secondaryCTA": "View Pricing",
+        "secondaryCTA": "See How It Works",
         "benefits": [
-          "100% institution-verified",
-          "Traceable to educational source",
-          "Zero resume inflation"
+          "Skills verified by institutions",
+          "Real projects, real grades",
+          "Browse free, pay only when you connect"
         ],
         "features": [
           {
             "title": "Verified Talent",
-            "description": "Every skill stamped by the institution"
+            "description": "Every skill backed by the student's institution"
           },
           {
-            "title": "Trust Badges",
-            "description": "See authentic grades, not resume claims"
+            "title": "Real Projects",
+            "description": "See actual work — theses, internships, code"
           },
           {
-            "title": "Pay Per Contact",
-            "description": "€10 per contact — no subscriptions"
+            "title": "Simple Pricing",
+            "description": "€10 per contact — no subscriptions, no commitments"
           }
         ],
-        "statsLabel": "Access verified talent from",
-        "statsValue": "universities, ITS academies, and vocational schools"
+        "statsLabel": "Verified talent from",
+        "statsValue": "universities, ITS academies, and vocational schools across Italy"
       },
       "bottomText": "Four Services, Zero Subscriptions",
-      "unifiedHeadline1": "Transparent",
-      "unifiedHeadline2": "Talent Discovery",
-      "unifiedSubheadline": "Every skill verified by institutions. Every project traceable to its source. Companies pay only when they contact a candidate.",
+      "unifiedHeadline1": "Bridging Talent",
+      "unifiedHeadline2": "and Opportunity",
+      "unifiedSubheadline": "We connect students, institutions, and companies through verified skills and real projects — so the right people find each other.",
       "unifiedPrimaryCTA": "Get Started Free",
       "unifiedSecondaryCTA": "See How It Works",
       "unifiedBenefits": [
         "Institution-verified skills",
-        "No subscriptions",
-        "Free for students & universities"
+        "Built for students, institutions & companies",
+        "Free to get started"
       ],
       "exploreByRole": "Explore by role",
       "socialProof": {
@@ -497,26 +499,26 @@
       "subtitle": "A clean, intuitive interface designed for students, institutions, and companies."
     },
     "comparison": {
-      "badge": "Why switch?",
+      "badge": "A better way",
       "cta": "Get Started Free",
       "students": {
-        "title": "InTransparency vs Traditional Job Search",
-        "subtitle": "Stop sending CVs into the void. Get discovered by verified skills.",
-        "traditionalLabel": "Traditional",
+        "title": "A New Way to Start Your Career",
+        "subtitle": "Instead of sending CVs and waiting, let your verified work speak for you.",
+        "traditionalLabel": "Before",
         "rows": [
           {
             "feature": "Visibility",
-            "traditional": "You apply, hope for reply",
-            "ours": "Companies find you"
+            "traditional": "Apply and wait for replies",
+            "ours": "Companies discover your profile"
           },
           {
             "feature": "Skills proof",
             "traditional": "Self-reported on CV",
-            "ours": "Verified by institution"
+            "ours": "Verified by your institution"
           },
           {
             "feature": "Cost",
-            "traditional": "Premium job boards",
+            "traditional": "Paid job boards",
             "ours": "Free forever"
           },
           {
@@ -526,20 +528,20 @@
           },
           {
             "feature": "Response rate",
-            "traditional": "~5% average",
+            "traditional": "Often low",
             "ours": "Direct company contact"
           },
           {
             "feature": "Portfolio",
-            "traditional": "PDF or LinkedIn",
+            "traditional": "PDF or LinkedIn profile",
             "ours": "Verified project portfolio"
           }
         ]
       },
       "institutions": {
-        "title": "InTransparency vs Traditional Placement",
-        "subtitle": "Track real outcomes, not just alumni surveys.",
-        "traditionalLabel": "Traditional",
+        "title": "A Modern Approach to Student Placement",
+        "subtitle": "Move from annual surveys to real-time insights on your students' career outcomes.",
+        "traditionalLabel": "Before",
         "rows": [
           {
             "feature": "Student tracking",
@@ -548,7 +550,7 @@
           },
           {
             "feature": "Company connections",
-            "traditional": "Career day only",
+            "traditional": "Career day events",
             "ours": "Year-round marketplace"
           },
           {
@@ -574,39 +576,39 @@
         ]
       },
       "companies": {
-        "title": "InTransparency vs Staffing Agencies",
-        "subtitle": "Access verified talent at a fraction of the cost.",
-        "traditionalLabel": "Agencies",
+        "title": "A Simpler Way to Find Junior Talent",
+        "subtitle": "Browse verified profiles from Italian universities and ITS academies — connect when you're ready.",
+        "traditionalLabel": "Before",
         "rows": [
           {
-            "feature": "Cost per hire",
-            "traditional": "€4,500–7,500",
-            "ours": "€10 per contact"
+            "feature": "Cost",
+            "traditional": "Agency fees or subscriptions",
+            "ours": "€10 per contact, no commitments"
           },
           {
             "feature": "Candidate pool",
-            "traditional": "Agency's database",
-            "ours": "10K+ verified students"
+            "traditional": "Unverified applications",
+            "ours": "Institution-verified students"
           },
           {
             "feature": "Skills verification",
-            "traditional": "Agency screening",
-            "ours": "Institution-certified"
+            "traditional": "CV screening",
+            "ours": "Verified by the institution"
           },
           {
-            "feature": "Time to hire",
-            "traditional": "4–8 weeks",
-            "ours": "Direct contact, days"
+            "feature": "Time to connect",
+            "traditional": "Weeks of screening",
+            "ours": "Browse and contact directly"
           },
           {
-            "feature": "Contracts",
-            "traditional": "Annual binding",
+            "feature": "Commitment",
+            "traditional": "Annual contracts",
             "ours": "Pay as you go"
           },
           {
             "feature": "Transparency",
-            "traditional": "Black box process",
-            "ours": "AI-explained matching"
+            "traditional": "Limited visibility",
+            "ours": "See real projects and grades"
           }
         ]
       }
@@ -1478,7 +1480,7 @@
           "title": "4. Companies Discover",
           "description": "Zero applications"
         },
-        "result": "Students get 25% higher responses • Zero applications sent • Get discovered passively"
+        "result": "Verified students get noticed • Zero applications sent • Get discovered passively"
       },
       "institute": {
         "step1": {
@@ -1983,8 +1985,8 @@
           "label": "Avg Placement Rate"
         },
         "1": {
-          "value": "10K+",
-          "label": "Students Discovered"
+          "value": "Growing",
+          "label": "Student Community"
         },
         "2": {
           "value": "€0",
@@ -2002,10 +2004,10 @@
         "0": {
           "title": "Students Get Discovered",
           "items": {
-            "0": "Companies search 10K+ verified graduates",
+            "0": "Companies search verified graduates directly",
             "1": "Students don't apply - companies reach out",
             "2": "Your verification badge = trust signal",
-            "3": "25% more placements than traditional methods"
+            "3": "Verified skills help students stand out"
           }
         },
         "1": {
@@ -2053,7 +2055,7 @@
           "0": "\"High fit: AutoCAD verified from ITS project\"",
           "1": "Verified skills = higher match scores",
           "2": "Companies see your institutional endorsement",
-          "3": "25% more successful placements"
+          "3": "Verification builds trust with employers"
         },
         "comparison": "vs Resume screening: 80% faster"
       },
@@ -2117,7 +2119,7 @@
         "0": {
           "title": "Better Placement Outcomes",
           "items": {
-            "0": "25% more students hired vs traditional methods",
+            "0": "Verified students get discovered by employers",
             "1": "Companies proactively reach out",
             "2": "47 days avg time-to-hire",
             "3": "Verified skills = competitive edge"
@@ -2160,7 +2162,7 @@
         }
       },
       "cta": "Join Free Marketplace Now",
-      "benefits": "✓ Setup 5 min  ✓ €0 forever  ✓ 10K+ companies hiring  ✓ Track placements"
+      "benefits": "✓ Setup 5 min  ✓ €0 forever  ✓ Companies discover talent  ✓ Track placements"
     },
     "examples": {
       "title": "ITS That Could Benefit",
@@ -2173,7 +2175,7 @@
       "questions": {
         "0": {
           "question": "How does the marketplace help our students?",
-          "answer": "Companies browse 10K+ verified graduates and proactively reach out to students with matching skills. Students don't apply - they get discovered. Your institutional verification gives them a competitive edge. 25% more placements than traditional job boards."
+          "answer": "Companies browse verified graduates and proactively reach out to students with matching skills. Students don't apply - they get discovered. Your institutional verification gives them a competitive edge in the job market."
         },
         "1": {
           "question": "Is it really free forever?",
@@ -2204,7 +2206,7 @@
         "primary": "Join Free Marketplace",
         "secondary": "See Pricing & Add-ons"
       },
-      "benefits": "✓ €0 forever  ✓ 10K+ companies  ✓ 87% avg placement  ✓ Track impact for MIUR"
+      "benefits": "✓ €0 forever  ✓ Companies connected  ✓ 87% avg placement  ✓ Track impact for MIUR"
     }
   },
   "demoAISearch": {
@@ -2787,13 +2789,13 @@
             "0": "Unlimited profile browsing",
             "1": "Advanced search filters",
             "2": "Save candidates",
-            "3": "View verified skills",
+            "3": "5 free contacts to get started",
             "4": "No credit card required"
           }
         },
         "payPerContact": {
           "name": "Pay Per Contact",
-          "badge": "Most Popular",
+          "badge": "Flexible",
           "period": "/contact",
           "cta": "Get Started",
           "features": {
@@ -2802,6 +2804,19 @@
             "2": "View complete project info",
             "3": "Credits never expire",
             "4": "Volume discounts available"
+          }
+        },
+        "payPerPosition": {
+          "name": "Pay Per Position",
+          "badge": "Best Value",
+          "period": "one-time · 30 days",
+          "cta": "Open a Position",
+          "features": {
+            "0": "Unlimited candidate contacts",
+            "1": "Active for 30 days",
+            "2": "Ideal for a specific hire",
+            "3": "No recurring commitment",
+            "4": "Full project and skill data"
           }
         },
         "enterprise": {
@@ -2904,7 +2919,7 @@
         },
         "5": {
           "q": "How does company pricing work?",
-          "a": "Browse free. Pay €10 only when you contact a candidate. No subscriptions, credits never expire."
+          "a": "Browse free with 5 contacts included. Then choose: €10 per individual contact, or €49 for unlimited contacts on a single position for 30 days. No subscriptions, credits never expire."
         }
       }
     },
@@ -3353,6 +3368,49 @@
       "noIncoming": "No incoming exchange students",
       "noOutgoing": "No outgoing exchange students"
     }
+  },
+  "universityPlacements": {
+    "title": "Placement Dashboard",
+    "subtitle": "Real-time placement rates from hiring confirmation data",
+    "exportReport": "Export Report",
+    "stats": {
+      "totalStudents": "Total Students",
+      "studentsContacted": "Students Contacted",
+      "confirmedHired": "Confirmed Hired",
+      "placementRate": "Placement Rate",
+      "avgTimeToHire": "Avg. Time to Hire"
+    },
+    "trendChart": {
+      "title": "Placement Trend",
+      "subtitle": "Recruiter contacts and confirmed hires over 12 months",
+      "contacts": "Contacts",
+      "hires": "Hires"
+    },
+    "topCompanies": {
+      "title": "Top Hiring Companies",
+      "subtitle": "Companies that hired the most students",
+      "hires": "Hires"
+    },
+    "tabs": {
+      "recentPlacements": "Recent Placements",
+      "departments": "By Department"
+    },
+    "table": {
+      "student": "Student",
+      "company": "Company",
+      "jobTitle": "Job Title",
+      "startDate": "Start Date",
+      "confirmedDate": "Confirmed"
+    },
+    "deptTable": {
+      "department": "Department",
+      "contacted": "Contacted",
+      "hired": "Hired",
+      "placementRate": "Placement Rate"
+    },
+    "noData": "No data available yet",
+    "noRecentPlacements": "No confirmed placements yet",
+    "noDepartmentData": "No department data available"
   },
   "universityAnalytics": {
     "title": "Placement Analytics",
@@ -4592,7 +4650,76 @@
     }
   },
   "dashboard": {
+    "student": {
+      "hiringConfirmation": {
+        "title": "Hiring Update",
+        "description": "It has been 60 days since {company} contacted you. Did you receive a job offer?",
+        "contactedOn": "Contacted on {date}",
+        "yesHired": "Yes, I was hired",
+        "notHired": "No",
+        "congratulations": "Congratulations! Tell us more about your new role.",
+        "jobTitleLabel": "Job Title",
+        "jobTitlePlaceholder": "e.g. Software Engineer",
+        "startDateLabel": "Start Date (optional)",
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "thankYou": "Thank you for your response!",
+        "pending": "Pending"
+      }
+    },
     "recruiter": {
+      "positions": {
+        "title": "Position Listings",
+        "subtitle": "Open positions to contact unlimited candidates",
+        "openPosition": "Open a Position",
+        "activePositions": "Active Positions",
+        "pastPositions": "Past Positions",
+        "daysRemaining": "{days} days remaining",
+        "contactsUsed": "{count} contacts made",
+        "timeProgress": "{percent}% of time used",
+        "pendingPayment": "Waiting for payment to be completed",
+        "expired": "This position listing has expired",
+        "cancelled": "This position listing was cancelled",
+        "cancel": "Cancel",
+        "cancelling": "Cancelling...",
+        "status": {
+          "PENDING_PAYMENT": "Pending Payment",
+          "ACTIVE": "Active",
+          "EXPIRED": "Expired",
+          "CANCELLED": "Cancelled"
+        },
+        "valueProp": {
+          "title": "Pay Per Position",
+          "description": "No subscription needed. Open a position, contact unlimited candidates for 30 days. Perfect for SMEs hiring for specific roles.",
+          "unlimitedContacts": "Unlimited contacts",
+          "thirtyDays": "30-day duration",
+          "noSubscription": "No subscription"
+        },
+        "createForm": {
+          "title": "Open a New Position",
+          "description": "Describe the role you are hiring for. Once payment is confirmed, you can contact unlimited candidates for 30 days.",
+          "positionTitle": "Position Title",
+          "titlePlaceholder": "e.g. Junior Frontend Developer",
+          "positionDescription": "Description (optional)",
+          "descriptionPlaceholder": "Briefly describe the role and what you are looking for...",
+          "perPosition": "for 30 days, unlimited contacts",
+          "cancel": "Cancel",
+          "processing": "Processing...",
+          "payAndActivate": "Pay & Activate"
+        },
+        "empty": {
+          "title": "No position listings yet",
+          "description": "Open a position to start contacting unlimited candidates for a flat fee. No subscription required."
+        }
+      },
+      "positionUpsell": {
+        "title": "You've contacted {contacts} candidates recently (€{spent})",
+        "description": "For €{price} you get unlimited contacts for 30 days — no more per-contact fees.",
+        "savings": "You would have saved €{amount} with a position listing",
+        "cta": "Get unlimited contacts — €{price}",
+        "loading": "Redirecting to checkout...",
+        "defaultPositionTitle": "Open Position"
+      },
       "messages": {
         "title": "Messages",
         "subtitle": "Communicate with candidates",
@@ -4609,6 +4736,48 @@
         "send": "Send",
         "sending": "Sending...",
         "retry": "Try again"
+      },
+      "aiShortlist": {
+        "title": "AI Shortlist",
+        "subtitle": "Post a role and get auto-matched verified candidates",
+        "form": {
+          "roleTitle": "Role Title",
+          "roleTitlePlaceholder": "e.g. Junior Frontend Developer",
+          "description": "Role Description",
+          "descriptionPlaceholder": "Describe what you are looking for...",
+          "skills": "Required Skills",
+          "skillsPlaceholder": "Type a skill and press Enter",
+          "location": "Location (optional)",
+          "locationPlaceholder": "e.g. Milan, Italy",
+          "minGrade": "Minimum Grade (0-100, optional)",
+          "findMatches": "Find Matches",
+          "searching": "Searching..."
+        },
+        "results": {
+          "title": "Matched Candidates",
+          "matchScore": "Match Score",
+          "matchReasons": "Match Reasons",
+          "verifiedProjects": "Verified Projects",
+          "viewProfile": "View Profile",
+          "contact": "Contact",
+          "noResults": "No matching candidates found",
+          "noResultsDescription": "Try broadening your search criteria or adjusting the required skills.",
+          "skillMatch": "Skill match",
+          "verifiedProject": "Has verified projects",
+          "highGrade": "High academic grade",
+          "institutionVerified": "Institution-verified projects",
+          "locationMatch": "Location match"
+        },
+        "history": {
+          "title": "Previous Shortlists",
+          "empty": "No previous shortlists",
+          "emptyDescription": "Your saved shortlists will appear here.",
+          "candidates": "{count} candidates",
+          "viewResults": "View Results"
+        },
+        "save": "Save Shortlist",
+        "saving": "Saving...",
+        "saved": "Shortlist saved"
       }
     }
   },
@@ -5590,7 +5759,7 @@
     "seeHowItWorks": "See How It Works",
     "howMarketplaceHelps": "How the Marketplace Helps Your ITS",
     "mp1Title": "Students Get Discovered",
-    "mp1Check1": "Companies search 10K+ verified graduates",
+    "mp1Check1": "Companies search verified graduates",
     "mp1Check2": "Students don't apply - companies reach out",
     "mp1Check3": "Your verification badge = trust signal",
     "mp1Check4": "Companies contact students directly",
@@ -5681,7 +5850,7 @@
     "skillsSeek": "Skills Companies Seek:",
     "faqTitle": "Frequently Asked Questions",
     "faq1Q": "How does the marketplace help our students?",
-    "faq1A": "Companies browse 10K+ verified graduates and proactively reach out to students with matching skills. Students don't apply - they get discovered. Your institutional verification gives them a competitive edge.",
+    "faq1A": "Companies browse verified graduates and proactively reach out to students with matching skills. Students don't apply - they get discovered. Your institutional verification gives them a competitive edge.",
     "faq2Q": "What does freemium mean?",
     "faq2A": "Core features are included at no cost. Companies pay per contact. Enterprise features available for larger institutions.",
     "faq3Q": "How does verification work?",
@@ -5810,5 +5979,18 @@
     "pra2": "Yes, you can request complete deletion of your account and all associated data at any time from your profile settings or by contacting support.",
     "prq3": "Who can see my profile?",
     "pra3": "You have complete control. You can choose to make your profile public, visible only to verified companies, or completely private. You can also block specific companies."
+  },
+  "grades": {
+    "ects": {
+      "A": "Excellent",
+      "B": "Very Good",
+      "C": "Good",
+      "D": "Satisfactory",
+      "E": "Sufficient",
+      "F": "Fail"
+    },
+    "normalized": "ECTS Grade",
+    "originalGrade": "Original Grade",
+    "scale": "Grading Scale"
   }
 }

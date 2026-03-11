@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { runAIAnalysis, buildProjectData } from '@/lib/run-ai-analysis'
+import { normalizeGrade } from '@/lib/grades/ects-normalization'
 
 // GET /api/projects/[id] - Get a single project by ID
 export async function GET(
@@ -147,6 +148,20 @@ export async function PATCH(
     ]
     const contentChanged = contentFields.some(f => body[f] !== undefined)
 
+    // Calculate normalized grade if grade is being updated
+    let normalizedGradeUpdate: Record<string, number> = {}
+    if (body.grade !== undefined) {
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { country: true }
+      })
+      const country = body.country || user?.country || 'IT'
+      const gradeResult = normalizeGrade(body.grade, country)
+      if (gradeResult) {
+        normalizedGradeUpdate = { normalizedGrade: gradeResult.normalizedScore }
+      }
+    }
+
     // Update project
     const updatedProject = await prisma.project.update({
       where: { id },
@@ -174,6 +189,7 @@ export async function PATCH(
         ...(body.semester !== undefined && { semester: body.semester }),
         ...(body.academicYear !== undefined && { academicYear: body.academicYear }),
         ...(body.grade !== undefined && { grade: body.grade }),
+        ...normalizedGradeUpdate,
         ...(body.professor !== undefined && { professor: body.professor }),
         ...(body.competencies && { competencies: body.competencies }),
         ...(body.certifications && { certifications: body.certifications }),

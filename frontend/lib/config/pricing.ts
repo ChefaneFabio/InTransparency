@@ -3,7 +3,7 @@
  *
  * Simplified pricing model:
  * - Students: Free / Premium €9/mo
- * - Companies: Browse Free / Pay Per Contact €10/contact / Enterprise €99/mo
+ * - Companies: Browse Free / Pay Per Contact €10/contact / Pay Per Position €49/position / Enterprise €99/mo
  * - Institutions: Free / Enterprise €2,000/yr
  */
 
@@ -22,6 +22,9 @@ export const STRIPE_PRICE_IDS = {
 
   // Contact Credits (one-time payment)
   CONTACT_CREDITS: process.env.NEXT_PUBLIC_STRIPE_CONTACT_CREDITS || 'price_contact_credits',
+
+  // Position Listing (one-time payment)
+  POSITION_LISTING_STANDARD: process.env.NEXT_PUBLIC_STRIPE_POSITION_LISTING || 'price_position_listing',
 } as const
 
 // Pricing tiers with features
@@ -29,11 +32,12 @@ export interface PricingTier {
   id: SubscriptionTier
   name: string
   description: string
-  pricingModel: 'free' | 'subscription' | 'pay_per_contact' | 'annual_subscription'
+  pricingModel: 'free' | 'subscription' | 'pay_per_contact' | 'pay_per_position' | 'annual_subscription'
   price: {
     monthly: number  // in euros (0 for free / pay-per-contact)
     annual: number
     perContact?: number  // in euros, for pay-per-contact
+    perPosition?: number // in euros, for pay-per-position
   }
   stripePriceIds: {
     monthly?: string
@@ -124,9 +128,10 @@ export const RECRUITER_PRICING: PricingTier[] = [
       'Unlimited browsing',
       'Advanced search',
       'Save candidates',
+      '5 free contacts to get started',
     ],
     limits: {
-      contacts: 0,
+      contacts: 5,
     },
     cta: 'Start Browsing',
   },
@@ -153,6 +158,32 @@ export const RECRUITER_PRICING: PricingTier[] = [
     },
     popular: true,
     cta: 'Buy Credits',
+  },
+  {
+    // Display-only tier: positions are one-time purchases, not a subscription tier
+    id: 'RECRUITER_PAY_PER_CONTACT' as SubscriptionTier,
+    name: 'Pay Per Position',
+    description: 'Unlimited contacts for one role',
+    pricingModel: 'pay_per_position',
+    price: {
+      monthly: 0,
+      annual: 0,
+      perPosition: 49,
+    },
+    stripePriceIds: {
+      perContact: STRIPE_PRICE_IDS.POSITION_LISTING_STANDARD,
+    },
+    features: [
+      'Everything in Browse Free, plus:',
+      'Unlimited candidate contacts for one position',
+      'Active for 30 days',
+      'Ideal for a specific hire',
+    ],
+    limits: {
+      contacts: -1,
+      contactBalance: true,
+    },
+    cta: 'Open a Position',
   },
   {
     id: 'RECRUITER_ENTERPRISE' as SubscriptionTier,

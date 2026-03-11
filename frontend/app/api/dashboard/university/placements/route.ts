@@ -19,7 +19,225 @@ export async function GET(req: NextRequest) {
     const search = searchParams.get('search') || ''
     const status = searchParams.get('status') || ''
     const type = searchParams.get('type') || ''
+    const view = searchParams.get('view') || 'dashboard' // 'dashboard' or 'list'
 
+    // Find all students from this university
+    const allStudents = await prisma.user.findMany({
+      where: { university: universityName, role: 'STUDENT' },
+      select: { id: true, firstName: true, lastName: true, degree: true },
+    })
+    const studentIds = allStudents.map((s) => s.id)
+
+    // --- Dashboard analytics ---
+    if (view === 'dashboard') {
+      if (studentIds.length === 0) {
+        return NextResponse.json({
+          stats: {
+            totalStudents: 0,
+            studentsContacted: 0,
+            confirmedHired: 0,
+            placementRate: 0,
+          },
+          monthlyTrend: [],
+          topCompanies: [],
+          recentPlacements: [],
+          avgTimeToHireDays: 0,
+          departmentBreakdown: [],
+        })
+      }
+
+      // Students contacted by recruiters
+      const contactedStudents = await prisma.contactUsage.findMany({
+        where: { recipientId: { in: studentIds } },
+        select: { recipientId: true, firstContactAt: true },
+        distinct: ['recipientId'],
+      })
+      const studentsContactedCount = contactedStudents.length
+
+      // Confirmed hired from HiringConfirmation
+      const hiringConfirmations = await prisma.hiringConfirmation.findMany({
+        where: {
+          studentId: { in: studentIds },
+          status: 'CONFIRMED_HIRED',
+        },
+        select: {
+          studentId: true,
+          companyName: true,
+          jobTitle: true,
+          startDate: true,
+          contactDate: true,
+          respondedAt: true,
+          student: { select: { firstName: true, lastName: true, degree: true } },
+        },
+      })
+      const confirmedHiredCount = hiringConfirmations.length
+      const placementRate = studentsContactedCount > 0
+        ? Math.round((confirmedHiredCount / studentsContactedCount) * 100)
+        : 0
+
+      // Average time to hire (contactDate -> startDate)
+      const hireDurations: number[] = []
+      for (let i = 0; i < hiringConfirmations.length; i++) {
+        const hc = hiringConfirmations[i]
+        if (hc.startDate && hc.contactDate) {
+          const days = Math.round(
+            (hc.startDate.getTime() - hc.contactDate.getTime()) / (1000 * 60 * 60 * 24)
+          )
+          if (days > 0) hireDurations.push(days)
+        }
+      }
+      const avgTimeToHireDays = hireDurations.length > 0
+        ? Math.round(hireDurations.reduce((a, b) => a + b, 0) / hireDurations.length)
+        : 0
+
+      // Top hiring companies from HiringConfirmation
+      const companyMap = new Map<string, number>()
+      for (let i = 0; i < hiringConfirmations.length; i++) {
+        const company = hiringConfirmations[i].companyName
+        companyMap.set(company, (companyMap.get(company) || 0) + 1)
+      }
+      const topCompanies = Array.from(companyMap.entries())
+        .map(([company, hires]) => ({ company, hires }))
+        .sort((a, b) => b.hires - a.hires)
+        .slice(0, 10)
+
+      // Monthly trend: contacts and hires over the last 12 months
+      const now = new Date()
+      const twelveMonthsAgo = new Date(now.getFullYear() - 1, now.getMonth(), 1)
+
+      const allContacts = await prisma.contactUsage.findMany({
+        where: {
+          recipientId: { in: studentIds },
+          firstContactAt: { gte: twelveMonthsAgo },
+        },
+        select: { firstContactAt: true },
+      })
+
+      const allHires = await prisma.hiringConfirmation.findMany({
+        where: {
+          studentId: { in: studentIds },
+          status: 'CONFIRMED_HIRED',
+          contactDate: { gte: twelveMonthsAgo },
+        },
+        select: { contactDate: true, respondedAt: true },
+      })
+
+      const monthlyTrend: Array<{ month: string; contacts: number; hires: number }> = []
+      for (let m = 0; m < 12; m++) {
+        const monthDate = new Date(now.getFullYear(), now.getMonth() - 11 + m, 1)
+        const monthEnd = new Date(monthDate.getFullYear(), monthDate.getMonth() + 1, 0, 23, 59, 59)
+        const monthLabel = monthDate.toLocaleDateString('en-US', { month: 'short', year: '2-digit' })
+
+        let contacts = 0
+        for (let c = 0; c < allContacts.length; c++) {
+          const d = allContacts[c].firstContactAt
+          if (d >= monthDate && d <= monthEnd) contacts++
+        }
+
+        let hires = 0
+        for (let h = 0; h < allHires.length; h++) {
+          const d = allHires[h].respondedAt || allHires[h].contactDate
+          if (d >= monthDate && d <= monthEnd) hires++
+        }
+
+        monthlyTrend.push({ month: monthLabel, contacts, hires })
+      }
+
+      // Department breakdown
+      const deptMap = new Map<string, { contacted: number; hired: number }>()
+      const studentDeptMap = new Map<string, string>()
+      for (let i = 0; i < allStudents.length; i++) {
+        const s = allStudents[i]
+        studentDeptMap.set(s.id, s.degree || 'Other')
+      }
+
+      const contactedSet = new Set<string>()
+      const allContactsFull = await prisma.contactUsage.findMany({
+        where: { recipientId: { in: studentIds } },
+        select: { recipientId: true },
+      })
+      for (let i = 0; i < allContactsFull.length; i++) {
+        contactedSet.add(allContactsFull[i].recipientId)
+      }
+
+      const hiredSet = new Set<string>()
+      for (let i = 0; i < hiringConfirmations.length; i++) {
+        hiredSet.add(hiringConfirmations[i].studentId)
+      }
+
+      const contactedArr = Array.from(contactedSet)
+      for (let i = 0; i < contactedArr.length; i++) {
+        const sid = contactedArr[i]
+        const dept = studentDeptMap.get(sid) || 'Other'
+        const existing = deptMap.get(dept) || { contacted: 0, hired: 0 }
+        existing.contacted++
+        deptMap.set(dept, existing)
+      }
+
+      const hiredArr = Array.from(hiredSet)
+      for (let i = 0; i < hiredArr.length; i++) {
+        const sid = hiredArr[i]
+        const dept = studentDeptMap.get(sid) || 'Other'
+        const existing = deptMap.get(dept) || { contacted: 0, hired: 0 }
+        existing.hired++
+        deptMap.set(dept, existing)
+      }
+
+      const departmentBreakdown = Array.from(deptMap.entries())
+        .map(([department, data]) => ({
+          department,
+          contacted: data.contacted,
+          hired: data.hired,
+          rate: data.contacted > 0 ? Math.round((data.hired / data.contacted) * 100) : 0,
+        }))
+        .sort((a, b) => b.hired - a.hired)
+        .slice(0, 8)
+
+      // Recent placements (from HiringConfirmation CONFIRMED_HIRED, most recent)
+      const recentHires = await prisma.hiringConfirmation.findMany({
+        where: {
+          studentId: { in: studentIds },
+          status: 'CONFIRMED_HIRED',
+        },
+        orderBy: { respondedAt: 'desc' },
+        take: 10,
+        select: {
+          id: true,
+          studentId: true,
+          companyName: true,
+          jobTitle: true,
+          startDate: true,
+          respondedAt: true,
+          student: { select: { firstName: true, lastName: true, degree: true } },
+        },
+      })
+
+      const recentPlacements = recentHires.map((h) => ({
+        id: h.id,
+        studentName: [h.student.firstName, h.student.lastName].filter(Boolean).join(' ') || 'Anonymous',
+        department: h.student.degree || '',
+        company: h.companyName,
+        jobTitle: h.jobTitle || '',
+        startDate: h.startDate?.toISOString() || null,
+        confirmedDate: h.respondedAt?.toISOString() || null,
+      }))
+
+      return NextResponse.json({
+        stats: {
+          totalStudents: allStudents.length,
+          studentsContacted: studentsContactedCount,
+          confirmedHired: confirmedHiredCount,
+          placementRate,
+        },
+        monthlyTrend,
+        topCompanies,
+        recentPlacements,
+        avgTimeToHireDays,
+        departmentBreakdown,
+      })
+    }
+
+    // --- List view (existing functionality) ---
     const where: any = { universityName }
 
     if (status && status !== 'all') {

@@ -22,6 +22,7 @@ export async function GET(req: NextRequest) {
       where: { id: session.user.id },
       select: {
         id: true,
+        email: true,
         subscriptionTier: true,
         contactBalance: true,
       }
@@ -60,12 +61,36 @@ export async function GET(req: NextRequest) {
       })
     }
 
-    // RECRUITER_FREE or other
+    // RECRUITER_FREE or other — show free contact usage per company domain
+    const FREE_CONTACT_LIMIT = 5
+    const emailDomain = user.email.split('@')[1]?.toLowerCase()
+    const freeProviders = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'live.com', 'icloud.com', 'mail.com', 'protonmail.com']
+    const isCompanyDomain = emailDomain && !freeProviders.includes(emailDomain)
+
+    let domainContactCount = totalContacted
+    if (isCompanyDomain) {
+      const domainRecruiters = await prisma.user.findMany({
+        where: {
+          email: { endsWith: `@${emailDomain}` },
+          role: 'RECRUITER',
+        },
+        select: { id: true },
+      })
+      const domainRecruiterIds = domainRecruiters.map(r => r.id)
+      domainContactCount = await prisma.contactUsage.count({
+        where: { recruiterId: { in: domainRecruiterIds } },
+      })
+    }
+
     return NextResponse.json({
       model: 'free',
       balance: 0,
       credits: 0,
-      totalContacted: 0,
+      totalContacted,
+      domainContactCount,
+      freeContactLimit: FREE_CONTACT_LIMIT,
+      freeContactsRemaining: Math.max(0, FREE_CONTACT_LIMIT - domainContactCount),
+      companyDomain: isCompanyDomain ? emailDomain : undefined,
       tier: user.subscriptionTier,
     })
   } catch (error) {

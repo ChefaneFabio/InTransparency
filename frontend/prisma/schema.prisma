@@ -282,6 +282,8 @@ model User {
   predictions          PlacementPrediction[]  @relation("StudentPredictions")
   decisionPacksMade    DecisionPack[]         @relation("RecruiterDecisionPacks")
   decisionPacksOf      DecisionPack[]         @relation("CandidateDecisionPacks")
+  positionListings     PositionListing[]      @relation("RecruiterPositions")
+  aiShortlists         AiShortlist[]          @relation("RecruiterAiShortlists")
 
   // Mentoring
   mentorshipsAsMentor  MentorshipConnection[] @relation("Mentor")
@@ -302,6 +304,10 @@ model User {
 
   // Exchange / Erasmus
   exchangeEnrollments  ExchangeEnrollment[]
+
+  // Hiring Confirmations
+  hiringConfirmationsAsStudent   HiringConfirmation[] @relation("StudentHiringConfirmations")
+  hiringConfirmationsAsRecruiter HiringConfirmation[] @relation("RecruiterHiringConfirmations")
 
   @@index([email])
   @@index([username])
@@ -727,6 +733,8 @@ model ContactUsage {
 
   recruiter User @relation("RecruiterContacts", fields: [recruiterId], references: [id], onDelete: Cascade)
   recipient User @relation("RecipientContacts", fields: [recipientId], references: [id], onDelete: Cascade)
+
+  hiringConfirmations HiringConfirmation[]
 
   @@unique([recruiterId, recipientId, billingPeriodStart])
   @@index([recruiterId, billingPeriodStart])
@@ -2562,4 +2570,111 @@ model ExchangeEnrollment {
   @@index([homeUniversityName])
   @@index([hostUniversityName])
   @@index([status])
+}
+
+// Hiring Confirmation Flow — student confirms whether they were hired after contact
+model HiringConfirmation {
+  id              String   @id @default(cuid())
+  contactUsageId  String
+  studentId       String
+  recruiterId     String
+  companyName     String
+
+  // Confirmation
+  status          HiringConfirmationStatus @default(PENDING)
+  confirmedHired  Boolean?
+  jobTitle        String?
+  startDate       DateTime?
+  feedback        String?  @db.Text
+
+  // Timing
+  contactDate     DateTime
+  promptAfterDays Int      @default(60)
+  promptSentAt    DateTime?
+  respondedAt     DateTime?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  contactUsage    ContactUsage @relation(fields: [contactUsageId], references: [id], onDelete: Cascade)
+  student         User         @relation("StudentHiringConfirmations", fields: [studentId], references: [id], onDelete: Cascade)
+  recruiter       User         @relation("RecruiterHiringConfirmations", fields: [recruiterId], references: [id], onDelete: Cascade)
+
+  @@index([studentId])
+  @@index([status])
+  @@index([contactDate])
+}
+
+enum HiringConfirmationStatus {
+  PENDING
+  PROMPTED
+  CONFIRMED_HIRED
+  CONFIRMED_NOT_HIRED
+  EXPIRED
+}
+
+// Position Listing Model (Pay-Per-Position for SME/PMI)
+model PositionListing {
+  id          String @id @default(cuid())
+  recruiterId String
+  recruiter   User   @relation("RecruiterPositions", fields: [recruiterId], references: [id], onDelete: Cascade)
+
+  // Position details
+  title       String
+  description String? @db.Text
+  jobId       String? // optional link to Job model
+
+  // Pricing
+  price    Int    // in cents (e.g., 4900 = €49, 9900 = €99)
+  currency String @default("eur")
+
+  // Duration
+  activatedAt  DateTime?
+  expiresAt    DateTime?
+  durationDays Int       @default(30)
+
+  // Status
+  status PositionListingStatus @default(PENDING_PAYMENT)
+
+  // Stripe
+  stripePaymentIntentId String? @unique
+  stripeSessionId       String? @unique
+
+  // Usage
+  contactsUsed Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([recruiterId])
+  @@index([status])
+  @@index([expiresAt])
+}
+
+enum PositionListingStatus {
+  PENDING_PAYMENT
+  ACTIVE
+  EXPIRED
+  CANCELLED
+}
+
+// AI Shortlist Model — stores recruiter role postings and auto-matched candidates
+model AiShortlist {
+  id          String   @id @default(cuid())
+  recruiterId String
+  recruiter   User     @relation("RecruiterAiShortlists", fields: [recruiterId], references: [id], onDelete: Cascade)
+
+  title       String
+  description String   @db.Text
+  skills      Json     // string[] of requested skills
+  location    String?
+  minGrade    Float?   // optional minimum normalizedGrade (0-100)
+  results     Json?    // cached top matches [{id, name, score, reasons, ...}]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([recruiterId])
+  @@index([createdAt])
 }
