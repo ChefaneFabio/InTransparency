@@ -9,6 +9,29 @@ export async function runAIAnalysis(projectId: string, projectData: ProjectData)
   try {
     console.log(`[AI Analysis] Starting analysis for project ${projectId}`)
 
+    // Fetch project files for multimodal analysis
+    const projectFiles = await prisma.projectFile.findMany({
+      where: { projectId },
+      select: {
+        fileType: true,
+        fileName: true,
+        fileSize: true,
+        fileUrl: true,
+        mimeType: true,
+      },
+    })
+
+    if (projectFiles.length > 0) {
+      console.log(`[AI Analysis] Found ${projectFiles.length} files for multimodal analysis`)
+      projectData.files = projectFiles.map(f => ({
+        fileType: f.fileType,
+        fileName: f.fileName,
+        fileSize: f.fileSize,
+        fileUrl: f.fileUrl,
+        mimeType: f.mimeType,
+      }))
+    }
+
     const analysis = await analyzeProject(projectData)
 
     console.log(`[AI Analysis] Analysis complete for project ${projectId}:`, {

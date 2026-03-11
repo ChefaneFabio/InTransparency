@@ -52,11 +52,13 @@ export interface ProjectData {
   githubUrl?: string
   liveUrl?: string
 
-  // Files
+  // Files (with URLs for multimodal analysis)
   files?: {
     fileType: string
     fileName: string
     fileSize: number
+    fileUrl: string
+    mimeType: string
   }[]
 
   // Additional context
@@ -201,7 +203,7 @@ Return JSON format:
 }`
 
   try {
-    const analysis = await callClaude(prompt)
+    const analysis = await callClaude(prompt, project.files)
     return {
       ...analysis,
       overallScore: calculateOverallScore({
@@ -323,7 +325,7 @@ Provide:
 Return JSON with: complexityScore, innovationScore, qualityScore, relevanceScore, strengths, improvements, highlights, detectedCompetencies (array of {name, score, evidence}), softSkills (array of {name, score, evidence}), recommendations, summary.`
 
   try {
-    const analysis = await callClaude(prompt)
+    const analysis = await callClaude(prompt, project.files)
     return {
       ...analysis,
       overallScore: calculateOverallScore({
@@ -435,7 +437,7 @@ Provide:
 Return JSON with: complexityScore, innovationScore, qualityScore, relevanceScore, strengths, improvements, highlights, detectedCompetencies (array of {name, score, evidence}), softSkills (array of {name, score, evidence}), recommendations, summary.`
 
   try {
-    const analysis = await callClaude(prompt)
+    const analysis = await callClaude(prompt, project.files)
     return {
       ...analysis,
       overallScore: calculateOverallScore({
@@ -546,7 +548,7 @@ Provide:
 Return JSON with: complexityScore, innovationScore, qualityScore, relevanceScore, strengths, improvements, highlights, detectedCompetencies (array of {name, score, evidence}), softSkills (array of {name, score, evidence}), recommendations, summary.`
 
   try {
-    const analysis = await callClaude(prompt)
+    const analysis = await callClaude(prompt, project.files)
     return {
       ...analysis,
       overallScore: calculateOverallScore({
@@ -652,7 +654,7 @@ Provide:
 Return JSON with: complexityScore, innovationScore, qualityScore, relevanceScore, strengths, improvements, highlights, detectedCompetencies (array of {name, score, evidence}), softSkills (array of {name, score, evidence}), recommendations, summary.`
 
   try {
-    const analysis = await callClaude(prompt)
+    const analysis = await callClaude(prompt, project.files)
     return {
       ...analysis,
       overallScore: calculateOverallScore({
@@ -914,21 +916,131 @@ function toRatedCompetencies(names: string[], baseScore: number): RatedSkill[] {
 }
 
 /**
- * Call Claude API for intelligent analysis
+ * Fetch a file from URL and return as base64 with media type.
+ * Used for sending images and PDFs to Claude's multimodal API.
  */
-async function callClaude(prompt: string): Promise<any> {
+async function fetchFileAsBase64(url: string): Promise<{ data: string; mediaType: string } | null> {
+  try {
+    const response = await fetch(url)
+    if (!response.ok) return null
+    const buffer = await response.arrayBuffer()
+    const data = Buffer.from(buffer).toString('base64')
+    const mediaType = response.headers.get('content-type') || 'application/octet-stream'
+    return { data, mediaType }
+  } catch (error) {
+    console.error(`[AI Analysis] Failed to fetch file: ${url}`, error)
+    return null
+  }
+}
+
+/**
+ * Build multimodal content blocks from project files.
+ * Supports: images (vision), PDFs (document), and text extraction descriptions for other types.
+ */
+async function buildFileContentBlocks(files: ProjectData['files']): Promise<{ blocks: any[]; descriptions: string[] }> {
+  const blocks: any[] = []
+  const descriptions: string[] = []
+
+  if (!files || files.length === 0) return { blocks, descriptions }
+
+  for (const file of files) {
+    const mime = file.mimeType.toLowerCase()
+
+    // Images — send as vision content for Claude to analyze visually
+    if (mime.startsWith('image/') && ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(mime)) {
+      const fileData = await fetchFileAsBase64(file.fileUrl)
+      if (fileData) {
+        blocks.push({
+          type: 'image',
+          source: {
+            type: 'base64',
+            media_type: fileData.mediaType,
+            data: fileData.data,
+          },
+        })
+        blocks.push({
+          type: 'text',
+          text: `[Uploaded image: ${file.fileName}]`,
+        })
+      } else {
+        descriptions.push(`Image file: ${file.fileName} (could not be loaded for analysis)`)
+      }
+    }
+    // PDFs — send as document content for Claude to read
+    else if (mime === 'application/pdf') {
+      const fileData = await fetchFileAsBase64(file.fileUrl)
+      if (fileData) {
+        blocks.push({
+          type: 'document',
+          source: {
+            type: 'base64',
+            media_type: 'application/pdf',
+            data: fileData.data,
+          },
+        })
+        blocks.push({
+          type: 'text',
+          text: `[Uploaded PDF document: ${file.fileName}]`,
+        })
+      } else {
+        descriptions.push(`PDF document: ${file.fileName} (could not be loaded for analysis)`)
+      }
+    }
+    // Word documents — describe metadata (Claude can't read .docx natively)
+    else if (mime.includes('wordprocessingml') || mime.includes('msword') || mime === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+      descriptions.push(`Word document: ${file.fileName} (${Math.round(file.fileSize / 1024)}KB) — included as project documentation`)
+    }
+    // Excel spreadsheets
+    else if (mime.includes('spreadsheetml') || mime.includes('ms-excel')) {
+      descriptions.push(`Excel spreadsheet: ${file.fileName} (${Math.round(file.fileSize / 1024)}KB) — included as project data/analysis`)
+    }
+    // Video files — describe metadata (too large to send)
+    else if (mime.startsWith('video/')) {
+      descriptions.push(`Video file: ${file.fileName} (${Math.round(file.fileSize / (1024 * 1024))}MB, ${mime}) — project demo/presentation video`)
+    }
+    // Other files
+    else {
+      descriptions.push(`Attached file: ${file.fileName} (${mime}, ${Math.round(file.fileSize / 1024)}KB)`)
+    }
+  }
+
+  return { blocks, descriptions }
+}
+
+/**
+ * Call Claude API for intelligent analysis — supports multimodal content (images, PDFs, text).
+ */
+async function callClaude(prompt: string, files?: ProjectData['files']): Promise<any> {
   if (!anthropic) {
     throw new Error('Anthropic API key not configured')
   }
 
+  // Build multimodal content blocks from files
+  const { blocks: fileBlocks, descriptions: fileDescriptions } = await buildFileContentBlocks(files)
+
+  // Add file descriptions to the prompt text
+  let enrichedPrompt = prompt
+  if (fileDescriptions.length > 0) {
+    enrichedPrompt += `\n\nAttached Files:\n${fileDescriptions.join('\n')}`
+  }
+  if (fileBlocks.length > 0) {
+    enrichedPrompt += `\n\nThe following files have been attached for visual/document analysis. Please examine them carefully and incorporate your findings into the evaluation.`
+  }
+
+  // Build content array: text prompt + file content blocks
+  const content: any[] = [
+    { type: 'text', text: enrichedPrompt },
+    ...fileBlocks,
+  ]
+
   const response = await anthropic.messages.create({
     model: AI_MODEL,
-    max_tokens: 1500,
-    system: 'You are an expert academic project evaluator with deep knowledge across multiple disciplines. Analyze projects objectively and provide constructive feedback. Always return valid JSON only, with no markdown formatting or code fences. For detectedCompetencies and softSkills, return arrays of objects with {name, score (0-100), evidence} format.',
+    max_tokens: 2500,
+    system: 'You are an expert academic project evaluator with deep knowledge across multiple disciplines. Analyze projects objectively and provide constructive feedback. When files (images, PDFs, documents) are attached, examine them thoroughly and incorporate specific observations into your evaluation. Always return valid JSON only, with no markdown formatting or code fences. For detectedCompetencies and softSkills, return arrays of objects with {name, score (0-100), evidence} format.',
     messages: [
       {
         role: 'user',
-        content: prompt,
+        content,
       },
     ],
   })
