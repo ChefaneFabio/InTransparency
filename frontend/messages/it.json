@@ -4867,6 +4867,15 @@
       "passwordChangedDescription": "La tua password è stata aggiornata",
       "passwordChangeFailed": "Impossibile cambiare la password"
     },
+    "availability": {
+      "title": "Disponibilità",
+      "description": "Indica ai recruiter per quale tipo di opportunità sei disponibile",
+      "label": "Disponibile per",
+      "hint": "Questo aiuta le aziende a trovarti per il tipo giusto di collaborazione",
+      "hiring": "Assunzione / Stage",
+      "projects": "Lavoro su progetto",
+      "both": "Entrambi — assunzione e progetti"
+    },
     "danger": {
       "title": "Zona Pericolosa",
       "description": "Azioni irreversibili per il tuo account",

@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Link } from '@/navigation'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
   ArrowLeft,
   Building2,
@@ -18,7 +19,8 @@ import {
   Bell,
   CheckCircle,
   AlertCircle,
-  Loader2
+  Loader2,
+  Target
 } from 'lucide-react'
 
 interface RecruiterSettings {
@@ -28,6 +30,7 @@ interface RecruiterSettings {
   companySize: string
   companyLocation: string
   companyDescription: string
+  seekingType: 'HIRE' | 'PROJECTS' | 'BOTH'
   notifyNewApplications: boolean
   notifyMessages: boolean
   notifySearchAlerts: boolean
@@ -40,6 +43,7 @@ const defaultSettings: RecruiterSettings = {
   companySize: '',
   companyLocation: '',
   companyDescription: '',
+  seekingType: 'BOTH',
   notifyNewApplications: true,
   notifyMessages: true,
   notifySearchAlerts: false
@@ -73,6 +77,7 @@ export default function RecruiterSettingsPage() {
             companySize: data.settings.companySize || '',
             companyLocation: data.settings.companyLocation || '',
             companyDescription: data.settings.companyDescription || '',
+            seekingType: data.settings.seekingType || 'BOTH',
             notifyNewApplications: data.settings.notifyNewApplications ?? true,
             notifyMessages: data.settings.notifyMessages ?? true,
             notifySearchAlerts: data.settings.notifySearchAlerts ?? false
@@ -304,6 +309,40 @@ export default function RecruiterSettingsPage() {
               placeholder="Tell candidates about your company..."
               rows={4}
             />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Hiring Mode */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Target className="h-5 w-5" />
+            What are you looking for?
+          </CardTitle>
+          <CardDescription>
+            Tell us whether you are looking to hire students or engage them for projects
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label>I am looking for</Label>
+            <p className="text-sm text-gray-500 mb-2">This helps us match you with the right students</p>
+            <Select
+              value={settings.seekingType}
+              onValueChange={(value: 'HIRE' | 'PROJECTS' | 'BOTH') =>
+                setSettings({ ...settings, seekingType: value })
+              }
+            >
+              <SelectTrigger className="w-full md:w-[320px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="HIRE">Interns / Graduates to hire</SelectItem>
+                <SelectItem value="PROJECTS">Students for project-based work</SelectItem>
+                <SelectItem value="BOTH">Both — hiring and projects</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </CardContent>
       </Card>

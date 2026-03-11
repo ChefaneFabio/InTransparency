@@ -58,6 +58,7 @@ export async function GET(req: NextRequest) {
           indexInSearchEngines: true,
           showProjects: true,
           blockedCompanies: true,
+          availableFor: true,
           createdAt: true,
         },
       }),
@@ -212,6 +213,7 @@ export async function PATCH(req: NextRequest) {
       bio, tagline, portfolioUrl, profilePublic, showLocation, showEmail, showPhone, gpaPublic,
       showLastActive, anonymousBrowsing, allowMessagesFrom, indexInSearchEngines, showProjects, blockedCompanies,
       emailNotifications, messageNotifications, jobAlertNotifications, mentorshipNotifications, marketingEmails,
+      availableFor,
     } = body
 
     // Gate portfolioUrl behind STUDENT_PREMIUM
@@ -262,6 +264,7 @@ export async function PATCH(req: NextRequest) {
     if (jobAlertNotifications !== undefined) updateData.jobAlertNotifications = jobAlertNotifications
     if (mentorshipNotifications !== undefined) updateData.mentorshipNotifications = mentorshipNotifications
     if (marketingEmails !== undefined) updateData.marketingEmails = marketingEmails
+    if (availableFor !== undefined && ['HIRING', 'PROJECTS', 'BOTH'].includes(availableFor)) updateData.availableFor = availableFor
 
     const updatedUser = await prisma.user.update({
       where: { id: userId },
@@ -296,6 +299,7 @@ export async function PATCH(req: NextRequest) {
         indexInSearchEngines: true,
         showProjects: true,
         blockedCompanies: true,
+        availableFor: true,
       },
     })
 

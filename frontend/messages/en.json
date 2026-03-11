@@ -4828,6 +4828,15 @@
       "passwordChangedDescription": "Your password has been updated successfully",
       "passwordChangeFailed": "Failed to change password"
     },
+    "availability": {
+      "title": "Availability",
+      "description": "Tell recruiters what kind of opportunities you are open to",
+      "label": "Available for",
+      "hint": "This helps companies find you for the right type of engagement",
+      "hiring": "Full-time / Internship (hiring)",
+      "projects": "Project-based work",
+      "both": "Both — hiring and projects"
+    },
     "danger": {
       "title": "Danger Zone",
       "description": "Irreversible actions for your account",

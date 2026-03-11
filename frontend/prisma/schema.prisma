@@ -247,6 +247,9 @@ model User {
   showProjects         String   @default("all") // 'all', 'featured', 'none'
   blockedCompanies     String[] @default([]) // Array of company IDs/names to hide profile from
 
+  // Dual-Mode: Available for hiring, projects, or both
+  availableFor         AvailableFor @default(BOTH)
+
   // Timestamps
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -387,6 +390,18 @@ enum SubscriptionStatus {
   PAST_DUE
   CANCELED
   EXPIRED
+}
+
+enum AvailableFor {
+  HIRING
+  PROJECTS
+  BOTH
+}
+
+enum SeekingType {
+  HIRE
+  PROJECTS
+  BOTH
 }
 
 enum ReferralTier {
@@ -1963,6 +1978,9 @@ model RecruiterSettings {
   companyLocation    String?
   companyDescription String? @db.Text
   companyLogo        String?
+
+  // Dual-Mode: Looking for hires, project-based students, or both
+  seekingType SeekingType @default(BOTH)
 
   // Notification Preferences
   notifyNewApplications Boolean @default(true)

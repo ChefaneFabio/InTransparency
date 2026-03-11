@@ -39,6 +39,7 @@ export async function GET(req: NextRequest) {
           companySize: '',
           companyLocation: '',
           companyDescription: '',
+          seekingType: 'BOTH',
           notifyNewApplications: true,
           notifyMessages: true,
           notifySearchAlerts: true,
@@ -54,6 +55,7 @@ export async function GET(req: NextRequest) {
         companySize: settings.companySize || '',
         companyLocation: settings.companyLocation || '',
         companyDescription: settings.companyDescription || '',
+        seekingType: settings.seekingType || 'BOTH',
         notifyNewApplications: settings.notifyNewApplications,
         notifyMessages: settings.notifyMessages,
         notifySearchAlerts: settings.notifySearchAlerts,
@@ -92,12 +94,13 @@ export async function PUT(req: NextRequest) {
       companySize,
       companyLocation,
       companyDescription,
+      seekingType,
       notifyNewApplications,
       notifyMessages,
       notifySearchAlerts,
     } = body
 
-    const data = {
+    const data: Record<string, any> = {
       companyName: companyName ?? undefined,
       companyWebsite: companyWebsite ?? undefined,
       companyIndustry: companyIndustry ?? undefined,
@@ -107,6 +110,9 @@ export async function PUT(req: NextRequest) {
       notifyNewApplications: notifyNewApplications ?? undefined,
       notifyMessages: notifyMessages ?? undefined,
       notifySearchAlerts: notifySearchAlerts ?? undefined,
+    }
+    if (seekingType !== undefined && ['HIRE', 'PROJECTS', 'BOTH'].includes(seekingType)) {
+      data.seekingType = seekingType
     }
 
     const settings = await prisma.recruiterSettings.upsert({
@@ -126,6 +132,7 @@ export async function PUT(req: NextRequest) {
         companySize: settings.companySize || '',
         companyLocation: settings.companyLocation || '',
         companyDescription: settings.companyDescription || '',
+        seekingType: settings.seekingType || 'BOTH',
         notifyNewApplications: settings.notifyNewApplications,
         notifyMessages: settings.notifyMessages,
         notifySearchAlerts: settings.notifySearchAlerts,

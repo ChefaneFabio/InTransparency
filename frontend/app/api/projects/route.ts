@@ -231,7 +231,8 @@ export async function GET(request: NextRequest) {
               lastName: true,
               username: true,
               university: true,
-              photo: true
+              photo: true,
+              availableFor: true
             }
           },
           endorsements: {

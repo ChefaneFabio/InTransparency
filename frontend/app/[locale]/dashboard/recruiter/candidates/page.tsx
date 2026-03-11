@@ -61,6 +61,7 @@ interface Candidate {
   graduationYear: string
   photo: string | null
   bio: string | null
+  availableFor: 'HIRING' | 'PROJECTS' | 'BOTH'
   projects: {
     id: string
     title: string
@@ -81,6 +82,7 @@ export default function CandidatesPage() {
   const [disciplineFilter, setDisciplineFilter] = useState('all')
   const [universityFilter, setUniversityFilter] = useState('all')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+  const [engagementFilter, setEngagementFilter] = useState('all')
   const [bookmarked, setBookmarked] = useState<Set<string>>(new Set())
 
   useEffect(() => {
@@ -111,6 +113,7 @@ export default function CandidatesPage() {
                 graduationYear: '',
                 photo: project.user.photo,
                 bio: null,
+                availableFor: project.user.availableFor || 'BOTH',
                 projects: [],
                 _count: { projects: 0 }
               })
@@ -157,6 +160,13 @@ export default function CandidatesPage() {
       return false
     }
 
+    // Engagement type filter
+    if (engagementFilter !== 'all') {
+      const avail = candidate.availableFor
+      if (engagementFilter === 'HIRING' && avail !== 'HIRING' && avail !== 'BOTH') return false
+      if (engagementFilter === 'PROJECTS' && avail !== 'PROJECTS' && avail !== 'BOTH') return false
+    }
+
     return true
   })
 
@@ -187,6 +197,7 @@ export default function CandidatesPage() {
     setSearchQuery('')
     setDisciplineFilter('all')
     setUniversityFilter('all')
+    setEngagementFilter('all')
   }
 
   const handleExportCsv = () => {
@@ -359,6 +370,17 @@ export default function CandidatesPage() {
                     {uni}
                   </SelectItem>
                 ))}
+              </SelectContent>
+            </Select>
+
+            <Select value={engagementFilter} onValueChange={setEngagementFilter}>
+              <SelectTrigger className="w-full md:w-[180px]">
+                <SelectValue placeholder="Engagement" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Types</SelectItem>
+                <SelectItem value="HIRING">Open to Hiring</SelectItem>
+                <SelectItem value="PROJECTS">Open to Projects</SelectItem>
               </SelectContent>
             </Select>
 

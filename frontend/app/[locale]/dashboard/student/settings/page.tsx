@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
 import { useToast } from '@/components/ui/use-toast'
 import {
@@ -20,6 +21,7 @@ import {
   Lock,
   Eye,
   EyeOff,
+  Briefcase,
 } from 'lucide-react'
 
 interface SettingsData {
@@ -27,6 +29,7 @@ interface SettingsData {
   firstName: string
   lastName: string
   profilePublic: boolean
+  availableFor: 'HIRING' | 'PROJECTS' | 'BOTH'
   emailNotifications: boolean
   messageNotifications: boolean
   jobAlertNotifications: boolean
@@ -44,6 +47,7 @@ export default function StudentSettingsPage() {
     firstName: '',
     lastName: '',
     profilePublic: true,
+    availableFor: 'BOTH',
     emailNotifications: true,
     messageNotifications: true,
     jobAlertNotifications: true,
@@ -76,6 +80,7 @@ export default function StudentSettingsPage() {
             firstName: user.firstName || '',
             lastName: user.lastName || '',
             profilePublic: user.profilePublic ?? true,
+            availableFor: user.availableFor || 'BOTH',
             emailNotifications: user.emailNotifications ?? true,
             messageNotifications: user.messageNotifications ?? true,
             jobAlertNotifications: user.jobAlertNotifications ?? true,
@@ -96,12 +101,13 @@ export default function StudentSettingsPage() {
     setSaving(true)
     try {
       const res = await fetch('/api/dashboard/student/profile', {
-        method: 'PUT',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           firstName: settings.firstName,
           lastName: settings.lastName,
           profilePublic: settings.profilePublic,
+          availableFor: settings.availableFor,
           emailNotifications: settings.emailNotifications,
           messageNotifications: settings.messageNotifications,
           jobAlertNotifications: settings.jobAlertNotifications,
@@ -247,6 +253,43 @@ export default function StudentSettingsPage() {
               checked={settings.profilePublic}
               onCheckedChange={(checked) => setSettings({ ...settings, profilePublic: checked })}
             />
+          </div>
+
+          <Button onClick={handleSaveSettings} disabled={saving}>
+            <Save className="h-4 w-4 mr-2" />
+            {saving ? t('saving') : t('saveChanges')}
+          </Button>
+        </CardContent>
+      </Card>
+
+      {/* Availability Mode */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Briefcase className="h-5 w-5" />
+            {t('availability.title')}
+          </CardTitle>
+          <CardDescription>{t('availability.description')}</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label>{t('availability.label')}</Label>
+            <p className="text-xs text-muted-foreground mb-2">{t('availability.hint')}</p>
+            <Select
+              value={settings.availableFor}
+              onValueChange={(value: 'HIRING' | 'PROJECTS' | 'BOTH') =>
+                setSettings({ ...settings, availableFor: value })
+              }
+            >
+              <SelectTrigger className="w-full md:w-[280px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="HIRING">{t('availability.hiring')}</SelectItem>
+                <SelectItem value="PROJECTS">{t('availability.projects')}</SelectItem>
+                <SelectItem value="BOTH">{t('availability.both')}</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <Button onClick={handleSaveSettings} disabled={saving}>
