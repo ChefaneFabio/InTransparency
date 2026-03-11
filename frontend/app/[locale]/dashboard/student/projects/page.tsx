@@ -122,6 +122,8 @@ export default function ProjectsPage() {
   }
 
   const deleteProject = async (projectId: string) => {
+    if (!confirm('Are you sure you want to delete this project? This cannot be undone.')) return
+
     try {
       const response = await fetch(`/api/projects/${projectId}`, {
         method: 'DELETE',
@@ -251,7 +253,7 @@ export default function ProjectsPage() {
           <CardContent className="p-6">
             <div className="flex items-center">
               <div className="text-2xl font-bold text-primary">
-                {Math.round(projects.reduce((acc, p) => acc + (p.innovationScore || 0), 0) / projects.length) || 0}
+                {projects.length > 0 ? Math.round(projects.reduce((acc, p) => acc + (p.innovationScore || 0), 0) / projects.length) : 0}
               </div>
               <div className="ml-2 text-sm text-gray-700 font-medium">Avg Score</div>
             </div>

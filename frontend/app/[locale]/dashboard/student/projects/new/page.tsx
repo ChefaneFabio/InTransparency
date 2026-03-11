@@ -166,6 +166,7 @@ export default function NewProjectPage() {
   const [images, setImages] = useState<string[]>([])
   const [videos, setVideos] = useState<string[]>([])
   const [videoInput, setVideoInput] = useState('')
+  const [uploadingImage, setUploadingImage] = useState(false)
 
   // Project Context
   const [duration, setDuration] = useState('')
@@ -213,14 +214,45 @@ export default function NewProjectPage() {
     setter(prev => prev.filter((_, i) => i !== index))
   }
 
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    const maxSize = 10 * 1024 * 1024 // 10MB
+    if (file.size > maxSize) {
+      alert('Image must be under 10MB')
+      return
+    }
+
+    const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
+    if (!validTypes.includes(file.type)) {
+      alert('Please upload a JPEG, PNG, WebP, or GIF image')
+      return
+    }
+
+    setUploadingImage(true)
+    try {
+      const formData = new FormData()
+      formData.append('image', file)
+      const res = await fetch('/api/upload/image', { method: 'POST', body: formData })
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Upload failed')
+      }
+      const data = await res.json()
+      setImageUrl(data.url)
+    } catch (err: any) {
+      alert(err.message || 'Failed to upload image')
+    } finally {
+      setUploadingImage(false)
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
 
     try {
-      // TODO: Implement file upload to S3/Cloudflare
-      // For now, we'll just save URLs and basic data
-
       const projectData = {
         discipline,
         projectType: projectType || undefined,
@@ -520,17 +552,46 @@ export default function NewProjectPage() {
 
               <div>
                 <label className="block text-sm font-medium text-foreground mb-1.5">
-                  Main Project Image URL
+                  Main Project Image
                 </label>
-                <input
-                  type="url"
-                  value={imageUrl}
-                  onChange={(e) => setImageUrl(e.target.value)}
-                  placeholder="https://example.com/image.jpg"
-                  className="w-full px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary text-foreground placeholder:text-muted-foreground/60 bg-card"
-                />
+                {imageUrl ? (
+                  <div className="relative inline-block mb-2">
+                    <img src={imageUrl} alt="Project preview" className="h-32 rounded-lg object-cover border border-border" />
+                    <button
+                      type="button"
+                      onClick={() => setImageUrl('')}
+                      className="absolute -top-2 -right-2 bg-destructive text-destructive-foreground rounded-full p-0.5"
+                    >
+                      <X size={14} />
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex gap-2 items-start">
+                    <label className={`flex items-center gap-2 px-4 py-2 border-2 border-dashed border-border rounded-lg cursor-pointer hover:border-primary transition-colors bg-card ${uploadingImage ? 'opacity-50 pointer-events-none' : ''}`}>
+                      <Upload size={16} className="text-muted-foreground" />
+                      <span className="text-sm text-muted-foreground">
+                        {uploadingImage ? 'Uploading...' : 'Upload image'}
+                      </span>
+                      <input
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp,image/gif"
+                        onChange={handleImageUpload}
+                        className="hidden"
+                        disabled={uploadingImage}
+                      />
+                    </label>
+                    <span className="text-xs text-muted-foreground py-2">or</span>
+                    <input
+                      type="url"
+                      value={imageUrl}
+                      onChange={(e) => setImageUrl(e.target.value)}
+                      placeholder="Paste image URL"
+                      className="flex-1 px-4 py-2 border-2 border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-primary text-foreground placeholder:text-muted-foreground/60 bg-card text-sm"
+                    />
+                  </div>
+                )}
                 <p className="text-xs text-muted-foreground mt-1">
-                  File upload coming soon - for now, paste an image URL
+                  JPEG, PNG, WebP, or GIF — max 10MB
                 </p>
               </div>
 
