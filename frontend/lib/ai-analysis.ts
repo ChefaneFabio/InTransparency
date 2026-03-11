@@ -8,6 +8,8 @@
  */
 
 import { anthropic, AI_MODEL } from './openai-shared'
+import mammoth from 'mammoth'
+import * as XLSX from 'xlsx'
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -916,19 +918,55 @@ function toRatedCompetencies(names: string[], baseScore: number): RatedSkill[] {
 }
 
 /**
- * Fetch a file from URL and return as base64 with media type.
- * Used for sending images and PDFs to Claude's multimodal API.
+ * Fetch a file from URL and return as Buffer + base64.
  */
-async function fetchFileAsBase64(url: string): Promise<{ data: string; mediaType: string } | null> {
+async function fetchFileBuffer(url: string): Promise<{ buffer: Buffer; base64: string; mediaType: string } | null> {
   try {
     const response = await fetch(url)
     if (!response.ok) return null
-    const buffer = await response.arrayBuffer()
-    const data = Buffer.from(buffer).toString('base64')
+    const arrayBuffer = await response.arrayBuffer()
+    const buffer = Buffer.from(arrayBuffer)
+    const base64 = buffer.toString('base64')
     const mediaType = response.headers.get('content-type') || 'application/octet-stream'
-    return { data, mediaType }
+    return { buffer, base64, mediaType }
   } catch (error) {
     console.error(`[AI Analysis] Failed to fetch file: ${url}`, error)
+    return null
+  }
+}
+
+/**
+ * Extract text from a Word document (.docx) using mammoth.
+ */
+async function extractWordText(buffer: Buffer): Promise<string | null> {
+  try {
+    const result = await mammoth.extractRawText({ buffer })
+    return result.value.trim() || null
+  } catch (error) {
+    console.error('[AI Analysis] Failed to extract Word text:', error)
+    return null
+  }
+}
+
+/**
+ * Extract text from an Excel spreadsheet (.xlsx/.xls) using xlsx.
+ */
+function extractExcelText(buffer: Buffer): string | null {
+  try {
+    const workbook = XLSX.read(buffer, { type: 'buffer' })
+    const sheets: string[] = []
+    for (const sheetName of workbook.SheetNames) {
+      const sheet = workbook.Sheets[sheetName]
+      const csv = XLSX.utils.sheet_to_csv(sheet)
+      if (csv.trim()) {
+        sheets.push(`--- Sheet: ${sheetName} ---\n${csv}`)
+      }
+    }
+    const text = sheets.join('\n\n')
+    // Limit to ~8000 chars to avoid overwhelming the prompt
+    return text.length > 8000 ? text.substring(0, 8000) + '\n... (truncated)' : text
+  } catch (error) {
+    console.error('[AI Analysis] Failed to extract Excel text:', error)
     return null
   }
 }
@@ -948,14 +986,14 @@ async function buildFileContentBlocks(files: ProjectData['files']): Promise<{ bl
 
     // Images — send as vision content for Claude to analyze visually
     if (mime.startsWith('image/') && ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(mime)) {
-      const fileData = await fetchFileAsBase64(file.fileUrl)
+      const fileData = await fetchFileBuffer(file.fileUrl)
       if (fileData) {
         blocks.push({
           type: 'image',
           source: {
             type: 'base64',
             media_type: fileData.mediaType,
-            data: fileData.data,
+            data: fileData.base64,
           },
         })
         blocks.push({
@@ -968,14 +1006,14 @@ async function buildFileContentBlocks(files: ProjectData['files']): Promise<{ bl
     }
     // PDFs — send as document content for Claude to read
     else if (mime === 'application/pdf') {
-      const fileData = await fetchFileAsBase64(file.fileUrl)
+      const fileData = await fetchFileBuffer(file.fileUrl)
       if (fileData) {
         blocks.push({
           type: 'document',
           source: {
             type: 'base64',
             media_type: 'application/pdf',
-            data: fileData.data,
+            data: fileData.base64,
           },
         })
         blocks.push({
@@ -986,17 +1024,39 @@ async function buildFileContentBlocks(files: ProjectData['files']): Promise<{ bl
         descriptions.push(`PDF document: ${file.fileName} (could not be loaded for analysis)`)
       }
     }
-    // Word documents — describe metadata (Claude can't read .docx natively)
+    // Word documents — extract full text with mammoth
     else if (mime.includes('wordprocessingml') || mime.includes('msword') || mime === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-      descriptions.push(`Word document: ${file.fileName} (${Math.round(file.fileSize / 1024)}KB) — included as project documentation`)
+      const fileData = await fetchFileBuffer(file.fileUrl)
+      if (fileData) {
+        const text = await extractWordText(fileData.buffer)
+        if (text) {
+          const truncated = text.length > 8000 ? text.substring(0, 8000) + '\n... (truncated)' : text
+          descriptions.push(`\n--- Word Document: ${file.fileName} ---\n${truncated}\n--- End of ${file.fileName} ---`)
+        } else {
+          descriptions.push(`Word document: ${file.fileName} (${Math.round(file.fileSize / 1024)}KB) — text extraction failed`)
+        }
+      } else {
+        descriptions.push(`Word document: ${file.fileName} (could not be loaded)`)
+      }
     }
-    // Excel spreadsheets
+    // Excel spreadsheets — extract all sheets as CSV text
     else if (mime.includes('spreadsheetml') || mime.includes('ms-excel')) {
-      descriptions.push(`Excel spreadsheet: ${file.fileName} (${Math.round(file.fileSize / 1024)}KB) — included as project data/analysis`)
+      const fileData = await fetchFileBuffer(file.fileUrl)
+      if (fileData) {
+        const text = extractExcelText(fileData.buffer)
+        if (text) {
+          descriptions.push(`\n--- Excel Spreadsheet: ${file.fileName} ---\n${text}\n--- End of ${file.fileName} ---`)
+        } else {
+          descriptions.push(`Excel spreadsheet: ${file.fileName} (${Math.round(file.fileSize / 1024)}KB) — data extraction failed`)
+        }
+      } else {
+        descriptions.push(`Excel spreadsheet: ${file.fileName} (could not be loaded)`)
+      }
     }
-    // Video files — describe metadata (too large to send)
+    // Video files — describe with metadata (video content cannot be sent to API)
     else if (mime.startsWith('video/')) {
-      descriptions.push(`Video file: ${file.fileName} (${Math.round(file.fileSize / (1024 * 1024))}MB, ${mime}) — project demo/presentation video`)
+      const sizeMB = Math.round(file.fileSize / (1024 * 1024))
+      descriptions.push(`Video file: ${file.fileName} (${sizeMB}MB, ${mime}) — This is a project demo/presentation video. Evaluate the project positively for including video documentation, which demonstrates presentation skills and effort in communicating the project.`)
     }
     // Other files
     else {
