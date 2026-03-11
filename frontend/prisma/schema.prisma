@@ -281,6 +281,7 @@ model User {
   savedByCandidates    SavedCandidate[]       @relation("SavedCandidateProfile")
   savedSearches        SavedSearch[]
   recruiterSettings    RecruiterSettings?
+  techParkSettings     TechParkSettings?
   campuses             Campus[]
   predictions          PlacementPrediction[]  @relation("StudentPredictions")
   decisionPacksMade    DecisionPack[]         @relation("RecruiterDecisionPacks")
@@ -370,8 +371,15 @@ enum UserRole {
   STUDENT
   RECRUITER
   UNIVERSITY
+  TECHPARK
   PROFESSOR
   ADMIN
+}
+
+enum TechParkType {
+  PRIVATE
+  PUBLIC
+  MIXED
 }
 
 enum SubscriptionTier {
@@ -1986,6 +1994,43 @@ model RecruiterSettings {
   notifyNewApplications Boolean @default(true)
   notifyMessages        Boolean @default(true)
   notifySearchAlerts    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Tech Park Settings (B2B partner profile)
+model TechParkSettings {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Park Profile
+  parkName        String?
+  parkType        TechParkType @default(PRIVATE)
+  description     String?      @db.Text
+  website         String?
+  email           String?
+  phone           String?
+  address         String?
+  city            String?
+  region          String?
+  country         String       @default("IT")
+  logo            String?
+
+  // Park Details
+  memberCompanyCount Int       @default(0)
+  focusAreas         String[]  @default([]) // e.g. ["Industry 4.0", "AI", "Biotech"]
+  foundedYear        Int?
+
+  // Notification Preferences
+  notifyNewStudents       Boolean @default(true)
+  notifyRecruiterActivity Boolean @default(true)
+  notifyPlacements        Boolean @default(true)
+
+  // Visibility
+  showInDirectory         Boolean @default(true)
+  allowStudentDiscovery   Boolean @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

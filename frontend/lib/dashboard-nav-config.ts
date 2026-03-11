@@ -1,4 +1,4 @@
-export type DashboardRole = 'student' | 'recruiter' | 'university' | 'institution' | 'professor'
+export type DashboardRole = 'student' | 'recruiter' | 'university' | 'institution' | 'professor' | 'techpark'
 
 export interface NavItem {
   labelKey: string
@@ -241,10 +241,44 @@ const professor: NavConfig = {
   ],
 }
 
+const techpark: NavConfig = {
+  groups: [
+    {
+      labelKey: 'overview',
+      items: [
+        { labelKey: 'dashboard', href: '/dashboard/techpark' },
+        { labelKey: 'memberCompanies', href: '/dashboard/techpark/companies' },
+      ],
+    },
+    {
+      labelKey: 'talent',
+      items: [
+        { labelKey: 'talentPipeline', href: '/dashboard/techpark/talent' },
+        { labelKey: 'candidates', href: '/dashboard/techpark/candidates' },
+      ],
+    },
+    {
+      labelKey: 'insights',
+      items: [
+        { labelKey: 'analytics', href: '/dashboard/techpark/analytics' },
+        { labelKey: 'placements', href: '/dashboard/techpark/placements' },
+      ],
+    },
+    {
+      labelKey: 'more',
+      items: [
+        { labelKey: 'events', href: '/dashboard/techpark/events' },
+        { labelKey: 'settings', href: '/dashboard/techpark/settings' },
+      ],
+    },
+  ],
+}
+
 export const dashboardNavConfig: Record<DashboardRole, NavConfig> = {
   student,
   recruiter,
   university,
   institution,
   professor,
+  techpark,
 }

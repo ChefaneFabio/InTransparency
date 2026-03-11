@@ -1,0 +1,529 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import { Skeleton } from '@/components/ui/skeleton'
+import { Link } from '@/navigation'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  ArrowLeft,
+  Building2,
+  Globe,
+  Bell,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
+  Eye
+} from 'lucide-react'
+
+interface TechParkSettings {
+  parkName: string
+  parkType: 'PRIVATE' | 'PUBLIC' | 'MIXED'
+  description: string
+  website: string
+  email: string
+  phone: string
+  city: string
+  region: string
+  focusAreas: string
+  memberCompanyCount: number
+  foundedYear: number | ''
+  notifyNewStudents: boolean
+  notifyRecruiterActivity: boolean
+  notifyPlacements: boolean
+  showInDirectory: boolean
+  allowStudentDiscovery: boolean
+}
+
+const defaultSettings: TechParkSettings = {
+  parkName: '',
+  parkType: 'MIXED',
+  description: '',
+  website: '',
+  email: '',
+  phone: '',
+  city: '',
+  region: '',
+  focusAreas: '',
+  memberCompanyCount: 0,
+  foundedYear: '',
+  notifyNewStudents: true,
+  notifyRecruiterActivity: true,
+  notifyPlacements: true,
+  showInDirectory: true,
+  allowStudentDiscovery: true
+}
+
+export default function TechParkSettingsPage() {
+  const { data: session } = useSession()
+  const user = session?.user
+
+  const [settings, setSettings] = useState<TechParkSettings>(defaultSettings)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [saving, setSaving] = useState(false)
+  const [saveMessage, setSaveMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
+
+  // Fetch settings
+  useEffect(() => {
+    setLoading(true)
+    setError(null)
+    fetch('/api/dashboard/techpark/settings')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load settings')
+        return res.json()
+      })
+      .then(data => {
+        if (data.settings) {
+          setSettings({
+            parkName: data.settings.parkName || '',
+            parkType: data.settings.parkType || 'MIXED',
+            description: data.settings.description || '',
+            website: data.settings.website || '',
+            email: data.settings.email || '',
+            phone: data.settings.phone || '',
+            city: data.settings.city || '',
+            region: data.settings.region || '',
+            focusAreas: data.settings.focusAreas || '',
+            memberCompanyCount: data.settings.memberCompanyCount || 0,
+            foundedYear: data.settings.foundedYear || '',
+            notifyNewStudents: data.settings.notifyNewStudents ?? true,
+            notifyRecruiterActivity: data.settings.notifyRecruiterActivity ?? true,
+            notifyPlacements: data.settings.notifyPlacements ?? true,
+            showInDirectory: data.settings.showInDirectory ?? true,
+            allowStudentDiscovery: data.settings.allowStudentDiscovery ?? true
+          })
+        }
+        setLoading(false)
+      })
+      .catch(err => {
+        setError(err.message)
+        setLoading(false)
+      })
+  }, [])
+
+  const handleSave = async () => {
+    setSaving(true)
+    setSaveMessage(null)
+    try {
+      const res = await fetch('/api/dashboard/techpark/settings', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(settings)
+      })
+      if (!res.ok) throw new Error('Failed to save settings')
+      setSaveMessage({ type: 'success', text: 'Settings saved successfully!' })
+      setTimeout(() => setSaveMessage(null), 3000)
+    } catch (err) {
+      setSaveMessage({ type: 'error', text: 'Failed to save settings. Please try again.' })
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="max-w-3xl mx-auto space-y-6 pb-12">
+        <div className="flex items-center gap-4 pt-2">
+          <Skeleton className="h-9 w-20" />
+          <div className="space-y-1">
+            <Skeleton className="h-7 w-48" />
+            <Skeleton className="h-5 w-36" />
+          </div>
+        </div>
+
+        <Card>
+          <CardHeader>
+            <Skeleton className="h-6 w-40" />
+            <Skeleton className="h-4 w-64" />
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-24" />
+                <Skeleton className="h-10 w-full" />
+              </div>
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-24" />
+                <Skeleton className="h-10 w-full" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-24" />
+              <Skeleton className="h-24 w-full" />
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <Skeleton className="h-6 w-40" />
+            <Skeleton className="h-4 w-64" />
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div key={i} className="flex items-center justify-between">
+                <Skeleton className="h-5 w-48" />
+                <Skeleton className="h-6 w-11 rounded-full" />
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-3xl mx-auto space-y-6 pb-12">
+        <div className="flex items-center gap-4 pt-2">
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/dashboard/techpark">
+              <ArrowLeft className="h-4 w-4 mr-1" />
+              Back
+            </Link>
+          </Button>
+          <div>
+            <h1 className="text-2xl font-semibold text-gray-900">Park Settings</h1>
+            <p className="text-gray-600">Manage your tech park profile</p>
+          </div>
+        </div>
+        <Card>
+          <CardContent className="p-12 text-center">
+            <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 mb-2">Failed to load settings</h3>
+            <p className="text-gray-600 mb-4">{error}</p>
+            <Button onClick={() => window.location.reload()}>Try Again</Button>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  return (
+    <div className="max-w-3xl mx-auto space-y-6 pb-12">
+      {/* Header */}
+      <div className="flex items-center gap-4 pt-2">
+        <Button variant="ghost" size="sm" asChild>
+          <Link href="/dashboard/techpark">
+            <ArrowLeft className="h-4 w-4 mr-1" />
+            Back
+          </Link>
+        </Button>
+        <div>
+          <h1 className="text-2xl font-semibold text-gray-900">Park Settings</h1>
+          <p className="text-gray-600">Manage your tech park profile</p>
+        </div>
+      </div>
+
+      {/* Save Message Toast */}
+      {saveMessage && (
+        <div className={`flex items-center gap-2 p-4 rounded-lg ${
+          saveMessage.type === 'success'
+            ? 'bg-primary/5 text-green-800 border border-primary/20'
+            : 'bg-red-50 text-red-800 border border-red-200'
+        }`}>
+          {saveMessage.type === 'success' ? (
+            <CheckCircle className="h-5 w-5 text-primary" />
+          ) : (
+            <AlertCircle className="h-5 w-5 text-red-600" />
+          )}
+          <p className="text-sm font-medium">{saveMessage.text}</p>
+        </div>
+      )}
+
+      {/* Park Profile */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Building2 className="h-5 w-5" />
+            Park Profile
+          </CardTitle>
+          <CardDescription>
+            This information will be visible to companies and students
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="parkName">Park Name</Label>
+              <Input
+                id="parkName"
+                value={settings.parkName}
+                onChange={(e) => setSettings({ ...settings, parkName: e.target.value })}
+                placeholder="Your Tech Park"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="parkType">Park Type</Label>
+              <Select
+                value={settings.parkType}
+                onValueChange={(value: 'PRIVATE' | 'PUBLIC' | 'MIXED') =>
+                  setSettings({ ...settings, parkType: value })
+                }
+              >
+                <SelectTrigger id="parkType">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="PRIVATE">Private</SelectItem>
+                  <SelectItem value="PUBLIC">Public</SelectItem>
+                  <SelectItem value="MIXED">Mixed</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="description">Description</Label>
+            <Textarea
+              id="description"
+              value={settings.description}
+              onChange={(e) => setSettings({ ...settings, description: e.target.value })}
+              placeholder="Tell visitors about your tech park..."
+              rows={4}
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="website">Website</Label>
+              <Input
+                id="website"
+                value={settings.website}
+                onChange={(e) => setSettings({ ...settings, website: e.target.value })}
+                placeholder="https://yourtechpark.com"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={settings.email}
+                onChange={(e) => setSettings({ ...settings, email: e.target.value })}
+                placeholder="info@yourtechpark.com"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone</Label>
+              <Input
+                id="phone"
+                value={settings.phone}
+                onChange={(e) => setSettings({ ...settings, phone: e.target.value })}
+                placeholder="+39 0471 123456"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="foundedYear">Founded Year</Label>
+              <Input
+                id="foundedYear"
+                type="number"
+                value={settings.foundedYear}
+                onChange={(e) => setSettings({ ...settings, foundedYear: e.target.value ? parseInt(e.target.value) : '' })}
+                placeholder="2010"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="city">City</Label>
+              <Input
+                id="city"
+                value={settings.city}
+                onChange={(e) => setSettings({ ...settings, city: e.target.value })}
+                placeholder="Bolzano"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="region">Region</Label>
+              <Input
+                id="region"
+                value={settings.region}
+                onChange={(e) => setSettings({ ...settings, region: e.target.value })}
+                placeholder="Trentino-Alto Adige"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="focusAreas">Focus Areas</Label>
+            <Input
+              id="focusAreas"
+              value={settings.focusAreas}
+              onChange={(e) => setSettings({ ...settings, focusAreas: e.target.value })}
+              placeholder="AI, Green Tech, Digital Health, IoT"
+            />
+            <p className="text-xs text-muted-foreground">Comma-separated list of focus areas</p>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="memberCompanyCount">Member Company Count</Label>
+            <Input
+              id="memberCompanyCount"
+              type="number"
+              value={settings.memberCompanyCount}
+              onChange={(e) => setSettings({ ...settings, memberCompanyCount: parseInt(e.target.value) || 0 })}
+              placeholder="50"
+            />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Notification Preferences */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Bell className="h-5 w-5" />
+            Notification Preferences
+          </CardTitle>
+          <CardDescription>
+            Choose which notifications you want to receive
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-900">New Students</p>
+              <p className="text-sm text-gray-500">Get notified when new students join the platform</p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={settings.notifyNewStudents}
+              onClick={() => setSettings({ ...settings, notifyNewStudents: !settings.notifyNewStudents })}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                settings.notifyNewStudents ? 'bg-primary' : 'bg-gray-200'
+              }`}
+            >
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                  settings.notifyNewStudents ? 'translate-x-6' : 'translate-x-1'
+                }`}
+              />
+            </button>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-900">Recruiter Activity</p>
+              <p className="text-sm text-gray-500">Get notified about recruiter engagement in your park</p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={settings.notifyRecruiterActivity}
+              onClick={() => setSettings({ ...settings, notifyRecruiterActivity: !settings.notifyRecruiterActivity })}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                settings.notifyRecruiterActivity ? 'bg-primary' : 'bg-gray-200'
+              }`}
+            >
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                  settings.notifyRecruiterActivity ? 'translate-x-6' : 'translate-x-1'
+                }`}
+              />
+            </button>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-900">Placements</p>
+              <p className="text-sm text-gray-500">Get notified when students are placed at member companies</p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={settings.notifyPlacements}
+              onClick={() => setSettings({ ...settings, notifyPlacements: !settings.notifyPlacements })}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                settings.notifyPlacements ? 'bg-primary' : 'bg-gray-200'
+              }`}
+            >
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                  settings.notifyPlacements ? 'translate-x-6' : 'translate-x-1'
+                }`}
+              />
+            </button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Visibility */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Eye className="h-5 w-5" />
+            Visibility
+          </CardTitle>
+          <CardDescription>
+            Control how your tech park appears on the platform
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-900">Show in Directory</p>
+              <p className="text-sm text-gray-500">Allow your park to appear in the public tech park directory</p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={settings.showInDirectory}
+              onClick={() => setSettings({ ...settings, showInDirectory: !settings.showInDirectory })}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                settings.showInDirectory ? 'bg-primary' : 'bg-gray-200'
+              }`}
+            >
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                  settings.showInDirectory ? 'translate-x-6' : 'translate-x-1'
+                }`}
+              />
+            </button>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-900">Allow Student Discovery</p>
+              <p className="text-sm text-gray-500">Let students discover and connect with your member companies</p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={settings.allowStudentDiscovery}
+              onClick={() => setSettings({ ...settings, allowStudentDiscovery: !settings.allowStudentDiscovery })}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                settings.allowStudentDiscovery ? 'bg-primary' : 'bg-gray-200'
+              }`}
+            >
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                  settings.allowStudentDiscovery ? 'translate-x-6' : 'translate-x-1'
+                }`}
+              />
+            </button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Save Button */}
+      <div className="flex justify-end">
+        <Button onClick={handleSave} disabled={saving}>
+          {saving && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+          {saving ? 'Saving...' : 'Save Changes'}
+        </Button>
+      </div>
+    </div>
+  )
+}
