@@ -6,12 +6,19 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Link } from '@/navigation'
-import { GraduationCap, Building2, Users, BookOpen, ArrowRight, CheckCircle } from 'lucide-react'
+import { GraduationCap, Building2, Users, Landmark, ArrowRight, CheckCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { Transparenty } from '@/components/mascot/Transparenty'
 
 const roles = [
+  {
+    id: 'student' as const,
+    icon: GraduationCap,
+    color: 'bg-primary',
+    href: '/auth/register/student',
+    benefitCount: 4
+  },
   {
     id: 'recruiter' as const,
     icon: Users,
@@ -27,17 +34,10 @@ const roles = [
     benefitCount: 4
   },
   {
-    id: 'student' as const,
-    icon: GraduationCap,
-    color: 'bg-primary',
-    href: '/auth/register/student',
-    benefitCount: 4
-  },
-  {
-    id: 'professor' as const,
-    icon: BookOpen,
-    color: 'bg-primary',
-    href: '/auth/register/professor',
+    id: 'techpark' as const,
+    icon: Landmark,
+    color: 'bg-emerald-600',
+    href: '/auth/register/techpark',
     benefitCount: 4
   }
 ]
@@ -57,7 +57,9 @@ export default function RegisterPage() {
         'recruiter': '/auth/register/recruiter',
         'university': '/auth/register/university',
         'institute': '/auth/register/university',
-        'professor': '/auth/register/professor'
+        'professor': '/auth/register/university',
+        'techpark': '/auth/register/techpark',
+        'tech-park': '/auth/register/techpark'
       }
       const targetPath = roleMap[role.toLowerCase()]
       if (targetPath) {

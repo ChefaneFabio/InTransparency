@@ -143,6 +143,33 @@
         "embedConfig": "Configurazione Embed",
         "settings": "Impostazioni"
       }
+    },
+    "professor": {
+      "endorsements": "Raccomandazioni",
+      "people": "Persone",
+      "more": "Altro",
+      "items": {
+        "overview": "Panoramica",
+        "allEndorsements": "Tutte le Raccomandazioni",
+        "students": "Studenti",
+        "settings": "Impostazioni"
+      }
+    },
+    "techpark": {
+      "overview": "Panoramica",
+      "talent": "Talenti",
+      "insights": "Statistiche",
+      "more": "Altro",
+      "items": {
+        "dashboard": "Dashboard",
+        "memberCompanies": "Aziende Associate",
+        "talentPipeline": "Pipeline Talenti",
+        "candidates": "Candidati",
+        "analytics": "Analytics",
+        "placements": "Placement",
+        "events": "Eventi",
+        "settings": "Impostazioni"
+      }
     }
   },
   "home": {
@@ -1318,14 +1345,14 @@
             "3": "Analytics profilo"
           }
         },
-        "professor": {
-          "name": "Professore",
-          "description": "Valuta il lavoro degli studenti e gestisci le tue raccomandazioni",
+        "techpark": {
+          "name": "Tech Park",
+          "description": "Connetti le aziende del tuo parco con talenti universitari verificati",
           "benefits": {
-            "0": "Raccomanda progetti degli studenti",
-            "1": "Monitora tutte le raccomandazioni",
-            "2": "Costruisci il tuo profilo di raccomandazioni",
-            "3": "Supporta le carriere degli studenti"
+            "0": "Pipeline di talenti per le aziende associate",
+            "1": "Analytics sui placement",
+            "2": "Matching competenze AI-powered",
+            "3": "Gratuito per il parco tecnologico"
           }
         }
       },

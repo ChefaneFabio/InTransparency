@@ -222,20 +222,13 @@ export function Header() {
                       {item.name}
                     </Link>
                   ))}
-                  {/* Always show Mission and Contact in mobile */}
+                  {/* Always show Mission in mobile */}
                   <Link
                     href="/mission"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-muted-foreground hover:bg-muted"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {t('mission')}
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-muted-foreground hover:bg-muted"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {t('contact')}
                   </Link>
                 </div>
 

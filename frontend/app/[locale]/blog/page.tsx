@@ -1,13 +1,12 @@
 import { getAllPosts, BlogPostMeta } from '@/lib/blog'
 import { Link } from '@/navigation'
-import { useLocale } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { CalendarDays, Clock, ArrowRight, Tag, Rss } from 'lucide-react'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 
 export default async function BlogPage() {
-  const locale = useLocale()
+  const locale = await getLocale()
   const t = await getTranslations('blog')
   const posts = await getAllPosts(locale)
 

@@ -143,6 +143,33 @@
         "embedConfig": "Embed Config",
         "settings": "Settings"
       }
+    },
+    "professor": {
+      "endorsements": "Endorsements",
+      "people": "People",
+      "more": "More",
+      "items": {
+        "overview": "Overview",
+        "allEndorsements": "All Endorsements",
+        "students": "Students",
+        "settings": "Settings"
+      }
+    },
+    "techpark": {
+      "overview": "Overview",
+      "talent": "Talent",
+      "insights": "Insights",
+      "more": "More",
+      "items": {
+        "dashboard": "Dashboard",
+        "memberCompanies": "Member Companies",
+        "talentPipeline": "Talent Pipeline",
+        "candidates": "Candidates",
+        "analytics": "Analytics",
+        "placements": "Placements",
+        "events": "Events",
+        "settings": "Settings"
+      }
     }
   },
   "home": {
@@ -1150,14 +1177,14 @@
             "3": "Profile analytics"
           }
         },
-        "professor": {
-          "name": "Professor",
-          "description": "Endorse student work and track your endorsements",
+        "techpark": {
+          "name": "Tech Park",
+          "description": "Offer AI-verified talent as a service to your member companies",
           "benefits": {
-            "0": "Endorse student projects",
-            "1": "Track all your endorsements",
-            "2": "Build your endorsement profile",
-            "3": "Support student careers"
+            "0": "Zero cost for the park",
+            "1": "Talent pipeline for members",
+            "2": "Placement analytics",
+            "3": "All park types supported"
           }
         }
       },
