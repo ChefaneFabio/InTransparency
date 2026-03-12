@@ -1415,136 +1415,171 @@
       "badge": "How It Works",
       "titleLine1": "From Academic Project",
       "titleLine2": "to Verified Hire.",
-      "subtitle": "Students upload work. Institutions verify it. Companies hire from it. Three steps, zero fake CVs."
+      "subtitle": "Students upload real work. Universities and schools verify it. Companies hire from it. Every skill proven, every project traceable."
     },
     "segments": {
       "student": "Students",
-      "institution": "Institutions",
+      "institution": "Academic Partners",
       "company": "Companies"
     },
-    "coreFlow": {
-      "title": "Three Steps. That's It.",
-      "subtitle": "No complex onboarding. No annual contracts. Just verified talent meeting real employers.",
-      "step1": {
-        "title": "Upload Your Work",
-        "desc": "Students upload real projects — thesis, code, designs, reports. Any format. AI analyzes skills, complexity, and innovation automatically.",
-        "time": "5 minutes"
-      },
-      "step2": {
-        "title": "Institution Verifies",
-        "desc": "Your university, ITS, or school confirms the project is real. Grades, endorsements, and a verification badge are added.",
-        "time": "Automatic"
-      },
-      "step3": {
-        "title": "Companies Find You",
-        "desc": "Recruiters search verified profiles and contact students directly. No applications needed. Students get discovered, not filtered out.",
-        "time": "Ongoing"
-      }
-    },
-    "segmentDive": {
-      "title": "Built for Every Side of the Table",
-      "subtitle": "See how InTransparency works for your specific role.",
+    "journey": {
       "student": {
         "headline": "Stop Applying. Start Getting Discovered.",
-        "subheadline": "Your verified portfolio does the work. Companies come to you.",
+        "subheadline": "Your verified portfolio works for you. Companies find you based on what you've actually built.",
         "steps": {
           "0": {
-            "title": "Build Your Portfolio",
-            "desc": "Upload projects in any format — code, PDF, video, presentations. AI extracts skills and scores quality.",
-            "features": {
-              "0": "All file types accepted",
-              "1": "AI skill extraction & scoring",
-              "2": "Institution-verified grades"
-            }
+            "title": "Upload Your Projects",
+            "desc": "Share your real work — thesis, code, designs, reports. Any format. Our AI analyzes skills, complexity, and innovation automatically."
           },
           "1": {
-            "title": "Get Verified & Ranked",
-            "desc": "Your institution confirms your work. You earn a trust score that recruiters can filter by.",
-            "features": {
-              "0": "Verification badge on profile",
-              "1": "Trust score from real data",
-              "2": "Higher visibility in search"
-            }
+            "title": "Get Verified by Your Institution",
+            "desc": "Your university, ITS, or school confirms the project is real. Grades, endorsements, and a verification badge build your trust score."
           },
           "2": {
-            "title": "Receive Direct Offers",
-            "desc": "Companies find you through search, AI matching, or browsing. They message you first.",
-            "features": {
-              "0": "Zero applications needed",
-              "1": "Direct recruiter messages",
-              "2": "Share portfolio on LinkedIn"
-            }
+            "title": "Companies Discover You",
+            "desc": "Recruiters search verified profiles and reach out directly. No applications, no cover letters. You get found for what you've built."
           }
         },
-        "outcome": "Result: You get found for what you've built — not filtered out by keyword bots."
+        "outcome": "You get discovered for your real skills — not filtered out by keyword bots."
       },
       "institution": {
         "headline": "Know Your Real Placement Rate.",
-        "subheadline": "Not from surveys. From actual hires tracked in real time.",
+        "subheadline": "Not from annual surveys. From actual hires, tracked as they happen.",
         "steps": {
           "0": {
-            "title": "Onboard Students",
-            "desc": "Students sign up themselves or you import them in bulk. Simple dashboard, no IT integration required.",
-            "features": {
-              "0": "Bulk import via CSV",
-              "1": "Student self-registration",
-              "2": "GDPR-compliant consent flow"
-            }
+            "title": "Onboard Your Students",
+            "desc": "Students register themselves or you import them in bulk. Simple dashboard — no IT integration, no developer needed."
           },
           "1": {
-            "title": "Verify & Endorse",
-            "desc": "Review and verify student projects with one click. Add grades and endorsements in batches.",
-            "features": {
-              "0": "Batch verification dashboard",
-              "1": "One-click project approval",
-              "2": "Grade and ECTS integration"
-            }
+            "title": "Verify & Endorse Projects",
+            "desc": "Review student work with one click. Add grades, ECTS credits, and endorsements. Batch approval makes it fast."
           },
           "2": {
-            "title": "Track Outcomes",
-            "desc": "See which students get contacted, interviewed, and hired. Real placement data, not annual surveys.",
-            "features": {
-              "0": "Live placement analytics",
-              "1": "Company engagement metrics",
-              "2": "Skills demand heatmap"
-            }
+            "title": "Track Career Outcomes",
+            "desc": "See which students get contacted, interviewed, and hired. Real-time placement data that proves your institution's impact."
           }
         },
-        "outcome": "Result: Prove your institution's impact with real hiring data. Free forever."
+        "outcome": "Demonstrate your institution's real impact on student employability — with data, not anecdotes."
       },
       "company": {
         "headline": "Find Junior Talent You Can Trust.",
         "subheadline": "Every skill verified by an institution. Every project traceable to its source.",
         "steps": {
           "0": {
-            "title": "Search Verified Talent",
-            "desc": "Browse student profiles for free. Filter by skills, institution, grades, location, and project type.",
-            "features": {
-              "0": "Unlimited free browsing",
-              "1": "AI-powered search",
-              "2": "Filter by 250+ criteria"
-            }
+            "title": "Search Verified Profiles",
+            "desc": "Explore student portfolios filtered by skills, institution, grades, location, and project type. AI-powered search finds the right match."
           },
           "1": {
             "title": "Review Real Work",
-            "desc": "See actual projects, verified grades, and AI analysis — not self-reported CV claims.",
+            "desc": "See actual projects, verified grades, and AI skill analysis. No self-reported CV claims — just proven competencies."
+          },
+          "2": {
+            "title": "Connect Directly",
+            "desc": "Found the right candidate? Reach out directly. No middlemen, no agencies, no waiting. A faster path from search to hire."
+          }
+        },
+        "outcome": "Hire verified junior talent in days, not weeks — based on real evidence, not resumes."
+      }
+    },
+    "details": {
+      "student": {
+        "title": "A Closer Look at Your Journey",
+        "subtitle": "Everything that happens behind the scenes to make your profile stand out.",
+        "cards": {
+          "0": {
+            "title": "Smart Portfolio Builder",
+            "desc": "Upload any file type — our AI does the heavy lifting, extracting skills and scoring your work.",
             "features": {
-              "0": "Institution-verified projects",
-              "1": "AI skill analysis scores",
+              "0": "Code, PDFs, videos, presentations accepted",
+              "1": "AI extracts hard and soft skills",
+              "2": "Innovation and complexity scoring"
+            }
+          },
+          "1": {
+            "title": "Institutional Trust Score",
+            "desc": "Your institution's verification transforms your profile from a self-reported CV into verified evidence.",
+            "features": {
+              "0": "Verification badge visible to recruiters",
+              "1": "Trust score based on real academic data",
+              "2": "Higher ranking in search results"
+            }
+          },
+          "2": {
+            "title": "Reverse Recruitment",
+            "desc": "Instead of sending applications, companies come to you. Your verified profile is your best pitch.",
+            "features": {
+              "0": "Appear in recruiter searches automatically",
+              "1": "Get matched to relevant opportunities",
+              "2": "Direct messages from interested companies"
+            }
+          }
+        }
+      },
+      "institution": {
+        "title": "How It Works for Your Team",
+        "subtitle": "A lightweight process designed for career services, not IT departments.",
+        "cards": {
+          "0": {
+            "title": "Flexible Onboarding",
+            "desc": "No complex integrations. Students self-register or you upload them via CSV. GDPR consent built in.",
+            "features": {
+              "0": "Bulk import or student self-registration",
+              "1": "GDPR-compliant consent management",
+              "2": "Works with any institutional setup"
+            }
+          },
+          "1": {
+            "title": "One-Click Verification",
+            "desc": "Endorse student projects individually or in batches. Add grades, ECTS, and institutional badges effortlessly.",
+            "features": {
+              "0": "Batch approval dashboard",
+              "1": "ECTS and grade integration",
+              "2": "Digital institutional badges"
+            }
+          },
+          "2": {
+            "title": "Live Placement Analytics",
+            "desc": "Track who gets contacted, interviewed, and hired — in real time. No more waiting for annual survey results.",
+            "features": {
+              "0": "Real-time hiring funnel metrics",
+              "1": "Skills demand heatmap",
+              "2": "Company engagement tracking"
+            }
+          }
+        }
+      },
+      "company": {
+        "title": "From Search to Hire, Simplified",
+        "subtitle": "A transparent hiring process built on verified evidence, not self-reported claims.",
+        "cards": {
+          "0": {
+            "title": "Verified Talent Pool",
+            "desc": "Every profile is backed by institutional data. Search by real skills, verified grades, and actual project work.",
+            "features": {
+              "0": "250+ search filters",
+              "1": "AI-powered candidate matching",
+              "2": "Geographic and skill-based discovery"
+            }
+          },
+          "1": {
+            "title": "Evidence-Based Screening",
+            "desc": "Review actual project files, AI analysis scores, and institutional verification — before you ever reach out.",
+            "features": {
+              "0": "See real projects, not just keywords",
+              "1": "AI skill and complexity scores",
               "2": "Video portfolio previews"
             }
           },
           "2": {
-            "title": "Contact & Hire",
-            "desc": "Found the right candidate? Pay €10 to unlock their contact. No subscriptions, no commitments.",
+            "title": "Direct Connection",
+            "desc": "When you've found the right candidate, contact them directly. No recruiters in the middle, no delays.",
             "features": {
-              "0": "€10 per contact, pay as you go",
-              "1": "Direct messaging",
-              "2": "No middlemen or agencies"
+              "0": "Direct messaging with candidates",
+              "1": "No intermediaries or agencies",
+              "2": "Faster time-to-hire"
             }
           }
-        },
-        "outcome": "Result: Hire verified juniors in days, not weeks. At a fraction of agency costs."
+        }
       }
     },
     "differentiators": {
@@ -1552,33 +1587,33 @@
       "subtitle": "What makes us fundamentally different from job boards and staffing agencies.",
       "items": {
         "0": {
-          "title": "Institution-Verified",
-          "desc": "Every skill, grade, and project is confirmed by the student's own institution. Zero self-reported claims."
+          "title": "Academically Verified",
+          "desc": "Every skill, grade, and project is confirmed by the student's own university or school. Zero self-reported claims."
         },
         "1": {
-          "title": "AI-Powered Analysis",
-          "desc": "Our AI reads actual project files — code, PDFs, images — and extracts real competencies. Not keyword matching."
+          "title": "AI That Reads Real Work",
+          "desc": "Our AI analyzes actual project files — code, PDFs, images — and extracts real competencies. Not keyword matching."
         },
         "2": {
-          "title": "Pay Only When Ready",
-          "desc": "Students free forever. Institutions free forever. Companies browse free, pay €10 only to contact a candidate."
+          "title": "Built for Outcomes",
+          "desc": "Designed so students get discovered, institutions prove impact, and companies find trusted talent. Everyone wins."
         },
         "3": {
           "title": "Full Transparency",
-          "desc": "Students see who viewed their profile. Companies see verified work. Institutions see real placement data. No black boxes."
+          "desc": "Students see who viewed them. Companies see verified work. Institutions see real placement data. No black boxes."
         }
       }
     },
     "proof": {
-      "0": { "value": "100%", "label": "Institution-verified profiles" },
-      "1": { "value": "€10", "label": "Per contact, no subscriptions" },
-      "2": { "value": "5 min", "label": "Profile creation time" },
-      "3": { "value": "0", "label": "Applications needed" }
+      "0": { "value": "100%", "label": "Academically verified profiles" },
+      "1": { "value": "5 min", "label": "To create a profile" },
+      "2": { "value": "0", "label": "Applications needed" },
+      "3": { "value": "Real", "label": "Projects, not CV claims" }
     },
     "cta": {
-      "title": "Ready to Try It?",
-      "subtitle": "Create your free account in under 5 minutes. No credit card required.",
-      "primaryButton": "Get Started Free",
+      "title": "Ready to See It in Action?",
+      "subtitle": "Create your account in under 5 minutes and experience a new way to connect talent with opportunity.",
+      "primaryButton": "Get Started",
       "secondaryButton": "Explore Portfolios"
     }
   },

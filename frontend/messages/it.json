@@ -1455,136 +1455,171 @@
       "badge": "Come Funziona",
       "titleLine1": "Da Progetto Accademico",
       "titleLine2": "ad Assunzione Verificata.",
-      "subtitle": "Gli studenti caricano i lavori. Le istituzioni li verificano. Le aziende assumono. Tre passaggi, zero CV falsi."
+      "subtitle": "Gli studenti caricano lavori reali. Università e scuole li verificano. Le aziende assumono. Ogni competenza provata, ogni progetto tracciabile."
     },
     "segments": {
       "student": "Studenti",
-      "institution": "Istituzioni",
+      "institution": "Partner Formativi",
       "company": "Aziende"
     },
-    "coreFlow": {
-      "title": "Tre Passaggi. Tutto Qui.",
-      "subtitle": "Nessun onboarding complesso. Nessun contratto annuale. Solo talenti verificati che incontrano datori di lavoro reali.",
-      "step1": {
-        "title": "Carica i Tuoi Lavori",
-        "desc": "Gli studenti caricano progetti reali — tesi, codice, design, relazioni. Qualsiasi formato. L'AI analizza competenze, complessità e innovazione automaticamente.",
-        "time": "5 minuti"
-      },
-      "step2": {
-        "title": "L'Istituzione Verifica",
-        "desc": "La tua università, ITS o scuola conferma che il progetto è reale. Voti, raccomandazioni e badge di verifica vengono aggiunti.",
-        "time": "Automatico"
-      },
-      "step3": {
-        "title": "Le Aziende Ti Trovano",
-        "desc": "I recruiter cercano profili verificati e contattano gli studenti direttamente. Nessuna candidatura necessaria. Gli studenti vengono scoperti, non filtrati via.",
-        "time": "Continuo"
-      }
-    },
-    "segmentDive": {
-      "title": "Progettato per Ogni Lato del Tavolo",
-      "subtitle": "Scopri come funziona InTransparency per il tuo ruolo specifico.",
+    "journey": {
       "student": {
         "headline": "Smetti di Candidarti. Inizia a Essere Scoperto.",
-        "subheadline": "Il tuo portfolio verificato lavora per te. Le aziende vengono da te.",
+        "subheadline": "Il tuo portfolio verificato lavora per te. Le aziende ti trovano in base a ciò che hai realmente costruito.",
         "steps": {
           "0": {
-            "title": "Costruisci il Tuo Portfolio",
-            "desc": "Carica progetti in qualsiasi formato — codice, PDF, video, presentazioni. L'AI estrae competenze e valuta la qualità.",
-            "features": {
-              "0": "Tutti i tipi di file accettati",
-              "1": "Estrazione competenze e scoring AI",
-              "2": "Voti verificati dall'istituzione"
-            }
+            "title": "Carica i Tuoi Progetti",
+            "desc": "Condividi il tuo lavoro reale — tesi, codice, design, relazioni. Qualsiasi formato. La nostra AI analizza competenze, complessità e innovazione automaticamente."
           },
           "1": {
-            "title": "Ottieni Verifica e Ranking",
-            "desc": "La tua istituzione conferma il tuo lavoro. Ottieni un trust score che i recruiter possono filtrare.",
-            "features": {
-              "0": "Badge di verifica sul profilo",
-              "1": "Trust score da dati reali",
-              "2": "Maggiore visibilità nelle ricerche"
-            }
+            "title": "Fatti Verificare dalla Tua Istituzione",
+            "desc": "La tua università, ITS o scuola conferma che il progetto è reale. Voti, raccomandazioni e badge di verifica costruiscono il tuo trust score."
           },
           "2": {
-            "title": "Ricevi Offerte Dirette",
-            "desc": "Le aziende ti trovano tramite ricerca, matching AI o navigazione. Ti contattano per prime.",
-            "features": {
-              "0": "Zero candidature necessarie",
-              "1": "Messaggi diretti dai recruiter",
-              "2": "Condividi portfolio su LinkedIn"
-            }
+            "title": "Le Aziende Ti Scoprono",
+            "desc": "I recruiter cercano profili verificati e ti contattano direttamente. Nessuna candidatura, nessuna lettera di presentazione. Vieni trovato per ciò che hai costruito."
           }
         },
-        "outcome": "Risultato: Vieni trovato per ciò che hai costruito — non filtrato via dai bot di parole chiave."
+        "outcome": "Vieni scoperto per le tue competenze reali — non filtrato via dai bot di parole chiave."
       },
       "institution": {
         "headline": "Conosci il Tuo Vero Tasso di Placement.",
-        "subheadline": "Non dai questionari. Dalle assunzioni reali tracciate in tempo reale.",
+        "subheadline": "Non dai questionari annuali. Dalle assunzioni reali, tracciate mentre avvengono.",
         "steps": {
           "0": {
-            "title": "Registra gli Studenti",
-            "desc": "Gli studenti si iscrivono da soli o li importi in blocco. Dashboard semplice, nessuna integrazione IT necessaria.",
-            "features": {
-              "0": "Import in blocco via CSV",
-              "1": "Auto-registrazione studenti",
-              "2": "Flusso consenso conforme GDPR"
-            }
+            "title": "Registra i Tuoi Studenti",
+            "desc": "Gli studenti si iscrivono da soli o li importi in blocco. Dashboard semplice — nessuna integrazione IT, nessun sviluppatore necessario."
           },
           "1": {
-            "title": "Verifica e Approva",
-            "desc": "Rivedi e verifica i progetti degli studenti con un click. Aggiungi voti e raccomandazioni in batch.",
-            "features": {
-              "0": "Dashboard verifica batch",
-              "1": "Approvazione progetti con un click",
-              "2": "Integrazione voti e ECTS"
-            }
+            "title": "Verifica e Approva i Progetti",
+            "desc": "Rivedi il lavoro degli studenti con un click. Aggiungi voti, crediti ECTS e raccomandazioni. L'approvazione batch lo rende veloce."
           },
           "2": {
-            "title": "Traccia i Risultati",
-            "desc": "Vedi quali studenti vengono contattati, intervistati e assunti. Dati di placement reali, non questionari annuali.",
-            "features": {
-              "0": "Analytics placement in tempo reale",
-              "1": "Metriche engagement aziende",
-              "2": "Mappa domanda competenze"
-            }
+            "title": "Traccia i Risultati di Carriera",
+            "desc": "Vedi quali studenti vengono contattati, intervistati e assunti. Dati di placement in tempo reale che dimostrano l'impatto della tua istituzione."
           }
         },
-        "outcome": "Risultato: Dimostra l'impatto della tua istituzione con dati di assunzione reali. Gratis per sempre."
+        "outcome": "Dimostra l'impatto reale della tua istituzione sull'occupabilità degli studenti — con dati, non aneddoti."
       },
       "company": {
         "headline": "Trova Talenti Junior di cui Fidarti.",
         "subheadline": "Ogni competenza verificata da un'istituzione. Ogni progetto tracciabile alla fonte.",
         "steps": {
           "0": {
-            "title": "Cerca Talenti Verificati",
-            "desc": "Esplora profili studenti gratis. Filtra per competenze, istituzione, voti, posizione e tipo di progetto.",
-            "features": {
-              "0": "Esplorazione illimitata e gratuita",
-              "1": "Ricerca basata su AI",
-              "2": "Filtra per 250+ criteri"
-            }
+            "title": "Cerca Profili Verificati",
+            "desc": "Esplora portfolio studenti filtrando per competenze, istituzione, voti, posizione e tipo di progetto. La ricerca AI trova il match giusto."
           },
           "1": {
             "title": "Rivedi Lavori Reali",
-            "desc": "Vedi progetti reali, voti verificati e analisi AI — non auto-dichiarazioni da CV.",
+            "desc": "Vedi progetti reali, voti verificati e analisi AI delle competenze. Nessuna auto-dichiarazione da CV — solo competenze provate."
+          },
+          "2": {
+            "title": "Connettiti Direttamente",
+            "desc": "Trovato il candidato giusto? Contattalo direttamente. Nessun intermediario, nessuna agenzia, nessuna attesa. Un percorso più rapido dalla ricerca all'assunzione."
+          }
+        },
+        "outcome": "Assumi talenti junior verificati in giorni, non settimane — basandoti su evidenze reali, non curriculum."
+      }
+    },
+    "details": {
+      "student": {
+        "title": "Il Tuo Percorso nel Dettaglio",
+        "subtitle": "Tutto ciò che succede dietro le quinte per far emergere il tuo profilo.",
+        "cards": {
+          "0": {
+            "title": "Portfolio Builder Intelligente",
+            "desc": "Carica qualsiasi tipo di file — la nostra AI fa il lavoro pesante, estraendo competenze e valutando il tuo lavoro.",
             "features": {
-              "0": "Progetti verificati dall'istituzione",
-              "1": "Punteggi analisi competenze AI",
+              "0": "Codice, PDF, video, presentazioni accettati",
+              "1": "L'AI estrae competenze hard e soft",
+              "2": "Scoring di innovazione e complessità"
+            }
+          },
+          "1": {
+            "title": "Trust Score Istituzionale",
+            "desc": "La verifica della tua istituzione trasforma il tuo profilo da un CV auto-dichiarato in evidenza verificata.",
+            "features": {
+              "0": "Badge di verifica visibile ai recruiter",
+              "1": "Trust score basato su dati accademici reali",
+              "2": "Posizionamento più alto nei risultati di ricerca"
+            }
+          },
+          "2": {
+            "title": "Reverse Recruitment",
+            "desc": "Invece di inviare candidature, le aziende vengono da te. Il tuo profilo verificato è la tua miglior presentazione.",
+            "features": {
+              "0": "Appari nelle ricerche dei recruiter automaticamente",
+              "1": "Vieni abbinato a opportunità rilevanti",
+              "2": "Messaggi diretti da aziende interessate"
+            }
+          }
+        }
+      },
+      "institution": {
+        "title": "Come Funziona per il Tuo Team",
+        "subtitle": "Un processo leggero progettato per i servizi carriera, non per l'IT.",
+        "cards": {
+          "0": {
+            "title": "Onboarding Flessibile",
+            "desc": "Nessuna integrazione complessa. Gli studenti si registrano da soli o li carichi via CSV. Consenso GDPR integrato.",
+            "features": {
+              "0": "Import in blocco o auto-registrazione",
+              "1": "Gestione consenso conforme GDPR",
+              "2": "Funziona con qualsiasi setup istituzionale"
+            }
+          },
+          "1": {
+            "title": "Verifica con Un Click",
+            "desc": "Approva i progetti degli studenti singolarmente o in batch. Aggiungi voti, ECTS e badge istituzionali facilmente.",
+            "features": {
+              "0": "Dashboard di approvazione batch",
+              "1": "Integrazione ECTS e voti",
+              "2": "Badge istituzionali digitali"
+            }
+          },
+          "2": {
+            "title": "Analytics Placement in Tempo Reale",
+            "desc": "Traccia chi viene contattato, intervistato e assunto — in tempo reale. Niente più attese per i risultati dei questionari annuali.",
+            "features": {
+              "0": "Metriche funnel assunzioni in tempo reale",
+              "1": "Mappa domanda competenze",
+              "2": "Tracciamento engagement aziende"
+            }
+          }
+        }
+      },
+      "company": {
+        "title": "Dalla Ricerca all'Assunzione, Semplificato",
+        "subtitle": "Un processo di selezione trasparente basato su evidenze verificate, non auto-dichiarazioni.",
+        "cards": {
+          "0": {
+            "title": "Pool di Talenti Verificati",
+            "desc": "Ogni profilo è supportato da dati istituzionali. Cerca per competenze reali, voti verificati e lavori concreti.",
+            "features": {
+              "0": "250+ filtri di ricerca",
+              "1": "Matching candidati basato su AI",
+              "2": "Scoperta geografica e per competenze"
+            }
+          },
+          "1": {
+            "title": "Screening Basato su Evidenze",
+            "desc": "Rivedi file di progetto reali, punteggi di analisi AI e verifica istituzionale — prima ancora di contattare.",
+            "features": {
+              "0": "Vedi progetti reali, non solo parole chiave",
+              "1": "Punteggi AI di competenze e complessità",
               "2": "Anteprime video portfolio"
             }
           },
           "2": {
-            "title": "Contatta e Assumi",
-            "desc": "Trovato il candidato giusto? Paga €10 per sbloccare il contatto. Nessun abbonamento, nessun vincolo.",
+            "title": "Connessione Diretta",
+            "desc": "Quando hai trovato il candidato giusto, contattalo direttamente. Nessun recruiter in mezzo, nessun ritardo.",
             "features": {
-              "0": "€10 per contatto, paga quando vuoi",
-              "1": "Messaggistica diretta",
-              "2": "Nessun intermediario o agenzia"
+              "0": "Messaggistica diretta con i candidati",
+              "1": "Nessun intermediario o agenzia",
+              "2": "Tempo di assunzione più rapido"
             }
           }
-        },
-        "outcome": "Risultato: Assumi junior verificati in giorni, non settimane. A una frazione del costo delle agenzie."
+        }
       }
     },
     "differentiators": {
@@ -1592,33 +1627,33 @@
       "subtitle": "Cosa ci rende fondamentalmente diversi da job board e agenzie di selezione.",
       "items": {
         "0": {
-          "title": "Verificato dall'Istituzione",
-          "desc": "Ogni competenza, voto e progetto è confermato dall'istituzione dello studente. Zero auto-dichiarazioni."
+          "title": "Verificato Accademicamente",
+          "desc": "Ogni competenza, voto e progetto è confermato dalla scuola o università dello studente. Zero auto-dichiarazioni."
         },
         "1": {
-          "title": "Analisi AI Avanzata",
-          "desc": "La nostra AI legge i file dei progetti — codice, PDF, immagini — ed estrae competenze reali. Non keyword matching."
+          "title": "AI che Legge Lavori Reali",
+          "desc": "La nostra AI analizza i file dei progetti — codice, PDF, immagini — ed estrae competenze reali. Non keyword matching."
         },
         "2": {
-          "title": "Paga Solo Quando Sei Pronto",
-          "desc": "Studenti gratis per sempre. Istituzioni gratis per sempre. Le aziende esplorano gratis, pagano €10 solo per contattare."
+          "title": "Progettato per i Risultati",
+          "desc": "Pensato perché gli studenti vengano scoperti, le istituzioni dimostrino il loro impatto, e le aziende trovino talenti affidabili."
         },
         "3": {
           "title": "Trasparenza Totale",
-          "desc": "Gli studenti vedono chi ha visto il profilo. Le aziende vedono lavori verificati. Le istituzioni vedono dati placement reali."
+          "desc": "Gli studenti vedono chi li ha visti. Le aziende vedono lavori verificati. Le istituzioni vedono dati placement reali. Nessuna scatola nera."
         }
       }
     },
     "proof": {
-      "0": { "value": "100%", "label": "Profili verificati dall'istituzione" },
-      "1": { "value": "€10", "label": "Per contatto, nessun abbonamento" },
-      "2": { "value": "5 min", "label": "Tempo creazione profilo" },
-      "3": { "value": "0", "label": "Candidature necessarie" }
+      "0": { "value": "100%", "label": "Profili verificati accademicamente" },
+      "1": { "value": "5 min", "label": "Per creare un profilo" },
+      "2": { "value": "0", "label": "Candidature necessarie" },
+      "3": { "value": "Reali", "label": "Progetti, non dichiarazioni CV" }
     },
     "cta": {
-      "title": "Pronto a Provare?",
-      "subtitle": "Crea il tuo account gratuito in meno di 5 minuti. Nessuna carta di credito richiesta.",
-      "primaryButton": "Inizia Gratis",
+      "title": "Pronto a Vederlo in Azione?",
+      "subtitle": "Crea il tuo account in meno di 5 minuti e scopri un nuovo modo di connettere talento e opportunità.",
+      "primaryButton": "Inizia Ora",
       "secondaryButton": "Esplora Portfolio"
     }
   },
