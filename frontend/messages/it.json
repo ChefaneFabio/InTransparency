@@ -174,7 +174,7 @@
   },
   "home": {
     "hero": {
-      "serviceBadge": "Talenti Verificati dalle Migliori Istituzioni • Vincitori Start Cup Bergamo 2025",
+      "serviceBadge": "Talenti Verificati dalle Migliori Istituzioni • 2 Premi a Start Cup Bergamo 2025",
       "segmentLabels": {
         "students": "Studenti",
         "institutes": "Istituti",
@@ -284,7 +284,7 @@
       ],
       "exploreByRole": "Esplora per ruolo",
       "socialProof": {
-        "startCup": "Vincitori Start Cup Bergamo 2025",
+        "startCup": "2 Premi a Start Cup Bergamo 2025",
         "unibgPilot": "In fase pilota con l'Università degli Studi di Bergamo"
       }
     },
@@ -3537,7 +3537,7 @@
       "startCup": {
         "title": "Start Cup Bergamo 2024",
         "subtitle": "Finalista Competizione",
-        "description": "InTransparency è stata selezionata come finalista a Start Cup Bergamo, la competizione startup universitaria italiana, per l'innovazione nell'occupabilità dei laureati."
+        "description": "InTransparency ha ricevuto 2 premi a Start Cup Bergamo 2025, la competizione startup universitaria italiana, per l'innovazione nell'occupabilità dei laureati."
       }
     },
     "cta": {
