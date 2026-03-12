@@ -1413,284 +1413,173 @@
   "howItWorksPage": {
     "hero": {
       "badge": "How It Works",
-      "title": "Four Services, One Ecosystem",
-      "subtitle": "Connecting students, institutions, and companies through verified skills",
-      "tagline": "Freemium model"
+      "titleLine1": "From Academic Project",
+      "titleLine2": "to Verified Hire.",
+      "subtitle": "Students upload work. Institutions verify it. Companies hire from it. Three steps, zero fake CVs."
     },
-    "services": {
-      "verification": {
-        "title": "Verification Service",
-        "badge": "FREE for Institutions",
-        "heading": "Auto-import & Authenticate",
-        "features": {
-          "0": "Simple verification dashboard",
-          "1": "Institution endorses projects",
-          "2": "Batch approval: 50 in 1 hour",
-          "3": "\"Verified by ITS G. Natta, 28/30\""
-        },
-        "comparison": "vs AlmaLaurea: €2,500/year"
+    "segments": {
+      "student": "Students",
+      "institution": "Institutions",
+      "company": "Companies"
+    },
+    "coreFlow": {
+      "title": "Three Steps. That's It.",
+      "subtitle": "No complex onboarding. No annual contracts. Just verified talent meeting real employers.",
+      "step1": {
+        "title": "Upload Your Work",
+        "desc": "Students upload real projects — thesis, code, designs, reports. Any format. AI analyzes skills, complexity, and innovation automatically.",
+        "time": "5 minutes"
       },
-      "matching": {
-        "title": "Matching Service",
-        "badge": "FREE for Students",
-        "heading": "AI-Powered Connections",
-        "features": {
-          "0": "Institution-verified accuracy",
-          "1": "Transparent explanations",
-          "2": "\"High fit: Python thesis verified by institution\"",
-          "3": "Bidirectional requirements"
-        },
-        "comparison": "vs Manatal: Opaque resume parsing"
+      "step2": {
+        "title": "Institution Verifies",
+        "desc": "Your university, ITS, or school confirms the project is real. Grades, endorsements, and a verification badge are added.",
+        "time": "Automatic"
       },
-      "discovery": {
-        "title": "Discovery Service",
-        "badge": "Browse FREE, €10/contact",
-        "heading": "Reverse Recruitment",
-        "features": {
-          "0": "Companies search verified pools",
-          "1": "Zero applications for students",
-          "2": "Project excerpts + stamps",
-          "3": "80% faster screening"
-        },
-        "comparison": "vs Indeed: 30% self-reported fakes"
-      },
-      "analytics": {
-        "title": "Analytics Service",
-        "badge": "FREE Dashboards",
-        "heading": "Career Intelligence",
-        "features": {
-          "0": "\"Deloitte viewed 31 students\"",
-          "1": "\"Excel searched 89x\"",
-          "2": "Early intervention alerts",
-          "3": "Prove 85% placement boost"
-        },
-        "comparison": "vs Univariety: €500/year subs"
+      "step3": {
+        "title": "Companies Find You",
+        "desc": "Recruiters search verified profiles and contact students directly. No applications needed. Students get discovered, not filtered out.",
+        "time": "Ongoing"
       }
     },
-    "userTypes": {
+    "segmentDive": {
+      "title": "Built for Every Side of the Table",
+      "subtitle": "See how InTransparency works for your specific role.",
       "student": {
-        "label": "Student",
-        "description": "Create profile, showcase skills, find opportunities",
-        "title": "How Students Use InTransparency",
-        "subtitle": "Import your academic data, build your profile, and get discovered by top employers"
+        "headline": "Stop Applying. Start Getting Discovered.",
+        "subheadline": "Your verified portfolio does the work. Companies come to you.",
+        "steps": {
+          "0": {
+            "title": "Build Your Portfolio",
+            "desc": "Upload projects in any format — code, PDF, video, presentations. AI extracts skills and scores quality.",
+            "features": {
+              "0": "All file types accepted",
+              "1": "AI skill extraction & scoring",
+              "2": "Institution-verified grades"
+            }
+          },
+          "1": {
+            "title": "Get Verified & Ranked",
+            "desc": "Your institution confirms your work. You earn a trust score that recruiters can filter by.",
+            "features": {
+              "0": "Verification badge on profile",
+              "1": "Trust score from real data",
+              "2": "Higher visibility in search"
+            }
+          },
+          "2": {
+            "title": "Receive Direct Offers",
+            "desc": "Companies find you through search, AI matching, or browsing. They message you first.",
+            "features": {
+              "0": "Zero applications needed",
+              "1": "Direct recruiter messages",
+              "2": "Share portfolio on LinkedIn"
+            }
+          }
+        },
+        "outcome": "Result: You get found for what you've built — not filtered out by keyword bots."
       },
-      "institute": {
-        "label": "Institute",
-        "description": "Connect students with opportunities, track alumni",
-        "title": "How Institutes Use InTransparency",
-        "subtitle": "Connect students with opportunities and track career outcomes across universities, ITS, and higher education institutions"
+      "institution": {
+        "headline": "Know Your Real Placement Rate.",
+        "subheadline": "Not from surveys. From actual hires tracked in real time.",
+        "steps": {
+          "0": {
+            "title": "Onboard Students",
+            "desc": "Students sign up themselves or you import them in bulk. Simple dashboard, no IT integration required.",
+            "features": {
+              "0": "Bulk import via CSV",
+              "1": "Student self-registration",
+              "2": "GDPR-compliant consent flow"
+            }
+          },
+          "1": {
+            "title": "Verify & Endorse",
+            "desc": "Review and verify student projects with one click. Add grades and endorsements in batches.",
+            "features": {
+              "0": "Batch verification dashboard",
+              "1": "One-click project approval",
+              "2": "Grade and ECTS integration"
+            }
+          },
+          "2": {
+            "title": "Track Outcomes",
+            "desc": "See which students get contacted, interviewed, and hired. Real placement data, not annual surveys.",
+            "features": {
+              "0": "Live placement analytics",
+              "1": "Company engagement metrics",
+              "2": "Skills demand heatmap"
+            }
+          }
+        },
+        "outcome": "Result: Prove your institution's impact with real hiring data. Free forever."
       },
-      "recruiter": {
-        "label": "Recruiter",
-        "description": "Discover talent, post jobs, track applications",
-        "title": "How Recruiters Use InTransparency",
-        "subtitle": "Proactively search for candidates, leverage AI matching to find perfect fits, and hire based on industry knowledge and profile compatibility"
+      "company": {
+        "headline": "Find Junior Talent You Can Trust.",
+        "subheadline": "Every skill verified by an institution. Every project traceable to its source.",
+        "steps": {
+          "0": {
+            "title": "Search Verified Talent",
+            "desc": "Browse student profiles for free. Filter by skills, institution, grades, location, and project type.",
+            "features": {
+              "0": "Unlimited free browsing",
+              "1": "AI-powered search",
+              "2": "Filter by 250+ criteria"
+            }
+          },
+          "1": {
+            "title": "Review Real Work",
+            "desc": "See actual projects, verified grades, and AI analysis — not self-reported CV claims.",
+            "features": {
+              "0": "Institution-verified projects",
+              "1": "AI skill analysis scores",
+              "2": "Video portfolio previews"
+            }
+          },
+          "2": {
+            "title": "Contact & Hire",
+            "desc": "Found the right candidate? Pay €10 to unlock their contact. No subscriptions, no commitments.",
+            "features": {
+              "0": "€10 per contact, pay as you go",
+              "1": "Direct messaging",
+              "2": "No middlemen or agencies"
+            }
+          }
+        },
+        "outcome": "Result: Hire verified juniors in days, not weeks. At a fraction of agency costs."
       }
     },
-    "workflow": {
-      "title": "How Services Work Together",
-      "result": "Result:",
-      "student": {
-        "step1": {
-          "title": "1. Upload Projects",
-          "description": "theses, stage curriculare"
+    "differentiators": {
+      "title": "Why InTransparency?",
+      "subtitle": "What makes us fundamentally different from job boards and staffing agencies.",
+      "items": {
+        "0": {
+          "title": "Institution-Verified",
+          "desc": "Every skill, grade, and project is confirmed by the student's own institution. Zero self-reported claims."
         },
-        "step2": {
-          "title": "2. Institution Verifies",
-          "description": "via simple dashboard"
+        "1": {
+          "title": "AI-Powered Analysis",
+          "desc": "Our AI reads actual project files — code, PDFs, images — and extracts real competencies. Not keyword matching."
         },
-        "step3": {
-          "title": "3. AI Matches",
-          "description": "Institution-verified accuracy"
+        "2": {
+          "title": "Pay Only When Ready",
+          "desc": "Students free forever. Institutions free forever. Companies browse free, pay €10 only to contact a candidate."
         },
-        "step4": {
-          "title": "4. Companies Discover",
-          "description": "Zero applications"
-        },
-        "result": "Verified students get noticed • Zero applications sent • Get discovered passively"
-      },
-      "institute": {
-        "step1": {
-          "title": "1. Connect Data Systems",
-          "description": "Simple dashboard or API"
-        },
-        "step2": {
-          "title": "2. Verify Students",
-          "description": "Batch approval dashboard"
-        },
-        "step3": {
-          "title": "3. Track Placements",
-          "description": "Real-time analytics"
-        },
-        "step4": {
-          "title": "4. Prove Impact",
-          "description": "Placement statistics"
-        },
-        "result": "Institutions prove 85% placement boost • Free forever platform • Track alumni success"
-      },
-      "recruiter": {
-        "step1": {
-          "title": "1. Define Requirements",
-          "description": "Specific skills needed"
-        },
-        "step2": {
-          "title": "2. AI Search",
-          "description": "Verified candidates only"
-        },
-        "step3": {
-          "title": "3. Review Portfolios",
-          "description": "Real projects & grades"
-        },
-        "step4": {
-          "title": "4. Contact Directly",
-          "description": "No CV screening"
-        },
-        "result": "Companies save screening time • Verified match quality • See verified work upfront"
+        "3": {
+          "title": "Full Transparency",
+          "desc": "Students see who viewed their profile. Companies see verified work. Institutions see real placement data. No black boxes."
+        }
       }
     },
-    "studentDataImport": {
-      "title": "Streamlined Profile Creation (Consent-Based)",
-      "description": "Consent via email, then import your verified academic data to create a complete profile",
-      "buttonShow": "Try Data Import Demo",
-      "buttonHide": "Hide Data Import Demo"
-    },
-    "benefits": {
-      "0": {
-        "title": "Transparent Process",
-        "description": "Complete visibility into hiring and application processes"
-      },
-      "1": {
-        "title": "Global Reach",
-        "description": "Connect with opportunities and talent worldwide"
-      },
-      "2": {
-        "title": "AI-Powered Matching & RAG",
-        "description": "AI analyzes profiles to find common ground between companies and candidates based on industry knowledge and compatibility"
-      },
-      "3": {
-        "title": "Real-time Updates",
-        "description": "Get instant notifications about applications and opportunities"
-      },
-      "title": "Why Choose InTransparency?"
-    },
-    "studentSteps": {
-      "step1": {
-        "title": "Upload Your Projects",
-        "description": "Upload projects in any format - code, documents, presentations, reports. Our AI analyzes everything you've built.",
-        "duration": "2 minutes",
-        "features": [
-          "All formats accepted (code, PDFs, docs, videos)",
-          "Institution collaboration for verified data",
-          "AI project analysis & scoring",
-          "Complexity & innovation metrics",
-          "Technology and skill detection"
-        ],
-        "example": "→ Example: Upload your thesis, capstone project, or group work"
-      },
-      "step2": {
-        "title": "Get AI-Powered Analysis",
-        "description": "Our AI analyzes your projects and creates a complete profile with both hard skills and soft skills",
-        "duration": "30 seconds",
-        "features": [
-          "Hard skills: Technical abilities & tools",
-          "Soft skills: Teamwork, leadership, communication",
-          "Project complexity scoring",
-          "Market relevance analysis",
-          "Career readiness score & benchmarking"
-        ],
-        "example": "→ Example: \"Strong Python + Excellent team collaboration skills\""
-      },
-      "step3": {
-        "title": "Recruiters Message You First",
-        "description": "Companies discover you based on what you've built, not your resume",
-        "duration": "Ongoing",
-        "features": [
-          "Appear in recruiter searches",
-          "Get matched to relevant opportunities",
-          "Direct messages from companies",
-          "Receive interview invitations",
-          "Share portfolio on LinkedIn"
-        ],
-        "example": "→ Example: \"Recruiter wants to chat about your AI project\""
-      }
-    },
-    "recruiterSteps": {
-      "step1": {
-        "title": "Proactive Candidate Discovery",
-        "description": "Search for candidates even if they haven't applied to your jobs. Find talent based on skills, education, and experience",
-        "features": [
-          "Search candidates without applications",
-          "Filter by universities, courses, grades",
-          "Find by projects and technologies",
-          "250+ customizable search filters",
-          "Geographic talent mapping"
-        ]
-      },
-      "step2": {
-        "title": "AI-Powered Matching",
-        "description": "Intelligent AI analyzes industry knowledge and finds common ground between your company profile and candidates",
-        "features": [
-          "AI RAG for intelligent candidate matching",
-          "Industry knowledge compatibility",
-          "Profile alignment scoring",
-          "Skills and culture fit analysis",
-          "Automated compatibility reports"
-        ]
-      },
-      "step3": {
-        "title": "Engage & Hire",
-        "description": "Connect directly with matched candidates and manage the hiring process efficiently",
-        "features": [
-          "Direct messaging with AI insights",
-          "Interview scheduling",
-          "Application tracking",
-          "Offer management",
-          "Hiring analytics"
-        ]
-      }
-    },
-    "instituteSteps": {
-      "step1": {
-        "title": "Connect Students",
-        "description": "Enable students to import their academic data seamlessly",
-        "features": [
-          "API integration",
-          "Student data sync",
-          "Privacy controls",
-          "Bulk enrollment",
-          "Custom fields"
-        ]
-      },
-      "step2": {
-        "title": "Track Outcomes",
-        "description": "Monitor student career outcomes and placement rates",
-        "features": [
-          "Employment analytics",
-          "Salary insights",
-          "Industry trends",
-          "Alumni tracking",
-          "Performance metrics"
-        ]
-      },
-      "step3": {
-        "title": "Build Partnerships",
-        "description": "Establish relationships with top employers and industry partners",
-        "features": [
-          "Recruiter network",
-          "Job fair coordination",
-          "Industry events",
-          "Partnership management",
-          "Success stories"
-        ]
-      }
+    "proof": {
+      "0": { "value": "100%", "label": "Institution-verified profiles" },
+      "1": { "value": "€10", "label": "Per contact, no subscriptions" },
+      "2": { "value": "5 min", "label": "Profile creation time" },
+      "3": { "value": "0", "label": "Applications needed" }
     },
     "cta": {
-      "title": "Stop Applying. Start Getting Discovered.",
-      "student": "Build your profile, showcase your work, and get discovered by top companies.",
-      "institute": "Connect your students with career opportunities and track their success across all higher education institutions.",
-      "recruiter": "Find verified talent based on real skills and projects, not resumes.",
+      "title": "Ready to Try It?",
+      "subtitle": "Create your free account in under 5 minutes. No credit card required.",
       "primaryButton": "Get Started Free",
-      "secondaryButton": "See Portfolios"
+      "secondaryButton": "Explore Portfolios"
     }
   },
   "legal": {

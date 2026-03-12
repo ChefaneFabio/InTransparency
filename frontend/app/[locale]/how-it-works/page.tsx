@@ -4,805 +4,344 @@ import React, { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Link } from '@/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Users,
-  Building2,
-  Search,
-  Brain,
-  FileText,
   Upload,
-  Download,
-  ArrowRight,
-  CheckCircle,
-  Star,
-  Globe,
   Shield,
-  Zap,
-  Database,
-  Link,
-  User,
-  GraduationCap,
-  Award,
-  Briefcase,
-  Eye,
+  Search,
   MessageSquare,
-  TrendingUp,
+  ArrowRight,
+  ArrowDown,
+  CheckCircle,
+  GraduationCap,
+  Building2,
+  Users,
+  Brain,
+  BarChart3,
+  Zap,
+  Euro,
   Clock,
+  Eye,
   Target,
-  Settings,
-  BarChart3
+  Star,
 } from 'lucide-react'
-import { StudentDataImportComponent } from '@/components/how-it-works/StudentDataImportComponent'
 
-const getUserTypes = (t: any) => [
-  {
-    id: 'student',
-    label: t('userTypes.student.label'),
-    icon: GraduationCap,
-    color: 'bg-primary/10 text-primary',
-    description: t('userTypes.student.description')
-  },
-  {
-    id: 'institute',
-    label: t('userTypes.institute.label'),
-    icon: Building2,
-    color: 'bg-primary/10 text-primary',
-    description: t('userTypes.institute.description')
-  },
-  {
-    id: 'recruiter',
-    label: t('userTypes.recruiter.label'),
-    icon: Users,
-    color: 'bg-primary/10 text-primary',
-    description: t('userTypes.recruiter.description')
-  }
-]
-
-const getStudentSteps = (t: any) => [
-  {
-    id: 1,
-    title: t('studentSteps.step1.title'),
-    description: t('studentSteps.step1.description'),
-    icon: Upload,
-    color: 'bg-primary/5 border-primary/20',
-    duration: t('studentSteps.step1.duration'),
-    features: t.raw('studentSteps.step1.features'),
-    example: t('studentSteps.step1.example')
-  },
-  {
-    id: 2,
-    title: t('studentSteps.step2.title'),
-    description: t('studentSteps.step2.description'),
-    icon: Zap,
-    color: 'bg-primary/5 border-primary/20',
-    duration: t('studentSteps.step2.duration'),
-    features: t.raw('studentSteps.step2.features'),
-    example: t('studentSteps.step2.example')
-  },
-  {
-    id: 3,
-    title: t('studentSteps.step3.title'),
-    description: t('studentSteps.step3.description'),
-    icon: MessageSquare,
-    color: 'bg-primary/5 border-primary/20',
-    duration: t('studentSteps.step3.duration'),
-    features: t.raw('studentSteps.step3.features'),
-    example: t('studentSteps.step3.example')
-  }
-]
-
-const getRecruiterSteps = (t: any) => [
-  {
-    id: 1,
-    title: t('recruiterSteps.step1.title'),
-    description: t('recruiterSteps.step1.description'),
-    icon: Search,
-    color: 'bg-primary/5 border-primary/20',
-    duration: undefined,
-    example: undefined,
-    features: t.raw('recruiterSteps.step1.features')
-  },
-  {
-    id: 2,
-    title: t('recruiterSteps.step2.title'),
-    description: t('recruiterSteps.step2.description'),
-    icon: Target,
-    color: 'bg-primary/5 border-primary/20',
-    duration: undefined,
-    example: undefined,
-    features: t.raw('recruiterSteps.step2.features')
-  },
-  {
-    id: 3,
-    title: t('recruiterSteps.step3.title'),
-    description: t('recruiterSteps.step3.description'),
-    icon: MessageSquare,
-    color: 'bg-primary/5 border-primary/20',
-    duration: undefined,
-    example: undefined,
-    features: t.raw('recruiterSteps.step3.features')
-  }
-]
-
-const getInstituteSteps = (t: any) => [
-  {
-    id: 1,
-    title: t('instituteSteps.step1.title'),
-    description: t('instituteSteps.step1.description'),
-    icon: Link,
-    color: 'bg-primary/5 border-primary/20',
-    duration: undefined,
-    example: undefined,
-    features: t.raw('instituteSteps.step1.features')
-  },
-  {
-    id: 2,
-    title: t('instituteSteps.step2.title'),
-    description: t('instituteSteps.step2.description'),
-    icon: TrendingUp,
-    color: 'bg-primary/5 border-primary/20',
-    duration: undefined,
-    example: undefined,
-    features: t.raw('instituteSteps.step2.features')
-  },
-  {
-    id: 3,
-    title: t('instituteSteps.step3.title'),
-    description: t('instituteSteps.step3.description'),
-    icon: Award,
-    color: 'bg-primary/5 border-primary/20',
-    duration: undefined,
-    example: undefined,
-    features: t.raw('instituteSteps.step3.features')
-  }
-]
-
-// Workflow data for each persona
-const getWorkflows = (t: any) => ({
-  student: {
-    steps: [
-      {
-        icon: Upload,
-        title: t('workflow.student.step1.title'),
-        description: t('workflow.student.step1.description'),
-        color: 'text-primary'
-      },
-      {
-        icon: Shield,
-        title: t('workflow.student.step2.title'),
-        description: t('workflow.student.step2.description'),
-        color: 'text-primary'
-      },
-      {
-        icon: Target,
-        title: t('workflow.student.step3.title'),
-        description: t('workflow.student.step3.description'),
-        color: 'text-primary'
-      },
-      {
-        icon: CheckCircle,
-        title: t('workflow.student.step4.title'),
-        description: t('workflow.student.step4.description'),
-        color: 'text-primary'
-      }
-    ],
-    result: t('workflow.student.result')
-  },
-  institute: {
-    steps: [
-      {
-        icon: Database,
-        title: t('workflow.institute.step1.title'),
-        description: t('workflow.institute.step1.description'),
-        color: 'text-primary'
-      },
-      {
-        icon: Shield,
-        title: t('workflow.institute.step2.title'),
-        description: t('workflow.institute.step2.description'),
-        color: 'text-primary'
-      },
-      {
-        icon: BarChart3,
-        title: t('workflow.institute.step3.title'),
-        description: t('workflow.institute.step3.description'),
-        color: 'text-primary'
-      },
-      {
-        icon: TrendingUp,
-        title: t('workflow.institute.step4.title'),
-        description: t('workflow.institute.step4.description'),
-        color: 'text-primary'
-      }
-    ],
-    result: t('workflow.institute.result')
-  },
-  recruiter: {
-    steps: [
-      {
-        icon: Search,
-        title: t('workflow.recruiter.step1.title'),
-        description: t('workflow.recruiter.step1.description'),
-        color: 'text-primary'
-      },
-      {
-        icon: Target,
-        title: t('workflow.recruiter.step2.title'),
-        description: t('workflow.recruiter.step2.description'),
-        color: 'text-primary'
-      },
-      {
-        icon: Eye,
-        title: t('workflow.recruiter.step3.title'),
-        description: t('workflow.recruiter.step3.description'),
-        color: 'text-primary'
-      },
-      {
-        icon: MessageSquare,
-        title: t('workflow.recruiter.step4.title'),
-        description: t('workflow.recruiter.step4.description'),
-        color: 'text-primary'
-      }
-    ],
-    result: t('workflow.recruiter.result')
-  }
-})
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-}
+type Segment = 'student' | 'institution' | 'company'
 
 export default function HowItWorksPage() {
   const t = useTranslations('howItWorksPage')
-  const [selectedUserType, setSelectedUserType] = useState('student')
-  const [showDataImport, setShowDataImport] = useState(false)
-  const userTypes = getUserTypes(t)
-  const workflows = getWorkflows(t)
-  const studentSteps = getStudentSteps(t)
-  const recruiterSteps = getRecruiterSteps(t)
-  const instituteSteps = getInstituteSteps(t)
+  const [activeSegment, setActiveSegment] = useState<Segment>('student')
 
-  const getCurrentSteps = () => {
-    switch (selectedUserType) {
-      case 'student': return studentSteps
-      case 'institute': return instituteSteps
-      case 'recruiter': return recruiterSteps
-      default: return studentSteps
-    }
-  }
-
-  const getCurrentWorkflow = () => {
-    return workflows[selectedUserType as keyof typeof workflows] || workflows.student
-  }
-
-  const getHeaderContent = () => {
-    switch (selectedUserType) {
-      case 'student':
-        return {
-          title: t('userTypes.student.title'),
-          subtitle: t('userTypes.student.subtitle')
-        }
-      case 'institute':
-        return {
-          title: t('userTypes.institute.title'),
-          subtitle: t('userTypes.institute.subtitle')
-        }
-      case 'recruiter':
-        return {
-          title: t('userTypes.recruiter.title'),
-          subtitle: t('userTypes.recruiter.subtitle')
-        }
-      default:
-        return {
-          title: t('userTypes.student.title'),
-          subtitle: t('userTypes.student.subtitle')
-        }
-    }
-  }
+  const segments: { id: Segment; icon: typeof GraduationCap; label: string }[] = [
+    { id: 'student', icon: GraduationCap, label: t('segments.student') },
+    { id: 'institution', icon: Building2, label: t('segments.institution') },
+    { id: 'company', icon: Users, label: t('segments.company') },
+  ]
 
   return (
-    <div className="min-h-screen hero-bg">
+    <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-24 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Header Section */}
+        {/* ── Hero ── */}
+        <section className="container max-w-5xl text-center mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            transition={{ duration: 0.5 }}
           >
-            <Badge className="mb-4 bg-primary text-white">
+            <Badge className="mb-5 bg-primary/10 text-primary border-primary/20 text-sm px-4 py-1.5">
               {t('hero.badge')}
             </Badge>
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
-              {t('hero.title')}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-5 leading-tight">
+              {t('hero.titleLine1')}
+              <br />
+              <span className="text-primary">{t('hero.titleLine2')}</span>
             </h1>
-            <p className="text-xl text-foreground/80 max-w-3xl mx-auto mb-2">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
               {t('hero.subtitle')}
             </p>
-            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-              {t('hero.tagline')}
-            </p>
           </motion.div>
+        </section>
 
-          {/* Four Services Overview */}
+        {/* ── The Core Flow — 3 Steps ── */}
+        <section className="container max-w-5xl mb-24">
           <motion.div
-            {...fadeInUp}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-16"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              {/* Verification Service */}
-              <motion.div
-                {...fadeInUp}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg h-full">
-                  <CardHeader className="text-center">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
-                      className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center"
-                    >
-                      <Shield className="h-8 w-8 text-white" />
-                    </motion.div>
-                    <CardTitle className="text-lg">{t('services.verification.title')}</CardTitle>
-                    <Badge variant="secondary" className="mt-2">{t('services.verification.badge')}</Badge>
-                  </CardHeader>
-                  <CardContent className="text-sm text-foreground/80 space-y-2">
-                    <p className="font-semibold text-primary">{t('services.verification.heading')}</p>
-                    <ul className="space-y-1 text-xs">
-                      <li>• {t('services.verification.features.0')}</li>
-                      <li>• {t('services.verification.features.1')}</li>
-                      <li>• {t('services.verification.features.2')}</li>
-                      <li>• {t('services.verification.features.3')}</li>
-                    </ul>
-                    <p className="text-xs italic pt-2 border-t">
-                      {t('services.verification.comparison')}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-center mb-4">
+              {t('coreFlow.title')}
+            </h2>
+            <p className="text-muted-foreground text-center mb-12 max-w-xl mx-auto">
+              {t('coreFlow.subtitle')}
+            </p>
 
-              {/* Matching Service */}
-              <motion.div
-                {...fadeInUp}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg h-full">
-                  <CardHeader className="text-center">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ type: 'spring', stiffness: 200, delay: 0.3 }}
-                      className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center"
-                    >
-                      <Target className="h-8 w-8 text-white" />
-                    </motion.div>
-                    <CardTitle className="text-lg">{t('services.matching.title')}</CardTitle>
-                    <Badge variant="secondary" className="mt-2">{t('services.matching.badge')}</Badge>
-                  </CardHeader>
-                  <CardContent className="text-sm text-foreground/80 space-y-2">
-                    <p className="font-semibold text-primary">{t('services.matching.heading')}</p>
-                    <ul className="space-y-1 text-xs">
-                      <li>• {t('services.matching.features.0')}</li>
-                      <li>• {t('services.matching.features.1')}</li>
-                      <li>• {t('services.matching.features.2')}</li>
-                      <li>• {t('services.matching.features.3')}</li>
-                    </ul>
-                    <p className="text-xs italic pt-2 border-t">
-                      {t('services.matching.comparison')}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+            <div className="grid md:grid-cols-3 gap-0 md:gap-0 relative">
+              {/* Connecting lines (desktop) */}
+              <div className="hidden md:block absolute top-24 left-[33.3%] right-[33.3%] h-0.5 bg-gradient-to-r from-primary/40 via-primary to-primary/40 z-0" />
 
-              {/* Discovery Service */}
-              <motion.div
-                {...fadeInUp}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg h-full">
-                  <CardHeader className="text-center">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ type: 'spring', stiffness: 200, delay: 0.4 }}
-                      className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center"
-                    >
-                      <Search className="h-8 w-8 text-white" />
-                    </motion.div>
-                    <CardTitle className="text-lg">{t('services.discovery.title')}</CardTitle>
-                    <Badge variant="secondary" className="mt-2">{t('services.discovery.badge')}</Badge>
-                  </CardHeader>
-                  <CardContent className="text-sm text-foreground/80 space-y-2">
-                    <p className="font-semibold text-primary">{t('services.discovery.heading')}</p>
-                    <ul className="space-y-1 text-xs">
-                      <li>• {t('services.discovery.features.0')}</li>
-                      <li>• {t('services.discovery.features.1')}</li>
-                      <li>• {t('services.discovery.features.2')}</li>
-                      <li>• {t('services.discovery.features.3')}</li>
-                    </ul>
-                    <p className="text-xs italic pt-2 border-t">
-                      {t('services.discovery.comparison')}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              {[
+                { icon: Upload, num: '1', titleKey: 'coreFlow.step1.title' as const, descKey: 'coreFlow.step1.desc' as const, timeKey: 'coreFlow.step1.time' as const, color: 'from-blue-500/10 to-primary/10' },
+                { icon: Brain, num: '2', titleKey: 'coreFlow.step2.title' as const, descKey: 'coreFlow.step2.desc' as const, timeKey: 'coreFlow.step2.time' as const, color: 'from-primary/10 to-violet-500/10' },
+                { icon: MessageSquare, num: '3', titleKey: 'coreFlow.step3.title' as const, descKey: 'coreFlow.step3.desc' as const, timeKey: 'coreFlow.step3.time' as const, color: 'from-violet-500/10 to-emerald-500/10' },
+              ].map((step, i) => {
+                const Icon = step.icon
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.15 }}
+                    className="relative z-10 flex flex-col items-center text-center px-6 py-8"
+                  >
+                    {/* Number + Icon */}
+                    <div className={`relative mb-6 w-20 h-20 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-sm border border-primary/10`}>
+                      <Icon className="h-9 w-9 text-primary" />
+                      <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shadow-md">
+                        {step.num}
+                      </div>
+                    </div>
 
-              {/* Analytics Service */}
-              <motion.div
-                {...fadeInUp}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg h-full">
-                  <CardHeader className="text-center">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ type: 'spring', stiffness: 200, delay: 0.5 }}
-                      className="bg-primary p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center"
-                    >
-                      <BarChart3 className="h-8 w-8 text-white" />
-                    </motion.div>
-                    <CardTitle className="text-lg">{t('services.analytics.title')}</CardTitle>
-                    <Badge variant="secondary" className="mt-2">{t('services.analytics.badge')}</Badge>
-                  </CardHeader>
-                  <CardContent className="text-sm text-foreground/80 space-y-2">
-                    <p className="font-semibold text-primary">{t('services.analytics.heading')}</p>
-                    <ul className="space-y-1 text-xs">
-                      <li>• {t('services.analytics.features.0')}</li>
-                      <li>• {t('services.analytics.features.1')}</li>
-                      <li>• {t('services.analytics.features.2')}</li>
-                      <li>• {t('services.analytics.features.3')}</li>
-                    </ul>
-                    <p className="text-xs italic pt-2 border-t">
-                      {t('services.analytics.comparison')}
+                    <h3 className="text-lg font-bold text-foreground mb-2">
+                      {t(step.titleKey)}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
+                      {t(step.descKey)}
                     </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                    <Badge variant="outline" className="text-xs">
+                      <Clock className="h-3 w-3 mr-1" />
+                      {t(step.timeKey)}
+                    </Badge>
+
+                    {/* Mobile arrow */}
+                    {i < 2 && (
+                      <ArrowDown className="md:hidden h-6 w-6 text-primary/40 mt-4" />
+                    )}
+                  </motion.div>
+                )
+              })}
             </div>
+          </motion.div>
+        </section>
 
-            {/* User Type Selector */}
+        {/* ── Segment Deep-Dive ── */}
+        <section className="bg-muted/30 border-y py-20 mb-24">
+          <div className="container max-w-6xl">
             <motion.div
-              {...fadeInUp}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex justify-center mb-12"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
-              <div className="bg-card rounded-lg p-2 shadow-sm border border-border">
-                <div className="flex space-x-2">
-                  {(userTypes || []).map((type) => {
-                    const Icon = type.icon
+              <h2 className="text-2xl md:text-3xl font-display font-bold text-center mb-3">
+                {t('segmentDive.title')}
+              </h2>
+              <p className="text-muted-foreground text-center mb-10 max-w-xl mx-auto">
+                {t('segmentDive.subtitle')}
+              </p>
+
+              {/* Segment Tabs */}
+              <div className="flex justify-center mb-12">
+                <div className="inline-flex bg-background rounded-xl p-1.5 shadow-sm border">
+                  {segments.map((seg) => {
+                    const Icon = seg.icon
+                    const isActive = activeSegment === seg.id
                     return (
                       <button
-                        key={type.id}
-                        onClick={() => setSelectedUserType(type.id)}
-                        className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                          selectedUserType === type.id
-                            ? type.color
+                        key={seg.id}
+                        onClick={() => setActiveSegment(seg.id)}
+                        className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                          isActive
+                            ? 'bg-primary text-white shadow-md'
                             : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                         }`}
                       >
-                        <Icon className="h-4 w-4 mr-2" />
-                        {type.label}
+                        <Icon className="h-4 w-4" />
+                        {seg.label}
                       </button>
                     )
                   })}
                 </div>
               </div>
-            </motion.div>
 
-            {/* Service Flow Diagram - Dynamic based on persona */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selectedUserType}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Card className="bg-primary/5 border-2 border-primary/20">
-                  <CardContent className="py-8">
-                    <h3 className="text-xl font-bold text-center mb-6">{t('workflow.title')}</h3>
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-4 max-w-5xl mx-auto">
-                      {getCurrentWorkflow().steps.map((step, index) => {
-                        const Icon = step.icon
-                        return (
-                          <React.Fragment key={index}>
-                            <motion.div
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ duration: 0.4, delay: index * 0.15 }}
-                              className="flex flex-col items-center text-center"
-                            >
-                              <div className="bg-card p-4 rounded-lg shadow-md mb-2 w-48 hover:shadow-lg transition-shadow border border-border">
-                                <Icon className={`h-8 w-8 mx-auto mb-2 ${step.color}`} />
-                                <p className="text-sm font-semibold">{step.title}</p>
-                                <p className="text-xs text-muted-foreground">{step.description}</p>
+              {/* Segment Content */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeSegment}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Headline */}
+                  <div className="text-center mb-10">
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                      {t(`segmentDive.${activeSegment}.headline`)}
+                    </h3>
+                    <p className="text-muted-foreground max-w-lg mx-auto">
+                      {t(`segmentDive.${activeSegment}.subheadline`)}
+                    </p>
+                  </div>
+
+                  {/* Journey Cards */}
+                  <div className="grid md:grid-cols-3 gap-6 mb-10">
+                    {[0, 1, 2].map((i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: i * 0.1 }}
+                      >
+                        <Card className="h-full border-2 hover:border-primary/30 transition-all hover:shadow-md">
+                          <CardContent className="pt-6">
+                            <div className="flex items-center gap-3 mb-4">
+                              <div className="w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-sm flex items-center justify-center">
+                                {i + 1}
                               </div>
-                            </motion.div>
-                            {index < getCurrentWorkflow().steps.length - 1 && (
-                              <motion.div
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.3, delay: index * 0.15 + 0.1 }}
-                              >
-                                <ArrowRight className="h-6 w-6 text-muted-foreground/50 rotate-90 md:rotate-0" />
-                              </motion.div>
-                            )}
-                          </React.Fragment>
-                        )
-                      })}
-                    </div>
-                    <div className="text-center mt-6">
-                      <p className="text-sm text-foreground/80">
-                        <strong>{t('workflow.result')}</strong> {getCurrentWorkflow().result}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </AnimatePresence>
-          </motion.div>
+                              <h4 className="font-semibold text-foreground">
+                                {t(`segmentDive.${activeSegment}.steps.${i}.title`)}
+                              </h4>
+                            </div>
+                            <p className="text-sm text-muted-foreground mb-4">
+                              {t(`segmentDive.${activeSegment}.steps.${i}.desc`)}
+                            </p>
+                            <ul className="space-y-2">
+                              {[0, 1, 2].map((j) => (
+                                <li key={j} className="flex items-start gap-2 text-sm text-foreground/80">
+                                  <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                  <span>{t(`segmentDive.${activeSegment}.steps.${i}.features.${j}`)}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    ))}
+                  </div>
 
-          {/* Dynamic Header */}
-          <motion.div
-            key={selectedUserType}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl font-display font-bold text-foreground mb-4">
-              {getHeaderContent().title}
-            </h2>
-            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
-              {getHeaderContent().subtitle}
-            </p>
-          </motion.div>
-
-          {/* Student Data Import Feature (only for students) */}
-          {selectedUserType === 'student' && (
-            <motion.div
-              {...fadeInUp}
-              transition={{ duration: 0.5 }}
-              className="mb-16"
-            >
-              <Card className="bg-primary/10 border-primary/20">
-                <CardHeader className="text-center">
-                  <CardTitle className="flex items-center justify-center text-primary mb-2">
-                    <Database className="h-6 w-6 mr-2" />
-                    {t('studentDataImport.title')}
-                  </CardTitle>
-                  <p className="text-foreground/80">
-                    {t('studentDataImport.description')}
-                  </p>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <Button
-                    onClick={() => setShowDataImport(!showDataImport)}
-                    className="bg-primary hover:shadow-lg text-white"
-                  >
-                    {showDataImport ? t('studentDataImport.buttonHide') : t('studentDataImport.buttonShow')}
-                    <ArrowRight className="h-4 w-4 ml-2" />
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Student Data Import Component */}
-              <AnimatePresence>
-                {showDataImport && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="mt-8 overflow-hidden"
-                  >
-                    <StudentDataImportComponent />
-                  </motion.div>
-                )}
+                  {/* Outcome highlight */}
+                  <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 text-center">
+                    <p className="text-primary font-semibold text-lg">
+                      {t(`segmentDive.${activeSegment}.outcome`)}
+                    </p>
+                  </div>
+                </motion.div>
               </AnimatePresence>
             </motion.div>
-          )}
-
-          {/* Dynamic Steps */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <AnimatePresence mode="wait">
-              {(getCurrentSteps() || []).map((step, index) => {
-                const Icon = step.icon
-                return (
-                  <motion.div
-                    key={`${selectedUserType}-${step.id}`}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -30 }}
-                    transition={{ duration: 0.5, delay: index * 0.15 }}
-                  >
-                    <Card className={`${step.color} transition-all hover:shadow-lg relative overflow-hidden h-full`}>
-                  {/* Step Number Badge */}
-                  <motion.div
-                    initial={{ scale: 0, rotate: -180 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{ type: 'spring', stiffness: 200, delay: index * 0.15 + 0.2 }}
-                    className="absolute top-4 right-4 bg-card rounded-full w-12 h-12 flex items-center justify-center shadow-md border border-border"
-                  >
-                    <span className="text-2xl font-bold text-foreground/80">{step.id}</span>
-                  </motion.div>
-
-                  <CardHeader>
-                    <div className="flex items-center mb-4">
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: 'spring', stiffness: 200, delay: index * 0.15 + 0.1 }}
-                        className="w-14 h-14 mr-4 rounded-xl bg-primary/10 flex items-center justify-center"
-                      >
-                        <Icon className="h-7 w-7 text-primary" />
-                      </motion.div>
-                      {step.duration && (
-                        <Badge variant="secondary" className="text-xs">
-                          <Clock className="h-3 w-3 mr-1" />
-                          {step.duration}
-                        </Badge>
-                      )}
-                    </div>
-                    <CardTitle className="text-foreground text-xl mb-2">{step.title}</CardTitle>
-                    <p className="text-foreground/80 text-sm leading-relaxed">{step.description}</p>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 mb-4">
-                      {(step.features || []).map((feature: string, featureIndex: number) => (
-                        <motion.li
-                          key={featureIndex}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.15 + featureIndex * 0.05 + 0.3 }}
-                          className="flex items-start text-sm text-foreground/80"
-                        >
-                          <CheckCircle className="h-4 w-4 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                          <span>{feature}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-
-                    {/* Example */}
-                    {step.example && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: index * 0.15 + 0.5 }}
-                        className="bg-card/70 rounded-lg p-3 border border-border"
-                      >
-                        <p className="text-xs font-mono text-foreground/80 italic">
-                          {step.example}
-                        </p>
-                      </motion.div>
-                    )}
-
-                    {/* Arrow connector (except last step) */}
-                    {index < getCurrentSteps().length - 1 && (
-                      <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                        <ArrowRight className="h-8 w-8 text-muted-foreground/40" />
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              </motion.div>
-                )
-              })}
-            </AnimatePresence>
           </div>
+        </section>
 
-          {/* Platform Benefits */}
+        {/* ── What Makes Us Different ── */}
+        <section className="container max-w-5xl mb-24">
           <motion.div
-            {...fadeInUp}
-            transition={{ duration: 0.6 }}
-            className="bg-card rounded-lg shadow-sm border border-border p-8 mb-16"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            <h3 className="text-2xl font-display font-bold text-foreground text-center mb-8">
-              {t('benefits.title')}
-            </h3>
-            <div className="grid md:grid-cols-4 gap-6">
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-center mb-3">
+              {t('differentiators.title')}
+            </h2>
+            <p className="text-muted-foreground text-center mb-12 max-w-xl mx-auto">
+              {t('differentiators.subtitle')}
+            </p>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                {
-                  icon: GraduationCap,
-                  title: t('benefits.0.title'),
-                  description: t('benefits.0.description')
-                },
-                {
-                  icon: Building2,
-                  title: t('benefits.1.title'),
-                  description: t('benefits.1.description')
-                },
-                {
-                  icon: Brain,
-                  title: t('benefits.2.title'),
-                  description: t('benefits.2.description')
-                },
-                {
-                  icon: Users,
-                  title: t('benefits.3.title'),
-                  description: t('benefits.3.description')
-                }
-              ].map((benefit, index) => {
-                const BenefitIcon = benefit.icon
+                { icon: Shield, colorClass: 'bg-blue-500/10 text-blue-600' },
+                { icon: Brain, colorClass: 'bg-violet-500/10 text-violet-600' },
+                { icon: Euro, colorClass: 'bg-emerald-500/10 text-emerald-600' },
+                { icon: Eye, colorClass: 'bg-amber-500/10 text-amber-600' },
+              ].map((item, i) => {
+                const Icon = item.icon
                 return (
                   <motion.div
-                    key={index}
-                    {...fadeInUp}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
                     className="text-center"
                   >
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ type: 'spring', stiffness: 200, delay: index * 0.1 + 0.2 }}
-                      className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary flex items-center justify-center"
-                    >
-                      <BenefitIcon className="h-7 w-7 text-white" />
-                    </motion.div>
-                    <h4 className="font-semibold text-foreground mb-2">{benefit.title}</h4>
-                    <p className="text-sm text-foreground/80">{benefit.description}</p>
+                    <div className={`w-14 h-14 rounded-2xl ${item.colorClass} flex items-center justify-center mx-auto mb-4`}>
+                      <Icon className="h-7 w-7" />
+                    </div>
+                    <h4 className="font-semibold text-foreground mb-1.5">
+                      {t(`differentiators.items.${i}.title`)}
+                    </h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {t(`differentiators.items.${i}.desc`)}
+                    </p>
                   </motion.div>
                 )
               })}
             </div>
           </motion.div>
+        </section>
 
-          {/* Viral CTA Section */}
-          <motion.div
-            {...fadeInUp}
-            transition={{ duration: 0.6 }}
-            className="bg-primary rounded-2xl p-12 text-center text-white mb-16"
-          >
-            <h3 className="text-3xl font-display font-bold mb-4">
-              {t('cta.title')}
-            </h3>
-            <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-              {selectedUserType === 'student' && t('cta.student')}
-              {selectedUserType === 'institute' && t('cta.institute')}
-              {selectedUserType === 'recruiter' && t('cta.recruiter')}
-            </p>
-            <div className="flex justify-center space-x-4">
-              <Button
-                size="lg"
-                className="bg-white text-primary hover:bg-white/90"
-                onClick={() => window.location.href = '/auth/register'}
-              >
-                {t('cta.primaryButton')}
-                <ArrowRight className="h-5 w-5 ml-2" />
-              </Button>
-              {selectedUserType === 'student' && (
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-white text-white hover:bg-white hover:text-primary"
-                  onClick={() => window.location.href = '/students/explore'}
+        {/* ── Social Proof Strip ── */}
+        <section className="border-y bg-muted/20 py-12 mb-24">
+          <div className="container max-w-4xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              {[0, 1, 2, 3].map((i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
                 >
+                  <div className="text-3xl font-bold text-primary mb-1">
+                    {t(`proof.${i}.value`)}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {t(`proof.${i}.label`)}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── CTA ── */}
+        <section className="container max-w-3xl text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-primary rounded-2xl p-10 md:p-14"
+          >
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-4">
+              {t('cta.title')}
+            </h2>
+            <p className="text-white/80 mb-8 max-w-lg mx-auto">
+              {t('cta.subtitle')}
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-lg" asChild>
+                <Link href="/auth/register">
+                  {t('cta.primaryButton')}
+                  <ArrowRight className="h-5 w-5 ml-2" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+                <Link href="/explore">
                   {t('cta.secondaryButton')}
-                  <Eye className="h-5 w-5 ml-2" />
-                </Button>
-              )}
+                </Link>
+              </Button>
             </div>
           </motion.div>
+        </section>
 
-        </div>
       </main>
       <Footer />
     </div>
