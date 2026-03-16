@@ -361,6 +361,9 @@ export async function sendEndorsementExpiryNoticeEmail(
 function emailWrapper(content: string): string {
   return `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <img src="${BASE_URL}/images/banner.jpg" alt="InTransparency" width="351" height="120" style="max-width: 100%; height: auto;" />
+      </div>
       ${content}
       <hr style="border: none; border-top: 1px solid #E5E7EB; margin: 24px 0;" />
       <p style="color: #999; font-size: 12px;">

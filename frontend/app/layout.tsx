@@ -52,13 +52,13 @@ export const metadata: Metadata = {
     siteName: 'InTransparency',
     title: 'InTransparency — Verified Student Profiles | University-to-Work Platform',
     description: 'Hire verified graduates with institution-backed skills and AI-analyzed project portfolios. Pay per contact, no annual commitment.',
-    images: [{ url: '/logo.jpeg', width: 340, height: 438, alt: 'InTransparency' }],
+    images: [{ url: '/images/banner.jpg', width: 351, height: 120, alt: 'InTransparency' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'InTransparency — Verified Student Profiles',
     description: 'Hire verified graduates with institution-backed skills. Pay per contact, no subscription.',
-    images: ['/logo.jpeg'],
+    images: ['/images/banner.jpg'],
   },
   robots: {
     index: true,
