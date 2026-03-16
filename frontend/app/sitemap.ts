@@ -8,7 +8,7 @@ const locales = ['en', 'it'] as const
 const staticRoutes = [
   '',
   '/about',
-  '/features',
+
   '/pricing',
   '/how-it-works',
   '/mission',
@@ -55,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${BASE_URL}/${locale}${route}`,
         lastModified: new Date(),
         changeFrequency: route === '' ? 'weekly' : 'monthly',
-        priority: route === '' ? 1 : route === '/features' || route === '/pricing' ? 0.9 : 0.7,
+        priority: route === '' ? 1 : route === '/how-it-works' || route === '/pricing' ? 0.9 : 0.7,
       })
     }
   }

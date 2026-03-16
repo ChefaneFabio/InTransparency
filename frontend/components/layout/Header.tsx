@@ -28,7 +28,7 @@ export function Header() {
   // Navigation links change based on active segment
   const navigationBySegment: Record<Segment, { name: string; href: string }[]> = {
     students: [
-      { name: t('howItWorks'), href: '/how-it-works' },
+      { name: t('howItWorks'), href: '/for-students' },
       { name: t('highSchoolStudents'), href: '/students/high-school' },
       { name: t('itsStudents'), href: '/students/its' },
       { name: t('universityStudents'), href: '/students/university' },
@@ -37,18 +37,15 @@ export function Header() {
       { name: t('contact'), href: '/contact' },
     ],
     institutions: [
-      { name: t('features'), href: '/features' },
-      { name: t('howItWorks'), href: '/how-it-works' },
+      { name: t('howItWorks'), href: '/for-academic-partners' },
       { name: t('forHighSchools'), href: '/per-scuole-superiori' },
       { name: t('forITS'), href: '/for-its-institutes' },
       { name: t('forUniversities'), href: '/per-universita' },
-      { name: t('aiJobSearch'), href: '/demo/ai-search' },
       { name: t('pricing'), href: '/pricing' },
       { name: t('contact'), href: '/contact' },
     ],
     companies: [
-      { name: t('features'), href: '/features' },
-      { name: t('howItWorks'), href: '/how-it-works' },
+      { name: t('howItWorks'), href: '/for-companies' },
       { name: t('searchTalent'), href: '/explore' },
       { name: t('aiJobSearch'), href: '/demo/ai-search' },
       { name: t('pricing'), href: '/pricing' },

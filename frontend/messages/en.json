@@ -1617,6 +1617,223 @@
       "secondaryButton": "Explore Portfolios"
     }
   },
+  "forStudents": {
+    "hero": {
+      "badge": "For Students",
+      "title": "Your Work Speaks.",
+      "titleHighlight": "Companies Listen.",
+      "subtitle": "Upload real projects. Get verified by your university or school. Let employers discover you for what you've actually built — not what's on your CV."
+    },
+    "steps": {
+      "title": "How It Works for You",
+      "subtitle": "Three steps from academic project to career opportunity.",
+      "0": {
+        "title": "Upload Your Projects",
+        "desc": "Share your thesis, code, designs, or group work. Any format. Our AI analyzes your files and extracts skills, complexity, and innovation."
+      },
+      "1": {
+        "title": "Your University Verifies",
+        "desc": "Your school or university confirms the project is real. Grades, ECTS, and a verification badge are added to your profile."
+      },
+      "2": {
+        "title": "Companies Discover You",
+        "desc": "Recruiters search verified profiles and reach out directly. No applications, no cover letters. You get found for what you've built."
+      }
+    },
+    "features": {
+      "title": "What You Get",
+      "subtitle": "Tools designed to make your skills visible and verifiable.",
+      "0": {
+        "title": "AI Project Analysis",
+        "desc": "Our AI reads your actual files — code, PDFs, presentations — and identifies your real competencies automatically."
+      },
+      "1": {
+        "title": "Verified Portfolio",
+        "desc": "Your projects carry your university's verification badge. Recruiters see proven skills, not self-reported claims."
+      },
+      "2": {
+        "title": "Reverse Recruitment",
+        "desc": "Instead of applying, you get discovered. Companies search the marketplace and contact you based on your verified work."
+      },
+      "3": {
+        "title": "Trust Score",
+        "desc": "Academic verification, AI analysis, and project quality build a trust score that helps you stand out in search results."
+      },
+      "4": {
+        "title": "Multi-Format Upload",
+        "desc": "Code repositories, PDFs, videos, Word documents, Excel files, presentations — upload anything you've worked on."
+      },
+      "5": {
+        "title": "Career Insights",
+        "desc": "See who viewed your profile, which skills are trending in your field, and how your portfolio compares."
+      }
+    },
+    "audience": {
+      "title": "Built for Every Student",
+      "subtitle": "Whether you're in high school, ITS, or university — your work deserves to be seen.",
+      "0": {
+        "title": "High School Students",
+        "desc": "Showcase your first projects and alternanza scuola-lavoro experiences. Start building your verified portfolio early."
+      },
+      "1": {
+        "title": "ITS Academy Students",
+        "desc": "Your hands-on technical projects are your strongest asset. Make them discoverable by the companies that value practical skills."
+      },
+      "2": {
+        "title": "University Students",
+        "desc": "Thesis work, research projects, and capstone assignments — verified by your department and visible to employers across Italy and Europe."
+      }
+    },
+    "cta": {
+      "title": "Start Building Your Portfolio",
+      "subtitle": "Create your profile in under 5 minutes. Your university can verify your work, and companies can start discovering you.",
+      "primaryButton": "Get Started",
+      "secondaryButton": "Explore Portfolios"
+    }
+  },
+  "forCompanies": {
+    "hero": {
+      "badge": "For Companies",
+      "title": "Hire Junior Talent",
+      "titleHighlight": "You Can Trust.",
+      "subtitle": "Every skill verified by the student's university. Every project traceable to its source. A faster, more transparent path from search to hire."
+    },
+    "steps": {
+      "title": "How It Works for You",
+      "subtitle": "From search to hire — based on verified evidence, not resumes.",
+      "0": {
+        "title": "Search Verified Profiles",
+        "desc": "Explore student portfolios filtered by skills, university, grades, location, and project type. AI-powered search finds the right match."
+      },
+      "1": {
+        "title": "Review Real Work",
+        "desc": "See actual projects, verified grades, and AI skill analysis. No self-reported CV claims — just proven competencies you can evaluate."
+      },
+      "2": {
+        "title": "Connect Directly",
+        "desc": "When you've found the right candidate, reach out directly. No middlemen, no agencies, no waiting."
+      }
+    },
+    "features": {
+      "title": "What You Get",
+      "subtitle": "Tools that help you find, evaluate, and connect with verified junior talent.",
+      "0": {
+        "title": "AI-Powered Search",
+        "desc": "Find candidates by real competencies — not keywords. Our AI understands skills from actual project work, not CV buzzwords."
+      },
+      "1": {
+        "title": "Verified Talent Pool",
+        "desc": "Every profile is backed by academic data. Universities and schools confirm grades, projects, and skills."
+      },
+      "2": {
+        "title": "Evidence-Based Screening",
+        "desc": "Review actual project files, AI analysis scores, and academic verification before you ever reach out."
+      },
+      "3": {
+        "title": "Direct Connection",
+        "desc": "Message candidates directly. No recruiters in the middle, no agency fees, no delays between interest and contact."
+      },
+      "4": {
+        "title": "Decision Packs",
+        "desc": "AI-generated candidate comparison reports that help you evaluate and decide between shortlisted profiles."
+      },
+      "5": {
+        "title": "Hiring Analytics",
+        "desc": "Track your recruiting pipeline — from search to contact to hire. Understand what works and optimize your process."
+      }
+    },
+    "comparison": {
+      "title": "A Better Way to Hire Juniors",
+      "subtitle": "Traditional recruiting wasn't built for entry-level. InTransparency was.",
+      "headers": { "before": "Traditional", "after": "With InTransparency" },
+      "rows": {
+        "0": { "before": "Self-reported CVs", "after": "Academically verified projects" },
+        "1": { "before": "Keyword-matching algorithms", "after": "AI analysis of real work" },
+        "2": { "before": "Weeks of screening", "after": "Browse, evaluate, connect" },
+        "3": { "before": "Agency intermediaries", "after": "Direct access to candidates" }
+      }
+    },
+    "cta": {
+      "title": "Start Discovering Verified Talent",
+      "subtitle": "Explore student profiles and see real, verified work. Connect with the right candidate when you're ready.",
+      "primaryButton": "Get Started",
+      "secondaryButton": "Explore Portfolios"
+    }
+  },
+  "forAcademicPartners": {
+    "hero": {
+      "badge": "For Universities, ITS & Schools",
+      "title": "Know Your Real",
+      "titleHighlight": "Placement Rate.",
+      "subtitle": "Not from annual surveys. From actual hires, tracked as they happen. Give your students the visibility they deserve and prove your impact with real data."
+    },
+    "steps": {
+      "title": "How It Works for Your Team",
+      "subtitle": "A lightweight process designed for career services, not IT departments.",
+      "0": {
+        "title": "Onboard Your Students",
+        "desc": "Students register themselves or you import them in bulk via CSV. Simple dashboard — no IT integration, no developer needed."
+      },
+      "1": {
+        "title": "Verify & Endorse Projects",
+        "desc": "Review student work with one click. Add grades, ECTS credits, and endorsements. Batch approval makes it fast."
+      },
+      "2": {
+        "title": "Track Career Outcomes",
+        "desc": "See which students get contacted, interviewed, and hired. Real-time placement data that proves your impact."
+      }
+    },
+    "features": {
+      "title": "What You Get",
+      "subtitle": "Tools that make student placement measurable and visible.",
+      "0": {
+        "title": "Batch Verification Dashboard",
+        "desc": "Approve student projects individually or in batches. Designed for career services teams that verify dozens of students."
+      },
+      "1": {
+        "title": "Live Placement Analytics",
+        "desc": "Real-time hiring funnel — see contacts, interviews, and hires as they happen. Not annual surveys, real data."
+      },
+      "2": {
+        "title": "Student Visibility",
+        "desc": "Your graduates become discoverable by employers across Italy and Europe. Year-round visibility, not just career day."
+      },
+      "3": {
+        "title": "Skills Demand Heatmap",
+        "desc": "See what companies are searching for. Align your curriculum with real market demand based on actual recruiter behavior."
+      },
+      "4": {
+        "title": "GDPR-Compliant",
+        "desc": "Privacy-first design with built-in consent management. Students control their data, and you stay compliant."
+      },
+      "5": {
+        "title": "ECTS & Grade Integration",
+        "desc": "Works with your existing grading system. Add ECTS credits, Italian 30-point grades, or any format you use."
+      }
+    },
+    "audience": {
+      "title": "Built for Every Type of School",
+      "subtitle": "Whether you're a research university, ITS academy, or high school — your students deserve visibility.",
+      "0": {
+        "title": "Universities",
+        "desc": "Track placement rates across departments. Verify thesis work and research projects. Prove your institution's impact on employability."
+      },
+      "1": {
+        "title": "ITS Academies",
+        "desc": "Your students' hands-on technical projects are their greatest asset. Make them visible to the companies that value practical skills."
+      },
+      "2": {
+        "title": "High Schools",
+        "desc": "Help students build their first verified portfolio. Showcase alternanza scuola-lavoro projects and early career experiences."
+      }
+    },
+    "cta": {
+      "title": "Give Your Students the Visibility They Deserve",
+      "subtitle": "Join the platform that connects academic work with real career opportunities. Track your impact with data.",
+      "primaryButton": "Get Started",
+      "secondaryButton": "Learn More"
+    }
+  },
   "legal": {
     "hero": {
       "title": "Terms & Privacy",

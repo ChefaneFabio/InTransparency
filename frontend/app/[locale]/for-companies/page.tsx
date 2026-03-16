@@ -1,0 +1,300 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Link } from '@/navigation'
+import { motion } from 'framer-motion'
+import {
+  Search,
+  FolderOpen,
+  MessageCircle,
+  Brain,
+  ShieldCheck,
+  FileBarChart,
+  UserCheck,
+  BarChart3,
+  Zap,
+  ArrowRight,
+  CheckCircle,
+  XCircle,
+} from 'lucide-react'
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.1, duration: 0.5, ease: 'easeOut' },
+  }),
+}
+
+const stagger = {
+  visible: { transition: { staggerChildren: 0.1 } },
+}
+
+export default function ForCompaniesPage() {
+  const t = useTranslations('forCompanies')
+
+  const steps = [
+    { icon: Search, color: 'text-blue-600', bg: 'bg-blue-100' },
+    { icon: FolderOpen, color: 'text-emerald-600', bg: 'bg-emerald-100' },
+    { icon: MessageCircle, color: 'text-purple-600', bg: 'bg-purple-100' },
+  ]
+
+  const features = [
+    { icon: Brain, color: 'text-violet-600', bg: 'bg-violet-50' },
+    { icon: ShieldCheck, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+    { icon: FileBarChart, color: 'text-blue-600', bg: 'bg-blue-50' },
+    { icon: UserCheck, color: 'text-amber-600', bg: 'bg-amber-50' },
+    { icon: Zap, color: 'text-rose-600', bg: 'bg-rose-50' },
+    { icon: BarChart3, color: 'text-cyan-600', bg: 'bg-cyan-50' },
+  ]
+
+  const comparisonRows = [0, 1, 2, 3] as const
+
+  return (
+    <div className="min-h-screen segment-recruiter">
+      <Header />
+      <main>
+        {/* ── Hero ── */}
+        <section className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white">
+          <div className="container max-w-4xl text-center">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={stagger}
+            >
+              <motion.div variants={fadeUp} custom={0}>
+                <Badge className="mb-6 bg-blue-500/20 text-blue-200 border-blue-400/30">
+                  {t('hero.badge')}
+                </Badge>
+              </motion.div>
+              <motion.h1
+                variants={fadeUp}
+                custom={1}
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              >
+                {t('hero.title')}
+              </motion.h1>
+              <motion.p
+                variants={fadeUp}
+                custom={2}
+                className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto"
+              >
+                {t('hero.subtitle')}
+              </motion.p>
+              <motion.div
+                variants={fadeUp}
+                custom={3}
+                className="flex flex-col sm:flex-row gap-4 justify-center"
+              >
+                <Button size="lg" asChild className="bg-white text-slate-900 hover:bg-gray-100">
+                  <Link href="/auth/register?role=recruiter">
+                    {t('hero.cta')}
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" asChild className="border-white/30 text-white hover:bg-white/10">
+                  <Link href="/explore">
+                    {t('hero.secondaryCta')}
+                  </Link>
+                </Button>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ── How It Works ── */}
+        <section className="py-20 bg-gray-50">
+          <div className="container max-w-5xl">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              variants={stagger}
+              className="text-center mb-14"
+            >
+              <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-4xl font-bold mb-4">
+                {t('howItWorks.title')}
+              </motion.h2>
+              <motion.p variants={fadeUp} custom={1} className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                {t('howItWorks.subtitle')}
+              </motion.p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {steps.map((step, i) => (
+                <motion.div
+                  key={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-40px' }}
+                  variants={fadeUp}
+                  custom={i}
+                  className="text-center"
+                >
+                  <div className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${step.bg} mb-5`}>
+                    <step.icon className={`h-8 w-8 ${step.color}`} />
+                  </div>
+                  <div className="text-sm font-semibold text-muted-foreground mb-2">
+                    {t(`steps.${i}.label`)}
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">
+                    {t(`steps.${i}.title`)}
+                  </h3>
+                  <p className="text-muted-foreground">
+                    {t(`steps.${i}.description`)}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Key Features ── */}
+        <section className="py-20">
+          <div className="container max-w-6xl">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              variants={stagger}
+              className="text-center mb-14"
+            >
+              <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-4xl font-bold mb-4">
+                {t('features.title')}
+              </motion.h2>
+              <motion.p variants={fadeUp} custom={1} className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                {t('features.subtitle')}
+              </motion.p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {features.map((feat, i) => (
+                <motion.div
+                  key={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-40px' }}
+                  variants={fadeUp}
+                  custom={i}
+                >
+                  <Card className="h-full hover:shadow-lg transition-shadow">
+                    <CardContent className="p-6">
+                      <div className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${feat.bg} mb-4`}>
+                        <feat.icon className={`h-6 w-6 ${feat.color}`} />
+                      </div>
+                      <h3 className="text-lg font-bold mb-2">
+                        {t(`features.items.${i}.title`)}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {t(`features.items.${i}.description`)}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Comparison ── */}
+        <section className="py-20 bg-gray-50">
+          <div className="container max-w-3xl">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              variants={stagger}
+              className="text-center mb-12"
+            >
+              <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-4xl font-bold mb-4">
+                {t('comparison.title')}
+              </motion.h2>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-40px' }}
+              variants={fadeUp}
+              custom={0}
+            >
+              <Card className="overflow-hidden">
+                <div className="grid grid-cols-2">
+                  <div className="p-4 bg-red-50 text-center font-bold text-red-800 border-b border-r">
+                    {t('comparison.before')}
+                  </div>
+                  <div className="p-4 bg-emerald-50 text-center font-bold text-emerald-800 border-b">
+                    {t('comparison.after')}
+                  </div>
+                </div>
+                {comparisonRows.map((row) => (
+                  <div key={row} className="grid grid-cols-2 border-b last:border-b-0">
+                    <div className="p-4 flex items-center gap-2 border-r text-sm text-muted-foreground">
+                      <XCircle className="h-4 w-4 text-red-400 shrink-0" />
+                      {t(`comparison.rows.${row}.before`)}
+                    </div>
+                    <div className="p-4 flex items-center gap-2 text-sm font-medium">
+                      <CheckCircle className="h-4 w-4 text-emerald-500 shrink-0" />
+                      {t(`comparison.rows.${row}.after`)}
+                    </div>
+                  </div>
+                ))}
+              </Card>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ── CTA ── */}
+        <section className="py-24 bg-gradient-to-br from-blue-900 to-slate-900 text-white">
+          <div className="container max-w-3xl text-center">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              variants={stagger}
+            >
+              <motion.h2
+                variants={fadeUp}
+                custom={0}
+                className="text-3xl md:text-4xl font-bold mb-4"
+              >
+                {t('cta.title')}
+              </motion.h2>
+              <motion.p
+                variants={fadeUp}
+                custom={1}
+                className="text-lg text-blue-100 mb-10 max-w-xl mx-auto"
+              >
+                {t('cta.subtitle')}
+              </motion.p>
+              <motion.div
+                variants={fadeUp}
+                custom={2}
+                className="flex flex-col sm:flex-row gap-4 justify-center"
+              >
+                <Button size="lg" asChild className="bg-white text-slate-900 hover:bg-gray-100">
+                  <Link href="/auth/register?role=recruiter">
+                    {t('cta.register')}
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" asChild className="border-white/30 text-white hover:bg-white/10">
+                  <Link href="/explore">
+                    {t('cta.explore')}
+                  </Link>
+                </Button>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  )
+}

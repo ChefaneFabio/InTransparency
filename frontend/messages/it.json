@@ -1657,6 +1657,223 @@
       "secondaryButton": "Esplora Portfolio"
     }
   },
+  "forStudents": {
+    "hero": {
+      "badge": "Per Studenti",
+      "title": "Il Tuo Lavoro Parla.",
+      "titleHighlight": "Le Aziende Ascoltano.",
+      "subtitle": "Carica progetti reali. Fatti verificare dalla tua università o scuola. Lascia che i datori di lavoro ti scoprano per ciò che hai realmente costruito — non per quello che c'è nel CV."
+    },
+    "steps": {
+      "title": "Come Funziona per Te",
+      "subtitle": "Tre passaggi dal progetto accademico all'opportunità di carriera.",
+      "0": {
+        "title": "Carica i Tuoi Progetti",
+        "desc": "Condividi la tesi, il codice, i design o il lavoro di gruppo. Qualsiasi formato. La nostra AI analizza i file ed estrae competenze, complessità e innovazione."
+      },
+      "1": {
+        "title": "La Tua Università Verifica",
+        "desc": "La tua scuola o università conferma che il progetto è reale. Voti, ECTS e un badge di verifica vengono aggiunti al tuo profilo."
+      },
+      "2": {
+        "title": "Le Aziende Ti Scoprono",
+        "desc": "I recruiter cercano profili verificati e ti contattano direttamente. Nessuna candidatura, nessuna lettera di presentazione. Vieni trovato per ciò che hai costruito."
+      }
+    },
+    "features": {
+      "title": "Cosa Ottieni",
+      "subtitle": "Strumenti progettati per rendere le tue competenze visibili e verificabili.",
+      "0": {
+        "title": "Analisi AI dei Progetti",
+        "desc": "La nostra AI legge i tuoi file — codice, PDF, presentazioni — e identifica le tue competenze reali automaticamente."
+      },
+      "1": {
+        "title": "Portfolio Verificato",
+        "desc": "I tuoi progetti portano il badge di verifica della tua università. I recruiter vedono competenze provate, non auto-dichiarazioni."
+      },
+      "2": {
+        "title": "Reverse Recruitment",
+        "desc": "Invece di candidarti, vieni scoperto. Le aziende cercano nel marketplace e ti contattano in base al tuo lavoro verificato."
+      },
+      "3": {
+        "title": "Trust Score",
+        "desc": "Verifica accademica, analisi AI e qualità dei progetti costruiscono un punteggio di fiducia che ti fa emergere nei risultati di ricerca."
+      },
+      "4": {
+        "title": "Upload Multi-Formato",
+        "desc": "Repository di codice, PDF, video, documenti Word, file Excel, presentazioni — carica qualsiasi cosa tu abbia realizzato."
+      },
+      "5": {
+        "title": "Insights di Carriera",
+        "desc": "Vedi chi ha visitato il tuo profilo, quali competenze sono in tendenza nel tuo settore e come si posiziona il tuo portfolio."
+      }
+    },
+    "audience": {
+      "title": "Per Ogni Tipo di Studente",
+      "subtitle": "Che tu sia alle superiori, all'ITS o all'università — il tuo lavoro merita di essere visto.",
+      "0": {
+        "title": "Studenti delle Superiori",
+        "desc": "Mostra i tuoi primi progetti e le esperienze di alternanza scuola-lavoro. Inizia a costruire il tuo portfolio verificato presto."
+      },
+      "1": {
+        "title": "Studenti ITS Academy",
+        "desc": "I tuoi progetti tecnici pratici sono il tuo punto di forza. Rendili visibili alle aziende che valorizzano le competenze concrete."
+      },
+      "2": {
+        "title": "Studenti Universitari",
+        "desc": "Tesi, progetti di ricerca e lavori finali — verificati dal tuo dipartimento e visibili ai datori di lavoro in Italia e in Europa."
+      }
+    },
+    "cta": {
+      "title": "Inizia a Costruire il Tuo Portfolio",
+      "subtitle": "Crea il tuo profilo in meno di 5 minuti. La tua università può verificare il tuo lavoro e le aziende possono iniziare a scoprirti.",
+      "primaryButton": "Inizia Ora",
+      "secondaryButton": "Esplora Portfolio"
+    }
+  },
+  "forCompanies": {
+    "hero": {
+      "badge": "Per Aziende",
+      "title": "Assumi Talenti Junior",
+      "titleHighlight": "di cui Fidarti.",
+      "subtitle": "Ogni competenza verificata dalla università dello studente. Ogni progetto tracciabile alla fonte. Un percorso più veloce e trasparente dalla ricerca all'assunzione."
+    },
+    "steps": {
+      "title": "Come Funziona per Te",
+      "subtitle": "Dalla ricerca all'assunzione — basato su evidenze verificate, non curriculum.",
+      "0": {
+        "title": "Cerca Profili Verificati",
+        "desc": "Esplora portfolio studenti filtrando per competenze, università, voti, posizione e tipo di progetto. La ricerca AI trova il match giusto."
+      },
+      "1": {
+        "title": "Rivedi Lavori Reali",
+        "desc": "Vedi progetti reali, voti verificati e analisi AI delle competenze. Nessuna auto-dichiarazione — solo competenze provate che puoi valutare."
+      },
+      "2": {
+        "title": "Connettiti Direttamente",
+        "desc": "Quando hai trovato il candidato giusto, contattalo direttamente. Nessun intermediario, nessuna agenzia, nessuna attesa."
+      }
+    },
+    "features": {
+      "title": "Cosa Ottieni",
+      "subtitle": "Strumenti per trovare, valutare e connetterti con talenti junior verificati.",
+      "0": {
+        "title": "Ricerca AI",
+        "desc": "Trova candidati per competenze reali — non parole chiave. La nostra AI comprende le skills dal lavoro effettivo, non dai buzzword del CV."
+      },
+      "1": {
+        "title": "Pool di Talenti Verificati",
+        "desc": "Ogni profilo è supportato da dati accademici. Università e scuole confermano voti, progetti e competenze."
+      },
+      "2": {
+        "title": "Screening Basato su Evidenze",
+        "desc": "Rivedi file di progetto reali, punteggi di analisi AI e verifica accademica prima ancora di contattare."
+      },
+      "3": {
+        "title": "Connessione Diretta",
+        "desc": "Scrivi ai candidati direttamente. Nessun recruiter in mezzo, nessun costo agenzia, nessun ritardo tra interesse e contatto."
+      },
+      "4": {
+        "title": "Decision Pack",
+        "desc": "Report di confronto candidati generati dall'AI che ti aiutano a valutare e decidere tra i profili selezionati."
+      },
+      "5": {
+        "title": "Analytics Assunzioni",
+        "desc": "Monitora la tua pipeline di recruiting — dalla ricerca al contatto all'assunzione. Capisci cosa funziona e ottimizza."
+      }
+    },
+    "comparison": {
+      "title": "Un Modo Migliore per Assumere Junior",
+      "subtitle": "Il recruiting tradizionale non è stato pensato per l'entry-level. InTransparency sì.",
+      "headers": { "before": "Tradizionale", "after": "Con InTransparency" },
+      "rows": {
+        "0": { "before": "CV auto-dichiarati", "after": "Progetti verificati accademicamente" },
+        "1": { "before": "Algoritmi di keyword-matching", "after": "Analisi AI del lavoro reale" },
+        "2": { "before": "Settimane di screening", "after": "Esplora, valuta, connettiti" },
+        "3": { "before": "Intermediari e agenzie", "after": "Accesso diretto ai candidati" }
+      }
+    },
+    "cta": {
+      "title": "Inizia a Scoprire Talenti Verificati",
+      "subtitle": "Esplora i profili degli studenti e vedi lavori reali e verificati. Connettiti con il candidato giusto quando sei pronto.",
+      "primaryButton": "Inizia Ora",
+      "secondaryButton": "Esplora Portfolio"
+    }
+  },
+  "forAcademicPartners": {
+    "hero": {
+      "badge": "Per Università, ITS e Scuole",
+      "title": "Conosci il Tuo Vero",
+      "titleHighlight": "Tasso di Placement.",
+      "subtitle": "Non dai questionari annuali. Dalle assunzioni reali, tracciate mentre avvengono. Dai ai tuoi studenti la visibilità che meritano e dimostra il tuo impatto con dati concreti."
+    },
+    "steps": {
+      "title": "Come Funziona per il Tuo Team",
+      "subtitle": "Un processo leggero progettato per i servizi carriera, non per l'IT.",
+      "0": {
+        "title": "Registra i Tuoi Studenti",
+        "desc": "Gli studenti si registrano da soli o li importi in blocco via CSV. Dashboard semplice — nessuna integrazione IT, nessun sviluppatore necessario."
+      },
+      "1": {
+        "title": "Verifica e Approva i Progetti",
+        "desc": "Rivedi il lavoro degli studenti con un click. Aggiungi voti, crediti ECTS e raccomandazioni. L'approvazione batch lo rende veloce."
+      },
+      "2": {
+        "title": "Traccia i Risultati di Carriera",
+        "desc": "Vedi quali studenti vengono contattati, intervistati e assunti. Dati di placement in tempo reale che dimostrano il tuo impatto."
+      }
+    },
+    "features": {
+      "title": "Cosa Ottieni",
+      "subtitle": "Strumenti che rendono il placement degli studenti misurabile e visibile.",
+      "0": {
+        "title": "Dashboard Verifica Batch",
+        "desc": "Approva progetti degli studenti singolarmente o in batch. Progettata per i team dei servizi carriera che verificano decine di studenti."
+      },
+      "1": {
+        "title": "Analytics Placement in Tempo Reale",
+        "desc": "Funnel assunzioni in tempo reale — vedi contatti, colloqui e assunzioni mentre avvengono. Non questionari annuali, dati reali."
+      },
+      "2": {
+        "title": "Visibilità Studenti",
+        "desc": "I tuoi laureati diventano visibili ai datori di lavoro in Italia e in Europa. Visibilità tutto l'anno, non solo al career day."
+      },
+      "3": {
+        "title": "Mappa Domanda Competenze",
+        "desc": "Vedi cosa cercano le aziende. Allinea il tuo curriculum alla domanda reale del mercato basandoti sul comportamento effettivo dei recruiter."
+      },
+      "4": {
+        "title": "Conforme al GDPR",
+        "desc": "Design privacy-first con gestione consenso integrata. Gli studenti controllano i loro dati, e tu resti conforme."
+      },
+      "5": {
+        "title": "Integrazione ECTS e Voti",
+        "desc": "Funziona con il tuo sistema di valutazione. Aggiungi crediti ECTS, voti in trentesimi o qualsiasi formato tu usi."
+      }
+    },
+    "audience": {
+      "title": "Per Ogni Tipo di Scuola",
+      "subtitle": "Che tu sia un'università, un'accademia ITS o una scuola superiore — i tuoi studenti meritano visibilità.",
+      "0": {
+        "title": "Università",
+        "desc": "Traccia i tassi di placement per dipartimento. Verifica tesi e progetti di ricerca. Dimostra l'impatto della tua università sull'occupabilità."
+      },
+      "1": {
+        "title": "Accademie ITS",
+        "desc": "I progetti tecnici pratici dei tuoi studenti sono il loro punto di forza. Rendili visibili alle aziende che valorizzano le competenze concrete."
+      },
+      "2": {
+        "title": "Scuole Superiori",
+        "desc": "Aiuta gli studenti a costruire il loro primo portfolio verificato. Mostra i progetti di alternanza scuola-lavoro e le prime esperienze."
+      }
+    },
+    "cta": {
+      "title": "Dai ai Tuoi Studenti la Visibilità che Meritano",
+      "subtitle": "Unisciti alla piattaforma che collega il lavoro accademico con reali opportunità di carriera. Traccia il tuo impatto con i dati.",
+      "primaryButton": "Inizia Ora",
+      "secondaryButton": "Scopri di Più"
+    }
+  },
   "legal": {
     "hero": {
       "title": "Termini e Privacy",

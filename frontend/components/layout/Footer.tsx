@@ -70,16 +70,14 @@ export function Footer() {
       { name: tNav('aiJobSearch'), href: '/demo/ai-search' },
     ],
     institutions: [
-      { name: tNav('features'), href: '/features' },
-      { name: tNav('howItWorks'), href: '/how-it-works' },
+      { name: tNav('howItWorks'), href: '/for-academic-partners' },
       { name: tNav('forHighSchools'), href: '/per-scuole-superiori' },
       { name: tNav('forITS'), href: '/for-its-institutes' },
       { name: tNav('forUniversities'), href: '/per-universita' },
       { name: tNav('pricing'), href: '/pricing' },
     ],
     companies: [
-      { name: tNav('features'), href: '/features' },
-      { name: tNav('howItWorks'), href: '/how-it-works' },
+      { name: tNav('howItWorks'), href: '/for-companies' },
       { name: tNav('searchTalent'), href: '/explore' },
       { name: tNav('aiJobSearch'), href: '/demo/ai-search' },
       { name: tNav('pricing'), href: '/pricing' },

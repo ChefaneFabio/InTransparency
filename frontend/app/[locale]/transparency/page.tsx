@@ -59,7 +59,7 @@ export default function TransparencyPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
-                  <Link href="/features">
+                  <Link href="/how-it-works">
                     {t('hero.ctas.features')}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
