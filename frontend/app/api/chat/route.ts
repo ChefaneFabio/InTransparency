@@ -2,13 +2,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
 import Anthropic from '@anthropic-ai/sdk'
+import type { MessageParam } from '@anthropic-ai/sdk/resources/messages'
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY || '',
 })
 
 // In-memory session store (conversations reset on deploy, which is fine for a support chatbot)
-const sessions = new Map<string, { role: string; content: string }[]>()
+const sessions = new Map<string, MessageParam[]>()
 const SESSION_MAX_MESSAGES = 20
 
 const systemPrompts: Record<string, string> = {
@@ -74,7 +75,7 @@ export async function POST(request: NextRequest) {
 
     const session = await getServerSession(authOptions)
     const body = await request.json()
-    const { session_id, message, user_role, stream = false } = body
+    const { session_id, message, user_role, stream: useStream = false } = body
 
     if (!session_id || !message) {
       return NextResponse.json(
@@ -93,20 +94,20 @@ export async function POST(request: NextRequest) {
     const history = sessions.get(session_id)!
 
     // Add user message
-    history.push({ role: 'user', content: message })
+    history.push({ role: 'user' as const, content: message })
 
     // Trim to last N messages to stay within token limits
     if (history.length > SESSION_MAX_MESSAGES) {
       history.splice(0, history.length - SESSION_MAX_MESSAGES)
     }
 
-    if (stream) {
+    if (useStream) {
       const encoder = new TextEncoder()
 
       const readableStream = new ReadableStream({
         async start(controller) {
           try {
-            const stream = anthropic.messages.stream({
+            const messageStream = anthropic.messages.stream({
               model: 'claude-haiku-4-5-20251001',
               max_tokens: 1000,
               system: systemPrompt,
@@ -115,21 +116,20 @@ export async function POST(request: NextRequest) {
 
             let fullResponse = ''
 
-            stream.on('text', (text) => {
+            messageStream.on('text', (text) => {
               fullResponse += text
               controller.enqueue(
                 encoder.encode(`data: ${JSON.stringify({ text })}\n\n`)
               )
             })
 
-            stream.on('end', () => {
-              // Save assistant response to history
-              history.push({ role: 'assistant', content: fullResponse })
+            messageStream.on('end', () => {
+              history.push({ role: 'assistant' as const, content: fullResponse })
               controller.enqueue(encoder.encode('data: [DONE]\n\n'))
               controller.close()
             })
 
-            stream.on('error', (err) => {
+            messageStream.on('error', (err) => {
               console.error('Claude stream error:', err)
               controller.enqueue(
                 encoder.encode(`data: ${JSON.stringify({ text: 'Sorry, I encountered an error. Please try again.' })}\n\n`)
@@ -168,8 +168,7 @@ export async function POST(request: NextRequest) {
     const assistantMessage =
       response.content[0].type === 'text' ? response.content[0].text : ''
 
-    // Save to history
-    history.push({ role: 'assistant', content: assistantMessage })
+    history.push({ role: 'assistant' as const, content: assistantMessage })
 
     return NextResponse.json({
       message: assistantMessage,
