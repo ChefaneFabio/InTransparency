@@ -1,7 +1,6 @@
 'use client'
 
 import { Link } from '@/navigation'
-import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, GraduationCap, Building2, Briefcase } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -31,18 +30,6 @@ export function Hero() {
     <section className="py-24 sm:py-36">
       <div className="container">
         <div className="mx-auto max-w-3xl text-center">
-          {/* Brand banner */}
-          <div className="mb-10">
-            <Image
-              src="/images/banner.jpg"
-              alt="InTransparency"
-              width={351}
-              height={120}
-              className="mx-auto h-auto w-full max-w-md"
-              priority
-            />
-          </div>
-
           {/* Social proof — earned, not decorative */}
           <p className="mb-8 text-sm font-medium tracking-widest text-primary uppercase">
             {t('serviceBadge')}

@@ -105,10 +105,10 @@ export function Footer() {
           <div className="flex items-center gap-4">
             <Link href="/">
               <Image
-                src="/logo.jpeg"
-                alt="InTransparency Logo"
-                width={340}
-                height={438}
+                src="/images/banner.jpg"
+                alt="InTransparency"
+                width={351}
+                height={120}
                 className="h-10 w-auto"
               />
             </Link>
