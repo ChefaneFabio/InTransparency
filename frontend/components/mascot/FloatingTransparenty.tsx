@@ -3,15 +3,24 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Transparenty } from './Transparenty'
+import { ChatbotWidget, ChatbotRole } from '@/components/chat/ChatbotWidget'
+import { useSegment, Segment } from '@/lib/segment-context'
 
 const moods = ['happy', 'waving', 'thinking', 'excited', 'happy'] as const
+
+const segmentToChatRole: Record<Segment, ChatbotRole> = {
+  students: 'student',
+  institutions: 'institution',
+  companies: 'company',
+}
 
 export function FloatingTransparenty() {
   const [mood, setMood] = useState<'happy' | 'thinking' | 'waving' | 'sad' | 'excited'>('happy')
   const [visible, setVisible] = useState(false)
+  const [chatOpen, setChatOpen] = useState(false)
+  const { segment } = useSegment()
 
   useEffect(() => {
-    // Show after scrolling past the hero
     const handleScroll = () => {
       setVisible(window.scrollY > 400)
     }
@@ -28,6 +37,17 @@ export function FloatingTransparenty() {
     return () => clearInterval(interval)
   }, [])
 
+  // When chat is open, render only the ChatbotWidget (it has its own close button)
+  if (chatOpen) {
+    return (
+      <ChatbotWidget
+        userRole={segmentToChatRole[segment]}
+        isOpen={true}
+        onClose={() => setChatOpen(false)}
+      />
+    )
+  }
+
   return (
     <AnimatePresence>
       {visible && (
@@ -36,14 +56,28 @@ export function FloatingTransparenty() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
           transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-          className="fixed bottom-6 right-6 z-40 hidden md:block pointer-events-none"
+          className="fixed bottom-6 right-6 z-40"
         >
-          <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+          <button
+            onClick={() => setChatOpen(true)}
+            className="cursor-pointer group relative"
+            aria-label="Open chat assistant"
           >
-            <Transparenty size={56} mood={mood} />
-          </motion.div>
+            {/* Tooltip */}
+            <span className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap bg-foreground text-background text-xs px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
+              Chat with Transparenty
+            </span>
+
+            {/* Pulse ring */}
+            <span className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
+
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <Transparenty size={56} mood={mood} />
+            </motion.div>
+          </button>
         </motion.div>
       )}
     </AnimatePresence>
