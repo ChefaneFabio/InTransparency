@@ -15,21 +15,24 @@ const roles = [
   {
     id: 'student' as const,
     icon: GraduationCap,
-    color: 'bg-primary',
+    color: 'bg-blue-600',
+    borderHover: 'hover:border-blue-400',
     href: '/auth/register/student',
     benefitCount: 4
   },
   {
     id: 'recruiter' as const,
     icon: Users,
-    color: 'bg-primary',
+    color: 'bg-violet-600',
+    borderHover: 'hover:border-violet-400',
     href: '/auth/register/recruiter',
     benefitCount: 4
   },
   {
     id: 'university' as const,
     icon: Building2,
-    color: 'bg-primary',
+    color: 'bg-amber-600',
+    borderHover: 'hover:border-amber-400',
     href: '/auth/register/university',
     benefitCount: 4
   },
@@ -37,6 +40,7 @@ const roles = [
     id: 'techpark' as const,
     icon: Landmark,
     color: 'bg-emerald-600',
+    borderHover: 'hover:border-emerald-400',
     href: '/auth/register/techpark',
     benefitCount: 4
   }
@@ -104,7 +108,7 @@ export default function RegisterPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="h-full hover:shadow-lg transition-all border-2 hover:border-primary/50">
+                  <Card className={`h-full hover:shadow-lg transition-all border-2 ${roleOption.borderHover}`}>
                     <CardHeader>
                       <div className={`${roleOption.color} p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto`}>
                         <Icon className="h-8 w-8 text-white" />
