@@ -94,13 +94,13 @@ export default function ForCompaniesPage() {
               >
                 <Button size="lg" asChild className="bg-white text-slate-900 hover:bg-gray-100">
                   <Link href="/auth/register?role=recruiter">
-                    {t('hero.cta')}
+                    {t('cta.primaryButton')}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild className="border-white/30 text-white hover:bg-white/10">
                   <Link href="/explore">
-                    {t('hero.secondaryCta')}
+                    {t('cta.secondaryButton')}
                   </Link>
                 </Button>
               </motion.div>
@@ -119,10 +119,10 @@ export default function ForCompaniesPage() {
               className="text-center mb-14"
             >
               <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-4xl font-bold mb-4">
-                {t('howItWorks.title')}
+                {t('steps.title')}
               </motion.h2>
               <motion.p variants={fadeUp} custom={1} className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {t('howItWorks.subtitle')}
+                {t('steps.subtitle')}
               </motion.p>
             </motion.div>
 
@@ -140,14 +140,11 @@ export default function ForCompaniesPage() {
                   <div className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${step.bg} mb-5`}>
                     <step.icon className={`h-8 w-8 ${step.color}`} />
                   </div>
-                  <div className="text-sm font-semibold text-muted-foreground mb-2">
-                    {t(`steps.${i}.label`)}
-                  </div>
                   <h3 className="text-xl font-bold mb-2">
                     {t(`steps.${i}.title`)}
                   </h3>
                   <p className="text-muted-foreground">
-                    {t(`steps.${i}.description`)}
+                    {t(`steps.${i}.desc`)}
                   </p>
                 </motion.div>
               ))}
@@ -189,10 +186,10 @@ export default function ForCompaniesPage() {
                         <feat.icon className={`h-6 w-6 ${feat.color}`} />
                       </div>
                       <h3 className="text-lg font-bold mb-2">
-                        {t(`features.items.${i}.title`)}
+                        {t(`features.${i}.title`)}
                       </h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">
-                        {t(`features.items.${i}.description`)}
+                        {t(`features.${i}.desc`)}
                       </p>
                     </CardContent>
                   </Card>
@@ -227,10 +224,10 @@ export default function ForCompaniesPage() {
               <Card className="overflow-hidden">
                 <div className="grid grid-cols-2">
                   <div className="p-4 bg-red-50 text-center font-bold text-red-800 border-b border-r">
-                    {t('comparison.before')}
+                    {t('comparison.headers.before')}
                   </div>
                   <div className="p-4 bg-emerald-50 text-center font-bold text-emerald-800 border-b">
-                    {t('comparison.after')}
+                    {t('comparison.headers.after')}
                   </div>
                 </div>
                 {comparisonRows.map((row) => (
@@ -280,13 +277,13 @@ export default function ForCompaniesPage() {
               >
                 <Button size="lg" asChild className="bg-white text-slate-900 hover:bg-gray-100">
                   <Link href="/auth/register?role=recruiter">
-                    {t('cta.register')}
+                    {t('cta.primaryButton')}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild className="border-white/30 text-white hover:bg-white/10">
                   <Link href="/explore">
-                    {t('cta.explore')}
+                    {t('cta.secondaryButton')}
                   </Link>
                 </Button>
               </motion.div>

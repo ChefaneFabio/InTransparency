@@ -95,7 +95,7 @@ export default function ForAcademicPartnersPage() {
                   className="bg-white text-blue-900 hover:bg-primary/5 w-full sm:w-auto"
                 >
                   <GraduationCap className="h-5 w-5 mr-2" />
-                  {t('hero.cta')}
+                  {t('cta.primaryButton')}
                 </Button>
               </Link>
               <Link href="/contact?subject=academic-partner-demo">
@@ -104,7 +104,7 @@ export default function ForAcademicPartnersPage() {
                   variant="outline"
                   className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto"
                 >
-                  {t('hero.demoCta')}
+                  {t('cta.secondaryButton')}
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </Link>
@@ -125,10 +125,10 @@ export default function ForAcademicPartnersPage() {
             custom={0}
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              {t('howItWorks.title')}
+              {t('steps.title')}
             </h2>
             <p className="text-gray-600 max-w-xl mx-auto">
-              {t('howItWorks.subtitle')}
+              {t('steps.subtitle')}
             </p>
           </motion.div>
 
@@ -147,14 +147,11 @@ export default function ForAcademicPartnersPage() {
                     <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
                       <step.icon className="h-7 w-7 text-primary" />
                     </div>
-                    <Badge variant="outline" className="mb-3 text-xs">
-                      {t(`steps.${i}.badge`)}
-                    </Badge>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
                       {t(`steps.${i}.title`)}
                     </h3>
                     <p className="text-sm text-gray-600 leading-relaxed">
-                      {t(`steps.${i}.description`)}
+                      {t(`steps.${i}.desc`)}
                     </p>
                   </CardContent>
                 </Card>
@@ -199,10 +196,10 @@ export default function ForAcademicPartnersPage() {
                       <feat.icon className="h-5 w-5 text-primary" />
                     </div>
                     <h3 className="text-base font-semibold text-gray-900 mb-1.5">
-                      {t(`features.items.${feat.key}.title`)}
+                      {t(`features.${i}.title`)}
                     </h3>
                     <p className="text-sm text-gray-600 leading-relaxed">
-                      {t(`features.items.${feat.key}.description`)}
+                      {t(`features.${i}.desc`)}
                     </p>
                   </CardContent>
                 </Card>
@@ -247,10 +244,10 @@ export default function ForAcademicPartnersPage() {
                       <aud.icon className="h-7 w-7 text-primary" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {t(`audience.types.${aud.key}.title`)}
+                      {t(`audience.${i}.title`)}
                     </h3>
                     <p className="text-sm text-gray-600 leading-relaxed">
-                      {t(`audience.types.${aud.key}.description`)}
+                      {t(`audience.${i}.desc`)}
                     </p>
                   </CardContent>
                 </Card>
@@ -282,7 +279,7 @@ export default function ForAcademicPartnersPage() {
                   className="bg-white text-blue-900 hover:bg-primary/5 w-full sm:w-auto"
                 >
                   <GraduationCap className="h-5 w-5 mr-2" />
-                  {t('cta.registerButton')}
+                  {t('cta.primaryButton')}
                 </Button>
               </Link>
               <Link href="/contact?subject=academic-partner-demo">
@@ -291,22 +288,11 @@ export default function ForAcademicPartnersPage() {
                   variant="outline"
                   className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto"
                 >
-                  {t('cta.demoButton')}
+                  {t('cta.secondaryButton')}
                 </Button>
               </Link>
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-blue-200">
-              <span className="flex items-center gap-1">
-                <CheckCircle2 className="h-4 w-4" /> {t('cta.badges.noIt')}
-              </span>
-              <span className="flex items-center gap-1">
-                <CheckCircle2 className="h-4 w-4" /> {t('cta.badges.gdpr')}
-              </span>
-              <span className="flex items-center gap-1">
-                <CheckCircle2 className="h-4 w-4" /> {t('cta.badges.quickSetup')}
-              </span>
-            </div>
           </motion.div>
         </div>
       </section>

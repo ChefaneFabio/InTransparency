@@ -112,14 +112,14 @@ export default function ForStudentsPage() {
             >
               <Link href="/auth/register">
                 <Button size="lg" className="gap-2 rounded-full px-8 text-base">
-                  {t('hero.cta')}
+                  {t('cta.primaryButton')}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/explore">
                 <Button variant="outline" size="lg" className="gap-2 rounded-full px-8 text-base">
                   <Play className="h-4 w-4" />
-                  {t('hero.secondary')}
+                  {t('cta.secondaryButton')}
                 </Button>
               </Link>
             </motion.div>
@@ -142,14 +142,14 @@ export default function ForStudentsPage() {
               custom={0}
               className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
             >
-              {t('howItWorks.title')}
+              {t('steps.title')}
             </motion.h2>
             <motion.p
               variants={fadeUp}
               custom={1}
               className="mx-auto mt-4 max-w-xl text-slate-600"
             >
-              {t('howItWorks.subtitle')}
+              {t('steps.subtitle')}
             </motion.p>
           </motion.div>
 
@@ -181,7 +181,7 @@ export default function ForStudentsPage() {
                     {t(`steps.${i}.title`)}
                   </h3>
                   <p className="mt-2 text-sm text-slate-500">
-                    {t(`steps.${i}.description`)}
+                    {t(`steps.${i}.desc`)}
                   </p>
                 </motion.div>
               )
@@ -233,10 +233,10 @@ export default function ForStudentsPage() {
                         <Icon className="h-5 w-5" />
                       </div>
                       <h3 className="mt-4 text-base font-semibold text-slate-900">
-                        {t(`features.items.${i}.title`)}
+                        {t(`features.${i}.title`)}
                       </h3>
                       <p className="mt-2 text-sm leading-relaxed text-slate-500">
-                        {t(`features.items.${i}.description`)}
+                        {t(`features.${i}.desc`)}
                       </p>
                     </CardContent>
                   </Card>
@@ -290,10 +290,10 @@ export default function ForStudentsPage() {
                         <Icon className="h-8 w-8 text-white" />
                       </div>
                       <h3 className="mt-5 text-lg font-semibold text-slate-900">
-                        {t(`audience.items.${i}.title`)}
+                        {t(`audience.${i}.title`)}
                       </h3>
                       <p className="mt-3 text-sm leading-relaxed text-slate-500">
-                        {t(`audience.items.${i}.description`)}
+                        {t(`audience.${i}.desc`)}
                       </p>
                     </CardContent>
                   </Card>
@@ -337,7 +337,7 @@ export default function ForStudentsPage() {
           >
             <Link href="/auth/register">
               <Button size="lg" className="gap-2 rounded-full bg-white px-8 text-base text-slate-900 hover:bg-slate-100">
-                {t('cta.register')}
+                {t('cta.primaryButton')}
                 <ChevronRight className="h-4 w-4" />
               </Button>
             </Link>
@@ -347,7 +347,7 @@ export default function ForStudentsPage() {
                 size="lg"
                 className="gap-2 rounded-full border-slate-600 px-8 text-base text-slate-200 hover:bg-slate-800"
               >
-                {t('cta.explore')}
+                {t('cta.secondaryButton')}
               </Button>
             </Link>
           </motion.div>
