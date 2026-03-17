@@ -103,7 +103,7 @@ export function Header() {
               alt="InTransparency"
               width={351}
               height={120}
-              className="h-[36px] w-auto"
+              className="h-[56px] w-auto"
               priority
             />
           </Link>
@@ -172,7 +172,7 @@ export function Header() {
                   alt="InTransparency"
                   width={351}
                   height={120}
-                  className="h-10 w-auto"
+                  className="h-14 w-auto"
                 />
               </Link>
               <Button

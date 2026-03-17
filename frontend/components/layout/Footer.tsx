@@ -109,7 +109,7 @@ export function Footer() {
                 alt="InTransparency"
                 width={351}
                 height={120}
-                className="h-10 w-auto"
+                className="h-14 w-auto"
               />
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs hidden sm:block">
