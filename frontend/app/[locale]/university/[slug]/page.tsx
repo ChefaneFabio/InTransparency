@@ -222,7 +222,7 @@ export default function UniversityShowcasePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {featuredStudents.map((student) => (
-                <Link key={student.id} href={`/students/${student.id}`}>
+                <Link key={student.id} href={`/students/${student.username || student.id}/public`}>
                   <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
                     <CardContent className="p-6 text-center">
                       <Avatar className="h-20 w-20 mx-auto mb-4">

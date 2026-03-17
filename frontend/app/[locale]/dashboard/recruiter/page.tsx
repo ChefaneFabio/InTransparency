@@ -47,6 +47,7 @@ interface RecruiterStats {
 
 interface Candidate {
   id: string
+  username: string | null
   name: string
   initials: string
   university: string
@@ -345,7 +346,7 @@ export default function RecruiterDashboard() {
                             Message
                           </Button>
                           <Button size="sm" asChild>
-                            <Link href={`/students/${candidate.id}`}>
+                            <Link href={`/students/${candidate.username || candidate.id}/public`}>
                               View Profile
                             </Link>
                           </Button>

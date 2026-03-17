@@ -319,7 +319,7 @@ export function SubmissionCard({ submission, variant = 'recruiter', onAction }: 
                 )}
                 {student && (
                   <Button size="sm" variant="ghost" asChild>
-                    <Link href={`/students/${student.id}`}>
+                    <Link href={`/students/${student.username || student.id}/public`}>
                       View Profile
                     </Link>
                   </Button>

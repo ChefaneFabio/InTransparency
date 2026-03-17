@@ -488,7 +488,7 @@ export default function CandidatesPage() {
 
                 <div className="flex gap-2">
                   <Button size="sm" className="flex-1" asChild>
-                    <Link href={`/students/${candidate.id}`}>
+                    <Link href={`/students/${candidate.username || candidate.id}/public`}>
                       <Eye className="h-4 w-4 mr-1" />
                       View Profile
                     </Link>
@@ -545,7 +545,7 @@ export default function CandidatesPage() {
                       <MessageSquare className="h-4 w-4" />
                     </Button>
                     <Button size="sm" asChild>
-                      <Link href={`/students/${candidate.id}`}>
+                      <Link href={`/students/${candidate.username || candidate.id}/public`}>
                         View Profile
                       </Link>
                     </Button>

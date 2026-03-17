@@ -169,6 +169,7 @@ export async function GET(req: NextRequest) {
       },
       select: {
         id: true,
+        username: true,
         firstName: true,
         lastName: true,
         university: true,
@@ -200,6 +201,7 @@ export async function GET(req: NextRequest) {
     // Format candidates
     const formattedCandidates = topCandidates.map(candidate => ({
       id: candidate.id,
+      username: candidate.username,
       name: `${candidate.firstName || ''} ${candidate.lastName || ''}`.trim() || 'Anonymous',
       initials: getInitials(candidate.firstName, candidate.lastName),
       university: candidate.university || 'University not specified',
