@@ -713,7 +713,7 @@
         "price": "€9",
         "period": "per month",
         "description": "Stand out and get discovered faster",
-        "badge": "🚀 Most Popular",
+        "badge": "Most Popular",
         "features": {
           "everything": "Everything in Free Forever",
           "priority": "Priority in recruiter search results",
@@ -733,7 +733,7 @@
         "price": "€9",
         "period": "one-time",
         "description": "Professional portfolio design + LinkedIn optimization",
-        "badge": "💎 One-Time Service",
+        "badge": "One-Time Service",
         "features": {
           "review": "Professional portfolio design review",
           "aiOptimized": "AI-optimized project descriptions",
@@ -757,7 +757,7 @@
         "price": "€0",
         "period": "no subscription",
         "description": "Unlimited browsing - pay only when you contact",
-        "badge": "🔍 Always Free",
+        "badge": "Always Free",
         "features": {
           "registration": "Free registration (no credit card)",
           "unlimited": "Unlimited database exploration",
@@ -784,7 +784,7 @@
         "price": "€99",
         "period": "per month",
         "description": "Unlimited contacts + custom filters + branding + API access",
-        "badge": "🏢 Best for Scale",
+        "badge": "Best for Scale",
         "cta": "Upgrade to Enterprise"
       }
     },
@@ -797,7 +797,7 @@
         "price": "Free",
         "period": "forever - no subscriptions",
         "description": "Get your students hired through verified marketplace. FREE verification, discovery, matching, and analytics.",
-        "badge": "🎓 100% Free Forever",
+        "badge": "100% Free Forever",
         "cta": "Join Free Marketplace"
       },
       "enterprise": {
@@ -805,7 +805,7 @@
         "price": "€2,000",
         "period": "per year",
         "description": "Full white-label, API access, custom integrations. For large universities with advanced needs.",
-        "badge": "🏢 Enterprise",
+        "badge": "Enterprise",
         "cta": "Schedule Demo"
       }
     }
@@ -910,7 +910,7 @@
         },
         "button": "Try AI Candidate Search →"
       },
-      "proTip": "💡 Pro Tip: The AI understands natural language - just describe what you're looking for as if talking to a person!"
+      "proTip": "Pro Tip: The AI understands natural language - just describe what you're looking for as if talking to a person!"
     },
     "officeHours": {
       "title": "Office Hours",
@@ -2392,21 +2392,21 @@
         "title": "AI Job Search Demo",
         "subtitle": "For Students",
         "placeholder": "Describe your ideal job...",
-        "initialMessage": "👋 Hi! I'm Transparenty, your AI job search assistant. Tell me what kind of job you're looking for in plain English!\n\nTry: \"Find me frontend developer jobs in Milan at startups\" or \"Stage curriculare in data science\"",
+        "initialMessage": "Hi! I'm Transparenty, your AI job search assistant. Tell me what kind of job you're looking for in plain English!\n\nTry: \"Find me frontend developer jobs in Milan at startups\" or \"Stage curriculare in data science\"",
         "registrationLink": "/auth/register/student"
       },
       "company": {
         "title": "AI Candidate Search Demo",
         "subtitle": "For Companies",
         "placeholder": "Describe who you're looking for...",
-        "initialMessage": "👋 Hi! I'm Transparenty, your AI recruiting assistant. Describe the candidate you need in plain English!\n\nTry: \"Cybersecurity students Roma Network Security 30/30\"",
+        "initialMessage": "Hi! I'm Transparenty, your AI recruiting assistant. Describe the candidate you need in plain English!\n\nTry: \"Cybersecurity students Roma Network Security 30/30\"",
         "registrationLink": "/auth/register/recruiter"
       },
       "university": {
         "title": "AI Search Hub Demo",
         "subtitle": "For Institutes (Universities & ITS)",
         "placeholder": "Search students or jobs...",
-        "initialMessage": "👋 Hi! I'm Transparenty, your institute AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Show me CS students with 3.8+ GPA\" or \"Find tech companies hiring\"",
+        "initialMessage": "Hi! I'm Transparenty, your institute AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Show me CS students with 3.8+ GPA\" or \"Find tech companies hiring\"",
         "registrationLink": "/auth/register/university"
       }
     },
@@ -2807,21 +2807,21 @@
     "resumeProblem": {
       "title": "The Resume Problem",
       "items": {
-        "0": "❌ Unverified skills (anyone can lie)",
-        "1": "❌ No proof of ability",
-        "2": "❌ Rewards good writers, not good builders",
-        "3": "❌ Favors pedigree over talent",
-        "4": "❌ Companies waste $4,000+ per bad hire"
+        "0": "Unverified skills (anyone can lie)",
+        "1": "No proof of ability",
+        "2": "Rewards good writers, not good builders",
+        "3": "Favors pedigree over talent",
+        "4": "Companies waste $4,000+ per bad hire"
       }
     },
     "intransparencyWay": {
       "title": "The InTransparency Way",
       "items": {
-        "0": "✅ Institution-verified projects (all formats)",
-        "1": "✅ Hard skills + soft skills analysis",
-        "2": "✅ AI-powered complete profile building",
-        "3": "✅ Proof of work beats claims",
-        "4": "✅ Find hidden talent 2x faster"
+        "0": "Institution-verified projects (all formats)",
+        "1": "Hard skills + soft skills analysis",
+        "2": "AI-powered complete profile building",
+        "3": "Proof of work beats claims",
+        "4": "Find hidden talent 2x faster"
       }
     },
     "whyDifferent": {
@@ -3400,17 +3400,17 @@
       "title": "Why Join Now?",
       "benefits": {
         "0": {
-          "icon": "🎯",
+          "icon": "",
           "title": "Early Access",
           "description": "Be first to certify before your peers"
         },
         "1": {
-          "icon": "💰",
+          "icon": "",
           "title": "20% Discount",
           "description": "Save €20 as an early bird (€79 vs €99)"
         },
         "2": {
-          "icon": "🚀",
+          "icon": "",
           "title": "Shape the Product",
           "description": "Your feedback helps us improve"
         }
@@ -3467,7 +3467,7 @@
     "chatbot": {
       "student": {
         "title": "Career Assistant",
-        "greeting": "👋 Hi! I'm Transparenty, your AI career assistant. I'm here to help you build a stellar profile, discover perfect-fit jobs, and get personalized career advice - all while being transparent about how your data helps improve your experience.",
+        "greeting": "Hi! I'm Transparenty, your AI career assistant. I'm here to help you build a stellar profile, discover perfect-fit jobs, and get personalized career advice - all while being transparent about how your data helps improve your experience.",
         "examples": {
           "0": "Help me build my profile",
           "1": "Find jobs matching my skills in Milan",
@@ -3477,7 +3477,7 @@
       },
       "company": {
         "title": "Recruiting Assistant",
-        "greeting": "👋 Hi! I'm Transparenty, your AI recruiting assistant. I help you find top talent, understand match scores, and craft compelling job descriptions. Every search is logged transparently to improve your experience.",
+        "greeting": "Hi! I'm Transparenty, your AI recruiting assistant. I help you find top talent, understand match scores, and craft compelling job descriptions. Every search is logged transparently to improve your experience.",
         "examples": {
           "0": "Find cybersecurity students in Rome",
           "1": "Marketing intern with creative portfolio",
@@ -3487,7 +3487,7 @@
       },
       "institution": {
         "title": "Partnership Assistant",
-        "greeting": "👋 Hi! I'm Transparenty, your institutional assistant. I help you set up partnerships, analyze placement data, identify at-risk students, and showcase European job opportunities. All interactions are GDPR-compliant and transparent.",
+        "greeting": "Hi! I'm Transparenty, your institutional assistant. I help you set up partnerships, analyze placement data, identify at-risk students, and showcase European job opportunities. All interactions are GDPR-compliant and transparent.",
         "examples": {
           "0": "How does the free partnership work?",
           "1": "Show me company search trends for my students",
@@ -4258,19 +4258,19 @@
         "title": "AI Job Search Demo",
         "subtitle": "For Students",
         "placeholder": "Describe your ideal job...",
-        "initialMessage": "👋 Hi! I'm Transparenty, your AI job search assistant. Tell me what you're looking for — any field, any location!\n\nTry: \"Graphic design internship in Milan\" or \"Marketing jobs in Rome\" or \"Stage curriculare in data science\""
+        "initialMessage": "Hi! I'm Transparenty, your AI job search assistant. Tell me what you're looking for — any field, any location!\n\nTry: \"Graphic design internship in Milan\" or \"Marketing jobs in Rome\" or \"Stage curriculare in data science\""
       },
       "company": {
         "title": "AI Candidate Search Demo",
         "subtitle": "For Companies",
         "placeholder": "Describe who you're looking for...",
-        "initialMessage": "👋 Hi! I'm Transparenty, your AI recruiting assistant. Describe the candidate you need — skills, major, location!\n\nTry: \"Students with Figma and UI/UX skills\" or \"Marketing graduates with social media experience\""
+        "initialMessage": "Hi! I'm Transparenty, your AI recruiting assistant. Describe the candidate you need — skills, major, location!\n\nTry: \"Students with Figma and UI/UX skills\" or \"Marketing graduates with social media experience\""
       },
       "university": {
         "title": "AI Search Hub Demo",
         "subtitle": "For Institutes (Universities & ITS)",
         "placeholder": "Search students or jobs...",
-        "initialMessage": "👋 Hi! I'm Transparenty, your institute AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Design students\" or \"Marketing job opportunities\" or \"CS students with 3.8+ GPA\""
+        "initialMessage": "Hi! I'm Transparenty, your institute AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Design students\" or \"Marketing job opportunities\" or \"CS students with 3.8+ GPA\""
       }
     },
     "exampleQueries": {

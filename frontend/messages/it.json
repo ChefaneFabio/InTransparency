@@ -713,7 +713,7 @@
         "price": "€9",
         "period": "al mese",
         "description": "Distinguiti e vieni scoperto più velocemente",
-        "badge": "🚀 Più Popolare",
+        "badge": "Più Popolare",
         "features": {
           "everything": "Tutto in Gratis Per Sempre",
           "priority": "Priorità nei risultati recruiter",
@@ -733,7 +733,7 @@
         "price": "€9",
         "period": "una tantum",
         "description": "Design portfolio professionale + ottimizzazione LinkedIn",
-        "badge": "💎 Servizio Una Tantum",
+        "badge": "Servizio Una Tantum",
         "features": {
           "review": "Revisione design portfolio professionale",
           "aiOptimized": "Descrizioni progetti ottimizzate AI",
@@ -757,7 +757,7 @@
         "price": "€0",
         "period": "nessun abbonamento",
         "description": "Sfogliamento illimitato - accesso illimitato durante il lancio",
-        "badge": "🔍 Sempre Gratis",
+        "badge": "Sempre Gratis",
         "features": {
           "registration": "Registrazione gratuita (nessuna carta)",
           "unlimited": "Esplorazione database illimitata",
@@ -784,7 +784,7 @@
         "price": "€99",
         "period": "al mese",
         "description": "Contatti illimitati + filtri custom + branding + accesso API",
-        "badge": "🏢 Migliore per Scala",
+        "badge": "Migliore per Scala",
         "cta": "Upgrade a Enterprise"
       }
     },
@@ -797,7 +797,7 @@
         "price": "Gratis",
         "period": "per sempre - niente abbonamenti",
         "description": "Fai assumere i tuoi studenti tramite marketplace verificato. Verifica, scoperta, matching e analytics GRATUITI.",
-        "badge": "🎓 100% Gratis Per Sempre",
+        "badge": "100% Gratis Per Sempre",
         "cta": "Unisciti a Marketplace Gratuito"
       },
       "enterprise": {
@@ -805,7 +805,7 @@
         "price": "€2.000",
         "period": "all'anno",
         "description": "White-label completo, accesso API, integrazioni custom. Per grandi istituzioni con esigenze avanzate.",
-        "badge": "🏢 Enterprise",
+        "badge": "Enterprise",
         "cta": "Prenota Demo"
       }
     }
@@ -910,7 +910,7 @@
         },
         "button": "Prova Ricerca Candidati AI →"
       },
-      "proTip": "💡 Suggerimento: L'AI comprende linguaggio naturale - descrivi solo ciò che stai cercando come se parlassi con una persona!"
+      "proTip": "Suggerimento: L'AI comprende linguaggio naturale - descrivi solo ciò che stai cercando come se parlassi con una persona!"
     },
     "officeHours": {
       "title": "Orari Ufficio",
@@ -2432,21 +2432,21 @@
         "title": "Demo Ricerca Lavoro AI",
         "subtitle": "Per Studenti",
         "placeholder": "Descrivi il tuo lavoro ideale...",
-        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI per la ricerca lavoro. Dimmi che tipo di lavoro cerchi in italiano!\n\nProva: \"Trovami lavori frontend developer a Milano in startup\" o \"Stage curriculare in data science\"",
+        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente AI per la ricerca lavoro. Dimmi che tipo di lavoro cerchi in italiano!\n\nProva: \"Trovami lavori frontend developer a Milano in startup\" o \"Stage curriculare in data science\"",
         "registrationLink": "/auth/register/student"
       },
       "company": {
         "title": "Demo Ricerca Candidati AI",
         "subtitle": "Per Aziende",
         "placeholder": "Descrivi chi stai cercando...",
-        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI per il recruiting. Descrivi il candidato di cui hai bisogno in italiano!\n\nProva: \"Studenti Cybersecurity Roma Network Security 30/30\"",
+        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente AI per il recruiting. Descrivi il candidato di cui hai bisogno in italiano!\n\nProva: \"Studenti Cybersecurity Roma Network Security 30/30\"",
         "registrationLink": "/auth/register/recruiter"
       },
       "university": {
         "title": "Demo Hub Ricerca AI",
         "subtitle": "Per Istituzioni (Scuole, Università Per Istituti (Università & ITS) ITS)",
         "placeholder": "Cerca studenti o lavori...",
-        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI istituzionale. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Mostrami studenti CS con GPA 3.8+\" o \"Trova aziende tech che assumono\"",
+        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente AI istituzionale. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Mostrami studenti CS con GPA 3.8+\" o \"Trova aziende tech che assumono\"",
         "registrationLink": "/auth/register/university"
       }
     },
@@ -2847,21 +2847,21 @@
     "resumeProblem": {
       "title": "Il Problema del CV",
       "items": {
-        "0": "❌ Competenze non verificate (chiunque può mentire)",
-        "1": "❌ Nessuna prova di capacità",
-        "2": "❌ Premia buoni scrittori, non buoni costruttori",
-        "3": "❌ Favorisce pedigree su talento",
-        "4": "❌ Aziende sprecano €4.000+ per assunzione sbagliata"
+        "0": "Competenze non verificate (chiunque può mentire)",
+        "1": "Nessuna prova di capacità",
+        "2": "Premia buoni scrittori, non buoni costruttori",
+        "3": "Favorisce pedigree su talento",
+        "4": "Aziende sprecano €4.000+ per assunzione sbagliata"
       }
     },
     "intransparencyWay": {
       "title": "Il Modo InTransparency",
       "items": {
-        "0": "✅ Progetti verificati dall'istituzione (tutti i formati)",
-        "1": "✅ Analisi competenze hard + soft",
-        "2": "✅ Costruzione profilo completo potenziata da AI",
-        "3": "✅ Prova di lavoro batte dichiarazioni",
-        "4": "✅ Trova talenti nascosti 2x più veloce"
+        "0": "Progetti verificati dall'istituzione (tutti i formati)",
+        "1": "Analisi competenze hard + soft",
+        "2": "Costruzione profilo completo potenziata da AI",
+        "3": "Prova di lavoro batte dichiarazioni",
+        "4": "Trova talenti nascosti 2x più veloce"
       }
     },
     "whyDifferent": {
@@ -3440,17 +3440,17 @@
       "title": "Perché Iscriversi Ora?",
       "benefits": {
         "0": {
-          "icon": "🎯",
+          "icon": "",
           "title": "Accesso Anticipato",
           "description": "Sii il primo a certificarti prima dei tuoi compagni"
         },
         "1": {
-          "icon": "💰",
+          "icon": "",
           "title": "Sconto del 20%",
           "description": "Risparmia €20 come early bird (€79 vs €99)"
         },
         "2": {
-          "icon": "🚀",
+          "icon": "",
           "title": "Modella il Prodotto",
           "description": "Il tuo feedback ci aiuta a migliorare"
         }
@@ -3507,7 +3507,7 @@
     "chatbot": {
       "student": {
         "title": "Assistente Carriera",
-        "greeting": "👋 Ciao! Sono Transparenty, il tuo assistente AI per la carriera. Sono qui per aiutarti a costruire un profilo eccellente, scoprire lavori perfetti per te e ricevere consigli personalizzati sulla carriera - il tutto essendo trasparente su come i tuoi dati migliorano la tua esperienza.",
+        "greeting": "Ciao! Sono Transparenty, il tuo assistente AI per la carriera. Sono qui per aiutarti a costruire un profilo eccellente, scoprire lavori perfetti per te e ricevere consigli personalizzati sulla carriera - il tutto essendo trasparente su come i tuoi dati migliorano la tua esperienza.",
         "examples": {
           "0": "Aiutami a costruire il mio profilo",
           "1": "Trova lavori corrispondenti alle mie competenze a Milano",
@@ -3517,7 +3517,7 @@
       },
       "company": {
         "title": "Assistente Reclutamento",
-        "greeting": "👋 Ciao! Sono Transparenty, il tuo assistente AI per il reclutamento. Ti aiuto a trovare i migliori talenti, comprendere i punteggi di corrispondenza e creare descrizioni di lavoro convincenti. Ogni ricerca è registrata in modo trasparente per migliorare la tua esperienza.",
+        "greeting": "Ciao! Sono Transparenty, il tuo assistente AI per il reclutamento. Ti aiuto a trovare i migliori talenti, comprendere i punteggi di corrispondenza e creare descrizioni di lavoro convincenti. Ogni ricerca è registrata in modo trasparente per migliorare la tua esperienza.",
         "examples": {
           "0": "Trova studenti di cybersecurity a Roma",
           "1": "Stagista marketing con portfolio creativo",
@@ -3527,7 +3527,7 @@
       },
       "institution": {
         "title": "Assistente Partnership",
-        "greeting": "👋 Ciao! Sono Transparenty, il tuo assistente istituzionale. Ti aiuto a configurare partnership, analizzare dati di placement, identificare studenti a rischio e mostrare opportunità di lavoro europee. Tutte le interazioni sono conformi al GDPR e trasparenti.",
+        "greeting": "Ciao! Sono Transparenty, il tuo assistente istituzionale. Ti aiuto a configurare partnership, analizzare dati di placement, identificare studenti a rischio e mostrare opportunità di lavoro europee. Tutte le interazioni sono conformi al GDPR e trasparenti.",
         "examples": {
           "0": "Come funziona la partnership gratuita?",
           "1": "Mostrami le tendenze di ricerca delle aziende per i miei studenti",
@@ -4297,19 +4297,19 @@
         "title": "Demo Ricerca Lavoro AI",
         "subtitle": "Per Studenti",
         "placeholder": "Descrivi il tuo lavoro ideale...",
-        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI per la ricerca di lavoro. Dimmi cosa cerchi — qualsiasi campo, qualsiasi città!\n\nProva: \"Stage in graphic design a Milano\" o \"Lavori marketing a Roma\" o \"Tirocinio data science\""
+        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente AI per la ricerca di lavoro. Dimmi cosa cerchi — qualsiasi campo, qualsiasi città!\n\nProva: \"Stage in graphic design a Milano\" o \"Lavori marketing a Roma\" o \"Tirocinio data science\""
       },
       "company": {
         "title": "Demo Ricerca Candidati AI",
         "subtitle": "Per Aziende",
         "placeholder": "Descrivi chi stai cercando...",
-        "initialMessage": "👋 Ciao! Sono Transparenty, il tuo assistente AI per il recruiting. Descrivi il candidato che cerchi — competenze, corso di laurea, città!\n\nProva: \"Studenti con competenze Figma e UI/UX\" o \"Laureati marketing con esperienza social media\""
+        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente AI per il recruiting. Descrivi il candidato che cerchi — competenze, corso di laurea, città!\n\nProva: \"Studenti con competenze Figma e UI/UX\" o \"Laureati marketing con esperienza social media\""
       },
       "university": {
         "title": "Demo Hub Ricerca AI",
         "subtitle": "Per Istituzioni (Scuole, Università e ITS)",
         "placeholder": "Cerca studenti o lavori...",
-        "initialMessage": "👋 Ciao! Sono Transparenty, l'assistente AI del tuo istituto. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Studenti design\" o \"Opportunità marketing per laureati\" o \"Studenti CS con media 3.8+\""
+        "initialMessage": "Ciao! Sono Transparenty, l'assistente AI del tuo istituto. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Studenti design\" o \"Opportunità marketing per laureati\" o \"Studenti CS con media 3.8+\""
       }
     },
     "exampleQueries": {

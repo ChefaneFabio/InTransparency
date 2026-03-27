@@ -25,7 +25,7 @@ export default function SuccessStoriesPage() {
 
       <main className="pt-24 pb-16">
         <section className="py-20 relative overflow-hidden">
-          <img src={BRAND_IMAGES.forStudents.success} alt="" className="absolute inset-0 w-full h-full object-cover opacity-10" />
+          <img src={BRAND_IMAGES.forStudents.success} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white" />
           <div className="container max-w-4xl relative z-10">
             <motion.div

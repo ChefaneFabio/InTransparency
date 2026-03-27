@@ -72,7 +72,7 @@ export default function MissionPage() {
       <main className="pt-24 pb-16">
         {/* Hero Section — with real image */}
         <section className="py-16 relative overflow-hidden">
-          <img src={BRAND_IMAGES.about.hero} alt="" className="absolute inset-0 w-full h-full object-cover opacity-10" />
+          <img src={BRAND_IMAGES.about.hero} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-white/95" />
           <div className="container max-w-4xl relative z-10">
             <motion.div
