@@ -167,6 +167,9 @@ const university: NavConfig = {
         { labelKey: 'analytics', href: '/dashboard/university/analytics' },
         { labelKey: 'placementAnalytics', href: '/dashboard/university/placement-analytics' },
         { labelKey: 'skillsGap', href: '/dashboard/university/skills-gap' },
+        { labelKey: 'curriculumAlignment', href: '/dashboard/university/curriculum-alignment' },
+        { labelKey: 'companyEngagement', href: '/dashboard/university/company-engagement' },
+        { labelKey: 'placementReport', href: '/dashboard/university/placement-report' },
       ],
     },
     {
