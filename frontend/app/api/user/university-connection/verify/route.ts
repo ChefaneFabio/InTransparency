@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
 
     if (connection.verificationStatus === 'VERIFIED') {
       // Already verified, redirect to success
-      return NextResponse.redirect(new URL('/dashboard/student?verified=true', req.url))
+      return NextResponse.redirect(new URL('/en/dashboard/student?verified=true', req.url))
     }
 
     // Check if token expired (24 hours)
@@ -53,7 +53,7 @@ export async function GET(req: NextRequest) {
     })
 
     // Redirect to dashboard with success message
-    return NextResponse.redirect(new URL('/dashboard/student?verified=true', req.url))
+    return NextResponse.redirect(new URL('/en/dashboard/student?verified=true', req.url))
   } catch (error) {
     console.error('Verification error:', error)
     return NextResponse.json({ error: 'Verification failed' }, { status: 500 })

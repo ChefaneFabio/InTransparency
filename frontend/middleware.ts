@@ -50,9 +50,13 @@ export async function middleware(request: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET || process.env.JWT_SECRET
   })
 
+  // Detect locale from pathname
+  const localeMatch = pathname.match(/^\/(it|en)/)
+  const detectedLocale = localeMatch ? localeMatch[1] : 'en'
+
   // Redirect to signin if accessing protected route without authentication
   if (isProtectedRoute && !token) {
-    const signInUrl = new URL('/auth/signin', request.url)
+    const signInUrl = new URL(`/${detectedLocale}/auth/signin`, request.url)
     signInUrl.searchParams.set('callbackUrl', pathname)
     return NextResponse.redirect(signInUrl)
   }
@@ -66,7 +70,7 @@ export async function middleware(request: NextRequest) {
 
       if (requiresRole && userRole !== role.toUpperCase() && userRole !== 'ADMIN') {
         // Redirect to unauthorized page
-        return NextResponse.redirect(new URL('/unauthorized', request.url))
+        return NextResponse.redirect(new URL(`/${detectedLocale}/unauthorized`, request.url))
       }
     }
   }
