@@ -16,7 +16,10 @@ import {
   Zap,
   RefreshCw,
   BookOpen,
+  Loader2,
+  Eye,
 } from 'lucide-react'
+import { Link } from '@/navigation'
 
 interface TalentAnalyticsData {
   talentPool: number
@@ -70,12 +73,25 @@ function LoadingSkeleton() {
   )
 }
 
+interface FilteredCandidate {
+  id: string
+  firstName: string
+  lastName: string
+  university: string
+  degree: string
+  photo: string | null
+  projectCount: number
+  topSkills: string[]
+}
+
 export default function TalentDiscoveryPage() {
   const [data, setData] = useState<TalentAnalyticsData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedSkills, setSelectedSkills] = useState<string[]>([])
+  const [filteredCandidates, setFilteredCandidates] = useState<FilteredCandidate[]>([])
+  const [searching, setSearching] = useState(false)
 
   const fetchData = () => {
     setLoading(true)
@@ -95,9 +111,40 @@ export default function TalentDiscoveryPage() {
       })
   }
 
+  // Search candidates when filters change
+  const searchCandidates = () => {
+    if (!searchQuery && selectedSkills.length === 0) {
+      setFilteredCandidates([])
+      return
+    }
+    setSearching(true)
+    const params = new URLSearchParams()
+    if (searchQuery) params.set('university', searchQuery)
+    if (selectedSkills.length > 0) params.set('skills', selectedSkills.join(','))
+    params.set('limit', '20')
+
+    fetch(`/api/dashboard/recruiter/search/students?${params.toString()}`)
+      .then(res => res.json())
+      .then(result => {
+        setFilteredCandidates(result.students || [])
+        setSearching(false)
+      })
+      .catch(() => {
+        setSearching(false)
+      })
+  }
+
   useEffect(() => {
     fetchData()
   }, [])
+
+  // Debounced search when filters change
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      searchCandidates()
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [searchQuery, selectedSkills])
 
   if (loading) return <LoadingSkeleton />
 
@@ -326,6 +373,53 @@ export default function TalentDiscoveryPage() {
               )}
             </CardContent>
           </Card>
+
+          {/* Matching Candidates — appears when filters are active */}
+          {(searchQuery || selectedSkills.length > 0) && (
+            <Card className="border-primary/30">
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  <span className="flex items-center">
+                    <Users className="h-5 w-5 mr-2 text-primary" />
+                    Matching Candidates
+                    {searching && <Loader2 className="h-4 w-4 ml-2 animate-spin" />}
+                  </span>
+                  <Badge>{filteredCandidates.length} found</Badge>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                {filteredCandidates.length > 0 ? (
+                  <div className="space-y-3">
+                    {filteredCandidates.map((c) => (
+                      <div key={c.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                        <div>
+                          <h4 className="font-medium text-gray-900">{c.firstName} {c.lastName}</h4>
+                          <p className="text-sm text-gray-600">{c.university} {c.degree ? `· ${c.degree}` : ''}</p>
+                          <div className="flex flex-wrap gap-1 mt-1">
+                            {(c.topSkills || []).slice(0, 4).map((s: string) => (
+                              <Badge key={s} variant="outline" className="text-xs">{s}</Badge>
+                            ))}
+                          </div>
+                        </div>
+                        <Button size="sm" variant="outline" asChild>
+                          <Link href={`/dashboard/recruiter/candidates/${c.id}`}>
+                            <Eye className="h-4 w-4 mr-1" />
+                            View
+                          </Link>
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                ) : searching ? (
+                  <div className="text-center py-8 text-gray-500">Searching...</div>
+                ) : (
+                  <div className="text-center py-8 text-gray-500">
+                    No candidates match your current filters. Try adjusting your search.
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )}
 
           {/* Discipline Breakdown */}
           <Card>

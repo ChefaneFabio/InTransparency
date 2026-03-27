@@ -254,16 +254,53 @@ export default function PostJobPage() {
 
     setIsSubmitting(true)
     try {
-      const jobData = {
-        ...formData,
-        status,
-        // Filter out empty array items
-        responsibilities: formData.responsibilities.filter(r => r.trim()),
-        requirements: formData.requirements.filter(r => r.trim()),
-        preferredQualifications: formData.preferredQualifications.filter(r => r.trim())
+      // Map form fields to API schema
+      const workLocationMap: Record<string, string> = {
+        remote: 'REMOTE',
+        hybrid: 'HYBRID',
+        onsite: 'ON_SITE',
+      }
+      const jobTypeMap: Record<string, string> = {
+        'full-time': 'FULL_TIME',
+        'part-time': 'PART_TIME',
+        contract: 'CONTRACT',
+        internship: 'INTERNSHIP',
       }
 
-      // Mock API call
+      const jobData = {
+        title: formData.title,
+        description: formData.description,
+        responsibilities: formData.responsibilities.filter(r => r.trim()).join('\n'),
+        requirements: formData.requirements.filter(r => r.trim()).join('\n'),
+        niceToHave: formData.preferredQualifications.filter(r => r.trim()).join('\n'),
+
+        jobType: jobTypeMap[formData.employmentType] || 'FULL_TIME',
+        workLocation: workLocationMap[formData.workType] || 'HYBRID',
+        location: formData.location || null,
+        remoteOk: formData.isRemoteOk || formData.workType === 'remote',
+
+        companyName: formData.department || 'Company',
+        companySize: formData.companySize || null,
+        companyIndustry: formData.industry || null,
+
+        salaryMin: formData.salaryMin ? parseInt(formData.salaryMin) : null,
+        salaryMax: formData.salaryMax ? parseInt(formData.salaryMax) : null,
+        salaryCurrency: formData.currency === 'USD' ? 'EUR' : formData.currency,
+        salaryPeriod: formData.salaryType || 'yearly',
+        showSalary: !!(formData.salaryMin && formData.salaryMax),
+
+        requiredSkills: Array.isArray(formData.targetSkills) ? formData.targetSkills : [],
+        preferredSkills: [],
+        education: formData.experienceLevel || null,
+        experience: formData.experienceLevel || null,
+
+        tags: [],
+        expiresAt: formData.applicationDeadline ? new Date(formData.applicationDeadline).toISOString() : null,
+        internalApply: true,
+
+        status: status === 'published' ? 'ACTIVE' : 'DRAFT',
+      }
+
       const response = await fetch('/api/jobs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
