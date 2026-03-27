@@ -27,6 +27,7 @@ import { Link } from '@/navigation'
 import PlacementProbabilityBadge from '@/components/predictions/PlacementProbabilityBadge'
 import DecisionPackCard from '@/components/dashboard/recruiter/DecisionPackCard'
 import TrustScoreBadge from '@/components/portfolio/TrustScoreBadge'
+import ReadinessBrief from '@/components/dashboard/recruiter/ReadinessBrief'
 import { PositionUpsellBanner } from '@/components/dashboard/recruiter/PositionUpsellBanner'
 
 interface Project {
@@ -345,8 +346,9 @@ export default function CandidateProfilePage() {
         {/* Left Column - Main Content */}
         <div className="lg:col-span-2">
           <Tabs defaultValue="overview" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="readiness">Readiness</TabsTrigger>
               <TabsTrigger value="projects">Projects ({candidate.projectCount})</TabsTrigger>
               <TabsTrigger value="skills">Skills</TabsTrigger>
             </TabsList>
@@ -416,6 +418,10 @@ export default function CandidateProfilePage() {
                   </CardContent>
                 </Card>
               )}
+            </TabsContent>
+
+            <TabsContent value="readiness" className="space-y-6">
+              <ReadinessBrief studentId={candidate.id} />
             </TabsContent>
 
             <TabsContent value="projects" className="space-y-6">
