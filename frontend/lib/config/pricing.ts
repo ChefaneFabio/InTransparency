@@ -1,29 +1,31 @@
 /**
  * Pricing Configuration for InTransparency
  *
- * Simplified pricing model:
- * - Students: Free / Premium €9/mo
- * - Companies: Browse Free / Pay Per Contact €10/contact / Pay Per Position €49/position / Enterprise €99/mo
- * - Institutions: Free / Enterprise €2,000/yr
+ * Phase 1 — Growth / Land Grab:
+ * Everyone gets full access for free. No paywalls.
+ * Stripe infrastructure is preserved for Phase 2 monetization.
+ *
+ * - Students: Free (with optional Premium €9/mo)
+ * - Companies: Free — unlimited access during launch
+ * - Institutions: Free — unlimited access during launch
  */
 
 import { SubscriptionTier } from '@prisma/client'
 
-// Stripe Price IDs (Replace with actual Stripe price IDs after creating products)
+// Stripe Price IDs (kept for Phase 2 — not used during free launch)
 export const STRIPE_PRICE_IDS = {
   // Student Plans
   STUDENT_PREMIUM_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_STUDENT_PREMIUM_MONTHLY || 'price_student_premium_monthly',
 
-  // Company Plans
+  // Company Plans (Phase 2)
+  RECRUITER_PRO_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_RECRUITER_PRO_MONTHLY || 'price_recruiter_pro_monthly',
   RECRUITER_ENTERPRISE_MONTHLY: process.env.NEXT_PUBLIC_STRIPE_RECRUITER_ENTERPRISE_MONTHLY || 'price_recruiter_enterprise_monthly',
 
-  // Institution Plans
+  // Institution Plans (Phase 2)
   INSTITUTION_ENTERPRISE_ANNUAL: process.env.NEXT_PUBLIC_STRIPE_INSTITUTION_ENTERPRISE_ANNUAL || 'price_institution_enterprise_annual',
 
-  // Contact Credits (one-time payment)
+  // Legacy — kept for backward compatibility
   CONTACT_CREDITS: process.env.NEXT_PUBLIC_STRIPE_CONTACT_CREDITS || 'price_contact_credits',
-
-  // Position Listing (one-time payment)
   POSITION_LISTING_STANDARD: process.env.NEXT_PUBLIC_STRIPE_POSITION_LISTING || 'price_position_listing',
 } as const
 
@@ -65,7 +67,7 @@ export const STUDENT_PRICING: PricingTier[] = [
   {
     id: 'FREE' as SubscriptionTier,
     name: 'Free',
-    description: 'Get started with your portfolio',
+    description: 'Build your verified portfolio and get discovered',
     pricingModel: 'free',
     price: {
       monthly: 0,
@@ -112,12 +114,12 @@ export const STUDENT_PRICING: PricingTier[] = [
   },
 ]
 
-// Company/Recruiter Pricing Tiers
+// Company/Recruiter Pricing Tiers — Phase 1: Everything free
 export const RECRUITER_PRICING: PricingTier[] = [
   {
     id: 'RECRUITER_FREE' as SubscriptionTier,
-    name: 'Browse Free',
-    description: 'Explore the talent pool',
+    name: 'Full Access',
+    description: 'Everything you need to find verified talent — free during launch',
     pricingModel: 'free',
     price: {
       monthly: 0,
@@ -125,101 +127,30 @@ export const RECRUITER_PRICING: PricingTier[] = [
     },
     stripePriceIds: {},
     features: [
-      'Unlimited browsing',
-      'Advanced search',
-      'Save candidates',
-      '5 free contacts to get started',
+      'Unlimited portfolio browsing',
+      'Advanced search & filters',
+      'Unlimited candidate contacts',
+      'AI-powered talent matching',
+      'Save and compare candidates',
+      'Post job listings',
+      'Full project and skill data',
     ],
     limits: {
-      contacts: 5,
-    },
-    cta: 'Start Browsing',
-  },
-  {
-    id: 'RECRUITER_PAY_PER_CONTACT' as SubscriptionTier,
-    name: 'Pay Per Contact',
-    description: 'Only pay when you reach out',
-    pricingModel: 'pay_per_contact',
-    price: {
-      monthly: 0,
-      annual: 0,
-      perContact: 10,
-    },
-    stripePriceIds: {
-      perContact: STRIPE_PRICE_IDS.CONTACT_CREDITS,
-    },
-    features: [
-      'Everything in Browse Free, plus:',
-      'Full contact unlock (credit balance)',
-    ],
-    limits: {
-      contacts: -1, // unlimited, but deducted from balance
-      contactBalance: true,
+      contacts: -1, // unlimited during Phase 1
+      apiAccess: false,
+      atsIntegration: false,
     },
     popular: true,
-    cta: 'Buy Credits',
-  },
-  {
-    // Display-only tier: positions are one-time purchases, not a subscription tier
-    id: 'RECRUITER_PAY_PER_CONTACT' as SubscriptionTier,
-    name: 'Pay Per Position',
-    description: 'Unlimited contacts for one role',
-    pricingModel: 'pay_per_position',
-    price: {
-      monthly: 0,
-      annual: 0,
-      perPosition: 49,
-    },
-    stripePriceIds: {
-      perContact: STRIPE_PRICE_IDS.POSITION_LISTING_STANDARD,
-    },
-    features: [
-      'Everything in Browse Free, plus:',
-      'Unlimited candidate contacts for one position',
-      'Active for 30 days',
-      'Ideal for a specific hire',
-    ],
-    limits: {
-      contacts: -1,
-      contactBalance: true,
-    },
-    cta: 'Open a Position',
-  },
-  {
-    id: 'RECRUITER_ENTERPRISE' as SubscriptionTier,
-    name: 'Enterprise',
-    description: 'Unlimited hiring at scale',
-    pricingModel: 'subscription',
-    price: {
-      monthly: 99,
-      annual: 990,
-    },
-    stripePriceIds: {
-      monthly: STRIPE_PRICE_IDS.RECRUITER_ENTERPRISE_MONTHLY,
-    },
-    features: [
-      'Everything in Pay Per Contact, plus:',
-      'Unlimited contact unlocks',
-      'API access',
-      'ATS integration',
-      'Dedicated support',
-    ],
-    limits: {
-      contacts: -1,
-      apiAccess: true,
-      atsIntegration: true,
-      prioritySupport: true,
-    },
-    cta: 'Go Enterprise',
+    cta: 'Start Hiring',
   },
 ]
 
-// Institution Pricing Tiers
+// Institution Pricing Tiers — Phase 1: Everything free
 export const INSTITUTION_PRICING: PricingTier[] = [
   {
     id: 'FREE' as SubscriptionTier,
-    name: 'Free',
-    description: 'Essential tools for your institution',
+    name: 'Full Access',
+    description: 'Everything you need to support your students — free during launch',
     pricingModel: 'free',
     price: {
       monthly: 0,
@@ -227,37 +158,14 @@ export const INSTITUTION_PRICING: PricingTier[] = [
     },
     stripePriceIds: {},
     features: [
-      'Verify projects',
-      'Batch approval',
+      'Verify student projects',
+      'Batch approval dashboard',
       'Placement analytics',
+      'Company visibility tracking',
+      'Alumni management',
     ],
     limits: {},
-    cta: 'Get Started Free',
-  },
-  {
-    id: 'INSTITUTION_ENTERPRISE' as SubscriptionTier,
-    name: 'Enterprise',
-    description: 'Full platform for your institution',
-    pricingModel: 'annual_subscription',
-    price: {
-      monthly: 0,
-      annual: 2000,
-    },
-    stripePriceIds: {
-      annual: STRIPE_PRICE_IDS.INSTITUTION_ENTERPRISE_ANNUAL,
-    },
-    features: [
-      'Everything in Free, plus:',
-      'API integration',
-      'White-label',
-      'Multi-campus support',
-    ],
-    limits: {
-      apiAccess: true,
-      whiteLabel: true,
-      multiCampus: true,
-    },
-    cta: 'Contact Sales',
+    cta: 'Get Started',
   },
 ]
 
@@ -275,16 +183,8 @@ export function hasFeature(
   userTier: SubscriptionTier,
   feature: keyof PricingTier['limits']
 ): boolean {
-  const tier = getPricingTier(userTier)
-  if (!tier) return false
-
-  const limit = tier.limits[feature]
-  if (limit === undefined) return false
-  if (limit === true) return true
-  if (limit === false) return false
-  if (limit === -1) return true  // unlimited
-
-  return false
+  // Phase 1: grant access to everything
+  return true
 }
 
 // Helper function to check if user has reached limit
@@ -293,15 +193,8 @@ export function hasReachedLimit(
   feature: keyof PricingTier['limits'],
   currentUsage: number
 ): boolean {
-  const tier = getPricingTier(userTier)
-  if (!tier) return true
-
-  const limit = tier.limits[feature]
-  if (limit === undefined) return true
-  if (typeof limit === 'boolean') return !limit
-  if (limit === -1) return false  // unlimited
-
-  return currentUsage >= limit
+  // Phase 1: no limits
+  return false
 }
 
 // Stripe configuration

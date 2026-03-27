@@ -39,58 +39,11 @@ export async function GET(req: NextRequest) {
       }
     })
 
-    // Return response based on tier model
-    if (user.subscriptionTier === 'RECRUITER_ENTERPRISE') {
-      return NextResponse.json({
-        model: 'enterprise',
-        unlimited: true,
-        totalContacted,
-        tier: user.subscriptionTier,
-      })
-    }
-
-    if (user.subscriptionTier === 'RECRUITER_PAY_PER_CONTACT') {
-      const credits = Math.floor(user.contactBalance / 1000)
-      return NextResponse.json({
-        model: 'pay_per_contact',
-        balance: user.contactBalance,
-        credits,
-        costPerContact: 1000,
-        totalContacted,
-        tier: user.subscriptionTier,
-      })
-    }
-
-    // RECRUITER_FREE or other — show free contact usage per company domain
-    const FREE_CONTACT_LIMIT = 5
-    const emailDomain = user.email.split('@')[1]?.toLowerCase()
-    const freeProviders = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'live.com', 'icloud.com', 'mail.com', 'protonmail.com']
-    const isCompanyDomain = emailDomain && !freeProviders.includes(emailDomain)
-
-    let domainContactCount = totalContacted
-    if (isCompanyDomain) {
-      const domainRecruiters = await prisma.user.findMany({
-        where: {
-          email: { endsWith: `@${emailDomain}` },
-          role: 'RECRUITER',
-        },
-        select: { id: true },
-      })
-      const domainRecruiterIds = domainRecruiters.map(r => r.id)
-      domainContactCount = await prisma.contactUsage.count({
-        where: { recruiterId: { in: domainRecruiterIds } },
-      })
-    }
-
+    // Phase 1: All recruiters get unlimited access
     return NextResponse.json({
-      model: 'free',
-      balance: 0,
-      credits: 0,
+      model: 'unlimited',
+      unlimited: true,
       totalContacted,
-      domainContactCount,
-      freeContactLimit: FREE_CONTACT_LIMIT,
-      freeContactsRemaining: Math.max(0, FREE_CONTACT_LIMIT - domainContactCount),
-      companyDomain: isCompanyDomain ? emailDomain : undefined,
       tier: user.subscriptionTier,
     })
   } catch (error) {
