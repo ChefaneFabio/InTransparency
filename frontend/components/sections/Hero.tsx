@@ -6,6 +6,7 @@ import { ArrowRight, GraduationCap, Building2, Briefcase } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { useSegment } from '@/lib/segment-context'
+import { BRAND_IMAGES } from '@/lib/brand-images'
 
 const segmentIcons = {
   students: GraduationCap,
@@ -79,6 +80,31 @@ export function Hero() {
             <span>{t('socialProof.unibgPilot')}</span>
           </div>
         </div>
+
+        {/* Hero image — changes per segment */}
+        <motion.div
+          className="mt-16 mx-auto max-w-5xl rounded-2xl overflow-hidden shadow-xl border border-border"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={activeSegment}
+              src={
+                activeSegment === 'students' ? BRAND_IMAGES.hero.students :
+                activeSegment === 'companies' ? BRAND_IMAGES.hero.companies :
+                BRAND_IMAGES.hero.universities
+              }
+              alt=""
+              className="w-full h-[300px] sm:h-[400px] object-cover"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+          </AnimatePresence>
+        </motion.div>
 
         {/* Segment explorer — below the fold */}
         <div className="mt-28 mx-auto max-w-4xl">

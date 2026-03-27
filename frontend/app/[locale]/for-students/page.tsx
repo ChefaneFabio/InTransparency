@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { motion } from 'framer-motion'
 import { Link } from '@/navigation'
+import { BRAND_IMAGES } from '@/lib/brand-images'
 import {
   Upload,
   ShieldCheck,
@@ -123,6 +124,20 @@ export default function ForStudentsPage() {
                 </Button>
               </Link>
             </motion.div>
+          </motion.div>
+
+          {/* Hero image */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-16 mx-auto max-w-4xl"
+          >
+            <img
+              src={BRAND_IMAGES.forStudents.hero}
+              alt="Students collaborating on projects"
+              className="w-full h-[280px] sm:h-[360px] object-cover rounded-2xl shadow-xl"
+            />
           </motion.div>
         </div>
       </section>

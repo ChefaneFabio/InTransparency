@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
+import { BRAND_IMAGES } from '@/lib/brand-images'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -109,6 +110,20 @@ export default function ForAcademicPartnersPage() {
                 </Button>
               </Link>
             </div>
+          </motion.div>
+
+          {/* Hero image */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-16 mx-auto max-w-4xl"
+          >
+            <img
+              src={BRAND_IMAGES.forUniversities.hero}
+              alt="University campus — education meets opportunity"
+              className="w-full h-[280px] sm:h-[360px] object-cover rounded-2xl shadow-xl"
+            />
           </motion.div>
         </div>
       </section>
