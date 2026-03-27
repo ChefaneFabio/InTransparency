@@ -16,32 +16,36 @@ const roles = [
   {
     id: 'student' as const,
     icon: GraduationCap,
-    color: 'bg-blue-600',
-    borderHover: 'hover:border-blue-400',
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80',
+    color: 'bg-primary',
+    borderHover: 'hover:border-primary',
     href: '/auth/register/student',
     benefitCount: 4
   },
   {
     id: 'recruiter' as const,
     icon: Users,
-    color: 'bg-violet-600',
-    borderHover: 'hover:border-violet-400',
+    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80',
+    color: 'bg-primary',
+    borderHover: 'hover:border-primary',
     href: '/auth/register/recruiter',
     benefitCount: 4
   },
   {
     id: 'university' as const,
     icon: Building2,
-    color: 'bg-amber-600',
-    borderHover: 'hover:border-amber-400',
+    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80',
+    color: 'bg-primary',
+    borderHover: 'hover:border-primary',
     href: '/auth/register/university',
     benefitCount: 4
   },
   {
     id: 'techpark' as const,
     icon: Landmark,
-    color: 'bg-emerald-600',
-    borderHover: 'hover:border-emerald-400',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80',
+    color: 'bg-primary',
+    borderHover: 'hover:border-primary',
     href: '/auth/register/techpark',
     benefitCount: 4
   }
@@ -114,11 +118,19 @@ export default function RegisterPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className={`h-full hover:shadow-lg transition-all border-2 ${roleOption.borderHover}`}>
-                    <CardHeader>
-                      <div className={`${roleOption.color} p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto`}>
-                        <Icon className="h-8 w-8 text-white" />
+                  <Card className={`h-full hover:shadow-lg transition-all border-2 ${roleOption.borderHover} overflow-hidden`}>
+                    <div className="relative h-36 overflow-hidden">
+                      <img
+                        src={roleOption.image}
+                        alt=""
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                      <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm p-2 rounded-full">
+                        <Icon className="h-5 w-5 text-primary" />
                       </div>
+                    </div>
+                    <CardHeader className="pt-4">
                       <CardTitle className="text-2xl text-center">
                         {t(`register.roles.${roleOption.id}.name`)}
                       </CardTitle>
