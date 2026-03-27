@@ -108,6 +108,7 @@ export default function CandidatesPage() {
                 id: userId,
                 firstName: project.user.firstName || '',
                 lastName: project.user.lastName || '',
+                username: project.user.username || null,
                 email: '',
                 university: project.user.university || 'University not specified',
                 degree: '',
