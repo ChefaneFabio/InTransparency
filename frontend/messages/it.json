@@ -62,6 +62,9 @@
         "cv": "Il Mio CV",
         "personality": "Profilo Personalità",
         "contractTransparency": "Verifica Contratto",
+        "interviewPrep": "Prepara Colloquio",
+        "jobDecoder": "Decoder Annunci",
+        "salaryBenchmarks": "Guida Stipendi",
         "settings": "Impostazioni"
       }
     },
@@ -6379,6 +6382,84 @@
       },
       "unionTitle": "Nel dubbio, chiedi a un sindacato",
       "unionDescription": "I sindacati italiani offrono revisione contrattuale e consulenza legale gratuita. Possono verificare il tuo contratto, recuperare stipendi non pagati e rappresentarti nelle controversie. L'iscrizione costa €5-15/mese."
+    }
+  },
+  "interviewPrep": {
+    "title": "Preparazione Colloquio AI",
+    "subtitle": "Esercitati con domande generate dall'AI basate sulle tue competenze e progetti reali. Ricevi feedback istantaneo sulle tue risposte.",
+    "error": "Qualcosa è andato storto. Riprova.",
+    "setup": {
+      "title": "Prepara la Tua Sessione di Pratica",
+      "subtitle": "Dicci il ruolo e l'azienda per cui ti stai preparando. Genereremo domande personalizzate basate sul tuo portfolio.",
+      "role": "Ruolo / Posizione",
+      "rolePlaceholder": "es. Junior Frontend Developer",
+      "company": "Azienda (opzionale)",
+      "companyPlaceholder": "es. Accenture",
+      "generate": "Genera Domande di Colloquio",
+      "generating": "Generazione domande..."
+    },
+    "questions": {
+      "title": "Le Tue Domande di Pratica",
+      "regenerate": "Genera Nuove Domande"
+    },
+    "practice": {
+      "title": "La Tua Risposta",
+      "placeholder": "Scrivi la tua risposta qui... Scrivila come se stessi parlando in un vero colloquio.",
+      "evaluate": "Ottieni Feedback AI",
+      "evaluating": "Valutazione..."
+    },
+    "feedback": {
+      "title": "Feedback AI",
+      "strengths": "Punti di forza",
+      "improvements": "Come migliorare",
+      "modelAnswer": "Approccio suggerito"
+    }
+  },
+  "jobDecoder": {
+    "title": "Decoder Annunci di Lavoro",
+    "subtitle": "Incolla un annuncio di lavoro e ottieni un'analisi chiara: cosa è davvero richiesto, quale dovrebbe essere lo stipendio e se dovresti candidarti.",
+    "error": "Qualcosa è andato storto. Riprova.",
+    "input": {
+      "title": "Incolla un Annuncio di Lavoro",
+      "subtitle": "Copia il testo completo dell'annuncio — analizzeremo ogni dettaglio.",
+      "placeholder": "Incolla qui il testo dell'annuncio...\n\nIncludi titolo, requisiti, responsabilità e qualsiasi altro dettaglio dall'annuncio.",
+      "characters": "caratteri",
+      "decode": "Analizza Questo Annuncio",
+      "analyzing": "Analisi in corso..."
+    },
+    "results": {
+      "yourMatch": "La Tua Compatibilità",
+      "matching": "Competenze che hai",
+      "missing": "Competenze da sviluppare",
+      "requirements": "Analisi Requisiti",
+      "mustHave": "Indispensabili (non negoziabili)",
+      "niceToHave": "Preferenziali (non farti fermare da questi)",
+      "jargon": "Gergo Decodificato",
+      "salary": "Stipendio Stimato",
+      "redFlags": "Segnali d'Allarme",
+      "tips": "Consigli per Candidarti"
+    }
+  },
+  "salaryBenchmarks": {
+    "title": "Stipendi in Italia — Guida per Ruolo",
+    "subtitle": "Cosa aspettarti quando negozi il tuo stipendio. Range RAL per ruolo, livello di esperienza e città.",
+    "filters": {
+      "search": "Cerca Ruolo",
+      "searchPlaceholder": "es. Developer, Analyst...",
+      "sector": "Settore",
+      "city": "Città / Regione",
+      "nationalAvg": "Media Nazionale"
+    },
+    "results": {
+      "roles": "ruoli trovati",
+      "junior": "Junior",
+      "mid": "Mid-Level",
+      "senior": "Senior",
+      "years": "anni"
+    },
+    "disclaimer": {
+      "title": "Informazioni sui dati",
+      "text": "Questi sono range RAL (Retribuzione Annua Lorda) approssimativi basati sui dati di mercato italiani 2025-2026. Gli stipendi effettivi variano per dimensione aziendale, settore, competenze specifiche e negoziazione. Gli aggiustamenti per città riflettono le differenze nel costo della vita. Usa questi come punto di partenza per le negoziazioni, non come garanzie."
     }
   }
 }

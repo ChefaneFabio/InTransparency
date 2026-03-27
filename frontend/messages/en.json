@@ -62,6 +62,9 @@
         "cv": "My CV",
         "personality": "Personality Insights",
         "contractTransparency": "Contract Check",
+        "interviewPrep": "Interview Prep",
+        "jobDecoder": "Job Decoder",
+        "salaryBenchmarks": "Salary Guide",
         "settings": "Settings"
       }
     },
@@ -6352,6 +6355,84 @@
       },
       "unionTitle": "When in doubt, ask a sindacato",
       "unionDescription": "Italian labor unions offer free contract review and legal advice. They can check your contract, recover unpaid wages, and represent you in disputes. Membership costs €5-15/month."
+    }
+  },
+  "interviewPrep": {
+    "title": "AI Interview Prep",
+    "subtitle": "Practice with AI-generated questions based on your real skills and projects. Get instant feedback on your answers.",
+    "error": "Something went wrong. Please try again.",
+    "setup": {
+      "title": "Set Up Your Practice Session",
+      "subtitle": "Tell us the role and company you're preparing for. We'll generate personalized questions based on your portfolio.",
+      "role": "Role / Position",
+      "rolePlaceholder": "e.g. Junior Frontend Developer",
+      "company": "Company (optional)",
+      "companyPlaceholder": "e.g. Accenture",
+      "generate": "Generate Interview Questions",
+      "generating": "Generating questions..."
+    },
+    "questions": {
+      "title": "Your Practice Questions",
+      "regenerate": "Generate New Questions"
+    },
+    "practice": {
+      "title": "Your Answer",
+      "placeholder": "Type your answer here... Write it as if you were speaking in an actual interview.",
+      "evaluate": "Get AI Feedback",
+      "evaluating": "Evaluating..."
+    },
+    "feedback": {
+      "title": "AI Feedback",
+      "strengths": "What was strong",
+      "improvements": "How to improve",
+      "modelAnswer": "Suggested approach"
+    }
+  },
+  "jobDecoder": {
+    "title": "Job Ad Decoder",
+    "subtitle": "Paste a job posting and get a plain-language breakdown: what's really required, what the salary should be, and whether you should apply.",
+    "error": "Something went wrong. Please try again.",
+    "input": {
+      "title": "Paste a Job Ad",
+      "subtitle": "Copy the full text of a job posting — we'll analyze every detail.",
+      "placeholder": "Paste the job ad text here...\n\nInclude the job title, requirements, responsibilities, and any other details from the listing.",
+      "characters": "characters",
+      "decode": "Decode This Job Ad",
+      "analyzing": "Analyzing..."
+    },
+    "results": {
+      "yourMatch": "Your Match",
+      "matching": "Skills you have",
+      "missing": "Skills to develop",
+      "requirements": "Requirements Breakdown",
+      "mustHave": "Must-Have (non-negotiable)",
+      "niceToHave": "Nice-to-Have (don't let these stop you)",
+      "jargon": "Jargon Decoded",
+      "salary": "Estimated Salary",
+      "redFlags": "Red Flags",
+      "tips": "Tips for Applying"
+    }
+  },
+  "salaryBenchmarks": {
+    "title": "Italian Salary Benchmarks",
+    "subtitle": "What to expect when negotiating your salary. RAL ranges by role, experience level, and city.",
+    "filters": {
+      "search": "Search Role",
+      "searchPlaceholder": "e.g. Developer, Analyst...",
+      "sector": "Sector",
+      "city": "City / Region",
+      "nationalAvg": "National Average"
+    },
+    "results": {
+      "roles": "roles found",
+      "junior": "Junior",
+      "mid": "Mid-Level",
+      "senior": "Senior",
+      "years": "years"
+    },
+    "disclaimer": {
+      "title": "About this data",
+      "text": "These are approximate RAL (Retribuzione Annua Lorda) ranges based on Italian market data for 2025-2026. Actual salaries vary by company size, industry, specific skills, and negotiation. City adjustments reflect cost-of-living differences. Use these as a starting point for negotiations, not as guarantees."
     }
   }
 }

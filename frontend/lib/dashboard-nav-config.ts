@@ -33,6 +33,9 @@ const student: NavConfig = {
         { labelKey: 'skillPath', href: '/dashboard/student/skill-path' },
         { labelKey: 'aiJobSearch', href: '/dashboard/student/ai-job-search' },
         { labelKey: 'contractTransparency', href: '/dashboard/student/contract-transparency' },
+        { labelKey: 'interviewPrep', href: '/dashboard/student/interview-prep' },
+        { labelKey: 'jobDecoder', href: '/dashboard/student/job-decoder' },
+        { labelKey: 'salaryBenchmarks', href: '/dashboard/student/salary-benchmarks' },
       ],
     },
     {
