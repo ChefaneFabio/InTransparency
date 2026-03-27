@@ -42,6 +42,36 @@ const BENCHMARKS: BenchmarkEntry[] = [
   { role: 'Graphic Designer', roleIT: 'Graphic Designer', juniorRAL: [18000, 24000], midRAL: [25000, 32000], seniorRAL: [32000, 42000], sector: 'design' },
   { role: 'DevOps Engineer', roleIT: 'DevOps Engineer', juniorRAL: [25000, 32000], midRAL: [33000, 45000], seniorRAL: [45000, 65000], sector: 'tech' },
   { role: 'Cybersecurity Analyst', roleIT: 'Analista Cybersecurity', juniorRAL: [24000, 30000], midRAL: [31000, 42000], seniorRAL: [42000, 60000], sector: 'tech' },
+  // Engineering (expanded)
+  { role: 'Chemical / Process Engineer', roleIT: 'Ingegnere Chimico / di Processo', juniorRAL: [24000, 29000], midRAL: [30000, 40000], seniorRAL: [40000, 55000], sector: 'engineering' },
+  { role: 'Environmental Engineer', roleIT: 'Ingegnere Ambientale', juniorRAL: [22000, 27000], midRAL: [28000, 36000], seniorRAL: [36000, 48000], sector: 'engineering' },
+  { role: 'Industrial / Manufacturing Engineer', roleIT: 'Ingegnere Industriale', juniorRAL: [23000, 28000], midRAL: [29000, 38000], seniorRAL: [38000, 52000], sector: 'engineering' },
+  { role: 'Quality Engineer', roleIT: 'Ingegnere Qualità', juniorRAL: [22000, 27000], midRAL: [28000, 36000], seniorRAL: [36000, 48000], sector: 'engineering' },
+  { role: 'Biomedical Engineer', roleIT: 'Ingegnere Biomedico', juniorRAL: [23000, 28000], midRAL: [29000, 38000], seniorRAL: [38000, 52000], sector: 'engineering' },
+  { role: 'Energy Engineer', roleIT: 'Ingegnere Energetico', juniorRAL: [23000, 28000], midRAL: [29000, 39000], seniorRAL: [39000, 52000], sector: 'engineering' },
+  // Consulting & Professional Services
+  { role: 'Management Consultant', roleIT: 'Consulente di Management', juniorRAL: [27000, 35000], midRAL: [36000, 50000], seniorRAL: [50000, 75000], sector: 'consulting' },
+  { role: 'Strategy Consultant', roleIT: 'Consulente Strategico', juniorRAL: [28000, 36000], midRAL: [37000, 55000], seniorRAL: [55000, 80000], sector: 'consulting' },
+  { role: 'IT Consultant', roleIT: 'Consulente IT', juniorRAL: [24000, 30000], midRAL: [31000, 42000], seniorRAL: [42000, 60000], sector: 'consulting' },
+  // Legal
+  { role: 'Junior Lawyer (Praticante)', roleIT: 'Praticante Avvocato', juniorRAL: [15000, 22000], midRAL: [25000, 38000], seniorRAL: [40000, 70000], sector: 'legal' },
+  { role: 'Legal Counsel (In-house)', roleIT: 'Legale d\'Impresa', juniorRAL: [25000, 32000], midRAL: [33000, 45000], seniorRAL: [45000, 65000], sector: 'legal' },
+  { role: 'Compliance Officer', roleIT: 'Compliance Officer', juniorRAL: [24000, 30000], midRAL: [31000, 42000], seniorRAL: [42000, 58000], sector: 'legal' },
+  // Supply Chain & Operations
+  { role: 'Supply Chain Analyst', roleIT: 'Analista Supply Chain', juniorRAL: [22000, 27000], midRAL: [28000, 36000], seniorRAL: [36000, 50000], sector: 'operations' },
+  { role: 'Procurement Specialist', roleIT: 'Buyer / Procurement', juniorRAL: [22000, 27000], midRAL: [28000, 36000], seniorRAL: [36000, 48000], sector: 'operations' },
+  { role: 'Logistics Coordinator', roleIT: 'Coordinatore Logistica', juniorRAL: [20000, 25000], midRAL: [26000, 34000], seniorRAL: [34000, 45000], sector: 'operations' },
+  // Pharma & Science
+  { role: 'Pharmaceutical R&D', roleIT: 'R&D Farmaceutico', juniorRAL: [25000, 32000], midRAL: [33000, 45000], seniorRAL: [45000, 65000], sector: 'pharma' },
+  { role: 'Regulatory Affairs', roleIT: 'Affari Regolatori', juniorRAL: [24000, 30000], midRAL: [31000, 42000], seniorRAL: [42000, 58000], sector: 'pharma' },
+  { role: 'Lab Technician / Researcher', roleIT: 'Tecnico di Laboratorio', juniorRAL: [20000, 25000], midRAL: [26000, 34000], seniorRAL: [34000, 45000], sector: 'pharma' },
+  // Architecture & Construction
+  { role: 'Architect', roleIT: 'Architetto', juniorRAL: [20000, 26000], midRAL: [27000, 36000], seniorRAL: [36000, 50000], sector: 'architecture' },
+  { role: 'BIM Specialist', roleIT: 'Specialista BIM', juniorRAL: [23000, 28000], midRAL: [29000, 38000], seniorRAL: [38000, 50000], sector: 'architecture' },
+  // Audit & Finance (expanded)
+  { role: 'Auditor (Big4)', roleIT: 'Revisore (Big4)', juniorRAL: [24000, 30000], midRAL: [32000, 45000], seniorRAL: [45000, 65000], sector: 'finance' },
+  { role: 'Controller', roleIT: 'Controller di Gestione', juniorRAL: [24000, 30000], midRAL: [31000, 42000], seniorRAL: [42000, 58000], sector: 'finance' },
+  { role: 'Risk Analyst', roleIT: 'Analista Rischi', juniorRAL: [25000, 32000], midRAL: [33000, 45000], seniorRAL: [45000, 62000], sector: 'finance' },
 ]
 
 // City cost-of-living adjustments
@@ -62,7 +92,12 @@ const SECTORS = [
   { value: 'tech', label: 'Technology' },
   { value: 'engineering', label: 'Engineering' },
   { value: 'business', label: 'Business' },
-  { value: 'finance', label: 'Finance' },
+  { value: 'finance', label: 'Finance & Audit' },
+  { value: 'consulting', label: 'Consulting' },
+  { value: 'legal', label: 'Legal' },
+  { value: 'operations', label: 'Supply Chain & Operations' },
+  { value: 'pharma', label: 'Pharma & Science' },
+  { value: 'architecture', label: 'Architecture' },
   { value: 'design', label: 'Design' },
   { value: 'marketing', label: 'Marketing' },
   { value: 'hr', label: 'HR' },

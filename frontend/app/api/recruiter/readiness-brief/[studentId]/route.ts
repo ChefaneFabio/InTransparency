@@ -328,10 +328,125 @@ function generateReadyTasks(
     })
   }
 
-  // Discipline-based fallbacks
+  // --- Engineering tools ---
+  if (techNames.some(t => ['solidworks', 'catia', 'inventor', 'creo', 'nx', 'fusion 360'].includes(t))) {
+    tasks.push({
+      task: 'Create and modify 3D CAD models, assemblies, and technical drawings',
+      confidence: 'high',
+      reason: 'Demonstrated CAD modeling experience with industry-standard tools',
+    })
+  }
+
+  if (techNames.some(t => ['autocad', 'revit', 'civil 3d', 'microstation'].includes(t))) {
+    tasks.push({
+      task: 'Produce technical drawings, plans, and construction documentation',
+      confidence: 'high',
+      reason: 'Experience with drafting and BIM tools',
+    })
+  }
+
+  if (techNames.some(t => ['ansys', 'abaqus', 'comsol', 'fea', 'cfd', 'simulink'].includes(t))) {
+    tasks.push({
+      task: 'Run simulations (FEA/CFD) and validate engineering designs',
+      confidence: avgComplexity >= 60 ? 'high' : 'medium',
+      reason: 'Experience with simulation and analysis tools',
+    })
+  }
+
+  if (techNames.some(t => ['matlab', 'labview', 'simulink', 'octave'].includes(t))) {
+    tasks.push({
+      task: 'Develop engineering calculations, control systems, and data processing scripts',
+      confidence: 'medium',
+      reason: 'Experience with scientific computing tools',
+    })
+  }
+
+  if (techNames.some(t => ['sap2000', 'etabs', 'staad', 'tekla'].includes(t))) {
+    tasks.push({
+      task: 'Perform structural analysis and produce calculation reports',
+      confidence: 'high',
+      reason: 'Experience with structural engineering software',
+    })
+  }
+
+  if (techNames.some(t => ['plc', 'scada', 'eplan', 'altium', 'eagle', 'kicad'].includes(t))) {
+    tasks.push({
+      task: 'Design electrical schematics and program PLCs/automation systems',
+      confidence: 'medium',
+      reason: 'Experience with electrical/automation design tools',
+    })
+  }
+
+  // --- Business & Finance tools ---
+  if (techNames.some(t => ['excel', 'google sheets', 'vba', 'financial modeling'].includes(t))) {
+    tasks.push({
+      task: 'Build financial models, forecasts, and business cases in Excel',
+      confidence: avgComplexity >= 50 ? 'high' : 'medium',
+      reason: 'Demonstrated spreadsheet and financial modeling experience',
+    })
+  }
+
+  if (techNames.some(t => ['power bi', 'tableau', 'looker', 'qlik', 'data studio'].includes(t))) {
+    tasks.push({
+      task: 'Create dashboards and data visualizations for stakeholder reporting',
+      confidence: 'high',
+      reason: 'Experience with business intelligence tools',
+    })
+  }
+
+  if (techNames.some(t => ['sap', 'oracle', 'erp', 'salesforce', 'dynamics'].includes(t))) {
+    tasks.push({
+      task: 'Configure and use enterprise systems (ERP/CRM) for business operations',
+      confidence: 'medium',
+      reason: 'Exposure to enterprise software platforms',
+    })
+  }
+
+  if (techNames.some(t => ['spss', 'stata', 'r', 'survey', 'market research'].includes(t))) {
+    tasks.push({
+      task: 'Conduct market research and statistical analysis',
+      confidence: 'medium',
+      reason: 'Experience with statistical analysis tools',
+    })
+  }
+
+  if (techNames.some(t => ['jira', 'asana', 'trello', 'monday', 'ms project', 'gantt'].includes(t))) {
+    tasks.push({
+      task: 'Manage project timelines, tasks, and team coordination',
+      confidence: 'medium',
+      reason: 'Experience with project management tools',
+    })
+  }
+
+  // --- Design & Architecture ---
+  if (techNames.some(t => ['rhino', 'grasshopper', 'archicad', 'sketchup', '3ds max', 'blender'].includes(t))) {
+    tasks.push({
+      task: 'Create architectural models, renderings, and design presentations',
+      confidence: 'medium',
+      reason: 'Experience with 3D modeling and visualization tools',
+    })
+  }
+
+  if (techNames.some(t => ['photoshop', 'illustrator', 'indesign', 'after effects', 'premiere'].includes(t))) {
+    tasks.push({
+      task: 'Produce visual assets, presentations, and marketing materials',
+      confidence: 'medium',
+      reason: 'Experience with Adobe Creative Suite',
+    })
+  }
+
+  // --- Discipline-based fallbacks (expanded) ---
+  if (discipline === 'ENGINEERING' && tasks.length < 2) {
+    tasks.push({
+      task: 'Support engineering team with technical documentation and calculations',
+      confidence: 'medium',
+      reason: 'Engineering discipline background with project experience',
+    })
+  }
+
   if (discipline === 'BUSINESS' && tasks.length < 2) {
     tasks.push({
-      task: 'Prepare business analysis and market research reports',
+      task: 'Prepare business analysis, market research, and strategic reports',
       confidence: 'medium',
       reason: 'Business discipline projects with analytical focus',
     })
@@ -342,6 +457,22 @@ function generateReadyTasks(
       task: 'Lead UX research and create design prototypes',
       confidence: 'medium',
       reason: 'Design discipline with project portfolio',
+    })
+  }
+
+  if (discipline === 'HEALTHCARE' && tasks.length < 2) {
+    tasks.push({
+      task: 'Support clinical data collection, analysis, and regulatory documentation',
+      confidence: 'medium',
+      reason: 'Healthcare/biomedical project experience',
+    })
+  }
+
+  if (discipline === 'LAW' && tasks.length < 2) {
+    tasks.push({
+      task: 'Draft legal documents, conduct case research, and support compliance review',
+      confidence: 'medium',
+      reason: 'Legal discipline with analytical project work',
     })
   }
 
@@ -423,8 +554,46 @@ function generateTeamFit(
   if (techNames.some(t => ['tensorflow', 'pytorch', 'scikit-learn'].includes(t))) {
     bestFitRoles.push('ML / AI')
   }
+  // Engineering roles
+  if (techNames.some(t => ['solidworks', 'catia', 'inventor', 'creo', 'fusion 360', 'nx'].includes(t))) {
+    bestFitRoles.push('Mechanical Design / CAD')
+  }
+  if (techNames.some(t => ['autocad', 'revit', 'civil 3d', 'sap2000', 'etabs'].includes(t))) {
+    bestFitRoles.push('Civil / Structural Engineering')
+  }
+  if (techNames.some(t => ['ansys', 'comsol', 'abaqus', 'fea', 'cfd'].includes(t))) {
+    bestFitRoles.push('Simulation / Analysis')
+  }
+  if (techNames.some(t => ['plc', 'scada', 'eplan', 'altium', 'kicad'].includes(t))) {
+    bestFitRoles.push('Electrical / Automation')
+  }
+  if (techNames.some(t => ['matlab', 'labview', 'simulink'].includes(t))) {
+    bestFitRoles.push('R&D / Test Engineering')
+  }
+  // Business roles
+  if (techNames.some(t => ['power bi', 'tableau', 'looker', 'qlik'].includes(t))) {
+    bestFitRoles.push('Business Intelligence / Reporting')
+  }
+  if (techNames.some(t => ['sap', 'oracle', 'erp', 'dynamics'].includes(t))) {
+    bestFitRoles.push('ERP / Operations')
+  }
+  if (techNames.some(t => ['salesforce', 'hubspot', 'crm'].includes(t))) {
+    bestFitRoles.push('Sales / CRM')
+  }
+  if (techNames.some(t => ['excel', 'financial modeling', 'vba'].includes(t))) {
+    bestFitRoles.push('Finance / Controlling')
+  }
+  // Design & Architecture
+  if (techNames.some(t => ['rhino', 'archicad', 'sketchup', 'revit'].includes(t))) {
+    bestFitRoles.push('Architecture / BIM')
+  }
+  // Discipline fallbacks
   if (discipline === 'DESIGN') bestFitRoles.push('Product Design / UX')
   if (discipline === 'BUSINESS') bestFitRoles.push('Business Analysis / Strategy')
+  if (discipline === 'ENGINEERING') bestFitRoles.push('Engineering')
+  if (discipline === 'HEALTHCARE') bestFitRoles.push('Biomedical / Clinical')
+  if (discipline === 'LAW') bestFitRoles.push('Legal / Compliance')
+  if (discipline === 'SCIENCE') bestFitRoles.push('Research / Lab')
 
   if (bestFitRoles.length === 0) bestFitRoles.push('Generalist / Cross-functional')
 

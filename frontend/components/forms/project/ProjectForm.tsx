@@ -28,17 +28,53 @@ import {
 import { Alert, AlertDescription } from '@/components/ui/alert'
 
 const projectCategories = [
-  { value: 'web-development', label: 'Web Development' },
-  { value: 'mobile-development', label: 'Mobile Development' },
-  { value: 'data-science', label: 'Data Science' },
-  { value: 'machine-learning', label: 'Machine Learning' },
-  { value: 'ai', label: 'Artificial Intelligence' },
-  { value: 'blockchain', label: 'Blockchain' },
-  { value: 'game-development', label: 'Game Development' },
-  { value: 'iot', label: 'Internet of Things' },
-  { value: 'cybersecurity', label: 'Cybersecurity' },
-  { value: 'other', label: 'Other' }
+  // Technology
+  { value: 'web-development', label: 'Web Development', discipline: 'tech' },
+  { value: 'mobile-development', label: 'Mobile Development', discipline: 'tech' },
+  { value: 'data-science', label: 'Data Science', discipline: 'tech' },
+  { value: 'machine-learning', label: 'Machine Learning / AI', discipline: 'tech' },
+  { value: 'cybersecurity', label: 'Cybersecurity', discipline: 'tech' },
+  { value: 'iot', label: 'Internet of Things', discipline: 'tech' },
+  { value: 'game-development', label: 'Game Development', discipline: 'tech' },
+  // Engineering
+  { value: 'mechanical-engineering', label: 'Mechanical Engineering', discipline: 'engineering' },
+  { value: 'civil-engineering', label: 'Civil / Structural Engineering', discipline: 'engineering' },
+  { value: 'electrical-engineering', label: 'Electrical / Electronic Engineering', discipline: 'engineering' },
+  { value: 'chemical-engineering', label: 'Chemical / Process Engineering', discipline: 'engineering' },
+  { value: 'environmental-engineering', label: 'Environmental Engineering', discipline: 'engineering' },
+  { value: 'industrial-engineering', label: 'Industrial / Manufacturing Engineering', discipline: 'engineering' },
+  // Business & Finance
+  { value: 'business-analysis', label: 'Business Analysis / Strategy', discipline: 'business' },
+  { value: 'financial-analysis', label: 'Financial Analysis / Modeling', discipline: 'business' },
+  { value: 'marketing', label: 'Marketing / Market Research', discipline: 'business' },
+  { value: 'supply-chain', label: 'Supply Chain / Operations', discipline: 'business' },
+  { value: 'consulting', label: 'Consulting / Advisory', discipline: 'business' },
+  { value: 'accounting-audit', label: 'Accounting / Audit', discipline: 'business' },
+  // Design & Architecture
+  { value: 'ux-ui-design', label: 'UX / UI Design', discipline: 'design' },
+  { value: 'graphic-design', label: 'Graphic Design / Branding', discipline: 'design' },
+  { value: 'architecture', label: 'Architecture / Urban Planning', discipline: 'design' },
+  // Sciences & Healthcare
+  { value: 'lab-research', label: 'Lab Research / Science', discipline: 'science' },
+  { value: 'healthcare', label: 'Healthcare / Biomedical', discipline: 'science' },
+  { value: 'pharma', label: 'Pharmaceutical / Chemistry', discipline: 'science' },
+  // Legal & Social
+  { value: 'legal', label: 'Legal / Compliance', discipline: 'legal' },
+  { value: 'social-sciences', label: 'Social Sciences / Research', discipline: 'social' },
+  { value: 'education', label: 'Education / Training', discipline: 'social' },
+  // Other
+  { value: 'other', label: 'Other', discipline: 'other' },
 ]
+
+const getDiscipline = (category: string): string => {
+  const cat = projectCategories.find(c => c.value === category)
+  return cat?.discipline || 'other'
+}
+
+const isTechDiscipline = (category: string) => getDiscipline(category) === 'tech'
+const isEngineeringDiscipline = (category: string) => getDiscipline(category) === 'engineering'
+const isBusinessDiscipline = (category: string) => getDiscipline(category) === 'business'
+const isDesignDiscipline = (category: string) => getDiscipline(category) === 'design'
 
 const projectSchema = z.object({
   title: z.string()
@@ -48,7 +84,7 @@ const projectSchema = z.object({
     .min(20, 'Description must be at least 20 characters')
     .max(2000, 'Description must be less than 2000 characters'),
   category: z.string().min(1, 'Please select a category'),
-  technologies: z.array(z.string()).min(1, 'Please select at least one technology'),
+  technologies: z.array(z.string()).default([]),
   repositoryUrl: z.string().url('Please enter a valid URL').optional().or(z.literal('')),
   liveUrl: z.string().url('Please enter a valid URL').optional().or(z.literal('')),
   tags: z.array(z.string()).optional(),
@@ -106,6 +142,7 @@ export function ProjectForm({
   const watchedData = watch()
   const selectedTechnologies = watch('technologies') || []
   const selectedTags = watch('tags') || []
+  const selectedCategory = watch('category') || ''
 
   const addCustomTag = () => {
     if (customTag.trim() && !selectedTags.includes(customTag.trim())) {
@@ -165,7 +202,7 @@ export function ProjectForm({
         return !errors.title && !errors.description && !errors.category && 
                watchedData.title && watchedData.description && watchedData.category
       case 1:
-        return !errors.technologies && selectedTechnologies.length > 0
+        return !errors.technologies
       case 2:
         return isValid
       default:
@@ -251,13 +288,19 @@ export function ProjectForm({
         </div>
       )}
 
-      {/* Step 1: Technologies & Links */}
+      {/* Step 1: Tools, Links & Details */}
       {currentStep === 1 && (
         <div className="space-y-6">
-          {/* Technologies */}
+          {/* Tools/Technologies — label adapts to discipline */}
           <div className="space-y-2">
             <Label>
-              Technologies Used <span className="text-red-500">*</span>
+              {isEngineeringDiscipline(selectedCategory)
+                ? 'Tools & Software Used'
+                : isBusinessDiscipline(selectedCategory)
+                  ? 'Tools & Methods Used'
+                  : isDesignDiscipline(selectedCategory)
+                    ? 'Design Tools Used'
+                    : 'Technologies Used'}
             </Label>
             <Controller
               name="technologies"
@@ -270,44 +313,63 @@ export function ProjectForm({
                 />
               )}
             />
-            {errors.technologies && (
-              <p className="text-sm text-red-600">{errors.technologies.message}</p>
-            )}
             <p className="text-sm text-gray-700">
-              Select all technologies, frameworks, and tools you used in this project
+              {isEngineeringDiscipline(selectedCategory)
+                ? 'e.g. SolidWorks, AutoCAD, MATLAB, ANSYS, SAP2000, LabVIEW'
+                : isBusinessDiscipline(selectedCategory)
+                  ? 'e.g. Excel, Power BI, Tableau, SAP, Python, R, SPSS'
+                  : isDesignDiscipline(selectedCategory)
+                    ? 'e.g. Figma, Sketch, Adobe XD, Photoshop, Illustrator, Rhino'
+                    : 'Select all technologies, frameworks, and tools you used'}
             </p>
           </div>
 
-          {/* Repository URL */}
-          <div className="space-y-2">
-            <Label htmlFor="repositoryUrl">Repository URL</Label>
-            <div className="relative">
-              <Github className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
-              <Input
-                id="repositoryUrl"
-                type="url"
-                placeholder="https://github.com/username/project"
-                {...register('repositoryUrl')}
-                className={`pl-10 ${errors.repositoryUrl ? 'border-red-500' : ''}`}
-              />
+          {/* Repository URL — only for tech/data */}
+          {(isTechDiscipline(selectedCategory) || selectedCategory === 'data-science' || selectedCategory === 'lab-research') && (
+            <div className="space-y-2">
+              <Label htmlFor="repositoryUrl">Repository URL</Label>
+              <div className="relative">
+                <Github className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
+                <Input
+                  id="repositoryUrl"
+                  type="url"
+                  placeholder="https://github.com/username/project"
+                  {...register('repositoryUrl')}
+                  className={`pl-10 ${errors.repositoryUrl ? 'border-red-500' : ''}`}
+                />
+              </div>
+              {errors.repositoryUrl && (
+                <p className="text-sm text-red-600">{errors.repositoryUrl.message}</p>
+              )}
+              <p className="text-sm text-gray-700">
+                Link to your GitHub repository (helps with AI analysis)
+              </p>
             </div>
-            {errors.repositoryUrl && (
-              <p className="text-sm text-red-600">{errors.repositoryUrl.message}</p>
-            )}
-            <p className="text-sm text-gray-700">
-              Link to your GitHub repository (helps with AI analysis)
-            </p>
-          </div>
+          )}
 
-          {/* Live URL */}
+          {/* Live URL / Portfolio URL — adapts label */}
           <div className="space-y-2">
-            <Label htmlFor="liveUrl">Live Demo URL</Label>
+            <Label htmlFor="liveUrl">
+              {isEngineeringDiscipline(selectedCategory)
+                ? 'Project Documentation URL'
+                : isBusinessDiscipline(selectedCategory)
+                  ? 'Presentation / Report URL'
+                  : isDesignDiscipline(selectedCategory)
+                    ? 'Portfolio / Behance URL'
+                    : 'Live Demo URL'}
+            </Label>
             <div className="relative">
               <ExternalLink className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
               <Input
                 id="liveUrl"
                 type="url"
-                placeholder="https://your-project.com"
+                placeholder={
+                  isEngineeringDiscipline(selectedCategory)
+                    ? 'https://docs.google.com/... or project page'
+                    : isDesignDiscipline(selectedCategory)
+                      ? 'https://behance.net/... or portfolio link'
+                      : 'https://your-project.com'
+                }
                 {...register('liveUrl')}
                 className={`pl-10 ${errors.liveUrl ? 'border-red-500' : ''}`}
               />
@@ -315,10 +377,28 @@ export function ProjectForm({
             {errors.liveUrl && (
               <p className="text-sm text-red-600">{errors.liveUrl.message}</p>
             )}
-            <p className="text-sm text-gray-700">
-              Link to live demo or deployed version (optional but recommended)
-            </p>
           </div>
+
+          {/* Discipline-specific context */}
+          {isEngineeringDiscipline(selectedCategory) && (
+            <Card className="border-blue-200 bg-blue-50">
+              <CardContent className="pt-4 pb-4">
+                <p className="text-sm text-blue-800">
+                  <strong>Engineering projects:</strong> Upload your CAD files, technical drawings, simulation results, or lab reports using the document upload below. Our AI analyzes PDFs, Word docs, and Excel files to understand your technical work.
+                </p>
+              </CardContent>
+            </Card>
+          )}
+
+          {isBusinessDiscipline(selectedCategory) && (
+            <Card className="border-green-200 bg-green-50">
+              <CardContent className="pt-4 pb-4">
+                <p className="text-sm text-green-800">
+                  <strong>Business projects:</strong> Upload your analysis reports, financial models, strategy presentations, or market research. Include quantifiable outcomes (revenue impact, cost savings, efficiency gains) in your description for stronger AI analysis.
+                </p>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Tags */}
           <div className="space-y-2">
