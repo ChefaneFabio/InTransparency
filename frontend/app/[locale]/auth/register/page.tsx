@@ -16,7 +16,7 @@ const roles = [
   {
     id: 'student' as const,
     icon: GraduationCap,
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80',
+    image: '/images/brand/students.jpg',
     color: 'bg-primary',
     borderHover: 'hover:border-primary',
     href: '/auth/register/student',
@@ -25,7 +25,7 @@ const roles = [
   {
     id: 'recruiter' as const,
     icon: Users,
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80',
+    image: '/images/brand/handshake.jpg',
     color: 'bg-primary',
     borderHover: 'hover:border-primary',
     href: '/auth/register/recruiter',
@@ -34,7 +34,7 @@ const roles = [
   {
     id: 'university' as const,
     icon: Building2,
-    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80',
+    image: '/images/brand/campus.jpg',
     color: 'bg-primary',
     borderHover: 'hover:border-primary',
     href: '/auth/register/university',
@@ -43,7 +43,7 @@ const roles = [
   {
     id: 'techpark' as const,
     icon: Landmark,
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80',
+    image: '/images/brand/office.jpg',
     color: 'bg-primary',
     borderHover: 'hover:border-primary',
     href: '/auth/register/techpark',

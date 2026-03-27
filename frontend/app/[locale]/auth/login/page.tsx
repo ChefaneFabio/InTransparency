@@ -153,7 +153,7 @@ export default function LoginPage() {
       {/* Left side — visual panel with real image (hidden on mobile) */}
       <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12 relative overflow-hidden">
         <img
-          src={BRAND_IMAGES.hero.main}
+          src="/images/brand/team.jpg"
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
         />
