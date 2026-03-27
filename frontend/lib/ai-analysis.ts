@@ -982,85 +982,90 @@ async function buildFileContentBlocks(files: ProjectData['files']): Promise<{ bl
   if (!files || files.length === 0) return { blocks, descriptions }
 
   for (const file of files) {
-    const mime = file.mimeType.toLowerCase()
+    try {
+      const mime = file.mimeType.toLowerCase()
 
-    // Images — send as vision content for Claude to analyze visually
-    if (mime.startsWith('image/') && ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(mime)) {
-      const fileData = await fetchFileBuffer(file.fileUrl)
-      if (fileData) {
-        blocks.push({
-          type: 'image',
-          source: {
-            type: 'base64',
-            media_type: fileData.mediaType,
-            data: fileData.base64,
-          },
-        })
-        blocks.push({
-          type: 'text',
-          text: `[Uploaded image: ${file.fileName}]`,
-        })
-      } else {
-        descriptions.push(`Image file: ${file.fileName} (could not be loaded for analysis)`)
-      }
-    }
-    // PDFs — send as document content for Claude to read
-    else if (mime === 'application/pdf') {
-      const fileData = await fetchFileBuffer(file.fileUrl)
-      if (fileData) {
-        blocks.push({
-          type: 'document',
-          source: {
-            type: 'base64',
-            media_type: 'application/pdf',
-            data: fileData.base64,
-          },
-        })
-        blocks.push({
-          type: 'text',
-          text: `[Uploaded PDF document: ${file.fileName}]`,
-        })
-      } else {
-        descriptions.push(`PDF document: ${file.fileName} (could not be loaded for analysis)`)
-      }
-    }
-    // Word documents — extract full text with mammoth
-    else if (mime.includes('wordprocessingml') || mime.includes('msword') || mime === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-      const fileData = await fetchFileBuffer(file.fileUrl)
-      if (fileData) {
-        const text = await extractWordText(fileData.buffer)
-        if (text) {
-          const truncated = text.length > 8000 ? text.substring(0, 8000) + '\n... (truncated)' : text
-          descriptions.push(`\n--- Word Document: ${file.fileName} ---\n${truncated}\n--- End of ${file.fileName} ---`)
+      // Images — send as vision content for Claude to analyze visually
+      if (mime.startsWith('image/') && ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(mime)) {
+        const fileData = await fetchFileBuffer(file.fileUrl)
+        if (fileData) {
+          blocks.push({
+            type: 'image',
+            source: {
+              type: 'base64',
+              media_type: fileData.mediaType,
+              data: fileData.base64,
+            },
+          })
+          blocks.push({
+            type: 'text',
+            text: `[Uploaded image: ${file.fileName}]`,
+          })
         } else {
-          descriptions.push(`Word document: ${file.fileName} (${Math.round(file.fileSize / 1024)}KB) — text extraction failed`)
+          descriptions.push(`Image file: ${file.fileName} (could not be loaded for analysis)`)
         }
-      } else {
-        descriptions.push(`Word document: ${file.fileName} (could not be loaded)`)
       }
-    }
-    // Excel spreadsheets — extract all sheets as CSV text
-    else if (mime.includes('spreadsheetml') || mime.includes('ms-excel')) {
-      const fileData = await fetchFileBuffer(file.fileUrl)
-      if (fileData) {
-        const text = extractExcelText(fileData.buffer)
-        if (text) {
-          descriptions.push(`\n--- Excel Spreadsheet: ${file.fileName} ---\n${text}\n--- End of ${file.fileName} ---`)
+      // PDFs — send as document content for Claude to read
+      else if (mime === 'application/pdf') {
+        const fileData = await fetchFileBuffer(file.fileUrl)
+        if (fileData) {
+          blocks.push({
+            type: 'document',
+            source: {
+              type: 'base64',
+              media_type: 'application/pdf',
+              data: fileData.base64,
+            },
+          })
+          blocks.push({
+            type: 'text',
+            text: `[Uploaded PDF document: ${file.fileName}]`,
+          })
         } else {
-          descriptions.push(`Excel spreadsheet: ${file.fileName} (${Math.round(file.fileSize / 1024)}KB) — data extraction failed`)
+          descriptions.push(`PDF document: ${file.fileName} (could not be loaded for analysis)`)
         }
-      } else {
-        descriptions.push(`Excel spreadsheet: ${file.fileName} (could not be loaded)`)
       }
-    }
-    // Video files — describe with metadata (video content cannot be sent to API)
-    else if (mime.startsWith('video/')) {
-      const sizeMB = Math.round(file.fileSize / (1024 * 1024))
-      descriptions.push(`Video file: ${file.fileName} (${sizeMB}MB, ${mime}) — This is a project demo/presentation video. Evaluate the project positively for including video documentation, which demonstrates presentation skills and effort in communicating the project.`)
-    }
-    // Other files
-    else {
-      descriptions.push(`Attached file: ${file.fileName} (${mime}, ${Math.round(file.fileSize / 1024)}KB)`)
+      // Word documents — extract full text with mammoth
+      else if (mime.includes('wordprocessingml') || mime.includes('msword') || mime === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+        const fileData = await fetchFileBuffer(file.fileUrl)
+        if (fileData) {
+          const text = await extractWordText(fileData.buffer)
+          if (text) {
+            const truncated = text.length > 8000 ? text.substring(0, 8000) + '\n... (truncated)' : text
+            descriptions.push(`\n--- Word Document: ${file.fileName} ---\n${truncated}\n--- End of ${file.fileName} ---`)
+          } else {
+            descriptions.push(`Word document: ${file.fileName} (${Math.round(file.fileSize / 1024)}KB) — text extraction failed`)
+          }
+        } else {
+          descriptions.push(`Word document: ${file.fileName} (could not be loaded)`)
+        }
+      }
+      // Excel spreadsheets — extract all sheets as CSV text
+      else if (mime.includes('spreadsheetml') || mime.includes('ms-excel')) {
+        const fileData = await fetchFileBuffer(file.fileUrl)
+        if (fileData) {
+          const text = extractExcelText(fileData.buffer)
+          if (text) {
+            descriptions.push(`\n--- Excel Spreadsheet: ${file.fileName} ---\n${text}\n--- End of ${file.fileName} ---`)
+          } else {
+            descriptions.push(`Excel spreadsheet: ${file.fileName} (${Math.round(file.fileSize / 1024)}KB) — data extraction failed`)
+          }
+        } else {
+          descriptions.push(`Excel spreadsheet: ${file.fileName} (could not be loaded)`)
+        }
+      }
+      // Video files — metadata only (video content cannot be sent to the text API)
+      else if (mime.startsWith('video/')) {
+        const sizeMB = Math.round(file.fileSize / (1024 * 1024))
+        descriptions.push(`Video file: ${file.fileName} (${sizeMB}MB, ${mime}) — Note: video content cannot be analyzed directly. The student has included a video demo/presentation for this project.`)
+      }
+      // Other files
+      else {
+        descriptions.push(`Attached file: ${file.fileName} (${mime}, ${Math.round(file.fileSize / 1024)}KB)`)
+      }
+    } catch (error) {
+      console.error(`[AI Analysis] Error processing file ${file.fileName}:`, error)
+      descriptions.push(`File: ${file.fileName} — failed to process for analysis`)
     }
   }
 

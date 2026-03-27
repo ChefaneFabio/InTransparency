@@ -76,6 +76,7 @@ export function ProjectForm({
 }: ProjectFormProps) {
   const [customTag, setCustomTag] = useState('')
   const [uploadedImages, setUploadedImages] = useState<string[]>(initialData?.images || [])
+  const [uploadedDocuments, setUploadedDocuments] = useState<string[]>([])
 
   const {
     register,
@@ -121,6 +122,10 @@ export function ProjectForm({
     setUploadedImages(imageUrls)
     setValue('images', imageUrls)
   }, [setValue])
+
+  const handleDocumentUpload = useCallback((docUrls: string[]) => {
+    setUploadedDocuments(docUrls)
+  }, [])
 
   const nextStep = async () => {
     let fieldsToValidate: (keyof ProjectFormData)[] = []
@@ -368,6 +373,26 @@ export function ProjectForm({
             />
             <p className="text-sm text-gray-700">
               Upload screenshots or images of your project (up to 5 images, max 5MB each)
+            </p>
+          </div>
+
+          {/* Documents */}
+          <div className="space-y-2">
+            <Label>Project Documents (Optional)</Label>
+            <FileUpload
+              onUpload={handleDocumentUpload}
+              acceptedFileTypes={[
+                'application/pdf',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'application/msword',
+                'application/vnd.ms-excel',
+              ]}
+              maxFiles={3}
+              maxFileSize={25 * 1024 * 1024}
+            />
+            <p className="text-sm text-gray-700">
+              Upload PDFs, Word docs, or Excel files related to your project (up to 3 files, max 25MB each). These will be analyzed by AI.
             </p>
           </div>
         </div>

@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { uploadDocument, uploadImage, uploadVideo, VALIDATION_PRESETS } from '@/lib/storage'
+import { uploadFile } from '@/lib/storage'
+import { deleteFromR2 } from '@/lib/storage'
 
 // POST /api/projects/[id]/files - Upload files to a project
 export async function POST(
@@ -77,13 +80,35 @@ export async function POST(
         )
       }
 
-      // TODO: Upload to S3/Cloudflare R2
-      // For now, we'll simulate an upload and return a placeholder URL
-      // In production, this would be:
-      // const fileUrl = await uploadToS3(file)
+      // Upload to Cloudflare R2
+      const fileBuffer = Buffer.from(await file.arrayBuffer())
+      const uploadOptions = { folder: `projects/${projectId}`, metadata: { projectId } }
 
-      // PLACEHOLDER: In production, replace with actual S3/Cloudflare upload
-      const fileUrl = `https://placeholder.intransparency.com/files/${projectId}/${Date.now()}-${file.name}`
+      let uploadResult
+      if (file.type.startsWith('image/')) {
+        uploadResult = await uploadImage(fileBuffer, file.name, file.type, uploadOptions)
+      } else if (file.type.startsWith('video/')) {
+        uploadResult = await uploadVideo(fileBuffer, file.name, file.type, uploadOptions)
+      } else if (
+        file.type === 'application/pdf' ||
+        file.type.includes('word') ||
+        file.type.includes('excel') ||
+        file.type.includes('document') ||
+        file.type.includes('spreadsheet')
+      ) {
+        uploadResult = await uploadDocument(fileBuffer, file.name, file.type, uploadOptions)
+      } else {
+        uploadResult = await uploadFile(fileBuffer, file.name, file.type, VALIDATION_PRESETS.document, uploadOptions)
+      }
+
+      if (!uploadResult.success) {
+        return NextResponse.json(
+          { error: `Failed to upload ${file.name}: ${uploadResult.error || 'Unknown error'}` },
+          { status: 500 }
+        )
+      }
+
+      const fileUrl = uploadResult.url
 
       // Determine file type
       let fileType: 'PDF' | 'IMAGE' | 'VIDEO' | 'CAD' | 'DOCUMENT' | 'ARCHIVE' | 'CODE' | 'OTHER' = 'OTHER'
@@ -228,8 +253,14 @@ export async function DELETE(
       return NextResponse.json({ error: 'File not found' }, { status: 404 })
     }
 
-    // TODO: Delete from S3/Cloudflare
-    // await deleteFromS3(file.fileUrl)
+    // Delete from R2 — extract key from URL
+    try {
+      const urlObj = new URL(file.fileUrl)
+      const key = urlObj.pathname.startsWith('/') ? urlObj.pathname.slice(1) : urlObj.pathname
+      if (key) await deleteFromR2(key)
+    } catch {
+      // Non-critical — file may already be deleted from R2
+    }
 
     // Delete from database
     await prisma.projectFile.delete({
