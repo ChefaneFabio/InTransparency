@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { calculateSkillMatch, normalizeSkill } from '@/lib/skills-intelligence'
 
 type MatchedCandidate = {
   id: string
@@ -93,55 +94,34 @@ export async function POST(req: NextRequest) {
       const student = students[i]
       let score = 0
       const reasons: string[] = []
-      const matchedSkillsSet = new Set<string>()
+      // 1+2. Semantic skill matching using Skills Intelligence Engine
+      // Collect ALL candidate skills from profile + projects
+      const allCandidateSkills: string[] = [
+        ...(student.skills || []),
+      ]
 
-      // 1. Skill matching from User.skills
-      const userSkills = (student.skills || []).map((s) => s.toLowerCase())
-      for (let j = 0; j < requestedSkills.length; j++) {
-        const reqSkill = requestedSkills[j]
-        for (let k = 0; k < userSkills.length; k++) {
-          if (
-            userSkills[k].includes(reqSkill) ||
-            reqSkill.includes(userSkills[k])
-          ) {
-            matchedSkillsSet.add(reqSkill)
-            break
-          }
-        }
-      }
-
-      // 2. Skill matching from Project skills/technologies/competencies
       for (let p = 0; p < student.projects.length; p++) {
         const proj = student.projects[p]
-        const projSkills = Array.from(
-          new Set(
-            (proj.skills || [])
-              .concat(proj.technologies || [])
-              .concat(proj.competencies || [])
-              .map((s) => s.toLowerCase())
-          )
+        allCandidateSkills.push(
+          ...(proj.skills || []),
+          ...(proj.technologies || []),
+          ...(proj.competencies || []),
         )
-        for (let j = 0; j < requestedSkills.length; j++) {
-          const reqSkill = requestedSkills[j]
-          for (let k = 0; k < projSkills.length; k++) {
-            if (
-              projSkills[k].includes(reqSkill) ||
-              reqSkill.includes(projSkills[k])
-            ) {
-              matchedSkillsSet.add(reqSkill)
-              break
-            }
-          }
-        }
       }
 
-      const matchedSkills = Array.from(matchedSkillsSet)
-      const skillMatchRatio = matchedSkills.length / requestedSkills.length
+      // Semantic skill matching via Skills Intelligence Engine
+      const skillMatch = calculateSkillMatch(allCandidateSkills, skills)
+      const matchedSkills = [...skillMatch.matched, ...skillMatch.adjacent]
 
-      // Skill score: up to 40 points
-      score += Math.round(skillMatchRatio * 40)
-      if (matchedSkills.length > 0) {
+      // Skill score: up to 40 points (exact > adjacent)
+      const exactRatio = requestedSkills.length > 0 ? skillMatch.matched.length / requestedSkills.length : 0
+      const adjacentRatio = requestedSkills.length > 0 ? skillMatch.adjacent.length / requestedSkills.length : 0
+      score += Math.round(exactRatio * 35 + adjacentRatio * 15)
+      if (skillMatch.matched.length > 0) {
         reasons.push(`skillMatch`)
+      }
+      if (skillMatch.adjacent.length > 0) {
+        reasons.push(`adjacentSkills`)
       }
 
       // 3. Verified projects: up to 20 points

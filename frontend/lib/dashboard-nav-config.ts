@@ -36,6 +36,8 @@ const student: NavConfig = {
         { labelKey: 'interviewPrep', href: '/dashboard/student/interview-prep' },
         { labelKey: 'jobDecoder', href: '/dashboard/student/job-decoder' },
         { labelKey: 'salaryBenchmarks', href: '/dashboard/student/salary-benchmarks' },
+        { labelKey: 'skillsTimeline', href: '/dashboard/student/skills-timeline' },
+        { labelKey: 'skillsDemand', href: '/dashboard/student/skills-demand' },
       ],
     },
     {
