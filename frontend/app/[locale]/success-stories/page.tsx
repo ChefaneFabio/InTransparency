@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
+import { BRAND_IMAGES } from '@/lib/brand-images'
 
 export default function SuccessStoriesPage() {
   const t = useTranslations('successStories')
@@ -23,7 +24,9 @@ export default function SuccessStoriesPage() {
       <Header />
 
       <main className="pt-24 pb-16">
-        <section className="hero-bg py-20 relative overflow-hidden">
+        <section className="py-20 relative overflow-hidden">
+          <img src={BRAND_IMAGES.forStudents.success} alt="" className="absolute inset-0 w-full h-full object-cover opacity-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white" />
           <div className="container max-w-4xl relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

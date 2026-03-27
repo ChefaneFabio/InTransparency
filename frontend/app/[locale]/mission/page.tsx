@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
+import { BRAND_IMAGES } from '@/lib/brand-images'
 import { Target, Shield, Heart, Scale, Award, DollarSign, Users, Building2, GraduationCap, Briefcase, TrendingUp, Eye } from 'lucide-react'
 import { useSegment } from '@/lib/segment-context'
 import { FloatingTransparenty } from '@/components/mascot/FloatingTransparenty'
@@ -69,9 +70,10 @@ export default function MissionPage() {
       <Header />
 
       <main className="pt-24 pb-16">
-        {/* Hero Section — segment-aware, warm tone */}
+        {/* Hero Section — with real image */}
         <section className="py-16 relative overflow-hidden">
-          <div className="absolute inset-0 bg-primary/5 opacity-50" />
+          <img src={BRAND_IMAGES.about.hero} alt="" className="absolute inset-0 w-full h-full object-cover opacity-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-white/95" />
           <div className="container max-w-4xl relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

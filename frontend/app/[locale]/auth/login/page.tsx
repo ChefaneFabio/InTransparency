@@ -12,6 +12,7 @@ import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { motion } from 'framer-motion'
 import { useSegment } from '@/lib/segment-context'
+import { BRAND_IMAGES } from '@/lib/brand-images'
 import {
   Eye,
   EyeOff,
@@ -149,9 +150,14 @@ export default function LoginPage() {
 
   return (
     <div className={`min-h-screen flex bg-gradient-to-br ${config.gradient} to-background`}>
-      {/* Left side — visual panel (hidden on mobile) */}
+      {/* Left side — visual panel with real image (hidden on mobile) */}
       <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/5" />
+        <img
+          src={BRAND_IMAGES.hero.main}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-primary/70" />
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
@@ -164,15 +170,15 @@ export default function LoginPage() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: 'spring', stiffness: 200 }}
-            className="w-24 h-24 mx-auto mb-8 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20"
+            className="w-24 h-24 mx-auto mb-8 rounded-2xl bg-white/20 flex items-center justify-center border border-white/30"
           >
-            <SegmentIcon className="h-12 w-12 text-primary" />
+            <SegmentIcon className="h-12 w-12 text-white" />
           </motion.div>
 
-          <h2 className="text-2xl font-display font-bold text-foreground mb-3">
+          <h2 className="text-2xl font-display font-bold text-white mb-3">
             {t('login.title')}
           </h2>
-          <p className="text-muted-foreground mb-8">
+          <p className="text-white/80 mb-8">
             {t('login.subtitle')}
           </p>
 

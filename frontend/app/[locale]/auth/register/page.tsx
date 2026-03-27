@@ -10,6 +10,7 @@ import { GraduationCap, Building2, Users, Landmark, ArrowRight, CheckCircle } fr
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { Transparenty } from '@/components/mascot/Transparenty'
+import { BRAND_IMAGES } from '@/lib/brand-images'
 
 const roles = [
   {
@@ -73,8 +74,13 @@ export default function RegisterPage() {
   }, [role, router])
 
   return (
-    <div className="min-h-screen hero-bg">
-      <div className="pt-8 pb-16">
+    <div className="min-h-screen hero-bg relative">
+      {/* Background image */}
+      <div className="absolute inset-0 z-0">
+        <img src={BRAND_IMAGES.hero.students} alt="" className="w-full h-full object-cover opacity-8" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/90 to-white/95" />
+      </div>
+      <div className="relative z-10 pt-8 pb-16">
         <div className="container max-w-6xl">
           {/* Hero Section */}
           <motion.div

@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Link } from '@/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { BRAND_IMAGES } from '@/lib/brand-images'
 import {
   Upload,
   Shield,
@@ -79,6 +80,20 @@ export default function HowItWorksPage() {
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
               {t('hero.subtitle')}
             </p>
+          </motion.div>
+
+          {/* Hero image */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-12 mx-auto max-w-4xl"
+          >
+            <img
+              src={BRAND_IMAGES.hero.main}
+              alt="How InTransparency works"
+              className="w-full h-[250px] sm:h-[320px] object-cover rounded-2xl shadow-lg"
+            />
           </motion.div>
         </section>
 

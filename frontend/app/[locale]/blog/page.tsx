@@ -4,6 +4,7 @@ import { getLocale, getTranslations } from 'next-intl/server'
 import { CalendarDays, Clock, ArrowRight, Tag, Rss } from 'lucide-react'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { BRAND_IMAGES } from '@/lib/brand-images'
 
 export default async function BlogPage() {
   const locale = await getLocale()
@@ -33,6 +34,15 @@ export default async function BlogPage() {
               <Rss className="h-4 w-4" />
               {t('rssSubscribe')}
             </a>
+          </div>
+
+          {/* Hero image */}
+          <div className="max-w-4xl mx-auto mb-12">
+            <img
+              src={BRAND_IMAGES.forStudents.presenting}
+              alt="InTransparency blog"
+              className="w-full h-[220px] sm:h-[280px] object-cover rounded-2xl shadow-lg"
+            />
           </div>
 
           {/* Featured Post */}
