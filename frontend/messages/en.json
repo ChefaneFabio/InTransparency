@@ -413,7 +413,7 @@
           "description": "No cost for students and universities"
         },
         "3": {
-          "title": "Pay Per Contact",
+          "title": "Full Access",
           "description": "Companies pay only when they reach out"
         }
       },
@@ -450,7 +450,7 @@
           "benefits": {
             "0": "Search verified talent by real skills",
             "1": "See actual projects, not resume claims",
-            "2": "Pay only when you contact candidates",
+            "2": "Unlimited access — free during launch candidates",
             "3": "No subscriptions, no commitments"
           }
         }
@@ -518,7 +518,7 @@
             "Real-time opportunity notifications"
           ],
           "stats": {
-            "cost": "€10 per contact",
+            "cost": "free during launch",
             "model": "Pay per use"
           },
           "visual": {
@@ -619,7 +619,7 @@
           {
             "feature": "Cost",
             "traditional": "Agency fees or subscriptions",
-            "ours": "€10 per contact, no commitments"
+            "ours": "free during launch, no commitments"
           },
           {
             "feature": "Candidate pool",
@@ -751,7 +751,7 @@
     "companies": {
       "badge": "For Companies - Pay Only What You Use",
       "title": "Transparent Talent Sourcing Service - No Subscriptions",
-      "subtitle": "Browse 100% institution-verified profiles FREE. Search 'AutoCAD, 28/30 by ITS Rizzoli' with project excerpts. Pay €10 only when you contact verified candidates. Faster screening, verified accuracy.",
+      "subtitle": "Browse 100% institution-verified profiles FREE. Search 'AutoCAD, 28/30 by ITS Rizzoli' with project excerpts. Contact verified candidates. Faster screening, verified accuracy.",
       "browseFree": {
         "name": "Browse Free",
         "price": "€0",
@@ -773,9 +773,9 @@
       },
       "payPerContact": {
         "name": "Transparent Talent Sourcing Service",
-        "price": "€10",
+        "price": "€0",
         "period": "per contact (no subscriptions)",
-        "description": "Browse 100% verified profiles FREE → Pay €10 only when you contact the right candidate",
+        "description": "Browse 100% verified profiles FREE → Contact the right candidate",
         "badge": "Most Popular - Pay As You Use",
         "cta": "Start Browsing Free"
       },
@@ -900,13 +900,13 @@
       "recruiters": {
         "title": "For Recruiters: AI Candidate Search",
         "description": "Find verified candidates with natural language. Zero screening CVs:",
-        "result": "Result: See 5-10 verified matches with actual projects + AI-analyzed soft skills → Pay €10 only per contact",
+        "result": "Result: See 5-10 verified matches with actual projects + AI-analyzed soft skills → contact directly — free during launch",
         "howToAccess": "How to Access:",
         "steps": {
           "0": "Register free (no credit card)",
           "1": "Go to your Dashboard",
           "2": "Click \"AI Candidate Search\" in Quick Actions",
-          "3": "Type natural search, see verified matches, pay €10 only per contact"
+          "3": "Type natural search, see verified matches, contact directly — free during launch"
         },
         "button": "Try AI Candidate Search →"
       },
@@ -1260,14 +1260,14 @@
     },
     "recruiter": {
       "title": "Company Registration",
-      "subtitle": "Find verified talent - Browse Free, Pay Per Contact",
+      "subtitle": "Find verified talent - Browse Free, Full Access",
       "cardTitle": "Create Your Company Account",
       "cardDescription": "Discover verified candidates with AI search",
       "submitButton": "Start Hiring - Free to Browse",
       "submittingButton": "Creating Account...",
       "heroTitle": "Hire Verified Talent, Not Resumes",
       "heroSubtitle": "Access institution-verified graduates. Every skill is traceable to actual coursework and projects.",
-      "browseBadge": "Browse Free, Pay Per Contact",
+      "browseBadge": "Browse Free, Full Access",
       "benefits": {
         "0": {
           "title": "Verified Skills Only",
@@ -1282,7 +1282,7 @@
           "description": "See verified work samples directly"
         },
         "3": {
-          "title": "Pay Per Contact",
+          "title": "Full Access",
           "description": "Browse profiles free. Pay only when you connect."
         }
       },
@@ -1296,7 +1296,7 @@
         "browse": "Browse all candidates",
         "browseCost": "Free",
         "contact": "Contact a candidate",
-        "contactCost": "€10",
+        "contactCost": "€0",
         "postJobs": "Post job listings",
         "postJobsCost": "Free"
       },
@@ -2076,7 +2076,7 @@
         "2": {
           "title": "3. Contact Unlock",
           "items": {
-            "0": "Company pays €10 to unlock contact",
+            "0": "Company contacts you directly",
             "1": "Student gets notified immediately",
             "2": "Student can block future contact"
           }
@@ -2213,13 +2213,13 @@
       "discovery": {
         "badge": "PRIMARY SERVICE",
         "title": "Discovery Service",
-        "priceBadge": "Browse FREE, €10/contact",
+        "priceBadge": "Browse FREE, Free access",
         "subtitle": "Reverse Recruitment",
         "items": {
           "0": "Companies search verified ITS talent pool",
           "1": "Students visible without applying",
           "2": "Your verification badge = quality signal",
-          "3": "Companies pay €10 to contact, you get credit"
+          "3": "Companies contact you directly through the platform"
         },
         "comparison": "vs LinkedIn: No verification = lower trust"
       },
@@ -2285,7 +2285,7 @@
           },
           "3": {
             "title": "4. Student Gets Hired",
-            "subtitle": "Company pays €10 to contact → Interview → Hired in 47 days"
+            "subtitle": "Company contacts you → Interview → Hired"
           }
         }
       }
@@ -2356,7 +2356,7 @@
         },
         "1": {
           "question": "Is it really free forever?",
-          "answer": "Yes, 100% free. All 4 services (Discovery, Matching, Verification, Analytics) included. Companies pay €10 per contact - this finances the platform. You save €2.500/year vs AlmaLaurea."
+          "answer": "Yes, 100% free. All 4 services (Discovery, Matching, Verification, Analytics) included. Companies pay free during launch - this finances the platform. You save €2.500/year vs AlmaLaurea."
         },
         "2": {
           "question": "How does verification work?",
@@ -2576,7 +2576,7 @@
           "1": "Explainable matches with reasoning",
           "2": "See actual project work before contacting",
           "3": "Verified match quality saves time",
-          "4": "€10 per contact vs €8K/year subscriptions"
+          "4": "free during launch vs €8K/year subscriptions"
         }
       },
       "institutions": {
@@ -2766,7 +2766,7 @@
           "reward": "€20 credit per signup",
           "details": {
             "0": "Share with HR network and fellow recruiters",
-            "1": "When referred company makes first contact (€10), you both get €20 credit",
+            "1": "When referred company makes their first hire, you both get rewarded",
             "2": "No limit on referrals",
             "3": "Build recruiter network: \"Join 500+ companies hiring verified talent\"",
             "4": "Quarterly networking events for referrers"
@@ -3928,7 +3928,7 @@
       },
       "inTransparency": {
         "title": "InTransparency",
-        "price": "€10",
+        "price": "€0",
         "period": "per candidate contact",
         "benefits": {
           "browseFree": "Browse entire database FREE",
@@ -3981,7 +3981,7 @@
         },
         "smbBudget": {
           "title": "SMB Budget",
-          "description": "€10/contact vs €8,000/year LinkedIn"
+          "description": "Free access vs €8,000/year LinkedIn"
         },
         "volumeHiring": {
           "title": "Volume Hiring",
@@ -4210,7 +4210,7 @@
       "softSkills": "Soft Skills:",
       "relevantCourses": "Relevant Courses:",
       "projectExperience": "Project Experience:",
-      "unlockFor": "Unlock for €10",
+      "unlockFor": "Contact Candidate",
       "match": "Match"
     },
     "loadMore": {
@@ -4308,7 +4308,7 @@
       "accessFullResults": "Access full search results",
       "saveSearches": "Save searches and favorites",
       "studentFeature": "Apply to jobs and get discovered",
-      "companyFeature": "Unlock contacts for €10 each",
+      "companyFeature": "Unlimited candidate contacts",
       "universityFeature": "Track placements in real-time"
     },
     "pricing": {
@@ -4324,7 +4324,7 @@
       "studentsMatch": "{count} students match",
       "applyForStage": "Apply for Stage",
       "registerToApply": "Register to Apply",
-      "unlockContact": "Unlock for €10",
+      "unlockContact": "Contact Candidate",
       "viewFullProfile": "View Full Profile",
       "hiredAt": "Hired at {company}"
     },
@@ -5302,7 +5302,7 @@
     },
     "pricing": {
       "title": "Simple Pricing for SMEs",
-      "price": "€10",
+      "price": "€0",
       "perContact": "per contact — no subscription, no annual fee",
       "noSubscription": "No subscription required",
       "browseFree": "Browse all profiles free",
@@ -5355,13 +5355,13 @@
         "desc": "Use Decision Packs to compare shortlisted candidates side-by-side with all verified data."
       },
       "step3": {
-        "title": "Contact at €10",
+        "title": "Contact Candidate",
         "desc": "Unlock contact details only for candidates you want to interview. No subscription required."
       }
     },
     "pricing": {
       "title": "Transparent Pricing",
-      "price": "€10",
+      "price": "€0",
       "perContact": "per contact — compare that to €8,000/year for LinkedIn Recruiter",
       "noSubscription": "No annual subscription",
       "browseFree": "Search and compare for free",
@@ -5372,7 +5372,7 @@
   "perAziendePmi": {
     "badge": "Per le PMI Italiane",
     "hero": {
-      "title": "Assumi Laureati a €10 per Contatto",
+      "title": "Hire Verified Graduates — Free",
       "subtitle": "Nessun abbonamento annuale. Nessun rischio. Cerca gratis, paga solo quando trovi il candidato giusto.",
       "browseCta": "Cerca Studenti Gratis",
       "pricingCta": "Vedi i Prezzi"
@@ -5399,7 +5399,7 @@
         "desc": "Descrivi il candidato ideale in linguaggio naturale. L'AI trova i profili più compatibili."
       },
       "payPerContact": {
-        "title": "Paga Solo €10 per Contatto",
+        "title": "Contact Candidates — Free During Launch",
         "desc": "Nessun abbonamento, nessun costo fisso. Paghi solo quando vuoi contattare un candidato."
       }
     },
@@ -5949,12 +5949,12 @@
     "fourServicesSubtitle": "Marketplace platform with verification quality layer",
     "primaryServiceLabel": "PRIMARY SERVICE",
     "discoveryTitle": "Discovery Service",
-    "discoveryBadge": "Browse FREE, €10/contact",
+    "discoveryBadge": "Browse FREE, Free access",
     "discoverySubtitle": "Reverse Recruitment",
     "discoveryItem1": "Companies search verified ITS talent pool",
     "discoveryItem2": "Students visible without applying",
     "discoveryItem3": "Your verification badge = quality signal",
-    "discoveryItem4": "Companies pay €10 to contact, you get credit",
+    "discoveryItem4": "Companies contact you directly through the platform",
     "discoveryNote": "University-verified credentials employers trust",
     "matchingTitle": "Matching Service",
     "matchingBadge": "FREE for Students",
@@ -5991,7 +5991,7 @@
     "hireStep3": "3. Companies Discover",
     "hireStep3Desc": "Siemens searches \"{skill}\" → finds student",
     "hireStep4": "4. Student Gets Hired",
-    "hireStep4Desc": "Company pays €10 to contact → Interview → Hired in 47 days",
+    "hireStep4Desc": "Company contacts you → Interview → Hired",
     "whyChooseTitle": "Why ITS Choose InTransparency",
     "why1Title": "Better Placement Outcomes",
     "why1Check1": "Students get discovered by companies",
@@ -6001,7 +6001,7 @@
     "why2Title": "Freemium Model",
     "why2Check1": "No setup costs",
     "why2Check2": "Core features included",
-    "why2Check3": "Companies pay per contact",
+    "why2Check3": "Companies full access",
     "why2Check4": "Enterprise options available",
     "why3Title": "Track Impact for MIUR",
     "why3Check1": "Track placement metrics",
@@ -6024,7 +6024,7 @@
     "faq1Q": "How does the marketplace help our students?",
     "faq1A": "Companies browse verified graduates and proactively reach out to students with matching skills. Students don't apply - they get discovered. Your institutional verification gives them a competitive edge.",
     "faq2Q": "What does freemium mean?",
-    "faq2A": "Core features are included at no cost. Companies pay per contact. Enterprise features available for larger institutions.",
+    "faq2A": "Core features are included at no cost. Companies full access. Enterprise features available for larger institutions.",
     "faq3Q": "How does verification work?",
     "faq3A": "Students manually upload projects and you verify them through our simple dashboard. For larger institutions, we can set up API integration (contact us for details). Zero IT work for you after setup.",
     "faq4Q": "Can we add Career Day tools?",
@@ -6071,12 +6071,12 @@
     "hireStep3": "3. Companies Discover",
     "hireStep3Desc": "Search \"{skill}\" → find the graduate",
     "hireStep4": "4. Graduate Hired",
-    "hireStep4Desc": "Company pays €10 to contact → Interview → Hired",
+    "hireStep4Desc": "Company contacts you → Interview → Hired",
     "whyChooseTitle": "Why Institutions Choose InTransparency",
     "why1Title": "Freemium Model",
     "why1Check1": "No setup costs",
     "why1Check2": "Core features included",
-    "why1Check3": "Companies pay per contact",
+    "why1Check3": "Companies full access",
     "why2Title": "Direct Contact",
     "why2Check1": "No intermediaries between company and student",
     "why2Check2": "Companies contact directly",

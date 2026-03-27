@@ -413,7 +413,7 @@
           "description": "Nessun costo per studenti e istituzioni"
         },
         "3": {
-          "title": "Pay Per Contact",
+          "title": "Accesso Completo",
           "description": "Le aziende pagano solo quando contattano"
         }
       },
@@ -450,7 +450,7 @@
           "benefits": {
             "0": "Cerca talenti verificati per competenze reali",
             "1": "Vedi progetti reali, non dichiarazioni nel CV",
-            "2": "Paga solo quando contatti i candidati",
+            "2": "Contatti illimitati durante il lancio i candidati",
             "3": "Nessun abbonamento, nessun vincolo"
           }
         }
@@ -518,7 +518,7 @@
             "Notifiche opportunità in tempo reale"
           ],
           "stats": {
-            "costo": "€10 per contatto",
+            "costo": "gratis durante il lancio",
             "modello": "Paga per utilizzo"
           },
           "visual": {
@@ -619,7 +619,7 @@
           {
             "feature": "Costo",
             "traditional": "Fee agenzia o abbonamenti",
-            "ours": "€10 per contatto, senza vincoli"
+            "ours": "gratis durante il lancio, senza vincoli"
           },
           {
             "feature": "Pool candidati",
@@ -749,14 +749,14 @@
       }
     },
     "companies": {
-      "badge": "Per Aziende - Paga Solo Ciò Che Usi",
+      "badge": "Per Aziende - Accesso Completo Gratuito",
       "title": "Servizio Trasparente Ricerca Talenti - Niente Abbonamenti",
-      "subtitle": "Sfoglia profili verificati 100% dall'istituzione GRATIS. Cerca 'AutoCAD, 28/30 da ITS Rizzoli' con estratti progetti. Paga €10 solo quando contatti candidati verificati. Screening più veloce, accuratezza verificata.",
+      "subtitle": "Sfoglia profili verificati 100% dall'istituzione GRATIS. Cerca 'AutoCAD, 28/30 da ITS Rizzoli' con estratti progetti. Contatta candidati verificati — gratis durante il lancio. Screening più veloce, accuratezza verificata.",
       "browseFree": {
         "name": "Sfoglia Gratis",
         "price": "€0",
         "period": "nessun abbonamento",
-        "description": "Sfogliamento illimitato - paga solo quando contatti",
+        "description": "Sfogliamento illimitato - accesso illimitato durante il lancio",
         "badge": "🔍 Sempre Gratis",
         "features": {
           "registration": "Registrazione gratuita (nessuna carta)",
@@ -773,9 +773,9 @@
       },
       "payPerContact": {
         "name": "Servizio Trasparente Ricerca Talenti",
-        "price": "€10",
+        "price": "€0",
         "period": "per contatto (niente abbonamenti)",
-        "description": "Sfoglia profili verificati 100% GRATIS → Paga €10 solo quando contatti il candidato giusto",
+        "description": "Sfoglia profili verificati 100% GRATIS → Contatta il candidato giusto — gratis durante il lancio",
         "badge": "Più Popolare - Paga Solo Uso",
         "cta": "Inizia a Sfogliare Gratis"
       },
@@ -900,13 +900,13 @@
       "recruiters": {
         "title": "Per Recruiter: Ricerca Candidati AI",
         "description": "Trova candidati verificati con linguaggio naturale. Zero screening CV:",
-        "result": "Risultato: Vedi 5-10 match verificati con progetti reali + soft skills analizzate AI → Paga €10 solo per contatto",
+        "result": "Risultato: Vedi 5-10 match verificati con progetti reali + soft skills analizzate AI → Contatti illimitati, gratis durante il lancio",
         "howToAccess": "Come Accedere:",
         "steps": {
           "0": "Registrati gratis (nessuna carta)",
           "1": "Vai alla tua Dashboard",
           "2": "Clicca \"Ricerca Candidati AI\" in Azioni Rapide",
-          "3": "Digita ricerca naturale, vedi match verificati, paga €10 solo per contatto"
+          "3": "Digita ricerca naturale, vedi match verificati, contatta direttamente — gratis durante il lancio"
         },
         "button": "Prova Ricerca Candidati AI →"
       },
@@ -1203,14 +1203,14 @@
     },
     "recruiter": {
       "title": "Registrazione Azienda",
-      "subtitle": "Trova talenti verificati - Sfoglia Gratis, Paga Per Contatto",
+      "subtitle": "Trova talenti verificati - Sfoglia Gratis, Accesso Completo",
       "cardTitle": "Crea il Tuo Account Aziendale",
       "cardDescription": "Scopri candidati verificati con ricerca AI",
       "submitButton": "Inizia ad Assumere - Sfoglia Gratis",
       "submittingButton": "Creazione Account...",
       "heroTitle": "Assumi Talenti Verificati, Non CV",
       "heroSubtitle": "Accedi a laureati verificati dalle istituzioni. Ogni competenza è tracciabile a corsi e progetti reali.",
-      "browseBadge": "Sfoglia Gratis, Paga Per Contatto",
+      "browseBadge": "Sfoglia Gratis, Accesso Completo",
       "benefits": {
         "0": {
           "title": "Solo Competenze Verificate",
@@ -1225,7 +1225,7 @@
           "description": "Vedi campioni di lavoro verificati direttamente"
         },
         "3": {
-          "title": "Pay Per Contact",
+          "title": "Accesso Completo",
           "description": "Sfoglia i profili gratis. Paga solo quando ti colleghi."
         }
       },
@@ -1239,7 +1239,7 @@
         "browse": "Sfoglia tutti i candidati",
         "browseCost": "Gratis",
         "contact": "Contatta un candidato",
-        "contactCost": "€10",
+        "contactCost": "€0",
         "postJobs": "Pubblica offerte di lavoro",
         "postJobsCost": "Gratis"
       },
@@ -2116,7 +2116,7 @@
         "2": {
           "title": "3. Sblocco Contatto",
           "items": {
-            "0": "Azienda paga €10 per sbloccare contatto",
+            "0": "L'azienda ti contatta direttamente",
             "1": "Studente viene notificato immediatamente",
             "2": "Studente può bloccare contatti futuri"
           }
@@ -2253,13 +2253,13 @@
       "discovery": {
         "badge": "SERVIZIO PRIMARIO",
         "title": "Servizio Scoperta",
-        "priceBadge": "Sfoglia GRATIS, €10/contatto",
+        "priceBadge": "Sfoglia GRATIS, Accesso gratuito",
         "subtitle": "Reclutamento Inverso",
         "items": {
           "0": "Aziende cercano tra talenti ITS verificati",
           "1": "Studenti visibili senza candidarsi",
           "2": "Il tuo badge di verifica = segnale di qualità",
-          "3": "Aziende pagano €10 per contattare, tu ottieni credito"
+          "3": "Le aziende ti contattano direttamente dalla piattaforma"
         },
         "comparison": "vs LinkedIn: Nessuna verifica = minor fiducia"
       },
@@ -2325,7 +2325,7 @@
           },
           "3": {
             "title": "4. Studente Viene Assunto",
-            "subtitle": "Azienda paga €10 per contattare → Colloquio → Assunto in 47 giorni"
+            "subtitle": "L'azienda ti contatta → Colloquio → Assunzione"
           }
         }
       }
@@ -2396,7 +2396,7 @@
         },
         "1": {
           "question": "È davvero gratis per sempre?",
-          "answer": "Sì, 100% gratis. Tutti i 4 servizi (Scoperta, Matching, Verifica, Analytics) inclusi. Le aziende pagano €10 per contatto - questo finanzia la piattaforma. Risparmi €2.500/anno vs AlmaLaurea."
+          "answer": "Sì, 100% gratis. Tutti i 4 servizi (Scoperta, Matching, Verifica, Analytics) inclusi. Le aziende pagano gratis durante il lancio - questo finanzia la piattaforma. Risparmi €2.500/anno vs AlmaLaurea."
         },
         "2": {
           "question": "Come funziona la verifica?",
@@ -2616,7 +2616,7 @@
           "1": "Match spiegabili con ragionamento",
           "2": "Vedi il lavoro reale su progetti prima di contattare",
           "3": "Qualità match verificata fa risparmiare tempo",
-          "4": "€10 per contatto vs €8K/anno abbonamenti"
+          "4": "gratis durante il lancio vs €8K/anno abbonamenti"
         }
       },
       "institutions": {
@@ -2806,7 +2806,7 @@
           "reward": "€20 credito per iscrizione",
           "details": {
             "0": "Condividi con rete HR e altri recruiter",
-            "1": "Quando l'azienda invitata fa primo contatto (€10), entrambi ricevete €20 credito",
+            "1": "Quando l'azienda invitata effettua la prima assunzione, entrambi ricevete un premio",
             "2": "Nessun limite ai referral",
             "3": "Costruisci rete recruiter: \"Unisciti a 500+ aziende che assumono talenti verificati\"",
             "4": "Eventi networking trimestrali per referrer"
@@ -3967,7 +3967,7 @@
       },
       "inTransparency": {
         "title": "InTransparency",
-        "price": "€10",
+        "price": "€0",
         "period": "per contatto candidato",
         "benefits": {
           "browseFree": "Naviga intero database GRATIS",
@@ -4020,7 +4020,7 @@
         },
         "smbBudget": {
           "title": "Budget PMI",
-          "description": "€10/contatto vs €8.000/anno LinkedIn"
+          "description": "Accesso gratuito vs €8.000/anno LinkedIn"
         },
         "volumeHiring": {
           "title": "Assunzioni Volume",
@@ -4249,7 +4249,7 @@
       "softSkills": "Soft Skills:",
       "relevantCourses": "Corsi Rilevanti:",
       "projectExperience": "Esperienza di Progetto:",
-      "unlockFor": "Sblocca per €10",
+      "unlockFor": "Contatta Candidato",
       "match": "Match"
     },
     "loadMore": {
@@ -4347,7 +4347,7 @@
       "accessFullResults": "Accedi a tutti i risultati di ricerca",
       "saveSearches": "Salva ricerche e preferiti",
       "studentFeature": "Candidati per lavori e fatti scoprire",
-      "companyFeature": "Sblocca contatti a €10 l'uno",
+      "companyFeature": "Contatti candidati illimitati",
       "universityFeature": "Traccia i placement in tempo reale"
     },
     "pricing": {
@@ -4363,7 +4363,7 @@
       "studentsMatch": "{count} studenti compatibili",
       "applyForStage": "Candidati per Stage",
       "registerToApply": "Registrati per Candidarti",
-      "unlockContact": "Sblocca per €10",
+      "unlockContact": "Contatta Candidato",
       "viewFullProfile": "Visualizza Profilo Completo",
       "hiredAt": "Assunto presso {company}"
     },
@@ -5329,7 +5329,7 @@
     },
     "pricing": {
       "title": "Prezzi Semplici per le PMI",
-      "price": "€10",
+      "price": "€0",
       "perContact": "per contatto — nessun abbonamento, nessun costo annuale",
       "noSubscription": "Nessun abbonamento richiesto",
       "browseFree": "Cerca tutti i profili gratis",
@@ -5382,13 +5382,13 @@
         "desc": "Usa i Decision Pack per confrontare i candidati selezionati fianco a fianco con tutti i dati verificati."
       },
       "step3": {
-        "title": "Contatta a €10",
+        "title": "Contatta Candidato",
         "desc": "Sblocca i dettagli di contatto solo per i candidati che vuoi intervistare. Nessun abbonamento richiesto."
       }
     },
     "pricing": {
       "title": "Prezzi Trasparenti",
-      "price": "€10",
+      "price": "€0",
       "perContact": "per contatto — confrontalo con €8.000/anno di LinkedIn Recruiter",
       "noSubscription": "Nessun abbonamento annuale",
       "browseFree": "Cerca e confronta gratis",
@@ -5399,7 +5399,7 @@
   "perAziendePmi": {
     "badge": "Per le PMI Italiane",
     "hero": {
-      "title": "Assumi Laureati a €10 per Contatto",
+      "title": "Assumi Laureati Verificati — Gratis",
       "subtitle": "Nessun abbonamento annuale. Nessun rischio. Cerca gratis, paga solo quando trovi il candidato giusto.",
       "browseCta": "Cerca Studenti Gratis",
       "pricingCta": "Vedi i Prezzi"
@@ -5426,7 +5426,7 @@
         "desc": "Descrivi il candidato ideale in linguaggio naturale. L'AI trova i profili più compatibili."
       },
       "payPerContact": {
-        "title": "Paga Solo €10 per Contatto",
+        "title": "Contatta Candidati — Gratis Durante il Lancio",
         "desc": "Nessun abbonamento, nessun costo fisso. Paghi solo quando vuoi contattare un candidato."
       }
     },
@@ -5976,12 +5976,12 @@
     "fourServicesSubtitle": "Piattaforma marketplace con livello di verifica qualità",
     "primaryServiceLabel": "SERVIZIO PRINCIPALE",
     "discoveryTitle": "Servizio Discovery",
-    "discoveryBadge": "Cerca GRATIS, €10/contatto",
+    "discoveryBadge": "Cerca GRATIS, Accesso gratuito",
     "discoverySubtitle": "Recruiting Inverso",
     "discoveryItem1": "Le aziende cercano nel pool di talenti ITS verificati",
     "discoveryItem2": "Studenti visibili senza candidarsi",
     "discoveryItem3": "Il tuo badge di verifica = segnale di qualità",
-    "discoveryItem4": "Le aziende pagano €10 per contattare, tu ricevi credito",
+    "discoveryItem4": "Le aziende ti contattano direttamente dalla piattaforma",
     "discoveryNote": "Credenziali verificate dall'istituto di cui le aziende si fidano",
     "matchingTitle": "Servizio Matching",
     "matchingBadge": "GRATUITO per gli Studenti",
@@ -6018,7 +6018,7 @@
     "hireStep3": "3. Le aziende scoprono",
     "hireStep3Desc": "Siemens cerca \"{skill}\" → trova lo studente",
     "hireStep4": "4. Lo studente viene assunto",
-    "hireStep4Desc": "L'azienda paga €10 per contattare → Colloquio → Assunto in 47 giorni",
+    "hireStep4Desc": "L'azienda ti contatta → Colloquio → Assunzione",
     "whyChooseTitle": "Perché gli ITS Scelgono InTransparency",
     "why1Title": "Migliori Risultati di Placement",
     "why1Check1": "Studenti scoperti dalle aziende",
@@ -6098,7 +6098,7 @@
     "hireStep3": "3. Le Aziende Scoprono",
     "hireStep3Desc": "Cercano \"{skill}\" → trovano il laureato",
     "hireStep4": "4. Laureato Assunto",
-    "hireStep4Desc": "L'azienda paga €10 per contattare → Colloquio → Assunzione",
+    "hireStep4Desc": "L'azienda ti contatta → Colloquio → Assunzione",
     "whyChooseTitle": "Perché le Istituzioni Scelgono InTransparency",
     "why1Title": "Modello Freemium",
     "why1Check1": "Nessun costo di setup",
