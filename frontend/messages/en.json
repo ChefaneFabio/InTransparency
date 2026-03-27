@@ -183,7 +183,7 @@
   },
   "home": {
     "hero": {
-      "serviceBadge": "Verified Talent from Top Universities • 2 Prizes at Start Cup Bergamo 2025",
+      "serviceBadge": "2 Prizes at Start Cup Bergamo 2025 • Pilot with Università di Bergamo",
       "segmentLabels": {
         "students": "Students",
         "institutes": "Institutes",
@@ -195,12 +195,12 @@
         "headlinePart2": "Now the World Can See Them.",
         "description": "",
         "descriptionStrong": "",
-        "primaryCTA": "Get Started Free",
-        "secondaryCTA": "See How It Works",
+        "primaryCTA": "Sign Up Free",
+        "secondaryCTA": "Learn More",
         "benefits": [
-          "Companies discover your verified work",
-          "Institution-backed skills",
-          "Always free for students"
+          "Companies find you for what you can actually do",
+          "Your university verifies your work",
+          "Always free for you"
         ],
         "features": [
           {
@@ -225,12 +225,12 @@
         "headlinePart2": "Every Outcome Measurable.",
         "description": "",
         "descriptionStrong": "",
-        "primaryCTA": "Join Free Marketplace",
-        "secondaryCTA": "See How It Works",
+        "primaryCTA": "Partner With Us",
+        "secondaryCTA": "Learn More",
         "benefits": [
-          "Students discovered by companies year-round",
-          "Real-time placement insights",
-          "GDPR-compliant and privacy-first"
+          "Your students discovered by companies year-round",
+          "Real placement data, not surveys",
+          "Free. Better than AlmaLaurea"
         ],
         "features": [
           {
@@ -256,11 +256,11 @@
         "headlinePart3": "",
         "description": "",
         "descriptionStrong": "",
-        "primaryCTA": "Start Exploring Free",
-        "secondaryCTA": "See How It Works",
+        "primaryCTA": "Start Finding Talent",
+        "secondaryCTA": "Learn More",
         "benefits": [
-          "Skills verified by institutions",
-          "Real projects, real grades",
+          "Skills verified by the student's university",
+          "Real projects, real grades — not resume claims",
           "Full access, free during launch"
         ],
         "features": [
@@ -280,11 +280,11 @@
         "statsLabel": "Verified talent from",
         "statsValue": "universities, ITS academies, and vocational schools across Italy"
       },
-      "bottomText": "Free for Everyone — Students, Companies, Universities",
-      "unifiedHeadline1": "The Future of Work",
-      "unifiedHeadline2": "Is Transparent.",
-      "unifiedSubheadline": "In a world where anyone can claim anything on a resume, we built the platform where skills are proven, not claimed. Every student, in every sector, deserves to be seen for what they can actually do.",
-      "unifiedPrimaryCTA": "Join the Movement",
+      "bottomText": "Prove. Discover. Hire.",
+      "unifiedHeadline1": "Prove. Discover. Hire.",
+      "unifiedHeadline2": "",
+      "unifiedSubheadline": "We're the platform that puts transparency at the center: students, companies, and universities. For us, hiring is a bit like saying \"nice to meet you\" — but with proof.",
+      "unifiedPrimaryCTA": "Sign Up Free",
       "unifiedSecondaryCTA": "See How It Works",
       "unifiedBenefits": [
         "Skills verified by institutions, not self-reported",

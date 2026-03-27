@@ -183,113 +183,113 @@
   },
   "home": {
     "hero": {
-      "serviceBadge": "Talenti Verificati dalle Migliori Istituzioni • 2 Premi a Start Cup Bergamo 2025",
+      "serviceBadge": "2 Premi Start Cup Bergamo 2025 • Pilota con Università di Bergamo",
       "segmentLabels": {
         "students": "Studenti",
-        "institutes": "Istituti",
+        "institutes": "Università",
         "companies": "Aziende"
       },
       "students": {
-        "badge": "Per Studenti - Tutte le Discipline",
-        "headlinePart1": "Mostra Quello che Hai Costruito.",
-        "headlinePart2": "Le Opportunità Arrivano a Te.",
+        "badge": "Per Studenti — Ogni Percorso, Ogni Disciplina",
+        "headlinePart1": "Le tue competenze sono reali.",
+        "headlinePart2": "Ora il mondo può vederle.",
         "description": "",
         "descriptionStrong": "",
-        "primaryCTA": "Inizia Gratis",
-        "secondaryCTA": "Vedi Come Funziona",
+        "primaryCTA": "Iscriviti Gratis",
+        "secondaryCTA": "Ti raccontiamo tutto",
         "benefits": [
-          "Le aziende scoprono il tuo lavoro verificato",
-          "Competenze confermate dall'istituzione",
-          "Sempre gratuito per gli studenti"
+          "Le aziende ti scoprono per quello che sai fare",
+          "La tua università verifica il tuo lavoro",
+          "Sempre gratis per te"
         ],
         "features": [
           {
-            "title": "Video Portfolio",
-            "description": "Video di 2 min che mostrano le tue competenze"
+            "title": "Portfolio Verificato",
+            "description": "Carica i tuoi progetti, la tua università li certifica"
           },
           {
-            "title": "Voti Verificati",
-            "description": "Voti certificati dall'istituto che parlano da soli"
+            "title": "AI che Ti Capisce",
+            "description": "Analizziamo le tue competenze — hard e soft — dai tuoi progetti reali"
           },
           {
-            "title": "Fatti Scoprire",
-            "description": "Le aziende ti contattano direttamente"
+            "title": "Le Aziende Ti Trovano",
+            "description": "Niente candidature. Sono loro a contattarti"
           }
         ],
-        "statsLabel": "Portfolio verificati dalle istituzioni —",
-        "statsValue": "aiutiamo studenti e aziende a trovarsi"
+        "statsLabel": "La piattaforma amata da",
+        "statsValue": "studenti di ingegneria, business, design, scienze e ogni altra disciplina"
       },
       "universities": {
-        "badge": "Per Istituzioni - Scuole, Università e ITS",
-        "headlinePart1": "Dai ai Tuoi Studenti",
-        "headlinePart2": "la Visibilità che Meritano.",
+        "badge": "Per Università, ITS e Scuole",
+        "headlinePart1": "Ogni laureato visibile.",
+        "headlinePart2": "Ogni risultato misurabile.",
         "description": "",
         "descriptionStrong": "",
-        "primaryCTA": "Unisciti al Marketplace Gratuito",
-        "secondaryCTA": "Vedi Come Funziona",
+        "primaryCTA": "Collabora con Noi",
+        "secondaryCTA": "Ti raccontiamo tutto",
         "benefits": [
-          "Studenti scoperti dalle aziende tutto l'anno",
-          "Insight placement in tempo reale",
-          "Conforme al GDPR e privacy-first"
+          "I tuoi studenti scoperti dalle aziende tutto l'anno",
+          "Dati placement reali, non sondaggi",
+          "Gratis. Meglio di AlmaLaurea"
         ],
         "features": [
           {
-            "title": "Visibilità Studenti",
-            "description": "Le aziende scoprono i tuoi laureati verificati"
+            "title": "Verifica con un Click",
+            "description": "Certifica i progetti dei tuoi studenti in modo semplice e veloce"
           },
           {
-            "title": "Badge di Verifica",
-            "description": "Il tuo timbro istituzionale costruisce fiducia"
+            "title": "Dati Reali",
+            "description": "Sai dove finiscono i tuoi laureati — non da sondaggi, dai fatti"
           },
           {
-            "title": "Analytics Placement",
-            "description": "Monitora contatti, assunzioni e misura l'impatto reale"
+            "title": "Allineamento Curricula",
+            "description": "Scopri quali competenze cercano le aziende vs cosa insegni"
           }
         ],
-        "statsLabel": "Un marketplace gratuito che collega",
-        "statsValue": "studenti, istituzioni e aziende — insieme"
+        "statsLabel": "Ci piace semplificare il placement.",
+        "statsValue": "Per le università che vogliono risultati, non burocrazia"
       },
       "companies": {
-        "badge": "Per Aziende - Tutti i Settori",
-        "headlinePart1": "Trova Talenti Junior",
-        "headlinePart2": "di cui Fidarti.",
+        "badge": "Per Aziende e Startup — Tutti i Settori",
+        "headlinePart1": "Assumi sulle prove,",
+        "headlinePart2": "non sulle promesse.",
         "headlinePart3": "",
         "description": "",
         "descriptionStrong": "",
-        "primaryCTA": "Inizia a Esplorare Gratis",
-        "secondaryCTA": "Vedi Come Funziona",
+        "primaryCTA": "Inizia a Cercare Talenti",
+        "secondaryCTA": "Ti raccontiamo tutto",
         "benefits": [
-          "Competenze verificate dalle istituzioni",
-          "Progetti reali, voti reali",
-          "Esplora gratis, paga solo quando ti connetti"
+          "Competenze verificate dall'università",
+          "Progetti reali, non autocertificazioni",
+          "Accesso completo e gratuito durante il lancio"
         ],
         "features": [
           {
             "title": "Talento Verificato",
-            "description": "Ogni competenza confermata dall'istituto dello studente"
+            "description": "Ogni competenza certificata dall'istituto dello studente"
           },
           {
-            "title": "Progetti Reali",
-            "description": "Vedi il lavoro vero — tesi, stage, codice"
+            "title": "Sai Cosa Assegnare",
+            "description": "Il Readiness Brief ti dice quali task può gestire dal giorno uno"
           },
           {
-            "title": "Prezzi Semplici",
-            "description": "€10 per contatto — nessun abbonamento, nessun vincolo"
+            "title": "Accesso Completo",
+            "description": "Contatti illimitati, nessun paywall — gratis durante il lancio"
           }
         ],
         "statsLabel": "Talento verificato da",
         "statsValue": "università, accademie ITS e scuole di tutta Italia"
       },
-      "bottomText": "Quattro Servizi, Zero Abbonamenti",
-      "unifiedHeadline1": "Il Futuro del Lavoro",
-      "unifiedHeadline2": "È Trasparente.",
-      "unifiedSubheadline": "In un mondo dove chiunque può dichiarare qualsiasi cosa su un CV, abbiamo costruito la piattaforma dove le competenze si dimostrano, non si dichiarano. Ogni studente, in ogni settore, merita di essere visto per ciò che sa realmente fare.",
-      "unifiedPrimaryCTA": "Unisciti al Movimento",
+      "bottomText": "Dimostra. Scopri. Assumi.",
+      "unifiedHeadline1": "Dimostra. Scopri. Assumi.",
+      "unifiedHeadline2": "",
+      "unifiedSubheadline": "Siamo la piattaforma che mette al centro la trasparenza: studenti, aziende e università. Per noi assumere è un po' come dire \"piacere di conoscerti\" — ma con le prove.",
+      "unifiedPrimaryCTA": "Iscriviti Gratis",
       "unifiedSecondaryCTA": "Vedi Come Funziona",
       "unifiedBenefits": [
-        "Competenze verificate dalle istituzioni, non autocertificate",
+        "Competenze verificate, non autocertificate",
         "Ogni settore — tech, ingegneria, business, design, scienze",
-        "Gratis per tutti durante il lancio"
+        "Gratis per tutti"
       ],
       "exploreByRole": "Esplora per ruolo",
       "socialProof": {
@@ -298,9 +298,9 @@
       }
     },
     "problem": {
-      "badge": "Il Problema",
-      "title": "I CV Sono Rotti",
-      "subtitle": "Chiunque può affermare 'Competente in React' su un curriculum. I recruiter sprecano tempo intervistando candidati non qualificati. Gli studenti con competenze reali vengono trascurati.",
+      "badge": "Perché Esistiamo",
+      "title": "Il vecchio modo di assumere non funziona più",
+      "subtitle": "Gli studenti non riescono a dimostrare le loro competenze. Le aziende non si fidano dei CV. Le università non possono tracciare i risultati. Noi cambiamo tutto questo con la trasparenza.",
       "resumeProblem": "Il Problema dei CV",
       "resumePoints": {
         "unverified": "Competenze non verificate (chiunque può mentire)",
@@ -344,8 +344,8 @@
         "description": "Voti reali, progetti reali, competenze verificate"
       },
       "companyStep3": {
-        "title": "Paga Solo al Contatto",
-        "description": "€10 per candidato che vuoi assumere"
+        "title": "Connettiti Direttamente",
+        "description": "Contatta i candidati senza barriere — gratis durante il lancio"
       }
     },
     "features": {
