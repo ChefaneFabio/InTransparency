@@ -47,6 +47,7 @@ interface FeaturedStudent {
   id: string
   firstName: string
   lastName: string
+  username: string | null
   photo: string | null
   tagline: string | null
   program: string | null

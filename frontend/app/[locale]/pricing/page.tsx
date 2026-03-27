@@ -66,6 +66,28 @@ export default function PricingPage() {
             </div>
           </motion.div>
 
+          {/* Social Proof Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mb-16"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              {[
+                { value: t('stats.portfolios.value'), label: t('stats.portfolios.label') },
+                { value: t('stats.universities.value'), label: t('stats.universities.label') },
+                { value: t('stats.verified.value'), label: t('stats.verified.label') },
+                { value: t('stats.cost.value'), label: t('stats.cost.label') },
+              ].map((stat, i) => (
+                <div key={i} className="text-center p-4 bg-white/60 rounded-xl border border-gray-200">
+                  <div className="text-2xl font-bold text-primary">{stat.value}</div>
+                  <div className="text-xs text-gray-600">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
           {/* Dynamic Segments */}
           <div className="mb-20">
             <motion.div

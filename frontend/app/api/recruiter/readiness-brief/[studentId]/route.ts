@@ -88,6 +88,8 @@ export async function GET(
     const softSkillScores: Record<string, { total: number; count: number }> = {}
     const allStrengths: string[] = []
     const allImprovements: string[] = []
+    const allRecommendations: string[] = []
+    const projectHighlights: Array<{ projectTitle: string; summary: string; highlights: string[] }> = []
     const disciplines: Record<string, number> = {}
 
     let totalComplexity = 0
@@ -143,6 +145,16 @@ export async function GET(
         const insights = project.aiInsights as AiInsights
         if (insights.strengths) allStrengths.push(...insights.strengths)
         if (insights.improvements) allImprovements.push(...insights.improvements)
+        if (insights.recommendations) allRecommendations.push(...insights.recommendations)
+
+        // Collect per-project summaries for the brief
+        if (insights.summary) {
+          projectHighlights.push({
+            projectTitle: project.title,
+            summary: insights.summary,
+            highlights: insights.highlights || [],
+          })
+        }
 
         if (insights.detectedCompetencies) {
           for (const comp of insights.detectedCompetencies) {
@@ -211,6 +223,9 @@ export async function GET(
     // --- Unique strengths ---
     const strengths = deduplicateStrings(allStrengths).slice(0, 5)
 
+    // --- AI recommendations ---
+    const recommendations = deduplicateStrings(allRecommendations).slice(0, 5)
+
     return NextResponse.json({
       hasData: true,
       studentName: `${student.firstName || ''} ${student.lastName || ''}`.trim(),
@@ -233,6 +248,8 @@ export async function GET(
       teamFit,
       strengths,
       growthAreas,
+      recommendations,
+      projectHighlights: projectHighlights.slice(0, 4),
     })
   } catch (error) {
     console.error('Error generating readiness brief:', error)

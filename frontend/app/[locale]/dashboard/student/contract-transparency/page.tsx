@@ -19,6 +19,7 @@ import {
   ArrowRight,
   Loader2,
   Info,
+  Calculator,
 } from 'lucide-react'
 
 interface RedFlag {
@@ -125,6 +126,74 @@ export default function ContractTransparencyPage() {
     }
   }
 
+  // Salary calculator state
+  const [salaryRal, setSalaryRal] = useState('')
+  const [salaryResult, setSalaryResult] = useState<{
+    grossMonthly: number
+    inps: number
+    irpef: number
+    regional: number
+    municipal: number
+    netMonthly: number
+    netAnnual: number
+    effectiveRate: number
+  } | null>(null)
+
+  const calculateNetSalary = (ral: number) => {
+    // Italian tax calculation (simplified but realistic for 2025-2026)
+    const months = 13 // 13th month (tredicesima)
+    const grossMonthly = ral / months
+
+    // INPS employee contribution (~9.19% for private sector)
+    const inpsRate = 0.0919
+    const inpsAnnual = ral * inpsRate
+    const taxableIncome = ral - inpsAnnual
+
+    // IRPEF brackets (2025)
+    let irpef = 0
+    if (taxableIncome <= 28000) {
+      irpef = taxableIncome * 0.23
+    } else if (taxableIncome <= 50000) {
+      irpef = 28000 * 0.23 + (taxableIncome - 28000) * 0.35
+    } else {
+      irpef = 28000 * 0.23 + 22000 * 0.35 + (taxableIncome - 50000) * 0.43
+    }
+
+    // Tax deductions for employees (detrazioni lavoro dipendente)
+    let detrazione = 0
+    if (taxableIncome <= 15000) {
+      detrazione = 1955
+    } else if (taxableIncome <= 28000) {
+      detrazione = 1910 + 1190 * ((28000 - taxableIncome) / 13000)
+    } else if (taxableIncome <= 50000) {
+      detrazione = 1910 * ((50000 - taxableIncome) / 22000)
+    }
+    irpef = Math.max(0, irpef - detrazione)
+
+    // Regional tax (~1.73% average)
+    const regionalRate = 0.0173
+    const regional = taxableIncome * regionalRate
+
+    // Municipal tax (~0.8% average)
+    const municipalRate = 0.008
+    const municipal = taxableIncome * municipalRate
+
+    const totalTaxes = inpsAnnual + irpef + regional + municipal
+    const netAnnual = ral - totalTaxes
+    const netMonthly = netAnnual / 12 // Show per calendar month
+
+    setSalaryResult({
+      grossMonthly: Math.round(grossMonthly),
+      inps: Math.round(inpsAnnual),
+      irpef: Math.round(irpef),
+      regional: Math.round(regional),
+      municipal: Math.round(municipal),
+      netMonthly: Math.round(netMonthly),
+      netAnnual: Math.round(netAnnual),
+      effectiveRate: Math.round((totalTaxes / ral) * 100),
+    })
+  }
+
   const isFreelanceType = contractType === 'partita_iva' || contractType === 'cococo'
   const isInternship = contractType === 'stage' || contractType === 'tirocinio'
 
@@ -149,10 +218,14 @@ export default function ContractTransparencyPage() {
       </div>
 
       <Tabs defaultValue="checker" className="space-y-8">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="checker" className="flex items-center gap-2">
             <Search className="h-4 w-4" />
             {t('tabs.checker')}
+          </TabsTrigger>
+          <TabsTrigger value="salary" className="flex items-center gap-2">
+            <Calculator className="h-4 w-4" />
+            {t('tabs.salary')}
           </TabsTrigger>
           <TabsTrigger value="guide" className="flex items-center gap-2">
             <FileText className="h-4 w-4" />
@@ -464,6 +537,115 @@ export default function ContractTransparencyPage() {
               )}
             </div>
           )}
+        </TabsContent>
+
+        {/* ─── SALARY CALCULATOR ─── */}
+        <TabsContent value="salary" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Calculator className="h-5 w-5 text-primary" />
+                {t('salary.title')}
+              </CardTitle>
+              <CardDescription>{t('salary.subtitle')}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">{t('salary.inputLabel')}</label>
+                <div className="flex gap-3">
+                  <Input
+                    type="number"
+                    placeholder="e.g. 24000"
+                    value={salaryRal}
+                    onChange={(e) => { setSalaryRal(e.target.value); setSalaryResult(null) }}
+                    className="flex-1"
+                  />
+                  <Button
+                    onClick={() => salaryRal && calculateNetSalary(Number(salaryRal))}
+                    disabled={!salaryRal}
+                  >
+                    <Calculator className="mr-2 h-4 w-4" />
+                    {t('salary.calculate')}
+                  </Button>
+                </div>
+              </div>
+
+              {/* Quick presets */}
+              <div>
+                <p className="text-sm text-gray-500 mb-2">{t('salary.quickPresets')}</p>
+                <div className="flex flex-wrap gap-2">
+                  {[18000, 22000, 25000, 28000, 32000, 40000].map((val) => (
+                    <button
+                      key={val}
+                      onClick={() => { setSalaryRal(String(val)); calculateNetSalary(val) }}
+                      className="px-3 py-1.5 rounded-full border border-gray-300 text-sm hover:bg-primary/10 hover:border-primary transition-colors"
+                    >
+                      €{val.toLocaleString()}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {salaryResult && (
+                <div className="space-y-6 pt-4 border-t">
+                  {/* Net result highlight */}
+                  <div className="bg-primary/5 border-2 border-primary/20 rounded-xl p-6 text-center">
+                    <p className="text-sm text-gray-600 mb-1">{t('salary.yourNetMonthly')}</p>
+                    <div className="text-4xl font-bold text-primary">
+                      €{salaryResult.netMonthly.toLocaleString()}
+                    </div>
+                    <p className="text-sm text-gray-500 mt-1">
+                      {t('salary.netAnnual')}: €{salaryResult.netAnnual.toLocaleString()}
+                    </p>
+                  </div>
+
+                  {/* Breakdown */}
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-3">{t('salary.breakdown')}</h4>
+                    <div className="space-y-2">
+                      {[
+                        { label: t('salary.grossAnnual'), value: Number(salaryRal), color: 'text-gray-900' },
+                        { label: t('salary.inps'), value: -salaryResult.inps, color: 'text-red-600' },
+                        { label: t('salary.irpef'), value: -salaryResult.irpef, color: 'text-red-600' },
+                        { label: t('salary.regional'), value: -salaryResult.regional, color: 'text-red-600' },
+                        { label: t('salary.municipal'), value: -salaryResult.municipal, color: 'text-red-600' },
+                      ].map((row) => (
+                        <div key={row.label} className="flex justify-between items-center py-2 px-3 rounded bg-gray-50">
+                          <span className="text-sm text-gray-700">{row.label}</span>
+                          <span className={`text-sm font-medium ${row.color}`}>
+                            {row.value > 0 ? '' : '−'} €{Math.abs(row.value).toLocaleString()}
+                          </span>
+                        </div>
+                      ))}
+                      <div className="flex justify-between items-center py-2 px-3 rounded bg-primary/10 border border-primary/20">
+                        <span className="text-sm font-semibold text-gray-900">{t('salary.netResult')}</span>
+                        <span className="text-sm font-bold text-primary">€{salaryResult.netAnnual.toLocaleString()}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Tax rate */}
+                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                    <div className="flex items-start gap-2">
+                      <Info className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-sm font-medium text-amber-900">
+                          {t('salary.effectiveRate')}: {salaryResult.effectiveRate}%
+                        </p>
+                        <p className="text-xs text-amber-700 mt-1">{t('salary.disclaimer')}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Gross monthly info */}
+                  <div className="text-sm text-gray-600 flex items-start gap-2">
+                    <Info className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5" />
+                    <span>{t('salary.thirteenthNote')}</span>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </TabsContent>
 
         {/* ─── CONTRACT GUIDE ─── */}

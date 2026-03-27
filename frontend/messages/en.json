@@ -2931,6 +2931,12 @@
         "companies": "Companies"
       }
     },
+    "stats": {
+      "portfolios": { "value": "500+", "label": "Verified Portfolios" },
+      "universities": { "value": "10+", "label": "Partner Universities" },
+      "verified": { "value": "100%", "label": "Skills Verified" },
+      "cost": { "value": "€0", "label": "For Everyone" }
+    },
     "company": {
       "badge": "Full Access — Free During Launch",
       "title": "Find the Right Talent, Faster",
@@ -6156,8 +6162,28 @@
     "subtitle": "Understand your contract, know your rights, and spot red flags before you sign.",
     "tabs": {
       "checker": "Contract Checker",
+      "salary": "Salary Calculator",
       "guide": "Contract Guide",
       "redFlags": "Red Flags"
+    },
+    "salary": {
+      "title": "RAL to Net Salary Calculator",
+      "subtitle": "Find out how much you'll actually take home. Enter your gross annual salary (RAL) and see the net monthly amount after taxes and contributions.",
+      "inputLabel": "Gross Annual Salary (RAL) in euros",
+      "calculate": "Calculate",
+      "quickPresets": "Common entry-level salaries:",
+      "yourNetMonthly": "Your estimated net monthly salary",
+      "netAnnual": "Net annual",
+      "breakdown": "Tax Breakdown",
+      "grossAnnual": "Gross Annual (RAL)",
+      "inps": "INPS (pension contribution, ~9.19%)",
+      "irpef": "IRPEF (income tax)",
+      "regional": "Regional tax (~1.73%)",
+      "municipal": "Municipal tax (~0.8%)",
+      "netResult": "Net Annual",
+      "effectiveRate": "Effective tax rate",
+      "disclaimer": "This is an estimate based on standard rates for single employees with no dependents. Actual amounts may vary based on your region, municipality, deductions, and personal situation.",
+      "thirteenthNote": "Your RAL is divided over 13 months (including the \"tredicesima\" — a mandatory extra month's pay). The net monthly shown is your take-home per calendar month (annual net ÷ 12)."
     },
     "checker": {
       "title": "Check Your Contract Offer",

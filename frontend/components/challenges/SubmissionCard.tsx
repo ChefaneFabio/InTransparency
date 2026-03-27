@@ -22,6 +22,7 @@ interface Student {
   id: string
   firstName?: string
   lastName?: string
+  username?: string
   email?: string
   university?: string
   degree?: string

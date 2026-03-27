@@ -2971,6 +2971,12 @@
         "companies": "Aziende"
       }
     },
+    "stats": {
+      "portfolios": { "value": "500+", "label": "Portfolio Verificati" },
+      "universities": { "value": "10+", "label": "Università Partner" },
+      "verified": { "value": "100%", "label": "Competenze Verificate" },
+      "cost": { "value": "€0", "label": "Per Tutti" }
+    },
     "company": {
       "badge": "Accesso Completo — Gratis Durante il Lancio",
       "title": "Trova il Talento Giusto, Più Velocemente",
@@ -6183,8 +6189,28 @@
     "subtitle": "Comprendi il tuo contratto, conosci i tuoi diritti e individua i segnali d'allarme prima di firmare.",
     "tabs": {
       "checker": "Verifica Contratto",
+      "salary": "Calcola Stipendio",
       "guide": "Guida Contratti",
       "redFlags": "Segnali d'Allarme"
+    },
+    "salary": {
+      "title": "Calcolatore RAL → Netto",
+      "subtitle": "Scopri quanto porterai a casa davvero. Inserisci la tua RAL (Retribuzione Annua Lorda) e vedi il netto mensile al netto di tasse e contributi.",
+      "inputLabel": "Retribuzione Annua Lorda (RAL) in euro",
+      "calculate": "Calcola",
+      "quickPresets": "RAL tipiche per neolaureati:",
+      "yourNetMonthly": "Il tuo netto mensile stimato",
+      "netAnnual": "Netto annuale",
+      "breakdown": "Dettaglio Tasse e Contributi",
+      "grossAnnual": "Lordo Annuale (RAL)",
+      "inps": "INPS (contributi pensionistici, ~9,19%)",
+      "irpef": "IRPEF (imposta sul reddito)",
+      "regional": "Addizionale regionale (~1,73%)",
+      "municipal": "Addizionale comunale (~0,8%)",
+      "netResult": "Netto Annuale",
+      "effectiveRate": "Aliquota effettiva",
+      "disclaimer": "Questa è una stima basata su aliquote standard per dipendenti single senza carichi familiari. Gli importi reali possono variare in base a regione, comune, detrazioni e situazione personale.",
+      "thirteenthNote": "La RAL è divisa su 13 mensilità (inclusa la tredicesima). Il netto mensile mostrato è il tuo stipendio netto per mese solare (netto annuo ÷ 12)."
     },
     "checker": {
       "title": "Verifica la Tua Offerta Contrattuale",

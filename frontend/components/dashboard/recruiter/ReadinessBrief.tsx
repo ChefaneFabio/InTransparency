@@ -17,6 +17,7 @@ import {
   Shield,
   Code2,
   Briefcase,
+  Sparkles,
 } from 'lucide-react'
 
 interface ReadinessBriefData {
@@ -42,6 +43,8 @@ interface ReadinessBriefData {
   teamFit?: { bestFitRoles: string[]; workStyle: string; collaborationNote: string }
   strengths?: string[]
   growthAreas?: string[]
+  recommendations?: string[]
+  projectHighlights?: Array<{ projectTitle: string; summary: string; highlights: string[] }>
 }
 
 interface ReadinessBriefProps {
@@ -361,6 +364,57 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
           </Card>
         )}
       </div>
+
+      {/* AI Project Highlights */}
+      {data.projectHighlights && data.projectHighlights.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-primary" />
+              AI Project Analysis
+            </CardTitle>
+            <CardDescription>What the AI found in their verified project work</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {data.projectHighlights.map((ph, i) => (
+              <div key={i} className="p-4 bg-gray-50 rounded-lg">
+                <h4 className="font-medium text-gray-900 mb-1">{ph.projectTitle}</h4>
+                <p className="text-sm text-gray-700 mb-2">{ph.summary}</p>
+                {ph.highlights.length > 0 && (
+                  <div className="flex flex-wrap gap-1">
+                    {ph.highlights.map((h, j) => (
+                      <Badge key={j} variant="outline" className="text-xs">{h}</Badge>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      )}
+
+      {/* AI Recommendations */}
+      {data.recommendations && data.recommendations.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Target className="h-5 w-5 text-primary" />
+              AI Recommendations
+            </CardTitle>
+            <CardDescription>Suggested next steps for this candidate&apos;s development</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-2">
+              {data.recommendations.map((r, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm">
+                  <ArrowRight className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">{r}</span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Soft Skills */}
       {data.softSkills && data.softSkills.length > 0 && (

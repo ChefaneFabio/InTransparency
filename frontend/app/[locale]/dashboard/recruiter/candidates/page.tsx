@@ -56,6 +56,7 @@ interface Candidate {
   firstName: string
   lastName: string
   email: string
+  username: string | null
   university: string
   degree: string
   graduationYear: string
