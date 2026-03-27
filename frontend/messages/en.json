@@ -61,6 +61,7 @@
         "privacy": "Privacy",
         "cv": "My CV",
         "personality": "Personality Insights",
+        "contractTransparency": "Contract Check",
         "settings": "Settings"
       }
     },
@@ -6149,5 +6150,182 @@
     "normalized": "ECTS Grade",
     "originalGrade": "Original Grade",
     "scale": "Grading Scale"
+  },
+  "contractTransparency": {
+    "title": "Contract Transparency",
+    "subtitle": "Understand your contract, know your rights, and spot red flags before you sign.",
+    "tabs": {
+      "checker": "Contract Checker",
+      "guide": "Contract Guide",
+      "redFlags": "Red Flags"
+    },
+    "checker": {
+      "title": "Check Your Contract Offer",
+      "subtitle": "Enter the details of a contract offer and get an instant transparency report with fairness assessment, rights, and warnings.",
+      "contractType": "Contract Type",
+      "selectType": "Select contract type...",
+      "ccnl": "CCNL (National Agreement)",
+      "selectCcnl": "Select CCNL...",
+      "livello": "Level (Livello)",
+      "livelloPlaceholder": "e.g. 5, C3, 3S",
+      "ral": "Gross Annual Salary (RAL)",
+      "monthlyNet": "Monthly Net Offered",
+      "hours": "Hours per Week",
+      "duration": "Duration (months)",
+      "freelanceQuestions": "These questions help detect if this is really freelance or disguised employment:",
+      "fixedSchedule": "Do they set your daily schedule?",
+      "worksOnSite": "Must you work at their office?",
+      "ownTools": "Do you provide your own tools/laptop?",
+      "exclusivity": "Are you forbidden from other clients?",
+      "yes": "Yes",
+      "no": "No",
+      "checkButton": "Analyze This Contract",
+      "checking": "Analyzing..."
+    },
+    "risk": {
+      "low": "Low Risk",
+      "medium": "Review Carefully",
+      "high": "High Risk"
+    },
+    "severity": {
+      "critical": "Critical",
+      "warning": "Warning"
+    },
+    "results": {
+      "redFlags": "Red Flags Detected",
+      "payFairness": "Pay Fairness",
+      "yourRights": "Your Rights with This Contract",
+      "yourRightsDesc": "What protections this contract type gives you under Italian law.",
+      "tips": "Advice Before Signing"
+    },
+    "rights": {
+      "minimumPay": "Minimum Pay (CCNL)",
+      "minimumPayDesc": "Salary cannot be below the national agreement minimum for your level",
+      "tfr": "TFR (Severance Pay)",
+      "tfrDesc": "Accrued monthly — paid when the contract ends",
+      "sickLeave": "Paid Sick Leave",
+      "sickLeaveDesc": "Protected days off when you're ill, with pay",
+      "paidVacation": "Paid Vacation",
+      "paidVacationDesc": "Minimum 4 weeks/year of paid holiday by law",
+      "unemployment": "Unemployment Benefits (NASpI)",
+      "unemploymentDesc": "Income support if you lose your job involuntarily",
+      "pension": "Pension Contributions",
+      "pensionDesc": "INPS contributions for your retirement",
+      "noticePeriod": "Notice Period",
+      "noticePeriodDesc": "Employer must give advance notice before termination",
+      "overtime": "Overtime Protection",
+      "overtimeDesc": "Extra hours must be compensated according to CCNL rates",
+      "maternity": "Maternity / Paternity",
+      "maternityDesc": "Protected leave for new parents with income support"
+    },
+    "guide": {
+      "title": "Italian Contract Types — Plain Language Guide",
+      "subtitle": "Every contract type explained: what it means, what protections you get, and when it's appropriate.",
+      "labels": {
+        "protection": "Protection Level",
+        "typicalDuration": "Typical Duration",
+        "bestFor": "Best For"
+      },
+      "types": {
+        "tempo_indeterminato": {
+          "description": "The gold standard. Permanent employment with full protections. The employer needs a justified reason to fire you. You get TFR, sick leave, vacation, overtime pay, and unemployment benefits if dismissed.",
+          "protection": "Maximum",
+          "duration": "Indefinite",
+          "bestFor": "Long-term career roles"
+        },
+        "tempo_determinato": {
+          "description": "Same protections as permanent, but with an end date. Can be renewed, but total duration cannot exceed 24 months. After that, it must become permanent or end.",
+          "protection": "High",
+          "duration": "Up to 24 months",
+          "bestFor": "Project-based roles, seasonal work"
+        },
+        "apprendistato": {
+          "description": "A real job with a training component. Great for young workers — the company gets tax breaks, you get mentorship and full employment rights. Must include a formal training plan. Can pay up to 2 levels below standard.",
+          "protection": "High",
+          "duration": "Up to 36 months",
+          "bestFor": "First job after graduation"
+        },
+        "stage": {
+          "description": "An extracurricular internship. Not a real employment contract — it's a training agreement. Must be paid in most regions (€300-€800/month). Should involve genuine learning, not cheap labor. Max 6 months.",
+          "protection": "Minimal",
+          "duration": "Up to 6 months",
+          "bestFor": "First work experience, career exploration"
+        },
+        "tirocinio": {
+          "description": "A curricular internship tied to your degree program. Can be unpaid if part of your curriculum. Your university must be involved as a guarantor. Learning objectives must be defined.",
+          "protection": "Minimal",
+          "duration": "Varies by program",
+          "bestFor": "Degree requirement, academic credit"
+        },
+        "partita_iva": {
+          "description": "Self-employment. You are your own boss — you invoice clients, pay your own taxes and INPS. No employment protections. Your effective income is roughly 50-60% of what you invoice after taxes and contributions.",
+          "protection": "None",
+          "duration": "Ongoing",
+          "bestFor": "True freelancers with multiple clients"
+        },
+        "cococo": {
+          "description": "A collaboration contract. You're not an employee but work in a coordinated way with the company. Some pension contributions are paid. Very few protections. Often misused to avoid employment obligations.",
+          "protection": "Very Low",
+          "duration": "Project-based",
+          "bestFor": "Short consulting projects"
+        },
+        "somministrazione": {
+          "description": "You're employed by an agency but work at another company. Same pay and protections as direct employees. The agency handles payroll. Good way to get a foot in the door at large companies.",
+          "protection": "High (via agency)",
+          "duration": "Up to 24 months",
+          "bestFor": "Entry into large companies, temp roles"
+        },
+        "collaborazione_occasionale": {
+          "description": "Occasional, one-off work. Max €5,000/year per client. No employment relationship. Very limited — if it becomes regular, it should be a different contract type.",
+          "protection": "None",
+          "duration": "One-off tasks",
+          "bestFor": "Small, isolated tasks"
+        }
+      }
+    },
+    "redFlags": {
+      "title": "Common Red Flags in Job Offers",
+      "subtitle": "Patterns to watch for when evaluating a contract. If you see these, ask questions before signing.",
+      "whatToDo": "What to do:",
+      "items": {
+        "0": {
+          "title": "\"We'll start with a trial period... unpaid\"",
+          "description": "Italian law does not allow unpaid trial periods for employment contracts. The trial period (periodo di prova) is part of the contract — you must be paid from day one. An unpaid 'trial' is illegal.",
+          "action": "Ask for the contract in writing before starting. If they refuse to pay during the trial, this is a violation of labor law. Contact a sindacato."
+        },
+        "1": {
+          "title": "\"Open a Partita IVA and we'll give you a fixed monthly fee\"",
+          "description": "If a company asks you to be freelance but gives you fixed hours, works you on-site, and treats you like an employee — this is 'false P.IVA' (falsa partita IVA). It's illegal under Italian law since 2015.",
+          "action": "If you have fixed hours, work on-site, use company tools, and can't take other clients — you're an employee. Ask for a real contract. A labor judge can reclassify it."
+        },
+        "2": {
+          "title": "\"The CCNL doesn't apply here\" or no mention of CCNL",
+          "description": "Almost all Italian companies must apply a CCNL (national collective agreement). This sets your minimum pay, vacation days, sick leave, and more. If they say CCNL doesn't apply, they may be trying to avoid minimum protections.",
+          "action": "Ask which CCNL applies and at which livello. Verify the minimum pay on sindacato websites. If they refuse to specify, that's a red flag."
+        },
+        "3": {
+          "title": "Stage that lasts longer than 6 months",
+          "description": "Extracurricular internships (stage) have a legal maximum of 6 months in most Italian regions. If a company offers a 12-month stage, they may be using internship rules to avoid a real contract.",
+          "action": "After 6 months, you should either be hired or the internship should end. A repeated or extended stage for the same tasks is a sign of exploitation."
+        },
+        "4": {
+          "title": "\"You'll start as intern, then we'll see about hiring\"",
+          "description": "Vague promises of future employment are a common way to keep you as cheap labor. There's no legal obligation to hire after an internship ends, and many companies don't.",
+          "action": "Ask for the conversion rate — what percentage of interns get hired? Ask for it in writing. If they won't commit, assume the internship is all you'll get."
+        },
+        "5": {
+          "title": "Pay significantly below CCNL minimum",
+          "description": "Each CCNL sets minimum pay per livello. If you're offered less than the minimum for your role and classification, the company is violating the collective agreement. This happens more often than you'd think.",
+          "action": "Look up your CCNL and livello minimums. Compare with the offer. If it's below, negotiate or contact a sindacato — they can help recover the difference."
+        },
+        "6": {
+          "title": "\"Sign this NDA before we show you the contract\"",
+          "description": "While NDAs for proprietary information are normal, an NDA that prevents you from discussing your pay or contract terms is a red flag. Pay transparency is your right.",
+          "action": "Read the NDA carefully. You always have the right to discuss your contract with a sindacato, a lawyer, or labor inspectors. An NDA cannot override this."
+        }
+      },
+      "unionTitle": "When in doubt, ask a sindacato",
+      "unionDescription": "Italian labor unions offer free contract review and legal advice. They can check your contract, recover unpaid wages, and represent you in disputes. Membership costs €5-15/month."
+    }
   }
 }

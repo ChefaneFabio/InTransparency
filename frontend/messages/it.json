@@ -61,6 +61,7 @@
         "privacy": "Privacy",
         "cv": "Il Mio CV",
         "personality": "Profilo Personalità",
+        "contractTransparency": "Verifica Contratto",
         "settings": "Impostazioni"
       }
     },
@@ -6176,5 +6177,182 @@
     "normalized": "Voto ECTS",
     "originalGrade": "Voto Originale",
     "scale": "Scala di Valutazione"
+  },
+  "contractTransparency": {
+    "title": "Trasparenza Contrattuale",
+    "subtitle": "Comprendi il tuo contratto, conosci i tuoi diritti e individua i segnali d'allarme prima di firmare.",
+    "tabs": {
+      "checker": "Verifica Contratto",
+      "guide": "Guida Contratti",
+      "redFlags": "Segnali d'Allarme"
+    },
+    "checker": {
+      "title": "Verifica la Tua Offerta Contrattuale",
+      "subtitle": "Inserisci i dettagli di un'offerta contrattuale e ottieni un report istantaneo con valutazione di equità, diritti e avvertenze.",
+      "contractType": "Tipo di Contratto",
+      "selectType": "Seleziona tipo di contratto...",
+      "ccnl": "CCNL (Contratto Collettivo)",
+      "selectCcnl": "Seleziona CCNL...",
+      "livello": "Livello",
+      "livelloPlaceholder": "es. 5, C3, 3S",
+      "ral": "RAL (Retribuzione Annua Lorda)",
+      "monthlyNet": "Netto Mensile Offerto",
+      "hours": "Ore Settimanali",
+      "duration": "Durata (mesi)",
+      "freelanceQuestions": "Queste domande aiutano a capire se è vero lavoro autonomo o subordinazione mascherata:",
+      "fixedSchedule": "Ti impongono un orario fisso giornaliero?",
+      "worksOnSite": "Devi lavorare nei loro uffici?",
+      "ownTools": "Usi i tuoi strumenti/laptop?",
+      "exclusivity": "Ti vietano di lavorare con altri clienti?",
+      "yes": "Sì",
+      "no": "No",
+      "checkButton": "Analizza Questo Contratto",
+      "checking": "Analisi in corso..."
+    },
+    "risk": {
+      "low": "Rischio Basso",
+      "medium": "Da Verificare",
+      "high": "Rischio Alto"
+    },
+    "severity": {
+      "critical": "Critico",
+      "warning": "Attenzione"
+    },
+    "results": {
+      "redFlags": "Segnali d'Allarme Rilevati",
+      "payFairness": "Equità Retributiva",
+      "yourRights": "I Tuoi Diritti con Questo Contratto",
+      "yourRightsDesc": "Quali tutele ti garantisce questo tipo di contratto secondo la legge italiana.",
+      "tips": "Consigli Prima di Firmare"
+    },
+    "rights": {
+      "minimumPay": "Retribuzione Minima (CCNL)",
+      "minimumPayDesc": "Lo stipendio non può essere inferiore al minimo del contratto collettivo per il tuo livello",
+      "tfr": "TFR (Trattamento di Fine Rapporto)",
+      "tfrDesc": "Maturato mensilmente — pagato alla cessazione del rapporto",
+      "sickLeave": "Malattia Retribuita",
+      "sickLeaveDesc": "Giorni di assenza per malattia con retribuzione",
+      "paidVacation": "Ferie Retribuite",
+      "paidVacationDesc": "Minimo 4 settimane/anno di ferie pagate per legge",
+      "unemployment": "Indennità di Disoccupazione (NASpI)",
+      "unemploymentDesc": "Sostegno al reddito in caso di perdita involontaria del lavoro",
+      "pension": "Contributi Pensionistici",
+      "pensionDesc": "Contributi INPS per la tua pensione",
+      "noticePeriod": "Periodo di Preavviso",
+      "noticePeriodDesc": "Il datore di lavoro deve dare preavviso prima del licenziamento",
+      "overtime": "Tutela Straordinario",
+      "overtimeDesc": "Le ore extra devono essere compensate secondo le tariffe CCNL",
+      "maternity": "Maternità / Paternità",
+      "maternityDesc": "Congedo protetto per neo-genitori con sostegno al reddito"
+    },
+    "guide": {
+      "title": "Tipi di Contratto Italiani — Guida in Linguaggio Semplice",
+      "subtitle": "Ogni tipo di contratto spiegato: cosa significa, quali tutele hai e quando è appropriato.",
+      "labels": {
+        "protection": "Livello di Tutela",
+        "typicalDuration": "Durata Tipica",
+        "bestFor": "Ideale Per"
+      },
+      "types": {
+        "tempo_indeterminato": {
+          "description": "Il contratto migliore. Impiego permanente con tutele complete. Il datore di lavoro ha bisogno di un motivo giustificato per licenziarti. Hai TFR, malattia, ferie, straordinari e NASpI se vieni licenziato.",
+          "protection": "Massima",
+          "duration": "Indeterminata",
+          "bestFor": "Ruoli di carriera a lungo termine"
+        },
+        "tempo_determinato": {
+          "description": "Stesse tutele del tempo indeterminato, ma con una data di scadenza. Può essere rinnovato, ma la durata totale non può superare 24 mesi. Dopo, deve diventare indeterminato o finire.",
+          "protection": "Alta",
+          "duration": "Fino a 24 mesi",
+          "bestFor": "Ruoli a progetto, lavoro stagionale"
+        },
+        "apprendistato": {
+          "description": "Un vero lavoro con componente formativa. Ottimo per i giovani — l'azienda ha sgravi fiscali, tu ottieni mentorship e pieni diritti lavorativi. Deve includere un piano formativo formale. Può pagare fino a 2 livelli sotto lo standard.",
+          "protection": "Alta",
+          "duration": "Fino a 36 mesi",
+          "bestFor": "Primo lavoro dopo la laurea"
+        },
+        "stage": {
+          "description": "Tirocinio extracurriculare. Non è un vero contratto di lavoro — è un accordo formativo. Deve essere retribuito nella maggior parte delle regioni (€300-€800/mese). Deve prevedere apprendimento reale, non manodopera a basso costo. Max 6 mesi.",
+          "protection": "Minima",
+          "duration": "Fino a 6 mesi",
+          "bestFor": "Prima esperienza lavorativa"
+        },
+        "tirocinio": {
+          "description": "Tirocinio curriculare legato al tuo corso di studi. Può essere non retribuito se parte del curriculum. L'università deve essere coinvolta come garante. Gli obiettivi formativi devono essere definiti.",
+          "protection": "Minima",
+          "duration": "Varia per programma",
+          "bestFor": "Requisito di laurea, crediti formativi"
+        },
+        "partita_iva": {
+          "description": "Lavoro autonomo. Sei il tuo capo — fatturi ai clienti, paghi le tue tasse e l'INPS. Nessuna tutela lavorativa. Il tuo reddito effettivo è circa il 50-60% di quanto fatturi, dopo tasse e contributi.",
+          "protection": "Nessuna",
+          "duration": "Continuativa",
+          "bestFor": "Veri freelancer con più clienti"
+        },
+        "cococo": {
+          "description": "Contratto di collaborazione. Non sei un dipendente ma lavori in modo coordinato con l'azienda. Alcuni contributi pensionistici vengono versati. Pochissime tutele. Spesso abusato per evitare obblighi di assunzione.",
+          "protection": "Molto Bassa",
+          "duration": "A progetto",
+          "bestFor": "Brevi consulenze"
+        },
+        "somministrazione": {
+          "description": "Sei assunto da un'agenzia ma lavori presso un'altra azienda. Stessa paga e tutele dei dipendenti diretti. L'agenzia gestisce le buste paga. Buon modo per entrare in grandi aziende.",
+          "protection": "Alta (tramite agenzia)",
+          "duration": "Fino a 24 mesi",
+          "bestFor": "Ingresso in grandi aziende, ruoli temporanei"
+        },
+        "collaborazione_occasionale": {
+          "description": "Lavoro occasionale, una tantum. Max €5.000/anno per committente. Nessun rapporto di lavoro. Molto limitato — se diventa regolare, dovrebbe essere un altro tipo di contratto.",
+          "protection": "Nessuna",
+          "duration": "Attività isolate",
+          "bestFor": "Piccoli incarichi isolati"
+        }
+      }
+    },
+    "redFlags": {
+      "title": "Segnali d'Allarme Comuni nelle Offerte di Lavoro",
+      "subtitle": "Schemi da osservare quando valuti un contratto. Se li vedi, fai domande prima di firmare.",
+      "whatToDo": "Cosa fare:",
+      "items": {
+        "0": {
+          "title": "\"Iniziamo con un periodo di prova... non retribuito\"",
+          "description": "La legge italiana non prevede periodi di prova non retribuiti per i contratti di lavoro. Il periodo di prova è parte del contratto — devi essere pagato dal primo giorno. Una 'prova' non retribuita è illegale.",
+          "action": "Chiedi il contratto scritto prima di iniziare. Se rifiutano di pagarti durante la prova, è una violazione della legge. Contatta un sindacato."
+        },
+        "1": {
+          "title": "\"Apri una Partita IVA e ti diamo un fisso mensile\"",
+          "description": "Se un'azienda ti chiede di essere freelance ma ti dà orari fissi, ti fa lavorare in sede e ti tratta come un dipendente — questa è 'falsa partita IVA'. È illegale dal 2015.",
+          "action": "Se hai orari fissi, lavori in sede, usi strumenti aziendali e non puoi avere altri clienti — sei un dipendente. Chiedi un vero contratto. Un giudice del lavoro può riqualificarlo."
+        },
+        "2": {
+          "title": "\"Il CCNL non si applica qui\" o nessuna menzione del CCNL",
+          "description": "Quasi tutte le aziende italiane devono applicare un CCNL. Questo stabilisce la paga minima, i giorni di ferie, la malattia e altro. Se dicono che il CCNL non si applica, potrebbero cercare di evitare le tutele minime.",
+          "action": "Chiedi quale CCNL si applica e a quale livello. Verifica la paga minima sui siti dei sindacati. Se rifiutano di specificare, è un segnale d'allarme."
+        },
+        "3": {
+          "title": "Stage che dura più di 6 mesi",
+          "description": "I tirocini extracurriculari hanno un massimo legale di 6 mesi nella maggior parte delle regioni italiane. Se un'azienda offre uno stage di 12 mesi, potrebbe usare le regole del tirocinio per evitare un vero contratto.",
+          "action": "Dopo 6 mesi, dovresti essere assunto o il tirocinio dovrebbe finire. Uno stage ripetuto o prolungato per le stesse mansioni è segno di sfruttamento."
+        },
+        "4": {
+          "title": "\"Inizia come stagista, poi vediamo per l'assunzione\"",
+          "description": "Promesse vaghe di futura assunzione sono un modo comune per tenerti come manodopera a basso costo. Non c'è obbligo legale di assumere dopo uno stage, e molte aziende non lo fanno.",
+          "action": "Chiedi il tasso di conversione — quale percentuale di stagisti viene assunta? Chiedilo per iscritto. Se non si impegnano, considera che lo stage è tutto ciò che otterrai."
+        },
+        "5": {
+          "title": "Paga significativamente sotto il minimo CCNL",
+          "description": "Ogni CCNL stabilisce la paga minima per livello. Se ti offrono meno del minimo per il tuo ruolo e inquadramento, l'azienda sta violando il contratto collettivo. Succede più spesso di quanto pensi.",
+          "action": "Cerca i minimi del tuo CCNL e livello. Confronta con l'offerta. Se è sotto, negozia o contatta un sindacato — possono aiutarti a recuperare la differenza."
+        },
+        "6": {
+          "title": "\"Firma questo NDA prima di mostrarti il contratto\"",
+          "description": "Mentre gli NDA per informazioni proprietarie sono normali, un NDA che ti impedisce di discutere la tua paga o i termini del contratto è un segnale d'allarme. La trasparenza retributiva è un tuo diritto.",
+          "action": "Leggi l'NDA con attenzione. Hai sempre il diritto di discutere il tuo contratto con un sindacato, un avvocato o l'ispettorato del lavoro. Un NDA non può sovrascrivere questo diritto."
+        }
+      },
+      "unionTitle": "Nel dubbio, chiedi a un sindacato",
+      "unionDescription": "I sindacati italiani offrono revisione contrattuale e consulenza legale gratuita. Possono verificare il tuo contratto, recuperare stipendi non pagati e rappresentarti nelle controversie. L'iscrizione costa €5-15/mese."
+    }
   }
 }

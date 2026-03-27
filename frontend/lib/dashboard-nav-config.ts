@@ -32,6 +32,7 @@ const student: NavConfig = {
         { labelKey: 'applications', href: '/dashboard/student/applications' },
         { labelKey: 'skillPath', href: '/dashboard/student/skill-path' },
         { labelKey: 'aiJobSearch', href: '/dashboard/student/ai-job-search' },
+        { labelKey: 'contractTransparency', href: '/dashboard/student/contract-transparency' },
       ],
     },
     {
