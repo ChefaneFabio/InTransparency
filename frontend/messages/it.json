@@ -2840,9 +2840,9 @@
   },
   "about": {
     "hero": {
-      "badge": "Il Problema Che Stiamo Risolvendo",
-      "title": "I CV Sono Rotti.",
-      "description": "Chiunque può dichiarare \"Competente in React\" o \"Esperto in Python\" su un CV.\nI recruiter perdono tempo intervistando candidati non qualificati.\nGli studenti con competenze reali vengono trascurati perché non hanno stage prestigiosi."
+      "badge": "Il Futuro del Lavoro",
+      "title": "La Trasparenza Cambia Tutto.",
+      "description": "In ogni settore — tech, ingegneria, business, scienze, design — il modo in cui assumiamo è rotto. Le competenze si dichiarano, non si dimostrano. Il talento è nascosto dietro i CV. Stiamo costruendo il livello di fiducia che risolve questo problema, partendo dall'Europa."
     },
     "resumeProblem": {
       "title": "Il Problema del CV",
@@ -2923,25 +2923,25 @@
             "label": "Competenze verificate dall'istituzione"
           },
           "2": {
-            "value": "€10",
-            "label": "Per contatto (vs €8.000/anno abbonamenti)"
+            "value": "€0",
+            "label": "Gratis per tutti durante il lancio"
           }
         },
-        "tagline": "La trasparenza costruisce fiducia. La fiducia costruisce match migliori. Match migliori costruiscono carriere."
+        "tagline": "La trasparenza costruisce fiducia. La fiducia costruisce assunzioni migliori. Assunzioni migliori costruiscono il futuro."
       }
     },
     "mission": {
       "title": "La Nostra Missione",
-      "description": "Stiamo costruendo la prima piattaforma portfolio progetti verificata al mondo dove gli studenti dimostrano le loro competenze attraverso ciò che hanno realmente costruito, non ciò che dichiarano di saper fare.",
-      "quote": "\"I progetti parlano più forte dei CV.\"",
-      "quoteAuthor": "— La Filosofia InTransparency",
+      "description": "Stiamo costruendo lo standard europeo per le assunzioni trasparenti — dove ogni persona, in ogni settore, viene vista per ciò che sa realmente fare. Non per cosa dichiara su un CV. Non per dove ha studiato. Per il lavoro che ha fatto, verificato dalle istituzioni che l'hanno formato.",
+      "quote": "\"Il futuro del lavoro è trasparente. Ogni competenza dimostrata, ogni assunzione consapevole, ogni carriera meritata.\"",
+      "quoteAuthor": "— InTransparency",
       "story": {
-        "title": "Come Siamo Nati",
+        "title": "Perché Esistiamo",
         "paragraphs": {
-          "0": "InTransparency è nato dalla frustrazione. I nostri fondatori hanno visto studenti talentuosi con progetti universitari incredibili essere rifiutati per lavori perché i loro CV non elencavano \"2+ anni esperienza\" o uno stage FAANG.",
-          "1": "Nel frattempo, le aziende si lamentavano di assumere candidati che sembravano ottimi sulla carta ma non sapevano programmare. La disconnessione era ovvia: i CV premiano il buon storytelling, non la buona costruzione.",
-          "2": "Ci siamo posti una semplice domanda: E se gli studenti potessero mostrare il loro lavoro invece di limitarsi a elencarlo? E se i recruiter potessero vedere progetti verificati con analisi completa delle competenze (hard + soft) e endorsement istituzionali?",
-          "3": "InTransparency è stata la nostra risposta."
+          "0": "L'Europa ha un paradosso: le aziende non trovano i talenti giusti e i laureati non trovano lavoro. Entrambi perdono perché il sistema tra di loro — CV, portali lavoro, algoritmi opachi — non è mai stato progettato per la fiducia.",
+          "1": "InTransparency esiste perché crediamo che la trasparenza risolva questo problema. Quando il lavoro di uno studente è verificato dalla sua università, un recruiter non deve indovinare. Quando un'azienda mostra requisiti chiari, uno studente non deve decifrare gergo. Quando i risultati si tracciano, le università possono dimostrare il loro impatto.",
+          "2": "Siamo partiti da Bergamo con una partnership universitaria. La visione è europea: un continente dove le assunzioni si basano sulle prove, non sulle promesse. Dove un ingegnere meccanico di Brescia e un data scientist di Berlino competono sullo stesso campo trasparente.",
+          "3": "Questo non è un portale lavoro. Questo è il livello di fiducia per il futuro del lavoro."
         }
       }
     },
@@ -2949,20 +2949,20 @@
       "title": "In Cosa Crediamo",
       "items": {
         "0": {
-          "title": "Verifica Oltre Dichiarazioni",
-          "description": "Progetti supportati dall'istituzione in tutti i formati, analisi completa competenze ed endorsement provano che le competenze sono reali."
+          "title": "Competenze, Non Storie",
+          "description": "Ciò che hai costruito conta più di come lo descrivi. Un progetto verificato vale mille punti elenco nel CV — in ogni disciplina."
         },
         "1": {
-          "title": "Prova di Lavoro",
-          "description": "Mostra ciò che hai costruito, non ciò che dici di saper costruire. Il codice parla più forte dei punti elenco."
+          "title": "Accesso, Non Barriere",
+          "description": "Ogni studente merita visibilità — non solo il top 5% delle scuole d'elite. Il talento è ovunque. Le opportunità non dovrebbero esserlo."
         },
         "2": {
-          "title": "Talento Oltre Pedigree",
-          "description": "Un progetto brillante da un'istituzione pubblica batte un CV mediocre da una Ivy League."
+          "title": "Trasparenza, Non Opacità",
+          "description": "Gli studenti vedono chi guarda il loro lavoro. Le aziende vedono dati verificati. Le università vedono risultati reali. Nessun algoritmo nascosto, nessuna scatola nera."
         },
         "3": {
-          "title": "Sempre Trasparenza",
-          "description": "Nessun algoritmo nascosto. Gli studenti vedono chi ha visualizzato il loro profilo. Le aziende vedono dati verificati."
+          "title": "Prove, Non Promesse",
+          "description": "Non chiediamo ai candidati di dimostrarsi con le parole. Il loro lavoro verificato dall'istituzione parla da solo — in tech, ingegneria, business e ogni settore."
         }
       }
     }
