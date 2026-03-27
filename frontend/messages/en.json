@@ -190,9 +190,9 @@
         "companies": "Companies"
       },
       "students": {
-        "badge": "For Students - All Disciplines",
-        "headlinePart1": "Show What You've Built.",
-        "headlinePart2": "Let Opportunities Come to You.",
+        "badge": "For Students — Every Discipline, Every Path",
+        "headlinePart1": "Your Skills Are Real.",
+        "headlinePart2": "Now the World Can See Them.",
         "description": "",
         "descriptionStrong": "",
         "primaryCTA": "Get Started Free",
@@ -220,9 +220,9 @@
         "statsValue": "helping students and companies find each other"
       },
       "universities": {
-        "badge": "For Institutions - Universities & ITS",
-        "headlinePart1": "Give Your Students",
-        "headlinePart2": "the Visibility They Deserve.",
+        "badge": "For Universities, ITS & Schools",
+        "headlinePart1": "Every Graduate Visible.",
+        "headlinePart2": "Every Outcome Measurable.",
         "description": "",
         "descriptionStrong": "",
         "primaryCTA": "Join Free Marketplace",
@@ -250,9 +250,9 @@
         "statsValue": "students, institutions, and companies — together"
       },
       "companies": {
-        "badge": "For Companies - All Industries",
-        "headlinePart1": "Find Junior Talent",
-        "headlinePart2": "You Can Trust.",
+        "badge": "For Companies & Startups — All Industries",
+        "headlinePart1": "Hire on Proof,",
+        "headlinePart2": "Not on Promises.",
         "headlinePart3": "",
         "description": "",
         "descriptionStrong": "",
@@ -261,7 +261,7 @@
         "benefits": [
           "Skills verified by institutions",
           "Real projects, real grades",
-          "Browse free, pay only when you connect"
+          "Full access, free during launch"
         ],
         "features": [
           {
@@ -273,23 +273,23 @@
             "description": "See actual work — theses, internships, code"
           },
           {
-            "title": "Simple Pricing",
-            "description": "€10 per contact — no subscriptions, no commitments"
+            "title": "Full Access",
+            "description": "Unlimited contacts, free during launch — no barriers"
           }
         ],
         "statsLabel": "Verified talent from",
         "statsValue": "universities, ITS academies, and vocational schools across Italy"
       },
-      "bottomText": "Four Services, Zero Subscriptions",
-      "unifiedHeadline1": "Bridging Talent",
-      "unifiedHeadline2": "and Opportunity",
-      "unifiedSubheadline": "We connect students, institutions, and companies through verified skills and real projects — so the right people find each other.",
-      "unifiedPrimaryCTA": "Get Started Free",
+      "bottomText": "Free for Everyone — Students, Companies, Universities",
+      "unifiedHeadline1": "The Future of Work",
+      "unifiedHeadline2": "Is Transparent.",
+      "unifiedSubheadline": "In a world where anyone can claim anything on a resume, we built the platform where skills are proven, not claimed. Every student, in every sector, deserves to be seen for what they can actually do.",
+      "unifiedPrimaryCTA": "Join the Movement",
       "unifiedSecondaryCTA": "See How It Works",
       "unifiedBenefits": [
-        "Institution-verified skills",
-        "Built for students, institutions & companies",
-        "Free to get started"
+        "Skills verified by institutions, not self-reported",
+        "Every sector — tech, engineering, business, design, science",
+        "Free for everyone during launch"
       ],
       "exploreByRole": "Explore by role",
       "socialProof": {
@@ -298,9 +298,9 @@
       }
     },
     "problem": {
-      "badge": "The Problem",
-      "title": "Resumes Are Broken",
-      "subtitle": "Anyone can claim 'Proficient in React' on a resume. Recruiters waste time interviewing unqualified candidates. Students with real skills get overlooked.",
+      "badge": "Why This Matters",
+      "title": "The Old Way of Hiring Is Failing Everyone",
+      "subtitle": "Students can't prove their skills. Companies can't trust resumes. Universities can't track outcomes. The result: a generation of talent going unseen, and companies making expensive mistakes.",
       "resumeProblem": "The Resume Problem",
       "resumePoints": {
         "unverified": "Unverified skills (anyone can lie)",
@@ -320,7 +320,7 @@
     },
     "howItWorks": {
       "badge": "How It Works",
-      "title": "From Thesis to Job in 3 Steps",
+      "title": "From Project to Opportunity in 3 Steps",
       "students": "For Students",
       "companies": "For Companies",
       "step1": {
@@ -344,8 +344,8 @@
         "description": "Real grades, real projects, verified skills"
       },
       "companyStep3": {
-        "title": "Pay Only on Contact",
-        "description": "€10 per candidate you want to hire"
+        "title": "Connect Directly",
+        "description": "Reach candidates with no barriers — free during launch"
       }
     },
     "features": {
@@ -2800,9 +2800,9 @@
   },
   "about": {
     "hero": {
-      "badge": "The Problem We're Solving",
-      "title": "Resumes Are Broken.",
-      "description": "Anyone can claim \"Proficient in React\" or \"Expert in Python\" on a resume.\nRecruiters waste time interviewing unqualified candidates.\nStudents with real skills get overlooked because they don't have fancy internships."
+      "badge": "Shaping the Future of Work",
+      "title": "Transparency Changes Everything.",
+      "description": "Across every sector — tech, engineering, business, science, design — the way we hire is broken. Skills are claimed, not proven. Talent is hidden behind résumés. We're building the trust layer that fixes this, starting in Europe."
     },
     "resumeProblem": {
       "title": "The Resume Problem",
@@ -2883,25 +2883,25 @@
             "label": "Institution-verified skills data"
           },
           "2": {
-            "value": "€10",
-            "label": "Per contact (vs €8,000/year subscriptions)"
+            "value": "€0",
+            "label": "Free for everyone during launch"
           }
         },
-        "tagline": "Transparency builds trust. Trust builds better matches. Better matches build careers."
+        "tagline": "Transparency builds trust. Trust builds better hires. Better hires build the future."
       }
     },
     "mission": {
       "title": "Our Mission",
-      "description": "We're building the world's first verified project portfolio platform where students prove their skills through what they've actually built, not what they claim they can do.",
-      "quote": "\"Projects speak louder than resumes.\"",
-      "quoteAuthor": "— The InTransparency Philosophy",
+      "description": "We're building the European standard for transparent hiring — where every person, in every sector, is seen for what they can actually do. Not for what they claim on a résumé. Not for where they studied. For the work they've done, verified by the institutions that taught them.",
+      "quote": "\"The future of work is transparent. Every skill proven, every hire confident, every career earned.\"",
+      "quoteAuthor": "— InTransparency",
       "story": {
-        "title": "How We Started",
+        "title": "Why This Exists",
         "paragraphs": {
-          "0": "InTransparency was born from frustration. Our founders watched talented students with incredible institutional projects get rejected from jobs because their resumes didn't list \"2+ years experience\" or a FAANG internship.",
-          "1": "Meanwhile, companies complained about hiring candidates who looked great on paper but couldn't code. The disconnect was obvious: resumes reward good storytelling, not good building.",
-          "2": "We asked a simple question: What if students could show their work instead of just listing it? What if recruiters could see verified projects with complete skill analysis (hard + soft), and institution endorsements?",
-          "3": "InTransparency was our answer."
+          "0": "Europe has a paradox: companies can't find the right talent, and graduates can't find jobs. Both sides lose because the system between them — résumés, job boards, opaque algorithms — was never designed for trust.",
+          "1": "InTransparency exists because we believe transparency solves this. When a student's work is verified by their university, a recruiter doesn't need to guess. When a company shows clear requirements, a student doesn't need to decode jargon. When outcomes are tracked, universities can prove their impact.",
+          "2": "We started in Bergamo with one university partnership. The vision is European: a continent where hiring is based on proof, not promises. Where a mechanical engineer from Brescia and a data scientist from Berlin compete on the same transparent playing field.",
+          "3": "This is not a job board. This is the trust layer for the future of work."
         }
       }
     },
@@ -2909,20 +2909,20 @@
       "title": "What We Believe",
       "items": {
         "0": {
-          "title": "Verification Over Claims",
-          "description": "Institution-backed projects in all formats, complete skill analysis, and endorsements prove skills are real."
+          "title": "Skills Over Stories",
+          "description": "What you've built matters more than how you describe it. A verified project is worth a thousand résumé bullet points — in every discipline."
         },
         "1": {
-          "title": "Proof of Work",
-          "description": "Show what you've built, not what you say you can build. Code speaks louder than bullet points."
+          "title": "Access Over Gatekeeping",
+          "description": "Every student deserves visibility — not just the top 5% from elite schools. Talent is everywhere. Opportunity shouldn't be."
         },
         "2": {
-          "title": "Talent Over Pedigree",
-          "description": "A brilliant project from a state school beats a mediocre resume from an Ivy League."
+          "title": "Transparency Over Opacity",
+          "description": "Students see who views their work. Companies see verified data. Universities see real outcomes. No hidden algorithms, no black boxes."
         },
         "3": {
-          "title": "Transparency Always",
-          "description": "No hidden algorithms. Students see who viewed their profile. Companies see verified data."
+          "title": "Proof Over Promises",
+          "description": "We don't ask candidates to prove themselves with words. Their institution-verified work speaks for itself — across tech, engineering, business, and every sector."
         }
       }
     }
