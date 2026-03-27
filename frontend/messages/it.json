@@ -1668,14 +1668,14 @@
   },
   "forStudents": {
     "hero": {
-      "badge": "Per Studenti",
-      "title": "Il Tuo Lavoro Parla.",
-      "titleHighlight": "Le Aziende Ascoltano.",
-      "subtitle": "Carica progetti reali. Fatti verificare dalla tua università o scuola. Lascia che i datori di lavoro ti scoprano per ciò che hai realmente costruito — non per quello che c'è nel CV."
+      "badge": "Per Studenti — Ogni Disciplina, Ogni Percorso",
+      "title": "Le Tue Competenze Sono Reali.",
+      "titleHighlight": "Ora le Aziende Possono Vederle.",
+      "subtitle": "La tua università verifica il tuo lavoro. La nostra AI analizza le tue competenze. Le aziende ti scoprono direttamente. Niente CV da riscrivere. Niente indovinelli. Solo la prova di ciò che sai fare."
     },
     "steps": {
       "title": "Come Funziona per Te",
-      "subtitle": "Tre passaggi dal progetto accademico all'opportunità di carriera.",
+      "subtitle": "La tua università, la nostra AI e le aziende — connesse attraverso il tuo lavoro.",
       "0": {
         "title": "Carica i Tuoi Progetti",
         "desc": "Condividi la tesi, il codice, i design o il lavoro di gruppo. Qualsiasi formato. La nostra AI analizza i file ed estrae competenze, complessità e innovazione."
@@ -1734,18 +1734,18 @@
       }
     },
     "cta": {
-      "title": "Inizia a Costruire il Tuo Portfolio",
-      "subtitle": "Crea il tuo profilo in meno di 5 minuti. La tua università può verificare il tuo lavoro e le aziende possono iniziare a scoprirti.",
-      "primaryButton": "Inizia Ora",
-      "secondaryButton": "Esplora Portfolio"
+      "title": "Il Tuo Futuro Inizia dal Tuo Lavoro",
+      "subtitle": "Crea il tuo portfolio in meno di 5 minuti. La tua università lo verifica. Le aziende ti scoprono. È così semplice.",
+      "primaryButton": "Costruisci il Tuo Portfolio",
+      "secondaryButton": "Vedi Portfolio Studenti"
     }
   },
   "forCompanies": {
     "hero": {
-      "badge": "Per Aziende",
-      "title": "Assumi Talenti Junior",
-      "titleHighlight": "di cui Fidarti.",
-      "subtitle": "Ogni competenza verificata dalla università dello studente. Ogni progetto tracciabile alla fonte. Un percorso più veloce e trasparente dalla ricerca all'assunzione."
+      "badge": "Per Aziende e Startup — Tutti i Settori",
+      "title": "Assumi sulle Prove,",
+      "titleHighlight": "Non sulle Promesse.",
+      "subtitle": "Gli studenti caricano progetti reali. Le università verificano il lavoro. Tu vedi competenze provate in ogni disciplina — tech, ingegneria, business, design. Basta indovinare dai CV."
     },
     "steps": {
       "title": "Come Funziona per Te",
@@ -1803,18 +1803,18 @@
       }
     },
     "cta": {
-      "title": "Inizia a Scoprire Talenti Verificati",
-      "subtitle": "Esplora i profili degli studenti e vedi lavori reali e verificati. Connettiti con il candidato giusto quando sei pronto.",
-      "primaryButton": "Inizia Ora",
-      "secondaryButton": "Esplora Portfolio"
+      "title": "Trova Talenti di cui Fidarti",
+      "subtitle": "Esplora portfolio verificati dagli studenti. Vedi progetti reali, voti reali, competenze reali. Connettiti direttamente — gratis durante il lancio.",
+      "primaryButton": "Inizia a Trovare Talenti",
+      "secondaryButton": "Vedi Come Funziona"
     }
   },
   "forAcademicPartners": {
     "hero": {
       "badge": "Per Università, ITS e Scuole",
-      "title": "Conosci il Tuo Vero",
-      "titleHighlight": "Tasso di Placement.",
-      "subtitle": "Non dai questionari annuali. Dalle assunzioni reali, tracciate mentre avvengono. Dai ai tuoi studenti la visibilità che meritano e dimostra il tuo impatto con dati concreti."
+      "title": "Ogni Laureato Visibile.",
+      "titleHighlight": "Ogni Risultato Misurabile.",
+      "subtitle": "I tuoi studenti caricano i progetti. Tu verifichi con un click. Le aziende li scoprono tutto l'anno. Tu vedi i dati reali di placement — non sondaggi annuali. Così funzionano i servizi carriera moderni."
     },
     "steps": {
       "title": "Come Funziona per il Tuo Team",
@@ -1877,10 +1877,10 @@
       }
     },
     "cta": {
-      "title": "Dai ai Tuoi Studenti la Visibilità che Meritano",
-      "subtitle": "Unisciti alla piattaforma che collega il lavoro accademico con reali opportunità di carriera. Traccia il tuo impatto con i dati.",
-      "primaryButton": "Inizia Ora",
-      "secondaryButton": "Scopri di Più"
+      "title": "I Tuoi Studenti Meritano di Essere Visti",
+      "subtitle": "Unisciti alla piattaforma che collega il lavoro accademico a risultati di carriera reali. Le aziende stanno già cercando. I tuoi studenti sono pronti.",
+      "primaryButton": "Collabora con Noi",
+      "secondaryButton": "Vedi una Demo"
     }
   },
   "legal": {

@@ -1628,25 +1628,25 @@
   },
   "forStudents": {
     "hero": {
-      "badge": "For Students",
-      "title": "Your Work Speaks.",
-      "titleHighlight": "Companies Listen.",
-      "subtitle": "Upload real projects. Get verified by your university or school. Let employers discover you for what you've actually built — not what's on your CV."
+      "badge": "For Students — Every Discipline, Every Path",
+      "title": "Your Skills Are Real.",
+      "titleHighlight": "Now Companies Can See Them.",
+      "subtitle": "Your university verifies your work. Our AI analyzes your skills. Companies discover you directly. No CV rewriting. No guessing. Just proof of what you can do."
     },
     "steps": {
       "title": "How It Works for You",
-      "subtitle": "Three steps from academic project to career opportunity.",
+      "subtitle": "Your university, our AI, and real companies — connected through your work.",
       "0": {
         "title": "Upload Your Projects",
-        "desc": "Share your thesis, code, designs, or group work. Any format. Our AI analyzes your files and extracts skills, complexity, and innovation."
+        "desc": "Thesis, code, designs, lab reports, business cases — any format, any discipline. Our AI reads your files and identifies your real skills."
       },
       "1": {
         "title": "Your University Verifies",
-        "desc": "Your school or university confirms the project is real. Grades, ECTS, and a verification badge are added to your profile."
+        "desc": "Your school confirms the project is real and adds grades, ECTS, and a verification badge. This is what makes your profile trusted by companies."
       },
       "2": {
-        "title": "Companies Discover You",
-        "desc": "Recruiters search verified profiles and reach out directly. No applications, no cover letters. You get found for what you've built."
+        "title": "Companies Find You",
+        "desc": "Recruiters and startups search verified portfolios and reach out directly. No applications, no cover letters. They come to you."
       }
     },
     "features": {
@@ -1694,18 +1694,18 @@
       }
     },
     "cta": {
-      "title": "Start Building Your Portfolio",
-      "subtitle": "Create your profile in under 5 minutes. Your university can verify your work, and companies can start discovering you.",
-      "primaryButton": "Get Started",
-      "secondaryButton": "Explore Portfolios"
+      "title": "Your Future Starts with Your Work",
+      "subtitle": "Create your portfolio in under 5 minutes. Your university verifies it. Companies discover you. It's that simple.",
+      "primaryButton": "Build Your Portfolio",
+      "secondaryButton": "See Student Portfolios"
     }
   },
   "forCompanies": {
     "hero": {
-      "badge": "For Companies",
-      "title": "Hire Junior Talent",
-      "titleHighlight": "You Can Trust.",
-      "subtitle": "Every skill verified by the student's university. Every project traceable to its source. A faster, more transparent path from search to hire."
+      "badge": "For Companies & Startups — All Industries",
+      "title": "Hire on Proof,",
+      "titleHighlight": "Not Promises.",
+      "subtitle": "Students upload real projects. Universities verify the work. You see proven skills across every discipline — tech, engineering, business, design. No more guessing from CVs."
     },
     "steps": {
       "title": "How It Works for You",
@@ -1763,18 +1763,18 @@
       }
     },
     "cta": {
-      "title": "Start Discovering Verified Talent",
-      "subtitle": "Explore student profiles and see real, verified work. Connect with the right candidate when you're ready.",
-      "primaryButton": "Get Started",
-      "secondaryButton": "Explore Portfolios"
+      "title": "Find Talent You Can Trust",
+      "subtitle": "Browse verified student portfolios. See real projects, real grades, real skills. Connect directly — free during launch.",
+      "primaryButton": "Start Finding Talent",
+      "secondaryButton": "See How It Works"
     }
   },
   "forAcademicPartners": {
     "hero": {
       "badge": "For Universities, ITS & Schools",
-      "title": "Know Your Real",
-      "titleHighlight": "Placement Rate.",
-      "subtitle": "Not from annual surveys. From actual hires, tracked as they happen. Give your students the visibility they deserve and prove your impact with real data."
+      "title": "Every Graduate Visible.",
+      "titleHighlight": "Every Outcome Measurable.",
+      "subtitle": "Your students upload projects. You verify with one click. Companies discover them year-round. You see real placement data — not annual surveys. This is how modern career services work."
     },
     "steps": {
       "title": "How It Works for Your Team",
@@ -1837,10 +1837,10 @@
       }
     },
     "cta": {
-      "title": "Give Your Students the Visibility They Deserve",
-      "subtitle": "Join the platform that connects academic work with real career opportunities. Track your impact with data.",
-      "primaryButton": "Get Started",
-      "secondaryButton": "Learn More"
+      "title": "Your Students Deserve to Be Seen",
+      "subtitle": "Join the platform that connects your academic work to real career outcomes. Companies are already searching. Your students are ready.",
+      "primaryButton": "Partner With Us",
+      "secondaryButton": "See a Demo"
     }
   },
   "legal": {
