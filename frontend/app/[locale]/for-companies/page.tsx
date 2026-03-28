@@ -100,7 +100,7 @@ export default function ForCompaniesPage() {
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild className="border-white/30 text-white hover:bg-white/10">
-                  <Link href="/explore">
+                  <Link href="/demo/ai-search">
                     {t('cta.secondaryButton')}
                   </Link>
                 </Button>
@@ -297,7 +297,7 @@ export default function ForCompaniesPage() {
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild className="border-white/30 text-white hover:bg-white/10">
-                  <Link href="/explore">
+                  <Link href="/demo/ai-search">
                     {t('cta.secondaryButton')}
                   </Link>
                 </Button>

@@ -81,7 +81,7 @@ export default function AISearchDemoPage() {
       icon: Users,
       placeholder: t('demoConfigs.university.placeholder'),
       initialMessage: t('demoConfigs.university.initialMessage'),
-      registrationLink: '/auth/register/university'
+      registrationLink: '/auth/register/academic-partner'
     }
   }
 
@@ -105,7 +105,10 @@ export default function AISearchDemoPage() {
   }, [activeDemo])
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    // Only auto-scroll when there are user messages (not just the initial bot greeting)
+    if (messages.length > 1) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }
   }, [messages])
 
   const handleSend = async () => {

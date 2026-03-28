@@ -1,10 +1,10 @@
 'use client'
 
 import { Link } from '@/navigation'
-import Image from 'next/image'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Menu, X, User, GraduationCap, Building2, Briefcase } from 'lucide-react'
+import { Logo } from '@/components/layout/Logo'
 import { useSession, signOut } from 'next-auth/react'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { useTranslations } from 'next-intl'
@@ -97,16 +97,7 @@ export function Header() {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5 flex items-center">
-            <Image
-              src="/images/banner.jpg"
-              alt="InTransparency"
-              width={351}
-              height={120}
-              className="h-[56px] w-auto"
-              priority
-            />
-          </Link>
+          <Logo size="md" />
         </div>
 
         {/* Mobile hamburger */}
@@ -166,15 +157,7 @@ export function Header() {
           <div className="fixed inset-0 z-50" />
           <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-border">
             <div className="flex items-center justify-between">
-              <Link href="/" className="-m-1.5 p-1.5">
-                <Image
-                  src="/images/banner.jpg"
-                  alt="InTransparency"
-                  width={351}
-                  height={120}
-                  className="h-14 w-auto"
-                />
-              </Link>
+              <Logo size="sm" />
               <Button
                 variant="ghost"
                 size="sm"

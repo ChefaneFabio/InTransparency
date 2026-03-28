@@ -37,7 +37,7 @@ const roles = [
     image: '/images/brand/campus.jpg',
     color: 'bg-primary',
     borderHover: 'hover:border-primary',
-    href: '/auth/register/university',
+    href: '/auth/register/academic-partner',
     benefitCount: 4
   },
   {
@@ -64,9 +64,9 @@ export default function RegisterPage() {
         'student': '/auth/register/student',
         'company': '/auth/register/recruiter',
         'recruiter': '/auth/register/recruiter',
-        'university': '/auth/register/university',
-        'institute': '/auth/register/university',
-        'professor': '/auth/register/university',
+        'university': '/auth/register/academic-partner',
+        'institute': '/auth/register/academic-partner',
+        'professor': '/auth/register/academic-partner',
         'techpark': '/auth/register/techpark',
         'tech-park': '/auth/register/techpark'
       }

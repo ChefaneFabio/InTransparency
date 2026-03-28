@@ -67,7 +67,66 @@ export default function ExplorePage() {
   const [selectedAvailability, setSelectedAvailability] = useState<string>('')
   const [verificationFilter, setVerificationFilter] = useState<string>('')
 
-  const universities = ['Politecnico di Milano', 'Università di Bologna', 'Sapienza Università di Roma', 'Politecnico di Torino', 'Università di Padova']
+  const institutionGroups = {
+    universities: [
+      'Politecnico di Milano',
+      'Politecnico di Torino',
+      'Sapienza Università di Roma',
+      'Università di Bologna',
+      'Università di Padova',
+      'Università degli Studi di Milano',
+      'Università di Firenze',
+      'Università di Napoli Federico II',
+      'Università di Pisa',
+      'Università di Genova',
+      'Università di Trento',
+      'Università degli Studi di Bergamo',
+      'Università Cattolica del Sacro Cuore',
+      'Università Bocconi',
+      'LUISS Guido Carli',
+      'Università Ca\' Foscari Venezia',
+      'Università di Verona',
+      'Università di Parma',
+      'Università di Siena',
+      'Università di Perugia',
+      'Università della Calabria',
+      'Università di Catania',
+      'Università di Palermo',
+      'Università di Cagliari',
+      'Università di Bari Aldo Moro',
+    ],
+    its: [
+      'ITS Academy Meccatronico Veneto',
+      'ITS Angelo Rizzoli (Milano)',
+      'ITS Lombardia Informatica',
+      'ITS ICT Piemonte',
+      'ITS Maker (Emilia-Romagna)',
+      'ITS Energia e Ambiente (Colle Val d\'Elsa)',
+      'ITS Moda Campania',
+      'ITS TAM Biella (Tessile)',
+      'ITS Agroalimentare Piemonte',
+      'ITS Turismo e Benessere',
+      'ITS Biotecnologie (Roma)',
+      'ITS Logistica (Verona)',
+      'ITS Aerospazio Puglia',
+      'ITS Nuove Tecnologie della Vita (Bergamo)',
+      'ITS Last (Puglia - Legno Arredo)',
+    ],
+    highSchools: [
+      'Liceo Scientifico A. Volta (Milano)',
+      'Liceo Classico G. Berchet (Milano)',
+      'Liceo Scientifico G. Galilei (Roma)',
+      'ITIS G. Marconi (Verona)',
+      'ITIS A. Meucci (Firenze)',
+      'Liceo Artistico di Brera (Milano)',
+      'IIS Ettore Majorana (Torino)',
+      'ITIS Enrico Fermi (Roma)',
+      'Liceo Scientifico E. Fermi (Bologna)',
+      'ITIS G. Cardano (Pavia)',
+      'Liceo Linguistico C. Cattaneo (Torino)',
+      'IIS Leonardo da Vinci (Firenze)',
+    ],
+  }
   const years = ['2024', '2025', '2026', '2027']
 
   const fieldsOfStudyKeys = [
@@ -372,9 +431,21 @@ export default function ExplorePage() {
                       onChange={(e) => setSelectedUniversity(e.target.value)}
                     >
                       <option value="">{t('filters.allUniversities')}</option>
-                      {universities.map((uni) => (
-                        <option key={uni} value={uni}>{uni}</option>
-                      ))}
+                      <optgroup label={t('filters.institutionTypes.universities')}>
+                        {institutionGroups.universities.map((uni) => (
+                          <option key={uni} value={uni}>{uni}</option>
+                        ))}
+                      </optgroup>
+                      <optgroup label={t('filters.institutionTypes.its')}>
+                        {institutionGroups.its.map((uni) => (
+                          <option key={uni} value={uni}>{uni}</option>
+                        ))}
+                      </optgroup>
+                      <optgroup label={t('filters.institutionTypes.highSchools')}>
+                        {institutionGroups.highSchools.map((uni) => (
+                          <option key={uni} value={uni}>{uni}</option>
+                        ))}
+                      </optgroup>
                     </select>
                   </div>
 

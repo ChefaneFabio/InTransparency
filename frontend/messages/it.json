@@ -1055,6 +1055,11 @@
       "allFields": "Tutti i Campi",
       "university": "Istituzione",
       "allUniversities": "Tutte le Istituzioni",
+      "institutionTypes": {
+        "universities": "Università",
+        "its": "ITS Academy",
+        "highSchools": "Scuole Superiori"
+      },
       "location": "Località",
       "allLocations": "Tutte le Località",
       "graduationYear": "Anno di Laurea",
@@ -1669,52 +1674,52 @@
   "forStudents": {
     "hero": {
       "badge": "Per Studenti — Ogni Disciplina, Ogni Percorso",
-      "title": "Le Tue Competenze Sono Reali.",
-      "titleHighlight": "Ora le Aziende Possono Vederle.",
-      "subtitle": "La tua università verifica il tuo lavoro. La nostra AI analizza le tue competenze. Le aziende ti scoprono direttamente. Niente CV da riscrivere. Niente indovinelli. Solo la prova di ciò che sai fare."
+      "title": "Scopri in Cosa Sei Davvero Bravo.",
+      "titleHighlight": "Poi Dimostralo.",
+      "subtitle": "Carica i tuoi progetti. La nostra AI mappa le tue competenze reali. La tua università le verifica. Ottieni un portfolio che parla da solo — niente CV da riscrivere, niente indovinelli."
     },
     "steps": {
       "title": "Come Funziona per Te",
-      "subtitle": "La tua università, la nostra AI e le aziende — connesse attraverso il tuo lavoro.",
+      "subtitle": "Tre passi dal progetto al portfolio verificato.",
       "0": {
         "title": "Carica i Tuoi Progetti",
-        "desc": "Condividi la tesi, il codice, i design o il lavoro di gruppo. Qualsiasi formato. La nostra AI analizza i file ed estrae competenze, complessità e innovazione."
+        "desc": "Tesi, codice, design, relazioni di laboratorio, business case — qualsiasi formato, qualsiasi disciplina. La nostra AI legge i tuoi file e mappa le tue competenze reali."
       },
       "1": {
         "title": "La Tua Università Verifica",
-        "desc": "La tua scuola o università conferma che il progetto è reale. Voti, ECTS e un badge di verifica vengono aggiunti al tuo profilo."
+        "desc": "La tua scuola conferma che il progetto è reale e aggiunge voti, ECTS e un badge di verifica. Questo rende il tuo portfolio credibile e affidabile."
       },
       "2": {
-        "title": "Le Aziende Ti Scoprono",
-        "desc": "I recruiter cercano profili verificati e ti contattano direttamente. Nessuna candidatura, nessuna lettera di presentazione. Vieni trovato per ciò che hai costruito."
+        "title": "Fatti Notare",
+        "desc": "Il tuo portfolio verificato diventa visibile alle persone giuste. Basta inviare candidature nel vuoto — lascia che il tuo lavoro apra le porte per te."
       }
     },
     "features": {
       "title": "Cosa Ottieni",
-      "subtitle": "Strumenti progettati per rendere le tue competenze visibili e verificabili.",
+      "subtitle": "Strumenti per capire i tuoi punti di forza e renderli visibili.",
       "0": {
-        "title": "Analisi AI dei Progetti",
-        "desc": "La nostra AI legge i tuoi file — codice, PDF, presentazioni — e identifica le tue competenze reali automaticamente."
+        "title": "Mappa delle Competenze AI",
+        "desc": "La nostra AI legge i tuoi file — codice, PDF, presentazioni — e ti mostra le competenze che hai costruito, anche quelle che non sapevi di avere."
       },
       "1": {
         "title": "Portfolio Verificato",
-        "desc": "I tuoi progetti portano il badge di verifica della tua università. I recruiter vedono competenze provate, non auto-dichiarazioni."
+        "desc": "I tuoi progetti portano il badge di verifica della tua università. Un portfolio sostenuto dalla tua scuola, non solo dalle tue parole."
       },
       "2": {
-        "title": "Reverse Recruitment",
-        "desc": "Invece di candidarti, vieni scoperto. Le aziende cercano nel marketplace e ti contattano in base al tuo lavoro verificato."
+        "title": "Diventa Visibile",
+        "desc": "Invece di inviare CV ovunque, il tuo lavoro verificato parla da solo. Le opportunità giuste possono trovarti."
       },
       "3": {
         "title": "Trust Score",
-        "desc": "Verifica accademica, analisi AI e qualità dei progetti costruiscono un punteggio di fiducia che ti fa emergere nei risultati di ricerca."
+        "desc": "Verifica accademica, analisi AI e qualità dei progetti costruiscono un punteggio di fiducia che mostra la profondità e la credibilità del tuo lavoro."
       },
       "4": {
         "title": "Upload Multi-Formato",
         "desc": "Repository di codice, PDF, video, documenti Word, file Excel, presentazioni — carica qualsiasi cosa tu abbia realizzato."
       },
       "5": {
-        "title": "Insights di Carriera",
-        "desc": "Vedi chi ha visitato il tuo profilo, quali competenze sono in tendenza nel tuo settore e come si posiziona il tuo portfolio."
+        "title": "Insights sulle Competenze",
+        "desc": "Scopri quali competenze sono in tendenza nel tuo settore, come si posiziona il tuo portfolio e dove puoi crescere."
       }
     },
     "audience": {
@@ -1726,26 +1731,26 @@
       },
       "1": {
         "title": "Studenti ITS Academy",
-        "desc": "I tuoi progetti tecnici pratici sono il tuo punto di forza. Rendili visibili alle aziende che valorizzano le competenze concrete."
+        "desc": "I tuoi progetti tecnici pratici sono il tuo punto di forza. Rendili visibili e verificabili oltre la tua classe."
       },
       "2": {
         "title": "Studenti Universitari",
-        "desc": "Tesi, progetti di ricerca e lavori finali — verificati dal tuo dipartimento e visibili ai datori di lavoro in Italia e in Europa."
+        "desc": "Tesi, progetti di ricerca e lavori finali — verificati dal tuo dipartimento e visibili in tutta Italia e in Europa."
       }
     },
     "cta": {
-      "title": "Il Tuo Futuro Inizia dal Tuo Lavoro",
-      "subtitle": "Crea il tuo portfolio in meno di 5 minuti. La tua università lo verifica. Le aziende ti scoprono. È così semplice.",
+      "title": "Inizia a Capire i Tuoi Punti di Forza",
+      "subtitle": "Crea il tuo portfolio in meno di 5 minuti. La tua università lo verifica. Le tue competenze diventano visibili. È così semplice.",
       "primaryButton": "Costruisci il Tuo Portfolio",
-      "secondaryButton": "Vedi Portfolio Studenti"
+      "secondaryButton": "Esplora la Piattaforma"
     }
   },
   "forCompanies": {
     "hero": {
-      "badge": "Per Aziende e Startup — Tutti i Settori",
-      "title": "Assumi sulle Prove,",
-      "titleHighlight": "Non sulle Promesse.",
-      "subtitle": "Gli studenti caricano progetti reali. Le università verificano il lavoro. Tu vedi competenze provate in ogni disciplina — tech, ingegneria, business, design. Basta indovinare dai CV."
+      "badge": "Per Aziende, Agenzie e Team HR — Tutti i Settori",
+      "title": "Un'Assunzione Sbagliata Costa Tempo e Denaro.",
+      "titleHighlight": "Ti Aiutiamo a Scegliere Bene.",
+      "subtitle": "Gli studenti caricano progetti reali. Le università verificano il lavoro. Tu vedi competenze provate prima ancora di fare un'offerta — tech, ingegneria, business, design e molto altro."
     },
     "steps": {
       "title": "Come Funziona per Te",
@@ -1806,7 +1811,7 @@
       "title": "Trova Talenti di cui Fidarti",
       "subtitle": "Esplora portfolio verificati dagli studenti. Vedi progetti reali, voti reali, competenze reali. Connettiti direttamente — gratis durante il lancio.",
       "primaryButton": "Inizia a Trovare Talenti",
-      "secondaryButton": "Vedi Come Funziona"
+      "secondaryButton": "Prova la Ricerca AI"
     }
   },
   "forAcademicPartners": {
@@ -2447,7 +2452,7 @@
         "subtitle": "Per Istituzioni (Scuole, Università Per Istituti (Università & ITS) ITS)",
         "placeholder": "Cerca studenti o lavori...",
         "initialMessage": "Ciao! Sono Transparenty, il tuo assistente AI istituzionale. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Mostrami studenti CS con GPA 3.8+\" o \"Trova aziende tech che assumono\"",
-        "registrationLink": "/auth/register/university"
+        "registrationLink": "/auth/register/academic-partner"
       }
     },
     "exampleQueries": {
@@ -3631,7 +3636,7 @@
       "badge": "Per i Direttori dei Servizi di Carriera",
       "title": "Sostituisci i sondaggi con prove in tempo reale",
       "subtitle": "InTransparency offre ai direttori dei servizi di carriera analytics di placement in tempo reale, normalizzazione dei voti transfrontaliera e profili studenti verificati — per dimostrare l'impatto invece di stimarlo.",
-      "registerCta": "Registra la tua Istituzione",
+      "registerCta": "Diventa Partner Formativo",
       "demoCta": "Prenota una Demo",
       "stats": {
         "students": "Profili studenti",
@@ -3678,11 +3683,11 @@
     },
     "cta": {
       "title": "Pronto a dimostrare il tuo impatto di placement?",
-      "subtitle": "Unisciti alle istituzioni in tutta Europa che già usano dati in tempo reale invece di sondaggi di fine anno.",
+      "subtitle": "Unisciti ai partner formativi in tutta Europa che già usano dati in tempo reale invece di sondaggi di fine anno.",
       "registerButton": "Inizia Gratis",
       "demoButton": "Prenota una Demo",
       "features": {
-        "free": "Gratuito per le istituzioni",
+        "free": "Gratuito per i partner formativi",
         "gdpr": "Conforme al GDPR",
         "setup": "Setup in 5 minuti"
       }

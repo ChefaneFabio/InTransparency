@@ -136,7 +136,7 @@ export default function LoginPage() {
       id: 'university',
       segment: 'institutions' as const,
       icon: Building2,
-      href: '/auth/register/university' as const,
+      href: '/auth/register/academic-partner' as const,
       color: 'text-primary bg-primary/10',
     },
     {

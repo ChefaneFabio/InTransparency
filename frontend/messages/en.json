@@ -1055,6 +1055,11 @@
       "allFields": "All Fields",
       "university": "Institution",
       "allUniversities": "All Institutions",
+      "institutionTypes": {
+        "universities": "Universities",
+        "its": "ITS Academies",
+        "highSchools": "High Schools"
+      },
       "location": "Location",
       "allLocations": "All Locations",
       "graduationYear": "Graduation Year",
@@ -1629,52 +1634,52 @@
   "forStudents": {
     "hero": {
       "badge": "For Students — Every Discipline, Every Path",
-      "title": "Your Skills Are Real.",
-      "titleHighlight": "Now Companies Can See Them.",
-      "subtitle": "Your university verifies your work. Our AI analyzes your skills. Companies discover you directly. No CV rewriting. No guessing. Just proof of what you can do."
+      "title": "Discover What You're Really Good At.",
+      "titleHighlight": "Then Prove It.",
+      "subtitle": "Upload your projects. Our AI maps your real skills. Your university verifies them. You get a portfolio that speaks for itself — no CV rewriting, no guessing."
     },
     "steps": {
       "title": "How It Works for You",
-      "subtitle": "Your university, our AI, and real companies — connected through your work.",
+      "subtitle": "Three steps from project to verified portfolio.",
       "0": {
         "title": "Upload Your Projects",
-        "desc": "Thesis, code, designs, lab reports, business cases — any format, any discipline. Our AI reads your files and identifies your real skills."
+        "desc": "Thesis, code, designs, lab reports, business cases — any format, any discipline. Our AI reads your files and maps your real competencies."
       },
       "1": {
         "title": "Your University Verifies",
-        "desc": "Your school confirms the project is real and adds grades, ECTS, and a verification badge. This is what makes your profile trusted by companies."
+        "desc": "Your school confirms the project is real and adds grades, ECTS, and a verification badge. This makes your portfolio trusted and credible."
       },
       "2": {
-        "title": "Companies Find You",
-        "desc": "Recruiters and startups search verified portfolios and reach out directly. No applications, no cover letters. They come to you."
+        "title": "Get Noticed",
+        "desc": "Your verified portfolio becomes visible to the right people. No more sending applications into the void — let your work open doors for you."
       }
     },
     "features": {
       "title": "What You Get",
-      "subtitle": "Tools designed to make your skills visible and verifiable.",
+      "subtitle": "Tools designed to help you understand your strengths and make them visible.",
       "0": {
-        "title": "AI Project Analysis",
-        "desc": "Our AI reads your actual files — code, PDFs, presentations — and identifies your real competencies automatically."
+        "title": "AI Skill Mapping",
+        "desc": "Our AI reads your actual files — code, PDFs, presentations — and shows you the competencies you've built, even ones you didn't realize you had."
       },
       "1": {
         "title": "Verified Portfolio",
-        "desc": "Your projects carry your university's verification badge. Recruiters see proven skills, not self-reported claims."
+        "desc": "Your projects carry your university's verification badge. A portfolio backed by your school, not just your own words."
       },
       "2": {
-        "title": "Reverse Recruitment",
-        "desc": "Instead of applying, you get discovered. Companies search the marketplace and contact you based on your verified work."
+        "title": "Be Discoverable",
+        "desc": "Instead of sending CVs everywhere, your verified work speaks for itself. The right opportunities can find you."
       },
       "3": {
         "title": "Trust Score",
-        "desc": "Academic verification, AI analysis, and project quality build a trust score that helps you stand out in search results."
+        "desc": "Academic verification, AI analysis, and project quality build a trust score that shows the depth and credibility of your work."
       },
       "4": {
         "title": "Multi-Format Upload",
         "desc": "Code repositories, PDFs, videos, Word documents, Excel files, presentations — upload anything you've worked on."
       },
       "5": {
-        "title": "Career Insights",
-        "desc": "See who viewed your profile, which skills are trending in your field, and how your portfolio compares."
+        "title": "Skill Insights",
+        "desc": "See which skills are trending in your field, how your portfolio compares, and where you can grow next."
       }
     },
     "audience": {
@@ -1686,26 +1691,26 @@
       },
       "1": {
         "title": "ITS Academy Students",
-        "desc": "Your hands-on technical projects are your strongest asset. Make them discoverable by the companies that value practical skills."
+        "desc": "Your hands-on technical projects are your strongest asset. Make them visible and verifiable beyond your classroom."
       },
       "2": {
         "title": "University Students",
-        "desc": "Thesis work, research projects, and capstone assignments — verified by your department and visible to employers across Italy and Europe."
+        "desc": "Thesis work, research projects, and capstone assignments — verified by your department and visible across Italy and Europe."
       }
     },
     "cta": {
-      "title": "Your Future Starts with Your Work",
-      "subtitle": "Create your portfolio in under 5 minutes. Your university verifies it. Companies discover you. It's that simple.",
+      "title": "Start Understanding Your Strengths",
+      "subtitle": "Create your portfolio in under 5 minutes. Your university verifies it. Your skills become visible. It's that simple.",
       "primaryButton": "Build Your Portfolio",
-      "secondaryButton": "See Student Portfolios"
+      "secondaryButton": "Explore the Platform"
     }
   },
   "forCompanies": {
     "hero": {
-      "badge": "For Companies & Startups — All Industries",
-      "title": "Hire on Proof,",
-      "titleHighlight": "Not Promises.",
-      "subtitle": "Students upload real projects. Universities verify the work. You see proven skills across every discipline — tech, engineering, business, design. No more guessing from CVs."
+      "badge": "For Companies, Agencies & HR Teams — All Industries",
+      "title": "A Bad Hire Costs You Time and Money.",
+      "titleHighlight": "We Help You Get It Right.",
+      "subtitle": "Students upload real projects. Universities verify the work. You see proven skills before you ever make an offer — across tech, engineering, business, design, and more."
     },
     "steps": {
       "title": "How It Works for You",
@@ -1766,7 +1771,7 @@
       "title": "Find Talent You Can Trust",
       "subtitle": "Browse verified student portfolios. See real projects, real grades, real skills. Connect directly — free during launch.",
       "primaryButton": "Start Finding Talent",
-      "secondaryButton": "See How It Works"
+      "secondaryButton": "Try the AI Search"
     }
   },
   "forAcademicPartners": {
@@ -2407,7 +2412,7 @@
         "subtitle": "For Institutes (Universities & ITS)",
         "placeholder": "Search students or jobs...",
         "initialMessage": "Hi! I'm Transparenty, your institute AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Show me CS students with 3.8+ GPA\" or \"Find tech companies hiring\"",
-        "registrationLink": "/auth/register/university"
+        "registrationLink": "/auth/register/academic-partner"
       }
     },
     "exampleQueries": {
@@ -3591,7 +3596,7 @@
       "badge": "For Career Services Directors",
       "title": "Replace surveys with real-time proof",
       "subtitle": "InTransparency gives career services directors live placement analytics, cross-border grade normalization, and verified student profiles — so you can prove impact instead of estimating it.",
-      "registerCta": "Register as Institution",
+      "registerCta": "Become an Academic Partner",
       "demoCta": "Book a Demo",
       "stats": {
         "students": "Student profiles",
@@ -3638,11 +3643,11 @@
     },
     "cta": {
       "title": "Ready to prove your placement impact?",
-      "subtitle": "Join universities across Europe already using real-time data instead of year-end surveys.",
+      "subtitle": "Join academic partners across Europe already using real-time data instead of year-end surveys.",
       "registerButton": "Get Started Free",
       "demoButton": "Schedule a Demo",
       "features": {
-        "free": "Free for universities",
+        "free": "Free for academic partners",
         "gdpr": "GDPR compliant",
         "setup": "5-minute setup"
       }

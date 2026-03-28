@@ -362,7 +362,16 @@ function emailWrapper(content: string): string {
   return `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
       <div style="text-align: center; margin-bottom: 24px;">
-        <img src="${BASE_URL}/images/banner.jpg" alt="InTransparency" width="351" height="120" style="max-width: 100%; height: auto;" />
+        <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+          <tr>
+            <td style="vertical-align: middle; padding-right: 12px;">
+              <img src="${BASE_URL}/favicon.png" alt="InTransparency" width="40" height="40" style="display: block;" />
+            </td>
+            <td style="vertical-align: middle;">
+              <span style="font-size: 24px; font-weight: 700; color: #0f172a; letter-spacing: -0.5px;">In<span style="color: #2563eb;">Transparency</span></span>
+            </td>
+          </tr>
+        </table>
       </div>
       ${content}
       <hr style="border: none; border-top: 1px solid #E5E7EB; margin: 24px 0;" />

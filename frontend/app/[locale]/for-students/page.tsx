@@ -117,7 +117,7 @@ export default function ForStudentsPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
-              <Link href="/explore">
+              <Link href="/demo/ai-search">
                 <Button variant="outline" size="lg" className="gap-2 rounded-full px-8 text-base">
                   <Play className="h-4 w-4" />
                   {t('cta.secondaryButton')}
@@ -356,7 +356,7 @@ export default function ForStudentsPage() {
                 <ChevronRight className="h-4 w-4" />
               </Button>
             </Link>
-            <Link href="/explore">
+            <Link href="/demo/ai-search">
               <Button
                 variant="outline"
                 size="lg"

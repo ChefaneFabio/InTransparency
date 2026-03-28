@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { Link } from '@/navigation'
-import Image from 'next/image'
 import { Facebook, Linkedin, Shield } from 'lucide-react'
+import { Logo } from '@/components/layout/Logo'
 import { useTranslations } from 'next-intl'
 import { useToast } from '@/components/ui/use-toast'
 import { trackEvent } from '@/lib/analytics'
@@ -103,15 +103,7 @@ export function Footer() {
         {/* Top row: brand + nav links inline */}
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-6">
           <div className="flex items-center gap-4">
-            <Link href="/">
-              <Image
-                src="/images/banner.jpg"
-                alt="InTransparency"
-                width={351}
-                height={120}
-                className="h-14 w-auto"
-              />
-            </Link>
+            <Logo size="md" />
             <p className="text-sm text-muted-foreground max-w-xs hidden sm:block">
               {tFooter('tagline')}
             </p>
