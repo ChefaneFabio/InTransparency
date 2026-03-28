@@ -22,7 +22,8 @@ import {
   BookOpen,
   RefreshCw,
   LogOut,
-  TrendingUp
+  TrendingUp,
+  Loader2
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import { useLocale, useTranslations } from 'next-intl'
@@ -95,7 +96,7 @@ export default function UniversityDashboard() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="animate-pulse text-4xl mb-4">🎓</div>
+          <Loader2 className="h-10 w-10 mx-auto animate-spin text-primary mb-4" />
           <p className="text-gray-500">{t('loading')}</p>
         </div>
       </div>

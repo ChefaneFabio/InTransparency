@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ChallengeCard } from '@/components/challenges/ChallengeCard'
-import { Plus, Search, Loader2, Trophy } from 'lucide-react'
+import { Plus, Search, Loader2, Trophy, FileText, GraduationCap } from 'lucide-react'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 
 interface Challenge {
@@ -155,7 +155,7 @@ export default function RecruiterChallengesPage() {
                 <p className="text-2xl font-bold">{stats.totalSubmissions}</p>
                 <p className="text-sm text-gray-600">{t('totalSubmissions')}</p>
               </div>
-              <div className="text-2xl">📝</div>
+              <FileText className="h-5 w-5" />
             </div>
           </CardContent>
         </Card>
@@ -166,7 +166,7 @@ export default function RecruiterChallengesPage() {
                 <p className="text-2xl font-bold">{stats.totalApprovals}</p>
                 <p className="text-sm text-gray-600">{t('universityApprovals')}</p>
               </div>
-              <div className="text-2xl">🎓</div>
+              <GraduationCap className="h-5 w-5" />
             </div>
           </CardContent>
         </Card>

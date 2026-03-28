@@ -15,7 +15,8 @@ import {
   Lock,
   Crown,
   Search,
-  Filter
+  Filter,
+  Lightbulb
 } from 'lucide-react'
 import { trackUpgradePrompt, trackUpgradeInteraction, ConversionTrigger, PlanType } from '@/lib/analytics'
 
@@ -191,7 +192,7 @@ export default function CompanyDashboard() {
             {userPlan === 'pay_per_contact' && (
               <div className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-lg">
                 <p className="text-sm text-gray-900">
-                  <strong>💡 Enterprise Tip:</strong> Unlimited contacts for €99/month. You have spent €{stats.contactsUsed * 10} already this month.
+                  <strong><Lightbulb className="h-4 w-4 inline" /> Enterprise Tip:</strong> Unlimited contacts for €99/month. You have spent €{stats.contactsUsed * 10} already this month.
                 </p>
               </div>
             )}

@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { FileX2, Code2, TrendingUp, Users, Shield, Zap, Target, Heart } from 'lucide-react'
+import { FileX2, Code2, TrendingUp, Users, Shield, Zap, Target, Heart, CheckCircle } from 'lucide-react'
 import { Link } from '@/navigation'
 import Image from 'next/image'
 import { IMAGES } from '@/lib/images'
@@ -192,28 +192,28 @@ export default function AboutPage() {
                     </h3>
                     <ul className="space-y-4">
                       <li className="flex items-start gap-3">
-                        <span className="text-primary font-bold">✅</span>
+                        <CheckCircle className="h-4 w-4 text-primary" />
                         <div>
                           <strong className="text-foreground">{t('whyDifferent.solution.items.0.title')}</strong>
                           <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.0.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="text-primary font-bold">✅</span>
+                        <CheckCircle className="h-4 w-4 text-primary" />
                         <div>
                           <strong className="text-foreground">{t('whyDifferent.solution.items.1.title')}</strong>
                           <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.1.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="text-primary font-bold">✅</span>
+                        <CheckCircle className="h-4 w-4 text-primary" />
                         <div>
                           <strong className="text-foreground">{t('whyDifferent.solution.items.2.title')}</strong>
                           <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.2.description')}</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="text-primary font-bold">✅</span>
+                        <CheckCircle className="h-4 w-4 text-primary" />
                         <div>
                           <strong className="text-foreground">{t('whyDifferent.solution.items.3.title')}</strong>
                           <p className="text-foreground/80 text-sm">{t('whyDifferent.solution.items.3.description')}</p>

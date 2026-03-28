@@ -458,7 +458,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               <CardContent>
                 <div className="space-y-2">
                   <a href={`https://linkedin.com/company/${company.socialMedia.linkedin}`} className="flex items-center text-blue-700 hover:text-blue-900" target="_blank" rel="noopener noreferrer">
-                    <span className="mr-2">💼</span>
+                    <Briefcase className="h-4 w-4 mr-2" />
                     LinkedIn
                   </a>
                   <a href={`https://twitter.com/${company.socialMedia.twitter}`} className="flex items-center text-primary hover:text-blue-700" target="_blank" rel="noopener noreferrer">

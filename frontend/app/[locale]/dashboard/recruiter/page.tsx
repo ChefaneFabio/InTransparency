@@ -23,7 +23,9 @@ import {
   FileText,
   Mail,
   TrendingUp,
-  LogOut
+  LogOut,
+  Loader2,
+  Lightbulb
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import { useLocale, useTranslations } from 'next-intl'
@@ -114,7 +116,7 @@ export default function RecruiterDashboard() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="animate-pulse text-4xl mb-4">🔍</div>
+          <Loader2 className="h-10 w-10 mx-auto animate-spin text-primary mb-4" />
           <p className="text-muted-foreground">{t('loading')}</p>
         </div>
       </div>
@@ -541,7 +543,7 @@ export default function RecruiterDashboard() {
           <Card className="bg-gradient-to-br from-muted/50 to-slate-100 border-slate-200">
             <CardHeader className="pb-3">
               <CardTitle className="text-lg flex items-center gap-2">
-                <span>💡</span>
+                <Lightbulb className="h-4 w-4" />
                 {t('recruitingTip.title')}
               </CardTitle>
             </CardHeader>

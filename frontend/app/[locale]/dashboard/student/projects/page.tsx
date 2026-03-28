@@ -23,7 +23,8 @@ import {
   MoreVertical,
   Trash2,
   Edit3,
-  ExternalLink
+  ExternalLink,
+  Rocket
 } from 'lucide-react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
@@ -434,7 +435,7 @@ export default function ProjectsPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start space-x-4">
                           <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span className="text-2xl">🚀</span>
+                            <Rocket className="h-6 w-6" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <h3 className="text-lg font-semibold text-gray-900 truncate">

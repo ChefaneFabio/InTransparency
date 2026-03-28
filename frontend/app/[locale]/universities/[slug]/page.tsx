@@ -27,7 +27,8 @@ import {
   ExternalLink,
   Heart,
   Share2,
-  Download
+  Download,
+  Briefcase
 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -394,7 +395,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                     {university.socialMedia.twitter}
                   </a>
                   <a href={`https://linkedin.com/company/${university.socialMedia.linkedin}`} className="flex items-center text-blue-700 hover:text-blue-900" target="_blank" rel="noopener noreferrer">
-                    <span className="mr-2">💼</span>
+                    <Briefcase className="h-4 w-4 mr-2" />
                     {t('socialMedia.linkedin')}
                   </a>
                   <a href={`https://facebook.com/${university.socialMedia.facebook}`} className="flex items-center text-primary hover:text-blue-800" target="_blank" rel="noopener noreferrer">
