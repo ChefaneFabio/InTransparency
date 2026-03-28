@@ -3653,6 +3653,56 @@
       }
     }
   },
+  "jobs": {
+    "title": "Job Opportunities",
+    "subtitle": "Find your next career opportunity",
+    "postJob": "Post a Job",
+    "searchPlaceholder": "Search jobs...",
+    "featured": "Featured",
+    "locationNotSpecified": "Location not specified",
+    "viewDetails": "View Details",
+    "applicants": "{count} applicants",
+    "filters": {
+      "jobType": "Job Type",
+      "allTypes": "All Types",
+      "workLocation": "Work Location",
+      "allLocations": "All Locations"
+    },
+    "jobTypes": {
+      "FULL_TIME": "Full-time",
+      "PART_TIME": "Part-time",
+      "CONTRACT": "Contract",
+      "INTERNSHIP": "Internship",
+      "TEMPORARY": "Temporary",
+      "FREELANCE": "Freelance"
+    },
+    "workLocations": {
+      "REMOTE": "Remote",
+      "HYBRID": "Hybrid",
+      "ON_SITE": "On-site"
+    },
+    "salary": {
+      "competitive": "Competitive",
+      "from": "From {amount}",
+      "upTo": "Up to {amount}"
+    },
+    "time": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "daysAgo": "{count} days ago",
+      "weeksAgo": "{count} weeks ago",
+      "monthsAgo": "{count} months ago"
+    },
+    "empty": {
+      "title": "No jobs found",
+      "subtitle": "Try adjusting your search or filters"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "pageOf": "Page {page} of {totalPages}"
+    }
+  },
   "companyProfile": {
     "loading": "Loading company...",
     "error": {

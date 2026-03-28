@@ -3693,6 +3693,56 @@
       }
     }
   },
+  "jobs": {
+    "title": "Opportunità di Lavoro",
+    "subtitle": "Trova la tua prossima opportunità di carriera",
+    "postJob": "Pubblica un Lavoro",
+    "searchPlaceholder": "Cerca lavori...",
+    "featured": "In Evidenza",
+    "locationNotSpecified": "Sede non specificata",
+    "viewDetails": "Vedi Dettagli",
+    "applicants": "{count} candidati",
+    "filters": {
+      "jobType": "Tipo di Lavoro",
+      "allTypes": "Tutti i Tipi",
+      "workLocation": "Modalità di Lavoro",
+      "allLocations": "Tutte le Sedi"
+    },
+    "jobTypes": {
+      "FULL_TIME": "Tempo pieno",
+      "PART_TIME": "Part-time",
+      "CONTRACT": "Contratto",
+      "INTERNSHIP": "Stage",
+      "TEMPORARY": "Temporaneo",
+      "FREELANCE": "Freelance"
+    },
+    "workLocations": {
+      "REMOTE": "Da remoto",
+      "HYBRID": "Ibrido",
+      "ON_SITE": "In sede"
+    },
+    "salary": {
+      "competitive": "Competitivo",
+      "from": "Da {amount}",
+      "upTo": "Fino a {amount}"
+    },
+    "time": {
+      "today": "Oggi",
+      "yesterday": "Ieri",
+      "daysAgo": "{count} giorni fa",
+      "weeksAgo": "{count} settimane fa",
+      "monthsAgo": "{count} mesi fa"
+    },
+    "empty": {
+      "title": "Nessun lavoro trovato",
+      "subtitle": "Prova a modificare la ricerca o i filtri"
+    },
+    "pagination": {
+      "previous": "Precedente",
+      "next": "Successivo",
+      "pageOf": "Pagina {page} di {totalPages}"
+    }
+  },
   "companyProfile": {
     "loading": "Caricamento azienda...",
     "error": {

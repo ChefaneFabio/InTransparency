@@ -79,7 +79,7 @@ export default function JobsPage() {
 
   const formatSalary = (job: Job) => {
     if (!job.showSalary || (!job.salaryMin && !job.salaryMax)) {
-      return 'Competitive'
+      return t('salary.competitive')
     }
 
     const currency = job.salaryCurrency === 'EUR' ? '€' : job.salaryCurrency
@@ -89,35 +89,24 @@ export default function JobsPage() {
     }
 
     if (job.salaryMin) {
-      return `From ${currency}${(job.salaryMin / 1000).toFixed(0)}k`
+      return t('salary.from', { amount: `${currency}${(job.salaryMin / 1000).toFixed(0)}k` })
     }
 
     if (job.salaryMax) {
-      return `Up to ${currency}${(job.salaryMax / 1000).toFixed(0)}k`
+      return t('salary.upTo', { amount: `${currency}${(job.salaryMax / 1000).toFixed(0)}k` })
     }
 
-    return 'Competitive'
+    return t('salary.competitive')
   }
 
   const getJobTypeLabel = (jobType: string) => {
-    const labels: Record<string, string> = {
-      FULL_TIME: 'Full-time',
-      PART_TIME: 'Part-time',
-      CONTRACT: 'Contract',
-      INTERNSHIP: 'Internship',
-      TEMPORARY: 'Temporary',
-      FREELANCE: 'Freelance'
-    }
-    return labels[jobType] || jobType
+    const key = `jobTypes.${jobType}` as any
+    return t.has(key) ? t(key) : jobType
   }
 
   const getWorkLocationLabel = (workLocation: string) => {
-    const labels: Record<string, string> = {
-      REMOTE: 'Remote',
-      HYBRID: 'Hybrid',
-      ON_SITE: 'On-site'
-    }
-    return labels[workLocation] || workLocation
+    const key = `workLocations.${workLocation}` as any
+    return t.has(key) ? t(key) : workLocation
   }
 
   const getTimeSince = (date: string) => {
@@ -125,11 +114,11 @@ export default function JobsPage() {
     const posted = new Date(date)
     const diffInDays = Math.floor((now.getTime() - posted.getTime()) / (1000 * 60 * 60 * 24))
 
-    if (diffInDays === 0) return 'Today'
-    if (diffInDays === 1) return 'Yesterday'
-    if (diffInDays < 7) return `${diffInDays} days ago`
-    if (diffInDays < 30) return `${Math.floor(diffInDays / 7)} weeks ago`
-    return `${Math.floor(diffInDays / 30)} months ago`
+    if (diffInDays === 0) return t('time.today')
+    if (diffInDays === 1) return t('time.yesterday')
+    if (diffInDays < 7) return t('time.daysAgo', { count: diffInDays })
+    if (diffInDays < 30) return t('time.weeksAgo', { count: Math.floor(diffInDays / 7) })
+    return t('time.monthsAgo', { count: Math.floor(diffInDays / 30) })
   }
 
   return (
@@ -137,14 +126,14 @@ export default function JobsPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
         <div>
-          <h1 className="text-4xl font-bold mb-2">Job Opportunities</h1>
-          <p className="text-muted-foreground">Find your next career opportunity</p>
+          <h1 className="text-4xl font-bold mb-2">{t('title')}</h1>
+          <p className="text-muted-foreground">{t('subtitle')}</p>
         </div>
 
         {session?.user?.role === 'RECRUITER' && (
           <Link href="/jobs/new">
             <Button size="lg" className="mt-4 md:mt-0">
-              Post a Job
+              {t('postJob')}
             </Button>
           </Link>
         )}
@@ -156,7 +145,7 @@ export default function JobsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="md:col-span-1">
               <Input
-                placeholder="Search jobs..."
+                placeholder={t('searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full"
@@ -165,27 +154,27 @@ export default function JobsPage() {
 
             <Select value={jobTypeFilter} onValueChange={setJobTypeFilter}>
               <SelectTrigger>
-                <SelectValue placeholder="Job Type" />
+                <SelectValue placeholder={t('filters.jobType')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Types</SelectItem>
-                <SelectItem value="FULL_TIME">Full-time</SelectItem>
-                <SelectItem value="PART_TIME">Part-time</SelectItem>
-                <SelectItem value="CONTRACT">Contract</SelectItem>
-                <SelectItem value="INTERNSHIP">Internship</SelectItem>
-                <SelectItem value="FREELANCE">Freelance</SelectItem>
+                <SelectItem value="all">{t('filters.allTypes')}</SelectItem>
+                <SelectItem value="FULL_TIME">{t('jobTypes.FULL_TIME')}</SelectItem>
+                <SelectItem value="PART_TIME">{t('jobTypes.PART_TIME')}</SelectItem>
+                <SelectItem value="CONTRACT">{t('jobTypes.CONTRACT')}</SelectItem>
+                <SelectItem value="INTERNSHIP">{t('jobTypes.INTERNSHIP')}</SelectItem>
+                <SelectItem value="FREELANCE">{t('jobTypes.FREELANCE')}</SelectItem>
               </SelectContent>
             </Select>
 
             <Select value={locationFilter} onValueChange={setLocationFilter}>
               <SelectTrigger>
-                <SelectValue placeholder="Work Location" />
+                <SelectValue placeholder={t('filters.workLocation')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Locations</SelectItem>
-                <SelectItem value="REMOTE">Remote</SelectItem>
-                <SelectItem value="HYBRID">Hybrid</SelectItem>
-                <SelectItem value="ON_SITE">On-site</SelectItem>
+                <SelectItem value="all">{t('filters.allLocations')}</SelectItem>
+                <SelectItem value="REMOTE">{t('workLocations.REMOTE')}</SelectItem>
+                <SelectItem value="HYBRID">{t('workLocations.HYBRID')}</SelectItem>
+                <SelectItem value="ON_SITE">{t('workLocations.ON_SITE')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -214,8 +203,8 @@ export default function JobsPage() {
         <Card>
           <CardContent className="py-12 text-center">
             <Briefcase className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-            <h3 className="text-xl font-semibold mb-2">No jobs found</h3>
-            <p className="text-muted-foreground">Try adjusting your search or filters</p>
+            <h3 className="text-xl font-semibold mb-2">{t('empty.title')}</h3>
+            <p className="text-muted-foreground">{t('empty.subtitle')}</p>
           </CardContent>
         </Card>
       ) : (
@@ -244,7 +233,7 @@ export default function JobsPage() {
                         </div>
                       </div>
                       {job.isFeatured && (
-                        <Badge variant="default" className="ml-2">Featured</Badge>
+                        <Badge variant="default" className="ml-2">{t('featured')}</Badge>
                       )}
                     </div>
                   </CardHeader>
@@ -252,12 +241,12 @@ export default function JobsPage() {
                   <CardContent className="space-y-3">
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <MapPin className="w-4 h-4" />
-                      <span>{job.location || 'Location not specified'}</span>
+                      <span>{job.location || t('locationNotSpecified')}</span>
                     </div>
 
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Briefcase className="w-4 h-4" />
-                      <span>{getJobTypeLabel(job.jobType)} • {getWorkLocationLabel(job.workLocation)}</span>
+                      <span>{getJobTypeLabel(job.jobType)} &bull; {getWorkLocationLabel(job.workLocation)}</span>
                     </div>
 
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -289,9 +278,9 @@ export default function JobsPage() {
                   <CardFooter className="flex justify-between items-center">
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Users className="w-4 h-4" />
-                      <span>{job._count?.applications || 0} applicants</span>
+                      <span>{t('applicants', { count: job._count?.applications || 0 })}</span>
                     </div>
-                    <Button variant="outline" size="sm">View Details</Button>
+                    <Button variant="outline" size="sm">{t('viewDetails')}</Button>
                   </CardFooter>
                 </Card>
               </Link>
@@ -306,11 +295,11 @@ export default function JobsPage() {
                 onClick={() => setPage(p => Math.max(1, p - 1))}
                 disabled={page === 1}
               >
-                Previous
+                {t('pagination.previous')}
               </Button>
 
               <span className="text-sm text-muted-foreground">
-                Page {page} of {totalPages}
+                {t('pagination.pageOf', { page, totalPages })}
               </span>
 
               <Button
@@ -318,7 +307,7 @@ export default function JobsPage() {
                 onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
               >
-                Next
+                {t('pagination.next')}
               </Button>
             </div>
           )}
