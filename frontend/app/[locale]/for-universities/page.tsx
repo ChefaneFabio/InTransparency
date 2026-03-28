@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -80,6 +82,7 @@ export default function ForUniversitiesPage() {
 
   return (
     <div className="min-h-screen segment-university">
+      <Header />
       {/* Hero */}
       <section className="relative overflow-hidden bg-foreground text-white">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 animate-kenburns" />
@@ -362,6 +365,7 @@ export default function ForUniversitiesPage() {
           </div>
         </div>
       </section>
+      <Footer />
       <StickyCTA show={showSticky} text={t('cta.registerButton')} href="/auth/register" />
     </div>
   )
