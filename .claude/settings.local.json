@@ -242,7 +242,11 @@
       "Bash(cp \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/institution/career-day/page.tsx\" \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/university/career-day/page.tsx\")",
       "Bash(mkdir -p \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/university/career-day\")",
       "Bash(mkdir -p \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/university/embed-config\")",
-      "Bash(cp \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/institution/embed-config/page.tsx\" \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/university/embed-config/page.tsx\")"
+      "Bash(cp \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/institution/embed-config/page.tsx\" \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/university/embed-config/page.tsx\")",
+      "Bash(/mnt/c/Users/chefa/InTransparency/frontend/app/sitemap.ts:*)",
+      "Bash(/mnt/c/Users/chefa/InTransparency/frontend/app/robots.ts:*)",
+      "Bash(/mnt/c/Users/chefa/InTransparency/frontend/app/not-found.tsx:*)",
+      "Bash(/mnt/c/Users/chefa/InTransparency/frontend/app/error.tsx:*)"
     ],
     "defaultMode": "acceptEdits"
   }

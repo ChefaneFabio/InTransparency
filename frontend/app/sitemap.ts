@@ -1,64 +1,32 @@
 import { MetadataRoute } from 'next'
 
-const BASE_URL = 'https://intransparency.eu'
-
-const locales = ['en', 'it'] as const
-
-// All public-facing routes (non-dashboard, non-auth, non-api)
-const staticRoutes = [
-  '',
-  '/about',
-
-  '/pricing',
-  '/how-it-works',
-  '/mission',
-  '/contact',
-  '/explore',
-  '/faq',
-  '/for-universities',
-  '/for-its-institutes',
-  '/per-universita',
-  '/per-its',
-  '/orientamento',
-  '/demo',
-  '/demo/ai-search',
-  '/demo/advanced-search',
-  '/events',
-  '/referrals',
-  '/students',
-  '/students/explore',
-  '/students/featured',
-  '/success-stories',
-  '/trust',
-  '/transparency',
-  '/jobs',
-  '/legal',
-  '/privacy',
-  '/terms',
-  '/support',
-  '/advocacy/alumni-stories',
-  '/blog',
-  '/certification',
-  '/for-engineering',
-  '/for-consulting',
-  '/per-aziende-pmi',
-]
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  const entries: MetadataRoute.Sitemap = []
-
-  for (let i = 0; i < staticRoutes.length; i++) {
-    const route = staticRoutes[i]
-    for (let j = 0; j < locales.length; j++) {
-      const locale = locales[j]
-      entries.push({
-        url: `${BASE_URL}/${locale}${route}`,
-        lastModified: new Date(),
-        changeFrequency: route === '' ? 'weekly' : 'monthly',
-        priority: route === '' ? 1 : route === '/how-it-works' || route === '/pricing' ? 0.9 : 0.7,
-      })
-    }
-  }
-
-  return entries
+  const baseUrl = 'https://in-transparency.vercel.app'
+  const locales = ['en', 'it']
+  const lastModified = new Date()
+  const pages = [
+    { path: '', priority: 1, freq: 'daily' },
+    { path: '/for-students', priority: 0.9, freq: 'weekly' },
+    { path: '/for-companies', priority: 0.9, freq: 'weekly' },
+    { path: '/for-universities', priority: 0.9, freq: 'weekly' },
+    { path: '/how-it-works', priority: 0.8, freq: 'weekly' },
+    { path: '/about', priority: 0.7, freq: 'monthly' },
+    { path: '/mission', priority: 0.7, freq: 'monthly' },
+    { path: '/pricing', priority: 0.8, freq: 'weekly' },
+    { path: '/explore', priority: 0.8, freq: 'daily' },
+    { path: '/jobs', priority: 0.8, freq: 'daily' },
+    { path: '/demo/ai-search', priority: 0.7, freq: 'weekly' },
+    { path: '/contact', priority: 0.6, freq: 'monthly' },
+    { path: '/legal', priority: 0.3, freq: 'monthly' },
+    { path: '/auth/login', priority: 0.5, freq: 'monthly' },
+    { path: '/auth/register', priority: 0.6, freq: 'monthly' },
+  ]
+  return locales.flatMap(locale =>
+    pages.map(page => ({
+      url: `${baseUrl}/${locale}${page.path}`,
+      lastModified,
+      changeFrequency: page.freq as any,
+      priority: page.priority,
+    }))
+  )
 }

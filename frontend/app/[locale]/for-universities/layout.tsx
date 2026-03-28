@@ -1,9 +1,8 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'For Universities — Free Placement Analytics & Student Verification',
-  description: 'Free placement analytics dashboard, student portfolio hosting, and institutional verification badges. Track graduate outcomes and connect students with employers across Europe.',
-  keywords: ['university placement analytics', 'student verification platform', 'career services tools', 'graduate employment tracking'],
+  title: 'For Academic Partners — Track Placement Impact | InTransparency',
+  description: 'Monitor graduate outcomes, track placement rates, and demonstrate the value of your programs with verified data.',
 }
 
 export default function ForUniversitiesLayout({ children }: { children: React.ReactNode }) {

@@ -2,22 +2,7 @@ import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: [
-          '/api/',
-          '/dashboard/',
-          '/auth/',
-          '/onboarding/',
-          '/embed/',
-          '/test-chat/',
-          '/validation/',
-          '/unauthorized/',
-        ],
-      },
-    ],
-    sitemap: 'https://intransparency.eu/sitemap.xml',
+    rules: [{ userAgent: '*', allow: '/', disallow: ['/dashboard/', '/api/', '/auth/'] }],
+    sitemap: 'https://in-transparency.vercel.app/sitemap.xml',
   }
 }

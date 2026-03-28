@@ -1,7 +1,8 @@
 'use client'
 
-import { Link } from '@/navigation'
+import { Link, useRouter } from '@/navigation'
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Menu, X, User, GraduationCap, Building2, Briefcase } from 'lucide-react'
 import { Logo } from '@/components/layout/Logo'
@@ -13,6 +14,8 @@ import { useSegment, type Segment } from '@/lib/segment-context'
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { segment: activeSegment, setSegment: setActiveSegment } = useSegment()
+  const router = useRouter()
+  const pathname = usePathname()
   const { data: session } = useSession()
   const isAuthenticated = !!session?.user
   const t = useTranslations('nav')
@@ -74,7 +77,19 @@ export function Header() {
                 return (
                   <button
                     key={seg.id}
-                    onClick={() => setActiveSegment(seg.id)}
+                    onClick={() => {
+                      setActiveSegment(seg.id)
+                      // Navigate to the segment's landing page if on a different segment's page
+                      const segmentPages: Record<string, string> = {
+                        students: '/for-students',
+                        institutions: '/for-universities',
+                        companies: '/for-companies',
+                      }
+                      const isOnLandingOrAuth = pathname?.includes('/for-') || pathname?.includes('/auth/')
+                      if (isOnLandingOrAuth) {
+                        router.push(segmentPages[seg.id])
+                      }
+                    }}
                     className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-all ${
                       isActive
                         ? 'bg-white/20 text-white'

@@ -1,3 +1,4 @@
+import { StructuredData } from '@/components/seo/StructuredData'
 import { Hero } from '@/components/sections/Hero'
 import { HowItWorks } from '@/components/sections/HowItWorks'
 import { PlatformPreview } from '@/components/mockups/PlatformPreview'
@@ -13,6 +14,7 @@ import { FloatingTransparenty } from '@/components/mascot/FloatingTransparenty'
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <StructuredData />
       <Header />
       <main id="main-content">
         <Hero />
