@@ -96,7 +96,11 @@ export function Hero() {
                 activeSegment === 'companies' ? BRAND_IMAGES.hero.companies :
                 BRAND_IMAGES.hero.universities
               }
-              alt=""
+              alt={
+                activeSegment === 'students' ? 'Students collaborating on campus' :
+                activeSegment === 'companies' ? 'Professional team working together' :
+                'University campus and academic environment'
+              }
               className="w-full h-[300px] sm:h-[400px] object-cover"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

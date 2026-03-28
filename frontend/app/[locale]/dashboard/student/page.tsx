@@ -23,6 +23,7 @@ import {
   Sparkles,
   LogOut,
 } from 'lucide-react'
+import { Skeleton } from '@/components/ui/skeleton'
 import OnboardingChecklist from '@/components/dashboard/student/OnboardingChecklist'
 import { AchievementsPanel } from '@/components/dashboard/student/AchievementsPanel'
 import { HiringConfirmationBanner } from '@/components/dashboard/student/HiringConfirmationBanner'
@@ -100,8 +101,26 @@ export default function StudentDashboard() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[40vh]">
-        <p className="text-gray-500">{t('loading')}</p>
+      <div className="max-w-5xl mx-auto pb-8 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <Skeleton className="h-7 w-48 mb-2" />
+            <Skeleton className="h-4 w-64" />
+          </div>
+          <div className="flex gap-2">
+            <Skeleton className="h-9 w-24" />
+            <Skeleton className="h-9 w-28" />
+          </div>
+        </div>
+        <div className="grid lg:grid-cols-5 gap-5">
+          <div className="lg:col-span-3 space-y-3">
+            {[1,2,3,4].map(i => <Skeleton key={i} className="h-16 w-full rounded-lg" />)}
+          </div>
+          <div className="lg:col-span-2 space-y-4">
+            <Skeleton className="h-40 w-full rounded-lg" />
+            <Skeleton className="h-32 w-full rounded-lg" />
+          </div>
+        </div>
       </div>
     )
   }

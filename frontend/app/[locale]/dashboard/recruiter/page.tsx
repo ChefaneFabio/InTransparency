@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Users,
   Search,
@@ -114,10 +115,49 @@ export default function RecruiterDashboard() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-center">
-          <Loader2 className="h-10 w-10 mx-auto animate-spin text-primary mb-4" />
-          <p className="text-muted-foreground">{t('loading')}</p>
+      <div className="max-w-6xl mx-auto space-y-8 pb-12">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
+          <div>
+            <Skeleton className="h-8 w-56 mb-2" />
+            <Skeleton className="h-5 w-72" />
+          </div>
+          <div className="flex gap-3">
+            <Skeleton className="h-10 w-40" />
+            <Skeleton className="h-10 w-28" />
+          </div>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[1,2,3,4].map(i => (
+            <Card key={i}>
+              <CardContent className="pt-6">
+                <Skeleton className="h-8 w-16 mb-2" />
+                <Skeleton className="h-4 w-24" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        <div className="grid lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-6">
+            <Card>
+              <CardHeader className="pb-4">
+                <Skeleton className="h-6 w-40 mb-1" />
+                <Skeleton className="h-4 w-56" />
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {[1,2,3].map(i => <Skeleton key={i} className="h-24 w-full rounded-lg" />)}
+              </CardContent>
+            </Card>
+          </div>
+          <div className="space-y-6">
+            <Card>
+              <CardHeader className="pb-3">
+                <Skeleton className="h-6 w-32" />
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {[1,2,3].map(i => <Skeleton key={i} className="h-14 w-full rounded-lg" />)}
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     )

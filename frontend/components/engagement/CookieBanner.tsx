@@ -38,6 +38,8 @@ export function CookieBanner() {
           animate={{ y: 0 }}
           exit={{ y: '100%' }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          role="dialog"
+          aria-label="Cookie consent"
           className="fixed bottom-0 left-0 right-0 z-50 border-t border-gray-700 bg-gray-900 text-white"
         >
           <div className="mx-auto flex max-w-7xl flex-col items-center gap-3 px-4 py-3 sm:flex-row sm:gap-4">

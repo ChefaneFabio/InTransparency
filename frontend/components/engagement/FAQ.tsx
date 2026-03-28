@@ -33,9 +33,10 @@ export const FAQ = ({ items }: FAQProps) => {
       {items.map((item, i) => {
         const isOpen = openIndices.has(i)
         return (
-          <div key={i} className="py-1">
+          <div key={i} className="py-1" role="region" aria-label={item.question}>
             <button
               onClick={() => toggle(i)}
+              aria-expanded={isOpen}
               className="flex w-full items-center justify-between gap-4 rounded-lg px-2 py-4 text-left transition-colors hover:bg-slate-50"
             >
               <span className="text-base font-medium text-slate-900 sm:text-lg">

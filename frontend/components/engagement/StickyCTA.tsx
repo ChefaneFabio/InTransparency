@@ -24,6 +24,8 @@ export function StickyCTA({ text, href, show }: StickyCTAProps) {
           animate={{ y: 0 }}
           exit={{ y: '100%' }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          role="complementary"
+          aria-label="Call to action"
           className="fixed bottom-0 left-0 right-0 z-40 border-t border-white/10 bg-white/80 backdrop-blur-md dark:bg-gray-900/80"
         >
           <div className="mx-auto flex h-14 max-w-7xl items-center justify-center gap-4 px-4">

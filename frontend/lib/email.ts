@@ -15,9 +15,9 @@ const transporter = process.env.SMTP_HOST
 const FROM_EMAIL = process.env.SMTP_FROM || 'students@intransparency.it'
 const BASE_URL = process.env.NEXTAUTH_URL || 'http://localhost:3000'
 
-async function sendEmail(to: string, subject: string, html: string) {
+async function sendEmail(to: string, subject: string, html: string, text?: string) {
   if (transporter) {
-    await transporter.sendMail({ from: FROM_EMAIL, to, subject, html })
+    await transporter.sendMail({ from: FROM_EMAIL, to, subject, html, ...(text ? { text } : {}) })
   } else {
     console.log(`[EMAIL STUB] To: ${to} | Subject: ${subject}`)
     console.log(`[EMAIL STUB] Body preview: ${html.slice(0, 200)}...`)
@@ -30,23 +30,24 @@ export async function sendVerificationEmail(
   universityName: string
 ) {
   const verifyUrl = `${BASE_URL}/api/user/university-connection/verify?token=${token}`
-  const html = `
-    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-      <h2>Verify your email for ${universityName}</h2>
-      <p>You requested to connect your institutional email with InTransparency.</p>
-      <p>Click the button below to verify your email address:</p>
-      <a href="${verifyUrl}" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
-        Verify Email
+  const html = emailWrapper(`
+    <h2 style="color: #0f172a; margin-bottom: 16px;">Verify your email for ${escapeHtml(universityName)}</h2>
+    <p>You requested to connect your institutional email with InTransparency.</p>
+    <p>Click the button below to verify your email address:</p>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${verifyUrl}" style="display: inline-block; background: #4F46E5; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        Verify Your Email
       </a>
-      <p style="color: #666; font-size: 14px;">
-        If you didn't request this, you can safely ignore this email.
-      </p>
-      <p style="color: #666; font-size: 12px;">
-        Or copy this link: ${verifyUrl}
-      </p>
     </div>
-  `
-  await sendEmail(to, `Verify your email - ${universityName}`, html)
+    <p style="color: #666; font-size: 14px;">
+      If you didn't request this, you can safely ignore this email.
+    </p>
+    <p style="color: #666; font-size: 12px;">
+      Or copy this link: ${verifyUrl}
+    </p>
+  `)
+  const text = `Verify your email for ${universityName}\n\nYou requested to connect your institutional email with InTransparency.\n\nVerify your email: ${verifyUrl}\n\nIf you didn't request this, you can safely ignore this email.`
+  await sendEmail(to, `Verify your email - ${universityName}`, html, text)
 }
 
 export async function sendEndorsementRequestEmail(
@@ -65,30 +66,26 @@ export async function sendEndorsementRequestEmail(
   const messageBlock = personalMessage
     ? `<p style="background: #F3F4F6; padding: 12px; border-radius: 8px; font-style: italic;">"${personalMessage}"</p>`
     : ''
-  const html = `
-    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-      <h2>Endorsement Request from ${studentName}</h2>
-      <p>Dear Professor ${professorName},</p>
-      <p>Your student <strong>${studentName}</strong> (${studentEmail}) has requested your endorsement for their project on InTransparency.</p>
-      ${messageBlock}
-      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 16px 0;">
-        <p style="margin: 4px 0;"><strong>Project:</strong> ${projectTitle}</p>
-        <p style="margin: 4px 0;"><strong>Course:</strong> ${courseName} (${courseCode}) — ${semester}</p>
-      </div>
-      <p>To provide your endorsement (or decline), please click the button below:</p>
-      <a href="${verifyUrl}" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
+  const html = emailWrapper(`
+    <h2 style="color: #0f172a; margin-bottom: 16px;">Endorsement Request from ${escapeHtml(studentName)}</h2>
+    <p>Dear Professor ${escapeHtml(professorName)},</p>
+    <p>Your student <strong>${escapeHtml(studentName)}</strong> (${escapeHtml(studentEmail)}) has requested your endorsement for their project on InTransparency.</p>
+    ${messageBlock}
+    <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 16px 0;">
+      <p style="margin: 4px 0;"><strong>Project:</strong> ${escapeHtml(projectTitle)}</p>
+      <p style="margin: 4px 0;"><strong>Course:</strong> ${escapeHtml(courseName)} (${escapeHtml(courseCode)}) &mdash; ${escapeHtml(semester)}</p>
+    </div>
+    <p>To provide your endorsement (or decline), please click the button below:</p>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${verifyUrl}" style="display: inline-block; background: #4F46E5; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
         Review &amp; Endorse
       </a>
-      <p style="color: #666; font-size: 14px;">This link expires in 7 days.</p>
-      <p style="color: #666; font-size: 12px;">Or copy this link: ${verifyUrl}</p>
-      <hr style="border: none; border-top: 1px solid #E5E7EB; margin: 24px 0;" />
-      <p style="color: #999; font-size: 12px;">
-        InTransparency is a verified talent marketplace connecting students with recruiters.
-        If you didn't expect this email, you can safely ignore it.
-      </p>
     </div>
-  `
-  await sendEmail(to, `${studentName} is requesting your endorsement`, html)
+    <p style="color: #666; font-size: 14px;">This link expires in 7 days.</p>
+    <p style="color: #666; font-size: 12px;">Or copy this link: ${verifyUrl}</p>
+  `)
+  const text = `Endorsement Request from ${studentName}\n\nDear Professor ${professorName},\n\nYour student ${studentName} (${studentEmail}) has requested your endorsement for their project on InTransparency.\n\nProject: ${projectTitle}\nCourse: ${courseName} (${courseCode}) - ${semester}\n\nReview & Endorse: ${verifyUrl}\n\nThis link expires in 7 days.`
+  await sendEmail(to, `${studentName} is requesting your endorsement`, html, text)
 }
 
 export async function sendWelcomeEmail(
@@ -97,25 +94,32 @@ export async function sendWelcomeEmail(
   universityName: string
 ) {
   const loginUrl = `${BASE_URL}/auth/signin`
-  const html = `
-    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-      <h2>Welcome to InTransparency!</h2>
-      <p>${universityName} has invited you to join InTransparency, the platform that connects students with employers.</p>
-      <p>Your account has been created. Here are your login details:</p>
-      <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 16px 0;">
-        <p style="margin: 4px 0;"><strong>Email:</strong> ${to}</p>
-        <p style="margin: 4px 0;"><strong>Temporary Password:</strong> ${tempPassword}</p>
-      </div>
-      <p>Please change your password after your first login.</p>
-      <a href="${loginUrl}" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
+  const html = emailWrapper(`
+    <h2 style="color: #0f172a; margin-bottom: 16px;">Welcome to InTransparency!</h2>
+    <p>${escapeHtml(universityName)} has invited you to join InTransparency, the platform that connects students with employers through verified profiles.</p>
+    <p>Your account has been created. Here are your login details:</p>
+    <div style="background: #F3F4F6; padding: 16px; border-radius: 8px; margin: 16px 0;">
+      <p style="margin: 4px 0;"><strong>Email:</strong> ${escapeHtml(to)}</p>
+      <p style="margin: 4px 0;"><strong>Temporary Password:</strong> ${escapeHtml(tempPassword)}</p>
+    </div>
+    <p><strong>Please change your password after your first login.</strong></p>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${loginUrl}" style="display: inline-block; background: #4F46E5; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
         Log In Now
       </a>
-      <p style="color: #666; font-size: 14px;">
-        Complete your profile to be discoverable by 500+ companies.
-      </p>
     </div>
-  `
-  await sendEmail(to, `Welcome to InTransparency - ${universityName}`, html)
+    <div style="background: #EFF6FF; padding: 16px; border-radius: 8px; margin: 16px 0; border: 1px solid #BFDBFE;">
+      <p style="margin: 0 0 8px 0; font-weight: 600; color: #1E40AF;">What you can do next:</p>
+      <ul style="margin: 0; padding-left: 20px; color: #1E40AF;">
+        <li>Complete your profile to be discoverable by recruiters</li>
+        <li>Upload projects to build your verified portfolio</li>
+        <li>Request endorsements from your professors</li>
+        <li>Connect your institutional email for verification</li>
+      </ul>
+    </div>
+  `)
+  const text = `Welcome to InTransparency!\n\n${universityName} has invited you to join InTransparency.\n\nYour login details:\nEmail: ${to}\nTemporary Password: ${tempPassword}\n\nPlease change your password after your first login.\n\nLog in: ${loginUrl}\n\nWhat you can do next:\n- Complete your profile to be discoverable by recruiters\n- Upload projects to build your verified portfolio\n- Request endorsements from your professors\n- Connect your institutional email for verification`
+  await sendEmail(to, `Welcome to InTransparency - ${universityName}`, html, text)
 }
 
 // --- Saved Search Alert Email ---
@@ -137,9 +141,11 @@ export async function sendSavedSearchAlertEmail(
       <p style="margin: 4px 0;"><strong>New matches:</strong> ${newMatches}</p>
       <p style="margin: 4px 0;"><strong>Total candidates:</strong> ${totalCandidates}</p>
     </div>
-    <a href="${dashboardUrl}" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
-      View Candidates
-    </a>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${dashboardUrl}" style="display: inline-block; background: #4F46E5; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        View Candidates
+      </a>
+    </div>
     <p style="color: #666; font-size: 14px;">
       You can manage your alert preferences in your dashboard settings.
     </p>
@@ -188,9 +194,11 @@ export async function sendWeeklyDigestEmail(
         <li>Share your profile link with your network</li>
       </ul>
     `}
-    <a href="${dashboardUrl}" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
-      Go to Dashboard
-    </a>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${dashboardUrl}" style="display: inline-block; background: #4F46E5; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        Go to Dashboard
+      </a>
+    </div>
     <p style="color: #666; font-size: 12px;">
       To unsubscribe from weekly digests, update your notification settings in your dashboard.
     </p>
@@ -221,9 +229,11 @@ export async function sendReferralNotificationEmail(
         ${status === 'completed' ? 'You\'re one step closer to your next reward tier!' : 'Encourage them to complete their profile to earn your reward.'}
       </p>
     </div>
-    <a href="${dashboardUrl}" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
-      View Referral Dashboard
-    </a>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${dashboardUrl}" style="display: inline-block; background: #4F46E5; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        View Referral Dashboard
+      </a>
+    </div>
   `)
   await sendEmail(to, `Referral update: ${referredName} ${status === 'registered' ? 'signed up' : 'completed their profile'}!`, html)
 }
@@ -248,9 +258,11 @@ export async function sendProfileViewAlertEmail(
       </p>
     </div>
     <p>Keep your profile up-to-date to attract more recruiters!</p>
-    <a href="${dashboardUrl}" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
-      View Dashboard
-    </a>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${dashboardUrl}" style="display: inline-block; background: #4F46E5; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        View Dashboard
+      </a>
+    </div>
   `)
   await sendEmail(to, `A recruiter from ${viewerCompany} viewed your profile`, html)
 }
@@ -289,9 +301,11 @@ export async function sendEndorsementResponseEmail(
         </p>
       </div>
     `}
-    <a href="${projectUrl}" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
-      View Your Projects
-    </a>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${projectUrl}" style="display: inline-block; background: #4F46E5; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        View Your Projects
+      </a>
+    </div>
   `)
   await sendEmail(
     to,
@@ -325,9 +339,11 @@ export async function sendEndorsementExpiryReminderEmail(
         This link will expire soon. Please review and respond at your earliest convenience.
       </p>
     </div>
-    <a href="${verifyUrl}" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
-      Review &amp; Endorse
-    </a>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${verifyUrl}" style="display: inline-block; background: #4F46E5; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        Review &amp; Endorse
+      </a>
+    </div>
     <p style="color: #666; font-size: 12px;">Or copy this link: ${verifyUrl}</p>
   `)
   await sendEmail(to, `Reminder: ${studentName}'s endorsement request expires soon`, html)
@@ -349,9 +365,11 @@ export async function sendEndorsementExpiryNoticeEmail(
       for project <strong>${escapeHtml(projectTitle)}</strong> will expire in 2 days.
     </p>
     <p>If the professor hasn't responded yet, you may want to reach out to them directly as a reminder.</p>
-    <a href="${BASE_URL}/dashboard/student/projects" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; margin: 16px 0;">
-      View Your Projects
-    </a>
+    <div style="text-align: center; margin: 24px 0;">
+      <a href="${BASE_URL}/dashboard/student/projects" style="display: inline-block; background: #4F46E5; color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
+        View Your Projects
+      </a>
+    </div>
   `)
   await sendEmail(to, `Endorsement request for "${projectTitle}" expiring soon`, html)
 }

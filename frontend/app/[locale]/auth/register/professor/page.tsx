@@ -111,7 +111,7 @@ export default function ProfessorRegisterPage() {
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {error && (
-                    <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg">{error}</div>
+                    <div id="form-error" role="alert" className="p-3 bg-red-50 text-red-600 text-sm rounded-lg">{error}</div>
                   )}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
@@ -119,6 +119,9 @@ export default function ProfessorRegisterPage() {
                       <Input
                         id="firstName"
                         required
+                        aria-required="true"
+                        aria-invalid={!!error}
+                        aria-describedby={error ? 'form-error' : undefined}
                         value={formData.firstName}
                         onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                       />
@@ -128,6 +131,7 @@ export default function ProfessorRegisterPage() {
                       <Input
                         id="lastName"
                         required
+                        aria-required="true"
                         value={formData.lastName}
                         onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                       />
@@ -139,6 +143,7 @@ export default function ProfessorRegisterPage() {
                       id="email"
                       type="email"
                       required
+                      aria-required="true"
                       placeholder="professor@university.edu"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -150,6 +155,7 @@ export default function ProfessorRegisterPage() {
                       id="password"
                       type="password"
                       required
+                      aria-required="true"
                       minLength={8}
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}

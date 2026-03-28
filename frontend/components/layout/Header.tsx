@@ -57,6 +57,12 @@ export function Header() {
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded"
+      >
+        Skip to main content
+      </a>
       {/* Secondary segment bar */}
       <div className="bg-foreground/95 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -106,6 +112,8 @@ export function Header() {
             variant="ghost"
             size="sm"
             onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={mobileMenuOpen}
           >
             <Menu className="h-6 w-6" aria-hidden="true" />
           </Button>
@@ -162,6 +170,7 @@ export function Header() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close menu"
               >
                 <X className="h-6 w-6" aria-hidden="true" />
               </Button>

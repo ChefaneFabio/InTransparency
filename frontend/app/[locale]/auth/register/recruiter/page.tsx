@@ -152,7 +152,7 @@ export default function RecruiterRegisterPage() {
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {error && (
-                    <div className="p-3 text-sm text-red-600 bg-red-50 rounded-md">
+                    <div id="form-error" role="alert" className="p-3 text-sm text-red-600 bg-red-50 rounded-md">
                       {error}
                     </div>
                   )}
@@ -165,6 +165,9 @@ export default function RecruiterRegisterPage() {
                         value={formData.firstName}
                         onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
                         required
+                        aria-required="true"
+                        aria-invalid={!!error}
+                        aria-describedby={error ? 'form-error' : undefined}
                         disabled={isLoading}
                       />
                     </div>
@@ -175,6 +178,7 @@ export default function RecruiterRegisterPage() {
                         value={formData.lastName}
                         onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
                         required
+                        aria-required="true"
                         disabled={isLoading}
                       />
                     </div>
@@ -188,6 +192,7 @@ export default function RecruiterRegisterPage() {
                       value={formData.email}
                       onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                       required
+                      aria-required="true"
                       disabled={isLoading}
                     />
                   </div>
@@ -201,6 +206,7 @@ export default function RecruiterRegisterPage() {
                       value={formData.password}
                       onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                       required
+                      aria-required="true"
                       minLength={8}
                       disabled={isLoading}
                     />

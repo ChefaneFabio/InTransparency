@@ -66,7 +66,7 @@ export function SocialProofToast() {
           animate={{ opacity: 1, y: 0, x: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-          className="fixed bottom-6 left-6 z-40 flex max-w-sm items-start gap-3 rounded-lg border border-gray-200 bg-white p-3 shadow-lg dark:border-gray-700 dark:bg-gray-800"
+          className="fixed bottom-6 left-6 z-40 flex max-w-[calc(100vw-48px)] sm:max-w-sm items-start gap-3 rounded-lg border border-gray-200 bg-white p-3 shadow-lg dark:border-gray-700 dark:bg-gray-800"
         >
           <div
             className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${currentMessage.color}`}

@@ -326,13 +326,13 @@ export default function ForCompaniesPage() {
                 </div>
                 {comparisonRows.map((row) => (
                   <div key={row} className="grid grid-cols-2 border-b last:border-b-0">
-                    <div className="p-4 flex items-center gap-2 border-r text-sm text-muted-foreground">
-                      <XCircle className="h-4 w-4 text-red-400 shrink-0" />
-                      {t(`comparison.rows.${row}.before`)}
+                    <div className="p-3 sm:p-4 flex items-start gap-2 border-r text-xs sm:text-sm text-muted-foreground">
+                      <XCircle className="h-4 w-4 text-red-400 shrink-0 mt-0.5" />
+                      <span className="break-words">{t(`comparison.rows.${row}.before`)}</span>
                     </div>
-                    <div className="p-4 flex items-center gap-2 text-sm font-medium">
-                      <CheckCircle className="h-4 w-4 text-emerald-500 shrink-0" />
-                      {t(`comparison.rows.${row}.after`)}
+                    <div className="p-3 sm:p-4 flex items-start gap-2 text-xs sm:text-sm font-medium">
+                      <CheckCircle className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
+                      <span className="break-words">{t(`comparison.rows.${row}.after`)}</span>
                     </div>
                   </div>
                 ))}

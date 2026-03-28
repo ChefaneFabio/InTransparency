@@ -16,7 +16,7 @@ const roles = [
   {
     id: 'student' as const,
     icon: GraduationCap,
-    image: '/images/brand/students.jpg',
+    image: '/images/brand/students.jpg', imageAlt: 'Students studying together',
     color: 'bg-primary',
     borderHover: 'hover:border-primary',
     href: '/auth/register/student',
@@ -25,7 +25,7 @@ const roles = [
   {
     id: 'recruiter' as const,
     icon: Users,
-    image: '/images/brand/handshake.jpg',
+    image: '/images/brand/handshake.jpg', imageAlt: 'Professional handshake between recruiter and candidate',
     color: 'bg-primary',
     borderHover: 'hover:border-primary',
     href: '/auth/register/recruiter',
@@ -34,7 +34,7 @@ const roles = [
   {
     id: 'university' as const,
     icon: Building2,
-    image: '/images/brand/campus.jpg',
+    image: '/images/brand/campus.jpg', imageAlt: 'University campus building',
     color: 'bg-primary',
     borderHover: 'hover:border-primary',
     href: '/auth/register/academic-partner',
@@ -43,7 +43,7 @@ const roles = [
   {
     id: 'techpark' as const,
     icon: Landmark,
-    image: '/images/brand/office.jpg',
+    image: '/images/brand/office.jpg', imageAlt: 'Modern tech park office space',
     color: 'bg-primary',
     borderHover: 'hover:border-primary',
     href: '/auth/register/techpark',
@@ -122,7 +122,7 @@ export default function RegisterPage() {
                     <div className="relative h-36 overflow-hidden">
                       <img
                         src={roleOption.image}
-                        alt=""
+                        alt={roleOption.imageAlt}
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

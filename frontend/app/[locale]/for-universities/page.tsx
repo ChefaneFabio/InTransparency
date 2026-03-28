@@ -144,7 +144,7 @@ export default function ForUniversitiesPage() {
           </div>
 
           <Tabs value={activeCountry} onValueChange={setActiveCountry}>
-            <TabsList className="grid grid-cols-5 max-w-lg mx-auto mb-8">
+            <TabsList className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 max-w-lg mx-auto mb-8">
               {COUNTRY_TABS.map((tab) => (
                 <TabsTrigger key={tab.code} value={tab.code} className="text-sm">
                   {tab.flag} {tab.label}
@@ -355,7 +355,7 @@ export default function ForUniversitiesPage() {
               </Button>
             </Link>
           </div>
-          <div className="mt-8 flex items-center justify-center gap-6 text-sm text-blue-200">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-blue-200">
             <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4" /> {t('cta.features.free')}</span>
             <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4" /> {t('cta.features.gdpr')}</span>
             <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4" /> {t('cta.features.setup')}</span>
