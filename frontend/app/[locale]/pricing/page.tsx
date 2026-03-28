@@ -7,7 +7,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Check, Building2, GraduationCap, ArrowRight, School, Users, Search, Shield, BarChart3, Briefcase, BookOpen, Sparkles } from 'lucide-react'
+import { Check, Building2, GraduationCap, ArrowRight, School, SearchCheck, Search, BadgeCheck, BarChart3, Briefcase, BookOpen, Sparkles } from 'lucide-react'
 import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
 
@@ -145,8 +145,8 @@ export default function PricingPage() {
                   <div className="grid md:grid-cols-3 gap-6">
                     {[
                       { icon: Search, featureKey: 'company.features.discover' },
-                      { icon: Shield, featureKey: 'company.features.verify' },
-                      { icon: Users, featureKey: 'company.features.connect' },
+                      { icon: BadgeCheck, featureKey: 'company.features.verify' },
+                      { icon: SearchCheck, featureKey: 'company.features.connect' },
                     ].map((item, index) => {
                       const Icon = item.icon
                       return (
@@ -222,7 +222,7 @@ export default function PricingPage() {
                   <div className="grid md:grid-cols-3 gap-6">
                     {[
                       { icon: BookOpen, featureKey: 'student.features.portfolio' },
-                      { icon: Shield, featureKey: 'student.features.verification' },
+                      { icon: BadgeCheck, featureKey: 'student.features.verification' },
                       { icon: Briefcase, featureKey: 'student.features.discovery' },
                     ].map((item, index) => {
                       const Icon = item.icon
@@ -298,9 +298,9 @@ export default function PricingPage() {
                   {/* Value features grid */}
                   <div className="grid md:grid-cols-3 gap-6">
                     {[
-                      { icon: Shield, featureKey: 'institute.features.verify' },
+                      { icon: BadgeCheck, featureKey: 'institute.features.verify' },
                       { icon: BarChart3, featureKey: 'institute.features.track' },
-                      { icon: Users, featureKey: 'institute.features.connect' },
+                      { icon: SearchCheck, featureKey: 'institute.features.connect' },
                     ].map((item, index) => {
                       const Icon = item.icon
                       return (

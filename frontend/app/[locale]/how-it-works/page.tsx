@@ -12,7 +12,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { BRAND_IMAGES } from '@/lib/brand-images'
 import {
   Upload,
-  Shield,
+  BadgeCheck,
   Search,
   MessageSquare,
   ArrowRight,
@@ -21,8 +21,8 @@ import {
   GraduationCap,
   Building2,
   Users,
-  Brain,
-  Eye,
+  ScanSearch,
+  Compass,
   Clock,
   BarChart3,
   Star,
@@ -34,9 +34,9 @@ import {
 type Segment = 'student' | 'institution' | 'company'
 
 const stepIcons = {
-  student: [Upload, Brain, MessageSquare],
+  student: [Upload, ScanSearch, MessageSquare],
   institution: [UserCheck, FileCheck, BarChart3],
-  company: [Search, Eye, MessageSquare],
+  company: [Search, Compass, MessageSquare],
 }
 
 const stepColors = [
@@ -63,7 +63,7 @@ export default function HowItWorksPage() {
       <main className="pt-24 pb-16">
 
         {/* ── Hero ── */}
-        <section className="container max-w-5xl text-center mb-16">
+        <section className="container max-w-5xl text-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -131,7 +131,7 @@ export default function HowItWorksPage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
-            className="container max-w-3xl text-center mb-16"
+            className="container max-w-3xl text-center mb-12"
           >
             <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-2">
               {t(`journey.${activeSegment}.headline`)}
@@ -198,7 +198,7 @@ export default function HowItWorksPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="container max-w-3xl mb-24"
+            className="container max-w-3xl mb-12"
           >
             <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 text-center">
               <p className="text-primary font-semibold text-lg">
@@ -209,7 +209,7 @@ export default function HowItWorksPage() {
         </AnimatePresence>
 
         {/* ── Details per step ── */}
-        <section className="bg-muted/30 border-y py-20 mb-24">
+        <section className="bg-muted/30 border-y py-16 mb-12">
           <div className="container max-w-6xl">
             <AnimatePresence mode="wait">
               <motion.div
@@ -266,7 +266,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* ── What Makes Us Different ── */}
-        <section className="container max-w-5xl mb-24">
+        <section className="container max-w-5xl mb-12">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -282,10 +282,10 @@ export default function HowItWorksPage() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: Shield, colorClass: 'bg-blue-500/10 text-blue-600' },
-                { icon: Brain, colorClass: 'bg-violet-500/10 text-violet-600' },
+                { icon: BadgeCheck, colorClass: 'bg-blue-500/10 text-blue-600' },
+                { icon: ScanSearch, colorClass: 'bg-violet-500/10 text-violet-600' },
                 { icon: Target, colorClass: 'bg-emerald-500/10 text-emerald-600' },
-                { icon: Eye, colorClass: 'bg-amber-500/10 text-amber-600' },
+                { icon: Compass, colorClass: 'bg-amber-500/10 text-amber-600' },
               ].map((item, i) => {
                 const Icon = item.icon
                 return (
@@ -314,7 +314,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* ── Social Proof Strip ── */}
-        <section className="border-y bg-muted/20 py-12 mb-24">
+        <section className="border-y bg-muted/20 py-12 mb-12">
           <div className="container max-w-4xl">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {[0, 1, 2, 3].map((i) => (
@@ -338,7 +338,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="container max-w-3xl text-center mb-16">
+        <section className="container max-w-3xl text-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -14,12 +14,12 @@ import {
   Upload,
   ShieldCheck,
   Users,
-  Brain,
-  FileCheck,
-  Eye,
+  ScanSearch,
+  BadgeCheck,
+  Compass,
   TrendingUp,
   ArrowRight,
-  Sparkles,
+  Award,
   GraduationCap,
   School,
   BookOpen,
@@ -27,7 +27,8 @@ import {
   ChevronRight,
   FileVideo,
   Code,
-  FileText
+  FileText,
+  Megaphone
 } from 'lucide-react'
 
 const fadeUp = {
@@ -49,16 +50,16 @@ export default function ForStudentsPage() {
   const steps = [
     { icon: Upload, color: 'from-blue-500 to-cyan-500' },
     { icon: ShieldCheck, color: 'from-emerald-500 to-teal-500' },
-    { icon: Users, color: 'from-violet-500 to-purple-500' }
+    { icon: Megaphone, color: 'from-violet-500 to-purple-500' }
   ]
 
   const features = [
-    { icon: Brain, color: 'text-blue-600 bg-blue-50' },
-    { icon: FileCheck, color: 'text-emerald-600 bg-emerald-50' },
+    { icon: ScanSearch, color: 'text-blue-600 bg-blue-50' },
+    { icon: BadgeCheck, color: 'text-emerald-600 bg-emerald-50' },
     { icon: Users, color: 'text-violet-600 bg-violet-50' },
     { icon: ShieldCheck, color: 'text-amber-600 bg-amber-50' },
     { icon: FileVideo, color: 'text-rose-600 bg-rose-50' },
-    { icon: Eye, color: 'text-cyan-600 bg-cyan-50' }
+    { icon: Compass, color: 'text-cyan-600 bg-cyan-50' }
   ]
 
   const audiences = [
@@ -72,7 +73,7 @@ export default function ForStudentsPage() {
       <Header />
 
       {/* ─── HERO ─── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 pt-32 pb-20 lg:pt-40 lg:pb-28">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 pt-28 pb-16 lg:pt-32 lg:pb-20">
         {/* decorative blobs */}
         <div className="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-blue-100/40 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-32 -left-32 h-[400px] w-[400px] rounded-full bg-violet-100/30 blur-3xl" />
@@ -85,7 +86,7 @@ export default function ForStudentsPage() {
           >
             <motion.div variants={fadeUp} custom={0}>
               <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm font-medium">
-                <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+                <Award className="mr-1.5 h-3.5 w-3.5" />
                 {t('hero.badge')}
               </Badge>
             </motion.div>
@@ -131,7 +132,7 @@ export default function ForStudentsPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-16 mx-auto max-w-4xl"
+            className="mt-12 mx-auto max-w-4xl"
           >
             <img
               src={BRAND_IMAGES.forStudents.hero}
@@ -143,7 +144,7 @@ export default function ForStudentsPage() {
       </section>
 
       {/* ─── HOW IT WORKS ─── */}
-      <section className="bg-white py-20 lg:py-28">
+      <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <motion.div
             initial="hidden"
@@ -173,7 +174,7 @@ export default function ForStudentsPage() {
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
             variants={stagger}
-            className="mt-16 grid gap-8 md:grid-cols-3"
+            className="mt-16 grid gap-6 md:grid-cols-3"
           >
             {steps.map((step, i) => {
               const Icon = step.icon
@@ -206,7 +207,7 @@ export default function ForStudentsPage() {
       </section>
 
       {/* ─── KEY FEATURES ─── */}
-      <section className="bg-slate-50 py-20 lg:py-28">
+      <section className="bg-slate-50 py-16 lg:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <motion.div
             initial="hidden"
@@ -263,7 +264,7 @@ export default function ForStudentsPage() {
       </section>
 
       {/* ─── WHO IT'S FOR ─── */}
-      <section className="bg-white py-20 lg:py-28">
+      <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <motion.div
             initial="hidden"
@@ -293,7 +294,7 @@ export default function ForStudentsPage() {
             whileInView="visible"
             viewport={{ once: true, margin: '-40px' }}
             variants={stagger}
-            className="mt-14 grid gap-8 md:grid-cols-3"
+            className="mt-14 grid gap-6 md:grid-cols-3"
           >
             {audiences.map((aud, i) => {
               const Icon = aud.icon
@@ -320,7 +321,7 @@ export default function ForStudentsPage() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-16 lg:py-20">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent" />
 
         <motion.div

@@ -11,12 +11,12 @@ import {
   GraduationCap,
   BarChart3,
   Globe,
-  Shield,
+  FileStack,
   ArrowRight,
   CheckCircle,
   Building2,
   Users,
-  TrendingUp,
+  Target,
   Zap,
 } from 'lucide-react'
 import DecisionPackPreview from '@/components/demo/DecisionPackPreview'
@@ -71,7 +71,7 @@ export default function ForUniversitiesPage() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-foreground text-white">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="relative container max-w-6xl mx-auto px-4 py-20 lg:py-28">
+        <div className="relative container max-w-6xl mx-auto px-4 py-16 lg:py-20">
           <div className="text-center max-w-3xl mx-auto">
             <Badge variant="secondary" className="mb-6 bg-white/10 text-white border-white/20">
               <Building2 className="h-3 w-3 mr-1" />
@@ -100,12 +100,12 @@ export default function ForUniversitiesPage() {
           </div>
 
           {/* Stats */}
-          <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: Users, value: '2,400+', label: t('hero.stats.students') },
               { icon: Building2, value: '180+', label: t('hero.stats.companies') },
               { icon: Globe, value: '6', label: t('hero.stats.countries') },
-              { icon: TrendingUp, value: '87%', label: t('hero.stats.placementRate') },
+              { icon: Target, value: '87%', label: t('hero.stats.placementRate') },
             ].map((stat) => (
               <div key={stat.label} className="text-center p-4 rounded-xl bg-white/5 border border-white/10">
                 <stat.icon className="h-6 w-6 mx-auto mb-2 text-blue-300" />
@@ -118,7 +118,7 @@ export default function ForUniversitiesPage() {
       </section>
 
       {/* Country Tabs */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-12 bg-gray-50">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold text-gray-900 mb-3">
@@ -161,7 +161,7 @@ export default function ForUniversitiesPage() {
       </section>
 
       {/* Interactive Demos */}
-      <section className="py-16">
+      <section className="py-12">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
@@ -176,12 +176,12 @@ export default function ForUniversitiesPage() {
             </p>
           </div>
 
-          <div className="space-y-16">
+          <div className="space-y-10">
             {/* Decision Pack */}
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 rounded-lg bg-primary/10">
-                  <Shield className="h-5 w-5 text-primary" />
+                  <FileStack className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">{t('demos.decisionPack.title')}</h3>
@@ -229,7 +229,7 @@ export default function ForUniversitiesPage() {
       </section>
 
       {/* Social Proof */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-12 bg-gray-50">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold text-gray-900 mb-3">
@@ -237,7 +237,7 @@ export default function ForUniversitiesPage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <Card className="border-primary/20">
               <CardContent className="pt-6">
                 <div className="flex items-center gap-3 mb-4">
@@ -280,7 +280,7 @@ export default function ForUniversitiesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-primary text-white">
+      <section className="py-12 bg-primary text-white">
         <div className="container max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">{t('cta.title')}</h2>
           <p className="text-blue-200 mb-8 max-w-xl mx-auto">

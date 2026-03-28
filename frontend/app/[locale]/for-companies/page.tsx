@@ -13,12 +13,12 @@ import {
   Search,
   FolderOpen,
   MessageCircle,
-  Brain,
-  ShieldCheck,
+  ScanSearch,
+  BadgeCheck,
   FileBarChart,
   UserCheck,
-  BarChart3,
-  Zap,
+  LineChart,
+  Timer,
   ArrowRight,
   CheckCircle,
   XCircle,
@@ -47,12 +47,12 @@ export default function ForCompaniesPage() {
   ]
 
   const features = [
-    { icon: Brain, color: 'text-violet-600', bg: 'bg-violet-50' },
-    { icon: ShieldCheck, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+    { icon: ScanSearch, color: 'text-violet-600', bg: 'bg-violet-50' },
+    { icon: BadgeCheck, color: 'text-emerald-600', bg: 'bg-emerald-50' },
     { icon: FileBarChart, color: 'text-blue-600', bg: 'bg-blue-50' },
     { icon: UserCheck, color: 'text-amber-600', bg: 'bg-amber-50' },
-    { icon: Zap, color: 'text-rose-600', bg: 'bg-rose-50' },
-    { icon: BarChart3, color: 'text-cyan-600', bg: 'bg-cyan-50' },
+    { icon: Timer, color: 'text-rose-600', bg: 'bg-rose-50' },
+    { icon: LineChart, color: 'text-cyan-600', bg: 'bg-cyan-50' },
   ]
 
   const comparisonRows = [0, 1, 2, 3] as const
@@ -62,7 +62,7 @@ export default function ForCompaniesPage() {
       <Header />
       <main>
         {/* ── Hero ── */}
-        <section className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white">
+        <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white">
           <div className="container max-w-4xl text-center">
             <motion.div
               initial="hidden"
@@ -112,7 +112,7 @@ export default function ForCompaniesPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-16 mx-auto max-w-4xl"
+              className="mt-10 mx-auto max-w-4xl"
             >
               <img
                 src={BRAND_IMAGES.forCompanies.hero}
@@ -124,7 +124,7 @@ export default function ForCompaniesPage() {
         </section>
 
         {/* ── How It Works ── */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-16 bg-gray-50">
           <div className="container max-w-5xl">
             <motion.div
               initial="hidden"
@@ -141,7 +141,7 @@ export default function ForCompaniesPage() {
               </motion.p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6">
               {steps.map((step, i) => (
                 <motion.div
                   key={i}
@@ -168,7 +168,7 @@ export default function ForCompaniesPage() {
         </section>
 
         {/* ── Key Features ── */}
-        <section className="py-20">
+        <section className="py-16">
           <div className="container max-w-6xl">
             <motion.div
               initial="hidden"
@@ -215,7 +215,7 @@ export default function ForCompaniesPage() {
         </section>
 
         {/* ── Comparison ── */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-16 bg-gray-50">
           <div className="container max-w-3xl">
             <motion.div
               initial="hidden"
@@ -263,7 +263,7 @@ export default function ForCompaniesPage() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-24 bg-gradient-to-br from-blue-900 to-slate-900 text-white">
+        <section className="py-16 bg-gradient-to-br from-blue-900 to-slate-900 text-white">
           <div className="container max-w-3xl text-center">
             <motion.div
               initial="hidden"

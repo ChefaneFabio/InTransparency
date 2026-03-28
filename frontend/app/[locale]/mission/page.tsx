@@ -8,7 +8,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
 import { BRAND_IMAGES } from '@/lib/brand-images'
-import { Target, Shield, Heart, Scale, Award, DollarSign, Users, Building2, GraduationCap, Briefcase, TrendingUp, Eye } from 'lucide-react'
+import { Target, BadgeCheck, Heart, Scale, Award, DollarSign, Users, Building2, GraduationCap, Briefcase, TrendingUp, Compass } from 'lucide-react'
 import { useSegment } from '@/lib/segment-context'
 import { FloatingTransparenty } from '@/components/mascot/FloatingTransparenty'
 
@@ -62,8 +62,8 @@ export default function MissionPage() {
   // Detect language from translations
   const isItalian = t('hero.badge') === 'La Nostra Missione'
 
-  const positionIcons = [Target, Scale, Heart, Shield]
-  const valueIcons = [Eye, Award, Users, Target]
+  const positionIcons = [Target, Scale, Heart, BadgeCheck]
+  const valueIcons = [Compass, Award, Users, Target]
 
   return (
     <div className="min-h-screen hero-bg">

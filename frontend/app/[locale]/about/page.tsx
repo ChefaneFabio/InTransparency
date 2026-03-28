@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { FileX2, Code2, TrendingUp, Users, Shield, Zap, Target, Heart, CheckCircle } from 'lucide-react'
+import { FileX2, Code2, TrendingUp, Users, BadgeCheck, Rocket, Target, Heart, CheckCircle } from 'lucide-react'
 import { Link } from '@/navigation'
 import Image from 'next/image'
 import { IMAGES } from '@/lib/images'
@@ -19,7 +19,7 @@ export default function AboutPage() {
 
       <main className="pt-24 pb-16">
         {/* Hero Section - The Problem */}
-        <section className="hero-bg py-20 relative overflow-hidden">
+        <section className="hero-bg py-16 relative overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 opacity-5">
             <Image
@@ -47,7 +47,7 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-6">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -108,14 +108,14 @@ export default function AboutPage() {
         </section>
 
         {/* Why We're Different - Against Opaque Competitors */}
-        <section className="py-20 bg-gradient-to-br from-muted/50 to-white">
+        <section className="py-16 bg-gradient-to-br from-muted/50 to-white">
           <div className="container max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+              className="text-center mb-12"
             >
               <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 {t('whyDifferent.badge')}
@@ -131,7 +131,7 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -187,7 +187,7 @@ export default function AboutPage() {
                 <Card className="bg-primary/5 border-2 border-primary/20 h-full">
                   <CardContent className="p-8">
                     <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                      <Shield className="h-6 w-6" />
+                      <BadgeCheck className="h-6 w-6" />
                       {t('whyDifferent.solution.title')}
                     </h3>
                     <ul className="space-y-4">
@@ -258,7 +258,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Mission */}
-        <section className="py-20 hero-bg relative overflow-hidden">
+        <section className="py-16 hero-bg relative overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 opacity-5">
             <Image
@@ -274,7 +274,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+              className="text-center mb-12"
             >
               <h2 className="text-4xl font-display font-bold text-foreground mb-4">
                 {t('mission.title')}
@@ -284,7 +284,7 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            <div className="bg-primary rounded-2xl p-12 text-white text-center mb-16">
+            <div className="bg-primary rounded-2xl p-10 text-white text-center mb-12">
               <blockquote className="text-2xl font-medium italic mb-4">
                 {t('mission.quote')}
               </blockquote>
@@ -313,13 +313,13 @@ export default function AboutPage() {
         </section>
 
         {/* Our Values */}
-        <section className="py-20 hero-bg">
+        <section className="py-16 hero-bg">
           <div className="container max-w-6xl">
-            <h2 className="text-4xl font-display font-bold text-foreground text-center mb-16">
+            <h2 className="text-4xl font-display font-bold text-foreground text-center mb-12">
               {t('values.title')}
             </h2>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
                   image: IMAGES.students.student5,
@@ -378,7 +378,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Business Model */}
-        <section className="py-20 hero-bg">
+        <section className="py-16 hero-bg">
           <div className="container max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -394,7 +394,7 @@ export default function AboutPage() {
             </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
               <Card className="bg-card">
                 <CardContent className="p-8 text-center">
                   <div className="relative w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
@@ -485,7 +485,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Vision */}
-        <section className="py-20 hero-bg">
+        <section className="py-16 hero-bg">
           <div className="container max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -496,14 +496,14 @@ export default function AboutPage() {
             <h2 className="text-4xl font-display font-bold text-foreground text-center mb-4">
               {t('vision.title')}
             </h2>
-            <p className="text-xl text-foreground/80 text-center mb-16">
+            <p className="text-xl text-foreground/80 text-center mb-12">
               {t('vision.subtitle')}
             </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
               {[
-                { icon: <Zap className="h-8 w-8 text-primary" />, label: t('vision.stats.0.label'), sublabel: t('vision.stats.0.sublabel') },
+                { icon: <Rocket className="h-8 w-8 text-primary" />, label: t('vision.stats.0.label'), sublabel: t('vision.stats.0.sublabel') },
                 { icon: <Target className="h-8 w-8 text-primary" />, label: t('vision.stats.1.label'), sublabel: t('vision.stats.1.sublabel') },
                 { icon: <Users className="h-8 w-8 text-primary" />, label: t('vision.stats.2.label'), sublabel: t('vision.stats.2.sublabel') }
               ].map((stat, idx) => (
@@ -553,7 +553,7 @@ export default function AboutPage() {
         </section>
 
         {/* The Enemy: Resumes */}
-        <section className="py-20 bg-foreground text-white">
+        <section className="py-16 bg-foreground text-white">
           <div className="container max-w-4xl text-center">
             <h2 className="text-4xl font-bold mb-6">
               {t('killResume.title')}
@@ -563,7 +563,7 @@ export default function AboutPage() {
             </p>
 
             <div className="bg-white bg-opacity-10 rounded-xl p-8 backdrop-blur-sm mb-8">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <div className="text-red-400 text-4xl font-bold mb-2">{t('killResume.oldYear')}</div>
                   <div className="text-gray-100">{t('killResume.oldLabel')}</div>
@@ -588,7 +588,7 @@ export default function AboutPage() {
         </section>
 
         {/* Join Us */}
-        <section className="py-20 hero-bg">
+        <section className="py-16 hero-bg">
           <div className="container max-w-4xl text-center">
             <h2 className="text-4xl font-display font-bold text-foreground mb-6">
               {t('joinMovement.title')}

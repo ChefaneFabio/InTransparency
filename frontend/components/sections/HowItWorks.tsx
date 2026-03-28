@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import {
   Upload,
-  Brain,
+  ScanSearch,
   Target,
   FileText,
   CheckCircle2,
@@ -14,7 +14,7 @@ import {
 import { useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const stepIcons = [Upload, Brain, Target]
+const stepIcons = [Upload, ScanSearch, Target]
 
 export function HowItWorks() {
   const [activeStep, setActiveStep] = useState(0)
@@ -156,7 +156,7 @@ export function HowItWorks() {
                         <div className="absolute inset-0 rounded-full border-4 border-muted" />
                         <div className="absolute inset-0 rounded-full border-4 border-primary border-t-transparent animate-spin" />
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <Brain className="h-6 w-6 text-primary" />
+                          <ScanSearch className="h-6 w-6 text-primary" />
                         </div>
                       </div>
                       <p className="font-medium text-foreground text-sm">
