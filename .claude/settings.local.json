@@ -238,7 +238,11 @@
       "Bash(__NEW_LINE_86cdb3c65a7846e2__ chmod:*)",
       "Bash(/tmp/check_links.sh)",
       "Bash(grep -r \"className=\"\".*\"\">.*[A-Z][a-z]\" /mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/institution/ --include=\"*.tsx\")",
-      "Bash(-o -name \"page.tsx\")"
+      "Bash(-o -name \"page.tsx\")",
+      "Bash(cp \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/institution/career-day/page.tsx\" \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/university/career-day/page.tsx\")",
+      "Bash(mkdir -p \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/university/career-day\")",
+      "Bash(mkdir -p \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/university/embed-config\")",
+      "Bash(cp \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/institution/embed-config/page.tsx\" \"/mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/dashboard/university/embed-config/page.tsx\")"
     ],
     "defaultMode": "acceptEdits"
   }

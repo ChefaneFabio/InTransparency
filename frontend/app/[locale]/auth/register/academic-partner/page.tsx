@@ -52,7 +52,7 @@ export default function UniversityRegisterPage() {
       if (signInResult?.error) {
         router.push('/auth/login?registered=true')
       } else {
-        router.push('/dashboard/institution')
+        router.push('/dashboard/university')
         router.refresh()
       }
     } catch (err: any) {

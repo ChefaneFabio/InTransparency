@@ -1,14 +1,9 @@
-import { DashboardNav } from '@/components/dashboard/shared/DashboardNav'
+import { redirect } from 'next/navigation'
 
 export default function InstitutionDashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <div className="segment-university">
-      <DashboardNav role="institution" />
-      {children}
-    </div>
-  )
+  redirect('/dashboard/university')
 }

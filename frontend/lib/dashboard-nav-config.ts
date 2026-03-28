@@ -177,47 +177,9 @@ const university: NavConfig = {
       items: [
         { labelKey: 'challenges', href: '/dashboard/university/challenges' },
         { labelKey: 'aiSearch', href: '/dashboard/university/ai-search' },
+        { labelKey: 'careerDay', href: '/dashboard/university/career-day' },
+        { labelKey: 'embedConfig', href: '/dashboard/university/embed-config' },
         { labelKey: 'sync', href: '/dashboard/university/sync' },
-        { labelKey: 'settings', href: '/dashboard/university/settings' },
-      ],
-    },
-  ],
-}
-
-const institution: NavConfig = {
-  groups: [
-    {
-      labelKey: 'students',
-      items: [
-        { labelKey: 'list', href: '/dashboard/university/students' },
-        { labelKey: 'projects', href: '/dashboard/university/projects' },
-      ],
-    },
-    {
-      labelKey: 'career',
-      items: [
-        { labelKey: 'placements', href: '/dashboard/university/placements' },
-        { labelKey: 'careerDay', href: '/dashboard/institution/career-day' },
-      ],
-    },
-    {
-      labelKey: 'exchange',
-      items: [
-        { labelKey: 'partnerships', href: '/dashboard/university/partnerships' },
-        { labelKey: 'events', href: '/dashboard/university/events' },
-      ],
-    },
-    {
-      labelKey: 'insights',
-      items: [
-        { labelKey: 'analytics', href: '/dashboard/university/analytics' },
-        { labelKey: 'skillsGap', href: '/dashboard/university/skills-gap' },
-      ],
-    },
-    {
-      labelKey: 'more',
-      items: [
-        { labelKey: 'embedConfig', href: '/dashboard/institution/embed-config' },
         { labelKey: 'settings', href: '/dashboard/university/settings' },
       ],
     },
@@ -285,7 +247,7 @@ export const dashboardNavConfig: Record<DashboardRole, NavConfig> = {
   student,
   recruiter,
   university,
-  institution,
+  institution: university,
   professor,
   techpark,
 }

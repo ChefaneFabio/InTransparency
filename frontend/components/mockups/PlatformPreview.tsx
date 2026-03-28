@@ -199,7 +199,7 @@ function InstitutionDashboardMockup() {
           <div className="w-3 h-3 rounded-full bg-green-400" />
         </div>
         <div className="flex-1 bg-background/60 rounded-md px-3 py-1 text-xs text-muted-foreground ml-2">
-          intransparency.it/dashboard/institution
+          intransparency.it/dashboard/university
         </div>
       </div>
 

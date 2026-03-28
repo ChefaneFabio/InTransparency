@@ -28,7 +28,7 @@ export default function DashboardPage() {
           router.push('/dashboard/recruiter')
           break
         case 'university':
-          router.push('/dashboard/institution')
+          router.push('/dashboard/university')
           break
         case 'professor':
           router.push('/dashboard/professor')
