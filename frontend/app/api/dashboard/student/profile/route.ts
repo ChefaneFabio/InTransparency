@@ -264,7 +264,7 @@ export async function PATCH(req: NextRequest) {
     if (jobAlertNotifications !== undefined) updateData.jobAlertNotifications = jobAlertNotifications
     if (mentorshipNotifications !== undefined) updateData.mentorshipNotifications = mentorshipNotifications
     if (marketingEmails !== undefined) updateData.marketingEmails = marketingEmails
-    if (availableFor !== undefined && ['HIRING', 'PROJECTS', 'BOTH'].includes(availableFor)) updateData.availableFor = availableFor
+    if (availableFor !== undefined && ['HIRING', 'PROJECTS', 'BOTH', 'NONE'].includes(availableFor)) updateData.availableFor = availableFor
 
     const updatedUser = await prisma.user.update({
       where: { id: userId },

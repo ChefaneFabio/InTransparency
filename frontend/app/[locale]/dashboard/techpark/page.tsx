@@ -27,6 +27,11 @@ interface TechParkStats {
   placements: number
 }
 
+interface TechParkBranding {
+  logo: string
+  parkName: string
+}
+
 export default function TechParkDashboard() {
   const t = useTranslations('techparkDashboard')
   const { data: session } = useSession()
@@ -39,19 +44,32 @@ export default function TechParkDashboard() {
     recruiterActivity: 0,
     placements: 0
   })
+  const [branding, setBranding] = useState<TechParkBranding>({ logo: '', parkName: '' })
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await fetch('/api/dashboard/techpark/stats')
-        if (response.ok) {
-          const data = await response.json()
+        const [statsRes, settingsRes] = await Promise.all([
+          fetch('/api/dashboard/techpark/stats'),
+          fetch('/api/dashboard/techpark/settings'),
+        ])
+        if (statsRes.ok) {
+          const data = await statsRes.json()
           setStats({
             memberCompanies: data.memberCompanyCount ?? 0,
             talentPipeline: data.totalStudents ?? 0,
             recruiterActivity: data.recruiterActivity ?? 0,
             placements: data.placements ?? 0,
           })
+        }
+        if (settingsRes.ok) {
+          const data = await settingsRes.json()
+          if (data.settings) {
+            setBranding({
+              logo: data.settings.logo || '',
+              parkName: data.settings.parkName || '',
+            })
+          }
         }
       } catch (error) {
         console.error('Failed to fetch dashboard data:', error)
@@ -102,13 +120,24 @@ export default function TechParkDashboard() {
     <div className="max-w-6xl mx-auto space-y-8 pb-12">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
-        <div>
-          <h1 className="text-2xl font-semibold text-foreground">
-            {t('welcomeBack')}{user?.firstName ? `, ${user.firstName}` : ''}
-          </h1>
-          <p className="text-muted-foreground mt-1">
-            {t('dashboardSubtitle')}
-          </p>
+        <div className="flex items-center gap-4">
+          {branding.logo && (
+            <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary/20 flex-shrink-0">
+              <img
+                src={branding.logo}
+                alt={branding.parkName || 'Tech Park'}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+          <div>
+            <h1 className="text-2xl font-semibold text-foreground">
+              {t('welcomeBack')}{user?.firstName ? `, ${user.firstName}` : ''}
+            </h1>
+            <p className="text-muted-foreground mt-1">
+              {t('dashboardSubtitle')}
+            </p>
+          </div>
         </div>
         <div className="flex gap-3">
           <Button asChild>

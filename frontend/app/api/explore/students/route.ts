@@ -8,6 +8,7 @@ export async function GET(request: NextRequest) {
     const university = searchParams.get('university') || ''
     const year = searchParams.get('year') || ''
     const skill = searchParams.get('skill') || ''
+    const availability = searchParams.get('availability') || ''
 
     // Build where clause for filtering
     const whereClause: any = {
@@ -34,6 +35,20 @@ export async function GET(request: NextRequest) {
       whereClause.graduationYear = year
     }
 
+    // Availability filter — maps user-facing labels to AvailableFor enum
+    if (availability) {
+      const availabilityMap: Record<string, string | string[]> = {
+        'Available immediately': 'BOTH',
+        'Available': 'BOTH',
+        'Open to offers': 'HIRING',
+        'Not looking': 'NONE',
+      }
+      const mapped = availabilityMap[availability]
+      if (mapped) {
+        whereClause.availableFor = mapped
+      }
+    }
+
     // Fetch students with public profiles
     const students = await prisma.user.findMany({
       where: whereClause,
@@ -47,6 +62,7 @@ export async function GET(request: NextRequest) {
         degree: true,
         graduationYear: true,
         subscriptionTier: true,
+        availableFor: true,
         projects: {
           where: { isPublic: true },
           select: {
@@ -101,6 +117,15 @@ export async function GET(request: NextRequest) {
         const skillsArray = Array.from(allSkills)
         const skillsCount = skillsArray.length
 
+        // Map enum to user-facing availability label
+        const availabilityLabels: Record<string, string> = {
+          BOTH: 'Available immediately',
+          HIRING: 'Open to offers',
+          PROJECTS: 'Available for projects only',
+          NONE: 'Not looking',
+        }
+        const availabilityLabel = availabilityLabels[student.availableFor || 'BOTH'] || 'Available'
+
         return {
           id: student.id,
           username: student.username || student.id,
@@ -114,6 +139,7 @@ export async function GET(request: NextRequest) {
           verificationScore,
           skillsCount,
           topSkills: skillsArray.slice(0, 5),
+          availability: availabilityLabel,
         }
       })
       // Filter by skill if provided

@@ -1148,7 +1148,8 @@
         "Available immediately": "Available immediately",
         "Available": "Available",
         "Open to offers": "Open to offers",
-        "Not looking": "Not looking"
+        "Not looking": "Not looking",
+        "Available for projects only": "Available for projects only"
       }
     }
   },
@@ -7248,7 +7249,15 @@
       "saveChanges": "Save Changes",
       "saving": "Saving...",
       "savedSuccess": "Settings saved successfully!",
-      "savedError": "Failed to save settings. Please try again."
+      "savedError": "Failed to save settings. Please try again.",
+      "branding": "Logo & Branding",
+      "brandingDescription": "Customize the appearance of your tech park profile",
+      "logoUrl": "Logo URL",
+      "logoUrlHint": "Enter a URL to your park's logo image (square format recommended)",
+      "primaryColor": "Primary Color",
+      "accentColor": "Accent Color",
+      "brandingPreview": "Preview",
+      "brandingPreviewButton": "Learn more"
     }
   },
   "recruiterDashboard": {
@@ -7642,6 +7651,7 @@
         "companySize": "Company Size",
         "location": "Location",
         "companyDescription": "Company Description",
+        "companyLogo": "Company Logo",
         "lookingFor": "I am looking for",
         "lookingForDesc": "This helps us match you with the right students",
         "seekHire": "Interns / Graduates to hire",

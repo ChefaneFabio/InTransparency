@@ -31,6 +31,7 @@ interface RecruiterSettings {
   companySize: string
   companyLocation: string
   companyDescription: string
+  companyLogo: string
   seekingType: 'HIRE' | 'PROJECTS' | 'BOTH'
   notifyNewApplications: boolean
   notifyMessages: boolean
@@ -44,6 +45,7 @@ const defaultSettings: RecruiterSettings = {
   companySize: '',
   companyLocation: '',
   companyDescription: '',
+  companyLogo: '',
   seekingType: 'BOTH',
   notifyNewApplications: true,
   notifyMessages: true,
@@ -79,6 +81,7 @@ export default function RecruiterSettingsPage() {
             companySize: data.settings.companySize || '',
             companyLocation: data.settings.companyLocation || '',
             companyDescription: data.settings.companyDescription || '',
+            companyLogo: data.settings.companyLogo || '',
             seekingType: data.settings.seekingType || 'BOTH',
             notifyNewApplications: data.settings.notifyNewApplications ?? true,
             notifyMessages: data.settings.notifyMessages ?? true,
@@ -269,6 +272,34 @@ export default function RecruiterSettingsPage() {
                 placeholder="https://yourcompany.com"
               />
             </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="companyLogo">{t('form.companyLogo')}</Label>
+            <div className="flex items-center gap-4">
+              <div className="h-12 w-12 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden flex-shrink-0">
+                {settings.companyLogo ? (
+                  <img
+                    src={settings.companyLogo}
+                    alt="Company logo"
+                    className="h-12 w-12 rounded-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = 'none'
+                    }}
+                  />
+                ) : (
+                  <Building2 className="h-6 w-6 text-gray-400" />
+                )}
+              </div>
+              <Input
+                id="companyLogo"
+                value={settings.companyLogo}
+                onChange={(e) => setSettings({ ...settings, companyLogo: e.target.value })}
+                placeholder="https://yourcompany.com/logo.png"
+                className="flex-1"
+              />
+            </div>
+            <p className="text-xs text-gray-500">Enter the URL of your company logo image</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4">

@@ -1148,7 +1148,8 @@
         "Available immediately": "Disponibile subito",
         "Available": "Disponibile",
         "Open to offers": "Aperto a proposte",
-        "Not looking": "Non in cerca"
+        "Not looking": "Non in cerca",
+        "Available for projects only": "Disponibile solo per progetti"
       }
     }
   },
@@ -7275,7 +7276,15 @@
       "saveChanges": "Salva Modifiche",
       "saving": "Salvataggio...",
       "savedSuccess": "Impostazioni salvate con successo!",
-      "savedError": "Salvataggio non riuscito. Riprova."
+      "savedError": "Salvataggio non riuscito. Riprova.",
+      "branding": "Logo e Personalizzazione",
+      "brandingDescription": "Personalizza l'aspetto del profilo del tuo parco tecnologico",
+      "logoUrl": "URL del Logo",
+      "logoUrlHint": "Inserisci l'URL dell'immagine del logo del parco (formato quadrato consigliato)",
+      "primaryColor": "Colore Primario",
+      "accentColor": "Colore Accento",
+      "brandingPreview": "Anteprima",
+      "brandingPreviewButton": "Scopri di piu"
     }
   },
   "recruiterDashboard": {
@@ -7669,6 +7678,7 @@
         "companySize": "Dimensione Azienda",
         "location": "Sede",
         "companyDescription": "Descrizione Azienda",
+        "companyLogo": "Logo Aziendale",
         "lookingFor": "Sto cercando",
         "lookingForDesc": "Questo ci aiuta ad abbinarti con gli studenti giusti",
         "seekHire": "Stagisti / Laureati da assumere",

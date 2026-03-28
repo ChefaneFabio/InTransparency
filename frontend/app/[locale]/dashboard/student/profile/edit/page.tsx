@@ -28,7 +28,8 @@ import {
   Linkedin,
   Link as LinkIcon,
   Loader2,
-  Sparkles
+  Sparkles,
+  Briefcase
 } from 'lucide-react'
 
 export default function EditProfilePage() {
@@ -49,7 +50,8 @@ export default function EditProfilePage() {
     githubUrl: '',
     portfolioUrl: '',
     skills: [] as string[],
-    interests: [] as string[]
+    interests: [] as string[],
+    availableFor: 'BOTH' as string
   })
 
   const [newSkill, setNewSkill] = useState('')
@@ -79,7 +81,8 @@ export default function EditProfilePage() {
         githubUrl: user.githubUrl || '',
         portfolioUrl: user.portfolioUrl || '',
         skills: user.skills || [],
-        interests: user.interests || []
+        interests: user.interests || [],
+        availableFor: user.availableFor || 'BOTH'
       })
       setPreviewUrl(user.avatarUrl || '')
     }
@@ -209,6 +212,7 @@ export default function EditProfilePage() {
           portfolioUrl: formData.portfolioUrl,
           skills: formData.skills,
           interests: formData.interests,
+          availableFor: formData.availableFor,
         }),
       })
 
@@ -422,6 +426,31 @@ export default function EditProfilePage() {
                       </div>
                     </div>
                   </div>
+                </div>
+
+                {/* Availability */}
+                <div className="space-y-2">
+                  <Label htmlFor="availableFor" className="flex items-center gap-2">
+                    <Briefcase className="h-4 w-4" />
+                    Availability
+                  </Label>
+                  <Select
+                    value={formData.availableFor}
+                    onValueChange={(value) => handleInputChange('availableFor', value)}
+                  >
+                    <SelectTrigger id="availableFor">
+                      <SelectValue placeholder="Select availability" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="BOTH">Available immediately</SelectItem>
+                      <SelectItem value="HIRING">Open to offers</SelectItem>
+                      <SelectItem value="NONE">Not looking</SelectItem>
+                      <SelectItem value="PROJECTS">Available for projects only</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-gray-700">
+                    This helps recruiters understand your current availability
+                  </p>
                 </div>
 
                 {/* Bio */}

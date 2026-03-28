@@ -404,6 +404,7 @@ enum AvailableFor {
   HIRING
   PROJECTS
   BOTH
+  NONE
 }
 
 enum SeekingType {
@@ -2017,6 +2018,10 @@ model TechParkSettings {
   region          String?
   country         String       @default("IT")
   logo            String?
+
+  // Branding
+  primaryColor String?
+  accentColor  String?
 
   // Park Details
   memberCompanyCount Int       @default(0)

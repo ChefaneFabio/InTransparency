@@ -175,9 +175,9 @@ export default function ExplorePage() {
 
   const availabilityKeys = [
     'Available immediately',
-    'Available',
     'Open to offers',
-    'Not looking'
+    'Not looking',
+    'Available for projects only'
   ]
 
   // Skills organized by macro categories
@@ -283,6 +283,7 @@ export default function ExplorePage() {
         if (selectedUniversity) params.set('university', selectedUniversity)
         if (selectedYear) params.set('year', selectedYear)
         if (selectedSkill) params.set('skill', selectedSkill)
+        if (selectedAvailability) params.set('availability', selectedAvailability)
 
         const response = await fetch(`/api/explore/students?${params.toString()}`)
         if (response.ok) {

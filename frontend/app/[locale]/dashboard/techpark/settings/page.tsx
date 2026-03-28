@@ -19,7 +19,9 @@ import {
   CheckCircle,
   AlertCircle,
   Loader2,
-  Eye
+  Eye,
+  Palette,
+  ImageIcon
 } from 'lucide-react'
 
 interface TechParkSettings {
@@ -34,6 +36,9 @@ interface TechParkSettings {
   focusAreas: string
   memberCompanyCount: number
   foundedYear: number | ''
+  logo: string
+  primaryColor: string
+  accentColor: string
   notifyNewStudents: boolean
   notifyRecruiterActivity: boolean
   notifyPlacements: boolean
@@ -53,6 +58,9 @@ const defaultSettings: TechParkSettings = {
   focusAreas: '',
   memberCompanyCount: 0,
   foundedYear: '',
+  logo: '',
+  primaryColor: '#004B93',
+  accentColor: '#FF6B00',
   notifyNewStudents: true,
   notifyRecruiterActivity: true,
   notifyPlacements: true,
@@ -94,6 +102,9 @@ export default function TechParkSettingsPage() {
             focusAreas: data.settings.focusAreas || '',
             memberCompanyCount: data.settings.memberCompanyCount || 0,
             foundedYear: data.settings.foundedYear || '',
+            logo: data.settings.logo || '',
+            primaryColor: data.settings.primaryColor || '#004B93',
+            accentColor: data.settings.accentColor || '#FF6B00',
             notifyNewStudents: data.settings.notifyNewStudents ?? true,
             notifyRecruiterActivity: data.settings.notifyRecruiterActivity ?? true,
             notifyPlacements: data.settings.notifyPlacements ?? true,
@@ -377,6 +388,120 @@ export default function TechParkSettingsPage() {
               onChange={(e) => setSettings({ ...settings, memberCompanyCount: parseInt(e.target.value) || 0 })}
               placeholder="50"
             />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Logo & Branding */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Palette className="h-5 w-5" />
+            {t('settings.branding')}
+          </CardTitle>
+          <CardDescription>
+            {t('settings.brandingDescription')}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {/* Logo URL */}
+          <div className="space-y-2">
+            <Label htmlFor="logo">{t('settings.logoUrl')}</Label>
+            <div className="flex items-center gap-4">
+              {settings.logo && (
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200 flex-shrink-0">
+                  <img
+                    src={settings.logo}
+                    alt="Park logo"
+                    className="w-full h-full object-cover"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                  />
+                </div>
+              )}
+              {!settings.logo && (
+                <div className="w-12 h-12 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center flex-shrink-0">
+                  <ImageIcon className="h-5 w-5 text-gray-400" />
+                </div>
+              )}
+              <Input
+                id="logo"
+                value={settings.logo}
+                onChange={(e) => setSettings({ ...settings, logo: e.target.value })}
+                placeholder="https://yourtechpark.com/logo.png"
+                className="flex-1"
+              />
+            </div>
+            <p className="text-xs text-muted-foreground">{t('settings.logoUrlHint')}</p>
+          </div>
+
+          {/* Colors */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="primaryColor">{t('settings.primaryColor')}</Label>
+              <div className="flex gap-2">
+                <Input
+                  id="primaryColor"
+                  type="color"
+                  value={settings.primaryColor}
+                  onChange={(e) => setSettings({ ...settings, primaryColor: e.target.value })}
+                  className="w-12 h-10 p-1 cursor-pointer"
+                />
+                <Input
+                  value={settings.primaryColor}
+                  onChange={(e) => setSettings({ ...settings, primaryColor: e.target.value })}
+                  className="flex-1"
+                  placeholder="#004B93"
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="accentColor">{t('settings.accentColor')}</Label>
+              <div className="flex gap-2">
+                <Input
+                  id="accentColor"
+                  type="color"
+                  value={settings.accentColor}
+                  onChange={(e) => setSettings({ ...settings, accentColor: e.target.value })}
+                  className="w-12 h-10 p-1 cursor-pointer"
+                />
+                <Input
+                  value={settings.accentColor}
+                  onChange={(e) => setSettings({ ...settings, accentColor: e.target.value })}
+                  className="flex-1"
+                  placeholder="#FF6B00"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Branding Preview */}
+          <div className="border rounded-lg p-6 mt-2">
+            <h4 className="font-medium text-gray-900 mb-4">{t('settings.brandingPreview')}</h4>
+            <div className="p-4 rounded-lg" style={{ backgroundColor: settings.primaryColor + '10' }}>
+              <div className="flex items-center gap-3 mb-3">
+                {settings.logo ? (
+                  <div className="w-10 h-10 rounded-lg overflow-hidden">
+                    <img src={settings.logo} alt="Preview" className="w-full h-full object-cover" />
+                  </div>
+                ) : (
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold"
+                    style={{ backgroundColor: settings.primaryColor }}
+                  >
+                    {(settings.parkName || 'TP').slice(0, 2).toUpperCase()}
+                  </div>
+                )}
+                <div>
+                  <h3 className="font-semibold" style={{ color: settings.primaryColor }}>
+                    {settings.parkName || 'Your Tech Park'}
+                  </h3>
+                  <p className="text-sm text-gray-600">{settings.city || 'City'}</p>
+                </div>
+              </div>
+              <Button size="sm" style={{ backgroundColor: settings.accentColor }} className="text-white">
+                {t('settings.brandingPreviewButton')}
+              </Button>
+            </div>
           </div>
         </CardContent>
       </Card>
