@@ -51,7 +51,7 @@ export function Header() {
       { name: t('howItWorks'), href: '/for-companies' },
       { name: t('searchTalent'), href: '/explore' },
       { name: t('aiJobSearch'), href: '/demo/ai-search' },
-      { name: t('pricing'), href: '/pricing' },
+      { name: t('jobListings'), href: '/jobs' },
       { name: t('contact'), href: '/contact' },
     ],
   }
@@ -88,13 +88,9 @@ export function Header() {
                       // Navigate away from any segment-specific page (landing, auth, student sub-pages, etc.)
                       const isOnSegmentPage = pathname && (
                         pathname.includes('/for-') ||
-                        pathname.includes('/auth/') ||
+                        pathname.includes('/auth/register') ||
                         pathname.includes('/students/') ||
-                        pathname.includes('/per-') ||
-                        pathname.includes('/pricing') ||
-                        pathname.includes('/how-it-works') ||
-                        pathname.includes('/about') ||
-                        pathname.includes('/mission')
+                        pathname.includes('/per-')
                       )
                       if (isOnSegmentPage) {
                         router.push(segmentPages[seg.id])
@@ -218,13 +214,9 @@ export function Header() {
                       }
                       const isOnSegmentPage = pathname && (
                         pathname.includes('/for-') ||
-                        pathname.includes('/auth/') ||
+                        pathname.includes('/auth/register') ||
                         pathname.includes('/students/') ||
-                        pathname.includes('/per-') ||
-                        pathname.includes('/pricing') ||
-                        pathname.includes('/how-it-works') ||
-                        pathname.includes('/about') ||
-                        pathname.includes('/mission')
+                        pathname.includes('/per-')
                       )
                       if (isOnSegmentPage) {
                         setMobileMenuOpen(false)
