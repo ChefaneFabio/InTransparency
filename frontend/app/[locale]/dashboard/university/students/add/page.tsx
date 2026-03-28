@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -57,13 +58,13 @@ interface CsvPreviewRow {
   year: string
 }
 
-const departments = [
-  'Ingegneria Informatica',
-  'Ingegneria Gestionale',
-  'Ingegneria Meccanica',
-  'Architettura',
-  'Design'
-]
+const departmentKeys = [
+  'computerEngineering',
+  'managementEngineering',
+  'mechanicalEngineering',
+  'architecture',
+  'design'
+] as const
 
 function parseCsv(text: string): CsvPreviewRow[] {
   const lines = text.split(/\r?\n/).filter(line => line.trim() !== '')
@@ -94,6 +95,7 @@ function parseCsv(text: string): CsvPreviewRow[] {
 
 export default function AddStudentsPage() {
   const router = useRouter()
+  const t = useTranslations('universityStudents')
   const [activeTab, setActiveTab] = useState('single')
   const [isLoading, setIsLoading] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -154,7 +156,7 @@ export default function AddStudentsPage() {
       const data = await res.json()
 
       if (!res.ok || !data.success) {
-        throw new Error(data.message || 'Errore durante l\'aggiunta dello studente')
+        throw new Error(data.message || t('add.errorAddingStudent'))
       }
 
       setSingleResult({ name: data.student?.name || '', email: data.student?.email || '' })
@@ -163,7 +165,7 @@ export default function AddStudentsPage() {
         router.push('/dashboard/university/students')
       }, 2000)
     } catch (err: any) {
-      setError(err.message || 'Errore durante l\'aggiunta dello studente')
+      setError(err.message || t('add.errorAddingStudent'))
     } finally {
       setIsLoading(false)
     }
@@ -185,22 +187,20 @@ export default function AddStudentsPage() {
     reader.onload = (event) => {
       const text = event.target?.result
       if (typeof text !== 'string') {
-        setParseError('Impossibile leggere il file')
+        setParseError(t('add.csv.cannotReadFile'))
         return
       }
 
       const rows = parseCsv(text)
       if (rows.length === 0) {
-        setParseError(
-          'Nessuno studente trovato nel file. Assicurati che il CSV contenga l\'intestazione "email" e almeno una riga di dati.'
-        )
+        setParseError(t('add.csv.noStudentsFound'))
         return
       }
 
       setBulkPreview(rows)
     }
     reader.onerror = () => {
-      setParseError('Errore durante la lettura del file')
+      setParseError(t('add.csv.fileReadError'))
     }
     reader.readAsText(file)
   }
@@ -223,7 +223,7 @@ export default function AddStudentsPage() {
       const data: ImportResult & { message?: string } = await res.json()
 
       if (!res.ok) {
-        throw new Error(data.message || 'Errore durante il caricamento del file')
+        throw new Error(data.message || t('add.csv.uploadError'))
       }
 
       setImportResult({
@@ -242,7 +242,7 @@ export default function AddStudentsPage() {
         }, 2500)
       }
     } catch (err: any) {
-      setError(err.message || 'Errore durante il caricamento del file')
+      setError(err.message || t('add.csv.uploadError'))
     } finally {
       setIsLoading(false)
     }
@@ -261,38 +261,38 @@ export default function AddStudentsPage() {
               {activeTab === 'single' ? (
                 <>
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                    Studente Aggiunto!
+                    {t('add.studentAdded')}
                   </h2>
                   <p className="text-gray-600">
                     {singleResult
-                      ? `${singleResult.name} (${singleResult.email}) riceverà un'email di invito.`
-                      : 'Lo studente riceverà un\'email di invito.'}
+                      ? t('add.inviteSentTo', { name: singleResult.name, email: singleResult.email })
+                      : t('add.inviteSentGeneric')}
                   </p>
                 </>
               ) : (
                 <>
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                    Importazione Completata!
+                    {t('add.importComplete')}
                   </h2>
                   {importResult && (
                     <div className="space-y-3 mt-4">
                       <div className="flex items-center justify-center gap-4 text-sm">
                         <Badge variant="default" className="bg-primary/10 text-primary hover:bg-primary/10">
-                          {importResult.success} importati
+                          {t('add.imported', { count: importResult.success })}
                         </Badge>
                         {importResult.skipped > 0 && (
                           <Badge variant="secondary">
-                            {importResult.skipped} saltati
+                            {t('add.skipped', { count: importResult.skipped })}
                           </Badge>
                         )}
                         {importResult.failed > 0 && (
                           <Badge variant="destructive">
-                            {importResult.failed} falliti
+                            {t('add.failed', { count: importResult.failed })}
                           </Badge>
                         )}
                       </div>
                       <p className="text-gray-600 text-sm">
-                        Totale elaborati: {importResult.total}
+                        {t('add.totalProcessed', { count: importResult.total })}
                       </p>
                       {importResult.errors && importResult.errors.length > 0 && (
                         <Alert variant="destructive" className="text-left mt-4">
@@ -312,7 +312,7 @@ export default function AddStudentsPage() {
                           className="mt-4"
                           onClick={() => router.push('/dashboard/university/students')}
                         >
-                          Torna alla lista studenti
+                          {t('add.backToStudentList')}
                         </Button>
                       )}
                     </div>
@@ -336,12 +336,12 @@ export default function AddStudentsPage() {
           className="mb-6"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Torna indietro
+          {t('add.goBack')}
         </Button>
 
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Aggiungi Studenti</h1>
-          <p className="text-gray-600">Invita studenti a unirsi alla piattaforma</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('add.title')}</h1>
+          <p className="text-gray-600">{t('add.subtitle')}</p>
         </div>
 
         {error && (
@@ -355,11 +355,11 @@ export default function AddStudentsPage() {
           <TabsList className="grid w-full grid-cols-2 mb-6">
             <TabsTrigger value="single" className="flex items-center gap-2">
               <UserPlus className="h-4 w-4" />
-              Singolo Studente
+              {t('add.singleStudent')}
             </TabsTrigger>
             <TabsTrigger value="bulk" className="flex items-center gap-2">
               <FileSpreadsheet className="h-4 w-4" />
-              Importa CSV
+              {t('add.importCsv')}
             </TabsTrigger>
           </TabsList>
 
@@ -367,16 +367,16 @@ export default function AddStudentsPage() {
           <TabsContent value="single">
             <Card>
               <CardHeader>
-                <CardTitle>Aggiungi Singolo Studente</CardTitle>
+                <CardTitle>{t('add.singleStudentTitle')}</CardTitle>
                 <CardDescription>
-                  Compila i dati dello studente da invitare
+                  {t('add.singleStudentDescription')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmitSingle} className="space-y-6">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="firstName">Nome *</Label>
+                      <Label htmlFor="firstName">{t('add.form.firstName')} *</Label>
                       <Input
                         id="firstName"
                         value={form.firstName}
@@ -385,7 +385,7 @@ export default function AddStudentsPage() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="lastName">Cognome *</Label>
+                      <Label htmlFor="lastName">{t('add.form.lastName')} *</Label>
                       <Input
                         id="lastName"
                         value={form.lastName}
@@ -397,90 +397,90 @@ export default function AddStudentsPage() {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email Istituzionale *</Label>
+                      <Label htmlFor="email">{t('add.form.institutionalEmail')} *</Label>
                       <Input
                         id="email"
                         type="email"
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        placeholder="nome.cognome@polimi.it"
+                        placeholder={t('add.form.emailPlaceholder')}
                         required
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="studentId">Matricola</Label>
+                      <Label htmlFor="studentId">{t('add.form.studentId')}</Label>
                       <Input
                         id="studentId"
                         value={form.studentId}
                         onChange={(e) => setForm({ ...form, studentId: e.target.value })}
-                        placeholder="es. 123456"
+                        placeholder={t('add.form.studentIdPlaceholder')}
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="department">Dipartimento *</Label>
+                      <Label htmlFor="department">{t('add.form.department')} *</Label>
                       <Select
                         value={form.department}
                         onValueChange={(value) => setForm({ ...form, department: value })}
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder="Seleziona..." />
+                          <SelectValue placeholder={t('add.form.selectPlaceholder')} />
                         </SelectTrigger>
                         <SelectContent>
-                          {departments.map(dept => (
-                            <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+                          {departmentKeys.map(key => (
+                            <SelectItem key={key} value={key}>{t(`add.departments.${key}`)}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="degree">Corso di Laurea</Label>
+                      <Label htmlFor="degree">{t('add.form.degree')}</Label>
                       <Input
                         id="degree"
                         value={form.degree}
                         onChange={(e) => setForm({ ...form, degree: e.target.value })}
-                        placeholder="es. Laurea Magistrale"
+                        placeholder={t('add.form.degreePlaceholder')}
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="enrollmentYear">Anno Iscrizione</Label>
+                      <Label htmlFor="enrollmentYear">{t('add.form.enrollmentYear')}</Label>
                       <Input
                         id="enrollmentYear"
                         value={form.enrollmentYear}
                         onChange={(e) => setForm({ ...form, enrollmentYear: e.target.value })}
-                        placeholder="es. 2022"
+                        placeholder={t('add.form.yearPlaceholder')}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="expectedGraduation">Laurea Prevista</Label>
+                      <Label htmlFor="expectedGraduation">{t('add.form.expectedGraduation')}</Label>
                       <Input
                         id="expectedGraduation"
                         value={form.expectedGraduation}
                         onChange={(e) => setForm({ ...form, expectedGraduation: e.target.value })}
-                        placeholder="es. 2025"
+                        placeholder={t('add.form.yearPlaceholder')}
                       />
                     </div>
                   </div>
 
                   <div className="flex justify-end gap-4 pt-4">
                     <Button type="button" variant="outline" onClick={() => router.back()}>
-                      Annulla
+                      {t('add.cancel')}
                     </Button>
                     <Button type="submit" disabled={isLoading}>
                       {isLoading ? (
                         <>
                           <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                          Invio in corso...
+                          {t('add.sending')}
                         </>
                       ) : (
                         <>
                           <Mail className="h-4 w-4 mr-2" />
-                          Invia Invito
+                          {t('add.sendInvite')}
                         </>
                       )}
                     </Button>
@@ -494,9 +494,9 @@ export default function AddStudentsPage() {
           <TabsContent value="bulk">
             <Card>
               <CardHeader>
-                <CardTitle>Importa da CSV</CardTitle>
+                <CardTitle>{t('add.csv.title')}</CardTitle>
                 <CardDescription>
-                  Carica un file CSV con i dati degli studenti
+                  {t('add.csv.description')}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -504,14 +504,14 @@ export default function AddStudentsPage() {
                 <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h4 className="font-medium text-blue-900">Scarica il Template</h4>
+                      <h4 className="font-medium text-blue-900">{t('add.csv.downloadTemplate')}</h4>
                       <p className="text-sm text-primary">
-                        Usa questo template per formattare correttamente i dati
+                        {t('add.csv.templateDescription')}
                       </p>
                     </div>
                     <Button variant="outline" size="sm" onClick={handleDownloadTemplate}>
                       <Download className="h-4 w-4 mr-2" />
-                      Download CSV
+                      {t('add.csv.downloadCsv')}
                     </Button>
                   </div>
                 </div>
@@ -526,7 +526,7 @@ export default function AddStudentsPage() {
                     <div>
                       <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
                       <p className="font-medium text-gray-900">{bulkFile.name}</p>
-                      <p className="text-sm text-gray-600">{bulkPreview.length} studenti trovati</p>
+                      <p className="text-sm text-gray-600">{t('add.csv.studentsFound', { count: bulkPreview.length })}</p>
                       <Button
                         variant="ghost"
                         size="sm"
@@ -537,16 +537,16 @@ export default function AddStudentsPage() {
                           setParseError('')
                         }}
                       >
-                        Rimuovi file
+                        {t('add.csv.removeFile')}
                       </Button>
                     </div>
                   ) : (
                     <div>
                       <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                       <p className="font-medium text-gray-900 mb-2">
-                        Trascina il file CSV qui
+                        {t('add.csv.dragDropHere')}
                       </p>
-                      <p className="text-sm text-gray-600 mb-4">oppure</p>
+                      <p className="text-sm text-gray-600 mb-4">{t('add.csv.or')}</p>
                       <Button variant="outline" asChild>
                         <label>
                           <input
@@ -555,7 +555,7 @@ export default function AddStudentsPage() {
                             className="hidden"
                             onChange={handleFileChange}
                           />
-                          Seleziona File
+                          {t('add.csv.selectFile')}
                         </label>
                       </Button>
                     </div>
@@ -574,17 +574,17 @@ export default function AddStudentsPage() {
                 {bulkPreview.length > 0 && (
                   <div>
                     <h4 className="font-medium text-gray-900 mb-3">
-                      Anteprima ({bulkPreview.length} {bulkPreview.length === 1 ? 'studente' : 'studenti'})
+                      {t('add.csv.preview', { count: bulkPreview.length })}
                     </h4>
                     <div className="border rounded-lg overflow-hidden">
                       <table className="w-full text-sm">
                         <thead className="bg-gray-50">
                           <tr>
-                            <th className="text-left p-3">Email</th>
-                            <th className="text-left p-3">Nome</th>
-                            <th className="text-left p-3">Cognome</th>
-                            <th className="text-left p-3">Corso</th>
-                            <th className="text-left p-3">Anno</th>
+                            <th className="text-left p-3">{t('add.csv.headers.email')}</th>
+                            <th className="text-left p-3">{t('add.csv.headers.firstName')}</th>
+                            <th className="text-left p-3">{t('add.csv.headers.lastName')}</th>
+                            <th className="text-left p-3">{t('add.csv.headers.course')}</th>
+                            <th className="text-left p-3">{t('add.csv.headers.year')}</th>
                           </tr>
                         </thead>
                         <tbody className="divide-y">
@@ -601,7 +601,7 @@ export default function AddStudentsPage() {
                       </table>
                       {bulkPreview.length > 10 && (
                         <div className="bg-gray-50 p-3 text-center text-sm text-gray-500">
-                          ...e altri {bulkPreview.length - 10} studenti
+                          {t('add.csv.andMore', { count: bulkPreview.length - 10 })}
                         </div>
                       )}
                     </div>
@@ -610,18 +610,18 @@ export default function AddStudentsPage() {
 
                 <div className="flex justify-end gap-4 pt-4">
                   <Button type="button" variant="outline" onClick={() => router.back()}>
-                    Annulla
+                    {t('add.cancel')}
                   </Button>
                   <Button onClick={handleBulkUpload} disabled={!bulkFile || bulkPreview.length === 0 || isLoading}>
                     {isLoading ? (
                       <>
                         <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                        Importazione...
+                        {t('add.importing')}
                       </>
                     ) : (
                       <>
                         <Users className="h-4 w-4 mr-2" />
-                        Importa {bulkPreview.length} Studenti
+                        {t('add.importStudents', { count: bulkPreview.length })}
                       </>
                     )}
                   </Button>

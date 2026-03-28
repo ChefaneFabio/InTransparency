@@ -44,7 +44,12 @@ export default function TechParkDashboard() {
         const response = await fetch('/api/dashboard/techpark/stats')
         if (response.ok) {
           const data = await response.json()
-          setStats(data.stats)
+          setStats({
+            memberCompanies: data.memberCompanyCount ?? 0,
+            talentPipeline: data.totalStudents ?? 0,
+            recruiterActivity: data.recruiterActivity ?? 0,
+            placements: data.placements ?? 0,
+          })
         }
       } catch (error) {
         console.error('Failed to fetch dashboard data:', error)

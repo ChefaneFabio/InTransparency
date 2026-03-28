@@ -2,64 +2,59 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
-import { z } from 'zod'
-
-const checkContactSchema = z.object({
-  studentId: z.string().min(1, 'Student ID is required'),
-})
 
 /**
  * POST /api/recruiter/contacts/check
- * Check if recruiter can contact a specific student
+ * Check if the recruiter has already contacted a specific candidate.
+ * Body: { candidateId: string }
  */
-export async function POST(req: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
-
     if (session.user.role !== 'RECRUITER' && session.user.role !== 'ADMIN') {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    const body = await req.json()
-    const { studentId } = checkContactSchema.parse(body)
+    const body = await request.json()
+    const { candidateId } = body
 
-    const user = await prisma.user.findUnique({
-      where: { id: session.user.id },
-      select: {
-        id: true,
-        email: true,
-        subscriptionTier: true,
-        contactBalance: true,
-      }
-    })
-
-    if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 })
-    }
-
-    // Phase 1: All recruiters get unlimited contacts — no paywall
-    return NextResponse.json({
-      canContact: true,
-      reason: 'unlimited',
-      message: 'Full access — free during launch',
-      model: 'unlimited',
-    })
-  } catch (error) {
-    console.error('Error checking contact:', error)
-
-    if (error instanceof z.ZodError) {
+    if (!candidateId || typeof candidateId !== 'string') {
       return NextResponse.json(
-        { error: error.errors[0].message },
+        { error: 'candidateId is required' },
         { status: 400 }
       )
     }
 
-    return NextResponse.json(
-      { error: 'Failed to check contact availability' },
-      { status: 500 }
-    )
+    // Find the most recent contact between this recruiter and candidate
+    const contact = await prisma.contactUsage.findFirst({
+      where: {
+        recruiterId: session.user.id,
+        recipientId: candidateId,
+      },
+      orderBy: { firstContactAt: 'desc' },
+      select: {
+        id: true,
+        firstContactAt: true,
+        outcome: true,
+      },
+    })
+
+    if (contact) {
+      return NextResponse.json({
+        contacted: true,
+        contactDate: contact.firstContactAt.toISOString(),
+        outcome: contact.outcome ?? null,
+      })
+    }
+
+    return NextResponse.json({
+      contacted: false,
+    })
+  } catch (error) {
+    console.error('Error checking contact status:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
