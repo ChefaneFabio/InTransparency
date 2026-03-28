@@ -12,18 +12,9 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Transparenty } from '@/components/mascot/Transparenty'
 import {
   Search,
-  GraduationCap,
-  MapPin,
-  Calendar,
-  Award,
   ExternalLink,
   Filter,
   X,
-  Users,
-  BookOpen,
-  Globe,
-  Briefcase,
-  Shield,
   ChevronDown,
   ChevronRight
 } from 'lucide-react'
@@ -342,7 +333,6 @@ export default function ExplorePage() {
               className="text-center mb-12"
             >
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                <Users className="h-4 w-4" />
                 {t('hero.badge')}
               </div>
               <h1 className="text-5xl font-display font-bold mb-6 text-foreground">
@@ -404,8 +394,7 @@ export default function ExplorePage() {
                 <CardContent className="space-y-6">
                   {/* Field of Study Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
-                      <BookOpen className="h-4 w-4" />
+                    <h3 className="font-semibold text-sm mb-3 text-foreground">
                       {t('filters.fieldOfStudy')}
                     </h3>
                     <select
@@ -422,8 +411,7 @@ export default function ExplorePage() {
 
                   {/* University Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
-                      <GraduationCap className="h-4 w-4" />
+                    <h3 className="font-semibold text-sm mb-3 text-foreground">
                       {t('filters.university')}
                     </h3>
                     <select
@@ -452,8 +440,7 @@ export default function ExplorePage() {
 
                   {/* Location Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
-                      <MapPin className="h-4 w-4" />
+                    <h3 className="font-semibold text-sm mb-3 text-foreground">
                       {t('filters.location')}
                     </h3>
                     <select
@@ -470,8 +457,7 @@ export default function ExplorePage() {
 
                   {/* Graduation Year Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
-                      <Calendar className="h-4 w-4" />
+                    <h3 className="font-semibold text-sm mb-3 text-foreground">
                       {t('filters.graduationYear')}
                     </h3>
                     <select
@@ -488,8 +474,7 @@ export default function ExplorePage() {
 
                   {/* Language Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
-                      <Globe className="h-4 w-4" />
+                    <h3 className="font-semibold text-sm mb-3 text-foreground">
                       {t('filters.language')}
                     </h3>
                     <select
@@ -506,8 +491,7 @@ export default function ExplorePage() {
 
                   {/* Availability Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
-                      <Briefcase className="h-4 w-4" />
+                    <h3 className="font-semibold text-sm mb-3 text-foreground">
                       {t('filters.availability')}
                     </h3>
                     <select
@@ -524,8 +508,7 @@ export default function ExplorePage() {
 
                   {/* Verification Status */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
-                      <Shield className="h-4 w-4" />
+                    <h3 className="font-semibold text-sm mb-3 text-foreground">
                       {t('filters.verification')}
                     </h3>
                     <div className="space-y-2">
@@ -550,8 +533,7 @@ export default function ExplorePage() {
 
                   {/* Skills Filter */}
                   <div>
-                    <h3 className="font-semibold text-sm mb-3 flex items-center gap-2 text-foreground">
-                      <Award className="h-4 w-4" />
+                    <h3 className="font-semibold text-sm mb-3 text-foreground">
                       {t('filters.skills', { count: allSkills.length })}
                     </h3>
 
@@ -682,7 +664,6 @@ export default function ExplorePage() {
                         </Button>
                         <Button size="lg" variant="outline" asChild>
                           <Link href="/contact?subject=founding-partner">
-                            <Briefcase className="mr-2 h-5 w-5" />
                             {t('empty.foundingPartner')}
                           </Link>
                         </Button>
@@ -714,15 +695,9 @@ export default function ExplorePage() {
                                 {student.firstName} {student.lastName}
                               </CardTitle>
                               <div className="space-y-1 text-sm text-muted-foreground">
-                                <div className="flex items-center gap-1">
-                                  <GraduationCap className="h-3 w-3" />
-                                  {student.university}
-                                </div>
+                                <div>{student.university}</div>
                                 <div>{student.degree}</div>
-                                <div className="flex items-center gap-1">
-                                  <Calendar className="h-3 w-3" />
-                                  {t('card.classOf', { year: student.graduationYear })}
-                                </div>
+                                <div>{t('card.classOf', { year: student.graduationYear })}</div>
                               </div>
                               <div className="mt-1.5">
                                 <TrustScoreBadge userId={student.id} compact />

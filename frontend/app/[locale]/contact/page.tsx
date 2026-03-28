@@ -7,16 +7,8 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  MessageSquare,
   Send,
   CheckCircle,
-  HelpCircle,
-  User,
-  Building2
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -112,9 +104,6 @@ export default function ContactPage() {
                   <Card>
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                          <Mail className="h-6 w-6 text-primary" />
-                        </div>
                         <div>
                           <h3 className="font-semibold text-foreground">{t('methods.email.title')}</h3>
                           <p className="text-muted-foreground">students@intransparency.it</p>
@@ -127,9 +116,6 @@ export default function ContactPage() {
                   <Card>
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                          <Phone className="h-6 w-6 text-primary" />
-                        </div>
                         <div>
                           <h3 className="font-semibold text-foreground">{t('methods.phone.title')}</h3>
                           <p className="text-muted-foreground">+39 348 170 1615</p>
@@ -142,9 +128,6 @@ export default function ContactPage() {
                   <Card>
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                          <MapPin className="h-6 w-6 text-primary" />
-                        </div>
                         <div>
                           <h3 className="font-semibold text-foreground">{t('methods.location.title')}</h3>
                           <p className="text-muted-foreground">{t('methods.location.value')}</p>
@@ -157,8 +140,7 @@ export default function ContactPage() {
                 {/* Support Resources */}
                 <Card className="bg-primary/10 border-primary/20">
                   <CardHeader>
-                    <CardTitle className="flex items-center">
-                      <HelpCircle className="h-5 w-5 mr-2" />
+                    <CardTitle>
                       {t('resources.title')}
                     </CardTitle>
                   </CardHeader>
@@ -361,8 +343,7 @@ export default function ContactPage() {
               {/* For Students */}
               <Card className="bg-card border-2 border-primary/20 hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-primary">
-                    <User className="h-6 w-6 mr-2" />
+                  <CardTitle className="text-primary">
                     {t('aiSearch.students.title')}
                   </CardTitle>
                 </CardHeader>
@@ -395,8 +376,7 @@ export default function ContactPage() {
               {/* For Recruiters */}
               <Card className="bg-card border-2 border-primary/20 hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-primary">
-                    <Building2 className="h-6 w-6 mr-2" />
+                  <CardTitle className="text-primary">
                     {t('aiSearch.recruiters.title')}
                   </CardTitle>
                 </CardHeader>
@@ -451,7 +431,6 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card>
                 <CardContent className="p-6">
-                  <Clock className="h-8 w-8 text-primary mx-auto mb-4" />
                   <h3 className="font-semibold text-foreground mb-2">{t('officeHours.support.title')}</h3>
                   <p className="text-muted-foreground">{t('officeHours.support.weekdays')}</p>
                   <p className="text-muted-foreground">{t('officeHours.support.saturday')}</p>
@@ -461,7 +440,6 @@ export default function ContactPage() {
 
               <Card>
                 <CardContent className="p-6">
-                  <MessageSquare className="h-8 w-8 text-primary mx-auto mb-4" />
                   <h3 className="font-semibold text-foreground mb-2">{t('officeHours.responseTime.title')}</h3>
                   <p className="text-muted-foreground">{t('officeHours.responseTime.email')}</p>
                   <p className="text-muted-foreground">{t('officeHours.responseTime.phone')}</p>

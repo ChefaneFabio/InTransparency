@@ -291,7 +291,7 @@ export default function ApplicationsPage() {
           </p>
         </div>
 
-        <Link href="/jobs">
+        <Link href="/explore">
           <Button size="lg" className="mt-4 md:mt-0">
             Browse Jobs
           </Button>
@@ -334,7 +334,7 @@ export default function ApplicationsPage() {
                 ? 'No applications have been submitted to your jobs yet'
                 : "You haven't applied to any jobs yet"}
             </p>
-            <Link href="/jobs">
+            <Link href="/explore">
               <Button>Browse Jobs</Button>
             </Link>
           </CardContent>

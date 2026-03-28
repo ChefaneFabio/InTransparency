@@ -11,23 +11,15 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
-  Sparkles,
   Send,
   User,
   Bot,
-  GraduationCap,
   MapPin,
-  Building2,
-  Users,
-  CheckCircle,
   ArrowRight,
-  Lightbulb,
-  Zap,
   DollarSign,
   Clock,
   Map as MapIcon,
   List,
-  SlidersHorizontal
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { GoogleMapComponent, MapMarker } from '@/components/maps/GoogleMapComponent'
@@ -60,7 +52,7 @@ export default function AISearchDemoPage() {
       title: t('demoConfigs.student.title'),
       subtitle: t('demoConfigs.student.subtitle'),
       color: 'bg-primary',
-      icon: GraduationCap,
+      label: '🎓',
       placeholder: t('demoConfigs.student.placeholder'),
       initialMessage: t('demoConfigs.student.initialMessage'),
       registrationLink: '/auth/register/student'
@@ -69,7 +61,7 @@ export default function AISearchDemoPage() {
       title: t('demoConfigs.company.title'),
       subtitle: t('demoConfigs.company.subtitle'),
       color: 'bg-primary',
-      icon: Building2,
+      label: '🏢',
       placeholder: t('demoConfigs.company.placeholder'),
       initialMessage: t('demoConfigs.company.initialMessage'),
       registrationLink: '/auth/register/recruiter'
@@ -78,7 +70,7 @@ export default function AISearchDemoPage() {
       title: t('demoConfigs.university.title'),
       subtitle: t('demoConfigs.university.subtitle'),
       color: 'bg-primary',
-      icon: Users,
+      label: '🏫',
       placeholder: t('demoConfigs.university.placeholder'),
       initialMessage: t('demoConfigs.university.initialMessage'),
       registrationLink: '/auth/register/academic-partner'
@@ -180,7 +172,7 @@ export default function AISearchDemoPage() {
     setInput(example)
   }
 
-  const Icon = config.icon
+  const label = config.label
 
   return (
     <div className="min-h-screen hero-bg">
@@ -190,7 +182,6 @@ export default function AISearchDemoPage() {
         {/* Hero Banner */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border-2 border-primary/30 rounded-full px-6 py-2 mb-4 shadow-sm">
-            <Sparkles className="h-5 w-5 text-primary" />
             <span className="font-bold text-foreground">{t('banner.badge')}</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
@@ -209,7 +200,6 @@ export default function AISearchDemoPage() {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <SlidersHorizontal className="h-6 w-6 text-primary" />
                     <div className="text-left">
                       <p className="font-semibold text-gray-900">{t('banner.alternativeTitle')}</p>
                       <p className="text-sm text-gray-600">{t('banner.alternativeDescription')}</p>
@@ -230,16 +220,13 @@ export default function AISearchDemoPage() {
         {/* Demo Selector */}
         <Tabs value={activeDemo} onValueChange={(v) => setActiveDemo(v as DemoType)} className="mb-6">
           <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3">
-            <TabsTrigger value="student" className="flex items-center gap-2">
-              <GraduationCap className="h-4 w-4" />
+            <TabsTrigger value="student">
               {t('tabs.student')}
             </TabsTrigger>
-            <TabsTrigger value="company" className="flex items-center gap-2">
-              <Building2 className="h-4 w-4" />
+            <TabsTrigger value="company">
               {t('tabs.company')}
             </TabsTrigger>
-            <TabsTrigger value="university" className="flex items-center gap-2">
-              <Users className="h-4 w-4" />
+            <TabsTrigger value="university">
               {t('tabs.university')}
             </TabsTrigger>
           </TabsList>
@@ -282,7 +269,7 @@ export default function AISearchDemoPage() {
               <Card className="shadow-lg">
                 <CardHeader className={`${config.color} text-white`}>
                   <div className="flex items-center gap-3">
-                    <Icon className="h-6 w-6" />
+                    <span className="text-2xl">{label}</span>
                     <div>
                       <CardTitle>{config.title}</CardTitle>
                       <p className="text-sm text-white/90">{config.subtitle}</p>
@@ -665,8 +652,7 @@ export default function AISearchDemoPage() {
             {/* Example Queries */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center text-lg">
-                  <Lightbulb className="h-5 w-5 mr-2 text-primary" />
+                <CardTitle className="text-lg">
                   {t('ui.exampleQueriesTitle')}
                 </CardTitle>
               </CardHeader>
@@ -686,23 +672,22 @@ export default function AISearchDemoPage() {
             {/* CTA Card */}
             <Card className="bg-primary/5 border-2">
               <CardHeader>
-                <CardTitle className="flex items-center text-lg">
-                  <Zap className="h-5 w-5 mr-2" />
+                <CardTitle className="text-lg">
                   {t('ui.likeWhatYouSee')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3 text-sm">
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-primary font-bold flex-shrink-0">✓</span>
                     <span>{t('features.accessFullResults')}</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-primary font-bold flex-shrink-0">✓</span>
                     <span>{t('features.saveSearches')}</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-primary font-bold flex-shrink-0">✓</span>
                     <span>
                       {activeDemo === 'student' && t('features.studentFeature')}
                       {activeDemo === 'company' && t('features.companyFeature')}

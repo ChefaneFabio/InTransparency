@@ -51,7 +51,6 @@ export function Header() {
       { name: t('howItWorks'), href: '/for-companies' },
       { name: t('searchTalent'), href: '/explore' },
       { name: t('aiJobSearch'), href: '/demo/ai-search' },
-      { name: t('jobListings'), href: '/jobs' },
       { name: t('contact'), href: '/contact' },
     ],
   }

@@ -328,10 +328,10 @@ export default async function CompanyProfilePage({ params }: Props) {
                         </div>
 
                         <Link
-                          href={`/jobs/${job.slug}`}
+                          href="/auth/register/student"
                           className="flex items-center gap-1 text-sm font-medium text-primary hover:underline flex-shrink-0 mt-1"
                         >
-                          View
+                          Apply
                           <ArrowRight className="h-4 w-4" />
                         </Link>
                       </div>

@@ -129,13 +129,13 @@ export function NotificationCenter() {
       case 'view':
         // Navigate to relevant page
         if (notification.data?.type === NotificationTypes.JOB_MATCH) {
-          window.location.href = `/jobs/${notification.data.jobId}`
+          window.location.href = `/dashboard/student/applications`
         } else if (notification.data?.type === NotificationTypes.PROJECT_COMMENT) {
           window.location.href = `/projects/${notification.data.projectId}`
         }
         break
       case 'apply':
-        window.location.href = `/jobs/${notification.data?.jobId}/apply`
+        window.location.href = `/dashboard/student/applications`
         break
       default:
         markAsRead(notification.id)
