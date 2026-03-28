@@ -3959,17 +3959,11 @@
   },
   "forUniversities": {
     "hero": {
-      "badge": "Per i Direttori dei Servizi di Carriera",
-      "title": "Sostituisci i sondaggi con prove in tempo reale",
-      "subtitle": "InTransparency offre ai direttori dei servizi di carriera analytics di placement in tempo reale, normalizzazione dei voti transfrontaliera e profili studenti verificati — per dimostrare l'impatto invece di stimarlo.",
-      "registerCta": "Diventa Partner Formativo",
-      "demoCta": "Prenota una Demo",
-      "stats": {
-        "students": "Profili studenti",
-        "companies": "Recruiter attivi",
-        "countries": "Sistemi di voto UE",
-        "placementRate": "Tasso di placement"
-      }
+      "badge": "In fase pilota con l'Università di Bergamo",
+      "title": "Sostituisci i sondaggi con prove di placement in tempo reale",
+      "subtitle": "Analytics di placement in tempo reale, normalizzazione dei voti tra sistemi europei e profili studenti verificati. In fase pilota con università italiane — espansione europea nel 2025.",
+      "registerCta": "Crea il Tuo Account Partner",
+      "demoCta": "Prenota una Demo"
     },
     "countries": {
       "title": "Progettato per l'istruzione superiore europea",
@@ -3995,7 +3989,7 @@
       }
     },
     "socialProof": {
-      "title": "Scelto dagli innovatori",
+      "title": "Dove siamo oggi",
       "unibg": {
         "title": "Università degli Studi di Bergamo",
         "subtitle": "Partner Pilota",
@@ -4008,8 +4002,8 @@
       }
     },
     "cta": {
-      "title": "Pronto a dimostrare il tuo impatto di placement?",
-      "subtitle": "Unisciti ai partner formativi in tutta Europa che già usano dati in tempo reale invece di sondaggi di fine anno.",
+      "title": "Vuoi vederlo in azione?",
+      "subtitle": "Stiamo coinvolgendo partner pilota. Prenota una demo e scopri come funziona con i tuoi dati.",
       "registerButton": "Inizia Gratis",
       "demoButton": "Prenota una Demo",
       "features": {

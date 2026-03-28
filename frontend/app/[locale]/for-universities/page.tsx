@@ -12,11 +12,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { FAQ } from '@/components/engagement/FAQ'
-import { TypewriterText } from '@/components/engagement/TypewriterText'
 import { StickyCTA } from '@/components/engagement/StickyCTA'
-import { AnimatedCounter } from '@/components/engagement/AnimatedCounter'
-import DecisionPackPreview from '@/components/demo/DecisionPackPreview'
 import GradeNormalizerDemo from '@/components/demo/GradeNormalizerDemo'
+import DecisionPackPreview from '@/components/demo/DecisionPackPreview'
 import AnalyticsPreview from '@/components/demo/AnalyticsPreview'
 import { sampleDecisionPack } from '@/lib/sample-decision-pack'
 
@@ -72,56 +70,105 @@ export default function ForUniversitiesPage() {
   return (
     <div className="min-h-screen segment-university">
       <Header />
-      {/* Hero */}
+
+      {/* Hero — lead with the real pilot story */}
       <section className="relative overflow-hidden bg-foreground text-white">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 animate-kenburns" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="relative container max-w-6xl mx-auto px-4 py-16 lg:py-20">
           <div className="text-center max-w-3xl mx-auto">
             <Badge variant="secondary" className="mb-6 bg-white/10 text-white border-white/20">
               {t('hero.badge')}
             </Badge>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
-              <TypewriterText text={t('hero.title')} speed={60} delay={500} />
+              {t('hero.title')}
             </h1>
             <p className="text-lg text-blue-200 mb-8 max-w-2xl mx-auto">
               {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/auth/register?role=UNIVERSITY">
-                <Button size="lg" className="bg-white text-blue-900 hover:bg-primary/5 w-full sm:w-auto">
-                  {t('hero.registerCta')}
+              <Link href="/contact?subject=university-pilot">
+                <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50 w-full sm:w-auto">
+                  {t('hero.demoCta')}
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </Link>
-              <Link href="/contact?subject=university-demo">
+              <Link href="/auth/register/academic-partner">
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto">
-                  {t('hero.demoCta')}
+                  {t('hero.registerCta')}
                 </Button>
               </Link>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Stats */}
-          <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { value: 2400, suffix: '+', label: t('hero.stats.students') },
-              { value: 180, suffix: '+', label: t('hero.stats.companies') },
-              { value: 6, suffix: '', label: t('hero.stats.countries') },
-              { value: 87, suffix: '%', label: t('hero.stats.placementRate') },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center p-4 rounded-xl bg-white/5 border border-white/10">
-                <p className="text-2xl font-bold">
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                </p>
-                <p className="text-sm text-blue-300">{stat.label}</p>
-              </div>
-            ))}
+      {/* Pilot Proof — real social proof first */}
+      <section className="py-12 bg-white">
+        <div className="container max-w-6xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+              {t('socialProof.title')}
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <Card className="border-primary/20 border-2">
+              <CardContent className="pt-6">
+                <div className="mb-4">
+                  <h3 className="font-semibold text-lg">{t('socialProof.unibg.title')}</h3>
+                  <p className="text-sm text-gray-500">{t('socialProof.unibg.subtitle')}</p>
+                </div>
+                <p className="text-sm text-gray-700 mb-4">{t('socialProof.unibg.description')}</p>
+                <div className="flex gap-2">
+                  <Badge variant="secondary">Pilot Partner</Badge>
+                  <Badge variant="secondary">2024–2025</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-amber-200 border-2">
+              <CardContent className="pt-6">
+                <div className="mb-4">
+                  <h3 className="font-semibold text-lg">{t('socialProof.startCup.title')}</h3>
+                  <p className="text-sm text-gray-500">{t('socialProof.startCup.subtitle')}</p>
+                </div>
+                <p className="text-sm text-gray-700 mb-4">{t('socialProof.startCup.description')}</p>
+                <div className="flex gap-2">
+                  <Badge variant="secondary">Start Cup Bergamo</Badge>
+                  <Badge variant="secondary">2024</Badge>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Country Tabs */}
-      <section className="py-12 bg-gray-50">
+      {/* Grade Normalizer Demo — most tangible value prop, show it early */}
+      <section className="py-16 bg-gray-50">
+        <div className="container max-w-6xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-14"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              {t('demos.gradeNormalizer.title')}
+            </h2>
+            <p className="text-gray-600 max-w-xl mx-auto text-lg">
+              {t('demos.gradeNormalizer.description')}
+            </p>
+          </motion.div>
+
+          <div className="max-w-xl mx-auto">
+            <GradeNormalizerDemo />
+          </div>
+        </div>
+      </section>
+
+      {/* Country-specific pain/value */}
+      <section className="py-12 bg-white">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold text-gray-900 mb-3">
@@ -150,7 +197,7 @@ export default function ForUniversitiesPage() {
                       <p className="text-sm text-red-700">{tab.pain}</p>
                     </CardContent>
                   </Card>
-                  <Card className="border-primary/20 bg-primary/5/50">
+                  <Card className="border-green-200 bg-green-50/50">
                     <CardContent className="pt-6">
                       <h3 className="font-semibold text-green-800 mb-2">{t('countries.valueLabel')}</h3>
                       <p className="text-sm text-green-700">{tab.value}</p>
@@ -163,8 +210,8 @@ export default function ForUniversitiesPage() {
         </div>
       </section>
 
-      {/* Interactive Demos */}
-      <section className="py-16 bg-gradient-to-b from-white to-blue-50/50">
+      {/* More Demos — Decision Pack + Analytics */}
+      <section className="py-16 bg-gray-50">
         <div className="container max-w-6xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -173,9 +220,6 @@ export default function ForUniversitiesPage() {
             transition={{ duration: 0.5 }}
             className="text-center mb-14"
           >
-            <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-medium">
-              {t('demos.badge')}
-            </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
               {t('demos.title')}
             </h2>
@@ -185,7 +229,6 @@ export default function ForUniversitiesPage() {
           </motion.div>
 
           <div className="space-y-12">
-            {/* Decision Pack */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -201,28 +244,11 @@ export default function ForUniversitiesPage() {
               </div>
             </motion.div>
 
-            {/* Grade Normalizer */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <div className="mb-6">
-                <h3 className="text-xl font-bold">{t('demos.gradeNormalizer.title')}</h3>
-                <p className="text-sm text-gray-600">{t('demos.gradeNormalizer.description')}</p>
-              </div>
-              <div className="max-w-xl">
-                <GradeNormalizerDemo />
-              </div>
-            </motion.div>
-
-            {/* Analytics Preview */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="mb-6">
                 <h3 className="text-xl font-bold">{t('demos.analytics.title')}</h3>
@@ -232,47 +258,6 @@ export default function ForUniversitiesPage() {
                 <AnalyticsPreview />
               </div>
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Proof */}
-      <section className="py-12 bg-gray-50">
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              {t('socialProof.title')}
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <Card className="border-primary/20">
-              <CardContent className="pt-6">
-                <div className="mb-4">
-                  <h3 className="font-semibold">{t('socialProof.unibg.title')}</h3>
-                  <p className="text-xs text-gray-500">{t('socialProof.unibg.subtitle')}</p>
-                </div>
-                <p className="text-sm text-gray-700 mb-4">{t('socialProof.unibg.description')}</p>
-                <div className="flex gap-2">
-                  <Badge variant="secondary">Pilot Partner</Badge>
-                  <Badge variant="secondary">2024-2025</Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-amber-200">
-              <CardContent className="pt-6">
-                <div className="mb-4">
-                  <h3 className="font-semibold">{t('socialProof.startCup.title')}</h3>
-                  <p className="text-xs text-gray-500">{t('socialProof.startCup.subtitle')}</p>
-                </div>
-                <p className="text-sm text-gray-700 mb-4">{t('socialProof.startCup.description')}</p>
-                <div className="flex gap-2">
-                  <Badge variant="secondary">Start Cup Bergamo</Badge>
-                  <Badge variant="secondary">2024</Badge>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
@@ -306,15 +291,15 @@ export default function ForUniversitiesPage() {
             {t('cta.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/auth/register?role=UNIVERSITY">
-              <Button size="lg" className="bg-white text-blue-900 hover:bg-primary/5 w-full sm:w-auto">
-                {t('cta.registerButton')}
+            <Link href="/contact?subject=university-pilot">
+              <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50 w-full sm:w-auto">
+                {t('cta.demoButton')}
                 <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
             </Link>
-            <Link href="/contact?subject=university-demo">
+            <Link href="/auth/register/academic-partner">
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto">
-                {t('cta.demoButton')}
+                {t('cta.registerButton')}
               </Button>
             </Link>
           </div>
@@ -326,7 +311,7 @@ export default function ForUniversitiesPage() {
         </div>
       </section>
       <Footer />
-      <StickyCTA show={showSticky} text={t('cta.registerButton')} href="/auth/register" />
+      <StickyCTA show={showSticky} text={t('cta.demoButton')} href="/contact?subject=university-pilot" />
     </div>
   )
 }
