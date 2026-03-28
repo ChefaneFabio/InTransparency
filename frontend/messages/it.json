@@ -2970,6 +2970,70 @@
           "description": "Non chiediamo ai candidati di dimostrarsi con le parole. Il loro lavoro verificato dall'istituzione parla da solo — in tech, ingegneria, business e ogni settore."
         }
       }
+    },
+    "businessModel": {
+      "title": "Perch\u00e9 \u00e8 Tutto Gratuito?",
+      "subtitle": "Crediamo che il talento non debba mai essere bloccato dietro un paywall",
+      "students": {
+        "title": "Studenti: Accesso Completo",
+        "description": "Costruisci il tuo portfolio verificato con tutte le funzionalit\u00e0 incluse.",
+        "premiumLabel": "Opzioni premium:",
+        "premiumDescription": "Visibilit\u00e0 prioritaria, analytics avanzati"
+      },
+      "universities": {
+        "title": "Partner Formativi: Accesso Completo",
+        "description": "Verifica i progetti degli studenti. Monitora i placement. Misura i risultati.",
+        "enterpriseLabel": "Enterprise:",
+        "enterpriseDescription": "Integrazioni API, white-label, funzionalit\u00e0 personalizzate"
+      },
+      "companies": {
+        "title": "Aziende: Paghi Solo per Contatto",
+        "description": "Esplora i profili verificati liberamente. Paghi solo quando contatti un candidato.",
+        "enterpriseLabel": "Enterprise:",
+        "enterpriseDescription": "Accesso API, integrazione ATS"
+      },
+      "philosophy": {
+        "title": "La Filosofia",
+        "studentsBold": "Gli studenti creano il valore.",
+        "studentsText": "Le piattaforme tradizionali fanno pagare agli studenti funzionalit\u00e0 premium solo per essere visibili. Noi pensiamo che sia al contrario. Chi crea valore deve avere pieno accesso agli strumenti che lo mettono in luce.",
+        "universitiesBold": "Universit\u00e0 e scuole guidano la verifica.",
+        "universitiesText": "I partner formativi vogliono supportare il successo professionale dei loro studenti. La nostra piattaforma base \u00e8 sempre gratuita \u2014 non \"gratis solo il primo anno.\" Risparmia oltre 40 ore al mese sul matching manuale. Paghi solo per personalizzazioni enterprise opzionali (API, white-label, funzionalit\u00e0 custom).",
+        "companiesBold": "Le aziende pagano solo per i risultati.",
+        "companiesText": "Basta abbonamenti annuali salati prima ancora di trovare qualcuno. Esplora l'intero database di talenti verificati senza costi. Paghi solo quando trovi qualcuno che vale la pena contattare. Equo, trasparente, basato sui risultati."
+      }
+    },
+    "vision": {
+      "title": "Accedi in Anteprima",
+      "subtitle": "Stiamo costruendo il futuro della scoperta del talento \u2014 sii tra i primi a plasmarlo",
+      "stats": {
+        "0": { "label": "Lancio in Corso", "sublabel": "Sii tra i primi utenti" },
+        "1": { "label": "Studenti al Centro", "sublabel": "Accesso completo per gli studenti" },
+        "2": { "label": "Costruiamo Insieme", "sublabel": "Dai forma alle funzionalit\u00e0 con noi" }
+      },
+      "cta": {
+        "title": "Aiutaci a Costruire la Piattaforma",
+        "description": "Siamo in fase di sviluppo e cerchiamo studenti, universit\u00e0, scuole e aziende per contribuire a dare forma alla piattaforma. Il tuo feedback influenzer\u00e0 direttamente ci\u00f2 che costruiremo.",
+        "primaryButton": "Inizia Ora",
+        "secondaryButton": "Diventa Partner"
+      }
+    },
+    "killResume": {
+      "title": "\u00c8 Ora di Andare Oltre il CV",
+      "description": "Il curriculum \u00e8 stato inventato nel 1482. Oggi abbiamo l'AI, l'analisi verificata delle competenze e la certificazione accademica. Perch\u00e9 ci affidiamo ancora a un formato vecchio di 500 anni per assumere per ruoli del XXI secolo?",
+      "oldYear": "1482",
+      "oldLabel": "Anno di invenzione del curriculum",
+      "newYear": "2025",
+      "newLabel": "L'era dei portfolio di progetti verificati",
+      "closing": "Gli studenti meritano di essere valutati per ci\u00f2 che hanno costruito, non per quanto bene scrivono elenchi puntati. Le aziende meritano di assumere sulla base di competenze verificate, non di dichiarazioni ben confezionate.",
+      "cta": "Inizia Ora \u2014 Mostra il Tuo Lavoro"
+    },
+    "joinMovement": {
+      "title": "Unisciti al Movimento",
+      "description": "Siamo solo all'inizio. Aiutaci a costruire un mondo dove il talento conta pi\u00f9 del pedigree, e le prove contano pi\u00f9 delle promesse.",
+      "primaryButton": "Inizia Ora",
+      "secondaryButton": "Scopri Come Funziona",
+      "companiesPrefix": "Per le aziende:",
+      "companiesLink": "Esplora talenti verificati, paghi solo per i contatti"
     }
   },
   "pricingPage": {
@@ -4584,6 +4648,49 @@
       "title": "Analisi Percorsi di Carriera",
       "showingLimited": "Mostrati {shown} di {total}",
       "moreAvailable": "{count} altri percorsi di carriera disponibili con Premium"
+    }
+  },
+  "studentDashboard": {
+    "loading": "Caricamento...",
+    "greeting": "Ciao {name}",
+    "editProfile": "Modifica Profilo",
+    "newProject": "Nuovo Progetto",
+    "viewAll": "Vedi tutti",
+    "browseJobs": "Cerca lavori",
+    "untitled": "Senza titolo",
+    "noDescription": "Nessuna descrizione",
+    "stats": {
+      "views": "visite",
+      "messages": "messaggi",
+      "matches": "match"
+    },
+    "sections": {
+      "projects": "Progetti",
+      "jobMatches": "Opportunità",
+      "thisWeek": "Questa settimana"
+    },
+    "links": {
+      "messages": "Messaggi",
+      "applications": "Candidature",
+      "analytics": "Analytics",
+      "skillPath": "Percorso Competenze",
+      "publicProfile": "Profilo pubblico",
+      "signOut": "Esci"
+    },
+    "activity": {
+      "profileViews": "Visite al profilo",
+      "projectViews": "Visite ai progetti",
+      "jobMatches": "Opportunità trovate"
+    },
+    "empty": {
+      "noProjects": "Nessun progetto ancora",
+      "addFirst": "Aggiungi il tuo primo progetto",
+      "noMatches": "Nessuna opportunità ancora. Aggiungi altri progetti per migliorare il matching."
+    },
+    "university": {
+      "label": "Università",
+      "notVerified": "Non verificata",
+      "connect": "Collega email universitaria"
     }
   },
   "studentAnalytics": {

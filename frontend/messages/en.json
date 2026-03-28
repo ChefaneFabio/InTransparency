@@ -2930,6 +2930,70 @@
           "description": "We don't ask candidates to prove themselves with words. Their institution-verified work speaks for itself — across tech, engineering, business, and every sector."
         }
       }
+    },
+    "businessModel": {
+      "title": "Why Is Everything Free?",
+      "subtitle": "We believe talent should never be locked behind paywalls",
+      "students": {
+        "title": "Students: Full Access",
+        "description": "Build your verified portfolio with all core features included.",
+        "premiumLabel": "Premium options:",
+        "premiumDescription": "Priority visibility, advanced analytics"
+      },
+      "universities": {
+        "title": "Academic Partners: Full Access",
+        "description": "Verify student projects. Track placements. Measure outcomes.",
+        "enterpriseLabel": "Enterprise:",
+        "enterpriseDescription": "API integrations, white-label, custom features"
+      },
+      "companies": {
+        "title": "Companies: Pay Per Contact",
+        "description": "Browse verified profiles freely. Pay only when you reach out.",
+        "enterpriseLabel": "Enterprise:",
+        "enterpriseDescription": "API access, ATS integration"
+      },
+      "philosophy": {
+        "title": "The Philosophy",
+        "studentsBold": "Students create the value.",
+        "studentsText": "Traditional platforms charge students for premium features just to be visible. We believe that's backwards. The people who create value should have full access to the tools that showcase it.",
+        "universitiesBold": "Universities and schools drive verification.",
+        "universitiesText": "Academic partners want to support their students' career success. Our core platform is always free — not \"year 1 free.\" Save 40+ hours/month on manual matching. Pay only for optional enterprise customizations (API, white-label, custom features).",
+        "companiesBold": "Companies pay only for results.",
+        "companiesText": "No more large annual subscriptions before finding anyone. Browse our entire verified talent database at no cost. Pay only when you find someone worth contacting. Fair, transparent, performance-based."
+      }
+    },
+    "vision": {
+      "title": "Join Us in Early Access",
+      "subtitle": "We're building the future of talent discovery — be among the first to shape it",
+      "stats": {
+        "0": { "label": "Launching Now", "sublabel": "Be among the first users" },
+        "1": { "label": "Students First", "sublabel": "Full access for students" },
+        "2": { "label": "Build Together", "sublabel": "Shape features with us" }
+      },
+      "cta": {
+        "title": "Help Us Build the Platform",
+        "description": "We're in early development and looking for students, universities and schools, and companies to help shape the platform. Your feedback will directly influence what we build.",
+        "primaryButton": "Get Started",
+        "secondaryButton": "Partner With Us"
+      }
+    },
+    "killResume": {
+      "title": "It's Time to Move Beyond the Resume",
+      "description": "Resumes were invented in 1482. Today we have AI, verified skill analysis, and academic verification. Why are we still relying on a 500-year-old format to hire for 21st-century roles?",
+      "oldYear": "1482",
+      "oldLabel": "Year resumes were invented",
+      "newYear": "2025",
+      "newLabel": "Time for verified project portfolios",
+      "closing": "Students deserve to be evaluated on what they've built, not how well they write bullet points. Companies deserve to hire based on verified skills, not polished claims.",
+      "cta": "Get Started — Show Your Work"
+    },
+    "joinMovement": {
+      "title": "Join the Movement",
+      "description": "We're just getting started. Help us build a world where talent beats pedigree, and proof beats promises.",
+      "primaryButton": "Get Started",
+      "secondaryButton": "See How It Works",
+      "companiesPrefix": "For companies:",
+      "companiesLink": "Browse verified talent, pay only for contacts"
     }
   },
   "pricingPage": {
@@ -4545,6 +4609,49 @@
       "title": "Career Path Analysis",
       "showingLimited": "Showing {shown} of {total}",
       "moreAvailable": "{count} more career paths available with Premium"
+    }
+  },
+  "studentDashboard": {
+    "loading": "Loading...",
+    "greeting": "Hey {name}",
+    "editProfile": "Edit Profile",
+    "newProject": "New Project",
+    "viewAll": "View all",
+    "browseJobs": "Browse jobs",
+    "untitled": "Untitled",
+    "noDescription": "No description",
+    "stats": {
+      "views": "views",
+      "messages": "messages",
+      "matches": "matches"
+    },
+    "sections": {
+      "projects": "Projects",
+      "jobMatches": "Job matches",
+      "thisWeek": "This week"
+    },
+    "links": {
+      "messages": "Messages",
+      "applications": "Applications",
+      "analytics": "Analytics",
+      "skillPath": "Skill Path",
+      "publicProfile": "Public profile",
+      "signOut": "Sign out"
+    },
+    "activity": {
+      "profileViews": "Profile views",
+      "projectViews": "Project views",
+      "jobMatches": "Job matches"
+    },
+    "empty": {
+      "noProjects": "No projects yet",
+      "addFirst": "Add your first project",
+      "noMatches": "No job matches yet. Add more projects to improve matching."
+    },
+    "university": {
+      "label": "University",
+      "notVerified": "Not verified",
+      "connect": "Connect university email"
     }
   },
   "studentAnalytics": {

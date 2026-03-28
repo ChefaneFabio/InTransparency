@@ -378,7 +378,6 @@ export default function AboutPage() {
         </section>
 
         {/* Our Business Model */}
-        {/* TODO: Add translations for businessModel section */}
         <section className="py-20 hero-bg">
           <div className="container max-w-4xl">
             <motion.div
@@ -388,55 +387,79 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
             >
             <h2 className="text-4xl font-display font-bold text-foreground text-center mb-4">
-              Why Is Everything Free?
+              {t('businessModel.title')}
             </h2>
             <p className="text-xl text-foreground/80 text-center mb-12">
-              We believe talent shouldn't be locked behind paywalls
+              {t('businessModel.subtitle')}
             </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               <Card className="bg-card">
                 <CardContent className="p-8 text-center">
-                  <div className="text-5xl mb-4">🎓</div>
+                  <div className="relative w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
+                    <Image
+                      src={IMAGES.students.student5}
+                      alt={t('businessModel.students.title')}
+                      width={64}
+                      height={64}
+                      className="object-cover"
+                    />
+                  </div>
                   <h3 className="text-xl font-bold text-foreground mb-3">
-                    Students: Freemium
+                    {t('businessModel.students.title')}
                   </h3>
                   <p className="text-foreground/80 leading-relaxed mb-4">
-                    Core features included. Build your verified portfolio.
+                    {t('businessModel.students.description')}
                   </p>
                   <div className="text-sm text-muted-foreground bg-primary/5 rounded-lg p-3">
-                    <strong>Premium options:</strong> Priority visibility, advanced analytics
+                    <strong>{t('businessModel.students.premiumLabel')}</strong> {t('businessModel.students.premiumDescription')}
                   </div>
                 </CardContent>
               </Card>
 
               <Card className="bg-card">
                 <CardContent className="p-8 text-center">
-                  <div className="text-5xl mb-4">🏫</div>
+                  <div className="relative w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
+                    <Image
+                      src={IMAGES.companies.office2}
+                      alt={t('businessModel.universities.title')}
+                      width={64}
+                      height={64}
+                      className="object-cover"
+                    />
+                  </div>
                   <h3 className="text-xl font-bold text-foreground mb-3">
-                    Universities: Freemium
+                    {t('businessModel.universities.title')}
                   </h3>
                   <p className="text-foreground/80 leading-relaxed mb-4">
-                    Verify student projects. Track placements.
+                    {t('businessModel.universities.description')}
                   </p>
                   <div className="text-sm text-muted-foreground bg-primary/5 rounded-lg p-3">
-                    <strong>Enterprise:</strong> API integrations, white-label, custom features
+                    <strong>{t('businessModel.universities.enterpriseLabel')}</strong> {t('businessModel.universities.enterpriseDescription')}
                   </div>
                 </CardContent>
               </Card>
 
               <Card className="bg-card">
                 <CardContent className="p-8 text-center">
-                  <div className="text-5xl mb-4">💼</div>
+                  <div className="relative w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden shadow-md">
+                    <Image
+                      src={IMAGES.success.handshake}
+                      alt={t('businessModel.companies.title')}
+                      width={64}
+                      height={64}
+                      className="object-cover"
+                    />
+                  </div>
                   <h3 className="text-xl font-bold text-foreground mb-3">
-                    Companies: Pay Per Contact
+                    {t('businessModel.companies.title')}
                   </h3>
                   <p className="text-foreground/80 leading-relaxed mb-4">
-                    Browse profiles. Pay when you reach out.
+                    {t('businessModel.companies.description')}
                   </p>
                   <div className="text-sm text-muted-foreground bg-primary/5 rounded-lg p-3">
-                    <strong>Enterprise:</strong> API access, ATS integration
+                    <strong>{t('businessModel.companies.enterpriseLabel')}</strong> {t('businessModel.companies.enterpriseDescription')}
                   </div>
                 </CardContent>
               </Card>
@@ -444,16 +467,16 @@ export default function AboutPage() {
 
             <Card className="bg-primary text-primary-foreground">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-display font-bold mb-4 text-center">The Philosophy</h3>
+                <h3 className="text-2xl font-display font-bold mb-4 text-center">{t('businessModel.philosophy.title')}</h3>
                 <div className="space-y-4 text-white">
                   <p className="leading-relaxed">
-                    <strong>Students shouldn't pay to get hired.</strong> Traditional platforms charge students for premium features to be visible. We believe that's backwards. Students create the value—they should access everything for free.
+                    <strong>{t('businessModel.philosophy.studentsBold')}</strong> {t('businessModel.philosophy.studentsText')}
                   </p>
                   <p className="leading-relaxed">
-                    <strong>Universities shouldn't pay to help students.</strong> Institutions want to support their students' career success. Our core platform is always free—not "year 1 free." Save 40+ hours/month on manual matching. Pay only for optional customizations (API, white-label, custom features).
+                    <strong>{t('businessModel.philosophy.universitiesBold')}</strong> {t('businessModel.philosophy.universitiesText')}
                   </p>
                   <p className="leading-relaxed">
-                    <strong>Companies should pay only for results.</strong> No more $8,000/year subscriptions before finding anyone. Browse our entire database free. Pay €10 only when you find someone worth contacting. Fair, transparent, performance-based.
+                    <strong>{t('businessModel.philosophy.companiesBold')}</strong> {t('businessModel.philosophy.companiesText')}
                   </p>
                 </div>
               </CardContent>
@@ -462,7 +485,6 @@ export default function AboutPage() {
         </section>
 
         {/* Our Vision */}
-        {/* TODO: Add translations for vision section */}
         <section className="py-20 hero-bg">
           <div className="container max-w-4xl">
             <motion.div
@@ -472,18 +494,18 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
             >
             <h2 className="text-4xl font-display font-bold text-foreground text-center mb-4">
-              Join Us in Early Access
+              {t('vision.title')}
             </h2>
             <p className="text-xl text-foreground/80 text-center mb-16">
-              We're building the future of student recruitment - be among the first to shape it
+              {t('vision.subtitle')}
             </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               {[
-                { emoji: '🚀', label: 'Launch in 2025', sublabel: 'Be among the first users' },
-                { emoji: '🎓', label: 'Students First', sublabel: 'Freemium for students' },
-                { emoji: '🤝', label: 'Build Together', sublabel: 'Shape features with us' }
+                { icon: <Zap className="h-8 w-8 text-primary" />, label: t('vision.stats.0.label'), sublabel: t('vision.stats.0.sublabel') },
+                { icon: <Target className="h-8 w-8 text-primary" />, label: t('vision.stats.1.label'), sublabel: t('vision.stats.1.sublabel') },
+                { icon: <Users className="h-8 w-8 text-primary" />, label: t('vision.stats.2.label'), sublabel: t('vision.stats.2.sublabel') }
               ].map((stat, idx) => (
                 <motion.div
                   key={idx}
@@ -493,7 +515,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className="text-center"
                 >
-                  <div className="text-5xl mb-4">{stat.emoji}</div>
+                  <div className="flex justify-center mb-4">{stat.icon}</div>
                   <div className="text-lg font-semibold text-foreground mb-1">{stat.label}</div>
                   <div className="text-sm text-foreground/80">{stat.sublabel}</div>
                 </motion.div>
@@ -509,19 +531,19 @@ export default function AboutPage() {
             >
             <Card className="bg-primary/5 border-primary/20 hover:shadow-lg transition-shadow">
               <CardContent className="p-8 text-center">
-                <div className="text-5xl mb-4">🎯</div>
+                <Heart className="h-12 w-12 text-primary mx-auto mb-4" />
                 <h3 className="text-2xl font-display font-bold text-foreground mb-4">
-                  Help Us Build the Platform
+                  {t('vision.cta.title')}
                 </h3>
                 <p className="text-foreground mb-6 leading-relaxed max-w-2xl mx-auto">
-                  We're in early development and looking for students, universities, and companies to help shape the platform. Your feedback will directly influence what we build.
+                  {t('vision.cta.description')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button className="bg-primary hover:bg-primary/90" asChild>
-                    <Link href="/auth/register">Get Started Free</Link>
+                    <Link href="/auth/register">{t('vision.cta.primaryButton')}</Link>
                   </Button>
                   <Button variant="outline" asChild>
-                    <Link href="/contact">Partner With Us</Link>
+                    <Link href="/contact">{t('vision.cta.secondaryButton')}</Link>
                   </Button>
                 </div>
               </CardContent>
@@ -531,63 +553,61 @@ export default function AboutPage() {
         </section>
 
         {/* The Enemy: Resumes */}
-        {/* TODO: Add translations for killResume section */}
         <section className="py-20 bg-foreground text-white">
           <div className="container max-w-4xl text-center">
             <h2 className="text-4xl font-bold mb-6">
-              It's Time to Kill the Resume
+              {t('killResume.title')}
             </h2>
             <p className="text-xl text-gray-100 leading-relaxed mb-8 max-w-2xl mx-auto">
-              Resumes were invented in 1482. We have AI, complete skill analysis, and institution verification now. Why are we still using a 500-year-old tool to hire for 21st-century jobs?
+              {t('killResume.description')}
             </p>
 
             <div className="bg-white bg-opacity-10 rounded-xl p-8 backdrop-blur-sm mb-8">
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <div className="text-red-400 text-4xl font-bold mb-2">1482</div>
-                  <div className="text-gray-100">Year resumes were invented</div>
+                  <div className="text-red-400 text-4xl font-bold mb-2">{t('killResume.oldYear')}</div>
+                  <div className="text-gray-100">{t('killResume.oldLabel')}</div>
                 </div>
                 <div>
-                  <div className="text-green-400 text-4xl font-bold mb-2">2025</div>
-                  <div className="text-gray-100">Time for verified project portfolios</div>
+                  <div className="text-green-400 text-4xl font-bold mb-2">{t('killResume.newYear')}</div>
+                  <div className="text-gray-100">{t('killResume.newLabel')}</div>
                 </div>
               </div>
             </div>
 
             <p className="text-lg text-gray-100 mb-8">
-              Students deserve to be judged on what they've built, not how well they write bullet points. Companies deserve to hire based on verified skills, not polished claims.
+              {t('killResume.closing')}
             </p>
 
             <Button size="lg" className="bg-card text-foreground hover:bg-muted" asChild>
               <Link href="/auth/register">
-                Get Started Free - Show Your Work
+                {t('killResume.cta')}
               </Link>
             </Button>
           </div>
         </section>
 
         {/* Join Us */}
-        {/* TODO: Add translations for joinMovement section */}
         <section className="py-20 hero-bg">
           <div className="container max-w-4xl text-center">
             <h2 className="text-4xl font-display font-bold text-foreground mb-6">
-              Join the Movement
+              {t('joinMovement.title')}
             </h2>
             <p className="text-xl text-foreground/80 mb-12 max-w-2xl mx-auto">
-              We're just getting started. Help us build a world where talent beats pedigree, and proof beats promises.
+              {t('joinMovement.description')}
             </p>
 
             <div className="flex justify-center gap-4 flex-wrap">
               <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
-                <Link href="/auth/register">Get Started Free</Link>
+                <Link href="/auth/register">{t('joinMovement.primaryButton')}</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link href="/how-it-works">See How It Works</Link>
+                <Link href="/how-it-works">{t('joinMovement.secondaryButton')}</Link>
               </Button>
             </div>
 
             <p className="mt-8 text-sm text-foreground/80">
-              For companies: <Link href="/auth/register" className="text-primary hover:underline font-medium">Browse free, pay only for contacts →</Link>
+              {t('joinMovement.companiesPrefix')} <Link href="/auth/register" className="text-primary hover:underline font-medium">{t('joinMovement.companiesLink')}</Link>
             </p>
           </div>
         </section>
