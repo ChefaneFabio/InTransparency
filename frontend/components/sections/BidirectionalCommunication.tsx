@@ -4,14 +4,9 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import {
   ArrowRight,
-  ArrowLeftRight,
-  Building2,
-  GraduationCap,
-  MessageSquare,
   Search,
   CheckCircle,
   XCircle,
-  Zap
 } from 'lucide-react'
 
 interface BidirectionalCommunicationProps {
@@ -30,19 +25,19 @@ export function BidirectionalCommunication({ locale = 'it' }: BidirectionalCommu
       traditionalTitle: 'Modello Tradizionale',
       traditionalSubtitle: 'Tu invii candidature, speri in una risposta',
       traditionalSteps: [
-        { text: 'Studente cerca offerte di lavoro', icon: Search },
-        { text: 'Invia decine di CV', icon: ArrowRight },
-        { text: 'Aspetta risposta (spesso mai)', icon: XCircle },
-        { text: 'Compete con centinaia di candidati', icon: XCircle }
+        { text: 'Studente cerca offerte di lavoro' },
+        { text: 'Invia decine di CV' },
+        { text: 'Aspetta risposta (spesso mai)' },
+        { text: 'Compete con centinaia di candidati' }
       ],
 
       ourTitle: 'InTransparency',
       ourSubtitle: 'Le aziende ti trovano e ti contattano',
       ourSteps: [
-        { text: 'Carica progetti verificati', icon: GraduationCap },
-        { text: 'Azienda cerca competenze specifiche', icon: Search },
-        { text: 'Ti trova nel marketplace', icon: CheckCircle },
-        { text: 'Ti contatta direttamente', icon: MessageSquare }
+        { text: 'Carica progetti verificati' },
+        { text: 'Azienda cerca competenze specifiche' },
+        { text: 'Ti trova nel marketplace' },
+        { text: 'Ti contatta direttamente' }
       ],
 
       flowTitle: 'Il Flusso di Comunicazione',
@@ -71,19 +66,19 @@ export function BidirectionalCommunication({ locale = 'it' }: BidirectionalCommu
       traditionalTitle: 'Traditional Model',
       traditionalSubtitle: 'You send applications, hope for a response',
       traditionalSteps: [
-        { text: 'Student searches for jobs', icon: Search },
-        { text: 'Sends dozens of CVs', icon: ArrowRight },
-        { text: 'Waits for response (often never)', icon: XCircle },
-        { text: 'Competes with hundreds of candidates', icon: XCircle }
+        { text: 'Student searches for jobs' },
+        { text: 'Sends dozens of CVs' },
+        { text: 'Waits for response (often never)' },
+        { text: 'Competes with hundreds of candidates' }
       ],
 
       ourTitle: 'InTransparency',
       ourSubtitle: 'Companies find you and reach out',
       ourSteps: [
-        { text: 'Upload verified projects', icon: GraduationCap },
-        { text: 'Company searches for specific skills', icon: Search },
-        { text: 'Finds you in marketplace', icon: CheckCircle },
-        { text: 'Contacts you directly', icon: MessageSquare }
+        { text: 'Upload verified projects' },
+        { text: 'Company searches for specific skills' },
+        { text: 'Finds you in marketplace' },
+        { text: 'Contacts you directly' }
       ],
 
       flowTitle: 'The Communication Flow',
@@ -114,7 +109,6 @@ export function BidirectionalCommunication({ locale = 'it' }: BidirectionalCommu
         {/* Header */}
         <div className="text-center mb-12">
           <Badge variant="outline" className="mb-4 text-primary border-primary/30">
-            <ArrowLeftRight className="h-3 w-3 mr-1" />
             {t.badge}
           </Badge>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -139,11 +133,10 @@ export function BidirectionalCommunication({ locale = 'it' }: BidirectionalCommu
               </div>
               <div className="space-y-3">
                 {t.traditionalSteps.map((step, i) => {
-                  const Icon = step.icon
                   return (
                     <div key={i} className="flex items-center gap-3 text-sm">
                       <div className="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
-                        <Icon className="h-4 w-4 text-red-500" />
+                        <span className="text-red-500 font-bold text-xs">{i + 1}</span>
                       </div>
                       <span className="text-red-800">{step.text}</span>
                     </div>
@@ -165,11 +158,10 @@ export function BidirectionalCommunication({ locale = 'it' }: BidirectionalCommu
               </div>
               <div className="space-y-3">
                 {t.ourSteps.map((step, i) => {
-                  const Icon = step.icon
                   return (
                     <div key={i} className="flex items-center gap-3 text-sm">
                       <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Icon className="h-4 w-4 text-primary" />
+                        <span className="text-primary font-bold text-xs">{i + 1}</span>
                       </div>
                       <span className="text-green-800">{step.text}</span>
                     </div>
@@ -185,12 +177,11 @@ export function BidirectionalCommunication({ locale = 'it' }: BidirectionalCommu
           <h3 className="text-2xl font-bold text-center mb-8">{t.flowTitle}</h3>
           <div className="grid md:grid-cols-4 gap-4 max-w-5xl mx-auto">
             {[
-              { title: t.flowStep1Title, desc: t.flowStep1Desc, icon: Building2, color: 'blue' },
-              { title: t.flowStep2Title, desc: t.flowStep2Desc, icon: Search, color: 'purple' },
-              { title: t.flowStep3Title, desc: t.flowStep3Desc, icon: MessageSquare, color: 'green' },
-              { title: t.flowStep4Title, desc: t.flowStep4Desc, icon: GraduationCap, color: 'orange' }
+              { title: t.flowStep1Title, desc: t.flowStep1Desc, color: 'blue' },
+              { title: t.flowStep2Title, desc: t.flowStep2Desc, color: 'purple' },
+              { title: t.flowStep3Title, desc: t.flowStep3Desc, color: 'green' },
+              { title: t.flowStep4Title, desc: t.flowStep4Desc, color: 'orange' }
             ].map((step, i) => {
-              const Icon = step.icon
               const colors: Record<string, string> = {
                 blue: 'bg-primary/10 text-primary border-primary/20',
                 purple: 'bg-primary/10 text-primary border-primary/20',
@@ -201,9 +192,6 @@ export function BidirectionalCommunication({ locale = 'it' }: BidirectionalCommu
                 <div key={i} className="relative">
                   <Card className={`h-full border-2 ${colors[step.color].split(' ')[2]}`}>
                     <CardContent className="pt-6 text-center">
-                      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full ${colors[step.color].split(' ').slice(0, 2).join(' ')} mb-3`}>
-                        <Icon className="h-6 w-6" />
-                      </div>
                       <h4 className="font-bold text-sm mb-2">{step.title}</h4>
                       <p className="text-xs text-gray-600">{step.desc}</p>
                     </CardContent>
@@ -226,7 +214,7 @@ export function BidirectionalCommunication({ locale = 'it' }: BidirectionalCommu
             {t.benefits.map((benefit, i) => (
               <div key={i} className="flex items-start gap-4 p-4 bg-white rounded-lg border border-gray-200">
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Zap className="h-5 w-5 text-primary" />
+                  <span className="text-primary font-bold">{i + 1}</span>
                 </div>
                 <div>
                   <h4 className="font-bold text-gray-900">{benefit.title}</h4>

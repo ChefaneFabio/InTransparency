@@ -8,10 +8,8 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { School, Loader2, CheckCircle, TrendingUp, Users, BarChart3, Shield } from 'lucide-react'
+import { School, Loader2, CheckCircle } from 'lucide-react'
 import { ConfettiEffect } from '@/components/engagement/ConfettiEffect'
-
-const benefitIcons = [TrendingUp, Users, BarChart3, Shield]
 
 export default function UniversityRegisterPage() {
   const t = useTranslations('auth')
@@ -86,10 +84,10 @@ export default function UniversityRegisterPage() {
               </p>
 
               <div className="space-y-4 mb-8">
-                {benefitIcons.map((Icon, index) => (
+                {[0, 1, 2, 3].map((index) => (
                   <div key={index} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm">
-                    <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg">
-                      <Icon className="h-5 w-5 text-primary" />
+                    <div className="flex-shrink-0 w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <span className="text-primary font-bold">{index + 1}</span>
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900">

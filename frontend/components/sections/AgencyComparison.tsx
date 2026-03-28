@@ -4,15 +4,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import {
-  Building2,
-  Euro,
-  Clock,
-  Users,
-  CheckCircle2,
-  XCircle,
   ArrowRight,
-  Calculator,
-  TrendingDown
 } from 'lucide-react'
 import { Link } from '@/navigation'
 
@@ -120,7 +112,6 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
         {/* Header */}
         <div className="text-center mb-12">
           <Badge variant="outline" className="mb-4 text-primary border-primary/20">
-            <Calculator className="h-3 w-3 mr-1" />
             {t.badge}
           </Badge>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -136,7 +127,6 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
           {/* Agency Card */}
           <Card className="border-red-200 bg-red-50">
             <CardContent className="pt-6 text-center">
-              <Building2 className="h-10 w-10 text-red-500 mx-auto mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">{t.agencyTitle}</h3>
               <p className="text-3xl font-bold text-red-600 mb-1">{t.agencyPrice}</p>
               <p className="text-sm text-red-700">{t.agencyPer}</p>
@@ -147,7 +137,6 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
           {/* Savings Card */}
           <Card className="border-primary/30 bg-primary/10 shadow-lg">
             <CardContent className="pt-6 text-center">
-              <TrendingDown className="h-10 w-10 text-primary mx-auto mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">{t.savingsTitle}</h3>
               <p className="text-4xl font-bold text-primary mb-1">{t.savingsPercent}</p>
               <p className="text-sm text-primary">{t.savingsNote}</p>
@@ -158,7 +147,6 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
           {/* Our Card */}
           <Card className="border-primary/20 bg-primary/5">
             <CardContent className="pt-6 text-center">
-              <Euro className="h-10 w-10 text-primary mx-auto mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">{t.ourTitle}</h3>
               <p className="text-3xl font-bold text-primary mb-1">{t.ourPrice}</p>
               <p className="text-sm text-green-700">{t.ourPer}</p>
@@ -172,14 +160,13 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
           {/* Agency Features */}
           <Card className="border-red-200">
             <CardContent className="pt-6">
-              <h4 className="font-semibold text-lg mb-4 flex items-center gap-2 text-red-700">
-                <Building2 className="h-5 w-5" />
+              <h4 className="font-semibold text-lg mb-4 text-red-700">
                 {t.agencyTitle}
               </h4>
               <ul className="space-y-3">
                 {t.agencyFeatures.map((feature, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
-                    <XCircle className="h-5 w-5 text-red-500 flex-shrink-0" />
+                    <span className="text-red-500 font-bold flex-shrink-0">{'\u2717'}</span>
                     <span className="text-gray-700">{feature.text}</span>
                   </li>
                 ))}
@@ -190,14 +177,13 @@ export function AgencyComparison({ locale = 'it' }: AgencyComparisonProps) {
           {/* Our Features */}
           <Card className="border-primary/20">
             <CardContent className="pt-6">
-              <h4 className="font-semibold text-lg mb-4 flex items-center gap-2 text-green-700">
-                <CheckCircle2 className="h-5 w-5" />
+              <h4 className="font-semibold text-lg mb-4 text-green-700">
                 {t.ourTitle}
               </h4>
               <ul className="space-y-3">
                 {t.ourFeatures.map((feature, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
-                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                    <span className="text-primary font-bold flex-shrink-0">{'\u2713'}</span>
                     <span className="text-gray-700">{feature.text}</span>
                   </li>
                 ))}

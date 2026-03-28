@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
-import { Award, CheckCircle2, Sparkles, Mail, User, Clock } from 'lucide-react'
+import { CheckCircle2 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Link } from '@/navigation'
 
@@ -161,7 +161,6 @@ export default function CertificationWaitlistPage() {
           >
             <div className="text-center mb-8">
               <Badge className="mb-4 bg-primary text-white text-sm px-6 py-2 border-0">
-                <Sparkles className="inline h-4 w-4 mr-2" />
                 Early Access
               </Badge>
 
@@ -173,17 +172,13 @@ export default function CertificationWaitlistPage() {
                 Soft Skills Certification is launching soon
               </p>
 
-              <div className="flex items-center justify-center gap-2 text-gray-600">
-                <Clock className="h-5 w-5" />
-                <span>Expected launch: 4-6 weeks</span>
-              </div>
+              <p className="text-gray-600">
+                Expected launch: 4-6 weeks
+              </p>
             </div>
 
             <Card className="border-2 border-gray-200 shadow-xl">
               <CardHeader className="bg-primary/5">
-                <div className="flex items-center justify-center mb-4">
-                  <Award className="h-12 w-12 text-primary" />
-                </div>
                 <CardTitle className="text-center text-2xl">
                   Reserve Your Spot
                 </CardTitle>

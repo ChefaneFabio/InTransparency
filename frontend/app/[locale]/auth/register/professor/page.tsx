@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { BookOpen, Loader2, CheckCircle, Award, Users, Star } from 'lucide-react'
+import { BookOpen, Loader2, CheckCircle } from 'lucide-react'
 
 export default function ProfessorRegisterPage() {
   const t = useTranslations('auth')
@@ -61,10 +61,10 @@ export default function ProfessorRegisterPage() {
   }
 
   const benefits = [
-    { icon: Award, text: t('register.roles.professor.benefits.0') },
-    { icon: Users, text: t('register.roles.professor.benefits.1') },
-    { icon: Star, text: t('register.roles.professor.benefits.2') },
-    { icon: CheckCircle, text: t('register.roles.professor.benefits.3') },
+    { text: t('register.roles.professor.benefits.0') },
+    { text: t('register.roles.professor.benefits.1') },
+    { text: t('register.roles.professor.benefits.2') },
+    { text: t('register.roles.professor.benefits.3') },
   ]
 
   return (
@@ -89,11 +89,10 @@ export default function ProfessorRegisterPage() {
 
               <div className="space-y-4">
                 {benefits.map((benefit, i) => {
-                  const Icon = benefit.icon
                   return (
                     <div key={i} className="flex items-start gap-3">
                       <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Icon className="h-4 w-4 text-primary" />
+                        <span className="text-primary font-bold text-sm">{i + 1}</span>
                       </div>
                       <p className="text-gray-700">{benefit.text}</p>
                     </div>

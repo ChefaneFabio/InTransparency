@@ -1,6 +1,5 @@
 'use client'
 
-import { CheckCircle2, Star, Award, Zap } from 'lucide-react'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
@@ -8,31 +7,31 @@ import { motion } from 'framer-motion'
 export function SuccessMetrics() {
   const metrics = [
     {
-      icon: CheckCircle2,
+      number: '1',
       title: 'Portfolio > Resume',
       description: 'Show what you\'ve built, not just what you claim you can do',
-      stat: '🚀',
+      stat: '\uD83D\uDE80',
       statLabel: 'Early Access: Build your portfolio first, get discovered faster'
     },
     {
-      icon: Zap,
+      number: '2',
       title: 'Get Discovered',
       description: 'Recruiters find you based on your verified projects, not keywords',
-      stat: '✨',
+      stat: '\u2728',
       statLabel: 'Be among the first to showcase real academic work'
     },
     {
-      icon: Star,
+      number: '3',
       title: 'Stand Out',
       description: 'AI analyzes your projects and highlights your unique skills',
-      stat: '🎯',
+      stat: '\uD83C\uDFAF',
       statLabel: 'Turn your university projects into career opportunities'
     },
     {
-      icon: Award,
+      number: '4',
       title: 'Verified Skills',
       description: 'University-backed projects prove your abilities are real',
-      stat: '🔒',
+      stat: '\uD83D\uDD12',
       statLabel: 'Authentic portfolios that build recruiter trust'
     }
   ]
@@ -51,7 +50,6 @@ export function SuccessMetrics() {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {metrics.map((metric, index) => {
-            const Icon = metric.icon
             return (
               <motion.div
                 key={index}
@@ -62,8 +60,8 @@ export function SuccessMetrics() {
                 className="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all"
               >
                 <div className="flex items-start gap-4">
-                  <div className="rounded-full bg-primary/10 p-3 flex-shrink-0">
-                    <Icon className="h-6 w-6 text-primary" />
+                  <div className="rounded-full bg-primary/10 w-10 h-10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-lg font-bold text-primary">{metric.number}</span>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">

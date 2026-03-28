@@ -8,9 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Building2, Loader2, CheckCircle, Users, TrendingUp, Target, Shield } from 'lucide-react'
-
-const benefitIcons = [Users, TrendingUp, Target, Shield]
+import { Building2, Loader2, CheckCircle } from 'lucide-react'
 
 export default function TechParkRegisterPage() {
   const t = useTranslations('auth')
@@ -82,11 +80,10 @@ export default function TechParkRegisterPage() {
 
               <div className="space-y-4 mb-8">
                 {[0, 1, 2, 3].map((i) => {
-                  const Icon = benefitIcons[i]
                   return (
                     <div key={i} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm">
-                      <div className="flex-shrink-0 p-2 bg-emerald-100 rounded-lg">
-                        <Icon className="h-5 w-5 text-emerald-600" />
+                      <div className="flex-shrink-0 w-9 h-9 bg-emerald-100 rounded-lg flex items-center justify-center">
+                        <span className="text-emerald-600 font-bold">{i + 1}</span>
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">{t(`techpark.benefits.${i}.title`)}</h3>

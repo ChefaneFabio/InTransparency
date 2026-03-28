@@ -1,28 +1,22 @@
-import { Users, Briefcase, Building2, TrendingUp } from 'lucide-react'
-
 export function SocialProof() {
   const benefits = [
     {
-      icon: Users,
-      emoji: '🎓',
+      emoji: '\uD83C\uDF93',
       label: 'Students Welcome',
       description: 'All features free - no paywalls ever'
     },
     {
-      icon: Briefcase,
-      emoji: '🚀',
+      emoji: '\uD83D\uDE80',
       label: 'Early Access',
       description: 'Join before public launch in 2025'
     },
     {
-      icon: Building2,
-      emoji: '🤝',
+      emoji: '\uD83E\uDD1D',
       label: 'Build Together',
       description: 'Shape the platform with your feedback'
     },
     {
-      icon: TrendingUp,
-      emoji: '✨',
+      emoji: '\u2728',
       label: 'Be First',
       description: 'Get ahead of the competition'
     }
@@ -45,7 +39,6 @@ export function SocialProof() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {benefits.map((benefit, index) => {
-            const Icon = benefit.icon
             return (
               <div key={index} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex flex-col items-center text-center">
@@ -68,17 +61,17 @@ export function SocialProof() {
         <div className="mt-16 bg-white rounded-2xl p-8 shadow-sm">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-3xl mb-2">💼</div>
+              <div className="text-3xl mb-2">\uD83D\uDCBC</div>
               <div className="text-lg font-bold text-primary mb-2">Portfolio First</div>
               <p className="text-sm text-gray-600">Turn academic projects into career opportunities</p>
             </div>
             <div>
-              <div className="text-3xl mb-2">🔒</div>
+              <div className="text-3xl mb-2">\uD83D\uDD12</div>
               <div className="text-lg font-bold text-primary mb-2">Verified Work</div>
               <p className="text-sm text-gray-600">University-backed project authentication</p>
             </div>
             <div>
-              <div className="text-3xl mb-2">🎯</div>
+              <div className="text-3xl mb-2">\uD83C\uDFAF</div>
               <div className="text-lg font-bold text-primary mb-2">Get Discovered</div>
               <p className="text-sm text-gray-600">Recruiters find you based on real skills</p>
             </div>
