@@ -13,21 +13,8 @@ import { BRAND_IMAGES } from '@/lib/brand-images'
 import { FAQ } from '@/components/engagement/FAQ'
 import { TypewriterText } from '@/components/engagement/TypewriterText'
 import { StickyCTA } from '@/components/engagement/StickyCTA'
-import VideoEmbed from '@/components/engagement/VideoEmbed'
 import {
-  Search,
-  FolderOpen,
-  MessageCircle,
-  ScanSearch,
-  BadgeCheck,
-  FileBarChart,
-  UserCheck,
-  LineChart,
-  Timer,
   ArrowRight,
-  CheckCircle,
-  CheckCircle2,
-  XCircle,
   Play,
 } from 'lucide-react'
 
@@ -54,21 +41,6 @@ export default function ForCompaniesPage() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const steps = [
-    { icon: Search, color: 'text-blue-600', bg: 'bg-blue-100' },
-    { icon: FolderOpen, color: 'text-emerald-600', bg: 'bg-emerald-100' },
-    { icon: MessageCircle, color: 'text-purple-600', bg: 'bg-purple-100' },
-  ]
-
-  const features = [
-    { icon: ScanSearch, color: 'text-violet-600', bg: 'bg-violet-50' },
-    { icon: BadgeCheck, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-    { icon: FileBarChart, color: 'text-blue-600', bg: 'bg-blue-50' },
-    { icon: UserCheck, color: 'text-amber-600', bg: 'bg-amber-50' },
-    { icon: Timer, color: 'text-rose-600', bg: 'bg-rose-50' },
-    { icon: LineChart, color: 'text-cyan-600', bg: 'bg-cyan-50' },
-  ]
-
   const comparisonRows = [0, 1, 2, 3] as const
 
   return (
@@ -78,11 +50,7 @@ export default function ForCompaniesPage() {
         {/* ── Hero ── */}
         <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white">
           <div className="container max-w-4xl text-center">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={stagger}
-            >
+            <motion.div initial="hidden" animate="visible" variants={stagger}>
               <motion.div variants={fadeUp} custom={0}>
                 <Badge className="mb-6 bg-blue-500/20 text-blue-200 border-blue-400/30">
                   {t('hero.badge')}
@@ -96,18 +64,10 @@ export default function ForCompaniesPage() {
                 {t('hero.title')}{' '}
                 <TypewriterText text={t('hero.titleHighlight')} speed={60} delay={800} />
               </motion.h1>
-              <motion.p
-                variants={fadeUp}
-                custom={2}
-                className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto"
-              >
+              <motion.p variants={fadeUp} custom={2} className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
                 {t('hero.subtitle')}
               </motion.p>
-              <motion.div
-                variants={fadeUp}
-                custom={3}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-              >
+              <motion.div variants={fadeUp} custom={3} className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" asChild className="bg-white text-slate-900 hover:bg-gray-100">
                   <Link href="/auth/register?role=recruiter">
                     {t('cta.primaryButton')}
@@ -122,7 +82,7 @@ export default function ForCompaniesPage() {
               </motion.div>
             </motion.div>
 
-            {/* Hero image with ken-burns effect */}
+            {/* Hero image */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -150,9 +110,9 @@ export default function ForCompaniesPage() {
           </div>
         </section>
 
-        {/* ── How It Works ── */}
+        {/* ── How It Works — text only, no icons ── */}
         <section className="py-16 bg-gray-50">
-          <div className="container max-w-5xl">
+          <div className="container max-w-4xl">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -168,8 +128,8 @@ export default function ForCompaniesPage() {
               </motion.p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              {steps.map((step, i) => (
+            <div className="grid md:grid-cols-3 gap-8">
+              {[0, 1, 2].map((i) => (
                 <motion.div
                   key={i}
                   initial="hidden"
@@ -179,24 +139,18 @@ export default function ForCompaniesPage() {
                   custom={i}
                   className="text-center"
                 >
-                  <div className={`inline-flex items-center justify-center h-16 w-16 rounded-2xl ${step.bg} mb-5`}>
-                    <step.icon className={`h-8 w-8 ${step.color}`} />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">
-                    {t(`steps.${i}.title`)}
-                  </h3>
-                  <p className="text-muted-foreground">
-                    {t(`steps.${i}.desc`)}
-                  </p>
+                  <div className="text-5xl font-bold text-primary/15 mb-3">{String(i + 1).padStart(2, '0')}</div>
+                  <h3 className="text-xl font-bold mb-2">{t(`steps.${i}.title`)}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{t(`steps.${i}.desc`)}</p>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── Key Features ── */}
+        {/* ── Key Features — typography-driven, no icon grid ── */}
         <section className="py-16">
-          <div className="container max-w-6xl">
+          <div className="container max-w-4xl">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -212,8 +166,8 @@ export default function ForCompaniesPage() {
               </motion.p>
             </motion.div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {features.map((feat, i) => (
+            <div className="grid sm:grid-cols-2 gap-x-12 gap-y-10">
+              {[0, 1, 2, 3, 4, 5].map((i) => (
                 <motion.div
                   key={i}
                   initial="hidden"
@@ -222,78 +176,15 @@ export default function ForCompaniesPage() {
                   variants={fadeUp}
                   custom={i}
                 >
-                  <Card className="h-full hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className={`inline-flex items-center justify-center h-12 w-12 rounded-xl ${feat.bg} mb-4`}>
-                        <feat.icon className={`h-6 w-6 ${feat.color}`} />
-                      </div>
-                      <h3 className="text-lg font-bold mb-2">
-                        {t(`features.${i}.title`)}
-                      </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {t(`features.${i}.desc`)}
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <h3 className="text-base font-bold mb-1">{t(`features.${i}.title`)}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{t(`features.${i}.desc`)}</p>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── See the Platform ── */}
-        <section className="py-16 bg-slate-900 text-white">
-          <div className="container max-w-6xl">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-80px' }}
-              variants={stagger}
-            >
-              <motion.div variants={fadeUp} custom={0} className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  {t('demo.title')}
-                </h2>
-                <p className="text-slate-400 max-w-xl mx-auto">
-                  {t('demo.subtitle')}
-                </p>
-              </motion.div>
-
-              <div className="grid gap-10 lg:grid-cols-2 items-center">
-                <motion.div variants={fadeUp} custom={1}>
-                  <VideoEmbed
-                    thumbnailSrc={BRAND_IMAGES.forCompanies.hero}
-                    title={t('demo.title')}
-                    description={t('demo.subtitle')}
-                    onClick={() => { window.location.href = '/demo/ai-search' }}
-                  />
-                </motion.div>
-
-                <motion.div variants={fadeUp} custom={2} className="space-y-6">
-                  {[0, 1, 2].map((i) => (
-                    <div key={i} className="flex items-start gap-4">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/20">
-                        <CheckCircle2 className="h-5 w-5 text-blue-400" />
-                      </div>
-                      <p className="text-base text-slate-300">
-                        {t(`demo.bullet${i + 1}`)}
-                      </p>
-                    </div>
-                  ))}
-
-                  <Link href="/demo/ai-search">
-                    <Button size="lg" className="mt-4 gap-2 rounded-full bg-white px-8 text-base text-slate-900 hover:bg-slate-100">
-                      {t('demo.cta')}
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ── Comparison ── */}
+        {/* ── Comparison — clean, no icons ── */}
         <section className="py-16 bg-gray-50">
           <div className="container max-w-3xl">
             <motion.div
@@ -326,13 +217,11 @@ export default function ForCompaniesPage() {
                 </div>
                 {comparisonRows.map((row) => (
                   <div key={row} className="grid grid-cols-2 border-b last:border-b-0">
-                    <div className="p-3 sm:p-4 flex items-start gap-2 border-r text-xs sm:text-sm text-muted-foreground">
-                      <XCircle className="h-4 w-4 text-red-400 shrink-0 mt-0.5" />
-                      <span className="break-words">{t(`comparison.rows.${row}.before`)}</span>
+                    <div className="p-3 sm:p-4 border-r text-xs sm:text-sm text-muted-foreground line-through decoration-red-300">
+                      {t(`comparison.rows.${row}.before`)}
                     </div>
-                    <div className="p-3 sm:p-4 flex items-start gap-2 text-xs sm:text-sm font-medium">
-                      <CheckCircle className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                      <span className="break-words">{t(`comparison.rows.${row}.after`)}</span>
+                    <div className="p-3 sm:p-4 text-xs sm:text-sm font-medium text-emerald-700">
+                      {t(`comparison.rows.${row}.after`)}
                     </div>
                   </div>
                 ))}
@@ -343,7 +232,7 @@ export default function ForCompaniesPage() {
 
         {/* ── FAQ ── */}
         <section className="py-16">
-          <div className="container max-w-5xl">
+          <div className="container max-w-3xl">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -354,25 +243,14 @@ export default function ForCompaniesPage() {
               <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-4xl font-bold mb-4">
                 {t('faq.title')}
               </motion.h2>
-              <motion.p variants={fadeUp} custom={1} className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {t('faq.subtitle')}
-              </motion.p>
             </motion.div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
-              variants={fadeUp}
-              custom={2}
-            >
-              <FAQ
-                items={Array.from({ length: 5 }, (_, i) => ({
-                  question: t(`faq.items.${i}.question`),
-                  answer: t(`faq.items.${i}.answer`),
-                }))}
-              />
-            </motion.div>
+            <FAQ
+              items={Array.from({ length: 5 }, (_, i) => ({
+                question: t(`faq.items.${i}.question`),
+                answer: t(`faq.items.${i}.answer`),
+              }))}
+            />
           </div>
         </section>
 
@@ -385,25 +263,13 @@ export default function ForCompaniesPage() {
               viewport={{ once: true, margin: '-80px' }}
               variants={stagger}
             >
-              <motion.h2
-                variants={fadeUp}
-                custom={0}
-                className="text-3xl md:text-4xl font-bold mb-4"
-              >
+              <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-4xl font-bold mb-4">
                 {t('cta.title')}
               </motion.h2>
-              <motion.p
-                variants={fadeUp}
-                custom={1}
-                className="text-lg text-blue-100 mb-10 max-w-xl mx-auto"
-              >
+              <motion.p variants={fadeUp} custom={1} className="text-lg text-blue-100 mb-10 max-w-xl mx-auto">
                 {t('cta.subtitle')}
               </motion.p>
-              <motion.div
-                variants={fadeUp}
-                custom={2}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-              >
+              <motion.div variants={fadeUp} custom={2} className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" asChild className="bg-white text-slate-900 hover:bg-gray-100">
                   <Link href="/auth/register?role=recruiter">
                     {t('cta.primaryButton')}
@@ -421,7 +287,7 @@ export default function ForCompaniesPage() {
         </section>
       </main>
       <Footer />
-      <StickyCTA show={showSticky} text={t('cta.primaryButton')} href="/auth/register" />
+      <StickyCTA show={showSticky} text={t('cta.primaryButton')} href="/auth/register?role=recruiter" />
     </div>
   )
 }
