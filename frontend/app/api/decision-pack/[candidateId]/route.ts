@@ -9,9 +9,10 @@ import prisma from '@/lib/prisma'
  */
 export async function GET(
   _request: NextRequest,
-  { params }: { params: { candidateId: string } }
+  { params }: { params: Promise<{ candidateId: string }> }
 ) {
   try {
+    const { candidateId } = await params
     const session = await getServerSession(authOptions)
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -19,8 +20,6 @@ export async function GET(
     if (session.user.role !== 'RECRUITER' && session.user.role !== 'ADMIN') {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
-
-    const { candidateId } = params
 
     // Fetch candidate profile
     const candidate = await prisma.user.findUnique({
