@@ -1,40 +1,38 @@
-import { Brain, Target, FileText, BarChart3, MessageSquare, Shield } from 'lucide-react'
-
 const features = [
   {
     name: 'AI-Powered Analysis',
     description: 'Advanced AI analyzes your projects to identify strengths, complexity levels, and improvement opportunities.',
-    icon: Brain,
+    number: '01',
     benefits: ['Smart project scoring', 'Skill assessment', 'Innovation metrics']
   },
   {
     name: 'Intelligent Matching',
     description: 'Connect with the right opportunities and people based on your skills, interests, and career goals.',
-    icon: Target,
+    number: '02',
     benefits: ['Relevant job matches', 'Collaboration opportunities', 'Mentor connections']
   },
   {
     name: 'Professional Stories',
     description: 'Transform your projects into compelling narratives that showcase your abilities to recruiters.',
-    icon: FileText,
+    number: '03',
     benefits: ['Automated storytelling', 'Multiple formats', 'Impact-focused']
   },
   {
     name: 'Advanced Analytics',
     description: 'Track your progress, engagement, and career growth with comprehensive analytics and insights.',
-    icon: BarChart3,
+    number: '04',
     benefits: ['Performance metrics', 'Engagement tracking', 'Growth insights']
   },
   {
     name: 'Seamless Communication',
     description: 'Built-in messaging, video calls, and collaboration tools to connect with your network.',
-    icon: MessageSquare,
+    number: '05',
     benefits: ['Direct messaging', 'Video interviews', 'Real-time notifications']
   },
   {
     name: 'Enterprise Security',
     description: 'Bank-level security with data encryption, privacy controls, and GDPR compliance.',
-    icon: Shield,
+    number: '06',
     benefits: ['Data encryption', 'Privacy controls', 'Compliance ready']
   }
 ]
@@ -54,15 +52,13 @@ export function Features() {
         </div>
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {(features || []).map((feature) => {
-            const Icon = feature.icon
-            return (
+          {(features || []).map((feature) => (
               <div
                 key={feature.name}
                 className="bg-card rounded-xl shadow-sm border border-border p-8 hover:shadow-md transition-shadow duration-300"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mb-6">
-                  <Icon className="h-7 w-7 text-primary" />
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mb-6 text-primary font-bold text-xl">
+                  {feature.number}
                 </div>
 
                 <h3 className="text-xl font-semibold text-foreground mb-4">
@@ -82,8 +78,7 @@ export function Features() {
                   ))}
                 </ul>
               </div>
-            )
-          })}
+          ))}
         </div>
 
         <div className="mt-16 text-center">

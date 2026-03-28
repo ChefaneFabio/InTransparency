@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { FileX2, Code2, TrendingUp, Users, BadgeCheck, Rocket, Target, Heart, CheckCircle } from 'lucide-react'
+import { FileX2, BadgeCheck, CheckCircle } from 'lucide-react'
 import { Link } from '@/navigation'
 import Image from 'next/image'
 import { IMAGES } from '@/lib/images'
@@ -503,9 +503,9 @@ export default function AboutPage() {
 
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               {[
-                { icon: <Rocket className="h-8 w-8 text-primary" />, label: t('vision.stats.0.label'), sublabel: t('vision.stats.0.sublabel') },
-                { icon: <Target className="h-8 w-8 text-primary" />, label: t('vision.stats.1.label'), sublabel: t('vision.stats.1.sublabel') },
-                { icon: <Users className="h-8 w-8 text-primary" />, label: t('vision.stats.2.label'), sublabel: t('vision.stats.2.sublabel') }
+                { label: t('vision.stats.0.label'), sublabel: t('vision.stats.0.sublabel') },
+                { label: t('vision.stats.1.label'), sublabel: t('vision.stats.1.sublabel') },
+                { label: t('vision.stats.2.label'), sublabel: t('vision.stats.2.sublabel') }
               ].map((stat, idx) => (
                 <motion.div
                   key={idx}
@@ -515,7 +515,6 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className="text-center"
                 >
-                  <div className="flex justify-center mb-4">{stat.icon}</div>
                   <div className="text-lg font-semibold text-foreground mb-1">{stat.label}</div>
                   <div className="text-sm text-foreground/80">{stat.sublabel}</div>
                 </motion.div>
@@ -531,7 +530,6 @@ export default function AboutPage() {
             >
             <Card className="bg-primary/5 border-primary/20 hover:shadow-lg transition-shadow">
               <CardContent className="p-8 text-center">
-                <Heart className="h-12 w-12 text-primary mx-auto mb-4" />
                 <h3 className="text-2xl font-display font-bold text-foreground mb-4">
                   {t('vision.cta.title')}
                 </h3>

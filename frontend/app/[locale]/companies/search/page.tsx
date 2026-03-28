@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import { Slider } from '@/components/ui/slider'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Search, Filter, GraduationCap, Award, Code, BookOpen, MapPin, Building2, Calendar, ChevronRight, Sparkles, TrendingUp } from 'lucide-react'
+import { Search, Filter, GraduationCap, Award, Code, BookOpen, Building2, Calendar, ChevronRight, Sparkles } from 'lucide-react'
 
 interface StudentCandidate {
   id: string

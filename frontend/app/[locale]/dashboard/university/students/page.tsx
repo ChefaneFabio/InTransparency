@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Link } from '@/navigation'
-import { Search, Download, UserPlus, GraduationCap, CheckCircle, Globe, TrendingUp, BarChart3, Database } from 'lucide-react'
+import { Search, Download, UserPlus, GraduationCap, CheckCircle, Globe, TrendingUp, Database } from 'lucide-react'
 
 interface Student {
   id: string

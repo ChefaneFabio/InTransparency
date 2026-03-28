@@ -6,7 +6,6 @@ import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Check, Award, Brain, Users, TrendingUp, Shield, Clock, Star, Sparkles, Target, CheckCircle2 } from 'lucide-react'
 import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
@@ -28,22 +27,22 @@ export default function CertificationPage() {
 
   const softSkills = [
     {
-      icon: Brain,
+      number: '01',
       title: 'Problem Solving',
       description: 'Critical thinking and analytical abilities'
     },
     {
-      icon: Users,
+      number: '02',
       title: 'Teamwork',
       description: 'Collaboration and interpersonal skills'
     },
     {
-      icon: TrendingUp,
+      number: '03',
       title: 'Leadership',
       description: 'Initiative and decision-making capacity'
     },
     {
-      icon: Target,
+      number: '04',
       title: 'Adaptability',
       description: 'Flexibility and resilience under pressure'
     }
@@ -121,7 +120,6 @@ export default function CertificationPage() {
             className="text-center mb-16"
           >
             <Badge className="mb-4 bg-primary text-white text-sm px-6 py-2 border-0">
-              <Sparkles className="inline h-4 w-4 mr-2" />
               NEW: Soft Skills Certification
             </Badge>
 
@@ -143,7 +141,6 @@ export default function CertificationPage() {
                 onClick={handleGetCertified}
                 className="bg-primary hover:bg-primary/90 text-white shadow-lg text-lg px-8 py-6"
               >
-                <Award className="mr-2 h-5 w-5" />
                 Get Certified — Free
               </Button>
 
@@ -172,9 +169,7 @@ export default function CertificationPage() {
             </h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {softSkills.map((skill, index) => {
-                const Icon = skill.icon
-                return (
+              {softSkills.map((skill, index) => (
                   <motion.div
                     key={skill.title}
                     initial={{ opacity: 0, y: 20 }}
@@ -184,18 +179,15 @@ export default function CertificationPage() {
                   >
                     <Card className="h-full hover:shadow-lg transition-all duration-300 border-gray-200 bg-white/90 backdrop-blur-sm">
                       <CardContent className="p-6 text-center">
-                        <motion.div
-                          className="mx-auto mb-4 rounded-full bg-primary/10 p-4 w-16 h-16 flex items-center justify-center"
-                        >
-                          <Icon className="h-8 w-8 text-primary" />
-                        </motion.div>
+                        <div className="mx-auto mb-4 rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center text-primary font-bold text-xl">
+                          {skill.number}
+                        </div>
                         <h3 className="font-bold text-lg mb-2">{skill.title}</h3>
                         <p className="text-sm text-gray-600">{skill.description}</p>
                       </CardContent>
                     </Card>
                   </motion.div>
-                )
-              })}
+              ))}
             </div>
           </motion.div>
 
@@ -230,10 +222,8 @@ export default function CertificationPage() {
                     <CardHeader>
                       <div className="flex items-center justify-between mb-4">
                         <Badge variant="secondary" className="bg-primary/10 text-primary">
-                          <Clock className="h-3 w-3 mr-1" />
                           {assessment.duration}
                         </Badge>
-                        <Shield className="h-6 w-6 text-primary" />
                       </div>
                       <CardTitle className="text-xl">{assessment.name}</CardTitle>
                     </CardHeader>
@@ -276,7 +266,7 @@ export default function CertificationPage() {
                         transition={{ duration: 0.4, delay: index * 0.05 }}
                         className="flex items-start"
                       >
-                        <CheckCircle2 className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
+                        <span className="text-primary mr-3 flex-shrink-0 mt-0.5 font-bold">✓</span>
                         <span className="text-gray-700">{benefit}</span>
                       </motion.li>
                     ))}
@@ -288,7 +278,6 @@ export default function CertificationPage() {
                       onClick={handleGetCertified}
                       className="bg-primary text-white shadow-lg text-lg px-8 py-6"
                     >
-                      <Award className="mr-2 h-5 w-5" />
                       Get Certified Now
                     </Button>
                     <p className="text-sm text-gray-600 mt-4">
@@ -381,7 +370,6 @@ export default function CertificationPage() {
                   onClick={handleGetCertified}
                   className="text-lg px-8 py-6"
                 >
-                  <Award className="mr-2 h-5 w-5" />
                   Get Certified — Free
                 </Button>
                 <p className="text-sm text-white mt-6">

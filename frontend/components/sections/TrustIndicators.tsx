@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Shield, GraduationCap, Building2, CheckCircle, Zap, Users } from 'lucide-react'
+import { GraduationCap, CheckCircle, Zap, Users } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 export function TrustIndicators() {
@@ -72,16 +72,13 @@ export function TrustIndicators() {
           transition={{ delay: 0.4 }}
           className="flex flex-wrap justify-center gap-3"
         >
-          <div className="flex items-center gap-2 px-4 py-2 bg-primary/5 text-primary rounded-full text-sm font-medium">
-            <CheckCircle className="h-4 w-4" />
+          <div className="px-4 py-2 bg-primary/5 text-primary rounded-full text-sm font-medium">
             {t('trustIndicators.badges.freemium')}
           </div>
-          <div className="flex items-center gap-2 px-4 py-2 bg-primary/5 text-primary rounded-full text-sm font-medium">
-            <Shield className="h-4 w-4" />
+          <div className="px-4 py-2 bg-primary/5 text-primary rounded-full text-sm font-medium">
             {t('trustIndicators.badges.gdpr')}
           </div>
-          <div className="flex items-center gap-2 px-4 py-2 bg-primary/5 text-primary rounded-full text-sm font-medium">
-            <Building2 className="h-4 w-4" />
+          <div className="px-4 py-2 bg-primary/5 text-primary rounded-full text-sm font-medium">
             {t('trustIndicators.badges.verified')}
           </div>
         </motion.div>

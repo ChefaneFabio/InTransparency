@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { MessageCircle, Gift, Clock, Users, CheckCircle2, Calendar, Video } from 'lucide-react'
+import { CheckCircle2 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 type ParticipantType = 'student' | 'recruiter' | ''
@@ -159,7 +159,6 @@ export default function InterviewRecruitmentPage() {
           >
             <div className="text-center mb-12">
               <Badge className="mb-4 bg-primary text-white text-sm px-6 py-2 border-0">
-                <MessageCircle className="inline h-4 w-4 mr-2" />
                 User Research
               </Badge>
 
@@ -177,23 +176,18 @@ export default function InterviewRecruitmentPage() {
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               {[
                 {
-                  icon: Gift,
                   title: '€25 Amazon Gift Card',
                   description: 'Compensation for your time'
                 },
                 {
-                  icon: Clock,
                   title: '30 Minutes',
                   description: 'Quick video call at your convenience'
                 },
                 {
-                  icon: Video,
                   title: 'Remote Interview',
                   description: 'Join from anywhere via Zoom/Meet'
                 }
-              ].map((benefit, index) => {
-                const Icon = benefit.icon
-                return (
+              ].map((benefit, index) => (
                   <motion.div
                     key={benefit.title}
                     initial={{ opacity: 0, y: 20 }}
@@ -202,16 +196,12 @@ export default function InterviewRecruitmentPage() {
                   >
                     <Card className="h-full text-center hover:shadow-lg transition-shadow border-gray-200">
                       <CardContent className="p-6">
-                        <div className="mx-auto mb-4 rounded-full bg-primary/10 p-4 w-16 h-16 flex items-center justify-center">
-                          <Icon className="h-8 w-8 text-primary" />
-                        </div>
                         <h3 className="font-bold text-lg mb-2">{benefit.title}</h3>
                         <p className="text-sm text-gray-600">{benefit.description}</p>
                       </CardContent>
                     </Card>
                   </motion.div>
-                )
-              })}
+              ))}
             </div>
 
             {/* Participant Type Selection */}
@@ -234,7 +224,6 @@ export default function InterviewRecruitmentPage() {
                         className="h-auto py-8 flex flex-col items-center gap-4 hover:border-blue-500 hover:bg-primary/5"
                         onClick={() => setParticipantType('student')}
                       >
-                        <Users className="h-12 w-12 text-primary" />
                         <div>
                           <div className="font-bold text-lg mb-2">I'm a Student</div>
                           <div className="text-sm text-gray-600">
@@ -249,7 +238,6 @@ export default function InterviewRecruitmentPage() {
                         className="h-auto py-8 flex flex-col items-center gap-4 hover:border-purple-500 hover:bg-primary/5"
                         onClick={() => setParticipantType('recruiter')}
                       >
-                        <Users className="h-12 w-12 text-primary" />
                         <div>
                           <div className="font-bold text-lg mb-2">I'm a Recruiter</div>
                           <div className="text-sm text-gray-600">
@@ -427,7 +415,6 @@ export default function InterviewRecruitmentPage() {
 
                       <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
                         <div className="flex items-start">
-                          <Gift className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
                           <div>
                             <p className="font-semibold text-green-900">Your Reward</p>
                             <p className="text-sm text-green-700 mt-1">

@@ -1,6 +1,6 @@
 'use client'
 
-import { Shield, Globe, GraduationCap, CheckCircle, XCircle, Linkedin, Github, FileText } from 'lucide-react'
+import { CheckCircle, XCircle } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 export function CompetitiveAdvantage() {
@@ -25,9 +25,6 @@ export function CompetitiveAdvantage() {
           <div className="bg-card rounded-2xl shadow-lg p-8 border-2 border-border hover:border-primary transition-all">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-primary/10 rounded-lg">
-                  <Linkedin className="text-primary" size={28} />
-                </div>
                 <h3 className="text-xl font-bold text-foreground">{t('linkedin.title')}</h3>
               </div>
               <div className="text-4xl">🤝</div>
@@ -68,10 +65,9 @@ export function CompetitiveAdvantage() {
             </div>
 
             <div className="mt-6 pt-6 border-t border-border">
-              <div className="flex items-center gap-2 text-primary font-semibold">
-                <Shield size={20} />
-                <span>{t('linkedin.advantage')}</span>
-              </div>
+              <p className="text-primary font-semibold">
+                {t('linkedin.advantage')}
+              </p>
             </div>
           </div>
 
@@ -79,9 +75,6 @@ export function CompetitiveAdvantage() {
           <div className="bg-card rounded-2xl shadow-lg p-8 border-2 border-border hover:border-primary transition-all">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-gray-800 rounded-lg">
-                  <Github className="text-white" size={28} />
-                </div>
                 <h3 className="text-xl font-bold text-foreground">{t('github.title')}</h3>
               </div>
               <div className="text-4xl">💻</div>
@@ -114,10 +107,9 @@ export function CompetitiveAdvantage() {
             </div>
 
             <div className="mt-6 pt-6 border-t border-border">
-              <div className="flex items-center gap-2 text-primary font-semibold">
-                <Globe size={20} />
-                <span>{t('github.advantage')}</span>
-              </div>
+              <p className="text-primary font-semibold">
+                {t('github.advantage')}
+              </p>
             </div>
           </div>
 
@@ -125,9 +117,6 @@ export function CompetitiveAdvantage() {
           <div className="bg-card rounded-2xl shadow-lg p-8 border-2 border-border hover:border-primary transition-all">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-primary/10 rounded-lg">
-                  <FileText className="text-primary" size={28} />
-                </div>
                 <h3 className="text-xl font-bold text-foreground">{t('resumes.title')}</h3>
               </div>
               <div className="text-4xl">📄</div>
@@ -160,10 +149,9 @@ export function CompetitiveAdvantage() {
             </div>
 
             <div className="mt-6 pt-6 border-t border-border">
-              <div className="flex items-center gap-2 text-primary font-semibold">
-                <GraduationCap size={20} />
-                <span>{t('resumes.advantage')}</span>
-              </div>
+              <p className="text-primary font-semibold">
+                {t('resumes.advantage')}
+              </p>
             </div>
           </div>
         </div>
@@ -182,8 +170,8 @@ export function CompetitiveAdvantage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Layer 1 */}
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                <FileText className="text-white" size={32} />
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4 text-white font-bold text-2xl">
+                1
               </div>
               <h4 className="text-xl font-bold mb-2">{t('advantage.layers.projects.title')}</h4>
               <p className="text-white">
@@ -193,8 +181,8 @@ export function CompetitiveAdvantage() {
 
             {/* Layer 2 */}
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                <GraduationCap className="text-white" size={32} />
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4 text-white font-bold text-2xl">
+                2
               </div>
               <h4 className="text-xl font-bold mb-2">{t('advantage.layers.grades.title')}</h4>
               <p className="text-white">
@@ -204,8 +192,8 @@ export function CompetitiveAdvantage() {
 
             {/* Layer 3 */}
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                <Shield className="text-white" size={32} />
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-4 text-white font-bold text-2xl">
+                3
               </div>
               <h4 className="text-xl font-bold mb-2">{t('advantage.layers.university.title')}</h4>
               <p className="text-white">
@@ -252,7 +240,6 @@ export function CompetitiveAdvantage() {
             {/* LinkedIn */}
             <div className="bg-card rounded-xl shadow-md p-6 border-2 border-border">
               <div className="flex items-center gap-2 mb-4">
-                <Linkedin className="text-primary" size={24} />
                 <h4 className="font-bold text-foreground">{t('pricing.linkedinRecruiter.title')}</h4>
               </div>
               <div className="text-3xl font-bold text-foreground mb-2">{t('pricing.linkedinRecruiter.price')}</div>
@@ -276,7 +263,6 @@ export function CompetitiveAdvantage() {
             {/* Indeed */}
             <div className="bg-card rounded-xl shadow-md p-6 border-2 border-border">
               <div className="flex items-center gap-2 mb-4">
-                <Globe className="text-blue-700" size={24} />
                 <h4 className="font-bold text-foreground">{t('pricing.jobBoards.title')}</h4>
               </div>
               <div className="text-3xl font-bold text-foreground mb-2">{t('pricing.jobBoards.price')}</div>
@@ -300,7 +286,6 @@ export function CompetitiveAdvantage() {
             {/* InTransparency */}
             <div className="bg-primary/5 rounded-xl shadow-lg p-6 border-2 border-primary/30">
               <div className="flex items-center gap-2 mb-4">
-                <Shield className="text-primary" size={24} />
                 <h4 className="font-bold text-foreground">{t('pricing.inTransparency.title')}</h4>
               </div>
               <div className="text-3xl font-bold text-primary mb-2">{t('pricing.inTransparency.price')}</div>

@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import { anthropic, AI_MODEL } from '@/lib/openai-shared'
 import prisma from '@/lib/prisma'
+import { JobType } from '@prisma/client'
 import { z } from 'zod'
 
 const importSchema = z.object({
@@ -94,7 +95,7 @@ Only output JSON, nothing else.`
     }
 
     // Create Job records
-    const typeMap: Record<string, string> = {
+    const typeMap: Record<string, JobType> = {
       'FULL_TIME': 'FULL_TIME',
       'PART_TIME': 'PART_TIME',
       'CONTRACT': 'CONTRACT',
@@ -106,12 +107,15 @@ Only output JSON, nothing else.`
     const created = []
     for (const job of jobs) {
       try {
+        const title = job.title || 'Untitled Position'
+        const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + Date.now()
         const record = await prisma.job.create({
           data: {
             recruiterId: session.user.id,
             companyName: detectedCompany,
-            title: job.title || 'Untitled Position',
-            description: job.description || `${job.title} at ${detectedCompany}`,
+            title,
+            slug,
+            description: job.description || `${title} at ${detectedCompany}`,
             jobType: typeMap[job.type] || 'FULL_TIME',
             workLocation: 'HYBRID',
             location: job.location || null,
