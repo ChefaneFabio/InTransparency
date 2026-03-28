@@ -2392,239 +2392,101 @@
   },
   "forITS": {
     "hero": {
-      "badge": "Free Marketplace • Get Your Students Hired",
-      "title": "Connect Your Graduates to",
-      "titleHighlight": "Companies Seeking Verified Skills",
-      "subtitle1": "Free three-sided marketplace connecting your ITS students to companies actively hiring. Your institutional verification gives graduates a competitive edge. Track placement success with free analytics.",
-      "subtitle2": "100% Free Forever: No setup fees, no monthly costs, no subscriptions. Zero cost vs AlmaLaurea (€2.500/anno).",
-      "stats": {
-        "0": {
-          "value": "87%",
-          "label": "Avg Placement Rate"
-        },
-        "1": {
-          "value": "Growing",
-          "label": "Student Community"
-        },
-        "2": {
-          "value": "€0",
-          "label": "Cost Forever"
-        }
-      },
-      "ctas": {
-        "primary": "Join Free Marketplace",
-        "secondary": "See How It Works"
-      }
+      "badge": "For ITS Academy Directors",
+      "title": "Give your graduates a verified advantage",
+      "subtitle": "Your institutional verification makes the difference. Connect ITS graduates to companies that value hands-on, verified technical skills — tracked from project to placement.",
+      "cta": "Schedule a Demo",
+      "secondaryCta": "See University Features"
     },
     "benefits": {
-      "title": "How the Marketplace Helps Your ITS",
-      "cards": {
-        "0": {
-          "title": "Students Get Discovered",
-          "items": {
-            "0": "Companies search verified graduates directly",
-            "1": "Students don't apply - companies reach out",
-            "2": "Your verification badge = trust signal",
-            "3": "Verified skills help students stand out"
-          }
-        },
-        "1": {
-          "title": "AI-Powered Matching",
-          "items": {
-            "0": "Companies see \"High fit: AutoCAD verified from ITS project\"",
-            "1": "Verified skills = higher match scores",
-            "2": "Transparent AI explanations",
-            "3": "80% faster screening vs CVs"
-          }
-        },
-        "2": {
-          "title": "Track Your Impact",
-          "items": {
-            "0": "See which companies viewed your students",
-            "1": "\"47 days avg time-to-hire\"",
-            "2": "Prove 85% placement to MIUR",
-            "3": "Early intervention alerts"
-          }
-        }
+      "title": "What InTransparency does for ITS Academies",
+      "0": {
+        "title": "Verified project portfolios",
+        "description": "Students upload ITS projects with your institutional verification badge. Companies see proof, not just claims."
+      },
+      "1": {
+        "title": "Companies discover your graduates",
+        "description": "Recruiters search for verified technical skills and find your students directly. No more waiting for career fairs."
+      },
+      "2": {
+        "title": "Placement tracking for MIUR",
+        "description": "See which companies contact, interview, and hire your graduates. Export data for ministry reporting."
+      },
+      "3": {
+        "title": "Cross-border grade normalization",
+        "description": "Italian ITS grades translated automatically for German, French, Dutch, and Spanish employers."
       }
     },
-    "services": {
-      "title": "Four Free Services",
-      "subtitle": "Marketplace platform with verification quality layer - all free forever",
-      "discovery": {
-        "badge": "PRIMARY SERVICE",
-        "title": "Discovery Service",
-        "priceBadge": "Browse FREE, Free access",
-        "subtitle": "Reverse Recruitment",
-        "items": {
-          "0": "Companies search verified ITS talent pool",
-          "1": "Students visible without applying",
-          "2": "Your verification badge = quality signal",
-          "3": "Companies contact you directly through the platform"
-        },
-        "comparison": "vs LinkedIn: No verification = lower trust"
+    "cta": {
+      "title": "Want to pilot with your ITS?",
+      "subtitle": "We're expanding beyond universities. Schedule a call to explore how InTransparency fits your ITS Academy.",
+      "button": "Schedule a Call"
+    }
+  },
+  "forHighSchools": {
+    "hero": {
+      "badge": "For High School Orientation Coordinators",
+      "title": "Help students discover their path before university",
+      "subtitle": "Give your students a verified portfolio of projects and competencies that follows them into university or directly into the job market.",
+      "cta": "Schedule a Demo",
+      "secondaryCta": "See University Features"
+    },
+    "benefits": {
+      "title": "What InTransparency does for high schools",
+      "0": {
+        "title": "Student project portfolios",
+        "description": "Students document PCTO experiences, school projects, and extracurriculars in a verified digital portfolio."
       },
-      "matching": {
-        "badge": "PRIMARY SERVICE",
-        "title": "Matching Service",
-        "priceBadge": "FREE for Students",
-        "subtitle": "Transparent AI Matching",
-        "items": {
-          "0": "\"High fit: AutoCAD verified from ITS project\"",
-          "1": "Verified skills = higher match scores",
-          "2": "Companies see your institutional endorsement",
-          "3": "Verification builds trust with employers"
-        },
-        "comparison": "vs Resume screening: 80% faster"
+      "1": {
+        "title": "Orientation with real data",
+        "description": "See which skills lead to which university paths and career outcomes. Guide students with evidence, not guesswork."
       },
-      "verification": {
-        "badge": "Quality Layer",
-        "title": "Verification Service",
-        "subtitle": "Enables Marketplace Trust",
-        "items": {
-          "0": "Manual or API verification",
-          "1": "You verify projects/grades",
-          "2": "\"Verified by ITS G. Natta, 28/30\"",
-          "3": "Batch approve 50 in 1 hour"
-        }
+      "2": {
+        "title": "PCTO tracking and reporting",
+        "description": "Track alternanza scuola-lavoro experiences from placement through completion. Exportable reports for ministry compliance."
       },
-      "analytics": {
-        "badge": "Track Impact",
-        "title": "Analytics Service",
-        "subtitle": "Measure Placement Success",
-        "items": {
-          "0": "\"Siemens viewed 23 ITS students\"",
-          "1": "\"PLC skills searched 76x\"",
-          "2": "Export reports for MIUR",
-          "3": "Early intervention alerts"
-        }
+      "3": {
+        "title": "University-ready profiles",
+        "description": "When your students move to university, their verified portfolio transfers with them — giving them a head start."
       }
     },
-    "focusAreas": {
-      "title": "All ITS Areas Supported",
-      "subtitle": "From mechatronics to biotech - companies actively hiring ITS graduates",
-      "areaDetails": {
-        "placement": "Placement",
-        "skillsTitle": "Verified Skills Companies Seek:",
-        "companiesTitle": "Companies Hiring:",
-        "searchVolume": "company searches/month for skills in this area"
+    "cta": {
+      "title": "Interested in a pilot?",
+      "subtitle": "We're exploring partnerships with forward-thinking high schools. Let's talk about what would work for your students.",
+      "button": "Get in Touch"
+    }
+  },
+  "forTechparks": {
+    "hero": {
+      "badge": "For Innovation Hub Managers",
+      "title": "Connect your ecosystem's talent to opportunity",
+      "subtitle": "Match startups and companies in your tech park with verified graduates from partner universities. Track talent flow across your innovation ecosystem.",
+      "cta": "Explore Partnership",
+      "secondaryCta": "See Company Features"
+    },
+    "benefits": {
+      "title": "What InTransparency does for tech parks",
+      "0": {
+        "title": "Talent pipeline for resident companies",
+        "description": "Your startups and scale-ups get access to verified graduates from partner universities — pre-screened with real project data."
       },
-      "howStudentsHired": {
-        "title": "How Students Get Hired",
-        "steps": {
-          "0": {
-            "title": "1. Student Uploads ITS Project",
-            "subtitle": "Project on {skill}, grade 28/30"
-          },
-          "1": {
-            "title": "2. Your ITS Verifies",
-            "subtitle": "Badge: \"Verified by {area} ITS\""
-          },
-          "2": {
-            "title": "3. Companies Discover",
-            "subtitle": "Siemens searches \"{skill}\" → finds student"
-          },
-          "3": {
-            "title": "4. Student Gets Hired",
-            "subtitle": "Company contacts you → Interview → Hired"
-          }
-        }
+      "1": {
+        "title": "Ecosystem analytics",
+        "description": "See hiring patterns, skill demand, and talent flow across your innovation district. Prove your ecosystem's impact with data."
+      },
+      "2": {
+        "title": "University partnership bridge",
+        "description": "Connect your tech park companies directly with university career services. One platform, shared talent pool."
+      },
+      "3": {
+        "title": "Event and career day tools",
+        "description": "Run talent matching events with verified profiles. Companies meet pre-qualified candidates, not random attendees."
       }
     },
-    "whyChoose": {
-      "title": "Why ITS Choose InTransparency",
-      "cards": {
-        "0": {
-          "title": "Better Placement Outcomes",
-          "items": {
-            "0": "Verified students get discovered by employers",
-            "1": "Companies proactively reach out",
-            "2": "47 days avg time-to-hire",
-            "3": "Verified skills = competitive edge"
-          }
-        },
-        "1": {
-          "title": "100% Free Forever",
-          "items": {
-            "0": "Zero setup or monthly costs",
-            "1": "vs AlmaLaurea €2.500/anno saved",
-            "2": "Companies pay, not institutions",
-            "3": "All 4 services included"
-          }
-        },
-        "2": {
-          "title": "Track Impact for MIUR",
-          "items": {
-            "0": "Prove 85% placement with data",
-            "1": "See which companies hiring your grads",
-            "2": "Export reports for funding",
-            "3": "Early intervention alerts"
-          }
-        }
-      }
-    },
-    "getStarted": {
-      "title": "Get Started in 3 Steps",
-      "steps": {
-        "0": {
-          "title": "Register ITS",
-          "description": "Create free account → Email .edu verified → Dashboard active in 5 minutes"
-        },
-        "1": {
-          "title": "Students Upload Projects",
-          "description": "Students join free → Upload ITS projects → You verify with your institutional badge"
-        },
-        "2": {
-          "title": "Track Placements",
-          "description": "Companies discover students → Analytics: \"23 students contacted\" → Track hiring success"
-        }
-      },
-      "cta": "Join Free Marketplace Now",
-      "benefits": "✓ Setup 5 min  ✓ €0 forever  ✓ Companies discover talent  ✓ Track placements"
-    },
-    "examples": {
-      "title": "ITS That Could Benefit",
-      "subtitle": "Examples of ITS that would increase student placement through verified marketplace",
-      "studentsLabel": "students",
-      "skillsLabel": "Skills Companies Seek:"
-    },
-    "faq": {
-      "title": "Frequently Asked Questions",
-      "questions": {
-        "0": {
-          "question": "How does the marketplace help our students?",
-          "answer": "Companies browse verified graduates and proactively reach out to students with matching skills. Students don't apply - they get discovered. Your institutional verification gives them a competitive edge in the job market."
-        },
-        "1": {
-          "question": "Is it really free forever?",
-          "answer": "Yes, 100% free. All 4 services (Discovery, Matching, Verification, Analytics) included. Companies pay free during launch - this finances the platform. You save €2.500/year vs AlmaLaurea."
-        },
-        "2": {
-          "question": "How does verification work?",
-          "answer": "Students manually upload projects and you verify them through our simple dashboard. For larger institutions, we can set up API integration (contact us for details). Zero IT work for you after setup."
-        },
-        "3": {
-          "question": "Can we add Career Day tools?",
-          "answer": "Yes! Optional Premium Embed add-on (€500/year) includes Career Day platform with QR codes, interview booking, and branded widgets. But core marketplace is always free. See pricing page for details."
-        },
-        "4": {
-          "question": "How do we track placement for MIUR reporting?",
-          "answer": "Free analytics dashboard shows: \"47 days avg time-to-hire\", \"23 students hired via platform\", \"85% placement boost\". Export reports for MIUR with verifiable data."
-        },
-        "5": {
-          "question": "What if students don't get discovered?",
-          "answer": "Analytics show you early warnings: \"Student X: 0 views in 30 days - skills mismatch?\" You can intervene early, update skills/projects, or offer career counseling. Prevention vs reaction."
-        }
-      }
-    },
-    "finalCTA": {
-      "title": "Ready to Get Your ITS Students Hired?",
-      "subtitle": "Join the free marketplace connecting verified ITS graduates to companies actively hiring. Setup in 5 minutes. Zero costs. Track placement success.",
-      "ctas": {
-        "primary": "Join Free Marketplace",
-        "secondary": "See Pricing & Add-ons"
-      },
-      "benefits": "✓ €0 forever  ✓ Companies connected  ✓ 87% avg placement  ✓ Track impact for MIUR"
+    "cta": {
+      "title": "Let's explore a partnership",
+      "subtitle": "We're building relationships with innovation hubs across Italy and Europe. Tell us about your ecosystem.",
+      "button": "Start a Conversation"
     }
   },
   "demoAISearch": {

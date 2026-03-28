@@ -296,10 +296,10 @@
         "students": {
           "headline1": "Scopri in Cosa Sei Bravo.",
           "headline2": "Poi Dimostralo.",
-          "subheadline": "Carica i tuoi progetti. La tua universit\u00e0 li verifica. Le tue competenze diventano visibili alle persone giuste. Niente CV da riscrivere — solo prove.",
+          "subheadline": "Carica i tuoi progetti. La tua università li verifica. Le tue competenze diventano visibili alle persone giuste. Niente CV da riscrivere — solo prove.",
           "cta": "Costruisci il Tuo Portfolio",
           "benefits": [
-            "La tua universit\u00e0 verifica il tuo lavoro",
+            "La tua università verifica il tuo lavoro",
             "Competenze mappate automaticamente dai tuoi progetti",
             "Fatti scoprire senza inviare candidature"
           ]
@@ -318,7 +318,7 @@
         "companies": {
           "headline1": "Un'Assunzione Sbagliata Costa.",
           "headline2": "Ti Aiutiamo a Scegliere Bene.",
-          "subheadline": "Gli studenti caricano progetti reali. Le universit\u00e0 verificano il lavoro. Tu vedi competenze provate prima ancora di fare un'offerta — in ogni disciplina.",
+          "subheadline": "Gli studenti caricano progetti reali. Le università verificano il lavoro. Tu vedi competenze provate prima ancora di fare un'offerta — in ogni disciplina.",
           "cta": "Inizia a Trovare Talenti",
           "benefits": [
             "Progetti verificati, non CV autocertificati",
@@ -2432,239 +2432,35 @@
   },
   "forITS": {
     "hero": {
-      "badge": "Marketplace Gratuito • Fai Assumere i Tuoi Studenti",
-      "title": "Connetti i Tuoi Diplomati a",
-      "titleHighlight": "Aziende che Cercano Competenze Verificate",
-      "subtitle1": "Marketplace gratuito a tre lati che connette i tuoi studenti ITS ad aziende che assumono attivamente. La tua verifica istituzionale dà ai diplomati un vantaggio competitivo. Monitora il successo di placement con analytics gratuiti.",
-      "subtitle2": "100% Gratis per Sempre: Nessun costo di setup, nessun costo mensile, nessun abbonamento. Zero costi vs AlmaLaurea (€2.500/anno).",
-      "stats": {
-        "0": {
-          "value": "87%",
-          "label": "Tasso Medio di Placement"
-        },
-        "1": {
-          "value": "In crescita",
-          "label": "Comunità Studenti"
-        },
-        "2": {
-          "value": "€0",
-          "label": "Costo per Sempre"
-        }
-      },
-      "ctas": {
-        "primary": "Unisciti al Marketplace Gratuito",
-        "secondary": "Vedi Come Funziona"
-      }
+      "badge": "Per Direttori ITS Academy",
+      "title": "Dai ai tuoi diplomati un vantaggio verificato",
+      "subtitle": "La tua verifica istituzionale fa la differenza. Connetti i diplomati ITS alle aziende che valorizzano competenze tecniche verificate e pratiche — dal progetto al placement.",
+      "cta": "Prenota una Demo",
+      "secondaryCta": "Funzionalità Università"
     },
     "benefits": {
-      "title": "Come il Marketplace Aiuta il Tuo ITS",
-      "cards": {
-        "0": {
-          "title": "Gli Studenti Vengono Scoperti",
-          "items": {
-            "0": "Le aziende cercano direttamente i diplomati verificati",
-            "1": "Gli studenti non si candidano - le aziende li contattano",
-            "2": "Il tuo badge di verifica = segnale di fiducia",
-            "3": "Le competenze verificate aiutano gli studenti a distinguersi"
-          }
-        },
-        "1": {
-          "title": "Matching Potenziato da AI",
-          "items": {
-            "0": "Aziende vedono \"Alta compatibilità: AutoCAD verificato da progetto ITS\"",
-            "1": "Competenze verificate = punteggi di match più alti",
-            "2": "Spiegazioni AI trasparenti",
-            "3": "80% più veloce dello screening CV"
-          }
-        },
-        "2": {
-          "title": "Monitora il Tuo Impatto",
-          "items": {
-            "0": "Vedi quali aziende hanno visualizzato i tuoi studenti",
-            "1": "\"47 giorni tempo medio per assunzione\"",
-            "2": "Dimostra 85% placement al MIUR",
-            "3": "Alert per intervento precoce"
-          }
-        }
+      "title": "Cosa fa InTransparency per gli ITS",
+      "0": {
+        "title": "Portfolio progetti verificati",
+        "description": "Gli studenti caricano i progetti ITS con il badge di verifica istituzionale. Le aziende vedono prove concrete, non solo dichiarazioni."
+      },
+      "1": {
+        "title": "Le aziende scoprono i tuoi diplomati",
+        "description": "I recruiter cercano competenze tecniche verificate e trovano i tuoi studenti direttamente. Niente più attese per le fiere del lavoro."
+      },
+      "2": {
+        "title": "Monitoraggio placement per il MIUR",
+        "description": "Vedi quali aziende contattano, intervistano e assumono i tuoi diplomati. Esporta dati per i report ministeriali."
+      },
+      "3": {
+        "title": "Normalizzazione voti transfrontaliera",
+        "description": "I voti ITS italiani tradotti automaticamente per datori di lavoro tedeschi, francesi, olandesi e spagnoli."
       }
     },
-    "services": {
-      "title": "Quattro Servizi Gratuiti",
-      "subtitle": "Piattaforma marketplace con livello di qualità di verifica - tutto gratis per sempre",
-      "discovery": {
-        "badge": "SERVIZIO PRIMARIO",
-        "title": "Servizio Scoperta",
-        "priceBadge": "Sfoglia GRATIS, Accesso gratuito",
-        "subtitle": "Reclutamento Inverso",
-        "items": {
-          "0": "Aziende cercano tra talenti ITS verificati",
-          "1": "Studenti visibili senza candidarsi",
-          "2": "Il tuo badge di verifica = segnale di qualità",
-          "3": "Le aziende ti contattano direttamente dalla piattaforma"
-        },
-        "comparison": "vs LinkedIn: Nessuna verifica = minor fiducia"
-      },
-      "matching": {
-        "badge": "SERVIZIO PRIMARIO",
-        "title": "Servizio Matching",
-        "priceBadge": "GRATIS per Studenti",
-        "subtitle": "Matching AI Trasparente",
-        "items": {
-          "0": "\"Alta compatibilità: AutoCAD verificato da progetto ITS\"",
-          "1": "Competenze verificate = punteggi match più alti",
-          "2": "Aziende vedono il tuo endorsement istituzionale",
-          "3": "La verifica costruisce fiducia con i datori di lavoro"
-        },
-        "comparison": "vs Screening CV: 80% più veloce"
-      },
-      "verification": {
-        "badge": "Livello Qualità",
-        "title": "Servizio Verifica",
-        "subtitle": "Abilita Fiducia Marketplace",
-        "items": {
-          "0": "Verifica manuale o API",
-          "1": "Tu verifichi progetti/voti",
-          "2": "\"Verificato da ITS G. Natta, 28/30\"",
-          "3": "Approva 50 in batch in 1 ora"
-        }
-      },
-      "analytics": {
-        "badge": "Monitora Impatto",
-        "title": "Servizio Analytics",
-        "subtitle": "Misura Successo Placement",
-        "items": {
-          "0": "\"Siemens ha visualizzato 23 studenti ITS\"",
-          "1": "\"Competenze PLC cercate 76 volte\"",
-          "2": "Esporta report per MIUR",
-          "3": "Alert intervento precoce"
-        }
-      }
-    },
-    "focusAreas": {
-      "title": "Tutte le Aree ITS Supportate",
-      "subtitle": "Dalla meccatronica al biotech - aziende che assumono attivamente diplomati ITS",
-      "areaDetails": {
-        "placement": "Placement",
-        "skillsTitle": "Competenze Verificate che le Aziende Cercano:",
-        "companiesTitle": "Aziende che Assumono:",
-        "searchVolume": "ricerche aziende/mese per competenze in quest'area"
-      },
-      "howStudentsHired": {
-        "title": "Come gli Studenti Vengono Assunti",
-        "steps": {
-          "0": {
-            "title": "1. Studente Carica Progetto ITS",
-            "subtitle": "Progetto su {skill}, voto 28/30"
-          },
-          "1": {
-            "title": "2. Il Tuo ITS Verifica",
-            "subtitle": "Badge: \"Verificato da {area} ITS\""
-          },
-          "2": {
-            "title": "3. Aziende Scoprono",
-            "subtitle": "Siemens cerca \"{skill}\" → trova studente"
-          },
-          "3": {
-            "title": "4. Studente Viene Assunto",
-            "subtitle": "L'azienda ti contatta → Colloquio → Assunzione"
-          }
-        }
-      }
-    },
-    "whyChoose": {
-      "title": "Perché gli ITS Scelgono InTransparency",
-      "cards": {
-        "0": {
-          "title": "Migliori Risultati di Placement",
-          "items": {
-            "0": "Gli studenti verificati vengono scoperti dai datori di lavoro",
-            "1": "Aziende contattano proattivamente",
-            "2": "47 giorni tempo medio per assunzione",
-            "3": "Competenze verificate = vantaggio competitivo"
-          }
-        },
-        "1": {
-          "title": "100% Gratis per Sempre",
-          "items": {
-            "0": "Zero costi di setup o mensili",
-            "1": "vs AlmaLaurea €2.500/anno risparmiati",
-            "2": "Pagano le aziende, non le istituzioni",
-            "3": "Tutti i 4 servizi inclusi"
-          }
-        },
-        "2": {
-          "title": "Monitora Impatto per MIUR",
-          "items": {
-            "0": "Dimostra 85% placement con dati",
-            "1": "Vedi quali aziende assumono i tuoi diplomati",
-            "2": "Esporta report per finanziamenti",
-            "3": "Alert intervento precoce"
-          }
-        }
-      }
-    },
-    "getStarted": {
-      "title": "Inizia in 3 Passaggi",
-      "steps": {
-        "0": {
-          "title": "Registra ITS",
-          "description": "Crea account gratuito → Email .edu verificata → Dashboard attiva in 5 minuti"
-        },
-        "1": {
-          "title": "Studenti Caricano Progetti",
-          "description": "Studenti si uniscono gratis → Caricano progetti ITS → Tu verifichi con il tuo badge istituzionale"
-        },
-        "2": {
-          "title": "Monitora Placement",
-          "description": "Aziende scoprono studenti → Analytics: \"23 studenti contattati\" → Monitora successo assunzioni"
-        }
-      },
-      "cta": "Unisciti al Marketplace Gratuito Ora",
-      "benefits": "✓ Setup 5 min  ✓ €0 per sempre  ✓ Aziende scoprono talenti  ✓ Monitora placement"
-    },
-    "examples": {
-      "title": "ITS che Potrebbero Beneficiare",
-      "subtitle": "Esempi di ITS che aumenterebbero il placement studentesco attraverso marketplace verificato",
-      "studentsLabel": "studenti",
-      "skillsLabel": "Competenze che le Aziende Cercano:"
-    },
-    "faq": {
-      "title": "Domande Frequenti",
-      "questions": {
-        "0": {
-          "question": "Come aiuta il marketplace i nostri studenti?",
-          "answer": "Le aziende esplorano i diplomati verificati e contattano proattivamente studenti con competenze corrispondenti. Gli studenti non si candidano - vengono scoperti. La tua verifica istituzionale dà loro un vantaggio competitivo nel mercato del lavoro."
-        },
-        "1": {
-          "question": "È davvero gratis per sempre?",
-          "answer": "Sì, 100% gratis. Tutti i 4 servizi (Scoperta, Matching, Verifica, Analytics) inclusi. Le aziende pagano gratis durante il lancio - questo finanzia la piattaforma. Risparmi €2.500/anno vs AlmaLaurea."
-        },
-        "2": {
-          "question": "Come funziona la verifica?",
-          "answer": "Gli studenti caricano manualmente i progetti e tu li verifichi tramite la nostra dashboard semplice. Per istituzioni più grandi, possiamo configurare integrazione API (contattaci per dettagli). Zero lavoro IT per te dopo il setup."
-        },
-        "3": {
-          "question": "Possiamo aggiungere strumenti Career Day?",
-          "answer": "Sì! Add-on Premium Embed opzionale (€500/anno) include piattaforma Career Day con QR code, prenotazione colloqui e widget brandizzati. Ma il marketplace core è sempre gratis. Vedi pagina prezzi per dettagli."
-        },
-        "4": {
-          "question": "Come monitoriamo il placement per report MIUR?",
-          "answer": "Dashboard analytics gratuito mostra: \"47 giorni tempo medio per assunzione\", \"23 studenti assunti via piattaforma\", \"85% boost placement\". Esporta report per MIUR con dati verificabili."
-        },
-        "5": {
-          "question": "Cosa succede se gli studenti non vengono scoperti?",
-          "answer": "Gli analytics ti mostrano alert precoci: \"Studente X: 0 visualizzazioni in 30 giorni - mismatch competenze?\". Puoi intervenire presto, aggiornare competenze/progetti, o offrire career counseling. Prevenzione vs reazione."
-        }
-      }
-    },
-    "finalCTA": {
-      "title": "Pronto a Far Assumere i Tuoi Studenti ITS?",
-      "subtitle": "Unisciti al marketplace gratuito che connette diplomati ITS verificati ad aziende che assumono attivamente. Setup in 5 minuti. Zero costi. Monitora successo placement.",
-      "ctas": {
-        "primary": "Unisciti al Marketplace Gratuito",
-        "secondary": "Vedi Prezzi & Add-on"
-      },
-      "benefits": "✓ €0 per sempre  ✓ Aziende connesse  ✓ 87% placement medio  ✓ Monitora impatto per MIUR"
+    "cta": {
+      "title": "Vuoi avviare un pilota con il tuo ITS?",
+      "subtitle": "Stiamo espandendo oltre le università. Prenota una chiamata per esplorare come InTransparency si adatta alla tua ITS Academy.",
+      "button": "Prenota una Chiamata"
     }
   },
   "demoAISearch": {
@@ -8636,6 +8432,72 @@
       "tip": "Cambia i colori sopra per abbinare il branding della tua istituzione. Il widget si aggiorna in tempo reale!",
       "copied": "Copiato!",
       "copy": "Copia"
+    }
+  },
+  "forHighSchools": {
+    "hero": {
+      "badge": "Per Coordinatori dell'Orientamento",
+      "title": "Aiuta gli studenti a scoprire il loro percorso prima dell'università",
+      "subtitle": "Dai ai tuoi studenti un portfolio verificato di progetti e competenze che li accompagna all'università o direttamente nel mondo del lavoro.",
+      "cta": "Prenota una Demo",
+      "secondaryCta": "Funzionalità Università"
+    },
+    "benefits": {
+      "title": "Cosa fa InTransparency per le scuole superiori",
+      "0": {
+        "title": "Portfolio progetti studenti",
+        "description": "Gli studenti documentano esperienze PCTO, progetti scolastici e attività extracurriculari in un portfolio digitale verificato."
+      },
+      "1": {
+        "title": "Orientamento con dati reali",
+        "description": "Vedi quali competenze portano a quali percorsi universitari e sbocchi professionali. Guida gli studenti con evidenze, non supposizioni."
+      },
+      "2": {
+        "title": "Tracciamento e reportistica PCTO",
+        "description": "Monitora le esperienze di alternanza scuola-lavoro dal placement al completamento. Report esportabili per la conformità ministeriale."
+      },
+      "3": {
+        "title": "Profili pronti per l'università",
+        "description": "Quando i tuoi studenti passano all'università, il loro portfolio verificato li segue — dandogli un vantaggio."
+      }
+    },
+    "cta": {
+      "title": "Interessati a un pilota?",
+      "subtitle": "Stiamo esplorando partnership con scuole superiori innovative. Parliamo di cosa funzionerebbe per i tuoi studenti.",
+      "button": "Contattaci"
+    }
+  },
+  "forTechparks": {
+    "hero": {
+      "badge": "Per Manager di Hub d'Innovazione",
+      "title": "Connetti il talento del tuo ecosistema alle opportunità",
+      "subtitle": "Abbina startup e aziende nel tuo tech park con laureati verificati delle università partner. Monitora il flusso di talenti nel tuo ecosistema d'innovazione.",
+      "cta": "Esplora Partnership",
+      "secondaryCta": "Funzionalità Aziende"
+    },
+    "benefits": {
+      "title": "Cosa fa InTransparency per i tech park",
+      "0": {
+        "title": "Pipeline di talenti per le aziende residenti",
+        "description": "Le tue startup e scale-up accedono a laureati verificati dalle università partner — pre-selezionati con dati di progetti reali."
+      },
+      "1": {
+        "title": "Analytics dell'ecosistema",
+        "description": "Vedi pattern di assunzione, domanda di competenze e flusso di talenti nel tuo distretto d'innovazione. Dimostra l'impatto con i dati."
+      },
+      "2": {
+        "title": "Ponte con le partnership universitarie",
+        "description": "Connetti le aziende del tech park direttamente con i servizi di carriera universitari. Una piattaforma, pool di talenti condiviso."
+      },
+      "3": {
+        "title": "Strumenti per eventi e career day",
+        "description": "Organizza eventi di talent matching con profili verificati. Le aziende incontrano candidati pre-qualificati, non partecipanti casuali."
+      }
+    },
+    "cta": {
+      "title": "Esploriamo una partnership",
+      "subtitle": "Stiamo costruendo relazioni con hub d'innovazione in Italia e in Europa. Raccontaci del tuo ecosistema.",
+      "button": "Inizia una Conversazione"
     }
   }
 }

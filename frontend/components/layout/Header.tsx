@@ -37,7 +37,9 @@ export function Header() {
       { name: t('contact'), href: '/contact' },
     ],
     institutions: [
-      { name: t('howItWorks'), href: '/for-universities' },
+      { name: t('forUniversities'), href: '/for-universities' },
+      { name: t('forITS'), href: '/for-its-institutes' },
+      { name: t('forHighSchools'), href: '/for-high-schools' },
       { name: t('pricing'), href: '/pricing' },
       { name: t('contact'), href: '/contact' },
     ],
