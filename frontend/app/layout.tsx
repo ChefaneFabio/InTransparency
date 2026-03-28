@@ -36,8 +36,11 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   themeColor: '#0891b2',
   icons: {
-    icon: '/favicon.png',
-    apple: '/logo.png',
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: '/favicon.png',
   },
   appleWebApp: {
     capable: true,

@@ -651,7 +651,7 @@
     }
   },
   "footer": {
-    "tagline": "Transform your academic projects into career opportunities with AI-powered analysis, intelligent matching, and professional storytelling.",
+    "tagline": "Transform your academic projects into career opportunities with automated analysis, intelligent matching, and professional storytelling.",
     "contact": "Contact Us",
     "product": "Product",
     "company": "Company",
@@ -672,7 +672,7 @@
     "compliance": {
       "operational": "All systems operational",
       "gdpr": "GDPR Compliant",
-      "poweredBy": "Powered by AI"
+      "poweredBy": "Smart Technology"
     },
     "copyright": "© 2025-2026 InTransparency. All rights reserved.",
     "support": "Support",
@@ -720,7 +720,7 @@
           "advancedAnalytics": "Advanced analytics & insights",
           "customUrl": "Custom portfolio URL",
           "contactRecruiters": "Contact recruiters directly",
-          "aiRecommendations": "AI-powered career recommendations",
+          "aiRecommendations": "Personalized career recommendations",
           "resumeBuilder": "Resume builder with verified projects",
           "interviewPrep": "Interview preparation tools",
           "prioritySupport": "Priority support",
@@ -736,7 +736,7 @@
         "badge": "One-Time Service",
         "features": {
           "review": "Professional portfolio design review",
-          "aiOptimized": "AI-optimized project descriptions",
+          "aiOptimized": "Optimized project descriptions",
           "linkedin": "LinkedIn profile optimization",
           "skillRecommendations": "Personalized skill recommendations",
           "coverLetters": "Cover letter templates (5 templates)",
@@ -1443,7 +1443,7 @@
         "steps": {
           "0": {
             "title": "Upload Your Projects",
-            "desc": "Share your real work — thesis, code, designs, reports. Any format. Our AI analyzes skills, complexity, and innovation automatically."
+            "desc": "Share your real work — thesis, code, designs, reports. Any format. Skills, complexity, and innovation are analyzed automatically."
           },
           "1": {
             "title": "Get Verified by Your Institution",
@@ -1481,11 +1481,11 @@
         "steps": {
           "0": {
             "title": "Search Verified Profiles",
-            "desc": "Explore student portfolios filtered by skills, institution, grades, location, and project type. AI-powered search finds the right match."
+            "desc": "Explore student portfolios filtered by skills, institution, grades, location, and project type. Smart search finds the right match."
           },
           "1": {
             "title": "Review Real Work",
-            "desc": "See actual projects, verified grades, and AI skill analysis. No self-reported CV claims — just proven competencies."
+            "desc": "See actual projects, verified grades, and skill analysis. No self-reported CV claims — just proven competencies."
           },
           "2": {
             "title": "Connect Directly",
@@ -1505,7 +1505,7 @@
             "desc": "Upload any file type — our AI does the heavy lifting, extracting skills and scoring your work.",
             "features": {
               "0": "Code, PDFs, videos, presentations accepted",
-              "1": "AI extracts hard and soft skills",
+              "1": "Extracts hard and soft skills automatically",
               "2": "Innovation and complexity scoring"
             }
           },
@@ -1571,16 +1571,16 @@
             "desc": "Every profile is backed by institutional data. Search by real skills, verified grades, and actual project work.",
             "features": {
               "0": "250+ search filters",
-              "1": "AI-powered candidate matching",
+              "1": "Intelligent candidate matching",
               "2": "Geographic and skill-based discovery"
             }
           },
           "1": {
             "title": "Evidence-Based Screening",
-            "desc": "Review actual project files, AI analysis scores, and institutional verification — before you ever reach out.",
+            "desc": "Review actual project files, analysis scores, and institutional verification — before you ever reach out.",
             "features": {
               "0": "See real projects, not just keywords",
-              "1": "AI skill and complexity scores",
+              "1": "Skill and complexity scores",
               "2": "Video portfolio previews"
             }
           },
@@ -1605,8 +1605,8 @@
           "desc": "Every skill, grade, and project is confirmed by the student's own university or school. Zero self-reported claims."
         },
         "1": {
-          "title": "AI That Reads Real Work",
-          "desc": "Our AI analyzes actual project files — code, PDFs, images — and extracts real competencies. Not keyword matching."
+          "title": "Technology That Reads Real Work",
+          "desc": "Our platform analyzes actual project files — code, PDFs, images — and extracts real competencies. Not keyword matching."
         },
         "2": {
           "title": "Built for Outcomes",
@@ -1636,14 +1636,14 @@
       "badge": "For Students — Every Discipline, Every Path",
       "title": "Discover What You're Really Good At.",
       "titleHighlight": "Then Prove It.",
-      "subtitle": "Upload your projects. Our AI maps your real skills. Your university verifies them. You get a portfolio that speaks for itself — no CV rewriting, no guessing."
+      "subtitle": "Upload your projects. Our technology maps your real skills. Your university verifies them. You get a portfolio that speaks for itself — no CV rewriting, no guessing."
     },
     "steps": {
       "title": "How It Works for You",
       "subtitle": "Three steps from project to verified portfolio.",
       "0": {
         "title": "Upload Your Projects",
-        "desc": "Thesis, code, designs, lab reports, business cases — any format, any discipline. Our AI reads your files and maps your real competencies."
+        "desc": "Thesis, code, designs, lab reports, business cases — any format, any discipline. Upload your files and your real competencies are mapped automatically."
       },
       "1": {
         "title": "Your University Verifies",
@@ -1658,8 +1658,8 @@
       "title": "What You Get",
       "subtitle": "Tools designed to help you understand your strengths and make them visible.",
       "0": {
-        "title": "AI Skill Mapping",
-        "desc": "Our AI reads your actual files — code, PDFs, presentations — and shows you the competencies you've built, even ones you didn't realize you had."
+        "title": "Automatic Skill Mapping",
+        "desc": "Your actual files — code, PDFs, presentations — are analyzed to reveal the competencies you've built, even ones you didn't realize you had."
       },
       "1": {
         "title": "Verified Portfolio",
@@ -1671,7 +1671,7 @@
       },
       "3": {
         "title": "Trust Score",
-        "desc": "Academic verification, AI analysis, and project quality build a trust score that shows the depth and credibility of your work."
+        "desc": "Academic verification, automated analysis, and project quality build a trust score that shows the depth and credibility of your work."
       },
       "4": {
         "title": "Multi-Format Upload",
@@ -1717,11 +1717,11 @@
       "subtitle": "From search to hire — based on verified evidence, not resumes.",
       "0": {
         "title": "Search Verified Profiles",
-        "desc": "Explore student portfolios filtered by skills, university, grades, location, and project type. AI-powered search finds the right match."
+        "desc": "Explore student portfolios filtered by skills, university, grades, location, and project type. Smart search finds the right match."
       },
       "1": {
         "title": "Review Real Work",
-        "desc": "See actual projects, verified grades, and AI skill analysis. No self-reported CV claims — just proven competencies you can evaluate."
+        "desc": "See actual projects, verified grades, and skill analysis. No self-reported CV claims — just proven competencies you can evaluate."
       },
       "2": {
         "title": "Connect Directly",
@@ -1732,8 +1732,8 @@
       "title": "What You Get",
       "subtitle": "Tools that help you find, evaluate, and connect with verified junior talent.",
       "0": {
-        "title": "AI-Powered Search",
-        "desc": "Find candidates by real competencies — not keywords. Our AI understands skills from actual project work, not CV buzzwords."
+        "title": "Smart Candidate Search",
+        "desc": "Find candidates by real competencies — not keywords. Skills are understood from actual project work, not CV buzzwords."
       },
       "1": {
         "title": "Verified Talent Pool",
@@ -1741,7 +1741,7 @@
       },
       "2": {
         "title": "Evidence-Based Screening",
-        "desc": "Review actual project files, AI analysis scores, and academic verification before you ever reach out."
+        "desc": "Review actual project files, analysis scores, and academic verification before you ever reach out."
       },
       "3": {
         "title": "Direct Connection",
@@ -1749,7 +1749,7 @@
       },
       "4": {
         "title": "Decision Packs",
-        "desc": "AI-generated candidate comparison reports that help you evaluate and decide between shortlisted profiles."
+        "desc": "Automated candidate comparison reports that help you evaluate and decide between shortlisted profiles."
       },
       "5": {
         "title": "Hiring Analytics",
@@ -1762,7 +1762,7 @@
       "headers": { "before": "Traditional", "after": "With InTransparency" },
       "rows": {
         "0": { "before": "Self-reported CVs", "after": "Academically verified projects" },
-        "1": { "before": "Keyword-matching algorithms", "after": "AI analysis of real work" },
+        "1": { "before": "Keyword-matching algorithms", "after": "Automated analysis of real work" },
         "2": { "before": "Weeks of screening", "after": "Browse, evaluate, connect" },
         "3": { "before": "Agency intermediaries", "after": "Direct access to candidates" }
       }
@@ -1771,7 +1771,7 @@
       "title": "Find Talent You Can Trust",
       "subtitle": "Browse verified student portfolios. See real projects, real grades, real skills. Connect directly — free during launch.",
       "primaryButton": "Start Finding Talent",
-      "secondaryButton": "Try the AI Search"
+      "secondaryButton": "Try the Smart Search"
     }
   },
   "forAcademicPartners": {
@@ -4216,10 +4216,17 @@
       "relevantCourses": "Relevant Courses:",
       "projectExperience": "Project Experience:",
       "unlockFor": "Contact Candidate",
+      "unlock": "Unlock Contact",
       "match": "Match"
+    },
+    "universityToggle": {
+      "searchStudents": "Search Students",
+      "searchCompanies": "Search Companies"
     },
     "loadMore": {
       "button": "Load More Results",
+      "showing": "Showing {current} of {total} results",
+      "registerPrompt": "Register free to see all results and connect with candidates",
       "registerMessage": "Register free to see all results and apply"
     },
     "demoTitles": {

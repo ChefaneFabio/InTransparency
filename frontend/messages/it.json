@@ -651,7 +651,7 @@
     }
   },
   "footer": {
-    "tagline": "Trasforma i tuoi progetti accademici in opportunità di carriera con analisi AI, matching intelligente e storytelling professionale.",
+    "tagline": "Trasforma i tuoi progetti accademici in opportunità di carriera con analisi automatizzata, matching intelligente e storytelling professionale.",
     "contact": "Contattaci",
     "product": "Prodotto",
     "company": "Azienda",
@@ -672,7 +672,7 @@
     "compliance": {
       "operational": "Tutti i sistemi operativi",
       "gdpr": "Conforme GDPR",
-      "poweredBy": "Powered by AI"
+      "poweredBy": "Tecnologia Intelligente"
     },
     "copyright": "© 2025-2026 InTransparency. Tutti i diritti riservati.",
     "support": "Supporto",
@@ -720,7 +720,7 @@
           "advancedAnalytics": "Analytics e insights avanzati",
           "customUrl": "URL portfolio personalizzato",
           "contactRecruiters": "Contatta recruiter direttamente",
-          "aiRecommendations": "Raccomandazioni carriera AI",
+          "aiRecommendations": "Raccomandazioni carriera personalizzate",
           "resumeBuilder": "Resume builder con progetti verificati",
           "interviewPrep": "Strumenti preparazione colloqui",
           "prioritySupport": "Supporto prioritario",
@@ -736,7 +736,7 @@
         "badge": "Servizio Una Tantum",
         "features": {
           "review": "Revisione design portfolio professionale",
-          "aiOptimized": "Descrizioni progetti ottimizzate AI",
+          "aiOptimized": "Descrizioni progetti ottimizzate",
           "linkedin": "Ottimizzazione profilo LinkedIn",
           "skillRecommendations": "Raccomandazioni competenze personalizzate",
           "coverLetters": "Template lettera presentazione (5 template)",
@@ -1483,7 +1483,7 @@
         "steps": {
           "0": {
             "title": "Carica i Tuoi Progetti",
-            "desc": "Condividi il tuo lavoro reale — tesi, codice, design, relazioni. Qualsiasi formato. La nostra AI analizza competenze, complessità e innovazione automaticamente."
+            "desc": "Condividi il tuo lavoro reale — tesi, codice, design, relazioni. Qualsiasi formato. Competenze, complessità e innovazione vengono analizzate automaticamente."
           },
           "1": {
             "title": "Fatti Verificare dalla Tua Istituzione",
@@ -1521,11 +1521,11 @@
         "steps": {
           "0": {
             "title": "Cerca Profili Verificati",
-            "desc": "Esplora portfolio studenti filtrando per competenze, istituzione, voti, posizione e tipo di progetto. La ricerca AI trova il match giusto."
+            "desc": "Esplora portfolio studenti filtrando per competenze, istituzione, voti, posizione e tipo di progetto. La ricerca intelligente trova il match giusto."
           },
           "1": {
             "title": "Rivedi Lavori Reali",
-            "desc": "Vedi progetti reali, voti verificati e analisi AI delle competenze. Nessuna auto-dichiarazione da CV — solo competenze provate."
+            "desc": "Vedi progetti reali, voti verificati e analisi delle competenze. Nessuna auto-dichiarazione da CV — solo competenze provate."
           },
           "2": {
             "title": "Connettiti Direttamente",
@@ -1545,7 +1545,7 @@
             "desc": "Carica qualsiasi tipo di file — la nostra AI fa il lavoro pesante, estraendo competenze e valutando il tuo lavoro.",
             "features": {
               "0": "Codice, PDF, video, presentazioni accettati",
-              "1": "L'AI estrae competenze hard e soft",
+              "1": "Estrae competenze hard e soft automaticamente",
               "2": "Scoring di innovazione e complessità"
             }
           },
@@ -1611,16 +1611,16 @@
             "desc": "Ogni profilo è supportato da dati istituzionali. Cerca per competenze reali, voti verificati e lavori concreti.",
             "features": {
               "0": "250+ filtri di ricerca",
-              "1": "Matching candidati basato su AI",
+              "1": "Matching intelligente dei candidati",
               "2": "Scoperta geografica e per competenze"
             }
           },
           "1": {
             "title": "Screening Basato su Evidenze",
-            "desc": "Rivedi file di progetto reali, punteggi di analisi AI e verifica istituzionale — prima ancora di contattare.",
+            "desc": "Rivedi file di progetto reali, punteggi di analisi e verifica istituzionale — prima ancora di contattare.",
             "features": {
               "0": "Vedi progetti reali, non solo parole chiave",
-              "1": "Punteggi AI di competenze e complessità",
+              "1": "Punteggi di competenze e complessità",
               "2": "Anteprime video portfolio"
             }
           },
@@ -1645,8 +1645,8 @@
           "desc": "Ogni competenza, voto e progetto è confermato dalla scuola o università dello studente. Zero auto-dichiarazioni."
         },
         "1": {
-          "title": "AI che Legge Lavori Reali",
-          "desc": "La nostra AI analizza i file dei progetti — codice, PDF, immagini — ed estrae competenze reali. Non keyword matching."
+          "title": "Tecnologia che Legge Lavori Reali",
+          "desc": "La nostra piattaforma analizza i file dei progetti — codice, PDF, immagini — ed estrae competenze reali. Non keyword matching."
         },
         "2": {
           "title": "Progettato per i Risultati",
@@ -1676,14 +1676,14 @@
       "badge": "Per Studenti — Ogni Disciplina, Ogni Percorso",
       "title": "Scopri in Cosa Sei Davvero Bravo.",
       "titleHighlight": "Poi Dimostralo.",
-      "subtitle": "Carica i tuoi progetti. La nostra AI mappa le tue competenze reali. La tua università le verifica. Ottieni un portfolio che parla da solo — niente CV da riscrivere, niente indovinelli."
+      "subtitle": "Carica i tuoi progetti. La nostra tecnologia mappa le tue competenze reali. La tua università le verifica. Ottieni un portfolio che parla da solo — niente CV da riscrivere, niente indovinelli."
     },
     "steps": {
       "title": "Come Funziona per Te",
       "subtitle": "Tre passi dal progetto al portfolio verificato.",
       "0": {
         "title": "Carica i Tuoi Progetti",
-        "desc": "Tesi, codice, design, relazioni di laboratorio, business case — qualsiasi formato, qualsiasi disciplina. La nostra AI legge i tuoi file e mappa le tue competenze reali."
+        "desc": "Tesi, codice, design, relazioni di laboratorio, business case — qualsiasi formato, qualsiasi disciplina. Carica i tuoi file e le tue competenze reali vengono mappate automaticamente."
       },
       "1": {
         "title": "La Tua Università Verifica",
@@ -1698,8 +1698,8 @@
       "title": "Cosa Ottieni",
       "subtitle": "Strumenti per capire i tuoi punti di forza e renderli visibili.",
       "0": {
-        "title": "Mappa delle Competenze AI",
-        "desc": "La nostra AI legge i tuoi file — codice, PDF, presentazioni — e ti mostra le competenze che hai costruito, anche quelle che non sapevi di avere."
+        "title": "Mappa Automatica delle Competenze",
+        "desc": "I tuoi file — codice, PDF, presentazioni — vengono analizzati per mostrarti le competenze che hai costruito, anche quelle che non sapevi di avere."
       },
       "1": {
         "title": "Portfolio Verificato",
@@ -1711,7 +1711,7 @@
       },
       "3": {
         "title": "Trust Score",
-        "desc": "Verifica accademica, analisi AI e qualità dei progetti costruiscono un punteggio di fiducia che mostra la profondità e la credibilità del tuo lavoro."
+        "desc": "Verifica accademica, analisi automatizzata e qualità dei progetti costruiscono un punteggio di fiducia che mostra la profondità e la credibilità del tuo lavoro."
       },
       "4": {
         "title": "Upload Multi-Formato",
@@ -1757,11 +1757,11 @@
       "subtitle": "Dalla ricerca all'assunzione — basato su evidenze verificate, non curriculum.",
       "0": {
         "title": "Cerca Profili Verificati",
-        "desc": "Esplora portfolio studenti filtrando per competenze, università, voti, posizione e tipo di progetto. La ricerca AI trova il match giusto."
+        "desc": "Esplora portfolio studenti filtrando per competenze, università, voti, posizione e tipo di progetto. La ricerca intelligente trova il match giusto."
       },
       "1": {
         "title": "Rivedi Lavori Reali",
-        "desc": "Vedi progetti reali, voti verificati e analisi AI delle competenze. Nessuna auto-dichiarazione — solo competenze provate che puoi valutare."
+        "desc": "Vedi progetti reali, voti verificati e analisi delle competenze. Nessuna auto-dichiarazione — solo competenze provate che puoi valutare."
       },
       "2": {
         "title": "Connettiti Direttamente",
@@ -1772,8 +1772,8 @@
       "title": "Cosa Ottieni",
       "subtitle": "Strumenti per trovare, valutare e connetterti con talenti junior verificati.",
       "0": {
-        "title": "Ricerca AI",
-        "desc": "Trova candidati per competenze reali — non parole chiave. La nostra AI comprende le skills dal lavoro effettivo, non dai buzzword del CV."
+        "title": "Ricerca Intelligente Candidati",
+        "desc": "Trova candidati per competenze reali — non parole chiave. Le competenze vengono comprese dal lavoro effettivo, non dai buzzword del CV."
       },
       "1": {
         "title": "Pool di Talenti Verificati",
@@ -1781,7 +1781,7 @@
       },
       "2": {
         "title": "Screening Basato su Evidenze",
-        "desc": "Rivedi file di progetto reali, punteggi di analisi AI e verifica accademica prima ancora di contattare."
+        "desc": "Rivedi file di progetto reali, punteggi di analisi e verifica accademica prima ancora di contattare."
       },
       "3": {
         "title": "Connessione Diretta",
@@ -1789,7 +1789,7 @@
       },
       "4": {
         "title": "Decision Pack",
-        "desc": "Report di confronto candidati generati dall'AI che ti aiutano a valutare e decidere tra i profili selezionati."
+        "desc": "Report di confronto candidati automatizzati che ti aiutano a valutare e decidere tra i profili selezionati."
       },
       "5": {
         "title": "Analytics Assunzioni",
@@ -1802,7 +1802,7 @@
       "headers": { "before": "Tradizionale", "after": "Con InTransparency" },
       "rows": {
         "0": { "before": "CV auto-dichiarati", "after": "Progetti verificati accademicamente" },
-        "1": { "before": "Algoritmi di keyword-matching", "after": "Analisi AI del lavoro reale" },
+        "1": { "before": "Algoritmi di keyword-matching", "after": "Analisi automatizzata del lavoro reale" },
         "2": { "before": "Settimane di screening", "after": "Esplora, valuta, connettiti" },
         "3": { "before": "Intermediari e agenzie", "after": "Accesso diretto ai candidati" }
       }
@@ -1811,7 +1811,7 @@
       "title": "Trova Talenti di cui Fidarti",
       "subtitle": "Esplora portfolio verificati dagli studenti. Vedi progetti reali, voti reali, competenze reali. Connettiti direttamente — gratis durante il lancio.",
       "primaryButton": "Inizia a Trovare Talenti",
-      "secondaryButton": "Prova la Ricerca AI"
+      "secondaryButton": "Prova la Ricerca Intelligente"
     }
   },
   "forAcademicPartners": {
@@ -3111,7 +3111,7 @@
         },
         "1": {
           "q": "In cosa è diverso da LinkedIn o Indeed?",
-          "a": "I CV sono dichiarazioni. InTransparency mostra lavoro verificato — progetti reali certificati dalle università, con analisi AI delle competenze. Le aziende vedono prove, non promesse."
+          "a": "I CV sono dichiarazioni. InTransparency mostra lavoro verificato — progetti reali certificati dalle università, con analisi delle competenze. Le aziende vedono prove, non promesse."
         },
         "2": {
           "q": "Come creano un portfolio gli studenti?",
@@ -4255,10 +4255,17 @@
       "relevantCourses": "Corsi Rilevanti:",
       "projectExperience": "Esperienza di Progetto:",
       "unlockFor": "Contatta Candidato",
+      "unlock": "Sblocca Contatto",
       "match": "Match"
+    },
+    "universityToggle": {
+      "searchStudents": "Cerca Studenti",
+      "searchCompanies": "Cerca Aziende"
     },
     "loadMore": {
       "button": "Carica Altri Risultati",
+      "showing": "Mostrando {current} di {total} risultati",
+      "registerPrompt": "Registrati gratis per vedere tutti i risultati e contattare i candidati",
       "registerMessage": "Registrati gratis per vedere tutti i risultati e candidarti"
     },
     "demoTitles": {
