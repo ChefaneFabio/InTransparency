@@ -31,24 +31,25 @@ import {
 } from 'lucide-react'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { exportCandidatesToCsv } from '@/lib/export-csv'
+import { useTranslations } from 'next-intl'
 
-const DISCIPLINES = [
-  { value: 'all', label: 'All Disciplines' },
-  { value: 'TECHNOLOGY', label: 'Technology' },
-  { value: 'BUSINESS', label: 'Business' },
-  { value: 'DESIGN', label: 'Design' },
-  { value: 'HEALTHCARE', label: 'Healthcare' },
-  { value: 'ENGINEERING', label: 'Engineering' },
-  { value: 'TRADES', label: 'Skilled Trades' },
-  { value: 'ARCHITECTURE', label: 'Architecture' },
-  { value: 'MEDIA', label: 'Film & Media' },
-  { value: 'WRITING', label: 'Writing' },
-  { value: 'SOCIAL_SCIENCES', label: 'Social Sciences' },
-  { value: 'ARTS', label: 'Arts' },
-  { value: 'LAW', label: 'Law' },
-  { value: 'EDUCATION', label: 'Education' },
-  { value: 'SCIENCE', label: 'Science' },
-  { value: 'OTHER', label: 'Other' }
+const DISCIPLINE_KEYS = [
+  { value: 'all', key: 'allDisciplines' },
+  { value: 'TECHNOLOGY', key: 'technology' },
+  { value: 'BUSINESS', key: 'business' },
+  { value: 'DESIGN', key: 'design' },
+  { value: 'HEALTHCARE', key: 'healthcare' },
+  { value: 'ENGINEERING', key: 'engineering' },
+  { value: 'TRADES', key: 'skilledTrades' },
+  { value: 'ARCHITECTURE', key: 'architecture' },
+  { value: 'MEDIA', key: 'filmMedia' },
+  { value: 'WRITING', key: 'writing' },
+  { value: 'SOCIAL_SCIENCES', key: 'socialSciences' },
+  { value: 'ARTS', key: 'arts' },
+  { value: 'LAW', key: 'law' },
+  { value: 'EDUCATION', key: 'education' },
+  { value: 'SCIENCE', key: 'science' },
+  { value: 'OTHER', key: 'other' }
 ]
 
 interface Candidate {
@@ -77,6 +78,7 @@ interface Candidate {
 
 export default function CandidatesPage() {
   const { data: session } = useSession()
+  const t = useTranslations('recruiterDashboard.candidates')
   const [candidates, setCandidates] = useState<Candidate[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
@@ -226,12 +228,12 @@ export default function CandidatesPage() {
           <Button variant="ghost" size="sm" asChild>
             <Link href="/dashboard/recruiter">
               <ArrowLeft className="h-4 w-4 mr-1" />
-              Back
+              {t('back')}
             </Link>
           </Button>
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">Candidate Search</h1>
-            <p className="text-gray-600">Find and connect with talented graduates</p>
+            <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
+            <p className="text-gray-600">{t('subtitle')}</p>
           </div>
         </div>
 
@@ -258,25 +260,25 @@ export default function CandidatesPage() {
           <Button variant="ghost" size="sm" asChild>
             <Link href="/dashboard/recruiter">
               <ArrowLeft className="h-4 w-4 mr-1" />
-              Back
+              {t('back')}
             </Link>
           </Button>
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">Candidate Search</h1>
-            <p className="text-gray-600">Find and connect with talented graduates</p>
+            <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
+            <p className="text-gray-600">{t('subtitle')}</p>
           </div>
         </div>
         <div className="flex gap-3">
           {filteredCandidates.length > 0 && (
             <Button variant="outline" onClick={handleExportCsv}>
               <Download className="h-4 w-4 mr-2" />
-              Export CSV
+              {t('exportCsv')}
             </Button>
           )}
           <Button variant="outline" asChild>
             <Link href="/dashboard/recruiter/post-job">
               <Plus className="h-4 w-4 mr-2" />
-              Post Job
+              {t('postJob')}
             </Link>
           </Button>
         </div>
@@ -290,7 +292,7 @@ export default function CandidatesPage() {
               <Users className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{filteredCandidates.length}</p>
-                <p className="text-xs text-gray-600">Candidates</p>
+                <p className="text-xs text-gray-600">{t('stats.candidates')}</p>
               </div>
             </div>
           </CardContent>
@@ -303,7 +305,7 @@ export default function CandidatesPage() {
                 <p className="text-2xl font-bold">
                   {filteredCandidates.reduce((acc, c) => acc + c._count.projects, 0)}
                 </p>
-                <p className="text-xs text-gray-600">Projects</p>
+                <p className="text-xs text-gray-600">{t('stats.projects')}</p>
               </div>
             </div>
           </CardContent>
@@ -316,7 +318,7 @@ export default function CandidatesPage() {
                 <p className="text-2xl font-bold">
                   {filteredCandidates.filter(c => c.projects.some(p => p.universityVerified)).length}
                 </p>
-                <p className="text-xs text-gray-600">Verified</p>
+                <p className="text-xs text-gray-600">{t('stats.verified')}</p>
               </div>
             </div>
           </CardContent>
@@ -327,7 +329,7 @@ export default function CandidatesPage() {
               <Bookmark className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{bookmarked.size}</p>
-                <p className="text-xs text-gray-600">Saved</p>
+                <p className="text-xs text-gray-600">{t('stats.saved')}</p>
               </div>
             </div>
           </CardContent>
@@ -341,7 +343,7 @@ export default function CandidatesPage() {
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
-                placeholder="Search by name, university, or project..."
+                placeholder={t('searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10"
@@ -350,12 +352,12 @@ export default function CandidatesPage() {
 
             <Select value={disciplineFilter} onValueChange={setDisciplineFilter}>
               <SelectTrigger className="w-full md:w-[180px]">
-                <SelectValue placeholder="Discipline" />
+                <SelectValue placeholder={t('filters.discipline')} />
               </SelectTrigger>
               <SelectContent>
-                {DISCIPLINES.map(disc => (
+                {DISCIPLINE_KEYS.map(disc => (
                   <SelectItem key={disc.value} value={disc.value}>
-                    {disc.label}
+                    {t(`disciplines.${disc.key}`)}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -363,10 +365,10 @@ export default function CandidatesPage() {
 
             <Select value={universityFilter} onValueChange={setUniversityFilter}>
               <SelectTrigger className="w-full md:w-[180px]">
-                <SelectValue placeholder="University" />
+                <SelectValue placeholder={t('filters.university')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Universities</SelectItem>
+                <SelectItem value="all">{t('filters.allUniversities')}</SelectItem>
                 {universities.map((uni) => (
                   <SelectItem key={uni} value={uni}>
                     {uni}
@@ -377,12 +379,12 @@ export default function CandidatesPage() {
 
             <Select value={engagementFilter} onValueChange={setEngagementFilter}>
               <SelectTrigger className="w-full md:w-[180px]">
-                <SelectValue placeholder="Engagement" />
+                <SelectValue placeholder={t('filters.engagement')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Types</SelectItem>
-                <SelectItem value="HIRING">Open to Hiring</SelectItem>
-                <SelectItem value="PROJECTS">Open to Projects</SelectItem>
+                <SelectItem value="all">{t('filters.allTypes')}</SelectItem>
+                <SelectItem value="HIRING">{t('filters.openToHiring')}</SelectItem>
+                <SelectItem value="PROJECTS">{t('filters.openToProjects')}</SelectItem>
               </SelectContent>
             </Select>
 
@@ -406,7 +408,7 @@ export default function CandidatesPage() {
             {(searchQuery || disciplineFilter !== 'all' || universityFilter !== 'all') && (
               <Button variant="outline" onClick={clearFilters}>
                 <Filter className="h-4 w-4 mr-2" />
-                Clear
+                {t('filters.clear')}
               </Button>
             )}
           </div>
@@ -419,10 +421,10 @@ export default function CandidatesPage() {
           <CardContent>
             <EmptyState
               icon={Users}
-              title="No candidates found"
-              description="Try adjusting your search filters"
+              title={t('empty.title')}
+              description={t('empty.description')}
               action={{
-                label: 'Clear Filters',
+                label: t('filters.clearFilters'),
                 onClick: clearFilters,
                 variant: 'outline',
               }}
@@ -462,12 +464,12 @@ export default function CandidatesPage() {
                 <div className="space-y-2 mb-4">
                   <div className="flex items-center text-sm text-gray-600">
                     <Code className="h-4 w-4 mr-2" />
-                    {candidate._count.projects} projects
+                    {t('projectCount', { count: candidate._count.projects })}
                   </div>
                   {getTopScore(candidate.projects) > 0 && (
                     <div className="flex items-center text-sm text-gray-600">
                       <Award className="h-4 w-4 mr-2" />
-                      Top score: {getTopScore(candidate.projects)}
+                      {t('topScore', { score: getTopScore(candidate.projects) })}
                     </div>
                   )}
                 </div>
@@ -492,7 +494,7 @@ export default function CandidatesPage() {
                   <Button size="sm" className="flex-1" asChild>
                     <Link href={`/students/${candidate.username || candidate.id}/public`}>
                       <Eye className="h-4 w-4 mr-1" />
-                      View Profile
+                      {t('viewProfile')}
                     </Link>
                   </Button>
                   <Button size="sm" variant="outline">
@@ -527,9 +529,9 @@ export default function CandidatesPage() {
                       </div>
                       <p className="text-sm text-gray-600">{candidate.university}</p>
                       <div className="flex items-center gap-4 mt-1 text-sm text-gray-500">
-                        <span>{candidate._count.projects} projects</span>
+                        <span>{t('projectCount', { count: candidate._count.projects })}</span>
                         {getTopScore(candidate.projects) > 0 && (
-                          <span>Score: {getTopScore(candidate.projects)}</span>
+                          <span>{t('topScore', { score: getTopScore(candidate.projects) })}</span>
                         )}
                       </div>
                     </div>
@@ -548,7 +550,7 @@ export default function CandidatesPage() {
                     </Button>
                     <Button size="sm" asChild>
                       <Link href={`/students/${candidate.username || candidate.id}/public`}>
-                        View Profile
+                        {t('viewProfile')}
                       </Link>
                     </Button>
                   </div>

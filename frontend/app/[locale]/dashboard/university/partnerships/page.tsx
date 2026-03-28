@@ -17,6 +17,7 @@ import {
   CheckCircle,
   XCircle,
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface Partner {
   id: string
@@ -46,14 +47,18 @@ interface Partnership {
   createdAt: string
 }
 
-const statusConfig: Record<string, { label: string; color: string; icon: typeof CheckCircle }> = {
-  ACTIVE: { label: 'Active', color: 'bg-primary/10 text-primary', icon: CheckCircle },
-  PENDING: { label: 'Pending', color: 'bg-yellow-100 text-yellow-700', icon: Clock },
-  EXPIRED: { label: 'Expired', color: 'bg-gray-100 text-gray-600', icon: XCircle },
-  REVOKED: { label: 'Revoked', color: 'bg-red-100 text-red-700', icon: XCircle },
-}
+// statusConfig labels are handled via translations in the component
 
 export default function PartnershipsPage() {
+  const t = useTranslations('universityDashboard.partnerships')
+
+  const statusConfig: Record<string, { label: string; color: string; icon: typeof CheckCircle }> = {
+    ACTIVE: { label: t('statusActive'), color: 'bg-primary/10 text-primary', icon: CheckCircle },
+    PENDING: { label: t('statusPending'), color: 'bg-yellow-100 text-yellow-700', icon: Clock },
+    EXPIRED: { label: t('statusExpired'), color: 'bg-gray-100 text-gray-600', icon: XCircle },
+    REVOKED: { label: t('statusRevoked'), color: 'bg-red-100 text-red-700', icon: XCircle },
+  }
+
   const [partnerships, setPartnerships] = useState<Partnership[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -81,7 +86,7 @@ export default function PartnershipsPage() {
           <div className="animate-pulse text-4xl mb-4">
             <ArrowLeftRight className="h-10 w-10 mx-auto text-blue-300" />
           </div>
-          <p className="text-gray-500">Loading partnerships...</p>
+          <p className="text-gray-500">{t('loading')}</p>
         </div>
       </div>
     )
@@ -92,14 +97,14 @@ export default function PartnershipsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Exchange Partnerships</h1>
+          <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
           <p className="text-gray-600 mt-1">
-            Manage bilateral agreements with other universities and ITS for student exchange
+            {t('subtitle')}
           </p>
         </div>
         <Button>
           <Plus className="mr-2 h-4 w-4" />
-          New Partnership
+          {t('newPartnership')}
         </Button>
       </div>
 
@@ -112,7 +117,7 @@ export default function PartnershipsPage() {
                 <p className="text-2xl font-bold">
                   {partnerships.filter((p) => p.status === 'ACTIVE').length}
                 </p>
-                <p className="text-sm text-gray-600">Active partnerships</p>
+                <p className="text-sm text-gray-600">{t('activePartnerships')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <ArrowLeftRight className="h-5 w-5 text-primary" />
@@ -128,7 +133,7 @@ export default function PartnershipsPage() {
                 <p className="text-2xl font-bold">
                   {partnerships.reduce((sum, p) => sum + p.courseEquivalencies.length, 0)}
                 </p>
-                <p className="text-sm text-gray-600">Course equivalencies</p>
+                <p className="text-sm text-gray-600">{t('courseEquivalencies')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <BookOpen className="h-5 w-5 text-primary" />
@@ -144,7 +149,7 @@ export default function PartnershipsPage() {
                 <p className="text-2xl font-bold">
                   {new Set(partnerships.map((p) => p.partner.country)).size}
                 </p>
-                <p className="text-sm text-gray-600">Countries connected</p>
+                <p className="text-sm text-gray-600">{t('countriesConnected')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Globe className="h-5 w-5 text-primary" />

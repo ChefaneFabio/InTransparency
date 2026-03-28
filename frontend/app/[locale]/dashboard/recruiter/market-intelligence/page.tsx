@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -66,6 +67,7 @@ function LoadingSkeleton() {
 }
 
 export default function MarketIntelligencePage() {
+  const t = useTranslations('dashboard.recruiter.marketIntelligence')
   const [data, setData] = useState<TalentAnalyticsData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -99,11 +101,11 @@ export default function MarketIntelligencePage() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-6 flex items-center justify-center">
         <Card className="max-w-md w-full">
           <CardContent className="pt-6 text-center">
-            <p className="text-red-600 font-medium mb-2">Error loading market intelligence</p>
+            <p className="text-red-600 font-medium mb-2">{t('errorLoading')}</p>
             <p className="text-sm text-muted-foreground mb-4">{error}</p>
             <Button variant="outline" onClick={fetchData}>
               <RefreshCw className="h-4 w-4 mr-2" />
-              Retry
+              {t('retry')}
             </Button>
           </CardContent>
         </Card>
@@ -126,15 +128,15 @@ export default function MarketIntelligencePage() {
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
               <TrendingUp className="h-8 w-8 text-primary" />
-              Market Intelligence
+              {t('title')}
             </h1>
             <p className="text-gray-600 mt-2">
-              Understand the talent pool, skill availability, and growth trends
+              {t('subtitle')}
             </p>
           </div>
           <Button variant="outline" onClick={fetchData}>
             <RefreshCw className="h-4 w-4 mr-2" />
-            Refresh
+            {t('refresh')}
           </Button>
         </div>
 
@@ -144,14 +146,14 @@ export default function MarketIntelligencePage() {
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Users className="h-4 w-4 text-primary" />
-                Total Talent Pool
+                {t('totalTalentPool')}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-primary">
                 {talentPool.toLocaleString()}
               </div>
-              <p className="text-xs text-gray-600 mt-1">Public student profiles</p>
+              <p className="text-xs text-gray-600 mt-1">{t('publicStudentProfiles')}</p>
             </CardContent>
           </Card>
 
@@ -159,14 +161,14 @@ export default function MarketIntelligencePage() {
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
                 <GraduationCap className="h-4 w-4 text-primary" />
-                Universities
+                {t('universities')}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-primary">
                 {universityDistribution.length}
               </div>
-              <p className="text-xs text-gray-600 mt-1">With active students</p>
+              <p className="text-xs text-gray-600 mt-1">{t('withActiveStudents')}</p>
             </CardContent>
           </Card>
 
@@ -174,7 +176,7 @@ export default function MarketIntelligencePage() {
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Zap className="h-4 w-4 text-primary" />
-                Skills Tracked
+                {t('skillsTracked')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -191,7 +193,7 @@ export default function MarketIntelligencePage() {
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
                 <BookOpen className="h-4 w-4 text-orange-600" />
-                Public Projects
+                {t('publicProjects')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -211,10 +213,10 @@ export default function MarketIntelligencePage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <GraduationCap className="h-5 w-5" />
-                University Distribution
+                {t('universityDistribution')}
               </CardTitle>
               <CardDescription>
-                Where students on the platform come from
+                {t('whereStudentsComeFrom')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -244,7 +246,7 @@ export default function MarketIntelligencePage() {
                 </div>
               ) : (
                 <div className="text-center py-8 text-gray-500">
-                  No university data available
+                  {t('noUniversityData')}
                 </div>
               )}
             </CardContent>
@@ -254,10 +256,10 @@ export default function MarketIntelligencePage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5" />
-                Student Growth Trends
+                {t('studentGrowthTrends')}
               </CardTitle>
               <CardDescription>
-                New student registrations over the last 6 months
+                {t('newStudentRegistrations')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -280,7 +282,7 @@ export default function MarketIntelligencePage() {
                 </ResponsiveContainer>
               ) : (
                 <div className="flex items-center justify-center h-[300px] text-gray-500">
-                  No growth data available
+                  {t('noGrowthData')}
                 </div>
               )}
             </CardContent>
@@ -292,10 +294,10 @@ export default function MarketIntelligencePage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Zap className="h-5 w-5" />
-              Top Skills in Talent Pool
+              {t('topSkills')}
             </CardTitle>
             <CardDescription>
-              Most common skills and technologies from student projects
+              {t('mostCommonSkills')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -311,7 +313,7 @@ export default function MarketIntelligencePage() {
               </ResponsiveContainer>
             ) : (
               <div className="flex items-center justify-center h-[400px] text-gray-500">
-                No skills data available
+                {t('noSkillsData')}
               </div>
             )}
           </CardContent>
@@ -322,10 +324,10 @@ export default function MarketIntelligencePage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BookOpen className="h-5 w-5" />
-              Project Discipline Distribution
+              {t('projectDisciplineDistribution')}
             </CardTitle>
             <CardDescription>
-              Breakdown of student projects by discipline
+              {t('breakdownByDiscipline')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -377,7 +379,7 @@ export default function MarketIntelligencePage() {
               </div>
             ) : (
               <div className="flex items-center justify-center h-[300px] text-gray-500">
-                No discipline data available
+                {t('noDisciplineData')}
               </div>
             )}
           </CardContent>

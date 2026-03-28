@@ -25,6 +25,7 @@ import {
   Hash,
   Layers,
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface Course {
   id: string
@@ -50,6 +51,7 @@ interface Filters {
 }
 
 export default function UniversityCoursesPage() {
+  const t = useTranslations('universityDashboard.courses')
   const [courses, setCourses] = useState<Course[]>([])
   const [filters, setFilters] = useState<Filters>({ departments: [], semesters: [] })
   const [loading, setLoading] = useState(true)
@@ -108,13 +110,13 @@ export default function UniversityCoursesPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Corsi</h1>
-            <p className="text-gray-600">Gestisci i corsi del tuo ateneo</p>
+            <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
+            <p className="text-gray-600">{t('subtitle')}</p>
           </div>
           <Link href="/dashboard/university/courses/new">
             <Button className="gap-2">
               <Plus className="h-4 w-4" />
-              Aggiungi Corso
+              {t('addCourse')}
             </Button>
           </Link>
         </div>
@@ -136,7 +138,7 @@ export default function UniversityCoursesPage() {
                   ) : (
                     <>
                       <p className="text-2xl font-bold">{totalCourses}</p>
-                      <p className="text-sm text-gray-600">Corsi Totali</p>
+                      <p className="text-sm text-gray-600">{t('totalCourses')}</p>
                     </>
                   )}
                 </div>
@@ -158,7 +160,7 @@ export default function UniversityCoursesPage() {
                   ) : (
                     <>
                       <p className="text-2xl font-bold">{verifiedCourses}</p>
-                      <p className="text-sm text-gray-600">Corsi Verificati</p>
+                      <p className="text-sm text-gray-600">{t('verifiedCourses')}</p>
                     </>
                   )}
                 </div>
@@ -180,7 +182,7 @@ export default function UniversityCoursesPage() {
                   ) : (
                     <>
                       <p className="text-2xl font-bold">{totalCredits}</p>
-                      <p className="text-sm text-gray-600">Crediti Totali</p>
+                      <p className="text-sm text-gray-600">{t('totalCredits')}</p>
                     </>
                   )}
                 </div>
@@ -202,7 +204,7 @@ export default function UniversityCoursesPage() {
                   ) : (
                     <>
                       <p className="text-2xl font-bold">{departmentsCount}</p>
-                      <p className="text-sm text-gray-600">Dipartimenti</p>
+                      <p className="text-sm text-gray-600">{t('departments')}</p>
                     </>
                   )}
                 </div>
@@ -216,7 +218,7 @@ export default function UniversityCoursesPage() {
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
-              placeholder="Cerca corso, codice o docente..."
+              placeholder={t('searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"
@@ -224,10 +226,10 @@ export default function UniversityCoursesPage() {
           </div>
           <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
             <SelectTrigger className="w-48">
-              <SelectValue placeholder="Dipartimento" />
+              <SelectValue placeholder={t('department')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Tutti i dipartimenti</SelectItem>
+              <SelectItem value="all">{t('allDepartments')}</SelectItem>
               {filters.departments.map((dept) => (
                 <SelectItem key={dept} value={dept}>
                   {dept}
@@ -237,10 +239,10 @@ export default function UniversityCoursesPage() {
           </Select>
           <Select value={semesterFilter} onValueChange={setSemesterFilter}>
             <SelectTrigger className="w-40">
-              <SelectValue placeholder="Semestre" />
+              <SelectValue placeholder={t('semester')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Tutti i semestri</SelectItem>
+              <SelectItem value="all">{t('allSemesters')}</SelectItem>
               {filters.semesters.map((sem) => (
                 <SelectItem key={sem} value={sem}>
                   {sem}
@@ -279,15 +281,15 @@ export default function UniversityCoursesPage() {
           <Card className="p-12 text-center">
             <BookOpen className="h-12 w-12 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Nessun corso trovato
+              {t('noCourseFound')}
             </h3>
             <p className="text-gray-600 mb-6">
-              Prova a modificare i filtri di ricerca oppure aggiungi un nuovo corso
+              {t('tryClearFilters')}
             </p>
             <Link href="/dashboard/university/courses/new">
               <Button variant="outline" className="gap-2">
                 <Plus className="h-4 w-4" />
-                Aggiungi il primo corso
+                {t('addFirstCourse')}
               </Button>
             </Link>
           </Card>
@@ -309,12 +311,12 @@ export default function UniversityCoursesPage() {
                       {course.verified ? (
                         <Badge className="bg-primary/10 text-primary text-xs gap-1">
                           <CheckCircle className="h-3 w-3" />
-                          Verificato
+                          {t('verifiedStatus')}
                         </Badge>
                       ) : (
                         <Badge variant="outline" className="text-gray-500 text-xs gap-1">
                           <Clock className="h-3 w-3" />
-                          Non verificato
+                          {t('unverifiedStatus')}
                         </Badge>
                       )}
                     </div>
@@ -347,7 +349,7 @@ export default function UniversityCoursesPage() {
                       )}
                       <div className="flex items-center gap-1.5">
                         <Users className="h-3.5 w-3.5 text-gray-400" />
-                        <span>{course.projectCount} {course.projectCount === 1 ? 'progetto' : 'progetti'}</span>
+                        <span>{course.projectCount} {course.projectCount === 1 ? t('project') : t('projects')}</span>
                       </div>
                     </div>
 

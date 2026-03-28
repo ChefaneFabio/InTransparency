@@ -26,6 +26,7 @@ import {
   Building2,
   BookOpen,
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -86,38 +87,7 @@ function getInitials(name: string): string {
     .slice(0, 2)
 }
 
-function getStatusBadge(status: Alumni['employmentStatus']) {
-  switch (status) {
-    case 'EMPLOYED':
-      return (
-        <Badge className="bg-primary/10 text-primary hover:bg-primary/10">
-          <Briefcase className="h-3 w-3 mr-1" />
-          Occupato
-        </Badge>
-      )
-    case 'SEEKING':
-      return (
-        <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">
-          <Search className="h-3 w-3 mr-1" />
-          In Cerca
-        </Badge>
-      )
-    case 'FURTHER_STUDY':
-      return (
-        <Badge className="bg-primary/10 text-primary hover:bg-primary/10">
-          <BookOpen className="h-3 w-3 mr-1" />
-          Studio Avanzato
-        </Badge>
-      )
-    case 'OTHER':
-    default:
-      return (
-        <Badge className="bg-gray-100 text-gray-800 hover:bg-gray-100">
-          Altro
-        </Badge>
-      )
-  }
-}
+// Status badge is now inside the component to access translations
 
 // ---------------------------------------------------------------------------
 // Skeleton components
@@ -186,6 +156,41 @@ function IndustryBreakdownSkeleton() {
 // ---------------------------------------------------------------------------
 
 export default function UniversityAlumniPage() {
+  const t = useTranslations('universityDashboard.alumni')
+
+  const getStatusBadge = (status: Alumni['employmentStatus']) => {
+    switch (status) {
+      case 'EMPLOYED':
+        return (
+          <Badge className="bg-primary/10 text-primary hover:bg-primary/10">
+            <Briefcase className="h-3 w-3 mr-1" />
+            {t('employed')}
+          </Badge>
+        )
+      case 'SEEKING':
+        return (
+          <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">
+            <Search className="h-3 w-3 mr-1" />
+            {t('seeking')}
+          </Badge>
+        )
+      case 'FURTHER_STUDY':
+        return (
+          <Badge className="bg-primary/10 text-primary hover:bg-primary/10">
+            <BookOpen className="h-3 w-3 mr-1" />
+            {t('furtherStudy')}
+          </Badge>
+        )
+      case 'OTHER':
+      default:
+        return (
+          <Badge className="bg-gray-100 text-gray-800 hover:bg-gray-100">
+            {t('other')}
+          </Badge>
+        )
+    }
+  }
+
   const [alumni, setAlumni] = useState<Alumni[]>([])
   const [stats, setStats] = useState<AlumniStats | null>(null)
   const [industryBreakdown, setIndustryBreakdown] = useState<IndustryBreakdownItem[]>([])
@@ -247,9 +252,9 @@ export default function UniversityAlumniPage() {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Alumni</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
           <p className="text-gray-600 mt-1">
-            Monitora i risultati post-laurea dei tuoi laureati
+            {t('subtitle')}
           </p>
         </div>
 
@@ -272,7 +277,7 @@ export default function UniversityAlumniPage() {
                     </div>
                     <div>
                       <p className="text-2xl font-bold">{stats?.total ?? 0}</p>
-                      <p className="text-sm text-gray-600">Totale Alumni</p>
+                      <p className="text-sm text-gray-600">{t('totalAlumni')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -288,7 +293,7 @@ export default function UniversityAlumniPage() {
                       <p className="text-2xl font-bold">
                         {stats?.employmentRate ?? 0}%
                       </p>
-                      <p className="text-sm text-gray-600">Tasso Occupazione</p>
+                      <p className="text-sm text-gray-600">{t('employmentRate')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -305,7 +310,7 @@ export default function UniversityAlumniPage() {
                         {'\u20AC'}
                         {((stats?.avgSalary ?? 0) / 1000).toFixed(0)}k
                       </p>
-                      <p className="text-sm text-gray-600">Stipendio Medio</p>
+                      <p className="text-sm text-gray-600">{t('avgSalary')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -319,7 +324,7 @@ export default function UniversityAlumniPage() {
                     </div>
                     <div>
                       <p className="text-2xl font-bold">{stats?.seeking ?? 0}</p>
-                      <p className="text-sm text-gray-600">In Cerca di Lavoro</p>
+                      <p className="text-sm text-gray-600">{t('seekingWork')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -333,7 +338,7 @@ export default function UniversityAlumniPage() {
           <div className="relative flex-1 min-w-[200px] max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
-              placeholder="Cerca per nome, azienda o ruolo..."
+              placeholder={t('searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"
@@ -344,11 +349,11 @@ export default function UniversityAlumniPage() {
               <SelectValue placeholder="Stato" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Tutti</SelectItem>
-              <SelectItem value="EMPLOYED">Occupati</SelectItem>
-              <SelectItem value="SEEKING">In Cerca</SelectItem>
-              <SelectItem value="FURTHER_STUDY">Studio Avanzato</SelectItem>
-              <SelectItem value="OTHER">Altro</SelectItem>
+              <SelectItem value="all">{t('all')}</SelectItem>
+              <SelectItem value="EMPLOYED">{t('employed')}</SelectItem>
+              <SelectItem value="SEEKING">{t('seeking')}</SelectItem>
+              <SelectItem value="FURTHER_STUDY">{t('furtherStudy')}</SelectItem>
+              <SelectItem value="OTHER">{t('other')}</SelectItem>
             </SelectContent>
           </Select>
           <Select value={yearFilter} onValueChange={setYearFilter}>
@@ -356,7 +361,7 @@ export default function UniversityAlumniPage() {
               <SelectValue placeholder="Anno di laurea" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Tutti gli anni</SelectItem>
+              <SelectItem value="all">{t('allYears')}</SelectItem>
               {years.map((year) => (
                 <SelectItem key={year} value={year}>
                   {year}
@@ -376,7 +381,7 @@ export default function UniversityAlumniPage() {
                 <div className="flex items-center gap-2 mb-5">
                   <Building2 className="h-5 w-5 text-gray-600" />
                   <h2 className="text-lg font-semibold text-gray-900">
-                    Distribuzione per Settore
+                    {t('industryBreakdown')}
                   </h2>
                 </div>
                 <div className="space-y-4">
@@ -419,10 +424,10 @@ export default function UniversityAlumniPage() {
               <div className="text-center">
                 <GraduationCap className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Nessun alumni trovato
+                  {t('noAlumniFound')}
                 </h3>
                 <p className="text-gray-600">
-                  Prova a modificare i filtri di ricerca
+                  {t('tryClearFilters')}
                 </p>
               </div>
             </CardContent>

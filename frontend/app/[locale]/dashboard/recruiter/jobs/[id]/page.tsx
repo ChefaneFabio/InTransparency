@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Link, useRouter } from '@/navigation'
+import { useTranslations } from 'next-intl'
 import { ArrowLeft, MapPin, Clock, Users, Eye, Edit, Trash2, AlertCircle } from 'lucide-react'
 
 interface Application {
@@ -58,6 +59,7 @@ export default function JobDetailPage() {
   const params = useParams()
   const router = useRouter()
   const jobId = params.id as string
+  const t = useTranslations('recruiterDashboard.jobDetail')
 
   const [job, setJob] = useState<JobDetail | null>(null)
   const [loading, setLoading] = useState(true)
@@ -189,13 +191,13 @@ export default function JobDetailPage() {
       <div className="max-w-4xl mx-auto text-center py-12">
         <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
         <h1 className="text-2xl font-bold text-gray-900 mb-4">
-          {error || 'Job Not Found'}
+          {error || t('notFound')}
         </h1>
-        <p className="text-gray-600 mb-6">The job posting you are looking for does not exist or could not be loaded.</p>
+        <p className="text-gray-600 mb-6">{t('notFoundDescription')}</p>
         <Button asChild>
           <Link href="/dashboard/recruiter/jobs">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Jobs
+            {t('backToJobs')}
           </Link>
         </Button>
       </div>
@@ -215,7 +217,7 @@ export default function JobDetailPage() {
           <Button variant="ghost" size="sm" asChild>
             <Link href="/dashboard/recruiter/jobs">
               <ArrowLeft className="h-4 w-4 mr-1" />
-              Back
+              {t('back')}
             </Link>
           </Button>
           <div>
@@ -229,7 +231,7 @@ export default function JobDetailPage() {
               )}
               <span className="flex items-center gap-1">
                 <Clock className="h-3.5 w-3.5" />
-                Posted {new Date(postedDate).toLocaleDateString()}
+                {t('posted')} {new Date(postedDate).toLocaleDateString()}
               </span>
               <Badge variant="secondary">
                 {job.status.charAt(0) + job.status.slice(1).toLowerCase()}
@@ -244,7 +246,7 @@ export default function JobDetailPage() {
             onClick={handleToggleStatus}
             disabled={actionLoading}
           >
-            {job.status === 'ACTIVE' ? 'Close Job' : 'Activate Job'}
+            {job.status === 'ACTIVE' ? t('closeJob') : t('activateJob')}
           </Button>
           <Button
             variant="outline"
@@ -254,7 +256,7 @@ export default function JobDetailPage() {
             disabled={actionLoading}
           >
             <Trash2 className="h-4 w-4 mr-1" />
-            Delete
+            {t('delete')}
           </Button>
         </div>
       </div>
@@ -266,7 +268,7 @@ export default function JobDetailPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{appCount}</p>
-                <p className="text-sm text-gray-600">Applications</p>
+                <p className="text-sm text-gray-600">{t('applications')}</p>
               </div>
               <Users className="h-8 w-8 text-primary" />
             </div>
@@ -277,7 +279,7 @@ export default function JobDetailPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{job.views}</p>
-                <p className="text-sm text-gray-600">Views</p>
+                <p className="text-sm text-gray-600">{t('views')}</p>
               </div>
               <Eye className="h-8 w-8 text-primary" />
             </div>
@@ -288,7 +290,7 @@ export default function JobDetailPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{conversionRate}%</p>
-                <p className="text-sm text-gray-600">Conversion</p>
+                <p className="text-sm text-gray-600">{t('conversion')}</p>
               </div>
               <div className="h-8 w-8 flex items-center justify-center text-primary font-bold text-lg">%</div>
             </div>
@@ -299,17 +301,17 @@ export default function JobDetailPage() {
       {/* Job Details */}
       <Card>
         <CardHeader>
-          <CardTitle>Job Details</CardTitle>
+          <CardTitle>{t('jobDetails')}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-sm text-gray-500">Job Type</p>
+              <p className="text-sm text-gray-500">{t('jobType')}</p>
               <p className="font-medium">{formatJobType(job.jobType)}</p>
             </div>
             {salaryDisplay && (
               <div>
-                <p className="text-sm text-gray-500">Salary Range</p>
+                <p className="text-sm text-gray-500">{t('salaryRange')}</p>
                 <p className="font-medium">{salaryDisplay}</p>
               </div>
             )}
@@ -317,28 +319,28 @@ export default function JobDetailPage() {
 
           {job.description && (
             <div>
-              <p className="text-sm text-gray-500 mb-2">Description</p>
+              <p className="text-sm text-gray-500 mb-2">{t('description')}</p>
               <p className="text-gray-700 whitespace-pre-wrap">{job.description}</p>
             </div>
           )}
 
           {job.requirements && (
             <div>
-              <p className="text-sm text-gray-500 mb-2">Requirements</p>
+              <p className="text-sm text-gray-500 mb-2">{t('requirements')}</p>
               <p className="text-gray-700 whitespace-pre-wrap">{job.requirements}</p>
             </div>
           )}
 
           {job.responsibilities && (
             <div>
-              <p className="text-sm text-gray-500 mb-2">Responsibilities</p>
+              <p className="text-sm text-gray-500 mb-2">{t('responsibilities')}</p>
               <p className="text-gray-700 whitespace-pre-wrap">{job.responsibilities}</p>
             </div>
           )}
 
           {job.requiredSkills && job.requiredSkills.length > 0 && (
             <div>
-              <p className="text-sm text-gray-500 mb-2">Required Skills</p>
+              <p className="text-sm text-gray-500 mb-2">{t('requiredSkills')}</p>
               <div className="flex flex-wrap gap-2">
                 {job.requiredSkills.map((skill) => (
                   <Badge key={skill} variant="secondary">{skill}</Badge>
@@ -349,7 +351,7 @@ export default function JobDetailPage() {
 
           {job.preferredSkills && job.preferredSkills.length > 0 && (
             <div>
-              <p className="text-sm text-gray-500 mb-2">Preferred Skills</p>
+              <p className="text-sm text-gray-500 mb-2">{t('preferredSkills')}</p>
               <div className="flex flex-wrap gap-2">
                 {job.preferredSkills.map((skill) => (
                   <Badge key={skill} variant="outline">{skill}</Badge>
@@ -363,8 +365,8 @@ export default function JobDetailPage() {
       {/* Applications */}
       <Card>
         <CardHeader>
-          <CardTitle>Applications</CardTitle>
-          <CardDescription>Review candidates who applied for this position</CardDescription>
+          <CardTitle>{t('applicationsTitle')}</CardTitle>
+          <CardDescription>{t('applicationsDescription')}</CardDescription>
         </CardHeader>
         <CardContent>
           {job.applications && job.applications.length > 0 ? (
@@ -380,7 +382,7 @@ export default function JobDetailPage() {
                         {app.applicant.firstName} {app.applicant.lastName}
                       </p>
                       <p className="text-xs text-gray-500">
-                        Applied {new Date(app.createdAt).toLocaleDateString()}
+                        {t('applied')} {new Date(app.createdAt).toLocaleDateString()}
                       </p>
                     </div>
                   </div>
@@ -390,7 +392,7 @@ export default function JobDetailPage() {
                     </Badge>
                     <Button variant="outline" size="sm" asChild>
                       <Link href={`/dashboard/recruiter/candidates/${app.applicant.id}`}>
-                        View
+                        {t('view')}
                       </Link>
                     </Button>
                   </div>
@@ -399,7 +401,7 @@ export default function JobDetailPage() {
             </div>
           ) : (
             <div className="text-center py-6">
-              <p className="text-muted-foreground">No applications yet.</p>
+              <p className="text-muted-foreground">{t('noApplications')}</p>
             </div>
           )}
         </CardContent>

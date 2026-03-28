@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -81,6 +82,7 @@ const exampleQueries = [
 ]
 
 export default function AISearchPage() {
+  const t = useTranslations('dashboard.recruiter.aiSearch')
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -295,8 +297,8 @@ export default function AISearchPage() {
               <Sparkles className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">AI Candidate Search</h1>
-              <p className="text-gray-600">Describe who you need in plain English</p>
+              <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
+              <p className="text-gray-600">{t('subtitle')}</p>
             </div>
           </div>
         </div>
@@ -397,7 +399,7 @@ export default function AISearchPage() {
                                 )}
 
                                 <Button className="w-full bg-primary">
-                                  View Full Profile
+                                  {t('viewFullProfile')}
                                   <ArrowRight className="h-4 w-4 ml-2" />
                                 </Button>
                               </motion.div>
@@ -444,7 +446,7 @@ export default function AISearchPage() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                    placeholder="Describe who you're looking for..."
+                    placeholder={t('placeholder')}
                     className="flex-1"
                     disabled={isTyping}
                   />
@@ -467,7 +469,7 @@ export default function AISearchPage() {
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
                   <Lightbulb className="h-5 w-5 mr-2 text-primary" />
-                  Try These Examples
+                  {t('tryExamples')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
@@ -488,36 +490,36 @@ export default function AISearchPage() {
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
                   <Zap className="h-5 w-5 mr-2 text-primary" />
-                  Why Use AI Search?
+                  {t('whyUseAiSearch')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-gray-900">Natural Language</p>
-                    <p className="text-gray-600">Describe requirements like talking to a person</p>
+                    <p className="font-semibold text-gray-900">{t('benefitNaturalLanguage')}</p>
+                    <p className="text-gray-600">{t('benefitNaturalLanguageDesc')}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-gray-900">Real Database</p>
-                    <p className="text-gray-600">Searches actual student profiles, not mock data</p>
+                    <p className="font-semibold text-gray-900">{t('benefitRealDatabase')}</p>
+                    <p className="text-gray-600">{t('benefitRealDatabaseDesc')}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-gray-900">Instant Results</p>
-                    <p className="text-gray-600">Get matched candidates in seconds</p>
+                    <p className="font-semibold text-gray-900">{t('benefitInstantResults')}</p>
+                    <p className="text-gray-600">{t('benefitInstantResultsDesc')}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-gray-900">Refine Easily</p>
-                    <p className="text-gray-600">Ask follow-up questions to narrow down</p>
+                    <p className="font-semibold text-gray-900">{t('benefitRefineEasily')}</p>
+                    <p className="text-gray-600">{t('benefitRefineEasilyDesc')}</p>
                   </div>
                 </div>
               </CardContent>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -57,6 +58,7 @@ const OUTCOMES = [
 ] as const
 
 export default function HiringOutcomesPage() {
+  const t = useTranslations('dashboard.recruiter.hiringOutcomes')
   const [contacts, setContacts] = useState<Contact[]>([])
   const [stats, setStats] = useState<Stats | null>(null)
   const [loading, setLoading] = useState(true)
@@ -131,9 +133,9 @@ export default function HiringOutcomesPage() {
   return (
     <div className="max-w-5xl mx-auto pb-8">
       <div className="mb-6">
-        <h1 className="text-xl font-semibold text-gray-900">Hiring Outcomes</h1>
+        <h1 className="text-xl font-semibold text-gray-900">{t('title')}</h1>
         <p className="text-sm text-gray-500 mt-1">
-          Track what happened after you contacted students. This data helps improve matching.
+          {t('subtitle')}
         </p>
       </div>
 
@@ -144,7 +146,7 @@ export default function HiringOutcomesPage() {
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-1">
                 <Users className="h-4 w-4 text-gray-400" />
-                <span className="text-xs text-gray-500">Total Contacts</span>
+                <span className="text-xs text-gray-500">{t('totalContacts')}</span>
               </div>
               <p className="text-2xl font-bold">{stats.total}</p>
             </CardContent>
@@ -153,7 +155,7 @@ export default function HiringOutcomesPage() {
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-1">
                 <UserCheck className="h-4 w-4 text-primary" />
-                <span className="text-xs text-gray-500">Hired</span>
+                <span className="text-xs text-gray-500">{t('hired')}</span>
               </div>
               <p className="text-2xl font-bold text-primary">{stats.hired}</p>
               <p className="text-xs text-gray-400">{stats.hireRate}% rate</p>
@@ -163,7 +165,7 @@ export default function HiringOutcomesPage() {
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-1">
                 <TrendingUp className="h-4 w-4 text-primary" />
-                <span className="text-xs text-gray-500">Response Rate</span>
+                <span className="text-xs text-gray-500">{t('responseRate')}</span>
               </div>
               <p className="text-2xl font-bold text-primary">{stats.responseRate}%</p>
             </CardContent>
@@ -172,7 +174,7 @@ export default function HiringOutcomesPage() {
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-1">
                 <AlertCircle className="h-4 w-4 text-amber-500" />
-                <span className="text-xs text-gray-500">Needs Feedback</span>
+                <span className="text-xs text-gray-500">{t('needsFeedback')}</span>
               </div>
               <p className="text-2xl font-bold text-amber-600">{stats.pendingFeedback}</p>
             </CardContent>
@@ -207,7 +209,7 @@ export default function HiringOutcomesPage() {
         <Card>
           <CardContent className="p-8 text-center text-gray-500">
             <Users className="h-10 w-10 mx-auto mb-3 text-gray-300" />
-            <p className="font-medium">No contacts found</p>
+            <p className="font-medium">{t('noContactsFound')}</p>
             <p className="text-sm mt-1">
               {filter === 'all'
                 ? 'Start by contacting students through search.'
@@ -265,7 +267,7 @@ export default function HiringOutcomesPage() {
                         onClick={() => setExpandedId(isExpanded ? null : contact.id)}
                         className="text-amber-600 border-amber-200 hover:bg-amber-50"
                       >
-                        Log outcome
+                        {t('logOutcome')}
                         <ChevronDown className={`h-3 w-3 ml-1 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                       </Button>
                     )}
@@ -313,13 +315,14 @@ function OutcomeForm({
   onSubmit: (id: string, outcome: string, extras?: { outcomeNote?: string; hiringPosition?: string }) => void
   onCancel: () => void
 }) {
+  const t = useTranslations('dashboard.recruiter.hiringOutcomes')
   const [selectedOutcome, setSelectedOutcome] = useState<string | null>(null)
   const [note, setNote] = useState('')
   const [position, setPosition] = useState('')
 
   return (
     <div className="mt-3 pt-3 border-t space-y-3">
-      <p className="text-sm font-medium text-gray-700">What happened?</p>
+      <p className="text-sm font-medium text-gray-700">{t('whatHappened')}</p>
       <div className="flex flex-wrap gap-2">
         {OUTCOMES.map((o) => (
           <button
@@ -369,10 +372,10 @@ function OutcomeForm({
               {updating ? (
                 <Loader2 className="h-4 w-4 animate-spin mr-1" />
               ) : null}
-              Save outcome
+              {t('saveOutcome')}
             </Button>
             <Button size="sm" variant="ghost" onClick={onCancel}>
-              Cancel
+              {t('cancel')}
             </Button>
           </div>
         </>

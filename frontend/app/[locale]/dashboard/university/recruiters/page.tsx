@@ -32,6 +32,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
+import { useTranslations } from 'next-intl'
 
 interface Recruiter {
   id: string
@@ -130,6 +131,7 @@ function GridLoadingSkeleton() {
 }
 
 export default function UniversityRecruitersPage() {
+  const t = useTranslations('universityDashboard.recruiters')
   const [recruiters, setRecruiters] = useState<Recruiter[]>([])
   const [stats, setStats] = useState<RecruitersStats | null>(null)
   const [loading, setLoading] = useState(true)
@@ -171,12 +173,12 @@ export default function UniversityRecruitersPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Recruiter</h1>
-            <p className="text-muted-foreground">Gestisci le relazioni con le aziende</p>
+            <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+            <p className="text-muted-foreground">{t('subtitle')}</p>
           </div>
           <Button>
             <Building2 className="h-4 w-4 mr-2" />
-            Invita Azienda
+            {t('inviteCompany')}
           </Button>
         </div>
 
@@ -193,7 +195,7 @@ export default function UniversityRecruitersPage() {
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.total}</p>
-                    <p className="text-sm text-muted-foreground">Aziende Totali</p>
+                    <p className="text-sm text-muted-foreground">{t('totalCompanies')}</p>
                   </div>
                 </div>
               </CardContent>
@@ -206,7 +208,7 @@ export default function UniversityRecruitersPage() {
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.partners}</p>
-                    <p className="text-sm text-muted-foreground">Partner Ufficiali</p>
+                    <p className="text-sm text-muted-foreground">{t('officialPartners')}</p>
                   </div>
                 </div>
               </CardContent>
@@ -219,7 +221,7 @@ export default function UniversityRecruitersPage() {
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.totalHired}</p>
-                    <p className="text-sm text-muted-foreground">Studenti Assunti</p>
+                    <p className="text-sm text-muted-foreground">{t('studentsHired')}</p>
                   </div>
                 </div>
               </CardContent>
@@ -232,7 +234,7 @@ export default function UniversityRecruitersPage() {
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.activeThisMonth}</p>
-                    <p className="text-sm text-muted-foreground">Attivi Questo Mese</p>
+                    <p className="text-sm text-muted-foreground">{t('activeThisMonth')}</p>
                   </div>
                 </div>
               </CardContent>
@@ -245,7 +247,7 @@ export default function UniversityRecruitersPage() {
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
             <Input
-              placeholder="Cerca azienda o contatto..."
+              placeholder={t('searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"
@@ -256,7 +258,7 @@ export default function UniversityRecruitersPage() {
               <SelectValue placeholder="Settore" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Tutti i settori</SelectItem>
+              <SelectItem value="all">{t('allSectors')}</SelectItem>
               {industries.map(industry => (
                 <SelectItem key={industry} value={industry}>{industry}</SelectItem>
               ))}
@@ -267,9 +269,9 @@ export default function UniversityRecruitersPage() {
               <SelectValue placeholder="Stato" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Tutti</SelectItem>
-              <SelectItem value="active">Attivi</SelectItem>
-              <SelectItem value="inactive">Inattivi</SelectItem>
+              <SelectItem value="all">{t('allStatuses')}</SelectItem>
+              <SelectItem value="active">{t('active')}</SelectItem>
+              <SelectItem value="inactive">{t('inactive')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -309,7 +311,7 @@ export default function UniversityRecruitersPage() {
                         variant={recruiter.status === 'active' ? 'default' : 'secondary'}
                         className={recruiter.status === 'active' ? 'bg-primary/10 text-primary' : ''}
                       >
-                        {recruiter.status === 'active' ? 'Attivo' : 'Inattivo'}
+                        {recruiter.status === 'active' ? t('active') : t('inactive')}
                       </Badge>
                     </div>
 

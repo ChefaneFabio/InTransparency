@@ -25,7 +25,7 @@ import {
   TrendingUp
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import PlacementProbabilityBadge from '@/components/predictions/PlacementProbabilityBadge'
 
 interface UniversityStats {
@@ -55,6 +55,7 @@ interface Recruiter {
 export default function UniversityDashboard() {
   const { data: session } = useSession()
   const locale = useLocale()
+  const t = useTranslations('universityDashboard.main')
   const user = session?.user
   const [loading, setLoading] = useState(true)
   const [stats, setStats] = useState<UniversityStats>({
@@ -95,7 +96,7 @@ export default function UniversityDashboard() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <div className="animate-pulse text-4xl mb-4">🎓</div>
-          <p className="text-gray-500">Loading dashboard...</p>
+          <p className="text-gray-500">{t('loading')}</p>
         </div>
       </div>
     )
@@ -113,16 +114,16 @@ export default function UniversityDashboard() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h2 className="text-xl font-bold mb-1">
-                Welcome to InTransparency!
+                {t('welcomeTitle')}
               </h2>
               <p className="text-white/80">
-                Your students are now discoverable by 500+ companies. Import your student list to boost placements by up to 25%.
+                {t('welcomeSubtitle')}
               </p>
             </div>
             <Button className="bg-white text-primary hover:bg-white/90 shrink-0" asChild>
               <Link href="/dashboard/university/students/import">
                 <Upload className="h-4 w-4 mr-2" />
-                Import Students
+                {t('importStudents')}
               </Link>
             </Button>
           </div>
@@ -138,10 +139,10 @@ export default function UniversityDashboard() {
             </div>
             <div>
               <p className="font-medium text-gray-900">
-                {stats.recruiterViews} companies viewed your students this month
+                {t('companiesViewed', { count: stats.recruiterViews })}
               </p>
               <p className="text-sm text-gray-700">
-                Students with complete profiles get 3x more views
+                {t('completeProfilesTip')}
               </p>
             </div>
           </div>
@@ -152,23 +153,23 @@ export default function UniversityDashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">
-            University Dashboard
+            {t('title')}
           </h1>
           <p className="text-gray-600 mt-1">
-            Manage your students and track placements
+            {t('subtitle')}
           </p>
         </div>
         <div className="flex gap-3">
           <Button asChild>
             <Link href="/dashboard/university/students/add">
               <Plus className="h-4 w-4 mr-2" />
-              Add Students
+              {t('addStudents')}
             </Link>
           </Button>
           <Button variant="outline" asChild>
             <Link href="/dashboard/university/students">
               <Users className="h-4 w-4 mr-2" />
-              View All
+              {t('viewAll')}
             </Link>
           </Button>
         </div>
@@ -181,7 +182,7 @@ export default function UniversityDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.totalStudents}</p>
-                <p className="text-sm text-gray-600">Total students</p>
+                <p className="text-sm text-gray-600">{t('totalStudents')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <GraduationCap className="h-5 w-5 text-primary" />
@@ -195,7 +196,7 @@ export default function UniversityDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.verifiedStudents}</p>
-                <p className="text-sm text-gray-600">Verified</p>
+                <p className="text-sm text-gray-600">{t('verified')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Award className="h-5 w-5 text-primary" />
@@ -209,7 +210,7 @@ export default function UniversityDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.activeProfiles}</p>
-                <p className="text-sm text-gray-600">Active profiles</p>
+                <p className="text-sm text-gray-600">{t('activeProfiles')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Users className="h-5 w-5 text-primary" />
@@ -223,7 +224,7 @@ export default function UniversityDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.recruiterViews}</p>
-                <p className="text-sm text-gray-600">Recruiter views</p>
+                <p className="text-sm text-gray-600">{t('recruiterViews')}</p>
               </div>
               <div className="p-2 bg-orange-100 rounded-lg">
                 <Eye className="h-5 w-5 text-orange-600" />
@@ -241,14 +242,14 @@ export default function UniversityDashboard() {
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-lg">Recent Students</CardTitle>
+                  <CardTitle className="text-lg">{t('recentStudents')}</CardTitle>
                   <CardDescription>
-                    Students enrolled on the platform
+                    {t('studentsEnrolled')}
                   </CardDescription>
                 </div>
                 <Button size="sm" variant="outline" asChild>
                   <Link href="/dashboard/university/students">
-                    View all
+                    {t('viewAll')}
                   </Link>
                 </Button>
               </div>
@@ -271,7 +272,7 @@ export default function UniversityDashboard() {
                         <p className="font-medium text-gray-900">{student.name}</p>
                         {student.verified && (
                           <Badge variant="secondary" className="text-xs bg-primary/10 text-primary">
-                            Verified
+                            {t('verified')}
                           </Badge>
                         )}
                       </div>
@@ -281,7 +282,7 @@ export default function UniversityDashboard() {
                     </div>
 
                     <div className="text-right">
-                      <p className="text-sm font-medium">{student.projects} projects</p>
+                      <p className="text-sm font-medium">{student.projects} {t('projects')}</p>
                     </div>
 
                     <ChevronRight className="h-4 w-4 text-gray-400" />
@@ -290,14 +291,14 @@ export default function UniversityDashboard() {
               ) : (
                 <div className="text-center py-8">
                   <Users className="h-12 w-12 mx-auto text-gray-300 mb-3" />
-                  <h3 className="font-medium text-gray-900 mb-1">No students yet</h3>
+                  <h3 className="font-medium text-gray-900 mb-1">{t('noStudentsYet')}</h3>
                   <p className="text-sm text-gray-600 mb-4">
-                    Import or add students to get started
+                    {t('importOrAdd')}
                   </p>
                   <Button asChild>
                     <Link href="/dashboard/university/students/add">
                       <Plus className="h-4 w-4 mr-2" />
-                      Add Students
+                      {t('addStudents')}
                     </Link>
                   </Button>
                 </div>
@@ -313,10 +314,10 @@ export default function UniversityDashboard() {
                   <div>
                     <CardTitle className="text-lg flex items-center gap-2">
                       <TrendingUp className="h-5 w-5 text-primary" />
-                      Top Placement Candidates
+                      {t('topPlacementCandidates')}
                     </CardTitle>
                     <CardDescription>
-                      Students most likely to be placed based on profile strength
+                      {t('topPlacementDescription')}
                     </CardDescription>
                   </div>
                 </div>
@@ -350,14 +351,14 @@ export default function UniversityDashboard() {
                   <Upload className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="font-medium text-gray-900 mb-1">
-                  Import students in bulk
+                  {t('importBulk')}
                 </h3>
                 <p className="text-sm text-gray-600 mb-4 max-w-sm mx-auto">
-                  Upload a CSV file with student emails to invite them to the platform
+                  {t('importBulkDescription')}
                 </p>
                 <Button variant="outline" asChild>
                   <Link href="/dashboard/university/students/import">
-                    Import CSV
+                    {t('importCsv')}
                   </Link>
                 </Button>
               </div>
@@ -370,7 +371,7 @@ export default function UniversityDashboard() {
           {/* Quick Actions */}
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg">Quick actions</CardTitle>
+              <CardTitle className="text-lg">{t('quickActions')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               <Link
@@ -381,8 +382,8 @@ export default function UniversityDashboard() {
                   <Plus className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Add students</p>
-                  <p className="text-xs text-gray-500">Invite new students</p>
+                  <p className="text-sm font-medium">{t('addStudents')}</p>
+                  <p className="text-xs text-gray-500">{t('inviteNewStudents')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-gray-400" />
               </Link>
@@ -395,8 +396,8 @@ export default function UniversityDashboard() {
                   <BarChart3 className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Analytics</p>
-                  <p className="text-xs text-gray-500">View placement stats</p>
+                  <p className="text-sm font-medium">{t('analytics')}</p>
+                  <p className="text-xs text-gray-500">{t('viewPlacementStats')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-gray-400" />
               </Link>
@@ -409,8 +410,8 @@ export default function UniversityDashboard() {
                   <Building2 className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Recruiters</p>
-                  <p className="text-xs text-gray-500">Companies recruiting</p>
+                  <p className="text-sm font-medium">{t('recruiters')}</p>
+                  <p className="text-xs text-gray-500">{t('companiesRecruiting')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-gray-400" />
               </Link>
@@ -423,8 +424,8 @@ export default function UniversityDashboard() {
                   <BookOpen className="h-4 w-4 text-cyan-600" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Courses</p>
-                  <p className="text-xs text-gray-500">Manage course catalog</p>
+                  <p className="text-sm font-medium">{t('courses')}</p>
+                  <p className="text-xs text-gray-500">{t('manageCourseCatalog')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-gray-400" />
               </Link>
@@ -437,8 +438,8 @@ export default function UniversityDashboard() {
                   <GraduationCap className="h-4 w-4 text-orange-600" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Alumni</p>
-                  <p className="text-xs text-gray-500">Track post-graduation outcomes</p>
+                  <p className="text-sm font-medium">{t('alumni')}</p>
+                  <p className="text-xs text-gray-500">{t('trackPostGraduation')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-gray-400" />
               </Link>
@@ -451,8 +452,8 @@ export default function UniversityDashboard() {
                   <RefreshCw className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Data Sync</p>
-                  <p className="text-xs text-gray-500">Sync university systems</p>
+                  <p className="text-sm font-medium">{t('dataSync')}</p>
+                  <p className="text-xs text-gray-500">{t('syncUniversitySystems')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-gray-400" />
               </Link>
@@ -465,8 +466,8 @@ export default function UniversityDashboard() {
                   <Settings className="h-4 w-4 text-gray-600" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Settings</p>
-                  <p className="text-xs text-gray-500">University profile</p>
+                  <p className="text-sm font-medium">{t('settings')}</p>
+                  <p className="text-xs text-gray-500">{t('universityProfile')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-gray-400" />
               </Link>
@@ -479,7 +480,7 @@ export default function UniversityDashboard() {
                 <div className="p-2 bg-red-50 rounded-lg">
                   <LogOut className="h-4 w-4 text-red-500" />
                 </div>
-                <p className="text-sm font-medium text-red-600">Sign out</p>
+                <p className="text-sm font-medium text-red-600">{t('signOut')}</p>
               </button>
             </CardContent>
           </Card>
@@ -487,9 +488,9 @@ export default function UniversityDashboard() {
           {/* Top Recruiters */}
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg">Active recruiters</CardTitle>
+              <CardTitle className="text-lg">{t('activeRecruiters')}</CardTitle>
               <CardDescription>
-                Companies viewing your students
+                {t('companiesViewingStudents')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -498,17 +499,17 @@ export default function UniversityDashboard() {
                   <div key={index} className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-900">{recruiter.name}</p>
-                      <p className="text-xs text-gray-500">{recruiter.contacts} contacts made</p>
+                      <p className="text-xs text-gray-500">{recruiter.contacts} {t('contactsMade')}</p>
                     </div>
                     <div className="text-right">
                       <p className="text-sm font-medium">{recruiter.views}</p>
-                      <p className="text-xs text-gray-500">views</p>
+                      <p className="text-xs text-gray-500">{t('views')}</p>
                     </div>
                   </div>
                 ))
               ) : (
                 <p className="text-sm text-gray-500 text-center py-4">
-                  No recruiter activity yet
+                  {t('noRecruiterActivity')}
                 </p>
               )}
             </CardContent>
@@ -517,17 +518,17 @@ export default function UniversityDashboard() {
           {/* Verification Progress */}
           <Card className="bg-gradient-to-br from-slate-50 to-slate-100 border-slate-200">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg">Verification progress</CardTitle>
+              <CardTitle className="text-lg">{t('verificationProgress')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-600">Students verified</span>
+                  <span className="text-gray-600">{t('studentsVerified')}</span>
                   <span className="font-medium">{stats.verifiedStudents}/{stats.totalStudents}</span>
                 </div>
                 <Progress value={verificationPercentage} className="h-2" />
                 <p className="text-xs text-gray-500">
-                  {verificationPercentage}% of students have verified profiles
+                  {t('verificationPercent', { percentage: verificationPercentage })}
                 </p>
               </div>
             </CardContent>

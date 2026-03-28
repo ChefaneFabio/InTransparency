@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
@@ -35,6 +36,7 @@ const MOCK_ANALYTICS: AnalyticsData = {
 }
 
 export default function TechParkAnalyticsPage() {
+  const t = useTranslations('techparkDashboard')
   const [data, setData] = useState<AnalyticsData | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -65,12 +67,12 @@ export default function TechParkAnalyticsPage() {
       <div className="flex items-center gap-4 pt-2">
         <Button variant="ghost" size="sm" asChild>
           <Link href="/dashboard/techpark">
-            <ArrowLeft className="h-4 w-4 mr-1" /> Back
+            <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold">Analytics</h1>
-          <p className="text-sm text-muted-foreground">Placement stats and company engagement overview</p>
+          <h1 className="text-2xl font-semibold">{t('analytics.title')}</h1>
+          <p className="text-sm text-muted-foreground">{t('analytics.subtitle')}</p>
         </div>
       </div>
 
@@ -85,25 +87,25 @@ export default function TechParkAnalyticsPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <Card><CardContent className="pt-6">
               <div className="flex items-center justify-between">
-                <div><p className="text-2xl font-bold">{data.totalPlacements}</p><p className="text-sm text-muted-foreground">Total placements</p></div>
+                <div><p className="text-2xl font-bold">{data.totalPlacements}</p><p className="text-sm text-muted-foreground">{t('analytics.totalPlacements')}</p></div>
                 <div className="p-2 bg-primary/10 rounded-lg"><Target className="h-5 w-5 text-primary" /></div>
               </div>
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <div className="flex items-center justify-between">
-                <div><p className="text-2xl font-bold">{data.activeCompanies}</p><p className="text-sm text-muted-foreground">Active companies</p></div>
+                <div><p className="text-2xl font-bold">{data.activeCompanies}</p><p className="text-sm text-muted-foreground">{t('analytics.activeCompanies')}</p></div>
                 <div className="p-2 bg-primary/10 rounded-lg"><Building2 className="h-5 w-5 text-primary" /></div>
               </div>
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <div className="flex items-center justify-between">
-                <div><p className="text-2xl font-bold">{data.totalCandidates}</p><p className="text-sm text-muted-foreground">Candidates</p></div>
+                <div><p className="text-2xl font-bold">{data.totalCandidates}</p><p className="text-sm text-muted-foreground">{t('analytics.candidates')}</p></div>
                 <div className="p-2 bg-primary/10 rounded-lg"><Users className="h-5 w-5 text-primary" /></div>
               </div>
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <div className="flex items-center justify-between">
-                <div><p className="text-2xl font-bold">{data.avgTimeToHire}d</p><p className="text-sm text-muted-foreground">Avg time to hire</p></div>
+                <div><p className="text-2xl font-bold">{data.avgTimeToHire}d</p><p className="text-sm text-muted-foreground">{t('analytics.avgTimeToHire')}</p></div>
                 <div className="p-2 bg-primary/10 rounded-lg"><TrendingUp className="h-5 w-5 text-primary" /></div>
               </div>
             </CardContent></Card>
@@ -112,8 +114,8 @@ export default function TechParkAnalyticsPage() {
           <div className="grid lg:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2"><BarChart3 className="h-5 w-5" /> Monthly Placements</CardTitle>
-                <CardDescription>Last 6 months</CardDescription>
+                <CardTitle className="text-lg flex items-center gap-2"><BarChart3 className="h-5 w-5" /> {t('analytics.monthlyPlacements')}</CardTitle>
+                <CardDescription>{t('analytics.last6Months')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -136,8 +138,8 @@ export default function TechParkAnalyticsPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2"><Building2 className="h-5 w-5" /> Top Industries</CardTitle>
-                <CardDescription>By number of placements</CardDescription>
+                <CardTitle className="text-lg flex items-center gap-2"><Building2 className="h-5 w-5" /> {t('analytics.topIndustries')}</CardTitle>
+                <CardDescription>{t('analytics.byPlacements')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">

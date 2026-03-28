@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
@@ -52,6 +53,7 @@ interface ReadinessBriefProps {
 }
 
 export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
+  const t = useTranslations('recruiterComponents')
   const [data, setData] = useState<ReadinessBriefData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -87,7 +89,7 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
     return (
       <Card>
         <CardContent className="pt-6 text-center py-12">
-          <p className="text-muted-foreground">{error || 'Unable to load readiness brief.'}</p>
+          <p className="text-muted-foreground">{error || t('unableToLoad')}</p>
         </CardContent>
       </Card>
     )
@@ -98,7 +100,7 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
       <Card>
         <CardContent className="pt-6 text-center py-12">
           <Briefcase className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-          <p className="text-muted-foreground">{data.message || 'No project data available for analysis.'}</p>
+          <p className="text-muted-foreground">{data.message || t('noProjectData')}</p>
         </CardContent>
       </Card>
     )
@@ -112,7 +114,7 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
           <Card>
             <CardContent className="pt-4 pb-4 text-center">
               <div className="text-2xl font-bold text-primary">{data.summary.totalProjects}</div>
-              <div className="text-xs text-gray-600">Projects Analyzed</div>
+              <div className="text-xs text-gray-600">{t('projectsAnalyzed')}</div>
             </CardContent>
           </Card>
           <Card>
@@ -120,19 +122,19 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
               <div className="text-2xl font-bold text-primary">
                 {data.summary.verifiedProjects}/{data.summary.totalProjects}
               </div>
-              <div className="text-xs text-gray-600">Verified</div>
+              <div className="text-xs text-gray-600">{t('verified')}</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="pt-4 pb-4 text-center">
               <div className="text-2xl font-bold text-primary">{data.summary.avgComplexity ?? '—'}</div>
-              <div className="text-xs text-gray-600">Avg Complexity</div>
+              <div className="text-xs text-gray-600">{t('avgComplexity')}</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="pt-4 pb-4 text-center">
               <div className="text-2xl font-bold text-primary">{data.summary.avgInnovation ?? '—'}</div>
-              <div className="text-xs text-gray-600">Avg Innovation</div>
+              <div className="text-xs text-gray-600">{t('avgInnovation')}</div>
             </CardContent>
           </Card>
         </div>
@@ -144,10 +146,10 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Target className="h-5 w-5 text-primary" />
-              Ready-to-Assign Tasks
+              {t('readyToAssign')}
             </CardTitle>
             <CardDescription>
-              Tasks this candidate can handle based on demonstrated project work
+              {t('readyToAssignDescription')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -171,7 +173,7 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
                           : 'border-amber-300 text-amber-700 bg-amber-50'
                         }
                       >
-                        {item.confidence === 'high' ? 'High confidence' : 'Growing skill'}
+                        {item.confidence === 'high' ? t('highConfidence') : t('growingSkill')}
                       </Badge>
                     </div>
                     <p className="text-sm text-gray-600">{item.reason}</p>
@@ -189,10 +191,10 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Calendar className="h-5 w-5 text-primary" />
-              Suggested Onboarding Path
+              {t('onboardingPath')}
             </CardTitle>
             <CardDescription>
-              A recommended ramp-up plan based on their skill level and work style
+              {t('onboardingPathDescription')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -203,8 +205,8 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
                   <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-bold text-primary">
                     30
                   </div>
-                  <span className="font-semibold text-gray-900">First 30 Days</span>
-                  <Badge variant="outline" className="text-xs">Orientation</Badge>
+                  <span className="font-semibold text-gray-900">{t('first30Days')}</span>
+                  <Badge variant="outline" className="text-xs">{t('orientation')}</Badge>
                 </div>
                 <ul className="space-y-2 ml-10">
                   {data.onboardingPath.first30.map((item, i) => (
@@ -222,8 +224,8 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
                   <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-bold text-primary">
                     60
                   </div>
-                  <span className="font-semibold text-gray-900">Days 30–60</span>
-                  <Badge variant="outline" className="text-xs">Growing</Badge>
+                  <span className="font-semibold text-gray-900">{t('days30to60')}</span>
+                  <Badge variant="outline" className="text-xs">{t('growing')}</Badge>
                 </div>
                 <ul className="space-y-2 ml-10">
                   {data.onboardingPath.next30.map((item, i) => (
@@ -241,8 +243,8 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
                   <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-bold text-primary">
                     90
                   </div>
-                  <span className="font-semibold text-gray-900">Days 60–90</span>
-                  <Badge variant="outline" className="text-xs">Autonomy</Badge>
+                  <span className="font-semibold text-gray-900">{t('days60to90')}</span>
+                  <Badge variant="outline" className="text-xs">{t('autonomy')}</Badge>
                 </div>
                 <ul className="space-y-2 ml-10">
                   {data.onboardingPath.next30to90.map((item, i) => (
@@ -266,12 +268,12 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Users className="h-5 w-5 text-primary" />
-                Team Fit
+                {t('teamFit')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <p className="text-sm text-gray-500 mb-2">Best-fit roles</p>
+                <p className="text-sm text-gray-500 mb-2">{t('bestFitRoles')}</p>
                 <div className="flex flex-wrap gap-2">
                   {data.teamFit.bestFitRoles.map((role) => (
                     <Badge key={role} className="bg-primary/10 text-primary border-primary/30">
@@ -281,7 +283,7 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
                 </div>
               </div>
               <div>
-                <p className="text-sm text-gray-500 mb-1">Work style</p>
+                <p className="text-sm text-gray-500 mb-1">{t('workStyle')}</p>
                 <p className="text-sm font-medium text-gray-900">{data.teamFit.workStyle}</p>
               </div>
               <div>
@@ -297,7 +299,7 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Code2 className="h-5 w-5 text-primary" />
-                Core Technologies
+                {t('coreTech')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -308,7 +310,7 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
                     <div className="flex items-center gap-2">
                       <Progress value={Math.min(tech.projectCount * 25, 100)} className="w-24 h-2" />
                       <span className="text-xs text-gray-500 w-16 text-right">
-                        {tech.projectCount} project{tech.projectCount !== 1 ? 's' : ''}
+                        {tech.projectCount} {tech.projectCount !== 1 ? t('projects') : t('project')}
                       </span>
                     </div>
                   </div>
@@ -326,7 +328,7 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Shield className="h-5 w-5 text-green-600" />
-                Proven Strengths
+                {t('strengths')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -347,9 +349,9 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-amber-500" />
-                Growth Areas
+                {t('growthAreas')}
               </CardTitle>
-              <CardDescription>Skills developing but not yet production-ready</CardDescription>
+              <CardDescription>{t('growthAreasDescription')}</CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2">
@@ -371,9 +373,9 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-primary" />
-              AI Project Analysis
+              {t('aiProjectAnalysis')}
             </CardTitle>
-            <CardDescription>What the AI found in their verified project work</CardDescription>
+            <CardDescription>{t('aiProjectAnalysisDescription')}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {data.projectHighlights.map((ph, i) => (
@@ -399,9 +401,9 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Target className="h-5 w-5 text-primary" />
-              AI Recommendations
+              {t('recommendations')}
             </CardTitle>
-            <CardDescription>Suggested next steps for this candidate&apos;s development</CardDescription>
+            <CardDescription>{t('recommendationsDescription')}</CardDescription>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
@@ -422,7 +424,7 @@ export default function ReadinessBrief({ studentId }: ReadinessBriefProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Users className="h-5 w-5 text-primary" />
-              Soft Skills
+              {t('softSkills')}
             </CardTitle>
           </CardHeader>
           <CardContent>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 import { Link } from '@/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -51,6 +52,7 @@ interface CandidateData {
 const COLORS = ['#3b82f6', '#10b981', '#f59e0b']
 
 export default function CompareCandidatesPage() {
+  const t = useTranslations('dashboard.recruiter.compare')
   const searchParams = useSearchParams()
   const candidateIds = searchParams.get('candidates')?.split(',').filter(Boolean) || []
   const [candidates, setCandidates] = useState<CandidateData[]>([])
@@ -94,11 +96,11 @@ export default function CompareCandidatesPage() {
   if (candidates.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-600 mb-4">No candidates to compare. Select candidates from the search page.</p>
+        <p className="text-gray-600 mb-4">{t('noCandidatesToCompare')}</p>
         <Button asChild variant="outline">
           <Link href="/dashboard/recruiter/candidates">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Candidates
+            {t('backToCandidates')}
           </Link>
         </Button>
       </div>
@@ -146,7 +148,7 @@ export default function CompareCandidatesPage() {
             </Link>
           </Button>
           <h1 className="text-2xl font-bold text-gray-900 mt-2">
-            Candidate Comparison
+            {t('title')}
           </h1>
         </div>
       </div>
@@ -207,7 +209,7 @@ export default function CompareCandidatesPage() {
 
               <Button variant="outline" size="sm" className="w-full mt-3" asChild>
                 <Link href={`/dashboard/recruiter/decision-pack/${c.candidate.id}`}>
-                  View Full Dossier
+                  {t('viewFullDossier')}
                 </Link>
               </Button>
             </CardContent>
@@ -218,7 +220,7 @@ export default function CompareCandidatesPage() {
       {/* Radar Comparison */}
       <Card>
         <CardHeader>
-          <CardTitle>Performance Comparison</CardTitle>
+          <CardTitle>{t('performanceComparison')}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="h-96">
@@ -247,7 +249,7 @@ export default function CompareCandidatesPage() {
       {/* Skills Overlap */}
       <Card>
         <CardHeader>
-          <CardTitle>Skills Comparison</CardTitle>
+          <CardTitle>{t('skillsComparison')}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className={`grid grid-cols-1 md:grid-cols-${Math.min(candidates.length, 3)} gap-4`}>

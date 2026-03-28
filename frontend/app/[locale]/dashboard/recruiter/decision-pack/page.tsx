@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -26,6 +27,7 @@ interface DecisionPackSummary {
 }
 
 export default function DecisionPackListPage() {
+  const t = useTranslations('dashboard.recruiter.decisionPack')
   const [packs, setPacks] = useState<DecisionPackSummary[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -63,15 +65,15 @@ export default function DecisionPackListPage() {
     <div className="max-w-4xl mx-auto pb-8">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-xl font-semibold text-gray-900">Decision Packs</h1>
+          <h1 className="text-xl font-semibold text-gray-900">{t('title')}</h1>
           <p className="text-sm text-gray-500 mt-1">
-            Generated hiring dossiers for candidates you&apos;re evaluating
+            {t('subtitle')}
           </p>
         </div>
         <Button variant="outline" size="sm" asChild>
           <Link href="/dashboard/recruiter/candidates">
             <Plus className="h-4 w-4 mr-1" />
-            New Pack
+            {t('newPack')}
           </Link>
         </Button>
       </div>
@@ -80,13 +82,13 @@ export default function DecisionPackListPage() {
         <Card>
           <CardContent className="p-12 text-center">
             <FileText className="h-10 w-10 mx-auto text-gray-300 mb-3" />
-            <p className="font-medium text-gray-700">No decision packs yet</p>
+            <p className="font-medium text-gray-700">{t('emptyTitle')}</p>
             <p className="text-sm text-gray-500 mt-1">
-              Generate a decision pack from any candidate&apos;s profile page.
+              {t('emptyDescription')}
             </p>
             <Button className="mt-4" asChild>
               <Link href="/dashboard/recruiter/candidates">
-                Browse candidates
+                {t('browseCandidates')}
               </Link>
             </Button>
           </CardContent>
@@ -144,7 +146,7 @@ export default function DecisionPackListPage() {
                       {new Date(pack.generatedAt).toLocaleDateString()}
                       {isExpired && (
                         <Badge variant="outline" className="text-xs text-red-500 border-red-200">
-                          Expired
+                          {t('expired')}
                         </Badge>
                       )}
                     </div>

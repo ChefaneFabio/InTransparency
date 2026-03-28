@@ -68,8 +68,7 @@ export function FloatingTransparenty() {
               Chat with Transparenty
             </span>
 
-            {/* Pulse ring */}
-            <span className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
+            {/* Subtle border — no pulsing */}
 
             <motion.div
               animate={{ y: [0, -6, 0] }}

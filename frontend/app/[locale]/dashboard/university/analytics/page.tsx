@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell, AreaChart, Area } from 'recharts'
 import { Lock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useTranslations } from 'next-intl'
 
 // ---------------------------------------------------------------------------
 // Types matching the API response shapes from /api/dashboard/university/analytics
@@ -182,6 +183,7 @@ function LockedTabContent({ tabName }: { tabName: string }) {
 // ---------------------------------------------------------------------------
 
 export default function UniversityAnalytics() {
+  const t = useTranslations('universityDashboard.analytics')
   const [activeTab, setActiveTab] = useState('overview')
   const [timeRange, setTimeRange] = useState('1year')
   const [data, setData] = useState<AnalyticsData>({})
@@ -225,9 +227,9 @@ export default function UniversityAnalytics() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">University Analytics</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
           <p className="text-muted-foreground">
-            Comprehensive insights into student outcomes and program effectiveness
+            {t('subtitle')}
           </p>
         </div>
         <Select value={timeRange} onValueChange={setTimeRange}>

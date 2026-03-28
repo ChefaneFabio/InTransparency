@@ -31,9 +31,11 @@ import {
   BookOpen
 } from 'lucide-react'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { useTranslations } from 'next-intl'
 
 export default function PostJobPage() {
   const router = useRouter()
+  const t = useTranslations('recruiterDashboard.postJob')
   const [currentStep, setCurrentStep] = useState(0)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState<any>({})
@@ -92,33 +94,33 @@ export default function PostJobPage() {
 
   const steps = [
     {
-      title: 'Basic Information',
-      description: 'Job title, location, and employment type',
+      title: t('steps.basicInfo'),
+      description: t('steps.basicInfoDesc'),
       icon: Briefcase
     },
     {
-      title: 'Job Description',
-      description: 'Detailed job description and requirements',
+      title: t('steps.jobDescription'),
+      description: t('steps.jobDescriptionDesc'),
       icon: BookOpen
     },
     {
-      title: 'Compensation',
-      description: 'Salary range and benefits',
+      title: t('steps.compensation'),
+      description: t('steps.compensationDesc'),
       icon: DollarSign
     },
     {
-      title: 'Candidate Targeting',
-      description: 'Target universities and qualifications',
+      title: t('steps.targeting'),
+      description: t('steps.targetingDesc'),
       icon: Target
     },
     {
-      title: 'Application Process',
-      description: 'How candidates should apply',
+      title: t('steps.applicationProcess'),
+      description: t('steps.applicationProcessDesc'),
       icon: Users
     },
     {
-      title: 'Review & Publish',
-      description: 'Review and publish your job posting',
+      title: t('steps.review'),
+      description: t('steps.reviewDesc'),
       icon: Eye
     }
   ]
@@ -324,7 +326,7 @@ export default function PostJobPage() {
         return (
           <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div>
-              <Label htmlFor="title">Job Title *</Label>
+              <Label htmlFor="title">{t('form.jobTitle')} *</Label>
               <Input
                 id="title"
                 placeholder="e.g. Senior Software Engineer"
@@ -337,7 +339,7 @@ export default function PostJobPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="department">Department *</Label>
+                <Label htmlFor="department">{t('form.department')} *</Label>
                 <Input
                   id="department"
                   placeholder="e.g. Engineering"
@@ -349,7 +351,7 @@ export default function PostJobPage() {
               </div>
 
               <div>
-                <Label htmlFor="location">Location *</Label>
+                <Label htmlFor="location">{t('form.location')} *</Label>
                 <Input
                   id="location"
                   placeholder="e.g. San Francisco, CA or Remote"
@@ -363,31 +365,31 @@ export default function PostJobPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label>Work Type *</Label>
+                <Label>{t('form.workType')} *</Label>
                 <Select value={formData.workType} onValueChange={(value) => updateFormData('workType', value)}>
                   <SelectTrigger className={errors.workType ? 'border-red-500' : ''}>
-                    <SelectValue placeholder="Select work type" />
+                    <SelectValue placeholder={t('form.selectWorkType')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="remote">Remote</SelectItem>
-                    <SelectItem value="hybrid">Hybrid</SelectItem>
-                    <SelectItem value="onsite">On-site</SelectItem>
+                    <SelectItem value="remote">{t('form.remote')}</SelectItem>
+                    <SelectItem value="hybrid">{t('form.hybrid')}</SelectItem>
+                    <SelectItem value="onsite">{t('form.onsite')}</SelectItem>
                   </SelectContent>
                 </Select>
                 {errors.workType && <p className="text-sm text-red-600 mt-1">{errors.workType}</p>}
               </div>
 
               <div>
-                <Label>Employment Type *</Label>
+                <Label>{t('form.employmentType')} *</Label>
                 <Select value={formData.employmentType} onValueChange={(value) => updateFormData('employmentType', value)}>
                   <SelectTrigger className={errors.employmentType ? 'border-red-500' : ''}>
-                    <SelectValue placeholder="Select employment type" />
+                    <SelectValue placeholder={t('form.selectEmploymentType')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="full-time">Full-time</SelectItem>
-                    <SelectItem value="part-time">Part-time</SelectItem>
-                    <SelectItem value="contract">Contract</SelectItem>
-                    <SelectItem value="internship">Internship</SelectItem>
+                    <SelectItem value="full-time">{t('form.fullTime')}</SelectItem>
+                    <SelectItem value="part-time">{t('form.partTime')}</SelectItem>
+                    <SelectItem value="contract">{t('form.contract')}</SelectItem>
+                    <SelectItem value="internship">{t('form.internship')}</SelectItem>
                   </SelectContent>
                 </Select>
                 {errors.employmentType && <p className="text-sm text-red-600 mt-1">{errors.employmentType}</p>}
@@ -395,7 +397,7 @@ export default function PostJobPage() {
             </div>
 
             <div>
-              <Label htmlFor="numberOfPositions">Number of Positions</Label>
+              <Label htmlFor="numberOfPositions">{t('form.numberOfPositions')}</Label>
               <Input
                 id="numberOfPositions"
                 type="number"
@@ -411,7 +413,7 @@ export default function PostJobPage() {
         return (
           <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div>
-              <Label htmlFor="description">Job Description *</Label>
+              <Label htmlFor="description">{t('form.jobDescription')} *</Label>
               <Textarea
                 id="description"
                 placeholder="Provide a detailed description of the role, team, and what the candidate will be working on..."
@@ -424,7 +426,7 @@ export default function PostJobPage() {
             </div>
 
             <div>
-              <Label>Key Responsibilities *</Label>
+              <Label>{t('form.keyResponsibilities')} *</Label>
               {errors.responsibilities && <p className="text-sm text-red-600 mb-2">{errors.responsibilities}</p>}
               {(formData.responsibilities || []).map((responsibility, index) => (
                 <div key={index} className="flex gap-2 mb-2">
@@ -450,12 +452,12 @@ export default function PostJobPage() {
                 onClick={() => addArrayItem('responsibilities')}
               >
                 <Plus className="h-4 w-4 mr-2" />
-                Add Responsibility
+                {t('form.addResponsibility')}
               </Button>
             </div>
 
             <div>
-              <Label>Required Qualifications *</Label>
+              <Label>{t('form.requiredQualifications')} *</Label>
               {errors.requirements && <p className="text-sm text-red-600 mb-2">{errors.requirements}</p>}
               {(formData.requirements || []).map((requirement, index) => (
                 <div key={index} className="flex gap-2 mb-2">
@@ -481,12 +483,12 @@ export default function PostJobPage() {
                 onClick={() => addArrayItem('requirements')}
               >
                 <Plus className="h-4 w-4 mr-2" />
-                Add Requirement
+                {t('form.addRequirement')}
               </Button>
             </div>
 
             <div>
-              <Label>Preferred Qualifications</Label>
+              <Label>{t('form.preferredQualifications')}</Label>
               {(formData.preferredQualifications || []).map((qualification, index) => (
                 <div key={index} className="flex gap-2 mb-2">
                   <Input
@@ -509,7 +511,7 @@ export default function PostJobPage() {
                 onClick={() => addArrayItem('preferredQualifications')}
               >
                 <Plus className="h-4 w-4 mr-2" />
-                Add Preferred Qualification
+                {t('form.addPreferredQualification')}
               </Button>
             </div>
           </div>
@@ -520,7 +522,7 @@ export default function PostJobPage() {
           <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <Label htmlFor="salaryMin">Minimum Salary *</Label>
+                <Label htmlFor="salaryMin">{t('form.minimumSalary')} *</Label>
                 <Input
                   id="salaryMin"
                   type="number"
@@ -533,7 +535,7 @@ export default function PostJobPage() {
               </div>
 
               <div>
-                <Label htmlFor="salaryMax">Maximum Salary *</Label>
+                <Label htmlFor="salaryMax">{t('form.maximumSalary')} *</Label>
                 <Input
                   id="salaryMax"
                   type="number"
@@ -546,22 +548,22 @@ export default function PostJobPage() {
               </div>
 
               <div>
-                <Label>Salary Type</Label>
+                <Label>{t('form.salaryType')}</Label>
                 <Select value={formData.salaryType} onValueChange={(value) => updateFormData('salaryType', value)}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="yearly">Yearly</SelectItem>
-                    <SelectItem value="hourly">Hourly</SelectItem>
+                    <SelectItem value="yearly">{t('form.yearly')}</SelectItem>
+                    <SelectItem value="hourly">{t('form.hourly')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
 
             <div>
-              <Label>Benefits & Perks</Label>
-              <p className="text-sm text-gray-700 mb-3">Select all benefits that apply</p>
+              <Label>{t('form.benefitsPerks')}</Label>
+              <p className="text-sm text-gray-700 mb-3">{t('form.selectBenefits')}</p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {(benefits || []).map((benefit) => (
                   <label key={benefit} className="flex items-center space-x-2 cursor-pointer">
@@ -577,10 +579,10 @@ export default function PostJobPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label>Company Size</Label>
+                <Label>{t('form.companySize')}</Label>
                 <Select value={formData.companySize} onValueChange={(value) => updateFormData('companySize', value)}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select company size" />
+                    <SelectValue placeholder={t('form.selectCompanySize')} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="startup">Startup (1-50)</SelectItem>
@@ -592,10 +594,10 @@ export default function PostJobPage() {
               </div>
 
               <div>
-                <Label>Industry</Label>
+                <Label>{t('form.industry')}</Label>
                 <Select value={formData.industry} onValueChange={(value) => updateFormData('industry', value)}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select industry" />
+                    <SelectValue placeholder={t('form.selectIndustry')} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="technology">Technology</SelectItem>
@@ -612,7 +614,7 @@ export default function PostJobPage() {
             </div>
 
             <div>
-              <Label htmlFor="companyDescription">Company Description</Label>
+              <Label htmlFor="companyDescription">{t('form.companyDescription')}</Label>
               <Textarea
                 id="companyDescription"
                 placeholder="Tell candidates about your company, mission, and culture..."
@@ -628,9 +630,9 @@ export default function PostJobPage() {
         return (
           <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div>
-              <Label>Target Universities *</Label>
+              <Label>{t('form.targetUniversities')} *</Label>
               {errors.targetUniversities && <p className="text-sm text-red-600 mb-2">{errors.targetUniversities}</p>}
-              <p className="text-sm text-gray-700 mb-3">Select universities you want to target for this role</p>
+              <p className="text-sm text-gray-700 mb-3">{t('form.selectUniversities')}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {universities.map((university) => (
                   <label key={university} className="flex items-center space-x-2 cursor-pointer">
@@ -645,9 +647,9 @@ export default function PostJobPage() {
             </div>
 
             <div>
-              <Label>Target Majors *</Label>
+              <Label>{t('form.targetMajors')} *</Label>
               {errors.targetMajors && <p className="text-sm text-red-600 mb-2">{errors.targetMajors}</p>}
-              <p className="text-sm text-gray-700 mb-3">Select relevant academic majors</p>
+              <p className="text-sm text-gray-700 mb-3">{t('form.selectMajors')}</p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {majors.map((major) => (
                   <label key={major} className="flex items-center space-x-2 cursor-pointer">
@@ -662,8 +664,8 @@ export default function PostJobPage() {
             </div>
 
             <div>
-              <Label>Required Skills</Label>
-              <p className="text-sm text-gray-700 mb-3">Select technical skills that are important for this role</p>
+              <Label>{t('form.requiredSkills')}</Label>
+              <p className="text-sm text-gray-700 mb-3">{t('form.selectSkills')}</p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                 {skills.slice(0, 20).map((skill) => (
                   <label key={skill} className="flex items-center space-x-2 cursor-pointer">
@@ -679,22 +681,22 @@ export default function PostJobPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label>Experience Level *</Label>
+                <Label>{t('form.experienceLevel')} *</Label>
                 <Select value={formData.experienceLevel} onValueChange={(value) => updateFormData('experienceLevel', value)}>
                   <SelectTrigger className={errors.experienceLevel ? 'border-red-500' : ''}>
-                    <SelectValue placeholder="Select experience level" />
+                    <SelectValue placeholder={t('form.selectExperienceLevel')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="entry">Entry Level (0-2 years)</SelectItem>
-                    <SelectItem value="mid">Mid Level (2-5 years)</SelectItem>
-                    <SelectItem value="senior">Senior Level (5+ years)</SelectItem>
+                    <SelectItem value="entry">{t('form.entryLevel')}</SelectItem>
+                    <SelectItem value="mid">{t('form.midLevel')}</SelectItem>
+                    <SelectItem value="senior">{t('form.seniorLevel')}</SelectItem>
                   </SelectContent>
                 </Select>
                 {errors.experienceLevel && <p className="text-sm text-red-600 mt-1">{errors.experienceLevel}</p>}
               </div>
 
               <div>
-                <Label htmlFor="gpaRequirement">Minimum GPA</Label>
+                <Label htmlFor="gpaRequirement">{t('form.minimumGpa')}</Label>
                 <Input
                   id="gpaRequirement"
                   type="number"
@@ -709,8 +711,8 @@ export default function PostJobPage() {
             </div>
 
             <div>
-              <Label>Target Graduation Years</Label>
-              <p className="text-sm text-gray-700 mb-3">Select graduation years for candidates</p>
+              <Label>{t('form.targetGraduationYears')}</Label>
+              <p className="text-sm text-gray-700 mb-3">{t('form.selectGraduationYears')}</p>
               <div className="flex gap-2">
                 {['2024', '2025', '2026', '2027'].map((year) => (
                   <label key={year} className="flex items-center space-x-2 cursor-pointer">
@@ -730,7 +732,7 @@ export default function PostJobPage() {
         return (
           <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
             <div>
-              <Label htmlFor="applicationProcess">Application Process *</Label>
+              <Label htmlFor="applicationProcess">{t('form.applicationProcess')} *</Label>
               <Textarea
                 id="applicationProcess"
                 placeholder="Describe how candidates should apply and what to expect..."
@@ -743,7 +745,7 @@ export default function PostJobPage() {
             </div>
 
             <div>
-              <Label htmlFor="interviewProcess">Interview Process</Label>
+              <Label htmlFor="interviewProcess">{t('form.interviewProcess')}</Label>
               <Textarea
                 id="interviewProcess"
                 placeholder="Describe your interview process (optional)..."
@@ -755,7 +757,7 @@ export default function PostJobPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="applicationDeadline">Application Deadline *</Label>
+                <Label htmlFor="applicationDeadline">{t('form.applicationDeadline')} *</Label>
                 <Input
                   id="applicationDeadline"
                   type="date"
@@ -767,7 +769,7 @@ export default function PostJobPage() {
               </div>
 
               <div>
-                <Label htmlFor="startDate">Expected Start Date</Label>
+                <Label htmlFor="startDate">{t('form.expectedStartDate')}</Label>
                 <Input
                   id="startDate"
                   type="date"
@@ -778,7 +780,7 @@ export default function PostJobPage() {
             </div>
 
             <div>
-              <Label htmlFor="hiringManagerContact">Hiring Manager Contact</Label>
+              <Label htmlFor="hiringManagerContact">{t('form.hiringManagerContact')}</Label>
               <Input
                 id="hiringManagerContact"
                 placeholder="hiring.manager@company.com"
@@ -788,14 +790,14 @@ export default function PostJobPage() {
             </div>
 
             <div className="space-y-3">
-              <Label>Additional Options</Label>
-              
+              <Label>{t('form.additionalOptions')}</Label>
+
               <label className="flex items-center space-x-2 cursor-pointer">
                 <Checkbox
                   checked={formData.isUrgent}
                   onCheckedChange={(checked) => updateFormData('isUrgent', checked)}
                 />
-                <span className="text-sm">Mark as urgent hiring</span>
+                <span className="text-sm">{t('form.urgentHiring')}</span>
               </label>
 
               <label className="flex items-center space-x-2 cursor-pointer">
@@ -803,7 +805,7 @@ export default function PostJobPage() {
                   checked={formData.requiresSponsorship}
                   onCheckedChange={(checked) => updateFormData('requiresSponsorship', checked)}
                 />
-                <span className="text-sm">Open to visa sponsorship</span>
+                <span className="text-sm">{t('form.visaSponsorship')}</span>
               </label>
 
               <label className="flex items-center space-x-2 cursor-pointer">
@@ -811,7 +813,7 @@ export default function PostJobPage() {
                   checked={formData.allowsInternational}
                   onCheckedChange={(checked) => updateFormData('allowsInternational', checked)}
                 />
-                <span className="text-sm">Allow international candidates</span>
+                <span className="text-sm">{t('form.internationalCandidates')}</span>
               </label>
             </div>
           </div>
@@ -823,7 +825,7 @@ export default function PostJobPage() {
             <Alert>
               <CheckCircle className="h-4 w-4" />
               <AlertDescription>
-                Review your job posting below. You can save as draft or publish immediately.
+                {t('review.reviewMessage')}
               </AlertDescription>
             </Alert>
 
@@ -849,12 +851,12 @@ export default function PostJobPage() {
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-2">Job Description</h4>
+                    <h4 className="font-medium text-gray-900 mb-2">{t('form.jobDescription')}</h4>
                     <p className="text-gray-700 whitespace-pre-wrap">{formData.description}</p>
                   </div>
 
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-2">Key Responsibilities</h4>
+                    <h4 className="font-medium text-gray-900 mb-2">{t('form.keyResponsibilities')}</h4>
                     <ul className="list-disc list-inside space-y-1">
                       {formData.responsibilities?.filter(r => r.trim()).map((responsibility, index) => (
                         <li key={index} className="text-gray-700">{responsibility}</li>
@@ -863,7 +865,7 @@ export default function PostJobPage() {
                   </div>
 
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-2">Required Qualifications</h4>
+                    <h4 className="font-medium text-gray-900 mb-2">{t('form.requiredQualifications')}</h4>
                     <ul className="list-disc list-inside space-y-1">
                       {formData.requirements?.filter(r => r.trim()).map((requirement, index) => (
                         <li key={index} className="text-gray-700">{requirement}</li>
@@ -873,7 +875,7 @@ export default function PostJobPage() {
 
                   {formData.preferredQualifications?.filter(q => q.trim()).length > 0 && (
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-2">Preferred Qualifications</h4>
+                      <h4 className="font-medium text-gray-900 mb-2">{t('form.preferredQualifications')}</h4>
                       <ul className="list-disc list-inside space-y-1">
                         {formData.preferredQualifications?.filter(q => q.trim()).map((qualification, index) => (
                           <li key={index} className="text-gray-700">{qualification}</li>
@@ -884,7 +886,7 @@ export default function PostJobPage() {
 
                   {formData.benefits.length > 0 && (
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-2">Benefits & Perks</h4>
+                      <h4 className="font-medium text-gray-900 mb-2">{t('form.benefitsPerks')}</h4>
                       <div className="flex flex-wrap gap-2">
                         {formData.benefits.map((benefit) => (
                           <Badge key={benefit} variant="secondary" className="text-xs">
@@ -897,7 +899,7 @@ export default function PostJobPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t">
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-2">Target Universities</h4>
+                      <h4 className="font-medium text-gray-900 mb-2">{t('form.targetUniversities')}</h4>
                       <div className="space-y-1">
                         {formData.targetUniversities.slice(0, 3).map((university) => (
                           <p key={university} className="text-sm text-gray-600">{university}</p>
@@ -909,7 +911,7 @@ export default function PostJobPage() {
                     </div>
 
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-2">Target Majors</h4>
+                      <h4 className="font-medium text-gray-900 mb-2">{t('form.targetMajors')}</h4>
                       <div className="flex flex-wrap gap-1">
                         {formData.targetMajors.slice(0, 3).map((major) => (
                           <Badge key={major} variant="outline" className="text-xs">
@@ -942,13 +944,13 @@ export default function PostJobPage() {
         <Button variant="ghost" size="sm" asChild>
           <Link href="/dashboard/recruiter">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Dashboard
+            {t('backToDashboard')}
           </Link>
         </Button>
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Post New Job</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
           <p className="text-gray-600 mt-1">
-            Create a job posting to attract top university talent
+            {t('subtitle')}
           </p>
         </div>
       </div>
@@ -1007,7 +1009,7 @@ export default function PostJobPage() {
         <div>
           {currentStep > 0 && (
             <Button variant="outline" onClick={prevStep}>
-              Previous
+              {t('previous')}
             </Button>
           )}
         </div>
@@ -1021,7 +1023,7 @@ export default function PostJobPage() {
                 disabled={isSubmitting}
               >
                 <Save className="mr-2 h-4 w-4" />
-                Save as Draft
+                {t('saveAsDraft')}
               </Button>
               <Button
                 onClick={() => submitJob('published')}
@@ -1032,12 +1034,12 @@ export default function PostJobPage() {
                 ) : (
                   <CheckCircle className="mr-2 h-4 w-4" />
                 )}
-                Publish Job
+                {t('publishJob')}
               </Button>
             </>
           ) : (
             <Button onClick={nextStep}>
-              Next
+              {t('next')}
             </Button>
           )}
         </div>

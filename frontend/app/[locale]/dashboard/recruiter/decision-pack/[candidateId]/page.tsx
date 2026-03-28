@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
 import { Link } from '@/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -83,6 +84,7 @@ interface DecisionPackData {
 }
 
 export default function DecisionPackPage() {
+  const t = useTranslations('dashboard.recruiter.decisionPackDetail')
   const params = useParams()
   const candidateId = params.candidateId as string
   const [data, setData] = useState<DecisionPackData | null>(null)
@@ -130,7 +132,7 @@ export default function DecisionPackPage() {
         <Button asChild variant="outline">
           <Link href="/dashboard/recruiter/candidates">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Candidates
+            {t('backToCandidates')}
           </Link>
         </Button>
       </div>
@@ -156,13 +158,13 @@ export default function DecisionPackPage() {
         <Button variant="ghost" size="sm" asChild>
           <Link href="/dashboard/recruiter/candidates">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back
+            {t('back')}
           </Link>
         </Button>
         <Button variant="outline" size="sm" asChild>
           <a href={`/api/decision-pack/${candidateId}/pdf`} target="_blank" rel="noopener noreferrer">
             <Download className="mr-2 h-4 w-4" />
-            Download PDF
+            {t('downloadPdf')}
           </a>
         </Button>
       </div>
@@ -212,7 +214,7 @@ export default function DecisionPackPage() {
               {data.trustScore.universityVerified && (
                 <Badge className="bg-primary/10 text-green-700">
                   <Shield className="mr-1 h-3 w-3" />
-                  University Verified
+                  {t('universityVerified')}
                 </Badge>
               )}
             </div>
@@ -225,7 +227,7 @@ export default function DecisionPackPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Zap className="h-5 w-5 text-primary" />
-            Skills Evidence Map
+            {t('skillsEvidenceMap')}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -275,7 +277,7 @@ export default function DecisionPackPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Brain className="h-5 w-5 text-primary" />
-              AI Analysis Overview
+              {t('aiAnalysisOverview')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -301,7 +303,7 @@ export default function DecisionPackPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Award className="h-5 w-5 text-primary" />
-              Professor Endorsements
+              {t('professorEndorsements')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -333,7 +335,7 @@ export default function DecisionPackPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BookOpen className="h-5 w-5 text-primary" />
-              Grade Provenance
+              {t('gradeProvenance')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -418,7 +420,7 @@ export default function DecisionPackPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-primary" />
-              Placement Probability Factors
+              {t('placementProbabilityFactors')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">

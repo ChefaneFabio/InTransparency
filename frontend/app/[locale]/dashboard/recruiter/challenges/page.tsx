@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -36,6 +37,7 @@ interface Challenge {
 }
 
 export default function RecruiterChallengesPage() {
+  const t = useTranslations('dashboard.recruiter.challenges')
   const [challenges, setChallenges] = useState<Challenge[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
@@ -96,7 +98,7 @@ export default function RecruiterChallengesPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary mb-4" />
-          <p className="text-gray-500">Loading challenges...</p>
+          <p className="text-gray-500">{t('loading')}</p>
         </div>
       </div>
     )
@@ -107,15 +109,15 @@ export default function RecruiterChallengesPage() {
       {/* Header */}
       <div className="flex items-center justify-between pt-2">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">Company Challenges</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
           <p className="text-gray-600 mt-1">
-            Create real-world projects for students to work on
+            {t('subtitle')}
           </p>
         </div>
         <Button asChild>
           <Link href="/dashboard/recruiter/challenges/create">
             <Plus className="h-4 w-4 mr-2" />
-            Create Challenge
+            {t('createChallenge')}
           </Link>
         </Button>
       </div>
@@ -127,7 +129,7 @@ export default function RecruiterChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.total}</p>
-                <p className="text-sm text-gray-600">Total Challenges</p>
+                <p className="text-sm text-gray-600">{t('totalChallenges')}</p>
               </div>
               <Trophy className="h-8 w-8 text-primary" />
             </div>
@@ -138,7 +140,7 @@ export default function RecruiterChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.active}</p>
-                <p className="text-sm text-gray-600">Active</p>
+                <p className="text-sm text-gray-600">{t('active')}</p>
               </div>
               <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
                 <div className="h-3 w-3 rounded-full bg-primary/50" />
@@ -151,7 +153,7 @@ export default function RecruiterChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.totalSubmissions}</p>
-                <p className="text-sm text-gray-600">Total Submissions</p>
+                <p className="text-sm text-gray-600">{t('totalSubmissions')}</p>
               </div>
               <div className="text-2xl">📝</div>
             </div>
@@ -162,7 +164,7 @@ export default function RecruiterChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.totalApprovals}</p>
-                <p className="text-sm text-gray-600">University Approvals</p>
+                <p className="text-sm text-gray-600">{t('universityApprovals')}</p>
               </div>
               <div className="text-2xl">🎓</div>
             </div>
@@ -177,7 +179,7 @@ export default function RecruiterChallengesPage() {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
               <Input
-                placeholder="Search challenges..."
+                placeholder={t('searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-9"
@@ -218,10 +220,10 @@ export default function RecruiterChallengesPage() {
           <CardContent>
             <EmptyState
               icon={Trophy}
-              title="No challenges yet"
-              description="Create a challenge to evaluate candidates' skills"
+              title={t('emptyTitle')}
+              description={t('emptyDescription')}
               action={{
-                label: 'Create Challenge',
+                label: t('createChallenge'),
                 href: '/dashboard/recruiter/challenges/new',
               }}
             />

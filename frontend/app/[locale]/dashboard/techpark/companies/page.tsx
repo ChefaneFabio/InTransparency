@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -28,6 +29,7 @@ const MOCK_COMPANIES: Company[] = [
 ]
 
 export default function TechParkCompaniesPage() {
+  const t = useTranslations('techparkDashboard')
   const [companies, setCompanies] = useState<Company[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -61,19 +63,19 @@ export default function TechParkCompaniesPage() {
       <div className="flex items-center gap-4 pt-2">
         <Button variant="ghost" size="sm" asChild>
           <Link href="/dashboard/techpark">
-            <ArrowLeft className="h-4 w-4 mr-1" /> Back
+            <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold">Member Companies</h1>
-          <p className="text-sm text-muted-foreground">Manage companies in your tech park ecosystem</p>
+          <h1 className="text-2xl font-semibold">{t('companies.title')}</h1>
+          <p className="text-sm text-muted-foreground">{t('companies.subtitle')}</p>
         </div>
       </div>
 
       <div className="relative max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="Search companies..."
+          placeholder={t('companies.searchPlaceholder')}
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="pl-9"
@@ -101,11 +103,11 @@ export default function TechParkCompaniesPage() {
                 <div className="flex gap-4 text-sm">
                   <div className="flex items-center gap-1.5 text-muted-foreground">
                     <Users className="h-3.5 w-3.5" />
-                    <span>{company.employeeCount} employees</span>
+                    <span>{company.employeeCount} {t('companies.employees')}</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-muted-foreground">
                     <Briefcase className="h-3.5 w-3.5" />
-                    <span>{company.studentsHired} hired</span>
+                    <span>{company.studentsHired} {t('companies.hired')}</span>
                   </div>
                 </div>
               </CardContent>
@@ -114,7 +116,7 @@ export default function TechParkCompaniesPage() {
           {filtered.length === 0 && (
             <div className="col-span-full text-center py-12 text-muted-foreground">
               <Building2 className="h-8 w-8 mx-auto mb-2 opacity-50" />
-              <p>No companies found</p>
+              <p>{t('companies.noResults')}</p>
             </div>
           )}
         </div>

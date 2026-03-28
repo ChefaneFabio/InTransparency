@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ChallengeCard } from '@/components/challenges/ChallengeCard'
 import { Search, Loader2, Trophy, CheckCircle, Clock, Users } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface UniversityApproval {
   id: string
@@ -51,6 +52,7 @@ interface Stats {
 }
 
 export default function UniversityChallengesPage() {
+  const t = useTranslations('universityDashboard.challenges')
   const [challenges, setChallenges] = useState<Challenge[]>([])
   const [stats, setStats] = useState<Stats>({
     total: 0,
@@ -107,7 +109,7 @@ export default function UniversityChallengesPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary mb-4" />
-          <p className="text-gray-500">Loading challenges...</p>
+          <p className="text-gray-500">{t('loading')}</p>
         </div>
       </div>
     )
@@ -117,9 +119,9 @@ export default function UniversityChallengesPage() {
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
       {/* Header */}
       <div className="pt-2">
-        <h1 className="text-2xl font-semibold text-gray-900">Company Challenges</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
         <p className="text-gray-600 mt-1">
-          Review and approve challenges for your students
+          {t('subtitle')}
         </p>
       </div>
 
@@ -130,7 +132,7 @@ export default function UniversityChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.total}</p>
-                <p className="text-sm text-gray-600">Available</p>
+                <p className="text-sm text-gray-600">{t('available')}</p>
               </div>
               <Trophy className="h-8 w-8 text-primary" />
             </div>
@@ -141,7 +143,7 @@ export default function UniversityChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.pendingApproval}</p>
-                <p className="text-sm text-gray-600">Pending Review</p>
+                <p className="text-sm text-gray-600">{t('pendingReview')}</p>
               </div>
               <Clock className="h-8 w-8 text-primary" />
             </div>
@@ -152,7 +154,7 @@ export default function UniversityChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.approved}</p>
-                <p className="text-sm text-gray-600">Approved</p>
+                <p className="text-sm text-gray-600">{t('approved')}</p>
               </div>
               <CheckCircle className="h-8 w-8 text-primary" />
             </div>
@@ -163,7 +165,7 @@ export default function UniversityChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.withSubmissions}</p>
-                <p className="text-sm text-gray-600">With Students</p>
+                <p className="text-sm text-gray-600">{t('withStudents')}</p>
               </div>
               <Users className="h-8 w-8 text-primary" />
             </div>

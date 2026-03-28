@@ -10,8 +10,10 @@ import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Copy, Check, ExternalLink, Settings, Eye } from 'lucide-react'
 import InstitutionWidget from '@/components/embed/InstitutionWidget'
+import { useTranslations } from 'next-intl'
 
 export default function EmbedConfigPage() {
+  const t = useTranslations('universityDashboard.embedConfig')
   const { data: session } = useSession()
   const institutionId = session?.user?.id || ''
   const institutionName = (session?.user as any)?.company || session?.user?.name || 'Your Institution'
@@ -122,9 +124,9 @@ export default function EmbedConfigPage() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-2">
-          <h1 className="text-3xl font-bold">Embeddable Widget</h1>
+          <h1 className="text-3xl font-bold">{t('title')}</h1>
           <Badge variant="secondary" className="bg-primary/10 text-primary">
-            Premium Embed
+            {t('premiumEmbed')}
           </Badge>
         </div>
         <p className="text-gray-600">

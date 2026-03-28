@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -51,6 +52,7 @@ interface SavedSearch {
 }
 
 export default function SavedSearchesPage() {
+  const t = useTranslations('dashboard.recruiter.savedSearches')
   const [savedSearches, setSavedSearches] = useState<SavedSearch[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -202,14 +204,14 @@ export default function SavedSearchesPage() {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Saved Searches & Alerts</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
         </div>
         <Card className="p-12 text-center">
           <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Failed to load saved searches</h3>
+          <h3 className="text-lg font-semibold mb-2">{t('errorLoading')}</h3>
           <p className="text-gray-600 mb-4">{error}</p>
           <Button onClick={() => { setError(null); setLoading(true); fetchSearches() }}>
-            Retry
+            {t('retry')}
           </Button>
         </Card>
       </div>
@@ -219,9 +221,9 @@ export default function SavedSearchesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Saved Searches & Alerts</h1>
+        <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
         <p className="text-gray-600 mt-2">
-          Manage your saved searches and stay updated with intelligent alerts
+          {t('subtitle')}
         </p>
       </div>
 
@@ -234,7 +236,7 @@ export default function SavedSearchesPage() {
                 <Search className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Active Searches</p>
+                <p className="text-sm font-medium text-gray-600">{t('activeSearches')}</p>
                 <p className="text-2xl font-bold text-gray-900">{activeSearches.length}</p>
               </div>
             </div>
@@ -248,7 +250,7 @@ export default function SavedSearchesPage() {
                 <Users className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Total Matches</p>
+                <p className="text-sm font-medium text-gray-600">{t('totalMatches')}</p>
                 <p className="text-2xl font-bold text-gray-900">{totalMatches}</p>
               </div>
             </div>
@@ -262,7 +264,7 @@ export default function SavedSearchesPage() {
                 <TrendingUp className="h-4 w-4 text-orange-600" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">New Matches</p>
+                <p className="text-sm font-medium text-gray-600">{t('newMatches')}</p>
                 <p className="text-2xl font-bold text-gray-900">{totalNew}</p>
               </div>
             </div>
@@ -276,7 +278,7 @@ export default function SavedSearchesPage() {
                 <Bell className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Active Alerts</p>
+                <p className="text-sm font-medium text-gray-600">{t('activeAlerts')}</p>
                 <p className="text-2xl font-bold text-gray-900">{alertsEnabled}</p>
               </div>
             </div>
@@ -295,12 +297,12 @@ export default function SavedSearchesPage() {
             <div className="flex items-center gap-2">
               <Button variant="outline" size="sm" onClick={() => { setLoading(true); fetchSearches() }}>
                 <RefreshCw className="h-4 w-4 mr-1" />
-                Refresh
+                {t('refresh')}
               </Button>
               <Button size="sm" asChild>
                 <Link href="/dashboard/recruiter/advanced-search">
                   <Search className="h-4 w-4 mr-1" />
-                  New Search
+                  {t('newSearch')}
                 </Link>
               </Button>
             </div>
@@ -310,8 +312,8 @@ export default function SavedSearchesPage() {
           {savedSearches.length === 0 ? (
             <EmptyState
               icon={Search}
-              title="No saved searches"
-              description="Save your search criteria to quickly find candidates later"
+              title={t('emptyTitle')}
+              description={t('emptyDescription')}
             />
           ) : (
             <div className="space-y-4">
@@ -330,12 +332,12 @@ export default function SavedSearchesPage() {
                               {search.isActive ? (
                                 <Badge className="bg-primary/10 text-green-800">
                                   <Play className="h-3 w-3 mr-1" />
-                                  Active
+                                  {t('active')}
                                 </Badge>
                               ) : (
                                 <Badge variant="outline" className="text-gray-600">
                                   <Pause className="h-3 w-3 mr-1" />
-                                  Paused
+                                  {t('paused')}
                                 </Badge>
                               )}
                               {search.alertsEnabled && (
@@ -439,9 +441,9 @@ export default function SavedSearchesPage() {
                               onClick={() => handleToggleActive(search)}
                             >
                               {search.isActive ? (
-                                <><Pause className="h-3 w-3 mr-1" /> Pause</>
+                                <><Pause className="h-3 w-3 mr-1" /> {t('pause')}</>
                               ) : (
-                                <><Play className="h-3 w-3 mr-1" /> Activate</>
+                                <><Play className="h-3 w-3 mr-1" /> {t('activate')}</>
                               )}
                             </Button>
                             <Button
@@ -451,14 +453,14 @@ export default function SavedSearchesPage() {
                               onClick={() => handleToggleAlerts(search)}
                             >
                               <Bell className={`h-3 w-3 mr-1 ${search.alertsEnabled ? 'text-primary' : ''}`} />
-                              {search.alertsEnabled ? 'Alerts On' : 'Alerts Off'}
+                              {search.alertsEnabled ? t('alertsOn') : t('alertsOff')}
                             </Button>
                           </div>
                           <div className="flex items-center space-x-2">
                             <Button size="sm" variant="outline" asChild>
                               <Link href={`/dashboard/recruiter/students/search?${buildSearchParams(search.filters)}`}>
                                 <Eye className="h-3 w-3 mr-1" />
-                                View Results
+                                {t('viewResults')}
                               </Link>
                             </Button>
                             <Button

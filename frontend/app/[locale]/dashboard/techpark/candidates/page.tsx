@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -29,6 +30,7 @@ const MOCK_CANDIDATES: Candidate[] = [
 ]
 
 export default function TechParkCandidatesPage() {
+  const t = useTranslations('techparkDashboard')
   const [candidates, setCandidates] = useState<Candidate[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -66,26 +68,26 @@ export default function TechParkCandidatesPage() {
       <div className="flex items-center gap-4 pt-2">
         <Button variant="ghost" size="sm" asChild>
           <Link href="/dashboard/techpark">
-            <ArrowLeft className="h-4 w-4 mr-1" /> Back
+            <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold">Candidate Browser</h1>
-          <p className="text-sm text-muted-foreground">Search and filter candidates for your member companies</p>
+          <h1 className="text-2xl font-semibold">{t('candidates.title')}</h1>
+          <p className="text-sm text-muted-foreground">{t('candidates.subtitle')}</p>
         </div>
       </div>
 
       <div className="flex gap-3 items-center">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input placeholder="Search by name, skill, or degree..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
+          <Input placeholder={t('candidates.searchPlaceholder')} value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
         </div>
         <Button
           variant={showAvailableOnly ? 'default' : 'outline'}
           size="sm"
           onClick={() => setShowAvailableOnly(!showAvailableOnly)}
         >
-          <Filter className="h-4 w-4 mr-1" /> Available only
+          <Filter className="h-4 w-4 mr-1" /> {t('candidates.availableOnly')}
         </Button>
       </div>
 
@@ -105,7 +107,7 @@ export default function TechParkCandidatesPage() {
                     <div className="flex items-center gap-2">
                       <h3 className="font-medium">{candidate.name}</h3>
                       <Badge variant={candidate.available ? 'default' : 'secondary'}>
-                        {candidate.available ? 'Available' : 'Unavailable'}
+                        {candidate.available ? t('candidates.available') : t('candidates.unavailable')}
                       </Badge>
                     </div>
                     <div className="flex items-center gap-3 text-sm text-muted-foreground">
@@ -125,7 +127,7 @@ export default function TechParkCandidatesPage() {
           {filtered.length === 0 && (
             <div className="text-center py-12 text-muted-foreground">
               <Users className="h-8 w-8 mx-auto mb-2 opacity-50" />
-              <p>No candidates match your search</p>
+              <p>{t('candidates.noResults')}</p>
             </div>
           )}
         </div>

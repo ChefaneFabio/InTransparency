@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Link } from '@/navigation'
+import { useTranslations } from 'next-intl'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
   ArrowLeft,
@@ -51,6 +52,7 @@ const defaultSettings: RecruiterSettings = {
 
 export default function RecruiterSettingsPage() {
   const { data: session } = useSession()
+  const t = useTranslations('recruiterDashboard.settings')
   const user = session?.user
 
   const [settings, setSettings] = useState<RecruiterSettings>(defaultSettings)
@@ -184,20 +186,20 @@ export default function RecruiterSettingsPage() {
           <Button variant="ghost" size="sm" asChild>
             <Link href="/dashboard/recruiter">
               <ArrowLeft className="h-4 w-4 mr-1" />
-              Back
+              {t('back')}
             </Link>
           </Button>
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">Company Settings</h1>
-            <p className="text-gray-600">Manage your company profile</p>
+            <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
+            <p className="text-gray-600">{t('subtitle')}</p>
           </div>
         </div>
         <Card>
           <CardContent className="p-12 text-center">
             <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Failed to load settings</h3>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">{t('failedToLoad')}</h3>
             <p className="text-gray-600 mb-4">{error}</p>
-            <Button onClick={() => window.location.reload()}>Try Again</Button>
+            <Button onClick={() => window.location.reload()}>{t('tryAgain')}</Button>
           </CardContent>
         </Card>
       </div>
@@ -241,16 +243,16 @@ export default function RecruiterSettingsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Building2 className="h-5 w-5" />
-            Company Profile
+            {t('companyProfile')}
           </CardTitle>
           <CardDescription>
-            This information will be visible to candidates
+            {t('companyProfileDesc')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="companyName">Company Name</Label>
+              <Label htmlFor="companyName">{t('form.companyName')}</Label>
               <Input
                 id="companyName"
                 value={settings.companyName}
@@ -259,7 +261,7 @@ export default function RecruiterSettingsPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="website">Website</Label>
+              <Label htmlFor="website">{t('form.website')}</Label>
               <Input
                 id="website"
                 value={settings.companyWebsite}
@@ -271,7 +273,7 @@ export default function RecruiterSettingsPage() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="industry">Industry</Label>
+              <Label htmlFor="industry">{t('form.industry')}</Label>
               <Input
                 id="industry"
                 value={settings.companyIndustry}
@@ -280,7 +282,7 @@ export default function RecruiterSettingsPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="size">Company Size</Label>
+              <Label htmlFor="size">{t('form.companySize')}</Label>
               <Input
                 id="size"
                 value={settings.companySize}
@@ -291,7 +293,7 @@ export default function RecruiterSettingsPage() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="location">Location</Label>
+            <Label htmlFor="location">{t('form.location')}</Label>
             <Input
               id="location"
               value={settings.companyLocation}
@@ -301,7 +303,7 @@ export default function RecruiterSettingsPage() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description">Company Description</Label>
+            <Label htmlFor="description">{t('form.companyDescription')}</Label>
             <Textarea
               id="description"
               value={settings.companyDescription}
@@ -318,16 +320,16 @@ export default function RecruiterSettingsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Target className="h-5 w-5" />
-            What are you looking for?
+            {t('seekingTitle')}
           </CardTitle>
           <CardDescription>
-            Tell us whether you are looking to hire students or engage them for projects
+            {t('seekingDesc')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <Label>I am looking for</Label>
-            <p className="text-sm text-gray-500 mb-2">This helps us match you with the right students</p>
+            <Label>{t('form.lookingFor')}</Label>
+            <p className="text-sm text-gray-500 mb-2">{t('form.lookingForDesc')}</p>
             <Select
               value={settings.seekingType}
               onValueChange={(value: 'HIRE' | 'PROJECTS' | 'BOTH') =>
@@ -338,9 +340,9 @@ export default function RecruiterSettingsPage() {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="HIRE">Interns / Graduates to hire</SelectItem>
-                <SelectItem value="PROJECTS">Students for project-based work</SelectItem>
-                <SelectItem value="BOTH">Both — hiring and projects</SelectItem>
+                <SelectItem value="HIRE">{t('form.seekHire')}</SelectItem>
+                <SelectItem value="PROJECTS">{t('form.seekProjects')}</SelectItem>
+                <SelectItem value="BOTH">{t('form.seekBoth')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -352,17 +354,17 @@ export default function RecruiterSettingsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Bell className="h-5 w-5" />
-            Notification Preferences
+            {t('notifications.title')}
           </CardTitle>
           <CardDescription>
-            Choose which notifications you want to receive
+            {t('notifications.description')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">New Applications</p>
-              <p className="text-sm text-gray-500">Get notified when candidates apply to your positions</p>
+              <p className="text-sm font-medium text-gray-900">{t('notifications.newApplications')}</p>
+              <p className="text-sm text-gray-500">{t('notifications.newApplicationsDesc')}</p>
             </div>
             <button
               type="button"
@@ -383,8 +385,8 @@ export default function RecruiterSettingsPage() {
 
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">Messages</p>
-              <p className="text-sm text-gray-500">Get notified when you receive new messages</p>
+              <p className="text-sm font-medium text-gray-900">{t('notifications.messages')}</p>
+              <p className="text-sm text-gray-500">{t('notifications.messagesDesc')}</p>
             </div>
             <button
               type="button"
@@ -405,8 +407,8 @@ export default function RecruiterSettingsPage() {
 
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">Search Alerts</p>
-              <p className="text-sm text-gray-500">Get notified when new candidates match your saved searches</p>
+              <p className="text-sm font-medium text-gray-900">{t('notifications.searchAlerts')}</p>
+              <p className="text-sm text-gray-500">{t('notifications.searchAlertsDesc')}</p>
             </div>
             <button
               type="button"
@@ -431,7 +433,7 @@ export default function RecruiterSettingsPage() {
       <div className="flex justify-end">
         <Button onClick={handleSave} disabled={saving}>
           {saving && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-          {saving ? 'Saving...' : 'Save Changes'}
+          {saving ? t('saving') : t('saveChanges')}
         </Button>
       </div>
     </div>

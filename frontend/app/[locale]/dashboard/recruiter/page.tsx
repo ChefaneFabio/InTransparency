@@ -26,7 +26,7 @@ import {
   LogOut
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Progress } from '@/components/ui/progress'
 
 interface ContactUsage {
@@ -71,6 +71,7 @@ interface JobPosting {
 export default function RecruiterDashboard() {
   const { data: session } = useSession()
   const locale = useLocale()
+  const t = useTranslations('recruiterDashboard.dashboard')
   const user = session?.user
   const [loading, setLoading] = useState(true)
   const [stats, setStats] = useState<RecruiterStats>({
@@ -114,7 +115,7 @@ export default function RecruiterDashboard() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <div className="animate-pulse text-4xl mb-4">🔍</div>
-          <p className="text-muted-foreground">Loading dashboard...</p>
+          <p className="text-muted-foreground">{t('loading')}</p>
         </div>
       </div>
     )
@@ -126,23 +127,23 @@ export default function RecruiterDashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
         <div>
           <h1 className="text-2xl font-semibold text-foreground">
-            Welcome back{user?.firstName ? `, ${user.firstName}` : ''}
+            {t('greeting')}{user?.firstName ? `, ${user.firstName}` : ''}
           </h1>
           <p className="text-muted-foreground mt-1">
-            Find and connect with talented graduates
+            {t('subtitle')}
           </p>
         </div>
         <div className="flex gap-3">
           <Button asChild>
             <Link href="/dashboard/recruiter/candidates">
               <Search className="h-4 w-4 mr-2" />
-              Search Candidates
+              {t('searchCandidates')}
             </Link>
           </Button>
           <Button variant="outline" asChild>
             <Link href="/dashboard/recruiter/post-job">
               <Plus className="h-4 w-4 mr-2" />
-              Post Job
+              {t('postJob')}
             </Link>
           </Button>
         </div>
@@ -162,17 +163,17 @@ export default function RecruiterDashboard() {
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <Mail className="h-5 w-5 text-primary" />
-                  <h3 className="font-semibold text-foreground">Contact Credits</h3>
+                  <h3 className="font-semibold text-foreground">{t('contactCredits.title')}</h3>
                 </div>
                 {stats.contactUsage.limit === -1 ? (
-                  <p className="text-sm text-muted-foreground">Unlimited contacts with your plan</p>
+                  <p className="text-sm text-muted-foreground">{t('contactCredits.unlimited')}</p>
                 ) : stats.contactUsage.limit === 0 ? (
                   <div>
-                    <p className="text-sm text-muted-foreground mb-3">Upgrade to contact candidates directly</p>
+                    <p className="text-sm text-muted-foreground mb-3">{t('contactCredits.upgradeDescription')}</p>
                     <Button size="sm" asChild>
                       <Link href="/pricing?for=recruiters">
                         <TrendingUp className="h-4 w-4 mr-1" />
-                        Upgrade Plan
+                        {t('contactCredits.upgradePlan')}
                       </Link>
                     </Button>
                   </div>
@@ -180,12 +181,12 @@ export default function RecruiterDashboard() {
                   <div className="space-y-3">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-muted-foreground">
-                        {stats.contactUsage.used} of {stats.contactUsage.limit} used
+                        {t('contactCredits.used', { used: stats.contactUsage.used, limit: stats.contactUsage.limit })}
                       </span>
                       <span className={`font-medium ${
                         stats.contactUsage.remaining <= 10 ? 'text-amber-600' : 'text-primary'
                       }`}>
-                        {stats.contactUsage.remaining} remaining
+                        {t('contactCredits.remaining', { count: stats.contactUsage.remaining })}
                       </span>
                     </div>
                     <Progress
@@ -194,10 +195,10 @@ export default function RecruiterDashboard() {
                     />
                     {stats.contactUsage.remaining <= 10 && (
                       <div className="flex items-center justify-between pt-1">
-                        <p className="text-xs text-amber-600">Running low on contacts</p>
+                        <p className="text-xs text-amber-600">{t('contactCredits.runningLow')}</p>
                         <Button size="sm" variant="outline" asChild>
                           <Link href="/pricing?for=recruiters">
-                            Upgrade
+                            {t('contactCredits.upgrade')}
                           </Link>
                         </Button>
                       </div>
@@ -217,7 +218,7 @@ export default function RecruiterDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.activeJobs}</p>
-                <p className="text-sm text-muted-foreground">Active jobs</p>
+                <p className="text-sm text-muted-foreground">{t('stats.activeJobs')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Briefcase className="h-5 w-5 text-primary" />
@@ -231,7 +232,7 @@ export default function RecruiterDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.totalApplications}</p>
-                <p className="text-sm text-muted-foreground">Applications</p>
+                <p className="text-sm text-muted-foreground">{t('stats.applications')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <FileText className="h-5 w-5 text-primary" />
@@ -245,7 +246,7 @@ export default function RecruiterDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.pendingReview}</p>
-                <p className="text-sm text-muted-foreground">To review</p>
+                <p className="text-sm text-muted-foreground">{t('stats.toReview')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Eye className="h-5 w-5 text-primary" />
@@ -259,7 +260,7 @@ export default function RecruiterDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.shortlisted}</p>
-                <p className="text-sm text-muted-foreground">Shortlisted</p>
+                <p className="text-sm text-muted-foreground">{t('stats.shortlisted')}</p>
               </div>
               <div className="p-2 bg-orange-100 rounded-lg">
                 <Star className="h-5 w-5 text-orange-600" />
@@ -277,14 +278,14 @@ export default function RecruiterDashboard() {
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-lg">Top Candidates</CardTitle>
+                  <CardTitle className="text-lg">{t('topCandidates.title')}</CardTitle>
                   <CardDescription>
-                    Students with strong projects in your areas of interest
+                    {t('topCandidates.description')}
                   </CardDescription>
                 </div>
                 <Button size="sm" variant="outline" asChild>
                   <Link href="/dashboard/recruiter/candidates">
-                    View all
+                    {t('topCandidates.viewAll')}
                   </Link>
                 </Button>
               </div>
@@ -320,7 +321,7 @@ export default function RecruiterDashboard() {
 
                       <div className="flex items-center gap-2 mb-3">
                         <Badge variant="secondary" className="text-xs">
-                          {candidate.projectCount} projects
+                          {t('topCandidates.projects', { count: candidate.projectCount })}
                         </Badge>
                         {candidate.discipline && (
                           <Badge variant="outline" className="text-xs">
@@ -329,7 +330,7 @@ export default function RecruiterDashboard() {
                         )}
                         {candidate.score > 0 && (
                           <Badge variant="secondary" className="text-xs bg-primary/10 text-primary">
-                            Score: {candidate.score}
+                            {t('topCandidates.score', { score: candidate.score })}
                           </Badge>
                         )}
                       </div>
@@ -337,17 +338,17 @@ export default function RecruiterDashboard() {
                       <div className="flex items-center justify-between">
                         {candidate.topProject && (
                           <p className="text-xs text-primary truncate max-w-[200px]">
-                            Top project: {candidate.topProject}
+                            {t('topCandidates.topProject', { name: candidate.topProject })}
                           </p>
                         )}
                         <div className="flex gap-2">
                           <Button size="sm" variant="outline">
                             <MessageSquare className="h-3.5 w-3.5 mr-1" />
-                            Message
+                            {t('topCandidates.message')}
                           </Button>
                           <Button size="sm" asChild>
                             <Link href={`/students/${candidate.username || candidate.id}/public`}>
-                              View Profile
+                              {t('topCandidates.viewProfile')}
                             </Link>
                           </Button>
                         </div>
@@ -358,14 +359,14 @@ export default function RecruiterDashboard() {
               ) : (
                 <div className="text-center py-8">
                   <Users className="h-12 w-12 mx-auto text-muted-foreground/60 mb-3" />
-                  <h3 className="font-medium text-foreground mb-1">No candidates yet</h3>
+                  <h3 className="font-medium text-foreground mb-1">{t('topCandidates.empty')}</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Students will appear here as they create profiles
+                    {t('topCandidates.emptyDescription')}
                   </p>
                   <Button asChild>
                     <Link href="/dashboard/recruiter/candidates">
                       <Search className="h-4 w-4 mr-2" />
-                      Search Candidates
+                      {t('searchCandidates')}
                     </Link>
                   </Button>
                 </div>
@@ -378,14 +379,14 @@ export default function RecruiterDashboard() {
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-lg">Your Job Postings</CardTitle>
+                  <CardTitle className="text-lg">{t('jobPostings.title')}</CardTitle>
                   <CardDescription>
-                    Track applications and views
+                    {t('jobPostings.description')}
                   </CardDescription>
                 </div>
                 <Button size="sm" variant="outline" asChild>
                   <Link href="/dashboard/recruiter/jobs">
-                    Manage jobs
+                    {t('jobPostings.manage')}
                   </Link>
                 </Button>
               </div>
@@ -419,11 +420,11 @@ export default function RecruiterDashboard() {
                       <div className="flex items-center gap-6 text-center">
                         <div>
                           <p className="text-lg font-semibold text-foreground">{job.applications}</p>
-                          <p className="text-xs text-muted-foreground">applications</p>
+                          <p className="text-xs text-muted-foreground">{t('jobPostings.applications')}</p>
                         </div>
                         <div>
                           <p className="text-lg font-semibold text-foreground">{job.views}</p>
-                          <p className="text-xs text-muted-foreground">views</p>
+                          <p className="text-xs text-muted-foreground">{t('jobPostings.views')}</p>
                         </div>
                         <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
                       </div>
@@ -433,14 +434,14 @@ export default function RecruiterDashboard() {
               ) : (
                 <div className="text-center py-8">
                   <div className="text-4xl mb-3">📋</div>
-                  <h3 className="font-medium text-foreground mb-1">No job postings yet</h3>
+                  <h3 className="font-medium text-foreground mb-1">{t('jobPostings.empty')}</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Post a job to start receiving applications from qualified candidates
+                    {t('jobPostings.emptyDescription')}
                   </p>
                   <Button asChild>
                     <Link href="/dashboard/recruiter/post-job">
                       <Plus className="h-4 w-4 mr-2" />
-                      Post a Job
+                      {t('jobPostings.postJob')}
                     </Link>
                   </Button>
                 </div>
@@ -454,7 +455,7 @@ export default function RecruiterDashboard() {
           {/* Quick Actions */}
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg">Quick actions</CardTitle>
+              <CardTitle className="text-lg">{t('quickActions.title')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               <Link
@@ -465,8 +466,8 @@ export default function RecruiterDashboard() {
                   <Search className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Search candidates</p>
-                  <p className="text-xs text-muted-foreground">Find the right talent</p>
+                  <p className="text-sm font-medium">{t('quickActions.searchCandidates')}</p>
+                  <p className="text-xs text-muted-foreground">{t('quickActions.searchCandidatesDesc')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
@@ -479,8 +480,8 @@ export default function RecruiterDashboard() {
                   <Plus className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Post a job</p>
-                  <p className="text-xs text-muted-foreground">Reach qualified graduates</p>
+                  <p className="text-sm font-medium">{t('quickActions.postJob')}</p>
+                  <p className="text-xs text-muted-foreground">{t('quickActions.postJobDesc')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
@@ -493,8 +494,8 @@ export default function RecruiterDashboard() {
                   <MessageSquare className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Messages</p>
-                  <p className="text-xs text-muted-foreground">Conversations with candidates</p>
+                  <p className="text-sm font-medium">{t('quickActions.messages')}</p>
+                  <p className="text-xs text-muted-foreground">{t('quickActions.messagesDesc')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
@@ -507,8 +508,8 @@ export default function RecruiterDashboard() {
                   <Building2 className="h-4 w-4 text-muted-foreground" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Company settings</p>
-                  <p className="text-xs text-muted-foreground">Update your profile</p>
+                  <p className="text-sm font-medium">{t('quickActions.companySettings')}</p>
+                  <p className="text-xs text-muted-foreground">{t('quickActions.companySettingsDesc')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
@@ -518,19 +519,19 @@ export default function RecruiterDashboard() {
           {/* This Week Summary */}
           <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/10">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg">This week</CardTitle>
+              <CardTitle className="text-lg">{t('thisWeek.title')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">New applications</span>
+                <span className="text-sm text-muted-foreground">{t('thisWeek.newApplications')}</span>
                 <span className="font-semibold">{stats.newApplicationsThisWeek}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Interviews scheduled</span>
+                <span className="text-sm text-muted-foreground">{t('thisWeek.interviewsScheduled')}</span>
                 <span className="font-semibold">{stats.interviewsScheduled}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Pending review</span>
+                <span className="text-sm text-muted-foreground">{t('thisWeek.pendingReview')}</span>
                 <span className="font-semibold text-orange-600">{stats.pendingReview}</span>
               </div>
             </CardContent>
@@ -541,12 +542,12 @@ export default function RecruiterDashboard() {
             <CardHeader className="pb-3">
               <CardTitle className="text-lg flex items-center gap-2">
                 <span>💡</span>
-                Recruiting tip
+                {t('recruitingTip.title')}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-foreground/80 leading-relaxed">
-                Candidates with verified university projects are <span className="font-medium">2.5x more likely</span> to succeed in technical interviews. Look for the verified badge.
+                {t('recruitingTip.text')}
               </p>
             </CardContent>
           </Card>
@@ -557,7 +558,7 @@ export default function RecruiterDashboard() {
             className="flex items-center gap-2 p-3 rounded-lg hover:bg-red-50 transition-colors w-full text-left border"
           >
             <LogOut className="h-4 w-4 text-red-500" />
-            <span className="text-sm font-medium text-red-600">Sign out</span>
+            <span className="text-sm font-medium text-red-600">{t('signOut')}</span>
           </button>
         </div>
       </div>

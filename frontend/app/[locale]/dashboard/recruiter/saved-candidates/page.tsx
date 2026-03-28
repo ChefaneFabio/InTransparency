@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -51,6 +52,7 @@ interface SavedCandidate {
 }
 
 export default function SavedCandidatesPage() {
+  const t = useTranslations('dashboard.recruiter.savedCandidates')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [selectedFolder, setSelectedFolder] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
@@ -177,9 +179,9 @@ export default function SavedCandidatesPage() {
     <div className="min-h-screen bg-gradient-to-br from-muted/50 via-white to-slate-50 space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Saved Candidates</h1>
+          <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
           <p className="text-muted-foreground mt-2">
-            Manage and organize your saved candidate profiles
+            {t('subtitle')}
           </p>
         </div>
         {filteredCandidates.length > 0 && (
@@ -203,7 +205,7 @@ export default function SavedCandidatesPage() {
             }}
           >
             <Download className="h-4 w-4 mr-2" />
-            Export CSV
+            {t('exportCsv')}
           </Button>
         )}
       </div>
@@ -217,7 +219,7 @@ export default function SavedCandidatesPage() {
                 <Bookmark className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-muted-foreground">Total Saved</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('totalSaved')}</p>
                 {loading ? (
                   <Skeleton className="h-8 w-12 mt-1" />
                 ) : (
@@ -235,7 +237,7 @@ export default function SavedCandidatesPage() {
                 <Heart className="h-4 w-4 text-red-600" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-muted-foreground">Favorites</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('favorites')}</p>
                 {loading ? (
                   <Skeleton className="h-8 w-12 mt-1" />
                 ) : (
@@ -253,7 +255,7 @@ export default function SavedCandidatesPage() {
                 <Star className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-muted-foreground">Avg Rating</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('avgRating')}</p>
                 {loading ? (
                   <Skeleton className="h-8 w-12 mt-1" />
                 ) : (
@@ -271,7 +273,7 @@ export default function SavedCandidatesPage() {
                 <Users className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-muted-foreground">Folders</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('folders')}</p>
                 {loading ? (
                   <Skeleton className="h-8 w-12 mt-1" />
                 ) : (
@@ -311,7 +313,7 @@ export default function SavedCandidatesPage() {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Search candidates..."
+                  placeholder={t('searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10 pr-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
@@ -335,12 +337,12 @@ export default function SavedCandidatesPage() {
 
               <Button variant="outline" size="sm">
                 <SortDesc className="h-4 w-4 mr-2" />
-                Sort
+                {t('sort')}
               </Button>
 
               <Button size="sm">
                 <FolderPlus className="h-4 w-4 mr-2" />
-                New Folder
+                {t('newFolder')}
               </Button>
             </div>
           </div>
@@ -377,10 +379,10 @@ export default function SavedCandidatesPage() {
           ) : error ? (
             <div className="text-center py-12">
               <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-foreground mb-2">Failed to load candidates</h3>
+              <h3 className="text-lg font-medium text-foreground mb-2">{t('errorLoading')}</h3>
               <p className="text-muted-foreground mb-4">{error}</p>
               <Button onClick={() => fetchSavedCandidates(selectedFolder)}>
-                Try Again
+                {t('tryAgain')}
               </Button>
             </div>
           ) : filteredCandidates.length > 0 ? (
@@ -450,7 +452,7 @@ export default function SavedCandidatesPage() {
                                 </div>
 
                                 <div>
-                                  <p className="text-sm text-foreground/80 font-medium mb-1">Projects:</p>
+                                  <p className="text-sm text-foreground/80 font-medium mb-1">{t('projects')}:</p>
                                   <p className="text-sm text-muted-foreground">{candidate.projectCount} project{candidate.projectCount !== 1 ? 's' : ''}</p>
                                 </div>
                               </>
@@ -482,12 +484,12 @@ export default function SavedCandidatesPage() {
                           <div className="flex items-center space-x-2">
                             <Button size="sm" variant="outline">
                               <MessageSquare className="h-3 w-3 mr-1" />
-                              Message
+                              {t('message')}
                             </Button>
                             <Button size="sm" asChild>
                               <Link href={`/dashboard/recruiter/candidates/${sc.candidateId}`}>
                                 <ExternalLink className="h-3 w-3 mr-1" />
-                                View
+                                {t('view')}
                               </Link>
                             </Button>
                           </div>
@@ -519,10 +521,10 @@ export default function SavedCandidatesPage() {
           ) : (
             <EmptyState
               icon={Bookmark}
-              title="No saved candidates"
-              description="Save candidates from search results to review later"
+              title={t('emptyTitle')}
+              description={t('emptyDescription')}
               action={{
-                label: 'Browse Candidates',
+                label: t('browseCandidates'),
                 href: '/dashboard/recruiter/candidates',
               }}
             />

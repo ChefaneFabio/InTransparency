@@ -18,6 +18,7 @@ import {
   CheckCircle,
   XCircle,
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface EventData {
   id: string
@@ -52,6 +53,7 @@ const eventTypeLabels: Record<string, string> = {
 }
 
 export default function EventsPage() {
+  const t = useTranslations('universityDashboard.events')
   const [events, setEvents] = useState<EventData[]>([])
   const [loading, setLoading] = useState(true)
   const [showCreate, setShowCreate] = useState(false)

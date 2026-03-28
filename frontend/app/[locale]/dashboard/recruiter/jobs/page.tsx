@@ -11,6 +11,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Search, Plus, MoreVertical, Users, Eye, Calendar, DollarSign, MapPin, Clock, AlertCircle, Briefcase } from 'lucide-react'
 import { Link } from '@/navigation'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
+import { useTranslations } from 'next-intl'
 
 interface Job {
   id: string
@@ -28,6 +29,7 @@ interface Job {
 }
 
 export default function RecruiterJobs() {
+  const t = useTranslations('recruiterDashboard.jobs')
   const [jobs, setJobs] = useState<Job[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -183,9 +185,9 @@ export default function RecruiterJobs() {
         <Card className="max-w-md w-full">
           <CardContent className="pt-6 text-center space-y-4">
             <AlertCircle className="h-12 w-12 text-red-500 mx-auto" />
-            <h2 className="text-xl font-semibold">Failed to load jobs</h2>
+            <h2 className="text-xl font-semibold">{t('failedToLoad')}</h2>
             <p className="text-muted-foreground">{error}</p>
-            <Button onClick={fetchJobs}>Try Again</Button>
+            <Button onClick={fetchJobs}>{t('tryAgain')}</Button>
           </CardContent>
         </Card>
       </div>
@@ -196,15 +198,15 @@ export default function RecruiterJobs() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Job Postings</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
           <p className="text-muted-foreground">
-            Manage your job listings and track applications
+            {t('subtitle')}
           </p>
         </div>
         <Button asChild>
           <Link href="/dashboard/recruiter/jobs/new">
             <Plus className="h-4 w-4 mr-2" />
-            Post New Job
+            {t('postNewJob')}
           </Link>
         </Button>
       </div>
@@ -213,47 +215,47 @@ export default function RecruiterJobs() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Jobs</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('stats.activeJobs')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{activeCount}</div>
             <p className="text-xs text-muted-foreground">
-              {jobs.length} total listings
+              {t('stats.totalListings', { count: jobs.length })}
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Applications</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('stats.totalApplications')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{totalApplications}</div>
             <p className="text-xs text-muted-foreground">
-              across all jobs
+              {t('stats.acrossAllJobs')}
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Views</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('stats.totalViews')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{totalViews}</div>
             <p className="text-xs text-muted-foreground">
-              across all jobs
+              {t('stats.acrossAllJobs')}
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg. Applications</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('stats.avgApplications')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
               {jobs.length > 0 ? Math.round(totalApplications / jobs.length) : 0}
             </div>
             <p className="text-xs text-muted-foreground">
-              per job posting
+              {t('stats.perJobPosting')}
             </p>
           </CardContent>
         </Card>
@@ -266,7 +268,7 @@ export default function RecruiterJobs() {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search jobs..."
+                placeholder={t('searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-9"
@@ -274,27 +276,27 @@ export default function RecruiterJobs() {
             </div>
             <Select value={statusFilter} onValueChange={setStatusFilter}>
               <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Filter by status" />
+                <SelectValue placeholder={t('filters.byStatus')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="active">Active</SelectItem>
-                <SelectItem value="paused">Paused</SelectItem>
-                <SelectItem value="closed">Closed</SelectItem>
-                <SelectItem value="draft">Draft</SelectItem>
+                <SelectItem value="all">{t('filters.allStatus')}</SelectItem>
+                <SelectItem value="active">{t('filters.active')}</SelectItem>
+                <SelectItem value="paused">{t('filters.paused')}</SelectItem>
+                <SelectItem value="closed">{t('filters.closed')}</SelectItem>
+                <SelectItem value="draft">{t('filters.draft')}</SelectItem>
               </SelectContent>
             </Select>
             <Select value={typeFilter} onValueChange={setTypeFilter}>
               <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Filter by type" />
+                <SelectValue placeholder={t('filters.byType')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Types</SelectItem>
-                <SelectItem value="FULL_TIME">Full-time</SelectItem>
-                <SelectItem value="PART_TIME">Part-time</SelectItem>
-                <SelectItem value="CONTRACT">Contract</SelectItem>
-                <SelectItem value="INTERNSHIP">Internship</SelectItem>
-                <SelectItem value="FREELANCE">Freelance</SelectItem>
+                <SelectItem value="all">{t('filters.allTypes')}</SelectItem>
+                <SelectItem value="FULL_TIME">{t('filters.fullTime')}</SelectItem>
+                <SelectItem value="PART_TIME">{t('filters.partTime')}</SelectItem>
+                <SelectItem value="CONTRACT">{t('filters.contract')}</SelectItem>
+                <SelectItem value="INTERNSHIP">{t('filters.internship')}</SelectItem>
+                <SelectItem value="FREELANCE">{t('filters.freelance')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -307,10 +309,10 @@ export default function RecruiterJobs() {
           <CardContent>
             <EmptyState
               icon={Briefcase}
-              title="No jobs posted"
-              description="Post your first job to start finding candidates"
+              title={t('empty.title')}
+              description={t('empty.description')}
               action={{
-                label: 'Post a Job',
+                label: t('empty.postJob'),
                 href: '/dashboard/recruiter/jobs/new',
               }}
             />
@@ -357,17 +359,17 @@ export default function RecruiterJobs() {
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem asChild>
                           <Link href={`/dashboard/recruiter/jobs/${job.id}`}>
-                            View Details
+                            {t('actions.viewDetails')}
                           </Link>
                         </DropdownMenuItem>
                         <DropdownMenuItem onClick={() => handleToggleStatus(job)}>
-                          {job.status === 'ACTIVE' ? 'Close Job' : 'Activate Job'}
+                          {job.status === 'ACTIVE' ? t('actions.closeJob') : t('actions.activateJob')}
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           className="text-red-600"
                           onClick={() => handleDelete(job)}
                         >
-                          Delete
+                          {t('actions.delete')}
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
@@ -388,21 +390,21 @@ export default function RecruiterJobs() {
                     <div className="flex items-center gap-6 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Users className="h-4 w-4" />
-                        {job.applicationCount} applicants
+                        {t('applicants', { count: job.applicationCount })}
                       </div>
                       <div className="flex items-center gap-1">
                         <Eye className="h-4 w-4" />
-                        {job.views} views
+                        {t('viewsCount', { count: job.views })}
                       </div>
                       <div className="flex items-center gap-1">
                         <Calendar className="h-4 w-4" />
-                        Posted {new Date(job.postedAt || job.createdAt).toLocaleDateString()}
+                        {t('posted')} {new Date(job.postedAt || job.createdAt).toLocaleDateString()}
                       </div>
                     </div>
                     <div className="flex gap-2">
                       <Button variant="outline" size="sm" asChild>
                         <Link href={`/dashboard/recruiter/jobs/${job.id}`}>
-                          View Applications ({job.applicationCount})
+                          {t('viewApplications', { count: job.applicationCount })}
                         </Link>
                       </Button>
                     </div>

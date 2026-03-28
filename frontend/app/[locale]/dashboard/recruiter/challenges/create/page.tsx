@@ -1,11 +1,13 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { ChallengeForm } from '@/components/challenges/ChallengeForm'
 import { ArrowLeft } from 'lucide-react'
 
 export default function CreateChallengePage() {
+  const t = useTranslations('dashboard.recruiter.challengesCreate')
   return (
     <div className="max-w-4xl mx-auto space-y-6 pb-12">
       {/* Header */}
@@ -13,13 +15,13 @@ export default function CreateChallengePage() {
         <Button variant="ghost" size="sm" asChild>
           <Link href="/dashboard/recruiter/challenges">
             <ArrowLeft className="h-4 w-4 mr-1" />
-            Back
+            {t('back')}
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">Create Challenge</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
           <p className="text-gray-600 mt-1">
-            Propose a real-world project for students to work on
+            {t('subtitle')}
           </p>
         </div>
       </div>

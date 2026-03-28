@@ -22,6 +22,7 @@ import {
   Award,
   Eye
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface Student {
   id: string
@@ -61,6 +62,7 @@ interface Stats {
 }
 
 export default function UniversityProjectsPage() {
+  const t = useTranslations('universityDashboard.projects')
   const [projects, setProjects] = useState<Project[]>([])
   const [stats, setStats] = useState<Stats>({
     total: 0,
@@ -115,28 +117,28 @@ export default function UniversityProjectsPage() {
         return (
           <Badge className="bg-primary/10 text-primary">
             <CheckCircle className="h-3 w-3 mr-1" />
-            Verified
+            {t('verified')}
           </Badge>
         )
       case 'REJECTED':
         return (
           <Badge className="bg-red-100 text-red-700">
             <XCircle className="h-3 w-3 mr-1" />
-            Rejected
+            {t('rejected')}
           </Badge>
         )
       case 'NEEDS_INFO':
         return (
           <Badge className="bg-orange-100 text-orange-700">
             <AlertCircle className="h-3 w-3 mr-1" />
-            Needs Info
+            {t('needsInfo')}
           </Badge>
         )
       default:
         return (
           <Badge className="bg-yellow-100 text-yellow-700">
             <Clock className="h-3 w-3 mr-1" />
-            Pending
+            {t('pending')}
           </Badge>
         )
     }
@@ -147,7 +149,7 @@ export default function UniversityProjectsPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary mb-4" />
-          <p className="text-gray-500">Loading projects...</p>
+          <p className="text-gray-500">{t('loading')}</p>
         </div>
       </div>
     )
@@ -157,9 +159,9 @@ export default function UniversityProjectsPage() {
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
       {/* Header */}
       <div className="pt-2">
-        <h1 className="text-2xl font-semibold text-gray-900">Project Verification</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
         <p className="text-gray-600 mt-1">
-          Review and verify student projects linked to courses
+          {t('subtitle')}
         </p>
       </div>
 
@@ -170,7 +172,7 @@ export default function UniversityProjectsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.total}</p>
-                <p className="text-sm text-gray-600">Total</p>
+                <p className="text-sm text-gray-600">{t('total')}</p>
               </div>
               <FolderOpen className="h-8 w-8 text-primary" />
             </div>
@@ -181,7 +183,7 @@ export default function UniversityProjectsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.pending}</p>
-                <p className="text-sm text-gray-600">Pending</p>
+                <p className="text-sm text-gray-600">{t('pending')}</p>
               </div>
               <Clock className="h-8 w-8 text-primary" />
             </div>
@@ -192,7 +194,7 @@ export default function UniversityProjectsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.verified}</p>
-                <p className="text-sm text-gray-600">Verified</p>
+                <p className="text-sm text-gray-600">{t('verified')}</p>
               </div>
               <CheckCircle className="h-8 w-8 text-primary" />
             </div>
@@ -203,7 +205,7 @@ export default function UniversityProjectsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.rejected}</p>
-                <p className="text-sm text-gray-600">Rejected</p>
+                <p className="text-sm text-gray-600">{t('rejected')}</p>
               </div>
               <XCircle className="h-8 w-8 text-red-500" />
             </div>
@@ -214,7 +216,7 @@ export default function UniversityProjectsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.needsInfo}</p>
-                <p className="text-sm text-gray-600">Needs Info</p>
+                <p className="text-sm text-gray-600">{t('needsInfo')}</p>
               </div>
               <AlertCircle className="h-8 w-8 text-orange-500" />
             </div>
@@ -228,17 +230,17 @@ export default function UniversityProjectsPage() {
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-4">
               <TabsList>
-                <TabsTrigger value="all">All ({stats.total})</TabsTrigger>
-                <TabsTrigger value="pending">Pending ({stats.pending})</TabsTrigger>
-                <TabsTrigger value="verified">Verified ({stats.verified})</TabsTrigger>
-                <TabsTrigger value="rejected">Rejected ({stats.rejected})</TabsTrigger>
+                <TabsTrigger value="all">{t('all')} ({stats.total})</TabsTrigger>
+                <TabsTrigger value="pending">{t('pending')} ({stats.pending})</TabsTrigger>
+                <TabsTrigger value="verified">{t('verified')} ({stats.verified})</TabsTrigger>
+                <TabsTrigger value="rejected">{t('rejected')} ({stats.rejected})</TabsTrigger>
               </TabsList>
 
               <div className="flex gap-2 w-full sm:w-auto">
                 <div className="relative flex-1 sm:w-64">
                   <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                   <Input
-                    placeholder="Search projects..."
+                    placeholder={t('searchPlaceholder')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-9"
@@ -246,7 +248,7 @@ export default function UniversityProjectsPage() {
                 </div>
                 <Select value={disciplineFilter} onValueChange={setDisciplineFilter}>
                   <SelectTrigger className="w-[150px]">
-                    <SelectValue placeholder="Discipline" />
+                    <SelectValue placeholder={t('discipline')} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All</SelectItem>
@@ -288,13 +290,14 @@ function ProjectsList({
   projects: Project[]
   getStatusBadge: (status: string) => JSX.Element
 }) {
+  const t = useTranslations('universityDashboard.projects')
   if (projects.length === 0) {
     return (
       <div className="text-center py-12">
         <FolderOpen className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-        <h3 className="font-medium text-gray-900 mb-2">No projects found</h3>
+        <h3 className="font-medium text-gray-900 mb-2">{t('noProjectsFound')}</h3>
         <p className="text-gray-600">
-          Projects with course links from your students will appear here
+          {t('noProjectsDescription')}
         </p>
       </div>
     )
@@ -365,7 +368,7 @@ function ProjectsList({
                 {project.hasProfessorEndorsement && (
                   <Badge variant="secondary" className="bg-primary/5 text-purple-700 text-xs">
                     <Award className="h-3 w-3 mr-1" />
-                    Endorsed
+                    {t('endorsed')}
                   </Badge>
                 )}
 

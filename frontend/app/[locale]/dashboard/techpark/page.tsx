@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
@@ -27,6 +28,7 @@ interface TechParkStats {
 }
 
 export default function TechParkDashboard() {
+  const t = useTranslations('techparkDashboard')
   const { data: session } = useSession()
   const locale = useLocale()
   const user = session?.user
@@ -102,23 +104,23 @@ export default function TechParkDashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
         <div>
           <h1 className="text-2xl font-semibold text-foreground">
-            Welcome back{user?.firstName ? `, ${user.firstName}` : ''}
+            {t('welcomeBack')}{user?.firstName ? `, ${user.firstName}` : ''}
           </h1>
           <p className="text-muted-foreground mt-1">
-            Manage your tech park ecosystem and connect talent with companies
+            {t('dashboardSubtitle')}
           </p>
         </div>
         <div className="flex gap-3">
           <Button asChild>
             <Link href="/dashboard/techpark/talent">
               <Eye className="h-4 w-4 mr-2" />
-              View Talent
+              {t('viewTalent')}
             </Link>
           </Button>
           <Button variant="outline" asChild>
             <Link href="/dashboard/techpark/companies">
               <Building2 className="h-4 w-4 mr-2" />
-              Manage Companies
+              {t('manageCompanies')}
             </Link>
           </Button>
         </div>
@@ -131,7 +133,7 @@ export default function TechParkDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.memberCompanies}</p>
-                <p className="text-sm text-muted-foreground">Member companies</p>
+                <p className="text-sm text-muted-foreground">{t('memberCompanies')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Building2 className="h-5 w-5 text-primary" />
@@ -145,7 +147,7 @@ export default function TechParkDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.talentPipeline}</p>
-                <p className="text-sm text-muted-foreground">Talent pipeline</p>
+                <p className="text-sm text-muted-foreground">{t('talentPipeline')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Users className="h-5 w-5 text-primary" />
@@ -159,7 +161,7 @@ export default function TechParkDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.recruiterActivity}</p>
-                <p className="text-sm text-muted-foreground">Recruiter activity</p>
+                <p className="text-sm text-muted-foreground">{t('recruiterActivity')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <TrendingUp className="h-5 w-5 text-primary" />
@@ -173,7 +175,7 @@ export default function TechParkDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.placements}</p>
-                <p className="text-sm text-muted-foreground">Placements</p>
+                <p className="text-sm text-muted-foreground">{t('placements.title')}</p>
               </div>
               <div className="p-2 bg-orange-100 rounded-lg">
                 <Target className="h-5 w-5 text-orange-600" />
@@ -191,9 +193,9 @@ export default function TechParkDashboard() {
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-lg">Ecosystem Overview</CardTitle>
+                  <CardTitle className="text-lg">{t('ecosystemOverview')}</CardTitle>
                   <CardDescription>
-                    Your tech park at a glance
+                    {t('ecosystemOverviewDescription')}
                   </CardDescription>
                 </div>
               </div>
@@ -203,34 +205,34 @@ export default function TechParkDashboard() {
                 <div className="p-4 rounded-lg border">
                   <div className="flex items-center gap-2 mb-2">
                     <Building2 className="h-4 w-4 text-primary" />
-                    <span className="text-sm font-medium">Companies</span>
+                    <span className="text-sm font-medium">{t('companies.title')}</span>
                   </div>
                   <p className="text-2xl font-bold">{stats.memberCompanies}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Active member companies</p>
+                  <p className="text-xs text-muted-foreground mt-1">{t('activeMemberCompanies')}</p>
                 </div>
                 <div className="p-4 rounded-lg border">
                   <div className="flex items-center gap-2 mb-2">
                     <Users className="h-4 w-4 text-primary" />
-                    <span className="text-sm font-medium">Talent</span>
+                    <span className="text-sm font-medium">{t('talent.title')}</span>
                   </div>
                   <p className="text-2xl font-bold">{stats.talentPipeline}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Students in pipeline</p>
+                  <p className="text-xs text-muted-foreground mt-1">{t('studentsInPipeline')}</p>
                 </div>
                 <div className="p-4 rounded-lg border">
                   <div className="flex items-center gap-2 mb-2">
                     <TrendingUp className="h-4 w-4 text-primary" />
-                    <span className="text-sm font-medium">Activity</span>
+                    <span className="text-sm font-medium">{t('activity')}</span>
                   </div>
                   <p className="text-2xl font-bold">{stats.recruiterActivity}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Recruiter actions this month</p>
+                  <p className="text-xs text-muted-foreground mt-1">{t('recruiterActionsThisMonth')}</p>
                 </div>
                 <div className="p-4 rounded-lg border">
                   <div className="flex items-center gap-2 mb-2">
                     <Target className="h-4 w-4 text-orange-600" />
-                    <span className="text-sm font-medium">Placements</span>
+                    <span className="text-sm font-medium">{t('placements.title')}</span>
                   </div>
                   <p className="text-2xl font-bold">{stats.placements}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Successful matches</p>
+                  <p className="text-xs text-muted-foreground mt-1">{t('successfulMatches')}</p>
                 </div>
               </div>
             </CardContent>
@@ -242,7 +244,7 @@ export default function TechParkDashboard() {
           {/* Quick Actions */}
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg">Quick actions</CardTitle>
+              <CardTitle className="text-lg">{t('quickActions')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               <Link
@@ -253,8 +255,8 @@ export default function TechParkDashboard() {
                   <Eye className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">View talent</p>
-                  <p className="text-xs text-muted-foreground">Browse the talent pipeline</p>
+                  <p className="text-sm font-medium">{t('viewTalent')}</p>
+                  <p className="text-xs text-muted-foreground">{t('browseTalentPipeline')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
@@ -267,8 +269,8 @@ export default function TechParkDashboard() {
                   <Building2 className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Manage companies</p>
-                  <p className="text-xs text-muted-foreground">View member companies</p>
+                  <p className="text-sm font-medium">{t('manageCompanies')}</p>
+                  <p className="text-xs text-muted-foreground">{t('viewMemberCompanies')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
@@ -281,8 +283,8 @@ export default function TechParkDashboard() {
                   <Settings className="h-4 w-4 text-muted-foreground" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium">Park settings</p>
-                  <p className="text-xs text-muted-foreground">Update your profile</p>
+                  <p className="text-sm font-medium">{t('settings.title')}</p>
+                  <p className="text-xs text-muted-foreground">{t('updateYourProfile')}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
@@ -292,11 +294,11 @@ export default function TechParkDashboard() {
           {/* Tips */}
           <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/10">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg">Park tip</CardTitle>
+              <CardTitle className="text-lg">{t('parkTip')}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-foreground/80 leading-relaxed">
-                Tech parks that actively connect their member companies with university talent see <span className="font-medium">3x more successful placements</span>. Keep your company directory up to date.
+                {t('parkTipText')}
               </p>
             </CardContent>
           </Card>
@@ -307,7 +309,7 @@ export default function TechParkDashboard() {
             className="flex items-center gap-2 p-3 rounded-lg hover:bg-red-50 transition-colors w-full text-left border"
           >
             <LogOut className="h-4 w-4 text-red-500" />
-            <span className="text-sm font-medium text-red-600">Sign out</span>
+            <span className="text-sm font-medium text-red-600">{t('signOut')}</span>
           </button>
         </div>
       </div>

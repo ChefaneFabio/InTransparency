@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -22,6 +23,7 @@ export default function DecisionPackCard({
   verifiedProjects = 0,
   endorsements = 0,
 }: Props) {
+  const t = useTranslations('recruiterComponents')
   const [generating, setGenerating] = useState(false)
 
   const handleGenerate = () => {
@@ -49,13 +51,13 @@ export default function DecisionPackCard({
             {verifiedProjects > 0 && (
               <Badge variant="outline" className="text-xs">
                 <Shield className="mr-1 h-3 w-3 text-primary" />
-                {verifiedProjects} verified
+                {verifiedProjects} {t('verified')}
               </Badge>
             )}
             {endorsements > 0 && (
               <Badge variant="outline" className="text-xs">
                 <TrendingUp className="mr-1 h-3 w-3 text-primary" />
-                {endorsements} endorsed
+                {endorsements} {t('endorsed')}
               </Badge>
             )}
           </div>
@@ -69,7 +71,7 @@ export default function DecisionPackCard({
           onClick={handleGenerate}
         >
           <Link href={`/dashboard/recruiter/decision-pack/${candidateId}`}>
-            {generating ? 'Generating...' : 'Generate Full Dossier'}
+            {generating ? t('generating') : t('generateDossier')}
           </Link>
         </Button>
       </CardContent>

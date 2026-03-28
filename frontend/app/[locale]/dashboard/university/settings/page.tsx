@@ -28,6 +28,7 @@ import {
   Lock,
   Loader2
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface UniversitySettingsData {
   name: string
@@ -54,6 +55,7 @@ interface UniversitySettingsData {
 }
 
 export default function UniversitySettingsPage() {
+  const t = useTranslations('universityDashboard.settings')
   const [settings, setSettings] = useState<UniversitySettingsData>({
     name: '', shortName: '', description: '', website: '', email: '', phone: '',
     address: '', city: '', region: '', logo: '',
@@ -142,14 +144,14 @@ export default function UniversitySettingsPage() {
       <div className="container max-w-4xl mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Impostazioni</h1>
-            <p className="text-gray-600">Gestisci le impostazioni della tua istituzione</p>
+            <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
+            <p className="text-gray-600">{t('subtitle')}</p>
           </div>
           <Button onClick={handleSave} disabled={isSaving}>
             {isSaving ? (
-              <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Salvataggio...</>
+              <><Loader2 className="h-4 w-4 mr-2 animate-spin" />{t('saving')}</>
             ) : (
-              <><Save className="h-4 w-4 mr-2" />Salva Modifiche</>
+              <><Save className="h-4 w-4 mr-2" />{t('save')}</>
             )}
           </Button>
         </div>
@@ -158,7 +160,7 @@ export default function UniversitySettingsPage() {
           <Alert className="mb-6 bg-primary/5 border-primary/20">
             <CheckCircle className="h-4 w-4 text-primary" />
             <AlertDescription className="text-gray-700">
-              Impostazioni salvate con successo!
+              {t('savedSuccess')}
             </AlertDescription>
           </Alert>
         )}

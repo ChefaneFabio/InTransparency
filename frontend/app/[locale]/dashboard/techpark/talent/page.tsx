@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -28,6 +29,7 @@ const MOCK_STUDENTS: Student[] = [
 ]
 
 export default function TechParkTalentPage() {
+  const t = useTranslations('techparkDashboard')
   const [students, setStudents] = useState<Student[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -62,33 +64,33 @@ export default function TechParkTalentPage() {
       <div className="flex items-center gap-4 pt-2">
         <Button variant="ghost" size="sm" asChild>
           <Link href="/dashboard/techpark">
-            <ArrowLeft className="h-4 w-4 mr-1" /> Back
+            <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold">Talent Pipeline</h1>
-          <p className="text-sm text-muted-foreground">Students available in your tech park talent pool</p>
+          <h1 className="text-2xl font-semibold">{t('talent.title')}</h1>
+          <p className="text-sm text-muted-foreground">{t('talent.subtitle')}</p>
         </div>
       </div>
 
       <div className="grid grid-cols-3 gap-4">
         <Card><CardContent className="pt-6 text-center">
           <p className="text-2xl font-bold">{students.length}</p>
-          <p className="text-sm text-muted-foreground">Total students</p>
+          <p className="text-sm text-muted-foreground">{t('talent.totalStudents')}</p>
         </CardContent></Card>
         <Card><CardContent className="pt-6 text-center">
           <p className="text-2xl font-bold">{students.filter(s => s.matchScore >= 80).length}</p>
-          <p className="text-sm text-muted-foreground">High match</p>
+          <p className="text-sm text-muted-foreground">{t('talent.highMatch')}</p>
         </CardContent></Card>
         <Card><CardContent className="pt-6 text-center">
           <p className="text-2xl font-bold">{new Set(students.map(s => s.university)).size}</p>
-          <p className="text-sm text-muted-foreground">Universities</p>
+          <p className="text-sm text-muted-foreground">{t('talent.universities')}</p>
         </CardContent></Card>
       </div>
 
       <div className="relative max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input placeholder="Search by name, field, or skill..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
+        <Input placeholder={t('talent.searchPlaceholder')} value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
       </div>
 
       {loading ? (
@@ -128,7 +130,7 @@ export default function TechParkTalentPage() {
           {filtered.length === 0 && (
             <div className="col-span-full text-center py-12 text-muted-foreground">
               <Users className="h-8 w-8 mx-auto mb-2 opacity-50" />
-              <p>No students found</p>
+              <p>{t('talent.noResults')}</p>
             </div>
           )}
         </div>

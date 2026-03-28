@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -34,6 +35,7 @@ const statusConfig = {
 }
 
 export default function TechParkPlacementsPage() {
+  const t = useTranslations('techparkDashboard')
   const [placements, setPlacements] = useState<Placement[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -72,33 +74,33 @@ export default function TechParkPlacementsPage() {
       <div className="flex items-center gap-4 pt-2">
         <Button variant="ghost" size="sm" asChild>
           <Link href="/dashboard/techpark">
-            <ArrowLeft className="h-4 w-4 mr-1" /> Back
+            <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold">Placements</h1>
-          <p className="text-sm text-muted-foreground">Track student placements at member companies</p>
+          <h1 className="text-2xl font-semibold">{t('placements.title')}</h1>
+          <p className="text-sm text-muted-foreground">{t('placements.subtitle')}</p>
         </div>
       </div>
 
       <div className="grid grid-cols-3 gap-4">
         <Card><CardContent className="pt-6 text-center">
           <p className="text-2xl font-bold text-green-600">{confirmed}</p>
-          <p className="text-sm text-muted-foreground">Confirmed</p>
+          <p className="text-sm text-muted-foreground">{t('placements.confirmed')}</p>
         </CardContent></Card>
         <Card><CardContent className="pt-6 text-center">
           <p className="text-2xl font-bold text-blue-600">{inProgress}</p>
-          <p className="text-sm text-muted-foreground">In Progress</p>
+          <p className="text-sm text-muted-foreground">{t('placements.inProgress')}</p>
         </CardContent></Card>
         <Card><CardContent className="pt-6 text-center">
           <p className="text-2xl font-bold text-yellow-600">{pending}</p>
-          <p className="text-sm text-muted-foreground">Pending</p>
+          <p className="text-sm text-muted-foreground">{t('placements.pending')}</p>
         </CardContent></Card>
       </div>
 
       <div className="relative max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input placeholder="Search placements..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
+        <Input placeholder={t('placements.searchPlaceholder')} value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
       </div>
 
       {loading ? (
@@ -118,13 +120,13 @@ export default function TechParkPlacementsPage() {
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <h3 className="font-medium">{placement.studentName}</h3>
-                        <Badge variant={config.variant}>{config.label}</Badge>
+                        <Badge variant={config.variant}>{t(`placements.status.${placement.status}`)}</Badge>
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        {placement.role} at {placement.companyName}
+                        {placement.role} {t('placements.at')} {placement.companyName}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        Start date: {new Date(placement.startDate).toLocaleDateString()}
+                        {t('placements.startDate')}: {new Date(placement.startDate).toLocaleDateString()}
                       </p>
                     </div>
                   </div>
@@ -135,7 +137,7 @@ export default function TechParkPlacementsPage() {
           {filtered.length === 0 && (
             <div className="text-center py-12 text-muted-foreground">
               <Target className="h-8 w-8 mx-auto mb-2 opacity-50" />
-              <p>No placements found</p>
+              <p>{t('placements.noResults')}</p>
             </div>
           )}
         </div>

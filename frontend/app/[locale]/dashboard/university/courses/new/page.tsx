@@ -26,6 +26,7 @@ import {
   AlertCircle,
   CheckCircle,
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface CourseForm {
   courseName: string
@@ -42,6 +43,7 @@ interface CourseForm {
 
 export default function NewCoursePage() {
   const router = useRouter()
+  const t = useTranslations('universityDashboard.newCourse')
 
   const [form, setForm] = useState<CourseForm>({
     courseName: '',
@@ -131,9 +133,9 @@ export default function NewCoursePage() {
 
       if (!res.ok) {
         if (res.status === 409) {
-          throw new Error(data.error || 'Un corso con questo codice esiste già.')
+          throw new Error(data.error || t('duplicateError'))
         }
-        throw new Error(data.error || 'Errore durante la creazione del corso.')
+        throw new Error(data.error || t('createError'))
       }
 
       setSuccess(true)
@@ -142,7 +144,7 @@ export default function NewCoursePage() {
       }, 2000)
     } catch (err: unknown) {
       const message =
-        err instanceof Error ? err.message : 'Errore durante la creazione del corso.'
+        err instanceof Error ? err.message : t('createError')
       setError(message)
     } finally {
       setIsLoading(false)
@@ -159,13 +161,13 @@ export default function NewCoursePage() {
                 <CheckCircle className="h-8 w-8 text-primary" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Corso Creato!
+                {t('courseCreated')}
               </h2>
               <p className="text-gray-600">
-                Il corso <span className="font-medium">{form.courseName}</span> ({form.courseCode}) è stato aggiunto al catalogo.
+                {t('courseCreatedDesc', { name: form.courseName, code: form.courseCode })}
               </p>
               <p className="text-sm text-gray-500 mt-2">
-                Reindirizzamento alla lista corsi...
+                {t('redirecting')}
               </p>
             </CardContent>
           </Card>
@@ -181,7 +183,7 @@ export default function NewCoursePage() {
         <Link href="/dashboard/university/courses">
           <Button variant="ghost" className="mb-6">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Torna ai corsi
+            {t('backToCourses')}
           </Button>
         </Link>
 
@@ -191,8 +193,8 @@ export default function NewCoursePage() {
               <BookOpen className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Nuovo Corso</h1>
-              <p className="text-gray-600">Aggiungi un nuovo corso al catalogo</p>
+              <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
+              <p className="text-gray-600">{t('subtitle')}</p>
             </div>
           </div>
         </div>
@@ -209,12 +211,12 @@ export default function NewCoursePage() {
           {/* Informazioni Base */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Informazioni Base</CardTitle>
+              <CardTitle className="text-lg">{t('basicInfo')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="courseName">Nome del Corso *</Label>
+                  <Label htmlFor="courseName">{t('courseName')} *</Label>
                   <Input
                     id="courseName"
                     value={form.courseName}
@@ -224,7 +226,7 @@ export default function NewCoursePage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="courseCode">Codice Corso *</Label>
+                  <Label htmlFor="courseCode">{t('courseCode')} *</Label>
                   <Input
                     id="courseCode"
                     value={form.courseCode}
@@ -237,7 +239,7 @@ export default function NewCoursePage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="department">Dipartimento</Label>
+                  <Label htmlFor="department">{t('department')}</Label>
                   <Input
                     id="department"
                     value={form.department}
@@ -246,24 +248,24 @@ export default function NewCoursePage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="semester">Semestre *</Label>
+                  <Label htmlFor="semester">{t('semester')} *</Label>
                   <Select
                     value={form.semester}
                     onValueChange={(value) => updateField('semester', value)}
                     required
                   >
                     <SelectTrigger id="semester">
-                      <SelectValue placeholder="Seleziona..." />
+                      <SelectValue placeholder={t('select')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="1° Semestre">1° Semestre</SelectItem>
-                      <SelectItem value="2° Semestre">2° Semestre</SelectItem>
-                      <SelectItem value="Annuale">Annuale</SelectItem>
+                      <SelectItem value="1° Semestre">{t('semester1')}</SelectItem>
+                      <SelectItem value="2° Semestre">{t('semester2')}</SelectItem>
+                      <SelectItem value="Annuale">{t('annual')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="academicYear">Anno Accademico *</Label>
+                  <Label htmlFor="academicYear">{t('academicYear')} *</Label>
                   <Input
                     id="academicYear"
                     value={form.academicYear}
@@ -279,12 +281,12 @@ export default function NewCoursePage() {
           {/* Docente */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Docente</CardTitle>
+              <CardTitle className="text-lg">{t('professor')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="professorName">Nome Docente</Label>
+                  <Label htmlFor="professorName">{t('professorName')}</Label>
                   <Input
                     id="professorName"
                     value={form.professorName}
@@ -293,7 +295,7 @@ export default function NewCoursePage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="professorEmail">Email Docente</Label>
+                  <Label htmlFor="professorEmail">{t('professorEmail')}</Label>
                   <Input
                     id="professorEmail"
                     type="email"
@@ -309,11 +311,11 @@ export default function NewCoursePage() {
           {/* Dettagli */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Dettagli</CardTitle>
+              <CardTitle className="text-lg">{t('details')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="description">Descrizione</Label>
+                <Label htmlFor="description">{t('description')}</Label>
                 <Textarea
                   id="description"
                   value={form.description}
@@ -325,7 +327,7 @@ export default function NewCoursePage() {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="credits">Crediti (CFU)</Label>
+                  <Label htmlFor="credits">{t('credits')}</Label>
                   <Input
                     id="credits"
                     type="number"
@@ -337,18 +339,18 @@ export default function NewCoursePage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="level">Livello</Label>
+                  <Label htmlFor="level">{t('level')}</Label>
                   <Select
                     value={form.level}
                     onValueChange={(value) => updateField('level', value)}
                   >
                     <SelectTrigger id="level">
-                      <SelectValue placeholder="Seleziona..." />
+                      <SelectValue placeholder={t('select')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Triennale">Triennale</SelectItem>
-                      <SelectItem value="Magistrale">Magistrale</SelectItem>
-                      <SelectItem value="Dottorato">Dottorato</SelectItem>
+                      <SelectItem value="Triennale">{t('bachelor')}</SelectItem>
+                      <SelectItem value="Magistrale">{t('master')}</SelectItem>
+                      <SelectItem value="Dottorato">{t('phd')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -359,12 +361,12 @@ export default function NewCoursePage() {
           {/* Competenze */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Competenze</CardTitle>
+              <CardTitle className="text-lg">{t('competencies')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="space-y-2">
                 <Label htmlFor="competencyInput">
-                  Aggiungi competenze (premi Invio per aggiungere)
+                  {t('addCompetencies')}
                 </Label>
                 <div className="flex gap-2">
                   <Input
@@ -413,7 +415,7 @@ export default function NewCoursePage() {
               )}
               {competencies.length === 0 && (
                 <p className="text-sm text-gray-500">
-                  Nessuna competenza aggiunta. Digita una competenza e premi Invio.
+                  {t('noCompetencies')}
                 </p>
               )}
             </CardContent>
@@ -422,12 +424,12 @@ export default function NewCoursePage() {
           {/* Risultati di Apprendimento */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Risultati di Apprendimento</CardTitle>
+              <CardTitle className="text-lg">{t('learningOutcomes')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="space-y-2">
                 <Label htmlFor="outcomeInput">
-                  Aggiungi risultati di apprendimento (premi Invio per aggiungere)
+                  {t('addOutcomes')}
                 </Label>
                 <div className="flex gap-2">
                   <Input
@@ -476,7 +478,7 @@ export default function NewCoursePage() {
               )}
               {learningOutcomes.length === 0 && (
                 <p className="text-sm text-gray-500">
-                  Nessun risultato aggiunto. Digita un risultato di apprendimento e premi Invio.
+                  {t('noOutcomes')}
                 </p>
               )}
             </CardContent>
@@ -486,19 +488,19 @@ export default function NewCoursePage() {
           <div className="flex justify-end gap-4 pb-8">
             <Link href="/dashboard/university/courses">
               <Button type="button" variant="outline">
-                Annulla
+                {t('cancel')}
               </Button>
             </Link>
             <Button type="submit" disabled={isLoading}>
               {isLoading ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  Creazione in corso...
+                  {t('creating')}
                 </>
               ) : (
                 <>
                   <BookOpen className="h-4 w-4 mr-2" />
-                  Crea Corso
+                  {t('createCourse')}
                 </>
               )}
             </Button>

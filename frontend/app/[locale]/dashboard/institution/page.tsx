@@ -20,6 +20,7 @@ import {
   Eye
 } from 'lucide-react'
 import { trackUpgradePrompt, trackUpgradeInteraction, ConversionTrigger, PlanType } from '@/lib/analytics'
+import { useTranslations } from 'next-intl'
 
 interface StatsData {
   totalStudents: number
@@ -48,6 +49,7 @@ interface TopRecruiter {
 export default function InstitutionDashboard() {
   const router = useRouter()
   const { data: session } = useSession()
+  const t = useTranslations('universityDashboard.institution')
   const [loading, setLoading] = useState(true)
   const [stats, setStats] = useState<StatsData | null>(null)
   const [recentStudents, setRecentStudents] = useState<RecentStudent[]>([])
@@ -115,12 +117,12 @@ export default function InstitutionDashboard() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold">{institutionName}</h1>
-          <p className="text-gray-600">Student placement analytics and company connections</p>
+          <p className="text-gray-600">{t('subtitle')}</p>
         </div>
         {isFree && (
           <Button onClick={() => router.push('/pricing')} className="gap-2">
             <Code className="h-4 w-4" />
-            Get Embeddable Widget
+            {t('getWidget')}
           </Button>
         )}
       </div>
@@ -160,7 +162,7 @@ export default function InstitutionDashboard() {
                 <Users className="h-8 w-8 text-primary" />
                 <div>
                   <div className="text-2xl font-bold">{stats?.totalStudents ?? 0}</div>
-                  <div className="text-sm text-gray-600">Total Students</div>
+                  <div className="text-sm text-gray-600">{t('totalStudents')}</div>
                 </div>
               </div>
             </Card>
@@ -170,7 +172,7 @@ export default function InstitutionDashboard() {
                 <CheckCircle className="h-8 w-8 text-primary" />
                 <div>
                   <div className="text-2xl font-bold">{stats?.verifiedStudents ?? 0}</div>
-                  <div className="text-sm text-gray-600">Verified Students</div>
+                  <div className="text-sm text-gray-600">{t('verifiedStudents')}</div>
                 </div>
               </div>
             </Card>
@@ -180,7 +182,7 @@ export default function InstitutionDashboard() {
                 <GraduationCap className="h-8 w-8 text-primary" />
                 <div>
                   <div className="text-2xl font-bold">{stats?.activeProfiles ?? 0}</div>
-                  <div className="text-sm text-gray-600">Active Profiles</div>
+                  <div className="text-sm text-gray-600">{t('activeProfiles')}</div>
                 </div>
               </div>
             </Card>
@@ -190,7 +192,7 @@ export default function InstitutionDashboard() {
                 <Eye className="h-8 w-8 text-orange-600" />
                 <div>
                   <div className="text-2xl font-bold">{stats?.recruiterViews ?? 0}</div>
-                  <div className="text-sm text-gray-600">Recruiter Views</div>
+                  <div className="text-sm text-gray-600">{t('recruiterViews')}</div>
                 </div>
               </div>
             </Card>
@@ -203,7 +205,7 @@ export default function InstitutionDashboard() {
         <div className="md:col-span-2 space-y-6">
           {/* Recent Students */}
           <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Recent Students</h2>
+            <h2 className="text-xl font-semibold mb-4">{t('recentStudents')}</h2>
 
             {loading ? (
               <div className="space-y-3">
@@ -245,7 +247,7 @@ export default function InstitutionDashboard() {
 
           {/* Top Recruiters */}
           <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Top Recruiters (Last 30 Days)</h2>
+            <h2 className="text-xl font-semibold mb-4">{t('topRecruiters')}</h2>
 
             {loading ? (
               <div className="space-y-3">

@@ -11,6 +11,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell,
 } from 'recharts'
+import { useTranslations } from 'next-intl'
 
 const FUNNEL_COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d', '#f44336']
 
@@ -65,6 +66,7 @@ function LoadingSkeleton() {
 }
 
 export default function RecruiterAnalytics() {
+  const t = useTranslations('recruiterDashboard.analytics')
   const [activeTab, setActiveTab] = useState('overview')
   const [timeRange, setTimeRange] = useState('3months')
   const [data, setData] = useState<AnalyticsData | null>(null)
@@ -96,7 +98,7 @@ export default function RecruiterAnalytics() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
         <Card className="max-w-md w-full">
           <CardContent className="pt-6 text-center">
-            <p className="text-red-600 font-medium mb-2">Error loading analytics</p>
+            <p className="text-red-600 font-medium mb-2">{t('errorLoading')}</p>
             <p className="text-sm text-muted-foreground">{error}</p>
           </CardContent>
         </Card>
@@ -125,82 +127,82 @@ export default function RecruiterAnalytics() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Recruitment Analytics</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
           <p className="text-muted-foreground">
-            Track hiring performance and optimize your recruitment process
+            {t('subtitle')}
           </p>
         </div>
         <Select value={timeRange} onValueChange={setTimeRange}>
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select time range" />
+            <SelectValue placeholder={t('selectTimeRange')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="1month">Last Month</SelectItem>
-            <SelectItem value="3months">Last 3 Months</SelectItem>
-            <SelectItem value="6months">Last 6 Months</SelectItem>
-            <SelectItem value="1year">Last Year</SelectItem>
+            <SelectItem value="1month">{t('timeRange.lastMonth')}</SelectItem>
+            <SelectItem value="3months">{t('timeRange.last3Months')}</SelectItem>
+            <SelectItem value="6months">{t('timeRange.last6Months')}</SelectItem>
+            <SelectItem value="1year">{t('timeRange.lastYear')}</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="funnel">Hiring Funnel</TabsTrigger>
-          <TabsTrigger value="skills">Skills Gap</TabsTrigger>
+          <TabsTrigger value="overview">{t('tabs.overview')}</TabsTrigger>
+          <TabsTrigger value="funnel">{t('tabs.hiringFunnel')}</TabsTrigger>
+          <TabsTrigger value="skills">{t('tabs.skillsGap')}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Applications</CardTitle>
+                <CardTitle className="text-sm font-medium">{t('stats.totalApplications')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">
                   {overviewStats.totalApplications.toLocaleString()}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  In selected time range
+                  {t('stats.inSelectedRange')}
                 </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Interviews Scheduled</CardTitle>
+                <CardTitle className="text-sm font-medium">{t('stats.interviewsScheduled')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">
                   {overviewStats.interviewsScheduled}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Currently in interview stage
+                  {t('stats.currentlyInterviewing')}
                 </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Offers Extended</CardTitle>
+                <CardTitle className="text-sm font-medium">{t('stats.offersExtended')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">
                   {overviewStats.offersExtended}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Offers + accepted
+                  {t('stats.offersAccepted')}
                 </p>
               </CardContent>
             </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Avg Time to Hire</CardTitle>
+                <CardTitle className="text-sm font-medium">{t('stats.avgTimeToHire')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">
-                  {overviewStats.avgTimeToHire > 0 ? `${overviewStats.avgTimeToHire} days` : 'N/A'}
+                  {overviewStats.avgTimeToHire > 0 ? t('stats.days', { count: overviewStats.avgTimeToHire }) : 'N/A'}
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  From application to acceptance
+                  {t('stats.fromApplicationToAcceptance')}
                 </p>
               </CardContent>
             </Card>
@@ -209,9 +211,9 @@ export default function RecruiterAnalytics() {
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Application Trends</CardTitle>
+                <CardTitle>{t('charts.applicationTrends')}</CardTitle>
                 <CardDescription>
-                  Monthly applications over selected period
+                  {t('charts.applicationTrendsDesc')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -227,7 +229,7 @@ export default function RecruiterAnalytics() {
                   </ResponsiveContainer>
                 ) : (
                   <div className="flex items-center justify-center h-[300px] text-muted-foreground">
-                    No application data for selected period
+                    {t('charts.noApplicationData')}
                   </div>
                 )}
               </CardContent>
@@ -235,9 +237,9 @@ export default function RecruiterAnalytics() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Conversion Rates</CardTitle>
+                <CardTitle>{t('charts.conversionRates')}</CardTitle>
                 <CardDescription>
-                  Success rates at each stage of the hiring process
+                  {t('charts.conversionRatesDesc')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -254,7 +256,7 @@ export default function RecruiterAnalytics() {
                     ))
                   ) : (
                     <div className="flex items-center justify-center h-[200px] text-muted-foreground">
-                      No funnel data available
+                      {t('charts.noFunnelData')}
                     </div>
                   )}
                 </div>
@@ -266,9 +268,9 @@ export default function RecruiterAnalytics() {
         <TabsContent value="funnel" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Hiring Funnel</CardTitle>
+              <CardTitle>{t('charts.hiringFunnel')}</CardTitle>
               <CardDescription>
-                Candidate flow through the recruitment process
+                {t('charts.hiringFunnelDesc')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -313,7 +315,7 @@ export default function RecruiterAnalytics() {
                 </div>
               ) : (
                 <div className="flex items-center justify-center h-[400px] text-muted-foreground">
-                  No application data for selected period
+                  {t('charts.noApplicationData')}
                 </div>
               )}
             </CardContent>
@@ -323,9 +325,9 @@ export default function RecruiterAnalytics() {
         <TabsContent value="skills" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Skills Gap Analysis</CardTitle>
+              <CardTitle>{t('charts.skillsGapAnalysis')}</CardTitle>
               <CardDescription>
-                Job requirements demand vs available applicant skills
+                {t('charts.skillsGapDesc')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -342,14 +344,14 @@ export default function RecruiterAnalytics() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <div className="flex items-center justify-between text-sm">
-                            <span>Jobs Requiring</span>
+                            <span>{t('charts.jobsRequiring')}</span>
                             <span>{skill.demand}</span>
                           </div>
                           <Progress value={Math.min((skill.demand / Math.max(skill.demand, skill.supply)) * 100, 100)} className="h-2" />
                         </div>
                         <div className="space-y-2">
                           <div className="flex items-center justify-between text-sm">
-                            <span>Applicants With Skill</span>
+                            <span>{t('charts.applicantsWithSkill')}</span>
                             <span>{skill.supply}</span>
                           </div>
                           <Progress value={Math.min((skill.supply / Math.max(skill.demand, skill.supply)) * 100, 100)} className="h-2" />
@@ -359,22 +361,22 @@ export default function RecruiterAnalytics() {
                   ))}
 
                   <div className="mt-6">
-                    <h3 className="font-medium mb-4">Skills Gap Comparison</h3>
+                    <h3 className="font-medium mb-4">{t('charts.skillsGapComparison')}</h3>
                     <ResponsiveContainer width="100%" height={300}>
                       <BarChart data={skillsGap}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="skill" />
                         <YAxis />
                         <Tooltip />
-                        <Bar dataKey="demand" fill="#8884d8" name="Jobs Requiring" />
-                        <Bar dataKey="supply" fill="#82ca9d" name="Applicants With Skill" />
+                        <Bar dataKey="demand" fill="#8884d8" name={t('charts.jobsRequiring')} />
+                        <Bar dataKey="supply" fill="#82ca9d" name={t('charts.applicantsWithSkill')} />
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
                 </div>
               ) : (
                 <div className="flex items-center justify-center h-[300px] text-muted-foreground">
-                  No skills gap data available. Post jobs with required skills to see this analysis.
+                  {t('charts.noSkillsGapData')}
                 </div>
               )}
             </CardContent>

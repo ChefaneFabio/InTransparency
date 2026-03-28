@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -70,6 +71,7 @@ function LoadingSkeleton() {
 }
 
 export default function TalentAnalyticsPage() {
+  const t = useTranslations('dashboard.recruiter.talentAnalytics')
   const [data, setData] = useState<TalentAnalyticsData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -103,11 +105,11 @@ export default function TalentAnalyticsPage() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
         <Card className="max-w-md w-full">
           <CardContent className="pt-6 text-center">
-            <p className="text-red-600 font-medium mb-2">Error loading talent analytics</p>
+            <p className="text-red-600 font-medium mb-2">{t('errorLoading')}</p>
             <p className="text-sm text-muted-foreground mb-4">{error}</p>
             <Button variant="outline" onClick={fetchData}>
               <RefreshCw className="h-4 w-4 mr-2" />
-              Retry
+              {t('retry')}
             </Button>
           </CardContent>
         </Card>
@@ -126,14 +128,14 @@ export default function TalentAnalyticsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Talent Pool Analytics</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
           <p className="text-gray-600 mt-2">
-            Insights into the platform talent pool: universities, skills, and growth trends
+            {t('subtitle')}
           </p>
         </div>
         <Button variant="outline" onClick={fetchData}>
           <RefreshCw className="h-4 w-4 mr-2" />
-          Refresh
+          {t('refresh')}
         </Button>
       </div>
 
@@ -143,7 +145,7 @@ export default function TalentAnalyticsPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Total Talent Pool</p>
+                <p className="text-sm text-gray-600">{t('totalTalentPool')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {talentPool.toLocaleString()}
                 </p>
@@ -151,7 +153,7 @@ export default function TalentAnalyticsPage() {
               <Users className="h-8 w-8 text-primary" />
             </div>
             <div className="mt-2 text-sm text-gray-600">
-              Public student profiles
+              {t('publicStudentProfiles')}
             </div>
           </CardContent>
         </Card>
@@ -160,7 +162,7 @@ export default function TalentAnalyticsPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Universities Represented</p>
+                <p className="text-sm text-gray-600">{t('universitiesRepresented')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {universityDistribution.length}
                 </p>
@@ -168,7 +170,7 @@ export default function TalentAnalyticsPage() {
               <GraduationCap className="h-8 w-8 text-primary" />
             </div>
             <div className="mt-2 text-sm text-gray-600">
-              Top universities shown
+              {t('topUniversitiesShown')}
             </div>
           </CardContent>
         </Card>
@@ -177,7 +179,7 @@ export default function TalentAnalyticsPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Unique Skills Tracked</p>
+                <p className="text-sm text-gray-600">{t('uniqueSkillsTracked')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {skillsFrequency.length}
                 </p>
@@ -197,7 +199,7 @@ export default function TalentAnalyticsPage() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <GraduationCap className="h-5 w-5 mr-2" />
-              Top Universities
+              {t('topUniversities')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -217,7 +219,7 @@ export default function TalentAnalyticsPage() {
               </div>
             ) : (
               <div className="text-center py-8 text-gray-500">
-                No university data available
+                {t('noUniversityData')}
               </div>
             )}
           </CardContent>
@@ -228,7 +230,7 @@ export default function TalentAnalyticsPage() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <Zap className="h-5 w-5 mr-2" />
-              Top Skills in Talent Pool
+              {t('topSkills')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -246,7 +248,7 @@ export default function TalentAnalyticsPage() {
               </div>
             ) : (
               <div className="flex items-center justify-center h-[350px] text-gray-500">
-                No skills data available
+                {t('noSkillsData')}
               </div>
             )}
           </CardContent>
@@ -259,7 +261,7 @@ export default function TalentAnalyticsPage() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <TrendingUp className="h-5 w-5 mr-2" />
-              Student Growth Trends
+              {t('studentGrowthTrends')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -282,7 +284,7 @@ export default function TalentAnalyticsPage() {
               </ResponsiveContainer>
             ) : (
               <div className="flex items-center justify-center h-[300px] text-gray-500">
-                No growth data available
+                {t('noGrowthData')}
               </div>
             )}
           </CardContent>
@@ -292,7 +294,7 @@ export default function TalentAnalyticsPage() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <BookOpen className="h-5 w-5 mr-2" />
-              Project Disciplines
+              {t('projectDisciplines')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -320,7 +322,7 @@ export default function TalentAnalyticsPage() {
               </ResponsiveContainer>
             ) : (
               <div className="flex items-center justify-center h-[300px] text-gray-500">
-                No discipline data available
+                {t('noDisciplineData')}
               </div>
             )}
           </CardContent>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -66,6 +67,7 @@ interface InstitutionGroup {
 }
 
 export default function CourseSearchPage() {
+  const t = useTranslations('dashboard.recruiter.courseSearch')
   const [groups, setGroups] = useState<InstitutionGroup[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -127,10 +129,10 @@ export default function CourseSearchPage() {
       <div>
         <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
           <Sparkles className="h-8 w-8 text-primary" />
-          Course-Level Search
+          {t('title')}
         </h1>
         <p className="text-gray-600 mt-2">
-          Search candidates by verified course grades from institutions
+          {t('subtitle')}
         </p>
       </div>
 
@@ -142,7 +144,7 @@ export default function CourseSearchPage() {
               <CardTitle className="text-sm flex items-center justify-between">
                 <span className="flex items-center gap-2">
                   <Filter className="h-4 w-4" />
-                  Filters
+                  {t('filters')}
                 </span>
                 <Button
                   variant="ghost"
@@ -157,7 +159,7 @@ export default function CourseSearchPage() {
               <CardContent className="space-y-4">
                 <div>
                   <label className="text-sm font-medium text-gray-700 block mb-1">
-                    Department / Category
+                    {t('departmentCategory')}
                   </label>
                   <input
                     type="text"
@@ -170,14 +172,14 @@ export default function CourseSearchPage() {
 
                 <div>
                   <label className="text-sm font-medium text-gray-700 block mb-1">
-                    Minimum Grade
+                    {t('minimumGrade')}
                   </label>
                   <select
                     className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
                     value={minGrade}
                     onChange={(e) => setMinGrade(e.target.value)}
                   >
-                    <option value="">Any grade</option>
+                    <option value="">{t('anyGrade')}</option>
                     {gradeOptions.map(g => (
                       <option key={g} value={g}>{g} or higher</option>
                     ))}
@@ -186,7 +188,7 @@ export default function CourseSearchPage() {
 
                 <div>
                   <label className="text-sm font-medium text-gray-700 block mb-1">
-                    Institution Name
+                    {t('institutionName')}
                   </label>
                   <input
                     type="text"
@@ -200,7 +202,7 @@ export default function CourseSearchPage() {
                 <div className="flex gap-2">
                   <Button onClick={fetchResults} className="flex-1" size="sm">
                     <Search className="h-4 w-4 mr-1" />
-                    Search
+                    {t('search')}
                   </Button>
                   <Button
                     variant="outline"
@@ -211,7 +213,7 @@ export default function CourseSearchPage() {
                       setInstitutionType('')
                     }}
                   >
-                    Reset
+                    {t('reset')}
                   </Button>
                 </div>
               </CardContent>
@@ -221,19 +223,19 @@ export default function CourseSearchPage() {
           {/* Quick Stats */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-sm">Search Stats</CardTitle>
+              <CardTitle className="text-sm">{t('searchStats')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Institutions</span>
+                <span className="text-gray-600">{t('institutions')}</span>
                 <span className="font-semibold">{totalGroups}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Students Found</span>
+                <span className="text-gray-600">{t('studentsFound')}</span>
                 <span className="font-semibold text-primary">{totalStudents}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Active Filters</span>
+                <span className="text-gray-600">{t('activeFilters')}</span>
                 <span className="font-semibold">
                   {[courseCategory, minGrade, institutionType].filter(Boolean).length}
                 </span>
@@ -268,23 +270,23 @@ export default function CourseSearchPage() {
           ) : error ? (
             <Card className="p-12 text-center">
               <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Error</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('error')}</h3>
               <p className="text-gray-600 mb-4">{error}</p>
-              <Button onClick={fetchResults}>Retry</Button>
+              <Button onClick={fetchResults}>{t('retry')}</Button>
             </Card>
           ) : groups.length === 0 ? (
             <Card className="p-12 text-center">
               <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">No results found</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('noResultsFound')}</h3>
               <p className="text-gray-600 mb-4">
-                Try adjusting your filters to see more results
+                {t('tryAdjustingFilters')}
               </p>
               <Button onClick={() => {
                 setCourseCategory('')
                 setMinGrade('')
                 setInstitutionType('')
               }}>
-                Reset Filters
+                {t('resetFilters')}
               </Button>
             </Card>
           ) : (
@@ -455,13 +457,13 @@ export default function CourseSearchPage() {
                                       <Button size="sm" variant="outline" className="h-7 text-xs" asChild>
                                         <Link href={`/dashboard/recruiter/candidates/${student.id}`}>
                                           <ExternalLink className="h-3 w-3 mr-1" />
-                                          Profile
+                                          {t('profile')}
                                         </Link>
                                       </Button>
                                       <Button size="sm" variant="outline" className="h-7 text-xs" asChild>
                                         <Link href={`/dashboard/recruiter/messages?to=${student.id}`}>
                                           <MessageSquare className="h-3 w-3 mr-1" />
-                                          Contact
+                                          {t('contact')}
                                         </Link>
                                       </Button>
                                     </div>

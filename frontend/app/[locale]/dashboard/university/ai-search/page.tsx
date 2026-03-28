@@ -24,6 +24,7 @@ import {
   Clock,
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 type Message = {
   id: string
@@ -225,6 +226,7 @@ function mapApiJobToDisplay(apiJob: JobApiResponse['jobs'][number]): Job {
 }
 
 export default function UniversityAISearchPage() {
+  const t = useTranslations('universityDashboard.aiSearch')
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -517,8 +519,8 @@ export default function UniversityAISearchPage() {
               <Sparkles className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">AI Search Hub</h1>
-              <p className="text-gray-600">Search students & job opportunities</p>
+              <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
+              <p className="text-gray-600">{t('subtitle')}</p>
             </div>
           </div>
         </div>
@@ -717,7 +719,7 @@ export default function UniversityAISearchPage() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                    placeholder="Search students or jobs..."
+                    placeholder={t('searchPlaceholder')}
                     className="flex-1"
                     disabled={isTyping}
                   />
@@ -739,7 +741,7 @@ export default function UniversityAISearchPage() {
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
                   <Lightbulb className="h-5 w-5 mr-2 text-primary" />
-                  Example Queries
+                  {t('exampleQueries')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
@@ -759,7 +761,7 @@ export default function UniversityAISearchPage() {
               <CardHeader>
                 <CardTitle className="flex items-center text-lg">
                   <Zap className="h-5 w-5 mr-2 text-primary" />
-                  Search Capabilities
+                  {t('searchCapabilities')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-sm">

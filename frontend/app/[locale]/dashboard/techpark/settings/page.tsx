@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -60,6 +61,7 @@ const defaultSettings: TechParkSettings = {
 }
 
 export default function TechParkSettingsPage() {
+  const t = useTranslations('techparkDashboard')
   const { data: session } = useSession()
   const user = session?.user
 
@@ -117,10 +119,10 @@ export default function TechParkSettingsPage() {
         body: JSON.stringify(settings)
       })
       if (!res.ok) throw new Error('Failed to save settings')
-      setSaveMessage({ type: 'success', text: 'Settings saved successfully!' })
+      setSaveMessage({ type: 'success', text: t('settings.savedSuccess') })
       setTimeout(() => setSaveMessage(null), 3000)
     } catch (err) {
-      setSaveMessage({ type: 'error', text: 'Failed to save settings. Please try again.' })
+      setSaveMessage({ type: 'error', text: t('settings.savedError') })
     } finally {
       setSaving(false)
     }
@@ -185,20 +187,20 @@ export default function TechParkSettingsPage() {
           <Button variant="ghost" size="sm" asChild>
             <Link href="/dashboard/techpark">
               <ArrowLeft className="h-4 w-4 mr-1" />
-              Back
+              {t('back')}
             </Link>
           </Button>
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">Park Settings</h1>
-            <p className="text-gray-600">Manage your tech park profile</p>
+            <h1 className="text-2xl font-semibold text-gray-900">{t('settings.title')}</h1>
+            <p className="text-gray-600">{t('settings.subtitle')}</p>
           </div>
         </div>
         <Card>
           <CardContent className="p-12 text-center">
             <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Failed to load settings</h3>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">{t('settings.failedToLoad')}</h3>
             <p className="text-gray-600 mb-4">{error}</p>
-            <Button onClick={() => window.location.reload()}>Try Again</Button>
+            <Button onClick={() => window.location.reload()}>{t('settings.tryAgain')}</Button>
           </CardContent>
         </Card>
       </div>
@@ -212,12 +214,12 @@ export default function TechParkSettingsPage() {
         <Button variant="ghost" size="sm" asChild>
           <Link href="/dashboard/techpark">
             <ArrowLeft className="h-4 w-4 mr-1" />
-            Back
+            {t('back')}
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">Park Settings</h1>
-          <p className="text-gray-600">Manage your tech park profile</p>
+          <h1 className="text-2xl font-semibold text-gray-900">{t('settings.title')}</h1>
+          <p className="text-gray-600">{t('settings.subtitle')}</p>
         </div>
       </div>
 
@@ -242,16 +244,16 @@ export default function TechParkSettingsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Building2 className="h-5 w-5" />
-            Park Profile
+            {t('settings.parkProfile')}
           </CardTitle>
           <CardDescription>
-            This information will be visible to companies and students
+            {t('settings.parkProfileDescription')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="parkName">Park Name</Label>
+              <Label htmlFor="parkName">{t('settings.parkName')}</Label>
               <Input
                 id="parkName"
                 value={settings.parkName}
@@ -260,7 +262,7 @@ export default function TechParkSettingsPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="parkType">Park Type</Label>
+              <Label htmlFor="parkType">{t('settings.parkType')}</Label>
               <Select
                 value={settings.parkType}
                 onValueChange={(value: 'PRIVATE' | 'PUBLIC' | 'MIXED') =>
@@ -271,16 +273,16 @@ export default function TechParkSettingsPage() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="PRIVATE">Private</SelectItem>
-                  <SelectItem value="PUBLIC">Public</SelectItem>
-                  <SelectItem value="MIXED">Mixed</SelectItem>
+                  <SelectItem value="PRIVATE">{t('settings.private')}</SelectItem>
+                  <SelectItem value="PUBLIC">{t('settings.public')}</SelectItem>
+                  <SelectItem value="MIXED">{t('settings.mixed')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description">{t('settings.description')}</Label>
             <Textarea
               id="description"
               value={settings.description}
@@ -292,7 +294,7 @@ export default function TechParkSettingsPage() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="website">Website</Label>
+              <Label htmlFor="website">{t('settings.website')}</Label>
               <Input
                 id="website"
                 value={settings.website}
@@ -301,7 +303,7 @@ export default function TechParkSettingsPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t('settings.email')}</Label>
               <Input
                 id="email"
                 type="email"
@@ -314,7 +316,7 @@ export default function TechParkSettingsPage() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="phone">Phone</Label>
+              <Label htmlFor="phone">{t('settings.phone')}</Label>
               <Input
                 id="phone"
                 value={settings.phone}
@@ -323,7 +325,7 @@ export default function TechParkSettingsPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="foundedYear">Founded Year</Label>
+              <Label htmlFor="foundedYear">{t('settings.foundedYear')}</Label>
               <Input
                 id="foundedYear"
                 type="number"
@@ -336,7 +338,7 @@ export default function TechParkSettingsPage() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="city">City</Label>
+              <Label htmlFor="city">{t('settings.city')}</Label>
               <Input
                 id="city"
                 value={settings.city}
@@ -345,7 +347,7 @@ export default function TechParkSettingsPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="region">Region</Label>
+              <Label htmlFor="region">{t('settings.region')}</Label>
               <Input
                 id="region"
                 value={settings.region}
@@ -356,18 +358,18 @@ export default function TechParkSettingsPage() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="focusAreas">Focus Areas</Label>
+            <Label htmlFor="focusAreas">{t('settings.focusAreas')}</Label>
             <Input
               id="focusAreas"
               value={settings.focusAreas}
               onChange={(e) => setSettings({ ...settings, focusAreas: e.target.value })}
               placeholder="AI, Green Tech, Digital Health, IoT"
             />
-            <p className="text-xs text-muted-foreground">Comma-separated list of focus areas</p>
+            <p className="text-xs text-muted-foreground">{t('settings.focusAreasHint')}</p>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="memberCompanyCount">Member Company Count</Label>
+            <Label htmlFor="memberCompanyCount">{t('settings.memberCompanyCount')}</Label>
             <Input
               id="memberCompanyCount"
               type="number"
@@ -384,17 +386,17 @@ export default function TechParkSettingsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Bell className="h-5 w-5" />
-            Notification Preferences
+            {t('settings.notifications')}
           </CardTitle>
           <CardDescription>
-            Choose which notifications you want to receive
+            {t('settings.notificationsDescription')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">New Students</p>
-              <p className="text-sm text-gray-500">Get notified when new students join the platform</p>
+              <p className="text-sm font-medium text-gray-900">{t('settings.newStudents')}</p>
+              <p className="text-sm text-gray-500">{t('settings.newStudentsDescription')}</p>
             </div>
             <button
               type="button"
@@ -415,8 +417,8 @@ export default function TechParkSettingsPage() {
 
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">Recruiter Activity</p>
-              <p className="text-sm text-gray-500">Get notified about recruiter engagement in your park</p>
+              <p className="text-sm font-medium text-gray-900">{t('settings.recruiterActivityLabel')}</p>
+              <p className="text-sm text-gray-500">{t('settings.recruiterActivityDescription')}</p>
             </div>
             <button
               type="button"
@@ -437,8 +439,8 @@ export default function TechParkSettingsPage() {
 
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">Placements</p>
-              <p className="text-sm text-gray-500">Get notified when students are placed at member companies</p>
+              <p className="text-sm font-medium text-gray-900">{t('settings.placementsLabel')}</p>
+              <p className="text-sm text-gray-500">{t('settings.placementsDescription')}</p>
             </div>
             <button
               type="button"
@@ -464,17 +466,17 @@ export default function TechParkSettingsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Eye className="h-5 w-5" />
-            Visibility
+            {t('settings.visibility')}
           </CardTitle>
           <CardDescription>
-            Control how your tech park appears on the platform
+            {t('settings.visibilityDescription')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">Show in Directory</p>
-              <p className="text-sm text-gray-500">Allow your park to appear in the public tech park directory</p>
+              <p className="text-sm font-medium text-gray-900">{t('settings.showInDirectory')}</p>
+              <p className="text-sm text-gray-500">{t('settings.showInDirectoryDescription')}</p>
             </div>
             <button
               type="button"
@@ -495,8 +497,8 @@ export default function TechParkSettingsPage() {
 
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">Allow Student Discovery</p>
-              <p className="text-sm text-gray-500">Let students discover and connect with your member companies</p>
+              <p className="text-sm font-medium text-gray-900">{t('settings.allowStudentDiscovery')}</p>
+              <p className="text-sm text-gray-500">{t('settings.allowStudentDiscoveryDescription')}</p>
             </div>
             <button
               type="button"
@@ -521,7 +523,7 @@ export default function TechParkSettingsPage() {
       <div className="flex justify-end">
         <Button onClick={handleSave} disabled={saving}>
           {saving && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-          {saving ? 'Saving...' : 'Save Changes'}
+          {saving ? t('settings.saving') : t('settings.saveChanges')}
         </Button>
       </div>
     </div>

@@ -19,6 +19,7 @@ import {
   Wifi,
   WifiOff
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -218,6 +219,7 @@ function TableSkeleton() {
 // ---------------------------------------------------------------------------
 
 export default function UniversitySyncPage() {
+  const t = useTranslations('universityDashboard.sync')
   const [data, setData] = useState<SyncData | null>(null)
   const [loading, setLoading] = useState(true)
   const [syncingType, setSyncingType] = useState<string | null>(null)
@@ -289,8 +291,8 @@ export default function UniversitySyncPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Sincronizzazione Dati</h1>
-            <p className="text-gray-600">Gestisci la sincronizzazione con i sistemi universitari</p>
+            <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
+            <p className="text-gray-600">{t('subtitle')}</p>
           </div>
           <Button
             variant="outline"
@@ -301,7 +303,7 @@ export default function UniversitySyncPage() {
             disabled={loading}
           >
             <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
-            Aggiorna
+            {t('refresh')}
           </Button>
         </div>
 

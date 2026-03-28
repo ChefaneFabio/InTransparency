@@ -24,6 +24,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { useTranslations } from 'next-intl'
 
 interface Department {
   id: string
@@ -38,6 +39,7 @@ interface Department {
 }
 
 export default function UniversityDepartmentsPage() {
+  const t = useTranslations('universityDashboard.departments')
   const [departments, setDepartments] = useState<Department[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [loading, setLoading] = useState(true)
@@ -137,8 +139,8 @@ export default function UniversityDepartmentsPage() {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Dipartimenti</h1>
-          <p className="text-gray-600">Gestisci i dipartimenti e monitora le performance</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
+          <p className="text-gray-600">{t('subtitle')}</p>
         </div>
 
         {/* Stats Overview */}
@@ -151,7 +153,7 @@ export default function UniversityDepartmentsPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold">{departments.length}</p>
-                  <p className="text-sm text-gray-600">Dipartimenti</p>
+                  <p className="text-sm text-gray-600">{t('departments')}</p>
                 </div>
               </div>
             </CardContent>
@@ -164,7 +166,7 @@ export default function UniversityDepartmentsPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold">{totalStudents.toLocaleString()}</p>
-                  <p className="text-sm text-gray-600">Studenti Totali</p>
+                  <p className="text-sm text-gray-600">{t('totalStudents')}</p>
                 </div>
               </div>
             </CardContent>
@@ -177,7 +179,7 @@ export default function UniversityDepartmentsPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold">{avgPlacementRate}%</p>
-                  <p className="text-sm text-gray-600">Placement Medio</p>
+                  <p className="text-sm text-gray-600">{t('avgPlacement')}</p>
                 </div>
               </div>
             </CardContent>
@@ -190,7 +192,7 @@ export default function UniversityDepartmentsPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold">{partnerCompaniesCount}</p>
-                  <p className="text-sm text-gray-600">Aziende Partner</p>
+                  <p className="text-sm text-gray-600">{t('partnerCompanies')}</p>
                 </div>
               </div>
             </CardContent>
@@ -201,7 +203,7 @@ export default function UniversityDepartmentsPage() {
         <div className="relative mb-6">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
           <Input
-            placeholder="Cerca dipartimenti..."
+            placeholder={t('searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10 max-w-md"
@@ -220,7 +222,7 @@ export default function UniversityDepartmentsPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">{dept.name}</h3>
-                      <p className="text-sm text-gray-600">{dept.students} studenti iscritti</p>
+                      <p className="text-sm text-gray-600">{dept.students} {t('enrolledStudents')}</p>
                     </div>
                   </div>
 
@@ -236,7 +238,7 @@ export default function UniversityDepartmentsPage() {
                           <ArrowDownRight className="h-4 w-4 text-red-500" />
                         )}
                       </div>
-                      <p className="text-xs text-gray-600">Placement Rate</p>
+                      <p className="text-xs text-gray-600">{t('placementRate')}</p>
                       <Progress value={dept.placementRate} className="h-1 w-20 mt-1" />
                     </div>
 
@@ -245,12 +247,12 @@ export default function UniversityDepartmentsPage() {
                       <p className="text-2xl font-bold text-gray-900">
                         &euro;{(dept.avgSalary / 1000).toFixed(0)}k
                       </p>
-                      <p className="text-xs text-gray-600">Stipendio Medio</p>
+                      <p className="text-xs text-gray-600">{t('avgSalary')}</p>
                     </div>
 
                     {/* Top Companies */}
                     <div className="hidden lg:block">
-                      <p className="text-xs text-gray-600 mb-1">Top Aziende</p>
+                      <p className="text-xs text-gray-600 mb-1">{t('topCompanies')}</p>
                       <div className="flex gap-1">
                         {dept.topCompanies.slice(0, 2).map((company, i) => (
                           <Badge key={i} variant="outline" className="text-xs">
@@ -275,7 +277,7 @@ export default function UniversityDepartmentsPage() {
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem>
                           <BarChart3 className="h-4 w-4 mr-2" />
-                          Vedi Analytics
+                          {t('viewAnalytics')}
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
@@ -290,10 +292,10 @@ export default function UniversityDepartmentsPage() {
           <Card className="p-8 text-center">
             <GraduationCap className="h-12 w-12 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Nessun dipartimento trovato
+              {t('noDepartmentFound')}
             </h3>
             <p className="text-gray-600">
-              Prova a modificare i criteri di ricerca
+              {t('tryClearFilters')}
             </p>
           </Card>
         )}

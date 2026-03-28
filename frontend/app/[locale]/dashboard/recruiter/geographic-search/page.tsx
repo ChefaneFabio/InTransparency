@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -67,6 +68,7 @@ function LoadingSkeleton() {
 }
 
 export default function RecruiterGeographicSearchPage() {
+  const t = useTranslations('dashboard.recruiter.geographicSearch')
   const [searchQuery, setSearchQuery] = useState('')
   const [data, setData] = useState<TalentAnalyticsData | null>(null)
   const [loading, setLoading] = useState(true)
@@ -101,11 +103,11 @@ export default function RecruiterGeographicSearchPage() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
         <Card className="max-w-md w-full">
           <CardContent className="pt-6 text-center">
-            <p className="text-red-600 font-medium mb-2">Error loading geographic data</p>
+            <p className="text-red-600 font-medium mb-2">{t('errorLoading')}</p>
             <p className="text-sm text-muted-foreground mb-4">{error}</p>
             <Button variant="outline" onClick={fetchData}>
               <RefreshCw className="h-4 w-4 mr-2" />
-              Retry
+              {t('retry')}
             </Button>
           </CardContent>
         </Card>
@@ -128,14 +130,14 @@ export default function RecruiterGeographicSearchPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Geographic Talent Search</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
           <p className="text-gray-600 mt-2">
-            Discover talent distribution across universities on the platform
+            {t('subtitle')}
           </p>
         </div>
         <Button variant="outline" onClick={fetchData}>
           <RefreshCw className="h-4 w-4 mr-2" />
-          Refresh
+          {t('refresh')}
         </Button>
       </div>
 
@@ -146,7 +148,7 @@ export default function RecruiterGeographicSearchPage() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
             <input
               type="text"
-              placeholder="Search universities..."
+              placeholder={t('searchUniversities')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -161,7 +163,7 @@ export default function RecruiterGeographicSearchPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Total Talent Pool</p>
+                <p className="text-sm text-gray-600">{t('totalTalentPool')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {talentPool.toLocaleString()}
                 </p>
@@ -169,7 +171,7 @@ export default function RecruiterGeographicSearchPage() {
               <Users className="h-8 w-8 text-primary" />
             </div>
             <div className="mt-2 text-sm text-gray-600">
-              Public student profiles
+              {t('publicStudentProfiles')}
             </div>
           </CardContent>
         </Card>
@@ -178,7 +180,7 @@ export default function RecruiterGeographicSearchPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Universities</p>
+                <p className="text-sm text-gray-600">{t('universities')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {universityDistribution.length}
                 </p>
@@ -186,7 +188,7 @@ export default function RecruiterGeographicSearchPage() {
               <GraduationCap className="h-8 w-8 text-primary" />
             </div>
             <div className="mt-2 text-sm text-gray-600">
-              With registered students
+              {t('withRegisteredStudents')}
             </div>
           </CardContent>
         </Card>
@@ -195,7 +197,7 @@ export default function RecruiterGeographicSearchPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Students in Top Unis</p>
+                <p className="text-sm text-gray-600">{t('studentsInTopUnis')}</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {totalStudentsInTop.toLocaleString()}
                 </p>
@@ -214,7 +216,7 @@ export default function RecruiterGeographicSearchPage() {
         <CardHeader>
           <CardTitle className="flex items-center">
             <GraduationCap className="h-5 w-5 mr-2" />
-            University Distribution
+            {t('universityDistribution')}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -242,7 +244,7 @@ export default function RecruiterGeographicSearchPage() {
           <CardTitle className="flex items-center justify-between">
             <span className="flex items-center">
               <Globe className="h-5 w-5 mr-2" />
-              University Directory
+              {t('universityDirectory')}
             </span>
             <Badge variant="outline">
               {filteredUniversities.length} {filteredUniversities.length === 1 ? 'university' : 'universities'}
@@ -305,7 +307,7 @@ export default function RecruiterGeographicSearchPage() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <Zap className="h-5 w-5 mr-2" />
-              Top Skills Available
+              {t('topSkillsAvailable')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -328,7 +330,7 @@ export default function RecruiterGeographicSearchPage() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <BookOpen className="h-5 w-5 mr-2" />
-              Discipline Distribution
+              {t('disciplineDistribution')}
             </CardTitle>
           </CardHeader>
           <CardContent>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -38,6 +39,7 @@ const typeLabels: Record<string, string> = {
 }
 
 export default function TechParkEventsPage() {
+  const t = useTranslations('techparkDashboard')
   const [events, setEvents] = useState<ParkEvent[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -76,8 +78,8 @@ export default function TechParkEventsPage() {
           <div className="space-y-1.5">
             <div className="flex items-center gap-2">
               <h3 className="font-medium">{event.title}</h3>
-              <Badge variant="secondary">{typeLabels[event.type]}</Badge>
-              {event.status === 'completed' && <Badge variant="outline">Completed</Badge>}
+              <Badge variant="secondary">{t(`events.types.${event.type}`)}</Badge>
+              {event.status === 'completed' && <Badge variant="outline">{t('events.completed')}</Badge>}
             </div>
             <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
               <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5" /> {new Date(event.date).toLocaleDateString()}</span>
@@ -97,22 +99,22 @@ export default function TechParkEventsPage() {
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="sm" asChild>
             <Link href="/dashboard/techpark">
-              <ArrowLeft className="h-4 w-4 mr-1" /> Back
+              <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
             </Link>
           </Button>
           <div>
-            <h1 className="text-2xl font-semibold">Events</h1>
-            <p className="text-sm text-muted-foreground">Manage career days, networking events, and workshops</p>
+            <h1 className="text-2xl font-semibold">{t('events.title')}</h1>
+            <p className="text-sm text-muted-foreground">{t('events.subtitle')}</p>
           </div>
         </div>
         <Button size="sm">
-          <Plus className="h-4 w-4 mr-1" /> New Event
+          <Plus className="h-4 w-4 mr-1" /> {t('events.newEvent')}
         </Button>
       </div>
 
       <div className="relative max-w-sm">
         <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input placeholder="Search events..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
+        <Input placeholder={t('events.searchPlaceholder')} value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
       </div>
 
       {loading ? (
@@ -125,20 +127,20 @@ export default function TechParkEventsPage() {
         <>
           {upcoming.length > 0 && (
             <div className="space-y-3">
-              <h2 className="text-lg font-medium">Upcoming Events</h2>
+              <h2 className="text-lg font-medium">{t('events.upcoming')}</h2>
               {upcoming.map(renderEvent)}
             </div>
           )}
           {past.length > 0 && (
             <div className="space-y-3">
-              <h2 className="text-lg font-medium text-muted-foreground">Past Events</h2>
+              <h2 className="text-lg font-medium text-muted-foreground">{t('events.past')}</h2>
               {past.map(renderEvent)}
             </div>
           )}
           {filtered.length === 0 && (
             <div className="text-center py-12 text-muted-foreground">
               <Calendar className="h-8 w-8 mx-auto mb-2 opacity-50" />
-              <p>No events found</p>
+              <p>{t('events.noResults')}</p>
             </div>
           )}
         </>

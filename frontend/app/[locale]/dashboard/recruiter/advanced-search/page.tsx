@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -71,6 +72,7 @@ interface SearchResponse {
 }
 
 export default function AdvancedSearchPage() {
+  const t = useTranslations('dashboard.recruiter.advancedSearch')
   const [searchResults, setSearchResults] = useState<Student[]>([])
   const [searchLoading, setSearchLoading] = useState(false)
   const [searchError, setSearchError] = useState<string | null>(null)
@@ -269,19 +271,19 @@ export default function AdvancedSearchPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Advanced Talent Search</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
           <p className="text-gray-600 mt-2">
-            Find the perfect candidates with precision filters and AI-powered matching
+            {t('subtitle')}
           </p>
         </div>
         <div className="flex items-center space-x-3">
           <Button variant="outline">
             <Download className="h-4 w-4 mr-2" />
-            Export Results
+            {t('exportResults')}
           </Button>
           <Button onClick={() => runSearch(1)} disabled={searchLoading}>
             <Search className="h-4 w-4 mr-2" />
-            {searchLoading ? 'Searching...' : 'Search'}
+            {searchLoading ? t('searching') : t('search')}
           </Button>
         </div>
       </div>
@@ -294,14 +296,14 @@ export default function AdvancedSearchPage() {
             <CardHeader>
               <CardTitle className="text-lg flex items-center">
                 <GraduationCap className="h-5 w-5 mr-2" />
-                Academic Criteria
+                {t('academicCriteria')}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {/* University text input */}
                 <div>
-                  <label className="text-sm font-medium mb-2 block">University</label>
+                  <label className="text-sm font-medium mb-2 block">{t('university')}</label>
                   <Input
                     placeholder="Search universities..."
                     value={filters.university}
@@ -311,7 +313,7 @@ export default function AdvancedSearchPage() {
 
                 {/* GPA Range */}
                 <div>
-                  <label className="text-sm font-medium">GPA Range</label>
+                  <label className="text-sm font-medium">{t('gpaRange')}</label>
                   <div className="flex items-center space-x-2 mt-2">
                     <input
                       type="number"
@@ -337,13 +339,13 @@ export default function AdvancedSearchPage() {
 
                 {/* Major */}
                 <div>
-                  <label className="text-sm font-medium">Major/Field of Study</label>
+                  <label className="text-sm font-medium">{t('majorField')}</label>
                   <select
                     value={filters.major}
                     onChange={(e) => setFilters(prev => ({ ...prev, major: e.target.value }))}
                     className="w-full mt-1 px-3 py-2 border rounded-lg"
                   >
-                    <option value="">All Majors</option>
+                    <option value="">{t('allMajors')}</option>
                     {majorFields.map(major => (
                       <option key={major} value={major}>{major}</option>
                     ))}
@@ -352,7 +354,7 @@ export default function AdvancedSearchPage() {
 
                 {/* Graduation Year */}
                 <div>
-                  <label className="text-sm font-medium">Graduation Year</label>
+                  <label className="text-sm font-medium">{t('graduationYear')}</label>
                   <div className="grid grid-cols-2 gap-2 mt-2">
                     {['2023', '2024', '2025', '2026'].map(year => (
                       <label key={year} className="flex items-center">
@@ -376,7 +378,7 @@ export default function AdvancedSearchPage() {
 
                 {/* Additional Academic Filters */}
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Additional Criteria</label>
+                  <label className="text-sm font-medium mb-2 block">{t('additionalCriteria')}</label>
                   <div className="space-y-2">
                     <label className="flex items-center">
                       <input
@@ -385,7 +387,7 @@ export default function AdvancedSearchPage() {
                         onChange={(e) => setFilters(prev => ({ ...prev, research: e.target.checked }))}
                         className="mr-2"
                       />
-                      <span className="text-sm">Research Experience</span>
+                      <span className="text-sm">{t('researchExperience')}</span>
                     </label>
                     <label className="flex items-center">
                       <input
@@ -394,7 +396,7 @@ export default function AdvancedSearchPage() {
                         onChange={(e) => setFilters(prev => ({ ...prev, publications: e.target.checked }))}
                         className="mr-2"
                       />
-                      <span className="text-sm">Published Papers</span>
+                      <span className="text-sm">{t('publishedPapers')}</span>
                     </label>
                     <label className="flex items-center">
                       <input
@@ -403,7 +405,7 @@ export default function AdvancedSearchPage() {
                         onChange={(e) => setFilters(prev => ({ ...prev, internships: e.target.checked }))}
                         className="mr-2"
                       />
-                      <span className="text-sm">Internship Experience</span>
+                      <span className="text-sm">{t('internshipExperience')}</span>
                     </label>
                   </div>
                 </div>
@@ -416,7 +418,7 @@ export default function AdvancedSearchPage() {
             <CardHeader>
               <CardTitle className="text-lg flex items-center">
                 <MapPin className="h-5 w-5 mr-2" />
-                Location Preferences
+                {t('locationPreferences')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -448,7 +450,7 @@ export default function AdvancedSearchPage() {
                       onChange={(e) => setFilters(prev => ({ ...prev, willingToRelocate: e.target.checked }))}
                       className="mr-2"
                     />
-                    <span className="text-sm">Willing to Relocate</span>
+                    <span className="text-sm">{t('willingToRelocate')}</span>
                   </label>
                   <label className="flex items-center mt-2">
                     <input
@@ -457,7 +459,7 @@ export default function AdvancedSearchPage() {
                       onChange={(e) => setFilters(prev => ({ ...prev, remoteOnly: e.target.checked }))}
                       className="mr-2"
                     />
-                    <span className="text-sm">Remote Only</span>
+                    <span className="text-sm">{t('remoteOnly')}</span>
                   </label>
                 </div>
               </div>
@@ -472,7 +474,7 @@ export default function AdvancedSearchPage() {
             <CardHeader>
               <CardTitle className="text-lg flex items-center">
                 <Code className="h-5 w-5 mr-2" />
-                Technical Skills
+                {t('technicalSkills')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -535,7 +537,7 @@ export default function AdvancedSearchPage() {
                   <span className="font-medium text-primary">{filters.preferredSkills.length}</span> preferred skills
                 </div>
                 <Button variant="outline" size="sm">
-                  Add Custom Skill
+                  {t('addCustomSkill')}
                 </Button>
               </div>
             </CardContent>
@@ -546,7 +548,7 @@ export default function AdvancedSearchPage() {
             <CardHeader>
               <CardTitle className="text-lg flex items-center">
                 <Brain className="h-5 w-5 mr-2" />
-                Performance Metrics
+                {t('performanceMetrics')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -618,7 +620,7 @@ export default function AdvancedSearchPage() {
                     onChange={(e) => setFilters(prev => ({ ...prev, portfolioRequired: e.target.checked }))}
                     className="mr-2"
                   />
-                  <span className="text-sm">Portfolio/Personal Website Required</span>
+                  <span className="text-sm">{t('portfolioRequired')}</span>
                 </label>
               </div>
             </CardContent>
@@ -658,7 +660,7 @@ export default function AdvancedSearchPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Search Summary</h3>
+                  <h3 className="font-semibold text-gray-900 mb-2">{t('searchSummary')}</h3>
                   <div className="flex flex-wrap gap-2">
                     {filters.university && (
                       <Badge variant="outline" className="bg-white">
@@ -693,7 +695,7 @@ export default function AdvancedSearchPage() {
                 <div className="flex items-center space-x-3">
                   <Button variant="outline" onClick={() => setShowSaveDialog(true)}>
                     <Save className="h-4 w-4 mr-2" />
-                    Save Search
+                    {t('saveSearch')}
                   </Button>
                   <Button
                     className="bg-primary hover:bg-blue-700"
@@ -701,7 +703,7 @@ export default function AdvancedSearchPage() {
                     disabled={searchLoading}
                   >
                     <Search className="h-4 w-4 mr-2" />
-                    {searchLoading ? 'Searching...' : 'Run Search'}
+                    {searchLoading ? t('searching') : t('runSearch')}
                   </Button>
                 </div>
               </div>
@@ -772,11 +774,11 @@ export default function AdvancedSearchPage() {
               <CardContent className="p-6 flex items-center space-x-3">
                 <AlertCircle className="h-5 w-5 text-red-500" />
                 <div>
-                  <p className="font-medium text-red-800">Search failed</p>
+                  <p className="font-medium text-red-800">{t('searchFailed')}</p>
                   <p className="text-sm text-red-600">{searchError}</p>
                 </div>
                 <Button variant="outline" size="sm" className="ml-auto" onClick={() => runSearch(currentPage)}>
-                  Retry
+                  {t('retry')}
                 </Button>
               </CardContent>
             </Card>
@@ -872,11 +874,11 @@ export default function AdvancedSearchPage() {
                     <div className="flex items-center justify-end space-x-2 mt-4 pt-3 border-t">
                       <Button variant="outline" size="sm">
                         <Eye className="h-4 w-4 mr-1" />
-                        View Profile
+                        {t('viewProfile')}
                       </Button>
                       <Button size="sm">
                         <MessageCircle className="h-4 w-4 mr-1" />
-                        Contact
+                        {t('contact')}
                       </Button>
                     </div>
                   </CardContent>
@@ -893,7 +895,7 @@ export default function AdvancedSearchPage() {
                     onClick={() => handlePageChange(currentPage - 1)}
                   >
                     <ChevronLeft className="h-4 w-4 mr-1" />
-                    Previous
+                    {t('previous')}
                   </Button>
                   <span className="text-sm text-gray-600">
                     Page {currentPage} of {totalPages}
@@ -904,7 +906,7 @@ export default function AdvancedSearchPage() {
                     disabled={currentPage >= totalPages}
                     onClick={() => handlePageChange(currentPage + 1)}
                   >
-                    Next
+                    {t('next')}
                     <ChevronRight className="h-4 w-4 ml-1" />
                   </Button>
                 </div>
@@ -918,8 +920,8 @@ export default function AdvancedSearchPage() {
               <CardContent>
                 <EmptyState
                   icon={Search}
-                  title="No candidates found"
-                  description="Try adjusting your search criteria"
+                  title={t('noCandidatesFound')}
+                  description={t('tryAdjustingCriteria')}
                 />
               </CardContent>
             </Card>
