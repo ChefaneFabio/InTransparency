@@ -1768,11 +1768,45 @@
       "title": "Built for Every Student",
       "subtitle": "Whether you're in high school, ITS, or university — your work deserves to be seen."
     },
+    "demo": {
+      "title": "See It In Action",
+      "subtitle": "Watch how students build verified portfolios",
+      "bullet1": "Upload any project in seconds",
+      "bullet2": "See your skills mapped automatically",
+      "bullet3": "Get discovered by companies",
+      "cta": "Try the Demo"
+    },
     "cta": {
       "title": "Start Understanding Your Strengths",
       "subtitle": "Create your portfolio in under 5 minutes. Your university verifies it. Your skills become visible. It's that simple.",
       "primaryButton": "Build Your Portfolio",
       "secondaryButton": "Explore the Platform"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Everything you need to know about building your portfolio",
+      "items": {
+        "0": {
+          "question": "Is it really free?",
+          "answer": "Yes, completely free for students. No hidden costs, no premium tiers. You upload, your university verifies, and your portfolio becomes visible."
+        },
+        "1": {
+          "question": "What can I upload?",
+          "answer": "Anything you've worked on — thesis, code, designs, reports, presentations, videos. We support all major file formats."
+        },
+        "2": {
+          "question": "How does the verification work?",
+          "answer": "Your university or school confirms your projects are real, adds grades and ECTS credits, and attaches a verification badge to your portfolio."
+        },
+        "3": {
+          "question": "Who can see my portfolio?",
+          "answer": "You control visibility. You can make your profile public, visible only to verified recruiters, or completely private."
+        },
+        "4": {
+          "question": "How do companies find me?",
+          "answer": "Companies search verified portfolios by skills, university, location, and project type. When they find a match, they can contact you directly."
+        }
+      }
     }
   },
   "forCompanies": {
@@ -1852,11 +1886,45 @@
         }
       }
     },
+    "demo": {
+      "title": "See the Platform",
+      "subtitle": "Watch how recruiters find verified talent",
+      "bullet1": "Search by real skills, not keywords",
+      "bullet2": "Review verified projects and grades",
+      "bullet3": "Connect directly with candidates",
+      "cta": "Try the Demo"
+    },
     "cta": {
       "title": "Find Talent You Can Trust",
       "subtitle": "Browse verified student portfolios. See real projects, real grades, real skills. Connect directly — free during launch.",
       "primaryButton": "Start Finding Talent",
       "secondaryButton": "Try the Smart Search"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "How verified talent changes your hiring process",
+      "items": {
+        "0": {
+          "question": "How is this different from LinkedIn?",
+          "answer": "Every profile is backed by university-verified projects and grades — not self-reported claims. You see actual work, not buzzwords."
+        },
+        "1": {
+          "question": "What does it cost?",
+          "answer": "Browsing and searching is free. You only pay when you want to contact a candidate directly."
+        },
+        "2": {
+          "question": "What types of candidates are available?",
+          "answer": "Students and graduates from all disciplines — tech, business, engineering, design, law, healthcare, and more. From high schools to universities across Europe."
+        },
+        "3": {
+          "question": "Can I post job listings?",
+          "answer": "Yes. Create job postings that automatically match with verified student profiles based on real skills, not keyword algorithms."
+        },
+        "4": {
+          "question": "How do Decision Packs work?",
+          "answer": "Decision Packs are automated candidate dossiers that compile a student's verified projects, grades, skills analysis, and placement prediction into one document."
+        }
+      }
     }
   },
   "forAcademicPartners": {
@@ -3820,6 +3888,32 @@
         "free": "Free for academic partners",
         "gdpr": "GDPR compliant",
         "setup": "5-minute setup"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "How academic partners use InTransparency",
+      "items": {
+        "0": {
+          "question": "Is it free for universities?",
+          "answer": "Yes. The core platform is free for all academic partners. Premium features like embeddable widgets and custom branding are available for institutions that want deeper integration."
+        },
+        "1": {
+          "question": "How do we verify student projects?",
+          "answer": "Through a simple dashboard. Review submitted projects, add grades and ECTS credits, and approve with one click. Batch verification is available for large cohorts."
+        },
+        "2": {
+          "question": "What data do we get?",
+          "answer": "Real-time placement analytics — which companies view, contact, and hire your students. Skills gap analysis, curriculum alignment scores, and exportable reports."
+        },
+        "3": {
+          "question": "How do students join?",
+          "answer": "Students can self-register or you can bulk-import them via CSV. They create their portfolio, and you verify their work through the dashboard."
+        },
+        "4": {
+          "question": "Is it GDPR compliant?",
+          "answer": "Fully compliant. Students control their own data, consent is managed per-feature, and all data is stored in EU data centers."
+        }
       }
     }
   },

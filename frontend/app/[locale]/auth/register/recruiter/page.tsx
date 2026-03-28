@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Building2, Loader2, CheckCircle, Shield, Search, Clock, Zap, Users } from 'lucide-react'
+import { ConfettiEffect } from '@/components/engagement/ConfettiEffect'
 
 export default function RecruiterRegisterPage() {
   const t = useTranslations('auth')
@@ -22,6 +23,7 @@ export default function RecruiterRegisterPage() {
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const [showConfetti, setShowConfetti] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -48,8 +50,10 @@ export default function RecruiterRegisterPage() {
       })
 
       if (signInResult?.error) {
+        setShowConfetti(true)
         router.push('/auth/login?registered=true')
       } else {
+        setShowConfetti(true)
         router.push('/dashboard/recruiter')
         router.refresh()
       }
@@ -64,6 +68,7 @@ export default function RecruiterRegisterPage() {
 
   return (
     <div className="segment-recruiter min-h-screen flex items-center justify-center bg-primary/10 py-12 px-4">
+      <ConfettiEffect trigger={showConfetti} />
       <div className="max-w-4xl w-full">
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column - Value Proposition */}

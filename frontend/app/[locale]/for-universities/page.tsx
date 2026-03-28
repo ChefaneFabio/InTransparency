@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { motion } from 'framer-motion'
 import {
   GraduationCap,
   BarChart3,
@@ -19,6 +20,10 @@ import {
   Target,
   Zap,
 } from 'lucide-react'
+import { FAQ } from '@/components/engagement/FAQ'
+import { TypewriterText } from '@/components/engagement/TypewriterText'
+import { StickyCTA } from '@/components/engagement/StickyCTA'
+import { AnimatedCounter } from '@/components/engagement/AnimatedCounter'
 import DecisionPackPreview from '@/components/demo/DecisionPackPreview'
 import GradeNormalizerDemo from '@/components/demo/GradeNormalizerDemo'
 import AnalyticsPreview from '@/components/demo/AnalyticsPreview'
@@ -65,12 +70,19 @@ const COUNTRY_TABS = [
 export default function ForUniversitiesPage() {
   const t = useTranslations('forUniversities')
   const [activeCountry, setActiveCountry] = useState('IT')
+  const [showSticky, setShowSticky] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setShowSticky(window.scrollY > 600)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <div className="min-h-screen segment-university">
       {/* Hero */}
       <section className="relative overflow-hidden bg-foreground text-white">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 animate-kenburns" />
         <div className="relative container max-w-6xl mx-auto px-4 py-16 lg:py-20">
           <div className="text-center max-w-3xl mx-auto">
             <Badge variant="secondary" className="mb-6 bg-white/10 text-white border-white/20">
@@ -78,7 +90,7 @@ export default function ForUniversitiesPage() {
               {t('hero.badge')}
             </Badge>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
-              {t('hero.title')}
+              <TypewriterText text={t('hero.title')} speed={60} delay={500} />
             </h1>
             <p className="text-lg text-blue-200 mb-8 max-w-2xl mx-auto">
               {t('hero.subtitle')}
@@ -102,14 +114,16 @@ export default function ForUniversitiesPage() {
           {/* Stats */}
           <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: Users, value: '2,400+', label: t('hero.stats.students') },
-              { icon: Building2, value: '180+', label: t('hero.stats.companies') },
-              { icon: Globe, value: '6', label: t('hero.stats.countries') },
-              { icon: Target, value: '87%', label: t('hero.stats.placementRate') },
+              { icon: Users, value: 2400, suffix: '+', label: t('hero.stats.students') },
+              { icon: Building2, value: 180, suffix: '+', label: t('hero.stats.companies') },
+              { icon: Globe, value: 6, suffix: '', label: t('hero.stats.countries') },
+              { icon: Target, value: 87, suffix: '%', label: t('hero.stats.placementRate') },
             ].map((stat) => (
               <div key={stat.label} className="text-center p-4 rounded-xl bg-white/5 border border-white/10">
                 <stat.icon className="h-6 w-6 mx-auto mb-2 text-blue-300" />
-                <p className="text-2xl font-bold">{stat.value}</p>
+                <p className="text-2xl font-bold">
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                </p>
                 <p className="text-sm text-blue-300">{stat.label}</p>
               </div>
             ))}
@@ -161,27 +175,38 @@ export default function ForUniversitiesPage() {
       </section>
 
       {/* Interactive Demos */}
-      <section className="py-12">
+      <section className="py-16 bg-gradient-to-b from-white to-blue-50/50">
         <div className="container max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4">
-              <Zap className="h-3 w-3 mr-1" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-14"
+          >
+            <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-medium">
+              <Zap className="h-3.5 w-3.5 mr-1.5" />
               {t('demos.badge')}
             </Badge>
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
               {t('demos.title')}
             </h2>
-            <p className="text-gray-600 max-w-xl mx-auto">
+            <p className="text-gray-600 max-w-xl mx-auto text-lg">
               {t('demos.subtitle')}
             </p>
-          </div>
+          </motion.div>
 
-          <div className="space-y-10">
+          <div className="space-y-12">
             {/* Decision Pack */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5 }}
+            >
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <FileStack className="h-5 w-5 text-primary" />
+                <div className="p-2.5 rounded-xl bg-primary/10">
+                  <FileStack className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">{t('demos.decisionPack.title')}</h3>
@@ -191,13 +216,18 @@ export default function ForUniversitiesPage() {
               <div className="max-w-2xl">
                 <DecisionPackPreview data={sampleDecisionPack} />
               </div>
-            </div>
+            </motion.div>
 
             {/* Grade Normalizer */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <Globe className="h-5 w-5 text-primary" />
+                <div className="p-2.5 rounded-xl bg-primary/10">
+                  <Globe className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">{t('demos.gradeNormalizer.title')}</h3>
@@ -207,13 +237,18 @@ export default function ForUniversitiesPage() {
               <div className="max-w-xl">
                 <GradeNormalizerDemo />
               </div>
-            </div>
+            </motion.div>
 
             {/* Analytics Preview */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <BarChart3 className="h-5 w-5 text-primary" />
+                <div className="p-2.5 rounded-xl bg-primary/10">
+                  <BarChart3 className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">{t('demos.analytics.title')}</h3>
@@ -223,7 +258,7 @@ export default function ForUniversitiesPage() {
               <div className="max-w-2xl">
                 <AnalyticsPreview />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -279,6 +314,27 @@ export default function ForUniversitiesPage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="py-12">
+        <div className="container max-w-5xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+              {t('faq.title')}
+            </h2>
+            <p className="text-gray-600 max-w-xl mx-auto">
+              {t('faq.subtitle')}
+            </p>
+          </div>
+
+          <FAQ
+            items={Array.from({ length: 5 }, (_, i) => ({
+              question: t(`faq.items.${i}.question`),
+              answer: t(`faq.items.${i}.answer`),
+            }))}
+          />
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-12 bg-primary text-white">
         <div className="container max-w-4xl mx-auto px-4 text-center">
@@ -306,6 +362,7 @@ export default function ForUniversitiesPage() {
           </div>
         </div>
       </section>
+      <StickyCTA show={showSticky} text={t('cta.registerButton')} href="/auth/register" />
     </div>
   )
 }

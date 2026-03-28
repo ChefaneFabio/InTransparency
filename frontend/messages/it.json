@@ -1808,11 +1808,45 @@
       "title": "Per Ogni Tipo di Studente",
       "subtitle": "Che tu sia alle superiori, all'ITS o all'università — il tuo lavoro merita di essere visto."
     },
+    "demo": {
+      "title": "Guardalo in Azione",
+      "subtitle": "Scopri come gli studenti costruiscono portfolio verificati",
+      "bullet1": "Carica qualsiasi progetto in pochi secondi",
+      "bullet2": "Vedi le tue competenze mappate automaticamente",
+      "bullet3": "Fatti scoprire dalle aziende",
+      "cta": "Prova la Demo"
+    },
     "cta": {
       "title": "Inizia a Capire i Tuoi Punti di Forza",
       "subtitle": "Crea il tuo portfolio in meno di 5 minuti. La tua università lo verifica. Le tue competenze diventano visibili. È così semplice.",
       "primaryButton": "Costruisci il Tuo Portfolio",
       "secondaryButton": "Esplora la Piattaforma"
+    },
+    "faq": {
+      "title": "Domande Frequenti",
+      "subtitle": "Tutto quello che devi sapere sulla creazione del tuo portfolio",
+      "items": {
+        "0": {
+          "question": "È davvero gratuito?",
+          "answer": "Sì, completamente gratuito per gli studenti. Nessun costo nascosto, nessun piano premium. Tu carichi, la tua università verifica e il tuo portfolio diventa visibile."
+        },
+        "1": {
+          "question": "Cosa posso caricare?",
+          "answer": "Qualsiasi cosa su cui hai lavorato — tesi, codice, design, relazioni, presentazioni, video. Supportiamo tutti i principali formati di file."
+        },
+        "2": {
+          "question": "Come funziona la verifica?",
+          "answer": "La tua università o scuola conferma che i tuoi progetti sono reali, aggiunge voti e crediti ECTS, e associa un badge di verifica al tuo portfolio."
+        },
+        "3": {
+          "question": "Chi può vedere il mio portfolio?",
+          "answer": "Controlli tu la visibilità. Puoi rendere il tuo profilo pubblico, visibile solo ai recruiter verificati, o completamente privato."
+        },
+        "4": {
+          "question": "Come mi trovano le aziende?",
+          "answer": "Le aziende cercano tra i portfolio verificati per competenze, università, posizione e tipo di progetto. Quando trovano una corrispondenza, possono contattarti direttamente."
+        }
+      }
     }
   },
   "forCompanies": {
@@ -1892,11 +1926,45 @@
         }
       }
     },
+    "demo": {
+      "title": "Scopri la Piattaforma",
+      "subtitle": "Guarda come i recruiter trovano talenti verificati",
+      "bullet1": "Cerca per competenze reali, non parole chiave",
+      "bullet2": "Esamina progetti e voti verificati",
+      "bullet3": "Connettiti direttamente con i candidati",
+      "cta": "Prova la Demo"
+    },
     "cta": {
       "title": "Trova Talenti di cui Fidarti",
       "subtitle": "Esplora portfolio verificati dagli studenti. Vedi progetti reali, voti reali, competenze reali. Connettiti direttamente — gratis durante il lancio.",
       "primaryButton": "Inizia a Trovare Talenti",
       "secondaryButton": "Prova la Ricerca Intelligente"
+    },
+    "faq": {
+      "title": "Domande Frequenti",
+      "subtitle": "Come i talenti verificati cambiano il tuo processo di assunzione",
+      "items": {
+        "0": {
+          "question": "In cosa è diverso da LinkedIn?",
+          "answer": "Ogni profilo è supportato da progetti e voti verificati dall'università — non da dichiarazioni auto-riferite. Vedi il lavoro reale, non parole chiave."
+        },
+        "1": {
+          "question": "Quanto costa?",
+          "answer": "La navigazione e la ricerca sono gratuite. Paghi solo quando vuoi contattare direttamente un candidato."
+        },
+        "2": {
+          "question": "Che tipo di candidati sono disponibili?",
+          "answer": "Studenti e laureati di tutte le discipline — tecnologia, business, ingegneria, design, giurisprudenza, sanità e molto altro. Dalle scuole superiori alle università in tutta Europa."
+        },
+        "3": {
+          "question": "Posso pubblicare annunci di lavoro?",
+          "answer": "Sì. Crea annunci di lavoro che si abbinano automaticamente ai profili verificati degli studenti in base a competenze reali, non ad algoritmi di parole chiave."
+        },
+        "4": {
+          "question": "Come funzionano i Decision Pack?",
+          "answer": "I Decision Pack sono dossier automatizzati che raccolgono i progetti verificati, i voti, l'analisi delle competenze e la previsione di placement di uno studente in un unico documento."
+        }
+      }
     }
   },
   "forAcademicPartners": {
@@ -3860,6 +3928,32 @@
         "free": "Gratuito per i partner formativi",
         "gdpr": "Conforme al GDPR",
         "setup": "Setup in 5 minuti"
+      }
+    },
+    "faq": {
+      "title": "Domande Frequenti",
+      "subtitle": "Come i partner formativi usano InTransparency",
+      "items": {
+        "0": {
+          "question": "È gratuito per le università?",
+          "answer": "Sì. La piattaforma base è gratuita per tutti i partner formativi. Funzionalità premium come widget incorporabili e branding personalizzato sono disponibili per chi desidera un'integrazione più profonda."
+        },
+        "1": {
+          "question": "Come verifichiamo i progetti degli studenti?",
+          "answer": "Attraverso una dashboard semplice. Esamina i progetti inviati, aggiungi voti e crediti ECTS e approva con un click. La verifica in blocco è disponibile per grandi coorti."
+        },
+        "2": {
+          "question": "Quali dati otteniamo?",
+          "answer": "Analisi di placement in tempo reale — quali aziende visualizzano, contattano e assumono i tuoi studenti. Analisi dei gap di competenze, punteggi di allineamento curricolare e report esportabili."
+        },
+        "3": {
+          "question": "Come si iscrivono gli studenti?",
+          "answer": "Gli studenti possono registrarsi autonomamente oppure puoi importarli in blocco tramite CSV. Creano il loro portfolio e tu verifichi il loro lavoro attraverso la dashboard."
+        },
+        "4": {
+          "question": "È conforme al GDPR?",
+          "answer": "Pienamente conforme. Gli studenti controllano i propri dati, il consenso è gestito per funzionalità e tutti i dati sono archiviati in data center nell'UE."
+        }
       }
     }
   },

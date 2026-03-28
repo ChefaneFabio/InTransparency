@@ -21,9 +21,13 @@ export default async function LocaleLayout({
   // Get messages for the specific locale
   const messages = await getMessages({ locale })
 
+  // Dynamic import to avoid SSR issues with engagement components
+  const { GlobalEngagement } = await import('@/components/engagement/GlobalEngagement')
+
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
       {children}
+      <GlobalEngagement />
     </NextIntlClientProvider>
   )
 }

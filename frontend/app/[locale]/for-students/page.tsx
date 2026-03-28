@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -10,6 +10,10 @@ import { Badge } from '@/components/ui/badge'
 import { motion } from 'framer-motion'
 import { Link } from '@/navigation'
 import { BRAND_IMAGES } from '@/lib/brand-images'
+import { FAQ } from '@/components/engagement/FAQ'
+import { TypewriterText } from '@/components/engagement/TypewriterText'
+import { StickyCTA } from '@/components/engagement/StickyCTA'
+import VideoEmbed from '@/components/engagement/VideoEmbed'
 import {
   Upload,
   ShieldCheck,
@@ -28,7 +32,8 @@ import {
   FileVideo,
   Code,
   FileText,
-  Megaphone
+  Megaphone,
+  CheckCircle2
 } from 'lucide-react'
 
 const fadeUp = {
@@ -46,6 +51,13 @@ const stagger = {
 
 export default function ForStudentsPage() {
   const t = useTranslations('forStudents')
+  const [showSticky, setShowSticky] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setShowSticky(window.scrollY > 600)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const steps = [
     { icon: Upload, color: 'from-blue-500 to-cyan-500' },
@@ -96,7 +108,8 @@ export default function ForStudentsPage() {
               custom={1}
               className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
             >
-              {t('hero.title')}
+              {t('hero.title')}{' '}
+              <TypewriterText text={t('hero.titleHighlight')} speed={60} delay={800} />
             </motion.h1>
 
             <motion.p
@@ -127,18 +140,30 @@ export default function ForStudentsPage() {
             </motion.div>
           </motion.div>
 
-          {/* Hero image */}
+          {/* Hero image with ken-burns and play overlay */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-12 mx-auto max-w-4xl"
+            className="mt-12 mx-auto max-w-4xl relative overflow-hidden rounded-2xl shadow-xl group"
           >
             <img
               src={BRAND_IMAGES.forStudents.hero}
               alt="Students collaborating on projects"
-              className="w-full h-[280px] sm:h-[360px] object-cover rounded-2xl shadow-xl"
+              className="w-full h-[280px] sm:h-[360px] object-cover animate-kenburns"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            <Link href="/demo/ai-search">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div
+                  className="flex items-center gap-3 rounded-full bg-white/90 px-6 py-3 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <Play className="h-5 w-5 text-slate-900" fill="currentColor" />
+                  <span className="text-sm font-semibold text-slate-900">{t('demo.cta')}</span>
+                </motion.div>
+              </div>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -202,6 +227,58 @@ export default function ForStudentsPage() {
                 </motion.div>
               )
             })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── SEE IT IN ACTION ─── */}
+      <section className="bg-slate-900 py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            variants={stagger}
+          >
+            <motion.div variants={fadeUp} custom={0} className="text-center mb-12">
+              <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                {t('demo.title')}
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-slate-400">
+                {t('demo.subtitle')}
+              </p>
+            </motion.div>
+
+            <div className="grid gap-10 lg:grid-cols-2 items-center">
+              <motion.div variants={fadeUp} custom={1}>
+                <VideoEmbed
+                  thumbnailSrc={BRAND_IMAGES.forStudents.presenting}
+                  title={t('demo.title')}
+                  description={t('demo.subtitle')}
+                  onClick={() => { window.location.href = '/demo/ai-search' }}
+                />
+              </motion.div>
+
+              <motion.div variants={fadeUp} custom={2} className="space-y-6">
+                {[0, 1, 2].map((i) => (
+                  <div key={i} className="flex items-start gap-4">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/20">
+                      <CheckCircle2 className="h-5 w-5 text-blue-400" />
+                    </div>
+                    <p className="text-base text-slate-300">
+                      {t(`demo.bullet${i + 1}`)}
+                    </p>
+                  </div>
+                ))}
+
+                <Link href="/demo/ai-search">
+                  <Button size="lg" className="mt-4 gap-2 rounded-full bg-white px-8 text-base text-slate-900 hover:bg-slate-100">
+                    {t('demo.cta')}
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -320,6 +397,50 @@ export default function ForStudentsPage() {
         </div>
       </section>
 
+      {/* ─── FAQ ─── */}
+      <section className="bg-slate-50 py-16 lg:py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            variants={stagger}
+            className="text-center"
+          >
+            <motion.h2
+              variants={fadeUp}
+              custom={0}
+              className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
+            >
+              {t('faq.title')}
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              custom={1}
+              className="mx-auto mt-4 max-w-xl text-slate-600"
+            >
+              {t('faq.subtitle')}
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-40px' }}
+            variants={fadeUp}
+            custom={2}
+            className="mt-12"
+          >
+            <FAQ
+              items={Array.from({ length: 5 }, (_, i) => ({
+                question: t(`faq.items.${i}.question`),
+                answer: t(`faq.items.${i}.answer`),
+              }))}
+            />
+          </motion.div>
+        </div>
+      </section>
+
       {/* ─── CTA ─── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-16 lg:py-20">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent" />
@@ -371,6 +492,7 @@ export default function ForStudentsPage() {
       </section>
 
       <Footer />
+      <StickyCTA show={showSticky} text={t('cta.primaryButton')} href="/auth/register" />
     </div>
   )
 }

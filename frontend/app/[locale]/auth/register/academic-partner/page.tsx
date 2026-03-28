@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { School, Loader2, CheckCircle, TrendingUp, Users, BarChart3, Shield } from 'lucide-react'
+import { ConfettiEffect } from '@/components/engagement/ConfettiEffect'
 
 const benefitIcons = [TrendingUp, Users, BarChart3, Shield]
 
@@ -24,6 +25,7 @@ export default function UniversityRegisterPage() {
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const [showConfetti, setShowConfetti] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -50,8 +52,10 @@ export default function UniversityRegisterPage() {
       })
 
       if (signInResult?.error) {
+        setShowConfetti(true)
         router.push('/auth/login?registered=true')
       } else {
+        setShowConfetti(true)
         router.push('/dashboard/university')
         router.refresh()
       }
@@ -64,6 +68,7 @@ export default function UniversityRegisterPage() {
 
   return (
     <div className="segment-university min-h-screen flex items-center justify-center bg-primary/10 py-12 px-4">
+      <ConfettiEffect trigger={showConfetti} />
       <div className="max-w-4xl w-full">
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column - Value Proposition */}
