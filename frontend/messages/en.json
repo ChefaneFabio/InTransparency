@@ -667,7 +667,9 @@
       "successTitle": "Successfully subscribed!",
       "successDescription": "Thank you for subscribing to our newsletter.",
       "errorTitle": "Subscription failed",
-      "errorDescription": "Please try again later."
+      "errorDescription": "Please try again later.",
+      "invalidTitle": "Invalid email",
+      "invalidDescription": "Please enter a valid email address"
     },
     "compliance": {
       "operational": "All systems operational",
@@ -2016,27 +2018,55 @@
       "sections": {
         "collection": {
           "title": "1. Information We Collect",
-          "intro": "We collect information that you provide directly to us, including:"
+          "intro": "We collect information that you provide directly to us, including:",
+          "items": {
+            "0": "Account information (name, email, university affiliation)",
+            "1": "Academic records (grades, courses, projects)",
+            "2": "Professional information (skills, experience, achievements)",
+            "3": "Profile data and uploaded content",
+            "4": "Communications with us and other users"
+          }
         },
         "usage": {
           "title": "2. How We Use Your Information",
-          "intro": "We use the information we collect to:"
+          "intro": "We use the information we collect to:",
+          "items": {
+            "0": "Provide, maintain, and improve our services",
+            "1": "Connect students with educational and career opportunities",
+            "2": "Verify academic credentials and achievements",
+            "3": "Personalize your experience and provide recommendations",
+            "4": "Communicate with you about services, updates, and opportunities",
+            "5": "Ensure platform security and prevent fraud"
+          }
         },
         "sharing": {
           "title": "3. Information Sharing",
-          "intro": "We share information in the following circumstances:"
+          "intro": "We share information in the following circumstances:",
+          "items": {
+            "0": "With Universities: To verify academic credentials",
+            "1": "With Recruiters: Based on your privacy settings and consent",
+            "2": "With Service Providers: Who help us operate our platform",
+            "3": "For Legal Reasons: When required by law or to protect rights"
+          }
         },
         "security": {
           "title": "4. Data Security",
-          "intro": "We implement security measures to protect your data:"
+          "intro": "We implement industry-standard security measures to protect your information, including encryption, secure servers, and regular security audits. However, no method of transmission over the internet is 100% secure."
         },
         "rights": {
           "title": "5. Your Rights",
-          "intro": "You have the right to:"
+          "intro": "You have the right to:",
+          "items": {
+            "0": "Choose what information to share publicly",
+            "1": "Control who can view your profile and projects",
+            "2": "Access, update, or delete your information",
+            "3": "Opt out of marketing communications",
+            "4": "Export your data at any time"
+          }
         },
         "contact": {
           "title": "6. Contact Us",
-          "intro": "For privacy questions, contact us at:"
+          "intro": "For questions about this Privacy Policy, please contact us at"
         }
       }
     },
@@ -2046,27 +2076,44 @@
       "sections": {
         "acceptance": {
           "title": "1. Acceptance of Terms",
-          "intro": "By using InTransparency, you agree to these terms:"
+          "intro": "By accessing or using InTransparency, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services."
         },
         "accounts": {
           "title": "2. User Accounts",
-          "intro": "To create an account, you must:"
+          "intro": "To create an account, you must:",
+          "items": {
+            "0": "Provide accurate and complete information",
+            "1": "Maintain the security of your account credentials",
+            "2": "Notify us immediately of any unauthorized access",
+            "3": "Be responsible for all activities under your account"
+          }
         },
         "content": {
           "title": "3. User Content",
-          "intro": "You are responsible for content you upload:"
+          "intro": "You are responsible for content you upload:",
+          "items": {
+            "0": "Post false, misleading, or fraudulent information",
+            "1": "Upload copyrighted material without permission",
+            "2": "Share content that is offensive, harmful, or illegal",
+            "3": "Impersonate others or misrepresent your credentials",
+            "4": "Engage in spam, harassment, or malicious activities"
+          }
         },
         "prohibited": {
           "title": "4. Prohibited Conduct",
-          "intro": "You may not:"
+          "intro": "InTransparency is built on trust and transparency. All academic credentials, grades, and projects must be genuine. Falsifying academic records is grounds for immediate account termination and may be reported to relevant institutions."
         },
         "termination": {
           "title": "5. Termination",
-          "intro": "We may suspend or terminate your account if:"
+          "intro": "We may suspend or terminate your account for violations of these terms, illegal activity, or at our discretion with notice. You may close your account at any time."
         },
         "liability": {
           "title": "6. Limitation of Liability",
-          "intro": "InTransparency is not responsible for:"
+          "intro": "InTransparency is provided as-is without warranties. We are not liable for indirect, incidental, or consequential damages arising from your use of the platform."
+        },
+        "contact": {
+          "title": "7. Contact",
+          "intro": "Questions about these Terms? Contact us at"
         }
       }
     }
@@ -3739,9 +3786,14 @@
         }
       },
       "powered": "Powered by AI • GDPR Compliant",
-      "inputPlaceholder": "Ask {title} anything...",
+      "inputPlaceholder": "Type your message...",
       "tryAsking": "Try asking:",
-      "transparencyNotice": "<strong>Transparent AI:</strong> This conversation helps refine your experience. Data is GDPR-compliant and used to improve matches. You can opt out anytime in settings."
+      "transparencyNotice": "<strong>Transparent AI:</strong> This conversation helps refine your experience. Data is GDPR-compliant and used to improve matches. You can opt out anytime in settings.",
+      "newConversation": "New conversation",
+      "suggestedActions": "Suggested actions:",
+      "quickActions": "Quick actions:",
+      "errorResponse": "Failed to get response. Please try again.",
+      "errorSend": "Failed to send message. Please try again."
     },
     "infoCards": {
       "transparent": {

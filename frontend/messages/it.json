@@ -667,7 +667,9 @@
       "successTitle": "Iscrizione riuscita!",
       "successDescription": "Grazie per esserti iscritto alla nostra newsletter.",
       "errorTitle": "Iscrizione fallita",
-      "errorDescription": "Riprova più tardi."
+      "errorDescription": "Riprova più tardi.",
+      "invalidTitle": "Email non valida",
+      "invalidDescription": "Inserisci un indirizzo email valido"
     },
     "compliance": {
       "operational": "Tutti i sistemi operativi",
@@ -2056,27 +2058,55 @@
       "sections": {
         "collection": {
           "title": "1. Informazioni Che Raccogliamo",
-          "intro": "Raccogliamo informazioni che ci fornisci direttamente, tra cui:"
+          "intro": "Raccogliamo informazioni che ci fornisci direttamente, tra cui:",
+          "items": {
+            "0": "Informazioni account (nome, email, affiliazione universitaria)",
+            "1": "Risultati accademici (voti, corsi, progetti)",
+            "2": "Informazioni professionali (competenze, esperienza, risultati)",
+            "3": "Dati del profilo e contenuti caricati",
+            "4": "Comunicazioni con noi e altri utenti"
+          }
         },
         "usage": {
           "title": "2. Come Utilizziamo Le Tue Informazioni",
-          "intro": "Utilizziamo le informazioni raccolte per:"
+          "intro": "Utilizziamo le informazioni raccolte per:",
+          "items": {
+            "0": "Fornire, mantenere e migliorare i nostri servizi",
+            "1": "Collegare gli studenti con opportunita educative e professionali",
+            "2": "Verificare credenziali e risultati accademici",
+            "3": "Personalizzare la tua esperienza e fornire raccomandazioni",
+            "4": "Comunicare aggiornamenti sui servizi e opportunita",
+            "5": "Garantire la sicurezza della piattaforma e prevenire frodi"
+          }
         },
         "sharing": {
           "title": "3. Condivisione Informazioni",
-          "intro": "Condividiamo informazioni nelle seguenti circostanze:"
+          "intro": "Condividiamo informazioni nelle seguenti circostanze:",
+          "items": {
+            "0": "Con le universita: per verificare le credenziali accademiche",
+            "1": "Con i recruiter: in base alle tue impostazioni privacy e al tuo consenso",
+            "2": "Con i fornitori di servizi: che ci aiutano a gestire la piattaforma",
+            "3": "Per motivi legali: quando richiesto dalla legge o per tutelare i diritti"
+          }
         },
         "security": {
           "title": "4. Sicurezza Dati",
-          "intro": "Implementiamo misure di sicurezza per proteggere i tuoi dati:"
+          "intro": "Implementiamo misure di sicurezza conformi agli standard del settore per proteggere le tue informazioni, inclusa crittografia, server sicuri e audit di sicurezza regolari. Tuttavia, nessun metodo di trasmissione via Internet e sicuro al 100%."
         },
         "rights": {
           "title": "5. I Tuoi Diritti",
-          "intro": "Hai il diritto di:"
+          "intro": "Hai il diritto di:",
+          "items": {
+            "0": "Scegliere quali informazioni condividere pubblicamente",
+            "1": "Controllare chi puo visualizzare il tuo profilo e i tuoi progetti",
+            "2": "Accedere, aggiornare o eliminare le tue informazioni",
+            "3": "Disattivare le comunicazioni di marketing",
+            "4": "Esportare i tuoi dati in qualsiasi momento"
+          }
         },
         "contact": {
           "title": "6. Contattaci",
-          "intro": "Per domande sulla privacy, contattaci a:"
+          "intro": "Per domande su questa Informativa Privacy, contattaci a"
         }
       }
     },
@@ -2086,27 +2116,44 @@
       "sections": {
         "acceptance": {
           "title": "1. Accettazione Termini",
-          "intro": "Utilizzando InTransparency, accetti questi termini:"
+          "intro": "Accedendo o utilizzando InTransparency, accetti di essere vincolato da questi Termini di Servizio. Se non accetti questi termini, ti preghiamo di non utilizzare i nostri servizi."
         },
         "accounts": {
           "title": "2. Account Utente",
-          "intro": "Per creare un account, devi:"
+          "intro": "Per creare un account, devi:",
+          "items": {
+            "0": "Fornire informazioni accurate e complete",
+            "1": "Mantenere la sicurezza delle credenziali del tuo account",
+            "2": "Notificarci immediatamente in caso di accesso non autorizzato",
+            "3": "Essere responsabile di tutte le attivita del tuo account"
+          }
         },
         "content": {
           "title": "3. Contenuto Utente",
-          "intro": "Sei responsabile del contenuto che carichi:"
+          "intro": "Sei responsabile del contenuto che carichi:",
+          "items": {
+            "0": "Pubblicare informazioni false, fuorvianti o fraudolente",
+            "1": "Caricare materiale protetto da copyright senza autorizzazione",
+            "2": "Condividere contenuti offensivi, dannosi o illegali",
+            "3": "Impersonare altri o falsificare le proprie credenziali",
+            "4": "Praticare spam, molestie o attivita dannose"
+          }
         },
         "prohibited": {
           "title": "4. Condotta Proibita",
-          "intro": "Non puoi:"
+          "intro": "InTransparency si fonda sulla fiducia e sulla trasparenza. Tutte le credenziali accademiche, i voti e i progetti devono essere autentici. Falsificare i risultati accademici comporta la chiusura immediata dell account e puo essere segnalato alle istituzioni competenti."
         },
         "termination": {
           "title": "5. Terminazione",
-          "intro": "Possiamo sospendere o terminare il tuo account se:"
+          "intro": "Possiamo sospendere o chiudere il tuo account per violazione di questi termini, attivita illegali, o a nostra discrezione con preavviso. Puoi chiudere il tuo account in qualsiasi momento."
         },
         "liability": {
           "title": "6. Limitazione Responsabilità",
-          "intro": "InTransparency non è responsabile per:"
+          "intro": "InTransparency viene fornito cosi com e, senza garanzie. Non siamo responsabili per danni indiretti, incidentali o consequenziali derivanti dall uso della piattaforma."
+        },
+        "contact": {
+          "title": "7. Contatti",
+          "intro": "Domande su questi Termini? Contattaci a"
         }
       }
     }
@@ -3779,9 +3826,14 @@
         }
       },
       "powered": "Alimentato da AI • Conforme GDPR",
-      "inputPlaceholder": "Chiedi a {title} qualsiasi cosa...",
+      "inputPlaceholder": "Scrivi il tuo messaggio...",
       "tryAsking": "Prova a chiedere:",
-      "transparencyNotice": "<strong>AI Trasparente:</strong> Questa conversazione aiuta a perfezionare la tua esperienza. I dati sono conformi al GDPR e utilizzati per migliorare le corrispondenze. Puoi disattivare in qualsiasi momento nelle impostazioni."
+      "transparencyNotice": "<strong>AI Trasparente:</strong> Questa conversazione aiuta a perfezionare la tua esperienza. I dati sono conformi al GDPR e utilizzati per migliorare le corrispondenze. Puoi disattivare in qualsiasi momento nelle impostazioni.",
+      "newConversation": "Nuova conversazione",
+      "suggestedActions": "Azioni suggerite:",
+      "quickActions": "Azioni rapide:",
+      "errorResponse": "Impossibile ottenere una risposta. Riprova.",
+      "errorSend": "Impossibile inviare il messaggio. Riprova."
     },
     "infoCards": {
       "transparent": {

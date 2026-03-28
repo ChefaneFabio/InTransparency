@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { chatApi, ChatUserRole } from '@/lib/api'
+import { useTranslations } from 'next-intl'
 
 export type ChatbotRole = 'student' | 'company' | 'institution'
 
@@ -45,46 +46,10 @@ interface ChatbotWidgetProps {
   enableStreaming?: boolean
 }
 
-const chatbotConfig = {
-  student: {
-    title: 'Career Assistant',
-    greeting: "👋 Hi! I'm Transparenty, your AI career assistant. I can help you:\n\n• Build your profile from projects\n• Find jobs matching your skills\n• Get career advice\n• Understand what companies are looking for\n\nWhat would you like to do?",
-    color: 'from-primary to-secondary',
-    badge: 'Student Assistant',
-    apiRole: 'student' as ChatUserRole,
-    examples: [
-      "Help me build my profile",
-      "Find jobs in Milan",
-      "What skills are companies searching for?",
-      "Career advice for Computer Science"
-    ]
-  },
-  company: {
-    title: 'Recruiting Assistant',
-    greeting: "👋 Hi! I'm Transparenty, your AI recruiting assistant. I can help you:\n\n• Find verified candidates (all disciplines)\n• Understand match explanations\n• Get sourcing tips\n• See skill demand trends\n\nHow can I assist your search?",
-    color: 'from-primary to-secondary',
-    badge: 'Recruiting Assistant',
-    apiRole: 'recruiter' as ChatUserRole,
-    examples: [
-      "Find cybersecurity students in Rome",
-      "Marketing intern with creative portfolio",
-      "Explain match scores",
-      "What makes a good job description?"
-    ]
-  },
-  institution: {
-    title: 'Partnership Assistant',
-    greeting: "👋 Hi! I'm Transparenty, your institutional assistant. I can help you:\n\n• Set up free partnership\n• Understand dashboard analytics\n• Get early intervention alerts\n• Explore European job opportunities\n\nWhat would you like to know?",
-    color: 'from-primary to-secondary',
-    badge: 'Institution Assistant',
-    apiRole: 'institution' as ChatUserRole,
-    examples: [
-      "How does the free partnership work?",
-      "Show me company search trends",
-      "Help with at-risk students",
-      "European job opportunities"
-    ]
-  }
+const chatbotApiRoles: Record<ChatbotRole, ChatUserRole> = {
+  student: 'student',
+  company: 'recruiter',
+  institution: 'institution'
 }
 
 // Session storage key for chat session ID
@@ -109,8 +74,18 @@ export function ChatbotWidget({
   const [suggestedActions, setSuggestedActions] = useState<SuggestedAction[]>([])
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const t = useTranslations('chat.chatbot')
 
-  const config = chatbotConfig[userRole]
+  const configTitle = t(`${userRole}.title`)
+  const configGreeting = t(`${userRole}.greeting`)
+  const configBadge = t(`${userRole}.title`)
+  const configApiRole = chatbotApiRoles[userRole]
+  const configExamples = [
+    t(`${userRole}.examples.0`),
+    t(`${userRole}.examples.1`),
+    t(`${userRole}.examples.2`),
+    t(`${userRole}.examples.3`)
+  ]
 
   // Initialize session ID on mount
   useEffect(() => {
@@ -128,12 +103,12 @@ export function ChatbotWidget({
       const greeting: Message = {
         id: '1',
         role: 'assistant',
-        content: config.greeting,
+        content: configGreeting,
         timestamp: new Date()
       }
       setMessages([greeting])
     }
-  }, [isOpen, config.greeting, messages.length, sessionId])
+  }, [isOpen, configGreeting, messages.length, sessionId])
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -181,7 +156,7 @@ export function ChatbotWidget({
         await chatApi.streamMessage(
           sessionId,
           input,
-          config.apiRole,
+          configApiRole,
           // onChunk - update the streaming message
           (chunk) => {
             setMessages(prev => prev.map(msg =>
@@ -203,7 +178,7 @@ export function ChatbotWidget({
           // onError
           (err) => {
             console.error('Streaming error:', err)
-            setError('Failed to get response. Please try again.')
+            setError(t('errorResponse'))
             setMessages(prev => prev.filter(msg => msg.id !== assistantMessageId))
             setIsTyping(false)
             setIsLoading(false)
@@ -214,7 +189,7 @@ export function ChatbotWidget({
         const response = await chatApi.sendMessage(
           sessionId,
           input,
-          config.apiRole
+          configApiRole
         )
 
         const assistantMessage: Message = {
@@ -236,11 +211,11 @@ export function ChatbotWidget({
       }
     } catch (err) {
       console.error('Chat error:', err)
-      setError('Failed to send message. Please try again.')
+      setError(t('errorSend'))
       setIsTyping(false)
       setIsLoading(false)
     }
-  }, [input, isLoading, sessionId, config.apiRole, enableStreaming])
+  }, [input, isLoading, sessionId, configApiRole, enableStreaming, t])
 
   const handleExampleClick = (example: string) => {
     setInput(example)
@@ -269,7 +244,7 @@ export function ChatbotWidget({
     setMessages([{
       id: '1',
       role: 'assistant',
-      content: config.greeting,
+      content: configGreeting,
       timestamp: new Date()
     }])
     setSuggestedActions([])
@@ -317,10 +292,10 @@ export function ChatbotWidget({
                 <Bot className="h-6 w-6" />
               </div>
               <div>
-                <CardTitle className="text-lg">{config.title}</CardTitle>
+                <CardTitle className="text-lg">{configTitle}</CardTitle>
                 <Badge className="bg-white/20 text-white border-0 text-xs mt-1">
                   <Sparkles className="h-3 w-3 mr-1" />
-                  {config.badge}
+                  {configBadge}
                 </Badge>
               </div>
             </div>
@@ -330,7 +305,7 @@ export function ChatbotWidget({
                 size="sm"
                 onClick={handleNewChat}
                 className="text-white hover:bg-white/20 h-8 w-8 p-0"
-                title="New conversation"
+                title={t('newConversation')}
               >
                 <RefreshCw className="h-4 w-4" />
               </Button>
@@ -363,7 +338,7 @@ export function ChatbotWidget({
                 <div className="flex items-start gap-2">
                   <Shield className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                   <div>
-                    <strong className="text-primary">Transparent AI:</strong> This conversation helps refine your experience. Data is GDPR-compliant and used to improve matches. You can opt out anytime.
+                    <span dangerouslySetInnerHTML={{ __html: t('transparencyNotice') }} />
                   </div>
                 </div>
               </div>
@@ -428,7 +403,7 @@ export function ChatbotWidget({
             {/* Suggested Actions */}
             {suggestedActions.length > 0 && (
               <div className="p-3 bg-white border-t">
-                <p className="text-xs text-gray-600 mb-2">Suggested actions:</p>
+                <p className="text-xs text-gray-600 mb-2">{t('suggestedActions')}</p>
                 <div className="flex flex-wrap gap-2">
                   {suggestedActions.map((action, idx) => (
                     <Button
@@ -448,9 +423,9 @@ export function ChatbotWidget({
             {/* Example Questions */}
             {messages.length <= 1 && (
               <div className="p-4 bg-white border-t">
-                <p className="text-xs text-gray-600 mb-2">Quick actions:</p>
+                <p className="text-xs text-gray-600 mb-2">{t('quickActions')}</p>
                 <div className="flex flex-wrap gap-2">
-                  {config.examples.map((example, idx) => (
+                  {configExamples.map((example, idx) => (
                     <Button
                       key={idx}
                       variant="outline"
@@ -473,7 +448,7 @@ export function ChatbotWidget({
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Type your message..."
+                  placeholder={t('inputPlaceholder')}
                   className="flex-1"
                   disabled={isLoading}
                 />

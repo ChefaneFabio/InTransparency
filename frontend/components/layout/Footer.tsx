@@ -25,8 +25,8 @@ export function Footer() {
     e.preventDefault()
     if (!newsletterEmail || !newsletterEmail.includes('@')) {
       toast({
-        title: 'Invalid email',
-        description: 'Please enter a valid email address',
+        title: tFooter('newsletter.invalidTitle'),
+        description: tFooter('newsletter.invalidDescription'),
         variant: 'destructive'
       })
       return
