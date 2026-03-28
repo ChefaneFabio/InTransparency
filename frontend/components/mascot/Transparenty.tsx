@@ -46,15 +46,13 @@ export function Transparenty({ size = 120, mood = 'happy', animate = true, class
       transition={{ type: 'spring', stiffness: 200, damping: 15 }}
     >
       {/* Lens body — soft teal circle with glass effect */}
-      <motion.circle
+      <circle
         cx="50"
         cy="44"
         r="32"
         fill="hsl(180, 60%, 88%)"
         stroke="hsl(180, 70%, 35%)"
         strokeWidth="3"
-        animate={animate ? { scale: [1, 1.02, 1] } : undefined}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Inner glass shine */}
