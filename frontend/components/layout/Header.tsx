@@ -79,14 +79,24 @@ export function Header() {
                     key={seg.id}
                     onClick={() => {
                       setActiveSegment(seg.id)
-                      // Navigate to the segment's landing page if on a different segment's page
+                      // Navigate to the segment's landing page when switching segments
                       const segmentPages: Record<string, string> = {
                         students: '/for-students',
                         institutions: '/for-universities',
                         companies: '/for-companies',
                       }
-                      const isOnLandingOrAuth = pathname?.includes('/for-') || pathname?.includes('/auth/')
-                      if (isOnLandingOrAuth) {
+                      // Navigate away from any segment-specific page (landing, auth, student sub-pages, etc.)
+                      const isOnSegmentPage = pathname && (
+                        pathname.includes('/for-') ||
+                        pathname.includes('/auth/') ||
+                        pathname.includes('/students/') ||
+                        pathname.includes('/per-') ||
+                        pathname.includes('/pricing') ||
+                        pathname.includes('/how-it-works') ||
+                        pathname.includes('/about') ||
+                        pathname.includes('/mission')
+                      )
+                      if (isOnSegmentPage) {
                         router.push(segmentPages[seg.id])
                       }
                     }}
@@ -199,7 +209,28 @@ export function Header() {
                 return (
                   <button
                     key={seg.id}
-                    onClick={() => setActiveSegment(seg.id)}
+                    onClick={() => {
+                      setActiveSegment(seg.id)
+                      const segmentPages: Record<string, string> = {
+                        students: '/for-students',
+                        institutions: '/for-universities',
+                        companies: '/for-companies',
+                      }
+                      const isOnSegmentPage = pathname && (
+                        pathname.includes('/for-') ||
+                        pathname.includes('/auth/') ||
+                        pathname.includes('/students/') ||
+                        pathname.includes('/per-') ||
+                        pathname.includes('/pricing') ||
+                        pathname.includes('/how-it-works') ||
+                        pathname.includes('/about') ||
+                        pathname.includes('/mission')
+                      )
+                      if (isOnSegmentPage) {
+                        setMobileMenuOpen(false)
+                        router.push(segmentPages[seg.id])
+                      }
+                    }}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                       isActive
                         ? 'bg-primary text-primary-foreground'
