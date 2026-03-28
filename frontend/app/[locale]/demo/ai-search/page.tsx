@@ -194,27 +194,6 @@ export default function AISearchDemoPage() {
             {t('banner.description')}
           </p>
 
-          {/* Alternative Search Banner */}
-          <div className="max-w-2xl mx-auto mt-6">
-            <Card className="bg-white/80 backdrop-blur-sm border-2 border-primary/20 shadow-lg">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="text-left">
-                      <p className="font-semibold text-gray-900">{t('banner.alternativeTitle')}</p>
-                      <p className="text-sm text-gray-600">{t('banner.alternativeDescription')}</p>
-                    </div>
-                  </div>
-                  <Button variant="outline" className="border-primary/30 hover:bg-primary/10 hover:text-primary" asChild>
-                    <Link href="/demo/advanced-search">
-                      {t('banner.alternativeButton')}
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </div>
 
         {/* Demo Selector */}

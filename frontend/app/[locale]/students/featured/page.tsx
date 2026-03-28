@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
-import { Star, GraduationCap, Award, TrendingUp, ExternalLink, Filter } from 'lucide-react'
+import { ExternalLink, Filter } from 'lucide-react'
 import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
 
@@ -84,7 +84,6 @@ export default function FeaturedPortfoliosPage() {
               className="text-center"
             >
               <Badge className="mb-4 bg-white/20 text-white border-white/30">
-                <Star className="h-3 w-3 mr-1" />
                 {t('hero.badge')}
               </Badge>
               <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
@@ -130,7 +129,6 @@ export default function FeaturedPortfoliosPage() {
                   size="sm"
                   onClick={() => setFilter('top-verified')}
                 >
-                  <Award className="h-4 w-4 mr-1" />
                   {t('filters.topVerified')}
                 </Button>
                 <Button
@@ -138,7 +136,6 @@ export default function FeaturedPortfoliosPage() {
                   size="sm"
                   onClick={() => setFilter('recent')}
                 >
-                  <TrendingUp className="h-4 w-4 mr-1" />
                   {t('filters.recent')}
                 </Button>
               </div>
@@ -155,7 +152,7 @@ export default function FeaturedPortfoliosPage() {
             </div>
           ) : students.length === 0 ? (
             <div className="text-center py-12">
-              <GraduationCap className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+              <div className="text-5xl text-gray-300 mx-auto mb-4">--</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('empty.title')}</h3>
               <p className="text-gray-600 mb-6">{t('empty.description')}</p>
               <Button asChild>
@@ -184,10 +181,9 @@ export default function FeaturedPortfoliosPage() {
                         {student.firstName} {student.lastName}
                       </CardTitle>
 
-                      <div className="flex items-center justify-center gap-2 text-sm text-gray-600 mb-2">
-                        <GraduationCap className="h-4 w-4" />
-                        <span>{student.university}</span>
-                      </div>
+                      <p className="text-sm text-gray-600 mb-2">
+                        {student.university}
+                      </p>
 
                       <p className="text-sm text-gray-600">{student.degree}</p>
                       <p className="text-xs text-gray-500">Class of {student.graduationYear}</p>
@@ -219,7 +215,6 @@ export default function FeaturedPortfoliosPage() {
                       {/* Verification Badge */}
                       {student.verificationScore === 100 && (
                         <Badge className="w-full justify-center bg-primary/50 hover:bg-primary text-white">
-                          <Award className="h-3 w-3 mr-1" />
                           {t('card.fullyVerified')}
                         </Badge>
                       )}

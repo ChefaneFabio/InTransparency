@@ -9,12 +9,8 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Link } from '@/navigation'
 import {
   Star,
-  Building2,
   ArrowLeft,
   CheckCircle,
-  ThumbsUp,
-  ThumbsDown,
-  Users,
 } from 'lucide-react'
 
 interface ReviewItem {
@@ -96,7 +92,7 @@ export default function CompanyReviewPage() {
     return (
       <div className="max-w-4xl mx-auto flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <Building2 className="h-10 w-10 mx-auto text-blue-300 animate-pulse mb-4" />
+          <div className="text-3xl text-blue-300 animate-pulse mb-4">...</div>
           <p className="text-gray-500">Loading company reviews...</p>
         </div>
       </div>
@@ -106,7 +102,7 @@ export default function CompanyReviewPage() {
   if (!data || data.reviewCount === 0) {
     return (
       <div className="max-w-4xl mx-auto py-12 text-center">
-        <Building2 className="h-12 w-12 mx-auto text-gray-300 mb-4" />
+        <div className="text-4xl text-gray-300 mb-4">--</div>
         <h1 className="text-2xl font-bold text-gray-900 mb-2">{companyName}</h1>
         <p className="text-gray-600 mb-6">No reviews yet for this company.</p>
         <Link href="/explore" className="text-primary hover:underline flex items-center justify-center gap-1">
@@ -128,7 +124,7 @@ export default function CompanyReviewPage() {
         <CardContent className="p-6">
           <div className="flex items-start gap-4">
             <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center">
-              <Building2 className="h-8 w-8 text-primary" />
+              <span className="text-2xl font-bold text-primary">{data.company[0]}</span>
             </div>
             <div className="flex-1">
               <h1 className="text-2xl font-bold text-gray-900">{data.company}</h1>
@@ -218,7 +214,7 @@ export default function CompanyReviewPage() {
                     {review.pros && (
                       <div className="text-sm">
                         <div className="flex items-center gap-1 text-green-700 font-medium mb-1">
-                          <ThumbsUp className="h-3.5 w-3.5" /> Pros
+                          <span>+</span> Pros
                         </div>
                         <p className="text-gray-600 text-xs">{review.pros}</p>
                       </div>
@@ -226,7 +222,7 @@ export default function CompanyReviewPage() {
                     {review.cons && (
                       <div className="text-sm">
                         <div className="flex items-center gap-1 text-red-600 font-medium mb-1">
-                          <ThumbsDown className="h-3.5 w-3.5" /> Cons
+                          <span>-</span> Cons
                         </div>
                         <p className="text-gray-600 text-xs">{review.cons}</p>
                       </div>

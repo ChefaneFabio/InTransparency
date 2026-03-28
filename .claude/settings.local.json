@@ -248,7 +248,8 @@
       "Bash(/mnt/c/Users/chefa/InTransparency/frontend/app/not-found.tsx:*)",
       "Bash(/mnt/c/Users/chefa/InTransparency/frontend/app/error.tsx:*)",
       "Bash(grep -o \"t\\(''''[^'''']*''''\\)\" /mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/blog/page.tsx)",
-      "Bash(/tmp/comprehensive_sweep_report.txt:*)"
+      "Bash(/tmp/comprehensive_sweep_report.txt:*)",
+      "Bash(grep -r \"from ''''lucide-react''''\" app/ components/ --include=\"*.tsx\")"
     ],
     "defaultMode": "acceptEdits"
   }

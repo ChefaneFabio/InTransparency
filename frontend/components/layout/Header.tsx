@@ -32,18 +32,12 @@ export function Header() {
   const navigationBySegment: Record<Segment, { name: string; href: string }[]> = {
     students: [
       { name: t('howItWorks'), href: '/for-students' },
-      { name: t('highSchoolStudents'), href: '/students/high-school' },
-      { name: t('itsStudents'), href: '/students/its' },
-      { name: t('universityStudents'), href: '/students/university' },
       { name: t('explorePortfolios'), href: '/explore' },
       { name: t('aiJobSearch'), href: '/demo/ai-search' },
       { name: t('contact'), href: '/contact' },
     ],
     institutions: [
-      { name: t('howItWorks'), href: '/for-academic-partners' },
-      { name: t('forHighSchools'), href: '/per-scuole-superiori' },
-      { name: t('forITS'), href: '/for-its-institutes' },
-      { name: t('forUniversities'), href: '/per-universita' },
+      { name: t('howItWorks'), href: '/for-universities' },
       { name: t('pricing'), href: '/pricing' },
       { name: t('contact'), href: '/contact' },
     ],
@@ -108,8 +102,8 @@ export function Header() {
               })}
             </div>
             <div className="flex items-center gap-3 text-xs text-white/50">
-              <Link href="/mission" className="hover:text-white/80 transition-colors hidden sm:inline">
-                {t('mission')}
+              <Link href="/about" className="hover:text-white/80 transition-colors hidden sm:inline">
+                {t('about')}
               </Link>
               <LanguageSwitcher />
             </div>
@@ -248,9 +242,9 @@ export function Header() {
                       {item.name}
                     </Link>
                   ))}
-                  {/* Always show Mission in mobile */}
+                  {/* Always show About in mobile */}
                   <Link
-                    href="/mission"
+                    href="/about"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-muted-foreground hover:bg-muted"
                     onClick={() => setMobileMenuOpen(false)}
                   >

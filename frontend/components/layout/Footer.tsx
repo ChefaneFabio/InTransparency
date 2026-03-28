@@ -63,17 +63,12 @@ export function Footer() {
   // Navigation structure — product links adapt to segment
   const productBySegment = {
     students: [
-      { name: tNav('highSchoolStudents'), href: '/students/high-school' },
-      { name: tNav('itsStudents'), href: '/students/its' },
-      { name: tNav('universityStudents'), href: '/students/university' },
+      { name: tNav('howItWorks'), href: '/for-students' },
       { name: tNav('explorePortfolios'), href: '/explore' },
       { name: tNav('aiJobSearch'), href: '/demo/ai-search' },
     ],
     institutions: [
-      { name: tNav('howItWorks'), href: '/for-academic-partners' },
-      { name: tNav('forHighSchools'), href: '/per-scuole-superiori' },
-      { name: tNav('forITS'), href: '/for-its-institutes' },
-      { name: tNav('forUniversities'), href: '/per-universita' },
+      { name: tNav('howItWorks'), href: '/for-universities' },
       { name: tNav('pricing'), href: '/pricing' },
     ],
     companies: [
@@ -87,7 +82,6 @@ export function Footer() {
     product: productBySegment[segment],
     company: [
       { name: tNav('about'), href: '/about' },
-      { name: tNav('mission'), href: '/mission' },
       { name: tFooter('blog'), href: '/blog' },
       { name: tNav('contact'), href: '/contact' },
     ],
