@@ -1369,8 +1369,23 @@
             "2": "Matching competenze AI-powered",
             "3": "Gratuito per il parco tecnologico"
           }
+        },
+        "professor": {
+          "name": "Professore",
+          "description": "Approva i progetti degli studenti e costruisci la tua reputazione accademica",
+          "benefits": {
+            "0": "Approva e verifica il lavoro degli studenti con le tue credenziali accademiche",
+            "1": "Collegati con gli studenti e monitora i loro risultati professionali",
+            "2": "Costruisci la tua reputazione come mentore e referente accademico",
+            "3": "Ottieni riconoscimento dalle aziende per i talenti che formi"
+          }
         }
       },
+      "createAccount": "Crea il Tuo Account",
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "email": "Email",
+      "password": "Password",
       "trust": {
         "0": {
           "title": "Freemium",
@@ -1389,6 +1404,48 @@
           "subtitle": "Verificate"
         }
       }
+    },
+    "techpark": {
+      "title": "Registrazione Tech Park",
+      "subtitle": "Unisciti a InTransparency come partner B2B",
+      "heroTitle": "Offri alle aziende del tuo parco un vantaggio nel recruiting",
+      "heroSubtitle": "Offri l'accesso a talenti verificati con AI come servizio alle aziende del tuo parco. Costo zero per il parco, valore enorme per i membri.",
+      "freeBadge": "Gratuito per i Tech Park",
+      "benefits": {
+        "0": {
+          "title": "Pipeline di Talenti per i Membri",
+          "description": "Offri alle aziende associate l'accesso a talenti universitari verificati con AI a una frazione dei costi di recruiting tradizionali."
+        },
+        "1": {
+          "title": "Analytics Placement",
+          "description": "Monitora quanti studenti vengono assunti dalle aziende associate. Misura l'impatto del tuo parco sull'occupazione."
+        },
+        "2": {
+          "title": "Matching Competenze",
+          "description": "Abbina le competenze degli studenti con le esigenze delle aziende associate. AI-powered, non basato su CV."
+        },
+        "3": {
+          "title": "Costo Zero per il Parco",
+          "description": "InTransparency e gratuito per i tech park. Le aziende pagano solo per contatto. Tu aggiungi valore a costo zero."
+        }
+      },
+      "createTitle": "Registra il tuo Tech Park",
+      "createSubtitle": "Unisciti a InTransparency come partner B2B",
+      "formTitle": "Crea il tuo account",
+      "formDescription": "Registrati come amministratore del tech park",
+      "mobileBenefitsTitle": "Perche unirsi a InTransparency?",
+      "mobileBenefits": {
+        "0": "Pipeline di talenti per le aziende associate",
+        "1": "Profili studenti verificati con AI",
+        "2": "Analytics placement",
+        "3": "Costo zero per il parco"
+      },
+      "enterpriseNote": "Inizia gratis con accesso completo ad analytics e pipeline di talenti. Funzionalita enterprise (white-label, API) disponibili per parchi piu grandi.",
+      "submitButton": "Registra Tech Park",
+      "submittingButton": "Creazione account...",
+      "passwordPlaceholder": "Min. 8 caratteri",
+      "alreadyHaveAccount": "Hai gia un account?",
+      "signIn": "Accedi"
     },
     "login": {
       "title": "Bentornato",
@@ -5476,10 +5533,99 @@
         "emptyTitle": "Nessuna sfida ancora",
         "emptyDescription": "Crea una sfida per valutare le competenze dei candidati"
       },
+      "challengeDetail": {
+        "back": "Indietro",
+        "edit": "Modifica",
+        "notFound": "Sfida non trovata",
+        "backToChallenges": "Torna alle Sfide",
+        "submissions": "Candidature",
+        "universities": "Universita",
+        "views": "Visualizzazioni",
+        "approved": "Approvate",
+        "challengeDetails": "Dettagli Sfida",
+        "description": "Descrizione",
+        "problemStatement": "Descrizione del Problema",
+        "expectedOutcome": "Risultato Atteso",
+        "submissionsTitle": "Candidature",
+        "submissionsCount": "{count} di {max} massimo",
+        "applied": "Candidati",
+        "inProgress": "In Corso",
+        "submitted": "Inviate",
+        "completed": "Completate",
+        "noPendingApplications": "Nessuna candidatura in attesa",
+        "noInProgress": "Nessuna candidatura in corso",
+        "noAwaitingReview": "Nessuna candidatura in attesa di revisione",
+        "noCompleted": "Nessuna candidatura completata",
+        "challengeInfo": "Info Sfida",
+        "type": "Tipo",
+        "team": "Team",
+        "people": "persone",
+        "duration": "Durata",
+        "deadline": "Scadenza",
+        "mentorshipOffered": "Mentoring Offerto",
+        "universityApprovals": "Approvazioni Universitarie",
+        "noApprovals": "Nessuna approvazione universitaria",
+        "statusDraft": "Bozza",
+        "statusPendingReview": "In Revisione",
+        "statusApproved": "Approvata",
+        "statusActive": "Attiva",
+        "statusInProgress": "In Corso",
+        "statusClosed": "Chiusa",
+        "statusCompleted": "Completata"
+      },
       "challengesCreate": {
         "title": "Crea Sfida",
         "subtitle": "Proponi un progetto reale su cui gli studenti possano lavorare",
         "back": "Indietro"
+      },
+      "challengeForm": {
+        "step1Title": "Dettagli Sfida",
+        "step1Description": "Descrivi la sfida su cui vuoi far lavorare gli studenti",
+        "titleLabel": "Titolo Sfida *",
+        "titlePlaceholder": "es. Costruire una Dashboard di Analisi Clienti",
+        "descriptionLabel": "Descrizione *",
+        "descriptionPlaceholder": "Fornisci una breve panoramica della sfida...",
+        "problemStatementLabel": "Descrizione del Problema",
+        "problemStatementPlaceholder": "Quale problema stai cercando di risolvere?",
+        "expectedOutcomeLabel": "Risultato Atteso",
+        "expectedOutcomePlaceholder": "Quali deliverable ti aspetti dagli studenti?",
+        "challengeTypeLabel": "Tipo di Sfida",
+        "disciplineLabel": "Disciplina",
+        "step2Title": "Requisiti e Competenze",
+        "step2Description": "Definisci le competenze e la struttura del team",
+        "requiredSkillsLabel": "Competenze Richieste",
+        "addSkillPlaceholder": "Aggiungi una competenza...",
+        "toolsLabel": "Strumenti e Tecnologie",
+        "addToolPlaceholder": "Aggiungi uno strumento...",
+        "minTeamSize": "Dimensione Minima Team",
+        "maxTeamSize": "Dimensione Massima Team",
+        "maxSubmissions": "Candidature Massime",
+        "maxSubmissionsHint": "Numero massimo di studenti/team selezionabili",
+        "step3Title": "Tempistiche e Date",
+        "step3Description": "Imposta il calendario della tua sfida",
+        "estimatedDuration": "Durata Stimata",
+        "estimatedDurationPlaceholder": "es. 3 mesi, 1 semestre",
+        "startDate": "Data di Inizio",
+        "endDate": "Data di Fine",
+        "applicationDeadline": "Scadenza Candidature",
+        "step4Title": "Benefit e Info Azienda",
+        "step4Description": "Cosa offri agli studenti?",
+        "mentorshipLabel": "Mentoring Offerto",
+        "mentorshipHint": "Fornirai mentoring durante il progetto?",
+        "compensationLabel": "Compenso",
+        "compensationPlaceholder": "es. 500 euro di borsa, Buono regalo, Crediti formativi",
+        "equipmentLabel": "Attrezzature/Risorse Fornite",
+        "equipmentPlaceholder": "es. Crediti cloud, Licenze software",
+        "companyNameLabel": "Nome Azienda *",
+        "companyNamePlaceholder": "Il nome della tua azienda",
+        "companyIndustryLabel": "Settore Aziendale",
+        "companyIndustryPlaceholder": "es. Tecnologia, Finanza, Sanita",
+        "companyLogoLabel": "URL Logo Azienda",
+        "companyLogoPlaceholder": "https://...",
+        "previous": "Precedente",
+        "next": "Avanti",
+        "saveAsDraft": "Salva come Bozza",
+        "publishChallenge": "Pubblica Sfida"
       },
       "importJobs": {
         "title": "Importa Offerte dalla Pagina Carriere",

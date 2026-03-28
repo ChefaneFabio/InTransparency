@@ -54,7 +54,7 @@ export default function StudentRegisterPage() {
         router.push('/auth/login?registered=true')
       } else {
         // Both succeeded - go to dashboard
-        router.push('/dashboard/student')
+        router.push('/onboarding')
         router.refresh()
       }
     } catch (err: any) {

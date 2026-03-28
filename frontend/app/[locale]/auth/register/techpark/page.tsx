@@ -3,20 +3,17 @@
 import { useState } from 'react'
 import { useRouter, Link } from '@/navigation'
 import { signIn } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Building2, Loader2, CheckCircle, Users, TrendingUp, Target, Shield } from 'lucide-react'
 
-const benefits = [
-  { icon: Users, title: 'Talent Pipeline for Members', description: 'Give your member companies access to AI-verified university talent at a fraction of traditional recruiting costs.' },
-  { icon: TrendingUp, title: 'Placement Analytics', description: 'Track how many students get hired by your member companies. Measure your park\'s impact on employment.' },
-  { icon: Target, title: 'Skill Matching', description: 'Match student competencies with your member companies\' needs. AI-powered, not CV-based.' },
-  { icon: Shield, title: 'Zero Cost for the Park', description: 'InTransparency is free for tech parks. Companies pay only €10 per contact. You add value at zero cost.' },
-]
+const benefitIcons = [Users, TrendingUp, Target, Shield]
 
 export default function TechParkRegisterPage() {
+  const t = useTranslations('auth')
   const router = useRouter()
   const [formData, setFormData] = useState({
     firstName: '',
@@ -74,26 +71,26 @@ export default function TechParkRegisterPage() {
             <div className="sticky top-8">
               <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
                 <CheckCircle className="h-4 w-4" />
-                Free for Tech Parks
+                {t('techpark.freeBadge')}
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Give your member companies a recruiting advantage
+                {t('techpark.heroTitle')}
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Offer AI-verified talent access as a service to your park&apos;s companies. Zero cost for the park, massive value for members.
+                {t('techpark.heroSubtitle')}
               </p>
 
               <div className="space-y-4 mb-8">
-                {benefits.map((benefit, index) => {
-                  const Icon = benefit.icon
+                {[0, 1, 2, 3].map((i) => {
+                  const Icon = benefitIcons[i]
                   return (
-                    <div key={index} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm">
+                    <div key={i} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm">
                       <div className="flex-shrink-0 p-2 bg-emerald-100 rounded-lg">
                         <Icon className="h-5 w-5 text-emerald-600" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">{benefit.title}</h3>
-                        <p className="text-sm text-gray-600">{benefit.description}</p>
+                        <h3 className="font-semibold text-gray-900">{t(`techpark.benefits.${i}.title`)}</h3>
+                        <p className="text-sm text-gray-600">{t(`techpark.benefits.${i}.description`)}</p>
                       </div>
                     </div>
                   )
@@ -102,7 +99,7 @@ export default function TechParkRegisterPage() {
 
               <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl">
                 <p className="text-sm text-amber-800">
-                  Start free with full access to analytics and talent pipeline. Enterprise features (white-label, API) available for larger parks.
+                  {t('techpark.enterpriseNote')}
                 </p>
               </div>
             </div>
@@ -114,28 +111,27 @@ export default function TechParkRegisterPage() {
               <div className="inline-flex items-center justify-center w-14 h-14 bg-emerald-600 rounded-2xl mb-4">
                 <Building2 className="h-7 w-7 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">Register your Tech Park</h1>
-              <p className="text-gray-600 mt-1">Join InTransparency as a B2B partner</p>
+              <h1 className="text-2xl font-bold text-gray-900">{t('techpark.createTitle')}</h1>
+              <p className="text-gray-600 mt-1">{t('techpark.createSubtitle')}</p>
             </div>
 
             {/* Mobile Benefits */}
             <div className="lg:hidden mb-6 p-4 bg-white rounded-xl shadow-sm">
               <div className="flex items-center gap-2 text-emerald-600 mb-2">
                 <CheckCircle className="h-4 w-4" />
-                <span className="font-medium text-sm">Why join InTransparency?</span>
+                <span className="font-medium text-sm">{t('techpark.mobileBenefitsTitle')}</span>
               </div>
               <ul className="text-sm text-gray-600 space-y-1">
-                <li>Talent pipeline for member companies</li>
-                <li>AI-verified student profiles</li>
-                <li>Placement analytics</li>
-                <li>Zero cost for the park</li>
+                {[0, 1, 2, 3].map((i) => (
+                  <li key={i}>{t(`techpark.mobileBenefits.${i}`)}</li>
+                ))}
               </ul>
             </div>
 
             <Card>
               <CardHeader className="pb-4">
-                <CardTitle className="text-lg">Create your account</CardTitle>
-                <CardDescription>Register as a tech park administrator</CardDescription>
+                <CardTitle className="text-lg">{t('techpark.formTitle')}</CardTitle>
+                <CardDescription>{t('techpark.formDescription')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -147,7 +143,7 @@ export default function TechParkRegisterPage() {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="firstName">First Name</Label>
+                      <Label htmlFor="firstName">{t('fields.firstName')}</Label>
                       <Input
                         id="firstName"
                         value={formData.firstName}
@@ -157,7 +153,7 @@ export default function TechParkRegisterPage() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="lastName">Last Name</Label>
+                      <Label htmlFor="lastName">{t('fields.lastName')}</Label>
                       <Input
                         id="lastName"
                         value={formData.lastName}
@@ -169,7 +165,7 @@ export default function TechParkRegisterPage() {
                   </div>
 
                   <div>
-                    <Label htmlFor="email">Email Address</Label>
+                    <Label htmlFor="email">{t('fields.email')}</Label>
                     <Input
                       id="email"
                       type="email"
@@ -181,11 +177,11 @@ export default function TechParkRegisterPage() {
                   </div>
 
                   <div>
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password">{t('fields.password')}</Label>
                     <Input
                       id="password"
                       type="password"
-                      placeholder="Min. 8 characters"
+                      placeholder={t('techpark.passwordPlaceholder')}
                       value={formData.password}
                       onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                       required
@@ -202,19 +198,19 @@ export default function TechParkRegisterPage() {
                     {isLoading ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Creating account...
+                        {t('techpark.submittingButton')}
                       </>
                     ) : (
-                      'Register Tech Park'
+                      t('techpark.submitButton')
                     )}
                   </Button>
                 </form>
 
                 <div className="mt-4 text-center">
                   <p className="text-sm text-gray-600">
-                    Already have an account?{' '}
+                    {t('techpark.alreadyHaveAccount')}{' '}
                     <Link href="/auth/login" className="text-emerald-600 hover:text-emerald-700">
-                      Sign in
+                      {t('techpark.signIn')}
                     </Link>
                   </p>
                 </div>

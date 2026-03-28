@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -135,8 +135,8 @@ export default function OnboardingPage() {
       })
 
       if (response.ok) {
-        // Redirect to appropriate dashboard
-        router.push('/dashboard')
+        // Redirect to student dashboard after onboarding
+        router.push('/dashboard/student')
       }
     } catch (error) {
       console.error('Failed to save profile:', error)
@@ -482,7 +482,7 @@ export default function OnboardingPage() {
         <div className="text-center mt-4">
           <Button
             variant="ghost"
-            onClick={() => router.push('/dashboard')}
+            onClick={() => router.push('/dashboard/student')}
             className="text-gray-500"
           >
             Salta per ora

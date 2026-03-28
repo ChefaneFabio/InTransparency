@@ -1201,8 +1201,23 @@
             "2": "Placement analytics",
             "3": "All park types supported"
           }
+        },
+        "professor": {
+          "name": "Professor",
+          "description": "Endorse student projects and build your academic reputation",
+          "benefits": {
+            "0": "Endorse and verify student work with your academic credentials",
+            "1": "Connect with students and track their career outcomes",
+            "2": "Build your reputation as a mentor and academic reference",
+            "3": "Get recognized by companies for the talent you develop"
+          }
         }
       },
+      "createAccount": "Create Your Account",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "password": "Password",
       "trust": {
         "0": {
           "title": "Freemium",
@@ -1359,6 +1374,48 @@
         "3": "Freemium model"
       },
       "passwordPlaceholder": "At least 8 characters",
+      "alreadyHaveAccount": "Already have an account?",
+      "signIn": "Sign in"
+    },
+    "techpark": {
+      "title": "Tech Park Registration",
+      "subtitle": "Join InTransparency as a B2B partner",
+      "heroTitle": "Give your member companies a recruiting advantage",
+      "heroSubtitle": "Offer AI-verified talent access as a service to your park's companies. Zero cost for the park, massive value for members.",
+      "freeBadge": "Free for Tech Parks",
+      "benefits": {
+        "0": {
+          "title": "Talent Pipeline for Members",
+          "description": "Give your member companies access to AI-verified university talent at a fraction of traditional recruiting costs."
+        },
+        "1": {
+          "title": "Placement Analytics",
+          "description": "Track how many students get hired by your member companies. Measure your park's impact on employment."
+        },
+        "2": {
+          "title": "Skill Matching",
+          "description": "Match student competencies with your member companies' needs. AI-powered, not CV-based."
+        },
+        "3": {
+          "title": "Zero Cost for the Park",
+          "description": "InTransparency is free for tech parks. Companies pay only per contact. You add value at zero cost."
+        }
+      },
+      "createTitle": "Register your Tech Park",
+      "createSubtitle": "Join InTransparency as a B2B partner",
+      "formTitle": "Create your account",
+      "formDescription": "Register as a tech park administrator",
+      "mobileBenefitsTitle": "Why join InTransparency?",
+      "mobileBenefits": {
+        "0": "Talent pipeline for member companies",
+        "1": "AI-verified student profiles",
+        "2": "Placement analytics",
+        "3": "Zero cost for the park"
+      },
+      "enterpriseNote": "Start free with full access to analytics and talent pipeline. Enterprise features (white-label, API) available for larger parks.",
+      "submitButton": "Register Tech Park",
+      "submittingButton": "Creating account...",
+      "passwordPlaceholder": "Min. 8 characters",
       "alreadyHaveAccount": "Already have an account?",
       "signIn": "Sign in"
     },
@@ -5437,10 +5494,99 @@
         "emptyTitle": "No challenges yet",
         "emptyDescription": "Create a challenge to evaluate candidates' skills"
       },
+      "challengeDetail": {
+        "back": "Back",
+        "edit": "Edit",
+        "notFound": "Challenge not found",
+        "backToChallenges": "Back to Challenges",
+        "submissions": "Submissions",
+        "universities": "Universities",
+        "views": "Views",
+        "approved": "Approved",
+        "challengeDetails": "Challenge Details",
+        "description": "Description",
+        "problemStatement": "Problem Statement",
+        "expectedOutcome": "Expected Outcome",
+        "submissionsTitle": "Submissions",
+        "submissionsCount": "{count} of {max} maximum",
+        "applied": "Applied",
+        "inProgress": "In Progress",
+        "submitted": "Submitted",
+        "completed": "Completed",
+        "noPendingApplications": "No pending applications",
+        "noInProgress": "No submissions in progress",
+        "noAwaitingReview": "No submissions awaiting review",
+        "noCompleted": "No completed submissions",
+        "challengeInfo": "Challenge Info",
+        "type": "Type",
+        "team": "Team",
+        "people": "people",
+        "duration": "Duration",
+        "deadline": "Deadline",
+        "mentorshipOffered": "Mentorship Offered",
+        "universityApprovals": "University Approvals",
+        "noApprovals": "No university approvals yet",
+        "statusDraft": "Draft",
+        "statusPendingReview": "Pending Review",
+        "statusApproved": "Approved",
+        "statusActive": "Active",
+        "statusInProgress": "In Progress",
+        "statusClosed": "Closed",
+        "statusCompleted": "Completed"
+      },
       "challengesCreate": {
         "title": "Create Challenge",
         "subtitle": "Propose a real-world project for students to work on",
         "back": "Back"
+      },
+      "challengeForm": {
+        "step1Title": "Challenge Details",
+        "step1Description": "Describe the challenge you want students to work on",
+        "titleLabel": "Challenge Title *",
+        "titlePlaceholder": "e.g., Build a Customer Analytics Dashboard",
+        "descriptionLabel": "Description *",
+        "descriptionPlaceholder": "Provide a brief overview of the challenge...",
+        "problemStatementLabel": "Problem Statement",
+        "problemStatementPlaceholder": "What problem are you trying to solve?",
+        "expectedOutcomeLabel": "Expected Outcome",
+        "expectedOutcomePlaceholder": "What deliverables do you expect from students?",
+        "challengeTypeLabel": "Challenge Type",
+        "disciplineLabel": "Discipline",
+        "step2Title": "Requirements & Skills",
+        "step2Description": "Define the skills and team structure needed",
+        "requiredSkillsLabel": "Required Skills",
+        "addSkillPlaceholder": "Add a skill...",
+        "toolsLabel": "Tools & Technologies",
+        "addToolPlaceholder": "Add a tool...",
+        "minTeamSize": "Minimum Team Size",
+        "maxTeamSize": "Maximum Team Size",
+        "maxSubmissions": "Maximum Submissions",
+        "maxSubmissionsHint": "Maximum number of students/teams that can be selected",
+        "step3Title": "Timeline & Dates",
+        "step3Description": "Set the schedule for your challenge",
+        "estimatedDuration": "Estimated Duration",
+        "estimatedDurationPlaceholder": "e.g., 3 months, 1 semester",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "applicationDeadline": "Application Deadline",
+        "step4Title": "Benefits & Company Info",
+        "step4Description": "What do you offer students?",
+        "mentorshipLabel": "Mentorship Offered",
+        "mentorshipHint": "Will you provide mentorship during the project?",
+        "compensationLabel": "Compensation",
+        "compensationPlaceholder": "e.g., $500 stipend, Gift card, Course credits",
+        "equipmentLabel": "Equipment/Resources Provided",
+        "equipmentPlaceholder": "e.g., Cloud credits, Software licenses",
+        "companyNameLabel": "Company Name *",
+        "companyNamePlaceholder": "Your company name",
+        "companyIndustryLabel": "Company Industry",
+        "companyIndustryPlaceholder": "e.g., Technology, Finance, Healthcare",
+        "companyLogoLabel": "Company Logo URL",
+        "companyLogoPlaceholder": "https://...",
+        "previous": "Previous",
+        "next": "Next",
+        "saveAsDraft": "Save as Draft",
+        "publishChallenge": "Publish Challenge"
       },
       "importJobs": {
         "title": "Import Jobs from Career Page",

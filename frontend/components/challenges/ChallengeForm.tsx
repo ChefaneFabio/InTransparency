@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -70,6 +71,7 @@ const disciplines = [
 
 export function ChallengeForm({ initialData, challengeId, mode = 'create' }: ChallengeFormProps) {
   const router = useRouter()
+  const t = useTranslations('dashboard.recruiter.challengeForm')
   const [step, setStep] = useState(1)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -197,58 +199,58 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
       {step === 1 && (
         <Card>
           <CardHeader>
-            <CardTitle>Challenge Details</CardTitle>
+            <CardTitle>{t('step1Title')}</CardTitle>
             <CardDescription>
-              Describe the challenge you want students to work on
+              {t('step1Description')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="title">Challenge Title *</Label>
+              <Label htmlFor="title">{t('titleLabel')}</Label>
               <Input
                 id="title"
                 value={formData.title}
                 onChange={(e) => handleChange('title', e.target.value)}
-                placeholder="e.g., Build a Customer Analytics Dashboard"
+                placeholder={t('titlePlaceholder')}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="description">Description *</Label>
+              <Label htmlFor="description">{t('descriptionLabel')}</Label>
               <Textarea
                 id="description"
                 value={formData.description}
                 onChange={(e) => handleChange('description', e.target.value)}
-                placeholder="Provide a brief overview of the challenge..."
+                placeholder={t('descriptionPlaceholder')}
                 rows={4}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="problemStatement">Problem Statement</Label>
+              <Label htmlFor="problemStatement">{t('problemStatementLabel')}</Label>
               <Textarea
                 id="problemStatement"
                 value={formData.problemStatement}
                 onChange={(e) => handleChange('problemStatement', e.target.value)}
-                placeholder="What problem are you trying to solve?"
+                placeholder={t('problemStatementPlaceholder')}
                 rows={3}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="expectedOutcome">Expected Outcome</Label>
+              <Label htmlFor="expectedOutcome">{t('expectedOutcomeLabel')}</Label>
               <Textarea
                 id="expectedOutcome"
                 value={formData.expectedOutcome}
                 onChange={(e) => handleChange('expectedOutcome', e.target.value)}
-                placeholder="What deliverables do you expect from students?"
+                placeholder={t('expectedOutcomePlaceholder')}
                 rows={3}
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label>Challenge Type</Label>
+                <Label>{t('challengeTypeLabel')}</Label>
                 <Select
                   value={formData.challengeType}
                   onValueChange={(value) => handleChange('challengeType', value)}
@@ -267,7 +269,7 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
               </div>
 
               <div className="space-y-2">
-                <Label>Discipline</Label>
+                <Label>{t('disciplineLabel')}</Label>
                 <Select
                   value={formData.discipline}
                   onValueChange={(value) => handleChange('discipline', value)}
@@ -293,19 +295,19 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
       {step === 2 && (
         <Card>
           <CardHeader>
-            <CardTitle>Requirements & Skills</CardTitle>
+            <CardTitle>{t('step2Title')}</CardTitle>
             <CardDescription>
-              Define the skills and team structure needed
+              {t('step2Description')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label>Required Skills</Label>
+              <Label>{t('requiredSkillsLabel')}</Label>
               <div className="flex gap-2">
                 <Input
                   value={newSkill}
                   onChange={(e) => setNewSkill(e.target.value)}
-                  placeholder="Add a skill..."
+                  placeholder={t('addSkillPlaceholder')}
                   onKeyPress={(e) => {
                     if (e.key === 'Enter') {
                       e.preventDefault()
@@ -339,12 +341,12 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
             </div>
 
             <div className="space-y-2">
-              <Label>Tools & Technologies</Label>
+              <Label>{t('toolsLabel')}</Label>
               <div className="flex gap-2">
                 <Input
                   value={newTool}
                   onChange={(e) => setNewTool(e.target.value)}
-                  placeholder="Add a tool..."
+                  placeholder={t('addToolPlaceholder')}
                   onKeyPress={(e) => {
                     if (e.key === 'Enter') {
                       e.preventDefault()
@@ -379,7 +381,7 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label>Minimum Team Size</Label>
+                <Label>{t('minTeamSize')}</Label>
                 <Input
                   type="number"
                   min="1"
@@ -388,7 +390,7 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
                 />
               </div>
               <div className="space-y-2">
-                <Label>Maximum Team Size</Label>
+                <Label>{t('maxTeamSize')}</Label>
                 <Input
                   type="number"
                   min="1"
@@ -399,7 +401,7 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
             </div>
 
             <div className="space-y-2">
-              <Label>Maximum Submissions</Label>
+              <Label>{t('maxSubmissions')}</Label>
               <Input
                 type="number"
                 min="1"
@@ -407,7 +409,7 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
                 onChange={(e) => handleChange('maxSubmissions', parseInt(e.target.value) || 10)}
               />
               <p className="text-xs text-gray-500">
-                Maximum number of students/teams that can be selected
+                {t('maxSubmissionsHint')}
               </p>
             </div>
           </CardContent>
@@ -418,24 +420,24 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
       {step === 3 && (
         <Card>
           <CardHeader>
-            <CardTitle>Timeline & Dates</CardTitle>
+            <CardTitle>{t('step3Title')}</CardTitle>
             <CardDescription>
-              Set the schedule for your challenge
+              {t('step3Description')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label>Estimated Duration</Label>
+              <Label>{t('estimatedDuration')}</Label>
               <Input
                 value={formData.estimatedDuration}
                 onChange={(e) => handleChange('estimatedDuration', e.target.value)}
-                placeholder="e.g., 3 months, 1 semester"
+                placeholder={t('estimatedDurationPlaceholder')}
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label>Start Date</Label>
+                <Label>{t('startDate')}</Label>
                 <Input
                   type="date"
                   value={formData.startDate}
@@ -443,7 +445,7 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
                 />
               </div>
               <div className="space-y-2">
-                <Label>End Date</Label>
+                <Label>{t('endDate')}</Label>
                 <Input
                   type="date"
                   value={formData.endDate}
@@ -453,7 +455,7 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
             </div>
 
             <div className="space-y-2">
-              <Label>Application Deadline</Label>
+              <Label>{t('applicationDeadline')}</Label>
               <Input
                 type="date"
                 value={formData.applicationDeadline}
@@ -468,17 +470,17 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
       {step === 4 && (
         <Card>
           <CardHeader>
-            <CardTitle>Benefits & Company Info</CardTitle>
+            <CardTitle>{t('step4Title')}</CardTitle>
             <CardDescription>
-              What do you offer students?
+              {t('step4Description')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between py-2">
               <div>
-                <Label>Mentorship Offered</Label>
+                <Label>{t('mentorshipLabel')}</Label>
                 <p className="text-sm text-gray-500">
-                  Will you provide mentorship during the project?
+                  {t('mentorshipHint')}
                 </p>
               </div>
               <Switch
@@ -488,49 +490,49 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
             </div>
 
             <div className="space-y-2">
-              <Label>Compensation</Label>
+              <Label>{t('compensationLabel')}</Label>
               <Input
                 value={formData.compensation}
                 onChange={(e) => handleChange('compensation', e.target.value)}
-                placeholder="e.g., $500 stipend, Gift card, Course credits"
+                placeholder={t('compensationPlaceholder')}
               />
             </div>
 
             <div className="space-y-2">
-              <Label>Equipment/Resources Provided</Label>
+              <Label>{t('equipmentLabel')}</Label>
               <Input
                 value={formData.equipmentProvided}
                 onChange={(e) => handleChange('equipmentProvided', e.target.value)}
-                placeholder="e.g., Cloud credits, Software licenses"
+                placeholder={t('equipmentPlaceholder')}
               />
             </div>
 
             <hr className="my-4" />
 
             <div className="space-y-2">
-              <Label>Company Name *</Label>
+              <Label>{t('companyNameLabel')}</Label>
               <Input
                 value={formData.companyName}
                 onChange={(e) => handleChange('companyName', e.target.value)}
-                placeholder="Your company name"
+                placeholder={t('companyNamePlaceholder')}
               />
             </div>
 
             <div className="space-y-2">
-              <Label>Company Industry</Label>
+              <Label>{t('companyIndustryLabel')}</Label>
               <Input
                 value={formData.companyIndustry}
                 onChange={(e) => handleChange('companyIndustry', e.target.value)}
-                placeholder="e.g., Technology, Finance, Healthcare"
+                placeholder={t('companyIndustryPlaceholder')}
               />
             </div>
 
             <div className="space-y-2">
-              <Label>Company Logo URL</Label>
+              <Label>{t('companyLogoLabel')}</Label>
               <Input
                 value={formData.companyLogo}
                 onChange={(e) => handleChange('companyLogo', e.target.value)}
-                placeholder="https://..."
+                placeholder={t('companyLogoPlaceholder')}
               />
             </div>
           </CardContent>
@@ -544,13 +546,13 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
           onClick={() => setStep(s => Math.max(1, s - 1))}
           disabled={step === 1}
         >
-          Previous
+          {t('previous')}
         </Button>
 
         <div className="flex gap-2">
           {step < totalSteps ? (
             <Button onClick={() => setStep(s => Math.min(totalSteps, s + 1))}>
-              Next
+              {t('next')}
             </Button>
           ) : (
             <>
@@ -560,14 +562,14 @@ export function ChallengeForm({ initialData, challengeId, mode = 'create' }: Cha
                 disabled={loading}
               >
                 {loading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-                Save as Draft
+                {t('saveAsDraft')}
               </Button>
               <Button
                 onClick={() => handleSubmit('publish')}
                 disabled={loading || !formData.title || !formData.description}
               >
                 {loading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-                Publish Challenge
+                {t('publishChallenge')}
               </Button>
             </>
           )}

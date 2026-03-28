@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -91,19 +92,25 @@ interface Challenge {
 export default function ChallengeDetailPage() {
   const params = useParams()
   const challengeId = params.id as string
+  const t = useTranslations('dashboard.recruiter.challengeDetail')
   const [challenge, setChallenge] = useState<Challenge | null>(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
   const [actionLoading, setActionLoading] = useState(false)
 
   const fetchChallenge = async () => {
     try {
+      setError(false)
       const response = await fetch(`/api/challenges/${challengeId}`)
       if (response.ok) {
         const data = await response.json()
         setChallenge(data)
+      } else {
+        setError(true)
       }
-    } catch (error) {
-      console.error('Failed to fetch challenge:', error)
+    } catch (err) {
+      console.error('Failed to fetch challenge:', err)
+      setError(true)
     } finally {
       setLoading(false)
     }
@@ -132,27 +139,37 @@ export default function ChallengeDetailPage() {
       })
 
       if (response.ok) {
-        fetchChallenge() // Refresh data
+        fetchChallenge()
       }
-    } catch (error) {
-      console.error('Failed to update submission:', error)
+    } catch (err) {
+      console.error('Failed to update submission:', err)
     } finally {
       setActionLoading(false)
     }
   }
 
   const getStatusBadge = (status: string) => {
-    const configs: Record<string, { label: string; className: string }> = {
-      DRAFT: { label: 'Draft', className: 'bg-gray-100 text-gray-700' },
-      PENDING_REVIEW: { label: 'Pending Review', className: 'bg-yellow-100 text-yellow-700' },
-      APPROVED: { label: 'Approved', className: 'bg-primary/10 text-blue-700' },
-      ACTIVE: { label: 'Active', className: 'bg-primary/10 text-green-700' },
-      IN_PROGRESS: { label: 'In Progress', className: 'bg-primary/10 text-purple-700' },
-      CLOSED: { label: 'Closed', className: 'bg-gray-100 text-gray-700' },
-      COMPLETED: { label: 'Completed', className: 'bg-primary/10 text-green-700' }
+    const statusKeys: Record<string, string> = {
+      DRAFT: 'statusDraft',
+      PENDING_REVIEW: 'statusPendingReview',
+      APPROVED: 'statusApproved',
+      ACTIVE: 'statusActive',
+      IN_PROGRESS: 'statusInProgress',
+      CLOSED: 'statusClosed',
+      COMPLETED: 'statusCompleted'
     }
-    const config = configs[status] || configs.DRAFT
-    return <Badge className={config.className}>{config.label}</Badge>
+    const classNames: Record<string, string> = {
+      DRAFT: 'bg-gray-100 text-gray-700',
+      PENDING_REVIEW: 'bg-yellow-100 text-yellow-700',
+      APPROVED: 'bg-primary/10 text-blue-700',
+      ACTIVE: 'bg-primary/10 text-green-700',
+      IN_PROGRESS: 'bg-primary/10 text-purple-700',
+      CLOSED: 'bg-gray-100 text-gray-700',
+      COMPLETED: 'bg-primary/10 text-green-700'
+    }
+    const key = statusKeys[status] || 'statusDraft'
+    const className = classNames[status] || classNames.DRAFT
+    return <Badge className={className}>{t(key)}</Badge>
   }
 
   if (loading) {
@@ -163,12 +180,12 @@ export default function ChallengeDetailPage() {
     )
   }
 
-  if (!challenge) {
+  if (error || !challenge) {
     return (
       <div className="text-center py-12">
-        <h2 className="text-xl font-semibold">Challenge not found</h2>
+        <h2 className="text-xl font-semibold">{t('notFound')}</h2>
         <Button asChild className="mt-4">
-          <Link href="/dashboard/recruiter/challenges">Back to Challenges</Link>
+          <Link href="/dashboard/recruiter/challenges">{t('backToChallenges')}</Link>
         </Button>
       </div>
     )
@@ -192,7 +209,7 @@ export default function ChallengeDetailPage() {
           <Button variant="ghost" size="sm" asChild>
             <Link href="/dashboard/recruiter/challenges">
               <ArrowLeft className="h-4 w-4 mr-1" />
-              Back
+              {t('back')}
             </Link>
           </Button>
           <div className="flex items-start gap-4">
@@ -220,7 +237,7 @@ export default function ChallengeDetailPage() {
           <Button variant="outline" size="sm" asChild>
             <Link href={`/dashboard/recruiter/challenges/${challenge.id}/edit`}>
               <Edit className="h-4 w-4 mr-1" />
-              Edit
+              {t('edit')}
             </Link>
           </Button>
         </div>
@@ -234,7 +251,7 @@ export default function ChallengeDetailPage() {
               <Users className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{submissions.length}</p>
-                <p className="text-xs text-gray-600">Submissions</p>
+                <p className="text-xs text-gray-600">{t('submissions')}</p>
               </div>
             </div>
           </CardContent>
@@ -245,7 +262,7 @@ export default function ChallengeDetailPage() {
               <GraduationCap className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{challenge.universityApprovals.length}</p>
-                <p className="text-xs text-gray-600">Universities</p>
+                <p className="text-xs text-gray-600">{t('universities')}</p>
               </div>
             </div>
           </CardContent>
@@ -256,7 +273,7 @@ export default function ChallengeDetailPage() {
               <Eye className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{challenge.views}</p>
-                <p className="text-xs text-gray-600">Views</p>
+                <p className="text-xs text-gray-600">{t('views')}</p>
               </div>
             </div>
           </CardContent>
@@ -267,7 +284,7 @@ export default function ChallengeDetailPage() {
               <Trophy className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{groupedSubmissions.approved.length}</p>
-                <p className="text-xs text-gray-600">Approved</p>
+                <p className="text-xs text-gray-600">{t('approved')}</p>
               </div>
             </div>
           </CardContent>
@@ -280,24 +297,24 @@ export default function ChallengeDetailPage() {
           {/* Challenge Details */}
           <Card>
             <CardHeader>
-              <CardTitle>Challenge Details</CardTitle>
+              <CardTitle>{t('challengeDetails')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="text-sm font-medium text-gray-500 mb-1">Description</h4>
+                <h4 className="text-sm font-medium text-gray-500 mb-1">{t('description')}</h4>
                 <p className="text-gray-700">{challenge.description}</p>
               </div>
 
               {challenge.problemStatement && (
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500 mb-1">Problem Statement</h4>
+                  <h4 className="text-sm font-medium text-gray-500 mb-1">{t('problemStatement')}</h4>
                   <p className="text-gray-700">{challenge.problemStatement}</p>
                 </div>
               )}
 
               {challenge.expectedOutcome && (
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500 mb-1">Expected Outcome</h4>
+                  <h4 className="text-sm font-medium text-gray-500 mb-1">{t('expectedOutcome')}</h4>
                   <p className="text-gray-700">{challenge.expectedOutcome}</p>
                 </div>
               )}
@@ -313,25 +330,25 @@ export default function ChallengeDetailPage() {
           {/* Submissions */}
           <Card>
             <CardHeader>
-              <CardTitle>Submissions</CardTitle>
+              <CardTitle>{t('submissionsTitle')}</CardTitle>
               <CardDescription>
-                {submissions.length} of {challenge.maxSubmissions} maximum
+                {t('submissionsCount', { count: submissions.length, max: challenge.maxSubmissions })}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="applied">
                 <TabsList className="mb-4">
                   <TabsTrigger value="applied">
-                    Applied ({groupedSubmissions.applied.length})
+                    {t('applied')} ({groupedSubmissions.applied.length})
                   </TabsTrigger>
                   <TabsTrigger value="in-progress">
-                    In Progress ({groupedSubmissions.inProgress.length + groupedSubmissions.selected.length})
+                    {t('inProgress')} ({groupedSubmissions.inProgress.length + groupedSubmissions.selected.length})
                   </TabsTrigger>
                   <TabsTrigger value="submitted">
-                    Submitted ({groupedSubmissions.submitted.length})
+                    {t('submitted')} ({groupedSubmissions.submitted.length})
                   </TabsTrigger>
                   <TabsTrigger value="completed">
-                    Completed ({groupedSubmissions.approved.length + groupedSubmissions.rejected.length})
+                    {t('completed')} ({groupedSubmissions.approved.length + groupedSubmissions.rejected.length})
                   </TabsTrigger>
                 </TabsList>
 
@@ -346,7 +363,7 @@ export default function ChallengeDetailPage() {
                       />
                     ))
                   ) : (
-                    <p className="text-center text-gray-500 py-8">No pending applications</p>
+                    <p className="text-center text-gray-500 py-8">{t('noPendingApplications')}</p>
                   )}
                 </TabsContent>
 
@@ -361,7 +378,7 @@ export default function ChallengeDetailPage() {
                       />
                     ))
                   ) : (
-                    <p className="text-center text-gray-500 py-8">No submissions in progress</p>
+                    <p className="text-center text-gray-500 py-8">{t('noInProgress')}</p>
                   )}
                 </TabsContent>
 
@@ -376,7 +393,7 @@ export default function ChallengeDetailPage() {
                       />
                     ))
                   ) : (
-                    <p className="text-center text-gray-500 py-8">No submissions awaiting review</p>
+                    <p className="text-center text-gray-500 py-8">{t('noAwaitingReview')}</p>
                   )}
                 </TabsContent>
 
@@ -391,7 +408,7 @@ export default function ChallengeDetailPage() {
                       />
                     ))
                   ) : (
-                    <p className="text-center text-gray-500 py-8">No completed submissions</p>
+                    <p className="text-center text-gray-500 py-8">{t('noCompleted')}</p>
                   )}
                 </TabsContent>
               </Tabs>
@@ -404,36 +421,36 @@ export default function ChallengeDetailPage() {
           {/* Quick Info */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">Challenge Info</CardTitle>
+              <CardTitle className="text-base">{t('challengeInfo')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
               <div className="flex items-center gap-2">
                 <Trophy className="h-4 w-4 text-gray-400" />
-                <span className="text-gray-600">Type:</span>
+                <span className="text-gray-600">{t('type')}:</span>
                 <span>{challenge.challengeType.replace(/_/g, ' ')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-gray-400" />
-                <span className="text-gray-600">Team:</span>
-                <span>{challenge.teamSizeMin}-{challenge.teamSizeMax} people</span>
+                <span className="text-gray-600">{t('team')}:</span>
+                <span>{challenge.teamSizeMin}-{challenge.teamSizeMax} {t('people')}</span>
               </div>
               {challenge.estimatedDuration && (
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4 text-gray-400" />
-                  <span className="text-gray-600">Duration:</span>
+                  <span className="text-gray-600">{t('duration')}:</span>
                   <span>{challenge.estimatedDuration}</span>
                 </div>
               )}
               {challenge.applicationDeadline && (
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-gray-400" />
-                  <span className="text-gray-600">Deadline:</span>
+                  <span className="text-gray-600">{t('deadline')}:</span>
                   <span>{new Date(challenge.applicationDeadline).toLocaleDateString()}</span>
                 </div>
               )}
               {challenge.mentorshipOffered && (
                 <Badge variant="secondary" className="bg-primary/5 text-green-700">
-                  Mentorship Offered
+                  {t('mentorshipOffered')}
                 </Badge>
               )}
               {challenge.compensation && (
@@ -447,7 +464,7 @@ export default function ChallengeDetailPage() {
           {/* University Approvals */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">University Approvals</CardTitle>
+              <CardTitle className="text-base">{t('universityApprovals')}</CardTitle>
             </CardHeader>
             <CardContent>
               {challenge.universityApprovals.length > 0 ? (
@@ -481,7 +498,7 @@ export default function ChallengeDetailPage() {
                 </div>
               ) : (
                 <p className="text-sm text-gray-500 text-center py-4">
-                  No university approvals yet
+                  {t('noApprovals')}
                 </p>
               )}
             </CardContent>
