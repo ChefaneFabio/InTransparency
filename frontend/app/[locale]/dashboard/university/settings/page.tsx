@@ -24,6 +24,7 @@ import {
   Code,
   Palette,
   CheckCircle,
+  AlertCircle,
   Eye,
   Lock,
   Loader2
@@ -64,52 +65,91 @@ export default function UniversitySettingsPage() {
     primaryColor: '#004B93', accentColor: '#FF6B00', customDomain: ''
   })
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
   const [isSaving, setIsSaving] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState(false)
   const [error, setError] = useState('')
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
+
+  const isValidUrl = (url: string) => /^https?:\/\/.+\..+/.test(url)
+  const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  const isValidHex = (hex: string) => /^#[0-9a-fA-F]{6}$/.test(hex)
+
+  const validate = (): boolean => {
+    const errs: Record<string, string> = {}
+    if (!settings.name.trim()) {
+      errs.name = t('validation.nameRequired')
+    }
+    if (settings.website && !isValidUrl(settings.website)) {
+      errs.website = t('validation.invalidUrl')
+    }
+    if (settings.email && !isValidEmail(settings.email)) {
+      errs.email = t('validation.invalidEmail')
+    }
+    if (settings.primaryColor && !isValidHex(settings.primaryColor)) {
+      errs.primaryColor = t('validation.invalidHexColor')
+    }
+    if (settings.accentColor && !isValidHex(settings.accentColor)) {
+      errs.accentColor = t('validation.invalidHexColor')
+    }
+    setFieldErrors(errs)
+    return Object.keys(errs).length === 0
+  }
+
+  const updateSetting = (field: keyof UniversitySettingsData, value: string | boolean) => {
+    setSettings({ ...settings, [field]: value })
+    if (fieldErrors[field]) {
+      const next = { ...fieldErrors }
+      delete next[field]
+      setFieldErrors(next)
+    }
+  }
+
+  const fetchSettings = async () => {
+    setLoading(true)
+    setLoadError(null)
+    try {
+      const res = await fetch('/api/dashboard/university/settings')
+      if (!res.ok) throw new Error(t('validation.failedToLoad'))
+      const data = await res.json()
+      if (data.settings) {
+        setSettings({
+          name: data.settings.name || '',
+          shortName: data.settings.shortName || '',
+          description: data.settings.description || '',
+          website: data.settings.website || '',
+          email: data.settings.email || '',
+          phone: data.settings.phone || '',
+          address: data.settings.address || '',
+          city: data.settings.city || '',
+          region: data.settings.region || '',
+          logo: data.settings.logo || '',
+          notifyNewStudents: data.settings.notifyNewStudents ?? true,
+          notifyProjectSubmissions: data.settings.notifyProjectSubmissions ?? true,
+          notifyRecruiterActivity: data.settings.notifyRecruiterActivity ?? true,
+          notifyPlacements: data.settings.notifyPlacements ?? true,
+          showInDirectory: data.settings.showInDirectory ?? true,
+          allowStudentDiscovery: data.settings.allowStudentDiscovery ?? true,
+          shareAnalytics: data.settings.shareAnalytics ?? false,
+          requireEmailVerification: data.settings.requireEmailVerification ?? false,
+          primaryColor: data.settings.primaryColor || '#004B93',
+          accentColor: data.settings.accentColor || '#FF6B00',
+          customDomain: data.settings.customDomain || '',
+        })
+      }
+    } catch (err: any) {
+      setLoadError(err.message || t('validation.failedToLoad'))
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
-    async function fetchSettings() {
-      try {
-        const res = await fetch('/api/dashboard/university/settings')
-        if (res.ok) {
-          const data = await res.json()
-          if (data.settings) {
-            setSettings({
-              name: data.settings.name || '',
-              shortName: data.settings.shortName || '',
-              description: data.settings.description || '',
-              website: data.settings.website || '',
-              email: data.settings.email || '',
-              phone: data.settings.phone || '',
-              address: data.settings.address || '',
-              city: data.settings.city || '',
-              region: data.settings.region || '',
-              logo: data.settings.logo || '',
-              notifyNewStudents: data.settings.notifyNewStudents ?? true,
-              notifyProjectSubmissions: data.settings.notifyProjectSubmissions ?? true,
-              notifyRecruiterActivity: data.settings.notifyRecruiterActivity ?? true,
-              notifyPlacements: data.settings.notifyPlacements ?? true,
-              showInDirectory: data.settings.showInDirectory ?? true,
-              allowStudentDiscovery: data.settings.allowStudentDiscovery ?? true,
-              shareAnalytics: data.settings.shareAnalytics ?? false,
-              requireEmailVerification: data.settings.requireEmailVerification ?? false,
-              primaryColor: data.settings.primaryColor || '#004B93',
-              accentColor: data.settings.accentColor || '#FF6B00',
-              customDomain: data.settings.customDomain || '',
-            })
-          }
-        }
-      } catch (err) {
-        console.error('Failed to load settings:', err)
-      } finally {
-        setLoading(false)
-      }
-    }
     fetchSettings()
   }, [])
 
   const handleSave = async () => {
+    if (!validate()) return
     setIsSaving(true)
     setError('')
     try {
@@ -134,6 +174,21 @@ export default function UniversitySettingsPage() {
         <div className="container max-w-4xl mx-auto px-4 space-y-6">
           <Skeleton className="h-10 w-48" />
           <Skeleton className="h-[400px] w-full" />
+        </div>
+      </div>
+    )
+  }
+
+  if (loadError) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+        <div className="container max-w-4xl mx-auto px-4">
+          <div className="text-center py-12">
+            <AlertCircle className="h-12 w-12 mx-auto text-red-400 mb-4" />
+            <h3 className="text-lg font-semibold mb-2">{t('validation.failedToLoad')}</h3>
+            <p className="text-muted-foreground mb-4">{loadError}</p>
+            <Button onClick={fetchSettings}>{t('validation.tryAgain')}</Button>
+          </div>
         </div>
       </div>
     )
@@ -217,31 +272,34 @@ export default function UniversitySettingsPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">Nome Completo</Label>
-                    <Input id="name" value={settings.name} onChange={(e) => setSettings({ ...settings, name: e.target.value })} />
+                    <Input id="name" value={settings.name} onChange={(e) => updateSetting('name', e.target.value)} className={fieldErrors.name ? 'border-red-500' : ''} />
+                    {fieldErrors.name && <p className="text-sm text-red-500 mt-1">{fieldErrors.name}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="shortName">Nome Breve</Label>
-                    <Input id="shortName" value={settings.shortName} onChange={(e) => setSettings({ ...settings, shortName: e.target.value })} />
+                    <Input id="shortName" value={settings.shortName} onChange={(e) => updateSetting('shortName', e.target.value)} />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="description">Descrizione</Label>
-                  <Textarea id="description" value={settings.description} onChange={(e) => setSettings({ ...settings, description: e.target.value })} rows={3} />
+                  <Textarea id="description" value={settings.description} onChange={(e) => updateSetting('description', e.target.value)} rows={3} />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="website">Sito Web</Label>
                     <div className="relative">
                       <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                      <Input id="website" value={settings.website} onChange={(e) => setSettings({ ...settings, website: e.target.value })} className="pl-10" />
+                      <Input id="website" value={settings.website} onChange={(e) => updateSetting('website', e.target.value)} className={`pl-10 ${fieldErrors.website ? 'border-red-500' : ''}`} />
                     </div>
+                    {fieldErrors.website && <p className="text-sm text-red-500 mt-1">{fieldErrors.website}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                      <Input id="email" type="email" value={settings.email} onChange={(e) => setSettings({ ...settings, email: e.target.value })} className="pl-10" />
+                      <Input id="email" type="email" value={settings.email} onChange={(e) => updateSetting('email', e.target.value)} className={`pl-10 ${fieldErrors.email ? 'border-red-500' : ''}`} />
                     </div>
+                    {fieldErrors.email && <p className="text-sm text-red-500 mt-1">{fieldErrors.email}</p>}
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -249,20 +307,20 @@ export default function UniversitySettingsPage() {
                     <Label htmlFor="phone">Telefono</Label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                      <Input id="phone" value={settings.phone} onChange={(e) => setSettings({ ...settings, phone: e.target.value })} className="pl-10" />
+                      <Input id="phone" value={settings.phone} onChange={(e) => updateSetting('phone', e.target.value)} className="pl-10" />
                     </div>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="city">Città</Label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                      <Input id="city" value={settings.city} onChange={(e) => setSettings({ ...settings, city: e.target.value })} className="pl-10" />
+                      <Input id="city" value={settings.city} onChange={(e) => updateSetting('city', e.target.value)} className="pl-10" />
                     </div>
                   </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="address">Indirizzo</Label>
-                  <Input id="address" value={settings.address} onChange={(e) => setSettings({ ...settings, address: e.target.value })} />
+                  <Input id="address" value={settings.address} onChange={(e) => updateSetting('address', e.target.value)} />
                 </div>
               </CardContent>
             </Card>
@@ -369,22 +427,24 @@ export default function UniversitySettingsPage() {
                   <div className="space-y-2">
                     <Label htmlFor="primaryColor">Colore Primario</Label>
                     <div className="flex gap-2">
-                      <Input id="primaryColor" type="color" value={settings.primaryColor} onChange={(e) => setSettings({ ...settings, primaryColor: e.target.value })} className="w-12 h-10 p-1 cursor-pointer" />
-                      <Input value={settings.primaryColor} onChange={(e) => setSettings({ ...settings, primaryColor: e.target.value })} className="flex-1" />
+                      <Input id="primaryColor" type="color" value={settings.primaryColor} onChange={(e) => updateSetting('primaryColor', e.target.value)} className="w-12 h-10 p-1 cursor-pointer" />
+                      <Input value={settings.primaryColor} onChange={(e) => updateSetting('primaryColor', e.target.value)} className={`flex-1 ${fieldErrors.primaryColor ? 'border-red-500' : ''}`} />
                     </div>
+                    {fieldErrors.primaryColor && <p className="text-sm text-red-500 mt-1">{fieldErrors.primaryColor}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="accentColor">Colore Accento</Label>
                     <div className="flex gap-2">
-                      <Input id="accentColor" type="color" value={settings.accentColor} onChange={(e) => setSettings({ ...settings, accentColor: e.target.value })} className="w-12 h-10 p-1 cursor-pointer" />
-                      <Input value={settings.accentColor} onChange={(e) => setSettings({ ...settings, accentColor: e.target.value })} className="flex-1" />
+                      <Input id="accentColor" type="color" value={settings.accentColor} onChange={(e) => updateSetting('accentColor', e.target.value)} className="w-12 h-10 p-1 cursor-pointer" />
+                      <Input value={settings.accentColor} onChange={(e) => updateSetting('accentColor', e.target.value)} className={`flex-1 ${fieldErrors.accentColor ? 'border-red-500' : ''}`} />
                     </div>
+                    {fieldErrors.accentColor && <p className="text-sm text-red-500 mt-1">{fieldErrors.accentColor}</p>}
                   </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="customDomain">Dominio Personalizzato</Label>
                   <div className="flex gap-2">
-                    <Input id="customDomain" value={settings.customDomain} onChange={(e) => setSettings({ ...settings, customDomain: e.target.value })} placeholder="careers.polimi.it" />
+                    <Input id="customDomain" value={settings.customDomain} onChange={(e) => updateSetting('customDomain', e.target.value)} placeholder="careers.polimi.it" />
                     <Button variant="outline">
                       <Code className="h-4 w-4 mr-2" />
                       Verifica

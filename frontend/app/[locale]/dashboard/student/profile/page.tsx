@@ -27,8 +27,19 @@ import {
   Users,
   Briefcase,
   Share2,
+  MapPin,
+  Calendar,
 } from 'lucide-react'
 import { LinkedInShareButton } from '@/components/linkedin/LinkedInShareButton'
+
+interface WorkExperienceEntry {
+  company: string
+  role: string
+  startDate: string
+  endDate: string
+  description: string
+  current: boolean
+}
 
 interface ProfileData {
   user: {
@@ -50,6 +61,10 @@ interface ProfileData {
     showLocation: boolean
     showEmail: boolean
     showPhone: boolean
+    location: string | null
+    interests: string[]
+    availableFor: string
+    workExperience: WorkExperienceEntry[] | null
   }
   skills: Array<{ name: string; level: number; projectCount: number }>
   stats: {
@@ -259,6 +274,29 @@ export default function ProfilePage() {
                     <p className="text-muted-foreground">{user.degree} - {user.university}</p>
                   )}
                   {user.graduationYear && <p className="text-foreground/80 text-sm">Class of {user.graduationYear}</p>}
+                  <div className="flex items-center gap-2 mt-1 flex-wrap">
+                    {user.location && (
+                      <span className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <MapPin className="h-3.5 w-3.5" />
+                        {user.location}
+                      </span>
+                    )}
+                    {user.availableFor && (() => {
+                      const availabilityConfig: Record<string, { label: string; className: string }> = {
+                        BOTH: { label: 'Available', className: 'bg-green-100 text-green-800 border-green-200' },
+                        HIRING: { label: 'Open to offers', className: 'bg-blue-100 text-blue-800 border-blue-200' },
+                        NONE: { label: 'Not looking', className: 'bg-gray-100 text-gray-600 border-gray-200' },
+                        PROJECTS: { label: 'Projects only', className: 'bg-purple-100 text-purple-800 border-purple-200' },
+                      }
+                      const config = availabilityConfig[user.availableFor]
+                      if (!config) return null
+                      return (
+                        <Badge variant="outline" className={config.className}>
+                          {config.label}
+                        </Badge>
+                      )
+                    })()}
+                  </div>
                 </div>
 
                 <div className="flex items-center space-x-2 mt-4 sm:mt-0">
@@ -440,6 +478,54 @@ export default function ProfilePage() {
                   )}
                 </CardContent>
               </Card>
+
+              {/* Interests */}
+              {user.interests && user.interests.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Interests</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {user.interests.map((interest: string) => (
+                        <Badge key={interest} variant="outline" className="text-sm">
+                          {interest}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Work Experience */}
+              {user.workExperience && user.workExperience.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center">
+                      <Briefcase className="mr-2 h-5 w-5" />
+                      Experience
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-6">
+                      {user.workExperience.map((exp: WorkExperienceEntry, index: number) => (
+                        <div key={index} className="relative pl-6 border-l-2 border-muted pb-4 last:pb-0">
+                          <div className="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-primary border-2 border-background" />
+                          <h4 className="font-semibold text-foreground">{exp.role}</h4>
+                          <p className="text-muted-foreground">{exp.company}</p>
+                          <p className="text-sm text-foreground/70 flex items-center gap-1 mt-1">
+                            <Calendar className="h-3.5 w-3.5" />
+                            {exp.startDate} - {exp.current ? 'Present' : exp.endDate}
+                          </p>
+                          {exp.description && (
+                            <p className="text-foreground/80 text-sm mt-2 leading-relaxed">{exp.description}</p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
 
               {/* Links */}
               <Card>

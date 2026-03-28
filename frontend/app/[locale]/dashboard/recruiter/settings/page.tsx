@@ -62,6 +62,33 @@ export default function RecruiterSettingsPage() {
   const [error, setError] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
   const [saveMessage, setSaveMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
+
+  const isValidUrl = (url: string) => /^https?:\/\/.+\..+/.test(url)
+
+  const validate = (): boolean => {
+    const errs: Record<string, string> = {}
+    if (!settings.companyName.trim()) {
+      errs.companyName = t('validation.companyNameRequired')
+    }
+    if (settings.companyWebsite && !isValidUrl(settings.companyWebsite)) {
+      errs.companyWebsite = t('validation.invalidUrl')
+    }
+    if (settings.companyLogo && !isValidUrl(settings.companyLogo)) {
+      errs.companyLogo = t('validation.invalidUrl')
+    }
+    setFieldErrors(errs)
+    return Object.keys(errs).length === 0
+  }
+
+  const updateSetting = (field: keyof RecruiterSettings, value: string | boolean) => {
+    setSettings({ ...settings, [field]: value })
+    if (fieldErrors[field]) {
+      const next = { ...fieldErrors }
+      delete next[field]
+      setFieldErrors(next)
+    }
+  }
 
   // Fetch settings
   useEffect(() => {
@@ -97,6 +124,7 @@ export default function RecruiterSettingsPage() {
   }, [])
 
   const handleSave = async () => {
+    if (!validate()) return
     setSaving(true)
     setSaveMessage(null)
     try {
@@ -259,18 +287,22 @@ export default function RecruiterSettingsPage() {
               <Input
                 id="companyName"
                 value={settings.companyName}
-                onChange={(e) => setSettings({ ...settings, companyName: e.target.value })}
+                onChange={(e) => updateSetting('companyName', e.target.value)}
                 placeholder="Your Company"
+                className={fieldErrors.companyName ? 'border-red-500' : ''}
               />
+              {fieldErrors.companyName && <p className="text-sm text-red-500 mt-1">{fieldErrors.companyName}</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="website">{t('form.website')}</Label>
               <Input
                 id="website"
                 value={settings.companyWebsite}
-                onChange={(e) => setSettings({ ...settings, companyWebsite: e.target.value })}
+                onChange={(e) => updateSetting('companyWebsite', e.target.value)}
                 placeholder="https://yourcompany.com"
+                className={fieldErrors.companyWebsite ? 'border-red-500' : ''}
               />
+              {fieldErrors.companyWebsite && <p className="text-sm text-red-500 mt-1">{fieldErrors.companyWebsite}</p>}
             </div>
           </div>
 
@@ -294,11 +326,12 @@ export default function RecruiterSettingsPage() {
               <Input
                 id="companyLogo"
                 value={settings.companyLogo}
-                onChange={(e) => setSettings({ ...settings, companyLogo: e.target.value })}
+                onChange={(e) => updateSetting('companyLogo', e.target.value)}
                 placeholder="https://yourcompany.com/logo.png"
-                className="flex-1"
+                className={`flex-1 ${fieldErrors.companyLogo ? 'border-red-500' : ''}`}
               />
             </div>
+            {fieldErrors.companyLogo && <p className="text-sm text-red-500 mt-1">{fieldErrors.companyLogo}</p>}
             <p className="text-xs text-gray-500">Enter the URL of your company logo image</p>
           </div>
 
@@ -308,7 +341,7 @@ export default function RecruiterSettingsPage() {
               <Input
                 id="industry"
                 value={settings.companyIndustry}
-                onChange={(e) => setSettings({ ...settings, companyIndustry: e.target.value })}
+                onChange={(e) => updateSetting('companyIndustry', e.target.value)}
                 placeholder="Technology"
               />
             </div>
@@ -317,7 +350,7 @@ export default function RecruiterSettingsPage() {
               <Input
                 id="size"
                 value={settings.companySize}
-                onChange={(e) => setSettings({ ...settings, companySize: e.target.value })}
+                onChange={(e) => updateSetting('companySize', e.target.value)}
                 placeholder="50-200 employees"
               />
             </div>
@@ -328,7 +361,7 @@ export default function RecruiterSettingsPage() {
             <Input
               id="location"
               value={settings.companyLocation}
-              onChange={(e) => setSettings({ ...settings, companyLocation: e.target.value })}
+              onChange={(e) => updateSetting('companyLocation', e.target.value)}
               placeholder="Milano, Italy"
             />
           </div>
@@ -338,7 +371,7 @@ export default function RecruiterSettingsPage() {
             <Textarea
               id="description"
               value={settings.companyDescription}
-              onChange={(e) => setSettings({ ...settings, companyDescription: e.target.value })}
+              onChange={(e) => updateSetting('companyDescription', e.target.value)}
               placeholder="Tell candidates about your company..."
               rows={4}
             />

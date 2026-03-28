@@ -198,11 +198,12 @@ model User {
   country        String  @default("IT") // ISO 3166-1 alpha-2
 
   // Extended Profile
-  location    String?   // City, Country (e.g. "Milano, Italy")
-  linkedinUrl String?
-  githubUrl   String?
-  skills      String[]  @default([])
-  interests   String[]  @default([])
+  location       String?   // City, Country (e.g. "Milano, Italy")
+  linkedinUrl    String?
+  githubUrl      String?
+  skills         String[]  @default([])
+  interests      String[]  @default([])
+  workExperience Json?     // Array of { company, role, startDate, endDate, description, current }
 
   // Company Info (for recruiters)
   company  String?

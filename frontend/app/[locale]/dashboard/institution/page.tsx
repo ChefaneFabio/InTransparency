@@ -17,7 +17,8 @@ import {
   ExternalLink,
   Star,
   CheckCircle,
-  Eye
+  Eye,
+  AlertCircle
 } from 'lucide-react'
 import { trackUpgradePrompt, trackUpgradeInteraction, ConversionTrigger, PlanType } from '@/lib/analytics'
 import { useTranslations } from 'next-intl'
@@ -51,6 +52,7 @@ export default function InstitutionDashboard() {
   const { data: session } = useSession()
   const t = useTranslations('universityDashboard.institution')
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
   const [stats, setStats] = useState<StatsData | null>(null)
   const [recentStudents, setRecentStudents] = useState<RecentStudent[]>([])
   const [topRecruiters, setTopRecruiters] = useState<TopRecruiter[]>([])
@@ -60,22 +62,25 @@ export default function InstitutionDashboard() {
   const isFree = subscriptionTier === 'FREE' || subscriptionTier === 'INSTITUTION_ENTERPRISE' ? subscriptionTier === 'FREE' : true
   const institutionName = (session?.user as any)?.company || 'Your Institution'
 
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const res = await fetch('/api/dashboard/university/stats')
-        if (!res.ok) throw new Error('Failed to fetch stats')
-        const data = await res.json()
-        setStats(data.stats)
-        setRecentStudents(data.recentStudents || [])
-        setTopRecruiters(data.topRecruiters || [])
-      } catch (err) {
-        console.error('Error loading institution stats:', err)
-        setStats({ totalStudents: 0, verifiedStudents: 0, activeProfiles: 0, recruiterViews: 0 })
-      } finally {
-        setLoading(false)
-      }
+  const fetchStats = async () => {
+    setLoading(true)
+    setLoadError(null)
+    try {
+      const res = await fetch('/api/dashboard/university/stats')
+      if (!res.ok) throw new Error(t('failedToLoad'))
+      const data = await res.json()
+      setStats(data.stats)
+      setRecentStudents(data.recentStudents || [])
+      setTopRecruiters(data.topRecruiters || [])
+    } catch (err: any) {
+      setLoadError(err.message || t('failedToLoad'))
+      setStats({ totalStudents: 0, verifiedStudents: 0, activeProfiles: 0, recruiterViews: 0 })
+    } finally {
+      setLoading(false)
     }
+  }
+
+  useEffect(() => {
     fetchStats()
   }, [])
 
@@ -111,8 +116,30 @@ export default function InstitutionDashboard() {
     router.push('/dashboard/institution/embed-config')
   }
 
+  if (loadError && !stats) {
+    return (
+      <div className="container mx-auto px-4 py-8 max-w-7xl">
+        <div className="text-center py-12">
+          <AlertCircle className="h-12 w-12 mx-auto text-red-400 mb-4" />
+          <h3 className="text-lg font-semibold mb-2">{t('failedToLoad')}</h3>
+          <p className="text-muted-foreground mb-4">{loadError}</p>
+          <Button onClick={fetchStats}>{t('tryAgain')}</Button>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
+      {/* Error banner for non-blocking errors */}
+      {loadError && stats && (
+        <div className="flex items-center gap-2 p-4 mb-6 rounded-lg bg-red-50 text-red-800 border border-red-200">
+          <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0" />
+          <p className="text-sm font-medium">{loadError}</p>
+          <Button variant="ghost" size="sm" onClick={fetchStats} className="ml-auto">{t('tryAgain')}</Button>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>

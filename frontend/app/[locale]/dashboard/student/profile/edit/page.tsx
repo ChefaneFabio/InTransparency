@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Switch } from '@/components/ui/switch'
 import {
   Save,
   Upload,
@@ -29,8 +30,19 @@ import {
   Link as LinkIcon,
   Loader2,
   Sparkles,
-  Briefcase
+  Briefcase,
+  Trash2,
+  Calendar,
 } from 'lucide-react'
+
+interface WorkExperienceEntry {
+  company: string
+  role: string
+  startDate: string
+  endDate: string
+  description: string
+  current: boolean
+}
 
 export default function EditProfilePage() {
   const router = useRouter()
@@ -45,13 +57,16 @@ export default function EditProfilePage() {
     university: '',
     major: '',
     graduationYear: new Date().getFullYear() + 1,
+    gpa: '',
+    gpaPublic: false,
     location: '',
     linkedinUrl: '',
     githubUrl: '',
     portfolioUrl: '',
     skills: [] as string[],
     interests: [] as string[],
-    availableFor: 'BOTH' as string
+    availableFor: 'BOTH' as string,
+    workExperience: [] as WorkExperienceEntry[],
   })
 
   const [newSkill, setNewSkill] = useState('')
@@ -67,25 +82,48 @@ export default function EditProfilePage() {
   const [suggestedInterests, setSuggestedInterests] = useState<string[]>([])
 
   useEffect(() => {
-    if (user) {
-      setFormData({
-        firstName: user.firstName || '',
-        lastName: user.lastName || '',
-        email: user.email || '',
-        bio: user.bio || '',
-        university: user.university || '',
-        major: user.major || '',
-        graduationYear: user.graduationYear || new Date().getFullYear() + 1,
-        location: user.location || '',
-        linkedinUrl: user.linkedinUrl || '',
-        githubUrl: user.githubUrl || '',
-        portfolioUrl: user.portfolioUrl || '',
-        skills: user.skills || [],
-        interests: user.interests || [],
-        availableFor: user.availableFor || 'BOTH'
-      })
-      setPreviewUrl(user.avatarUrl || '')
+    // Fetch full profile data from API (session may not contain all fields)
+    const loadProfile = async () => {
+      try {
+        const res = await fetch('/api/dashboard/student/profile')
+        if (res.ok) {
+          const data = await res.json()
+          const u = data.user
+          setFormData({
+            firstName: u.firstName || '',
+            lastName: u.lastName || '',
+            email: u.email || '',
+            bio: u.bio || '',
+            university: u.university || '',
+            major: u.degree || '',
+            graduationYear: u.graduationYear ? parseInt(u.graduationYear, 10) : new Date().getFullYear() + 1,
+            gpa: u.gpa || '',
+            gpaPublic: u.gpaPublic || false,
+            location: u.location || '',
+            linkedinUrl: u.linkedinUrl || '',
+            githubUrl: u.githubUrl || '',
+            portfolioUrl: u.portfolioUrl || '',
+            skills: u.skills || [],
+            interests: u.interests || [],
+            availableFor: u.availableFor || 'BOTH',
+            workExperience: Array.isArray(u.workExperience) ? u.workExperience : [],
+          })
+          setPreviewUrl(u.photo || '')
+        }
+      } catch {
+        // Fall back to session data
+        if (user) {
+          setFormData(prev => ({
+            ...prev,
+            firstName: user.firstName || prev.firstName,
+            lastName: user.lastName || prev.lastName,
+            email: user.email || prev.email,
+          }))
+          setPreviewUrl(user.avatarUrl || '')
+        }
+      }
     }
+    loadProfile()
   }, [user])
 
   const handleInputChange = (field: string, value: string | number) => {
@@ -206,6 +244,9 @@ export default function EditProfilePage() {
           tagline: formData.bio?.slice(0, 120),
           university: formData.university,
           degree: formData.major,
+          graduationYear: String(formData.graduationYear),
+          gpa: formData.gpa,
+          gpaPublic: formData.gpaPublic,
           location: formData.location,
           linkedinUrl: formData.linkedinUrl,
           githubUrl: formData.githubUrl,
@@ -213,6 +254,7 @@ export default function EditProfilePage() {
           skills: formData.skills,
           interests: formData.interests,
           availableFor: formData.availableFor,
+          workExperience: formData.workExperience,
         }),
       })
 
@@ -272,7 +314,7 @@ export default function EditProfilePage() {
   }
 
   const currentYear = new Date().getFullYear()
-  const graduationYears = Array.from({ length: 11 }, (_, i) => currentYear - 5 + i)
+  const graduationYears = Array.from({ length: 16 }, (_, i) => currentYear - 5 + i)
 
   return (
     <div className="container mx-auto py-8 px-4 max-w-4xl">
@@ -313,9 +355,10 @@ export default function EditProfilePage() {
 
       <form onSubmit={handleSubmit}>
         <Tabs defaultValue="basic" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="basic">Basic Info</TabsTrigger>
             <TabsTrigger value="academic">Academic</TabsTrigger>
+            <TabsTrigger value="experience">Experience</TabsTrigger>
             <TabsTrigger value="skills">Skills</TabsTrigger>
             <TabsTrigger value="links">Links</TabsTrigger>
           </TabsList>
@@ -464,7 +507,7 @@ export default function EditProfilePage() {
                     rows={4}
                     maxLength={500}
                   />
-                  <p className="text-xs text-gray-700 text-right">
+                  <p className={`text-xs text-right ${formData.bio.length > 480 ? 'text-red-500' : formData.bio.length > 400 ? 'text-amber-500' : 'text-gray-700'}`}>
                     {formData.bio.length}/500 characters
                   </p>
                 </div>
@@ -562,6 +605,166 @@ export default function EditProfilePage() {
                     <p className="text-sm text-red-600">{errors.graduationYear}</p>
                   )}
                 </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="gpa">GPA</Label>
+                  <Input
+                    id="gpa"
+                    placeholder="e.g. 28/30"
+                    value={formData.gpa}
+                    onChange={(e) => handleInputChange('gpa', e.target.value)}
+                  />
+                </div>
+
+                <div className="flex items-center justify-between pt-2 border-t">
+                  <div className="space-y-0.5">
+                    <Label htmlFor="gpaPublic">Show GPA on profile</Label>
+                    <p className="text-xs text-gray-700">When enabled, your GPA will be visible on your public profile</p>
+                  </div>
+                  <Switch
+                    id="gpaPublic"
+                    checked={formData.gpaPublic}
+                    onCheckedChange={(checked) => setFormData(prev => ({ ...prev, gpaPublic: checked }))}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Work Experience */}
+          <TabsContent value="experience">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Briefcase className="h-5 w-5" />
+                  Work Experience
+                </CardTitle>
+                <CardDescription>
+                  Add internships, part-time jobs, or other work experience
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {formData.workExperience.map((exp, index) => (
+                  <div key={index} className="relative border rounded-lg p-4 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-medium text-sm text-foreground">Experience {index + 1}</h4>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          setFormData(prev => ({
+                            ...prev,
+                            workExperience: prev.workExperience.filter((_, i) => i !== index),
+                          }))
+                        }}
+                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label>Company</Label>
+                        <Input
+                          placeholder="e.g. Google"
+                          value={exp.company}
+                          onChange={(e) => {
+                            const updated = [...formData.workExperience]
+                            updated[index] = { ...updated[index], company: e.target.value }
+                            setFormData(prev => ({ ...prev, workExperience: updated }))
+                          }}
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Role / Title</Label>
+                        <Input
+                          placeholder="e.g. Software Engineering Intern"
+                          value={exp.role}
+                          onChange={(e) => {
+                            const updated = [...formData.workExperience]
+                            updated[index] = { ...updated[index], role: e.target.value }
+                            setFormData(prev => ({ ...prev, workExperience: updated }))
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label>Start Date</Label>
+                        <Input
+                          type="month"
+                          value={exp.startDate}
+                          onChange={(e) => {
+                            const updated = [...formData.workExperience]
+                            updated[index] = { ...updated[index], startDate: e.target.value }
+                            setFormData(prev => ({ ...prev, workExperience: updated }))
+                          }}
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>End Date</Label>
+                        <Input
+                          type="month"
+                          value={exp.endDate}
+                          disabled={exp.current}
+                          onChange={(e) => {
+                            const updated = [...formData.workExperience]
+                            updated[index] = { ...updated[index], endDate: e.target.value }
+                            setFormData(prev => ({ ...prev, workExperience: updated }))
+                          }}
+                        />
+                        <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={exp.current}
+                            onChange={(e) => {
+                              const updated = [...formData.workExperience]
+                              updated[index] = { ...updated[index], current: e.target.checked, endDate: e.target.checked ? '' : updated[index].endDate }
+                              setFormData(prev => ({ ...prev, workExperience: updated }))
+                            }}
+                            className="rounded border-gray-300"
+                          />
+                          I currently work here
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label>Description</Label>
+                      <Textarea
+                        placeholder="Describe your responsibilities and achievements..."
+                        value={exp.description}
+                        rows={3}
+                        onChange={(e) => {
+                          const updated = [...formData.workExperience]
+                          updated[index] = { ...updated[index], description: e.target.value }
+                          setFormData(prev => ({ ...prev, workExperience: updated }))
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setFormData(prev => ({
+                      ...prev,
+                      workExperience: [
+                        ...prev.workExperience,
+                        { company: '', role: '', startDate: '', endDate: '', description: '', current: false },
+                      ],
+                    }))
+                  }}
+                  className="w-full"
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Experience
+                </Button>
               </CardContent>
             </Card>
           </TabsContent>

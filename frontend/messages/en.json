@@ -4877,16 +4877,38 @@
     "tabs": {
       "overview": "Overview",
       "skills": "Skills",
-      "projects": "Projects"
+      "projects": "Projects",
+      "experience": "Experience"
     },
     "fields": {
       "bio": "Bio",
       "tagline": "Tagline",
       "portfolioUrl": "Portfolio URL",
-      "university": "Institution",
+      "university": "University",
       "degree": "Degree",
       "graduationYear": "Graduation Year",
-      "gpa": "GPA"
+      "gpa": "GPA",
+      "location": "Location",
+      "interests": "Interests",
+      "availability": "Availability"
+    },
+    "availability": {
+      "available": "Available",
+      "openToOffers": "Open to offers",
+      "notLooking": "Not looking",
+      "projectsOnly": "Projects only"
+    },
+    "experience": {
+      "title": "Work Experience",
+      "description": "Add internships, part-time jobs, or other work experience",
+      "addExperience": "Add Experience",
+      "company": "Company",
+      "role": "Role / Title",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "currentlyWorking": "I currently work here",
+      "descriptionLabel": "Description",
+      "present": "Present"
     },
     "privacy": {
       "title": "Privacy Settings",
@@ -7257,7 +7279,15 @@
       "primaryColor": "Primary Color",
       "accentColor": "Accent Color",
       "brandingPreview": "Preview",
-      "brandingPreviewButton": "Learn more"
+      "brandingPreviewButton": "Learn more",
+      "validation": {
+        "parkNameRequired": "Park name is required",
+        "invalidUrl": "Please enter a valid URL (starting with http:// or https://)",
+        "invalidEmail": "Please enter a valid email address",
+        "invalidHexColor": "Please enter a valid hex color (e.g. #004B93)",
+        "invalidFoundedYear": "Year must be between 1900 and current year",
+        "invalidMemberCount": "Member count must be a positive number"
+      }
     }
   },
   "recruiterDashboard": {
@@ -7667,6 +7697,10 @@
         "messagesDesc": "Get notified when you receive new messages",
         "searchAlerts": "Search Alerts",
         "searchAlertsDesc": "Get notified when new candidates match your saved searches"
+      },
+      "validation": {
+        "companyNameRequired": "Company name is required",
+        "invalidUrl": "Please enter a valid URL (starting with http:// or https://)"
       }
     }
   },
@@ -8146,10 +8180,20 @@
       "customDomainNote": "Requires Premium Embed plan. Contact support to configure.",
       "preview": "Preview",
       "institutionNamePreview": "Institution Name",
-      "learnMore": "Learn More"
+      "learnMore": "Learn More",
+      "validation": {
+        "nameRequired": "Name is required",
+        "invalidUrl": "Please enter a valid URL (starting with http:// or https://)",
+        "invalidEmail": "Please enter a valid email address",
+        "invalidHexColor": "Please enter a valid hex color (e.g. #004B93)",
+        "failedToLoad": "Failed to load settings",
+        "tryAgain": "Try Again"
+      }
     },
     "institution": {
       "subtitle": "Student placement analytics and company connections",
+      "failedToLoad": "Failed to load dashboard data",
+      "tryAgain": "Try Again",
       "getWidget": "Get Embeddable Widget",
       "totalStudents": "Total Students",
       "verifiedStudents": "Verified Students",

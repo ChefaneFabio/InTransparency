@@ -78,6 +78,48 @@ export default function TechParkSettingsPage() {
   const [error, setError] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
   const [saveMessage, setSaveMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
+
+  const isValidUrl = (url: string) => /^https?:\/\/.+\..+/.test(url)
+  const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  const isValidHex = (hex: string) => /^#[0-9a-fA-F]{6}$/.test(hex)
+  const currentYear = new Date().getFullYear()
+
+  const validate = (): boolean => {
+    const errs: Record<string, string> = {}
+    if (!settings.parkName.trim()) {
+      errs.parkName = t('settings.validation.parkNameRequired')
+    }
+    if (settings.website && !isValidUrl(settings.website)) {
+      errs.website = t('settings.validation.invalidUrl')
+    }
+    if (settings.email && !isValidEmail(settings.email)) {
+      errs.email = t('settings.validation.invalidEmail')
+    }
+    if (settings.primaryColor && !isValidHex(settings.primaryColor)) {
+      errs.primaryColor = t('settings.validation.invalidHexColor')
+    }
+    if (settings.accentColor && !isValidHex(settings.accentColor)) {
+      errs.accentColor = t('settings.validation.invalidHexColor')
+    }
+    if (settings.foundedYear !== '' && (settings.foundedYear < 1900 || settings.foundedYear > currentYear)) {
+      errs.foundedYear = t('settings.validation.invalidFoundedYear')
+    }
+    if (settings.memberCompanyCount < 0) {
+      errs.memberCompanyCount = t('settings.validation.invalidMemberCount')
+    }
+    setFieldErrors(errs)
+    return Object.keys(errs).length === 0
+  }
+
+  const updateSetting = (field: keyof TechParkSettings, value: string | boolean | number) => {
+    setSettings({ ...settings, [field]: value })
+    if (fieldErrors[field]) {
+      const next = { ...fieldErrors }
+      delete next[field]
+      setFieldErrors(next)
+    }
+  }
 
   // Fetch settings
   useEffect(() => {
@@ -121,6 +163,7 @@ export default function TechParkSettingsPage() {
   }, [])
 
   const handleSave = async () => {
+    if (!validate()) return
     setSaving(true)
     setSaveMessage(null)
     try {
@@ -268,9 +311,11 @@ export default function TechParkSettingsPage() {
               <Input
                 id="parkName"
                 value={settings.parkName}
-                onChange={(e) => setSettings({ ...settings, parkName: e.target.value })}
+                onChange={(e) => updateSetting('parkName', e.target.value)}
                 placeholder="Your Tech Park"
+                className={fieldErrors.parkName ? 'border-red-500' : ''}
               />
+              {fieldErrors.parkName && <p className="text-sm text-red-500 mt-1">{fieldErrors.parkName}</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="parkType">{t('settings.parkType')}</Label>
@@ -297,7 +342,7 @@ export default function TechParkSettingsPage() {
             <Textarea
               id="description"
               value={settings.description}
-              onChange={(e) => setSettings({ ...settings, description: e.target.value })}
+              onChange={(e) => updateSetting('description', e.target.value)}
               placeholder="Tell visitors about your tech park..."
               rows={4}
             />
@@ -309,9 +354,11 @@ export default function TechParkSettingsPage() {
               <Input
                 id="website"
                 value={settings.website}
-                onChange={(e) => setSettings({ ...settings, website: e.target.value })}
+                onChange={(e) => updateSetting('website', e.target.value)}
                 placeholder="https://yourtechpark.com"
+                className={fieldErrors.website ? 'border-red-500' : ''}
               />
+              {fieldErrors.website && <p className="text-sm text-red-500 mt-1">{fieldErrors.website}</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">{t('settings.email')}</Label>
@@ -319,9 +366,11 @@ export default function TechParkSettingsPage() {
                 id="email"
                 type="email"
                 value={settings.email}
-                onChange={(e) => setSettings({ ...settings, email: e.target.value })}
+                onChange={(e) => updateSetting('email', e.target.value)}
                 placeholder="info@yourtechpark.com"
+                className={fieldErrors.email ? 'border-red-500' : ''}
               />
+              {fieldErrors.email && <p className="text-sm text-red-500 mt-1">{fieldErrors.email}</p>}
             </div>
           </div>
 
@@ -331,7 +380,7 @@ export default function TechParkSettingsPage() {
               <Input
                 id="phone"
                 value={settings.phone}
-                onChange={(e) => setSettings({ ...settings, phone: e.target.value })}
+                onChange={(e) => updateSetting('phone', e.target.value)}
                 placeholder="+39 0471 123456"
               />
             </div>
@@ -341,9 +390,19 @@ export default function TechParkSettingsPage() {
                 id="foundedYear"
                 type="number"
                 value={settings.foundedYear}
-                onChange={(e) => setSettings({ ...settings, foundedYear: e.target.value ? parseInt(e.target.value) : '' })}
+                onChange={(e) => {
+                  const val = e.target.value ? parseInt(e.target.value) : ''
+                  setSettings({ ...settings, foundedYear: val })
+                  if (fieldErrors.foundedYear) {
+                    const next = { ...fieldErrors }
+                    delete next.foundedYear
+                    setFieldErrors(next)
+                  }
+                }}
                 placeholder="2010"
+                className={fieldErrors.foundedYear ? 'border-red-500' : ''}
               />
+              {fieldErrors.foundedYear && <p className="text-sm text-red-500 mt-1">{fieldErrors.foundedYear}</p>}
             </div>
           </div>
 
@@ -353,7 +412,7 @@ export default function TechParkSettingsPage() {
               <Input
                 id="city"
                 value={settings.city}
-                onChange={(e) => setSettings({ ...settings, city: e.target.value })}
+                onChange={(e) => updateSetting('city', e.target.value)}
                 placeholder="Bolzano"
               />
             </div>
@@ -362,7 +421,7 @@ export default function TechParkSettingsPage() {
               <Input
                 id="region"
                 value={settings.region}
-                onChange={(e) => setSettings({ ...settings, region: e.target.value })}
+                onChange={(e) => updateSetting('region', e.target.value)}
                 placeholder="Trentino-Alto Adige"
               />
             </div>
@@ -373,7 +432,7 @@ export default function TechParkSettingsPage() {
             <Input
               id="focusAreas"
               value={settings.focusAreas}
-              onChange={(e) => setSettings({ ...settings, focusAreas: e.target.value })}
+              onChange={(e) => updateSetting('focusAreas', e.target.value)}
               placeholder="AI, Green Tech, Digital Health, IoT"
             />
             <p className="text-xs text-muted-foreground">{t('settings.focusAreasHint')}</p>
@@ -385,9 +444,19 @@ export default function TechParkSettingsPage() {
               id="memberCompanyCount"
               type="number"
               value={settings.memberCompanyCount}
-              onChange={(e) => setSettings({ ...settings, memberCompanyCount: parseInt(e.target.value) || 0 })}
+              onChange={(e) => {
+                const val = parseInt(e.target.value) || 0
+                setSettings({ ...settings, memberCompanyCount: val })
+                if (fieldErrors.memberCompanyCount) {
+                  const next = { ...fieldErrors }
+                  delete next.memberCompanyCount
+                  setFieldErrors(next)
+                }
+              }}
               placeholder="50"
+              className={fieldErrors.memberCompanyCount ? 'border-red-500' : ''}
             />
+            {fieldErrors.memberCompanyCount && <p className="text-sm text-red-500 mt-1">{fieldErrors.memberCompanyCount}</p>}
           </div>
         </CardContent>
       </Card>
@@ -426,7 +495,7 @@ export default function TechParkSettingsPage() {
               <Input
                 id="logo"
                 value={settings.logo}
-                onChange={(e) => setSettings({ ...settings, logo: e.target.value })}
+                onChange={(e) => updateSetting('logo', e.target.value)}
                 placeholder="https://yourtechpark.com/logo.png"
                 className="flex-1"
               />
@@ -443,16 +512,17 @@ export default function TechParkSettingsPage() {
                   id="primaryColor"
                   type="color"
                   value={settings.primaryColor}
-                  onChange={(e) => setSettings({ ...settings, primaryColor: e.target.value })}
+                  onChange={(e) => updateSetting('primaryColor', e.target.value)}
                   className="w-12 h-10 p-1 cursor-pointer"
                 />
                 <Input
                   value={settings.primaryColor}
-                  onChange={(e) => setSettings({ ...settings, primaryColor: e.target.value })}
-                  className="flex-1"
+                  onChange={(e) => updateSetting('primaryColor', e.target.value)}
+                  className={`flex-1 ${fieldErrors.primaryColor ? 'border-red-500' : ''}`}
                   placeholder="#004B93"
                 />
               </div>
+              {fieldErrors.primaryColor && <p className="text-sm text-red-500 mt-1">{fieldErrors.primaryColor}</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="accentColor">{t('settings.accentColor')}</Label>
@@ -461,16 +531,17 @@ export default function TechParkSettingsPage() {
                   id="accentColor"
                   type="color"
                   value={settings.accentColor}
-                  onChange={(e) => setSettings({ ...settings, accentColor: e.target.value })}
+                  onChange={(e) => updateSetting('accentColor', e.target.value)}
                   className="w-12 h-10 p-1 cursor-pointer"
                 />
                 <Input
                   value={settings.accentColor}
-                  onChange={(e) => setSettings({ ...settings, accentColor: e.target.value })}
-                  className="flex-1"
+                  onChange={(e) => updateSetting('accentColor', e.target.value)}
+                  className={`flex-1 ${fieldErrors.accentColor ? 'border-red-500' : ''}`}
                   placeholder="#FF6B00"
                 />
               </div>
+              {fieldErrors.accentColor && <p className="text-sm text-red-500 mt-1">{fieldErrors.accentColor}</p>}
             </div>
           </div>
 

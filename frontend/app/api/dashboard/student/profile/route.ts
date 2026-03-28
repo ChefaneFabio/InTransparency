@@ -43,6 +43,7 @@ export async function GET(req: NextRequest) {
           githubUrl: true,
           skills: true,
           interests: true,
+          workExperience: true,
           subscriptionTier: true,
           emailNotifications: true,
           messageNotifications: true,
@@ -209,11 +210,11 @@ export async function PATCH(req: NextRequest) {
     const userId = session.user.id
     const body = await req.json()
     const {
-      firstName, lastName, university, degree, location, linkedinUrl, githubUrl, skills, interests,
+      firstName, lastName, university, degree, graduationYear, gpa, location, linkedinUrl, githubUrl, skills, interests,
       bio, tagline, portfolioUrl, profilePublic, showLocation, showEmail, showPhone, gpaPublic,
       showLastActive, anonymousBrowsing, allowMessagesFrom, indexInSearchEngines, showProjects, blockedCompanies,
       emailNotifications, messageNotifications, jobAlertNotifications, mentorshipNotifications, marketingEmails,
-      availableFor,
+      availableFor, workExperience,
     } = body
 
     // Gate portfolioUrl behind STUDENT_PREMIUM
@@ -240,6 +241,8 @@ export async function PATCH(req: NextRequest) {
     if (lastName !== undefined) updateData.lastName = lastName
     if (university !== undefined) updateData.university = university || null
     if (degree !== undefined) updateData.degree = degree || null
+    if (graduationYear !== undefined) updateData.graduationYear = graduationYear || null
+    if (gpa !== undefined) updateData.gpa = gpa || null
     if (location !== undefined) updateData.location = location || null
     if (linkedinUrl !== undefined) updateData.linkedinUrl = linkedinUrl || null
     if (githubUrl !== undefined) updateData.githubUrl = githubUrl || null
@@ -265,6 +268,7 @@ export async function PATCH(req: NextRequest) {
     if (mentorshipNotifications !== undefined) updateData.mentorshipNotifications = mentorshipNotifications
     if (marketingEmails !== undefined) updateData.marketingEmails = marketingEmails
     if (availableFor !== undefined && ['HIRING', 'PROJECTS', 'BOTH', 'NONE'].includes(availableFor)) updateData.availableFor = availableFor
+    if (workExperience !== undefined) updateData.workExperience = workExperience
 
     const updatedUser = await prisma.user.update({
       where: { id: userId },
@@ -280,6 +284,7 @@ export async function PATCH(req: NextRequest) {
         githubUrl: true,
         skills: true,
         interests: true,
+        workExperience: true,
         bio: true,
         tagline: true,
         portfolioUrl: true,

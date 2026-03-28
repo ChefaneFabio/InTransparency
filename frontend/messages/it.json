@@ -4916,16 +4916,38 @@
     "tabs": {
       "overview": "Panoramica",
       "skills": "Competenze",
-      "projects": "Progetti"
+      "projects": "Progetti",
+      "experience": "Esperienza"
     },
     "fields": {
       "bio": "Biografia",
       "tagline": "Slogan",
       "portfolioUrl": "URL Portfolio",
-      "university": "Istituzione",
+      "university": "Universita",
       "degree": "Laurea",
       "graduationYear": "Anno di Laurea",
-      "gpa": "Media Voti"
+      "gpa": "Media Voti",
+      "location": "Posizione",
+      "interests": "Interessi",
+      "availability": "Disponibilita"
+    },
+    "availability": {
+      "available": "Disponibile",
+      "openToOffers": "Aperto a proposte",
+      "notLooking": "Non in cerca",
+      "projectsOnly": "Solo progetti"
+    },
+    "experience": {
+      "title": "Esperienza Lavorativa",
+      "description": "Aggiungi stage, lavori part-time o altre esperienze lavorative",
+      "addExperience": "Aggiungi Esperienza",
+      "company": "Azienda",
+      "role": "Ruolo / Titolo",
+      "startDate": "Data Inizio",
+      "endDate": "Data Fine",
+      "currentlyWorking": "Lavoro attualmente qui",
+      "descriptionLabel": "Descrizione",
+      "present": "Presente"
     },
     "privacy": {
       "title": "Impostazioni Privacy",
@@ -7284,7 +7306,15 @@
       "primaryColor": "Colore Primario",
       "accentColor": "Colore Accento",
       "brandingPreview": "Anteprima",
-      "brandingPreviewButton": "Scopri di piu"
+      "brandingPreviewButton": "Scopri di piu",
+      "validation": {
+        "parkNameRequired": "Il nome del parco e obbligatorio",
+        "invalidUrl": "Inserisci un URL valido (che inizi con http:// o https://)",
+        "invalidEmail": "Inserisci un indirizzo email valido",
+        "invalidHexColor": "Inserisci un colore esadecimale valido (es. #004B93)",
+        "invalidFoundedYear": "L'anno deve essere compreso tra 1900 e l'anno corrente",
+        "invalidMemberCount": "Il numero di aziende deve essere positivo"
+      }
     }
   },
   "recruiterDashboard": {
@@ -7694,6 +7724,10 @@
         "messagesDesc": "Ricevi notifiche quando ricevi nuovi messaggi",
         "searchAlerts": "Avvisi di Ricerca",
         "searchAlertsDesc": "Ricevi notifiche quando nuovi candidati corrispondono alle tue ricerche salvate"
+      },
+      "validation": {
+        "companyNameRequired": "Il nome dell'azienda e obbligatorio",
+        "invalidUrl": "Inserisci un URL valido (che inizi con http:// o https://)"
       }
     }
   },
@@ -8173,10 +8207,20 @@
       "customDomainNote": "Richiede piano Premium Embed. Contatta il supporto per configurare.",
       "preview": "Anteprima",
       "institutionNamePreview": "Nome Istituzione",
-      "learnMore": "Scopri di piu"
+      "learnMore": "Scopri di piu",
+      "validation": {
+        "nameRequired": "Il nome e obbligatorio",
+        "invalidUrl": "Inserisci un URL valido (che inizi con http:// o https://)",
+        "invalidEmail": "Inserisci un indirizzo email valido",
+        "invalidHexColor": "Inserisci un colore esadecimale valido (es. #004B93)",
+        "failedToLoad": "Impossibile caricare le impostazioni",
+        "tryAgain": "Riprova"
+      }
     },
     "institution": {
       "subtitle": "Analisi placement studenti e connessioni aziendali",
+      "failedToLoad": "Impossibile caricare i dati della dashboard",
+      "tryAgain": "Riprova",
       "getWidget": "Ottieni Widget Incorporabile",
       "totalStudents": "Studenti Totali",
       "verifiedStudents": "Studenti Verificati",
