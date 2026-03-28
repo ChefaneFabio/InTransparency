@@ -5,24 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { motion } from 'framer-motion'
-import {
-  Building2,
-  Users,
-  BookOpen,
-  Euro,
-  ArrowRight,
-  CheckCircle,
-  Landmark,
-  Factory,
-  HeartHandshake,
-  BarChart3,
-  Brain,
-  Shield,
-  Zap,
-  TrendingUp,
-  Clock,
-  Globe,
-} from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -35,19 +18,16 @@ const fadeUp = {
 
 const STEPS = [
   {
-    icon: Building2,
     title: 'Register your park',
     description:
       'Create a free tech park account. Add your member companies or invite them directly. Setup takes under 10 minutes.',
   },
   {
-    icon: Users,
     title: 'Member companies browse talent',
     description:
       'Your companies get access to AI-verified student profiles with normalized grades, skill maps, and project portfolios.',
   },
   {
-    icon: Euro,
     title: 'Pay only \u20AC10 per contact',
     description:
       'Companies pay per contact\u2014not per seat, not per year. The park pays nothing. You deliver value, they cover the cost.',
@@ -56,37 +36,31 @@ const STEPS = [
 
 const BENEFITS = [
   {
-    icon: Shield,
     title: 'Zero cost for the park',
     description:
       'You add value to your member companies at no expense. Companies pay only when they contact a candidate\u2014\u20AC10 each.',
   },
   {
-    icon: Brain,
     title: 'AI-verified talent pipeline',
     description:
       'Every student profile includes AI-analyzed grades, project work, and competency maps. No unverified CVs.',
   },
   {
-    icon: BarChart3,
     title: 'Placement analytics',
     description:
       'Track which companies hire, how fast, and from which disciplines. Prove your park\u2019s impact with real data.',
   },
   {
-    icon: Zap,
     title: 'Skill matching',
     description:
       'AI maps student competencies to company needs. Member companies find the right talent without keyword guessing.',
   },
   {
-    icon: Globe,
     title: 'Works for all park types',
     description:
       'Private, public, or mixed governance\u2014the platform adapts. No procurement overhead for public entities.',
   },
   {
-    icon: HeartHandshake,
     title: 'Strengthen member retention',
     description:
       'Offer a concrete recruiting benefit that keeps companies engaged with the park ecosystem year-round.',
@@ -95,7 +69,6 @@ const BENEFITS = [
 
 const PARK_TYPES = [
   {
-    icon: Factory,
     name: 'Kilometro Rosso',
     type: 'Private',
     location: 'Bergamo, Italy',
@@ -105,7 +78,6 @@ const PARK_TYPES = [
     borderColor: 'border-emerald-200',
   },
   {
-    icon: HeartHandshake,
     name: 'Servitec',
     type: 'Mixed',
     location: 'Bergamo, Italy',
@@ -115,7 +87,6 @@ const PARK_TYPES = [
     borderColor: 'border-amber-200',
   },
   {
-    icon: Landmark,
     name: 'NOI Techpark',
     type: 'Public',
     location: 'Bolzano, Italy',
@@ -174,7 +145,6 @@ export default function ForTechParksPage() {
             custom={0}
           >
             <Badge variant="secondary" className="mb-6 bg-white/10 text-white border-white/20">
-              <Building2 className="h-3 w-3 mr-1" />
               For Tech Parks
             </Badge>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
@@ -190,7 +160,6 @@ export default function ForTechParksPage() {
                   size="lg"
                   className="bg-white text-emerald-900 hover:bg-emerald-50 w-full sm:w-auto"
                 >
-                  <Building2 className="h-5 w-5 mr-2" />
                   Register your tech park — it&apos;s free
                 </Button>
               </Link>
@@ -216,16 +185,15 @@ export default function ForTechParksPage() {
             custom={2}
           >
             {[
-              { icon: Users, value: '2,400+', label: 'Students' },
-              { icon: Building2, value: '180+', label: 'Companies' },
-              { icon: BookOpen, value: '15', label: 'Disciplines' },
-              { icon: Euro, value: '\u20AC10', label: 'Per contact' },
+              { value: '2,400+', label: 'Students' },
+              { value: '180+', label: 'Companies' },
+              { value: '15', label: 'Disciplines' },
+              { value: '\u20AC10', label: 'Per contact' },
             ].map((stat) => (
               <div
                 key={stat.label}
                 className="text-center p-4 rounded-xl bg-white/5 border border-white/10"
               >
-                <stat.icon className="h-6 w-6 mx-auto mb-2 text-emerald-300" />
                 <p className="text-2xl font-bold">{stat.value}</p>
                 <p className="text-sm text-emerald-300">{stat.label}</p>
               </div>
@@ -246,7 +214,6 @@ export default function ForTechParksPage() {
             custom={0}
           >
             <Badge variant="outline" className="mb-4 border-emerald-200 text-emerald-700">
-              <Zap className="h-3 w-3 mr-1" />
               Simple setup
             </Badge>
             <h2 className="text-3xl font-bold text-gray-900 mb-3">How it works</h2>
@@ -256,29 +223,27 @@ export default function ForTechParksPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {STEPS.map((step, i) => (
-              <motion.div
-                key={step.title}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                custom={i + 1}
-              >
-                <Card className="h-full border-emerald-100 hover:border-emerald-300 transition-colors">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 font-bold text-lg">
-                        {i + 1}
-                      </div>
-                      <step.icon className="h-5 w-5 text-emerald-600" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
-                    <p className="text-sm text-gray-600">{step.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            {STEPS.map((step, i) => {
+              const stepNum = String(i + 1).padStart(2, '0')
+              return (
+                <motion.div
+                  key={step.title}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeUp}
+                  custom={i + 1}
+                >
+                  <Card className="h-full border-emerald-100 hover:border-emerald-300 transition-colors">
+                    <CardContent className="pt-6">
+                      <div className="text-5xl font-bold text-primary/15 mb-3">{stepNum}</div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
+                      <p className="text-sm text-gray-600">{step.description}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -312,11 +277,8 @@ export default function ForTechParksPage() {
               >
                 <Card className="h-full hover:shadow-md transition-shadow">
                   <CardContent className="pt-6">
-                    <div className="p-2 rounded-lg bg-emerald-50 w-fit mb-4">
-                      <benefit.icon className="h-5 w-5 text-emerald-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">{benefit.title}</h3>
-                    <p className="text-sm text-gray-600">{benefit.description}</p>
+                    <h3 className="text-base font-bold mb-1">{benefit.title}</h3>
+                    <p className="text-sm text-muted-foreground">{benefit.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -357,18 +319,13 @@ export default function ForTechParksPage() {
               >
                 <Card className={`h-full ${park.borderColor}`}>
                   <CardContent className="pt-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className={`p-2 rounded-lg ${park.color}`}>
-                        <park.icon className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">{park.name}</h3>
-                        <div className="flex items-center gap-2">
-                          <Badge variant="secondary" className="text-xs">
-                            {park.type}
-                          </Badge>
-                          <span className="text-xs text-gray-500">{park.location}</span>
-                        </div>
+                    <div className="mb-4">
+                      <h3 className="font-semibold text-gray-900">{park.name}</h3>
+                      <div className="flex items-center gap-2 mt-1">
+                        <Badge variant="secondary" className="text-xs">
+                          {park.type}
+                        </Badge>
+                        <span className="text-xs text-gray-500">{park.location}</span>
                       </div>
                     </div>
                     <p className="text-sm text-gray-600">{park.description}</p>
@@ -414,16 +371,10 @@ export default function ForTechParksPage() {
                       <tr className="border-b bg-gray-50">
                         <th className="text-left p-4 font-semibold text-gray-700" />
                         <th className="text-left p-4 font-semibold text-emerald-700">
-                          <div className="flex items-center gap-2">
-                            <Factory className="h-4 w-4" />
-                            Private parks
-                          </div>
+                          Private parks
                         </th>
                         <th className="text-left p-4 font-semibold text-blue-700">
-                          <div className="flex items-center gap-2">
-                            <Landmark className="h-4 w-4" />
-                            Public parks
-                          </div>
+                          Public parks
                         </th>
                       </tr>
                     </thead>
@@ -470,7 +421,6 @@ export default function ForTechParksPage() {
                   size="lg"
                   className="bg-white text-emerald-900 hover:bg-emerald-50 w-full sm:w-auto"
                 >
-                  <Building2 className="h-5 w-5 mr-2" />
                   Register your tech park
                 </Button>
               </Link>
@@ -485,15 +435,9 @@ export default function ForTechParksPage() {
               </Link>
             </div>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-emerald-200">
-              <span className="flex items-center gap-1">
-                <CheckCircle className="h-4 w-4" /> Free for parks
-              </span>
-              <span className="flex items-center gap-1">
-                <CheckCircle className="h-4 w-4" /> GDPR compliant
-              </span>
-              <span className="flex items-center gap-1">
-                <CheckCircle className="h-4 w-4" /> Live in 10 minutes
-              </span>
+              <span>Free for parks</span>
+              <span>GDPR compliant</span>
+              <span>Live in 10 minutes</span>
             </div>
             <div className="mt-6">
               <Link

@@ -3,20 +3,7 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import {
-  Compass,
-  Target,
-  TrendingUp,
-  Briefcase,
-  GraduationCap,
-  Users,
-  ArrowRight,
-  CheckCircle2,
-  BookOpen,
-  Lightbulb,
-  Building2,
-  Sparkles
-} from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
 
@@ -48,22 +35,18 @@ export default function OrientamentoPage({ params }: PageProps) {
       solutionSubtitle: 'Un approccio basato sui dati, non su opinioni',
       solutions: [
         {
-          icon: Target,
           title: 'Analisi delle Competenze',
           desc: 'Caricare i tuoi progetti e il tuo percorso di studi ci permette di identificare le tue competenze più forti'
         },
         {
-          icon: TrendingUp,
           title: 'Match con il Mercato',
           desc: 'Confrontiamo le tue competenze con quelle più richieste dalle aziende che cercano nel nostro marketplace'
         },
         {
-          icon: Briefcase,
           title: 'Opportunità Reali',
           desc: 'Vedi quali aziende stanno cercando profili come il tuo, in tempo reale'
         },
         {
-          icon: Lightbulb,
           title: 'Consigli Personalizzati',
           desc: 'Ricevi suggerimenti su quali competenze sviluppare per aumentare le tue opportunità'
         }
@@ -71,10 +54,10 @@ export default function OrientamentoPage({ params }: PageProps) {
 
       howTitle: 'Come Funziona',
       howSteps: [
-        { step: '1', title: 'Crea il Tuo Profilo', desc: 'Carica progetti, esami, esperienze' },
-        { step: '2', title: 'Analisi Automatica', desc: 'Il sistema identifica le tue competenze chiave' },
-        { step: '3', title: 'Vedi le Opportunità', desc: 'Scopri quali aziende cercano profili come il tuo' },
-        { step: '4', title: 'Ricevi Contatti', desc: 'Le aziende interessate ti contattano direttamente' }
+        { step: '01', title: 'Crea il Tuo Profilo', desc: 'Carica progetti, esami, esperienze' },
+        { step: '02', title: 'Analisi Automatica', desc: 'Il sistema identifica le tue competenze chiave' },
+        { step: '03', title: 'Vedi le Opportunità', desc: 'Scopri quali aziende cercano profili come il tuo' },
+        { step: '04', title: 'Ricevi Contatti', desc: 'Le aziende interessate ti contattano direttamente' }
       ],
 
       statsTitle: 'Perché Funziona',
@@ -87,10 +70,10 @@ export default function OrientamentoPage({ params }: PageProps) {
       pathsTitle: 'Percorsi di Carriera',
       pathsSubtitle: 'Scopri le aree con più opportunità per il tuo profilo',
       paths: [
-        { icon: '💻', title: 'Tech & Development', roles: ['Software Engineer', 'Frontend Developer', 'Data Analyst'] },
-        { icon: '📊', title: 'Business & Finance', roles: ['Business Analyst', 'Financial Controller', 'Consultant'] },
-        { icon: '🎨', title: 'Design & Creative', roles: ['UX Designer', 'Product Designer', 'Brand Manager'] },
-        { icon: '🔬', title: 'Engineering & Science', roles: ['Process Engineer', 'R&D Specialist', 'Quality Manager'] }
+        { title: 'Tech & Development', roles: ['Software Engineer', 'Frontend Developer', 'Data Analyst'] },
+        { title: 'Business & Finance', roles: ['Business Analyst', 'Financial Controller', 'Consultant'] },
+        { title: 'Design & Creative', roles: ['UX Designer', 'Product Designer', 'Brand Manager'] },
+        { title: 'Engineering & Science', roles: ['Process Engineer', 'R&D Specialist', 'Quality Manager'] }
       ],
 
       testimonialTitle: 'Storie di Successo',
@@ -123,22 +106,18 @@ export default function OrientamentoPage({ params }: PageProps) {
       solutionSubtitle: 'A data-driven approach, not opinions',
       solutions: [
         {
-          icon: Target,
           title: 'Skills Analysis',
           desc: 'Uploading your projects and study path allows us to identify your strongest skills'
         },
         {
-          icon: TrendingUp,
           title: 'Market Match',
           desc: 'We compare your skills with those most requested by companies searching in our marketplace'
         },
         {
-          icon: Briefcase,
           title: 'Real Opportunities',
           desc: 'See which companies are looking for profiles like yours, in real-time'
         },
         {
-          icon: Lightbulb,
           title: 'Personalized Advice',
           desc: 'Receive suggestions on which skills to develop to increase your opportunities'
         }
@@ -146,10 +125,10 @@ export default function OrientamentoPage({ params }: PageProps) {
 
       howTitle: 'How It Works',
       howSteps: [
-        { step: '1', title: 'Create Your Profile', desc: 'Upload projects, exams, experiences' },
-        { step: '2', title: 'Automatic Analysis', desc: 'The system identifies your key skills' },
-        { step: '3', title: 'See Opportunities', desc: 'Discover which companies are looking for profiles like yours' },
-        { step: '4', title: 'Receive Contacts', desc: 'Interested companies contact you directly' }
+        { step: '01', title: 'Create Your Profile', desc: 'Upload projects, exams, experiences' },
+        { step: '02', title: 'Automatic Analysis', desc: 'The system identifies your key skills' },
+        { step: '03', title: 'See Opportunities', desc: 'Discover which companies are looking for profiles like yours' },
+        { step: '04', title: 'Receive Contacts', desc: 'Interested companies contact you directly' }
       ],
 
       statsTitle: 'Why It Works',
@@ -162,10 +141,10 @@ export default function OrientamentoPage({ params }: PageProps) {
       pathsTitle: 'Career Paths',
       pathsSubtitle: 'Discover areas with the most opportunities for your profile',
       paths: [
-        { icon: '💻', title: 'Tech & Development', roles: ['Software Engineer', 'Frontend Developer', 'Data Analyst'] },
-        { icon: '📊', title: 'Business & Finance', roles: ['Business Analyst', 'Financial Controller', 'Consultant'] },
-        { icon: '🎨', title: 'Design & Creative', roles: ['UX Designer', 'Product Designer', 'Brand Manager'] },
-        { icon: '🔬', title: 'Engineering & Science', roles: ['Process Engineer', 'R&D Specialist', 'Quality Manager'] }
+        { title: 'Tech & Development', roles: ['Software Engineer', 'Frontend Developer', 'Data Analyst'] },
+        { title: 'Business & Finance', roles: ['Business Analyst', 'Financial Controller', 'Consultant'] },
+        { title: 'Design & Creative', roles: ['UX Designer', 'Product Designer', 'Brand Manager'] },
+        { title: 'Engineering & Science', roles: ['Process Engineer', 'R&D Specialist', 'Quality Manager'] }
       ],
 
       testimonialTitle: 'Success Stories',
@@ -195,7 +174,6 @@ export default function OrientamentoPage({ params }: PageProps) {
             transition={{ duration: 0.5 }}
           >
             <Badge variant="outline" className="mb-4 text-primary border-primary/30">
-              <Compass className="h-3 w-3 mr-1" />
               {t.badge}
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -232,9 +210,7 @@ export default function OrientamentoPage({ params }: PageProps) {
             {t.problems.map((problem, i) => (
               <Card key={i} className="border-red-200 bg-red-50/50">
                 <CardContent className="pt-6 text-center">
-                  <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-red-500 text-xl">?</span>
-                  </div>
+                  <div className="text-3xl font-bold text-red-300 mb-3">?</div>
                   <h3 className="font-semibold text-gray-900 mb-2">{problem.title}</h3>
                   <p className="text-sm text-gray-600">{problem.desc}</p>
                 </CardContent>
@@ -253,14 +229,12 @@ export default function OrientamentoPage({ params }: PageProps) {
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             {t.solutions.map((solution, i) => {
-              const Icon = solution.icon
+              const stepNum = String(i + 1).padStart(2, '0')
               return (
                 <Card key={i} className="border-primary/20 bg-primary/5/30">
                   <CardContent className="pt-6">
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Icon className="h-6 w-6 text-primary" />
-                      </div>
+                      <div className="text-4xl font-bold text-primary/15 flex-shrink-0">{stepNum}</div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-2">{solution.title}</h3>
                         <p className="text-sm text-gray-600">{solution.desc}</p>
@@ -283,16 +257,11 @@ export default function OrientamentoPage({ params }: PageProps) {
           <div className="grid md:grid-cols-4 gap-6">
             {t.howSteps.map((step, i) => (
               <div key={i} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                <div className="text-5xl font-bold text-primary/15 mb-3">
                   {step.step}
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2">{step.title}</h3>
                 <p className="text-sm text-gray-600">{step.desc}</p>
-                {i < t.howSteps.length - 1 && (
-                  <div className="hidden md:block absolute transform translate-x-full -translate-y-8">
-                    <ArrowRight className="h-6 w-6 text-gray-300" />
-                  </div>
-                )}
               </div>
             ))}
           </div>
@@ -330,12 +299,11 @@ export default function OrientamentoPage({ params }: PageProps) {
             {t.paths.map((path, i) => (
               <Card key={i} className="hover:shadow-lg transition-shadow">
                 <CardContent className="pt-6">
-                  <div className="text-4xl mb-4">{path.icon}</div>
                   <h3 className="font-semibold text-gray-900 mb-3">{path.title}</h3>
                   <ul className="space-y-2">
                     {path.roles.map((role, j) => (
                       <li key={j} className="text-sm text-gray-600 flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-primary" />
+                        <span className="text-primary font-bold">--</span>
                         {role}
                       </li>
                     ))}
@@ -355,7 +323,6 @@ export default function OrientamentoPage({ params }: PageProps) {
           </div>
           <Card className="bg-gradient-to-r from-primary/5 to-purple-50 border-primary/20">
             <CardContent className="pt-8 pb-8 text-center">
-              <Sparkles className="h-8 w-8 text-primary mx-auto mb-4" />
               <blockquote className="text-lg text-gray-700 italic mb-6">
                 "{t.testimonial.quote}"
               </blockquote>

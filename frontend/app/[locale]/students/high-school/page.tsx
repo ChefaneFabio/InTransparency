@@ -7,18 +7,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import {
-  CheckCircle,
-  ArrowRight,
-  Briefcase,
-  Shield,
-  BookOpen,
-  CalendarDays,
-  FileCheck,
-  Star,
-  Users,
-  TrendingUp
-} from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Transparenty } from '@/components/mascot/Transparenty'
 
@@ -77,35 +66,17 @@ export default function HighSchoolStudentsPage() {
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                {
-                  icon: FileCheck,
-                  title: t('card1Title'),
-                  text: t('card1Text'),
-                },
-                {
-                  icon: Star,
-                  title: t('card2Title'),
-                  text: t('card2Text'),
-                },
-                {
-                  icon: Briefcase,
-                  title: t('card3Title'),
-                  text: t('card3Text'),
-                },
-              ].map((item, i) => {
-                const Icon = item.icon
-                return (
-                  <Card key={i} className="hover:shadow-md transition-shadow">
-                    <CardContent className="p-6 text-center">
-                      <div className="bg-primary/10 p-3 rounded-full w-14 h-14 mx-auto mb-4 flex items-center justify-center">
-                        <Icon className="h-7 w-7 text-primary" />
-                      </div>
-                      <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground">{item.text}</p>
-                    </CardContent>
-                  </Card>
-                )
-              })}
+                { title: t('card1Title'), text: t('card1Text') },
+                { title: t('card2Title'), text: t('card2Text') },
+                { title: t('card3Title'), text: t('card3Text') },
+              ].map((item, i) => (
+                <Card key={i} className="hover:shadow-md transition-shadow">
+                  <CardContent className="p-6 text-center">
+                    <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground">{item.text}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </motion.div>
 
@@ -129,8 +100,8 @@ export default function HighSchoolStudentsPage() {
                     { step: '4', title: t('step4Title'), desc: t('step4Desc') },
                   ].map((item) => (
                     <div key={item.step} className="text-center">
-                      <div className="bg-white/20 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-xl font-bold">{item.step}</span>
+                      <div className="text-5xl font-bold text-white/15 mb-2">
+                        {item.step.padStart(2, '0')}
                       </div>
                       <h4 className="font-semibold mb-1">{item.title}</h4>
                       <p className="text-sm text-white/80">{item.desc}</p>
@@ -159,39 +130,26 @@ export default function HighSchoolStudentsPage() {
                     <p className="text-muted-foreground mb-4">
                       {t('pctoDescription')}
                     </p>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex items-start">
-                        <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                        <span>{t('pctoCheck1')}</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                        <span>{t('pctoCheck2')}</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                        <span>{t('pctoCheck3')}</span>
-                      </li>
+                    <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
+                      <li>{t('pctoCheck1')}</li>
+                      <li>{t('pctoCheck2')}</li>
+                      <li>{t('pctoCheck3')}</li>
                     </ul>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <Card className="text-center p-4">
-                      <CalendarDays className="h-7 w-7 text-primary mx-auto mb-2" />
                       <div className="text-2xl font-bold">210h</div>
                       <div className="text-xs text-muted-foreground">{t('technicalInstitutes')}</div>
                     </Card>
                     <Card className="text-center p-4">
-                      <BookOpen className="h-7 w-7 text-primary mx-auto mb-2" />
                       <div className="text-2xl font-bold">90h</div>
                       <div className="text-xs text-muted-foreground">{t('licei')}</div>
                     </Card>
                     <Card className="text-center p-4">
-                      <Shield className="h-7 w-7 text-primary mx-auto mb-2" />
                       <div className="text-2xl font-bold">100%</div>
                       <div className="text-xs text-muted-foreground">{t('verified')}</div>
                     </Card>
                     <Card className="text-center p-4">
-                      <TrendingUp className="h-7 w-7 text-primary mx-auto mb-2" />
                       <div className="text-2xl font-bold">Free</div>
                       <div className="text-xs text-muted-foreground">{t('freeForever')}</div>
                     </Card>

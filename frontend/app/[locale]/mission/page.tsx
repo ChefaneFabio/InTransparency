@@ -8,7 +8,6 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
 import { BRAND_IMAGES } from '@/lib/brand-images'
-import { Target, BadgeCheck, Heart, Scale, Award, DollarSign, Users, Building2, GraduationCap, Briefcase, TrendingUp, Compass } from 'lucide-react'
 import { useSegment } from '@/lib/segment-context'
 import { FloatingTransparenty } from '@/components/mascot/FloatingTransparenty'
 
@@ -61,9 +60,6 @@ export default function MissionPage() {
 
   // Detect language from translations
   const isItalian = t('hero.badge') === 'La Nostra Missione'
-
-  const positionIcons = [Target, Scale, Heart, BadgeCheck]
-  const valueIcons = [Compass, Award, Users, Target]
 
   return (
     <div className="min-h-screen hero-bg">
@@ -125,28 +121,25 @@ export default function MissionPage() {
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               {[
                 {
-                  icon: GraduationCap,
                   title: isItalian ? 'Per gli Studenti' : 'For Students',
                   text: isItalian
                     ? 'Portfolio verificati che mostrano ciò che sai fare davvero, non solo dove hai studiato.'
                     : 'Verified portfolios that showcase what you can actually do, not just where you studied.',
                 },
                 {
-                  icon: Building2,
                   title: isItalian ? 'Per le Istituzioni' : 'For Institutions',
                   text: isItalian
                     ? 'Strumenti gratuiti per verificare competenze, collegare studenti alle aziende e tracciare i risultati.'
                     : 'Free tools to verify skills, connect students to employers, and track placement outcomes.',
                 },
                 {
-                  icon: Briefcase,
                   title: isItalian ? 'Per le Aziende' : 'For Companies',
                   text: isItalian
                     ? 'Accesso a talenti con competenze verificate dalle istituzioni. Assumi con fiducia.'
                     : 'Access talent with institution-verified skills. Hire with confidence.',
                 },
               ].map((item, i) => {
-                const Icon = item.icon
+                const stepNum = String(i + 1).padStart(2, '0')
                 return (
                   <motion.div
                     key={i}
@@ -157,9 +150,7 @@ export default function MissionPage() {
                   >
                     <Card className="h-full text-center">
                       <CardContent className="p-6">
-                        <div className="inline-flex p-3 rounded-xl bg-primary/10 mb-4">
-                          <Icon className="h-6 w-6 text-primary" />
-                        </div>
+                        <div className="text-5xl font-bold text-primary/15 mb-3">{stepNum}</div>
                         <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
                         <p className="text-sm text-muted-foreground">{item.text}</p>
                       </CardContent>
@@ -191,7 +182,7 @@ export default function MissionPage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               {[0, 1, 2, 3].map((i) => {
-                const Icon = positionIcons[i]
+                const stepNum = String(i + 1).padStart(2, '0')
                 return (
                   <motion.div
                     key={i}
@@ -202,9 +193,7 @@ export default function MissionPage() {
                   >
                     <Card className="h-full hover:shadow-md transition-shadow">
                       <CardContent className="p-6">
-                        <div className="inline-flex p-3 rounded-xl bg-primary/10 mb-4">
-                          <Icon className="h-6 w-6 text-primary" />
-                        </div>
+                        <div className="text-5xl font-bold text-primary/15 mb-3">{stepNum}</div>
                         <h3 className="text-lg font-semibold text-foreground mb-2">
                           {t(`position.points.${i}.title`)}
                         </h3>
@@ -237,7 +226,7 @@ export default function MissionPage() {
 
             <div className="grid md:grid-cols-2 gap-6">
               {[0, 1, 2, 3].map((i) => {
-                const Icon = valueIcons[i]
+                const stepNum = String(i + 1).padStart(2, '0')
                 return (
                   <motion.div
                     key={i}
@@ -249,9 +238,7 @@ export default function MissionPage() {
                     <Card className="h-full">
                       <CardContent className="p-6">
                         <div className="flex items-start gap-4">
-                          <div className="inline-flex p-3 rounded-xl bg-primary/10 flex-shrink-0">
-                            <Icon className="h-5 w-5 text-primary" />
-                          </div>
+                          <div className="text-4xl font-bold text-primary/15 flex-shrink-0">{stepNum}</div>
                           <div>
                             <h3 className="font-semibold text-foreground mb-2">
                               {t(`values.items.${i}.title`)}

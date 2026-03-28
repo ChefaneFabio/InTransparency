@@ -485,7 +485,7 @@ export default function CandidatesPage() {
                       )}
                     </div>
                     <Badge variant="outline" className="text-xs">
-                      {DISCIPLINES.find(d => d.value === candidate.projects[0].discipline)?.label || candidate.projects[0].discipline}
+                      {candidate.projects[0].discipline}
                     </Badge>
                   </div>
                 )}

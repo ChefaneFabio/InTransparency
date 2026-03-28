@@ -10,18 +10,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { motion } from 'framer-motion'
-import {
-  GraduationCap,
-  BarChart3,
-  Globe,
-  FileStack,
-  ArrowRight,
-  CheckCircle,
-  Building2,
-  Users,
-  Target,
-  Zap,
-} from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { FAQ } from '@/components/engagement/FAQ'
 import { TypewriterText } from '@/components/engagement/TypewriterText'
 import { StickyCTA } from '@/components/engagement/StickyCTA'
@@ -89,7 +78,6 @@ export default function ForUniversitiesPage() {
         <div className="relative container max-w-6xl mx-auto px-4 py-16 lg:py-20">
           <div className="text-center max-w-3xl mx-auto">
             <Badge variant="secondary" className="mb-6 bg-white/10 text-white border-white/20">
-              <Building2 className="h-3 w-3 mr-1" />
               {t('hero.badge')}
             </Badge>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
@@ -101,14 +89,13 @@ export default function ForUniversitiesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/auth/register?role=UNIVERSITY">
                 <Button size="lg" className="bg-white text-blue-900 hover:bg-primary/5 w-full sm:w-auto">
-                  <GraduationCap className="h-5 w-5 mr-2" />
                   {t('hero.registerCta')}
+                  <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </Link>
               <Link href="/contact?subject=university-demo">
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto">
                   {t('hero.demoCta')}
-                  <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </Link>
             </div>
@@ -117,13 +104,12 @@ export default function ForUniversitiesPage() {
           {/* Stats */}
           <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: Users, value: 2400, suffix: '+', label: t('hero.stats.students') },
-              { icon: Building2, value: 180, suffix: '+', label: t('hero.stats.companies') },
-              { icon: Globe, value: 6, suffix: '', label: t('hero.stats.countries') },
-              { icon: Target, value: 87, suffix: '%', label: t('hero.stats.placementRate') },
+              { value: 2400, suffix: '+', label: t('hero.stats.students') },
+              { value: 180, suffix: '+', label: t('hero.stats.companies') },
+              { value: 6, suffix: '', label: t('hero.stats.countries') },
+              { value: 87, suffix: '%', label: t('hero.stats.placementRate') },
             ].map((stat) => (
               <div key={stat.label} className="text-center p-4 rounded-xl bg-white/5 border border-white/10">
-                <stat.icon className="h-6 w-6 mx-auto mb-2 text-blue-300" />
                 <p className="text-2xl font-bold">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 </p>
@@ -188,7 +174,6 @@ export default function ForUniversitiesPage() {
             className="text-center mb-14"
           >
             <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-medium">
-              <Zap className="h-3.5 w-3.5 mr-1.5" />
               {t('demos.badge')}
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
@@ -207,14 +192,9 @@ export default function ForUniversitiesPage() {
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5 }}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2.5 rounded-xl bg-primary/10">
-                  <FileStack className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold">{t('demos.decisionPack.title')}</h3>
-                  <p className="text-sm text-gray-600">{t('demos.decisionPack.description')}</p>
-                </div>
+              <div className="mb-6">
+                <h3 className="text-xl font-bold">{t('demos.decisionPack.title')}</h3>
+                <p className="text-sm text-gray-600">{t('demos.decisionPack.description')}</p>
               </div>
               <div className="max-w-2xl">
                 <DecisionPackPreview data={sampleDecisionPack} />
@@ -228,14 +208,9 @@ export default function ForUniversitiesPage() {
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2.5 rounded-xl bg-primary/10">
-                  <Globe className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold">{t('demos.gradeNormalizer.title')}</h3>
-                  <p className="text-sm text-gray-600">{t('demos.gradeNormalizer.description')}</p>
-                </div>
+              <div className="mb-6">
+                <h3 className="text-xl font-bold">{t('demos.gradeNormalizer.title')}</h3>
+                <p className="text-sm text-gray-600">{t('demos.gradeNormalizer.description')}</p>
               </div>
               <div className="max-w-xl">
                 <GradeNormalizerDemo />
@@ -249,14 +224,9 @@ export default function ForUniversitiesPage() {
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2.5 rounded-xl bg-primary/10">
-                  <BarChart3 className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold">{t('demos.analytics.title')}</h3>
-                  <p className="text-sm text-gray-600">{t('demos.analytics.description')}</p>
-                </div>
+              <div className="mb-6">
+                <h3 className="text-xl font-bold">{t('demos.analytics.title')}</h3>
+                <p className="text-sm text-gray-600">{t('demos.analytics.description')}</p>
               </div>
               <div className="max-w-2xl">
                 <AnalyticsPreview />
@@ -278,14 +248,9 @@ export default function ForUniversitiesPage() {
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <Card className="border-primary/20">
               <CardContent className="pt-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-full bg-primary/10">
-                    <GraduationCap className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold">{t('socialProof.unibg.title')}</h3>
-                    <p className="text-xs text-gray-500">{t('socialProof.unibg.subtitle')}</p>
-                  </div>
+                <div className="mb-4">
+                  <h3 className="font-semibold">{t('socialProof.unibg.title')}</h3>
+                  <p className="text-xs text-gray-500">{t('socialProof.unibg.subtitle')}</p>
                 </div>
                 <p className="text-sm text-gray-700 mb-4">{t('socialProof.unibg.description')}</p>
                 <div className="flex gap-2">
@@ -297,14 +262,9 @@ export default function ForUniversitiesPage() {
 
             <Card className="border-amber-200">
               <CardContent className="pt-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-full bg-amber-100">
-                    <Zap className="h-5 w-5 text-amber-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold">{t('socialProof.startCup.title')}</h3>
-                    <p className="text-xs text-gray-500">{t('socialProof.startCup.subtitle')}</p>
-                  </div>
+                <div className="mb-4">
+                  <h3 className="font-semibold">{t('socialProof.startCup.title')}</h3>
+                  <p className="text-xs text-gray-500">{t('socialProof.startCup.subtitle')}</p>
                 </div>
                 <p className="text-sm text-gray-700 mb-4">{t('socialProof.startCup.description')}</p>
                 <div className="flex gap-2">
@@ -348,8 +308,8 @@ export default function ForUniversitiesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/auth/register?role=UNIVERSITY">
               <Button size="lg" className="bg-white text-blue-900 hover:bg-primary/5 w-full sm:w-auto">
-                <GraduationCap className="h-5 w-5 mr-2" />
                 {t('cta.registerButton')}
+                <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
             </Link>
             <Link href="/contact?subject=university-demo">
@@ -359,9 +319,9 @@ export default function ForUniversitiesPage() {
             </Link>
           </div>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-blue-200">
-            <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4" /> {t('cta.features.free')}</span>
-            <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4" /> {t('cta.features.gdpr')}</span>
-            <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4" /> {t('cta.features.setup')}</span>
+            <span>{t('cta.features.free')}</span>
+            <span>{t('cta.features.gdpr')}</span>
+            <span>{t('cta.features.setup')}</span>
           </div>
         </div>
       </section>

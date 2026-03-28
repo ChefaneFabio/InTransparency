@@ -7,7 +7,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Check, Building2, GraduationCap, ArrowRight, School, SearchCheck, Search, BadgeCheck, BarChart3, Briefcase, BookOpen, Sparkles } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Link } from '@/navigation'
 import { motion } from 'framer-motion'
 
@@ -47,7 +47,6 @@ export default function PricingPage() {
             {/* Segment Selector */}
             <div className="inline-flex bg-white rounded-full p-1.5 shadow-lg border border-gray-200">
               {(['companies', 'students', 'institutes'] as Segment[]).map((segment) => {
-                const Icon = segment === 'students' ? GraduationCap : segment === 'institutes' ? School : Building2
                 return (
                   <button
                     key={segment}
@@ -58,7 +57,6 @@ export default function PricingPage() {
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                     }`}
                   >
-                    <Icon className="h-4 w-4" />
                     {t(`hero.segments.${segment}`)}
                   </button>
                 )
@@ -132,7 +130,6 @@ export default function PricingPage() {
                         </div>
                         <div className="md:w-72 flex-shrink-0">
                           <div className="bg-white rounded-2xl p-6 shadow-lg border border-primary/20 text-center">
-                            <Sparkles className="h-10 w-10 text-primary mx-auto mb-3" />
                             <div className="text-2xl font-bold text-gray-900 mb-1">{t('company.cardTitle')}</div>
                             <p className="text-sm text-gray-600 mb-4">{t('company.cardNote')}</p>
                           </div>
@@ -144,11 +141,10 @@ export default function PricingPage() {
                   {/* Value features grid */}
                   <div className="grid md:grid-cols-3 gap-6">
                     {[
-                      { icon: Search, featureKey: 'company.features.discover' },
-                      { icon: BadgeCheck, featureKey: 'company.features.verify' },
-                      { icon: SearchCheck, featureKey: 'company.features.connect' },
+                      { featureKey: 'company.features.discover', num: '01' },
+                      { featureKey: 'company.features.verify', num: '02' },
+                      { featureKey: 'company.features.connect', num: '03' },
                     ].map((item, index) => {
-                      const Icon = item.icon
                       return (
                         <motion.div
                           key={item.featureKey}
@@ -158,9 +154,7 @@ export default function PricingPage() {
                         >
                           <Card className="h-full bg-white/80 hover:shadow-lg transition-shadow">
                             <CardHeader>
-                              <div className="p-3 bg-primary/10 rounded-lg w-fit mb-3">
-                                <Icon className="h-6 w-6 text-primary" />
-                              </div>
+                              <div className="text-5xl font-bold text-primary/15 mb-3">{item.num}</div>
                               <CardTitle className="text-lg">{t(`${item.featureKey}.title`)}</CardTitle>
                             </CardHeader>
                             <CardContent>
@@ -168,7 +162,7 @@ export default function PricingPage() {
                               <ul className="space-y-2">
                                 {[0, 1, 2].map((idx) => (
                                   <li key={idx} className="flex items-start text-sm">
-                                    <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0 mt-0.5" />
+                                    <span className="text-primary font-bold mr-2 mt-0.5">--</span>
                                     <span className="text-gray-700">{t(`${item.featureKey}.items.${idx}`)}</span>
                                   </li>
                                 ))}
@@ -209,7 +203,6 @@ export default function PricingPage() {
                         </div>
                         <div className="md:w-72 flex-shrink-0">
                           <div className="bg-white rounded-2xl p-6 shadow-lg border border-primary/20 text-center">
-                            <GraduationCap className="h-10 w-10 text-primary mx-auto mb-3" />
                             <div className="text-2xl font-bold text-gray-900 mb-1">{t('student.cardTitle')}</div>
                             <p className="text-sm text-gray-600">{t('student.cardNote')}</p>
                           </div>
@@ -221,11 +214,10 @@ export default function PricingPage() {
                   {/* Value features grid */}
                   <div className="grid md:grid-cols-3 gap-6">
                     {[
-                      { icon: BookOpen, featureKey: 'student.features.portfolio' },
-                      { icon: BadgeCheck, featureKey: 'student.features.verification' },
-                      { icon: Briefcase, featureKey: 'student.features.discovery' },
+                      { featureKey: 'student.features.portfolio', num: '01' },
+                      { featureKey: 'student.features.verification', num: '02' },
+                      { featureKey: 'student.features.discovery', num: '03' },
                     ].map((item, index) => {
-                      const Icon = item.icon
                       return (
                         <motion.div
                           key={item.featureKey}
@@ -235,9 +227,7 @@ export default function PricingPage() {
                         >
                           <Card className="h-full bg-white/80 hover:shadow-lg transition-shadow">
                             <CardHeader>
-                              <div className="p-3 bg-primary/10 rounded-lg w-fit mb-3">
-                                <Icon className="h-6 w-6 text-primary" />
-                              </div>
+                              <div className="text-5xl font-bold text-primary/15 mb-3">{item.num}</div>
                               <CardTitle className="text-lg">{t(`${item.featureKey}.title`)}</CardTitle>
                             </CardHeader>
                             <CardContent>
@@ -245,7 +235,7 @@ export default function PricingPage() {
                               <ul className="space-y-2">
                                 {[0, 1, 2].map((idx) => (
                                   <li key={idx} className="flex items-start text-sm">
-                                    <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0 mt-0.5" />
+                                    <span className="text-primary font-bold mr-2 mt-0.5">--</span>
                                     <span className="text-gray-700">{t(`${item.featureKey}.items.${idx}`)}</span>
                                   </li>
                                 ))}
@@ -286,7 +276,6 @@ export default function PricingPage() {
                         </div>
                         <div className="md:w-72 flex-shrink-0">
                           <div className="bg-white rounded-2xl p-6 shadow-lg border border-primary/20 text-center">
-                            <School className="h-10 w-10 text-primary mx-auto mb-3" />
                             <div className="text-2xl font-bold text-gray-900 mb-1">{t('institute.cardTitle')}</div>
                             <p className="text-sm text-gray-600">{t('institute.cardNote')}</p>
                           </div>
@@ -298,11 +287,10 @@ export default function PricingPage() {
                   {/* Value features grid */}
                   <div className="grid md:grid-cols-3 gap-6">
                     {[
-                      { icon: BadgeCheck, featureKey: 'institute.features.verify' },
-                      { icon: BarChart3, featureKey: 'institute.features.track' },
-                      { icon: SearchCheck, featureKey: 'institute.features.connect' },
+                      { featureKey: 'institute.features.verify', num: '01' },
+                      { featureKey: 'institute.features.track', num: '02' },
+                      { featureKey: 'institute.features.connect', num: '03' },
                     ].map((item, index) => {
-                      const Icon = item.icon
                       return (
                         <motion.div
                           key={item.featureKey}
@@ -312,9 +300,7 @@ export default function PricingPage() {
                         >
                           <Card className="h-full bg-white/80 hover:shadow-lg transition-shadow">
                             <CardHeader>
-                              <div className="p-3 bg-primary/10 rounded-lg w-fit mb-3">
-                                <Icon className="h-6 w-6 text-primary" />
-                              </div>
+                              <div className="text-5xl font-bold text-primary/15 mb-3">{item.num}</div>
                               <CardTitle className="text-lg">{t(`${item.featureKey}.title`)}</CardTitle>
                             </CardHeader>
                             <CardContent>
@@ -322,7 +308,7 @@ export default function PricingPage() {
                               <ul className="space-y-2">
                                 {[0, 1, 2].map((idx) => (
                                   <li key={idx} className="flex items-start text-sm">
-                                    <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0 mt-0.5" />
+                                    <span className="text-primary font-bold mr-2 mt-0.5">--</span>
                                     <span className="text-gray-700">{t(`${item.featureKey}.items.${idx}`)}</span>
                                   </li>
                                 ))}

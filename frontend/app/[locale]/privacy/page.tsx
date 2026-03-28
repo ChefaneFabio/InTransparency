@@ -8,23 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
-  Shield,
-  Lock,
-  Eye,
-  EyeOff,
-  Key,
-  Database,
-  Users,
-  Building2,
-  GraduationCap,
-  CheckCircle,
-  AlertCircle,
-  Download,
-  Trash2,
-  FileText,
-  Mail,
   ArrowRight,
-  Info
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Link } from '@/navigation'
@@ -37,7 +21,6 @@ export default function PrivacyPage() {
 
   const dataAccessLevels = {
     student: {
-      icon: GraduationCap,
       title: 'Student Data Control',
       description: 'You own your data. You decide what to share and when.',
       controls: [
@@ -55,7 +38,6 @@ export default function PrivacyPage() {
       ]
     },
     university: {
-      icon: Building2,
       title: 'University Data Access',
       description: 'Limited access for verification purposes only.',
       controls: [
@@ -73,7 +55,6 @@ export default function PrivacyPage() {
       ]
     },
     company: {
-      icon: Users,
       title: 'Company Data Access',
       description: 'Search freely, pay to unlock full contact details.',
       controls: [
@@ -94,37 +75,31 @@ export default function PrivacyPage() {
 
   const gdprRights = [
     {
-      icon: Eye,
       title: 'Right to Access',
       description: 'Request a copy of all your personal data we hold, in machine-readable format.',
       action: 'Export My Data'
     },
     {
-      icon: Trash2,
       title: 'Right to Erasure',
       description: 'Delete your account and all associated data permanently within 30 days.',
       action: 'Delete Account'
     },
     {
-      icon: Lock,
       title: 'Right to Rectification',
       description: 'Correct or update any inaccurate personal information at any time.',
       action: 'Edit Profile'
     },
     {
-      icon: EyeOff,
       title: 'Right to Restrict Processing',
       description: 'Limit how we process your data while maintaining your account.',
       action: 'Privacy Settings'
     },
     {
-      icon: Download,
       title: 'Right to Data Portability',
       description: 'Transfer your data to another service in a structured format.',
       action: 'Download & Transfer'
     },
     {
-      icon: AlertCircle,
       title: 'Right to Object',
       description: 'Object to processing of your data for marketing or other purposes.',
       action: 'Manage Preferences'
@@ -132,7 +107,6 @@ export default function PrivacyPage() {
   ]
 
   const currentStakeholder = dataAccessLevels[selectedStakeholder]
-  const Icon = currentStakeholder.icon
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -154,7 +128,6 @@ export default function PrivacyPage() {
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
               <Badge className="bg-primary text-white border-0 px-6 py-2">
-                <Shield className="inline h-4 w-4 mr-2" />
                 {t('hero.badge')}
               </Badge>
             </motion.div>
@@ -169,15 +142,12 @@ export default function PrivacyPage() {
 
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <Badge variant="outline" className="text-sm px-4 py-2">
-                <CheckCircle className="inline h-4 w-4 mr-2 text-primary" />
                 EU GDPR Compliant
               </Badge>
               <Badge variant="outline" className="text-sm px-4 py-2">
-                <CheckCircle className="inline h-4 w-4 mr-2 text-primary" />
                 End-to-End Encryption
               </Badge>
               <Badge variant="outline" className="text-sm px-4 py-2">
-                <CheckCircle className="inline h-4 w-4 mr-2 text-primary" />
                 Data Portability
               </Badge>
             </div>
@@ -202,7 +172,6 @@ export default function PrivacyPage() {
             <div className="flex justify-center mb-12">
               <div className="inline-flex bg-white rounded-full p-1.5 shadow-lg border border-gray-200">
                 {(['student', 'university', 'company'] as Stakeholder[]).map((stakeholder) => {
-                  const StakeholderIcon = dataAccessLevels[stakeholder].icon
                   return (
                     <button
                       key={stakeholder}
@@ -213,7 +182,6 @@ export default function PrivacyPage() {
                           : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                       }`}
                     >
-                      <StakeholderIcon className="h-4 w-4" />
                       {stakeholder.charAt(0).toUpperCase() + stakeholder.slice(1)}
                     </button>
                   )
@@ -230,24 +198,16 @@ export default function PrivacyPage() {
             >
               <Card className="bg-white/80 backdrop-blur-sm border-2 border-gray-200 mb-8">
                 <CardHeader>
-                  <div className="flex items-center gap-4">
-                    <motion.div
-                      className="p-4 rounded-full bg-primary/10"
-                    >
-                      <Icon className="h-8 w-8 text-primary" />
-                    </motion.div>
-                    <div>
-                      <CardTitle className="text-2xl">{currentStakeholder.title}</CardTitle>
-                      <p className="text-gray-600 mt-1">{currentStakeholder.description}</p>
-                    </div>
+                  <div>
+                    <CardTitle className="text-2xl">{currentStakeholder.title}</CardTitle>
+                    <p className="text-gray-600 mt-1">{currentStakeholder.description}</p>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <div className="grid md:grid-cols-2 gap-8">
                     {/* What You Can Do */}
                     <div>
-                      <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                        <CheckCircle className="h-5 w-5 text-primary" />
+                      <h3 className="font-bold text-lg mb-4">
                         Access & Controls
                       </h3>
                       <ul className="space-y-3">
@@ -259,11 +219,9 @@ export default function PrivacyPage() {
                             transition={{ duration: 0.3, delay: idx * 0.05 }}
                             className="flex items-start gap-2"
                           >
-                            {control.available ? (
-                              <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                            ) : (
-                              <EyeOff className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
-                            )}
+                            <span className={`font-bold mt-0.5 ${control.available ? 'text-primary' : 'text-red-600'}`}>
+                              {control.available ? '+' : '-'}
+                            </span>
                             <span className={control.available ? 'text-gray-700' : 'text-gray-500 line-through'}>
                               {control.action}
                             </span>
@@ -274,8 +232,7 @@ export default function PrivacyPage() {
 
                     {/* Data Sharing */}
                     <div>
-                      <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                        <Database className="h-5 w-5 text-primary" />
+                      <h3 className="font-bold text-lg mb-4">
                         Data Sharing
                       </h3>
                       <div className="space-y-4">
@@ -323,92 +280,56 @@ export default function PrivacyPage() {
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <motion.div>
-                <Card className="h-full hover:shadow-lg transition-all">
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-3 rounded-full bg-primary/10">
-                        <GraduationCap className="h-6 w-6 text-primary" />
-                      </div>
-                      <CardTitle className="text-lg">1. Student Creates Profile</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 text-sm text-gray-600">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span>Student enters academic info voluntarily</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span>University verifies authenticity</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span>Data encrypted at rest and in transit</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              <motion.div>
-                <Card className="h-full hover:shadow-lg transition-all">
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-3 rounded-full bg-primary/10">
-                        <Eye className="h-6 w-6 text-primary" />
-                      </div>
-                      <CardTitle className="text-lg">2. Companies Browse</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 text-sm text-gray-600">
-                      <li className="flex items-start gap-2">
-                        <EyeOff className="h-4 w-4 text-orange-600 mt-0.5 flex-shrink-0" />
-                        <span>See initials only (e.g., "M.R.")</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <Eye className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span>See university, courses, grades</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <EyeOff className="h-4 w-4 text-orange-600 mt-0.5 flex-shrink-0" />
-                        <span>Cannot see email, phone, full name</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              <motion.div>
-                <Card className="h-full hover:shadow-lg transition-all">
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-3 rounded-full bg-primary/10">
-                        <Key className="h-6 w-6 text-primary" />
-                      </div>
-                      <CardTitle className="text-lg">3. Contact Unlock</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 text-sm text-gray-600">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span>Company pays €10 to unlock contact</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span>Student gets notified immediately</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span>Student can block future contact</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              {[
+                {
+                  num: '01',
+                  title: '1. Student Creates Profile',
+                  items: [
+                    { text: 'Student enters academic info voluntarily', positive: true },
+                    { text: 'University verifies authenticity', positive: true },
+                    { text: 'Data encrypted at rest and in transit', positive: true },
+                  ]
+                },
+                {
+                  num: '02',
+                  title: '2. Companies Browse',
+                  items: [
+                    { text: 'See initials only (e.g., "M.R.")', positive: false },
+                    { text: 'See university, courses, grades', positive: true },
+                    { text: 'Cannot see email, phone, full name', positive: false },
+                  ]
+                },
+                {
+                  num: '03',
+                  title: '3. Contact Unlock',
+                  items: [
+                    { text: 'Company pays €10 to unlock contact', positive: true },
+                    { text: 'Student gets notified immediately', positive: true },
+                    { text: 'Student can block future contact', positive: true },
+                  ]
+                }
+              ].map((card, cardIdx) => (
+                <motion.div key={cardIdx}>
+                  <Card className="h-full hover:shadow-lg transition-all">
+                    <CardHeader>
+                      <div className="text-5xl font-bold text-primary/15 mb-3">{card.num}</div>
+                      <CardTitle className="text-lg">{card.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2 text-sm text-gray-600">
+                        {card.items.map((item, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <span className={`font-bold mt-0.5 ${item.positive ? 'text-primary' : 'text-orange-600'}`}>
+                              {item.positive ? '+' : '-'}
+                            </span>
+                            <span>{item.text}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 
@@ -429,7 +350,7 @@ export default function PrivacyPage() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {gdprRights.map((right, idx) => {
-                const RightIcon = right.icon
+                const stepNum = String(idx + 1).padStart(2, '0')
                 return (
                   <motion.div
                     key={idx}
@@ -440,13 +361,7 @@ export default function PrivacyPage() {
                   >
                     <Card className="h-full hover:shadow-lg transition-all bg-white/90 backdrop-blur-sm">
                       <CardHeader>
-                        <motion.div
-                          className="p-3 rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mb-3"
-                          whileHover={{ rotate: 360, scale: 1.1 }}
-                          transition={{ duration: 0.6 }}
-                        >
-                          <RightIcon className="h-6 w-6 text-primary" />
-                        </motion.div>
+                        <div className="text-5xl font-bold text-primary/15 mb-3">{stepNum}</div>
                         <CardTitle className="text-lg">{right.title}</CardTitle>
                       </CardHeader>
                       <CardContent>
@@ -481,12 +396,12 @@ export default function PrivacyPage() {
 
                 <div className="grid md:grid-cols-4 gap-6">
                   {[
-                    { icon: Lock, title: 'AES-256 Encryption', desc: 'Military-grade encryption at rest' },
-                    { icon: Shield, title: 'TLS 1.3', desc: 'Secure data transmission' },
-                    { icon: Database, title: 'EU Servers Only', desc: 'Data never leaves EU' },
-                    { icon: Key, title: '2FA Available', desc: 'Two-factor authentication' },
+                    { title: 'AES-256 Encryption', desc: 'Military-grade encryption at rest' },
+                    { title: 'TLS 1.3', desc: 'Secure data transmission' },
+                    { title: 'EU Servers Only', desc: 'Data never leaves EU' },
+                    { title: '2FA Available', desc: 'Two-factor authentication' },
                   ].map((measure, idx) => {
-                    const MeasureIcon = measure.icon
+                    const stepNum = String(idx + 1).padStart(2, '0')
                     return (
                       <motion.div
                         key={idx}
@@ -496,11 +411,7 @@ export default function PrivacyPage() {
                         transition={{ duration: 0.5, delay: idx * 0.1 }}
                         className="text-center"
                       >
-                        <motion.div
-                          className="bg-white/20 backdrop-blur-sm rounded-full p-4 w-16 h-16 flex items-center justify-center mx-auto mb-3"
-                        >
-                          <MeasureIcon className="h-8 w-8 text-white" />
-                        </motion.div>
+                        <div className="text-5xl font-bold text-white/20 mb-3">{stepNum}</div>
                         <h3 className="font-bold mb-1">{measure.title}</h3>
                         <p className="text-sm text-white/90">{measure.desc}</p>
                       </motion.div>
@@ -520,7 +431,6 @@ export default function PrivacyPage() {
           >
             <Card className="border-2 border-primary/20 bg-primary/5">
               <CardContent className="p-8 text-center">
-                <Mail className="h-12 w-12 text-primary mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
                   {t('contact.title')}
                 </h3>
@@ -530,7 +440,6 @@ export default function PrivacyPage() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button className="bg-primary hover:bg-primary/90" asChild>
                     <Link href="mailto:institutions@intransparency.it">
-                      <Mail className="h-4 w-4 mr-2" />
                       institutions@intransparency.it
                     </Link>
                   </Button>

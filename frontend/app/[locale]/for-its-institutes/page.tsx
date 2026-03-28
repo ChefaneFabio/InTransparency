@@ -8,30 +8,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import {
-  Shield,
-  Target,
-  BarChart3,
-  CheckCircle,
-  ArrowRight,
-  Users,
-  TrendingUp,
-  AlertTriangle,
-  Zap,
-  Database,
-  Award,
-  Briefcase,
-  Code,
-  Hammer,
-  Palette,
-  Search,
-  Euro,
-  Clock,
-  FileCheck,
-  Building2,
-  GraduationCap,
-  Sparkles
-} from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const itsAcademies = [
@@ -68,8 +45,6 @@ const itsAcademies = [
 const itsFocusAreas = [
   {
     area: 'Meccanica e Meccatronica',
-    icon: Hammer,
-    color: 'from-orange-500 to-red-500',
     skills: ['CAD/CAM', 'CNC Programming', 'Industry 4.0', 'Maintenance'],
     companies: ['Leonardo', 'FCA', 'Siemens', 'Bosch'],
     avgPlacement: 87,
@@ -77,8 +52,6 @@ const itsFocusAreas = [
   },
   {
     area: 'ICT e Tecnologie Digitali',
-    icon: Code,
-    color: 'bg-primary',
     skills: ['Web Development', 'Cybersecurity', 'Cloud', 'IoT'],
     companies: ['Reply', 'Engineering', 'Accenture', 'IBM'],
     avgPlacement: 92,
@@ -86,8 +59,6 @@ const itsFocusAreas = [
   },
   {
     area: 'Chimica e Biotecnologie',
-    icon: Award,
-    color: 'bg-primary/80',
     skills: ['Process Control', 'GMP', 'Lab Techniques', 'Regulatory Affairs'],
     companies: ['Sanofi', 'Novartis', 'BASF', 'Enel Green Power'],
     avgPlacement: 85,
@@ -95,8 +66,6 @@ const itsFocusAreas = [
   },
   {
     area: 'Design e Comunicazione',
-    icon: Palette,
-    color: 'bg-primary/60',
     skills: ['Graphic Design', 'UX/UI', 'Video Editing', 'Social Media'],
     companies: ['Design Studios', 'Agencies', 'Media Companies'],
     avgPlacement: 78,
@@ -175,87 +144,42 @@ export default function ITSInstitutesPage() {
             <div className="grid md:grid-cols-3 gap-6">
               <Card className="border-2 border-primary/20 hover:border-green-400 transition-all hover:shadow-lg">
                 <CardHeader className="text-center">
-                  <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Briefcase className="h-8 w-8 text-white" />
-                  </div>
                   <CardTitle className="text-lg">{t('mp1Title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('mp1Check1')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('mp1Check2')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('mp1Check3')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('mp1Check4')}</span>
-                    </li>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>{t('mp1Check1')}</li>
+                    <li>{t('mp1Check2')}</li>
+                    <li>{t('mp1Check3')}</li>
+                    <li>{t('mp1Check4')}</li>
                   </ul>
                 </CardContent>
               </Card>
 
               <Card className="border-2 border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
                 <CardHeader className="text-center">
-                  <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Target className="h-8 w-8 text-white" />
-                  </div>
                   <CardTitle className="text-lg">{t('mp2Title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('mp2Check1')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('mp2Check2')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('mp2Check3')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Sparkles className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('mp2Check4')}</span>
-                    </li>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>{t('mp2Check1')}</li>
+                    <li>{t('mp2Check2')}</li>
+                    <li>{t('mp2Check3')}</li>
+                    <li>{t('mp2Check4')}</li>
                   </ul>
                 </CardContent>
               </Card>
 
               <Card className="border-2 border-primary/20 hover:border-purple-400 transition-all hover:shadow-lg">
                 <CardHeader className="text-center">
-                  <div className="bg-primary/80 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <TrendingUp className="h-8 w-8 text-white" />
-                  </div>
                   <CardTitle className="text-lg">{t('mp3Title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <BarChart3 className="h-4 w-4 text-primary/70 mr-2 mt-0.5" />
-                      <span>{t('mp3Check1')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <BarChart3 className="h-4 w-4 text-primary/70 mr-2 mt-0.5" />
-                      <span>{t('mp3Check2')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <BarChart3 className="h-4 w-4 text-primary/70 mr-2 mt-0.5" />
-                      <span>{t('mp3Check3')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <BarChart3 className="h-4 w-4 text-primary/70 mr-2 mt-0.5" />
-                      <span>{t('mp3Check4')}</span>
-                    </li>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>{t('mp3Check1')}</li>
+                    <li>{t('mp3Check2')}</li>
+                    <li>{t('mp3Check3')}</li>
+                    <li>{t('mp3Check4')}</li>
                   </ul>
                 </CardContent>
               </Card>
@@ -280,9 +204,6 @@ export default function ITSInstitutesPage() {
               {/* Discovery Service - PRIMARY (Larger card) */}
               <Card className="border-2 border-primary/20 hover:border-green-400 transition-all hover:shadow-xl">
                 <CardHeader className="text-center pb-3">
-                  <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
-                    <Search className="h-8 w-8 text-white" />
-                  </div>
                   <Badge className="mb-2 bg-primary text-white">{t('primaryServiceLabel')}</Badge>
                   <CardTitle className="text-lg">{t('discoveryTitle')}</CardTitle>
                   <Badge variant="secondary" className="mt-2 text-xs">{t('discoveryBadge')}</Badge>
@@ -304,9 +225,6 @@ export default function ITSInstitutesPage() {
               {/* Matching Service - PRIMARY (Larger card) */}
               <Card className="border-2 border-primary/30 hover:border-primary/50 transition-all hover:shadow-xl">
                 <CardHeader className="text-center pb-3">
-                  <div className="bg-primary p-4 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
-                    <Target className="h-8 w-8 text-white" />
-                  </div>
                   <Badge className="mb-2 bg-primary/80 text-white">{t('primaryServiceLabel')}</Badge>
                   <CardTitle className="text-lg">{t('matchingTitle')}</CardTitle>
                   <Badge variant="secondary" className="mt-2 text-xs">{t('matchingBadge')}</Badge>
@@ -330,9 +248,6 @@ export default function ITSInstitutesPage() {
               {/* Verification Service - SECONDARY (Smaller card) */}
               <Card className="border border-border hover:border-border transition-all hover:shadow-md">
                 <CardHeader className="text-center py-4">
-                  <div className="bg-muted-foreground p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
-                    <Shield className="h-6 w-6 text-white" />
-                  </div>
                   <CardTitle className="text-base">{t('verificationTitle')}</CardTitle>
                   <Badge variant="outline" className="mt-1 text-xs">{t('verificationBadge')}</Badge>
                 </CardHeader>
@@ -350,9 +265,6 @@ export default function ITSInstitutesPage() {
               {/* Analytics Service - SECONDARY (Smaller card) */}
               <Card className="border border-border hover:border-border transition-all hover:shadow-md">
                 <CardHeader className="text-center py-4">
-                  <div className="bg-muted-foreground p-3 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
-                    <BarChart3 className="h-6 w-6 text-white" />
-                  </div>
                   <CardTitle className="text-base">{t('analyticsTitle')}</CardTitle>
                   <Badge variant="outline" className="mt-1 text-xs">{t('analyticsBadge')}</Badge>
                 </CardHeader>
@@ -387,23 +299,19 @@ export default function ITSInstitutesPage() {
 
             {/* Area Selector */}
             <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {itsFocusAreas.map((area) => {
-                const Icon = area.icon
-                return (
-                  <button
-                    key={area.area}
-                    onClick={() => setSelectedArea(area)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                      selectedArea.area === area.area
-                        ? 'bg-primary text-primary-foreground'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted bg-card border border-border'
-                    }`}
-                  >
-                    <Icon className="h-4 w-4" />
-                    {area.area}
-                  </button>
-                )
-              })}
+              {itsFocusAreas.map((area) => (
+                <button
+                  key={area.area}
+                  onClick={() => setSelectedArea(area)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    selectedArea.area === area.area
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted bg-card border border-border'
+                  }`}
+                >
+                  {area.area}
+                </button>
+              ))}
             </div>
 
             {/* Selected Area Details */}
@@ -452,42 +360,20 @@ export default function ITSInstitutesPage() {
                         <CardTitle className="text-base">{t('howStudentsGetHired')}</CardTitle>
                       </CardHeader>
                       <CardContent className="text-sm space-y-3">
-                        <div className="flex items-start gap-3">
-                          <div className="bg-primary/10 rounded-full p-2">
-                            <GraduationCap className="h-4 w-4 text-primary" />
+                        {[
+                          { title: t('hireStep1'), desc: `${t('hireStep1Desc')} ${selectedArea.skills[0]}` },
+                          { title: t('hireStep2'), desc: `${t('hireStep2Desc')} ${selectedArea.area.split(' ')[0]}` },
+                          { title: t('hireStep3'), desc: `${t('hireStep3Desc')} "${selectedArea.skills[0]}"` },
+                          { title: t('hireStep4'), desc: t('hireStep4Desc') },
+                        ].map((step, i) => (
+                          <div key={i} className="flex items-start gap-3">
+                            <span className="text-lg font-bold text-primary/30 shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                            <div>
+                              <p className="font-semibold">{step.title}</p>
+                              <p className="text-xs text-muted-foreground">{step.desc}</p>
+                            </div>
                           </div>
-                          <div>
-                            <p className="font-semibold">{t('hireStep1')}</p>
-                            <p className="text-xs text-muted-foreground">{`${t('hireStep1Desc')} ${selectedArea.skills[0]}`}</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-3">
-                          <div className="bg-primary/10 rounded-full p-2">
-                            <Shield className="h-4 w-4 text-primary" />
-                          </div>
-                          <div>
-                            <p className="font-semibold">{t('hireStep2')}</p>
-                            <p className="text-xs text-muted-foreground">{`${t('hireStep2Desc')} ${selectedArea.area.split(' ')[0]}`}</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-3">
-                          <div className="bg-primary/10 rounded-full p-2">
-                            <Search className="h-4 w-4 text-primary" />
-                          </div>
-                          <div>
-                            <p className="font-semibold">{t('hireStep3')}</p>
-                            <p className="text-xs text-muted-foreground">{`${t('hireStep3Desc')} "${selectedArea.skills[0]}"`}</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-3">
-                          <div className="bg-primary/10 rounded-full p-2">
-                            <Briefcase className="h-4 w-4 text-primary/70" />
-                          </div>
-                          <div>
-                            <p className="font-semibold">{t('hireStep4')}</p>
-                            <p className="text-xs text-muted-foreground">{t('hireStep4Desc')}</p>
-                          </div>
-                        </div>
+                        ))}
                       </CardContent>
                     </Card>
                   </div>
@@ -511,87 +397,42 @@ export default function ITSInstitutesPage() {
             <div className="grid md:grid-cols-3 gap-6">
               <Card className="border-2 border-primary/20">
                 <CardHeader className="text-center">
-                  <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <TrendingUp className="h-8 w-8 text-primary" />
-                  </div>
                   <CardTitle className="text-lg">{t('why1Title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('why1Check1')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('why1Check2')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('why1Check3')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('why1Check4')}</span>
-                    </li>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>{t('why1Check1')}</li>
+                    <li>{t('why1Check2')}</li>
+                    <li>{t('why1Check3')}</li>
+                    <li>{t('why1Check4')}</li>
                   </ul>
                 </CardContent>
               </Card>
 
               <Card className="border-2 border-primary/20">
                 <CardHeader className="text-center">
-                  <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Euro className="h-8 w-8 text-primary" />
-                  </div>
                   <CardTitle className="text-lg">{t('why2Title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('why2Check1')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('why2Check2')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('why2Check3')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('why2Check4')}</span>
-                    </li>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>{t('why2Check1')}</li>
+                    <li>{t('why2Check2')}</li>
+                    <li>{t('why2Check3')}</li>
+                    <li>{t('why2Check4')}</li>
                   </ul>
                 </CardContent>
               </Card>
 
               <Card className="border-2 border-primary/20">
                 <CardHeader className="text-center">
-                  <div className="bg-primary/10 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <BarChart3 className="h-8 w-8 text-primary" />
-                  </div>
                   <CardTitle className="text-lg">{t('why3Title')}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-foreground/80">
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('why3Check1')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('why3Check2')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('why3Check3')}</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5" />
-                      <span>{t('why3Check4')}</span>
-                    </li>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>{t('why3Check1')}</li>
+                    <li>{t('why3Check2')}</li>
+                    <li>{t('why3Check3')}</li>
+                    <li>{t('why3Check4')}</li>
                   </ul>
                 </CardContent>
               </Card>
@@ -613,35 +454,17 @@ export default function ITSInstitutesPage() {
                 </h3>
 
                 <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                  <div className="text-center">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-3xl font-bold">1</span>
+                  {[
+                    { num: '01', title: t('gs1Title'), desc: t('gs1Desc') },
+                    { num: '02', title: t('gs2Title'), desc: t('gs2Desc') },
+                    { num: '03', title: t('gs3Title'), desc: t('gs3Desc') },
+                  ].map((step) => (
+                    <div key={step.num} className="text-center">
+                      <div className="text-5xl font-bold text-white/15 mb-2">{step.num}</div>
+                      <h4 className="text-xl font-bold mb-2">{step.title}</h4>
+                      <p className="text-white/90 text-sm">{step.desc}</p>
                     </div>
-                    <h4 className="text-xl font-bold mb-2">{t('gs1Title')}</h4>
-                    <p className="text-white/90 text-sm">
-                      {t('gs1Desc')}
-                    </p>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-3xl font-bold">2</span>
-                    </div>
-                    <h4 className="text-xl font-bold mb-2">{t('gs2Title')}</h4>
-                    <p className="text-white/90 text-sm">
-                      {t('gs2Desc')}
-                    </p>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-3xl font-bold">3</span>
-                    </div>
-                    <h4 className="text-xl font-bold mb-2">{t('gs3Title')}</h4>
-                    <p className="text-white/90 text-sm">
-                      {t('gs3Desc')}
-                    </p>
-                  </div>
+                  ))}
                 </div>
 
                 <div className="text-center mt-8">
@@ -684,7 +507,6 @@ export default function ITSInstitutesPage() {
                 <Card key={its.name} className="hover:shadow-lg transition-all">
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
-                      <Building2 className="h-8 w-8 text-primary" />
                       <Badge variant="secondary">{its.students} {t('studentsLabel')}</Badge>
                     </div>
                     <CardTitle className="text-base">{its.name}</CardTitle>
@@ -693,14 +515,13 @@ export default function ITSInstitutesPage() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-xs font-semibold text-foreground mb-2">{t('skillsSeek')}</p>
-                    <div className="space-y-1">
+                    <ul className="space-y-1 list-disc list-inside">
                       {its.topSkills.map((skill) => (
-                        <div key={skill} className="flex items-center text-xs text-foreground/80">
-                          <CheckCircle className="h-3 w-3 text-primary mr-1" />
+                        <li key={skill} className="text-xs text-foreground/80">
                           {skill}
-                        </div>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </CardContent>
                 </Card>
               ))}

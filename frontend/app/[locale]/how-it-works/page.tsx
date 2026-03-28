@@ -10,52 +10,19 @@ import { Badge } from '@/components/ui/badge'
 import { Link } from '@/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BRAND_IMAGES } from '@/lib/brand-images'
-import {
-  Upload,
-  BadgeCheck,
-  Search,
-  MessageSquare,
-  ArrowRight,
-  ArrowDown,
-  CheckCircle,
-  GraduationCap,
-  Building2,
-  Users,
-  ScanSearch,
-  Compass,
-  Clock,
-  BarChart3,
-  Star,
-  Target,
-  FileCheck,
-  UserCheck,
-} from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 type Segment = 'student' | 'institution' | 'company'
-
-const stepIcons = {
-  student: [Upload, ScanSearch, MessageSquare],
-  institution: [UserCheck, FileCheck, BarChart3],
-  company: [Search, Compass, MessageSquare],
-}
-
-const stepColors = [
-  'from-blue-500/10 to-primary/10',
-  'from-primary/10 to-violet-500/10',
-  'from-violet-500/10 to-emerald-500/10',
-]
 
 export default function HowItWorksPage() {
   const t = useTranslations('howItWorksPage')
   const [activeSegment, setActiveSegment] = useState<Segment>('student')
 
-  const segments: { id: Segment; icon: typeof GraduationCap; label: string }[] = [
-    { id: 'student', icon: GraduationCap, label: t('segments.student') },
-    { id: 'institution', icon: Building2, label: t('segments.institution') },
-    { id: 'company', icon: Users, label: t('segments.company') },
+  const segments: { id: Segment; label: string }[] = [
+    { id: 'student', label: t('segments.student') },
+    { id: 'institution', label: t('segments.institution') },
+    { id: 'company', label: t('segments.company') },
   ]
-
-  const icons = stepIcons[activeSegment]
 
   return (
     <div className="min-h-screen bg-background">
@@ -102,7 +69,6 @@ export default function HowItWorksPage() {
           <div className="flex justify-center">
             <div className="inline-flex bg-muted/50 rounded-xl p-1.5 shadow-sm border">
               {segments.map((seg) => {
-                const Icon = seg.icon
                 const isActive = activeSegment === seg.id
                 return (
                   <button
@@ -114,7 +80,6 @@ export default function HowItWorksPage() {
                         : 'text-muted-foreground hover:text-foreground hover:bg-background'
                     }`}
                   >
-                    <Icon className="h-4 w-4" />
                     {seg.label}
                   </button>
                 )
@@ -157,7 +122,7 @@ export default function HowItWorksPage() {
               <div className="hidden md:block absolute top-24 left-[33.3%] right-[33.3%] h-0.5 bg-gradient-to-r from-primary/40 via-primary to-primary/40 z-0" />
 
               {[0, 1, 2].map((i) => {
-                const Icon = icons[i]
+                const stepNum = String(i + 1).padStart(2, '0')
                 return (
                   <motion.div
                     key={i}
@@ -166,12 +131,7 @@ export default function HowItWorksPage() {
                     transition={{ duration: 0.5, delay: i * 0.12 }}
                     className="relative z-10 flex flex-col items-center text-center px-6 py-8"
                   >
-                    <div className={`relative mb-6 w-20 h-20 rounded-2xl bg-gradient-to-br ${stepColors[i]} flex items-center justify-center shadow-sm border border-primary/10`}>
-                      <Icon className="h-9 w-9 text-primary" />
-                      <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shadow-md">
-                        {i + 1}
-                      </div>
-                    </div>
+                    <div className="text-5xl font-bold text-primary/15 mb-3">{stepNum}</div>
 
                     <h3 className="text-lg font-bold text-foreground mb-2">
                       {t(`journey.${activeSegment}.steps.${i}.title`)}
@@ -179,10 +139,6 @@ export default function HowItWorksPage() {
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       {t(`journey.${activeSegment}.steps.${i}.desc`)}
                     </p>
-
-                    {i < 2 && (
-                      <ArrowDown className="md:hidden h-6 w-6 text-primary/40 mt-4" />
-                    )}
                   </motion.div>
                 )
               })}
@@ -250,7 +206,7 @@ export default function HowItWorksPage() {
                           <ul className="space-y-2">
                             {[0, 1, 2].map((j) => (
                               <li key={j} className="flex items-start gap-2 text-sm text-foreground/80">
-                                <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                                <span className="text-primary font-bold mt-0.5">--</span>
                                 <span>{t(`details.${activeSegment}.cards.${i}.features.${j}`)}</span>
                               </li>
                             ))}
@@ -281,13 +237,8 @@ export default function HowItWorksPage() {
             </p>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { icon: BadgeCheck, colorClass: 'bg-blue-500/10 text-blue-600' },
-                { icon: ScanSearch, colorClass: 'bg-violet-500/10 text-violet-600' },
-                { icon: Target, colorClass: 'bg-emerald-500/10 text-emerald-600' },
-                { icon: Compass, colorClass: 'bg-amber-500/10 text-amber-600' },
-              ].map((item, i) => {
-                const Icon = item.icon
+              {[0, 1, 2, 3].map((i) => {
+                const stepNum = String(i + 1).padStart(2, '0')
                 return (
                   <motion.div
                     key={i}
@@ -297,9 +248,7 @@ export default function HowItWorksPage() {
                     transition={{ duration: 0.4, delay: i * 0.1 }}
                     className="text-center"
                   >
-                    <div className={`w-14 h-14 rounded-2xl ${item.colorClass} flex items-center justify-center mx-auto mb-4`}>
-                      <Icon className="h-7 w-7" />
-                    </div>
+                    <div className="text-5xl font-bold text-primary/15 mb-3">{stepNum}</div>
                     <h4 className="font-semibold text-foreground mb-1.5">
                       {t(`differentiators.items.${i}.title`)}
                     </h4>

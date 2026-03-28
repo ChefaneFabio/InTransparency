@@ -7,33 +7,22 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Link } from '@/navigation'
-import {
-  Cog,
-  Shield,
-  Search,
-  FileCheck2,
-  Users,
-  ArrowRight,
-  CheckCircle,
-  Star,
-  Zap,
-  Target,
-} from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export default function ForEngineeringPage() {
   const t = useTranslations('forEngineering')
 
   const painPoints = [
-    { icon: Users, text: t('pain.cantCompete') },
-    { icon: Search, text: t('pain.cvsDontShow') },
-    { icon: Target, text: t('pain.costPerHire') },
+    t('pain.cantCompete'),
+    t('pain.cvsDontShow'),
+    t('pain.costPerHire'),
   ]
 
   const solutions = [
-    { icon: FileCheck2, title: t('solution.verifiedProjects.title'), desc: t('solution.verifiedProjects.desc') },
-    { icon: Cog, title: t('solution.technicalPortfolios.title'), desc: t('solution.technicalPortfolios.desc') },
-    { icon: Shield, title: t('solution.institutionBacked.title'), desc: t('solution.institutionBacked.desc') },
-    { icon: Star, title: t('solution.personalityInsights.title'), desc: t('solution.personalityInsights.desc') },
+    { title: t('solution.verifiedProjects.title'), desc: t('solution.verifiedProjects.desc') },
+    { title: t('solution.technicalPortfolios.title'), desc: t('solution.technicalPortfolios.desc') },
+    { title: t('solution.institutionBacked.title'), desc: t('solution.institutionBacked.desc') },
+    { title: t('solution.personalityInsights.title'), desc: t('solution.personalityInsights.desc') },
   ]
 
   const sectors = [
@@ -86,11 +75,10 @@ export default function ForEngineeringPage() {
               {t('pain.title')}
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              {painPoints.map((point, i) => (
+              {painPoints.map((text, i) => (
                 <Card key={i} className="border-red-200">
                   <CardContent className="p-6 text-center">
-                    <point.icon className="h-8 w-8 text-red-600 mx-auto mb-3" />
-                    <p className="text-red-800 font-medium">{point.text}</p>
+                    <p className="text-red-800 font-medium">{text}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -107,15 +95,8 @@ export default function ForEngineeringPage() {
               {solutions.map((sol, i) => (
                 <Card key={i} className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                        <sol.icon className="h-5 w-5 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg mb-1">{sol.title}</h3>
-                        <p className="text-gray-600">{sol.desc}</p>
-                      </div>
-                    </div>
+                    <h3 className="font-semibold text-lg mb-1">{sol.title}</h3>
+                    <p className="text-gray-600">{sol.desc}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -145,9 +126,9 @@ export default function ForEngineeringPage() {
               <div className="text-5xl font-bold text-blue-700 mb-2">{t('pricing.price')}</div>
               <p className="text-gray-600 mb-6">{t('pricing.perContact')}</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center text-sm text-gray-700">
-                <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4 text-primary" /> {t('pricing.noSubscription')}</span>
-                <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4 text-primary" /> {t('pricing.browseFree')}</span>
-                <span className="flex items-center gap-1"><CheckCircle className="h-4 w-4 text-primary" /> {t('pricing.noMinimum')}</span>
+                <span>{t('pricing.noSubscription')}</span>
+                <span>{t('pricing.browseFree')}</span>
+                <span>{t('pricing.noMinimum')}</span>
               </div>
             </div>
             <Button size="lg" asChild>

@@ -9,21 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { motion } from 'framer-motion'
-import {
-  GraduationCap,
-  Upload,
-  CheckCircle2,
-  BarChart3,
-  ClipboardCheck,
-  Activity,
-  Eye,
-  Flame,
-  ShieldCheck,
-  BookOpen,
-  Building2,
-  School,
-  ArrowRight,
-} from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -33,27 +19,6 @@ const fadeUp = {
     transition: { delay: i * 0.1, duration: 0.5, ease: 'easeOut' as const },
   }),
 }
-
-const steps = [
-  { icon: Upload, key: 'onboard' },
-  { icon: CheckCircle2, key: 'verify' },
-  { icon: BarChart3, key: 'track' },
-] as const
-
-const features = [
-  { icon: ClipboardCheck, key: 'batchVerification' },
-  { icon: Activity, key: 'livePlacement' },
-  { icon: Eye, key: 'studentVisibility' },
-  { icon: Flame, key: 'skillsHeatmap' },
-  { icon: ShieldCheck, key: 'gdpr' },
-  { icon: BookOpen, key: 'ectsGrades' },
-] as const
-
-const audiences = [
-  { icon: Building2, key: 'universities' },
-  { icon: GraduationCap, key: 'its' },
-  { icon: School, key: 'highSchools' },
-] as const
 
 export default function ForAcademicPartnersPage() {
   const t = useTranslations('forAcademicPartners')
@@ -77,7 +42,6 @@ export default function ForAcademicPartnersPage() {
               variant="secondary"
               className="mb-6 bg-white/10 text-white border-white/20"
             >
-              <GraduationCap className="h-3 w-3 mr-1" />
               {t('hero.badge')}
             </Badge>
 
@@ -95,7 +59,6 @@ export default function ForAcademicPartnersPage() {
                   size="lg"
                   className="bg-white text-blue-900 hover:bg-primary/5 w-full sm:w-auto"
                 >
-                  <GraduationCap className="h-5 w-5 mr-2" />
                   {t('cta.primaryButton')}
                 </Button>
               </Link>
@@ -148,30 +111,31 @@ export default function ForAcademicPartnersPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.key}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-40px' }}
-                variants={fadeUp}
-                custom={i + 1}
-              >
-                <Card className="h-full text-center border-none shadow-md hover:shadow-lg transition-shadow">
-                  <CardContent className="pt-8 pb-6 px-6">
-                    <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-                      <step.icon className="h-7 w-7 text-primary" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {t(`steps.${i}.title`)}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {t(`steps.${i}.desc`)}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            {[0, 1, 2].map((i) => {
+              const stepNum = String(i + 1).padStart(2, '0')
+              return (
+                <motion.div
+                  key={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-40px' }}
+                  variants={fadeUp}
+                  custom={i + 1}
+                >
+                  <Card className="h-full text-center border-none shadow-md hover:shadow-lg transition-shadow">
+                    <CardContent className="pt-8 pb-6 px-6">
+                      <div className="text-5xl font-bold text-primary/15 mb-3">{stepNum}</div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        {t(`steps.${i}.title`)}
+                      </h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {t(`steps.${i}.desc`)}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -196,9 +160,9 @@ export default function ForAcademicPartnersPage() {
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feat, i) => (
+            {[0, 1, 2, 3, 4, 5].map((i) => (
               <motion.div
-                key={feat.key}
+                key={i}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-40px' }}
@@ -207,13 +171,10 @@ export default function ForAcademicPartnersPage() {
               >
                 <Card className="h-full border hover:border-primary/30 transition-colors">
                   <CardContent className="pt-6 pb-5 px-6">
-                    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                      <feat.icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <h3 className="text-base font-semibold text-gray-900 mb-1.5">
+                    <h3 className="text-base font-bold mb-1">
                       {t(`features.${i}.title`)}
                     </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {t(`features.${i}.desc`)}
                     </p>
                   </CardContent>
@@ -244,30 +205,31 @@ export default function ForAcademicPartnersPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {audiences.map((aud, i) => (
-              <motion.div
-                key={aud.key}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-40px' }}
-                variants={fadeUp}
-                custom={i + 1}
-              >
-                <Card className="h-full text-center border-none shadow-md">
-                  <CardContent className="pt-8 pb-6 px-6">
-                    <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-                      <aud.icon className="h-7 w-7 text-primary" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {t(`audience.${i}.title`)}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {t(`audience.${i}.desc`)}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            {[0, 1, 2].map((i) => {
+              const stepNum = String(i + 1).padStart(2, '0')
+              return (
+                <motion.div
+                  key={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-40px' }}
+                  variants={fadeUp}
+                  custom={i + 1}
+                >
+                  <Card className="h-full text-center border-none shadow-md">
+                    <CardContent className="pt-8 pb-6 px-6">
+                      <div className="text-5xl font-bold text-primary/15 mb-3">{stepNum}</div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        {t(`audience.${i}.title`)}
+                      </h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {t(`audience.${i}.desc`)}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -293,7 +255,6 @@ export default function ForAcademicPartnersPage() {
                   size="lg"
                   className="bg-white text-blue-900 hover:bg-primary/5 w-full sm:w-auto"
                 >
-                  <GraduationCap className="h-5 w-5 mr-2" />
                   {t('cta.primaryButton')}
                 </Button>
               </Link>

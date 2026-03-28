@@ -8,24 +8,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
-  Gift,
-  Users,
-  Building2,
-  GraduationCap,
-  Briefcase,
-  Share2,
+  ArrowRight,
   Copy,
   CheckCircle,
-  Euro,
-  TrendingUp,
-  Award,
-  Target,
-  Zap,
-  ArrowRight,
-  Mail,
-  MessageSquare
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Link } from '@/navigation'
@@ -36,14 +22,11 @@ const referralPrograms = {
   student: {
     title: 'Student Referral Program',
     subtitle: 'Earn rewards by inviting your institution and fellow students',
-    icon: GraduationCap,
-    color: 'bg-primary',
     programs: [
       {
         id: 'refer-institution',
         title: 'Refer Your Institution',
         description: 'Invite your university/ITS to verify student profiles',
-        icon: Building2,
         reward: '10% of first-year Pro fees',
         details: [
           'Your institution signs up and verifies students',
@@ -59,7 +42,6 @@ const referralPrograms = {
         id: 'refer-students',
         title: 'Refer Fellow Students',
         description: 'Invite classmates to join and get verified',
-        icon: Users,
         reward: '€5 per Pro upgrade',
         details: [
           'Share your referral link with classmates',
@@ -75,7 +57,6 @@ const referralPrograms = {
         id: 'campus-ambassador',
         title: 'Campus Ambassador Program',
         description: 'Become official ambassador for your university',
-        icon: Award,
         reward: '€50/month + exclusive perks',
         details: [
           'Host info sessions and promote InTransparency on campus',
@@ -93,14 +74,11 @@ const referralPrograms = {
   institution: {
     title: 'Institution Partner Program',
     subtitle: 'Earn bonuses by promoting Pro upgrades and company partnerships',
-    icon: Building2,
-    color: 'bg-primary/60',
     programs: [
       {
         id: 'student-upgrade-bonus',
         title: 'Student Pro Upgrade Bonus',
         description: 'Earn when your students upgrade to Pro',
-        icon: TrendingUp,
         reward: '10% of student Pro fees',
         details: [
           'When your verified students upgrade to Pro (€9/month), you earn 10%',
@@ -116,7 +94,6 @@ const referralPrograms = {
         id: 'company-partnership',
         title: 'Company Partnership Referrals',
         description: 'Connect companies to InTransparency',
-        icon: Briefcase,
         reward: '20% of first-year company revenue',
         details: [
           'Refer companies recruiting from your students',
@@ -132,7 +109,6 @@ const referralPrograms = {
         id: 'its-network',
         title: 'ITS Academy Network',
         description: 'Refer other ITS academies to join',
-        icon: Users,
         reward: '€250 per ITS signup',
         details: [
           'Refer fellow ITS academies (G. Natta, IFOA, Rizzoli, etc.)',
@@ -149,14 +125,11 @@ const referralPrograms = {
   company: {
     title: 'Company Referral Program',
     subtitle: 'Earn credits by referring institutions and other companies',
-    icon: Briefcase,
-    color: 'bg-primary/80',
     programs: [
       {
         id: 'refer-institution',
         title: 'Refer Educational Institutions',
         description: 'Invite universities/ITS to verify their students',
-        icon: Building2,
         reward: '50 free contact credits',
         details: [
           'Partner with institutions you hire from (Politecnico, Sapienza, ITS)',
@@ -172,7 +145,6 @@ const referralPrograms = {
         id: 'refer-company',
         title: 'Refer Other Companies',
         description: 'Invite fellow recruiters to join platform',
-        icon: Users,
         reward: '€20 credit per signup',
         details: [
           'Share with HR network and fellow recruiters',
@@ -188,7 +160,6 @@ const referralPrograms = {
         id: 'enterprise-advocacy',
         title: 'Enterprise Advocate Program',
         description: 'Case studies and testimonials for marketing',
-        icon: Award,
         reward: '3 months free Enterprise',
         details: [
           'Share your success story: "Hired 15 verified ITS students in 6 months"',
@@ -218,7 +189,6 @@ export default function ReferralsPage() {
   }
 
   const currentProgram = referralPrograms[selectedSegment]
-  const Icon = currentProgram.icon
 
   return (
     <div className="min-h-screen hero-bg">
@@ -246,7 +216,7 @@ export default function ReferralsPage() {
               {t('hero.subtitle')}
             </p>
             <p className="text-base text-gray-600 max-w-2xl mx-auto">
-              20-30% additional revenue through referrals • €177K Year 1 projected from cross-selling
+              20-30% additional revenue through referrals -- €177K Year 1 projected from cross-selling
             </p>
           </motion.div>
 
@@ -261,11 +231,10 @@ export default function ReferralsPage() {
               <div className="flex space-x-2">
                 {(['student', 'institution', 'company'] as ReferralSegment[]).map((segment) => {
                   const config = {
-                    student: { label: 'Students', icon: GraduationCap },
-                    institution: { label: 'Institutions', icon: Building2 },
-                    company: { label: 'Companies', icon: Briefcase }
+                    student: { label: 'Students' },
+                    institution: { label: 'Institutions' },
+                    company: { label: 'Companies' }
                   }
-                  const SegmentIcon = config[segment].icon
                   return (
                     <button
                       key={segment}
@@ -276,7 +245,6 @@ export default function ReferralsPage() {
                           : 'text-gray-800 hover:text-gray-900 hover:bg-slate-100'
                       }`}
                     >
-                      <SegmentIcon className="h-4 w-4 mr-2" />
                       {config[segment].label}
                     </button>
                   )
@@ -295,7 +263,6 @@ export default function ReferralsPage() {
           >
             <Card className="border-2 bg-primary text-white border-0">
               <CardContent className="py-8 text-center">
-                <Icon className="h-16 w-16 mx-auto mb-4" />
                 <h2 className="text-3xl font-display font-bold mb-2">{currentProgram.title}</h2>
                 <p className="text-lg text-white/90">{currentProgram.subtitle}</p>
               </CardContent>
@@ -305,7 +272,6 @@ export default function ReferralsPage() {
           {/* Referral Programs Grid */}
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {currentProgram.programs.map((program, index) => {
-              const ProgramIcon = program.icon
               return (
                 <motion.div
                   key={program.id}
@@ -316,8 +282,8 @@ export default function ReferralsPage() {
                   <Card className="h-full hover:shadow-lg transition-all border-2 border-gray-200 hover:border-primary/40">
                     <CardHeader>
                       <div className="flex items-start justify-between mb-3">
-                        <div className="bg-primary p-3 rounded-lg">
-                          <ProgramIcon className="h-6 w-6 text-white" />
+                        <div className="text-4xl font-bold text-primary/15">
+                          {String(index + 1).padStart(2, '0')}
                         </div>
                         <Badge className="bg-primary/10 text-primary">
                           {program.reward}
@@ -331,7 +297,7 @@ export default function ReferralsPage() {
                         <p className="text-xs font-semibold text-gray-900 mb-2">How It Works:</p>
                         {program.details.map((detail, idx) => (
                           <div key={idx} className="flex items-start text-xs text-gray-700">
-                            <CheckCircle className="h-3 w-3 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                            <span className="text-primary font-bold mr-2 mt-0.5">--</span>
                             <span>{detail}</span>
                           </div>
                         ))}
@@ -356,10 +322,7 @@ export default function ReferralsPage() {
                             Link Copied!
                           </>
                         ) : (
-                          <>
-                            <Share2 className="h-4 w-4 mr-2" />
-                            {program.cta}
-                          </>
+                          program.cta
                         )}
                       </Button>
                     </CardContent>
@@ -393,17 +356,12 @@ export default function ReferralsPage() {
               <CardContent>
                 <div className="grid md:grid-cols-4 gap-6 mb-8">
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-                    <div className="flex items-center justify-between mb-2">
-                      <Users className="h-5 w-5 text-primary" />
-                      <TrendingUp className="h-4 w-4 text-primary" />
-                    </div>
                     <div className="text-2xl font-bold text-gray-900">23</div>
                     <div className="text-xs text-gray-600">Total Referrals</div>
                   </div>
 
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                     <div className="flex items-center justify-between mb-2">
-                      <CheckCircle className="h-5 w-5 text-primary" />
                       <span className="text-xs text-primary">87% conversion</span>
                     </div>
                     <div className="text-2xl font-bold text-gray-900">20</div>
@@ -412,7 +370,6 @@ export default function ReferralsPage() {
 
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                     <div className="flex items-center justify-between mb-2">
-                      <Target className="h-5 w-5 text-primary" />
                       <span className="text-xs text-primary">4 this month</span>
                     </div>
                     <div className="text-2xl font-bold text-gray-900">12</div>
@@ -421,7 +378,6 @@ export default function ReferralsPage() {
 
                   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                     <div className="flex items-center justify-between mb-2">
-                      <Euro className="h-5 w-5 text-primary" />
                       <span className="text-xs text-primary">+€23 pending</span>
                     </div>
                     <div className="text-2xl font-bold text-primary">€87</div>
@@ -457,15 +413,12 @@ export default function ReferralsPage() {
                 {/* Quick Share Buttons */}
                 <div className="flex gap-3 mt-4">
                   <Button variant="outline" size="sm" className="flex-1">
-                    <Mail className="h-4 w-4 mr-2" />
                     Email
                   </Button>
                   <Button variant="outline" size="sm" className="flex-1">
-                    <MessageSquare className="h-4 w-4 mr-2" />
                     WhatsApp
                   </Button>
                   <Button variant="outline" size="sm" className="flex-1">
-                    <Share2 className="h-4 w-4 mr-2" />
                     Copy Link
                   </Button>
                 </div>
@@ -557,23 +510,23 @@ export default function ReferralsPage() {
               <CardContent className="text-sm text-gray-700 space-y-2">
                 <ul className="space-y-2">
                   <li className="flex items-start">
-                    <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-primary font-bold mr-2 mt-0.5">--</span>
                     <span><strong>Tracking:</strong> Automatic via cookies and referral codes. 90-day attribution window.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-primary font-bold mr-2 mt-0.5">--</span>
                     <span><strong>Payouts:</strong> Quarterly via PayPal or bank transfer. Minimum €25 threshold.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-primary font-bold mr-2 mt-0.5">--</span>
                     <span><strong>Eligibility:</strong> Active InTransparency account required. Self-referrals not allowed.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-primary font-bold mr-2 mt-0.5">--</span>
                     <span><strong>Transparency:</strong> Full referral dashboard with real-time tracking. GDPR compliant.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-primary font-bold mr-2 mt-0.5">--</span>
                     <span><strong>Updates:</strong> Referral rates subject to change with 30-day notice. Grandfathered for existing referrals.</span>
                   </li>
                 </ul>
@@ -590,7 +543,6 @@ export default function ReferralsPage() {
           >
             <Card className="bg-primary border-0 text-white">
               <CardContent className="py-12 text-center">
-                <Gift className="h-16 w-16 mx-auto mb-4" />
                 <h3 className="text-3xl font-display font-bold mb-4">
                   Start Earning Today
                 </h3>
