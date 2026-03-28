@@ -291,6 +291,41 @@
         "Every sector — tech, engineering, business, design, science",
         "Free for everyone during launch"
       ],
+      "segments": {
+        "students": {
+          "headline1": "Discover What You're Good At.",
+          "headline2": "Then Prove It.",
+          "subheadline": "Upload your projects. Your university verifies them. Your skills become visible to the right people. No CV rewriting, no guessing — just proof.",
+          "cta": "Build Your Portfolio",
+          "benefits": [
+            "Your university verifies your work",
+            "Skills mapped automatically from your projects",
+            "Get discovered without sending applications"
+          ]
+        },
+        "institutions": {
+          "headline1": "Every Graduate Visible.",
+          "headline2": "Every Outcome Measurable.",
+          "subheadline": "Your students upload projects. You verify with one click. Companies discover them year-round. You see real placement data — not annual surveys.",
+          "cta": "Become an Academic Partner",
+          "benefits": [
+            "Real-time placement analytics, not surveys",
+            "One-click student verification",
+            "Free for all academic partners"
+          ]
+        },
+        "companies": {
+          "headline1": "A Bad Hire Costs You.",
+          "headline2": "We Help You Get It Right.",
+          "subheadline": "Students upload real projects. Universities verify the work. You see proven skills before you ever make an offer — across every discipline.",
+          "cta": "Start Finding Talent",
+          "benefits": [
+            "Verified projects, not self-reported CVs",
+            "Every discipline — tech, business, design, law",
+            "Contact candidates directly"
+          ]
+        }
+      },
       "exploreByRole": "Explore by role",
       "socialProof": {
         "startCup": "2 Prizes at Start Cup Bergamo 2025",

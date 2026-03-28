@@ -27,6 +27,14 @@ export function Hero() {
 
   const segment = segmentToTranslationKey[activeSegment]
 
+  const segmentCTAs: Record<string, { primary: string; secondary: string; primaryHref: string; secondaryHref: string }> = {
+    students: { primary: t('segments.students.cta'), secondary: t('unifiedSecondaryCTA'), primaryHref: '/auth/register', secondaryHref: '/for-students' },
+    institutions: { primary: t('segments.institutions.cta'), secondary: t('unifiedSecondaryCTA'), primaryHref: '/auth/register?role=UNIVERSITY', secondaryHref: '/for-universities' },
+    companies: { primary: t('segments.companies.cta'), secondary: t('unifiedSecondaryCTA'), primaryHref: '/auth/register?role=recruiter', secondaryHref: '/for-companies' },
+  }
+
+  const cta = segmentCTAs[activeSegment]
+
   return (
     <section className="py-24 sm:py-36">
       <div className="container">
@@ -36,37 +44,47 @@ export function Hero() {
             {t('serviceBadge')}
           </p>
 
-          {/* Headline — typography does the work, no gradients */}
-          <h1 className="text-4xl font-display font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl leading-[1.1]">
-            {t('unifiedHeadline1')}{' '}
-            <span className="text-primary">{t('unifiedHeadline2')}</span>
-          </h1>
+          {/* Headline — changes per segment */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`hero-${activeSegment}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h1 className="text-4xl font-display font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl leading-[1.1]">
+                {t(`segments.${activeSegment}.headline1`)}{' '}
+                <span className="text-primary">{t(`segments.${activeSegment}.headline2`)}</span>
+              </h1>
 
-          <p className="mt-8 text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
-            {t('unifiedSubheadline')}
-          </p>
+              <p className="mt-8 text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
+                {t(`segments.${activeSegment}.subheadline`)}
+              </p>
+            </motion.div>
+          </AnimatePresence>
 
-          {/* CTAs — clean, no hover-scale */}
+          {/* CTAs — change per segment */}
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg" className="shadow-sm">
-              <Link href="/auth/register">
-                {t('unifiedPrimaryCTA')}
+              <Link href={cta.primaryHref}>
+                {cta.primary}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link href="/how-it-works">
-                {t('unifiedSecondaryCTA')}
+              <Link href={cta.secondaryHref}>
+                {cta.secondary}
               </Link>
             </Button>
           </div>
 
-          {/* Trust signals — simple text, no pills */}
+          {/* Trust signals — segment-specific */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
             {[0, 1, 2].map((index) => (
-              <span key={index} className="flex items-center gap-1.5">
+              <span key={`${activeSegment}-${index}`} className="flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                {t(`unifiedBenefits.${index}`)}
+                {t(`segments.${activeSegment}.benefits.${index}`)}
               </span>
             ))}
           </div>

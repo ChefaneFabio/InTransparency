@@ -291,6 +291,41 @@
         "Ogni settore — tech, ingegneria, business, design, scienze",
         "Gratis per tutti"
       ],
+      "segments": {
+        "students": {
+          "headline1": "Scopri in Cosa Sei Bravo.",
+          "headline2": "Poi Dimostralo.",
+          "subheadline": "Carica i tuoi progetti. La tua universit\u00e0 li verifica. Le tue competenze diventano visibili alle persone giuste. Niente CV da riscrivere — solo prove.",
+          "cta": "Costruisci il Tuo Portfolio",
+          "benefits": [
+            "La tua universit\u00e0 verifica il tuo lavoro",
+            "Competenze mappate automaticamente dai tuoi progetti",
+            "Fatti scoprire senza inviare candidature"
+          ]
+        },
+        "institutions": {
+          "headline1": "Ogni Laureato Visibile.",
+          "headline2": "Ogni Risultato Misurabile.",
+          "subheadline": "I tuoi studenti caricano i progetti. Tu verifichi con un click. Le aziende li scoprono tutto l'anno. Vedi dati di placement reali — non sondaggi annuali.",
+          "cta": "Diventa Partner Formativo",
+          "benefits": [
+            "Analytics di placement in tempo reale",
+            "Verifica studenti con un click",
+            "Gratuito per tutti i partner formativi"
+          ]
+        },
+        "companies": {
+          "headline1": "Un'Assunzione Sbagliata Costa.",
+          "headline2": "Ti Aiutiamo a Scegliere Bene.",
+          "subheadline": "Gli studenti caricano progetti reali. Le universit\u00e0 verificano il lavoro. Tu vedi competenze provate prima ancora di fare un'offerta — in ogni disciplina.",
+          "cta": "Inizia a Trovare Talenti",
+          "benefits": [
+            "Progetti verificati, non CV autocertificati",
+            "Ogni disciplina — tech, business, design, legale",
+            "Contatta i candidati direttamente"
+          ]
+        }
+      },
       "exploreByRole": "Esplora per ruolo",
       "socialProof": {
         "startCup": "2 Premi a Start Cup Bergamo 2025",
