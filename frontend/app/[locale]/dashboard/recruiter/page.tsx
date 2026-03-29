@@ -11,22 +11,15 @@ import { Skeleton } from '@/components/ui/skeleton'
 import {
   Users,
   Search,
-  Eye,
   MessageSquare,
-  Briefcase,
   Plus,
-  MapPin,
   ChevronRight,
   Clock,
   GraduationCap,
   Star,
-  Building2,
-  FileText,
   Mail,
   TrendingUp,
   LogOut,
-  Loader2,
-  Lightbulb
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import { useLocale, useTranslations } from 'next-intl'
@@ -257,57 +250,29 @@ export default function RecruiterDashboard() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-2xl font-bold">{stats.activeJobs}</p>
-                <p className="text-sm text-muted-foreground">{t('stats.activeJobs')}</p>
-              </div>
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <Briefcase className="h-5 w-5 text-primary" />
-              </div>
-            </div>
+            <p className="text-2xl font-bold">{stats.activeJobs}</p>
+            <p className="text-sm text-muted-foreground">{t('stats.activeJobs')}</p>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-2xl font-bold">{stats.totalApplications}</p>
-                <p className="text-sm text-muted-foreground">{t('stats.applications')}</p>
-              </div>
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <FileText className="h-5 w-5 text-primary" />
-              </div>
-            </div>
+            <p className="text-2xl font-bold">{stats.totalApplications}</p>
+            <p className="text-sm text-muted-foreground">{t('stats.applications')}</p>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-2xl font-bold">{stats.pendingReview}</p>
-                <p className="text-sm text-muted-foreground">{t('stats.toReview')}</p>
-              </div>
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <Eye className="h-5 w-5 text-primary" />
-              </div>
-            </div>
+            <p className="text-2xl font-bold">{stats.pendingReview}</p>
+            <p className="text-sm text-muted-foreground">{t('stats.toReview')}</p>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-2xl font-bold">{stats.shortlisted}</p>
-                <p className="text-sm text-muted-foreground">{t('stats.shortlisted')}</p>
-              </div>
-              <div className="p-2 bg-orange-100 rounded-lg">
-                <Star className="h-5 w-5 text-orange-600" />
-              </div>
-            </div>
+            <p className="text-2xl font-bold">{stats.shortlisted}</p>
+            <p className="text-sm text-muted-foreground">{t('stats.shortlisted')}</p>
           </CardContent>
         </Card>
       </div>
@@ -504,9 +469,6 @@ export default function RecruiterDashboard() {
                 href="/dashboard/recruiter/candidates"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
               >
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Search className="h-4 w-4 text-primary" />
-                </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('quickActions.searchCandidates')}</p>
                   <p className="text-xs text-muted-foreground">{t('quickActions.searchCandidatesDesc')}</p>
@@ -518,9 +480,6 @@ export default function RecruiterDashboard() {
                 href="/dashboard/recruiter/post-job"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
               >
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Plus className="h-4 w-4 text-primary" />
-                </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('quickActions.postJob')}</p>
                   <p className="text-xs text-muted-foreground">{t('quickActions.postJobDesc')}</p>
@@ -532,9 +491,6 @@ export default function RecruiterDashboard() {
                 href="/dashboard/recruiter/messages"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
               >
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <MessageSquare className="h-4 w-4 text-primary" />
-                </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('quickActions.messages')}</p>
                   <p className="text-xs text-muted-foreground">{t('quickActions.messagesDesc')}</p>
@@ -546,9 +502,6 @@ export default function RecruiterDashboard() {
                 href="/dashboard/recruiter/settings"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
               >
-                <div className="p-2 bg-muted rounded-lg">
-                  <Building2 className="h-4 w-4 text-muted-foreground" />
-                </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('quickActions.companySettings')}</p>
                   <p className="text-xs text-muted-foreground">{t('quickActions.companySettingsDesc')}</p>
@@ -582,8 +535,7 @@ export default function RecruiterDashboard() {
           {/* Tips */}
           <Card className="bg-gradient-to-br from-muted/50 to-slate-100 border-slate-200">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Lightbulb className="h-4 w-4" />
+              <CardTitle className="text-lg">
                 {t('recruitingTip.title')}
               </CardTitle>
             </CardHeader>

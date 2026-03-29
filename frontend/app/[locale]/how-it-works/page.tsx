@@ -25,7 +25,7 @@ export default function HowItWorksPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Header />
       <main className="pt-24 pb-16">
 

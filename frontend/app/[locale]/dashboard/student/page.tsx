@@ -8,20 +8,12 @@ import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import {
   Plus,
-  Eye,
-  Briefcase,
-  ArrowRight,
   ExternalLink,
-  Clock,
-  MapPin,
-  Building2,
-  FileText,
   ChevronRight,
-  MessageSquare,
   FolderOpen,
-  TrendingUp,
   Sparkles,
   LogOut,
+  Eye,
 } from 'lucide-react'
 import { Skeleton } from '@/components/ui/skeleton'
 import OnboardingChecklist from '@/components/dashboard/student/OnboardingChecklist'
@@ -134,18 +126,9 @@ export default function StudentDashboard() {
             {t('greeting', { name: user?.firstName || '' })}
           </h1>
           <div className="flex items-center gap-4 mt-1 text-sm text-gray-500">
-            <span className="flex items-center gap-1">
-              <Eye className="h-3.5 w-3.5" />
-              {stats.profileViews} {t('stats.views')}
-            </span>
-            <span className="flex items-center gap-1">
-              <MessageSquare className="h-3.5 w-3.5" />
-              {stats.unreadMessages} {t('stats.messages')}
-            </span>
-            <span className="flex items-center gap-1">
-              <Briefcase className="h-3.5 w-3.5" />
-              {stats.jobMatches} {t('stats.matches')}
-            </span>
+            <span>{stats.profileViews} {t('stats.views')}</span>
+            <span>{stats.unreadMessages} {t('stats.messages')}</span>
+            <span>{stats.jobMatches} {t('stats.matches')}</span>
           </div>
         </div>
         <div className="flex gap-2">

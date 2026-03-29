@@ -11,20 +11,10 @@ import { Link } from '@/navigation'
 import { Skeleton } from '@/components/ui/skeleton'
 import {
   Users,
-  GraduationCap,
-  Building2,
   Plus,
-  Settings,
   ChevronRight,
-  Eye,
-  Award,
   Upload,
-  BarChart3,
-  BookOpen,
-  RefreshCw,
-  LogOut,
   TrendingUp,
-  Loader2
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import { useLocale, useTranslations } from 'next-intl'
@@ -183,9 +173,6 @@ export default function UniversityDashboard() {
       {stats.recruiterViews > 0 && (
         <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <Eye className="h-5 w-5 text-primary" />
-            </div>
             <div>
               <p className="font-medium text-gray-900">
                 {t('companiesViewed', { count: stats.recruiterViews })}
@@ -228,57 +215,29 @@ export default function UniversityDashboard() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-2xl font-bold">{stats.totalStudents}</p>
-                <p className="text-sm text-gray-600">{t('totalStudents')}</p>
-              </div>
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <GraduationCap className="h-5 w-5 text-primary" />
-              </div>
-            </div>
+            <p className="text-2xl font-bold">{stats.totalStudents}</p>
+            <p className="text-sm text-gray-600">{t('totalStudents')}</p>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-2xl font-bold">{stats.verifiedStudents}</p>
-                <p className="text-sm text-gray-600">{t('verified')}</p>
-              </div>
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <Award className="h-5 w-5 text-primary" />
-              </div>
-            </div>
+            <p className="text-2xl font-bold">{stats.verifiedStudents}</p>
+            <p className="text-sm text-gray-600">{t('verified')}</p>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-2xl font-bold">{stats.activeProfiles}</p>
-                <p className="text-sm text-gray-600">{t('activeProfiles')}</p>
-              </div>
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <Users className="h-5 w-5 text-primary" />
-              </div>
-            </div>
+            <p className="text-2xl font-bold">{stats.activeProfiles}</p>
+            <p className="text-sm text-gray-600">{t('activeProfiles')}</p>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-2xl font-bold">{stats.recruiterViews}</p>
-                <p className="text-sm text-gray-600">{t('recruiterViews')}</p>
-              </div>
-              <div className="p-2 bg-orange-100 rounded-lg">
-                <Eye className="h-5 w-5 text-orange-600" />
-              </div>
-            </div>
+            <p className="text-2xl font-bold">{stats.recruiterViews}</p>
+            <p className="text-sm text-gray-600">{t('recruiterViews')}</p>
           </CardContent>
         </Card>
       </div>
@@ -427,9 +386,6 @@ export default function UniversityDashboard() {
                 href="/dashboard/university/students/add"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Plus className="h-4 w-4 text-primary" />
-                </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('addStudents')}</p>
                   <p className="text-xs text-gray-500">{t('inviteNewStudents')}</p>
@@ -441,9 +397,6 @@ export default function UniversityDashboard() {
                 href="/dashboard/university/analytics"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <BarChart3 className="h-4 w-4 text-primary" />
-                </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('analytics')}</p>
                   <p className="text-xs text-gray-500">{t('viewPlacementStats')}</p>
@@ -455,9 +408,6 @@ export default function UniversityDashboard() {
                 href="/dashboard/university/recruiters"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Building2 className="h-4 w-4 text-primary" />
-                </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('recruiters')}</p>
                   <p className="text-xs text-gray-500">{t('companiesRecruiting')}</p>
@@ -469,9 +419,6 @@ export default function UniversityDashboard() {
                 href="/dashboard/university/courses"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="p-2 bg-cyan-100 rounded-lg">
-                  <BookOpen className="h-4 w-4 text-cyan-600" />
-                </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('courses')}</p>
                   <p className="text-xs text-gray-500">{t('manageCourseCatalog')}</p>
@@ -483,9 +430,6 @@ export default function UniversityDashboard() {
                 href="/dashboard/university/alumni"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="p-2 bg-orange-100 rounded-lg">
-                  <GraduationCap className="h-4 w-4 text-orange-600" />
-                </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('alumni')}</p>
                   <p className="text-xs text-gray-500">{t('trackPostGraduation')}</p>
@@ -497,9 +441,6 @@ export default function UniversityDashboard() {
                 href="/dashboard/university/sync"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <RefreshCw className="h-4 w-4 text-primary" />
-                </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('dataSync')}</p>
                   <p className="text-xs text-gray-500">{t('syncUniversitySystems')}</p>
@@ -511,9 +452,6 @@ export default function UniversityDashboard() {
                 href="/dashboard/university/settings"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <div className="p-2 bg-gray-100 rounded-lg">
-                  <Settings className="h-4 w-4 text-gray-600" />
-                </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('settings')}</p>
                   <p className="text-xs text-gray-500">{t('universityProfile')}</p>
@@ -526,9 +464,6 @@ export default function UniversityDashboard() {
                 onClick={() => signOut({ callbackUrl: `/${locale}` })}
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-red-50 transition-colors w-full text-left"
               >
-                <div className="p-2 bg-red-50 rounded-lg">
-                  <LogOut className="h-4 w-4 text-red-500" />
-                </div>
                 <p className="text-sm font-medium text-red-600">{t('signOut')}</p>
               </button>
             </CardContent>

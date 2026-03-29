@@ -4,7 +4,7 @@ import { Link, useRouter } from '@/navigation'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Menu, X, User, GraduationCap, Building2, Briefcase } from 'lucide-react'
+import { Menu, X, User } from 'lucide-react'
 import { Logo } from '@/components/layout/Logo'
 import { useSession, signOut } from 'next-auth/react'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
@@ -22,10 +22,10 @@ export function Header() {
 
   const logout = () => signOut({ callbackUrl: '/' })
 
-  const segments: { id: Segment; label: string; icon: typeof GraduationCap }[] = [
-    { id: 'students', label: t('forStudents'), icon: GraduationCap },
-    { id: 'institutions', label: t('forInstitutions'), icon: Building2 },
-    { id: 'companies', label: t('forCompanies'), icon: Briefcase },
+  const segments: { id: Segment; label: string }[] = [
+    { id: 'students', label: t('forStudents') },
+    { id: 'institutions', label: t('forInstitutions') },
+    { id: 'companies', label: t('forCompanies') },
   ]
 
   // Navigation links change based on active segment
@@ -71,7 +71,6 @@ export function Header() {
           <div className="flex items-center justify-between h-8">
             <div className="flex items-center gap-1">
               {segments.map((seg) => {
-                const Icon = seg.icon
                 const isActive = activeSegment === seg.id
                 return (
                   <button
@@ -101,7 +100,6 @@ export function Header() {
                         : 'text-white/50 hover:text-white/80'
                     }`}
                   >
-                    <Icon className="h-3 w-3" />
                     <span className="hidden sm:inline">{seg.label}</span>
                   </button>
                 )
@@ -199,7 +197,6 @@ export function Header() {
             {/* Mobile segment selector */}
             <div className="mt-4 flex gap-2 border-b border-border pb-4">
               {segments.map((seg) => {
-                const Icon = seg.icon
                 const isActive = activeSegment === seg.id
                 return (
                   <button
@@ -228,7 +225,6 @@ export function Header() {
                         : 'text-muted-foreground hover:text-foreground bg-muted'
                     }`}
                   >
-                    <Icon className="h-3.5 w-3.5" />
                     {seg.label}
                   </button>
                 )
