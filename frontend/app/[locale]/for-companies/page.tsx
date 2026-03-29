@@ -51,7 +51,7 @@ export default function ForCompaniesPage() {
         <section className="relative overflow-hidden bg-foreground text-white">
           <img src="/images/brand/meeting.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-primary/60" />
-          <div className="relative container max-w-4xl text-center py-16 lg:py-20">
+          <div className="relative container max-w-4xl text-center pt-32 pb-16 lg:pt-36 lg:pb-20">
             <motion.div initial="hidden" animate="visible" variants={stagger}>
               <motion.div variants={fadeUp} custom={0}>
                 <Badge className="mb-6 bg-white/10 text-white border-white/20">

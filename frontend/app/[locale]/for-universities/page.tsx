@@ -75,7 +75,7 @@ export default function ForUniversitiesPage() {
       <section className="relative overflow-hidden bg-foreground text-white">
         <img src="/images/brand/campus.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
         <div className="absolute inset-0 bg-primary/60" />
-        <div className="relative container max-w-6xl mx-auto px-4 py-16 lg:py-20">
+        <div className="relative container max-w-6xl mx-auto px-4 pt-32 pb-16 lg:pt-36 lg:pb-20">
           <div className="text-center max-w-3xl mx-auto">
             <Badge variant="secondary" className="mb-6 bg-white/10 text-white border-white/20">
               {t('hero.badge')}

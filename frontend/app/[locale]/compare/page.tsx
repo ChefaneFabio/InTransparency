@@ -24,7 +24,7 @@ export default function ComparePage() {
       {/* ─── HERO ─── */}
       <section className="relative overflow-hidden bg-foreground text-white">
         <div className="absolute inset-0 bg-primary/80" />
-        <div className="relative mx-auto max-w-5xl px-4 py-16 lg:py-20 text-center sm:px-6">
+        <div className="relative mx-auto max-w-5xl px-4 pt-32 pb-16 lg:pt-36 lg:pb-20 text-center sm:px-6">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
             {t('hero.title')}
           </h1>
