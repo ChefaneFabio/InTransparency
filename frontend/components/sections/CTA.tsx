@@ -21,7 +21,7 @@ export function CTA() {
   const translationKey = segmentToKey[segment]
 
   return (
-    <section className="py-24 sm:py-32 bg-foreground text-background">
+    <section className="py-12 sm:py-16 bg-foreground text-background">
       <div className="container max-w-5xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left: text + CTA */}

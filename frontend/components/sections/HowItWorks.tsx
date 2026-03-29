@@ -26,7 +26,7 @@ export function HowItWorks() {
   }
 
   return (
-    <section id="how-it-works" className="py-24 sm:py-32 bg-muted/30">
+    <section id="how-it-works" className="py-12 sm:py-16 bg-muted/30">
       <div className="container max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">

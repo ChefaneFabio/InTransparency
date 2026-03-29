@@ -95,7 +95,7 @@ export default function ForStudentsPage() {
       </section>
 
       {/* ─── HOW IT WORKS — numbered, no icons ─── */}
-      <section className="bg-white py-16 lg:py-20">
+      <section className="bg-white py-10 lg:py-14">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <motion.div
             initial="hidden" whileInView="visible"
@@ -131,7 +131,7 @@ export default function ForStudentsPage() {
       </section>
 
       {/* ─── KEY FEATURES — typography driven ─── */}
-      <section className="bg-slate-50 py-16 lg:py-20">
+      <section className="bg-slate-50 py-10 lg:py-14">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <motion.div
             initial="hidden" whileInView="visible"
@@ -165,7 +165,7 @@ export default function ForStudentsPage() {
       </section>
 
       {/* ─── WHO IT'S FOR — clean cards, no icons ─── */}
-      <section className="bg-white py-16 lg:py-20">
+      <section className="bg-white py-10 lg:py-14">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <motion.div
             initial="hidden" whileInView="visible"
@@ -200,7 +200,7 @@ export default function ForStudentsPage() {
       </section>
 
       {/* ─── FAQ ─── */}
-      <section className="bg-slate-50 py-16 lg:py-20">
+      <section className="bg-slate-50 py-10 lg:py-14">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <motion.div
             initial="hidden" whileInView="visible"
@@ -223,7 +223,7 @@ export default function ForStudentsPage() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-16 lg:py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-10 lg:py-14">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent" />
 
         <motion.div

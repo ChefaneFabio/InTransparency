@@ -16,7 +16,7 @@ export function ComparisonTable() {
   const rows = [0, 1, 2, 3, 4, 5] as const
 
   return (
-    <section className="py-24 sm:py-32 bg-muted/30">
+    <section className="py-12 sm:py-16 bg-muted/30">
       <div className="container">
         <div className="text-center mb-16">
           <p className="text-sm font-medium tracking-widest text-primary uppercase mb-4">
