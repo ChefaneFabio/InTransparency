@@ -6,16 +6,14 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Link } from '@/navigation'
-import { GraduationCap, Building2, Users, Landmark, ArrowRight, CheckCircle } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { Transparenty } from '@/components/mascot/Transparenty'
 import { BRAND_IMAGES } from '@/lib/brand-images'
 
 const roles = [
   {
     id: 'student' as const,
-    icon: GraduationCap,
     image: '/images/brand/students.jpg', imageAlt: 'Students studying together',
     color: 'bg-primary',
     borderHover: 'hover:border-primary',
@@ -24,7 +22,6 @@ const roles = [
   },
   {
     id: 'recruiter' as const,
-    icon: Users,
     image: '/images/brand/handshake.jpg', imageAlt: 'Professional handshake between recruiter and candidate',
     color: 'bg-primary',
     borderHover: 'hover:border-primary',
@@ -33,7 +30,6 @@ const roles = [
   },
   {
     id: 'university' as const,
-    icon: Building2,
     image: '/images/brand/campus.jpg', imageAlt: 'University campus building',
     color: 'bg-primary',
     borderHover: 'hover:border-primary',
@@ -42,7 +38,6 @@ const roles = [
   },
   {
     id: 'techpark' as const,
-    icon: Landmark,
     image: '/images/brand/office.jpg', imageAlt: 'Modern tech park office space',
     color: 'bg-primary',
     borderHover: 'hover:border-primary',
@@ -93,9 +88,6 @@ export default function RegisterPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <div className="flex justify-center mb-4">
-              <Transparenty size={100} mood="waving" />
-            </div>
             <Badge className="mb-4 bg-primary text-white">
               {t('register.badge')}
             </Badge>
@@ -109,9 +101,7 @@ export default function RegisterPage() {
 
           {/* Role Selection Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {roles.map((roleOption, index) => {
-              const Icon = roleOption.icon
-              return (
+            {roles.map((roleOption, index) => (
                 <motion.div
                   key={roleOption.id}
                   initial={{ opacity: 0, y: 30 }}
@@ -126,9 +116,6 @@ export default function RegisterPage() {
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                      <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm p-2 rounded-full">
-                        <Icon className="h-5 w-5 text-primary" />
-                      </div>
                     </div>
                     <CardHeader className="pt-4">
                       <CardTitle className="text-2xl text-center">
@@ -142,7 +129,7 @@ export default function RegisterPage() {
                       <ul className="space-y-3 mb-6">
                         {Array.from({ length: roleOption.benefitCount }, (_, i) => (
                           <li key={i} className="flex items-start text-sm text-gray-700">
-                            <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0" />
+                            <span className="text-primary font-bold mr-2 flex-shrink-0">✓</span>
                             <span>{t(`register.roles.${roleOption.id}.benefits.${i}`)}</span>
                           </li>
                         ))}
@@ -156,8 +143,7 @@ export default function RegisterPage() {
                     </CardContent>
                   </Card>
                 </motion.div>
-              )
-            })}
+            ))}
           </div>
 
           {/* Already Have Account */}

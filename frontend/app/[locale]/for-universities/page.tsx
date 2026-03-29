@@ -73,7 +73,6 @@ export default function ForUniversitiesPage() {
 
       {/* Hero — lead with the real pilot story */}
       <section className="relative overflow-hidden bg-foreground text-white">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="relative container max-w-6xl mx-auto px-4 py-16 lg:py-20">
           <div className="text-center max-w-3xl mx-auto">
             <Badge variant="secondary" className="mb-6 bg-white/10 text-white border-white/20">
