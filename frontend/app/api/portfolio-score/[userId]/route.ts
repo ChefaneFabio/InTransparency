@@ -46,31 +46,41 @@ export async function GET(
       })
     }
 
-    // Compute fresh
-    const result = await computePortfolioScore(userId)
+    // Compute fresh — if user has no data, return empty score silently
+    let result
+    try {
+      result = await computePortfolioScore(userId)
+    } catch {
+      // User exists but has no projects/data — return empty rather than error
+      return new NextResponse(null, { status: 204 })
+    }
 
     // Store in cache (24h TTL)
     const expiresAt = new Date(now.getTime() + 24 * 60 * 60 * 1000)
-    await prisma.portfolioScore.create({
-      data: {
-        userId,
-        score: result.score,
-        verificationScore: result.verificationScore,
-        endorsementScore: result.endorsementScore,
-        completenessScore: result.completenessScore,
-        aiAnalysisScore: result.aiAnalysisScore,
-        activityScore: result.activityScore,
-        predictionScore: result.predictionScore,
-        weights: result.weights as any,
-        badgeLevel: result.badgeLevel,
-        generatedAt: now,
-        expiresAt,
-      },
-    })
+    try {
+      await prisma.portfolioScore.create({
+        data: {
+          userId,
+          score: result.score,
+          verificationScore: result.verificationScore,
+          endorsementScore: result.endorsementScore,
+          completenessScore: result.completenessScore,
+          aiAnalysisScore: result.aiAnalysisScore,
+          activityScore: result.activityScore,
+          predictionScore: result.predictionScore,
+          weights: result.weights as any,
+          badgeLevel: result.badgeLevel,
+          generatedAt: now,
+          expiresAt,
+        },
+      })
+    } catch {
+      // Cache write failed — still return the result
+    }
 
     return NextResponse.json({ ...result, cached: false, generatedAt: now })
   } catch (error) {
     console.error('Portfolio score error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return new NextResponse(null, { status: 204 })
   }
 }

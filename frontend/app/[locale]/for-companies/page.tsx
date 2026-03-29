@@ -48,11 +48,13 @@ export default function ForCompaniesPage() {
       <Header />
       <main>
         {/* ── Hero ── */}
-        <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white">
-          <div className="container max-w-4xl text-center">
+        <section className="relative overflow-hidden bg-foreground text-white">
+          <img src="/images/brand/meeting.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-primary/60" />
+          <div className="relative container max-w-4xl text-center py-16 lg:py-20">
             <motion.div initial="hidden" animate="visible" variants={stagger}>
               <motion.div variants={fadeUp} custom={0}>
-                <Badge className="mb-6 bg-blue-500/20 text-blue-200 border-blue-400/30">
+                <Badge className="mb-6 bg-white/10 text-white border-white/20">
                   {t('hero.badge')}
                 </Badge>
               </motion.div>
@@ -80,32 +82,6 @@ export default function ForCompaniesPage() {
                   </Link>
                 </Button>
               </motion.div>
-            </motion.div>
-
-            {/* Hero image */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-10 mx-auto max-w-4xl relative overflow-hidden rounded-2xl shadow-xl group"
-            >
-              <img
-                src={BRAND_IMAGES.forCompanies.hero}
-                alt="Professional hiring — trust and confidence"
-                className="w-full h-[280px] sm:h-[360px] object-cover animate-kenburns"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              <Link href="/demo/ai-search">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div
-                    className="flex items-center gap-3 rounded-full bg-white/90 px-6 py-3 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <Play className="h-5 w-5 text-slate-900" fill="currentColor" />
-                    <span className="text-sm font-semibold text-slate-900">{t('demo.cta')}</span>
-                  </motion.div>
-                </div>
-              </Link>
             </motion.div>
           </div>
         </section>

@@ -27,41 +27,31 @@ export default function HowItWorksPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-24 pb-16">
+      <main className="pb-16">
 
         {/* ── Hero ── */}
-        <section className="container max-w-5xl text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Badge className="mb-5 bg-primary/10 text-primary border-primary/20 text-sm px-4 py-1.5">
-              {t('hero.badge')}
-            </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-5 leading-tight">
-              {t('hero.titleLine1')}
-              <br />
-              <span className="text-primary">{t('hero.titleLine2')}</span>
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t('hero.subtitle')}
-            </p>
-          </motion.div>
-
-          {/* Hero image */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-12 mx-auto max-w-4xl"
-          >
-            <img
-              src={BRAND_IMAGES.hero.main}
-              alt="How InTransparency works"
-              className="w-full h-[250px] sm:h-[320px] object-cover rounded-2xl shadow-lg"
-            />
-          </motion.div>
+        <section className="relative overflow-hidden bg-foreground text-white">
+          <img src="/images/brand/team.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-primary/60" />
+          <div className="relative container max-w-4xl mx-auto px-4 py-16 lg:py-20 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Badge className="mb-5 bg-white/10 text-white border-white/20 text-sm px-4 py-1.5">
+                {t('hero.badge')}
+              </Badge>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-5 leading-tight">
+                {t('hero.titleLine1')}
+                <br />
+                <span className="text-blue-200">{t('hero.titleLine2')}</span>
+              </h1>
+              <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto">
+                {t('hero.subtitle')}
+              </p>
+            </motion.div>
+          </div>
         </section>
 
         {/* ── Segment Selector ── */}

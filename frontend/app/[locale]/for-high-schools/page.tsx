@@ -23,8 +23,10 @@ export default function ForHighSchoolsPage() {
       <Header />
 
       {/* Hero */}
-      <section className="bg-foreground text-white py-16 lg:py-20">
-        <div className="container max-w-4xl mx-auto px-4 text-center">
+      <section className="relative overflow-hidden bg-foreground text-white">
+        <img src="/images/brand/campus.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+        <div className="absolute inset-0 bg-primary/60" />
+        <div className="relative container max-w-4xl mx-auto px-4 py-16 lg:py-20 text-center">
           <p className="text-sm text-blue-300 font-medium mb-4">{t('hero.badge')}</p>
           <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
             {t('hero.title')}

@@ -81,52 +81,57 @@ export default function CertificationPage() {
     <div className="min-h-screen">
       <Header />
 
-      <main className="pt-24 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="pb-16">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden bg-foreground text-white">
+          <img src="/images/brand/students.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-primary/60" />
+          <div className="relative container max-w-4xl mx-auto px-4 py-16 lg:py-20 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Badge className="mb-4 bg-white/10 text-white text-sm px-6 py-2 border-white/20">
+                NEW: Soft Skills Certification
+              </Badge>
 
-          {/* Hero Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <Badge className="mb-4 bg-primary text-white text-sm px-6 py-2 border-0">
-              NEW: Soft Skills Certification
-            </Badge>
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+                Stand Out With{' '}
+                <span className="text-blue-200">
+                  Certified Soft Skills
+                </span>
+              </h1>
 
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Stand Out With{' '}
-              <span className="text-primary">
-                Certified Soft Skills
-              </span>
-            </h1>
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+                Beyond your projects and code. Prove your leadership, communication, and teamwork
+                skills with psychometric testing trusted by recruiters.
+              </p>
 
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
-              Beyond your projects and code. Prove your leadership, communication, and teamwork
-              skills with psychometric testing trusted by recruiters.
-            </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                <Button
+                  size="lg"
+                  onClick={handleGetCertified}
+                  className="bg-white text-blue-900 hover:bg-blue-50 shadow-lg text-lg px-8 py-6"
+                >
+                  Get Certified — Free
+                </Button>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <Button
-                size="lg"
-                onClick={handleGetCertified}
-                className="bg-primary hover:bg-primary/90 text-white shadow-lg text-lg px-8 py-6"
-              >
-                Get Certified — Free
-              </Button>
+                <Button size="lg" variant="outline" asChild className="border-white/30 text-white hover:bg-white/10">
+                  <Link href="#how-it-works">
+                    See How It Works
+                  </Link>
+                </Button>
+              </div>
 
-              <Button size="lg" variant="outline" asChild>
-                <Link href="#how-it-works">
-                  See How It Works
-                </Link>
-              </Button>
-            </div>
+              <p className="text-sm text-blue-200">
+                30-minute assessment -- Instant results -- Lifetime certificate
+              </p>
+            </motion.div>
+          </div>
+        </section>
 
-            <p className="text-sm text-gray-600">
-              ✓ 30-minute assessment  ✓ Instant results  ✓ Lifetime certificate
-            </p>
-          </motion.div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
 
           {/* Soft Skills Grid */}
           <motion.div

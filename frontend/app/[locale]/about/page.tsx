@@ -17,32 +17,25 @@ export default function AboutPage() {
     <div className="min-h-screen hero-bg">
       <Header />
 
-      <main className="pt-24 pb-16">
+      <main className="pb-16">
         {/* Hero Section - The Problem */}
-        <section className="hero-bg py-16 relative overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0 opacity-5">
-            <Image
-              src={IMAGES.students.student2}
-              alt="Background pattern"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="container max-w-4xl relative z-10">
+        <section className="relative overflow-hidden bg-foreground text-white">
+          <img src="/images/brand/team.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-primary/60" />
+          <div className="relative container max-w-4xl mx-auto px-4 py-16 lg:py-20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <div className="inline-block bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <div className="inline-block bg-white/10 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 {t('hero.badge')}
               </div>
-              <h1 className="text-5xl font-display font-bold text-foreground mb-6">
+              <h1 className="text-5xl font-display font-bold text-white mb-6">
                 {t('hero.title')}
               </h1>
-              <p className="text-xl text-foreground/80 leading-relaxed whitespace-pre-line">
+              <p className="text-xl text-blue-100 leading-relaxed whitespace-pre-line">
                 {t('hero.description')}
               </p>
             </motion.div>
@@ -53,19 +46,10 @@ export default function AboutPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-              <Card className="bg-card hover:shadow-lg transition-shadow h-full">
+              <Card className="bg-white/10 border-white/20 backdrop-blur-sm hover:shadow-lg transition-shadow h-full">
                 <CardContent className="p-8">
-                  <div className="relative w-16 h-16 mb-4 rounded-lg overflow-hidden shadow-md">
-                    <Image
-                      src={IMAGES.students.student3}
-                      alt="Resume Problem"
-                      width={64}
-                      height={64}
-                      className="object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">{t('resumeProblem.title')}</h3>
-                  <ul className="space-y-2 text-foreground/80">
+                  <h3 className="text-xl font-bold text-white mb-3">{t('resumeProblem.title')}</h3>
+                  <ul className="space-y-2 text-blue-100">
                     <li>{t('resumeProblem.items.0')}</li>
                     <li>{t('resumeProblem.items.1')}</li>
                     <li>{t('resumeProblem.items.2')}</li>
@@ -81,19 +65,10 @@ export default function AboutPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-              <Card className="bg-primary/5 border-2 border-primary/20 hover:shadow-lg transition-shadow h-full">
+              <Card className="bg-white/15 border-white/30 backdrop-blur-sm hover:shadow-lg transition-shadow h-full">
                 <CardContent className="p-8">
-                  <div className="relative w-16 h-16 mb-4 rounded-lg overflow-hidden shadow-md">
-                    <Image
-                      src={IMAGES.features.aiAnalysis}
-                      alt="InTransparency Way"
-                      width={64}
-                      height={64}
-                      className="object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">{t('intransparencyWay.title')}</h3>
-                  <ul className="space-y-2 text-foreground/80">
+                  <h3 className="text-xl font-bold text-white mb-3">{t('intransparencyWay.title')}</h3>
+                  <ul className="space-y-2 text-blue-100">
                     <li>{t('intransparencyWay.items.0')}</li>
                     <li>{t('intransparencyWay.items.1')}</li>
                     <li>{t('intransparencyWay.items.2')}</li>

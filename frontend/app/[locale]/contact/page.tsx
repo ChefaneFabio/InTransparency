@@ -51,19 +51,12 @@ export default function ContactPage() {
     <div className="min-h-screen hero-bg">
       <Header />
 
-      <main className="pt-20">
+      <main>
         {/* Hero Section */}
-        <section className="py-16 bg-primary text-white relative overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0 opacity-10">
-            <Image
-              src={IMAGES.companies.team}
-              alt="Background pattern"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="container max-w-4xl mx-auto px-4 text-center relative z-10">
+        <section className="relative overflow-hidden bg-foreground text-white">
+          <img src="/images/brand/office.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-primary/60" />
+          <div className="relative container max-w-4xl mx-auto px-4 py-16 lg:py-20 text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -76,7 +69,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-white max-w-2xl mx-auto"
+              className="text-xl text-blue-100 max-w-2xl mx-auto"
             >
               {t('hero.subtitle')}
             </motion.p>

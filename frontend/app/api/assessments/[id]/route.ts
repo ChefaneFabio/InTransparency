@@ -38,7 +38,7 @@ export async function GET(
     })
 
     if (!assessment || assessment.userId !== session.user.id) {
-      return NextResponse.json({ error: 'Assessment not found' }, { status: 404 })
+      return new NextResponse(null, { status: 204 })
     }
 
     // Get questions if assessment is in progress
@@ -102,7 +102,7 @@ export async function PATCH(
     })
 
     if (!assessment || assessment.userId !== session.user.id) {
-      return NextResponse.json({ error: 'Assessment not found' }, { status: 404 })
+      return new NextResponse(null, { status: 204 })
     }
 
     if (assessment.status !== 'IN_PROGRESS' && assessment.status !== 'PAID') {

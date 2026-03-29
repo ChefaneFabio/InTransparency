@@ -313,32 +313,25 @@ export default function ExplorePage() {
     <div className="min-h-screen hero-bg">
       <Header />
 
-      <main className="pt-24 pb-16">
+      <main className="pb-16">
         {/* Hero Section */}
-        <section className="hero-bg py-20 relative overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0 opacity-5">
-            <Image
-              src={IMAGES.students.student2}
-              alt="Background pattern"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="container max-w-5xl relative z-10">
+        <section className="relative overflow-hidden bg-foreground text-white">
+          <img src="/images/brand/students.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-primary/60" />
+          <div className="relative container max-w-5xl mx-auto px-4 py-16 lg:py-20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 {t('hero.badge')}
               </div>
-              <h1 className="text-5xl font-display font-bold mb-6 text-foreground">
+              <h1 className="text-5xl font-display font-bold mb-6 text-white">
                 {t('hero.title')}
               </h1>
-              <p className="text-xl text-foreground/80 leading-relaxed max-w-3xl mx-auto mb-8">
+              <p className="text-xl text-blue-100 leading-relaxed max-w-3xl mx-auto mb-8">
                 {t('hero.subtitle')}
               </p>
 
@@ -348,7 +341,7 @@ export default function ExplorePage() {
                 <Input
                   type="text"
                   placeholder={t('hero.searchPlaceholder')}
-                  className="pl-12 py-6 text-lg bg-card text-foreground shadow-md border-2 hover:border-primary/30 transition-colors"
+                  className="pl-12 py-6 text-lg bg-white text-foreground shadow-md border-2 hover:border-primary/30 transition-colors"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -358,8 +351,8 @@ export default function ExplorePage() {
               {students.length > 0 && (
                 <div className="flex justify-center space-x-8 mt-12">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-primary">{students.length}</div>
-                    <div className="text-sm text-foreground/80">{t('hero.stats.students')}</div>
+                    <div className="text-3xl font-bold text-white">{students.length}</div>
+                    <div className="text-sm text-blue-200">{t('hero.stats.students')}</div>
                   </div>
                 </div>
               )}

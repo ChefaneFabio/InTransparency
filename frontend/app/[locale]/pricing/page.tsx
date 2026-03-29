@@ -21,48 +21,53 @@ export default function PricingPage() {
     <div className="min-h-screen hero-bg">
       <Header />
 
-      <main className="pt-24 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="pb-16">
+        {/* Hero — value-first, not price-first */}
+        <section className="relative overflow-hidden bg-foreground text-white">
+          <img src="/images/brand/meeting.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-primary/60" />
+          <div className="relative container max-w-4xl mx-auto px-4 py-16 lg:py-20 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Badge className="mb-6 bg-white/10 text-white border-white/20 text-sm px-4 py-2">
+                {t('hero.badge')}
+              </Badge>
+              <h1 className="text-5xl font-display font-bold mb-6 text-white">
+                {t('hero.title')}
+              </h1>
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-4">
+                {t('hero.subtitle')}
+              </p>
+              <p className="text-base text-blue-200 max-w-2xl mx-auto mb-12">
+                {t('hero.description')}
+              </p>
 
-          {/* Hero — value-first, not price-first */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <Badge className="mb-6 bg-primary/10 text-primary text-sm px-4 py-2">
-              {t('hero.badge')}
-            </Badge>
-            <h1 className="text-5xl font-display font-bold mb-6 text-foreground">
-              {t('hero.title')}
-            </h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-4">
-              {t('hero.subtitle')}
-            </p>
-            <p className="text-base text-gray-600 max-w-2xl mx-auto mb-12">
-              {t('hero.description')}
-            </p>
+              {/* Segment Selector */}
+              <div className="inline-flex bg-white/10 backdrop-blur-sm rounded-full p-1.5 shadow-lg border border-white/20">
+                {(['companies', 'students', 'institutes'] as Segment[]).map((segment) => {
+                  return (
+                    <button
+                      key={segment}
+                      onClick={() => setSelectedSegment(segment)}
+                      className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                        selectedSegment === segment
+                          ? 'bg-white text-blue-900'
+                          : 'text-white/80 hover:text-white hover:bg-white/10'
+                      }`}
+                    >
+                      {t(`hero.segments.${segment}`)}
+                    </button>
+                  )
+                })}
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
-            {/* Segment Selector */}
-            <div className="inline-flex bg-white rounded-full p-1.5 shadow-lg border border-gray-200">
-              {(['companies', 'students', 'institutes'] as Segment[]).map((segment) => {
-                return (
-                  <button
-                    key={segment}
-                    onClick={() => setSelectedSegment(segment)}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                      selectedSegment === segment
-                        ? 'bg-primary text-primary-foreground'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                    }`}
-                  >
-                    {t(`hero.segments.${segment}`)}
-                  </button>
-                )
-              })}
-            </div>
-          </motion.div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
 
           {/* Social Proof Stats */}
           <motion.div

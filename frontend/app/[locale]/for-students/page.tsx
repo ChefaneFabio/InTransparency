@@ -48,14 +48,14 @@ export default function ForStudentsPage() {
       <Header />
 
       {/* ─── HERO ─── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 pt-28 pb-16 lg:pt-32 lg:pb-20">
-        <div className="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-blue-100/40 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-32 -left-32 h-[400px] w-[400px] rounded-full bg-violet-100/30 blur-3xl" />
+      <section className="relative overflow-hidden bg-foreground text-white">
+        <img src="/images/brand/students.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+        <div className="absolute inset-0 bg-primary/60" />
 
-        <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6">
+        <div className="relative mx-auto max-w-5xl px-4 py-16 lg:py-20 text-center sm:px-6">
           <motion.div initial="hidden" animate="visible" variants={stagger}>
             <motion.div variants={fadeUp} custom={0}>
-              <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm font-medium">
+              <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm font-medium bg-white/10 text-white border-white/20">
                 <Award className="mr-1.5 h-3.5 w-3.5" />
                 {t('hero.badge')}
               </Badge>
@@ -64,46 +64,32 @@ export default function ForStudentsPage() {
             <motion.h1
               variants={fadeUp}
               custom={1}
-              className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
+              className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl"
             >
               {t('hero.title')}{' '}
-              <span className="text-primary">
+              <span className="text-blue-200">
                 <TypewriterText text={t('hero.titleHighlight')} speed={60} delay={800} />
               </span>
             </motion.h1>
 
-            <motion.p variants={fadeUp} custom={2} className="mx-auto mt-6 max-w-2xl text-lg text-slate-600 sm:text-xl">
+            <motion.p variants={fadeUp} custom={2} className="mx-auto mt-6 max-w-2xl text-lg text-blue-100 sm:text-xl">
               {t('hero.subtitle')}
             </motion.p>
 
             <motion.div variants={fadeUp} custom={3} className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="/auth/register">
-                <Button size="lg" className="gap-2 rounded-full px-8 text-base">
+                <Button size="lg" className="gap-2 rounded-full px-8 text-base bg-white text-blue-900 hover:bg-blue-50">
                   {t('cta.primaryButton')}
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/demo/ai-search">
-                <Button variant="outline" size="lg" className="gap-2 rounded-full px-8 text-base">
+                <Button variant="outline" size="lg" className="gap-2 rounded-full px-8 text-base border-white/30 text-white hover:bg-white/10">
                   <Play className="h-4 w-4" />
                   {t('cta.secondaryButton')}
                 </Button>
               </Link>
             </motion.div>
-          </motion.div>
-
-          {/* Hero image */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-12 mx-auto max-w-4xl overflow-hidden rounded-2xl shadow-xl"
-          >
-            <img
-              src={BRAND_IMAGES.forStudents.hero}
-              alt="Students collaborating on projects"
-              className="w-full h-[280px] sm:h-[360px] object-cover animate-kenburns"
-            />
           </motion.div>
         </div>
       </section>
