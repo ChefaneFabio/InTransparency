@@ -3387,181 +3387,76 @@
   },
   "pricingPage": {
     "hero": {
-      "badge": "Free for Everyone",
-      "title": "Verified Talent. Trusted Outcomes.",
-      "subtitle": "The hiring platform where skills are proven, not claimed. Full access for students, companies, and universities.",
-      "description": "No credit card. No paywall. No hidden fees. Just results.",
-      "segments": {
-        "students": "Students",
-        "institutes": "Universities & Schools",
-        "companies": "Companies"
-      }
+      "title": "Simple pricing, real value",
+      "subtitle": "Free for students and universities. Companies pay only when they find the right candidate."
     },
-    "stats": {
-      "portfolios": {
-        "value": "500+",
-        "label": "Verified Portfolios"
+    "tiers": {
+      "students": {
+        "name": "Students",
+        "price": "€0",
+        "period": "forever",
+        "description": "Build your verified portfolio and get discovered by companies.",
+        "cta": "Get Started Free",
+        "features": {
+          "0": "Unlimited project portfolio",
+          "1": "Institutional verification",
+          "2": "Personality and soft skills assessments",
+          "3": "AI-powered job search",
+          "4": "Contract check and offer comparison"
+        }
+      },
+      "companies": {
+        "name": "Companies",
+        "badge": "Most Popular",
+        "price": "€0",
+        "period": "during launch",
+        "description": "Search verified talent. Pay only to contact candidates.",
+        "cta": "Start Searching",
+        "features": {
+          "0": "Unlimited candidate search",
+          "1": "University-verified profiles",
+          "2": "Conversational AI search",
+          "3": "Decision Pack per candidate",
+          "4": "Pipeline and candidate management",
+          "5": "European grade normalization"
+        }
       },
       "universities": {
-        "value": "10+",
-        "label": "Partner Universities"
-      },
-      "verified": {
-        "value": "100%",
-        "label": "Skills Verified"
-      },
-      "cost": {
-        "value": "€0",
-        "label": "For Everyone"
-      }
-    },
-    "company": {
-      "badge": "Full Access — Free During Launch",
-      "title": "Find the Right Talent, Faster",
-      "subtitle": "Stop guessing from resumes. Browse verified student portfolios with institution-stamped skills, real project work, and AI-powered matching — all at no cost.",
-      "cta": "Start Finding Talent",
-      "demoCta": "Try the AI Search Demo",
-      "cardTitle": "Full Access",
-      "cardNote": "No limits, no credit card, no catch",
-      "features": {
-        "discover": {
-          "title": "Discover Hidden Talent",
-          "description": "AI-powered search surfaces candidates you'd never find on a resume.",
-          "items": {
-            "0": "Advanced filters by skill, school, and location",
-            "1": "AI matching scores that explain why a candidate fits",
-            "2": "Save, compare, and shortlist candidates instantly"
-          }
-        },
-        "verify": {
-          "title": "Trust What You See",
-          "description": "Every skill and grade is verified by the student's university — not self-reported.",
-          "items": {
-            "0": "Institution-verified projects and grades",
-            "1": "Video portfolios showing real work in action",
-            "2": "AI skill analysis across technical and soft skills"
-          }
-        },
-        "connect": {
-          "title": "Reach Candidates Directly",
-          "description": "Contact students with no barriers — unlimited during our launch phase.",
-          "items": {
-            "0": "Unlimited candidate contacts",
-            "1": "Post job listings and receive applications",
-            "2": "Full access to project details and skill data"
-          }
+        "name": "Universities & Schools",
+        "price": "€0",
+        "period": "core free",
+        "description": "Verify students, track placements, prove impact.",
+        "cta": "Schedule a Demo",
+        "features": {
+          "0": "One-click project verification",
+          "1": "Real-time placement analytics",
+          "2": "Exportable reports for ministry",
+          "3": "Cross-border grade normalization",
+          "4": "Contract analytics and alerts"
         }
       }
     },
-    "student": {
-      "badge": "Always Free for Students",
-      "title": "Get Discovered for What You Can Do",
-      "subtitle": "Your projects speak louder than any resume. Build a verified portfolio, get seen by companies, and let your skills open doors.",
-      "cta": "Build Your Portfolio",
-      "cardTitle": "Always Free",
-      "cardNote": "Your talent shouldn't be behind a paywall",
-      "features": {
-        "portfolio": {
-          "title": "Show Your Real Work",
-          "description": "Upload projects, add video demos, and let companies see what you've actually built.",
-          "items": {
-            "0": "Unlimited project uploads with rich media",
-            "1": "Video portfolio to showcase your process",
-            "2": "AI-powered skill analysis from your work"
-          }
-        },
-        "verification": {
-          "title": "Verified by Your University",
-          "description": "Your grades and projects carry an institutional stamp — proof employers can trust.",
-          "items": {
-            "0": "Institution-verified grades and projects",
-            "1": "Trusted credential that stands out to recruiters",
-            "2": "No more \"prove yourself\" — your school vouches for you"
-          }
-        },
-        "discovery": {
-          "title": "Get Found by Companies",
-          "description": "Companies search by skills, not pedigree. Your work speaks for itself.",
-          "items": {
-            "0": "Public portfolio page discoverable by recruiters",
-            "1": "AI matching connects you to relevant opportunities",
-            "2": "Profile analytics show who's viewing your work"
-          }
-        }
-      }
-    },
-    "institute": {
-      "badge": "Free for Universities & Schools",
-      "title": "Better Outcomes for Every Student",
-      "subtitle": "Verify student work, track placement outcomes, and give every graduate — not just the top 5% — real visibility to employers.",
-      "cta": "Partner With Us",
-      "cardTitle": "Full Access",
-      "cardNote": "Zero cost. Better results than AlmaLaurea.",
-      "features": {
-        "verify": {
-          "title": "Verify Student Achievement",
-          "description": "Stamp student projects and grades with your institution's credibility.",
-          "items": {
-            "0": "One-click project and grade verification",
-            "1": "Batch approval dashboard for efficiency",
-            "2": "Your verification badge on every student profile"
-          }
-        },
-        "track": {
-          "title": "Track Real Placement Outcomes",
-          "description": "See where your students land — not self-reported, but tracked through the platform.",
-          "items": {
-            "0": "Placement analytics by program and cohort",
-            "1": "Skills gap insights to improve curriculum",
-            "2": "Company engagement data for your career office"
-          }
-        },
-        "connect": {
-          "title": "Connect Students to Employers",
-          "description": "Every student gets a discoverable profile — better placement rates across your entire class.",
-          "items": {
-            "0": "ALL students get visibility, not just top performers",
-            "1": "Companies discover talent by skill, not name recognition",
-            "2": "Alumni success stories to attract future students"
-          }
-        }
-      }
-    },
+    "note": "We're currently piloting with Università di Bergamo. Company pricing will be introduced gradually — early adopters keep launch terms.",
     "faq": {
-      "title": "Frequently Asked Questions",
+      "title": "Frequently asked questions",
       "questions": {
         "0": {
-          "q": "Is InTransparency really free?",
-          "a": "Yes — completely free for students, companies, and universities. No trial period, no hidden fees. We're building the network first and will introduce optional premium features later."
+          "q": "Is it really free for students?",
+          "a": "Yes, forever. Portfolio, assessments, job search — all included. Companies pay, not students."
         },
         "1": {
-          "q": "How is this different from LinkedIn or Indeed?",
-          "a": "Resumes are claims. InTransparency shows verified work — real projects stamped by universities, with AI skill analysis. Companies see proof, not promises."
+          "q": "How much will it cost for companies after launch?",
+          "a": "We're finalizing the pricing model. The planned model is: browse free, pay to contact. Early registrants keep favorable terms."
         },
         "2": {
-          "q": "How do students create a portfolio?",
-          "a": "Upload projects, add video demos, and your university verifies your work. Takes under 5 minutes. Independent students can join directly too."
+          "q": "Do universities pay anything?",
+          "a": "The core platform is free for all educational institutions. Advanced features (embedded widgets, custom analytics) will be available as premium add-ons."
         },
         "3": {
-          "q": "How is this better than AlmaLaurea?",
-          "a": "AlmaLaurea charges universities thousands per year for self-reported CVs. InTransparency is free, shows verified project work, and gives ALL students visibility to employers."
-        },
-        "4": {
-          "q": "Do ALL students get visibility or just top performers?",
-          "a": "ALL students get a discoverable profile. Companies search by skills and projects, not GPA rankings. This means better placement rates across your entire class."
-        },
-        "5": {
-          "q": "Will it stay free forever?",
-          "a": "Core access will always be free. In the future, we may offer optional premium features for power users — but the platform you use today stays free."
+          "q": "Is there a contract or lock-in?",
+          "a": "No. No annual contract, no lock-in. You can cancel anytime. Your data is always exportable."
         }
       }
-    },
-    "finalCta": {
-      "title": "Join the Movement",
-      "subtitle": "Hiring should reward real skills, not polished resumes. Be part of the platform that makes talent visible.",
-      "primaryButton": "Get Started Free",
-      "secondaryButton": "Try the AI Demo",
-      "benefits": "✓ No credit card  ✓ No time limit  ✓ Full access for everyone"
     }
   },
   "submitStory": {

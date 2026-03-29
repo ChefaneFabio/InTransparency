@@ -417,9 +417,9 @@
           },
           {
             "title": "Analisi e Punteggio AI",
-            "description": "La nostra AI avanzata analizza qualit\u00e0 del codice, livello di innovazione, complessit\u00e0 ed estrae competenze rilevanti",
+            "description": "La nostra AI avanzata analizza qualità del codice, livello di innovazione, complessità ed estrae competenze rilevanti",
             "details": [
-              "Valutazione qualit\u00e0 codice usando standard industriali",
+              "Valutazione qualità codice usando standard industriali",
               "Estrazione automatica e categorizzazione competenze"
             ],
             "stats": {
@@ -429,7 +429,7 @@
             "visual": {
               "analysisTitle": "Analisi AI in Corso...",
               "innovationScore": "Punteggio Innovazione",
-              "codeQuality": "Qualit\u00e0 Codice",
+              "codeQuality": "Qualità Codice",
               "skillsDetected": "Competenze Rilevate:"
             }
           },
@@ -447,7 +447,7 @@
             "visual": {
               "matchesTitle": "Match Trovati",
               "match": "corrispondenza",
-              "realTimeNotifications": "Notifiche in tempo reale per nuove opportunit\u00e0"
+              "realTimeNotifications": "Notifiche in tempo reale per nuove opportunità"
             }
           }
         ]
@@ -462,7 +462,7 @@
             "title": "Cerca Talento Verificato",
             "description": "Cerca per competenze, voti, progetti. L'AI abbina i candidati ai tuoi requisiti.",
             "details": [
-              "Filtra per competenze verificate, media voti, tipo di progetto e localit\u00e0",
+              "Filtra per competenze verificate, media voti, tipo di progetto e località",
               "Il matching AI classifica i candidati per rilevanza rispetto al tuo ruolo"
             ],
             "stats": {
@@ -477,10 +477,10 @@
           },
           {
             "title": "Valuta i Decision Pack",
-            "description": "Vedi voti verificati, progetti, valutazioni della personalit\u00e0. Tutto ci\u00f2 che serve per decidere, in un documento.",
+            "description": "Vedi voti verificati, progetti, valutazioni della personalità. Tutto ciò che serve per decidere, in un documento.",
             "details": [
               "Trascrizioni accademiche e portfolio progetti verificati in un'unica vista",
-              "Riassunti candidato generati dall'AI con analisi di compatibilit\u00e0"
+              "Riassunti candidato generati dall'AI con analisi di compatibilità"
             ],
             "stats": {
               "tempo risparmiato": "80%",
@@ -502,7 +502,7 @@
             ],
             "stats": {
               "costo": "Paga per contatto",
-              "velocit\u00e0": "48h risposta media"
+              "velocità": "48h risposta media"
             },
             "visual": {
               "matchesTitle": "La Tua Pipeline",
@@ -561,7 +561,7 @@
             ],
             "stats": {
               "report": "Automatizzati",
-              "conformit\u00e0": "Pronti per il ministero"
+              "conformità": "Pronti per il ministero"
             },
             "visual": {
               "matchesTitle": "Report Impatto",
@@ -939,7 +939,7 @@
     },
     "apiOverview": {
       "title": "Panoramica API",
-      "description": "InTransparency fornisce API RESTful per universit\u00e0 che inviano dati verificati degli studenti, per aziende che cercano e filtrano candidati per competenze reali, e per piattaforme terze che costruiscono integrazioni. Tutti i dati sono verificati dall'istituzione e conformi al GDPR."
+      "description": "InTransparency fornisce API RESTful per università che inviano dati verificati degli studenti, per aziende che cercano e filtrano candidati per competenze reali, e per piattaforme terze che costruiscono integrazioni. Tutti i dati sono verificati dall'istituzione e conformi al GDPR."
     },
     "endpoints": {
       "title": "Endpoint API",
@@ -950,7 +950,7 @@
       },
       "search": {
         "title": "API Ricerca",
-        "description": "Cerca candidati per competenze, voti, localit\u00e0 e tipo di progetto. Il matching basato su AI classifica i risultati per rilevanza rispetto ai tuoi requisiti."
+        "description": "Cerca candidati per competenze, voti, località e tipo di progetto. Il matching basato su AI classifica i risultati per rilevanza rispetto ai tuoi requisiti."
       },
       "placements": {
         "title": "API Placement",
@@ -963,7 +963,7 @@
     },
     "authentication": {
       "title": "Autenticazione",
-      "description": "Tutte le richieste API sono autenticate tramite chiavi API. Ogni chiave \u00e8 associata alla tua organizzazione e pu\u00f2 essere configurata con permessi granulari. Le chiavi si gestiscono dalle impostazioni della dashboard.",
+      "description": "Tutte le richieste API sono autenticate tramite chiavi API. Ogni chiave è associata alla tua organizzazione e può essere configurata con permessi granulari. Le chiavi si gestiscono dalle impostazioni della dashboard.",
       "steps": [
         "Genera una chiave API dalla dashboard della tua organizzazione",
         "Includi la chiave nell'header Authorization di ogni richiesta",
@@ -976,7 +976,7 @@
       "items": [
         {
           "title": "SDK Python e Node.js",
-          "description": "Librerie client ufficiali per un'integrazione pi\u00f9 veloce"
+          "description": "Librerie client ufficiali per un'integrazione più veloce"
         },
         {
           "title": "Specifica OpenAPI",
@@ -994,7 +994,7 @@
     },
     "cta": {
       "title": "Pronto per integrare?",
-      "description": "Richiedi l'accesso API e il nostro team ti configurer\u00e0 entro 24 ore.",
+      "description": "Richiedi l'accesso API e il nostro team ti configurerà entro 24 ore.",
       "button": "Richiedi Accesso API"
     }
   },
@@ -3361,181 +3361,76 @@
   },
   "pricingPage": {
     "hero": {
-      "badge": "Gratis per Tutti",
-      "title": "Talento Verificato. Risultati Concreti.",
-      "subtitle": "La piattaforma dove le competenze si dimostrano, non si dichiarano. Accesso completo per studenti, aziende e università.",
-      "description": "Nessuna carta di credito. Nessun paywall. Nessun costo nascosto. Solo risultati.",
-      "segments": {
-        "students": "Studenti",
-        "institutes": "Università e Scuole",
-        "companies": "Aziende"
-      }
+      "title": "Prezzi semplici, valore reale",
+      "subtitle": "Gratis per studenti e università. Le aziende pagano solo quando trovano il candidato giusto."
     },
-    "stats": {
-      "portfolios": {
-        "value": "500+",
-        "label": "Portfolio Verificati"
+    "tiers": {
+      "students": {
+        "name": "Studenti",
+        "price": "€0",
+        "period": "per sempre",
+        "description": "Costruisci il tuo portfolio verificato e fatti scoprire dalle aziende.",
+        "cta": "Inizia Gratis",
+        "features": {
+          "0": "Portfolio progetti illimitato",
+          "1": "Verifica istituzionale",
+          "2": "Assessment personalità e soft skills",
+          "3": "Ricerca lavoro con AI",
+          "4": "Check contratto e confronto offerte"
+        }
+      },
+      "companies": {
+        "name": "Aziende",
+        "badge": "Più popolare",
+        "price": "€0",
+        "period": "durante il lancio",
+        "description": "Cerca talento verificato. Paghi solo per contattare i candidati.",
+        "cta": "Inizia a Cercare",
+        "features": {
+          "0": "Ricerca candidati illimitata",
+          "1": "Profili verificati dalle università",
+          "2": "Ricerca AI conversazionale",
+          "3": "Decision Pack per candidato",
+          "4": "Pipeline e gestione candidati",
+          "5": "Normalizzazione voti europea"
+        }
       },
       "universities": {
-        "value": "10+",
-        "label": "Università Partner"
-      },
-      "verified": {
-        "value": "100%",
-        "label": "Competenze Verificate"
-      },
-      "cost": {
-        "value": "€0",
-        "label": "Per Tutti"
-      }
-    },
-    "company": {
-      "badge": "Accesso Completo — Gratis Durante il Lancio",
-      "title": "Trova il Talento Giusto, Più Velocemente",
-      "subtitle": "Basta indovinare dai CV. Esplora portfolio verificati con competenze certificate dall'università, progetti reali e matching AI — tutto senza costi.",
-      "cta": "Inizia a Trovare Talenti",
-      "demoCta": "Prova la Demo AI Search",
-      "cardTitle": "Accesso Completo",
-      "cardNote": "Nessun limite, nessuna carta, nessun trucco",
-      "features": {
-        "discover": {
-          "title": "Scopri Talenti Nascosti",
-          "description": "La ricerca AI trova candidati che non troveresti mai da un CV.",
-          "items": {
-            "0": "Filtri avanzati per competenza, scuola e posizione",
-            "1": "Punteggi AI che spiegano perché un candidato è adatto",
-            "2": "Salva, confronta e crea shortlist istantaneamente"
-          }
-        },
-        "verify": {
-          "title": "Fidati di Ciò che Vedi",
-          "description": "Ogni competenza e voto è verificato dall'università dello studente — niente autocertificazioni.",
-          "items": {
-            "0": "Progetti e voti verificati dall'istituzione",
-            "1": "Video portfolio che mostrano il lavoro reale",
-            "2": "Analisi AI delle competenze tecniche e trasversali"
-          }
-        },
-        "connect": {
-          "title": "Contatta i Candidati Direttamente",
-          "description": "Contatta gli studenti senza barriere — illimitato durante la fase di lancio.",
-          "items": {
-            "0": "Contatti candidati illimitati",
-            "1": "Pubblica offerte di lavoro e ricevi candidature",
-            "2": "Accesso completo a dettagli progetti e competenze"
-          }
+        "name": "Università e Scuole",
+        "price": "€0",
+        "period": "core gratis",
+        "description": "Verifica gli studenti, monitora i placement, dimostra l'impatto.",
+        "cta": "Prenota una Demo",
+        "features": {
+          "0": "Verifica progetti con un click",
+          "1": "Analytics placement in tempo reale",
+          "2": "Report esportabili per il ministero",
+          "3": "Normalizzazione voti transfrontaliera",
+          "4": "Analytics contratti e allerte"
         }
       }
     },
-    "student": {
-      "badge": "Sempre Gratis per gli Studenti",
-      "title": "Fatti Scoprire per Quello che Sai Fare",
-      "subtitle": "I tuoi progetti parlano più forte di qualsiasi CV. Costruisci un portfolio verificato, fatti vedere dalle aziende e lascia che le tue competenze aprano le porte.",
-      "cta": "Costruisci il Tuo Portfolio",
-      "cardTitle": "Sempre Gratis",
-      "cardNote": "Il tuo talento non dovrebbe essere dietro un paywall",
-      "features": {
-        "portfolio": {
-          "title": "Mostra il Tuo Lavoro Reale",
-          "description": "Carica progetti, aggiungi video demo e lascia che le aziende vedano cosa hai costruito davvero.",
-          "items": {
-            "0": "Upload progetti illimitati con contenuti multimediali",
-            "1": "Video portfolio per mostrare il tuo processo",
-            "2": "Analisi AI delle competenze dal tuo lavoro"
-          }
-        },
-        "verification": {
-          "title": "Verificato dalla Tua Università",
-          "description": "I tuoi voti e progetti portano il timbro istituzionale — una prova di cui i datori di lavoro si fidano.",
-          "items": {
-            "0": "Voti e progetti verificati dall'istituzione",
-            "1": "Credenziale affidabile che spicca con i recruiter",
-            "2": "Niente più \"dimostra chi sei\" — la tua scuola garantisce per te"
-          }
-        },
-        "discovery": {
-          "title": "Fatti Trovare dalle Aziende",
-          "description": "Le aziende cercano per competenze, non per pedigree. Il tuo lavoro parla da solo.",
-          "items": {
-            "0": "Pagina portfolio pubblica scopribile dai recruiter",
-            "1": "Il matching AI ti connette alle opportunità giuste",
-            "2": "Analytics del profilo mostrano chi sta guardando il tuo lavoro"
-          }
-        }
-      }
-    },
-    "institute": {
-      "badge": "Gratis per Università e Scuole",
-      "title": "Risultati Migliori per Ogni Studente",
-      "subtitle": "Verifica il lavoro degli studenti, monitora i risultati di placement e dai a ogni laureato — non solo al top 5% — vera visibilità verso i datori di lavoro.",
-      "cta": "Collabora con Noi",
-      "cardTitle": "Accesso Completo",
-      "cardNote": "Zero costi. Risultati migliori di AlmaLaurea.",
-      "features": {
-        "verify": {
-          "title": "Verifica i Risultati degli Studenti",
-          "description": "Certifica progetti e voti con la credibilità della tua istituzione.",
-          "items": {
-            "0": "Verifica progetti e voti con un click",
-            "1": "Dashboard di approvazione batch per l'efficienza",
-            "2": "Il tuo badge di verifica su ogni profilo studente"
-          }
-        },
-        "track": {
-          "title": "Monitora i Risultati di Placement Reali",
-          "description": "Scopri dove finiscono i tuoi studenti — non autocertificato, ma tracciato dalla piattaforma.",
-          "items": {
-            "0": "Analytics placement per programma e coorte",
-            "1": "Insight sui gap di competenze per migliorare i curricula",
-            "2": "Dati sull'engagement aziendale per il tuo ufficio carriere"
-          }
-        },
-        "connect": {
-          "title": "Connetti Studenti e Datori di Lavoro",
-          "description": "Ogni studente ottiene un profilo scopribile — tassi di placement migliori per l'intera classe.",
-          "items": {
-            "0": "TUTTI gli studenti ottengono visibilità, non solo i migliori",
-            "1": "Le aziende scoprono talenti per competenza, non per nome",
-            "2": "Storie di successo alumni per attrarre futuri studenti"
-          }
-        }
-      }
-    },
+    "note": "Siamo in fase pilota con l'Università di Bergamo. I prezzi per le aziende saranno introdotti gradualmente — chi si registra ora mantiene l'accesso alle condizioni di lancio.",
     "faq": {
-      "title": "Domande Frequenti",
+      "title": "Domande frequenti",
       "questions": {
         "0": {
-          "q": "InTransparency è davvero gratis?",
-          "a": "Sì — completamente gratis per studenti, aziende e università. Nessun periodo di prova, nessun costo nascosto. Stiamo costruendo la rete prima e introdurremo funzionalità premium opzionali in futuro."
+          "q": "È davvero gratis per gli studenti?",
+          "a": "Sì, per sempre. Portfolio, assessment, ricerca lavoro — tutto incluso. Le aziende pagano, non gli studenti."
         },
         "1": {
-          "q": "In cosa è diverso da LinkedIn o Indeed?",
-          "a": "I CV sono dichiarazioni. InTransparency mostra lavoro verificato — progetti reali certificati dalle università, con analisi delle competenze. Le aziende vedono prove, non promesse."
+          "q": "Quanto costerà per le aziende dopo il lancio?",
+          "a": "Stiamo definendo il modello di prezzo. Il modello previsto è: cerca gratis, paga per contattare. Chi si registra ora mantiene condizioni vantaggiose."
         },
         "2": {
-          "q": "Come creano un portfolio gli studenti?",
-          "a": "Carica progetti, aggiungi video demo e la tua università verifica il tuo lavoro. Meno di 5 minuti. Anche studenti indipendenti possono iscriversi."
+          "q": "Le università pagano qualcosa?",
+          "a": "La piattaforma core è gratuita per tutte le istituzioni educative. Funzionalità avanzate (widget embedded, analytics personalizzate) saranno disponibili come add-on premium."
         },
         "3": {
-          "q": "Come è meglio di AlmaLaurea?",
-          "a": "AlmaLaurea costa migliaia di euro all'anno alle università per CV autocertificati. InTransparency è gratis, mostra progetti verificati e dà a TUTTI gli studenti visibilità verso i datori di lavoro."
-        },
-        "4": {
-          "q": "TUTTI gli studenti ottengono visibilità o solo i top performer?",
-          "a": "TUTTI gli studenti ottengono un profilo scopribile. Le aziende cercano per competenze e progetti, non per media voti. Questo significa tassi di placement migliori per l'intera classe."
-        },
-        "5": {
-          "q": "Resterà gratis per sempre?",
-          "a": "L'accesso base sarà sempre gratis. In futuro potremmo offrire funzionalità premium opzionali per utenti avanzati — ma la piattaforma che usi oggi resta gratuita."
+          "q": "C'è un contratto o vincolo?",
+          "a": "No. Nessun contratto annuale, nessun vincolo. Puoi cancellare in qualsiasi momento. I tuoi dati sono sempre esportabili."
         }
       }
-    },
-    "finalCta": {
-      "title": "Unisciti al Movimento",
-      "subtitle": "Le assunzioni dovrebbero premiare le competenze reali, non i CV impeccabili. Fai parte della piattaforma che rende visibile il talento.",
-      "primaryButton": "Inizia Gratis",
-      "secondaryButton": "Prova la Demo AI",
-      "benefits": "✓ Nessuna carta di credito  ✓ Nessun limite di tempo  ✓ Accesso completo per tutti"
     }
   },
   "submitStory": {
