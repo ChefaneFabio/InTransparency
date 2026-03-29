@@ -30,6 +30,7 @@ import DecisionPackCard from '@/components/dashboard/recruiter/DecisionPackCard'
 import TrustScoreBadge from '@/components/portfolio/TrustScoreBadge'
 import ReadinessBrief from '@/components/dashboard/recruiter/ReadinessBrief'
 import { PositionUpsellBanner } from '@/components/dashboard/recruiter/PositionUpsellBanner'
+import CandidateSummary from '@/components/dashboard/recruiter/CandidateSummary'
 
 interface Project {
   id: string
@@ -343,6 +344,8 @@ export default function CandidateProfilePage() {
           </div>
         </div>
       </div>
+
+      <CandidateSummary candidateId={candidateId} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Column - Main Content */}

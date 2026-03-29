@@ -142,7 +142,8 @@
         "placementAnalytics": "Analytics Placement",
         "events": "Eventi Carriera",
         "exchangeStudents": "Studenti in Scambio",
-        "contractAnalytics": "Analytics Contratti"
+        "contractAnalytics": "Analytics Contratti",
+        "generateReport": "Genera Report"
       },
       "exchange": "Scambio"
     },
@@ -8127,42 +8128,7 @@
     },
     "newCourse": {
       "title": "Nuovo Corso",
-      "subtitle": "Aggiungi un nuovo corso al catalogo",
-      "backToCourses": "Torna ai corsi",
-      "basicInfo": "Informazioni Base",
-      "courseName": "Nome del Corso",
-      "courseCode": "Codice Corso",
-      "department": "Dipartimento",
-      "semester": "Semestre",
-      "select": "Seleziona...",
-      "semester1": "1° Semestre",
-      "semester2": "2° Semestre",
-      "annual": "Annuale",
-      "academicYear": "Anno Accademico",
-      "professor": "Docente",
-      "professorName": "Nome Docente",
-      "professorEmail": "Email Docente",
-      "details": "Dettagli",
-      "description": "Descrizione",
-      "credits": "Crediti (CFU)",
-      "level": "Livello",
-      "bachelor": "Triennale",
-      "master": "Magistrale",
-      "phd": "Dottorato",
-      "competencies": "Competenze",
-      "addCompetencies": "Aggiungi competenze (premi Invio per aggiungere)",
-      "noCompetencies": "Nessuna competenza aggiunta. Digita una competenza e premi Invio.",
-      "learningOutcomes": "Risultati di Apprendimento",
-      "addOutcomes": "Aggiungi risultati di apprendimento (premi Invio per aggiungere)",
-      "noOutcomes": "Nessun risultato aggiunto. Digita un risultato di apprendimento e premi Invio.",
-      "cancel": "Annulla",
-      "creating": "Creazione in corso...",
-      "createCourse": "Crea Corso",
-      "courseCreated": "Corso Creato!",
-      "courseCreatedDesc": "Il corso {name} ({code}) e stato aggiunto al catalogo.",
-      "redirecting": "Reindirizzamento alla lista corsi...",
-      "duplicateError": "Un corso con questo codice esiste gia.",
-      "createError": "Errore durante la creazione del corso."
+      "subtitle": "Aggiungi un nuovo corso al catalogo"
     },
     "departments": {
       "title": "Dipartimenti",
@@ -9501,6 +9467,132 @@
       "professorPlaceholder": "es. Prof. Rossi",
       "creating": "Creazione in corso...",
       "createButton": "Crea Progetto"
+    }
+  },
+  "postJob": {
+    "title": "Pubblica Posizione",
+    "subtitle": "Descrivi il ruolo — il resto si compila da solo.",
+    "back": "Indietro",
+    "backToEdit": "Modifica",
+    "steps": {
+      "describe": "Descrivi",
+      "review": "Pubblica"
+    },
+    "input": {
+      "title": "Che ruolo stai cercando?",
+      "description": "Descrivi il ruolo o incolla un annuncio esistente. Più dettagli fornisci, meglio verranno compilati i campi.",
+      "placeholder": "es. Cerchiamo un junior developer React per il nostro team a Milano. Esperienza con TypeScript, Node.js, e database SQL preferita. Stage o primo impiego, RAL 24-28K...",
+      "urlLabel": "Oppure incolla un link a un annuncio esistente",
+      "urlPlaceholder": "https://...",
+      "continue": "Continua",
+      "processing": "Elaborazione..."
+    },
+    "review": {
+      "title": "Conferma i Dettagli",
+      "jobTitle": "Titolo Posizione",
+      "jobTitlePlaceholder": "es. Junior React Developer",
+      "description": "Descrizione",
+      "location": "Sede",
+      "locationPlaceholder": "es. Milano",
+      "jobType": "Tipo Contratto",
+      "workLocation": "Modalità",
+      "skills": "Competenze Richieste",
+      "addSkill": "Aggiungi competenza...",
+      "salary": "Range Salariale (opzionale)",
+      "salaryMin": "Minimo",
+      "salaryMax": "Massimo",
+      "post": "Pubblica Posizione",
+      "posting": "Pubblicazione...",
+      "error": "Errore nella pubblicazione. Riprova.",
+      "types": {
+        "FULL_TIME": "Tempo pieno",
+        "PART_TIME": "Part-time",
+        "CONTRACT": "Contratto",
+        "INTERNSHIP": "Stage",
+        "TEMPORARY": "Temporaneo",
+        "FREELANCE": "Freelance"
+      },
+      "locations": {
+        "REMOTE": "Remoto",
+        "HYBRID": "Ibrido",
+        "ON_SITE": "In sede"
+      }
+    }
+  },
+  "candidateSummary": {
+    "title": "Panoramica"
+  },
+  "newCourse": {
+    "title": "Nuovo Corso",
+    "subtitle": "Descrivi il corso — le competenze si mappano da sole.",
+    "back": "Indietro",
+    "backToEdit": "Modifica",
+    "steps": {
+      "describe": "Descrivi",
+      "review": "Conferma"
+    },
+    "input": {
+      "title": "Che corso stai aggiungendo?",
+      "description": "Descrivi cosa insegna il corso e cosa gli studenti sapranno fare al completamento.",
+      "courseName": "Nome Corso",
+      "courseNamePlaceholder": "es. Machine Learning Applicato",
+      "courseDescription": "Descrizione",
+      "descriptionPlaceholder": "Questo corso copre gli algoritmi di ML supervisionato e non supervisionato, con progetti pratici su dati reali...",
+      "department": "Dipartimento (opzionale)",
+      "departmentPlaceholder": "es. Informatica",
+      "credits": "Crediti ECTS (opzionale)",
+      "continue": "Continua",
+      "processing": "Elaborazione..."
+    },
+    "review": {
+      "skills": "Competenze Sviluppate",
+      "skillsHint": "Suggerite automaticamente. Aggiungi o rimuovi.",
+      "addSkill": "Aggiungi competenza...",
+      "competencies": "Competenze Acquisite",
+      "addCompetency": "Aggiungi competenza...",
+      "projectTypes": "Tipi di Progetto Suggeriti",
+      "projectTypesHint": "Tipi di progetto che gli studenti potrebbero svolgere in questo corso.",
+      "addProjectType": "Aggiungi tipo...",
+      "marketRelevance": "Rilevanza di Mercato",
+      "marketRelevanceText": "Queste competenze sono ricercate attivamente dalle aziende sulla piattaforma.",
+      "create": "Crea Corso",
+      "creating": "Creazione..."
+    }
+  },
+  "generateReport": {
+    "title": "Genera Report",
+    "subtitle": "Genera automaticamente report di placement dai dati verificati.",
+    "reportType": "Tipo Report",
+    "types": {
+      "annual": "Riepilogo Placement Annuale",
+      "department": "Confronto Dipartimenti",
+      "employer": "Report Engagement Aziende",
+      "contracts": "Analisi Tipi Contratto"
+    },
+    "period": "Periodo",
+    "format": "Formato",
+    "generate": "Genera",
+    "generating": "Generazione in corso...",
+    "preview": {
+      "title": "Anteprima Report",
+      "metrics": {
+        "graduates": "Laureati Totali",
+        "placementRate": "Tasso Placement",
+        "avgTime": "Tempo Medio al Placement",
+        "topEmployers": "Top Aziende"
+      },
+      "download": "Scarica",
+      "note": "Questo report e stato assemblato dai dati di placement verificati sulla piattaforma."
+    },
+    "empty": "Seleziona tipo e periodo, poi clicca Genera.",
+    "comingSoon": {
+      "title": "In arrivo",
+      "items": [
+        "Export formato ministeriale (template MIUR/ANECA)",
+        "Report mensili automatici via email",
+        "Intervalli date personalizzati e filtri per dipartimento",
+        "Confronto benchmark con medie nazionali"
+      ]
     }
   }
 }

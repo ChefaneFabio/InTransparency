@@ -24,7 +24,7 @@ export default function ForAgenciesPage() {
       <section className="relative overflow-hidden bg-foreground text-white">
         <img src="/images/brand/meeting.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
         <div className="absolute inset-0 bg-primary/60" />
-        <div className="relative container max-w-4xl mx-auto px-4 pt-32 pb-16 lg:pt-36 lg:pb-20 text-center">
+        <div className="relative container max-w-4xl mx-auto px-4 pt-32 pb-16 lg:pt-36 lg:pb-20 text-center min-h-[420px] flex flex-col justify-center">
           <p className="text-sm text-blue-300 font-medium mb-4">{t('hero.badge')}</p>
           <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">{t('hero.title')}</h1>
           <p className="text-lg text-blue-200 mb-8 max-w-2xl mx-auto">{t('hero.subtitle')}</p>

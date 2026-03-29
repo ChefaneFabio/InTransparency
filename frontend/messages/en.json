@@ -142,7 +142,8 @@
         "placementAnalytics": "Placement Analytics",
         "events": "Career Events",
         "exchangeStudents": "Exchange Students",
-        "contractAnalytics": "Contract Analytics"
+        "contractAnalytics": "Contract Analytics",
+        "generateReport": "Generate Report"
       },
       "exchange": "Exchange"
     },
@@ -8166,42 +8167,7 @@
     },
     "newCourse": {
       "title": "New Course",
-      "subtitle": "Add a new course to the catalog",
-      "backToCourses": "Back to courses",
-      "basicInfo": "Basic Information",
-      "courseName": "Course Name",
-      "courseCode": "Course Code",
-      "department": "Department",
-      "semester": "Semester",
-      "select": "Select...",
-      "semester1": "1st Semester",
-      "semester2": "2nd Semester",
-      "annual": "Annual",
-      "academicYear": "Academic Year",
-      "professor": "Professor",
-      "professorName": "Professor Name",
-      "professorEmail": "Professor Email",
-      "details": "Details",
-      "description": "Description",
-      "credits": "Credits (CFU)",
-      "level": "Level",
-      "bachelor": "Bachelor",
-      "master": "Master",
-      "phd": "PhD",
-      "competencies": "Competencies",
-      "addCompetencies": "Add competencies (press Enter to add)",
-      "noCompetencies": "No competencies added. Type a competency and press Enter.",
-      "learningOutcomes": "Learning Outcomes",
-      "addOutcomes": "Add learning outcomes (press Enter to add)",
-      "noOutcomes": "No outcomes added. Type a learning outcome and press Enter.",
-      "cancel": "Cancel",
-      "creating": "Creating...",
-      "createCourse": "Create Course",
-      "courseCreated": "Course Created!",
-      "courseCreatedDesc": "The course {name} ({code}) has been added to the catalog.",
-      "redirecting": "Redirecting to course list...",
-      "duplicateError": "A course with this code already exists.",
-      "createError": "Error creating the course."
+      "subtitle": "Add a new course to the catalog"
     },
     "departments": {
       "title": "Departments",
@@ -9474,6 +9440,132 @@
       "professorPlaceholder": "e.g. Prof. Smith",
       "creating": "Creating...",
       "createButton": "Create Project"
+    }
+  },
+  "postJob": {
+    "title": "Post a Job",
+    "subtitle": "Describe the role — the rest fills itself.",
+    "back": "Back",
+    "backToEdit": "Edit",
+    "steps": {
+      "describe": "Describe",
+      "review": "Post"
+    },
+    "input": {
+      "title": "What role are you hiring for?",
+      "description": "Describe the role or paste an existing job description. The more detail, the better the fields get filled.",
+      "placeholder": "e.g. We're looking for a junior React developer for our Milan team. TypeScript, Node.js, and SQL experience preferred. Internship or entry-level, salary range €24-28K...",
+      "urlLabel": "Or paste a link to an existing job listing",
+      "urlPlaceholder": "https://...",
+      "continue": "Continue",
+      "processing": "Processing..."
+    },
+    "review": {
+      "title": "Confirm Details",
+      "jobTitle": "Job Title",
+      "jobTitlePlaceholder": "e.g. Junior React Developer",
+      "description": "Description",
+      "location": "Location",
+      "locationPlaceholder": "e.g. Milan",
+      "jobType": "Job Type",
+      "workLocation": "Work Mode",
+      "skills": "Required Skills",
+      "addSkill": "Add skill...",
+      "salary": "Salary Range (optional)",
+      "salaryMin": "Min",
+      "salaryMax": "Max",
+      "post": "Post Job",
+      "posting": "Posting...",
+      "error": "Failed to post. Please try again.",
+      "types": {
+        "FULL_TIME": "Full-time",
+        "PART_TIME": "Part-time",
+        "CONTRACT": "Contract",
+        "INTERNSHIP": "Internship",
+        "TEMPORARY": "Temporary",
+        "FREELANCE": "Freelance"
+      },
+      "locations": {
+        "REMOTE": "Remote",
+        "HYBRID": "Hybrid",
+        "ON_SITE": "On-site"
+      }
+    }
+  },
+  "candidateSummary": {
+    "title": "Quick Summary"
+  },
+  "newCourse": {
+    "title": "New Course",
+    "subtitle": "Describe the course — skills map themselves.",
+    "back": "Back",
+    "backToEdit": "Edit",
+    "steps": {
+      "describe": "Describe",
+      "review": "Review"
+    },
+    "input": {
+      "title": "What course are you adding?",
+      "description": "Describe what the course teaches and what students will be able to do after completing it.",
+      "courseName": "Course Name",
+      "courseNamePlaceholder": "e.g. Applied Machine Learning",
+      "courseDescription": "Description",
+      "descriptionPlaceholder": "This course covers supervised and unsupervised ML algorithms, with hands-on projects using real-world data...",
+      "department": "Department (optional)",
+      "departmentPlaceholder": "e.g. Computer Science",
+      "credits": "ECTS Credits (optional)",
+      "continue": "Continue",
+      "processing": "Processing..."
+    },
+    "review": {
+      "skills": "Skills Developed",
+      "skillsHint": "Auto-suggested. Add or remove as needed.",
+      "addSkill": "Add skill...",
+      "competencies": "Competencies Gained",
+      "addCompetency": "Add competency...",
+      "projectTypes": "Suggested Project Types",
+      "projectTypesHint": "Types of projects students could do in this course.",
+      "addProjectType": "Add type...",
+      "marketRelevance": "Market Relevance",
+      "marketRelevanceText": "These skills are actively searched by companies on the platform.",
+      "create": "Create Course",
+      "creating": "Creating..."
+    }
+  },
+  "generateReport": {
+    "title": "Generate Report",
+    "subtitle": "Auto-generate placement reports from verified data.",
+    "reportType": "Report Type",
+    "types": {
+      "annual": "Annual Placement Summary",
+      "department": "Department Comparison",
+      "employer": "Employer Engagement Report",
+      "contracts": "Contract Type Analysis"
+    },
+    "period": "Period",
+    "format": "Format",
+    "generate": "Generate",
+    "generating": "Generating...",
+    "preview": {
+      "title": "Report Preview",
+      "metrics": {
+        "graduates": "Total Graduates",
+        "placementRate": "Placement Rate",
+        "avgTime": "Avg Time to Placement",
+        "topEmployers": "Top Employers"
+      },
+      "download": "Download",
+      "note": "This report was assembled from verified placement data on the platform."
+    },
+    "empty": "Select type and period, then click Generate.",
+    "comingSoon": {
+      "title": "Coming soon",
+      "items": [
+        "Ministry-format export (MIUR/ANECA templates)",
+        "Automated monthly reports via email",
+        "Custom date ranges and department filters",
+        "Benchmark comparison with national averages"
+      ]
     }
   }
 }

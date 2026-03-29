@@ -138,6 +138,7 @@ const university: NavConfig = {
       items: [
         { labelKey: 'analytics', href: '/dashboard/university/analytics' },
         { labelKey: 'placementReport', href: '/dashboard/university/placement-report' },
+        { labelKey: 'generateReport', href: '/dashboard/university/generate-report' },
       ],
     },
     {
