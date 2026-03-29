@@ -107,7 +107,9 @@
         "pipeline": "Pipeline",
         "scheduling": "Colloqui",
         "outreach": "Outreach",
-        "careerPage": "Pagina Carriere"
+        "careerPage": "Pagina Carriere",
+        "tags": "Tag",
+        "export": "Esporta"
       },
       "search": "Ricerca"
     },
@@ -9252,6 +9254,94 @@
         "Tracking candidature dalla pagina carriere",
         "Ottimizzazione SEO per le posizioni"
       ]
+    }
+  },
+  "candidateActivity": {
+    "title": "Timeline Attività",
+    "subtitle": "Tutte le interazioni con questo candidato",
+    "back": "Torna al Candidato",
+    "addNote": "Aggiungi Nota",
+    "notePlaceholder": "Scrivi una nota su questo candidato...",
+    "submit": "Aggiungi",
+    "empty": "Nessuna attività registrata",
+    "emptyDesc": "Visita il profilo del candidato per iniziare a tracciare le interazioni.",
+    "loading": "Caricamento attività...",
+    "types": {
+      "viewed": "Profilo visualizzato",
+      "saved": "Aggiunto ai candidati salvati",
+      "message": "Messaggio inviato",
+      "stageChange": "Spostato a {stage}",
+      "note": "Nota aggiunta",
+      "decisionPack": "Decision Pack generato",
+      "contacted": "Candidato contattato",
+      "interview": "Colloquio pianificato"
+    }
+  },
+  "recruiterTags": {
+    "title": "Tag e Organizzazione",
+    "subtitle": "Organizza i candidati con tag personalizzati",
+    "yourTags": "I Tuoi Tag",
+    "createTag": "Crea Tag",
+    "tagName": "Nome tag",
+    "tagNamePlaceholder": "es. Lead Caldo",
+    "color": "Colore",
+    "create": "Crea",
+    "delete": "Elimina",
+    "candidates": "candidati",
+    "recentlyTagged": "Taggati di Recente",
+    "noTags": "Nessun tag creato",
+    "noTagsDesc": "Crea il tuo primo tag per organizzare i candidati. Tag comuni: Lead Caldo, Fit Culturale, Forte Tecnicamente, Da Ricontattare",
+    "noRecent": "Nessuna attività tag recente",
+    "localNote": "I tag sono salvati localmente durante la beta. Sincronizzazione cloud in arrivo.",
+    "customFields": {
+      "title": "Campi Personalizzati",
+      "items": {
+        "0": "Campi dropdown personalizzati per candidato",
+        "1": "Campi data (promemoria follow-up)",
+        "2": "Tracciamento aspettativa salariale",
+        "3": "Tracciamento fonte (dove hai trovato il candidato)"
+      }
+    }
+  },
+  "recruiterExport": {
+    "title": "Esporta Dati",
+    "subtitle": "Scarica i tuoi dati di recruiting",
+    "exports": {
+      "savedCandidates": {
+        "title": "Candidati Salvati",
+        "description": "Esporta la lista candidati salvati con profili, competenze e stato contatto",
+        "button": "Scarica CSV"
+      },
+      "pipeline": {
+        "title": "Pipeline",
+        "description": "Esporta fasi pipeline, stato candidati e cronologia cambi fase",
+        "button": "Scarica CSV"
+      },
+      "analytics": {
+        "title": "Analytics",
+        "description": "Esporta metriche assunzione, tassi conversione funnel e dati time-to-hire",
+        "button": "Scarica CSV"
+      },
+      "evaluations": {
+        "title": "Valutazioni Team",
+        "description": "Esporta note team, valutazioni e riepiloghi Decision Pack condivisi",
+        "button": "Scarica CSV"
+      }
+    },
+    "comingSoonExport": "Esportazione in arrivo — questa funzionalità è in sviluppo.",
+    "scheduled": {
+      "title": "Report Programmati",
+      "items": {
+        "0": "Digest email settimanale dei cambiamenti pipeline",
+        "1": "Report mensile performance assunzioni",
+        "2": "Esportazioni con intervallo date personalizzato",
+        "3": "Consegna automatica report al team"
+      }
+    },
+    "api": {
+      "title": "Accesso Programmatico",
+      "description": "Devi integrare con i tuoi sistemi esistenti? Usa la nostra API per la sincronizzazione automatica dei dati.",
+      "button": "Vedi Documentazione API"
     }
   }
 }

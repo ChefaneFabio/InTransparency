@@ -66,7 +66,6 @@ export function Footer() {
       { name: tFooter('productLinks.aiDemo'), href: '/demo/ai-search' },
     ],
     resources: [
-      { name: tFooter('resourceLinks.howItWorks'), href: '/#how-it-works' },
       { name: tFooter('resourceLinks.faq'), href: '/faq' },
       { name: tFooter('resourceLinks.blog'), href: '/blog' },
       { name: tFooter('resourceLinks.contact'), href: '/contact' },

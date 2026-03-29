@@ -107,7 +107,9 @@
         "pipeline": "Pipeline",
         "scheduling": "Scheduling",
         "outreach": "Outreach",
-        "careerPage": "Career Page"
+        "careerPage": "Career Page",
+        "tags": "Tags",
+        "export": "Export"
       },
       "search": "Search"
     },
@@ -9225,6 +9227,94 @@
         "Application tracking from career page",
         "SEO optimization for job listings"
       ]
+    }
+  },
+  "candidateActivity": {
+    "title": "Activity Timeline",
+    "subtitle": "All interactions with this candidate",
+    "back": "Back to Candidate",
+    "addNote": "Add Note",
+    "notePlaceholder": "Write a note about this candidate...",
+    "submit": "Add",
+    "empty": "No activity recorded yet",
+    "emptyDesc": "View the candidate's profile to start tracking interactions.",
+    "loading": "Loading activity...",
+    "types": {
+      "viewed": "Viewed profile",
+      "saved": "Added to saved candidates",
+      "message": "Sent message",
+      "stageChange": "Moved to {stage}",
+      "note": "Note added",
+      "decisionPack": "Decision Pack generated",
+      "contacted": "Contacted candidate",
+      "interview": "Interview scheduled"
+    }
+  },
+  "recruiterTags": {
+    "title": "Tags & Organization",
+    "subtitle": "Organize candidates with custom tags",
+    "yourTags": "Your Tags",
+    "createTag": "Create Tag",
+    "tagName": "Tag name",
+    "tagNamePlaceholder": "e.g. Hot Lead",
+    "color": "Color",
+    "create": "Create",
+    "delete": "Delete",
+    "candidates": "candidates",
+    "recentlyTagged": "Recently Tagged",
+    "noTags": "No tags created yet",
+    "noTagsDesc": "Create your first tag to organize candidates. Common tags: Hot Lead, Culture Fit, Technical Strong, Needs Follow-up",
+    "noRecent": "No recent tag activity",
+    "localNote": "Tags are stored locally during beta. Cloud sync coming soon.",
+    "customFields": {
+      "title": "Custom Fields",
+      "items": {
+        "0": "Custom dropdown fields per candidate",
+        "1": "Date fields (follow-up reminders)",
+        "2": "Salary expectation tracking",
+        "3": "Source tracking (where you found the candidate)"
+      }
+    }
+  },
+  "recruiterExport": {
+    "title": "Export Data",
+    "subtitle": "Download your recruiting data",
+    "exports": {
+      "savedCandidates": {
+        "title": "Saved Candidates",
+        "description": "Export your saved candidate list with profiles, skills, and contact status",
+        "button": "Download CSV"
+      },
+      "pipeline": {
+        "title": "Pipeline",
+        "description": "Export pipeline stages, candidate status, and stage change history",
+        "button": "Download CSV"
+      },
+      "analytics": {
+        "title": "Analytics",
+        "description": "Export hiring metrics, funnel conversion rates, and time-to-hire data",
+        "button": "Download CSV"
+      },
+      "evaluations": {
+        "title": "Team Evaluations",
+        "description": "Export team notes, ratings, and shared Decision Pack summaries",
+        "button": "Download CSV"
+      }
+    },
+    "comingSoonExport": "Export coming soon — this feature is in development.",
+    "scheduled": {
+      "title": "Scheduled Reports",
+      "items": {
+        "0": "Weekly email digest of pipeline changes",
+        "1": "Monthly hiring performance report",
+        "2": "Custom date range exports",
+        "3": "Automated report delivery to team"
+      }
+    },
+    "api": {
+      "title": "Programmatic Access",
+      "description": "Need to integrate with your existing systems? Use our API for automated data sync.",
+      "button": "View API Docs"
     }
   }
 }

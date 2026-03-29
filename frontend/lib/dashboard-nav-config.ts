@@ -107,6 +107,8 @@ const recruiter: NavConfig = {
         { labelKey: 'hiringOutcomes', href: '/dashboard/recruiter/hiring-outcomes' },
         { labelKey: 'outreach', href: '/dashboard/recruiter/outreach' },
         { labelKey: 'careerPage', href: '/dashboard/recruiter/career-page' },
+        { labelKey: 'tags', href: '/dashboard/recruiter/tags' },
+        { labelKey: 'export', href: '/dashboard/recruiter/export' },
         { labelKey: 'settings', href: '/dashboard/recruiter/settings' },
       ],
     },
