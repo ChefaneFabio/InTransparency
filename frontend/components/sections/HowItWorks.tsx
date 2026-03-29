@@ -13,12 +13,12 @@ import {
 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { motion, AnimatePresence } from 'framer-motion'
-
-const stepIcons = [Upload, ScanSearch, Target]
+import { useSegment } from '@/lib/segment-context'
 
 export function HowItWorks() {
   const [activeStep, setActiveStep] = useState(0)
-  const t = useTranslations('home.howItWorksPage')
+  const { segment } = useSegment()
+  const t = useTranslations('home.howItWorks.' + segment)
 
   const statsObj = (index: number) => {
     const raw = t.raw(`steps.${index}.stats`) as Record<string, string>
@@ -42,9 +42,7 @@ export function HowItWorks() {
         {/* Step tabs */}
         <div className="flex justify-center mb-12">
           <div className="inline-flex bg-card rounded-lg p-1 border border-border">
-            {[0, 1, 2].map((index) => {
-              const Icon = stepIcons[index]
-              return (
+            {[0, 1, 2].map((index) => (
                 <button
                   key={index}
                   onClick={() => setActiveStep(index)}
@@ -54,12 +52,11 @@ export function HowItWorks() {
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
-                  <Icon className="h-4 w-4" />
+                  <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-current/10 text-xs font-bold">{index + 1}</span>
                   <span className="hidden sm:inline">{t(`steps.${index}.title`)}</span>
                   <span className="sm:hidden">{t('step')} {index + 1}</span>
                 </button>
-              )
-            })}
+              ))}
           </div>
         </div>
 

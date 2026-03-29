@@ -367,8 +367,6 @@
     "howItWorks": {
       "badge": "Come Funziona",
       "title": "Dalla Tesi al Lavoro in 3 Passi",
-      "students": "Per Studenti",
-      "companies": "Per Aziende",
       "step1": {
         "title": "Carica Progetti",
         "description": "Tesi, stage curriculare, tirocini - in qualsiasi formato"
@@ -392,6 +390,184 @@
       "companyStep3": {
         "title": "Connettiti Direttamente",
         "description": "Contatta i candidati senza barriere — gratis durante il lancio"
+      },
+      "students": {
+        "title": "Come Funziona",
+        "titleHighlight": "InTransparency",
+        "subtitle": "Da progetto accademico a portfolio verificato a contatto con il datore di lavoro — in tre passi",
+        "step": "Passo",
+        "steps": [
+          {
+            "title": "Crea il Tuo Profilo",
+            "description": "Due modi: Partner istituzionale = profilo automatico. Indipendente = carica progetti + seleziona corsi per profilo istantaneo",
+            "details": [
+              "Integrazione Istituzionale: Profilo creato automaticamente dai dati istituzionali",
+              "Indipendente: Carica progetti (codice, documenti, presentazioni) + seleziona corsi"
+            ],
+            "stats": {
+              "tempo": "< 5 min",
+              "formati": "Qualsiasi file"
+            },
+            "visual": {
+              "uploadTitle": "Caricamento Progetto",
+              "uploadProgress": "Progresso Caricamento"
+            }
+          },
+          {
+            "title": "Analisi e Punteggio AI",
+            "description": "La nostra AI avanzata analizza qualit\u00e0 del codice, livello di innovazione, complessit\u00e0 ed estrae competenze rilevanti",
+            "details": [
+              "Valutazione qualit\u00e0 codice usando standard industriali",
+              "Estrazione automatica e categorizzazione competenze"
+            ],
+            "stats": {
+              "analisi": "Automatizzata",
+              "verifica": "Certificata dall'istituzione"
+            },
+            "visual": {
+              "analysisTitle": "Analisi AI in Corso...",
+              "innovationScore": "Punteggio Innovazione",
+              "codeQuality": "Qualit\u00e0 Codice",
+              "skillsDetected": "Competenze Rilevate:"
+            }
+          },
+          {
+            "title": "Connettiti con le Aziende",
+            "description": "Le aziende cercano nel marketplace e ti contattano direttamente in base alle tue competenze verificate",
+            "details": [
+              "Le aziende sfogliano portfolio verificati",
+              "Match intelligente competenze-requisiti"
+            ],
+            "stats": {
+              "costo": "Gratis per studenti",
+              "modello": "Contatto diretto"
+            },
+            "visual": {
+              "matchesTitle": "Match Trovati",
+              "match": "corrispondenza",
+              "realTimeNotifications": "Notifiche in tempo reale per nuove opportunit\u00e0"
+            }
+          }
+        ]
+      },
+      "companies": {
+        "title": "Come Funziona",
+        "titleHighlight": "il Recruiting",
+        "subtitle": "Dalla ricerca di talento verificato a decisioni di assunzione sicure — in tre passi",
+        "step": "Passo",
+        "steps": [
+          {
+            "title": "Cerca Talento Verificato",
+            "description": "Cerca per competenze, voti, progetti. L'AI abbina i candidati ai tuoi requisiti.",
+            "details": [
+              "Filtra per competenze verificate, media voti, tipo di progetto e localit\u00e0",
+              "Il matching AI classifica i candidati per rilevanza rispetto al tuo ruolo"
+            ],
+            "stats": {
+              "candidati": "10.000+",
+              "filtri": "20+ criteri",
+              "matching": "Basato su AI"
+            },
+            "visual": {
+              "uploadTitle": "Ricerca Candidati",
+              "uploadProgress": "Progresso Matching"
+            }
+          },
+          {
+            "title": "Valuta i Decision Pack",
+            "description": "Vedi voti verificati, progetti, valutazioni della personalit\u00e0. Tutto ci\u00f2 che serve per decidere, in un documento.",
+            "details": [
+              "Trascrizioni accademiche e portfolio progetti verificati in un'unica vista",
+              "Riassunti candidato generati dall'AI con analisi di compatibilit\u00e0"
+            ],
+            "stats": {
+              "tempo risparmiato": "80%",
+              "verifica": "Certificata dall'istituzione"
+            },
+            "visual": {
+              "analysisTitle": "Caricamento Decision Pack...",
+              "innovationScore": "Match Competenze",
+              "codeQuality": "Media Verificata",
+              "skillsDetected": "Competenze Verificate:"
+            }
+          },
+          {
+            "title": "Contatta e Assumi",
+            "description": "Raggiungi i candidati direttamente. Nessuna commissione di agenzia, nessun intermediario. Monitora la tua pipeline.",
+            "details": [
+              "Scrivi ai candidati direttamente tramite la piattaforma",
+              "Monitora la pipeline dal primo contatto all'accettazione dell'offerta"
+            ],
+            "stats": {
+              "costo": "Paga per contatto",
+              "velocit\u00e0": "48h risposta media"
+            },
+            "visual": {
+              "matchesTitle": "La Tua Pipeline",
+              "match": "punteggio fit",
+              "realTimeNotifications": "Ricevi notifiche quando i candidati rispondono"
+            }
+          }
+        ]
+      },
+      "institutions": {
+        "title": "Come Funziona",
+        "titleHighlight": "il Placement",
+        "subtitle": "Dall'inserimento degli studenti al reporting verificato dei placement — in tre passi",
+        "step": "Passo",
+        "steps": [
+          {
+            "title": "Inserisci gli Studenti",
+            "description": "Importa i dati degli studenti o lasciali registrare autonomamente. Verifica progetti e voti con un click.",
+            "details": [
+              "Importazione massiva via CSV o collegamento al sistema informativo studenti",
+              "Gli studenti si registrano e si collegano alla tua istituzione per la verifica"
+            ],
+            "stats": {
+              "setup": "< 1 giorno",
+              "importazione": "CSV massivo"
+            },
+            "visual": {
+              "uploadTitle": "Registro Studenti",
+              "uploadProgress": "Progresso Importazione"
+            }
+          },
+          {
+            "title": "Monitora i Placement",
+            "description": "Vedi quali aziende visualizzano, contattano e assumono i tuoi laureati. Funnel di placement in tempo reale.",
+            "details": [
+              "Dashboard live che mostra l'interesse delle aziende per i tuoi studenti",
+              "Analisi funnel: visualizzazioni, contatti, colloqui e assunzioni"
+            ],
+            "stats": {
+              "monitoraggio": "Tempo reale",
+              "insights": "Per programma"
+            },
+            "visual": {
+              "analysisTitle": "Analisi Placement...",
+              "innovationScore": "Tasso Placement",
+              "codeQuality": "Interesse Aziende",
+              "skillsDetected": "Programmi Top:"
+            }
+          },
+          {
+            "title": "Dimostra l'Impatto",
+            "description": "Esporta dati di placement verificati per i report ministeriali. Analytics contratti e alert precoci.",
+            "details": [
+              "Report con un click per ANVUR, AlmaLaurea e requisiti ministeriali",
+              "Alert precoci quando i tassi di placement scendono sotto gli obiettivi"
+            ],
+            "stats": {
+              "report": "Automatizzati",
+              "conformit\u00e0": "Pronti per il ministero"
+            },
+            "visual": {
+              "matchesTitle": "Report Impatto",
+              "match": "collocati",
+              "realTimeNotifications": "Report automatici inviati alla tua dashboard"
+            }
+          }
+        ]
       }
     },
     "features": {
@@ -745,6 +921,79 @@
       "about": "Chi Siamo",
       "certification": "Certificazione",
       "careers": "Lavora con Noi"
+    },
+    "developers": "Sviluppatori",
+    "developerLinks": {
+      "apiOverview": "Panoramica API",
+      "documentation": "Documentazione",
+      "apiAccess": "Richiedi Accesso API"
+    }
+  },
+  "developers": {
+    "hero": {
+      "badge": "Piattaforma Developer",
+      "title": "Costruisci su InTransparency",
+      "description": "Integra dati studenti verificati, ricerca talenti e monitoraggio placement nei tuoi sistemi."
+    },
+    "apiOverview": {
+      "title": "Panoramica API",
+      "description": "InTransparency fornisce API RESTful per universit\u00e0 che inviano dati verificati degli studenti, per aziende che cercano e filtrano candidati per competenze reali, e per piattaforme terze che costruiscono integrazioni. Tutti i dati sono verificati dall'istituzione e conformi al GDPR."
+    },
+    "endpoints": {
+      "title": "Endpoint API",
+      "subtitle": "Gruppi API principali per costruire integrazioni",
+      "students": {
+        "title": "API Studenti",
+        "description": "Gestisci profili studenti, progetti, voti e credenziali verificate. Invia dati dal tuo sistema informativo studenti o lascia che gli studenti si registrino autonomamente."
+      },
+      "search": {
+        "title": "API Ricerca",
+        "description": "Cerca candidati per competenze, voti, localit\u00e0 e tipo di progetto. Il matching basato su AI classifica i risultati per rilevanza rispetto ai tuoi requisiti."
+      },
+      "placements": {
+        "title": "API Placement",
+        "description": "Monitora e reporta gli esiti dei placement. Ottieni dati in tempo reale su visualizzazioni, contatti, colloqui e assunzioni dei laureati della tua istituzione."
+      },
+      "webhooks": {
+        "title": "Webhook",
+        "description": "Ricevi notifiche in tempo reale per eventi come nuovi match candidati, aggiornamenti profilo, traguardi di placement e completamenti di verifica."
+      }
+    },
+    "authentication": {
+      "title": "Autenticazione",
+      "description": "Tutte le richieste API sono autenticate tramite chiavi API. Ogni chiave \u00e8 associata alla tua organizzazione e pu\u00f2 essere configurata con permessi granulari. Le chiavi si gestiscono dalle impostazioni della dashboard.",
+      "steps": [
+        "Genera una chiave API dalla dashboard della tua organizzazione",
+        "Includi la chiave nell'header Authorization di ogni richiesta",
+        "Usa chiavi separate per ambienti di sviluppo e produzione"
+      ]
+    },
+    "comingSoon": {
+      "title": "In Arrivo",
+      "subtitle": "Stiamo sviluppando attivamente la piattaforma developer",
+      "items": [
+        {
+          "title": "SDK Python e Node.js",
+          "description": "Librerie client ufficiali per un'integrazione pi\u00f9 veloce"
+        },
+        {
+          "title": "Specifica OpenAPI",
+          "description": "Specifica OpenAPI 3.0 completa per generazione codice e documentazione"
+        },
+        {
+          "title": "Ambiente Sandbox",
+          "description": "Testa la tua integrazione con dati di esempio prima di andare in produzione"
+        },
+        {
+          "title": "Documentazione Rate Limiting",
+          "description": "Limiti di frequenza dettagliati, quote e best practice per utilizzo ad alto volume"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Pronto per integrare?",
+      "description": "Richiedi l'accesso API e il nostro team ti configurer\u00e0 entro 24 ore.",
+      "button": "Richiedi Accesso API"
     }
   },
   "blog": {

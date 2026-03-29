@@ -76,6 +76,11 @@ export function Footer() {
       { name: tFooter('companyLinks.certification'), href: '/certification' },
       { name: tFooter('companyLinks.careers'), href: '/contact?subject=careers' },
     ],
+    developers: [
+      { name: tFooter('developerLinks.apiOverview'), href: '/developers' },
+      { name: tFooter('developerLinks.documentation'), href: '/developers#endpoints' },
+      { name: tFooter('developerLinks.apiAccess'), href: '/contact?subject=api-access' },
+    ],
     legal: [
       { name: tFooter('privacy'), href: '/privacy' },
       { name: tFooter('terms'), href: '/legal' },
@@ -87,7 +92,7 @@ export function Footer() {
     <footer className="border-t border-border bg-foreground text-white relative z-30">
       <div className="container max-w-7xl mx-auto px-4 py-12">
         {/* Top: Logo + columns */}
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-7 gap-8 mb-10">
           {/* Brand */}
           <div className="col-span-2">
             <Logo size="md" />
@@ -134,6 +139,20 @@ export function Footer() {
             <h4 className="font-semibold text-white/90 mb-3 text-sm">{tFooter('company')}</h4>
             <ul className="space-y-2">
               {navigation.company.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-sm text-white/50 hover:text-white transition-colors">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Developers */}
+          <div>
+            <h4 className="font-semibold text-white/90 mb-3 text-sm">{tFooter('developers')}</h4>
+            <ul className="space-y-2">
+              {navigation.developers.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="text-sm text-white/50 hover:text-white transition-colors">
                     {item.name}

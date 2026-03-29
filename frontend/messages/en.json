@@ -367,8 +367,6 @@
     "howItWorks": {
       "badge": "How It Works",
       "title": "From Project to Opportunity in 3 Steps",
-      "students": "For Students",
-      "companies": "For Companies",
       "step1": {
         "title": "Upload Projects",
         "description": "Thesis, internships, apprenticeships - any format"
@@ -392,6 +390,184 @@
       "companyStep3": {
         "title": "Connect Directly",
         "description": "Reach candidates with no barriers — free during launch"
+      },
+      "students": {
+        "title": "How",
+        "titleHighlight": "InTransparency Works",
+        "subtitle": "From academic project to verified portfolio to employer contact — in three steps",
+        "step": "Step",
+        "steps": [
+          {
+            "title": "Create Your Profile",
+            "description": "Two ways: Institution partner = automatic profile. Independent = upload projects + select courses for instant profile",
+            "details": [
+              "Institution Integrated: Profile created automatically from institution data",
+              "Independent: Upload projects (code, docs, presentations) + select courses"
+            ],
+            "stats": {
+              "time": "< 5 min",
+              "formats": "Any file type"
+            },
+            "visual": {
+              "uploadTitle": "Project Upload",
+              "uploadProgress": "Upload Progress"
+            }
+          },
+          {
+            "title": "AI Analysis & Scoring",
+            "description": "Our advanced AI analyzes code quality, innovation level, complexity, and extracts relevant skills",
+            "details": [
+              "Code quality assessment using industry standards",
+              "Automatic skill extraction and categorization"
+            ],
+            "stats": {
+              "analysis": "Automated",
+              "verification": "Institution-backed"
+            },
+            "visual": {
+              "analysisTitle": "AI Analysis in Progress...",
+              "innovationScore": "Innovation Score",
+              "codeQuality": "Code Quality",
+              "skillsDetected": "Skills Detected:"
+            }
+          },
+          {
+            "title": "Connect with Companies",
+            "description": "Companies browse the marketplace and contact you directly based on your verified skills",
+            "details": [
+              "Companies browse verified portfolios",
+              "Intelligent skills-requirements matching"
+            ],
+            "stats": {
+              "cost": "Free for students",
+              "model": "Direct contact"
+            },
+            "visual": {
+              "matchesTitle": "Matches Found",
+              "match": "match",
+              "realTimeNotifications": "Real-time notifications for new opportunities"
+            }
+          }
+        ]
+      },
+      "companies": {
+        "title": "How",
+        "titleHighlight": "Hiring Works",
+        "subtitle": "From verified talent search to confident hiring decisions — in three steps",
+        "step": "Step",
+        "steps": [
+          {
+            "title": "Search Verified Talent",
+            "description": "Search by skills, grades, projects. AI matches candidates to your requirements.",
+            "details": [
+              "Filter by verified skills, GPA, project type, and location",
+              "AI-powered matching ranks candidates by relevance to your role"
+            ],
+            "stats": {
+              "candidates": "10,000+",
+              "filters": "20+ criteria",
+              "matching": "AI-powered"
+            },
+            "visual": {
+              "uploadTitle": "Candidate Search",
+              "uploadProgress": "Matching Progress"
+            }
+          },
+          {
+            "title": "Review Decision Packs",
+            "description": "See verified grades, projects, personality assessments. Everything you need to decide, in one document.",
+            "details": [
+              "Verified academic transcripts and project portfolios in one view",
+              "AI-generated candidate summaries with skill-match breakdowns"
+            ],
+            "stats": {
+              "time saved": "80%",
+              "verification": "Institution-backed"
+            },
+            "visual": {
+              "analysisTitle": "Decision Pack Loading...",
+              "innovationScore": "Skill Match",
+              "codeQuality": "Verified GPA",
+              "skillsDetected": "Verified Skills:"
+            }
+          },
+          {
+            "title": "Contact & Hire",
+            "description": "Reach candidates directly. No agency fees, no middlemen. Track your hiring pipeline.",
+            "details": [
+              "Message candidates directly through the platform",
+              "Track your pipeline from first contact to offer acceptance"
+            ],
+            "stats": {
+              "cost": "Pay per contact",
+              "speed": "48h avg. response"
+            },
+            "visual": {
+              "matchesTitle": "Your Pipeline",
+              "match": "fit score",
+              "realTimeNotifications": "Get notified when candidates respond"
+            }
+          }
+        ]
+      },
+      "institutions": {
+        "title": "How",
+        "titleHighlight": "Placement Works",
+        "subtitle": "From student onboarding to verified placement reporting — in three steps",
+        "step": "Step",
+        "steps": [
+          {
+            "title": "Onboard Students",
+            "description": "Import student records or let them self-register. Verify projects and grades with one click.",
+            "details": [
+              "Bulk import via CSV or connect your student information system",
+              "Students self-register and link to your institution for verification"
+            ],
+            "stats": {
+              "setup": "< 1 day",
+              "import": "Bulk CSV"
+            },
+            "visual": {
+              "uploadTitle": "Student Roster",
+              "uploadProgress": "Import Progress"
+            }
+          },
+          {
+            "title": "Track Placements",
+            "description": "See which companies view, contact, and hire your graduates. Real-time placement funnels.",
+            "details": [
+              "Live dashboard showing company interest in your students",
+              "Funnel analytics: views, contacts, interviews, and hires"
+            ],
+            "stats": {
+              "tracking": "Real-time",
+              "insights": "Per program"
+            },
+            "visual": {
+              "analysisTitle": "Placement Analytics...",
+              "innovationScore": "Placement Rate",
+              "codeQuality": "Employer Interest",
+              "skillsDetected": "Top Programs:"
+            }
+          },
+          {
+            "title": "Prove Impact",
+            "description": "Export verified placement data for ministry reporting. Contract analytics and early warning alerts.",
+            "details": [
+              "One-click reports for ANVUR, AlmaLaurea, and ministry requirements",
+              "Early warning alerts when placement rates drop below targets"
+            ],
+            "stats": {
+              "reports": "Automated",
+              "compliance": "Ministry-ready"
+            },
+            "visual": {
+              "matchesTitle": "Impact Report",
+              "match": "placed",
+              "realTimeNotifications": "Automated reports sent to your dashboard"
+            }
+          }
+        ]
       }
     },
     "features": {
@@ -745,6 +921,79 @@
       "about": "About",
       "certification": "Certification",
       "careers": "Careers"
+    },
+    "developers": "Developers",
+    "developerLinks": {
+      "apiOverview": "API Overview",
+      "documentation": "Documentation",
+      "apiAccess": "Request API Access"
+    }
+  },
+  "developers": {
+    "hero": {
+      "badge": "Developer Platform",
+      "title": "Build on InTransparency",
+      "description": "Integrate verified student data, talent search, and placement tracking into your own systems."
+    },
+    "apiOverview": {
+      "title": "API Overview",
+      "description": "InTransparency provides RESTful APIs for universities to push verified student data, for companies to search and filter candidates by real skills, and for third-party platforms to build integrations. All data is institution-verified and GDPR compliant."
+    },
+    "endpoints": {
+      "title": "API Endpoints",
+      "subtitle": "Core API groups for building integrations",
+      "students": {
+        "title": "Students API",
+        "description": "Manage student profiles, projects, grades, and verified credentials. Push data from your student information system or let students self-register."
+      },
+      "search": {
+        "title": "Search API",
+        "description": "Search candidates by skills, grades, location, and project type. AI-powered matching ranks results by relevance to your requirements."
+      },
+      "placements": {
+        "title": "Placements API",
+        "description": "Track and report placement outcomes. Get real-time data on views, contacts, interviews, and hires for your institution's graduates."
+      },
+      "webhooks": {
+        "title": "Webhooks",
+        "description": "Receive real-time notifications for events like new candidate matches, profile updates, placement milestones, and verification completions."
+      }
+    },
+    "authentication": {
+      "title": "Authentication",
+      "description": "All API requests are authenticated using API keys. Each key is scoped to your organization and can be configured with granular permissions. Keys are managed from your dashboard settings.",
+      "steps": [
+        "Generate an API key from your organization dashboard",
+        "Include the key in the Authorization header of each request",
+        "Use separate keys for development and production environments"
+      ]
+    },
+    "comingSoon": {
+      "title": "Coming Soon",
+      "subtitle": "We are actively building out the developer platform",
+      "items": [
+        {
+          "title": "Python & Node.js SDKs",
+          "description": "Official client libraries for faster integration"
+        },
+        {
+          "title": "OpenAPI Specification",
+          "description": "Full OpenAPI 3.0 spec for code generation and documentation"
+        },
+        {
+          "title": "Sandbox Environment",
+          "description": "Test your integration with sample data before going live"
+        },
+        {
+          "title": "Rate Limiting Documentation",
+          "description": "Detailed rate limits, quotas, and best practices for high-volume usage"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Ready to integrate?",
+      "description": "Request API access and our team will get you set up within 24 hours.",
+      "button": "Request API Access"
     }
   },
   "blog": {
