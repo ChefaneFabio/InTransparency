@@ -14,6 +14,12 @@ export async function GET(
   try {
     const { userId } = await params
 
+    // Verify user exists
+    const user = await prisma.user.findUnique({ where: { id: userId }, select: { id: true } })
+    if (!user) {
+      return NextResponse.json(null, { status: 204 })
+    }
+
     // Check cache
     const now = new Date()
     const cached = await prisma.portfolioScore.findFirst({

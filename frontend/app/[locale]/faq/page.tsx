@@ -2,10 +2,12 @@
 
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { ChevronDown, ChevronUp, Search, GraduationCap, Building2, Briefcase, CreditCard, Shield, HelpCircle } from 'lucide-react'
+import { ChevronDown, ChevronUp, Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Link } from '@/navigation'
 
@@ -52,12 +54,12 @@ export default function FAQPage() {
   ]
 
   const categories = [
-    { id: 'all', label: t('categoryAll'), icon: HelpCircle },
-    { id: 'students', label: t('categoryStudents'), icon: GraduationCap },
-    { id: 'companies', label: t('categoryCompanies'), icon: Briefcase },
-    { id: 'universities', label: t('categoryInstitutions'), icon: Building2 },
-    { id: 'payments', label: t('categoryPayments'), icon: CreditCard },
-    { id: 'privacy', label: t('categoryPrivacy'), icon: Shield },
+    { id: 'all', label: t('categoryAll') },
+    { id: 'students', label: t('categoryStudents') },
+    { id: 'companies', label: t('categoryCompanies') },
+    { id: 'universities', label: t('categoryInstitutions') },
+    { id: 'payments', label: t('categoryPayments') },
+    { id: 'privacy', label: t('categoryPrivacy') },
   ]
 
   const toggleItem = (index: number) => {
@@ -76,7 +78,9 @@ export default function FAQPage() {
   })
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-16">
+    <div className="min-h-screen">
+      <Header />
+      <div className="bg-gradient-to-br from-slate-50 via-white to-slate-50 py-16 pt-24">
       <div className="container max-w-4xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
@@ -107,9 +111,7 @@ export default function FAQPage() {
               key={category.id}
               variant={selectedCategory === category.id ? 'default' : 'outline'}
               onClick={() => setSelectedCategory(category.id)}
-              className="flex items-center gap-2"
             >
-              <category.icon className="h-4 w-4" />
               {category.label}
             </Button>
           ))}
@@ -119,7 +121,6 @@ export default function FAQPage() {
         <div className="space-y-4">
           {filteredFaqs.length === 0 ? (
             <Card className="p-8 text-center">
-              <HelpCircle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 {t('noResults')}
               </h3>
@@ -182,6 +183,8 @@ export default function FAQPage() {
           </div>
         </Card>
       </div>
+      </div>
+      <Footer />
     </div>
   )
 }
