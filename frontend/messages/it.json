@@ -70,7 +70,8 @@
         "skillsDemand": "Domanda Competenze",
         "settings": "Impostazioni",
         "offerComparison": "Confronta Offerte"
-      }
+      },
+      "messages": "Messaggi"
     },
     "recruiter": {
       "talent": "Talenti",
@@ -102,7 +103,8 @@
         "challenges": "Sfide",
         "settings": "Impostazioni",
         "contractTransparency": "Trasparenza Contratti"
-      }
+      },
+      "search": "Ricerca"
     },
     "university": {
       "students": "Studenti",

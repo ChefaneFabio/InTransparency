@@ -70,7 +70,8 @@
         "skillsDemand": "Skills Demand",
         "settings": "Settings",
         "offerComparison": "Compare Offers"
-      }
+      },
+      "messages": "Messages"
     },
     "recruiter": {
       "talent": "Talent",
@@ -102,7 +103,8 @@
         "challenges": "Challenges",
         "settings": "Settings",
         "contractTransparency": "Contract Transparency"
-      }
+      },
+      "search": "Search"
     },
     "university": {
       "students": "Students",
