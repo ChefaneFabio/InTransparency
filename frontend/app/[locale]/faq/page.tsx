@@ -95,7 +95,7 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <div className="bg-gradient-to-br from-slate-50 via-white to-slate-50 py-16">
+      <div className="bg-gradient-to-br from-slate-50 via-white to-slate-50 py-10">
       <div className="container max-w-4xl mx-auto px-4">
         {/* Search */}
         <div className="relative mb-8">

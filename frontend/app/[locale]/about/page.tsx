@@ -83,7 +83,7 @@ export default function AboutPage() {
         </section>
 
         {/* Why We're Different - Against Opaque Competitors */}
-        <section className="py-16 bg-gradient-to-br from-muted/50 to-white">
+        <section className="py-10 bg-gradient-to-br from-muted/50 to-white">
           <div className="container max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -233,7 +233,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Mission */}
-        <section className="py-16 hero-bg relative overflow-hidden">
+        <section className="py-10 hero-bg relative overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 opacity-5">
             <Image
@@ -288,7 +288,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Values */}
-        <section className="py-16 hero-bg">
+        <section className="py-10 hero-bg">
           <div className="container max-w-6xl">
             <h2 className="text-4xl font-bold text-foreground text-center mb-12">
               {t('values.title')}
@@ -353,7 +353,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Business Model */}
-        <section className="py-16 hero-bg">
+        <section className="py-10 hero-bg">
           <div className="container max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -460,7 +460,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Vision */}
-        <section className="py-16 hero-bg">
+        <section className="py-10 hero-bg">
           <div className="container max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -526,7 +526,7 @@ export default function AboutPage() {
         </section>
 
         {/* The Enemy: Resumes */}
-        <section className="py-16 bg-foreground text-white">
+        <section className="py-10 bg-foreground text-white">
           <div className="container max-w-4xl text-center">
             <h2 className="text-4xl font-bold mb-6">
               {t('killResume.title')}
@@ -561,7 +561,7 @@ export default function AboutPage() {
         </section>
 
         {/* Join Us */}
-        <section className="py-16 hero-bg">
+        <section className="py-10 hero-bg">
           <div className="container max-w-4xl text-center">
             <h2 className="text-4xl font-bold text-foreground mb-6">
               {t('joinMovement.title')}

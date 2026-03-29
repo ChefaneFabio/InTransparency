@@ -66,7 +66,7 @@ export default function DevelopersPage() {
         </section>
 
         {/* API Overview */}
-        <section className="py-16 bg-background">
+        <section className="py-10 bg-background">
           <div className="container max-w-4xl mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -85,7 +85,7 @@ export default function DevelopersPage() {
         </section>
 
         {/* Endpoints */}
-        <section id="endpoints" className="py-16 bg-muted/30">
+        <section id="endpoints" className="py-10 bg-muted/30">
           <div className="container max-w-5xl mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -138,7 +138,7 @@ export default function DevelopersPage() {
         </section>
 
         {/* Authentication */}
-        <section className="py-16 bg-background">
+        <section className="py-10 bg-background">
           <div className="container max-w-4xl mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -174,7 +174,7 @@ export default function DevelopersPage() {
         </section>
 
         {/* Coming Soon */}
-        <section className="py-16 bg-muted/30">
+        <section className="py-10 bg-muted/30">
           <div className="container max-w-5xl mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -224,7 +224,7 @@ export default function DevelopersPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-background">
+        <section className="py-10 bg-background">
           <div className="container max-w-3xl mx-auto px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

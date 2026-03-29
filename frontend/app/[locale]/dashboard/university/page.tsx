@@ -174,10 +174,10 @@ export default function UniversityDashboard() {
         <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
           <div className="flex items-center gap-3">
             <div>
-              <p className="font-medium text-gray-900">
+              <p className="font-medium text-foreground">
                 {t('companiesViewed', { count: stats.recruiterViews })}
               </p>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-foreground/80">
                 {t('completeProfilesTip')}
               </p>
             </div>
@@ -188,10 +188,10 @@ export default function UniversityDashboard() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">
+          <h1 className="text-2xl font-semibold text-foreground">
             {t('title')}
           </h1>
-          <p className="text-gray-600 mt-1">
+          <p className="text-muted-foreground mt-1">
             {t('subtitle')}
           </p>
         </div>
@@ -216,28 +216,28 @@ export default function UniversityDashboard() {
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
             <p className="text-2xl font-bold">{stats.totalStudents}</p>
-            <p className="text-sm text-gray-600">{t('totalStudents')}</p>
+            <p className="text-sm text-muted-foreground">{t('totalStudents')}</p>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
             <p className="text-2xl font-bold">{stats.verifiedStudents}</p>
-            <p className="text-sm text-gray-600">{t('verified')}</p>
+            <p className="text-sm text-muted-foreground">{t('verified')}</p>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
             <p className="text-2xl font-bold">{stats.activeProfiles}</p>
-            <p className="text-sm text-gray-600">{t('activeProfiles')}</p>
+            <p className="text-sm text-muted-foreground">{t('activeProfiles')}</p>
           </CardContent>
         </Card>
 
         <Card className="hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
             <p className="text-2xl font-bold">{stats.recruiterViews}</p>
-            <p className="text-sm text-gray-600">{t('recruiterViews')}</p>
+            <p className="text-sm text-muted-foreground">{t('recruiterViews')}</p>
           </CardContent>
         </Card>
       </div>
@@ -267,7 +267,7 @@ export default function UniversityDashboard() {
                 recentStudents.map((student) => (
                   <div
                     key={student.id}
-                    className="flex items-center gap-4 p-4 rounded-lg border hover:bg-gray-50 transition-colors"
+                    className="flex items-center gap-4 p-4 rounded-lg border hover:bg-muted/50 transition-colors"
                   >
                     <Avatar className="h-10 w-10">
                       <AvatarFallback className="bg-primary text-white text-sm">
@@ -277,14 +277,14 @@ export default function UniversityDashboard() {
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <p className="font-medium text-gray-900">{student.name}</p>
+                        <p className="font-medium text-foreground">{student.name}</p>
                         {student.verified && (
                           <Badge variant="secondary" className="text-xs bg-primary/10 text-primary">
                             {t('verified')}
                           </Badge>
                         )}
                       </div>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-muted-foreground">
                         {student.course} · {student.year}
                       </p>
                     </div>
@@ -293,14 +293,14 @@ export default function UniversityDashboard() {
                       <p className="text-sm font-medium">{student.projects} {t('projects')}</p>
                     </div>
 
-                    <ChevronRight className="h-4 w-4 text-gray-400" />
+                    <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
                   </div>
                 ))
               ) : (
                 <div className="text-center py-8">
-                  <Users className="h-12 w-12 mx-auto text-gray-300 mb-3" />
-                  <h3 className="font-medium text-gray-900 mb-1">{t('noStudentsYet')}</h3>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <Users className="h-12 w-12 mx-auto text-muted-foreground/40 mb-3" />
+                  <h3 className="font-medium text-foreground mb-1">{t('noStudentsYet')}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
                     {t('importOrAdd')}
                   </p>
                   <Button asChild>
@@ -334,7 +334,7 @@ export default function UniversityDashboard() {
                 {recentStudents.slice(0, 5).map((student) => (
                   <div
                     key={`prediction-${student.id}`}
-                    className="flex items-center gap-4 p-3 rounded-lg border hover:bg-gray-50 transition-colors"
+                    className="flex items-center gap-4 p-3 rounded-lg border hover:bg-muted/50 transition-colors"
                   >
                     <Avatar className="h-8 w-8">
                       <AvatarFallback className="bg-primary text-white text-xs">
@@ -342,7 +342,7 @@ export default function UniversityDashboard() {
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">{student.name}</p>
+                      <p className="text-sm font-medium text-foreground truncate">{student.name}</p>
                     </div>
                     <PlacementProbabilityBadge studentId={student.id} compact />
                   </div>
@@ -358,10 +358,10 @@ export default function UniversityDashboard() {
                 <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <Upload className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="font-medium text-gray-900 mb-1">
+                <h3 className="font-medium text-foreground mb-1">
                   {t('importBulk')}
                 </h3>
-                <p className="text-sm text-gray-600 mb-4 max-w-sm mx-auto">
+                <p className="text-sm text-muted-foreground mb-4 max-w-sm mx-auto">
                   {t('importBulkDescription')}
                 </p>
                 <Button variant="outline" asChild>
@@ -384,79 +384,79 @@ export default function UniversityDashboard() {
             <CardContent className="space-y-2">
               <Link
                 href="/dashboard/university/students/add"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
               >
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('addStudents')}</p>
-                  <p className="text-xs text-gray-500">{t('inviteNewStudents')}</p>
+                  <p className="text-xs text-muted-foreground">{t('inviteNewStudents')}</p>
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
 
               <Link
                 href="/dashboard/university/analytics"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
               >
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('analytics')}</p>
-                  <p className="text-xs text-gray-500">{t('viewPlacementStats')}</p>
+                  <p className="text-xs text-muted-foreground">{t('viewPlacementStats')}</p>
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
 
               <Link
                 href="/dashboard/university/recruiters"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
               >
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('recruiters')}</p>
-                  <p className="text-xs text-gray-500">{t('companiesRecruiting')}</p>
+                  <p className="text-xs text-muted-foreground">{t('companiesRecruiting')}</p>
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
 
               <Link
                 href="/dashboard/university/courses"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
               >
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('courses')}</p>
-                  <p className="text-xs text-gray-500">{t('manageCourseCatalog')}</p>
+                  <p className="text-xs text-muted-foreground">{t('manageCourseCatalog')}</p>
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
 
               <Link
                 href="/dashboard/university/alumni"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
               >
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('alumni')}</p>
-                  <p className="text-xs text-gray-500">{t('trackPostGraduation')}</p>
+                  <p className="text-xs text-muted-foreground">{t('trackPostGraduation')}</p>
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
 
               <Link
                 href="/dashboard/university/sync"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
               >
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('dataSync')}</p>
-                  <p className="text-xs text-gray-500">{t('syncUniversitySystems')}</p>
+                  <p className="text-xs text-muted-foreground">{t('syncUniversitySystems')}</p>
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
 
               <Link
                 href="/dashboard/university/settings"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
               >
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t('settings')}</p>
-                  <p className="text-xs text-gray-500">{t('universityProfile')}</p>
+                  <p className="text-xs text-muted-foreground">{t('universityProfile')}</p>
                 </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
+                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
 
               <div className="border-t my-1" />
@@ -482,17 +482,17 @@ export default function UniversityDashboard() {
                 topRecruiters.map((recruiter, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-900">{recruiter.name}</p>
-                      <p className="text-xs text-gray-500">{recruiter.contacts} {t('contactsMade')}</p>
+                      <p className="text-sm font-medium text-foreground">{recruiter.name}</p>
+                      <p className="text-xs text-muted-foreground">{recruiter.contacts} {t('contactsMade')}</p>
                     </div>
                     <div className="text-right">
                       <p className="text-sm font-medium">{recruiter.views}</p>
-                      <p className="text-xs text-gray-500">{t('views')}</p>
+                      <p className="text-xs text-muted-foreground">{t('views')}</p>
                     </div>
                   </div>
                 ))
               ) : (
-                <p className="text-sm text-gray-500 text-center py-4">
+                <p className="text-sm text-muted-foreground text-center py-4">
                   {t('noRecruiterActivity')}
                 </p>
               )}
@@ -507,11 +507,11 @@ export default function UniversityDashboard() {
             <CardContent>
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-600">{t('studentsVerified')}</span>
+                  <span className="text-muted-foreground">{t('studentsVerified')}</span>
                   <span className="font-medium">{stats.verifiedStudents}/{stats.totalStudents}</span>
                 </div>
                 <Progress value={verificationPercentage} className="h-2" />
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-muted-foreground">
                   {t('verificationPercent', { percentage: verificationPercentage })}
                 </p>
               </div>

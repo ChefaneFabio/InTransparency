@@ -54,7 +54,7 @@ export default function PricingPage() {
       </section>
 
       {/* Pricing Tiers */}
-      <section className="py-16">
+      <section className="py-10">
         <div className="container max-w-5xl mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => (
@@ -111,7 +111,7 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-10 bg-muted/30">
         <div className="container max-w-4xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">{t('faq.title')}</h2>
           <div className="grid md:grid-cols-2 gap-6">

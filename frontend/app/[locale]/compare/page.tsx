@@ -35,7 +35,7 @@ export default function ComparePage() {
       </section>
 
       {/* ─── COMPARISON CARDS ─── */}
-      <section className="py-16 bg-background">
+      <section className="py-10 bg-background">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="grid gap-6 md:grid-cols-3">
             {comparisons.map((comp) => (

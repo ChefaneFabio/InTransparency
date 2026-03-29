@@ -32,7 +32,7 @@ export default function CompareCVPage() {
       </section>
 
       {/* ─── COMPARISON TABLE ─── */}
-      <section className="py-16 bg-background">
+      <section className="py-10 bg-background">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <h2 className="text-2xl font-bold text-center mb-8">{t('table.title')}</h2>
           <div className="overflow-x-auto rounded-lg border">
@@ -59,7 +59,7 @@ export default function CompareCVPage() {
       </section>
 
       {/* ─── KEY DIFFERENTIATORS ─── */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-10 bg-muted/30">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <h2 className="text-2xl font-bold text-center mb-10">{t('differentiators.title')}</h2>
           <div className="grid gap-6 md:grid-cols-3">
@@ -81,7 +81,7 @@ export default function CompareCVPage() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section className="py-16 bg-primary text-white">
+      <section className="py-10 bg-primary text-white">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <h2 className="text-3xl font-bold mb-4">{t('cta.title')}</h2>
           <p className="text-lg text-blue-100 mb-8">{t('cta.subtitle')}</p>

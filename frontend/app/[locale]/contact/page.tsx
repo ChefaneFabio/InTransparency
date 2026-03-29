@@ -77,7 +77,7 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Information & Form */}
-        <section className="py-16">
+        <section className="py-10">
           <div className="container max-w-6xl mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
@@ -321,7 +321,7 @@ export default function ContactPage() {
         </section>
 
         {/* AI Conversational Search - How to Access */}
-        <section className="py-16 bg-primary/10">
+        <section className="py-10 bg-primary/10">
           <div className="container max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground mb-4">
@@ -418,7 +418,7 @@ export default function ContactPage() {
         </section>
 
         {/* Office Hours */}
-        <section className="py-16 hero-bg">
+        <section className="py-10 hero-bg">
           <div className="container max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold text-foreground mb-8">{t('officeHours.title')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
