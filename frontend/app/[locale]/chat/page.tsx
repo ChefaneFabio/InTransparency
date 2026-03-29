@@ -100,7 +100,7 @@ export default function ChatPage() {
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <Bot className="h-12 w-12 text-primary" />
-              <h1 className="text-5xl font-display font-bold text-primary">
+              <h1 className="text-5xl font-bold text-primary">
                 AI Assistant Hub
               </h1>
             </div>

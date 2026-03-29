@@ -328,7 +328,7 @@ export default function ExplorePage() {
               <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 {t('hero.badge')}
               </div>
-              <h1 className="text-5xl font-display font-bold mb-6 text-white">
+              <h1 className="text-5xl font-bold mb-6 text-white">
                 {t('hero.title')}
               </h1>
               <p className="text-xl text-blue-100 leading-relaxed max-w-3xl mx-auto mb-8">

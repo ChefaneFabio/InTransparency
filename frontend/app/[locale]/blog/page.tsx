@@ -21,7 +21,7 @@ export default async function BlogPage() {
         {/* Hero */}
         <section className="container py-16 md:py-24">
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
               {t('title')}
             </h1>
             <p className="text-lg text-muted-foreground mb-6">
@@ -66,7 +66,7 @@ export default async function BlogPage() {
                     {featuredPost.readingTime}
                   </span>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-display font-bold mb-3 group-hover:text-primary transition-colors">
+                <h2 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors">
                   {featuredPost.title}
                 </h2>
                 <p className="text-muted-foreground mb-4 max-w-2xl">

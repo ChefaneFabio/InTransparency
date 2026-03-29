@@ -29,7 +29,7 @@ export default function CompanyProfilePage() {
               <img src="/images/logo-banner.png" alt="InTransparency" className="h-12 mx-auto" />
             </div>
             <div className="inline-block bg-primary text-white rounded-2xl px-10 py-8">
-              <h1 className="text-4xl font-display font-bold mb-2">Company Profile</h1>
+              <h1 className="text-4xl font-bold mb-2">Company Profile</h1>
               <p className="text-white/80">March 2026</p>
             </div>
           </motion.div>

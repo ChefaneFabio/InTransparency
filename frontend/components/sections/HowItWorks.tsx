@@ -30,9 +30,9 @@ export function HowItWorks() {
       <div className="container max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-display font-bold text-foreground sm:text-5xl">
+          <h2 className="text-3xl font-bold text-foreground sm:text-5xl">
             {t('title')}{' '}
-            <span className="text-primary">{t('titleHighlight')}</span>
+            <span className="text-primary font-display italic">{t('titleHighlight')}</span>
           </h2>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('subtitle')}
@@ -73,7 +73,7 @@ export function HowItWorks() {
             {/* Left: details */}
             <div>
               <div className="flex items-center gap-4 mb-4">
-                <span className="text-4xl font-display font-bold text-primary/20 tabular-nums">
+                <span className="text-4xl font-bold text-primary/20 tabular-nums">
                   {String(activeStep + 1).padStart(2, '0')}
                 </span>
                 <div>

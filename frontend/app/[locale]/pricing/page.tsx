@@ -35,7 +35,7 @@ export default function PricingPage() {
               <Badge className="mb-6 bg-white/10 text-white border-white/20 text-sm px-4 py-2">
                 {t('hero.badge')}
               </Badge>
-              <h1 className="text-5xl font-display font-bold mb-6 text-white">
+              <h1 className="text-5xl font-bold mb-6 text-white">
                 {t('hero.title')}
               </h1>
               <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-4">
@@ -113,7 +113,7 @@ export default function PricingPage() {
                               {t('company.badge')}
                             </Badge>
                           </div>
-                          <h2 className="text-3xl font-display font-bold text-gray-900 mb-3">
+                          <h2 className="text-3xl font-bold text-gray-900 mb-3">
                             {t('company.title')}
                           </h2>
                           <p className="text-lg text-gray-700 mb-6">
@@ -193,7 +193,7 @@ export default function PricingPage() {
                           <Badge className="mb-4 bg-primary/10 text-primary border-primary/30 text-sm">
                             {t('student.badge')}
                           </Badge>
-                          <h2 className="text-3xl font-display font-bold text-gray-900 mb-3">
+                          <h2 className="text-3xl font-bold text-gray-900 mb-3">
                             {t('student.title')}
                           </h2>
                           <p className="text-lg text-gray-700 mb-6">
@@ -266,7 +266,7 @@ export default function PricingPage() {
                           <Badge className="mb-4 bg-primary/10 text-primary border-primary/30 text-sm">
                             {t('institute.badge')}
                           </Badge>
-                          <h2 className="text-3xl font-display font-bold text-gray-900 mb-3">
+                          <h2 className="text-3xl font-bold text-gray-900 mb-3">
                             {t('institute.title')}
                           </h2>
                           <p className="text-lg text-gray-700 mb-6">
@@ -338,7 +338,7 @@ export default function PricingPage() {
             className="mb-20"
           >
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-display font-bold text-foreground mb-4">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
                 {t('faq.title')}
               </h2>
             </div>
@@ -374,7 +374,7 @@ export default function PricingPage() {
           >
             <Card className="bg-primary text-primary-foreground border-0">
               <CardContent className="p-12 text-center">
-                <h2 className="text-4xl font-display font-bold mb-4">
+                <h2 className="text-4xl font-bold mb-4">
                   {t('finalCta.title')}
                 </h2>
                 <p className="text-xl text-white mb-8 max-w-2xl mx-auto">

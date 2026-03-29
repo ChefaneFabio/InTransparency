@@ -7,7 +7,7 @@ export default function NotFound() {
         <div className="flex justify-center mb-8">
           <Transparenty size={160} mood="sad" />
         </div>
-        <h1 className="text-4xl font-display font-bold text-foreground mb-4">
+        <h1 className="text-4xl font-bold text-foreground mb-4">
           Page Not Found
         </h1>
         <p className="text-lg text-muted-foreground mb-8">

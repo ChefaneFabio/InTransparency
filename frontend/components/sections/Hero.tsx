@@ -53,9 +53,9 @@ export function Hero() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
             >
-              <h1 className="text-4xl font-display font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl leading-[1.1]">
+              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl leading-[1.1]">
                 {t(`segments.${activeSegment}.headline1`)}{' '}
-                <span className="text-primary">{t(`segments.${activeSegment}.headline2`)}</span>
+                <span className="text-primary font-display italic">{t(`segments.${activeSegment}.headline2`)}</span>
               </h1>
 
               <p className="mt-8 text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
@@ -170,9 +170,9 @@ export function Hero() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <h2 className="text-2xl font-display font-bold text-foreground text-center mb-8">
+              <h2 className="text-2xl font-bold text-foreground text-center mb-8">
                 {t(`${segment}.headlinePart1`)}{' '}
-                <span className="text-primary">{t(`${segment}.headlinePart2`)}</span>
+                <span className="text-primary font-display italic">{t(`${segment}.headlinePart2`)}</span>
                 {segment === 'companies' && ` ${t(`${segment}.headlinePart3`)}`}
               </h2>
 

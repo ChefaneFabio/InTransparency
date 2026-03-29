@@ -16,7 +16,7 @@ export function BookingSection() {
           <div className="inline-flex p-2.5 rounded-lg bg-primary/10 mb-5">
             <Calendar className="h-5 w-5 text-primary" />
           </div>
-          <h2 className="text-3xl font-display font-bold text-foreground mb-3">
+          <h2 className="text-3xl font-bold text-foreground mb-3">
             {t('title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">

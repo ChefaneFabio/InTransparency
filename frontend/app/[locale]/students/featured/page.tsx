@@ -86,7 +86,7 @@ export default function FeaturedPortfoliosPage() {
               <Badge className="mb-4 bg-white/20 text-white border-white/30">
                 {t('hero.badge')}
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 {t('hero.title')}
               </h1>
               <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
@@ -237,7 +237,7 @@ export default function FeaturedPortfoliosPage() {
         {/* CTA Section */}
         <section className="bg-primary text-white py-16">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl font-display font-bold mb-4">
+            <h2 className="text-3xl font-bold mb-4">
               {t('cta.title')}
             </h2>
             <p className="text-xl text-white/90 mb-8">

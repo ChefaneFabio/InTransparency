@@ -206,7 +206,7 @@ export default function ReferralsPage() {
             <Badge className="mb-4 bg-primary text-white">
               {t('hero.badge')}
             </Badge>
-            <h1 className="text-5xl font-display font-bold mb-6">
+            <h1 className="text-5xl font-bold mb-6">
               {t('hero.title')}{' '}
               <span className="text-primary">
                 {t('hero.titleHighlight')}
@@ -263,7 +263,7 @@ export default function ReferralsPage() {
           >
             <Card className="border-2 bg-primary text-white border-0">
               <CardContent className="py-8 text-center">
-                <h2 className="text-3xl font-display font-bold mb-2">{currentProgram.title}</h2>
+                <h2 className="text-3xl font-bold mb-2">{currentProgram.title}</h2>
                 <p className="text-lg text-white/90">{currentProgram.subtitle}</p>
               </CardContent>
             </Card>
@@ -340,7 +340,7 @@ export default function ReferralsPage() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <h2 className="text-3xl font-display font-bold text-center text-foreground mb-8">
+            <h2 className="text-3xl font-bold text-center text-foreground mb-8">
               Your Referral Dashboard
             </h2>
 
@@ -434,7 +434,7 @@ export default function ReferralsPage() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <h2 className="text-3xl font-display font-bold text-center text-foreground mb-4">
+            <h2 className="text-3xl font-bold text-center text-foreground mb-4">
               Cross-Segment Success Stories
             </h2>
             <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -543,7 +543,7 @@ export default function ReferralsPage() {
           >
             <Card className="bg-primary border-0 text-white">
               <CardContent className="py-12 text-center">
-                <h3 className="text-3xl font-display font-bold mb-4">
+                <h3 className="text-3xl font-bold mb-4">
                   Start Earning Today
                 </h3>
                 <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">

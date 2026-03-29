@@ -184,7 +184,7 @@ export default function AISearchDemoPage() {
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border-2 border-primary/30 rounded-full px-6 py-2 mb-4 shadow-sm">
             <span className="font-bold text-foreground">{t('banner.badge')}</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             {t('banner.title')}{' '}
             <span className="text-primary">
               {t('banner.titleHighlight')}

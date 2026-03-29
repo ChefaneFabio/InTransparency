@@ -26,7 +26,7 @@ export function CTA() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left: text + CTA */}
           <div className="text-center lg:text-left">
-            <h2 className="text-3xl font-display font-bold tracking-tight sm:text-5xl">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">
               {t('title')}{' '}
               <span className="text-primary">{t('titleHighlight')}</span>
             </h2>

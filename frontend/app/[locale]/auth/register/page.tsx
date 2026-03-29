@@ -91,7 +91,7 @@ export default function RegisterPage() {
             <Badge className="mb-4 bg-primary text-white">
               {t('register.badge')}
             </Badge>
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               {t('register.title')}
             </h1>
             <p className="text-xl text-gray-700 max-w-2xl mx-auto">

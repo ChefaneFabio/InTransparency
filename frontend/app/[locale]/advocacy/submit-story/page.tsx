@@ -240,7 +240,7 @@ export default function SubmitAlumniStoryPage() {
       <section className="bg-primary text-white py-12">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <GraduationCap className="h-12 w-12 mx-auto mb-4" />
-          <h1 className="text-4xl font-display font-bold mb-4">
+          <h1 className="text-4xl font-bold mb-4">
             Share Your Success Story
           </h1>
           <p className="text-xl text-white/90">

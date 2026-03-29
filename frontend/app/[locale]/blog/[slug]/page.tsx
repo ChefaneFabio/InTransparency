@@ -89,7 +89,7 @@ export default async function BlogPostPage({ params }: Props) {
               </span>
             </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               {post.title}
             </h1>
 
@@ -111,7 +111,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           {/* Blog Content */}
           <div
-            className="prose prose-slate dark:prose-invert max-w-none prose-headings:font-display prose-headings:font-bold prose-a:text-primary prose-img:rounded-xl"
+            className="prose prose-slate dark:prose-invert max-w-none prose-headings:prose-headings:font-bold prose-a:text-primary prose-img:rounded-xl"
             dangerouslySetInnerHTML={{ __html: post.contentHtml }}
           />
 

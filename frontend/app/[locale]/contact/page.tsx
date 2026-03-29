@@ -61,7 +61,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-display font-bold mb-6"
+              className="text-4xl md:text-5xl font-bold mb-6"
             >
               {t('hero.title')}
             </motion.h1>
@@ -84,7 +84,7 @@ export default function ContactPage() {
               {/* Contact Information */}
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-3xl font-display font-bold text-foreground mb-6">
+                  <h2 className="text-3xl font-bold text-foreground mb-6">
                     {t('section.title')}
                   </h2>
                   <p className="text-lg text-muted-foreground mb-8">
@@ -324,7 +324,7 @@ export default function ContactPage() {
         <section className="py-16 bg-primary/10">
           <div className="container max-w-6xl mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-display font-bold text-foreground mb-4">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
                 {t('aiSearch.title')}
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -420,7 +420,7 @@ export default function ContactPage() {
         {/* Office Hours */}
         <section className="py-16 hero-bg">
           <div className="container max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-display font-bold text-foreground mb-8">{t('officeHours.title')}</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8">{t('officeHours.title')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card>
                 <CardContent className="p-6">

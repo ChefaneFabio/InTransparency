@@ -22,7 +22,7 @@ export function ComparisonTable() {
           <p className="text-sm font-medium tracking-widest text-primary uppercase mb-4">
             {t('badge')}
           </p>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-5">
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-5">
             {t(`${segment}.title`)}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

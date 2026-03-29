@@ -77,7 +77,7 @@ export default function AlumniStoriesPage() {
           <div className="text-center">
             <div className="flex items-center justify-center mb-4">
               <GraduationCap className="h-12 w-12 mr-3" />
-              <h1 className="text-4xl md:text-5xl font-display font-bold">
+              <h1 className="text-4xl md:text-5xl font-bold">
                 Alumni Success Stories
               </h1>
             </div>

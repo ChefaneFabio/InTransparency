@@ -32,7 +32,7 @@ export default function AboutPage() {
               <div className="inline-block bg-white/10 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 {t('hero.badge')}
               </div>
-              <h1 className="text-5xl font-display font-bold text-white mb-6">
+              <h1 className="text-5xl font-bold text-white mb-6">
                 {t('hero.title')}
               </h1>
               <p className="text-xl text-blue-100 leading-relaxed whitespace-pre-line">
@@ -95,9 +95,9 @@ export default function AboutPage() {
               <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 {t('whyDifferent.badge')}
               </div>
-              <h2 className="text-4xl font-display font-bold text-foreground mb-4">
+              <h2 className="text-4xl font-bold text-foreground mb-4">
                 {t('whyDifferent.title')}{' '}
-                <span className="text-primary">
+                <span className="text-primary font-display italic">
                   {t('whyDifferent.titleHighlight')}
                 </span>
               </h2>
@@ -208,7 +208,7 @@ export default function AboutPage() {
             >
               <Card className="bg-primary text-primary-foreground">
                 <CardContent className="p-8 text-center">
-                  <h3 className="text-2xl font-display font-bold mb-4">{t('whyDifferent.result.title')}</h3>
+                  <h3 className="text-2xl font-bold mb-4">{t('whyDifferent.result.title')}</h3>
                   <div className="grid md:grid-cols-3 gap-6 mb-6">
                     <div>
                       <div className="text-4xl font-bold mb-2">{t('whyDifferent.result.metrics.0.value')}</div>
@@ -251,7 +251,7 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-display font-bold text-foreground mb-4">
+              <h2 className="text-4xl font-bold text-foreground mb-4">
                 {t('mission.title')}
               </h2>
               <p className="text-xl text-foreground/80 leading-relaxed">
@@ -270,7 +270,7 @@ export default function AboutPage() {
 
             {/* Our Story */}
             <div className="prose prose-lg max-w-none">
-              <h3 className="text-2xl font-display font-bold text-foreground mb-4">{t('mission.story.title')}</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-4">{t('mission.story.title')}</h3>
               <p className="text-foreground/80 leading-relaxed mb-4">
                 {t('mission.story.paragraphs.0')}
               </p>
@@ -290,7 +290,7 @@ export default function AboutPage() {
         {/* Our Values */}
         <section className="py-16 hero-bg">
           <div className="container max-w-6xl">
-            <h2 className="text-4xl font-display font-bold text-foreground text-center mb-12">
+            <h2 className="text-4xl font-bold text-foreground text-center mb-12">
               {t('values.title')}
             </h2>
 
@@ -361,7 +361,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-            <h2 className="text-4xl font-display font-bold text-foreground text-center mb-4">
+            <h2 className="text-4xl font-bold text-foreground text-center mb-4">
               {t('businessModel.title')}
             </h2>
             <p className="text-xl text-foreground/80 text-center mb-12">
@@ -442,7 +442,7 @@ export default function AboutPage() {
 
             <Card className="bg-primary text-primary-foreground">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-display font-bold mb-4 text-center">{t('businessModel.philosophy.title')}</h3>
+                <h3 className="text-2xl font-bold mb-4 text-center">{t('businessModel.philosophy.title')}</h3>
                 <div className="space-y-4 text-white">
                   <p className="leading-relaxed">
                     <strong>{t('businessModel.philosophy.studentsBold')}</strong> {t('businessModel.philosophy.studentsText')}
@@ -468,7 +468,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-            <h2 className="text-4xl font-display font-bold text-foreground text-center mb-4">
+            <h2 className="text-4xl font-bold text-foreground text-center mb-4">
               {t('vision.title')}
             </h2>
             <p className="text-xl text-foreground/80 text-center mb-12">
@@ -505,7 +505,7 @@ export default function AboutPage() {
             >
             <Card className="bg-primary/5 border-primary/20 hover:shadow-lg transition-shadow">
               <CardContent className="p-8 text-center">
-                <h3 className="text-2xl font-display font-bold text-foreground mb-4">
+                <h3 className="text-2xl font-bold text-foreground mb-4">
                   {t('vision.cta.title')}
                 </h3>
                 <p className="text-foreground mb-6 leading-relaxed max-w-2xl mx-auto">
@@ -563,7 +563,7 @@ export default function AboutPage() {
         {/* Join Us */}
         <section className="py-16 hero-bg">
           <div className="container max-w-4xl text-center">
-            <h2 className="text-4xl font-display font-bold text-foreground mb-6">
+            <h2 className="text-4xl font-bold text-foreground mb-6">
               {t('joinMovement.title')}
             </h2>
             <p className="text-xl text-foreground/80 mb-12 max-w-2xl mx-auto">

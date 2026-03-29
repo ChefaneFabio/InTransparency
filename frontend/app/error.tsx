@@ -15,7 +15,7 @@ export default function Error({
         <div className="flex justify-center mb-8">
           <Transparenty size={160} mood="thinking" />
         </div>
-        <h1 className="text-4xl font-display font-bold text-foreground mb-4">
+        <h1 className="text-4xl font-bold text-foreground mb-4">
           Something went wrong
         </h1>
         <p className="text-lg text-muted-foreground mb-8">

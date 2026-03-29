@@ -21,7 +21,7 @@ export function TestimonialsSection() {
     <section className="py-24 sm:py-32">
       <div className="container">
         <div className="text-center mb-20">
-          <h2 className="text-3xl font-display font-bold text-foreground sm:text-5xl">
+          <h2 className="text-3xl font-bold text-foreground sm:text-5xl">
             {t('title')}
           </h2>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -50,7 +50,7 @@ export function TestimonialsSection() {
 
                 {/* Text — short and punchy */}
                 <div className={section.reverse ? 'lg:order-1' : 'lg:order-2'}>
-                  <h3 className="text-2xl font-display font-bold text-foreground mb-3">
+                  <h3 className="text-2xl font-bold text-foreground mb-3">
                     {t(`cards.${key}.title`)}
                   </h3>
                   <ul className="space-y-2.5">

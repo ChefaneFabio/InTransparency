@@ -238,7 +238,7 @@ export default function JobApplicationPage() {
               <div className="flex items-center gap-3 mb-2">
                 <Building2 className="h-8 w-8 text-primary" />
                 <div>
-                  <h1 className="text-3xl font-display font-bold">{job.title}</h1>
+                  <h1 className="text-3xl font-bold">{job.title}</h1>
                   <p className="text-gray-600">{job.company} • {job.location}</p>
                 </div>
               </div>

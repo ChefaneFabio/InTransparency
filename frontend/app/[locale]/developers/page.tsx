@@ -55,7 +55,7 @@ export default function DevelopersPage() {
               <div className="inline-block bg-white/10 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 {t('hero.badge')}
               </div>
-              <h1 className="text-5xl font-display font-bold text-white mb-6">
+              <h1 className="text-5xl font-bold text-white mb-6">
                 {t('hero.title')}
               </h1>
               <p className="text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto">
@@ -74,7 +74,7 @@ export default function DevelopersPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl font-display font-bold text-foreground mb-4">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
                 {t('apiOverview.title')}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -94,7 +94,7 @@ export default function DevelopersPage() {
               transition={{ duration: 0.5 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl font-display font-bold text-foreground mb-3">
+              <h2 className="text-3xl font-bold text-foreground mb-3">
                 {t('endpoints.title')}
               </h2>
               <p className="text-muted-foreground">
@@ -150,7 +150,7 @@ export default function DevelopersPage() {
                 <div className="p-2.5 rounded-lg bg-primary/10">
                   <Key className="h-5 w-5 text-primary" />
                 </div>
-                <h2 className="text-3xl font-display font-bold text-foreground">
+                <h2 className="text-3xl font-bold text-foreground">
                   {t('authentication.title')}
                 </h2>
               </div>
@@ -184,7 +184,7 @@ export default function DevelopersPage() {
               className="text-center mb-12"
             >
               <Badge variant="secondary" className="mb-4">{t('comingSoon.title')}</Badge>
-              <h2 className="text-3xl font-display font-bold text-foreground mb-3">
+              <h2 className="text-3xl font-bold text-foreground mb-3">
                 {t('comingSoon.title')}
               </h2>
               <p className="text-muted-foreground">
@@ -232,7 +232,7 @@ export default function DevelopersPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl font-display font-bold text-foreground mb-4">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
                 {t('cta.title')}
               </h2>
               <p className="text-lg text-muted-foreground mb-8">

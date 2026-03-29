@@ -103,7 +103,7 @@ export default function SupportPage() {
             <Badge className="mb-4 bg-primary text-white">
               Support Center
             </Badge>
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               How can we help you?
             </h1>
             <p className="text-xl text-gray-700 max-w-2xl mx-auto">

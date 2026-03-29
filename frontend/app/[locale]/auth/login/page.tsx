@@ -175,7 +175,7 @@ export default function LoginPage() {
             <SegmentIcon className="h-12 w-12 text-white" />
           </motion.div>
 
-          <h2 className="text-2xl font-display font-bold text-white mb-3">
+          <h2 className="text-2xl font-bold text-white mb-3">
             {t('login.title')}
           </h2>
           <p className="text-white/80 mb-8">
