@@ -8499,5 +8499,203 @@
       "subtitle": "Stiamo costruendo relazioni con hub d'innovazione in Italia e in Europa. Raccontaci del tuo ecosistema.",
       "button": "Inizia una Conversazione"
     }
+  },
+  "forUniversityStudents": {
+    "hero": {
+      "badge": "Per Studenti Universitari",
+      "title": "Il tuo lavoro accademico, verificato e visibile ai datori di lavoro",
+      "subtitle": "Costruisci un portfolio di progetti, voti e competenze che le aziende possono verificare. Non un altro CV — prove concrete di cosa sai fare.",
+      "cta": "Crea il Tuo Portfolio",
+      "secondaryCta": "Prova la Demo AI"
+    },
+    "benefits": {
+      "title": "Cosa ottieni",
+      "0": {
+        "title": "Portfolio progetti verificato",
+        "description": "Carica i tuoi progetti universitari con verifica istituzionale. Le aziende vedono cosa hai costruito, non cosa dichiari."
+      },
+      "1": {
+        "title": "I voti tradotti per tutta Europa",
+        "description": "Il tuo 28/30 italiano automaticamente convertito in scala tedesca, francese o olandese. Nessuna spiegazione necessaria."
+      },
+      "2": {
+        "title": "Le aziende ti trovano",
+        "description": "Invece di candidarti a centinaia di posizioni, i recruiter cercano competenze verificate e ti contattano direttamente."
+      },
+      "3": {
+        "title": "Insight sulla personalità e le competenze",
+        "description": "Scopri i tuoi punti di forza con assessment validati. Capire chi sei prima di presentarti alle aziende."
+      }
+    },
+    "cta": {
+      "title": "Pronto a farti notare?",
+      "subtitle": "Unisciti gratuitamente. Costruisci il tuo portfolio. Lascia che le aziende vengano da te.",
+      "button": "Inizia Gratis"
+    }
+  },
+  "forITSStudents": {
+    "hero": {
+      "badge": "Per Studenti ITS Academy",
+      "title": "Le tue competenze pratiche meritano di essere viste",
+      "subtitle": "Hai costruito cose reali durante il tuo percorso ITS. Mostralo alle aziende con un portfolio verificato dal tuo istituto.",
+      "cta": "Crea il Tuo Portfolio",
+      "secondaryCta": "Prova la Demo AI"
+    },
+    "benefits": {
+      "title": "Cosa ottieni",
+      "0": {
+        "title": "I progetti ITS, verificati",
+        "description": "Carica i progetti pratici con il badge di verifica del tuo ITS. Le aziende vedono competenze reali, non solo un diploma."
+      },
+      "1": {
+        "title": "Visibilità presso le aziende tecniche",
+        "description": "Aziende come Siemens, ABB e PMI cercano diplomati ITS con competenze verificate in meccatronica, IT, automazione."
+      },
+      "2": {
+        "title": "Competenze riconosciute all'estero",
+        "description": "I tuoi voti e competenze ITS tradotti automaticamente per datori di lavoro in Germania, Francia e tutta Europa."
+      },
+      "3": {
+        "title": "Dal progetto all'assunzione",
+        "description": "Le aziende vedono il tuo lavoro, ti contattano, ti assumono. Traccia tutto in un unico posto."
+      }
+    },
+    "cta": {
+      "title": "Mostra cosa sai fare",
+      "subtitle": "Gratis per sempre. Il tuo ITS ha già gli strumenti per verificare i tuoi progetti.",
+      "button": "Inizia Gratis"
+    }
+  },
+  "forHighSchoolStudents": {
+    "hero": {
+      "badge": "Per Studenti delle Superiori",
+      "title": "Inizia a costruire il tuo futuro prima dell'università",
+      "subtitle": "Documenta i tuoi progetti PCTO, le attività extracurriculari e le competenze in un portfolio che ti segue nell'università e nel lavoro.",
+      "cta": "Crea il Tuo Portfolio",
+      "secondaryCta": "Scopri di Più"
+    },
+    "benefits": {
+      "title": "Perché iniziare ora",
+      "0": {
+        "title": "Documenta le esperienze PCTO",
+        "description": "Alternanza scuola-lavoro, stage, progetti scolastici — tutto in un portfolio digitale che la tua scuola può verificare."
+      },
+      "1": {
+        "title": "Scopri il tuo percorso",
+        "description": "Vedi quali competenze portano a quali percorsi universitari e quali carriere. Dati reali, non supposizioni."
+      },
+      "2": {
+        "title": "Un vantaggio per l'università",
+        "description": "Quando ti iscrivi all'università, il tuo portfolio verificato ti accompagna. Non parti da zero."
+      },
+      "3": {
+        "title": "Gratuito per sempre",
+        "description": "Nessun costo, nessun abbonamento. Costruisci il tuo profilo al tuo ritmo."
+      }
+    },
+    "cta": {
+      "title": "Non è mai troppo presto",
+      "subtitle": "Inizia a costruire il tuo portfolio oggi. È gratuito e richiede 5 minuti.",
+      "button": "Inizia Gratis"
+    }
+  },
+  "forSME": {
+    "hero": {
+      "badge": "Per PMI e Medie Imprese",
+      "title": "Talento pre-selezionato senza costi di agenzia",
+      "subtitle": "Accedi a laureati con progetti verificati e voti normalizzati. Nessun recruiter intermedio, nessun costo per annuncio. Paghi solo quando trovi il candidato giusto.",
+      "cta": "Crea il Tuo Account",
+      "secondaryCta": "Prova la Ricerca AI"
+    },
+    "benefits": {
+      "title": "Perché le PMI scelgono InTransparency",
+      "0": {
+        "title": "Competenze verificate, non parole",
+        "description": "Ogni progetto è verificato dall'università. Vedi voti reali, codice reale, risultati reali — prima ancora di parlare con il candidato."
+      },
+      "1": {
+        "title": "Costi trasparenti",
+        "description": "Cerca gratis. Paga solo per contattare i candidati. Nessun abbonamento annuale, nessun vincolo."
+      },
+      "2": {
+        "title": "Voti che capisci",
+        "description": "I voti di ogni sistema europeo normalizzati automaticamente. Un 28/30 italiano = un 1.7 tedesco = un 15/20 francese."
+      },
+      "3": {
+        "title": "Decision Pack per ogni candidato",
+        "description": "Un dossier completo: portfolio, voti, personalità, competenze verificate. Tutto ciò che serve per decidere, in un documento."
+      }
+    },
+    "cta": {
+      "title": "Smetti di pagare per candidati non qualificati",
+      "subtitle": "Registrati gratis e inizia a cercare talento verificato oggi.",
+      "button": "Inizia Gratis"
+    }
+  },
+  "forAgencies": {
+    "hero": {
+      "badge": "Per Agenzie e Professionisti HR",
+      "title": "Candidati verificati per i tuoi clienti, su scala",
+      "subtitle": "Accedi a un pool di talenti con competenze verificate dalle università. Cerca per competenze, voti, progetti — presenta ai tuoi clienti candidati già validati.",
+      "cta": "Crea il Tuo Account",
+      "secondaryCta": "Funzionalità Aziende"
+    },
+    "benefits": {
+      "title": "Perché le agenzie usano InTransparency",
+      "0": {
+        "title": "Screening già fatto",
+        "description": "Progetti verificati dall'università, voti normalizzati, assessment di personalità. Presenti ai clienti candidati con dati, non solo CV."
+      },
+      "1": {
+        "title": "Ricerca AI conversazionale",
+        "description": "Descrivi il profilo ideale in linguaggio naturale. L'AI trova i candidati più compatibili con spiegazioni trasparenti."
+      },
+      "2": {
+        "title": "Confronto candidati",
+        "description": "Confronta fino a 5 candidati fianco a fianco su competenze, voti, progetti e personalità. Esporta per i tuoi clienti."
+      },
+      "3": {
+        "title": "Talento transfrontaliero",
+        "description": "Cerca talento in tutta Europa con voti automaticamente normalizzati tra sistemi. Un pool, tutti i paesi."
+      }
+    },
+    "cta": {
+      "title": "Dai ai tuoi clienti candidati migliori",
+      "subtitle": "Registrati gratis. Cerca talento verificato. Presenta candidati con prove, non promesse.",
+      "button": "Inizia Gratis"
+    }
+  },
+  "forStartups": {
+    "hero": {
+      "badge": "Per Startup e Scale-up",
+      "title": "Assumi velocemente con prove, non con colloqui infiniti",
+      "subtitle": "Vedi cosa i candidati hanno effettivamente costruito — progetti verificati, competenze reali, personalità valutata. Riduci il tuo processo di assunzione da settimane a giorni.",
+      "cta": "Crea il Tuo Account",
+      "secondaryCta": "Prova la Ricerca AI"
+    },
+    "benefits": {
+      "title": "Perché le startup scelgono InTransparency",
+      "0": {
+        "title": "Vedi il lavoro, non il CV",
+        "description": "Progetti reali con codice, risultati e verifica universitaria. Sai cosa sa fare un candidato prima del primo colloquio."
+      },
+      "1": {
+        "title": "Velocità di assunzione",
+        "description": "Ricerca AI, filtri per competenze verificate, confronto candidati. Dal bisogno all'offerta in giorni, non mesi."
+      },
+      "2": {
+        "title": "Nessun costo iniziale",
+        "description": "Cerca e salva candidati gratis. Paghi solo quando vuoi contattare qualcuno. Perfetto per budget startup."
+      },
+      "3": {
+        "title": "Cultural fit con dati",
+        "description": "Assessment di personalità e soft skills validati scientificamente. Assumi per fit culturale con prove, non intuizioni."
+      }
+    },
+    "cta": {
+      "title": "Il tuo prossimo assunto è qui",
+      "subtitle": "Registrati in 2 minuti. Inizia a cercare talento verificato.",
+      "button": "Inizia Gratis"
+    }
   }
 }

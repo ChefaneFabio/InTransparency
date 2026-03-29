@@ -8472,5 +8472,203 @@
       "copied": "Copied!",
       "copy": "Copy"
     }
+  },
+  "forUniversityStudents": {
+    "hero": {
+      "badge": "For University Students",
+      "title": "Your academic work, verified and visible to employers",
+      "subtitle": "Build a portfolio of projects, grades, and skills that companies can actually verify. Not another CV — real proof of what you can do.",
+      "cta": "Create Your Portfolio",
+      "secondaryCta": "Try the AI Demo"
+    },
+    "benefits": {
+      "title": "What you get",
+      "0": {
+        "title": "Verified project portfolio",
+        "description": "Upload your university projects with institutional verification. Companies see what you built, not what you claim."
+      },
+      "1": {
+        "title": "Grades translated across Europe",
+        "description": "Your Italian 28/30 automatically converted to German, French, or Dutch scales. No explanation needed."
+      },
+      "2": {
+        "title": "Companies find you",
+        "description": "Instead of applying to hundreds of positions, recruiters search for verified skills and contact you directly."
+      },
+      "3": {
+        "title": "Personality and skills insights",
+        "description": "Discover your strengths with validated assessments. Understand who you are before presenting yourself to companies."
+      }
+    },
+    "cta": {
+      "title": "Ready to stand out?",
+      "subtitle": "Join for free. Build your portfolio. Let companies come to you.",
+      "button": "Get Started Free"
+    }
+  },
+  "forITSStudents": {
+    "hero": {
+      "badge": "For ITS Academy Students",
+      "title": "Your hands-on skills deserve to be seen",
+      "subtitle": "You built real things during your ITS program. Show it to companies with a portfolio verified by your institute.",
+      "cta": "Create Your Portfolio",
+      "secondaryCta": "Try the AI Demo"
+    },
+    "benefits": {
+      "title": "What you get",
+      "0": {
+        "title": "Your ITS projects, verified",
+        "description": "Upload your hands-on projects with your ITS verification badge. Companies see real skills, not just a diploma."
+      },
+      "1": {
+        "title": "Visibility with technical companies",
+        "description": "Companies like Siemens, ABB, and SMEs search for ITS graduates with verified skills in mechatronics, IT, automation."
+      },
+      "2": {
+        "title": "Skills recognized abroad",
+        "description": "Your ITS grades and skills automatically translated for employers in Germany, France, and across Europe."
+      },
+      "3": {
+        "title": "From project to placement",
+        "description": "Companies see your work, contact you, hire you. Track everything in one place."
+      }
+    },
+    "cta": {
+      "title": "Show what you can do",
+      "subtitle": "Free forever. Your ITS already has the tools to verify your projects.",
+      "button": "Get Started Free"
+    }
+  },
+  "forHighSchoolStudents": {
+    "hero": {
+      "badge": "For High School Students",
+      "title": "Start building your future before university",
+      "subtitle": "Document your PCTO projects, extracurriculars, and skills in a portfolio that follows you into university and work.",
+      "cta": "Create Your Portfolio",
+      "secondaryCta": "Learn More"
+    },
+    "benefits": {
+      "title": "Why start now",
+      "0": {
+        "title": "Document your PCTO experiences",
+        "description": "Work-study programs, internships, school projects — all in a digital portfolio your school can verify."
+      },
+      "1": {
+        "title": "Discover your path",
+        "description": "See which skills lead to which university paths and which careers. Real data, not guesswork."
+      },
+      "2": {
+        "title": "A head start for university",
+        "description": "When you enroll in university, your verified portfolio comes with you. You don't start from scratch."
+      },
+      "3": {
+        "title": "Free forever",
+        "description": "No cost, no subscription. Build your profile at your own pace."
+      }
+    },
+    "cta": {
+      "title": "It's never too early",
+      "subtitle": "Start building your portfolio today. It's free and takes 5 minutes.",
+      "button": "Get Started Free"
+    }
+  },
+  "forSME": {
+    "hero": {
+      "badge": "For SMEs and Mid-Market Companies",
+      "title": "Pre-screened talent without agency fees",
+      "subtitle": "Access graduates with verified projects and normalized grades. No middleman recruiter, no per-posting fees. You pay only when you find the right candidate.",
+      "cta": "Create Your Account",
+      "secondaryCta": "Try AI Search"
+    },
+    "benefits": {
+      "title": "Why SMEs choose InTransparency",
+      "0": {
+        "title": "Verified skills, not buzzwords",
+        "description": "Every project is university-verified. See real grades, real code, real outcomes — before you even talk to the candidate."
+      },
+      "1": {
+        "title": "Transparent costs",
+        "description": "Browse for free. Pay only to contact candidates. No annual subscription, no lock-in."
+      },
+      "2": {
+        "title": "Grades you understand",
+        "description": "Grades from every European system automatically normalized. An Italian 28/30 = a German 1.7 = a French 15/20."
+      },
+      "3": {
+        "title": "Decision Pack for every candidate",
+        "description": "A complete dossier: portfolio, grades, personality, verified skills. Everything you need to decide, in one document."
+      }
+    },
+    "cta": {
+      "title": "Stop paying for unqualified candidates",
+      "subtitle": "Register for free and start searching verified talent today.",
+      "button": "Get Started Free"
+    }
+  },
+  "forAgencies": {
+    "hero": {
+      "badge": "For Agencies and HR Professionals",
+      "title": "Verified candidates for your clients, at scale",
+      "subtitle": "Access a talent pool with university-verified skills. Search by skills, grades, projects — present your clients with pre-validated candidates.",
+      "cta": "Create Your Account",
+      "secondaryCta": "Company Features"
+    },
+    "benefits": {
+      "title": "Why agencies use InTransparency",
+      "0": {
+        "title": "Screening already done",
+        "description": "University-verified projects, normalized grades, personality assessments. Present clients with data, not just CVs."
+      },
+      "1": {
+        "title": "Conversational AI search",
+        "description": "Describe the ideal profile in natural language. AI finds the best-matching candidates with transparent explanations."
+      },
+      "2": {
+        "title": "Candidate comparison",
+        "description": "Compare up to 5 candidates side-by-side on skills, grades, projects, and personality. Export for your clients."
+      },
+      "3": {
+        "title": "Cross-border talent",
+        "description": "Search talent across Europe with grades automatically normalized between systems. One pool, all countries."
+      }
+    },
+    "cta": {
+      "title": "Give your clients better candidates",
+      "subtitle": "Register for free. Search verified talent. Present candidates with proof, not promises.",
+      "button": "Get Started Free"
+    }
+  },
+  "forStartups": {
+    "hero": {
+      "badge": "For Startups and Scale-ups",
+      "title": "Hire fast with proof, not endless interviews",
+      "subtitle": "See what candidates actually built — verified projects, real skills, assessed personality. Cut your hiring process from weeks to days.",
+      "cta": "Create Your Account",
+      "secondaryCta": "Try AI Search"
+    },
+    "benefits": {
+      "title": "Why startups choose InTransparency",
+      "0": {
+        "title": "See the work, not the CV",
+        "description": "Real projects with code, outcomes, and university verification. You know what a candidate can do before the first interview."
+      },
+      "1": {
+        "title": "Hiring speed",
+        "description": "AI search, verified skills filters, candidate comparison. From need to offer in days, not months."
+      },
+      "2": {
+        "title": "No upfront cost",
+        "description": "Browse and save candidates for free. Pay only when you want to contact someone. Perfect for startup budgets."
+      },
+      "3": {
+        "title": "Cultural fit with data",
+        "description": "Scientifically validated personality and soft skills assessments. Hire for cultural fit with evidence, not gut feelings."
+      }
+    },
+    "cta": {
+      "title": "Your next hire is here",
+      "subtitle": "Register in 2 minutes. Start searching verified talent.",
+      "button": "Get Started Free"
+    }
   }
 }
