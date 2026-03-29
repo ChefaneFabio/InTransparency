@@ -68,7 +68,8 @@
         "salaryBenchmarks": "Guida Stipendi",
         "skillsTimeline": "Timeline Competenze",
         "skillsDemand": "Domanda Competenze",
-        "settings": "Impostazioni"
+        "settings": "Impostazioni",
+        "offerComparison": "Confronta Offerte"
       }
     },
     "recruiter": {
@@ -99,7 +100,8 @@
         "compareCandidates": "Confronta Candidati",
         "hiringOutcomes": "Esiti Assunzione",
         "challenges": "Sfide",
-        "settings": "Impostazioni"
+        "settings": "Impostazioni",
+        "contractTransparency": "Trasparenza Contratti"
       }
     },
     "university": {
@@ -130,7 +132,8 @@
         "placementReport": "Report Placement",
         "placementAnalytics": "Analytics Placement",
         "events": "Eventi Carriera",
-        "exchangeStudents": "Studenti in Scambio"
+        "exchangeStudents": "Studenti in Scambio",
+        "contractAnalytics": "Analytics Contratti"
       },
       "exchange": "Scambio"
     },
@@ -8696,6 +8699,136 @@
       "title": "Il tuo prossimo assunto è qui",
       "subtitle": "Registrati in 2 minuti. Inizia a cercare talento verificato.",
       "button": "Inizia Gratis"
+    }
+  },
+  "offerComparison": {
+    "title": "Confronta Offerte",
+    "subtitle": "Metti le tue offerte fianco a fianco per decidere con chiarezza.",
+    "hint": "Inserisci i dettagli di ogni offerta. Presto l'AI analizzerà automaticamente quale è più vantaggiosa per te in base al tuo profilo, settore e località.",
+    "fields": {
+      "company": "Azienda",
+      "role": "Ruolo",
+      "ral": "RAL / Stipendio",
+      "contractType": "Tipo Contratto",
+      "location": "Sede",
+      "remote": "Remote / Ibrido",
+      "benefits": "Benefit"
+    },
+    "placeholders": {
+      "company": "es. Acme Srl",
+      "role": "es. Junior Developer",
+      "ral": "es. €28.000",
+      "contractType": "es. Tempo Indeterminato",
+      "location": "es. Milano",
+      "remote": "es. 2 giorni/settimana",
+      "benefits": "es. Buoni pasto, welfare"
+    },
+    "offerLabel": "Offerta {n}",
+    "addOffer": "Aggiungi Offerta",
+    "remove": "Rimuovi",
+    "comingSoon": {
+      "title": "In arrivo",
+      "aiAnalysis": "Analisi AI: quale offerta è migliore per te in base al tuo profilo e obiettivi di carriera",
+      "ccnlCheck": "Verifica automatica CCNL: conferma che lo stipendio rispetti i minimi contrattuali",
+      "salaryPercentile": "Percentile salariale: come si posiziona ogni offerta rispetto al mercato nella tua zona e ruolo"
+    }
+  },
+  "recruiterContractTransparency": {
+    "title": "Trasparenza Contrattuale",
+    "subtitle": "Costruisci fiducia con i candidati mostrando chiarezza contrattuale.",
+    "badge": {
+      "title": "Badge Trasparenza",
+      "status": "Disponibile",
+      "description": "Le aziende che condividono apertamente le condizioni contrattuali ricevono un badge di trasparenza sul profilo. I candidati vedono che la tua azienda è chiara fin dall'inizio.",
+      "criteria": {
+        "0": {
+          "title": "Range salariale pubblico",
+          "description": "Indica il range RAL nelle posizioni aperte"
+        },
+        "1": {
+          "title": "Tipo contratto chiaro",
+          "description": "Specifica se indeterminato, determinato, stage, etc."
+        },
+        "2": {
+          "title": "Benefit trasparenti",
+          "description": "Smart working, welfare, formazione — tutto visibile"
+        }
+      }
+    },
+    "candidateView": {
+      "title": "Cosa vedono i candidati",
+      "description": "Quando attivi la trasparenza contrattuale, i candidati vedono:",
+      "items": {
+        "0": "Range salariale per ogni posizione aperta",
+        "1": "Tipo di contratto offerto (indeterminato, apprendistato, etc.)",
+        "2": "Benefit e policy di remote working",
+        "3": "CCNL di riferimento e livello"
+      }
+    },
+    "comingSoon": {
+      "title": "In arrivo",
+      "items": {
+        "0": "Analytics: quanti candidati in più visualizzano le posizioni trasparenti vs non trasparenti",
+        "1": "Confronto automatico con i benchmark salariali di mercato per ruolo e località",
+        "2": "Report trimestrale sulle pratiche contrattuali della tua azienda vs settore"
+      }
+    }
+  },
+  "universityContractAnalytics": {
+    "title": "Analytics Contratti Laureati",
+    "subtitle": "Monitora i tipi di contratto che ricevono i tuoi laureati dopo il placement.",
+    "stats": {
+      "0": {
+        "value": "—",
+        "label": "Contratti indeterminati"
+      },
+      "1": {
+        "value": "—",
+        "label": "Tempo determinato"
+      },
+      "2": {
+        "value": "—",
+        "label": "Stage / Tirocini"
+      },
+      "3": {
+        "value": "—",
+        "label": "RAL media"
+      }
+    },
+    "tracking": {
+      "title": "Cosa monitoriamo",
+      "description": "Dati aggregati e anonimi sui contratti dei tuoi laureati per aiutarti a migliorare il placement e i report ministeriali.",
+      "items": {
+        "0": {
+          "title": "Tipo contratto",
+          "description": "Indeterminato, determinato, apprendistato, stage, P.IVA — distribuzione per coorte"
+        },
+        "1": {
+          "title": "Tempo al primo contratto",
+          "description": "Giorni medi dalla laurea al primo contratto, per dipartimento"
+        },
+        "2": {
+          "title": "Range salariale",
+          "description": "RAL mediana e percentili per area di studio e livello"
+        },
+        "3": {
+          "title": "Conversione stage → assunzione",
+          "description": "Percentuale di stage che si convertono in contratti a tempo"
+        }
+      }
+    },
+    "earlyWarning": {
+      "title": "Allerta Precoce",
+      "description": "Segnalazioni automatiche per intervenire prima che sia troppo tardi.",
+      "examples": {
+        "0": "5 laureati a Company X hanno contratti in scadenza tra 30 giorni senza rinnovo",
+        "1": "Il 40% dei tirocini nel dipartimento Y non si converte in assunzione (media settore: 60%)",
+        "2": "RAL media per Informatica è €22K — sotto la media di settore di €26K"
+      }
+    },
+    "comingSoon": {
+      "title": "In arrivo",
+      "description": "I dati saranno disponibili man mano che studenti e aziende confermano i placement sulla piattaforma. Nei dati pilota vedrai le prime tendenze."
     }
   }
 }

@@ -33,6 +33,7 @@ const student: NavConfig = {
         { labelKey: 'skillPath', href: '/dashboard/student/skill-path' },
         { labelKey: 'aiJobSearch', href: '/dashboard/student/ai-job-search' },
         { labelKey: 'contractTransparency', href: '/dashboard/student/contract-transparency' },
+        { labelKey: 'offerComparison', href: '/dashboard/student/offer-comparison' },
         { labelKey: 'interviewPrep', href: '/dashboard/student/interview-prep' },
         { labelKey: 'jobDecoder', href: '/dashboard/student/job-decoder' },
         { labelKey: 'salaryBenchmarks', href: '/dashboard/student/salary-benchmarks' },
@@ -115,6 +116,7 @@ const recruiter: NavConfig = {
         { labelKey: 'decisionPacks', href: '/dashboard/recruiter/decision-pack' },
         { labelKey: 'compareCandidates', href: '/dashboard/recruiter/compare' },
         { labelKey: 'hiringOutcomes', href: '/dashboard/recruiter/hiring-outcomes' },
+        { labelKey: 'contractTransparency', href: '/dashboard/recruiter/contract-transparency' },
       ],
     },
     {
@@ -170,6 +172,7 @@ const university: NavConfig = {
         { labelKey: 'curriculumAlignment', href: '/dashboard/university/curriculum-alignment' },
         { labelKey: 'companyEngagement', href: '/dashboard/university/company-engagement' },
         { labelKey: 'placementReport', href: '/dashboard/university/placement-report' },
+        { labelKey: 'contractAnalytics', href: '/dashboard/university/contract-analytics' },
       ],
     },
     {

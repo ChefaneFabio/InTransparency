@@ -68,7 +68,8 @@
         "salaryBenchmarks": "Salary Guide",
         "skillsTimeline": "Skills Timeline",
         "skillsDemand": "Skills Demand",
-        "settings": "Settings"
+        "settings": "Settings",
+        "offerComparison": "Compare Offers"
       }
     },
     "recruiter": {
@@ -99,7 +100,8 @@
         "compareCandidates": "Compare Candidates",
         "hiringOutcomes": "Hiring Outcomes",
         "challenges": "Challenges",
-        "settings": "Settings"
+        "settings": "Settings",
+        "contractTransparency": "Contract Transparency"
       }
     },
     "university": {
@@ -130,7 +132,8 @@
         "placementReport": "Placement Report",
         "placementAnalytics": "Placement Analytics",
         "events": "Career Events",
-        "exchangeStudents": "Exchange Students"
+        "exchangeStudents": "Exchange Students",
+        "contractAnalytics": "Contract Analytics"
       },
       "exchange": "Exchange"
     },
@@ -8669,6 +8672,136 @@
       "title": "Your next hire is here",
       "subtitle": "Register in 2 minutes. Start searching verified talent.",
       "button": "Get Started Free"
+    }
+  },
+  "offerComparison": {
+    "title": "Compare Offers",
+    "subtitle": "Put your offers side by side to decide with clarity.",
+    "hint": "Enter details for each offer. Soon AI will automatically analyze which is most advantageous for you based on your profile, industry, and location.",
+    "fields": {
+      "company": "Company",
+      "role": "Role",
+      "ral": "RAL / Salary",
+      "contractType": "Contract Type",
+      "location": "Location",
+      "remote": "Remote / Hybrid",
+      "benefits": "Benefits"
+    },
+    "placeholders": {
+      "company": "e.g. Acme Ltd",
+      "role": "e.g. Junior Developer",
+      "ral": "e.g. €28,000",
+      "contractType": "e.g. Permanent",
+      "location": "e.g. Milan",
+      "remote": "e.g. 2 days/week",
+      "benefits": "e.g. Meal vouchers, welfare"
+    },
+    "offerLabel": "Offer {n}",
+    "addOffer": "Add Offer",
+    "remove": "Remove",
+    "comingSoon": {
+      "title": "Coming soon",
+      "aiAnalysis": "AI analysis: which offer is best for you based on your profile and career goals",
+      "ccnlCheck": "Automatic CCNL check: confirm the salary meets collective agreement minimums",
+      "salaryPercentile": "Salary percentile: how each offer ranks against the market in your area and role"
+    }
+  },
+  "recruiterContractTransparency": {
+    "title": "Contract Transparency",
+    "subtitle": "Build trust with candidates by showing contract clarity.",
+    "badge": {
+      "title": "Transparency Badge",
+      "status": "Available",
+      "description": "Companies that openly share contract terms receive a transparency badge on their profile. Candidates see that your company is upfront from the start.",
+      "criteria": {
+        "0": {
+          "title": "Public salary range",
+          "description": "Show RAL range in open positions"
+        },
+        "1": {
+          "title": "Clear contract type",
+          "description": "Specify if permanent, fixed-term, internship, etc."
+        },
+        "2": {
+          "title": "Transparent benefits",
+          "description": "Remote work, welfare, training — all visible"
+        }
+      }
+    },
+    "candidateView": {
+      "title": "What candidates see",
+      "description": "When you enable contract transparency, candidates see:",
+      "items": {
+        "0": "Salary range for every open position",
+        "1": "Contract type offered (permanent, apprenticeship, etc.)",
+        "2": "Benefits and remote working policy",
+        "3": "Reference CCNL and level"
+      }
+    },
+    "comingSoon": {
+      "title": "Coming soon",
+      "items": {
+        "0": "Analytics: how many more candidates view transparent vs non-transparent positions",
+        "1": "Automatic comparison with market salary benchmarks by role and location",
+        "2": "Quarterly report on your company's contract practices vs industry"
+      }
+    }
+  },
+  "universityContractAnalytics": {
+    "title": "Graduate Contract Analytics",
+    "subtitle": "Track what contract types your graduates receive after placement.",
+    "stats": {
+      "0": {
+        "value": "—",
+        "label": "Permanent contracts"
+      },
+      "1": {
+        "value": "—",
+        "label": "Fixed-term"
+      },
+      "2": {
+        "value": "—",
+        "label": "Internships"
+      },
+      "3": {
+        "value": "—",
+        "label": "Avg salary"
+      }
+    },
+    "tracking": {
+      "title": "What we track",
+      "description": "Aggregated, anonymous data on your graduates' contracts to help you improve placement and ministerial reporting.",
+      "items": {
+        "0": {
+          "title": "Contract type",
+          "description": "Permanent, fixed-term, apprenticeship, internship, freelance — distribution by cohort"
+        },
+        "1": {
+          "title": "Time to first contract",
+          "description": "Average days from graduation to first contract, by department"
+        },
+        "2": {
+          "title": "Salary range",
+          "description": "Median RAL and percentiles by field of study and level"
+        },
+        "3": {
+          "title": "Internship → hire conversion",
+          "description": "Percentage of internships that convert to employment contracts"
+        }
+      }
+    },
+    "earlyWarning": {
+      "title": "Early Warning",
+      "description": "Automatic alerts so you can intervene before it's too late.",
+      "examples": {
+        "0": "5 graduates at Company X have contracts expiring in 30 days with no renewal",
+        "1": "40% of internships in department Y don't convert to employment (industry avg: 60%)",
+        "2": "Avg salary for Computer Science is €22K — below industry average of €26K"
+      }
+    },
+    "comingSoon": {
+      "title": "Coming soon",
+      "description": "Data will become available as students and companies confirm placements on the platform. In pilot data you'll see the first trends."
     }
   }
 }
