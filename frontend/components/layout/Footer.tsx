@@ -2,15 +2,11 @@
 
 import { useState } from 'react'
 import { Link } from '@/navigation'
-import { Facebook, Linkedin, Shield } from 'lucide-react'
 import { Logo } from '@/components/layout/Logo'
 import { useTranslations } from 'next-intl'
 import { useToast } from '@/components/ui/use-toast'
 import { trackEvent } from '@/lib/analytics'
 import { useSegment } from '@/lib/segment-context'
-
-// Social links - to be added when official profiles are created
-const social: { name: string; href: string; icon: typeof Facebook }[] = []
 
 export function Footer() {
   const t = useTranslations()
@@ -60,30 +56,25 @@ export function Footer() {
     }
   }
 
-  // Navigation structure — product links adapt to segment
-  const productBySegment = {
-    students: [
-      { name: tNav('howItWorks'), href: '/for-students' },
-      { name: tNav('explorePortfolios'), href: '/explore' },
-      { name: tNav('aiJobSearch'), href: '/demo/ai-search' },
-    ],
-    institutions: [
-      { name: tNav('howItWorks'), href: '/for-universities' },
-      { name: tNav('pricing'), href: '/pricing' },
-    ],
-    companies: [
-      { name: tNav('howItWorks'), href: '/for-companies' },
-      { name: tNav('searchTalent'), href: '/explore' },
-      { name: tNav('aiJobSearch'), href: '/demo/ai-search' },
-      { name: tNav('pricing'), href: '/pricing' },
-    ],
-  }
   const navigation = {
-    product: productBySegment[segment],
+    product: [
+      { name: tFooter('productLinks.forStudents'), href: '/for-students' },
+      { name: tFooter('productLinks.forCompanies'), href: '/for-companies' },
+      { name: tFooter('productLinks.forUniversities'), href: '/for-universities' },
+      { name: tFooter('productLinks.pricing'), href: '/pricing' },
+      { name: tFooter('productLinks.explore'), href: '/explore' },
+      { name: tFooter('productLinks.aiDemo'), href: '/demo/ai-search' },
+    ],
+    resources: [
+      { name: tFooter('resourceLinks.howItWorks'), href: '/how-it-works' },
+      { name: tFooter('resourceLinks.faq'), href: '/faq' },
+      { name: tFooter('resourceLinks.blog'), href: '/blog' },
+      { name: tFooter('resourceLinks.contact'), href: '/contact' },
+    ],
     company: [
-      { name: tNav('about'), href: '/about' },
-      { name: tFooter('blog'), href: '/blog' },
-      { name: tNav('contact'), href: '/contact' },
+      { name: tFooter('companyLinks.about'), href: '/about' },
+      { name: tFooter('companyLinks.certification'), href: '/certification' },
+      { name: tFooter('companyLinks.careers'), href: '/contact?subject=careers' },
     ],
     legal: [
       { name: tFooter('privacy'), href: '/privacy' },
@@ -91,62 +82,86 @@ export function Footer() {
       { name: tFooter('cookies'), href: '/legal#cookies' },
     ]
   }
+
   return (
-    <footer className="border-t border-border bg-muted/30 relative z-30">
-      <div className="container py-8">
-        {/* Top row: brand + nav links inline */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-6">
-          <div className="flex items-center gap-4">
+    <footer className="border-t border-border bg-foreground text-white relative z-30">
+      <div className="container max-w-7xl mx-auto px-4 py-12">
+        {/* Top: Logo + columns */}
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-10">
+          {/* Brand */}
+          <div className="col-span-2">
             <Logo size="md" />
-            <p className="text-sm text-muted-foreground max-w-xs hidden sm:block">
+            <p className="text-sm text-white/60 mt-3 max-w-xs">
               {tFooter('tagline')}
             </p>
+            <div className="flex items-center gap-3 mt-4 text-xs text-white/40">
+              <span>{tFooter('compliance.gdpr')}</span>
+              <span>·</span>
+              <span>{tFooter('compliance.pilotBergamo')}</span>
+            </div>
           </div>
 
-          <div className="flex flex-wrap gap-x-8 gap-y-4 text-sm">
-            <div>
-              <h4 className="font-medium text-foreground mb-2">{tFooter('product')}</h4>
-              <ul className="space-y-1">
-                {navigation.product.map((item) => (
-                  <li key={item.name}>
-                    <Link href={item.href} className="relative z-10 inline-block text-muted-foreground hover:text-primary transition-colors cursor-pointer underline-offset-2 hover:underline">
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium text-foreground mb-2">{tFooter('company')}</h4>
-              <ul className="space-y-1">
-                {navigation.company.map((item) => (
-                  <li key={item.name}>
-                    <Link href={item.href} className="relative z-10 inline-block text-muted-foreground hover:text-primary transition-colors cursor-pointer underline-offset-2 hover:underline">
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-medium text-foreground mb-2">{tFooter('legal')}</h4>
-              <ul className="space-y-1">
-                {navigation.legal.map((item) => (
-                  <li key={item.name}>
-                    <Link href={item.href} className="relative z-10 inline-block text-muted-foreground hover:text-primary transition-colors cursor-pointer underline-offset-2 hover:underline">
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Product */}
+          <div>
+            <h4 className="font-semibold text-white/90 mb-3 text-sm">{tFooter('product')}</h4>
+            <ul className="space-y-2">
+              {navigation.product.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-sm text-white/50 hover:text-white transition-colors">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="font-semibold text-white/90 mb-3 text-sm">{tFooter('resources')}</h4>
+            <ul className="space-y-2">
+              {navigation.resources.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-sm text-white/50 hover:text-white transition-colors">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="font-semibold text-white/90 mb-3 text-sm">{tFooter('company')}</h4>
+            <ul className="space-y-2">
+              {navigation.company.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-sm text-white/50 hover:text-white transition-colors">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="font-semibold text-white/90 mb-3 text-sm">{tFooter('legal')}</h4>
+            <ul className="space-y-2">
+              {navigation.legal.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-sm text-white/50 hover:text-white transition-colors">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        {/* Newsletter — compact inline */}
-        <div className="border-t border-border pt-5 mb-5">
+        {/* Newsletter */}
+        <div className="border-t border-white/10 pt-6 mb-6">
           <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row sm:items-center gap-3">
-            <span className="text-sm font-medium text-foreground shrink-0">
+            <span className="text-sm font-medium text-white/80 shrink-0">
               {tFooter('newsletter.title')}
             </span>
             <input
@@ -154,14 +169,14 @@ export function Footer() {
               value={newsletterEmail}
               onChange={(e) => setNewsletterEmail(e.target.value)}
               placeholder={tFooter('newsletter.placeholder')}
-              className="flex-1 max-w-xs px-3 py-1.5 bg-background border border-border rounded-md text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+              className="flex-1 max-w-xs px-3 py-1.5 bg-white/10 border border-white/20 rounded-md text-sm text-white placeholder-white/40 focus:outline-none focus:ring-1 focus:ring-primary"
               disabled={isSubscribing}
               required
             />
             <button
               type="submit"
               disabled={isSubscribing}
-              className="px-4 py-1.5 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90 transition-colors disabled:opacity-50"
+              className="px-4 py-1.5 bg-primary text-white rounded-md text-sm hover:bg-primary/90 transition-colors disabled:opacity-50"
             >
               {isSubscribing ? '...' : tFooter('newsletter.subscribe')}
             </button>
@@ -169,30 +184,15 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-border pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-muted-foreground">
+        <div className="border-t border-white/10 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-white/40">
+          <span>{tFooter('copyright')}</span>
           <div className="flex items-center gap-4">
-            <span>{tFooter('copyright')}</span>
-            <span className="flex items-center gap-1">
-              <Shield className="h-3 w-3 text-primary" />
-              {tFooter('compliance.gdpr')}
-            </span>
-          </div>
-          <div className="flex items-center gap-4">
-            <a href="mailto:students@intransparency.it" className="hover:text-primary transition-colors">
+            <a href="mailto:students@intransparency.it" className="hover:text-white transition-colors">
               students@intransparency.it
             </a>
-            {social.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
-              >
-                <span className="sr-only">{item.name}</span>
-                <item.icon className="h-4 w-4" />
-              </a>
-            ))}
+            <a href="mailto:info@intransparency.it" className="hover:text-white transition-colors">
+              info@intransparency.it
+            </a>
           </div>
         </div>
       </div>

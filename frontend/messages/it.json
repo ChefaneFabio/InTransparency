@@ -719,12 +719,33 @@
     },
     "compliance": {
       "operational": "Tutti i sistemi operativi",
-      "gdpr": "Conforme GDPR",
-      "poweredBy": "Tecnologia Intelligente"
+      "gdpr": "GDPR Compliant",
+      "poweredBy": "Tecnologia Intelligente",
+      "pilotBergamo": "Pilota con UniBG"
     },
     "copyright": "© 2025-2026 InTransparency. Tutti i diritti riservati.",
     "support": "Supporto",
-    "blog": "Blog"
+    "blog": "Blog",
+    "productLinks": {
+      "forStudents": "Per Studenti",
+      "forCompanies": "Per Aziende",
+      "forUniversities": "Per Università",
+      "pricing": "Prezzi",
+      "explore": "Esplora Talenti",
+      "aiDemo": "Demo AI"
+    },
+    "resources": "Risorse",
+    "resourceLinks": {
+      "howItWorks": "Come Funziona",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "contact": "Contatti"
+    },
+    "companyLinks": {
+      "about": "Chi Siamo",
+      "certification": "Certificazione",
+      "careers": "Lavora con Noi"
+    }
   },
   "blog": {
     "title": "Blog",

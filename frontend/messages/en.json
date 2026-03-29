@@ -720,11 +720,32 @@
     "compliance": {
       "operational": "All systems operational",
       "gdpr": "GDPR Compliant",
-      "poweredBy": "Smart Technology"
+      "poweredBy": "Smart Technology",
+      "pilotBergamo": "Pilot with UniBG"
     },
     "copyright": "© 2025-2026 InTransparency. All rights reserved.",
     "support": "Support",
-    "blog": "Blog"
+    "blog": "Blog",
+    "productLinks": {
+      "forStudents": "For Students",
+      "forCompanies": "For Companies",
+      "forUniversities": "For Universities",
+      "pricing": "Pricing",
+      "explore": "Explore Talent",
+      "aiDemo": "AI Demo"
+    },
+    "resources": "Resources",
+    "resourceLinks": {
+      "howItWorks": "How It Works",
+      "faq": "FAQ",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "companyLinks": {
+      "about": "About",
+      "certification": "Certification",
+      "careers": "Careers"
+    }
   },
   "blog": {
     "title": "Blog",
