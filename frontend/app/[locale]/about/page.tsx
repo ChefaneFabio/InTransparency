@@ -575,7 +575,7 @@ export default function AboutPage() {
                 <Link href="/auth/register">{t('joinMovement.primaryButton')}</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link href="/how-it-works">{t('joinMovement.secondaryButton')}</Link>
+                <Link href="/#how-it-works">{t('joinMovement.secondaryButton')}</Link>
               </Button>
             </div>
 

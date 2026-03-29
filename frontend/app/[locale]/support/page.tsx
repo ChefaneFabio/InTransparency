@@ -125,7 +125,7 @@ export default function SupportPage() {
                   Browse our comprehensive guides and tutorials
                 </p>
                 <Button variant="outline" asChild className="w-full">
-                  <Link href="/how-it-works">
+                  <Link href="/#how-it-works">
                     View Guides
                     <ExternalLink className="ml-2 h-4 w-4" />
                   </Link>

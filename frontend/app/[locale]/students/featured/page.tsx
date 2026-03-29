@@ -250,7 +250,7 @@ export default function FeaturedPortfoliosPage() {
                 </Link>
               </Button>
               <Button size="lg" variant="outline" className="bg-white/10 border-white/30 hover:bg-white/20 text-white" asChild>
-                <Link href="/how-it-works">
+                <Link href="/#how-it-works">
                   {t('cta.secondaryButton')}
                 </Link>
               </Button>

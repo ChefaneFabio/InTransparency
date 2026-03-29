@@ -9,7 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/for-students', priority: 0.9, freq: 'weekly' },
     { path: '/for-companies', priority: 0.9, freq: 'weekly' },
     { path: '/for-universities', priority: 0.9, freq: 'weekly' },
-    { path: '/how-it-works', priority: 0.8, freq: 'weekly' },
     { path: '/about', priority: 0.7, freq: 'monthly' },
     { path: '/pricing', priority: 0.8, freq: 'weekly' },
     { path: '/explore', priority: 0.8, freq: 'daily' },
