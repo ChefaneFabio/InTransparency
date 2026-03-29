@@ -199,7 +199,7 @@ export default function ForgotPasswordPage() {
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
                   <Input
                     id="email"
-                    type="email"
+                    type="email" autoComplete="email"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => {

@@ -275,7 +275,7 @@ export default function LoginPage() {
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                     <Input
                       id="email"
-                      type="email"
+                      type="email" autoComplete="email"
                       placeholder={t('login.emailPlaceholder')}
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
@@ -304,6 +304,7 @@ export default function LoginPage() {
                     <Input
                       id="password"
                       type={showPassword ? 'text' : 'password'}
+                      autoComplete="current-password"
                       placeholder={t('login.passwordPlaceholder')}
                       value={formData.password}
                       onChange={(e) => handleInputChange('password', e.target.value)}

@@ -169,7 +169,7 @@ export default function TechParkRegisterPage() {
                     <Label htmlFor="email">{t('fields.email')}</Label>
                     <Input
                       id="email"
-                      type="email"
+                      type="email" autoComplete="email"
                       value={formData.email}
                       onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                       required
@@ -182,7 +182,7 @@ export default function TechParkRegisterPage() {
                     <Label htmlFor="password">{t('fields.password')}</Label>
                     <Input
                       id="password"
-                      type="password"
+                      type="password" autoComplete="new-password"
                       placeholder={t('techpark.passwordPlaceholder')}
                       value={formData.password}
                       onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}

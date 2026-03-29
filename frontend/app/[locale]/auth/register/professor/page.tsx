@@ -140,7 +140,7 @@ export default function ProfessorRegisterPage() {
                     <Label htmlFor="email">{t('register.email')}</Label>
                     <Input
                       id="email"
-                      type="email"
+                      type="email" autoComplete="email"
                       required
                       aria-required="true"
                       placeholder="professor@university.edu"
@@ -152,7 +152,7 @@ export default function ProfessorRegisterPage() {
                     <Label htmlFor="password">{t('register.password')}</Label>
                     <Input
                       id="password"
-                      type="password"
+                      type="password" autoComplete="new-password"
                       required
                       aria-required="true"
                       minLength={8}
