@@ -1649,7 +1649,7 @@
       "badge": "Unisciti a InTransparency",
       "title": "Scegli il Tuo Ruolo",
       "subtitle": "Seleziona l'opzione che ti descrive meglio per iniziare",
-      "signUpAs": "Registrati come",
+      "signUpAs": "Registrati",
       "alreadyHaveAccount": "Hai già un account?",
       "signIn": "Accedi",
       "roles": {
@@ -1664,7 +1664,7 @@
           }
         },
         "university": {
-          "name": "Istituzione / ITS",
+          "name": "Istituzione",
           "description": "Verifica i progetti degli studenti e traccia i placement",
           "benefits": {
             "0": "Modello freemium",
@@ -3370,7 +3370,7 @@
     "tiers": {
       "students": {
         "name": "Studenti",
-        "price": "€0",
+        "price": "Gratis",
         "period": "per sempre",
         "description": "Costruisci il tuo portfolio verificato e fatti scoprire dalle aziende.",
         "cta": "Inizia Gratis",
@@ -3385,9 +3385,9 @@
       "companies": {
         "name": "Aziende",
         "badge": "Più popolare",
-        "price": "€0",
-        "period": "durante il lancio",
-        "description": "Cerca talento verificato. Paghi solo per contattare i candidati.",
+        "price": "Gratis",
+        "period": "per iniziare",
+        "description": "Cerca talento verificato senza limiti. Contatta i candidati quando sei pronto.",
         "cta": "Inizia a Cercare",
         "features": {
           "0": "Ricerca candidati illimitata",
@@ -3400,8 +3400,8 @@
       },
       "universities": {
         "name": "Università e Scuole",
-        "price": "€0",
-        "period": "core gratis",
+        "price": "Gratis",
+        "period": "piattaforma core",
         "description": "Verifica gli studenti, monitora i placement, dimostra l'impatto.",
         "cta": "Prenota una Demo",
         "features": {
@@ -9593,6 +9593,103 @@
         "Intervalli date personalizzati e filtri per dipartimento",
         "Confronto benchmark con medie nazionali"
       ]
+    }
+  },
+  "profileEdit": {
+    "title": "Modifica Profilo",
+    "subtitle": "Tienilo semplice — le aziende vedono i tuoi progetti, non la lunghezza della bio.",
+    "save": "Salva",
+    "saving": "Salvataggio...",
+    "saved": "Salvato!",
+    "back": "Indietro",
+    "basic": {
+      "title": "Info Base",
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "bio": "Bio",
+      "bioPlaceholder": "Una breve presentazione di te...",
+      "university": "Università",
+      "degree": "Corso di Laurea"
+    },
+    "links": {
+      "title": "Link",
+      "summary": "{count} link aggiunti",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "portfolio": "Portfolio URL"
+    },
+    "details": {
+      "title": "Dettagli",
+      "graduationYear": "Anno Laurea",
+      "location": "Città",
+      "languages": "Lingue",
+      "availability": "Disponibile per",
+      "availabilityOptions": {
+        "jobs": "Lavoro",
+        "internships": "Stage",
+        "freelance": "Freelance",
+        "notLooking": "Non cerco"
+      }
+    }
+  },
+  "advancedSearch": {
+    "title": "Cerca Candidati",
+    "subtitle": "Trova talento verificato",
+    "searchPlaceholder": "Cerca per nome, competenza o parola chiave...",
+    "university": "Università",
+    "allUniversities": "Tutte le università",
+    "skills": "Competenze",
+    "addSkill": "Aggiungi competenza...",
+    "moreFilters": "Altri Filtri",
+    "lessFilters": "Meno Filtri",
+    "gpa": "Range Voto",
+    "min": "Min",
+    "max": "Max",
+    "graduationYear": "Anno Laurea",
+    "allYears": "Tutti gli anni",
+    "location": "Città",
+    "major": "Area di Studio",
+    "allMajors": "Tutte le aree",
+    "experience": "Esperienza",
+    "allLevels": "Tutti i livelli",
+    "search": "Cerca",
+    "searching": "Ricerca...",
+    "results": "{count} candidati trovati",
+    "noResults": "Nessun candidato corrisponde ai filtri",
+    "clearFilters": "Cancella tutto"
+  },
+  "recruiterSettings": {
+    "title": "Impostazioni",
+    "subtitle": "Gestisci profilo aziendale e preferenze",
+    "save": "Salva",
+    "saving": "Salvataggio...",
+    "saved": "Salvato!",
+    "company": {
+      "title": "Azienda",
+      "name": "Nome Azienda",
+      "website": "Sito Web",
+      "industry": "Settore",
+      "industries": {
+        "tech": "Tecnologia",
+        "finance": "Finanza",
+        "consulting": "Consulenza",
+        "manufacturing": "Manifattura",
+        "healthcare": "Sanità",
+        "education": "Istruzione",
+        "other": "Altro"
+      }
+    },
+    "preferences": {
+      "title": "Preferenze",
+      "notifications": "Notifiche Email",
+      "notificationsDesc": "Ricevi aggiornamenti su nuovi candidati e candidature",
+      "defaultLocation": "Località Predefinita",
+      "hiringVolume": "Volume Assunzioni Annuale",
+      "volumes": {
+        "small": "1-5 assunzioni/anno",
+        "medium": "5-20 assunzioni/anno",
+        "large": "20+ assunzioni/anno"
+      }
     }
   }
 }

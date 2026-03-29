@@ -35,6 +35,7 @@ export function Header() {
       { name: 'ITS Academy', href: '/for-its-students' },
       { name: 'High School', href: '/for-high-school-students' },
       { name: t('explorePortfolios'), href: '/explore' },
+      { name: t('pricing'), href: '/pricing' },
       { name: t('contact'), href: '/contact' },
     ],
     institutions: [
@@ -49,6 +50,7 @@ export function Header() {
       { name: 'Agencies & HR', href: '/for-agencies' },
       { name: 'Startups', href: '/for-startups' },
       { name: t('searchTalent'), href: '/explore' },
+      { name: t('pricing'), href: '/pricing' },
       { name: t('contact'), href: '/contact' },
     ],
   }

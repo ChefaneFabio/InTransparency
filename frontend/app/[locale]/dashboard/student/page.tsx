@@ -10,10 +10,8 @@ import {
   Plus,
   ExternalLink,
   ChevronRight,
-  FolderOpen,
   Sparkles,
   LogOut,
-  Eye,
 } from 'lucide-react'
 import { Skeleton } from '@/components/ui/skeleton'
 import OnboardingChecklist from '@/components/dashboard/student/OnboardingChecklist'
@@ -104,8 +102,8 @@ export default function StudentDashboard() {
             <Skeleton className="h-9 w-28" />
           </div>
         </div>
-        <div className="grid lg:grid-cols-3 gap-5">
-          <div className="lg:col-span-1 space-y-3">
+        <div className="grid lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 space-y-3">
             {[1,2,3,4].map(i => <Skeleton key={i} className="h-16 w-full rounded-lg" />)}
           </div>
           <div className="lg:col-span-1 space-y-4">
@@ -118,7 +116,7 @@ export default function StudentDashboard() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto pb-8">
+    <div className="max-w-5xl mx-auto px-4 py-6 pb-8">
       {/* Header with stats inline */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
         <div>
@@ -157,9 +155,9 @@ export default function StudentDashboard() {
       {/* Hiring confirmation — asks students if they got hired after company contact */}
       <HiringConfirmationBanner />
 
-      <div className="grid lg:grid-cols-3 gap-5">
-        {/* Projects - takes more space */}
-        <div className="lg:col-span-1">
+      <div className="grid lg:grid-cols-3 gap-6">
+        {/* Projects + Jobs - main column */}
+        <div className="lg:col-span-2">
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-medium text-foreground">{t('sections.projects')}</h2>
             <Link href="/dashboard/student/projects" className="text-sm text-primary hover:underline">
@@ -175,8 +173,8 @@ export default function StudentDashboard() {
                   href={`/dashboard/student/projects/${project.id}`}
                   className="flex items-center gap-3 p-3 bg-white border rounded-lg hover:border-border transition-colors"
                 >
-                  <div className="w-10 h-10 bg-muted rounded flex items-center justify-center flex-shrink-0">
-                    <FolderOpen className="h-5 w-5 text-muted-foreground/60" />
+                  <div className="w-10 h-10 bg-primary/10 rounded flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary font-bold text-sm">{(project.title || 'P')[0].toUpperCase()}</span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-foreground text-sm truncate">
@@ -186,16 +184,15 @@ export default function StudentDashboard() {
                       {project.description || t('noDescription')}
                     </p>
                   </div>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground/60">
-                    <Eye className="h-3 w-3" />
-                    {project.views || 0}
-                  </div>
+                  <span className="text-xs text-muted-foreground/60">
+                    {project.views || 0} views
+                  </span>
                 </Link>
               ))}
             </div>
           ) : (
             <div className="border-2 border-dashed rounded-lg p-6 text-center">
-              <FolderOpen className="h-8 w-8 mx-auto text-muted-foreground/40 mb-2" />
+              <div className="w-12 h-12 bg-primary/10 rounded-lg mx-auto mb-2 flex items-center justify-center text-primary font-bold">+</div>
               <p className="text-sm text-muted-foreground mb-3">{t('empty.noProjects')}</p>
               <Button size="sm" asChild>
                 <Link href="/dashboard/student/projects/new">

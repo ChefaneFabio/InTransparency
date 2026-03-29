@@ -1481,7 +1481,7 @@
       "badge": "Join InTransparency",
       "title": "Choose Your Role",
       "subtitle": "Select the option that best describes you to get started",
-      "signUpAs": "Sign Up as",
+      "signUpAs": "Sign Up",
       "alreadyHaveAccount": "Already have an account?",
       "signIn": "Sign in",
       "roles": {
@@ -1496,7 +1496,7 @@
           }
         },
         "university": {
-          "name": "Institution / ITS",
+          "name": "Institution",
           "description": "Verify student projects and track placements",
           "benefits": {
             "0": "Freemium model",
@@ -3396,7 +3396,7 @@
     "tiers": {
       "students": {
         "name": "Students",
-        "price": "€0",
+        "price": "Free",
         "period": "forever",
         "description": "Build your verified portfolio and get discovered by companies.",
         "cta": "Get Started Free",
@@ -3411,9 +3411,9 @@
       "companies": {
         "name": "Companies",
         "badge": "Most Popular",
-        "price": "€0",
-        "period": "during launch",
-        "description": "Search verified talent. Pay only to contact candidates.",
+        "price": "Free",
+        "period": "to start",
+        "description": "Search verified talent with no limits. Contact candidates when you are ready.",
         "cta": "Start Searching",
         "features": {
           "0": "Unlimited candidate search",
@@ -3426,8 +3426,8 @@
       },
       "universities": {
         "name": "Universities & Schools",
-        "price": "€0",
-        "period": "core free",
+        "price": "Free",
+        "period": "core platform",
         "description": "Verify students, track placements, prove impact.",
         "cta": "Schedule a Demo",
         "features": {
@@ -9566,6 +9566,103 @@
         "Custom date ranges and department filters",
         "Benchmark comparison with national averages"
       ]
+    }
+  },
+  "profileEdit": {
+    "title": "Edit Profile",
+    "subtitle": "Keep it simple — companies see your projects, not your bio length.",
+    "save": "Save",
+    "saving": "Saving...",
+    "saved": "Saved!",
+    "back": "Back",
+    "basic": {
+      "title": "Basic Info",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "bio": "Bio",
+      "bioPlaceholder": "A short intro about yourself...",
+      "university": "University",
+      "degree": "Degree"
+    },
+    "links": {
+      "title": "Links",
+      "summary": "{count} links added",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "portfolio": "Portfolio URL"
+    },
+    "details": {
+      "title": "Details",
+      "graduationYear": "Graduation Year",
+      "location": "Location",
+      "languages": "Languages",
+      "availability": "Available for",
+      "availabilityOptions": {
+        "jobs": "Jobs",
+        "internships": "Internships",
+        "freelance": "Freelance",
+        "notLooking": "Not looking"
+      }
+    }
+  },
+  "advancedSearch": {
+    "title": "Search Candidates",
+    "subtitle": "Find verified talent",
+    "searchPlaceholder": "Search by name, skill, or keyword...",
+    "university": "University",
+    "allUniversities": "All universities",
+    "skills": "Skills",
+    "addSkill": "Add skill...",
+    "moreFilters": "More Filters",
+    "lessFilters": "Less Filters",
+    "gpa": "GPA Range",
+    "min": "Min",
+    "max": "Max",
+    "graduationYear": "Graduation Year",
+    "allYears": "All years",
+    "location": "Location",
+    "major": "Field of Study",
+    "allMajors": "All fields",
+    "experience": "Experience",
+    "allLevels": "All levels",
+    "search": "Search",
+    "searching": "Searching...",
+    "results": "{count} candidates found",
+    "noResults": "No candidates match your filters",
+    "clearFilters": "Clear all"
+  },
+  "recruiterSettings": {
+    "title": "Settings",
+    "subtitle": "Manage your company profile and preferences",
+    "save": "Save",
+    "saving": "Saving...",
+    "saved": "Saved!",
+    "company": {
+      "title": "Company",
+      "name": "Company Name",
+      "website": "Website",
+      "industry": "Industry",
+      "industries": {
+        "tech": "Technology",
+        "finance": "Finance",
+        "consulting": "Consulting",
+        "manufacturing": "Manufacturing",
+        "healthcare": "Healthcare",
+        "education": "Education",
+        "other": "Other"
+      }
+    },
+    "preferences": {
+      "title": "Preferences",
+      "notifications": "Email Notifications",
+      "notificationsDesc": "Receive updates about new candidates and applications",
+      "defaultLocation": "Default Search Location",
+      "hiringVolume": "Annual Hiring Volume",
+      "volumes": {
+        "small": "1-5 hires/year",
+        "medium": "5-20 hires/year",
+        "large": "20+ hires/year"
+      }
     }
   }
 }

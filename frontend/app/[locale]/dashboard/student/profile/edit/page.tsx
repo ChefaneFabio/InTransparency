@@ -3,1019 +3,254 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Badge } from '@/components/ui/badge'
-import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Switch } from '@/components/ui/switch'
-import {
-  Save,
-  Upload,
-  X,
-  Plus,
-  ArrowLeft,
-  AlertCircle,
-  CheckCircle,
-  User,
-  GraduationCap,
-  MapPin,
-  Globe,
-  Github,
-  Linkedin,
-  Link as LinkIcon,
-  Loader2,
-  Sparkles,
-  Briefcase,
-  Trash2,
-  Calendar,
-} from 'lucide-react'
+import { Loader2, ArrowLeft } from 'lucide-react'
 
-interface WorkExperienceEntry {
-  company: string
-  role: string
-  startDate: string
-  endDate: string
-  description: string
-  current: boolean
-}
+type Sections = 'links' | 'details'
 
 export default function EditProfilePage() {
   const router = useRouter()
   const { data: session } = useSession()
-  const user = session?.user as any
+  const user = session?.user as Record<string, string> | undefined
+  const t = useTranslations('profileEdit')
 
+  const [expanded, setExpanded] = useState<Record<Sections, boolean>>({ links: false, details: false })
+  const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved'>('idle')
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    bio: '',
-    university: '',
-    major: '',
-    graduationYear: new Date().getFullYear() + 1,
-    gpa: '',
-    gpaPublic: false,
-    location: '',
-    linkedinUrl: '',
-    githubUrl: '',
-    portfolioUrl: '',
-    skills: [] as string[],
-    interests: [] as string[],
-    availableFor: 'BOTH' as string,
-    workExperience: [] as WorkExperienceEntry[],
+    firstName: '', lastName: '', bio: '', university: '', major: '',
+    graduationYear: String(new Date().getFullYear() + 1), location: '', languages: '',
+    linkedinUrl: '', githubUrl: '', portfolioUrl: '', availableFor: 'BOTH',
   })
 
-  const [newSkill, setNewSkill] = useState('')
-  const [newInterest, setNewInterest] = useState('')
-  const [profileImage, setProfileImage] = useState<File | null>(null)
-  const [previewUrl, setPreviewUrl] = useState<string>('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [errors, setErrors] = useState<any>({})
-  const [successMessage, setSuccessMessage] = useState('')
-  const [courseUrl, setCourseUrl] = useState('')
-  const [isFetchingCourse, setIsFetchingCourse] = useState(false)
-  const [suggestedSkills, setSuggestedSkills] = useState<string[]>([])
-  const [suggestedInterests, setSuggestedInterests] = useState<string[]>([])
-
   useEffect(() => {
-    // Fetch full profile data from API (session may not contain all fields)
-    const loadProfile = async () => {
+    const load = async () => {
       try {
         const res = await fetch('/api/dashboard/student/profile')
-        if (res.ok) {
-          const data = await res.json()
-          const u = data.user
-          setFormData({
-            firstName: u.firstName || '',
-            lastName: u.lastName || '',
-            email: u.email || '',
-            bio: u.bio || '',
-            university: u.university || '',
-            major: u.degree || '',
-            graduationYear: u.graduationYear ? parseInt(u.graduationYear, 10) : new Date().getFullYear() + 1,
-            gpa: u.gpa || '',
-            gpaPublic: u.gpaPublic || false,
-            location: u.location || '',
-            linkedinUrl: u.linkedinUrl || '',
-            githubUrl: u.githubUrl || '',
-            portfolioUrl: u.portfolioUrl || '',
-            skills: u.skills || [],
-            interests: u.interests || [],
-            availableFor: u.availableFor || 'BOTH',
-            workExperience: Array.isArray(u.workExperience) ? u.workExperience : [],
-          })
-          setPreviewUrl(u.photo || '')
-        }
+        if (!res.ok) return
+        const { user: u } = await res.json()
+        setFormData({
+          firstName: u.firstName || '', lastName: u.lastName || '',
+          bio: u.bio || '', university: u.university || '', major: u.degree || '',
+          graduationYear: u.graduationYear ? String(u.graduationYear) : String(new Date().getFullYear() + 1),
+          location: u.location || '', languages: u.languages || '',
+          linkedinUrl: u.linkedinUrl || '', githubUrl: u.githubUrl || '',
+          portfolioUrl: u.portfolioUrl || '', availableFor: u.availableFor || 'BOTH',
+        })
       } catch {
-        // Fall back to session data
         if (user) {
           setFormData(prev => ({
             ...prev,
             firstName: user.firstName || prev.firstName,
             lastName: user.lastName || prev.lastName,
-            email: user.email || prev.email,
           }))
-          setPreviewUrl(user.avatarUrl || '')
         }
       }
     }
-    loadProfile()
+    load()
   }, [user])
 
-  const handleInputChange = (field: string, value: string | number) => {
+  const set = (field: string, value: string) =>
     setFormData(prev => ({ ...prev, [field]: value }))
-    if (errors[field]) {
-      setErrors((prev: any) => ({ ...prev, [field]: null }))
-    }
-  }
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      if (file.size > 5 * 1024 * 1024) { // 5MB limit
-        setErrors({ ...errors, image: 'Image size must be less than 5MB' })
-        return
-      }
-
-      setProfileImage(file)
-      const url = URL.createObjectURL(file)
-      setPreviewUrl(url)
-
-      if (errors.image) {
-        setErrors({ ...errors, image: null })
-      }
-    }
-  }
-
-  const addSkill = () => {
-    const skill = newSkill.trim()
-    if (skill && !formData.skills.includes(skill) && formData.skills.length < 20) {
-      setFormData(prev => ({
-        ...prev,
-        skills: [...prev.skills, skill]
-      }))
-      setNewSkill('')
-    }
-  }
-
-  const removeSkill = (skillToRemove: string) => {
-    setFormData(prev => ({
-      ...prev,
-      skills: prev.skills.filter(skill => skill !== skillToRemove)
-    }))
-  }
-
-  const addInterest = () => {
-    const interest = newInterest.trim()
-    if (interest && !formData.interests.includes(interest) && formData.interests.length < 10) {
-      setFormData(prev => ({
-        ...prev,
-        interests: [...prev.interests, interest]
-      }))
-      setNewInterest('')
-    }
-  }
-
-  const removeInterest = (interestToRemove: string) => {
-    setFormData(prev => ({
-      ...prev,
-      interests: prev.interests.filter(interest => interest !== interestToRemove)
-    }))
-  }
-
-  const validateForm = () => {
-    const newErrors: any = {}
-
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = 'First name is required'
-    }
-
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = 'Last name is required'
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address'
-    }
-
-    if (formData.graduationYear < new Date().getFullYear() - 10 || formData.graduationYear > new Date().getFullYear() + 10) {
-      newErrors.graduationYear = 'Please enter a valid graduation year'
-    }
-
-    // URL validations
-    if (formData.linkedinUrl && !formData.linkedinUrl.includes('linkedin.com')) {
-      newErrors.linkedinUrl = 'Please enter a valid LinkedIn URL'
-    }
-
-    if (formData.githubUrl && !formData.githubUrl.includes('github.com')) {
-      newErrors.githubUrl = 'Please enter a valid GitHub URL'
-    }
-
-    if (formData.portfolioUrl && !/^https?:\/\/.+\..+/.test(formData.portfolioUrl)) {
-      newErrors.portfolioUrl = 'Please enter a valid URL'
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    if (!validateForm()) return
-
-    setIsLoading(true)
-    setSuccessMessage('')
-
+    if (!formData.firstName.trim() || !formData.lastName.trim()) return
+    setSaveState('saving')
     try {
       const res = await fetch('/api/dashboard/student/profile', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          bio: formData.bio,
-          tagline: formData.bio?.slice(0, 120),
-          university: formData.university,
-          degree: formData.major,
-          graduationYear: String(formData.graduationYear),
-          gpa: formData.gpa,
-          gpaPublic: formData.gpaPublic,
-          location: formData.location,
-          linkedinUrl: formData.linkedinUrl,
-          githubUrl: formData.githubUrl,
-          portfolioUrl: formData.portfolioUrl,
-          skills: formData.skills,
-          interests: formData.interests,
-          availableFor: formData.availableFor,
-          workExperience: formData.workExperience,
+          firstName: formData.firstName, lastName: formData.lastName,
+          bio: formData.bio, tagline: formData.bio?.slice(0, 120),
+          university: formData.university, degree: formData.major,
+          graduationYear: formData.graduationYear,
+          location: formData.location, languages: formData.languages,
+          linkedinUrl: formData.linkedinUrl, githubUrl: formData.githubUrl,
+          portfolioUrl: formData.portfolioUrl, availableFor: formData.availableFor,
         }),
       })
-
-      if (!res.ok) {
-        const data = await res.json()
-        throw new Error(data.error || 'Failed to update profile')
-      }
-
-      setSuccessMessage('Profile updated successfully!')
-
-      // Redirect back to profile after 2 seconds
-      setTimeout(() => {
-        router.push('/dashboard/student/profile')
-      }, 2000)
-
-    } catch (error) {
-      setErrors({ general: 'Failed to update profile. Please try again.' })
-    } finally {
-      setIsLoading(false)
+      if (!res.ok) throw new Error()
+      setSaveState('saved')
+      setTimeout(() => router.push('/dashboard/student/profile'), 1500)
+    } catch {
+      setSaveState('idle')
     }
   }
 
-  const handleFetchCourseInfo = async () => {
-    if (!courseUrl.trim()) return
-    setIsFetchingCourse(true)
-    setErrors((prev: any) => ({ ...prev, courseUrl: null }))
+  const toggle = (s: Sections) => setExpanded(prev => ({ ...prev, [s]: !prev[s] }))
 
-    try {
-      const res = await fetch('/api/course-info/extract', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: courseUrl.trim() }),
-      })
+  const linkCount = [formData.linkedinUrl, formData.githubUrl, formData.portfolioUrl]
+    .filter(Boolean).length
+  const linkNames = [
+    formData.linkedinUrl && 'LinkedIn',
+    formData.githubUrl && 'GitHub',
+    formData.portfolioUrl && 'Portfolio',
+  ].filter(Boolean)
 
-      if (!res.ok) {
-        const data = await res.json()
-        throw new Error(data.error || 'Could not extract info from this URL')
-      }
-
-      const data = await res.json()
-
-      setFormData(prev => ({
-        ...prev,
-        university: data.university || prev.university,
-        major: data.major || prev.major,
-        graduationYear: data.graduationYear || prev.graduationYear,
-      }))
-
-      // Store suggested skills/interests for the Skills tab
-      if (data.skills?.length) setSuggestedSkills(data.skills)
-      if (data.interests?.length) setSuggestedInterests(data.interests)
-    } catch (error: any) {
-      setErrors((prev: any) => ({ ...prev, courseUrl: error.message }))
-    } finally {
-      setIsFetchingCourse(false)
-    }
-  }
+  const detailSummary = [
+    formData.graduationYear && formData.graduationYear,
+    formData.location,
+    formData.languages,
+  ].filter(Boolean)
 
   const currentYear = new Date().getFullYear()
-  const graduationYears = Array.from({ length: 16 }, (_, i) => currentYear - 5 + i)
+  const years = Array.from({ length: 16 }, (_, i) => String(currentYear - 5 + i))
 
   return (
-    <div className="container mx-auto py-8 px-4 max-w-4xl">
-      {/* Header */}
-      <div className="flex items-center gap-4 mb-8">
-        <Button
-          variant="ghost"
-          onClick={() => router.back()}
-          className="p-2"
-        >
+    <div className="container mx-auto py-8 px-4 max-w-2xl">
+      <div className="flex items-center gap-4 mb-6">
+        <Button variant="ghost" size="icon" onClick={() => router.back()}>
           <ArrowLeft className="h-4 w-4" />
         </Button>
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Edit Profile</h1>
-          <p className="text-muted-foreground mt-1">
-            Update your information to help recruiters find you
-          </p>
+          <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
+          <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
         </div>
       </div>
 
-      {/* Success Message */}
-      {successMessage && (
-        <Alert className="mb-6 border-primary/20 bg-primary/5">
-          <CheckCircle className="h-4 w-4 text-primary" />
-          <AlertDescription className="text-primary">
-            {successMessage}
-          </AlertDescription>
-        </Alert>
-      )}
-
-      {/* General Error */}
-      {errors.general && (
-        <Alert variant="destructive" className="mb-6">
-          <AlertCircle className="h-4 w-4" />
-          <AlertDescription>{errors.general}</AlertDescription>
-        </Alert>
-      )}
-
-      <form onSubmit={handleSubmit}>
-        <Tabs defaultValue="basic" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="basic">Basic Info</TabsTrigger>
-            <TabsTrigger value="academic">Academic</TabsTrigger>
-            <TabsTrigger value="experience">Experience</TabsTrigger>
-            <TabsTrigger value="skills">Skills</TabsTrigger>
-            <TabsTrigger value="links">Links</TabsTrigger>
-          </TabsList>
-
-          {/* Basic Information */}
-          <TabsContent value="basic">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <User className="h-5 w-5" />
-                  Basic Information
-                </CardTitle>
-                <CardDescription>
-                  Your basic profile information that will be visible to recruiters
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {/* Profile Image */}
-                <div className="flex items-start gap-6">
-                  <div className="flex flex-col items-center space-y-4">
-                    <div className="w-32 h-32 rounded-full bg-muted overflow-hidden flex items-center justify-center">
-                      {previewUrl ? (
-                        <img
-                          src={previewUrl}
-                          alt="Profile preview"
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <User className="h-16 w-16 text-muted-foreground" />
-                      )}
-                    </div>
-                    <div className="text-center">
-                      <Label htmlFor="profile-image" className="cursor-pointer">
-                        <Button variant="outline" size="sm" asChild>
-                          <span>
-                            <Upload className="h-4 w-4 mr-2" />
-                            Upload Photo
-                          </span>
-                        </Button>
-                      </Label>
-                      <Input
-                        id="profile-image"
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                        className="hidden"
-                      />
-                      <p className="text-xs text-foreground/80 mt-2">
-                        Max 5MB, JPG or PNG
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex-1 space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="firstName">First Name</Label>
-                        <Input
-                          id="firstName"
-                          value={formData.firstName}
-                          onChange={(e) => handleInputChange('firstName', e.target.value)}
-                          className={errors.firstName ? 'border-red-500' : ''}
-                        />
-                        {errors.firstName && (
-                          <p className="text-sm text-red-600">{errors.firstName}</p>
-                        )}
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="lastName">Last Name</Label>
-                        <Input
-                          id="lastName"
-                          value={formData.lastName}
-                          onChange={(e) => handleInputChange('lastName', e.target.value)}
-                          className={errors.lastName ? 'border-red-500' : ''}
-                        />
-                        {errors.lastName && (
-                          <p className="text-sm text-red-600">{errors.lastName}</p>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => handleInputChange('email', e.target.value)}
-                        className={errors.email ? 'border-red-500' : ''}
-                      />
-                      {errors.email && (
-                        <p className="text-sm text-red-600">{errors.email}</p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="location">Location</Label>
-                      <div className="relative">
-                        <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                        <Input
-                          id="location"
-                          placeholder="e.g. Milano, Italy"
-                          value={formData.location}
-                          onChange={(e) => handleInputChange('location', e.target.value)}
-                          className="pl-10"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Availability */}
-                <div className="space-y-2">
-                  <Label htmlFor="availableFor" className="flex items-center gap-2">
-                    <Briefcase className="h-4 w-4" />
-                    Availability
-                  </Label>
-                  <Select
-                    value={formData.availableFor}
-                    onValueChange={(value) => handleInputChange('availableFor', value)}
-                  >
-                    <SelectTrigger id="availableFor">
-                      <SelectValue placeholder="Select availability" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="BOTH">Available immediately</SelectItem>
-                      <SelectItem value="HIRING">Open to offers</SelectItem>
-                      <SelectItem value="NONE">Not looking</SelectItem>
-                      <SelectItem value="PROJECTS">Available for projects only</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <p className="text-xs text-foreground/80">
-                    This helps recruiters understand your current availability
-                  </p>
-                </div>
-
-                {/* Bio */}
-                <div className="space-y-2">
-                  <Label htmlFor="bio">Bio</Label>
-                  <Textarea
-                    id="bio"
-                    placeholder="Tell recruiters about yourself, your interests, and career goals..."
-                    value={formData.bio}
-                    onChange={(e) => handleInputChange('bio', e.target.value)}
-                    rows={4}
-                    maxLength={500}
-                  />
-                  <p className={`text-xs text-right ${formData.bio.length > 480 ? 'text-red-500' : formData.bio.length > 400 ? 'text-amber-500' : 'text-foreground/80'}`}>
-                    {formData.bio.length}/500 characters
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Academic Information */}
-          <TabsContent value="academic">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <GraduationCap className="h-5 w-5" />
-                  Academic Information
-                </CardTitle>
-                <CardDescription>
-                  Your educational background and academic details
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {/* Auto-fill from course URL */}
-                <div className="p-4 bg-primary/5 border border-primary/20 rounded-lg space-y-3">
-                  <Label htmlFor="courseUrl" className="flex items-center gap-2 text-primary font-medium">
-                    <Sparkles className="h-4 w-4" />
-                    Auto-fill from course URL
-                  </Label>
-                  <p className="text-sm text-primary">
-                    Paste a link to your university course page and we&apos;ll extract the details for you
-                  </p>
-                  <div className="flex gap-2">
-                    <Input
-                      id="courseUrl"
-                      placeholder="https://www.unibocconi.it/en/programmes/master-science..."
-                      value={courseUrl}
-                      onChange={(e) => setCourseUrl(e.target.value)}
-                      onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleFetchCourseInfo())}
-                      className="bg-white"
-                    />
-                    <Button
-                      type="button"
-                      onClick={handleFetchCourseInfo}
-                      disabled={!courseUrl.trim() || isFetchingCourse}
-                      size="sm"
-                    >
-                      {isFetchingCourse ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                      ) : (
-                        'Extract'
-                      )}
-                    </Button>
-                  </div>
-                  {errors.courseUrl && (
-                    <p className="text-sm text-red-600">{errors.courseUrl}</p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="university">University</Label>
-                  <Input
-                    id="university"
-                    placeholder="e.g. Università Bocconi"
-                    value={formData.university}
-                    onChange={(e) => handleInputChange('university', e.target.value)}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="major">Major/Field of Study</Label>
-                  <Input
-                    id="major"
-                    placeholder="e.g. Computer Science, Business Administration"
-                    value={formData.major}
-                    onChange={(e) => handleInputChange('major', e.target.value)}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="graduationYear">Expected Graduation Year</Label>
-                  <Select
-                    value={formData.graduationYear.toString()}
-                    onValueChange={(value) => handleInputChange('graduationYear', parseInt(value))}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select year" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {graduationYears.map((year) => (
-                        <SelectItem key={year} value={year.toString()}>
-                          {year}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {errors.graduationYear && (
-                    <p className="text-sm text-red-600">{errors.graduationYear}</p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="gpa">GPA</Label>
-                  <Input
-                    id="gpa"
-                    placeholder="e.g. 28/30"
-                    value={formData.gpa}
-                    onChange={(e) => handleInputChange('gpa', e.target.value)}
-                  />
-                </div>
-
-                <div className="flex items-center justify-between pt-2 border-t">
-                  <div className="space-y-0.5">
-                    <Label htmlFor="gpaPublic">Show GPA on profile</Label>
-                    <p className="text-xs text-foreground/80">When enabled, your GPA will be visible on your public profile</p>
-                  </div>
-                  <Switch
-                    id="gpaPublic"
-                    checked={formData.gpaPublic}
-                    onCheckedChange={(checked) => setFormData(prev => ({ ...prev, gpaPublic: checked }))}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Work Experience */}
-          <TabsContent value="experience">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Briefcase className="h-5 w-5" />
-                  Work Experience
-                </CardTitle>
-                <CardDescription>
-                  Add internships, part-time jobs, or other work experience
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {formData.workExperience.map((exp, index) => (
-                  <div key={index} className="relative border rounded-lg p-4 space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-medium text-sm text-foreground">Experience {index + 1}</h4>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => {
-                          setFormData(prev => ({
-                            ...prev,
-                            workExperience: prev.workExperience.filter((_, i) => i !== index),
-                          }))
-                        }}
-                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label>Company</Label>
-                        <Input
-                          placeholder="e.g. Google"
-                          value={exp.company}
-                          onChange={(e) => {
-                            const updated = [...formData.workExperience]
-                            updated[index] = { ...updated[index], company: e.target.value }
-                            setFormData(prev => ({ ...prev, workExperience: updated }))
-                          }}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label>Role / Title</Label>
-                        <Input
-                          placeholder="e.g. Software Engineering Intern"
-                          value={exp.role}
-                          onChange={(e) => {
-                            const updated = [...formData.workExperience]
-                            updated[index] = { ...updated[index], role: e.target.value }
-                            setFormData(prev => ({ ...prev, workExperience: updated }))
-                          }}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label>Start Date</Label>
-                        <Input
-                          type="month"
-                          value={exp.startDate}
-                          onChange={(e) => {
-                            const updated = [...formData.workExperience]
-                            updated[index] = { ...updated[index], startDate: e.target.value }
-                            setFormData(prev => ({ ...prev, workExperience: updated }))
-                          }}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label>End Date</Label>
-                        <Input
-                          type="month"
-                          value={exp.endDate}
-                          disabled={exp.current}
-                          onChange={(e) => {
-                            const updated = [...formData.workExperience]
-                            updated[index] = { ...updated[index], endDate: e.target.value }
-                            setFormData(prev => ({ ...prev, workExperience: updated }))
-                          }}
-                        />
-                        <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={exp.current}
-                            onChange={(e) => {
-                              const updated = [...formData.workExperience]
-                              updated[index] = { ...updated[index], current: e.target.checked, endDate: e.target.checked ? '' : updated[index].endDate }
-                              setFormData(prev => ({ ...prev, workExperience: updated }))
-                            }}
-                            className="rounded border-border"
-                          />
-                          I currently work here
-                        </label>
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label>Description</Label>
-                      <Textarea
-                        placeholder="Describe your responsibilities and achievements..."
-                        value={exp.description}
-                        rows={3}
-                        onChange={(e) => {
-                          const updated = [...formData.workExperience]
-                          updated[index] = { ...updated[index], description: e.target.value }
-                          setFormData(prev => ({ ...prev, workExperience: updated }))
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
-
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => {
-                    setFormData(prev => ({
-                      ...prev,
-                      workExperience: [
-                        ...prev.workExperience,
-                        { company: '', role: '', startDate: '', endDate: '', description: '', current: false },
-                      ],
-                    }))
-                  }}
-                  className="w-full"
-                >
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add Experience
-                </Button>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Skills and Interests */}
-          <TabsContent value="skills">
-            <div className="min-h-screen space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Skills</CardTitle>
-                  <CardDescription>
-                    Add your technical and professional skills (max 20)
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex gap-2">
-                      <Input
-                        placeholder="Add a skill..."
-                        value={newSkill}
-                        onChange={(e) => setNewSkill(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addSkill())}
-                        disabled={formData.skills.length >= 20}
-                      />
-                      <Button
-                        type="button"
-                        onClick={addSkill}
-                        disabled={!newSkill.trim() || formData.skills.length >= 20}
-                      >
-                        <Plus className="h-4 w-4" />
-                      </Button>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2">
-                      {formData.skills.map((skill, index) => (
-                        <Badge key={index} variant="secondary" className="flex items-center gap-1">
-                          {skill}
-                          <button
-                            type="button"
-                            onClick={() => removeSkill(skill)}
-                            className="ml-1 hover:text-red-600"
-                          >
-                            <X className="h-3 w-3" />
-                          </button>
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {suggestedSkills.length > 0 && (
-                      <div className="space-y-2">
-                        <p className="text-sm text-primary flex items-center gap-1">
-                          <Sparkles className="h-3 w-3" />
-                          Suggested from your course:
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {suggestedSkills
-                            .filter(s => !formData.skills.includes(s))
-                            .map((skill, i) => (
-                              <Badge
-                                key={i}
-                                variant="outline"
-                                className="cursor-pointer border-primary/30 text-primary hover:bg-primary/5"
-                                onClick={() => {
-                                  if (formData.skills.length < 20) {
-                                    setFormData(prev => ({ ...prev, skills: [...prev.skills, skill] }))
-                                  }
-                                }}
-                              >
-                                <Plus className="h-3 w-3 mr-1" />
-                                {skill}
-                              </Badge>
-                            ))}
-                        </div>
-                      </div>
-                    )}
-
-                    <p className="text-xs text-foreground/80">
-                      {formData.skills.length}/20 skills added
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Interests</CardTitle>
-                  <CardDescription>
-                    Add your professional interests and areas of focus (max 10)
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex gap-2">
-                      <Input
-                        placeholder="Add an interest..."
-                        value={newInterest}
-                        onChange={(e) => setNewInterest(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addInterest())}
-                        disabled={formData.interests.length >= 10}
-                      />
-                      <Button
-                        type="button"
-                        onClick={addInterest}
-                        disabled={!newInterest.trim() || formData.interests.length >= 10}
-                      >
-                        <Plus className="h-4 w-4" />
-                      </Button>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2">
-                      {formData.interests.map((interest, index) => (
-                        <Badge key={index} variant="outline" className="flex items-center gap-1">
-                          {interest}
-                          <button
-                            type="button"
-                            onClick={() => removeInterest(interest)}
-                            className="ml-1 hover:text-red-600"
-                          >
-                            <X className="h-3 w-3" />
-                          </button>
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {suggestedInterests.length > 0 && (
-                      <div className="space-y-2">
-                        <p className="text-sm text-primary flex items-center gap-1">
-                          <Sparkles className="h-3 w-3" />
-                          Suggested from your course:
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {suggestedInterests
-                            .filter(i => !formData.interests.includes(i))
-                            .map((interest, idx) => (
-                              <Badge
-                                key={idx}
-                                variant="outline"
-                                className="cursor-pointer border-primary/30 text-primary hover:bg-primary/5"
-                                onClick={() => {
-                                  if (formData.interests.length < 10) {
-                                    setFormData(prev => ({ ...prev, interests: [...prev.interests, interest] }))
-                                  }
-                                }}
-                              >
-                                <Plus className="h-3 w-3 mr-1" />
-                                {interest}
-                              </Badge>
-                            ))}
-                        </div>
-                      </div>
-                    )}
-
-                    <p className="text-xs text-foreground/80">
-                      {formData.interests.length}/10 interests added
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Section 1: Basic Info — always visible */}
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base">{t('basic.title')}</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label htmlFor="firstName">{t('basic.firstName')}</Label>
+                <Input id="firstName" value={formData.firstName}
+                  onChange={e => set('firstName', e.target.value)} />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="lastName">{t('basic.lastName')}</Label>
+                <Input id="lastName" value={formData.lastName}
+                  onChange={e => set('lastName', e.target.value)} />
+              </div>
             </div>
-          </TabsContent>
+            <div className="space-y-1.5">
+              <Label htmlFor="bio">{t('basic.bio')}</Label>
+              <Textarea id="bio" rows={3} placeholder={t('basic.bioPlaceholder')}
+                value={formData.bio} onChange={e => set('bio', e.target.value)} />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label htmlFor="university">{t('basic.university')}</Label>
+                <Input id="university" value={formData.university}
+                  onChange={e => set('university', e.target.value)} />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="major">{t('basic.degree')}</Label>
+                <Input id="major" value={formData.major}
+                  onChange={e => set('major', e.target.value)} />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-          {/* Links */}
-          <TabsContent value="links">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <LinkIcon className="h-5 w-5" />
-                  Professional Links
-                </CardTitle>
-                <CardDescription>
-                  Add links to your professional profiles and portfolio
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="linkedinUrl">LinkedIn Profile</Label>
-                  <div className="relative">
-                    <Linkedin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                    <Input
-                      id="linkedinUrl"
-                      placeholder="https://linkedin.com/in/yourname"
-                      value={formData.linkedinUrl}
-                      onChange={(e) => handleInputChange('linkedinUrl', e.target.value)}
-                      className={`pl-10 ${errors.linkedinUrl ? 'border-red-500' : ''}`}
-                    />
-                  </div>
-                  {errors.linkedinUrl && (
-                    <p className="text-sm text-red-600">{errors.linkedinUrl}</p>
-                  )}
+        {/* Section 2: Links — collapsible */}
+        <Card>
+          <CardHeader className="pb-3">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-base">{t('links.title')}</CardTitle>
+              <Button type="button" variant="ghost" size="sm" onClick={() => toggle('links')}>
+                {expanded.links ? t('save') : linkCount > 0
+                  ? `${linkNames.join(', ')} — ${t('links.summary', { count: linkCount })}`
+                  : t('links.summary', { count: 0 })}
+              </Button>
+            </div>
+          </CardHeader>
+          {expanded.links && (
+            <CardContent className="space-y-4">
+              <div className="space-y-1.5">
+                <Label htmlFor="linkedinUrl">{t('links.linkedin')}</Label>
+                <Input id="linkedinUrl" placeholder="https://linkedin.com/in/..."
+                  value={formData.linkedinUrl} onChange={e => set('linkedinUrl', e.target.value)} />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="githubUrl">{t('links.github')}</Label>
+                <Input id="githubUrl" placeholder="https://github.com/..."
+                  value={formData.githubUrl} onChange={e => set('githubUrl', e.target.value)} />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="portfolioUrl">{t('links.portfolio')}</Label>
+                <Input id="portfolioUrl" placeholder="https://..."
+                  value={formData.portfolioUrl} onChange={e => set('portfolioUrl', e.target.value)} />
+              </div>
+            </CardContent>
+          )}
+        </Card>
+
+        {/* Section 3: Details — collapsible */}
+        <Card>
+          <CardHeader className="pb-3">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-base">{t('details.title')}</CardTitle>
+              <Button type="button" variant="ghost" size="sm" onClick={() => toggle('details')}>
+                {expanded.details ? t('save') : detailSummary.length > 0
+                  ? detailSummary.join(' / ')
+                  : t('details.title')}
+              </Button>
+            </div>
+          </CardHeader>
+          {expanded.details && (
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <Label htmlFor="graduationYear">{t('details.graduationYear')}</Label>
+                  <Select value={formData.graduationYear}
+                    onValueChange={v => set('graduationYear', v)}>
+                    <SelectTrigger id="graduationYear"><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      {years.map(y => <SelectItem key={y} value={y}>{y}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
                 </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="githubUrl">GitHub Profile</Label>
-                  <div className="relative">
-                    <Github className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                    <Input
-                      id="githubUrl"
-                      placeholder="https://github.com/yourusername"
-                      value={formData.githubUrl}
-                      onChange={(e) => handleInputChange('githubUrl', e.target.value)}
-                      className={`pl-10 ${errors.githubUrl ? 'border-red-500' : ''}`}
-                    />
-                  </div>
-                  {errors.githubUrl && (
-                    <p className="text-sm text-red-600">{errors.githubUrl}</p>
-                  )}
+                <div className="space-y-1.5">
+                  <Label htmlFor="location">{t('details.location')}</Label>
+                  <Input id="location" value={formData.location}
+                    onChange={e => set('location', e.target.value)} />
                 </div>
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="languages">{t('details.languages')}</Label>
+                <Input id="languages" placeholder="English, Italian"
+                  value={formData.languages} onChange={e => set('languages', e.target.value)} />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="availableFor">{t('details.availability')}</Label>
+                <Select value={formData.availableFor}
+                  onValueChange={v => set('availableFor', v)}>
+                  <SelectTrigger id="availableFor"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="BOTH">{t('details.availabilityOptions.jobs')}</SelectItem>
+                    <SelectItem value="HIRING">{t('details.availabilityOptions.internships')}</SelectItem>
+                    <SelectItem value="PROJECTS">{t('details.availabilityOptions.freelance')}</SelectItem>
+                    <SelectItem value="NONE">{t('details.availabilityOptions.notLooking')}</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </CardContent>
+          )}
+        </Card>
 
-                <div className="space-y-2">
-                  <Label htmlFor="portfolioUrl">Portfolio Website</Label>
-                  <div className="relative">
-                    <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                    <Input
-                      id="portfolioUrl"
-                      placeholder="https://yourportfolio.com"
-                      value={formData.portfolioUrl}
-                      onChange={(e) => handleInputChange('portfolioUrl', e.target.value)}
-                      className={`pl-10 ${errors.portfolioUrl ? 'border-red-500' : ''}`}
-                    />
-                  </div>
-                  {errors.portfolioUrl && (
-                    <p className="text-sm text-red-600">{errors.portfolioUrl}</p>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
-
-        {/* Submit Button */}
-        <div className="flex justify-end gap-4 mt-8">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => router.back()}
-            disabled={isLoading}
-          >
-            Cancel
+        {/* Actions */}
+        <div className="flex justify-between pt-2">
+          <Button type="button" variant="ghost" asChild>
+            <Link href="/dashboard/student/profile">{t('back')}</Link>
           </Button>
-          <Button type="submit" disabled={isLoading}>
-            {isLoading ? (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                Saving...
-              </>
-            ) : (
-              <>
-                <Save className="mr-2 h-4 w-4" />
-                Save Changes
-              </>
-            )}
+          <Button type="submit" disabled={saveState === 'saving'}>
+            {saveState === 'saving' && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {saveState === 'idle' && t('save')}
+            {saveState === 'saving' && t('saving')}
+            {saveState === 'saved' && t('saved')}
           </Button>
         </div>
       </form>
