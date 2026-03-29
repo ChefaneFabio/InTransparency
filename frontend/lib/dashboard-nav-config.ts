@@ -86,9 +86,12 @@ const recruiter: NavConfig = {
     {
       labelKey: 'hiring',
       items: [
+        { labelKey: 'pipeline', href: '/dashboard/recruiter/pipeline' },
         { labelKey: 'decisionPacks', href: '/dashboard/recruiter/decision-pack' },
         { labelKey: 'compareCandidates', href: '/dashboard/recruiter/compare' },
         { labelKey: 'contractTransparency', href: '/dashboard/recruiter/contract-transparency' },
+        { labelKey: 'team', href: '/dashboard/recruiter/team' },
+        { labelKey: 'scheduling', href: '/dashboard/recruiter/scheduling' },
       ],
     },
     {
@@ -102,6 +105,8 @@ const recruiter: NavConfig = {
       items: [
         { labelKey: 'challenges', href: '/dashboard/recruiter/challenges' },
         { labelKey: 'hiringOutcomes', href: '/dashboard/recruiter/hiring-outcomes' },
+        { labelKey: 'outreach', href: '/dashboard/recruiter/outreach' },
+        { labelKey: 'careerPage', href: '/dashboard/recruiter/career-page' },
         { labelKey: 'settings', href: '/dashboard/recruiter/settings' },
       ],
     },

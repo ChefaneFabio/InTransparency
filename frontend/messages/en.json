@@ -102,7 +102,12 @@
         "hiringOutcomes": "Hiring Outcomes",
         "challenges": "Challenges",
         "settings": "Settings",
-        "contractTransparency": "Contract Transparency"
+        "contractTransparency": "Contract Transparency",
+        "team": "Team",
+        "pipeline": "Pipeline",
+        "scheduling": "Scheduling",
+        "outreach": "Outreach",
+        "careerPage": "Career Page"
       },
       "search": "Search"
     },
@@ -8804,6 +8809,152 @@
     "comingSoon": {
       "title": "Coming soon",
       "description": "Data will become available as students and companies confirm placements on the platform. In pilot data you'll see the first trends."
+    }
+  },
+  "recruiterTeam": {
+    "title": "Team Collaboration",
+    "subtitle": "Review candidates together with your hiring team",
+    "members": {
+      "title": "Team Members",
+      "you": "You",
+      "admin": "Admin",
+      "invite": "Invite Team Member",
+      "inviteDesc": "Coming soon — invite colleagues to collaborate on candidate evaluations"
+    },
+    "evaluations": {
+      "title": "Recent Evaluations",
+      "empty": "No team evaluations yet",
+      "emptyDesc": "Start by reviewing candidates from your saved list. Your notes will appear here for your team to see."
+    },
+    "sharedPacks": {
+      "title": "Shared Decision Packs",
+      "empty": "No shared Decision Packs",
+      "emptyDesc": "Share a Decision Pack with your team to get their input on a candidate.",
+      "viewPacks": "View Decision Packs"
+    },
+    "comingSoon": {
+      "title": "Coming soon",
+      "items": [
+        "Team scorecards with custom evaluation criteria",
+        "@mentions in candidate notes to notify colleagues",
+        "Role-based access: hiring manager, recruiter, interviewer",
+        "Slack and Teams notifications on new evaluations"
+      ]
+    }
+  },
+  "recruiterPipeline": {
+    "title": "Candidate Pipeline",
+    "subtitle": "Track candidates through your hiring process",
+    "stages": {
+      "discovered": "Discovered",
+      "contacted": "Contacted",
+      "interviewing": "Interviewing",
+      "offered": "Offered",
+      "hired": "Hired"
+    },
+    "empty": "No candidates in this stage",
+    "emptyPipeline": "Your pipeline is empty",
+    "emptyPipelineDesc": "Save candidates from search to start tracking them through your hiring process.",
+    "startSearching": "Search Candidates",
+    "moveTo": "Move to",
+    "loading": "Loading pipeline...",
+    "error": "Failed to load pipeline"
+  },
+  "recruiterScheduling": {
+    "title": "Interview Scheduling",
+    "subtitle": "Manage your availability and upcoming interviews",
+    "availability": {
+      "title": "Your Availability",
+      "description": "Set when you're available for interviews",
+      "morning": "Morning",
+      "afternoon": "Afternoon",
+      "evening": "Evening",
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri"
+    },
+    "upcoming": {
+      "title": "Upcoming Interviews",
+      "empty": "No interviews scheduled",
+      "emptyDesc": "When candidates book interview slots, they'll appear here."
+    },
+    "comingSoon": {
+      "title": "Coming soon",
+      "items": [
+        "AI-suggested optimal interview times based on candidate timezone",
+        "Google Calendar and Outlook sync",
+        "Automatic email reminders 24h before",
+        "Candidate self-booking from your availability"
+      ]
+    }
+  },
+  "recruiterOutreach": {
+    "title": "Outreach Sequences",
+    "subtitle": "Automate your candidate communication",
+    "sequences": {
+      "title": "Active Sequences",
+      "empty": "No active sequences",
+      "emptyDesc": "Create your first outreach sequence to start engaging candidates automatically."
+    },
+    "create": {
+      "title": "Create Sequence",
+      "name": "Sequence Name",
+      "namePlaceholder": "e.g. Junior Developer Outreach",
+      "steps": "Steps",
+      "addStep": "Add Step",
+      "stepTypes": {
+        "intro": "Introduction",
+        "followUp": "Follow-up",
+        "final": "Final Reminder"
+      },
+      "delay": "Wait days",
+      "save": "Save Sequence"
+    },
+    "comingSoon": {
+      "title": "Coming soon",
+      "items": [
+        "A/B testing for subject lines and message content",
+        "Response tracking and analytics per sequence",
+        "Auto-pause sequence when candidate replies",
+        "Integration with platform messaging"
+      ]
+    }
+  },
+  "recruiterCareerPage": {
+    "title": "Career Page",
+    "subtitle": "Create an embeddable career page for your company",
+    "preview": {
+      "title": "Your Career Page",
+      "url": "your-company.intransparency.it/careers",
+      "embedCode": "Embed Code",
+      "copy": "Copy",
+      "copied": "Copied!"
+    },
+    "customize": {
+      "title": "Customize",
+      "description": "Company Description",
+      "descriptionPlaceholder": "Tell candidates about your company culture...",
+      "color": "Brand Color",
+      "colorPlaceholder": "#3B82F6",
+      "logo": "Company Logo",
+      "logoPlaceholder": "Upload your logo (coming soon)"
+    },
+    "listings": {
+      "title": "Active Listings",
+      "empty": "No active job listings",
+      "emptyDesc": "Post jobs to have them appear on your career page.",
+      "postJob": "Post a Job"
+    },
+    "comingSoon": {
+      "title": "Coming soon",
+      "items": [
+        "Custom domain (careers.yourcompany.com)",
+        "Visitor analytics and conversion tracking",
+        "Application tracking from career page",
+        "SEO optimization for job listings"
+      ]
     }
   }
 }

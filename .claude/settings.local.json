@@ -250,7 +250,8 @@
       "Bash(grep -o \"t\\(''''[^'''']*''''\\)\" /mnt/c/Users/chefa/InTransparency/frontend/app/[locale]/blog/page.tsx)",
       "Bash(/tmp/comprehensive_sweep_report.txt:*)",
       "Bash(grep -r \"from ''''lucide-react''''\" app/ components/ --include=\"*.tsx\")",
-      "Bash(cd /mnt/c/Users/chefa/InTransparency/frontend echo \"=== for-students hero ===\" grep -A5 \"section.*hero\\\\|Hero Section\\\\|{/\\\\* Hero\" app/[locale]/for-students/page.tsx)"
+      "Bash(cd /mnt/c/Users/chefa/InTransparency/frontend echo \"=== for-students hero ===\" grep -A5 \"section.*hero\\\\|Hero Section\\\\|{/\\\\* Hero\" app/[locale]/for-students/page.tsx)",
+      "WebFetch(domain:www.ashbyhq.com)"
     ],
     "defaultMode": "acceptEdits"
   }

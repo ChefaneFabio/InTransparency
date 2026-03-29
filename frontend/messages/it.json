@@ -102,7 +102,12 @@
         "hiringOutcomes": "Esiti Assunzione",
         "challenges": "Sfide",
         "settings": "Impostazioni",
-        "contractTransparency": "Trasparenza Contratti"
+        "contractTransparency": "Trasparenza Contratti",
+        "team": "Team",
+        "pipeline": "Pipeline",
+        "scheduling": "Colloqui",
+        "outreach": "Outreach",
+        "careerPage": "Pagina Carriere"
       },
       "search": "Ricerca"
     },
@@ -8831,6 +8836,152 @@
     "comingSoon": {
       "title": "In arrivo",
       "description": "I dati saranno disponibili man mano che studenti e aziende confermano i placement sulla piattaforma. Nei dati pilota vedrai le prime tendenze."
+    }
+  },
+  "recruiterTeam": {
+    "title": "Collaborazione Team",
+    "subtitle": "Valuta i candidati insieme al tuo team di assunzione",
+    "members": {
+      "title": "Membri del Team",
+      "you": "Tu",
+      "admin": "Admin",
+      "invite": "Invita Membro del Team",
+      "inviteDesc": "In arrivo — invita colleghi a collaborare sulle valutazioni dei candidati"
+    },
+    "evaluations": {
+      "title": "Valutazioni Recenti",
+      "empty": "Nessuna valutazione del team",
+      "emptyDesc": "Inizia valutando i candidati dalla tua lista salvati. Le tue note appariranno qui per il tuo team."
+    },
+    "sharedPacks": {
+      "title": "Decision Pack Condivisi",
+      "empty": "Nessun Decision Pack condiviso",
+      "emptyDesc": "Condividi un Decision Pack con il tuo team per ottenere il loro input su un candidato.",
+      "viewPacks": "Vedi Decision Pack"
+    },
+    "comingSoon": {
+      "title": "In arrivo",
+      "items": [
+        "Schede di valutazione team con criteri personalizzati",
+        "@menzioni nelle note candidati per notificare colleghi",
+        "Accesso basato su ruolo: hiring manager, recruiter, interviewer",
+        "Notifiche Slack e Teams sulle nuove valutazioni"
+      ]
+    }
+  },
+  "recruiterPipeline": {
+    "title": "Pipeline Candidati",
+    "subtitle": "Monitora i candidati nel tuo processo di assunzione",
+    "stages": {
+      "discovered": "Scoperti",
+      "contacted": "Contattati",
+      "interviewing": "In Colloquio",
+      "offered": "Offerta",
+      "hired": "Assunti"
+    },
+    "empty": "Nessun candidato in questa fase",
+    "emptyPipeline": "La tua pipeline è vuota",
+    "emptyPipelineDesc": "Salva candidati dalla ricerca per iniziare a monitorarli nel processo di assunzione.",
+    "startSearching": "Cerca Candidati",
+    "moveTo": "Sposta a",
+    "loading": "Caricamento pipeline...",
+    "error": "Impossibile caricare la pipeline"
+  },
+  "recruiterScheduling": {
+    "title": "Pianificazione Colloqui",
+    "subtitle": "Gestisci la tua disponibilità e i colloqui in programma",
+    "availability": {
+      "title": "La Tua Disponibilità",
+      "description": "Imposta quando sei disponibile per i colloqui",
+      "morning": "Mattina",
+      "afternoon": "Pomeriggio",
+      "evening": "Sera",
+      "mon": "Lun",
+      "tue": "Mar",
+      "wed": "Mer",
+      "thu": "Gio",
+      "fri": "Ven"
+    },
+    "upcoming": {
+      "title": "Colloqui in Programma",
+      "empty": "Nessun colloquio pianificato",
+      "emptyDesc": "Quando i candidati prenotano slot per colloqui, appariranno qui."
+    },
+    "comingSoon": {
+      "title": "In arrivo",
+      "items": [
+        "Orari ottimali suggeriti dall'AI in base al fuso orario del candidato",
+        "Sincronizzazione Google Calendar e Outlook",
+        "Promemoria email automatici 24h prima",
+        "Auto-prenotazione candidati dalla tua disponibilità"
+      ]
+    }
+  },
+  "recruiterOutreach": {
+    "title": "Sequenze Outreach",
+    "subtitle": "Automatizza la comunicazione con i candidati",
+    "sequences": {
+      "title": "Sequenze Attive",
+      "empty": "Nessuna sequenza attiva",
+      "emptyDesc": "Crea la tua prima sequenza outreach per iniziare a coinvolgere i candidati automaticamente."
+    },
+    "create": {
+      "title": "Crea Sequenza",
+      "name": "Nome Sequenza",
+      "namePlaceholder": "es. Outreach Junior Developer",
+      "steps": "Passaggi",
+      "addStep": "Aggiungi Passaggio",
+      "stepTypes": {
+        "intro": "Introduzione",
+        "followUp": "Follow-up",
+        "final": "Promemoria Finale"
+      },
+      "delay": "Giorni di attesa",
+      "save": "Salva Sequenza"
+    },
+    "comingSoon": {
+      "title": "In arrivo",
+      "items": [
+        "A/B testing per oggetti e contenuto dei messaggi",
+        "Tracking risposte e analytics per sequenza",
+        "Auto-pausa sequenza quando il candidato risponde",
+        "Integrazione con la messaggistica della piattaforma"
+      ]
+    }
+  },
+  "recruiterCareerPage": {
+    "title": "Pagina Carriere",
+    "subtitle": "Crea una pagina carriere incorporabile per la tua azienda",
+    "preview": {
+      "title": "La Tua Pagina Carriere",
+      "url": "tua-azienda.intransparency.it/careers",
+      "embedCode": "Codice Embed",
+      "copy": "Copia",
+      "copied": "Copiato!"
+    },
+    "customize": {
+      "title": "Personalizza",
+      "description": "Descrizione Azienda",
+      "descriptionPlaceholder": "Racconta ai candidati la cultura della tua azienda...",
+      "color": "Colore Brand",
+      "colorPlaceholder": "#3B82F6",
+      "logo": "Logo Azienda",
+      "logoPlaceholder": "Carica il tuo logo (in arrivo)"
+    },
+    "listings": {
+      "title": "Posizioni Attive",
+      "empty": "Nessuna posizione attiva",
+      "emptyDesc": "Pubblica posizioni per farle apparire sulla tua pagina carriere.",
+      "postJob": "Pubblica Posizione"
+    },
+    "comingSoon": {
+      "title": "In arrivo",
+      "items": [
+        "Dominio personalizzato (careers.tuaazienda.com)",
+        "Analytics visitatori e tracking conversioni",
+        "Tracking candidature dalla pagina carriere",
+        "Ottimizzazione SEO per le posizioni"
+      ]
     }
   }
 }
