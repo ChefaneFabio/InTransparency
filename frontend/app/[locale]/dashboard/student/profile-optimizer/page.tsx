@@ -117,7 +117,7 @@ export default function ProfileOptimizerPage() {
         <Card className="max-w-md">
           <CardContent className="pt-6 text-center">
             <AlertTriangle className="h-12 w-12 text-primary mx-auto mb-4" />
-            <p className="text-gray-600">{error || 'Failed to load profile data'}</p>
+            <p className="text-muted-foreground">{error || 'Failed to load profile data'}</p>
             <Button className="mt-4" onClick={() => window.location.reload()}>
               Try Again
             </Button>
@@ -174,8 +174,8 @@ export default function ProfileOptimizerPage() {
   return (
     <div className="min-h-screen bg-background space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Profile Optimizer</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold text-foreground">Profile Optimizer</h1>
+        <p className="text-muted-foreground mt-2">
           Enhance your profile visibility and maximize your career opportunities
         </p>
       </div>
@@ -185,14 +185,14 @@ export default function ProfileOptimizerPage() {
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">Profile Score</h2>
-              <p className="text-gray-600">Based on your profile completeness and engagement</p>
+              <h2 className="text-2xl font-bold text-foreground">Profile Score</h2>
+              <p className="text-muted-foreground">Based on your profile completeness and engagement</p>
             </div>
             <div className="text-center">
               <div className={`text-4xl font-bold ${getScoreColor(profileCompletion)} mb-2`}>
                 {profileCompletion}
               </div>
-              <div className="text-sm text-gray-600">Overall Score</div>
+              <div className="text-sm text-muted-foreground">Overall Score</div>
             </div>
           </div>
 
@@ -205,7 +205,7 @@ export default function ProfileOptimizerPage() {
             ].map((item) => (
               <div key={item.label} className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-700">{item.label}</span>
+                  <span className="text-sm font-medium text-foreground/80">{item.label}</span>
                   <span className={`text-sm font-bold ${getScoreColor(item.value)}`}>
                     {item.value}%
                   </span>
@@ -223,24 +223,24 @@ export default function ProfileOptimizerPage() {
           <Card key={index}>
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-medium text-gray-600">{insight.metric}</p>
+                <p className="text-sm font-medium text-muted-foreground">{insight.metric}</p>
                 <TrendingUp className="h-4 w-4 text-primary" />
               </div>
-              <p className="text-2xl font-bold text-gray-900 mb-1">{insight.value}</p>
-              <p className="text-sm text-gray-500">{insight.subtitle}</p>
+              <p className="text-2xl font-bold text-foreground mb-1">{insight.value}</p>
+              <p className="text-sm text-muted-foreground">{insight.subtitle}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
       {/* Tab Navigation */}
-      <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg w-fit">
+      <div className="flex space-x-1 bg-muted p-1 rounded-lg w-fit">
         <button
           onClick={() => setActiveTab('overview')}
           className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
             activeTab === 'overview'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
+              ? 'bg-white text-foreground shadow-sm'
+              : 'text-muted-foreground hover:text-foreground'
           }`}
         >
           <BarChart3 className="h-4 w-4 mr-2 inline" />
@@ -250,8 +250,8 @@ export default function ProfileOptimizerPage() {
           onClick={() => setActiveTab('suggestions')}
           className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
             activeTab === 'suggestions'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
+              ? 'bg-white text-foreground shadow-sm'
+              : 'text-muted-foreground hover:text-foreground'
           }`}
         >
           <Lightbulb className="h-4 w-4 mr-2 inline" />
@@ -261,8 +261,8 @@ export default function ProfileOptimizerPage() {
           onClick={() => setActiveTab('cv-generator')}
           className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
             activeTab === 'cv-generator'
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'text-gray-600 hover:text-gray-900'
+              ? 'bg-white text-foreground shadow-sm'
+              : 'text-muted-foreground hover:text-foreground'
           }`}
         >
           <FileText className="h-4 w-4 mr-2 inline" />
@@ -282,15 +282,15 @@ export default function ProfileOptimizerPage() {
             </CardHeader>
             <CardContent>
               {strengths.length === 0 ? (
-                <p className="text-gray-500 text-sm">Complete your profile to see your strengths here.</p>
+                <p className="text-muted-foreground text-sm">Complete your profile to see your strengths here.</p>
               ) : (
                 <div className="space-y-4">
                   {strengths.map((label) => (
                     <div key={label} className="flex items-start">
                       <CheckCircle className="h-5 w-5 text-primary mr-3 mt-0.5" />
                       <div>
-                        <p className="font-medium text-gray-900">{label}</p>
-                        <p className="text-sm text-gray-600">Completed</p>
+                        <p className="font-medium text-foreground">{label}</p>
+                        <p className="text-sm text-muted-foreground">Completed</p>
                       </div>
                     </div>
                   ))}
@@ -298,8 +298,8 @@ export default function ProfileOptimizerPage() {
                     <div className="flex items-start">
                       <CheckCircle className="h-5 w-5 text-primary mr-3 mt-0.5" />
                       <div>
-                        <p className="font-medium text-gray-900">Technical Skills ({skills.length})</p>
-                        <p className="text-sm text-gray-600">
+                        <p className="font-medium text-foreground">Technical Skills ({skills.length})</p>
+                        <p className="text-sm text-muted-foreground">
                           Top: {skills.slice(0, 3).map((s) => s.name).join(', ')}
                         </p>
                       </div>
@@ -322,8 +322,8 @@ export default function ProfileOptimizerPage() {
               {suggestions.length === 0 ? (
                 <div className="text-center py-4">
                   <CheckCircle className="h-12 w-12 text-primary mx-auto mb-3" />
-                  <p className="font-medium text-gray-900">Profile is complete!</p>
-                  <p className="text-sm text-gray-600">Great job! Your profile has all key fields filled in.</p>
+                  <p className="font-medium text-foreground">Profile is complete!</p>
+                  <p className="text-sm text-muted-foreground">Great job! Your profile has all key fields filled in.</p>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -337,8 +337,8 @@ export default function ProfileOptimizerPage() {
                         }`}>{idx + 1}</span>
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">{suggestion.label}</p>
-                        <p className="text-sm text-gray-600">{suggestion.suggestion}</p>
+                        <p className="font-medium text-foreground">{suggestion.label}</p>
+                        <p className="text-sm text-muted-foreground">{suggestion.suggestion}</p>
                       </div>
                     </div>
                   ))}
@@ -366,29 +366,29 @@ export default function ProfileOptimizerPage() {
             {suggestions.length === 0 ? (
               <div className="text-center py-12">
                 <CheckCircle className="h-16 w-16 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">All Done!</h3>
-                <p className="text-gray-600">Your profile is fully optimized. Keep your projects and skills up to date!</p>
+                <h3 className="text-xl font-semibold text-foreground mb-2">All Done!</h3>
+                <p className="text-muted-foreground">Your profile is fully optimized. Keep your projects and skills up to date!</p>
               </div>
             ) : (
               <div className="space-y-6">
                 {suggestions.map((suggestion) => (
-                  <div key={suggestion.field} className="p-6 rounded-lg border-2 border-gray-200 bg-white">
+                  <div key={suggestion.field} className="p-6 rounded-lg border-2 border-border bg-white">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center space-x-3 mb-3">
                           <Badge className={
                             suggestion.priority === 'high' ? 'bg-red-100 text-red-800' :
-                            suggestion.priority === 'medium' ? 'bg-yellow-400 text-gray-900' :
+                            suggestion.priority === 'medium' ? 'bg-yellow-400 text-foreground' :
                             'bg-primary/10 text-primary'
                           }>
                             {suggestion.priority.toUpperCase()}
                           </Badge>
-                          <span className="text-sm font-medium text-gray-700">
+                          <span className="text-sm font-medium text-foreground/80">
                             +{suggestion.impact} impact score
                           </span>
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">{suggestion.label}</h3>
-                        <p className="text-sm text-gray-600">{suggestion.suggestion}</p>
+                        <h3 className="text-lg font-semibold text-foreground mb-2">{suggestion.label}</h3>
+                        <p className="text-sm text-muted-foreground">{suggestion.suggestion}</p>
                       </div>
                       <div className="ml-6">
                         <Button>
@@ -413,7 +413,7 @@ export default function ProfileOptimizerPage() {
                 <Brain className="h-5 w-5 mr-2" />
                 AI-Powered CV Generator
               </CardTitle>
-              <p className="text-gray-600 mt-2">
+              <p className="text-muted-foreground mt-2">
                 Generate tailored CVs for different job types using your profile data and AI optimization
               </p>
             </CardHeader>
@@ -434,23 +434,23 @@ export default function ProfileOptimizerPage() {
                 {cvTemplates.map((template) => (
                   <Card key={template.id} className="hover:shadow-lg transition-shadow">
                     <CardContent className="p-6">
-                      <div className="aspect-[3/4] bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
-                        <FileText className="h-12 w-12 text-gray-600" />
+                      <div className="aspect-[3/4] bg-muted rounded-lg mb-4 flex items-center justify-center">
+                        <FileText className="h-12 w-12 text-muted-foreground" />
                       </div>
 
-                      <h3 className="font-semibold text-gray-900 mb-2">{template.name}</h3>
-                      <p className="text-sm text-gray-600 mb-3">{template.description}</p>
+                      <h3 className="font-semibold text-foreground mb-2">{template.name}</h3>
+                      <p className="text-sm text-muted-foreground mb-3">{template.description}</p>
 
                       <div className="space-y-2 mb-4">
                         <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-700">Popularity</span>
-                          <span className="text-sm font-medium text-gray-900">{template.popularity}%</span>
+                          <span className="text-sm text-foreground/80">Popularity</span>
+                          <span className="text-sm font-medium text-foreground">{template.popularity}%</span>
                         </div>
                         <Progress value={template.popularity} className="h-1" />
                       </div>
 
                       <div className="space-y-2 mb-4">
-                        <p className="text-sm font-medium text-gray-700">Best for:</p>
+                        <p className="text-sm font-medium text-foreground/80">Best for:</p>
                         <div className="flex flex-wrap gap-1">
                           {template.matchTypes.map((type, i) => (
                             <Badge key={i} variant="outline" className="text-xs">
@@ -474,13 +474,13 @@ export default function ProfileOptimizerPage() {
                 ))}
               </div>
 
-              <div className="text-center mt-8 pt-8 border-t border-gray-200">
+              <div className="text-center mt-8 pt-8 border-t border-border">
                 <Button size="lg" disabled>
                   <Zap className="h-4 w-4 mr-2" />
                   Generate Custom CV
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-sm text-muted-foreground mt-2">
                   Coming Soon — AI-powered CV generation based on your profile data
                 </p>
               </div>

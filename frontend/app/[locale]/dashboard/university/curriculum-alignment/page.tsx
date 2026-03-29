@@ -156,8 +156,8 @@ export default function CurriculumAlignmentPage() {
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600 mt-1">{t('subtitle')}</p>
+          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+          <p className="text-muted-foreground mt-1">{t('subtitle')}</p>
         </div>
       </div>
 
@@ -168,7 +168,7 @@ export default function CurriculumAlignmentPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{data.overview.totalCourses}</p>
-                <p className="text-sm text-gray-600">{t('totalCourses')}</p>
+                <p className="text-sm text-muted-foreground">{t('totalCourses')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <BookOpen className="h-5 w-5 text-primary" />
@@ -184,7 +184,7 @@ export default function CurriculumAlignmentPage() {
                 <p className={`text-2xl font-bold ${getAlignmentTextColor(data.overview.avgAlignment)}`}>
                   {data.overview.avgAlignment}%
                 </p>
-                <p className="text-sm text-gray-600">{t('avgAlignment')}</p>
+                <p className="text-sm text-muted-foreground">{t('avgAlignment')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Target className="h-5 w-5 text-primary" />
@@ -198,7 +198,7 @@ export default function CurriculumAlignmentPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold text-amber-600">{data.overview.coursesNeedingAttention}</p>
-                <p className="text-sm text-gray-600">{t('needsAttention')}</p>
+                <p className="text-sm text-muted-foreground">{t('needsAttention')}</p>
               </div>
               <div className="p-2 bg-amber-100 rounded-lg">
                 <AlertTriangle className="h-5 w-5 text-amber-600" />
@@ -212,7 +212,7 @@ export default function CurriculumAlignmentPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{data.overview.totalStudents}</p>
-                <p className="text-sm text-gray-600">{t('totalStudents')}</p>
+                <p className="text-sm text-muted-foreground">{t('totalStudents')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Users className="h-5 w-5 text-primary" />
@@ -224,18 +224,18 @@ export default function CurriculumAlignmentPage() {
 
       {/* Courses List */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold text-gray-900">{t('coursesList')}</h2>
+        <h2 className="text-lg font-semibold text-foreground">{t('coursesList')}</h2>
         {sortedCourses.map((course) => (
           <Card key={course.id} className="hover:shadow-md transition-shadow">
             <CardContent className="pt-6">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-1">
-                    <h3 className="font-semibold text-gray-900">{course.name}</h3>
+                    <h3 className="font-semibold text-foreground">{course.name}</h3>
                     <Badge variant="secondary" className="text-xs">{course.code}</Badge>
                     <Badge variant="outline" className="text-xs">{course.discipline}</Badge>
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     {course.studentCount} {t('students')}
                   </p>
                 </div>
@@ -255,7 +255,7 @@ export default function CurriculumAlignmentPage() {
               {/* Skills taught */}
               {course.skillsTaught.length > 0 && (
                 <div className="mb-3">
-                  <p className="text-xs font-medium text-gray-500 uppercase mb-1.5">{t('skillsTaught')}</p>
+                  <p className="text-xs font-medium text-muted-foreground uppercase mb-1.5">{t('skillsTaught')}</p>
                   <div className="flex flex-wrap gap-1.5">
                     {course.skillsTaught.map((skill, idx) => (
                       <Badge key={idx} variant="secondary" className="text-xs">
@@ -270,7 +270,7 @@ export default function CurriculumAlignmentPage() {
               <div className="grid md:grid-cols-2 gap-4 mb-3">
                 {course.alignedSkills.length > 0 && (
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase mb-1.5 flex items-center gap-1">
+                    <p className="text-xs font-medium text-muted-foreground uppercase mb-1.5 flex items-center gap-1">
                       <CheckCircle2 className="h-3 w-3 text-green-500" />
                       {t('alignedSkills')}
                     </p>
@@ -285,7 +285,7 @@ export default function CurriculumAlignmentPage() {
                 )}
                 {course.missingSkills.length > 0 && (
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase mb-1.5 flex items-center gap-1">
+                    <p className="text-xs font-medium text-muted-foreground uppercase mb-1.5 flex items-center gap-1">
                       <XCircle className="h-3 w-3 text-red-500" />
                       {t('missingSkills')}
                     </p>
@@ -324,9 +324,9 @@ export default function CurriculumAlignmentPage() {
         {sortedCourses.length === 0 && (
           <Card>
             <CardContent className="pt-6 text-center py-12">
-              <BookOpen className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-              <h3 className="font-medium text-gray-900 mb-1">{t('noCourses')}</h3>
-              <p className="text-sm text-gray-600">{t('noCoursesDescription')}</p>
+              <BookOpen className="h-12 w-12 text-muted-foreground/40 mx-auto mb-3" />
+              <h3 className="font-medium text-foreground mb-1">{t('noCourses')}</h3>
+              <p className="text-sm text-muted-foreground">{t('noCoursesDescription')}</p>
             </CardContent>
           </Card>
         )}
@@ -348,10 +348,10 @@ export default function CurriculumAlignmentPage() {
                 const gapPercent = skill.demand > 0 ? Math.round((skill.supply / skill.demand) * 100) : 0
                 return (
                   <div key={idx} className="flex items-center gap-4">
-                    <div className="w-32 text-sm font-medium text-gray-900 truncate">{skill.name}</div>
+                    <div className="w-32 text-sm font-medium text-foreground truncate">{skill.name}</div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <div className="flex-1 bg-gray-100 rounded-full h-2 relative overflow-hidden">
+                        <div className="flex-1 bg-muted rounded-full h-2 relative overflow-hidden">
                           <div
                             className="absolute inset-y-0 left-0 bg-blue-400 rounded-full"
                             style={{ width: `${Math.min(100, gapPercent)}%` }}
@@ -361,7 +361,7 @@ export default function CurriculumAlignmentPage() {
                           {gapPercent}%
                         </span>
                       </div>
-                      <div className="flex justify-between text-xs text-gray-500">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span>{t('demand')}: {skill.demand}</span>
                         <span>{t('supply')}: {skill.supply}</span>
                       </div>

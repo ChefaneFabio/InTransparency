@@ -54,8 +54,8 @@ export default function StudentFeedbackPage() {
       <div className="p-8">
         <div className="max-w-6xl mx-auto">
           <div className="animate-pulse space-y-4">
-            <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-            <div className="h-64 bg-gray-200 rounded"></div>
+            <div className="h-8 bg-muted rounded w-1/3"></div>
+            <div className="h-64 bg-muted rounded"></div>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ export default function StudentFeedbackPage() {
             <MessageSquare className="h-8 w-8 text-primary" />
             <h1 className="text-3xl font-bold">Institutional Feedback</h1>
           </div>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             Learn from every interaction with verified career insights from companies
           </p>
         </div>
@@ -81,7 +81,7 @@ export default function StudentFeedbackPage() {
           <Card>
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-sm font-medium text-gray-600">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Total Feedback
                 </CardTitle>
                 <MessageSquare className="h-5 w-5 text-primary" />
@@ -89,7 +89,7 @@ export default function StudentFeedbackPage() {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-primary">{totalFeedback}</div>
-              <p className="text-xs text-gray-600 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 {totalFeedback === 0 ? 'Apply to jobs to receive feedback' : 'From interview experiences'}
               </p>
             </CardContent>
@@ -98,7 +98,7 @@ export default function StudentFeedbackPage() {
           <Card>
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-sm font-medium text-gray-600">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Skills Evaluated
                 </CardTitle>
                 <TrendingUp className="h-5 w-5 text-primary" />
@@ -106,7 +106,7 @@ export default function StudentFeedbackPage() {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-primary">{skillsEvaluated}</div>
-              <p className="text-xs text-gray-600 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 {skillsEvaluated === 0 ? 'No skills evaluated yet' : 'Verified through interviews'}
               </p>
             </CardContent>
@@ -115,7 +115,7 @@ export default function StudentFeedbackPage() {
           <Card>
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-sm font-medium text-gray-600">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Growth Opportunities
                 </CardTitle>
                 <Lightbulb className="h-5 w-5 text-primary" />
@@ -123,7 +123,7 @@ export default function StudentFeedbackPage() {
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-primary">{areasForGrowth}</div>
-              <p className="text-xs text-gray-600 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 {areasForGrowth === 0 ? 'No recommendations yet' : 'Actionable insights'}
               </p>
             </CardContent>
@@ -147,7 +147,7 @@ export default function StudentFeedbackPage() {
                   </Badge>
                 ))}
               </div>
-              <p className="text-sm text-gray-600 mt-4">
+              <p className="text-sm text-muted-foreground mt-4">
                 These skills were most frequently recognized by companies during your interviews
               </p>
             </CardContent>
@@ -164,21 +164,21 @@ export default function StudentFeedbackPage() {
                   <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs font-bold">1</span>
                   <strong>After Interviews</strong>
                 </div>
-                <p className="text-gray-600">Companies provide structured feedback on skills, performance, and growth areas</p>
+                <p className="text-muted-foreground">Companies provide structured feedback on skills, performance, and growth areas</p>
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs font-bold">2</span>
                   <strong>Shared Visibility</strong>
                 </div>
-                <p className="text-gray-600">You and your career center receive the feedback to help you improve professionally</p>
+                <p className="text-muted-foreground">You and your career center receive the feedback to help you improve professionally</p>
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs font-bold">3</span>
                   <strong>Continuous Growth</strong>
                 </div>
-                <p className="text-gray-600">Use insights to refine skills, update projects, and ace future interviews</p>
+                <p className="text-muted-foreground">Use insights to refine skills, update projects, and ace future interviews</p>
               </div>
             </div>
           </CardContent>

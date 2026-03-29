@@ -328,8 +328,8 @@ export default function EditProfilePage() {
           <ArrowLeft className="h-4 w-4" />
         </Button>
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Edit Profile</h1>
-          <p className="text-gray-600 mt-1">
+          <h1 className="text-3xl font-bold text-foreground">Edit Profile</h1>
+          <p className="text-muted-foreground mt-1">
             Update your information to help recruiters find you
           </p>
         </div>
@@ -379,7 +379,7 @@ export default function EditProfilePage() {
                 {/* Profile Image */}
                 <div className="flex items-start gap-6">
                   <div className="flex flex-col items-center space-y-4">
-                    <div className="w-32 h-32 rounded-full bg-gray-200 overflow-hidden flex items-center justify-center">
+                    <div className="w-32 h-32 rounded-full bg-muted overflow-hidden flex items-center justify-center">
                       {previewUrl ? (
                         <img
                           src={previewUrl}
@@ -387,7 +387,7 @@ export default function EditProfilePage() {
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <User className="h-16 w-16 text-gray-600" />
+                        <User className="h-16 w-16 text-muted-foreground" />
                       )}
                     </div>
                     <div className="text-center">
@@ -406,7 +406,7 @@ export default function EditProfilePage() {
                         onChange={handleImageChange}
                         className="hidden"
                       />
-                      <p className="text-xs text-gray-700 mt-2">
+                      <p className="text-xs text-foreground/80 mt-2">
                         Max 5MB, JPG or PNG
                       </p>
                     </div>
@@ -458,7 +458,7 @@ export default function EditProfilePage() {
                     <div className="space-y-2">
                       <Label htmlFor="location">Location</Label>
                       <div className="relative">
-                        <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
+                        <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                         <Input
                           id="location"
                           placeholder="e.g. Milano, Italy"
@@ -491,7 +491,7 @@ export default function EditProfilePage() {
                       <SelectItem value="PROJECTS">Available for projects only</SelectItem>
                     </SelectContent>
                   </Select>
-                  <p className="text-xs text-gray-700">
+                  <p className="text-xs text-foreground/80">
                     This helps recruiters understand your current availability
                   </p>
                 </div>
@@ -507,7 +507,7 @@ export default function EditProfilePage() {
                     rows={4}
                     maxLength={500}
                   />
-                  <p className={`text-xs text-right ${formData.bio.length > 480 ? 'text-red-500' : formData.bio.length > 400 ? 'text-amber-500' : 'text-gray-700'}`}>
+                  <p className={`text-xs text-right ${formData.bio.length > 480 ? 'text-red-500' : formData.bio.length > 400 ? 'text-amber-500' : 'text-foreground/80'}`}>
                     {formData.bio.length}/500 characters
                   </p>
                 </div>
@@ -619,7 +619,7 @@ export default function EditProfilePage() {
                 <div className="flex items-center justify-between pt-2 border-t">
                   <div className="space-y-0.5">
                     <Label htmlFor="gpaPublic">Show GPA on profile</Label>
-                    <p className="text-xs text-gray-700">When enabled, your GPA will be visible on your public profile</p>
+                    <p className="text-xs text-foreground/80">When enabled, your GPA will be visible on your public profile</p>
                   </div>
                   <Switch
                     id="gpaPublic"
@@ -725,7 +725,7 @@ export default function EditProfilePage() {
                               updated[index] = { ...updated[index], current: e.target.checked, endDate: e.target.checked ? '' : updated[index].endDate }
                               setFormData(prev => ({ ...prev, workExperience: updated }))
                             }}
-                            className="rounded border-gray-300"
+                            className="rounded border-border"
                           />
                           I currently work here
                         </label>
@@ -841,7 +841,7 @@ export default function EditProfilePage() {
                       </div>
                     )}
 
-                    <p className="text-xs text-gray-700">
+                    <p className="text-xs text-foreground/80">
                       {formData.skills.length}/20 skills added
                     </p>
                   </div>
@@ -917,7 +917,7 @@ export default function EditProfilePage() {
                       </div>
                     )}
 
-                    <p className="text-xs text-gray-700">
+                    <p className="text-xs text-foreground/80">
                       {formData.interests.length}/10 interests added
                     </p>
                   </div>
@@ -942,7 +942,7 @@ export default function EditProfilePage() {
                 <div className="space-y-2">
                   <Label htmlFor="linkedinUrl">LinkedIn Profile</Label>
                   <div className="relative">
-                    <Linkedin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
+                    <Linkedin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                     <Input
                       id="linkedinUrl"
                       placeholder="https://linkedin.com/in/yourname"
@@ -959,7 +959,7 @@ export default function EditProfilePage() {
                 <div className="space-y-2">
                   <Label htmlFor="githubUrl">GitHub Profile</Label>
                   <div className="relative">
-                    <Github className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
+                    <Github className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                     <Input
                       id="githubUrl"
                       placeholder="https://github.com/yourusername"
@@ -976,7 +976,7 @@ export default function EditProfilePage() {
                 <div className="space-y-2">
                   <Label htmlFor="portfolioUrl">Portfolio Website</Label>
                   <div className="relative">
-                    <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
+                    <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                     <Input
                       id="portfolioUrl"
                       placeholder="https://yourportfolio.com"

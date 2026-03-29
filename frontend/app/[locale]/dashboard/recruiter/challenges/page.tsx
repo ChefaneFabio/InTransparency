@@ -98,7 +98,7 @@ export default function RecruiterChallengesPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary mb-4" />
-          <p className="text-gray-500">{t('loading')}</p>
+          <p className="text-muted-foreground">{t('loading')}</p>
         </div>
       </div>
     )
@@ -109,8 +109,8 @@ export default function RecruiterChallengesPage() {
       {/* Header */}
       <div className="flex items-center justify-between pt-2">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600 mt-1">
+          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+          <p className="text-muted-foreground mt-1">
             {t('subtitle')}
           </p>
         </div>
@@ -129,7 +129,7 @@ export default function RecruiterChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.total}</p>
-                <p className="text-sm text-gray-600">{t('totalChallenges')}</p>
+                <p className="text-sm text-muted-foreground">{t('totalChallenges')}</p>
               </div>
               <Trophy className="h-8 w-8 text-primary" />
             </div>
@@ -140,7 +140,7 @@ export default function RecruiterChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.active}</p>
-                <p className="text-sm text-gray-600">{t('active')}</p>
+                <p className="text-sm text-muted-foreground">{t('active')}</p>
               </div>
               <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
                 <div className="h-3 w-3 rounded-full bg-primary/50" />
@@ -153,7 +153,7 @@ export default function RecruiterChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.totalSubmissions}</p>
-                <p className="text-sm text-gray-600">{t('totalSubmissions')}</p>
+                <p className="text-sm text-muted-foreground">{t('totalSubmissions')}</p>
               </div>
               <FileText className="h-5 w-5" />
             </div>
@@ -164,7 +164,7 @@ export default function RecruiterChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.totalApprovals}</p>
-                <p className="text-sm text-gray-600">{t('universityApprovals')}</p>
+                <p className="text-sm text-muted-foreground">{t('universityApprovals')}</p>
               </div>
               <GraduationCap className="h-5 w-5" />
             </div>
@@ -177,7 +177,7 @@ export default function RecruiterChallengesPage() {
         <CardContent className="pt-6">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground/60" />
               <Input
                 placeholder={t('searchPlaceholder')}
                 value={searchTerm}

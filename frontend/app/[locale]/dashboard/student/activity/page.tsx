@@ -85,7 +85,7 @@ export default function StudentActivityPage() {
       case 'profile_view': return 'text-primary bg-primary/10'
       case 'message_received': return 'text-primary bg-primary/10'
       case 'application_status': return 'text-primary bg-primary/10'
-      default: return 'text-gray-600 bg-gray-100'
+      default: return 'text-muted-foreground bg-muted'
     }
   }
 
@@ -106,10 +106,10 @@ export default function StudentActivityPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+      <div className="min-h-screen space-y-6 space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Activity Feed</h1>
-          <p className="text-gray-600 mt-2">Stay updated with all interactions</p>
+          <h1 className="text-3xl font-bold text-foreground">Activity Feed</h1>
+          <p className="text-muted-foreground mt-2">Stay updated with all interactions</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {Array.from({ length: 3 }).map((_, i) => (
@@ -140,9 +140,9 @@ export default function StudentActivityPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+      <div className="min-h-screen space-y-6 space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Activity Feed</h1>
+          <h1 className="text-3xl font-bold text-foreground">Activity Feed</h1>
         </div>
         <Card>
           <CardContent className="p-12 text-center">
@@ -156,10 +156,10 @@ export default function StudentActivityPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+    <div className="min-h-screen space-y-6 space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Activity Feed</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold text-foreground">Activity Feed</h1>
+        <p className="text-muted-foreground mt-2">
           Stay updated with all interactions and activities related to your profile
         </p>
       </div>
@@ -173,12 +173,12 @@ export default function StudentActivityPage() {
                 <Eye className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Profile Views</p>
-                <p className="text-2xl font-bold text-gray-900">{summary.profileViews}</p>
+                <p className="text-sm font-medium text-muted-foreground">Profile Views</p>
+                <p className="text-2xl font-bold text-foreground">{summary.profileViews}</p>
               </div>
             </div>
             <div className="mt-2">
-              <span className="text-sm text-gray-500">Last 30 days</span>
+              <span className="text-sm text-muted-foreground">Last 30 days</span>
             </div>
           </CardContent>
         </Card>
@@ -190,12 +190,12 @@ export default function StudentActivityPage() {
                 <MessageSquare className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Messages Received</p>
-                <p className="text-2xl font-bold text-gray-900">{summary.messagesReceived}</p>
+                <p className="text-sm font-medium text-muted-foreground">Messages Received</p>
+                <p className="text-2xl font-bold text-foreground">{summary.messagesReceived}</p>
               </div>
             </div>
             <div className="mt-2">
-              <span className="text-sm text-gray-500">Last 30 days</span>
+              <span className="text-sm text-muted-foreground">Last 30 days</span>
             </div>
           </CardContent>
         </Card>
@@ -207,12 +207,12 @@ export default function StudentActivityPage() {
                 <FileText className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Application Updates</p>
-                <p className="text-2xl font-bold text-gray-900">{summary.applicationUpdates}</p>
+                <p className="text-sm font-medium text-muted-foreground">Application Updates</p>
+                <p className="text-2xl font-bold text-foreground">{summary.applicationUpdates}</p>
               </div>
             </div>
             <div className="mt-2">
-              <span className="text-sm text-gray-500">Last 30 days</span>
+              <span className="text-sm text-muted-foreground">Last 30 days</span>
             </div>
           </CardContent>
         </Card>
@@ -236,7 +236,7 @@ export default function StudentActivityPage() {
                 className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
                   filter === option.value
                     ? 'bg-primary/10 text-blue-700 font-medium'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    : 'bg-muted text-muted-foreground hover:bg-muted'
                 }`}
               >
                 {option.label} ({option.count})
@@ -256,8 +256,8 @@ export default function StudentActivityPage() {
                   className={`flex items-start space-x-4 p-4 rounded-lg border transition-colors ${
                     activity.metadata.read === false
                       ? 'bg-primary/5 border-primary/20'
-                      : 'bg-white border-gray-200'
-                  } hover:bg-gray-50`}
+                      : 'bg-white border-border'
+                  } hover:bg-muted/50`}
                 >
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center ${colorClass}`}>
                     <Icon className="h-5 w-5" />
@@ -265,22 +265,22 @@ export default function StudentActivityPage() {
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-medium text-gray-900">{activity.title}</h3>
+                      <h3 className="font-medium text-foreground">{activity.title}</h3>
                       <div className="flex items-center space-x-2">
                         {activity.metadata.read === false && (
                           <Badge className="bg-primary/10 text-blue-800">New</Badge>
                         )}
-                        <span className="text-sm text-gray-700 flex items-center">
+                        <span className="text-sm text-foreground/80 flex items-center">
                           <Clock className="h-3 w-3 mr-1" />
                           {formatDate(activity.timestamp)}
                         </span>
                       </div>
                     </div>
 
-                    <p className="text-gray-600 text-sm mt-1">{activity.description}</p>
+                    <p className="text-muted-foreground text-sm mt-1">{activity.description}</p>
 
                     {activity.metadata.viewDuration && (
-                      <p className="text-gray-700 text-xs mt-2 italic">
+                      <p className="text-foreground/80 text-xs mt-2 italic">
                         Viewed for {Math.round(activity.metadata.viewDuration / 60)} min
                       </p>
                     )}
@@ -313,9 +313,9 @@ export default function StudentActivityPage() {
 
           {filteredActivities.length === 0 && (
             <div className="text-center py-12">
-              <Activity className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No activities found</h3>
-              <p className="text-gray-600">
+              <Activity className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-foreground mb-2">No activities found</h3>
+              <p className="text-muted-foreground">
                 {filter === 'all'
                   ? 'Your activity feed will show profile views, messages, and application updates.'
                   : 'Try adjusting your filter or check back later for new activity.'}

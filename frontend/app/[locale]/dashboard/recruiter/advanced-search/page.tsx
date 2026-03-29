@@ -267,12 +267,12 @@ export default function AdvancedSearchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+    <div className="min-h-screen space-y-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600 mt-2">
+          <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+          <p className="text-muted-foreground mt-2">
             {t('subtitle')}
           </p>
         </div>
@@ -324,7 +324,7 @@ export default function AdvancedSearchPage() {
                       onChange={(e) => setFilters(prev => ({ ...prev, minGPA: parseFloat(e.target.value) }))}
                       className="w-20 px-2 py-1 border rounded"
                     />
-                    <span className="text-gray-700">to</span>
+                    <span className="text-foreground/80">to</span>
                     <input
                       type="number"
                       step="0.1"
@@ -494,7 +494,7 @@ export default function AdvancedSearchPage() {
                                 ? 'bg-primary/10 border-blue-300 text-blue-700'
                                 : isPreferred
                                 ? 'bg-primary/5 border-green-300 text-green-700'
-                                : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                                : 'bg-white border-border text-foreground/80 hover:bg-muted/50'
                             }`}
                           >
                             {skill}
@@ -532,7 +532,7 @@ export default function AdvancedSearchPage() {
               ))}
 
               <div className="flex items-center justify-between pt-4 border-t">
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-muted-foreground">
                   <span className="font-medium text-primary">{filters.requiredSkills.length}</span> required,{' '}
                   <span className="font-medium text-primary">{filters.preferredSkills.length}</span> preferred skills
                 </div>
@@ -564,7 +564,7 @@ export default function AdvancedSearchPage() {
                       onChange={(e) => setFilters(prev => ({ ...prev, minAIScore: parseInt(e.target.value) }))}
                       className="flex-1"
                     />
-                    <span className="text-sm font-medium text-gray-700 w-12 text-right">{filters.minAIScore}</span>
+                    <span className="text-sm font-medium text-foreground/80 w-12 text-right">{filters.minAIScore}</span>
                   </div>
                 </div>
 
@@ -579,7 +579,7 @@ export default function AdvancedSearchPage() {
                       onChange={(e) => setFilters(prev => ({ ...prev, minProjects: parseInt(e.target.value) }))}
                       className="flex-1"
                     />
-                    <span className="text-sm font-medium text-gray-700 w-12 text-right">{filters.minProjects}</span>
+                    <span className="text-sm font-medium text-foreground/80 w-12 text-right">{filters.minProjects}</span>
                   </div>
                 </div>
 
@@ -635,7 +635,7 @@ export default function AdvancedSearchPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-muted-foreground mb-4">
                 These filters help promote diverse hiring practices. All information is self-reported and optional.
               </p>
               <div className="grid grid-cols-2 gap-4">
@@ -660,7 +660,7 @@ export default function AdvancedSearchPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">{t('searchSummary')}</h3>
+                  <h3 className="font-semibold text-foreground mb-2">{t('searchSummary')}</h3>
                   <div className="flex flex-wrap gap-2">
                     {filters.university && (
                       <Badge variant="outline" className="bg-white">
@@ -687,7 +687,7 @@ export default function AdvancedSearchPage() {
                     )}
                   </div>
                   {hasSearched && (
-                    <p className="text-sm text-gray-600 mt-3">
+                    <p className="text-sm text-muted-foreground mt-3">
                       Found: <span className="font-semibold text-primary">{totalResults} candidates</span>
                     </p>
                   )}
@@ -745,9 +745,9 @@ export default function AdvancedSearchPage() {
                           type="checkbox"
                           checked={alertsEnabled}
                           onChange={(e) => setAlertsEnabled(e.target.checked)}
-                          className="rounded border-gray-300"
+                          className="rounded border-border"
                         />
-                        <Bell className="h-4 w-4 text-gray-500" />
+                        <Bell className="h-4 w-4 text-muted-foreground" />
                         Notify me of new matches
                       </label>
                       {alertsEnabled && (
@@ -827,12 +827,12 @@ export default function AdvancedSearchPage() {
                           {student.initials}
                         </div>
                         <div>
-                          <h3 className="text-lg font-semibold text-gray-900">{student.name}</h3>
-                          <p className="text-sm text-gray-600 flex items-center space-x-2">
+                          <h3 className="text-lg font-semibold text-foreground">{student.name}</h3>
+                          <p className="text-sm text-muted-foreground flex items-center space-x-2">
                             <GraduationCap className="h-4 w-4" />
                             <span>{student.university || 'University not specified'}</span>
                           </p>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-muted-foreground">
                             {student.degree || 'Degree N/A'} {student.graduationYear ? `- Class of ${student.graduationYear}` : ''}
                           </p>
                         </div>
@@ -850,12 +850,12 @@ export default function AdvancedSearchPage() {
                     </div>
 
                     {student.bio && (
-                      <p className="text-sm text-gray-600 mt-3 line-clamp-2">{student.bio}</p>
+                      <p className="text-sm text-muted-foreground mt-3 line-clamp-2">{student.bio}</p>
                     )}
 
                     {student.topProjects.length > 0 && (
                       <div className="mt-3">
-                        <p className="text-xs text-gray-500 mb-1">Top Projects:</p>
+                        <p className="text-xs text-muted-foreground mb-1">Top Projects:</p>
                         <div className="flex flex-wrap gap-2">
                           {student.topProjects.map(project => (
                             <div key={project.id} className="flex items-center space-x-1">
@@ -897,7 +897,7 @@ export default function AdvancedSearchPage() {
                     <ChevronLeft className="h-4 w-4 mr-1" />
                     {t('previous')}
                   </Button>
-                  <span className="text-sm text-gray-600">
+                  <span className="text-sm text-muted-foreground">
                     Page {currentPage} of {totalPages}
                   </span>
                   <Button

@@ -82,7 +82,7 @@ export default function StudentChallengesPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary mb-4" />
-          <p className="text-gray-500">Loading challenges...</p>
+          <p className="text-muted-foreground">Loading challenges...</p>
         </div>
       </div>
     )
@@ -93,8 +93,8 @@ export default function StudentChallengesPage() {
       {/* Header */}
       <div className="flex items-center justify-between pt-2">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">Company Challenges</h1>
-          <p className="text-gray-600 mt-1">
+          <h1 className="text-2xl font-semibold text-foreground">Company Challenges</h1>
+          <p className="text-muted-foreground mt-1">
             Work on real-world projects from leading companies
           </p>
         </div>
@@ -113,7 +113,7 @@ export default function StudentChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{challenges.length}</p>
-                <p className="text-sm text-gray-600">Available</p>
+                <p className="text-sm text-muted-foreground">Available</p>
               </div>
               <Trophy className="h-8 w-8 text-primary" />
             </div>
@@ -124,7 +124,7 @@ export default function StudentChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{appliedChallenges.length}</p>
-                <p className="text-sm text-gray-600">Applied</p>
+                <p className="text-sm text-muted-foreground">Applied</p>
               </div>
               <FileText className="h-8 w-8 text-primary" />
             </div>
@@ -137,7 +137,7 @@ export default function StudentChallengesPage() {
                 <p className="text-2xl font-bold">
                   {appliedChallenges.filter(c => c.mySubmission?.status === 'APPROVED').length}
                 </p>
-                <p className="text-sm text-gray-600">Completed</p>
+                <p className="text-sm text-muted-foreground">Completed</p>
               </div>
               <CheckCircle className="h-8 w-8 text-primary" />
             </div>
@@ -150,7 +150,7 @@ export default function StudentChallengesPage() {
         <CardContent className="pt-6">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground/60" />
               <Input
                 placeholder="Search challenges..."
                 value={searchTerm}
@@ -223,13 +223,13 @@ export default function StudentChallengesPage() {
           <Card>
             <CardContent className="py-12">
               <div className="text-center">
-                <Trophy className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-                <h3 className="font-medium text-gray-900 mb-2">
+                <Trophy className="h-12 w-12 mx-auto text-muted-foreground/40 mb-4" />
+                <h3 className="font-medium text-foreground mb-2">
                   {searchTerm || disciplineFilter !== 'all' || typeFilter !== 'all'
                     ? 'No challenges match your filters'
                     : 'No challenges available'}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   {searchTerm || disciplineFilter !== 'all' || typeFilter !== 'all'
                     ? 'Try adjusting your filters'
                     : 'Check back later for new opportunities'}

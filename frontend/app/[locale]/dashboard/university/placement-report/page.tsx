@@ -181,10 +181,10 @@ export default function PlacementReportPage() {
             </Link>
           </Button>
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">
+            <h1 className="text-2xl font-semibold text-foreground">
               {data.universityName} — {t('title')}
             </h1>
-            <p className="text-gray-500 text-sm mt-1">
+            <p className="text-muted-foreground text-sm mt-1">
               {t('generatedAt')}: {formatDate(data.generatedAt)}
             </p>
           </div>
@@ -201,14 +201,14 @@ export default function PlacementReportPage() {
 
       {/* Overview Stats */}
       <div>
-        <h2 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">{t('overview')}</h2>
+        <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">{t('overview')}</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold">{data.overview.totalStudents}</p>
-                  <p className="text-sm text-gray-600">{t('totalStudents')}</p>
+                  <p className="text-sm text-muted-foreground">{t('totalStudents')}</p>
                 </div>
                 <div className="p-2 bg-primary/10 rounded-lg">
                   <GraduationCap className="h-5 w-5 text-primary" />
@@ -222,7 +222,7 @@ export default function PlacementReportPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold">{data.overview.totalProjects}</p>
-                  <p className="text-sm text-gray-600">{t('totalProjects')}</p>
+                  <p className="text-sm text-muted-foreground">{t('totalProjects')}</p>
                 </div>
                 <div className="p-2 bg-blue-100 rounded-lg">
                   <FolderOpen className="h-5 w-5 text-blue-600" />
@@ -236,7 +236,7 @@ export default function PlacementReportPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold text-green-600">{data.overview.verifiedPercent}%</p>
-                  <p className="text-sm text-gray-600">{t('verified')}</p>
+                  <p className="text-sm text-muted-foreground">{t('verified')}</p>
                 </div>
                 <div className="p-2 bg-green-100 rounded-lg">
                   <ShieldCheck className="h-5 w-5 text-green-600" />
@@ -250,7 +250,7 @@ export default function PlacementReportPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold">{data.overview.aiAnalyzed}</p>
-                  <p className="text-sm text-gray-600">{t('aiAnalyzed')}</p>
+                  <p className="text-sm text-muted-foreground">{t('aiAnalyzed')}</p>
                 </div>
                 <div className="p-2 bg-purple-100 rounded-lg">
                   <Brain className="h-5 w-5 text-purple-600" />
@@ -263,14 +263,14 @@ export default function PlacementReportPage() {
 
       {/* Engagement Stats */}
       <div>
-        <h2 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">{t('engagementStats')}</h2>
+        <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">{t('engagementStats')}</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold">{data.engagement.profileViews}</p>
-                  <p className="text-sm text-gray-600">{t('profileViews')}</p>
+                  <p className="text-sm text-muted-foreground">{t('profileViews')}</p>
                 </div>
                 <div className="p-2 bg-blue-100 rounded-lg">
                   <Eye className="h-5 w-5 text-blue-600" />
@@ -284,7 +284,7 @@ export default function PlacementReportPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold">{data.engagement.uniqueRecruiters}</p>
-                  <p className="text-sm text-gray-600">{t('uniqueRecruiters')}</p>
+                  <p className="text-sm text-muted-foreground">{t('uniqueRecruiters')}</p>
                 </div>
                 <div className="p-2 bg-primary/10 rounded-lg">
                   <Users className="h-5 w-5 text-primary" />
@@ -298,7 +298,7 @@ export default function PlacementReportPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold text-green-600">{data.engagement.contactRate}%</p>
-                  <p className="text-sm text-gray-600">{t('contactRate')}</p>
+                  <p className="text-sm text-muted-foreground">{t('contactRate')}</p>
                 </div>
                 <div className="p-2 bg-green-100 rounded-lg">
                   <TrendingUp className="h-5 w-5 text-green-600" />
@@ -312,7 +312,7 @@ export default function PlacementReportPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold text-purple-600">{data.engagement.placementRate}%</p>
-                  <p className="text-sm text-gray-600">{t('placementRate')}</p>
+                  <p className="text-sm text-muted-foreground">{t('placementRate')}</p>
                 </div>
                 <div className="p-2 bg-purple-100 rounded-lg">
                   <Percent className="h-5 w-5 text-purple-600" />
@@ -325,14 +325,14 @@ export default function PlacementReportPage() {
 
       {/* Quality Scores */}
       <div>
-        <h2 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">{t('qualityScores')}</h2>
+        <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">{t('qualityScores')}</h2>
         <div className="grid grid-cols-2 gap-4">
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold">{data.quality.avgInnovation.toFixed(1)}</p>
-                  <p className="text-sm text-gray-600">{t('avgInnovation')}</p>
+                  <p className="text-sm text-muted-foreground">{t('avgInnovation')}</p>
                 </div>
                 <div className="p-2 bg-amber-100 rounded-lg">
                   <Star className="h-5 w-5 text-amber-600" />
@@ -346,7 +346,7 @@ export default function PlacementReportPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold">{data.quality.avgComplexity.toFixed(1)}</p>
-                  <p className="text-sm text-gray-600">{t('avgComplexity')}</p>
+                  <p className="text-sm text-muted-foreground">{t('avgComplexity')}</p>
                 </div>
                 <div className="p-2 bg-cyan-100 rounded-lg">
                   <Brain className="h-5 w-5 text-cyan-600" />
@@ -372,16 +372,16 @@ export default function PlacementReportPage() {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b text-left">
-                      <th className="pb-2 font-medium text-gray-500">{t('company')}</th>
-                      <th className="pb-2 font-medium text-gray-500 text-right">{t('contacts')}</th>
-                      <th className="pb-2 font-medium text-gray-500 text-right">{t('hires')}</th>
+                      <th className="pb-2 font-medium text-muted-foreground">{t('company')}</th>
+                      <th className="pb-2 font-medium text-muted-foreground text-right">{t('contacts')}</th>
+                      <th className="pb-2 font-medium text-muted-foreground text-right">{t('hires')}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {data.topHiringCompanies.map((company, idx) => (
                       <tr key={idx} className="border-b last:border-0">
-                        <td className="py-2.5 font-medium text-gray-900">{company.name}</td>
-                        <td className="py-2.5 text-right text-gray-600">{company.contacts}</td>
+                        <td className="py-2.5 font-medium text-foreground">{company.name}</td>
+                        <td className="py-2.5 text-right text-muted-foreground">{company.contacts}</td>
                         <td className="py-2.5 text-right">
                           <Badge variant="secondary" className="text-xs">
                             {company.hires}
@@ -393,7 +393,7 @@ export default function PlacementReportPage() {
                 </table>
               </div>
             ) : (
-              <p className="text-sm text-gray-500 text-center py-6">{t('noHiringData')}</p>
+              <p className="text-sm text-muted-foreground text-center py-6">{t('noHiringData')}</p>
             )}
           </CardContent>
         </Card>
@@ -416,12 +416,12 @@ export default function PlacementReportPage() {
                     className="text-sm px-3 py-1"
                   >
                     {skill.name}
-                    <span className="ml-1.5 text-xs text-gray-500">({skill.count})</span>
+                    <span className="ml-1.5 text-xs text-muted-foreground">({skill.count})</span>
                   </Badge>
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-gray-500 text-center py-6">{t('noSkillsData')}</p>
+              <p className="text-sm text-muted-foreground text-center py-6">{t('noSkillsData')}</p>
             )}
           </CardContent>
         </Card>
@@ -442,28 +442,28 @@ export default function PlacementReportPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b text-left">
-                    <th className="pb-2 font-medium text-gray-500">{t('degree')}</th>
-                    <th className="pb-2 font-medium text-gray-500 text-right">{t('students')}</th>
-                    <th className="pb-2 font-medium text-gray-500 text-right">{t('contacted')}</th>
-                    <th className="pb-2 font-medium text-gray-500 text-right">{t('hired')}</th>
-                    <th className="pb-2 font-medium text-gray-500 text-right">{t('contactRateShort')}</th>
-                    <th className="pb-2 font-medium text-gray-500 text-right">{t('placementRateShort')}</th>
+                    <th className="pb-2 font-medium text-muted-foreground">{t('degree')}</th>
+                    <th className="pb-2 font-medium text-muted-foreground text-right">{t('students')}</th>
+                    <th className="pb-2 font-medium text-muted-foreground text-right">{t('contacted')}</th>
+                    <th className="pb-2 font-medium text-muted-foreground text-right">{t('hired')}</th>
+                    <th className="pb-2 font-medium text-muted-foreground text-right">{t('contactRateShort')}</th>
+                    <th className="pb-2 font-medium text-muted-foreground text-right">{t('placementRateShort')}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.programBreakdown.map((program, idx) => (
                     <tr key={idx} className="border-b last:border-0">
-                      <td className="py-2.5 font-medium text-gray-900">{program.degree}</td>
-                      <td className="py-2.5 text-right text-gray-600">{program.students}</td>
-                      <td className="py-2.5 text-right text-gray-600">{program.contacted}</td>
-                      <td className="py-2.5 text-right text-gray-600">{program.hired}</td>
+                      <td className="py-2.5 font-medium text-foreground">{program.degree}</td>
+                      <td className="py-2.5 text-right text-muted-foreground">{program.students}</td>
+                      <td className="py-2.5 text-right text-muted-foreground">{program.contacted}</td>
+                      <td className="py-2.5 text-right text-muted-foreground">{program.hired}</td>
                       <td className="py-2.5 text-right">
-                        <span className={program.contactRate >= 50 ? 'text-green-600 font-medium' : 'text-gray-600'}>
+                        <span className={program.contactRate >= 50 ? 'text-green-600 font-medium' : 'text-muted-foreground'}>
                           {program.contactRate}%
                         </span>
                       </td>
                       <td className="py-2.5 text-right">
-                        <span className={program.placementRate >= 30 ? 'text-green-600 font-medium' : 'text-gray-600'}>
+                        <span className={program.placementRate >= 30 ? 'text-green-600 font-medium' : 'text-muted-foreground'}>
                           {program.placementRate}%
                         </span>
                       </td>
@@ -473,7 +473,7 @@ export default function PlacementReportPage() {
               </table>
             </div>
           ) : (
-            <p className="text-sm text-gray-500 text-center py-6">{t('noProgramData')}</p>
+            <p className="text-sm text-muted-foreground text-center py-6">{t('noProgramData')}</p>
           )}
         </CardContent>
       </Card>

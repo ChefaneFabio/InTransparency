@@ -38,7 +38,7 @@ interface EventData {
 }
 
 const statusConfig: Record<string, { label: string; color: string }> = {
-  DRAFT: { label: 'Draft', color: 'bg-gray-100 text-gray-600' },
+  DRAFT: { label: 'Draft', color: 'bg-muted text-muted-foreground' },
   PUBLISHED: { label: 'Published', color: 'bg-primary/10 text-primary' },
   CANCELLED: { label: 'Cancelled', color: 'bg-red-100 text-red-700' },
   COMPLETED: { label: 'Completed', color: 'bg-primary/10 text-primary' },
@@ -132,7 +132,7 @@ export default function EventsPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <Calendar className="h-10 w-10 mx-auto text-blue-300 animate-pulse mb-4" />
-          <p className="text-gray-500">Loading events...</p>
+          <p className="text-muted-foreground">Loading events...</p>
         </div>
       </div>
     )
@@ -142,8 +142,8 @@ export default function EventsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Career Events</h1>
-          <p className="text-gray-600 mt-1">
+          <h1 className="text-2xl font-bold text-foreground">Career Events</h1>
+          <p className="text-muted-foreground mt-1">
             Organize career days, workshops, and networking events
           </p>
         </div>
@@ -161,16 +161,16 @@ export default function EventsPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <label className="text-sm font-medium text-gray-700 mb-1 block">Event Title *</label>
+              <label className="text-sm font-medium text-foreground/80 mb-1 block">Event Title *</label>
               <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Spring Career Day 2026" />
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-700 mb-1 block">Description</label>
+              <label className="text-sm font-medium text-foreground/80 mb-1 block">Description</label>
               <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Event details..." rows={3} />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-sm font-medium text-gray-700 mb-1 block">Event Type</label>
+                <label className="text-sm font-medium text-foreground/80 mb-1 block">Event Type</label>
                 <select
                   value={eventType}
                   onChange={(e) => setEventType(e.target.value)}
@@ -182,29 +182,29 @@ export default function EventsPage() {
                 </select>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-700 mb-1 block">Max Attendees</label>
+                <label className="text-sm font-medium text-foreground/80 mb-1 block">Max Attendees</label>
                 <Input type="number" value={maxAttendees} onChange={(e) => setMaxAttendees(e.target.value)} placeholder="No limit" />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-sm font-medium text-gray-700 mb-1 block">Start Date/Time *</label>
+                <label className="text-sm font-medium text-foreground/80 mb-1 block">Start Date/Time *</label>
                 <Input type="datetime-local" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-700 mb-1 block">End Date/Time *</label>
+                <label className="text-sm font-medium text-foreground/80 mb-1 block">End Date/Time *</label>
                 <Input type="datetime-local" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
               </div>
             </div>
             <div>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input type="checkbox" checked={isOnline} onChange={(e) => setIsOnline(e.target.checked)} className="rounded" />
-                <span className="text-sm font-medium text-gray-700">Online event</span>
+                <span className="text-sm font-medium text-foreground/80">Online event</span>
               </label>
             </div>
             {!isOnline && (
               <div>
-                <label className="text-sm font-medium text-gray-700 mb-1 block">Location</label>
+                <label className="text-sm font-medium text-foreground/80 mb-1 block">Location</label>
                 <Input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="e.g. Aula Magna, Building A" />
               </div>
             )}
@@ -220,7 +220,7 @@ export default function EventsPage() {
 
       {/* Upcoming Events */}
       <div>
-        <h2 className="text-lg font-semibold text-gray-900 mb-3">
+        <h2 className="text-lg font-semibold text-foreground mb-3">
           Upcoming Events ({upcomingEvents.length})
         </h2>
         {upcomingEvents.length > 0 ? (
@@ -237,13 +237,13 @@ export default function EventsPage() {
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <h3 className="font-semibold text-gray-900">{event.title}</h3>
+                            <h3 className="font-semibold text-foreground">{event.title}</h3>
                             <Badge className={status.color}>{status.label}</Badge>
                             <Badge variant="outline" className="text-xs">
                               {eventTypeLabels[event.eventType] || event.eventType}
                             </Badge>
                           </div>
-                          <div className="flex items-center gap-4 mt-1 text-sm text-gray-600">
+                          <div className="flex items-center gap-4 mt-1 text-sm text-muted-foreground">
                             <span className="flex items-center gap-1">
                               <Clock className="h-3.5 w-3.5" />
                               {new Date(event.startDate).toLocaleDateString('en-GB', {
@@ -267,7 +267,7 @@ export default function EventsPage() {
                               </span>
                             )}
                           </div>
-                          <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+                          <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
                             <span className="flex items-center gap-1">
                               <Users className="h-3 w-3" />
                               {event.rsvpCount} RSVPs
@@ -279,7 +279,7 @@ export default function EventsPage() {
                           </div>
                         </div>
                       </div>
-                      <ChevronRight className="h-5 w-5 text-gray-400 mt-1" />
+                      <ChevronRight className="h-5 w-5 text-muted-foreground/60 mt-1" />
                     </div>
                   </CardContent>
                 </Card>
@@ -289,9 +289,9 @@ export default function EventsPage() {
         ) : (
           <Card className="border-dashed">
             <CardContent className="py-8 text-center">
-              <Calendar className="h-10 w-10 mx-auto text-gray-300 mb-3" />
-              <p className="text-gray-600">No upcoming events.</p>
-              <p className="text-sm text-gray-500">Create your first career event to get started.</p>
+              <Calendar className="h-10 w-10 mx-auto text-muted-foreground/40 mb-3" />
+              <p className="text-muted-foreground">No upcoming events.</p>
+              <p className="text-sm text-muted-foreground">Create your first career event to get started.</p>
             </CardContent>
           </Card>
         )}
@@ -300,7 +300,7 @@ export default function EventsPage() {
       {/* Past Events */}
       {pastEvents.length > 0 && (
         <div>
-          <h2 className="text-lg font-semibold text-gray-500 mb-3">
+          <h2 className="text-lg font-semibold text-muted-foreground mb-3">
             Past Events ({pastEvents.length})
           </h2>
           <div className="space-y-2">
@@ -309,13 +309,13 @@ export default function EventsPage() {
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <Calendar className="h-4 w-4 text-gray-400" />
+                      <Calendar className="h-4 w-4 text-muted-foreground/60" />
                       <span className="font-medium text-sm">{event.title}</span>
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-muted-foreground">
                         {new Date(event.startDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
                       </span>
                     </div>
-                    <span className="text-xs text-gray-500">{event.rsvpCount} attended</span>
+                    <span className="text-xs text-muted-foreground">{event.rsvpCount} attended</span>
                   </div>
                 </CardContent>
               </Card>

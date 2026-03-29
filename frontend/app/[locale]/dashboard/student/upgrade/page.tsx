@@ -85,10 +85,10 @@ export default function UpgradePage() {
         </div>
 
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-foreground mb-4">
             Upgrade Your Account
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Stand out to employers with unlimited projects and premium features
           </p>
 
@@ -129,7 +129,7 @@ export default function UpgradePage() {
                 className={`relative flex flex-col ${
                   tier.popular
                     ? 'border-primary border-2 shadow-lg'
-                    : 'border-gray-200'
+                    : 'border-border'
                 }`}
               >
                 {tier.popular && (
@@ -142,7 +142,7 @@ export default function UpgradePage() {
 
                 <CardHeader className="text-center pb-8 pt-8">
                   <div className="flex justify-center mb-4">
-                    <div className={`p-4 rounded-full ${tier.popular ? 'bg-primary/10' : 'bg-gray-100'}`}>
+                    <div className={`p-4 rounded-full ${tier.popular ? 'bg-primary/10' : 'bg-muted'}`}>
                       {getTierIcon(tier.name)}
                     </div>
                   </div>
@@ -153,10 +153,10 @@ export default function UpgradePage() {
                   <div className="mt-6">
                     <div className="flex items-baseline justify-center gap-1">
                       <span className="text-5xl font-bold">€{displayPrice}</span>
-                      <span className="text-gray-600 text-lg">/month</span>
+                      <span className="text-muted-foreground text-lg">/month</span>
                     </div>
                     {interval === 'annual' && (
-                      <p className="text-sm text-gray-500 mt-2">
+                      <p className="text-sm text-muted-foreground mt-2">
                         Billed €{price} annually • Save €{(tier.price.monthly * 12 - price).toFixed(0)}/year
                       </p>
                     )}
@@ -168,7 +168,7 @@ export default function UpgradePage() {
                     {tier.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-gray-700">{feature}</span>
+                        <span className="text-sm text-foreground/80">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -194,7 +194,7 @@ export default function UpgradePage() {
                     )}
                   </Button>
 
-                  <p className="text-xs text-center text-gray-500 mt-4">
+                  <p className="text-xs text-center text-muted-foreground mt-4">
                     14-day free trial • Cancel anytime
                   </p>
                 </CardFooter>
@@ -209,15 +209,15 @@ export default function UpgradePage() {
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div>
                 <div className="text-3xl font-bold text-primary mb-2">14 Days</div>
-                <div className="text-gray-700">Free trial period</div>
+                <div className="text-foreground/80">Free trial period</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-primary mb-2">30%</div>
-                <div className="text-gray-700">More company contacts</div>
+                <div className="text-foreground/80">More company contacts</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-primary mb-2">∞</div>
-                <div className="text-gray-700">Unlimited projects</div>
+                <div className="text-foreground/80">Unlimited projects</div>
               </div>
             </div>
           </CardContent>
@@ -233,7 +233,7 @@ export default function UpgradePage() {
                 <CardTitle className="text-lg">How does the free trial work?</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700">
+                <p className="text-foreground/80">
                   Start your 14-day free trial today. You'll get full access to all Premium features.
                   We'll remind you before your trial ends. Cancel anytime during the trial and you won't be charged.
                 </p>
@@ -245,7 +245,7 @@ export default function UpgradePage() {
                 <CardTitle className="text-lg">Can I cancel my subscription?</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700">
+                <p className="text-foreground/80">
                   Yes, absolutely. You can cancel your subscription at any time from your dashboard.
                   You'll continue to have access to premium features until the end of your billing period.
                 </p>
@@ -257,7 +257,7 @@ export default function UpgradePage() {
                 <CardTitle className="text-lg">What payment methods do you accept?</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700">
+                <p className="text-foreground/80">
                   We accept all major credit cards (Visa, MasterCard, American Express) and debit cards via Stripe.
                   Your payment information is securely processed and never stored on our servers.
                 </p>
@@ -269,7 +269,7 @@ export default function UpgradePage() {
                 <CardTitle className="text-lg">Can I switch between plans?</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700">
+                <p className="text-foreground/80">
                   Yes! You can switch plans at any time. If you upgrade, the price difference will be prorated.
                   If you downgrade, the change will take effect at the end of your current billing period.
                 </p>
@@ -279,7 +279,7 @@ export default function UpgradePage() {
         </div>
 
         {/* Support */}
-        <div className="mt-12 text-center text-gray-600">
+        <div className="mt-12 text-center text-muted-foreground">
           <p>Need help choosing the right plan?</p>
           <p className="mt-2">
             <Link href="/contact" className="text-primary hover:underline font-medium">

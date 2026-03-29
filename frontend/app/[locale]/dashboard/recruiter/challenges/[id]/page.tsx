@@ -159,12 +159,12 @@ export default function ChallengeDetailPage() {
       COMPLETED: 'statusCompleted'
     }
     const classNames: Record<string, string> = {
-      DRAFT: 'bg-gray-100 text-gray-700',
+      DRAFT: 'bg-muted text-foreground/80',
       PENDING_REVIEW: 'bg-yellow-100 text-yellow-700',
       APPROVED: 'bg-primary/10 text-blue-700',
       ACTIVE: 'bg-primary/10 text-green-700',
       IN_PROGRESS: 'bg-primary/10 text-purple-700',
-      CLOSED: 'bg-gray-100 text-gray-700',
+      CLOSED: 'bg-muted text-foreground/80',
       COMPLETED: 'bg-primary/10 text-green-700'
     }
     const key = statusKeys[status] || 'statusDraft'
@@ -226,10 +226,10 @@ export default function ChallengeDetailPage() {
             )}
             <div>
               <div className="flex items-center gap-3">
-                <h1 className="text-2xl font-semibold text-gray-900">{challenge.title}</h1>
+                <h1 className="text-2xl font-semibold text-foreground">{challenge.title}</h1>
                 {getStatusBadge(challenge.status)}
               </div>
-              <p className="text-gray-600 mt-1">{challenge.companyName}</p>
+              <p className="text-muted-foreground mt-1">{challenge.companyName}</p>
             </div>
           </div>
         </div>
@@ -251,7 +251,7 @@ export default function ChallengeDetailPage() {
               <Users className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{submissions.length}</p>
-                <p className="text-xs text-gray-600">{t('submissions')}</p>
+                <p className="text-xs text-muted-foreground">{t('submissions')}</p>
               </div>
             </div>
           </CardContent>
@@ -262,7 +262,7 @@ export default function ChallengeDetailPage() {
               <GraduationCap className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{challenge.universityApprovals.length}</p>
-                <p className="text-xs text-gray-600">{t('universities')}</p>
+                <p className="text-xs text-muted-foreground">{t('universities')}</p>
               </div>
             </div>
           </CardContent>
@@ -273,7 +273,7 @@ export default function ChallengeDetailPage() {
               <Eye className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{challenge.views}</p>
-                <p className="text-xs text-gray-600">{t('views')}</p>
+                <p className="text-xs text-muted-foreground">{t('views')}</p>
               </div>
             </div>
           </CardContent>
@@ -284,7 +284,7 @@ export default function ChallengeDetailPage() {
               <Trophy className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{groupedSubmissions.approved.length}</p>
-                <p className="text-xs text-gray-600">{t('approved')}</p>
+                <p className="text-xs text-muted-foreground">{t('approved')}</p>
               </div>
             </div>
           </CardContent>
@@ -301,21 +301,21 @@ export default function ChallengeDetailPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="text-sm font-medium text-gray-500 mb-1">{t('description')}</h4>
-                <p className="text-gray-700">{challenge.description}</p>
+                <h4 className="text-sm font-medium text-muted-foreground mb-1">{t('description')}</h4>
+                <p className="text-foreground/80">{challenge.description}</p>
               </div>
 
               {challenge.problemStatement && (
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500 mb-1">{t('problemStatement')}</h4>
-                  <p className="text-gray-700">{challenge.problemStatement}</p>
+                  <h4 className="text-sm font-medium text-muted-foreground mb-1">{t('problemStatement')}</h4>
+                  <p className="text-foreground/80">{challenge.problemStatement}</p>
                 </div>
               )}
 
               {challenge.expectedOutcome && (
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500 mb-1">{t('expectedOutcome')}</h4>
-                  <p className="text-gray-700">{challenge.expectedOutcome}</p>
+                  <h4 className="text-sm font-medium text-muted-foreground mb-1">{t('expectedOutcome')}</h4>
+                  <p className="text-foreground/80">{challenge.expectedOutcome}</p>
                 </div>
               )}
 
@@ -363,7 +363,7 @@ export default function ChallengeDetailPage() {
                       />
                     ))
                   ) : (
-                    <p className="text-center text-gray-500 py-8">{t('noPendingApplications')}</p>
+                    <p className="text-center text-muted-foreground py-8">{t('noPendingApplications')}</p>
                   )}
                 </TabsContent>
 
@@ -378,7 +378,7 @@ export default function ChallengeDetailPage() {
                       />
                     ))
                   ) : (
-                    <p className="text-center text-gray-500 py-8">{t('noInProgress')}</p>
+                    <p className="text-center text-muted-foreground py-8">{t('noInProgress')}</p>
                   )}
                 </TabsContent>
 
@@ -393,7 +393,7 @@ export default function ChallengeDetailPage() {
                       />
                     ))
                   ) : (
-                    <p className="text-center text-gray-500 py-8">{t('noAwaitingReview')}</p>
+                    <p className="text-center text-muted-foreground py-8">{t('noAwaitingReview')}</p>
                   )}
                 </TabsContent>
 
@@ -408,7 +408,7 @@ export default function ChallengeDetailPage() {
                       />
                     ))
                   ) : (
-                    <p className="text-center text-gray-500 py-8">{t('noCompleted')}</p>
+                    <p className="text-center text-muted-foreground py-8">{t('noCompleted')}</p>
                   )}
                 </TabsContent>
               </Tabs>
@@ -425,26 +425,26 @@ export default function ChallengeDetailPage() {
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
               <div className="flex items-center gap-2">
-                <Trophy className="h-4 w-4 text-gray-400" />
-                <span className="text-gray-600">{t('type')}:</span>
+                <Trophy className="h-4 w-4 text-muted-foreground/60" />
+                <span className="text-muted-foreground">{t('type')}:</span>
                 <span>{challenge.challengeType.replace(/_/g, ' ')}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Users className="h-4 w-4 text-gray-400" />
-                <span className="text-gray-600">{t('team')}:</span>
+                <Users className="h-4 w-4 text-muted-foreground/60" />
+                <span className="text-muted-foreground">{t('team')}:</span>
                 <span>{challenge.teamSizeMin}-{challenge.teamSizeMax} {t('people')}</span>
               </div>
               {challenge.estimatedDuration && (
                 <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-gray-400" />
-                  <span className="text-gray-600">{t('duration')}:</span>
+                  <Clock className="h-4 w-4 text-muted-foreground/60" />
+                  <span className="text-muted-foreground">{t('duration')}:</span>
                   <span>{challenge.estimatedDuration}</span>
                 </div>
               )}
               {challenge.applicationDeadline && (
                 <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-gray-400" />
-                  <span className="text-gray-600">{t('deadline')}:</span>
+                  <Calendar className="h-4 w-4 text-muted-foreground/60" />
+                  <span className="text-muted-foreground">{t('deadline')}:</span>
                   <span>{new Date(challenge.applicationDeadline).toLocaleDateString()}</span>
                 </div>
               )}
@@ -470,7 +470,7 @@ export default function ChallengeDetailPage() {
               {challenge.universityApprovals.length > 0 ? (
                 <div className="space-y-3">
                   {challenge.universityApprovals.map((approval) => (
-                    <div key={approval.id} className="p-3 rounded-lg bg-gray-50 border">
+                    <div key={approval.id} className="p-3 rounded-lg bg-muted/50 border">
                       <div className="flex items-center justify-between mb-1">
                         <span className="font-medium text-sm">{approval.universityName}</span>
                         <Badge
@@ -484,12 +484,12 @@ export default function ChallengeDetailPage() {
                         </Badge>
                       </div>
                       {approval.courseName && (
-                        <p className="text-xs text-gray-600">
+                        <p className="text-xs text-muted-foreground">
                           {approval.courseCode} - {approval.courseName}
                         </p>
                       )}
                       {approval.professorName && (
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-muted-foreground">
                           Prof. {approval.professorName}
                         </p>
                       )}
@@ -497,7 +497,7 @@ export default function ChallengeDetailPage() {
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-gray-500 text-center py-4">
+                <p className="text-sm text-muted-foreground text-center py-4">
                   {t('noApprovals')}
                 </p>
               )}

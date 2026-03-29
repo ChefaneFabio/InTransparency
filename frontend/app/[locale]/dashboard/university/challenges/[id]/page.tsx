@@ -261,8 +261,8 @@ export default function UniversityChallengeDetailPage() {
               </div>
             )}
             <div>
-              <h1 className="text-2xl font-semibold text-gray-900">{challenge.title}</h1>
-              <p className="text-gray-600 mt-1">{challenge.companyName}</p>
+              <h1 className="text-2xl font-semibold text-foreground">{challenge.title}</h1>
+              <p className="text-muted-foreground mt-1">{challenge.companyName}</p>
             </div>
           </div>
         </div>
@@ -279,21 +279,21 @@ export default function UniversityChallengeDetailPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="text-sm font-medium text-gray-500 mb-1">Description</h4>
-                <p className="text-gray-700">{challenge.description}</p>
+                <h4 className="text-sm font-medium text-muted-foreground mb-1">Description</h4>
+                <p className="text-foreground/80">{challenge.description}</p>
               </div>
 
               {challenge.problemStatement && (
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500 mb-1">Problem Statement</h4>
-                  <p className="text-gray-700">{challenge.problemStatement}</p>
+                  <h4 className="text-sm font-medium text-muted-foreground mb-1">Problem Statement</h4>
+                  <p className="text-foreground/80">{challenge.problemStatement}</p>
                 </div>
               )}
 
               {challenge.expectedOutcome && (
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500 mb-1">Expected Outcome</h4>
-                  <p className="text-gray-700">{challenge.expectedOutcome}</p>
+                  <h4 className="text-sm font-medium text-muted-foreground mb-1">Expected Outcome</h4>
+                  <p className="text-foreground/80">{challenge.expectedOutcome}</p>
                 </div>
               )}
 
@@ -305,22 +305,22 @@ export default function UniversityChallengeDetailPage() {
 
               <div className="grid grid-cols-2 gap-4 pt-4 border-t">
                 <div className="flex items-center gap-2 text-sm">
-                  <Trophy className="h-4 w-4 text-gray-400" />
+                  <Trophy className="h-4 w-4 text-muted-foreground/60" />
                   <span>{challenge.challengeType.replace(/_/g, ' ')}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  <Users className="h-4 w-4 text-gray-400" />
+                  <Users className="h-4 w-4 text-muted-foreground/60" />
                   <span>{challenge.teamSizeMin}-{challenge.teamSizeMax} people</span>
                 </div>
                 {challenge.estimatedDuration && (
                   <div className="flex items-center gap-2 text-sm">
-                    <Clock className="h-4 w-4 text-gray-400" />
+                    <Clock className="h-4 w-4 text-muted-foreground/60" />
                     <span>{challenge.estimatedDuration}</span>
                   </div>
                 )}
                 {challenge.applicationDeadline && (
                   <div className="flex items-center gap-2 text-sm">
-                    <Calendar className="h-4 w-4 text-gray-400" />
+                    <Calendar className="h-4 w-4 text-muted-foreground/60" />
                     <span>Deadline: {new Date(challenge.applicationDeadline).toLocaleDateString()}</span>
                   </div>
                 )}
@@ -484,7 +484,7 @@ export default function UniversityChallengeDetailPage() {
 
               {isApproved && approval?.approvedAt && (
                 <div className="pt-4 border-t">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     Approved on {new Date(approval.approvedAt).toLocaleDateString()}
                   </p>
                 </div>
@@ -509,7 +509,7 @@ export default function UniversityChallengeDetailPage() {
                 </Badge>
               )}
               {!challenge.mentorshipOffered && !challenge.compensation && (
-                <p className="text-sm text-gray-500">No additional benefits listed</p>
+                <p className="text-sm text-muted-foreground">No additional benefits listed</p>
               )}
             </CardContent>
           </Card>

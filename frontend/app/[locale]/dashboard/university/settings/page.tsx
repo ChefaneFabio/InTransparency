@@ -170,7 +170,7 @@ export default function UniversitySettingsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+      <div className="min-h-screen space-y-6 py-8">
         <div className="container max-w-4xl mx-auto px-4 space-y-6">
           <Skeleton className="h-10 w-48" />
           <Skeleton className="h-[400px] w-full" />
@@ -181,7 +181,7 @@ export default function UniversitySettingsPage() {
 
   if (loadError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+      <div className="min-h-screen space-y-6 py-8">
         <div className="container max-w-4xl mx-auto px-4">
           <div className="text-center py-12">
             <AlertCircle className="h-12 w-12 mx-auto text-red-400 mb-4" />
@@ -195,12 +195,12 @@ export default function UniversitySettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+    <div className="min-h-screen space-y-6 py-8">
       <div className="container max-w-4xl mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-            <p className="text-gray-600">{t('subtitle')}</p>
+            <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+            <p className="text-muted-foreground">{t('subtitle')}</p>
           </div>
           <Button onClick={handleSave} disabled={isSaving}>
             {isSaving ? (
@@ -214,7 +214,7 @@ export default function UniversitySettingsPage() {
         {saveSuccess && (
           <Alert className="mb-6 bg-primary/5 border-primary/20">
             <CheckCircle className="h-4 w-4 text-primary" />
-            <AlertDescription className="text-gray-700">
+            <AlertDescription className="text-foreground/80">
               {t('savedSuccess')}
             </AlertDescription>
           </Alert>
@@ -254,11 +254,11 @@ export default function UniversitySettingsPage() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-center gap-6">
-                  <div className="w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
+                  <div className="w-24 h-24 bg-muted rounded-lg flex items-center justify-center border-2 border-dashed border-border">
                     {settings.logo ? (
                       <img src={settings.logo} alt="Logo" className="w-full h-full object-contain rounded-lg" />
                     ) : (
-                      <Building2 className="h-10 w-10 text-gray-400" />
+                      <Building2 className="h-10 w-10 text-muted-foreground/60" />
                     )}
                   </div>
                   <div>
@@ -266,7 +266,7 @@ export default function UniversitySettingsPage() {
                       <Upload className="h-4 w-4 mr-2" />
                       Carica Logo
                     </Button>
-                    <p className="text-xs text-gray-500 mt-2">PNG, JPG fino a 2MB</p>
+                    <p className="text-xs text-muted-foreground mt-2">PNG, JPG fino a 2MB</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -288,7 +288,7 @@ export default function UniversitySettingsPage() {
                   <div className="space-y-2">
                     <Label htmlFor="website">Sito Web</Label>
                     <div className="relative">
-                      <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
                       <Input id="website" value={settings.website} onChange={(e) => updateSetting('website', e.target.value)} className={`pl-10 ${fieldErrors.website ? 'border-red-500' : ''}`} />
                     </div>
                     {fieldErrors.website && <p className="text-sm text-red-500 mt-1">{fieldErrors.website}</p>}
@@ -296,7 +296,7 @@ export default function UniversitySettingsPage() {
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
                       <Input id="email" type="email" value={settings.email} onChange={(e) => updateSetting('email', e.target.value)} className={`pl-10 ${fieldErrors.email ? 'border-red-500' : ''}`} />
                     </div>
                     {fieldErrors.email && <p className="text-sm text-red-500 mt-1">{fieldErrors.email}</p>}
@@ -306,14 +306,14 @@ export default function UniversitySettingsPage() {
                   <div className="space-y-2">
                     <Label htmlFor="phone">Telefono</Label>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
                       <Input id="phone" value={settings.phone} onChange={(e) => updateSetting('phone', e.target.value)} className="pl-10" />
                     </div>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="city">Città</Label>
                     <div className="relative">
-                      <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
                       <Input id="city" value={settings.city} onChange={(e) => updateSetting('city', e.target.value)} className="pl-10" />
                     </div>
                   </div>
@@ -336,28 +336,28 @@ export default function UniversitySettingsPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="font-medium">Nuovo Studente Iscritto</Label>
-                    <p className="text-sm text-gray-600">Ricevi una notifica quando uno studente si registra</p>
+                    <p className="text-sm text-muted-foreground">Ricevi una notifica quando uno studente si registra</p>
                   </div>
                   <Switch checked={settings.notifyNewStudents} onCheckedChange={(checked) => setSettings({ ...settings, notifyNewStudents: checked })} />
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="font-medium">Nuovi Progetti</Label>
-                    <p className="text-sm text-gray-600">Notifica quando uno studente carica un progetto</p>
+                    <p className="text-sm text-muted-foreground">Notifica quando uno studente carica un progetto</p>
                   </div>
                   <Switch checked={settings.notifyProjectSubmissions} onCheckedChange={(checked) => setSettings({ ...settings, notifyProjectSubmissions: checked })} />
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="font-medium">Attività Recruiter</Label>
-                    <p className="text-sm text-gray-600">Notifica quando un recruiter visualizza i tuoi studenti</p>
+                    <p className="text-sm text-muted-foreground">Notifica quando un recruiter visualizza i tuoi studenti</p>
                   </div>
                   <Switch checked={settings.notifyRecruiterActivity} onCheckedChange={(checked) => setSettings({ ...settings, notifyRecruiterActivity: checked })} />
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="font-medium">Nuovo Placement</Label>
-                    <p className="text-sm text-gray-600">Notifica quando uno studente trova lavoro</p>
+                    <p className="text-sm text-muted-foreground">Notifica quando uno studente trova lavoro</p>
                   </div>
                   <Switch checked={settings.notifyPlacements} onCheckedChange={(checked) => setSettings({ ...settings, notifyPlacements: checked })} />
                 </div>
@@ -374,40 +374,40 @@ export default function UniversitySettingsPage() {
               <CardContent className="space-y-6">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Eye className="h-5 w-5 text-gray-500" />
+                    <Eye className="h-5 w-5 text-muted-foreground" />
                     <div>
                       <Label className="font-medium">Mostra nella Directory</Label>
-                      <p className="text-sm text-gray-600">Rendi visibile la tua istituzione nella directory</p>
+                      <p className="text-sm text-muted-foreground">Rendi visibile la tua istituzione nella directory</p>
                     </div>
                   </div>
                   <Switch checked={settings.showInDirectory} onCheckedChange={(checked) => setSettings({ ...settings, showInDirectory: checked })} />
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Users className="h-5 w-5 text-gray-500" />
+                    <Users className="h-5 w-5 text-muted-foreground" />
                     <div>
                       <Label className="font-medium">Directory Studenti</Label>
-                      <p className="text-sm text-gray-600">Permetti alle aziende di cercare studenti</p>
+                      <p className="text-sm text-muted-foreground">Permetti alle aziende di cercare studenti</p>
                     </div>
                   </div>
                   <Switch checked={settings.allowStudentDiscovery} onCheckedChange={(checked) => setSettings({ ...settings, allowStudentDiscovery: checked })} />
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Eye className="h-5 w-5 text-gray-500" />
+                    <Eye className="h-5 w-5 text-muted-foreground" />
                     <div>
                       <Label className="font-medium">Condividi Analytics</Label>
-                      <p className="text-sm text-gray-600">Condividi dati aggregati per benchmark</p>
+                      <p className="text-sm text-muted-foreground">Condividi dati aggregati per benchmark</p>
                     </div>
                   </div>
                   <Switch checked={settings.shareAnalytics} onCheckedChange={(checked) => setSettings({ ...settings, shareAnalytics: checked })} />
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Lock className="h-5 w-5 text-gray-500" />
+                    <Lock className="h-5 w-5 text-muted-foreground" />
                     <div>
                       <Label className="font-medium">Verifica Email Richiesta</Label>
-                      <p className="text-sm text-gray-600">Richiedi verifica email istituzionale per gli studenti</p>
+                      <p className="text-sm text-muted-foreground">Richiedi verifica email istituzionale per gli studenti</p>
                     </div>
                   </div>
                   <Switch checked={settings.requireEmailVerification} onCheckedChange={(checked) => setSettings({ ...settings, requireEmailVerification: checked })} />
@@ -450,10 +450,10 @@ export default function UniversitySettingsPage() {
                       Verifica
                     </Button>
                   </div>
-                  <p className="text-xs text-gray-500">Richiede piano Premium Embed. Contatta il supporto per configurare.</p>
+                  <p className="text-xs text-muted-foreground">Richiede piano Premium Embed. Contatta il supporto per configurare.</p>
                 </div>
                 <div className="border rounded-lg p-6 mt-6">
-                  <h4 className="font-medium text-gray-900 mb-4">Anteprima</h4>
+                  <h4 className="font-medium text-foreground mb-4">Anteprima</h4>
                   <div className="p-4 rounded-lg" style={{ backgroundColor: settings.primaryColor + '10' }}>
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold" style={{ backgroundColor: settings.primaryColor }}>
@@ -461,7 +461,7 @@ export default function UniversitySettingsPage() {
                       </div>
                       <div>
                         <h3 className="font-semibold" style={{ color: settings.primaryColor }}>{settings.name || 'Nome Istituzione'}</h3>
-                        <p className="text-sm text-gray-600">{settings.city || 'Città'}</p>
+                        <p className="text-sm text-muted-foreground">{settings.city || 'Città'}</p>
                       </div>
                     </div>
                     <Button size="sm" style={{ backgroundColor: settings.accentColor }} className="text-white">

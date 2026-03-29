@@ -129,7 +129,7 @@ export default function EmbedConfigPage() {
             {t('premiumEmbed')}
           </Badge>
         </div>
-        <p className="text-gray-600">
+        <p className="text-muted-foreground">
           Customize and embed the InTransparency widget on your website to drive 40% more student sign-ups.
         </p>
       </div>
@@ -237,7 +237,7 @@ export default function EmbedConfigPage() {
                   onChange={(e) => setRefreshInterval(parseInt(e.target.value) * 1000)}
                   className="mt-1"
                 />
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   How often to check for new matches (10-300 seconds)
                 </p>
               </div>
@@ -259,7 +259,7 @@ export default function EmbedConfigPage() {
           <Card className="p-6">
             <h2 className="text-xl font-semibold mb-4">Embed Code</h2>
 
-            <div className="bg-gray-900 rounded-lg p-4 mb-4 relative">
+            <div className="bg-foreground rounded-lg p-4 mb-4 relative">
               <pre className="text-green-400 text-xs overflow-x-auto">
                 <code>{embedCode}</code>
               </pre>
@@ -283,7 +283,7 @@ export default function EmbedConfigPage() {
               </Button>
             </div>
 
-            <div className="space-y-2 text-sm text-gray-600">
+            <div className="space-y-2 text-sm text-muted-foreground">
               <p><strong>Step 1:</strong> Copy the code above</p>
               <p><strong>Step 2:</strong> Paste into your website HTML (career portal, placement page, etc.)</p>
               <p><strong>Step 3:</strong> Widget will appear showing live matches!</p>

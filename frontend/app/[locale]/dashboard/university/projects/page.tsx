@@ -149,7 +149,7 @@ export default function UniversityProjectsPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary mb-4" />
-          <p className="text-gray-500">{t('loading')}</p>
+          <p className="text-muted-foreground">{t('loading')}</p>
         </div>
       </div>
     )
@@ -159,8 +159,8 @@ export default function UniversityProjectsPage() {
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
       {/* Header */}
       <div className="pt-2">
-        <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
-        <p className="text-gray-600 mt-1">
+        <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+        <p className="text-muted-foreground mt-1">
           {t('subtitle')}
         </p>
       </div>
@@ -172,7 +172,7 @@ export default function UniversityProjectsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.total}</p>
-                <p className="text-sm text-gray-600">{t('total')}</p>
+                <p className="text-sm text-muted-foreground">{t('total')}</p>
               </div>
               <FolderOpen className="h-8 w-8 text-primary" />
             </div>
@@ -183,7 +183,7 @@ export default function UniversityProjectsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.pending}</p>
-                <p className="text-sm text-gray-600">{t('pending')}</p>
+                <p className="text-sm text-muted-foreground">{t('pending')}</p>
               </div>
               <Clock className="h-8 w-8 text-primary" />
             </div>
@@ -194,7 +194,7 @@ export default function UniversityProjectsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.verified}</p>
-                <p className="text-sm text-gray-600">{t('verified')}</p>
+                <p className="text-sm text-muted-foreground">{t('verified')}</p>
               </div>
               <CheckCircle className="h-8 w-8 text-primary" />
             </div>
@@ -205,7 +205,7 @@ export default function UniversityProjectsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.rejected}</p>
-                <p className="text-sm text-gray-600">{t('rejected')}</p>
+                <p className="text-sm text-muted-foreground">{t('rejected')}</p>
               </div>
               <XCircle className="h-8 w-8 text-red-500" />
             </div>
@@ -216,7 +216,7 @@ export default function UniversityProjectsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.needsInfo}</p>
-                <p className="text-sm text-gray-600">{t('needsInfo')}</p>
+                <p className="text-sm text-muted-foreground">{t('needsInfo')}</p>
               </div>
               <AlertCircle className="h-8 w-8 text-orange-500" />
             </div>
@@ -238,7 +238,7 @@ export default function UniversityProjectsPage() {
 
               <div className="flex gap-2 w-full sm:w-auto">
                 <div className="relative flex-1 sm:w-64">
-                  <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground/60" />
                   <Input
                     placeholder={t('searchPlaceholder')}
                     value={searchTerm}
@@ -294,9 +294,9 @@ function ProjectsList({
   if (projects.length === 0) {
     return (
       <div className="text-center py-12">
-        <FolderOpen className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-        <h3 className="font-medium text-gray-900 mb-2">{t('noProjectsFound')}</h3>
-        <p className="text-gray-600">
+        <FolderOpen className="h-12 w-12 mx-auto text-muted-foreground/40 mb-4" />
+        <h3 className="font-medium text-foreground mb-2">{t('noProjectsFound')}</h3>
+        <p className="text-muted-foreground">
           {t('noProjectsDescription')}
         </p>
       </div>
@@ -328,16 +328,16 @@ function ProjectsList({
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h4 className="font-medium text-gray-900 line-clamp-1">
+                  <h4 className="font-medium text-foreground line-clamp-1">
                     {project.title}
                   </h4>
-                  <p className="text-sm text-gray-600 line-clamp-2 mt-1">
+                  <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
                     {project.description}
                   </p>
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
                   {getStatusBadge(project.verificationStatus)}
-                  <ChevronRight className="h-4 w-4 text-gray-400" />
+                  <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
                 </div>
               </div>
 
@@ -350,12 +350,12 @@ function ProjectsList({
                       {project.student.name.split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
-                  <span className="text-sm text-gray-600">{project.student.name}</span>
+                  <span className="text-sm text-muted-foreground">{project.student.name}</span>
                 </div>
 
                 {/* Course Info */}
                 {project.courseName && (
-                  <div className="flex items-center gap-1 text-sm text-gray-500">
+                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
                     <GraduationCap className="h-3.5 w-3.5" />
                     <span className="truncate max-w-[150px]">
                       {project.courseCode ? `${project.courseCode} - ` : ''}

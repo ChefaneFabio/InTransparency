@@ -55,7 +55,7 @@ export default function PartnershipsPage() {
   const statusConfig: Record<string, { label: string; color: string; icon: typeof CheckCircle }> = {
     ACTIVE: { label: t('statusActive'), color: 'bg-primary/10 text-primary', icon: CheckCircle },
     PENDING: { label: t('statusPending'), color: 'bg-yellow-100 text-yellow-700', icon: Clock },
-    EXPIRED: { label: t('statusExpired'), color: 'bg-gray-100 text-gray-600', icon: XCircle },
+    EXPIRED: { label: t('statusExpired'), color: 'bg-muted text-muted-foreground', icon: XCircle },
     REVOKED: { label: t('statusRevoked'), color: 'bg-red-100 text-red-700', icon: XCircle },
   }
 
@@ -86,7 +86,7 @@ export default function PartnershipsPage() {
           <div className="animate-pulse text-4xl mb-4">
             <ArrowLeftRight className="h-10 w-10 mx-auto text-blue-300" />
           </div>
-          <p className="text-gray-500">{t('loading')}</p>
+          <p className="text-muted-foreground">{t('loading')}</p>
         </div>
       </div>
     )
@@ -97,8 +97,8 @@ export default function PartnershipsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600 mt-1">
+          <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
+          <p className="text-muted-foreground mt-1">
             {t('subtitle')}
           </p>
         </div>
@@ -117,7 +117,7 @@ export default function PartnershipsPage() {
                 <p className="text-2xl font-bold">
                   {partnerships.filter((p) => p.status === 'ACTIVE').length}
                 </p>
-                <p className="text-sm text-gray-600">{t('activePartnerships')}</p>
+                <p className="text-sm text-muted-foreground">{t('activePartnerships')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <ArrowLeftRight className="h-5 w-5 text-primary" />
@@ -133,7 +133,7 @@ export default function PartnershipsPage() {
                 <p className="text-2xl font-bold">
                   {partnerships.reduce((sum, p) => sum + p.courseEquivalencies.length, 0)}
                 </p>
-                <p className="text-sm text-gray-600">{t('courseEquivalencies')}</p>
+                <p className="text-sm text-muted-foreground">{t('courseEquivalencies')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <BookOpen className="h-5 w-5 text-primary" />
@@ -149,7 +149,7 @@ export default function PartnershipsPage() {
                 <p className="text-2xl font-bold">
                   {new Set(partnerships.map((p) => p.partner.country)).size}
                 </p>
-                <p className="text-sm text-gray-600">{t('countriesConnected')}</p>
+                <p className="text-sm text-muted-foreground">{t('countriesConnected')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Globe className="h-5 w-5 text-primary" />
@@ -175,7 +175,7 @@ export default function PartnershipsPage() {
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <h3 className="font-semibold text-gray-900 text-lg">
+                          <h3 className="font-semibold text-foreground text-lg">
                             {partnership.partner.name}
                           </h3>
                           <Badge className={status.color}>
@@ -184,7 +184,7 @@ export default function PartnershipsPage() {
                           </Badge>
                         </div>
 
-                        <div className="flex items-center gap-3 mt-1 text-sm text-gray-600">
+                        <div className="flex items-center gap-3 mt-1 text-sm text-muted-foreground">
                           {partnership.partner.city && (
                             <span className="flex items-center gap-1">
                               <MapPin className="h-3.5 w-3.5" />
@@ -204,7 +204,7 @@ export default function PartnershipsPage() {
                         {/* Course Equivalencies Summary */}
                         {partnership.courseEquivalencies.length > 0 && (
                           <div className="mt-3">
-                            <p className="text-xs text-gray-500 font-medium mb-1">
+                            <p className="text-xs text-muted-foreground font-medium mb-1">
                               Course Equivalencies ({partnership.courseEquivalencies.length})
                             </p>
                             <div className="flex flex-wrap gap-1">
@@ -217,7 +217,7 @@ export default function PartnershipsPage() {
                                 </Badge>
                               ))}
                               {partnership.courseEquivalencies.length > 3 && (
-                                <Badge variant="outline" className="text-xs text-gray-400">
+                                <Badge variant="outline" className="text-xs text-muted-foreground/60">
                                   +{partnership.courseEquivalencies.length - 3} more
                                 </Badge>
                               )}
@@ -226,14 +226,14 @@ export default function PartnershipsPage() {
                         )}
 
                         {partnership.maxStudents && (
-                          <p className="text-xs text-gray-500 mt-2">
+                          <p className="text-xs text-muted-foreground mt-2">
                             Max {partnership.maxStudents} students per year
                           </p>
                         )}
                       </div>
                     </div>
 
-                    <ChevronRight className="h-5 w-5 text-gray-400 mt-1" />
+                    <ChevronRight className="h-5 w-5 text-muted-foreground/60 mt-1" />
                   </div>
                 </CardContent>
               </Card>
@@ -244,11 +244,11 @@ export default function PartnershipsPage() {
         <Card className="border-dashed">
           <CardContent className="py-12">
             <div className="text-center">
-              <ArrowLeftRight className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <ArrowLeftRight className="h-12 w-12 mx-auto text-muted-foreground/40 mb-4" />
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 No partnerships yet
               </h3>
-              <p className="text-gray-600 mb-6 max-w-md mx-auto">
+              <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 Create bilateral agreements with other universities and ITS institutions
                 to enable student exchange programs and course credit transfers.
               </p>

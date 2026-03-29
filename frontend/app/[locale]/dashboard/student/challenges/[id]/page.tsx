@@ -276,8 +276,8 @@ export default function StudentChallengeDetailPage() {
             </div>
           )}
           <div className="flex-1">
-            <h1 className="text-2xl font-semibold text-gray-900">{challenge.title}</h1>
-            <p className="text-gray-600 mt-1">{challenge.companyName}</p>
+            <h1 className="text-2xl font-semibold text-foreground">{challenge.title}</h1>
+            <p className="text-muted-foreground mt-1">{challenge.companyName}</p>
             <div className="flex items-center gap-3 mt-2">
               <Badge variant="outline">{challenge.challengeType.replace(/_/g, ' ')}</Badge>
               {challenge.mentorshipOffered && (
@@ -304,19 +304,19 @@ export default function StudentChallengeDetailPage() {
               <CardTitle>Challenge Overview</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <p className="text-gray-700">{challenge.description}</p>
+              <p className="text-foreground/80">{challenge.description}</p>
 
               {challenge.problemStatement && (
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-1">Problem Statement</h4>
-                  <p className="text-gray-700">{challenge.problemStatement}</p>
+                  <h4 className="font-medium text-foreground mb-1">Problem Statement</h4>
+                  <p className="text-foreground/80">{challenge.problemStatement}</p>
                 </div>
               )}
 
               {challenge.expectedOutcome && (
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-1">Expected Outcome</h4>
-                  <p className="text-gray-700">{challenge.expectedOutcome}</p>
+                  <h4 className="font-medium text-foreground mb-1">Expected Outcome</h4>
+                  <p className="text-foreground/80">{challenge.expectedOutcome}</p>
                 </div>
               )}
             </CardContent>
@@ -330,7 +330,7 @@ export default function StudentChallengeDetailPage() {
             <CardContent className="space-y-4">
               {challenge.requiredSkills.length > 0 && (
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500 mb-2">Skills</h4>
+                  <h4 className="text-sm font-medium text-muted-foreground mb-2">Skills</h4>
                   <div className="flex flex-wrap gap-2">
                     {challenge.requiredSkills.map((skill) => (
                       <Badge key={skill} variant="secondary">{skill}</Badge>
@@ -340,7 +340,7 @@ export default function StudentChallengeDetailPage() {
               )}
               {challenge.tools.length > 0 && (
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500 mb-2">Tools</h4>
+                  <h4 className="text-sm font-medium text-muted-foreground mb-2">Tools</h4>
                   <div className="flex flex-wrap gap-2">
                     {challenge.tools.map((tool) => (
                       <Badge key={tool} variant="outline">{tool}</Badge>
@@ -491,7 +491,7 @@ export default function StudentChallengeDetailPage() {
                 <div className="flex items-center justify-between py-2">
                   <div>
                     <Label>Team Project</Label>
-                    <p className="text-sm text-gray-500">Are you applying as part of a team?</p>
+                    <p className="text-sm text-muted-foreground">Are you applying as part of a team?</p>
                   </div>
                   <Switch
                     checked={applicationForm.isTeamProject}
@@ -534,7 +534,7 @@ export default function StudentChallengeDetailPage() {
                 <h3 className="font-semibold text-lg mb-2">Interested?</h3>
                 {canApply ? (
                   <>
-                    <p className="text-sm text-gray-600 mb-4">
+                    <p className="text-sm text-muted-foreground mb-4">
                       {spotsRemaining} spots remaining
                     </p>
                     <Button className="w-full" onClick={() => setShowApplyForm(true)}>
@@ -542,7 +542,7 @@ export default function StudentChallengeDetailPage() {
                     </Button>
                   </>
                 ) : (
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-muted-foreground">
                     {spotsRemaining <= 0
                       ? 'This challenge is full'
                       : 'Applications are closed'}
@@ -559,28 +559,28 @@ export default function StudentChallengeDetailPage() {
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
               <div className="flex items-center gap-2">
-                <Users className="h-4 w-4 text-gray-400" />
-                <span className="text-gray-600">Team:</span>
+                <Users className="h-4 w-4 text-muted-foreground/60" />
+                <span className="text-muted-foreground">Team:</span>
                 <span>{challenge.teamSizeMin}-{challenge.teamSizeMax} people</span>
               </div>
               {challenge.estimatedDuration && (
                 <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-gray-400" />
-                  <span className="text-gray-600">Duration:</span>
+                  <Clock className="h-4 w-4 text-muted-foreground/60" />
+                  <span className="text-muted-foreground">Duration:</span>
                   <span>{challenge.estimatedDuration}</span>
                 </div>
               )}
               {daysUntilDeadline !== null && (
                 <div className={`flex items-center gap-2 ${daysUntilDeadline <= 7 ? 'text-orange-600' : ''}`}>
-                  <Calendar className="h-4 w-4 text-gray-400" />
-                  <span className="text-gray-600">Deadline:</span>
+                  <Calendar className="h-4 w-4 text-muted-foreground/60" />
+                  <span className="text-muted-foreground">Deadline:</span>
                   <span>{daysUntilDeadline > 0 ? `${daysUntilDeadline} days left` : 'Passed'}</span>
                 </div>
               )}
               {challenge.startDate && (
                 <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-gray-400" />
-                  <span className="text-gray-600">Starts:</span>
+                  <Calendar className="h-4 w-4 text-muted-foreground/60" />
+                  <span className="text-muted-foreground">Starts:</span>
                   <span>{new Date(challenge.startDate).toLocaleDateString()}</span>
                 </div>
               )}
@@ -597,9 +597,9 @@ export default function StudentChallengeDetailPage() {
                 {challenge.universityApprovals.map((approval, i) => (
                   <div key={i} className="text-sm">
                     {approval.courseCode && <p className="font-medium">{approval.courseCode}</p>}
-                    {approval.courseName && <p className="text-gray-600">{approval.courseName}</p>}
-                    {approval.semester && <p className="text-gray-500">{approval.semester}</p>}
-                    {approval.professorName && <p className="text-gray-500">Prof. {approval.professorName}</p>}
+                    {approval.courseName && <p className="text-muted-foreground">{approval.courseName}</p>}
+                    {approval.semester && <p className="text-muted-foreground">{approval.semester}</p>}
+                    {approval.professorName && <p className="text-muted-foreground">Prof. {approval.professorName}</p>}
                   </div>
                 ))}
               </CardContent>

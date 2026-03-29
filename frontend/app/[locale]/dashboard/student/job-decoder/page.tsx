@@ -70,8 +70,8 @@ export default function JobDecoderPage() {
   return (
     <div className="max-w-4xl mx-auto space-y-8 pb-12">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('title')}</h1>
-        <p className="text-gray-600">{t('subtitle')}</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       {/* Input */}
@@ -92,7 +92,7 @@ export default function JobDecoderPage() {
             className="resize-none"
           />
           <div className="flex items-center justify-between">
-            <span className="text-xs text-gray-500">
+            <span className="text-xs text-muted-foreground">
               {jobText.length} / 5000 {t('input.characters')}
             </span>
             <Button onClick={decodeJob} disabled={loading || jobText.length < 50} size="lg">
@@ -112,7 +112,7 @@ export default function JobDecoderPage() {
           {/* Role Summary */}
           <Card>
             <CardContent className="pt-6">
-              <p className="text-lg text-gray-900">{result.roleSummary}</p>
+              <p className="text-lg text-foreground">{result.roleSummary}</p>
             </CardContent>
           </Card>
 
@@ -139,7 +139,7 @@ export default function JobDecoderPage() {
                 </div>
                 <Progress value={result.matchAnalysis.matchPercent} className="flex-1 h-3" />
               </div>
-              <p className="text-sm text-gray-700">{result.matchAnalysis.verdict}</p>
+              <p className="text-sm text-foreground/80">{result.matchAnalysis.verdict}</p>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -176,7 +176,7 @@ export default function JobDecoderPage() {
                 <h4 className="text-sm font-medium text-red-700 mb-2">{t('results.mustHave')}</h4>
                 <ul className="space-y-1">
                   {result.requirements.mustHave.map((r, i) => (
-                    <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
+                    <li key={i} className="text-sm text-foreground/80 flex items-start gap-2">
                       <XCircle className="h-4 w-4 text-red-400 flex-shrink-0 mt-0.5" /> {r}
                     </li>
                   ))}
@@ -186,7 +186,7 @@ export default function JobDecoderPage() {
                 <h4 className="text-sm font-medium text-green-700 mb-2">{t('results.niceToHave')}</h4>
                 <ul className="space-y-1">
                   {result.requirements.niceToHave.map((r, i) => (
-                    <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
+                    <li key={i} className="text-sm text-foreground/80 flex items-start gap-2">
                       <CheckCircle2 className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" /> {r}
                     </li>
                   ))}
@@ -210,9 +210,9 @@ export default function JobDecoderPage() {
               <CardContent>
                 <div className="space-y-3">
                   {result.jargonDecoded.map((j, i) => (
-                    <div key={i} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                    <div key={i} className="flex items-start gap-3 p-3 bg-muted/50 rounded-lg">
                       <Badge variant="outline" className="flex-shrink-0 mt-0.5">{j.term}</Badge>
-                      <p className="text-sm text-gray-700">{j.meaning}</p>
+                      <p className="text-sm text-foreground/80">{j.meaning}</p>
                     </div>
                   ))}
                 </div>
@@ -231,7 +231,7 @@ export default function JobDecoderPage() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-primary mb-2">{result.salaryEstimate.range}</div>
-                <p className="text-sm text-gray-600">{result.salaryEstimate.note}</p>
+                <p className="text-sm text-muted-foreground">{result.salaryEstimate.note}</p>
               </CardContent>
             </Card>
 
@@ -246,7 +246,7 @@ export default function JobDecoderPage() {
                 <CardContent>
                   <ul className="space-y-2">
                     {result.redFlags.map((f, i) => (
-                      <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
+                      <li key={i} className="text-sm text-foreground/80 flex items-start gap-2">
                         <AlertTriangle className="h-4 w-4 text-amber-500 flex-shrink-0 mt-0.5" /> {f}
                       </li>
                     ))}
@@ -267,7 +267,7 @@ export default function JobDecoderPage() {
             <CardContent>
               <ul className="space-y-2">
                 {result.applicationTips.map((tip, i) => (
-                  <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
+                  <li key={i} className="text-sm text-foreground/80 flex items-start gap-2">
                     <ArrowRight className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" /> {tip}
                   </li>
                 ))}

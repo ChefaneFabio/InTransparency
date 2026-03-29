@@ -59,14 +59,14 @@ interface ReferralData {
 
 const tierColors: Record<string, string> = {
   BRONZE: 'bg-orange-100 text-orange-700 border-orange-300',
-  SILVER: 'bg-muted text-foreground/80 border-gray-400',
+  SILVER: 'bg-muted text-foreground/80 border-border',
   GOLD: 'bg-yellow-100 text-yellow-700 border-yellow-400',
   PLATINUM: 'bg-primary/10 text-primary border-primary/40'
 }
 
 const tierGradients: Record<string, string> = {
   BRONZE: 'from-orange-500 to-amber-600',
-  SILVER: 'from-gray-400 to-gray-500',
+  SILVER: 'from-muted-foreground/60 to-muted-foreground',
   GOLD: 'from-yellow-400 to-amber-500',
   PLATINUM: 'from-primary to-primary'
 }
@@ -555,7 +555,7 @@ export default function StudentReferralsPage() {
                     {referralData.leaderboard.slice(0, 10).map((entry) => {
                       const medalColors: Record<number, string> = {
                         1: 'bg-yellow-400 text-yellow-900',
-                        2: 'bg-gray-300 text-gray-700',
+                        2: 'bg-muted text-foreground/80',
                         3: 'bg-orange-400 text-orange-900'
                       }
                       const isTopThree = entry.rank <= 3

@@ -75,7 +75,7 @@ export default function GenerateReportPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+    <div className="min-h-screen space-y-6 py-8">
       <div className="container mx-auto px-4 max-w-3xl">
         <Link href="/dashboard/university">
           <Button variant="ghost" className="mb-6">
@@ -85,8 +85,8 @@ export default function GenerateReportPage() {
         </Link>
 
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600 mt-1">{t('subtitle')}</p>
+          <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+          <p className="text-muted-foreground mt-1">{t('subtitle')}</p>
         </div>
 
         <Card className="mb-6">
@@ -142,27 +142,27 @@ export default function GenerateReportPage() {
               <CardTitle className="text-lg">{t('preview.title')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <h3 className="font-semibold text-gray-900">{preview.title} — {period}</h3>
+              <h3 className="font-semibold text-foreground">{preview.title} — {period}</h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div className="text-center p-3 bg-slate-50 rounded-lg">
-                  <p className="text-2xl font-bold text-gray-900">{preview.graduates}</p>
-                  <p className="text-xs text-gray-500">{t('preview.metrics.graduates')}</p>
+                  <p className="text-2xl font-bold text-foreground">{preview.graduates}</p>
+                  <p className="text-xs text-muted-foreground">{t('preview.metrics.graduates')}</p>
                 </div>
                 <div className="text-center p-3 bg-slate-50 rounded-lg">
-                  <p className="text-2xl font-bold text-gray-900">{preview.placementRate}</p>
-                  <p className="text-xs text-gray-500">{t('preview.metrics.placementRate')}</p>
+                  <p className="text-2xl font-bold text-foreground">{preview.placementRate}</p>
+                  <p className="text-xs text-muted-foreground">{t('preview.metrics.placementRate')}</p>
                 </div>
                 <div className="text-center p-3 bg-slate-50 rounded-lg">
-                  <p className="text-2xl font-bold text-gray-900">{preview.avgTime}</p>
-                  <p className="text-xs text-gray-500">{t('preview.metrics.avgTime')}</p>
+                  <p className="text-2xl font-bold text-foreground">{preview.avgTime}</p>
+                  <p className="text-xs text-muted-foreground">{t('preview.metrics.avgTime')}</p>
                 </div>
                 <div className="text-center p-3 bg-slate-50 rounded-lg">
-                  <p className="text-2xl font-bold text-gray-900">{preview.topEmployers}</p>
-                  <p className="text-xs text-gray-500">{t('preview.metrics.topEmployers')}</p>
+                  <p className="text-2xl font-bold text-foreground">{preview.topEmployers}</p>
+                  <p className="text-xs text-muted-foreground">{t('preview.metrics.topEmployers')}</p>
                 </div>
               </div>
               <div className="flex items-center justify-between pt-2">
-                <p className="text-xs text-gray-400">{t('preview.note')}</p>
+                <p className="text-xs text-muted-foreground/60">{t('preview.note')}</p>
                 <Button variant="outline" size="sm">{t('preview.download')}</Button>
               </div>
             </CardContent>
@@ -170,7 +170,7 @@ export default function GenerateReportPage() {
         ) : (
           <Card className="mb-6">
             <CardContent className="py-12 text-center">
-              <p className="text-gray-400">{t('empty')}</p>
+              <p className="text-muted-foreground/60">{t('empty')}</p>
             </CardContent>
           </Card>
         )}
@@ -182,7 +182,7 @@ export default function GenerateReportPage() {
           <CardContent>
             <ul className="space-y-2">
               {comingSoonItems.map((item, i) => (
-                <li key={i} className="text-sm text-gray-500">— {item}</li>
+                <li key={i} className="text-sm text-muted-foreground">— {item}</li>
               ))}
             </ul>
           </CardContent>

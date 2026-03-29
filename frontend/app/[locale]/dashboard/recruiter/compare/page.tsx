@@ -83,11 +83,11 @@ export default function CompareCandidatesPage() {
   if (loading) {
     return (
       <div className="space-y-6 animate-pulse max-w-6xl mx-auto">
-        <div className="h-8 bg-gray-200 rounded w-1/3" />
+        <div className="h-8 bg-muted rounded w-1/3" />
         <div className="grid grid-cols-3 gap-4">
-          <div className="h-64 bg-gray-200 rounded" />
-          <div className="h-64 bg-gray-200 rounded" />
-          <div className="h-64 bg-gray-200 rounded" />
+          <div className="h-64 bg-muted rounded" />
+          <div className="h-64 bg-muted rounded" />
+          <div className="h-64 bg-muted rounded" />
         </div>
       </div>
     )
@@ -96,7 +96,7 @@ export default function CompareCandidatesPage() {
   if (candidates.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-600 mb-4">{t('noCandidatesToCompare')}</p>
+        <p className="text-muted-foreground mb-4">{t('noCandidatesToCompare')}</p>
         <Button asChild variant="outline">
           <Link href="/dashboard/recruiter/candidates">
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -147,7 +147,7 @@ export default function CompareCandidatesPage() {
               Back
             </Link>
           </Button>
-          <h1 className="text-2xl font-bold text-gray-900 mt-2">
+          <h1 className="text-2xl font-bold text-foreground mt-2">
             {t('title')}
           </h1>
         </div>
@@ -166,36 +166,36 @@ export default function CompareCandidatesPage() {
                   <User className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900">{candidateNames[i]}</p>
-                  <p className="text-xs text-gray-500">{c.candidate.university}</p>
+                  <p className="font-semibold text-foreground">{candidateNames[i]}</p>
+                  <p className="text-xs text-muted-foreground">{c.candidate.university}</p>
                 </div>
               </div>
 
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Placement</span>
+                  <span className="text-muted-foreground">Placement</span>
                   <span className="font-semibold">
                     {c.prediction ? `${Math.round(c.prediction.probability * 100)}%` : 'N/A'}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Verified Projects</span>
+                  <span className="text-muted-foreground">Verified Projects</span>
                   <span className="font-semibold">
                     {c.trustScore.verifiedProjects}/{c.trustScore.totalProjects}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Endorsements</span>
+                  <span className="text-muted-foreground">Endorsements</span>
                   <span className="font-semibold">{c.trustScore.endorsementCount}</span>
                 </div>
                 {c.matchScore !== null && (
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Job Match</span>
+                    <span className="text-muted-foreground">Job Match</span>
                     <span className="font-semibold">{c.matchScore}%</span>
                   </div>
                 )}
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Avg Grade</span>
+                  <span className="text-muted-foreground">Avg Grade</span>
                   <span className="font-semibold">
                     {c.grades.length > 0
                       ? `${Math.round(

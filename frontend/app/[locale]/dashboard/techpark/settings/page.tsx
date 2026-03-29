@@ -245,15 +245,15 @@ export default function TechParkSettingsPage() {
             </Link>
           </Button>
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">{t('settings.title')}</h1>
-            <p className="text-gray-600">{t('settings.subtitle')}</p>
+            <h1 className="text-2xl font-semibold text-foreground">{t('settings.title')}</h1>
+            <p className="text-muted-foreground">{t('settings.subtitle')}</p>
           </div>
         </div>
         <Card>
           <CardContent className="p-12 text-center">
             <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">{t('settings.failedToLoad')}</h3>
-            <p className="text-gray-600 mb-4">{error}</p>
+            <h3 className="text-lg font-medium text-foreground mb-2">{t('settings.failedToLoad')}</h3>
+            <p className="text-muted-foreground mb-4">{error}</p>
             <Button onClick={() => window.location.reload()}>{t('settings.tryAgain')}</Button>
           </CardContent>
         </Card>
@@ -272,8 +272,8 @@ export default function TechParkSettingsPage() {
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">{t('settings.title')}</h1>
-          <p className="text-gray-600">{t('settings.subtitle')}</p>
+          <h1 className="text-2xl font-semibold text-foreground">{t('settings.title')}</h1>
+          <p className="text-muted-foreground">{t('settings.subtitle')}</p>
         </div>
       </div>
 
@@ -478,7 +478,7 @@ export default function TechParkSettingsPage() {
             <Label htmlFor="logo">{t('settings.logoUrl')}</Label>
             <div className="flex items-center gap-4">
               {settings.logo && (
-                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200 flex-shrink-0">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-border flex-shrink-0">
                   <img
                     src={settings.logo}
                     alt="Park logo"
@@ -488,8 +488,8 @@ export default function TechParkSettingsPage() {
                 </div>
               )}
               {!settings.logo && (
-                <div className="w-12 h-12 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center flex-shrink-0">
-                  <ImageIcon className="h-5 w-5 text-gray-400" />
+                <div className="w-12 h-12 rounded-full border-2 border-dashed border-border flex items-center justify-center flex-shrink-0">
+                  <ImageIcon className="h-5 w-5 text-muted-foreground/60" />
                 </div>
               )}
               <Input
@@ -547,7 +547,7 @@ export default function TechParkSettingsPage() {
 
           {/* Branding Preview */}
           <div className="border rounded-lg p-6 mt-2">
-            <h4 className="font-medium text-gray-900 mb-4">{t('settings.brandingPreview')}</h4>
+            <h4 className="font-medium text-foreground mb-4">{t('settings.brandingPreview')}</h4>
             <div className="p-4 rounded-lg" style={{ backgroundColor: settings.primaryColor + '10' }}>
               <div className="flex items-center gap-3 mb-3">
                 {settings.logo ? (
@@ -566,7 +566,7 @@ export default function TechParkSettingsPage() {
                   <h3 className="font-semibold" style={{ color: settings.primaryColor }}>
                     {settings.parkName || 'Your Tech Park'}
                   </h3>
-                  <p className="text-sm text-gray-600">{settings.city || 'City'}</p>
+                  <p className="text-sm text-muted-foreground">{settings.city || 'City'}</p>
                 </div>
               </div>
               <Button size="sm" style={{ backgroundColor: settings.accentColor }} className="text-white">
@@ -591,8 +591,8 @@ export default function TechParkSettingsPage() {
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">{t('settings.newStudents')}</p>
-              <p className="text-sm text-gray-500">{t('settings.newStudentsDescription')}</p>
+              <p className="text-sm font-medium text-foreground">{t('settings.newStudents')}</p>
+              <p className="text-sm text-muted-foreground">{t('settings.newStudentsDescription')}</p>
             </div>
             <button
               type="button"
@@ -600,7 +600,7 @@ export default function TechParkSettingsPage() {
               aria-checked={settings.notifyNewStudents}
               onClick={() => setSettings({ ...settings, notifyNewStudents: !settings.notifyNewStudents })}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.notifyNewStudents ? 'bg-primary' : 'bg-gray-200'
+                settings.notifyNewStudents ? 'bg-primary' : 'bg-muted'
               }`}
             >
               <span
@@ -613,8 +613,8 @@ export default function TechParkSettingsPage() {
 
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">{t('settings.recruiterActivityLabel')}</p>
-              <p className="text-sm text-gray-500">{t('settings.recruiterActivityDescription')}</p>
+              <p className="text-sm font-medium text-foreground">{t('settings.recruiterActivityLabel')}</p>
+              <p className="text-sm text-muted-foreground">{t('settings.recruiterActivityDescription')}</p>
             </div>
             <button
               type="button"
@@ -622,7 +622,7 @@ export default function TechParkSettingsPage() {
               aria-checked={settings.notifyRecruiterActivity}
               onClick={() => setSettings({ ...settings, notifyRecruiterActivity: !settings.notifyRecruiterActivity })}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.notifyRecruiterActivity ? 'bg-primary' : 'bg-gray-200'
+                settings.notifyRecruiterActivity ? 'bg-primary' : 'bg-muted'
               }`}
             >
               <span
@@ -635,8 +635,8 @@ export default function TechParkSettingsPage() {
 
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">{t('settings.placementsLabel')}</p>
-              <p className="text-sm text-gray-500">{t('settings.placementsDescription')}</p>
+              <p className="text-sm font-medium text-foreground">{t('settings.placementsLabel')}</p>
+              <p className="text-sm text-muted-foreground">{t('settings.placementsDescription')}</p>
             </div>
             <button
               type="button"
@@ -644,7 +644,7 @@ export default function TechParkSettingsPage() {
               aria-checked={settings.notifyPlacements}
               onClick={() => setSettings({ ...settings, notifyPlacements: !settings.notifyPlacements })}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.notifyPlacements ? 'bg-primary' : 'bg-gray-200'
+                settings.notifyPlacements ? 'bg-primary' : 'bg-muted'
               }`}
             >
               <span
@@ -671,8 +671,8 @@ export default function TechParkSettingsPage() {
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">{t('settings.showInDirectory')}</p>
-              <p className="text-sm text-gray-500">{t('settings.showInDirectoryDescription')}</p>
+              <p className="text-sm font-medium text-foreground">{t('settings.showInDirectory')}</p>
+              <p className="text-sm text-muted-foreground">{t('settings.showInDirectoryDescription')}</p>
             </div>
             <button
               type="button"
@@ -680,7 +680,7 @@ export default function TechParkSettingsPage() {
               aria-checked={settings.showInDirectory}
               onClick={() => setSettings({ ...settings, showInDirectory: !settings.showInDirectory })}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.showInDirectory ? 'bg-primary' : 'bg-gray-200'
+                settings.showInDirectory ? 'bg-primary' : 'bg-muted'
               }`}
             >
               <span
@@ -693,8 +693,8 @@ export default function TechParkSettingsPage() {
 
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">{t('settings.allowStudentDiscovery')}</p>
-              <p className="text-sm text-gray-500">{t('settings.allowStudentDiscoveryDescription')}</p>
+              <p className="text-sm font-medium text-foreground">{t('settings.allowStudentDiscovery')}</p>
+              <p className="text-sm text-muted-foreground">{t('settings.allowStudentDiscoveryDescription')}</p>
             </div>
             <button
               type="button"
@@ -702,7 +702,7 @@ export default function TechParkSettingsPage() {
               aria-checked={settings.allowStudentDiscovery}
               onClick={() => setSettings({ ...settings, allowStudentDiscovery: !settings.allowStudentDiscovery })}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.allowStudentDiscovery ? 'bg-primary' : 'bg-gray-200'
+                settings.allowStudentDiscovery ? 'bg-primary' : 'bg-muted'
               }`}
             >
               <span

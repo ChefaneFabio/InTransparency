@@ -127,17 +127,17 @@ export default function RecruiterJobs() {
       'ACTIVE': 'bg-primary/50',
       'PAUSED': 'bg-yellow-500',
       'CLOSED': 'bg-red-500',
-      'DRAFT': 'bg-gray-500',
+      'DRAFT': 'bg-muted-foreground',
       'FILLED': 'bg-primary/50',
       'CANCELLED': 'bg-red-700',
     }
     const label = status.charAt(0) + status.slice(1).toLowerCase()
-    return <Badge className={`${colors[status] || 'bg-gray-500'} text-white`}>{label}</Badge>
+    return <Badge className={`${colors[status] || 'bg-muted-foreground'} text-white`}>{label}</Badge>
   }
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+      <div className="min-h-screen space-y-6 space-y-6">
         <div className="flex items-center justify-between">
           <div>
             <Skeleton className="h-8 w-48" />
@@ -181,7 +181,7 @@ export default function RecruiterJobs() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
+      <div className="min-h-screen space-y-6 flex items-center justify-center">
         <Card className="max-w-md w-full">
           <CardContent className="pt-6 text-center space-y-4">
             <AlertCircle className="h-12 w-12 text-red-500 mx-auto" />
@@ -195,7 +195,7 @@ export default function RecruiterJobs() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+    <div className="min-h-screen space-y-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>

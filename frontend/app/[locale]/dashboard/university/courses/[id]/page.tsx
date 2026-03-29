@@ -290,7 +290,7 @@ export default function UniversityCourseDetailPage() {
         )
       default:
         return (
-          <Badge variant="outline" className="text-gray-500 text-xs gap-1">
+          <Badge variant="outline" className="text-muted-foreground text-xs gap-1">
             <Clock className="h-3 w-3" />
             In attesa
           </Badge>
@@ -304,7 +304,7 @@ export default function UniversityCourseDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+      <div className="min-h-screen space-y-6 py-8">
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Back button skeleton */}
           <Skeleton className="h-9 w-32 mb-6" />
@@ -379,13 +379,13 @@ export default function UniversityCourseDetailPage() {
 
   if (!course) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+      <div className="min-h-screen space-y-6 py-8">
         <div className="container mx-auto px-4 max-w-4xl text-center py-20">
-          <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">
+          <BookOpen className="h-16 w-16 text-muted-foreground/40 mx-auto mb-4" />
+          <h2 className="text-xl font-semibold text-foreground mb-2">
             {error || 'Corso non trovato'}
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-muted-foreground mb-6">
             Il corso che cerchi non esiste o non hai i permessi per visualizzarlo.
           </p>
           <Button asChild>
@@ -405,13 +405,13 @@ export default function UniversityCourseDetailPage() {
 
   if (editMode) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+      <div className="min-h-screen space-y-6 py-8">
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Modifica Corso</h1>
-              <p className="text-gray-600 mt-1">{course.courseCode} &mdash; {course.courseName}</p>
+              <h1 className="text-2xl font-bold text-foreground">Modifica Corso</h1>
+              <p className="text-muted-foreground mt-1">{course.courseCode} &mdash; {course.courseName}</p>
             </div>
             <div className="flex gap-2">
               <Button variant="outline" onClick={handleCancelEdit} disabled={saving}>
@@ -608,7 +608,7 @@ export default function UniversityCourseDetailPage() {
                         <button
                           type="button"
                           onClick={() => removeCompetency(c)}
-                          className="ml-1 rounded-full hover:bg-gray-300 p-0.5"
+                          className="ml-1 rounded-full hover:bg-muted p-0.5"
                         >
                           <X className="h-3 w-3" />
                         </button>
@@ -649,7 +649,7 @@ export default function UniversityCourseDetailPage() {
                         <button
                           type="button"
                           onClick={() => removeOutcome(o)}
-                          className="ml-1 rounded-full hover:bg-gray-300 p-0.5"
+                          className="ml-1 rounded-full hover:bg-muted p-0.5"
                         >
                           <X className="h-3 w-3" />
                         </button>
@@ -670,7 +670,7 @@ export default function UniversityCourseDetailPage() {
   /* ================================================================ */
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+    <div className="min-h-screen space-y-6 py-8">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Back + actions */}
         <div className="flex items-center justify-between mb-6">
@@ -697,7 +697,7 @@ export default function UniversityCourseDetailPage() {
         {/* Title area */}
         <div className="mb-8">
           <div className="flex items-center flex-wrap gap-3 mb-2">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground">
               {course.courseName}
             </h1>
             <Badge variant="secondary" className="bg-primary/5 text-primary font-mono text-xs">
@@ -711,7 +711,7 @@ export default function UniversityCourseDetailPage() {
             )}
           </div>
           {course.department && (
-            <p className="text-gray-600">{course.department}</p>
+            <p className="text-muted-foreground">{course.department}</p>
           )}
         </div>
 
@@ -721,65 +721,65 @@ export default function UniversityCourseDetailPage() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-y-5 gap-x-6">
               {/* Semester */}
               <div>
-                <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                   <Calendar className="h-4 w-4" />
                   Semestre
                 </div>
-                <p className="font-medium text-gray-900">{course.semester}</p>
+                <p className="font-medium text-foreground">{course.semester}</p>
               </div>
 
               {/* Academic year */}
               <div>
-                <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                   <Calendar className="h-4 w-4" />
                   Anno Accademico
                 </div>
-                <p className="font-medium text-gray-900">{course.academicYear}</p>
+                <p className="font-medium text-foreground">{course.academicYear}</p>
               </div>
 
               {/* Credits */}
               {course.credits !== null && (
                 <div>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                     <BookOpen className="h-4 w-4" />
                     Crediti (CFU)
                   </div>
-                  <p className="font-medium text-gray-900">{course.credits}</p>
+                  <p className="font-medium text-foreground">{course.credits}</p>
                 </div>
               )}
 
               {/* Level */}
               {course.level && (
                 <div>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                     <GraduationCap className="h-4 w-4" />
                     Livello
                   </div>
-                  <p className="font-medium text-gray-900">{course.level}</p>
+                  <p className="font-medium text-foreground">{course.level}</p>
                 </div>
               )}
 
               {/* Professor */}
               {course.professorName && (
                 <div>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                     <Users className="h-4 w-4" />
                     Docente
                   </div>
-                  <p className="font-medium text-gray-900">{course.professorName}</p>
+                  <p className="font-medium text-foreground">{course.professorName}</p>
                   {course.professorEmail && (
-                    <p className="text-sm text-gray-500">{course.professorEmail}</p>
+                    <p className="text-sm text-muted-foreground">{course.professorEmail}</p>
                   )}
                 </div>
               )}
 
               {/* Project count */}
               <div>
-                <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
                   <FileText className="h-4 w-4" />
                   Progetti
                 </div>
-                <p className="font-medium text-gray-900">{course._count.projects}</p>
+                <p className="font-medium text-foreground">{course._count.projects}</p>
               </div>
             </div>
           </CardContent>
@@ -792,7 +792,7 @@ export default function UniversityCourseDetailPage() {
               <CardTitle className="text-lg">Descrizione</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+              <p className="text-foreground/80 leading-relaxed whitespace-pre-wrap">
                 {course.description}
               </p>
             </CardContent>
@@ -826,7 +826,7 @@ export default function UniversityCourseDetailPage() {
             <CardContent>
               <ol className="list-decimal list-inside space-y-2">
                 {course.learningOutcomes.map((outcome, i) => (
-                  <li key={i} className="text-gray-700 leading-relaxed">
+                  <li key={i} className="text-foreground/80 leading-relaxed">
                     {outcome}
                   </li>
                 ))}
@@ -839,7 +839,7 @@ export default function UniversityCourseDetailPage() {
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
-              <FileText className="h-5 w-5 text-gray-500" />
+              <FileText className="h-5 w-5 text-muted-foreground" />
               Progetti collegati
               <Badge variant="outline" className="ml-1 text-xs font-normal">
                 {course._count.projects}
@@ -849,8 +849,8 @@ export default function UniversityCourseDetailPage() {
           <CardContent>
             {course.projects.length === 0 ? (
               <div className="text-center py-8">
-                <FileText className="h-10 w-10 text-gray-300 mx-auto mb-3" />
-                <p className="text-gray-500 text-sm">
+                <FileText className="h-10 w-10 text-muted-foreground/40 mx-auto mb-3" />
+                <p className="text-muted-foreground text-sm">
                   Nessun progetto collegato a questo corso.
                 </p>
               </div>
@@ -869,10 +869,10 @@ export default function UniversityCourseDetailPage() {
                       <div className="p-4 border rounded-lg hover:shadow-md hover:border-primary/20 transition-all duration-200">
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex-1 min-w-0">
-                            <h4 className="font-semibold text-gray-900 group-hover:text-primary truncate">
+                            <h4 className="font-semibold text-foreground group-hover:text-primary truncate">
                               {project.title}
                             </h4>
-                            <p className="text-sm text-gray-500 mt-0.5">
+                            <p className="text-sm text-muted-foreground mt-0.5">
                               {studentName}
                             </p>
                           </div>
@@ -882,7 +882,7 @@ export default function UniversityCourseDetailPage() {
                         </div>
 
                         {project.description && (
-                          <p className="text-sm text-gray-600 line-clamp-2 mb-3">
+                          <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
                             {project.description}
                           </p>
                         )}
@@ -901,13 +901,13 @@ export default function UniversityCourseDetailPage() {
                             {project.skills.length > 4 && (
                               <Badge
                                 variant="outline"
-                                className="text-xs font-normal text-gray-400"
+                                className="text-xs font-normal text-muted-foreground/60"
                               >
                                 +{project.skills.length - 4}
                               </Badge>
                             )}
                           </div>
-                          <span className="text-xs text-gray-400 ml-3 flex-shrink-0">
+                          <span className="text-xs text-muted-foreground/60 ml-3 flex-shrink-0">
                             {new Date(project.createdAt).toLocaleDateString('it-IT', {
                               day: 'numeric',
                               month: 'short',
@@ -929,8 +929,8 @@ export default function UniversityCourseDetailPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-semibold text-gray-900">Elimina Corso</h3>
-                <p className="text-sm text-gray-500 mt-1">
+                <h3 className="font-semibold text-foreground">Elimina Corso</h3>
+                <p className="text-sm text-muted-foreground mt-1">
                   Questa azione e irreversibile. Il corso verra rimosso dal sistema.
                 </p>
               </div>

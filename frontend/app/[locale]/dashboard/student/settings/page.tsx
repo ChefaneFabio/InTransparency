@@ -189,9 +189,9 @@ export default function StudentSettingsPage() {
     return (
       <div className="max-w-3xl mx-auto py-8 px-4">
         <div className="animate-pulse space-y-6">
-          <div className="h-8 w-48 bg-gray-200 rounded" />
-          <div className="h-64 bg-gray-200 rounded" />
-          <div className="h-48 bg-gray-200 rounded" />
+          <div className="h-8 w-48 bg-muted rounded" />
+          <div className="h-64 bg-muted rounded" />
+          <div className="h-48 bg-muted rounded" />
         </div>
       </div>
     )

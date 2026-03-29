@@ -122,15 +122,15 @@ export default function ProjectDetailPage() {
   if (loading) {
     return (
       <div className="space-y-8 animate-pulse">
-        <div className="h-8 bg-gray-200 rounded w-1/3"></div>
+        <div className="h-8 bg-muted rounded w-1/3"></div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
-            <div className="h-64 bg-gray-200 rounded"></div>
-            <div className="h-32 bg-gray-200 rounded"></div>
+            <div className="h-64 bg-muted rounded"></div>
+            <div className="h-32 bg-muted rounded"></div>
           </div>
           <div className="space-y-6">
-            <div className="h-48 bg-gray-200 rounded"></div>
-            <div className="h-32 bg-gray-200 rounded"></div>
+            <div className="h-48 bg-muted rounded"></div>
+            <div className="h-32 bg-muted rounded"></div>
           </div>
         </div>
       </div>
@@ -140,10 +140,10 @@ export default function ProjectDetailPage() {
   if (error || !project) {
     return (
       <div className="text-center py-12">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">
+        <h1 className="text-2xl font-bold text-foreground mb-4">
           {error === 'Access denied' ? 'Access Denied' : 'Project Not Found'}
         </h1>
-        <p className="text-gray-600 mb-6">
+        <p className="text-muted-foreground mb-6">
           {error === 'Access denied'
             ? 'You don\'t have permission to view this project.'
             : 'The project you\'re looking for doesn\'t exist or has been removed.'}
@@ -210,7 +210,7 @@ export default function ProjectDetailPage() {
       <div className="space-y-4">
         <div>
           <div className="flex items-center space-x-3 mb-2">
-            <h1 className="text-3xl font-bold text-gray-900">{project.title}</h1>
+            <h1 className="text-3xl font-bold text-foreground">{project.title}</h1>
             <Badge variant={project.isPublic ? 'default' : 'secondary'}>
               {project.isPublic ? (
                 <><Globe className="mr-1 h-3 w-3" /> Public</>
@@ -231,11 +231,11 @@ export default function ProjectDetailPage() {
             </div>
           )}
 
-          <p className="text-lg text-gray-600 mb-4">
+          <p className="text-lg text-muted-foreground mb-4">
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-4 text-sm text-gray-700">
+          <div className="flex flex-wrap gap-4 text-sm text-foreground/80">
             <span className="flex items-center">
               <Calendar className="h-4 w-4 mr-1" />
               Created {new Date(project.createdAt).toLocaleDateString()}
@@ -258,14 +258,14 @@ export default function ProjectDetailPage() {
           <Card>
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-primary">{project.views || 0}</div>
-              <div className="text-xs text-gray-700">Views</div>
+              <div className="text-xs text-foreground/80">Views</div>
             </CardContent>
           </Card>
           {project.innovationScore != null && (
             <Card>
               <CardContent className="p-4 text-center">
                 <div className="text-2xl font-bold text-primary">{project.innovationScore}</div>
-                <div className="text-xs text-gray-700">Innovation</div>
+                <div className="text-xs text-foreground/80">Innovation</div>
               </CardContent>
             </Card>
           )}
@@ -273,7 +273,7 @@ export default function ProjectDetailPage() {
             <Card>
               <CardContent className="p-4 text-center">
                 <div className="text-2xl font-bold text-primary">{project.complexityScore}</div>
-                <div className="text-xs text-gray-700">Complexity</div>
+                <div className="text-xs text-foreground/80">Complexity</div>
               </CardContent>
             </Card>
           )}
@@ -281,7 +281,7 @@ export default function ProjectDetailPage() {
             <Card>
               <CardContent className="p-4 text-center">
                 <div className="text-2xl font-bold text-primary">{project.marketRelevance}</div>
-                <div className="text-xs text-gray-700">Market Relevance</div>
+                <div className="text-xs text-foreground/80">Market Relevance</div>
               </CardContent>
             </Card>
           )}
@@ -309,7 +309,7 @@ export default function ProjectDetailPage() {
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {project.images.map((image: string, index: number) => (
-                        <div key={index} className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                        <div key={index} className="aspect-video bg-muted rounded-lg overflow-hidden">
                           <img
                             src={image}
                             alt={`Screenshot ${index + 1}`}
@@ -332,7 +332,7 @@ export default function ProjectDetailPage() {
                     <div className="space-y-3">
                       {project.technologies && project.technologies.length > 0 && (
                         <div>
-                          <p className="text-sm font-medium text-gray-500 mb-2">Technologies</p>
+                          <p className="text-sm font-medium text-muted-foreground mb-2">Technologies</p>
                           <div className="flex flex-wrap gap-2">
                             {project.technologies.map((tech: string) => (
                               <Badge key={tech} variant="secondary">{tech}</Badge>
@@ -342,7 +342,7 @@ export default function ProjectDetailPage() {
                       )}
                       {project.skills && project.skills.length > 0 && (
                         <div>
-                          <p className="text-sm font-medium text-gray-500 mb-2">Skills</p>
+                          <p className="text-sm font-medium text-muted-foreground mb-2">Skills</p>
                           <div className="flex flex-wrap gap-2">
                             {project.skills.map((skill: string) => (
                               <Badge key={skill} variant="outline">{skill}</Badge>
@@ -352,7 +352,7 @@ export default function ProjectDetailPage() {
                       )}
                       {project.tools && project.tools.length > 0 && (
                         <div>
-                          <p className="text-sm font-medium text-gray-500 mb-2">Tools</p>
+                          <p className="text-sm font-medium text-muted-foreground mb-2">Tools</p>
                           <div className="flex flex-wrap gap-2">
                             {project.tools.map((tool: string) => (
                               <Badge key={tool} variant="outline">{tool}</Badge>
@@ -375,26 +375,26 @@ export default function ProjectDetailPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {project.duration && (
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Duration</p>
-                          <p className="text-gray-900">{project.duration}</p>
+                          <p className="text-sm font-medium text-muted-foreground">Duration</p>
+                          <p className="text-foreground">{project.duration}</p>
                         </div>
                       )}
                       {project.role && (
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Role</p>
-                          <p className="text-gray-900">{project.role}</p>
+                          <p className="text-sm font-medium text-muted-foreground">Role</p>
+                          <p className="text-foreground">{project.role}</p>
                         </div>
                       )}
                       {project.client && (
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Client</p>
-                          <p className="text-gray-900">{project.client}</p>
+                          <p className="text-sm font-medium text-muted-foreground">Client</p>
+                          <p className="text-foreground">{project.client}</p>
                         </div>
                       )}
                       {project.outcome && (
                         <div className="md:col-span-2">
-                          <p className="text-sm font-medium text-gray-500">Outcome</p>
-                          <p className="text-gray-900">{project.outcome}</p>
+                          <p className="text-sm font-medium text-muted-foreground">Outcome</p>
+                          <p className="text-foreground">{project.outcome}</p>
                         </div>
                       )}
                     </div>
@@ -416,12 +416,12 @@ export default function ProjectDetailPage() {
                       <div key={e.id} className="border rounded-lg p-4">
                         <div className="flex items-start justify-between mb-2">
                           <div>
-                            <p className="font-medium text-gray-900">{e.professorName}</p>
-                            <p className="text-sm text-gray-600">
+                            <p className="font-medium text-foreground">{e.professorName}</p>
+                            <p className="text-sm text-muted-foreground">
                               {e.professorTitle}{e.department ? `, ${e.department}` : ''}
                             </p>
                             {e.university && (
-                              <p className="text-sm text-gray-500">{e.university}</p>
+                              <p className="text-sm text-muted-foreground">{e.university}</p>
                             )}
                           </div>
                           {e.rating && (
@@ -429,7 +429,7 @@ export default function ProjectDetailPage() {
                           )}
                         </div>
                         {e.endorsementText && (
-                          <p className="text-gray-700 text-sm mt-2">{e.endorsementText}</p>
+                          <p className="text-foreground/80 text-sm mt-2">{e.endorsementText}</p>
                         )}
                         {e.skills && e.skills.length > 0 && (
                           <div className="flex flex-wrap gap-1 mt-2">
@@ -448,8 +448,8 @@ export default function ProjectDetailPage() {
             <TabsContent value="analysis" className="space-y-6">
               {!project.aiAnalyzed ? (
                 <Card>
-                  <CardContent className="p-8 text-center text-gray-500">
-                    <Brain className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+                  <CardContent className="p-8 text-center text-muted-foreground">
+                    <Brain className="h-12 w-12 mx-auto mb-4 text-muted-foreground/40" />
                     <p className="text-lg font-medium mb-2">No AI Analysis Yet</p>
                     <p className="text-sm">AI analysis will be generated after project submission.</p>
                   </CardContent>
@@ -468,7 +468,7 @@ export default function ProjectDetailPage() {
                       {project.innovationScore != null && (
                         <div>
                           <div className="flex justify-between text-sm mb-1">
-                            <span className="text-gray-600">Innovation</span>
+                            <span className="text-muted-foreground">Innovation</span>
                             <span className="font-semibold">{project.innovationScore}/100</span>
                           </div>
                           <Progress value={project.innovationScore} className="h-2" />
@@ -477,7 +477,7 @@ export default function ProjectDetailPage() {
                       {project.complexityScore != null && (
                         <div>
                           <div className="flex justify-between text-sm mb-1">
-                            <span className="text-gray-600">Complexity</span>
+                            <span className="text-muted-foreground">Complexity</span>
                             <span className="font-semibold">{project.complexityScore}/100</span>
                           </div>
                           <Progress value={project.complexityScore} className="h-2" />
@@ -486,7 +486,7 @@ export default function ProjectDetailPage() {
                       {project.marketRelevance != null && (
                         <div>
                           <div className="flex justify-between text-sm mb-1">
-                            <span className="text-gray-600">Market Relevance</span>
+                            <span className="text-muted-foreground">Market Relevance</span>
                             <span className="font-semibold">{project.marketRelevance}/100</span>
                           </div>
                           <Progress value={project.marketRelevance} className="h-2" />
@@ -508,7 +508,7 @@ export default function ProjectDetailPage() {
                             </CardTitle>
                           </CardHeader>
                           <CardContent>
-                            <p className="text-gray-700">{aiInsights.summary}</p>
+                            <p className="text-foreground/80">{aiInsights.summary}</p>
                           </CardContent>
                         </Card>
                       )}
@@ -527,7 +527,7 @@ export default function ProjectDetailPage() {
                               {aiInsights.strengths.map((item: string, i: number) => (
                                 <li key={i} className="flex items-start space-x-2">
                                   <div className="w-2 h-2 bg-primary/50 rounded-full mt-2 flex-shrink-0"></div>
-                                  <span className="text-gray-700">{item}</span>
+                                  <span className="text-foreground/80">{item}</span>
                                 </li>
                               ))}
                             </ul>
@@ -548,7 +548,7 @@ export default function ProjectDetailPage() {
                               {aiInsights.improvements.map((item: string, i: number) => (
                                 <li key={i} className="flex items-start space-x-2">
                                   <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                                  <span className="text-gray-700">{item}</span>
+                                  <span className="text-foreground/80">{item}</span>
                                 </li>
                               ))}
                             </ul>
@@ -574,16 +574,16 @@ export default function ProjectDetailPage() {
                               return (
                                 <div key={i}>
                                   <div className="flex justify-between text-sm mb-1">
-                                    <span className="font-medium text-gray-900">{name}</span>
+                                    <span className="font-medium text-foreground">{name}</span>
                                     {score != null && (
-                                      <span className="text-gray-600">{score}/100</span>
+                                      <span className="text-muted-foreground">{score}/100</span>
                                     )}
                                   </div>
                                   {score != null && (
                                     <Progress value={score} className="h-2 mb-1" />
                                   )}
                                   {evidence && (
-                                    <p className="text-xs text-gray-500">{evidence}</p>
+                                    <p className="text-xs text-muted-foreground">{evidence}</p>
                                   )}
                                 </div>
                               )
@@ -605,16 +605,16 @@ export default function ProjectDetailPage() {
                             {aiInsights.softSkills.map((skill: any, i: number) => (
                               <div key={i}>
                                 <div className="flex justify-between text-sm mb-1">
-                                  <span className="font-medium text-gray-900">{skill.name}</span>
+                                  <span className="font-medium text-foreground">{skill.name}</span>
                                   {skill.score != null && (
-                                    <span className="text-gray-600">{skill.score}/100</span>
+                                    <span className="text-muted-foreground">{skill.score}/100</span>
                                   )}
                                 </div>
                                 {skill.score != null && (
                                   <Progress value={skill.score} className="h-2 mb-1" />
                                 )}
                                 {skill.evidence && (
-                                  <p className="text-xs text-gray-500">{skill.evidence}</p>
+                                  <p className="text-xs text-muted-foreground">{skill.evidence}</p>
                                 )}
                               </div>
                             ))}
@@ -636,7 +636,7 @@ export default function ProjectDetailPage() {
                               {aiInsights.recommendations.map((rec: string, i: number) => (
                                 <li key={i} className="flex items-start space-x-2">
                                   <div className="w-2 h-2 bg-primary/50 rounded-full mt-2 flex-shrink-0"></div>
-                                  <span className="text-gray-700">{rec}</span>
+                                  <span className="text-foreground/80">{rec}</span>
                                 </li>
                               ))}
                             </ul>
@@ -662,8 +662,8 @@ export default function ProjectDetailPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {project.courseName && (
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Course</p>
-                          <p className="text-gray-900">
+                          <p className="text-sm font-medium text-muted-foreground">Course</p>
+                          <p className="text-foreground">
                             {project.courseName}
                             {project.courseCode && ` (${project.courseCode})`}
                           </p>
@@ -671,14 +671,14 @@ export default function ProjectDetailPage() {
                       )}
                       {project.professor && (
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Professor</p>
-                          <p className="text-gray-900">{project.professor}</p>
+                          <p className="text-sm font-medium text-muted-foreground">Professor</p>
+                          <p className="text-foreground">{project.professor}</p>
                         </div>
                       )}
                       {project.semester && (
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Semester</p>
-                          <p className="text-gray-900">
+                          <p className="text-sm font-medium text-muted-foreground">Semester</p>
+                          <p className="text-foreground">
                             {project.semester}
                             {project.academicYear && ` (${project.academicYear})`}
                           </p>
@@ -686,8 +686,8 @@ export default function ProjectDetailPage() {
                       )}
                       {project.grade && (
                         <div>
-                          <p className="text-sm font-medium text-gray-500">Grade</p>
-                          <p className="text-gray-900">{project.grade}</p>
+                          <p className="text-sm font-medium text-muted-foreground">Grade</p>
+                          <p className="text-foreground">{project.grade}</p>
                           {project.normalizedGrade && (
                             <p className="text-xs text-primary mt-0.5">
                               Normalized: {Math.round(project.normalizedGrade)}/100
@@ -706,8 +706,8 @@ export default function ProjectDetailPage() {
                 </Card>
               ) : (
                 <Card>
-                  <CardContent className="p-8 text-center text-gray-500">
-                    <BookOpen className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+                  <CardContent className="p-8 text-center text-muted-foreground">
+                    <BookOpen className="h-12 w-12 mx-auto mb-4 text-muted-foreground/40" />
                     <p className="text-lg font-medium mb-2">No Academic Info</p>
                     <p className="text-sm">Add course details by editing this project.</p>
                   </CardContent>
@@ -799,16 +799,16 @@ export default function ProjectDetailPage() {
                   {project.user.photo ? (
                     <img src={project.user.photo} alt="" className="w-10 h-10 rounded-full object-cover" />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-medium">
+                    <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground font-medium">
                       {(project.user.firstName?.[0] || '') + (project.user.lastName?.[0] || '')}
                     </div>
                   )}
                   <div>
-                    <p className="font-medium text-gray-900">
+                    <p className="font-medium text-foreground">
                       {project.user.firstName} {project.user.lastName}
                     </p>
                     {project.user.university && (
-                      <p className="text-sm text-gray-600">{project.user.university}</p>
+                      <p className="text-sm text-muted-foreground">{project.user.university}</p>
                     )}
                   </div>
                 </div>
@@ -823,33 +823,33 @@ export default function ProjectDetailPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Views</span>
+                <span className="text-sm text-muted-foreground">Views</span>
                 <span className="font-medium flex items-center">
-                  <Eye className="h-4 w-4 mr-1 text-gray-400" />
+                  <Eye className="h-4 w-4 mr-1 text-muted-foreground/60" />
                   {project.views || 0}
                 </span>
               </div>
               {project.recruiterViews > 0 && (
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Recruiter Views</span>
+                  <span className="text-sm text-muted-foreground">Recruiter Views</span>
                   <span className="font-medium">{project.recruiterViews}</span>
                 </div>
               )}
               {project.innovationScore != null && (
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Innovation Score</span>
+                  <span className="text-sm text-muted-foreground">Innovation Score</span>
                   <span className="font-semibold">{project.innovationScore}/100</span>
                 </div>
               )}
               {project.complexityScore != null && (
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Complexity</span>
+                  <span className="text-sm text-muted-foreground">Complexity</span>
                   <span className="font-semibold">{project.complexityScore}/100</span>
                 </div>
               )}
               {project.marketRelevance != null && (
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Market Relevance</span>
+                  <span className="text-sm text-muted-foreground">Market Relevance</span>
                   <span className="font-semibold">{project.marketRelevance}/100</span>
                 </div>
               )}
@@ -869,10 +869,10 @@ export default function ProjectDetailPage() {
                     href={file.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center p-2 rounded hover:bg-gray-50 text-sm"
+                    className="flex items-center p-2 rounded hover:bg-muted/50 text-sm"
                   >
-                    <ExternalLink className="h-4 w-4 mr-2 text-gray-400" />
-                    <span className="text-gray-700 truncate">{file.name || file.url}</span>
+                    <ExternalLink className="h-4 w-4 mr-2 text-muted-foreground/60" />
+                    <span className="text-foreground/80 truncate">{file.name || file.url}</span>
                   </a>
                 ))}
               </CardContent>

@@ -105,13 +105,13 @@ export default function UniversityCoursesPage() {
   const departmentsCount = departmentsSet.size
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+    <div className="min-h-screen space-y-6 py-8">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-            <p className="text-gray-600">{t('subtitle')}</p>
+            <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+            <p className="text-muted-foreground">{t('subtitle')}</p>
           </div>
           <Link href="/dashboard/university/courses/new">
             <Button className="gap-2">
@@ -138,7 +138,7 @@ export default function UniversityCoursesPage() {
                   ) : (
                     <>
                       <p className="text-2xl font-bold">{totalCourses}</p>
-                      <p className="text-sm text-gray-600">{t('totalCourses')}</p>
+                      <p className="text-sm text-muted-foreground">{t('totalCourses')}</p>
                     </>
                   )}
                 </div>
@@ -160,7 +160,7 @@ export default function UniversityCoursesPage() {
                   ) : (
                     <>
                       <p className="text-2xl font-bold">{verifiedCourses}</p>
-                      <p className="text-sm text-gray-600">{t('verifiedCourses')}</p>
+                      <p className="text-sm text-muted-foreground">{t('verifiedCourses')}</p>
                     </>
                   )}
                 </div>
@@ -182,7 +182,7 @@ export default function UniversityCoursesPage() {
                   ) : (
                     <>
                       <p className="text-2xl font-bold">{totalCredits}</p>
-                      <p className="text-sm text-gray-600">{t('totalCredits')}</p>
+                      <p className="text-sm text-muted-foreground">{t('totalCredits')}</p>
                     </>
                   )}
                 </div>
@@ -204,7 +204,7 @@ export default function UniversityCoursesPage() {
                   ) : (
                     <>
                       <p className="text-2xl font-bold">{departmentsCount}</p>
-                      <p className="text-sm text-gray-600">{t('departments')}</p>
+                      <p className="text-sm text-muted-foreground">{t('departments')}</p>
                     </>
                   )}
                 </div>
@@ -216,7 +216,7 @@ export default function UniversityCoursesPage() {
         {/* Filters */}
         <div className="flex flex-wrap gap-4 mb-6">
           <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
             <Input
               placeholder={t('searchPlaceholder')}
               value={searchQuery}
@@ -279,11 +279,11 @@ export default function UniversityCoursesPage() {
           </div>
         ) : courses.length === 0 ? (
           <Card className="p-12 text-center">
-            <BookOpen className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+            <BookOpen className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-foreground mb-2">
               {t('noCourseFound')}
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-muted-foreground mb-6">
               {t('tryClearFilters')}
             </p>
             <Link href="/dashboard/university/courses/new">
@@ -314,7 +314,7 @@ export default function UniversityCoursesPage() {
                           {t('verifiedStatus')}
                         </Badge>
                       ) : (
-                        <Badge variant="outline" className="text-gray-500 text-xs gap-1">
+                        <Badge variant="outline" className="text-muted-foreground text-xs gap-1">
                           <Clock className="h-3 w-3" />
                           {t('unverifiedStatus')}
                         </Badge>
@@ -322,43 +322,43 @@ export default function UniversityCoursesPage() {
                     </div>
 
                     {/* Course name */}
-                    <h3 className="text-base font-semibold text-gray-900 group-hover:text-primary transition-colors line-clamp-2 mb-1">
+                    <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-1">
                       {course.courseName}
                     </h3>
 
                     {/* Department */}
                     {course.department && (
-                      <p className="text-sm text-gray-500 mb-3">
+                      <p className="text-sm text-muted-foreground mb-3">
                         {course.department}
                       </p>
                     )}
 
                     {/* Details row */}
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600 mb-3">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground mb-3">
                       {course.professorName && (
                         <div className="flex items-center gap-1.5">
-                          <GraduationCap className="h-3.5 w-3.5 text-gray-400" />
+                          <GraduationCap className="h-3.5 w-3.5 text-muted-foreground/60" />
                           <span className="truncate max-w-[140px]">{course.professorName}</span>
                         </div>
                       )}
                       {course.credits !== null && (
                         <div className="flex items-center gap-1.5">
-                          <Hash className="h-3.5 w-3.5 text-gray-400" />
+                          <Hash className="h-3.5 w-3.5 text-muted-foreground/60" />
                           <span>{course.credits} CFU</span>
                         </div>
                       )}
                       <div className="flex items-center gap-1.5">
-                        <Users className="h-3.5 w-3.5 text-gray-400" />
+                        <Users className="h-3.5 w-3.5 text-muted-foreground/60" />
                         <span>{course.projectCount} {course.projectCount === 1 ? t('project') : t('projects')}</span>
                       </div>
                     </div>
 
                     {/* Semester + Academic Year */}
-                    <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
-                      <span className="bg-gray-100 px-2 py-0.5 rounded">{course.semester}</span>
-                      <span className="bg-gray-100 px-2 py-0.5 rounded">{course.academicYear}</span>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+                      <span className="bg-muted px-2 py-0.5 rounded">{course.semester}</span>
+                      <span className="bg-muted px-2 py-0.5 rounded">{course.academicYear}</span>
                       {course.level && (
-                        <span className="bg-gray-100 px-2 py-0.5 rounded">{course.level}</span>
+                        <span className="bg-muted px-2 py-0.5 rounded">{course.level}</span>
                       )}
                     </div>
 
@@ -377,7 +377,7 @@ export default function UniversityCoursesPage() {
                         {course.competencies.length > 3 && (
                           <Badge
                             variant="outline"
-                            className="text-xs font-normal text-gray-500"
+                            className="text-xs font-normal text-muted-foreground"
                           >
                             +{course.competencies.length - 3}
                           </Badge>

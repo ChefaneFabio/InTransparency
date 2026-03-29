@@ -94,7 +94,7 @@ export default function PrivacySettingsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-muted/50">
         <Header />
         <main className="py-16">
           <div className="container max-w-4xl space-y-6">
@@ -110,18 +110,18 @@ export default function PrivacySettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted/50">
       <Header />
 
       <main className="py-16">
         <div className="container max-w-4xl">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+            <h1 className="text-3xl font-bold text-foreground flex items-center gap-3">
               <Shield className="h-8 w-8 text-primary" />
               Privacy & Visibility Settings
             </h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-muted-foreground mt-2">
               Control who can see your profile and what information is visible to recruiters.
             </p>
           </div>
@@ -166,7 +166,7 @@ export default function PrivacySettingsPage() {
                   <Label htmlFor="profilePublic" className="text-base font-medium">
                     Make profile public
                   </Label>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-muted-foreground">
                     Allow your profile to be visible to recruiters and in search results
                   </p>
                 </div>
@@ -184,7 +184,7 @@ export default function PrivacySettingsPage() {
                   <Label htmlFor="indexInSearchEngines" className="text-base font-medium">
                     Allow indexing by search engines
                   </Label>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-muted-foreground">
                     Let Google and other search engines index your public portfolio
                   </p>
                 </div>
@@ -241,7 +241,7 @@ export default function PrivacySettingsPage() {
                   <Label htmlFor="showLocation" className="text-base font-medium">
                     Show location
                   </Label>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-muted-foreground">
                     Display your city/state on your profile
                   </p>
                 </div>
@@ -259,7 +259,7 @@ export default function PrivacySettingsPage() {
                   <Label htmlFor="showEmail" className="text-base font-medium">
                     Show email address
                   </Label>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-muted-foreground">
                     Allow recruiters to see your email address
                   </p>
                 </div>
@@ -277,7 +277,7 @@ export default function PrivacySettingsPage() {
                   <Label htmlFor="showPhone" className="text-base font-medium">
                     Show phone number
                   </Label>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-muted-foreground">
                     Allow recruiters to see your phone number
                   </p>
                 </div>
@@ -307,7 +307,7 @@ export default function PrivacySettingsPage() {
                   <Label htmlFor="showLastActive" className="text-base font-medium">
                     Show when you were last active
                   </Label>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-muted-foreground">
                     Let recruiters see when you last logged in
                   </p>
                 </div>
@@ -325,7 +325,7 @@ export default function PrivacySettingsPage() {
                   <Label htmlFor="anonymousBrowsing" className="text-base font-medium">
                     Anonymous browsing
                   </Label>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-muted-foreground">
                     Browse job posts and company profiles without leaving a trace
                   </p>
                 </div>
@@ -395,7 +395,7 @@ export default function PrivacySettingsPage() {
                   value={newBlockedCompany}
                   onChange={(e) => setNewBlockedCompany(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && addBlockedCompany()}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="flex-1 px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <Button onClick={addBlockedCompany} variant="outline">
                   Block
@@ -406,7 +406,7 @@ export default function PrivacySettingsPage() {
                 <div className="space-y-2">
                   <Label className="text-sm font-medium">Blocked companies:</Label>
                   {blockedCompanies.map((company) => (
-                    <div key={company} className="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                    <div key={company} className="flex items-center justify-between p-3 bg-muted/50 rounded-md">
                       <span className="text-sm font-medium">{company}</span>
                       <Button
                         variant="ghost"
@@ -422,7 +422,7 @@ export default function PrivacySettingsPage() {
               )}
 
               {blockedCompanies.length === 0 && (
-                <p className="text-sm text-gray-600 italic">No companies blocked</p>
+                <p className="text-sm text-muted-foreground italic">No companies blocked</p>
               )}
             </CardContent>
           </Card>

@@ -77,7 +77,7 @@ export default function UniversityDepartmentsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+      <div className="min-h-screen space-y-6 py-8">
         <div className="container mx-auto px-4">
           {/* Header skeleton */}
           <div className="mb-8">
@@ -135,12 +135,12 @@ export default function UniversityDepartmentsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+    <div className="min-h-screen space-y-6 py-8">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600">{t('subtitle')}</p>
+          <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+          <p className="text-muted-foreground">{t('subtitle')}</p>
         </div>
 
         {/* Stats Overview */}
@@ -153,7 +153,7 @@ export default function UniversityDepartmentsPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold">{departments.length}</p>
-                  <p className="text-sm text-gray-600">{t('departments')}</p>
+                  <p className="text-sm text-muted-foreground">{t('departments')}</p>
                 </div>
               </div>
             </CardContent>
@@ -166,7 +166,7 @@ export default function UniversityDepartmentsPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold">{totalStudents.toLocaleString()}</p>
-                  <p className="text-sm text-gray-600">{t('totalStudents')}</p>
+                  <p className="text-sm text-muted-foreground">{t('totalStudents')}</p>
                 </div>
               </div>
             </CardContent>
@@ -179,7 +179,7 @@ export default function UniversityDepartmentsPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold">{avgPlacementRate}%</p>
-                  <p className="text-sm text-gray-600">{t('avgPlacement')}</p>
+                  <p className="text-sm text-muted-foreground">{t('avgPlacement')}</p>
                 </div>
               </div>
             </CardContent>
@@ -192,7 +192,7 @@ export default function UniversityDepartmentsPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold">{partnerCompaniesCount}</p>
-                  <p className="text-sm text-gray-600">{t('partnerCompanies')}</p>
+                  <p className="text-sm text-muted-foreground">{t('partnerCompanies')}</p>
                 </div>
               </div>
             </CardContent>
@@ -201,7 +201,7 @@ export default function UniversityDepartmentsPage() {
 
         {/* Search */}
         <div className="relative mb-6">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
           <Input
             placeholder={t('searchPlaceholder')}
             value={searchQuery}
@@ -221,8 +221,8 @@ export default function UniversityDepartmentsPage() {
                       <span className="font-bold text-primary">{dept.code}</span>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">{dept.name}</h3>
-                      <p className="text-sm text-gray-600">{dept.students} {t('enrolledStudents')}</p>
+                      <h3 className="text-lg font-semibold text-foreground">{dept.name}</h3>
+                      <p className="text-sm text-muted-foreground">{dept.students} {t('enrolledStudents')}</p>
                     </div>
                   </div>
 
@@ -230,7 +230,7 @@ export default function UniversityDepartmentsPage() {
                     {/* Placement Rate */}
                     <div className="text-center">
                       <div className="flex items-center gap-1">
-                        <span className="text-2xl font-bold text-gray-900">{dept.placementRate}%</span>
+                        <span className="text-2xl font-bold text-foreground">{dept.placementRate}%</span>
                         {dept.trend === 'up' && (
                           <ArrowUpRight className="h-4 w-4 text-primary" />
                         )}
@@ -238,21 +238,21 @@ export default function UniversityDepartmentsPage() {
                           <ArrowDownRight className="h-4 w-4 text-red-500" />
                         )}
                       </div>
-                      <p className="text-xs text-gray-600">{t('placementRate')}</p>
+                      <p className="text-xs text-muted-foreground">{t('placementRate')}</p>
                       <Progress value={dept.placementRate} className="h-1 w-20 mt-1" />
                     </div>
 
                     {/* Avg Salary */}
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-gray-900">
+                      <p className="text-2xl font-bold text-foreground">
                         &euro;{(dept.avgSalary / 1000).toFixed(0)}k
                       </p>
-                      <p className="text-xs text-gray-600">{t('avgSalary')}</p>
+                      <p className="text-xs text-muted-foreground">{t('avgSalary')}</p>
                     </div>
 
                     {/* Top Companies */}
                     <div className="hidden lg:block">
-                      <p className="text-xs text-gray-600 mb-1">{t('topCompanies')}</p>
+                      <p className="text-xs text-muted-foreground mb-1">{t('topCompanies')}</p>
                       <div className="flex gap-1">
                         {dept.topCompanies.slice(0, 2).map((company, i) => (
                           <Badge key={i} variant="outline" className="text-xs">
@@ -290,11 +290,11 @@ export default function UniversityDepartmentsPage() {
 
         {filteredDepartments.length === 0 && (
           <Card className="p-8 text-center">
-            <GraduationCap className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+            <GraduationCap className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-foreground mb-2">
               {t('noDepartmentFound')}
             </h3>
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               {t('tryClearFilters')}
             </p>
           </Card>

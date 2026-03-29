@@ -99,8 +99,8 @@ export default function InterviewPrepPage() {
   return (
     <div className="max-w-4xl mx-auto space-y-8 pb-12">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('title')}</h1>
-        <p className="text-gray-600">{t('subtitle')}</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       {/* Setup */}
@@ -115,7 +115,7 @@ export default function InterviewPrepPage() {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('setup.role')}</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">{t('setup.role')}</label>
               <Input
                 placeholder={t('setup.rolePlaceholder')}
                 value={role}
@@ -123,7 +123,7 @@ export default function InterviewPrepPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('setup.company')}</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">{t('setup.company')}</label>
               <Input
                 placeholder={t('setup.companyPlaceholder')}
                 value={company}
@@ -144,7 +144,7 @@ export default function InterviewPrepPage() {
       {/* Questions */}
       {questions.length > 0 && (
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold text-gray-900">{t('questions.title')}</h2>
+          <h2 className="text-xl font-semibold text-foreground">{t('questions.title')}</h2>
           {questions.map((q, i) => (
             <Card
               key={i}
@@ -158,12 +158,12 @@ export default function InterviewPrepPage() {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <Badge className={typeColors[q.type] || 'bg-gray-100 text-gray-800'}>
+                      <Badge className={typeColors[q.type] || 'bg-muted text-foreground'}>
                         {q.type}
                       </Badge>
                     </div>
-                    <p className="font-medium text-gray-900">{q.question}</p>
-                    <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                    <p className="font-medium text-foreground">{q.question}</p>
+                    <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
                       <Lightbulb className="h-3 w-3" /> {q.tip}
                     </p>
                   </div>
@@ -184,7 +184,7 @@ export default function InterviewPrepPage() {
         <Card className="border-primary/30">
           <CardHeader>
             <CardTitle>{t('practice.title')}</CardTitle>
-            <CardDescription className="font-medium text-gray-900">
+            <CardDescription className="font-medium text-foreground">
               &ldquo;{questions[activeQuestion].question}&rdquo;
             </CardDescription>
           </CardHeader>
@@ -232,7 +232,7 @@ export default function InterviewPrepPage() {
               </h4>
               <ul className="space-y-1">
                 {evaluation.strengths.map((s, i) => (
-                  <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
+                  <li key={i} className="text-sm text-foreground/80 flex items-start gap-2">
                     <ArrowRight className="h-3 w-3 text-green-500 flex-shrink-0 mt-1" /> {s}
                   </li>
                 ))}
@@ -246,7 +246,7 @@ export default function InterviewPrepPage() {
               </h4>
               <ul className="space-y-1">
                 {evaluation.improvements.map((s, i) => (
-                  <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
+                  <li key={i} className="text-sm text-foreground/80 flex items-start gap-2">
                     <ArrowRight className="h-3 w-3 text-amber-500 flex-shrink-0 mt-1" /> {s}
                   </li>
                 ))}
@@ -258,7 +258,7 @@ export default function InterviewPrepPage() {
               <h4 className="font-medium text-primary mb-2 flex items-center gap-1">
                 <Lightbulb className="h-4 w-4" /> {t('feedback.modelAnswer')}
               </h4>
-              <p className="text-sm text-gray-700">{evaluation.modelAnswer}</p>
+              <p className="text-sm text-foreground/80">{evaluation.modelAnswer}</p>
             </div>
           </CardContent>
         </Card>

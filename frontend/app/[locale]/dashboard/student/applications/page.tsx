@@ -31,14 +31,14 @@ interface ApplicationData {
 }
 
 const STATUS_CONFIG: Record<string, { label: string; color: string }> = {
-  PENDING: { label: 'Applied', color: 'bg-gray-500' },
+  PENDING: { label: 'Applied', color: 'bg-muted-foreground' },
   REVIEWING: { label: 'Under Review', color: 'bg-yellow-500' },
   SHORTLISTED: { label: 'Shortlisted', color: 'bg-primary/50' },
   INTERVIEW: { label: 'Interview', color: 'bg-primary/50' },
   OFFER: { label: 'Offer Received', color: 'bg-primary/50' },
   ACCEPTED: { label: 'Accepted', color: 'bg-green-700' },
   REJECTED: { label: 'Not Selected', color: 'bg-red-500' },
-  WITHDRAWN: { label: 'Withdrawn', color: 'bg-gray-400' },
+  WITHDRAWN: { label: 'Withdrawn', color: 'bg-muted' },
 }
 
 const JOB_TYPE_LABELS: Record<string, string> = {
@@ -93,13 +93,13 @@ export default function StudentApplications() {
   const formatDate = (dateStr: string) => new Date(dateStr).toLocaleDateString()
 
   const getStatusBadge = (status: string) => {
-    const config = STATUS_CONFIG[status] || { label: status, color: 'bg-gray-500' }
+    const config = STATUS_CONFIG[status] || { label: status, color: 'bg-muted-foreground' }
     return <Badge className={`${config.color} text-white`}>{config.label}</Badge>
   }
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+      <div className="min-h-screen space-y-6 space-y-6">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Applications</h1>
           <p className="text-muted-foreground">Track your job applications and interview schedule</p>
@@ -123,7 +123,7 @@ export default function StudentApplications() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+      <div className="min-h-screen space-y-6 space-y-6">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Applications</h1>
         </div>
@@ -139,7 +139,7 @@ export default function StudentApplications() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+    <div className="min-h-screen space-y-6 space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Applications</h1>
         <p className="text-muted-foreground">
@@ -180,9 +180,9 @@ export default function StudentApplications() {
           {filteredApplications.length === 0 ? (
             <Card>
               <CardContent className="p-12 text-center">
-                <FileText className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No applications yet</h3>
-                <p className="text-gray-600">Start applying to jobs to track your applications here.</p>
+                <FileText className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">No applications yet</h3>
+                <p className="text-muted-foreground">Start applying to jobs to track your applications here.</p>
               </CardContent>
             </Card>
           ) : (
@@ -236,9 +236,9 @@ export default function StudentApplications() {
           {interviewApps.length === 0 ? (
             <Card>
               <CardContent className="p-12 text-center">
-                <Calendar className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No interviews scheduled</h3>
-                <p className="text-gray-600">Interview invitations will appear here.</p>
+                <Calendar className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">No interviews scheduled</h3>
+                <p className="text-muted-foreground">Interview invitations will appear here.</p>
               </CardContent>
             </Card>
           ) : (
@@ -290,9 +290,9 @@ export default function StudentApplications() {
           {offerApps.length === 0 ? (
             <Card>
               <CardContent className="p-12 text-center">
-                <Briefcase className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No offers yet</h3>
-                <p className="text-gray-600">Job offers will appear here when received.</p>
+                <Briefcase className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-foreground mb-2">No offers yet</h3>
+                <p className="text-muted-foreground">Job offers will appear here when received.</p>
               </CardContent>
             </Card>
           ) : (

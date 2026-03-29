@@ -221,15 +221,15 @@ export default function RecruiterSettingsPage() {
             </Link>
           </Button>
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
-            <p className="text-gray-600">{t('subtitle')}</p>
+            <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+            <p className="text-muted-foreground">{t('subtitle')}</p>
           </div>
         </div>
         <Card>
           <CardContent className="p-12 text-center">
             <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">{t('failedToLoad')}</h3>
-            <p className="text-gray-600 mb-4">{error}</p>
+            <h3 className="text-lg font-medium text-foreground mb-2">{t('failedToLoad')}</h3>
+            <p className="text-muted-foreground mb-4">{error}</p>
             <Button onClick={() => window.location.reload()}>{t('tryAgain')}</Button>
           </CardContent>
         </Card>
@@ -248,8 +248,8 @@ export default function RecruiterSettingsPage() {
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">Company Settings</h1>
-          <p className="text-gray-600">Manage your company profile</p>
+          <h1 className="text-2xl font-semibold text-foreground">Company Settings</h1>
+          <p className="text-muted-foreground">Manage your company profile</p>
         </div>
       </div>
 
@@ -309,7 +309,7 @@ export default function RecruiterSettingsPage() {
           <div className="space-y-2">
             <Label htmlFor="companyLogo">{t('form.companyLogo')}</Label>
             <div className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden flex-shrink-0">
+              <div className="h-12 w-12 rounded-full bg-muted border border-border flex items-center justify-center overflow-hidden flex-shrink-0">
                 {settings.companyLogo ? (
                   <img
                     src={settings.companyLogo}
@@ -320,7 +320,7 @@ export default function RecruiterSettingsPage() {
                     }}
                   />
                 ) : (
-                  <Building2 className="h-6 w-6 text-gray-400" />
+                  <Building2 className="h-6 w-6 text-muted-foreground/60" />
                 )}
               </div>
               <Input
@@ -332,7 +332,7 @@ export default function RecruiterSettingsPage() {
               />
             </div>
             {fieldErrors.companyLogo && <p className="text-sm text-red-500 mt-1">{fieldErrors.companyLogo}</p>}
-            <p className="text-xs text-gray-500">Enter the URL of your company logo image</p>
+            <p className="text-xs text-muted-foreground">Enter the URL of your company logo image</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -393,7 +393,7 @@ export default function RecruiterSettingsPage() {
         <CardContent className="space-y-4">
           <div>
             <Label>{t('form.lookingFor')}</Label>
-            <p className="text-sm text-gray-500 mb-2">{t('form.lookingForDesc')}</p>
+            <p className="text-sm text-muted-foreground mb-2">{t('form.lookingForDesc')}</p>
             <Select
               value={settings.seekingType}
               onValueChange={(value: 'HIRE' | 'PROJECTS' | 'BOTH') =>
@@ -427,8 +427,8 @@ export default function RecruiterSettingsPage() {
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">{t('notifications.newApplications')}</p>
-              <p className="text-sm text-gray-500">{t('notifications.newApplicationsDesc')}</p>
+              <p className="text-sm font-medium text-foreground">{t('notifications.newApplications')}</p>
+              <p className="text-sm text-muted-foreground">{t('notifications.newApplicationsDesc')}</p>
             </div>
             <button
               type="button"
@@ -436,7 +436,7 @@ export default function RecruiterSettingsPage() {
               aria-checked={settings.notifyNewApplications}
               onClick={() => setSettings({ ...settings, notifyNewApplications: !settings.notifyNewApplications })}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.notifyNewApplications ? 'bg-primary' : 'bg-gray-200'
+                settings.notifyNewApplications ? 'bg-primary' : 'bg-muted'
               }`}
             >
               <span
@@ -449,8 +449,8 @@ export default function RecruiterSettingsPage() {
 
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">{t('notifications.messages')}</p>
-              <p className="text-sm text-gray-500">{t('notifications.messagesDesc')}</p>
+              <p className="text-sm font-medium text-foreground">{t('notifications.messages')}</p>
+              <p className="text-sm text-muted-foreground">{t('notifications.messagesDesc')}</p>
             </div>
             <button
               type="button"
@@ -458,7 +458,7 @@ export default function RecruiterSettingsPage() {
               aria-checked={settings.notifyMessages}
               onClick={() => setSettings({ ...settings, notifyMessages: !settings.notifyMessages })}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.notifyMessages ? 'bg-primary' : 'bg-gray-200'
+                settings.notifyMessages ? 'bg-primary' : 'bg-muted'
               }`}
             >
               <span
@@ -471,8 +471,8 @@ export default function RecruiterSettingsPage() {
 
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-900">{t('notifications.searchAlerts')}</p>
-              <p className="text-sm text-gray-500">{t('notifications.searchAlertsDesc')}</p>
+              <p className="text-sm font-medium text-foreground">{t('notifications.searchAlerts')}</p>
+              <p className="text-sm text-muted-foreground">{t('notifications.searchAlertsDesc')}</p>
             </div>
             <button
               type="button"
@@ -480,7 +480,7 @@ export default function RecruiterSettingsPage() {
               aria-checked={settings.notifySearchAlerts}
               onClick={() => setSettings({ ...settings, notifySearchAlerts: !settings.notifySearchAlerts })}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                settings.notifySearchAlerts ? 'bg-primary' : 'bg-gray-200'
+                settings.notifySearchAlerts ? 'bg-primary' : 'bg-muted'
               }`}
             >
               <span

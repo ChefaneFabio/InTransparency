@@ -232,8 +232,8 @@ export default function CandidatesPage() {
             </Link>
           </Button>
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
-            <p className="text-gray-600">{t('subtitle')}</p>
+            <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+            <p className="text-muted-foreground">{t('subtitle')}</p>
           </div>
         </div>
 
@@ -241,9 +241,9 @@ export default function CandidatesPage() {
           {[...Array(6)].map((_, i) => (
             <Card key={i} className="animate-pulse">
               <CardContent className="p-6">
-                <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
-                <div className="h-3 bg-gray-200 rounded w-full mb-2"></div>
-                <div className="h-3 bg-gray-200 rounded w-2/3"></div>
+                <div className="h-4 bg-muted rounded w-3/4 mb-4"></div>
+                <div className="h-3 bg-muted rounded w-full mb-2"></div>
+                <div className="h-3 bg-muted rounded w-2/3"></div>
               </CardContent>
             </Card>
           ))}
@@ -264,8 +264,8 @@ export default function CandidatesPage() {
             </Link>
           </Button>
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
-            <p className="text-gray-600">{t('subtitle')}</p>
+            <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+            <p className="text-muted-foreground">{t('subtitle')}</p>
           </div>
         </div>
         <div className="flex gap-3">
@@ -292,7 +292,7 @@ export default function CandidatesPage() {
               <Users className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{filteredCandidates.length}</p>
-                <p className="text-xs text-gray-600">{t('stats.candidates')}</p>
+                <p className="text-xs text-muted-foreground">{t('stats.candidates')}</p>
               </div>
             </div>
           </CardContent>
@@ -305,7 +305,7 @@ export default function CandidatesPage() {
                 <p className="text-2xl font-bold">
                   {filteredCandidates.reduce((acc, c) => acc + c._count.projects, 0)}
                 </p>
-                <p className="text-xs text-gray-600">{t('stats.projects')}</p>
+                <p className="text-xs text-muted-foreground">{t('stats.projects')}</p>
               </div>
             </div>
           </CardContent>
@@ -318,7 +318,7 @@ export default function CandidatesPage() {
                 <p className="text-2xl font-bold">
                   {filteredCandidates.filter(c => c.projects.some(p => p.universityVerified)).length}
                 </p>
-                <p className="text-xs text-gray-600">{t('stats.verified')}</p>
+                <p className="text-xs text-muted-foreground">{t('stats.verified')}</p>
               </div>
             </div>
           </CardContent>
@@ -329,7 +329,7 @@ export default function CandidatesPage() {
               <Bookmark className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-2xl font-bold">{bookmarked.size}</p>
-                <p className="text-xs text-gray-600">{t('stats.saved')}</p>
+                <p className="text-xs text-muted-foreground">{t('stats.saved')}</p>
               </div>
             </div>
           </CardContent>
@@ -341,7 +341,7 @@ export default function CandidatesPage() {
         <CardContent className="p-4">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground/60 h-4 w-4" />
               <Input
                 placeholder={t('searchPlaceholder')}
                 value={searchQuery}
@@ -445,29 +445,29 @@ export default function CandidatesPage() {
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <h3 className="font-semibold text-gray-900">
+                      <h3 className="font-semibold text-foreground">
                         {candidate.firstName} {candidate.lastName}
                       </h3>
-                      <p className="text-sm text-gray-600">{candidate.university}</p>
+                      <p className="text-sm text-muted-foreground">{candidate.university}</p>
                     </div>
                   </div>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => toggleBookmark(candidate.id)}
-                    className={bookmarked.has(candidate.id) ? 'text-primary' : 'text-gray-400'}
+                    className={bookmarked.has(candidate.id) ? 'text-primary' : 'text-muted-foreground/60'}
                   >
                     <Star className={`h-4 w-4 ${bookmarked.has(candidate.id) ? 'fill-current' : ''}`} />
                   </Button>
                 </div>
 
                 <div className="space-y-2 mb-4">
-                  <div className="flex items-center text-sm text-gray-600">
+                  <div className="flex items-center text-sm text-muted-foreground">
                     <Code className="h-4 w-4 mr-2" />
                     {t('projectCount', { count: candidate._count.projects })}
                   </div>
                   {getTopScore(candidate.projects) > 0 && (
-                    <div className="flex items-center text-sm text-gray-600">
+                    <div className="flex items-center text-sm text-muted-foreground">
                       <Award className="h-4 w-4 mr-2" />
                       {t('topScore', { score: getTopScore(candidate.projects) })}
                     </div>
@@ -475,9 +475,9 @@ export default function CandidatesPage() {
                 </div>
 
                 {candidate.projects.length > 0 && (
-                  <div className="bg-gray-50 rounded-lg p-3 mb-4">
+                  <div className="bg-muted/50 rounded-lg p-3 mb-4">
                     <div className="flex items-start justify-between mb-1">
-                      <h4 className="text-sm font-medium text-gray-900 line-clamp-1">
+                      <h4 className="text-sm font-medium text-foreground line-clamp-1">
                         {candidate.projects[0].title}
                       </h4>
                       {candidate.projects[0].universityVerified && (
@@ -520,15 +520,15 @@ export default function CandidatesPage() {
                     </Avatar>
                     <div>
                       <div className="flex items-center gap-2">
-                        <h3 className="font-semibold text-gray-900">
+                        <h3 className="font-semibold text-foreground">
                           {candidate.firstName} {candidate.lastName}
                         </h3>
                         {candidate.projects.some(p => p.universityVerified) && (
                           <CheckCircle className="h-4 w-4 text-primary" />
                         )}
                       </div>
-                      <p className="text-sm text-gray-600">{candidate.university}</p>
-                      <div className="flex items-center gap-4 mt-1 text-sm text-gray-500">
+                      <p className="text-sm text-muted-foreground">{candidate.university}</p>
+                      <div className="flex items-center gap-4 mt-1 text-sm text-muted-foreground">
                         <span>{t('projectCount', { count: candidate._count.projects })}</span>
                         {getTopScore(candidate.projects) > 0 && (
                           <span>{t('topScore', { score: getTopScore(candidate.projects) })}</span>
@@ -541,7 +541,7 @@ export default function CandidatesPage() {
                       variant="ghost"
                       size="icon"
                       onClick={() => toggleBookmark(candidate.id)}
-                      className={bookmarked.has(candidate.id) ? 'text-primary' : 'text-gray-400'}
+                      className={bookmarked.has(candidate.id) ? 'text-primary' : 'text-muted-foreground/60'}
                     >
                       <Star className={`h-4 w-4 ${bookmarked.has(candidate.id) ? 'fill-current' : ''}`} />
                     </Button>

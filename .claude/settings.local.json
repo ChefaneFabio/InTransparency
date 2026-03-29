@@ -253,7 +253,8 @@
       "Bash(cd /mnt/c/Users/chefa/InTransparency/frontend echo \"=== for-students hero ===\" grep -A5 \"section.*hero\\\\|Hero Section\\\\|{/\\\\* Hero\" app/[locale]/for-students/page.tsx)",
       "WebFetch(domain:www.ashbyhq.com)",
       "WebFetch(domain:developers.ashbyhq.com)",
-      "Bash(grep -rn 'text-primary\"\"\"\">' --include=\"*.tsx\" app/[locale]/page.tsx components/sections/Hero.tsx components/sections/HowItWorks.tsx)"
+      "Bash(grep -rn 'text-primary\"\"\"\">' --include=\"*.tsx\" app/[locale]/page.tsx components/sections/Hero.tsx components/sections/HowItWorks.tsx)",
+      "Bash(uniq echo:*)"
     ],
     "defaultMode": "acceptEdits"
   }

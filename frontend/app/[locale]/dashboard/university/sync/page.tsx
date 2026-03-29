@@ -188,7 +188,7 @@ function TableSkeleton() {
   return (
     <div className="overflow-x-auto">
       <table className="w-full">
-        <thead className="bg-gray-50 border-b">
+        <thead className="bg-muted/50 border-b">
           <tr>
             {Array.from({ length: 6 }).map((_, i) => (
               <th key={i} className="p-4">
@@ -286,13 +286,13 @@ export default function UniversitySyncPage() {
   const logs = data?.logs ?? []
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+    <div className="min-h-screen space-y-6 py-8">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-            <p className="text-gray-600">{t('subtitle')}</p>
+            <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+            <p className="text-muted-foreground">{t('subtitle')}</p>
           </div>
           <Button
             variant="outline"
@@ -320,7 +320,7 @@ export default function UniversitySyncPage() {
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats?.totalSyncs ?? 0}</p>
-                    <p className="text-sm text-gray-600">Sincronizzazioni Totali</p>
+                    <p className="text-sm text-muted-foreground">Sincronizzazioni Totali</p>
                   </div>
                 </div>
               </CardContent>
@@ -333,7 +333,7 @@ export default function UniversitySyncPage() {
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats?.successfulSyncs ?? 0}</p>
-                    <p className="text-sm text-gray-600">Riuscite</p>
+                    <p className="text-sm text-muted-foreground">Riuscite</p>
                   </div>
                 </div>
               </CardContent>
@@ -346,7 +346,7 @@ export default function UniversitySyncPage() {
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats?.failedSyncs ?? 0}</p>
-                    <p className="text-sm text-gray-600">Fallite</p>
+                    <p className="text-sm text-muted-foreground">Fallite</p>
                   </div>
                 </div>
               </CardContent>
@@ -361,7 +361,7 @@ export default function UniversitySyncPage() {
                     <p className="text-2xl font-bold text-base">
                       {stats?.lastSync ? formatDateShort(stats.lastSync) : 'Mai'}
                     </p>
-                    <p className="text-sm text-gray-600">Ultima Sincronizzazione</p>
+                    <p className="text-sm text-muted-foreground">Ultima Sincronizzazione</p>
                   </div>
                 </div>
               </CardContent>
@@ -382,28 +382,28 @@ export default function UniversitySyncPage() {
               <ConnectionsSkeleton />
             ) : connections.length === 0 ? (
               <div className="text-center py-12">
-                <WifiOff className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <WifiOff className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   Nessuna connessione universitaria configurata
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Configura una connessione per iniziare a sincronizzare i dati
                 </p>
               </div>
             ) : (
               <div className="space-y-4">
                 {connections.map((conn) => (
-                  <div key={conn.id} className="p-4 border rounded-lg hover:border-gray-300 transition-colors">
+                  <div key={conn.id} className="p-4 border rounded-lg hover:border-border transition-colors">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
                         <div className={`w-3 h-3 rounded-full ${
-                          conn.syncEnabled ? 'bg-primary/50' : 'bg-gray-300'
+                          conn.syncEnabled ? 'bg-primary/50' : 'bg-muted'
                         }`} />
                         <div>
-                          <p className="font-medium text-gray-900">
+                          <p className="font-medium text-foreground">
                             Connessione {conn.id.slice(0, 8)}
                           </p>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-muted-foreground">
                             {conn.syncEnabled ? 'Sincronizzazione attiva' : 'Sincronizzazione disattivata'}
                             {conn.syncFrequency && ` \u00B7 ${conn.syncFrequency}`}
                           </p>
@@ -423,7 +423,7 @@ export default function UniversitySyncPage() {
                     </div>
 
                     {conn.lastSyncAt && (
-                      <p className="text-sm text-gray-500 mb-3">
+                      <p className="text-sm text-muted-foreground mb-3">
                         Ultima sincronizzazione: {formatDateTime(conn.lastSyncAt)}
                       </p>
                     )}
@@ -479,7 +479,7 @@ export default function UniversitySyncPage() {
               </div>
             )}
 
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-muted-foreground mb-4">
               Avvia una sincronizzazione manuale per aggiornare i dati dal sistema universitario.
             </p>
 
@@ -496,7 +496,7 @@ export default function UniversitySyncPage() {
                   <Users className="h-6 w-6 text-primary" />
                 )}
                 <span className="font-medium">Sincronizza Studenti</span>
-                <span className="text-xs text-gray-500">Aggiorna dati studenti</span>
+                <span className="text-xs text-muted-foreground">Aggiorna dati studenti</span>
               </Button>
 
               <Button
@@ -511,7 +511,7 @@ export default function UniversitySyncPage() {
                   <BookOpen className="h-6 w-6 text-primary" />
                 )}
                 <span className="font-medium">Sincronizza Corsi</span>
-                <span className="text-xs text-gray-500">Aggiorna catalogo corsi</span>
+                <span className="text-xs text-muted-foreground">Aggiorna catalogo corsi</span>
               </Button>
 
               <Button
@@ -526,7 +526,7 @@ export default function UniversitySyncPage() {
                   <FileText className="h-6 w-6 text-primary" />
                 )}
                 <span className="font-medium">Sincronizza Progetti</span>
-                <span className="text-xs text-gray-500">Aggiorna progetti studenti</span>
+                <span className="text-xs text-muted-foreground">Aggiorna progetti studenti</span>
               </Button>
             </div>
           </CardContent>
@@ -545,32 +545,32 @@ export default function UniversitySyncPage() {
               <TableSkeleton />
             ) : logs.length === 0 ? (
               <div className="text-center py-12">
-                <Database className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <Database className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   Nessuna sincronizzazione registrata
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Le sincronizzazioni appariranno qui dopo la prima esecuzione
                 </p>
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full">
-                  <thead className="bg-gray-50 border-b">
+                  <thead className="bg-muted/50 border-b">
                     <tr>
-                      <th className="text-left p-4 font-medium text-gray-600">Data/Ora</th>
-                      <th className="text-left p-4 font-medium text-gray-600">Tipo Sync</th>
-                      <th className="text-left p-4 font-medium text-gray-600">Dati</th>
-                      <th className="text-left p-4 font-medium text-gray-600">Stato</th>
-                      <th className="text-left p-4 font-medium text-gray-600">Record</th>
-                      <th className="text-left p-4 font-medium text-gray-600">Avviata da</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">Data/Ora</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">Tipo Sync</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">Dati</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">Stato</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">Record</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">Avviata da</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y">
                     {logs.map((log) => (
-                      <tr key={log.id} className="hover:bg-gray-50">
+                      <tr key={log.id} className="hover:bg-muted/50">
                         <td className="p-4">
-                          <span className="text-sm text-gray-900">
+                          <span className="text-sm text-foreground">
                             {formatDateTime(log.startedAt)}
                           </span>
                         </td>
@@ -585,10 +585,10 @@ export default function UniversitySyncPage() {
                         </td>
                         <td className="p-4">
                           <div className="text-sm">
-                            <span className="text-gray-900 font-medium">{log.recordsProcessed}</span>
-                            <span className="text-gray-500"> elaborati</span>
+                            <span className="text-foreground font-medium">{log.recordsProcessed}</span>
+                            <span className="text-muted-foreground"> elaborati</span>
                           </div>
-                          <div className="flex gap-2 mt-1 text-xs text-gray-500">
+                          <div className="flex gap-2 mt-1 text-xs text-muted-foreground">
                             <span className="text-primary">+{log.recordsCreated} nuovi</span>
                             <span className="text-primary">{log.recordsUpdated} aggiornati</span>
                             {log.recordsFailed > 0 && (
@@ -597,7 +597,7 @@ export default function UniversitySyncPage() {
                           </div>
                         </td>
                         <td className="p-4">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             {log.triggeredBy || 'Sistema'}
                           </span>
                         </td>

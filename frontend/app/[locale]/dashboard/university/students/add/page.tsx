@@ -250,7 +250,7 @@ export default function AddStudentsPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+      <div className="min-h-screen space-y-6 py-8">
         <div className="container max-w-2xl mx-auto px-4">
           <Card className="text-center py-12">
             <CardContent>
@@ -260,10 +260,10 @@ export default function AddStudentsPage() {
 
               {activeTab === 'single' ? (
                 <>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-2xl font-bold text-foreground mb-2">
                     {t('add.studentAdded')}
                   </h2>
-                  <p className="text-gray-600">
+                  <p className="text-muted-foreground">
                     {singleResult
                       ? t('add.inviteSentTo', { name: singleResult.name, email: singleResult.email })
                       : t('add.inviteSentGeneric')}
@@ -271,7 +271,7 @@ export default function AddStudentsPage() {
                 </>
               ) : (
                 <>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-2xl font-bold text-foreground mb-2">
                     {t('add.importComplete')}
                   </h2>
                   {importResult && (
@@ -291,7 +291,7 @@ export default function AddStudentsPage() {
                           </Badge>
                         )}
                       </div>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-muted-foreground text-sm">
                         {t('add.totalProcessed', { count: importResult.total })}
                       </p>
                       {importResult.errors && importResult.errors.length > 0 && (
@@ -327,7 +327,7 @@ export default function AddStudentsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+    <div className="min-h-screen space-y-6 py-8">
       <div className="container max-w-3xl mx-auto px-4">
         {/* Header */}
         <Button
@@ -340,8 +340,8 @@ export default function AddStudentsPage() {
         </Button>
 
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">{t('add.title')}</h1>
-          <p className="text-gray-600">{t('add.subtitle')}</p>
+          <h1 className="text-3xl font-bold text-foreground">{t('add.title')}</h1>
+          <p className="text-muted-foreground">{t('add.subtitle')}</p>
         </div>
 
         {error && (
@@ -519,14 +519,14 @@ export default function AddStudentsPage() {
                 {/* Upload Area */}
                 <div
                   className={`border-2 border-dashed rounded-lg p-8 text-center ${
-                    bulkFile ? 'border-green-300 bg-primary/5' : 'border-gray-300 hover:border-blue-400'
+                    bulkFile ? 'border-green-300 bg-primary/5' : 'border-border hover:border-blue-400'
                   }`}
                 >
                   {bulkFile ? (
                     <div>
                       <CheckCircle className="h-12 w-12 text-primary mx-auto mb-4" />
-                      <p className="font-medium text-gray-900">{bulkFile.name}</p>
-                      <p className="text-sm text-gray-600">{t('add.csv.studentsFound', { count: bulkPreview.length })}</p>
+                      <p className="font-medium text-foreground">{bulkFile.name}</p>
+                      <p className="text-sm text-muted-foreground">{t('add.csv.studentsFound', { count: bulkPreview.length })}</p>
                       <Button
                         variant="ghost"
                         size="sm"
@@ -542,11 +542,11 @@ export default function AddStudentsPage() {
                     </div>
                   ) : (
                     <div>
-                      <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                      <p className="font-medium text-gray-900 mb-2">
+                      <Upload className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
+                      <p className="font-medium text-foreground mb-2">
                         {t('add.csv.dragDropHere')}
                       </p>
-                      <p className="text-sm text-gray-600 mb-4">{t('add.csv.or')}</p>
+                      <p className="text-sm text-muted-foreground mb-4">{t('add.csv.or')}</p>
                       <Button variant="outline" asChild>
                         <label>
                           <input
@@ -573,12 +573,12 @@ export default function AddStudentsPage() {
                 {/* Preview */}
                 {bulkPreview.length > 0 && (
                   <div>
-                    <h4 className="font-medium text-gray-900 mb-3">
+                    <h4 className="font-medium text-foreground mb-3">
                       {t('add.csv.preview', { count: bulkPreview.length })}
                     </h4>
                     <div className="border rounded-lg overflow-hidden">
                       <table className="w-full text-sm">
-                        <thead className="bg-gray-50">
+                        <thead className="bg-muted/50">
                           <tr>
                             <th className="text-left p-3">{t('add.csv.headers.email')}</th>
                             <th className="text-left p-3">{t('add.csv.headers.firstName')}</th>
@@ -600,7 +600,7 @@ export default function AddStudentsPage() {
                         </tbody>
                       </table>
                       {bulkPreview.length > 10 && (
-                        <div className="bg-gray-50 p-3 text-center text-sm text-gray-500">
+                        <div className="bg-muted/50 p-3 text-center text-sm text-muted-foreground">
                           {t('add.csv.andMore', { count: bulkPreview.length - 10 })}
                         </div>
                       )}

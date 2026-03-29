@@ -101,8 +101,8 @@ export default function UniversityExchangeStudentsPage() {
       return (
         <Card className="border-dashed">
           <CardContent className="pt-8 pb-8 text-center">
-            <Globe className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-            <p className="text-sm text-gray-500">{t(`university.no${direction === 'incoming' ? 'Incoming' : 'Outgoing'}`)}</p>
+            <Globe className="h-12 w-12 mx-auto text-muted-foreground/40 mb-4" />
+            <p className="text-sm text-muted-foreground">{t(`university.no${direction === 'incoming' ? 'Incoming' : 'Outgoing'}`)}</p>
           </CardContent>
         </Card>
       )
@@ -124,7 +124,7 @@ export default function UniversityExchangeStudentsPage() {
                     </div>
                     <div>
                       <p className="font-medium text-sm">{studentName}</p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-muted-foreground">
                         {enrollment.student.degree || 'No degree specified'}
                       </p>
                       <div className="mt-1">
@@ -141,7 +141,7 @@ export default function UniversityExchangeStudentsPage() {
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <div className="text-right text-xs text-gray-500">
+                    <div className="text-right text-xs text-muted-foreground">
                       <p>{new Date(enrollment.startDate).toLocaleDateString()}</p>
                       <Badge variant="outline" className="text-xs">{enrollment.status}</Badge>
                     </div>
@@ -173,8 +173,8 @@ export default function UniversityExchangeStudentsPage() {
       <div className="flex items-center gap-3">
         <Globe className="h-7 w-7 text-primary" />
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t('university.title')}</h1>
-          <p className="text-sm text-gray-600">{t('university.subtitle')}</p>
+          <h1 className="text-2xl font-bold text-foreground">{t('university.title')}</h1>
+          <p className="text-sm text-muted-foreground">{t('university.subtitle')}</p>
         </div>
       </div>
 
@@ -188,7 +188,7 @@ export default function UniversityExchangeStudentsPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold">{data.stats.totalIncoming}</p>
-                <p className="text-xs text-gray-500">{t('university.incoming')}</p>
+                <p className="text-xs text-muted-foreground">{t('university.incoming')}</p>
               </div>
             </div>
           </CardContent>
@@ -201,7 +201,7 @@ export default function UniversityExchangeStudentsPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold">{data.stats.totalOutgoing}</p>
-                <p className="text-xs text-gray-500">{t('university.outgoing')}</p>
+                <p className="text-xs text-muted-foreground">{t('university.outgoing')}</p>
               </div>
             </div>
           </CardContent>
@@ -214,7 +214,7 @@ export default function UniversityExchangeStudentsPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold">{data.stats.activeIncoming + data.stats.activeOutgoing}</p>
-                <p className="text-xs text-gray-500">{t('university.active')}</p>
+                <p className="text-xs text-muted-foreground">{t('university.active')}</p>
               </div>
             </div>
           </CardContent>
@@ -227,7 +227,7 @@ export default function UniversityExchangeStudentsPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold">{data.stats.countries.length}</p>
-                <p className="text-xs text-gray-500">{t('university.countries')}</p>
+                <p className="text-xs text-muted-foreground">{t('university.countries')}</p>
               </div>
             </div>
           </CardContent>

@@ -117,7 +117,7 @@ export default function NewCoursePage() {
             <Badge key={i} variant="secondary" className="pl-3 pr-1.5 py-1.5 text-sm flex items-center gap-1.5">
               {item}
               <button type="button" onClick={() => removeTag(list, setList, i)}
-                className="ml-0.5 rounded-full p-0.5 hover:bg-gray-300/50 transition-colors">
+                className="ml-0.5 rounded-full p-0.5 hover:bg-muted/50 transition-colors">
                 <X className="h-3 w-3" />
               </button>
             </Badge>
@@ -128,7 +128,7 @@ export default function NewCoursePage() {
   )
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+    <div className="min-h-screen space-y-6 py-8">
       <div className="container mx-auto px-4 max-w-3xl">
         <Link href="/dashboard/university/courses">
           <Button variant="ghost" className="mb-6">
@@ -138,13 +138,13 @@ export default function NewCoursePage() {
         </Link>
 
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600 mt-1">{t('subtitle')}</p>
+          <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+          <p className="text-muted-foreground mt-1">{t('subtitle')}</p>
           <div className="flex gap-4 mt-4">
-            <span className={`text-sm font-medium ${step === 'describe' ? 'text-primary' : 'text-gray-400'}`}>
+            <span className={`text-sm font-medium ${step === 'describe' ? 'text-primary' : 'text-muted-foreground/60'}`}>
               1. {t('steps.describe')}
             </span>
-            <span className={`text-sm font-medium ${step === 'review' ? 'text-primary' : 'text-gray-400'}`}>
+            <span className={`text-sm font-medium ${step === 'review' ? 'text-primary' : 'text-muted-foreground/60'}`}>
               2. {t('steps.review')}
             </span>
           </div>
@@ -154,7 +154,7 @@ export default function NewCoursePage() {
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">{t('input.title')}</CardTitle>
-              <p className="text-sm text-gray-500">{t('input.description')}</p>
+              <p className="text-sm text-muted-foreground">{t('input.description')}</p>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
@@ -199,7 +199,7 @@ export default function NewCoursePage() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">{t('review.skills')}</CardTitle>
-                <p className="text-sm text-gray-500">{t('review.skillsHint')}</p>
+                <p className="text-sm text-muted-foreground">{t('review.skillsHint')}</p>
               </CardHeader>
               <CardContent>
                 <TagInput list={skills} setList={setSkills} input={skillInput} setInput={setSkillInput}
@@ -220,7 +220,7 @@ export default function NewCoursePage() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">{t('review.projectTypes')}</CardTitle>
-                <p className="text-sm text-gray-500">{t('review.projectTypesHint')}</p>
+                <p className="text-sm text-muted-foreground">{t('review.projectTypesHint')}</p>
               </CardHeader>
               <CardContent>
                 <TagInput list={projectTypes} setList={setProjectTypes} input={projInput} setInput={setProjInput}
@@ -233,7 +233,7 @@ export default function NewCoursePage() {
                 <CardTitle className="text-lg">{t('review.marketRelevance')}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600">{marketRelevance}</p>
+                <p className="text-sm text-muted-foreground">{marketRelevance}</p>
               </CardContent>
             </Card>
 

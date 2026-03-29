@@ -212,22 +212,22 @@ export default function StudentSearchPage() {
         {/* Basic Info */}
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div className="flex items-center space-x-2">
-            <GraduationCap className="h-4 w-4 text-gray-700" />
+            <GraduationCap className="h-4 w-4 text-foreground/80" />
             <span>{student.degree || 'Degree not specified'}</span>
           </div>
           <div className="flex items-center space-x-2">
-            <Calendar className="h-4 w-4 text-gray-700" />
+            <Calendar className="h-4 w-4 text-foreground/80" />
             <span>Grad {student.graduationYear || 'N/A'}</span>
           </div>
           {student.gpa !== null && (
             <div className="flex items-center space-x-2">
-              <Star className="h-4 w-4 text-gray-700" />
+              <Star className="h-4 w-4 text-foreground/80" />
               <span>GPA: {student.gpa}</span>
             </div>
           )}
           {student.tagline && (
             <div className="flex items-center space-x-2">
-              <MapPin className="h-4 w-4 text-gray-700" />
+              <MapPin className="h-4 w-4 text-foreground/80" />
               <span className="truncate">{student.tagline}</span>
             </div>
           )}
@@ -235,14 +235,14 @@ export default function StudentSearchPage() {
 
         {/* Bio excerpt */}
         {student.bio && (
-          <p className="text-sm text-gray-600 line-clamp-2">{student.bio}</p>
+          <p className="text-sm text-muted-foreground line-clamp-2">{student.bio}</p>
         )}
 
         {/* Top Project */}
         {student.topProjects.length > 0 && (
           <div>
             <Label className="text-sm font-medium">Top Project</Label>
-            <div className="mt-1 p-2 bg-gray-50 rounded">
+            <div className="mt-1 p-2 bg-muted/50 rounded">
               <div className="flex items-center justify-between">
                 <span className="font-medium text-sm">{student.topProjects[0]?.title}</span>
                 {student.topProjects[0]?.innovationScore !== null && (
@@ -387,12 +387,12 @@ export default function StudentSearchPage() {
   )
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+    <div className="min-h-screen space-y-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Find Students</h1>
-          <p className="text-gray-600 mt-1">
+          <h1 className="text-3xl font-bold text-foreground">Find Students</h1>
+          <p className="text-muted-foreground mt-1">
             Search and connect with talented students from any university
           </p>
         </div>
@@ -611,7 +611,7 @@ export default function StudentSearchPage() {
                 <ChevronLeft className="h-4 w-4 mr-1" />
                 Previous
               </Button>
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-muted-foreground">
                 Page {currentPage} of {totalPages}
               </span>
               <Button
@@ -631,9 +631,9 @@ export default function StudentSearchPage() {
       {/* No results state */}
       {!loading && !error && searchResults.length === 0 && totalResults === 0 && currentPage > 0 && totalPages > 0 && (
         <Card className="p-12 text-center">
-          <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">No students found</h3>
-          <p className="text-gray-600">
+          <Search className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-foreground mb-2">No students found</h3>
+          <p className="text-muted-foreground">
             Try broadening your search criteria or using different keywords
           </p>
         </Card>

@@ -169,8 +169,8 @@ export default function CompanyEngagementPage() {
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600 mt-1">{t('subtitle')}</p>
+          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+          <p className="text-muted-foreground mt-1">{t('subtitle')}</p>
         </div>
       </div>
 
@@ -181,7 +181,7 @@ export default function CompanyEngagementPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{data.summary.totalCompanies}</p>
-                <p className="text-sm text-gray-600">{t('totalCompanies')}</p>
+                <p className="text-sm text-muted-foreground">{t('totalCompanies')}</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Building2 className="h-5 w-5 text-primary" />
@@ -195,7 +195,7 @@ export default function CompanyEngagementPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold text-green-600">{data.summary.activeThisMonth}</p>
-                <p className="text-sm text-gray-600">{t('activeThisMonth')}</p>
+                <p className="text-sm text-muted-foreground">{t('activeThisMonth')}</p>
               </div>
               <div className="p-2 bg-green-100 rounded-lg">
                 <Activity className="h-5 w-5 text-green-600" />
@@ -209,7 +209,7 @@ export default function CompanyEngagementPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{data.summary.totalViews}</p>
-                <p className="text-sm text-gray-600">{t('totalViews')}</p>
+                <p className="text-sm text-muted-foreground">{t('totalViews')}</p>
               </div>
               <div className="p-2 bg-blue-100 rounded-lg">
                 <Eye className="h-5 w-5 text-blue-600" />
@@ -223,7 +223,7 @@ export default function CompanyEngagementPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{data.summary.totalContacts}</p>
-                <p className="text-sm text-gray-600">{t('totalContacts')}</p>
+                <p className="text-sm text-muted-foreground">{t('totalContacts')}</p>
               </div>
               <div className="p-2 bg-orange-100 rounded-lg">
                 <UserCheck className="h-5 w-5 text-orange-600" />
@@ -236,18 +236,18 @@ export default function CompanyEngagementPage() {
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Company Cards */}
         <div className="lg:col-span-2 space-y-4">
-          <h2 className="text-lg font-semibold text-gray-900">{t('companiesTitle')}</h2>
+          <h2 className="text-lg font-semibold text-foreground">{t('companiesTitle')}</h2>
           {sortedCompanies.length > 0 ? (
             sortedCompanies.map((company) => (
               <Card key={company.id} className="hover:shadow-md transition-shadow">
                 <CardContent className="pt-6">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
                     <div>
-                      <h3 className="font-semibold text-gray-900 flex items-center gap-2">
-                        <Building2 className="h-4 w-4 text-gray-400" />
+                      <h3 className="font-semibold text-foreground flex items-center gap-2">
+                        <Building2 className="h-4 w-4 text-muted-foreground/60" />
                         {company.name}
                       </h3>
-                      <p className="text-xs text-gray-500 flex items-center gap-1 mt-1">
+                      <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
                         <CalendarDays className="h-3 w-3" />
                         {t('lastActive')}: {formatDate(company.lastActivity)}
                       </p>
@@ -258,27 +258,27 @@ export default function CompanyEngagementPage() {
                   </div>
 
                   <div className="grid grid-cols-4 gap-4 mb-3">
-                    <div className="text-center p-2 bg-gray-50 rounded-lg">
-                      <p className="text-lg font-bold text-gray-900">{company.views}</p>
-                      <p className="text-xs text-gray-500">{t('views')}</p>
+                    <div className="text-center p-2 bg-muted/50 rounded-lg">
+                      <p className="text-lg font-bold text-foreground">{company.views}</p>
+                      <p className="text-xs text-muted-foreground">{t('views')}</p>
                     </div>
-                    <div className="text-center p-2 bg-gray-50 rounded-lg">
-                      <p className="text-lg font-bold text-gray-900">{company.contacts}</p>
-                      <p className="text-xs text-gray-500">{t('contacts')}</p>
+                    <div className="text-center p-2 bg-muted/50 rounded-lg">
+                      <p className="text-lg font-bold text-foreground">{company.contacts}</p>
+                      <p className="text-xs text-muted-foreground">{t('contacts')}</p>
                     </div>
-                    <div className="text-center p-2 bg-gray-50 rounded-lg">
-                      <p className="text-lg font-bold text-gray-900">{company.hires}</p>
-                      <p className="text-xs text-gray-500">{t('hires')}</p>
+                    <div className="text-center p-2 bg-muted/50 rounded-lg">
+                      <p className="text-lg font-bold text-foreground">{company.hires}</p>
+                      <p className="text-xs text-muted-foreground">{t('hires')}</p>
                     </div>
-                    <div className="text-center p-2 bg-gray-50 rounded-lg">
-                      <p className="text-lg font-bold text-gray-900">{company.uniqueStudentsViewed}</p>
-                      <p className="text-xs text-gray-500">{t('uniqueStudents')}</p>
+                    <div className="text-center p-2 bg-muted/50 rounded-lg">
+                      <p className="text-lg font-bold text-foreground">{company.uniqueStudentsViewed}</p>
+                      <p className="text-xs text-muted-foreground">{t('uniqueStudents')}</p>
                     </div>
                   </div>
 
                   {company.topDegreesInterested.length > 0 && (
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">{t('interestedIn')}</p>
+                      <p className="text-xs text-muted-foreground mb-1">{t('interestedIn')}</p>
                       <div className="flex flex-wrap gap-1.5">
                         {company.topDegreesInterested.map((degree, idx) => (
                           <Badge key={idx} variant="secondary" className="text-xs">
@@ -294,9 +294,9 @@ export default function CompanyEngagementPage() {
           ) : (
             <Card>
               <CardContent className="pt-6 text-center py-12">
-                <Building2 className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-                <h3 className="font-medium text-gray-900 mb-1">{t('noCompanies')}</h3>
-                <p className="text-sm text-gray-600">{t('noCompaniesDescription')}</p>
+                <Building2 className="h-12 w-12 text-muted-foreground/40 mx-auto mb-3" />
+                <h3 className="font-medium text-foreground mb-1">{t('noCompanies')}</h3>
+                <p className="text-sm text-muted-foreground">{t('noCompaniesDescription')}</p>
               </CardContent>
             </Card>
           )}
@@ -324,19 +324,19 @@ export default function CompanyEngagementPage() {
                           <IconComponent className={`h-3 w-3 ${config.color}`} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm text-gray-900">
+                          <p className="text-sm text-foreground">
                             <span className="font-medium">{item.companyName}</span>
                             {' '}{t(config.label)}{' '}
                             <span className="font-medium">{item.studentName}</span>
                           </p>
-                          <p className="text-xs text-gray-500 mt-0.5">{formatTime(item.timestamp)}</p>
+                          <p className="text-xs text-muted-foreground mt-0.5">{formatTime(item.timestamp)}</p>
                         </div>
                       </div>
                     )
                   })}
                 </div>
               ) : (
-                <p className="text-sm text-gray-500 text-center py-6">{t('noActivity')}</p>
+                <p className="text-sm text-muted-foreground text-center py-6">{t('noActivity')}</p>
               )}
             </CardContent>
           </Card>

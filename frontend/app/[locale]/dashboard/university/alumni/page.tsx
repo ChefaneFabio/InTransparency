@@ -184,7 +184,7 @@ export default function UniversityAlumniPage() {
       case 'OTHER':
       default:
         return (
-          <Badge className="bg-gray-100 text-gray-800 hover:bg-gray-100">
+          <Badge className="bg-muted text-foreground hover:bg-muted">
             {t('other')}
           </Badge>
         )
@@ -248,12 +248,12 @@ export default function UniversityAlumniPage() {
       : 1
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+    <div className="min-h-screen space-y-6 py-8">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600 mt-1">
+          <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+          <p className="text-muted-foreground mt-1">
             {t('subtitle')}
           </p>
         </div>
@@ -277,7 +277,7 @@ export default function UniversityAlumniPage() {
                     </div>
                     <div>
                       <p className="text-2xl font-bold">{stats?.total ?? 0}</p>
-                      <p className="text-sm text-gray-600">{t('totalAlumni')}</p>
+                      <p className="text-sm text-muted-foreground">{t('totalAlumni')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -293,7 +293,7 @@ export default function UniversityAlumniPage() {
                       <p className="text-2xl font-bold">
                         {stats?.employmentRate ?? 0}%
                       </p>
-                      <p className="text-sm text-gray-600">{t('employmentRate')}</p>
+                      <p className="text-sm text-muted-foreground">{t('employmentRate')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -310,7 +310,7 @@ export default function UniversityAlumniPage() {
                         {'\u20AC'}
                         {((stats?.avgSalary ?? 0) / 1000).toFixed(0)}k
                       </p>
-                      <p className="text-sm text-gray-600">{t('avgSalary')}</p>
+                      <p className="text-sm text-muted-foreground">{t('avgSalary')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -324,7 +324,7 @@ export default function UniversityAlumniPage() {
                     </div>
                     <div>
                       <p className="text-2xl font-bold">{stats?.seeking ?? 0}</p>
-                      <p className="text-sm text-gray-600">{t('seekingWork')}</p>
+                      <p className="text-sm text-muted-foreground">{t('seekingWork')}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -336,7 +336,7 @@ export default function UniversityAlumniPage() {
         {/* Filters */}
         <div className="flex flex-wrap gap-4 mb-6">
           <div className="relative flex-1 min-w-[200px] max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
             <Input
               placeholder={t('searchPlaceholder')}
               value={searchQuery}
@@ -379,8 +379,8 @@ export default function UniversityAlumniPage() {
             <Card>
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-5">
-                  <Building2 className="h-5 w-5 text-gray-600" />
-                  <h2 className="text-lg font-semibold text-gray-900">
+                  <Building2 className="h-5 w-5 text-muted-foreground" />
+                  <h2 className="text-lg font-semibold text-foreground">
                     {t('industryBreakdown')}
                   </h2>
                 </div>
@@ -392,10 +392,10 @@ export default function UniversityAlumniPage() {
                     return (
                       <div key={item.name} className="space-y-1.5">
                         <div className="flex items-center justify-between text-sm">
-                          <span className="font-medium text-gray-700">{item.name}</span>
-                          <span className="text-gray-500">{item.count} alumni</span>
+                          <span className="font-medium text-foreground/80">{item.name}</span>
+                          <span className="text-muted-foreground">{item.count} alumni</span>
                         </div>
-                        <div className="w-full bg-gray-100 rounded-full h-2.5">
+                        <div className="w-full bg-muted rounded-full h-2.5">
                           <div
                             className="bg-primary/50 h-2.5 rounded-full transition-all duration-500"
                             style={{ width: `${percentage}%` }}
@@ -422,11 +422,11 @@ export default function UniversityAlumniPage() {
           <Card>
             <CardContent className="py-16">
               <div className="text-center">
-                <GraduationCap className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <GraduationCap className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   {t('noAlumniFound')}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   {t('tryClearFilters')}
                 </p>
               </div>
@@ -454,7 +454,7 @@ export default function UniversityAlumniPage() {
                     {/* Info */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-semibold text-gray-900 truncate">
+                        <h3 className="font-semibold text-foreground truncate">
                           {person.name}
                         </h3>
                         {person.linkedInUrl && (
@@ -471,7 +471,7 @@ export default function UniversityAlumniPage() {
                       </div>
 
                       {/* Graduation info */}
-                      <div className="flex items-center gap-1.5 text-sm text-gray-600 mb-1">
+                      <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-1">
                         <GraduationCap className="h-3.5 w-3.5 flex-shrink-0" />
                         <span className="truncate">
                           {person.graduationYear}
@@ -482,8 +482,8 @@ export default function UniversityAlumniPage() {
                       {/* Current role */}
                       {person.employmentStatus === 'EMPLOYED' &&
                         (person.currentRole || person.currentCompany) && (
-                          <div className="flex items-center gap-1.5 text-sm text-gray-700 mb-1">
-                            <Building2 className="h-3.5 w-3.5 flex-shrink-0 text-gray-400" />
+                          <div className="flex items-center gap-1.5 text-sm text-foreground/80 mb-1">
+                            <Building2 className="h-3.5 w-3.5 flex-shrink-0 text-muted-foreground/60" />
                             <span className="truncate">
                               {person.currentRole}
                               {person.currentRole && person.currentCompany && ' @ '}
@@ -494,7 +494,7 @@ export default function UniversityAlumniPage() {
 
                       {/* Location */}
                       {person.location && (
-                        <div className="flex items-center gap-1.5 text-sm text-gray-500 mb-2">
+                        <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-2">
                           <MapPin className="h-3.5 w-3.5 flex-shrink-0" />
                           <span className="truncate">{person.location}</span>
                         </div>

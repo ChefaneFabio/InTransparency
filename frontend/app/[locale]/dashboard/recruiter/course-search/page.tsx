@@ -127,11 +127,11 @@ export default function CourseSearchPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+        <h1 className="text-3xl font-bold text-foreground flex items-center gap-2">
           <Sparkles className="h-8 w-8 text-primary" />
           {t('title')}
         </h1>
-        <p className="text-gray-600 mt-2">
+        <p className="text-muted-foreground mt-2">
           {t('subtitle')}
         </p>
       </div>
@@ -158,24 +158,24 @@ export default function CourseSearchPage() {
             {showFilters && (
               <CardContent className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium text-gray-700 block mb-1">
+                  <label className="text-sm font-medium text-foreground/80 block mb-1">
                     {t('departmentCategory')}
                   </label>
                   <input
                     type="text"
                     placeholder="e.g., Computer Science, Engineering..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm placeholder:text-gray-400"
+                    className="w-full px-3 py-2 border border-border rounded-md text-sm placeholder:text-muted-foreground/60"
                     value={courseCategory}
                     onChange={(e) => setCourseCategory(e.target.value)}
                   />
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-gray-700 block mb-1">
+                  <label className="text-sm font-medium text-foreground/80 block mb-1">
                     {t('minimumGrade')}
                   </label>
                   <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+                    className="w-full px-3 py-2 border border-border rounded-md text-sm"
                     value={minGrade}
                     onChange={(e) => setMinGrade(e.target.value)}
                   >
@@ -187,13 +187,13 @@ export default function CourseSearchPage() {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-gray-700 block mb-1">
+                  <label className="text-sm font-medium text-foreground/80 block mb-1">
                     {t('institutionName')}
                   </label>
                   <input
                     type="text"
                     placeholder="Filter by institution name..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm placeholder:text-gray-400"
+                    className="w-full px-3 py-2 border border-border rounded-md text-sm placeholder:text-muted-foreground/60"
                     value={institutionType}
                     onChange={(e) => setInstitutionType(e.target.value)}
                   />
@@ -227,15 +227,15 @@ export default function CourseSearchPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">{t('institutions')}</span>
+                <span className="text-muted-foreground">{t('institutions')}</span>
                 <span className="font-semibold">{totalGroups}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">{t('studentsFound')}</span>
+                <span className="text-muted-foreground">{t('studentsFound')}</span>
                 <span className="font-semibold text-primary">{totalStudents}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">{t('activeFilters')}</span>
+                <span className="text-muted-foreground">{t('activeFilters')}</span>
                 <span className="font-semibold">
                   {[courseCategory, minGrade, institutionType].filter(Boolean).length}
                 </span>
@@ -270,15 +270,15 @@ export default function CourseSearchPage() {
           ) : error ? (
             <Card className="p-12 text-center">
               <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('error')}</h3>
-              <p className="text-gray-600 mb-4">{error}</p>
+              <h3 className="text-lg font-semibold text-foreground mb-2">{t('error')}</h3>
+              <p className="text-muted-foreground mb-4">{error}</p>
               <Button onClick={fetchResults}>{t('retry')}</Button>
             </Card>
           ) : groups.length === 0 ? (
             <Card className="p-12 text-center">
-              <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('noResultsFound')}</h3>
-              <p className="text-gray-600 mb-4">
+              <AlertCircle className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-foreground mb-2">{t('noResultsFound')}</h3>
+              <p className="text-muted-foreground mb-4">
                 {t('tryAdjustingFilters')}
               </p>
               <Button onClick={() => {
@@ -309,16 +309,16 @@ export default function CourseSearchPage() {
                           <Building2 className="h-5 w-5 text-primary" />
                         </div>
                         <div>
-                          <h3 className="text-lg font-semibold text-gray-900">{group.institution}</h3>
-                          <p className="text-sm text-gray-600">
+                          <h3 className="text-lg font-semibold text-foreground">{group.institution}</h3>
+                          <p className="text-sm text-muted-foreground">
                             {group.courses.length} course{group.courses.length !== 1 ? 's' : ''} &middot; {totalInstitutionStudents} student{totalInstitutionStudents !== 1 ? 's' : ''}
                           </p>
                         </div>
                       </div>
                       {isExpanded ? (
-                        <ChevronUp className="h-5 w-5 text-gray-400" />
+                        <ChevronUp className="h-5 w-5 text-muted-foreground/60" />
                       ) : (
-                        <ChevronDown className="h-5 w-5 text-gray-400" />
+                        <ChevronDown className="h-5 w-5 text-muted-foreground/60" />
                       )}
                     </div>
                   </div>
@@ -333,7 +333,7 @@ export default function CourseSearchPage() {
                           <div key={course.courseId} className="border rounded-lg overflow-hidden">
                             {/* Course Header */}
                             <div
-                              className="p-3 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
+                              className="p-3 bg-muted/50 cursor-pointer hover:bg-muted transition-colors"
                               onClick={() => toggleCourse(course.courseId)}
                             >
                               <div className="flex items-center justify-between">
@@ -348,7 +348,7 @@ export default function CourseSearchPage() {
                                   )}
                                 </div>
                                 <div className="flex items-center gap-3">
-                                  <span className="text-xs text-gray-500">
+                                  <span className="text-xs text-muted-foreground">
                                     {course.semester} {course.academicYear}
                                   </span>
                                   <Badge variant="outline" className="text-xs">
@@ -356,14 +356,14 @@ export default function CourseSearchPage() {
                                     {course.students.length}
                                   </Badge>
                                   {courseExpanded ? (
-                                    <ChevronUp className="h-4 w-4 text-gray-400" />
+                                    <ChevronUp className="h-4 w-4 text-muted-foreground/60" />
                                   ) : (
-                                    <ChevronDown className="h-4 w-4 text-gray-400" />
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground/60" />
                                   )}
                                 </div>
                               </div>
                               {course.professorName && (
-                                <p className="text-xs text-gray-500 mt-1 ml-6">
+                                <p className="text-xs text-muted-foreground mt-1 ml-6">
                                   Prof. {course.professorName}
                                 </p>
                               )}
@@ -373,7 +373,7 @@ export default function CourseSearchPage() {
                             {courseExpanded && (
                               <div className="divide-y">
                                 {course.students.map((student) => (
-                                  <div key={`${student.id}-${course.courseId}`} className="p-3 hover:bg-gray-50 transition-colors">
+                                  <div key={`${student.id}-${course.courseId}`} className="p-3 hover:bg-muted/50 transition-colors">
                                     <div className="flex items-start justify-between">
                                       <div className="flex items-center gap-3">
                                         <Avatar className="h-10 w-10">
@@ -384,7 +384,7 @@ export default function CourseSearchPage() {
                                         </Avatar>
                                         <div>
                                           <h4 className="font-medium text-sm">{student.name}</h4>
-                                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
                                             {student.degree && (
                                               <span className="flex items-center gap-1">
                                                 <GraduationCap className="h-3 w-3" />
@@ -401,7 +401,7 @@ export default function CourseSearchPage() {
                                             )}
                                           </div>
                                           {student.tagline && (
-                                            <p className="text-xs text-gray-400 mt-1">{student.tagline}</p>
+                                            <p className="text-xs text-muted-foreground/60 mt-1">{student.tagline}</p>
                                           )}
                                         </div>
                                       </div>
@@ -417,7 +417,7 @@ export default function CourseSearchPage() {
                                     </div>
 
                                     {/* Project */}
-                                    <div className="mt-2 ml-13 bg-gray-50 rounded p-2">
+                                    <div className="mt-2 ml-13 bg-muted/50 rounded p-2">
                                       <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-2">
                                           <Code className="h-3 w-3 text-primary" />

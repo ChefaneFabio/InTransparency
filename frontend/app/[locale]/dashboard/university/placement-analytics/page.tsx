@@ -85,8 +85,8 @@ export default function PlacementAnalyticsPage() {
       <div className="flex items-center gap-3">
         <BarChart3 className="h-7 w-7 text-primary" />
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
-          <p className="text-sm text-gray-600">{t('subtitle')}</p>
+          <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
+          <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
         </div>
       </div>
 
@@ -101,7 +101,7 @@ export default function PlacementAnalyticsPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold">{stat.value}</p>
-                  <p className="text-xs text-gray-500">{stat.label}</p>
+                  <p className="text-xs text-muted-foreground">{stat.label}</p>
                 </div>
               </div>
             </CardContent>
@@ -114,11 +114,11 @@ export default function PlacementAnalyticsPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center gap-6">
-              <span className="text-sm text-gray-600">{t('gradeComparison')}</span>
+              <span className="text-sm text-muted-foreground">{t('gradeComparison')}</span>
               <Badge variant="outline" className="text-primary border-primary/20">
                 Your university: {data.gradeComparison.universityAvg}
               </Badge>
-              <Badge variant="outline" className="text-gray-600">
+              <Badge variant="outline" className="text-muted-foreground">
                 Platform avg: {data.gradeComparison.platformAvg}
               </Badge>
             </div>

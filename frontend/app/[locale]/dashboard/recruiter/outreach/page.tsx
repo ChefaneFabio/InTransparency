@@ -66,8 +66,8 @@ export default function OutreachPage() {
   return (
     <div className="max-w-5xl mx-auto pb-8">
       <div className="mb-6">
-        <h1 className="text-xl font-semibold text-gray-900">{t('title')}</h1>
-        <p className="text-sm text-gray-500 mt-1">{t('subtitle')}</p>
+        <h1 className="text-xl font-semibold text-foreground">{t('title')}</h1>
+        <p className="text-sm text-muted-foreground mt-1">{t('subtitle')}</p>
       </div>
 
       {/* Section 1: Active Sequences */}
@@ -77,10 +77,10 @@ export default function OutreachPage() {
         </CardHeader>
         <CardContent>
           <div className="text-center py-8">
-            <p className="text-sm font-medium text-gray-600">
+            <p className="text-sm font-medium text-muted-foreground">
               {t('sequences.empty')}
             </p>
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-muted-foreground/60 mt-1">
               {t('sequences.emptyDesc')}
             </p>
           </div>
@@ -94,7 +94,7 @@ export default function OutreachPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-gray-700 block mb-1.5">
+            <label className="text-sm font-medium text-foreground/80 block mb-1.5">
               {t('create.name')}
             </label>
             <Input
@@ -105,16 +105,16 @@ export default function OutreachPage() {
           </div>
 
           <div>
-            <label className="text-sm font-medium text-gray-700 block mb-2">
+            <label className="text-sm font-medium text-foreground/80 block mb-2">
               {t('create.steps')}
             </label>
             <div className="space-y-3">
               {steps.map((step, index) => (
                 <div
                   key={step.id}
-                  className="flex items-center gap-3 p-3 border rounded-lg bg-gray-50"
+                  className="flex items-center gap-3 p-3 border rounded-lg bg-muted/50"
                 >
-                  <span className="text-xs font-medium text-gray-400 w-6">
+                  <span className="text-xs font-medium text-muted-foreground/60 w-6">
                     {index + 1}.
                   </span>
 
@@ -143,7 +143,7 @@ export default function OutreachPage() {
                       }
                       className="w-16 text-center text-sm"
                     />
-                    <span className="text-xs text-gray-500 whitespace-nowrap">
+                    <span className="text-xs text-muted-foreground whitespace-nowrap">
                       {t('create.delay')}
                     </span>
                   </div>
@@ -151,7 +151,7 @@ export default function OutreachPage() {
                   {steps.length > 1 && (
                     <button
                       onClick={() => removeStep(step.id)}
-                      className="text-gray-400 hover:text-red-500 text-sm"
+                      className="text-muted-foreground/60 hover:text-red-500 text-sm"
                     >
                       &times;
                     </button>
@@ -184,15 +184,15 @@ export default function OutreachPage() {
       {/* Section 3: Coming Soon */}
       <Card className="border-dashed">
         <CardHeader>
-          <CardTitle className="text-base text-gray-500">
+          <CardTitle className="text-base text-muted-foreground">
             {t('comingSoon.title')}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="space-y-2">
             {Array.from({ length: 4 }).map((_, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
-                <span className="text-gray-300 mt-0.5">&#x2022;</span>
+              <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                <span className="text-muted-foreground/40 mt-0.5">&#x2022;</span>
                 {t(`comingSoon.items.${i}`)}
               </li>
             ))}

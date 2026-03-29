@@ -34,7 +34,7 @@ interface TalentAnalyticsData {
 
 function LoadingSkeleton() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-6">
+    <div className="min-h-screen space-y-6 p-6">
       <div className="container mx-auto max-w-7xl space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -98,7 +98,7 @@ export default function MarketIntelligencePage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-6 flex items-center justify-center">
+      <div className="min-h-screen space-y-6 p-6 flex items-center justify-center">
         <Card className="max-w-md w-full">
           <CardContent className="pt-6 text-center">
             <p className="text-red-600 font-medium mb-2">{t('errorLoading')}</p>
@@ -121,16 +121,16 @@ export default function MarketIntelligencePage() {
   const totalProjects = disciplineDistribution.reduce((sum, d) => sum + d.count, 0)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-6">
+    <div className="min-h-screen space-y-6 p-6">
       <div className="container mx-auto max-w-7xl space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+            <h1 className="text-3xl font-bold text-foreground flex items-center gap-2">
               <TrendingUp className="h-8 w-8 text-primary" />
               {t('title')}
             </h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-muted-foreground mt-2">
               {t('subtitle')}
             </p>
           </div>
@@ -153,7 +153,7 @@ export default function MarketIntelligencePage() {
               <div className="text-3xl font-bold text-primary">
                 {talentPool.toLocaleString()}
               </div>
-              <p className="text-xs text-gray-600 mt-1">{t('publicStudentProfiles')}</p>
+              <p className="text-xs text-muted-foreground mt-1">{t('publicStudentProfiles')}</p>
             </CardContent>
           </Card>
 
@@ -168,7 +168,7 @@ export default function MarketIntelligencePage() {
               <div className="text-3xl font-bold text-primary">
                 {universityDistribution.length}
               </div>
-              <p className="text-xs text-gray-600 mt-1">{t('withActiveStudents')}</p>
+              <p className="text-xs text-muted-foreground mt-1">{t('withActiveStudents')}</p>
             </CardContent>
           </Card>
 
@@ -183,7 +183,7 @@ export default function MarketIntelligencePage() {
               <div className="text-3xl font-bold text-primary">
                 {skillsFrequency.length}
               </div>
-              <p className="text-xs text-gray-600 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 {totalSkillMentions.toLocaleString()} total mentions
               </p>
             </CardContent>
@@ -200,7 +200,7 @@ export default function MarketIntelligencePage() {
               <div className="text-3xl font-bold text-orange-600">
                 {totalProjects.toLocaleString()}
               </div>
-              <p className="text-xs text-gray-600 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 Across {disciplineDistribution.length} disciplines
               </p>
             </CardContent>
@@ -230,11 +230,11 @@ export default function MarketIntelligencePage() {
                       <div key={uni.university} className="space-y-1">
                         <div className="flex items-center justify-between text-sm">
                           <span className="font-medium">{uni.university}</span>
-                          <span className="text-gray-600">
+                          <span className="text-muted-foreground">
                             {uni.count} ({percentage.toFixed(1)}%)
                           </span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div className="w-full bg-muted rounded-full h-2">
                           <div
                             className="bg-primary h-2 rounded-full transition-all"
                             style={{ width: `${Math.min(percentage * 3, 100)}%` }}
@@ -245,7 +245,7 @@ export default function MarketIntelligencePage() {
                   })}
                 </div>
               ) : (
-                <div className="text-center py-8 text-gray-500">
+                <div className="text-center py-8 text-muted-foreground">
                   {t('noUniversityData')}
                 </div>
               )}
@@ -281,7 +281,7 @@ export default function MarketIntelligencePage() {
                   </LineChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="flex items-center justify-center h-[300px] text-gray-500">
+                <div className="flex items-center justify-center h-[300px] text-muted-foreground">
                   {t('noGrowthData')}
                 </div>
               )}
@@ -312,7 +312,7 @@ export default function MarketIntelligencePage() {
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <div className="flex items-center justify-center h-[400px] text-gray-500">
+              <div className="flex items-center justify-center h-[400px] text-muted-foreground">
                 {t('noSkillsData')}
               </div>
             )}
@@ -360,17 +360,17 @@ export default function MarketIntelligencePage() {
                       ? ((disc.count / totalProjects) * 100).toFixed(1)
                       : '0'
                     return (
-                      <div key={disc.discipline} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div key={disc.discipline} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
                         <div className="flex items-center space-x-3">
                           <div
                             className="w-3 h-3 rounded-full"
                             style={{ backgroundColor: PIE_COLORS[index % PIE_COLORS.length] }}
                           />
-                          <span className="font-medium text-gray-900">{disc.discipline}</span>
+                          <span className="font-medium text-foreground">{disc.discipline}</span>
                         </div>
                         <div className="text-right">
                           <span className="text-sm font-semibold">{disc.count}</span>
-                          <span className="text-xs text-gray-600 ml-1">({percentage}%)</span>
+                          <span className="text-xs text-muted-foreground ml-1">({percentage}%)</span>
                         </div>
                       </div>
                     )
@@ -378,7 +378,7 @@ export default function MarketIntelligencePage() {
                 </div>
               </div>
             ) : (
-              <div className="flex items-center justify-center h-[300px] text-gray-500">
+              <div className="flex items-center justify-center h-[300px] text-muted-foreground">
                 {t('noDisciplineData')}
               </div>
             )}

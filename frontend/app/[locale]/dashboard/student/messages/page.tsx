@@ -182,7 +182,7 @@ export default function StudentMessages() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+    <div className="min-h-screen space-y-6">
       <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -223,7 +223,7 @@ export default function StudentMessages() {
                 </Tabs>
 
                 <div className="relative mt-4">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
                   <Input
                     placeholder="Search conversations..."
                     value={searchQuery}
@@ -257,7 +257,7 @@ export default function StudentMessages() {
                       </Button>
                     </div>
                   ) : filteredConversations.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500">
+                    <div className="text-center py-8 text-muted-foreground">
                       <MessageSquare className="h-8 w-8 mx-auto mb-2 opacity-50" />
                       <p>No conversations yet</p>
                     </div>
@@ -276,7 +276,7 @@ export default function StudentMessages() {
                               ? 'bg-primary/5 border border-primary/20'
                               : conv.unreadCount > 0
                                 ? 'bg-primary/5/50 hover:bg-primary/5'
-                                : 'hover:bg-gray-50'
+                                : 'hover:bg-muted/50'
                           }`}
                         >
                           <div className="flex items-start gap-3">
@@ -289,15 +289,15 @@ export default function StudentMessages() {
                                 <span className={`text-sm truncate ${conv.unreadCount > 0 ? 'font-semibold' : ''}`}>
                                   {name}
                                 </span>
-                                <span className="text-xs text-gray-500">{formatDate(conv.updatedAt)}</span>
+                                <span className="text-xs text-muted-foreground">{formatDate(conv.updatedAt)}</span>
                               </div>
                               {other?.company && (
-                                <p className="text-xs text-gray-500 truncate">{other.company}</p>
+                                <p className="text-xs text-muted-foreground truncate">{other.company}</p>
                               )}
-                              <p className={`text-sm truncate ${conv.unreadCount > 0 ? 'font-medium text-gray-900' : 'text-gray-600'}`}>
+                              <p className={`text-sm truncate ${conv.unreadCount > 0 ? 'font-medium text-foreground' : 'text-muted-foreground'}`}>
                                 {conv.subject}
                               </p>
-                              <p className="text-xs text-gray-500 truncate">{conv.lastMessage}</p>
+                              <p className="text-xs text-muted-foreground truncate">{conv.lastMessage}</p>
                             </div>
                             {conv.unreadCount > 0 && (
                               <Badge className="h-5 w-5 p-0 flex items-center justify-center text-xs shrink-0">
@@ -364,7 +364,7 @@ export default function StudentMessages() {
                     {loadingThread ? (
                       <div className="space-y-4">
                         {Array.from({ length: 3 }).map((_, i) => (
-                          <div key={i} className={`p-4 rounded-lg bg-gray-50 ${i % 2 === 0 ? 'mr-8' : 'ml-8'}`}>
+                          <div key={i} className={`p-4 rounded-lg bg-muted/50 ${i % 2 === 0 ? 'mr-8' : 'ml-8'}`}>
                             <div className="flex items-center justify-between mb-2">
                               <Skeleton className="h-4 w-24" />
                               <Skeleton className="h-3 w-16" />
@@ -388,7 +388,7 @@ export default function StudentMessages() {
                         </Button>
                       </div>
                     ) : threadMessages.length === 0 ? (
-                      <div className="text-center py-8 text-gray-500">
+                      <div className="text-center py-8 text-muted-foreground">
                         <p>No messages in this conversation</p>
                       </div>
                     ) : (
@@ -403,19 +403,19 @@ export default function StudentMessages() {
                             className={`p-4 rounded-lg ${
                               isMe
                                 ? 'bg-primary/5 ml-8'
-                                : 'bg-gray-50 mr-8'
+                                : 'bg-muted/50 mr-8'
                             }`}
                           >
                             <div className="flex items-center justify-between mb-2">
                               <span className="text-sm font-medium">
                                 {senderName}
                               </span>
-                              <span className="text-xs text-gray-500 flex items-center gap-1">
+                              <span className="text-xs text-muted-foreground flex items-center gap-1">
                                 <Clock className="h-3 w-3" />
                                 {formatDate(msg.createdAt)}
                               </span>
                             </div>
-                            <p className="text-gray-700 whitespace-pre-wrap">{msg.content}</p>
+                            <p className="text-foreground/80 whitespace-pre-wrap">{msg.content}</p>
                           </div>
                         )
                       })
@@ -452,11 +452,11 @@ export default function StudentMessages() {
             ) : (
               <Card className="h-full flex items-center justify-center">
                 <div className="text-center py-16">
-                  <MessageSquare className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <MessageSquare className="h-16 w-16 text-muted-foreground/40 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
                     Select a conversation
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-muted-foreground">
                     Choose a conversation from the list to view messages
                   </p>
                 </div>

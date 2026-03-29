@@ -29,7 +29,7 @@ function StarRating({ value, onChange }: { value: number; onChange: (v: number) 
         >
           <Star
             className={`h-5 w-5 ${
-              star <= value ? 'text-yellow-400 fill-current' : 'text-gray-300'
+              star <= value ? 'text-yellow-400 fill-current' : 'text-muted-foreground/40'
             }`}
           />
         </button>
@@ -96,8 +96,8 @@ export default function ReviewsPage() {
         <Card className="border-primary/20">
           <CardContent className="py-12 text-center">
             <CheckCircle className="h-12 w-12 mx-auto text-primary mb-4" />
-            <h2 className="text-xl font-bold text-gray-900 mb-2">Review Submitted!</h2>
-            <p className="text-gray-600">
+            <h2 className="text-xl font-bold text-foreground mb-2">Review Submitted!</h2>
+            <p className="text-muted-foreground">
               Thank you for sharing your experience. Your review helps other students make informed decisions.
             </p>
           </CardContent>
@@ -109,8 +109,8 @@ export default function ReviewsPage() {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Write an Employer Review</h1>
-        <p className="text-gray-600 mt-1">
+        <h1 className="text-2xl font-bold text-foreground">Write an Employer Review</h1>
+        <p className="text-muted-foreground mt-1">
           Share your internship or placement experience to help fellow students
         </p>
       </div>
@@ -125,7 +125,7 @@ export default function ReviewsPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-gray-700 mb-1 block">Company Name *</label>
+            <label className="text-sm font-medium text-foreground/80 mb-1 block">Company Name *</label>
             <Input
               value={companyName}
               onChange={(e) => setCompanyName(e.target.value)}
@@ -133,7 +133,7 @@ export default function ReviewsPage() {
             />
           </div>
           <div>
-            <label className="text-sm font-medium text-gray-700 mb-1 block">Your Role / Job Title</label>
+            <label className="text-sm font-medium text-foreground/80 mb-1 block">Your Role / Job Title</label>
             <Input
               value={jobTitle}
               onChange={(e) => setJobTitle(e.target.value)}
@@ -152,7 +152,7 @@ export default function ReviewsPage() {
         <CardContent className="space-y-4">
           {ratingCategories.map((cat) => (
             <div key={cat.key} className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700">
+              <span className="text-sm font-medium text-foreground/80">
                 {cat.label} {cat.required && '*'}
               </span>
               <StarRating
@@ -171,7 +171,7 @@ export default function ReviewsPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-gray-700 mb-1 block">Review Title</label>
+            <label className="text-sm font-medium text-foreground/80 mb-1 block">Review Title</label>
             <Input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -179,7 +179,7 @@ export default function ReviewsPage() {
             />
           </div>
           <div>
-            <label className="text-sm font-medium text-gray-700 mb-1 block">Your Experience *</label>
+            <label className="text-sm font-medium text-foreground/80 mb-1 block">Your Experience *</label>
             <Textarea
               value={reviewText}
               onChange={(e) => setReviewText(e.target.value)}
@@ -218,11 +218,11 @@ export default function ReviewsPage() {
               type="checkbox"
               checked={isAnonymous}
               onChange={(e) => setIsAnonymous(e.target.checked)}
-              className="rounded border-gray-300"
+              className="rounded border-border"
             />
             <div>
-              <span className="text-sm font-medium text-gray-700">Submit anonymously</span>
-              <p className="text-xs text-gray-500">Your name won&apos;t be shown, only your university</p>
+              <span className="text-sm font-medium text-foreground/80">Submit anonymously</span>
+              <p className="text-xs text-muted-foreground">Your name won&apos;t be shown, only your university</p>
             </div>
           </label>
 

@@ -104,7 +104,7 @@ export default function PositionsPage() {
     <div className="container mx-auto max-w-4xl py-8 px-4">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
+          <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
           <p className="text-muted-foreground mt-1">{t('subtitle')}</p>
         </div>
         <Button onClick={() => setShowForm(true)} disabled={showForm}>

@@ -225,10 +225,10 @@ export default function EditProjectPage() {
   if (loading) {
     return (
       <div className="max-w-4xl mx-auto space-y-8 animate-pulse">
-        <div className="h-8 bg-gray-200 rounded w-1/3"></div>
+        <div className="h-8 bg-muted rounded w-1/3"></div>
         <div className="space-y-6">
-          <div className="h-64 bg-gray-200 rounded"></div>
-          <div className="h-32 bg-gray-200 rounded"></div>
+          <div className="h-64 bg-muted rounded"></div>
+          <div className="h-32 bg-muted rounded"></div>
         </div>
       </div>
     )
@@ -237,10 +237,10 @@ export default function EditProjectPage() {
   if (error && !title) {
     return (
       <div className="max-w-4xl mx-auto text-center py-12">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">
+        <h1 className="text-2xl font-bold text-foreground mb-4">
           {error === 'Access denied' ? 'Access Denied' : 'Project Not Found'}
         </h1>
-        <p className="text-gray-600 mb-6">
+        <p className="text-muted-foreground mb-6">
           {error === 'Access denied'
             ? 'You don\'t have permission to edit this project.'
             : 'The project you\'re trying to edit doesn\'t exist.'}
@@ -263,10 +263,10 @@ export default function EditProjectPage() {
             <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6">
               <CheckCircle className="h-8 w-8 text-primary" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">
+            <h1 className="text-2xl font-bold text-foreground mb-4">
               Project Updated Successfully!
             </h1>
-            <p className="text-gray-600 mb-6">
+            <p className="text-muted-foreground mb-6">
               Your changes have been saved. Redirecting to the project page...
             </p>
             <div className="flex gap-4 justify-center">
@@ -299,7 +299,7 @@ export default function EditProjectPage() {
             </Link>
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Edit Project</h1>
+            <h1 className="text-2xl font-bold text-foreground">Edit Project</h1>
             {discipline && (
               <Badge variant="outline" className="mt-1">
                 {discipline.replace(/_/g, ' ')}
@@ -331,7 +331,7 @@ export default function EditProjectPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Title</label>
               <input
                 type="text"
                 value={title}
@@ -342,7 +342,7 @@ export default function EditProjectPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Description</label>
               <textarea
                 value={description}
                 onChange={(e) => { setDescription(e.target.value); markChanged() }}
@@ -353,7 +353,7 @@ export default function EditProjectPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Project Type</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Project Type</label>
               <input
                 type="text"
                 value={projectType}
@@ -364,12 +364,12 @@ export default function EditProjectPage() {
             </div>
 
             <div className="flex items-center space-x-3">
-              <label className="text-sm font-medium text-gray-700">Public</label>
+              <label className="text-sm font-medium text-foreground/80">Public</label>
               <button
                 type="button"
                 onClick={() => { setIsPublic(!isPublic); markChanged() }}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  isPublic ? 'bg-primary' : 'bg-gray-300'
+                  isPublic ? 'bg-primary' : 'bg-muted'
                 }`}
               >
                 <span
@@ -378,7 +378,7 @@ export default function EditProjectPage() {
                   }`}
                 />
               </button>
-              <span className="text-sm text-gray-500">
+              <span className="text-sm text-muted-foreground">
                 {isPublic ? 'Visible to everyone' : 'Only visible to you'}
               </span>
             </div>
@@ -457,7 +457,7 @@ export default function EditProjectPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">GitHub URL</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">GitHub URL</label>
               <input
                 type="url"
                 value={githubUrl}
@@ -467,7 +467,7 @@ export default function EditProjectPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Live URL</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Live URL</label>
               <input
                 type="url"
                 value={liveUrl}
@@ -486,7 +486,7 @@ export default function EditProjectPage() {
           </CardHeader>
           <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Duration</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Duration</label>
               <input
                 type="text"
                 value={duration}
@@ -496,7 +496,7 @@ export default function EditProjectPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Team Size</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Team Size</label>
               <input
                 type="number"
                 value={teamSize}
@@ -507,7 +507,7 @@ export default function EditProjectPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Your Role</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Your Role</label>
               <input
                 type="text"
                 value={role}
@@ -517,7 +517,7 @@ export default function EditProjectPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Client</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Client</label>
               <input
                 type="text"
                 value={client}
@@ -527,7 +527,7 @@ export default function EditProjectPage() {
               />
             </div>
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Outcome</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Outcome</label>
               <textarea
                 value={outcome}
                 onChange={(e) => { setOutcome(e.target.value); markChanged() }}
@@ -547,7 +547,7 @@ export default function EditProjectPage() {
           </CardHeader>
           <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Course Name</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Course Name</label>
               <input
                 type="text"
                 value={courseName}
@@ -557,7 +557,7 @@ export default function EditProjectPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Course Code</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Course Code</label>
               <input
                 type="text"
                 value={courseCode}
@@ -567,7 +567,7 @@ export default function EditProjectPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Semester</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Semester</label>
               <input
                 type="text"
                 value={semester}
@@ -577,7 +577,7 @@ export default function EditProjectPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Academic Year</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Academic Year</label>
               <input
                 type="text"
                 value={academicYear}
@@ -587,7 +587,7 @@ export default function EditProjectPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Grade</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Grade</label>
               <input
                 type="text"
                 value={grade}
@@ -597,7 +597,7 @@ export default function EditProjectPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Professor</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">Professor</label>
               <input
                 type="text"
                 value={professor}
@@ -619,7 +619,7 @@ export default function EditProjectPage() {
             {images.length > 0 && (
               <div className="grid grid-cols-2 gap-3">
                 {images.map((url, i) => (
-                  <div key={i} className="relative group aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                  <div key={i} className="relative group aspect-video bg-muted rounded-lg overflow-hidden">
                     <img src={url} alt={`Image ${i + 1}`} className="w-full h-full object-cover" />
                     <button
                       type="button"

@@ -78,7 +78,7 @@ export default function ProfessorDashboardPage() {
     <div className="container max-w-6xl py-8 space-y-8">
       <div>
         <h1 className="text-3xl font-bold">{t('title')}</h1>
-        <p className="text-gray-600 mt-1">{t('subtitle')}</p>
+        <p className="text-muted-foreground mt-1">{t('subtitle')}</p>
       </div>
 
       {/* Stats Grid */}
@@ -87,28 +87,28 @@ export default function ProfessorDashboardPage() {
           <CardContent className="p-4 text-center">
             <Award className="h-8 w-8 text-primary mx-auto mb-2" />
             <p className="text-2xl font-bold">{stats?.totalEndorsements || 0}</p>
-            <p className="text-sm text-gray-500">{t('stats.total')}</p>
+            <p className="text-sm text-muted-foreground">{t('stats.total')}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
             <Clock className="h-8 w-8 text-amber-600 mx-auto mb-2" />
             <p className="text-2xl font-bold">{stats?.pendingRequests || 0}</p>
-            <p className="text-sm text-gray-500">{t('stats.pending')}</p>
+            <p className="text-sm text-muted-foreground">{t('stats.pending')}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
             <Star className="h-8 w-8 text-primary mx-auto mb-2" />
             <p className="text-2xl font-bold">{stats?.averageRating ? stats.averageRating.toFixed(1) : '—'}</p>
-            <p className="text-sm text-gray-500">{t('stats.avgRating')}</p>
+            <p className="text-sm text-muted-foreground">{t('stats.avgRating')}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
             <Users className="h-8 w-8 text-primary mx-auto mb-2" />
             <p className="text-2xl font-bold">{stats?.studentsEndorsed || 0}</p>
-            <p className="text-sm text-gray-500">{t('stats.students')}</p>
+            <p className="text-sm text-muted-foreground">{t('stats.students')}</p>
           </CardContent>
         </Card>
       </div>
@@ -123,15 +123,15 @@ export default function ProfessorDashboardPage() {
         </CardHeader>
         <CardContent>
           {pending.length === 0 ? (
-            <p className="text-gray-500 text-center py-8">{t('noPending')}</p>
+            <p className="text-muted-foreground text-center py-8">{t('noPending')}</p>
           ) : (
             <div className="space-y-3">
               {pending.map((item) => (
                 <div key={item.id} className="flex items-center justify-between p-4 border rounded-lg">
                   <div>
                     <p className="font-medium">{item.studentName}</p>
-                    <p className="text-sm text-gray-600">{item.projectTitle}</p>
-                    <p className="text-xs text-gray-400">{item.courseName}</p>
+                    <p className="text-sm text-muted-foreground">{item.projectTitle}</p>
+                    <p className="text-xs text-muted-foreground/60">{item.courseName}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <Badge variant="outline" className="text-amber-600 border-amber-200">
@@ -159,7 +159,7 @@ export default function ProfessorDashboardPage() {
               <CheckCircle className="h-8 w-8 text-primary" />
               <div>
                 <p className="font-medium">{t('links.allEndorsements')}</p>
-                <p className="text-sm text-gray-500">{t('links.allEndorsementsDesc')}</p>
+                <p className="text-sm text-muted-foreground">{t('links.allEndorsementsDesc')}</p>
               </div>
             </Link>
           </CardContent>
@@ -170,7 +170,7 @@ export default function ProfessorDashboardPage() {
               <Users className="h-8 w-8 text-primary" />
               <div>
                 <p className="font-medium">{t('links.students')}</p>
-                <p className="text-sm text-gray-500">{t('links.studentsDesc')}</p>
+                <p className="text-sm text-muted-foreground">{t('links.studentsDesc')}</p>
               </div>
             </Link>
           </CardContent>

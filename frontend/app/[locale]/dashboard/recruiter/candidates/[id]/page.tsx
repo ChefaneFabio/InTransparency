@@ -234,10 +234,10 @@ export default function CandidateProfilePage() {
     return (
       <div className="max-w-6xl mx-auto text-center py-12">
         <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">
+        <h1 className="text-2xl font-bold text-foreground mb-4">
           {error || t('notFound')}
         </h1>
-        <p className="text-gray-600 mb-6">{t('notFoundDescription')}</p>
+        <p className="text-muted-foreground mb-6">{t('notFoundDescription')}</p>
         <Button asChild>
           <Link href="/dashboard/recruiter/candidates">
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -312,17 +312,17 @@ export default function CandidateProfilePage() {
             <div className="flex-1 pt-20 lg:pt-0">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                 <div className="mb-4 lg:mb-0">
-                  <h1 className="text-3xl font-bold text-gray-900">
+                  <h1 className="text-3xl font-bold text-foreground">
                     {candidate.firstName} {candidate.lastName}
                   </h1>
                   {candidate.tagline && (
-                    <p className="text-lg text-gray-600">{candidate.tagline}</p>
+                    <p className="text-lg text-muted-foreground">{candidate.tagline}</p>
                   )}
                   {candidate.degree && (
-                    <p className="text-gray-600">{candidate.degree}</p>
+                    <p className="text-muted-foreground">{candidate.degree}</p>
                   )}
                   {candidate.university && (
-                    <p className="text-gray-700">
+                    <p className="text-foreground/80">
                       {candidate.university}
                       {candidate.graduationYear ? ` - ${t('classOf', { year: candidate.graduationYear })}` : ''}
                     </p>
@@ -332,11 +332,11 @@ export default function CandidateProfilePage() {
                 <div className="flex items-center space-x-6">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-primary">{candidate.projectCount}</div>
-                    <div className="text-sm text-gray-700">{t('projects')}</div>
+                    <div className="text-sm text-foreground/80">{t('projects')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-primary">{allSkills.length}</div>
-                    <div className="text-sm text-gray-700">{t('skills')}</div>
+                    <div className="text-sm text-foreground/80">{t('skills')}</div>
                   </div>
                 </div>
               </div>
@@ -366,7 +366,7 @@ export default function CandidateProfilePage() {
                     <CardTitle>{t('about')}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-700 leading-relaxed">{candidate.bio}</p>
+                    <p className="text-foreground/80 leading-relaxed">{candidate.bio}</p>
                   </CardContent>
                 </Card>
               )}
@@ -379,7 +379,7 @@ export default function CandidateProfilePage() {
                 <CardContent className="space-y-3">
                   {candidate.email ? (
                     <div className="flex items-center space-x-3">
-                      <Mail className="h-4 w-4 text-gray-600" />
+                      <Mail className="h-4 w-4 text-muted-foreground" />
                       <span>{candidate.email}</span>
                       <Button size="sm" variant="outline" onClick={openContactForm}>
                         <Mail className="h-4 w-4 mr-1" />
@@ -387,7 +387,7 @@ export default function CandidateProfilePage() {
                       </Button>
                     </div>
                   ) : (
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-muted-foreground">
                       {t('emailPrivate')}
                     </p>
                   )}
@@ -406,12 +406,12 @@ export default function CandidateProfilePage() {
                   <CardContent>
                     <div className="space-y-2">
                       {candidate.degree && (
-                        <h3 className="font-semibold text-gray-900">{candidate.degree}</h3>
+                        <h3 className="font-semibold text-foreground">{candidate.degree}</h3>
                       )}
                       {candidate.university && (
-                        <p className="text-gray-600">{candidate.university}</p>
+                        <p className="text-muted-foreground">{candidate.university}</p>
                       )}
-                      <div className="flex items-center space-x-4 text-sm text-gray-700">
+                      <div className="flex items-center space-x-4 text-sm text-foreground/80">
                         {candidate.graduationYear && (
                           <span>{t('classOf', { year: candidate.graduationYear })}</span>
                         )}
@@ -476,7 +476,7 @@ export default function CandidateProfilePage() {
                       <div className="space-y-4">
                         {project.technologies && project.technologies.length > 0 && (
                           <div>
-                            <h4 className="font-medium text-gray-900 mb-2">{t('technologies')}</h4>
+                            <h4 className="font-medium text-foreground mb-2">{t('technologies')}</h4>
                             <div className="flex flex-wrap gap-1">
                               {project.technologies.map((tech) => (
                                 <Badge key={tech} variant="secondary" className="text-xs">
@@ -489,7 +489,7 @@ export default function CandidateProfilePage() {
 
                         {project.skills && project.skills.length > 0 && (
                           <div>
-                            <h4 className="font-medium text-gray-900 mb-2">{t('skills')}</h4>
+                            <h4 className="font-medium text-foreground mb-2">{t('skills')}</h4>
                             <div className="flex flex-wrap gap-1">
                               {project.skills.map((skill) => (
                                 <Badge key={skill} variant="outline" className="text-xs">
@@ -500,7 +500,7 @@ export default function CandidateProfilePage() {
                           </div>
                         )}
 
-                        <div className="flex items-center gap-4 text-sm text-gray-600 pt-2 border-t">
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground pt-2 border-t">
                           <span className="flex items-center gap-1">
                             <Eye className="h-4 w-4" />
                             {t('views', { count: project.views })}
@@ -603,30 +603,30 @@ export default function CandidateProfilePage() {
             <CardContent className="space-y-3">
               {candidate.university && (
                 <div>
-                  <p className="text-sm text-gray-500">{t('summaryUniversity')}</p>
+                  <p className="text-sm text-muted-foreground">{t('summaryUniversity')}</p>
                   <p className="font-medium">{candidate.university}</p>
                 </div>
               )}
               {candidate.degree && (
                 <div>
-                  <p className="text-sm text-gray-500">{t('summaryDegree')}</p>
+                  <p className="text-sm text-muted-foreground">{t('summaryDegree')}</p>
                   <p className="font-medium">{candidate.degree}</p>
                 </div>
               )}
               {candidate.graduationYear && (
                 <div>
-                  <p className="text-sm text-gray-500">{t('summaryGraduationYear')}</p>
+                  <p className="text-sm text-muted-foreground">{t('summaryGraduationYear')}</p>
                   <p className="font-medium">{candidate.graduationYear}</p>
                 </div>
               )}
               {candidate.gpa !== null && (
                 <div>
-                  <p className="text-sm text-gray-500">{t('summaryGpa')}</p>
+                  <p className="text-sm text-muted-foreground">{t('summaryGpa')}</p>
                   <p className="font-medium">{candidate.gpa}</p>
                 </div>
               )}
               <div>
-                <p className="text-sm text-gray-500">{t('summaryPublicProjects')}</p>
+                <p className="text-sm text-muted-foreground">{t('summaryPublicProjects')}</p>
                 <p className="font-medium">{candidate.projectCount}</p>
               </div>
             </CardContent>
@@ -659,7 +659,7 @@ export default function CandidateProfilePage() {
                 </div>
               )}
               <div>
-                <label className="text-sm font-medium text-gray-700 mb-2 block">{t('contactForm.subject')}</label>
+                <label className="text-sm font-medium text-foreground/80 mb-2 block">{t('contactForm.subject')}</label>
                 <Input
                   placeholder={t('contactForm.subjectPlaceholder')}
                   value={contactSubject}
@@ -668,7 +668,7 @@ export default function CandidateProfilePage() {
               </div>
 
               <div>
-                <label className="text-sm font-medium text-gray-700 mb-2 block">{t('contactForm.message')}</label>
+                <label className="text-sm font-medium text-foreground/80 mb-2 block">{t('contactForm.message')}</label>
                 <Textarea
                   placeholder={t('contactForm.messagePlaceholder')}
                   value={contactMessage}

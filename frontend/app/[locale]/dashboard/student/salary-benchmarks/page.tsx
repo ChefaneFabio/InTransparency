@@ -132,8 +132,8 @@ export default function SalaryBenchmarksPage() {
   return (
     <div className="max-w-5xl mx-auto space-y-8 pb-12">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('title')}</h1>
-        <p className="text-gray-600">{t('subtitle')}</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       {/* Filters */}
@@ -141,21 +141,21 @@ export default function SalaryBenchmarksPage() {
         <CardContent className="pt-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('filters.search')}</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">{t('filters.search')}</label>
               <input
                 type="text"
                 placeholder={t('filters.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('filters.sector')}</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">{t('filters.sector')}</label>
               <select
                 value={selectedSector}
                 onChange={(e) => setSelectedSector(e.target.value)}
-                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 {SECTORS.map((s) => (
                   <option key={s.value} value={s.value}>{s.label}</option>
@@ -163,11 +163,11 @@ export default function SalaryBenchmarksPage() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">{t('filters.city')}</label>
+              <label className="block text-sm font-medium text-foreground/80 mb-1">{t('filters.city')}</label>
               <select
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
-                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 <option value="">{t('filters.nationalAvg')}</option>
                 {Object.entries(CITY_ADJUSTMENTS).map(([key, city]) => (
@@ -177,7 +177,7 @@ export default function SalaryBenchmarksPage() {
             </div>
           </div>
           {selectedCity && CITY_ADJUSTMENTS[selectedCity] && (
-            <div className="mt-3 flex items-center gap-2 text-sm text-gray-600">
+            <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
               <MapPin className="h-4 w-4 text-primary" />
               {CITY_ADJUSTMENTS[selectedCity].label}: {CITY_ADJUSTMENTS[selectedCity].note}
             </div>
@@ -186,7 +186,7 @@ export default function SalaryBenchmarksPage() {
       </Card>
 
       {/* Results */}
-      <div className="text-sm text-gray-500 mb-2">
+      <div className="text-sm text-muted-foreground mb-2">
         {filteredBenchmarks.length} {t('results.roles')}
       </div>
 
@@ -201,25 +201,25 @@ export default function SalaryBenchmarksPage() {
               <CardContent className="pt-4 pb-4">
                 <div className="flex flex-col md:flex-row md:items-center gap-4">
                   <div className="md:w-1/4">
-                    <h3 className="font-semibold text-gray-900">{b.role}</h3>
-                    <p className="text-sm text-gray-500">{b.roleIT}</p>
+                    <h3 className="font-semibold text-foreground">{b.role}</h3>
+                    <p className="text-sm text-muted-foreground">{b.roleIT}</p>
                     <Badge variant="outline" className="text-xs mt-1">{b.sector}</Badge>
                   </div>
                   <div className="flex-1 grid grid-cols-3 gap-3">
                     <div className="bg-blue-50 rounded-lg p-3 text-center">
                       <div className="text-xs text-blue-600 font-medium mb-1">{t('results.junior')}</div>
-                      <div className="text-sm font-bold text-gray-900">{formatRange(junior)}</div>
-                      <div className="text-xs text-gray-500">0-2 {t('results.years')}</div>
+                      <div className="text-sm font-bold text-foreground">{formatRange(junior)}</div>
+                      <div className="text-xs text-muted-foreground">0-2 {t('results.years')}</div>
                     </div>
                     <div className="bg-primary/5 rounded-lg p-3 text-center border border-primary/20">
                       <div className="text-xs text-primary font-medium mb-1">{t('results.mid')}</div>
-                      <div className="text-sm font-bold text-gray-900">{formatRange(mid)}</div>
-                      <div className="text-xs text-gray-500">2-5 {t('results.years')}</div>
+                      <div className="text-sm font-bold text-foreground">{formatRange(mid)}</div>
+                      <div className="text-xs text-muted-foreground">2-5 {t('results.years')}</div>
                     </div>
                     <div className="bg-amber-50 rounded-lg p-3 text-center">
                       <div className="text-xs text-amber-600 font-medium mb-1">{t('results.senior')}</div>
-                      <div className="text-sm font-bold text-gray-900">{formatRange(senior)}</div>
-                      <div className="text-xs text-gray-500">5+ {t('results.years')}</div>
+                      <div className="text-sm font-bold text-foreground">{formatRange(senior)}</div>
+                      <div className="text-xs text-muted-foreground">5+ {t('results.years')}</div>
                     </div>
                   </div>
                 </div>

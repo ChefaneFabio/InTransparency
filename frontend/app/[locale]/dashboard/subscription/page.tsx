@@ -49,7 +49,7 @@ export default function SubscriptionPage() {
 
   if (status === 'loading' || !subscriptionData) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
+      <div className="min-h-screen space-y-6 flex items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     )
@@ -79,11 +79,11 @@ export default function SubscriptionPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
+    <div className="min-h-screen space-y-6">
       <div className="container mx-auto px-6 py-12 max-w-4xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Your Plan</h1>
-          <p className="text-gray-600">Full access — free during launch</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">Your Plan</h1>
+          <p className="text-muted-foreground">Full access — free during launch</p>
         </div>
 
         <Card className="border-2 border-primary/30">
@@ -106,8 +106,8 @@ export default function SubscriptionPage() {
               <div className="flex items-start gap-3">
                 <Infinity className="h-5 w-5 text-primary mt-0.5" />
                 <div>
-                  <p className="font-medium text-gray-900">Free during launch</p>
-                  <p className="text-sm text-gray-700">
+                  <p className="font-medium text-foreground">Free during launch</p>
+                  <p className="text-sm text-foreground/80">
                     You have full access to all platform features. No credit card required, no time limit on the current plan.
                   </p>
                 </div>
@@ -120,7 +120,7 @@ export default function SubscriptionPage() {
                 {features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-gray-700">{feature}</span>
+                    <span className="text-sm text-foreground/80">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -136,14 +136,14 @@ export default function SubscriptionPage() {
           <CardContent className="space-y-4">
             <div>
               <div className="flex justify-between text-sm mb-1">
-                <span className="text-gray-600">Projects</span>
+                <span className="text-muted-foreground">Projects</span>
                 <span className="font-medium">{subscriptionData.projectCount || 0} / Unlimited</span>
               </div>
             </div>
             {role === 'RECRUITER' && (
               <div>
                 <div className="flex justify-between text-sm mb-1">
-                  <span className="text-gray-600">Contacts</span>
+                  <span className="text-muted-foreground">Contacts</span>
                   <span className="font-medium">Unlimited</span>
                 </div>
               </div>

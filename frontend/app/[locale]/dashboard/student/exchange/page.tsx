@@ -78,8 +78,8 @@ export default function StudentExchangePage() {
         <div className="flex items-center gap-3">
           <Globe className="h-7 w-7 text-primary" />
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
-            <p className="text-sm text-gray-600">{t('subtitle')}</p>
+            <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
+            <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
           </div>
         </div>
         <Button onClick={() => setShowForm(!showForm)}>
@@ -110,9 +110,9 @@ export default function StudentExchangePage() {
       ) : enrollments.length === 0 ? (
         <Card className="border-dashed">
           <CardContent className="pt-8 pb-8 text-center">
-            <Globe className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-            <h3 className="font-medium text-gray-900 mb-1">{t('noExchanges')}</h3>
-            <p className="text-sm text-gray-500 mb-4">{t('noExchangesDescription')}</p>
+            <Globe className="h-12 w-12 mx-auto text-muted-foreground/40 mb-4" />
+            <h3 className="font-medium text-foreground mb-1">{t('noExchanges')}</h3>
+            <p className="text-sm text-muted-foreground mb-4">{t('noExchangesDescription')}</p>
             <Button variant="outline" onClick={() => setShowForm(true)}>
               <Plus className="h-4 w-4 mr-2" />
               {t('addExchange')}
@@ -139,16 +139,16 @@ export default function StudentExchangePage() {
 
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         <div>
-                          <p className="text-gray-500">Home</p>
+                          <p className="text-muted-foreground">Home</p>
                           <p className="font-medium">{enrollment.homeUniversityName}</p>
                         </div>
                         <div>
-                          <p className="text-gray-500">Host</p>
+                          <p className="text-muted-foreground">Host</p>
                           <p className="font-medium">{enrollment.hostUniversityName}</p>
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <span>{new Date(enrollment.startDate).toLocaleDateString()}</span>
                         {enrollment.endDate && (
                           <span>→ {new Date(enrollment.endDate).toLocaleDateString()}</span>

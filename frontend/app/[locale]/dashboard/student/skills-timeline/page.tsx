@@ -47,7 +47,7 @@ const PROFICIENCY_COLORS: Record<string, string> = {
   expert: 'bg-green-100 text-green-800 border-green-300',
   proficient: 'bg-blue-100 text-blue-800 border-blue-300',
   working: 'bg-amber-100 text-amber-800 border-amber-300',
-  exposure: 'bg-gray-100 text-gray-600 border-gray-300',
+  exposure: 'bg-muted text-muted-foreground border-border',
 }
 
 const PROFICIENCY_PROGRESS: Record<string, number> = {
@@ -82,9 +82,9 @@ export default function SkillsTimelinePage() {
   if (!data?.hasData) {
     return (
       <div className="max-w-5xl mx-auto text-center py-20">
-        <BookOpen className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-        <h2 className="text-xl font-semibold text-gray-900 mb-2">No skills data yet</h2>
-        <p className="text-gray-600">Upload projects to start tracking your skill growth.</p>
+        <BookOpen className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
+        <h2 className="text-xl font-semibold text-foreground mb-2">No skills data yet</h2>
+        <p className="text-muted-foreground">Upload projects to start tracking your skill growth.</p>
       </div>
     )
   }
@@ -94,8 +94,8 @@ export default function SkillsTimelinePage() {
   return (
     <div className="max-w-5xl mx-auto space-y-8 pb-12">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Skills Timeline</h1>
-        <p className="text-gray-600">Track how your skills grow with every project you build.</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">Skills Timeline</h1>
+        <p className="text-muted-foreground">Track how your skills grow with every project you build.</p>
       </div>
 
       {/* Summary */}
@@ -105,28 +105,28 @@ export default function SkillsTimelinePage() {
             <CardContent className="pt-4 pb-4 text-center">
               <Star className="h-6 w-6 text-green-600 mx-auto mb-1" />
               <div className="text-2xl font-bold text-green-600">{summary.expertSkills}</div>
-              <div className="text-xs text-gray-600">Expert</div>
+              <div className="text-xs text-muted-foreground">Expert</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="pt-4 pb-4 text-center">
               <Zap className="h-6 w-6 text-blue-600 mx-auto mb-1" />
               <div className="text-2xl font-bold text-blue-600">{summary.proficientSkills}</div>
-              <div className="text-xs text-gray-600">Proficient</div>
+              <div className="text-xs text-muted-foreground">Proficient</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="pt-4 pb-4 text-center">
               <TrendingUp className="h-6 w-6 text-amber-500 mx-auto mb-1" />
               <div className="text-2xl font-bold text-amber-600">{summary.workingSkills}</div>
-              <div className="text-xs text-gray-600">Working</div>
+              <div className="text-xs text-muted-foreground">Working</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="pt-4 pb-4 text-center">
-              <Eye className="h-6 w-6 text-gray-400 mx-auto mb-1" />
-              <div className="text-2xl font-bold text-gray-500">{summary.exposureSkills}</div>
-              <div className="text-xs text-gray-600">Exposure</div>
+              <Eye className="h-6 w-6 text-muted-foreground/60 mx-auto mb-1" />
+              <div className="text-2xl font-bold text-muted-foreground">{summary.exposureSkills}</div>
+              <div className="text-xs text-muted-foreground">Exposure</div>
             </CardContent>
           </Card>
         </div>
@@ -144,13 +144,13 @@ export default function SkillsTimelinePage() {
               {skills.map((skill) => (
                 <div key={skill.name} className="flex items-center gap-4">
                   <div className="w-36 flex-shrink-0">
-                    <span className="text-sm font-medium text-gray-900 capitalize">{skill.name}</span>
+                    <span className="text-sm font-medium text-foreground capitalize">{skill.name}</span>
                   </div>
                   <Progress value={PROFICIENCY_PROGRESS[skill.proficiency] || 0} className="flex-1 h-2" />
                   <Badge variant="outline" className={`text-xs w-24 justify-center ${PROFICIENCY_COLORS[skill.proficiency]}`}>
                     {skill.proficiency}
                   </Badge>
-                  <span className="text-xs text-gray-500 w-20 text-right">
+                  <span className="text-xs text-muted-foreground w-20 text-right">
                     {skill.projectCount} project{skill.projectCount !== 1 ? 's' : ''}
                   </span>
                 </div>
@@ -173,11 +173,11 @@ export default function SkillsTimelinePage() {
             <div className="space-y-4">
               {timeline.map((month, i) => (
                 <div key={month.month} className="flex items-start gap-4">
-                  <div className="w-20 flex-shrink-0 text-sm font-medium text-gray-700">{month.month}</div>
+                  <div className="w-20 flex-shrink-0 text-sm font-medium text-foreground/80">{month.month}</div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
                       <Progress value={Math.min((month.skillCount / (timeline[timeline.length - 1]?.skillCount || 1)) * 100, 100)} className="flex-1 h-2" />
-                      <span className="text-xs text-gray-500 w-12 text-right">{month.skillCount} skills</span>
+                      <span className="text-xs text-muted-foreground w-12 text-right">{month.skillCount} skills</span>
                     </div>
                     {month.newSkills.length > 0 && (
                       <div className="flex flex-wrap gap-1">
@@ -210,12 +210,12 @@ export default function SkillsTimelinePage() {
             <CardContent>
               <div className="space-y-3">
                 {transferableSkills.map((ts) => (
-                  <div key={ts.skill} className="p-3 bg-gray-50 rounded-lg">
+                  <div key={ts.skill} className="p-3 bg-muted/50 rounded-lg">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm font-medium text-gray-900">{ts.skill}</span>
+                      <span className="text-sm font-medium text-foreground">{ts.skill}</span>
                       <Badge variant="outline" className="text-xs">{ts.category}</Badge>
                     </div>
-                    <p className="text-xs text-gray-600">{ts.evidence}</p>
+                    <p className="text-xs text-muted-foreground">{ts.evidence}</p>
                   </div>
                 ))}
               </div>
@@ -239,8 +239,8 @@ export default function SkillsTimelinePage() {
                   <div key={s.skill} className="flex items-start gap-2 text-sm">
                     <ArrowRight className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-medium text-gray-900">{s.skill}</span>
-                      <span className="text-gray-500 ml-1">— {s.reason}</span>
+                      <span className="font-medium text-foreground">{s.skill}</span>
+                      <span className="text-muted-foreground ml-1">— {s.reason}</span>
                     </div>
                   </div>
                 ))}

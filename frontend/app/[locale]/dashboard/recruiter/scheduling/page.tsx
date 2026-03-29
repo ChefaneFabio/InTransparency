@@ -56,7 +56,7 @@ export default function SchedulingPage() {
     return (
       <div className="max-w-5xl mx-auto py-8">
         <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-6 w-6 animate-spin text-gray-400" />
+          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground/60" />
         </div>
       </div>
     )
@@ -65,26 +65,26 @@ export default function SchedulingPage() {
   return (
     <div className="max-w-5xl mx-auto pb-8">
       <div className="mb-6">
-        <h1 className="text-xl font-semibold text-gray-900">{t('title')}</h1>
-        <p className="text-sm text-gray-500 mt-1">{t('subtitle')}</p>
+        <h1 className="text-xl font-semibold text-foreground">{t('title')}</h1>
+        <p className="text-sm text-muted-foreground mt-1">{t('subtitle')}</p>
       </div>
 
       {/* Section 1: Availability Grid */}
       <Card className="mb-6">
         <CardHeader>
           <CardTitle className="text-base">{t('availability.title')}</CardTitle>
-          <p className="text-sm text-gray-500">{t('availability.description')}</p>
+          <p className="text-sm text-muted-foreground">{t('availability.description')}</p>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr>
-                  <th className="text-left text-xs text-gray-500 font-medium pb-3 pr-4" />
+                  <th className="text-left text-xs text-muted-foreground font-medium pb-3 pr-4" />
                   {WEEKDAYS.map((day) => (
                     <th
                       key={day}
-                      className="text-center text-xs text-gray-500 font-medium pb-3 px-2"
+                      className="text-center text-xs text-muted-foreground font-medium pb-3 px-2"
                     >
                       {t(`availability.${day}`)}
                     </th>
@@ -94,7 +94,7 @@ export default function SchedulingPage() {
               <tbody>
                 {TIME_SLOTS.map((slot) => (
                   <tr key={slot}>
-                    <td className="text-sm text-gray-600 py-2 pr-4 whitespace-nowrap">
+                    <td className="text-sm text-muted-foreground py-2 pr-4 whitespace-nowrap">
                       {t(`availability.${slot}`)}
                     </td>
                     {WEEKDAYS.map((day) => {
@@ -107,7 +107,7 @@ export default function SchedulingPage() {
                             className={`w-full h-10 rounded-md text-sm font-medium transition-colors ${
                               isActive
                                 ? 'bg-primary text-white'
-                                : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
+                                : 'bg-muted text-muted-foreground/60 hover:bg-muted'
                             }`}
                           >
                             {isActive ? '\u2713' : '\u2014'}
@@ -131,8 +131,8 @@ export default function SchedulingPage() {
         <CardContent>
           {interviews.length === 0 ? (
             <div className="text-center py-8">
-              <p className="text-sm font-medium text-gray-600">{t('upcoming.empty')}</p>
-              <p className="text-xs text-gray-400 mt-1">{t('upcoming.emptyDesc')}</p>
+              <p className="text-sm font-medium text-muted-foreground">{t('upcoming.empty')}</p>
+              <p className="text-xs text-muted-foreground/60 mt-1">{t('upcoming.emptyDesc')}</p>
             </div>
           ) : (
             <div className="space-y-3">
@@ -142,10 +142,10 @@ export default function SchedulingPage() {
                   className="flex items-center justify-between p-3 border rounded-lg"
                 >
                   <div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-foreground">
                       {interview.candidateName}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-muted-foreground">
                       {interview.date} at {interview.time}
                     </p>
                   </div>
@@ -160,15 +160,15 @@ export default function SchedulingPage() {
       {/* Section 3: Coming Soon */}
       <Card className="border-dashed">
         <CardHeader>
-          <CardTitle className="text-base text-gray-500">
+          <CardTitle className="text-base text-muted-foreground">
             {t('comingSoon.title')}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="space-y-2">
             {Array.from({ length: 4 }).map((_, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
-                <span className="text-gray-300 mt-0.5">&#x2022;</span>
+              <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                <span className="text-muted-foreground/40 mt-0.5">&#x2022;</span>
                 {t(`comingSoon.items.${i}`)}
               </li>
             ))}

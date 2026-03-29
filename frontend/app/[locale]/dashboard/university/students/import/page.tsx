@@ -95,8 +95,8 @@ export default function ImportStudentsPage() {
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600">{t('subtitle')}</p>
+          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+          <p className="text-muted-foreground">{t('subtitle')}</p>
         </div>
       </div>
 
@@ -109,10 +109,10 @@ export default function ImportStudentsPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="bg-gray-50 rounded-lg p-4 font-mono text-sm mb-4 overflow-x-auto">
-            <p className="text-gray-600 mb-2"># {t('requiredColumns')}:</p>
+          <div className="bg-muted/50 rounded-lg p-4 font-mono text-sm mb-4 overflow-x-auto">
+            <p className="text-muted-foreground mb-2"># {t('requiredColumns')}:</p>
             <p>email, first_name, last_name</p>
-            <p className="text-gray-600 mt-2 mb-2"># {t('optionalColumns')}:</p>
+            <p className="text-muted-foreground mt-2 mb-2"># {t('optionalColumns')}:</p>
             <p>course, year</p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -121,7 +121,7 @@ export default function ImportStudentsPage() {
               {t('downloadTemplate')}
             </Button>
           </div>
-          <p className="text-xs text-gray-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             {t('fileLimits')}
           </p>
         </CardContent>
@@ -135,14 +135,14 @@ export default function ImportStudentsPage() {
         <CardContent>
           <div
             className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-              file ? 'border-green-300 bg-primary/5' : 'border-gray-300 hover:border-blue-400'
+              file ? 'border-green-300 bg-primary/5' : 'border-border hover:border-blue-400'
             }`}
           >
             {file ? (
               <div className="space-y-2">
                 <FileText className="h-12 w-12 mx-auto text-primary" />
-                <p className="font-medium text-gray-900">{file.name}</p>
-                <p className="text-sm text-gray-500">
+                <p className="font-medium text-foreground">{file.name}</p>
+                <p className="text-sm text-muted-foreground">
                   {(file.size / 1024).toFixed(1)} KB
                 </p>
                 <Button
@@ -159,8 +159,8 @@ export default function ImportStudentsPage() {
               </div>
             ) : (
               <div className="space-y-2">
-                <Upload className="h-12 w-12 mx-auto text-gray-400" />
-                <p className="text-gray-600">
+                <Upload className="h-12 w-12 mx-auto text-muted-foreground/60" />
+                <p className="text-muted-foreground">
                   {t('dragAndDrop')}
                 </p>
                 <Button variant="outline" asChild>
@@ -208,8 +208,8 @@ export default function ImportStudentsPage() {
                 <CheckCircle className="h-6 w-6 text-primary flex-shrink-0" />
               )}
               <div className="flex-1">
-                <p className="font-medium text-gray-900">{t('importComplete')}</p>
-                <p className="text-sm text-gray-600 mt-1">{result.message}</p>
+                <p className="font-medium text-foreground">{t('importComplete')}</p>
+                <p className="text-sm text-muted-foreground mt-1">{result.message}</p>
 
                 {/* Stats */}
                 <div className="flex flex-wrap gap-4 mt-4 text-sm">
@@ -234,19 +234,19 @@ export default function ImportStudentsPage() {
                 {/* Error Details */}
                 {result.errors.length > 0 && (
                   <div className="mt-4">
-                    <p className="text-sm font-medium text-gray-700 mb-2">
+                    <p className="text-sm font-medium text-foreground/80 mb-2">
                       {t('errorDetails')}:
                     </p>
-                    <div className="bg-gray-50 rounded-lg p-3 max-h-48 overflow-y-auto">
+                    <div className="bg-muted/50 rounded-lg p-3 max-h-48 overflow-y-auto">
                       {result.errors.map((err, idx) => (
-                        <div key={idx} className="text-xs text-gray-600 mb-2 last:mb-0">
+                        <div key={idx} className="text-xs text-muted-foreground mb-2 last:mb-0">
                           <span className="font-medium">{t('row')} {err.row}</span>
-                          {err.email && <span className="text-gray-400"> ({err.email})</span>}
+                          {err.email && <span className="text-muted-foreground/60"> ({err.email})</span>}
                           <span>: {err.errors.join(', ')}</span>
                         </div>
                       ))}
                       {result.errors.length >= 50 && (
-                        <p className="text-xs text-gray-400 italic mt-2">
+                        <p className="text-xs text-muted-foreground/60 italic mt-2">
                           {t('showingFirst50')}
                         </p>
                       )}

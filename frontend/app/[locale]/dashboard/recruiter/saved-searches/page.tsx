@@ -204,12 +204,12 @@ export default function SavedSearchesPage() {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
+          <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
         </div>
         <Card className="p-12 text-center">
           <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
           <h3 className="text-lg font-semibold mb-2">{t('errorLoading')}</h3>
-          <p className="text-gray-600 mb-4">{error}</p>
+          <p className="text-muted-foreground mb-4">{error}</p>
           <Button onClick={() => { setError(null); setLoading(true); fetchSearches() }}>
             {t('retry')}
           </Button>
@@ -221,8 +221,8 @@ export default function SavedSearchesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+        <p className="text-muted-foreground mt-2">
           {t('subtitle')}
         </p>
       </div>
@@ -236,8 +236,8 @@ export default function SavedSearchesPage() {
                 <Search className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">{t('activeSearches')}</p>
-                <p className="text-2xl font-bold text-gray-900">{activeSearches.length}</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('activeSearches')}</p>
+                <p className="text-2xl font-bold text-foreground">{activeSearches.length}</p>
               </div>
             </div>
           </CardContent>
@@ -250,8 +250,8 @@ export default function SavedSearchesPage() {
                 <Users className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">{t('totalMatches')}</p>
-                <p className="text-2xl font-bold text-gray-900">{totalMatches}</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('totalMatches')}</p>
+                <p className="text-2xl font-bold text-foreground">{totalMatches}</p>
               </div>
             </div>
           </CardContent>
@@ -264,8 +264,8 @@ export default function SavedSearchesPage() {
                 <TrendingUp className="h-4 w-4 text-orange-600" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">{t('newMatches')}</p>
-                <p className="text-2xl font-bold text-gray-900">{totalNew}</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('newMatches')}</p>
+                <p className="text-2xl font-bold text-foreground">{totalNew}</p>
               </div>
             </div>
           </CardContent>
@@ -278,8 +278,8 @@ export default function SavedSearchesPage() {
                 <Bell className="h-4 w-4 text-primary" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">{t('activeAlerts')}</p>
-                <p className="text-2xl font-bold text-gray-900">{alertsEnabled}</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('activeAlerts')}</p>
+                <p className="text-2xl font-bold text-foreground">{alertsEnabled}</p>
               </div>
             </div>
           </CardContent>
@@ -327,7 +327,7 @@ export default function SavedSearchesPage() {
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900">{search.name}</h3>
+                            <h3 className="text-lg font-semibold text-foreground">{search.name}</h3>
                             <div className="flex items-center space-x-2">
                               {search.isActive ? (
                                 <Badge className="bg-primary/10 text-green-800">
@@ -335,7 +335,7 @@ export default function SavedSearchesPage() {
                                   {t('active')}
                                 </Badge>
                               ) : (
-                                <Badge variant="outline" className="text-gray-600">
+                                <Badge variant="outline" className="text-muted-foreground">
                                   <Pause className="h-3 w-3 mr-1" />
                                   {t('paused')}
                                 </Badge>
@@ -350,14 +350,14 @@ export default function SavedSearchesPage() {
                           </div>
 
                           {search.description && (
-                            <p className="text-gray-600 mb-3 text-sm">{search.description}</p>
+                            <p className="text-muted-foreground mb-3 text-sm">{search.description}</p>
                           )}
 
                           {/* Filter details */}
                           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
                             {skills.length > 0 && (
                               <div className="space-y-1">
-                                <p className="text-xs font-medium text-gray-500">Skills</p>
+                                <p className="text-xs font-medium text-muted-foreground">Skills</p>
                                 <div className="flex flex-wrap gap-1">
                                   {skills.slice(0, 2).map(skill => (
                                     <Badge key={skill} variant="outline" className="text-xs">
@@ -375,8 +375,8 @@ export default function SavedSearchesPage() {
 
                             {search.filters.university && (
                               <div className="space-y-1">
-                                <p className="text-xs font-medium text-gray-500">University</p>
-                                <div className="flex items-center text-sm text-gray-600">
+                                <p className="text-xs font-medium text-muted-foreground">University</p>
+                                <div className="flex items-center text-sm text-muted-foreground">
                                   <GraduationCap className="h-3 w-3 mr-1" />
                                   {search.filters.university}
                                 </div>
@@ -385,8 +385,8 @@ export default function SavedSearchesPage() {
 
                             {search.filters.location && (
                               <div className="space-y-1">
-                                <p className="text-xs font-medium text-gray-500">Location</p>
-                                <div className="flex items-center text-sm text-gray-600">
+                                <p className="text-xs font-medium text-muted-foreground">Location</p>
+                                <div className="flex items-center text-sm text-muted-foreground">
                                   <MapPin className="h-3 w-3 mr-1" />
                                   {search.filters.location}
                                 </div>
@@ -395,20 +395,20 @@ export default function SavedSearchesPage() {
 
                             {search.filters.major && (
                               <div className="space-y-1">
-                                <p className="text-xs font-medium text-gray-500">Major</p>
-                                <p className="text-sm text-gray-600">{search.filters.major}</p>
+                                <p className="text-xs font-medium text-muted-foreground">Major</p>
+                                <p className="text-sm text-muted-foreground">{search.filters.major}</p>
                               </div>
                             )}
 
                             {search.filters.graduationYear && (
                               <div className="space-y-1">
-                                <p className="text-xs font-medium text-gray-500">Graduation</p>
-                                <p className="text-sm text-gray-600">{search.filters.graduationYear}</p>
+                                <p className="text-xs font-medium text-muted-foreground">Graduation</p>
+                                <p className="text-sm text-muted-foreground">{search.filters.graduationYear}</p>
                               </div>
                             )}
                           </div>
 
-                          <div className="flex items-center justify-between text-sm text-gray-600">
+                          <div className="flex items-center justify-between text-sm text-muted-foreground">
                             <div className="flex items-center space-x-4">
                               <div className="flex items-center">
                                 <Users className="h-4 w-4 mr-1" />
@@ -426,7 +426,7 @@ export default function SavedSearchesPage() {
                               </div>
                             </div>
 
-                            <div className="text-xs text-gray-400">
+                            <div className="text-xs text-muted-foreground/60">
                               Created {new Date(search.createdAt).toLocaleDateString()}
                             </div>
                           </div>

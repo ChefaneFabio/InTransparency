@@ -285,7 +285,7 @@ export default function ProfilePage() {
                       const availabilityConfig: Record<string, { label: string; className: string }> = {
                         BOTH: { label: 'Available', className: 'bg-green-100 text-green-800 border-green-200' },
                         HIRING: { label: 'Open to offers', className: 'bg-blue-100 text-blue-800 border-blue-200' },
-                        NONE: { label: 'Not looking', className: 'bg-gray-100 text-gray-600 border-gray-200' },
+                        NONE: { label: 'Not looking', className: 'bg-muted text-muted-foreground border-border' },
                         PROJECTS: { label: 'Projects only', className: 'bg-purple-100 text-purple-800 border-purple-200' },
                       }
                       const config = availabilityConfig[user.availableFor]

@@ -519,8 +519,8 @@ export default function UniversityAISearchPage() {
               <Sparkles className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-              <p className="text-gray-600">{t('subtitle')}</p>
+              <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+              <p className="text-muted-foreground">{t('subtitle')}</p>
             </div>
           </div>
         </div>
@@ -549,7 +549,7 @@ export default function UniversityAISearchPage() {
                         <div className={`rounded-2xl px-4 py-3 ${
                           message.role === 'user'
                             ? 'bg-primary text-white'
-                            : 'bg-gray-100 text-gray-900'
+                            : 'bg-muted text-foreground'
                         }`}>
                           <p className="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</p>
                         </div>
@@ -564,12 +564,12 @@ export default function UniversityAISearchPage() {
                                   key={student.id}
                                   initial={{ opacity: 0, scale: 0.95 }}
                                   animate={{ opacity: 1, scale: 1 }}
-                                  className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-lg transition-shadow"
+                                  className="bg-white border border-border rounded-xl p-4 hover:shadow-lg transition-shadow"
                                 >
                                   <div className="flex items-start justify-between mb-3">
                                     <div>
-                                      <h3 className="font-bold text-gray-900">{student.name}</h3>
-                                      <p className="text-sm text-gray-600 flex items-center mt-1">
+                                      <h3 className="font-bold text-foreground">{student.name}</h3>
+                                      <p className="text-sm text-muted-foreground flex items-center mt-1">
                                         <GraduationCap className="h-4 w-4 mr-1" />
                                         {student.major}
                                       </p>
@@ -580,19 +580,19 @@ export default function UniversityAISearchPage() {
                                   </div>
 
                                   <div className="grid grid-cols-2 gap-2 text-sm mb-3">
-                                    <div className="flex items-center text-gray-600">
+                                    <div className="flex items-center text-muted-foreground">
                                       <Award className="h-4 w-4 mr-2" />
                                       GPA: {student.gpa !== null ? student.gpa : 'N/A'}
                                     </div>
-                                    <div className="flex items-center text-gray-600">
+                                    <div className="flex items-center text-muted-foreground">
                                       <Calendar className="h-4 w-4 mr-2" />
                                       {student.graduationYear ? `Class of ${student.graduationYear}` : 'Year N/A'}
                                     </div>
-                                    <div className="flex items-center text-gray-600">
+                                    <div className="flex items-center text-muted-foreground">
                                       <Briefcase className="h-4 w-4 mr-2" />
                                       {student.projectCount} projects
                                     </div>
-                                    <div className="flex items-center text-gray-600">
+                                    <div className="flex items-center text-muted-foreground">
                                       <Star className="h-4 w-4 mr-2" />
                                       {student.availability}
                                     </div>
@@ -600,7 +600,7 @@ export default function UniversityAISearchPage() {
 
                                   {student.skills.length > 0 && (
                                     <div className="mb-2">
-                                      <p className="text-xs text-gray-500 mb-1">Skills:</p>
+                                      <p className="text-xs text-muted-foreground mb-1">Skills:</p>
                                       <div className="flex flex-wrap gap-1">
                                         {student.skills.slice(0, 4).map((skill) => (
                                           <Badge key={skill} variant="secondary" className="text-xs">
@@ -624,12 +624,12 @@ export default function UniversityAISearchPage() {
                                   key={job.id}
                                   initial={{ opacity: 0, scale: 0.95 }}
                                   animate={{ opacity: 1, scale: 1 }}
-                                  className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-lg transition-shadow"
+                                  className="bg-white border border-border rounded-xl p-4 hover:shadow-lg transition-shadow"
                                 >
                                   <div className="flex items-start justify-between mb-3">
                                     <div>
-                                      <h3 className="font-bold text-gray-900">{job.title}</h3>
-                                      <p className="text-sm text-gray-600 flex items-center mt-1">
+                                      <h3 className="font-bold text-foreground">{job.title}</h3>
+                                      <p className="text-sm text-muted-foreground flex items-center mt-1">
                                         <Building2 className="h-4 w-4 mr-1" />
                                         {job.company}
                                       </p>
@@ -640,19 +640,19 @@ export default function UniversityAISearchPage() {
                                   </div>
 
                                   <div className="grid grid-cols-2 gap-2 text-sm mb-3">
-                                    <div className="flex items-center text-gray-600">
+                                    <div className="flex items-center text-muted-foreground">
                                       <MapPin className="h-4 w-4 mr-2" />
                                       {job.location}
                                     </div>
-                                    <div className="flex items-center text-gray-600">
+                                    <div className="flex items-center text-muted-foreground">
                                       <DollarSign className="h-4 w-4 mr-2" />
                                       {job.salary}
                                     </div>
-                                    <div className="flex items-center text-gray-600">
+                                    <div className="flex items-center text-muted-foreground">
                                       <Clock className="h-4 w-4 mr-2" />
                                       {job.jobType}
                                     </div>
-                                    <div className="flex items-center text-gray-600">
+                                    <div className="flex items-center text-muted-foreground">
                                       <Calendar className="h-4 w-4 mr-2" />
                                       {job.postedDate}
                                     </div>
@@ -660,7 +660,7 @@ export default function UniversityAISearchPage() {
 
                                   {job.requirements.length > 0 && (
                                     <div className="mb-3">
-                                      <p className="text-xs text-gray-500 mb-1">Required:</p>
+                                      <p className="text-xs text-muted-foreground mb-1">Required:</p>
                                       <div className="flex flex-wrap gap-1">
                                         {job.requirements.map((req) => (
                                           <Badge key={req} variant="secondary" className="text-xs">
@@ -681,13 +681,13 @@ export default function UniversityAISearchPage() {
                           </div>
                         )}
 
-                        <span className="text-xs text-gray-500 mt-1">
+                        <span className="text-xs text-muted-foreground mt-1">
                           {message.timestamp.toLocaleTimeString()}
                         </span>
                       </div>
 
                       {message.role === 'user' && (
-                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-muted-foreground flex items-center justify-center">
                           <User className="h-5 w-5 text-white" />
                         </div>
                       )}
@@ -700,11 +700,11 @@ export default function UniversityAISearchPage() {
                     <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                       <Bot className="h-5 w-5 text-white" />
                     </div>
-                    <div className="bg-gray-100 rounded-2xl px-4 py-3">
+                    <div className="bg-muted rounded-2xl px-4 py-3">
                       <div className="flex gap-1">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
                       </div>
                     </div>
                   </div>
@@ -713,7 +713,7 @@ export default function UniversityAISearchPage() {
                 <div ref={messagesEndRef} />
               </CardContent>
 
-              <div className="border-t border-gray-200 p-4">
+              <div className="border-t border-border p-4">
                 <div className="flex gap-2">
                   <Input
                     value={input}
@@ -749,7 +749,7 @@ export default function UniversityAISearchPage() {
                   <button
                     key={index}
                     onClick={() => handleExampleClick(example)}
-                    className="w-full text-left p-3 rounded-lg bg-gray-50 hover:bg-primary/5 hover:border-primary/20 border border-gray-200 transition-colors text-sm"
+                    className="w-full text-left p-3 rounded-lg bg-muted/50 hover:bg-primary/5 hover:border-primary/20 border border-border transition-colors text-sm"
                   >
                     {example}
                   </button>
@@ -766,8 +766,8 @@ export default function UniversityAISearchPage() {
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
                 <div>
-                  <p className="font-semibold text-gray-900 mb-2">Student Searches:</p>
-                  <ul className="text-gray-600 space-y-1">
+                  <p className="font-semibold text-foreground mb-2">Student Searches:</p>
+                  <ul className="text-muted-foreground space-y-1">
                     <li>- Track placement outcomes</li>
                     <li>- Identify high performers</li>
                     <li>- Monitor contact rates</li>
@@ -775,8 +775,8 @@ export default function UniversityAISearchPage() {
                   </ul>
                 </div>
                 <div className="pt-3 border-t border-primary/10">
-                  <p className="font-semibold text-gray-900 mb-2">Job Searches:</p>
-                  <ul className="text-gray-600 space-y-1">
+                  <p className="font-semibold text-foreground mb-2">Job Searches:</p>
+                  <ul className="text-muted-foreground space-y-1">
                     <li>- Find hiring companies</li>
                     <li>- Match jobs to students</li>
                     <li>- Track opportunities</li>

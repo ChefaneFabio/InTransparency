@@ -19,8 +19,8 @@ export default function CreateChallengePage() {
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600 mt-1">
+          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+          <p className="text-muted-foreground mt-1">
             {t('subtitle')}
           </p>
         </div>

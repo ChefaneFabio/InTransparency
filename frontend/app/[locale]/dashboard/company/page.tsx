@@ -69,7 +69,7 @@ export default function CompanyDashboard() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold">Welcome back, BMW Italia!</h1>
-          <p className="text-gray-600">Find and connect with verified student talent</p>
+          <p className="text-muted-foreground">Find and connect with verified student talent</p>
         </div>
         {userPlan === 'pay_per_contact' && (
           <Button onClick={() => router.push('/pricing')} className="gap-2">
@@ -100,7 +100,7 @@ export default function CompanyDashboard() {
             <Mail className="h-8 w-8 text-primary" />
             <div>
               <div className="text-2xl font-bold">{stats.contactsUsed}</div>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-muted-foreground">
                 Contacts Used
                 {userPlan === 'pay_per_contact' && (
                   <span className="text-orange-600 font-medium ml-1">(€{stats.contactsUsed * 10})</span>
@@ -115,7 +115,7 @@ export default function CompanyDashboard() {
             <Users className="h-8 w-8 text-primary" />
             <div>
               <div className="text-2xl font-bold">{stats.savedCandidates}</div>
-              <div className="text-sm text-gray-600">Saved Candidates</div>
+              <div className="text-sm text-muted-foreground">Saved Candidates</div>
             </div>
           </div>
         </Card>
@@ -125,7 +125,7 @@ export default function CompanyDashboard() {
             <Search className="h-8 w-8 text-primary" />
             <div>
               <div className="text-2xl font-bold">{stats.activeSearches}</div>
-              <div className="text-sm text-gray-600">Active Searches</div>
+              <div className="text-sm text-muted-foreground">Active Searches</div>
             </div>
           </div>
         </Card>
@@ -135,7 +135,7 @@ export default function CompanyDashboard() {
             <TrendingUp className="h-8 w-8 text-orange-600" />
             <div>
               <div className="text-2xl font-bold">87%</div>
-              <div className="text-sm text-gray-600">Match Quality</div>
+              <div className="text-sm text-muted-foreground">Match Quality</div>
             </div>
           </div>
         </Card>
@@ -160,13 +160,13 @@ export default function CompanyDashboard() {
                 { name: 'Sofia Bianchi', degree: 'Data Science', score: 92, skills: ['R', 'SQL', 'Tableau'] },
                 { name: 'Alessandro Costa', degree: 'Software Engineering', score: 89, skills: ['React', 'Node.js', 'Docker'] }
               ].map((candidate, i) => (
-                <div key={i} className="flex items-center gap-4 p-4 border rounded-lg hover:bg-gray-50">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 text-gray-700 font-bold text-lg flex items-center justify-center">
+                <div key={i} className="flex items-center gap-4 p-4 border rounded-lg hover:bg-muted/50">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 text-foreground/80 font-bold text-lg flex items-center justify-center">
                     {candidate.score}%
                   </div>
                   <div className="flex-1">
                     <h3 className="font-medium">{candidate.name}</h3>
-                    <p className="text-sm text-gray-600">{candidate.degree}</p>
+                    <p className="text-sm text-muted-foreground">{candidate.degree}</p>
                     <div className="flex gap-1 mt-1">
                       {candidate.skills.map((skill, idx) => (
                         <Badge key={idx} variant="secondary" className="text-xs">{skill}</Badge>
@@ -191,7 +191,7 @@ export default function CompanyDashboard() {
 
             {userPlan === 'pay_per_contact' && (
               <div className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-lg">
-                <p className="text-sm text-gray-900">
+                <p className="text-sm text-foreground">
                   <strong><Lightbulb className="h-4 w-4 inline" /> Enterprise Tip:</strong> Unlimited contacts for €99/month. You have spent €{stats.contactsUsed * 10} already this month.
                 </p>
               </div>
@@ -206,33 +206,33 @@ export default function CompanyDashboard() {
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-gray-700">Skills</label>
-                    <input type="text" placeholder="Python, React..." className="mt-1 block w-full rounded-md border-gray-300" />
+                    <label className="text-sm font-medium text-foreground/80">Skills</label>
+                    <input type="text" placeholder="Python, React..." className="mt-1 block w-full rounded-md border-border" />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-700">Institution</label>
-                    <select className="mt-1 block w-full rounded-md border-gray-300">
+                    <label className="text-sm font-medium text-foreground/80">Institution</label>
+                    <select className="mt-1 block w-full rounded-md border-border">
                       <option>Politecnico di Milano</option>
                       <option>Università di Bologna</option>
                       <option>La Sapienza</option>
                     </select>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-700">Graduation Year</label>
-                    <input type="number" placeholder="2024" className="mt-1 block w-full rounded-md border-gray-300" />
+                    <label className="text-sm font-medium text-foreground/80">Graduation Year</label>
+                    <input type="number" placeholder="2024" className="mt-1 block w-full rounded-md border-border" />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-700">Min GPA</label>
-                    <input type="number" step="0.1" max="30" className="mt-1 block w-full rounded-md border-gray-300" />
+                    <label className="text-sm font-medium text-foreground/80">Min GPA</label>
+                    <input type="number" step="0.1" max="30" className="mt-1 block w-full rounded-md border-border" />
                   </div>
                 </div>
                 <Button className="w-full">Apply Filters</Button>
               </div>
             ) : (
-              <div className="text-center py-8 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
-                <Lock className="h-12 w-12 mx-auto mb-3 text-gray-400" />
-                <h3 className="font-semibold text-gray-900 mb-2">Unlock Advanced Filters</h3>
-                <p className="text-sm text-gray-600 mb-4">
+              <div className="text-center py-8 border-2 border-dashed border-border rounded-lg bg-muted/50">
+                <Lock className="h-12 w-12 mx-auto mb-3 text-muted-foreground/60" />
+                <h3 className="font-semibold text-foreground mb-2">Unlock Advanced Filters</h3>
+                <p className="text-sm text-muted-foreground mb-4">
                   Enterprise plan (€99/month) includes custom filters, API access, and unlimited contacts.
                 </p>
                 <Button onClick={handleUpgradeClick}>
@@ -260,20 +260,20 @@ export default function CompanyDashboard() {
               {userPlan === 'pay_per_contact' ? (
                 <>
                   <div className="flex items-center gap-2">
-                    <span className="text-gray-600">Cost per contact:</span>
+                    <span className="text-muted-foreground">Cost per contact:</span>
                     <span className="font-medium">€10</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Lock className="h-4 w-4 text-gray-400" />
-                    <span className="text-gray-600">Advanced filters</span>
+                    <Lock className="h-4 w-4 text-muted-foreground/60" />
+                    <span className="text-muted-foreground">Advanced filters</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Lock className="h-4 w-4 text-gray-400" />
-                    <span className="text-gray-600">API access</span>
+                    <Lock className="h-4 w-4 text-muted-foreground/60" />
+                    <span className="text-muted-foreground">API access</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Lock className="h-4 w-4 text-gray-400" />
-                    <span className="text-gray-600">Bulk export</span>
+                    <Lock className="h-4 w-4 text-muted-foreground/60" />
+                    <span className="text-muted-foreground">Bulk export</span>
                   </div>
 
                   <Button onClick={handleUpgradeClick} className="w-full mt-4">
@@ -285,19 +285,19 @@ export default function CompanyDashboard() {
                 <>
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-primary" />
-                    <span className="text-gray-600">Unlimited contacts</span>
+                    <span className="text-muted-foreground">Unlimited contacts</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-primary" />
-                    <span className="text-gray-600">Advanced filters</span>
+                    <span className="text-muted-foreground">Advanced filters</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-primary" />
-                    <span className="text-gray-600">API access</span>
+                    <span className="text-muted-foreground">API access</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-primary" />
-                    <span className="text-gray-600">Priority support</span>
+                    <span className="text-muted-foreground">Priority support</span>
                   </div>
                 </>
               )}
@@ -306,8 +306,8 @@ export default function CompanyDashboard() {
 
           {/* Referral CTA */}
           <Card className="p-6 bg-primary/5 border-primary/20">
-            <h3 className="font-semibold text-gray-900 mb-2">Refer & Earn Credits</h3>
-            <p className="text-sm text-gray-700 mb-4">
+            <h3 className="font-semibold text-foreground mb-2">Refer & Earn Credits</h3>
+            <p className="text-sm text-foreground/80 mb-4">
               Refer other companies and earn 50 contact credits per signup!
             </p>
             <Button
@@ -324,11 +324,11 @@ export default function CompanyDashboard() {
             <h3 className="font-semibold mb-2">Cost Calculator</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600">Contacts this month:</span>
+                <span className="text-muted-foreground">Contacts this month:</span>
                 <span className="font-medium">{stats.contactsUsed}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Cost (€10 each):</span>
+                <span className="text-muted-foreground">Cost (€10 each):</span>
                 <span className="font-medium">€{stats.contactsUsed * 10}</span>
               </div>
               <div className="border-t pt-2 mt-2">
@@ -338,7 +338,7 @@ export default function CompanyDashboard() {
                     {stats.contactsUsed >= 10 ? `€${(stats.contactsUsed * 10) - 99}` : '-'}
                   </span>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   {stats.contactsUsed >= 10
                     ? 'Enterprise pays off after 10 contacts/month'
                     : `${10 - stats.contactsUsed} more contacts to break even`}

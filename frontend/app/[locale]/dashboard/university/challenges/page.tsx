@@ -109,7 +109,7 @@ export default function UniversityChallengesPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary mb-4" />
-          <p className="text-gray-500">{t('loading')}</p>
+          <p className="text-muted-foreground">{t('loading')}</p>
         </div>
       </div>
     )
@@ -119,8 +119,8 @@ export default function UniversityChallengesPage() {
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
       {/* Header */}
       <div className="pt-2">
-        <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
-        <p className="text-gray-600 mt-1">
+        <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+        <p className="text-muted-foreground mt-1">
           {t('subtitle')}
         </p>
       </div>
@@ -132,7 +132,7 @@ export default function UniversityChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.total}</p>
-                <p className="text-sm text-gray-600">{t('available')}</p>
+                <p className="text-sm text-muted-foreground">{t('available')}</p>
               </div>
               <Trophy className="h-8 w-8 text-primary" />
             </div>
@@ -143,7 +143,7 @@ export default function UniversityChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.pendingApproval}</p>
-                <p className="text-sm text-gray-600">{t('pendingReview')}</p>
+                <p className="text-sm text-muted-foreground">{t('pendingReview')}</p>
               </div>
               <Clock className="h-8 w-8 text-primary" />
             </div>
@@ -154,7 +154,7 @@ export default function UniversityChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.approved}</p>
-                <p className="text-sm text-gray-600">{t('approved')}</p>
+                <p className="text-sm text-muted-foreground">{t('approved')}</p>
               </div>
               <CheckCircle className="h-8 w-8 text-primary" />
             </div>
@@ -165,7 +165,7 @@ export default function UniversityChallengesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.withSubmissions}</p>
-                <p className="text-sm text-gray-600">{t('withStudents')}</p>
+                <p className="text-sm text-muted-foreground">{t('withStudents')}</p>
               </div>
               <Users className="h-8 w-8 text-primary" />
             </div>
@@ -186,7 +186,7 @@ export default function UniversityChallengesPage() {
 
               <div className="flex gap-2 w-full sm:w-auto">
                 <div className="relative flex-1 sm:w-64">
-                  <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground/60" />
                   <Input
                     placeholder="Search challenges..."
                     value={searchTerm}
@@ -230,9 +230,9 @@ function ChallengesList({ challenges }: { challenges: Challenge[] }) {
   if (challenges.length === 0) {
     return (
       <div className="text-center py-12">
-        <Trophy className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-        <h3 className="font-medium text-gray-900 mb-2">No challenges found</h3>
-        <p className="text-gray-600">
+        <Trophy className="h-12 w-12 mx-auto text-muted-foreground/40 mb-4" />
+        <h3 className="font-medium text-foreground mb-2">No challenges found</h3>
+        <p className="text-muted-foreground">
           Challenges from companies will appear here for your review
         </p>
       </div>

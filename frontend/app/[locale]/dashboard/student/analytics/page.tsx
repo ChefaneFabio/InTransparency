@@ -116,7 +116,7 @@ export default function StudentAnalytics() {
   if (error === 'unauthorized') {
     return (
       <div className="max-w-5xl mx-auto py-8 text-center">
-        <p className="text-gray-500">{t('unauthorized')}</p>
+        <p className="text-muted-foreground">{t('unauthorized')}</p>
       </div>
     )
   }
@@ -139,15 +139,15 @@ export default function StudentAnalytics() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div>
-          <h1 className="text-xl font-semibold text-gray-900">{t('title')}</h1>
-          <p className="text-sm text-gray-500 mt-1">{t('subtitle')}</p>
+          <h1 className="text-xl font-semibold text-foreground">{t('title')}</h1>
+          <p className="text-sm text-muted-foreground mt-1">{t('subtitle')}</p>
         </div>
         <div className="flex items-center gap-2">
           <Badge variant="outline" className="text-xs">
             {data.tierLimits.tier.replace('_', ' ')}
           </Badge>
           {/* Time Range Selector */}
-          <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-0.5">
+          <div className="flex items-center gap-1 bg-muted rounded-lg p-0.5">
             {TIME_RANGES.map((tr) => {
               const disabled = isLimited && !tr.freeAllowed
               return (
@@ -157,10 +157,10 @@ export default function StudentAnalytics() {
                   disabled={disabled}
                   className={`px-2.5 py-1 text-xs rounded-md transition-colors flex items-center gap-1 ${
                     timeRange === tr.value
-                      ? 'bg-white shadow-sm text-gray-900 font-medium'
+                      ? 'bg-white shadow-sm text-foreground font-medium'
                       : disabled
-                        ? 'text-gray-400 cursor-not-allowed'
-                        : 'text-gray-600 hover:text-gray-900'
+                        ? 'text-muted-foreground/60 cursor-not-allowed'
+                        : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
                   {disabled && <Lock className="h-3 w-3" />}
@@ -178,8 +178,8 @@ export default function StudentAnalytics() {
           <div className="flex items-center gap-3">
             <Sparkles className="h-5 w-5 text-primary" />
             <div>
-              <p className="text-sm font-medium text-gray-900">{t('premiumUpsell.title')}</p>
-              <p className="text-xs text-gray-600">{t('premiumUpsell.description')}</p>
+              <p className="text-sm font-medium text-foreground">{t('premiumUpsell.title')}</p>
+              <p className="text-xs text-muted-foreground">{t('premiumUpsell.description')}</p>
             </div>
           </div>
           <Button size="sm" asChild>
@@ -303,8 +303,8 @@ export default function StudentAnalytics() {
             ) : (
               <Card>
                 <CardContent className="py-12 text-center">
-                  <Eye className="h-8 w-8 mx-auto text-gray-300 mb-3" />
-                  <p className="text-sm text-gray-500">{t('empty.noCompanyViews')}</p>
+                  <Eye className="h-8 w-8 mx-auto text-muted-foreground/40 mb-3" />
+                  <p className="text-sm text-muted-foreground">{t('empty.noCompanyViews')}</p>
                 </CardContent>
               </Card>
             )}
@@ -356,8 +356,8 @@ export default function StudentAnalytics() {
                 </div>
               ) : (
                 <div className="py-8 text-center">
-                  <BookOpen className="h-8 w-8 mx-auto text-gray-300 mb-3" />
-                  <p className="text-sm text-gray-500">{t('empty.noSkills')}</p>
+                  <BookOpen className="h-8 w-8 mx-auto text-muted-foreground/40 mb-3" />
+                  <p className="text-sm text-muted-foreground">{t('empty.noSkills')}</p>
                 </div>
               )}
             </CardContent>
@@ -422,8 +422,8 @@ export default function StudentAnalytics() {
                   </div>
                 ) : (
                   <div className="py-8 text-center">
-                    <FolderOpen className="h-8 w-8 mx-auto text-gray-300 mb-3" />
-                    <p className="text-sm text-gray-500">{t('empty.noProjects')}</p>
+                    <FolderOpen className="h-8 w-8 mx-auto text-muted-foreground/40 mb-3" />
+                    <p className="text-sm text-muted-foreground">{t('empty.noProjects')}</p>
                   </div>
                 )}
               </CardContent>
@@ -457,7 +457,7 @@ export default function StudentAnalytics() {
                 </div>
               ) : (
                 <div className="py-8 text-center">
-                  <p className="text-sm text-gray-500">{t('empty.noSkills')}</p>
+                  <p className="text-sm text-muted-foreground">{t('empty.noSkills')}</p>
                 </div>
               )}
             </CardContent>
@@ -489,7 +489,7 @@ export default function StudentAnalytics() {
                     </div>
                   ) : (
                     <div className="py-8 text-center">
-                      <p className="text-sm text-gray-500">{t('empty.noCareerData')}</p>
+                      <p className="text-sm text-muted-foreground">{t('empty.noCareerData')}</p>
                     </div>
                   )}
                 </CardContent>
@@ -535,7 +535,7 @@ export default function StudentAnalytics() {
             ) : (
               <Card>
                 <CardContent className="py-12 text-center">
-                  <p className="text-sm text-gray-500">{t('empty.noSalaryData')}</p>
+                  <p className="text-sm text-muted-foreground">{t('empty.noSalaryData')}</p>
                 </CardContent>
               </Card>
             )}
@@ -621,9 +621,9 @@ const StatCard = ({ title, value, icon }: { title: string; value: string; icon: 
 const LockedSection = ({ title, description, ctaLabel }: { title: string; description: string; ctaLabel: string }) => (
   <Card>
     <CardContent className="py-10 text-center">
-      <Lock className="h-8 w-8 mx-auto text-gray-300 mb-3" />
-      <h3 className="font-medium text-gray-900 mb-2">{title}</h3>
-      <p className="text-sm text-gray-500 mb-4 max-w-md mx-auto">{description}</p>
+      <Lock className="h-8 w-8 mx-auto text-muted-foreground/40 mb-3" />
+      <h3 className="font-medium text-foreground mb-2">{title}</h3>
+      <p className="text-sm text-muted-foreground mb-4 max-w-md mx-auto">{description}</p>
       <Button size="sm" asChild>
         <Link href="/pricing">
           {ctaLabel}

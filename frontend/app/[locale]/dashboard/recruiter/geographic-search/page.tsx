@@ -35,7 +35,7 @@ interface TalentAnalyticsData {
 
 function LoadingSkeleton() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+    <div className="min-h-screen space-y-6 space-y-6">
       <div>
         <Skeleton className="h-8 w-72 mb-2" />
         <Skeleton className="h-4 w-96" />
@@ -100,7 +100,7 @@ export default function RecruiterGeographicSearchPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
+      <div className="min-h-screen space-y-6 flex items-center justify-center">
         <Card className="max-w-md w-full">
           <CardContent className="pt-6 text-center">
             <p className="text-red-600 font-medium mb-2">{t('errorLoading')}</p>
@@ -127,11 +127,11 @@ export default function RecruiterGeographicSearchPage() {
   const totalStudentsInTop = universityDistribution.reduce((sum, u) => sum + u.count, 0)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+    <div className="min-h-screen space-y-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600 mt-2">
+          <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+          <p className="text-muted-foreground mt-2">
             {t('subtitle')}
           </p>
         </div>
@@ -145,13 +145,13 @@ export default function RecruiterGeographicSearchPage() {
       <Card>
         <CardContent className="p-6">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <input
               type="text"
               placeholder={t('searchUniversities')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
         </CardContent>
@@ -163,14 +163,14 @@ export default function RecruiterGeographicSearchPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">{t('totalTalentPool')}</p>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-sm text-muted-foreground">{t('totalTalentPool')}</p>
+                <p className="text-2xl font-bold text-foreground">
                   {talentPool.toLocaleString()}
                 </p>
               </div>
               <Users className="h-8 w-8 text-primary" />
             </div>
-            <div className="mt-2 text-sm text-gray-600">
+            <div className="mt-2 text-sm text-muted-foreground">
               {t('publicStudentProfiles')}
             </div>
           </CardContent>
@@ -180,14 +180,14 @@ export default function RecruiterGeographicSearchPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">{t('universities')}</p>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-sm text-muted-foreground">{t('universities')}</p>
+                <p className="text-2xl font-bold text-foreground">
                   {universityDistribution.length}
                 </p>
               </div>
               <GraduationCap className="h-8 w-8 text-primary" />
             </div>
-            <div className="mt-2 text-sm text-gray-600">
+            <div className="mt-2 text-sm text-muted-foreground">
               {t('withRegisteredStudents')}
             </div>
           </CardContent>
@@ -197,14 +197,14 @@ export default function RecruiterGeographicSearchPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">{t('studentsInTopUnis')}</p>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-sm text-muted-foreground">{t('studentsInTopUnis')}</p>
+                <p className="text-2xl font-bold text-foreground">
                   {totalStudentsInTop.toLocaleString()}
                 </p>
               </div>
               <Globe className="h-8 w-8 text-primary" />
             </div>
-            <div className="mt-2 text-sm text-gray-600">
+            <div className="mt-2 text-sm text-muted-foreground">
               Across top {universityDistribution.length} universities
             </div>
           </CardContent>
@@ -231,7 +231,7 @@ export default function RecruiterGeographicSearchPage() {
               </BarChart>
             </ResponsiveContainer>
           ) : (
-            <div className="flex items-center justify-center h-[350px] text-gray-500">
+            <div className="flex items-center justify-center h-[350px] text-muted-foreground">
               No university data available
             </div>
           )}
@@ -267,8 +267,8 @@ export default function RecruiterGeographicSearchPage() {
                           {index + 1}
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900">{uni.university}</h3>
-                          <p className="text-sm text-gray-600">
+                          <h3 className="font-semibold text-foreground">{uni.university}</h3>
+                          <p className="text-sm text-muted-foreground">
                             {uni.count} {uni.count === 1 ? 'student' : 'students'} ({percentage}% of tracked pool)
                           </p>
                         </div>
@@ -280,7 +280,7 @@ export default function RecruiterGeographicSearchPage() {
                       </div>
                     </div>
                     <div className="mt-3">
-                      <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="w-full bg-muted rounded-full h-2">
                         <div
                           className="bg-primary h-2 rounded-full"
                           style={{ width: `${Math.min(parseFloat(percentage), 100)}%` }}
@@ -292,7 +292,7 @@ export default function RecruiterGeographicSearchPage() {
               })}
             </div>
           ) : (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-muted-foreground">
               {searchQuery
                 ? `No universities matching "${searchQuery}"`
                 : 'No university data available'}
@@ -314,14 +314,14 @@ export default function RecruiterGeographicSearchPage() {
             {skillsFrequency.length > 0 ? (
               <div className="space-y-3">
                 {skillsFrequency.slice(0, 10).map((skill) => (
-                  <div key={skill.skill} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span className="text-sm font-medium text-gray-900">{skill.skill}</span>
+                  <div key={skill.skill} className="flex items-center justify-between p-2 bg-muted/50 rounded">
+                    <span className="text-sm font-medium text-foreground">{skill.skill}</span>
                     <Badge variant="outline">{skill.count} projects</Badge>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-8 text-gray-500">No skills data available</div>
+              <div className="text-center py-8 text-muted-foreground">No skills data available</div>
             )}
           </CardContent>
         </Card>
@@ -357,7 +357,7 @@ export default function RecruiterGeographicSearchPage() {
                 </PieChart>
               </ResponsiveContainer>
             ) : (
-              <div className="flex items-center justify-center h-[300px] text-gray-500">
+              <div className="flex items-center justify-center h-[300px] text-muted-foreground">
                 No discipline data available
               </div>
             )}

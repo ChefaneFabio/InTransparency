@@ -72,7 +72,7 @@ export default function SkillsGapPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <BarChart3 className="h-10 w-10 mx-auto text-blue-300 animate-pulse mb-4" />
-          <p className="text-gray-500">{t('loading')}</p>
+          <p className="text-muted-foreground">{t('loading')}</p>
         </div>
       </div>
     )
@@ -81,8 +81,8 @@ export default function SkillsGapPage() {
   if (!data) {
     return (
       <div className="text-center py-12">
-        <AlertTriangle className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-        <p className="text-gray-600">{t('unableToGenerate')}</p>
+        <AlertTriangle className="h-12 w-12 mx-auto text-muted-foreground/40 mb-4" />
+        <p className="text-muted-foreground">{t('unableToGenerate')}</p>
       </div>
     )
   }
@@ -90,8 +90,8 @@ export default function SkillsGapPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
-        <p className="text-gray-600 mt-1">
+        <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
+        <p className="text-muted-foreground mt-1">
           {t('subtitle')}
         </p>
       </div>
@@ -103,7 +103,7 @@ export default function SkillsGapPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{data.studentCount}</p>
-                <p className="text-sm text-gray-600">{t('studentsAnalyzed')}</p>
+                <p className="text-sm text-muted-foreground">{t('studentsAnalyzed')}</p>
               </div>
               <Users className="h-5 w-5 text-primary" />
             </div>
@@ -114,7 +114,7 @@ export default function SkillsGapPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{data.jobCount}</p>
-                <p className="text-sm text-gray-600">{t('activeJobsScanned')}</p>
+                <p className="text-sm text-muted-foreground">{t('activeJobsScanned')}</p>
               </div>
               <Briefcase className="h-5 w-5 text-primary" />
             </div>
@@ -125,7 +125,7 @@ export default function SkillsGapPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold text-red-600">{data.gaps.length}</p>
-                <p className="text-sm text-gray-600">{t('skillGapsFound')}</p>
+                <p className="text-sm text-muted-foreground">{t('skillGapsFound')}</p>
               </div>
               <TrendingDown className="h-5 w-5 text-red-500" />
             </div>
@@ -136,7 +136,7 @@ export default function SkillsGapPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold text-primary">{data.strengths.length}</p>
-                <p className="text-sm text-gray-600">{t('strengthsIdentified')}</p>
+                <p className="text-sm text-muted-foreground">{t('strengthsIdentified')}</p>
               </div>
               <TrendingUp className="h-5 w-5 text-primary" />
             </div>
@@ -167,7 +167,7 @@ export default function SkillsGapPage() {
                         {getSeverityLabel(gap.gapSeverity)}
                       </Badge>
                     </div>
-                    <div className="flex items-center gap-4 text-xs text-gray-500">
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground">
                       <span>{t('demand')}: {gap.demandScore}%</span>
                       <span>{t('students')}: {gap.studentCount}</span>
                     </div>
@@ -195,7 +195,7 @@ export default function SkillsGapPage() {
                   </div>
                 </div>
               ))}
-              <div className="flex items-center gap-4 mt-4 text-xs text-gray-500">
+              <div className="flex items-center gap-4 mt-4 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1">
                   <div className="w-3 h-3 bg-red-500 rounded" />
                   {t('marketDemand')}
@@ -207,7 +207,7 @@ export default function SkillsGapPage() {
               </div>
             </div>
           ) : (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-muted-foreground">
               <CheckCircle className="h-8 w-8 mx-auto mb-2 text-primary" />
               <p>{t('noGaps')}</p>
             </div>
@@ -237,12 +237,12 @@ export default function SkillsGapPage() {
                 >
                   <CheckCircle className="mr-1 h-3 w-3" />
                   <span className="capitalize">{s.skill}</span>
-                  <span className="ml-1 text-gray-500">({s.studentCount} {t('students')})</span>
+                  <span className="ml-1 text-muted-foreground">({s.studentCount} {t('students')})</span>
                 </Badge>
               ))}
             </div>
           ) : (
-            <p className="text-gray-500 text-sm">
+            <p className="text-muted-foreground text-sm">
               {t('noStrengths')}
             </p>
           )}
@@ -250,7 +250,7 @@ export default function SkillsGapPage() {
       </Card>
 
       {/* Generated timestamp */}
-      <p className="text-xs text-gray-400 text-right">
+      <p className="text-xs text-muted-foreground/60 text-right">
         {t('reportGenerated')}: {new Date(data.generatedAt).toLocaleString()}
       </p>
     </div>

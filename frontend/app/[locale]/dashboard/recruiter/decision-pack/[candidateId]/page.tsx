@@ -113,9 +113,9 @@ export default function DecisionPackPage() {
   if (loading) {
     return (
       <div className="space-y-6 animate-pulse max-w-5xl mx-auto">
-        <div className="h-8 bg-gray-200 rounded w-1/3" />
-        <div className="h-48 bg-gray-200 rounded" />
-        <div className="h-64 bg-gray-200 rounded" />
+        <div className="h-8 bg-muted rounded w-1/3" />
+        <div className="h-48 bg-muted rounded" />
+        <div className="h-64 bg-muted rounded" />
       </div>
     )
   }
@@ -123,12 +123,12 @@ export default function DecisionPackPage() {
   if (error || !data) {
     return (
       <div className="text-center py-12">
-        <h2 className="text-xl font-bold text-gray-900 mb-2">
+        <h2 className="text-xl font-bold text-foreground mb-2">
           {error === 'Contact access required. Purchase a contact credit first.'
             ? 'Contact Access Required'
             : 'Error'}
         </h2>
-        <p className="text-gray-600 mb-4">{error}</p>
+        <p className="text-muted-foreground mb-4">{error}</p>
         <Button asChild variant="outline">
           <Link href="/dashboard/recruiter/candidates">
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -178,15 +178,15 @@ export default function DecisionPackPage() {
                 <User className="h-8 w-8 text-primary" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">{fullName}</h1>
+                <h1 className="text-2xl font-bold text-foreground">{fullName}</h1>
                 {data.candidate.university && (
-                  <p className="text-gray-600">{data.candidate.university}</p>
+                  <p className="text-muted-foreground">{data.candidate.university}</p>
                 )}
                 {data.candidate.degree && (
-                  <p className="text-gray-500 text-sm">{data.candidate.degree}</p>
+                  <p className="text-muted-foreground text-sm">{data.candidate.degree}</p>
                 )}
                 {data.candidate.tagline && (
-                  <p className="text-gray-700 mt-1">{data.candidate.tagline}</p>
+                  <p className="text-foreground/80 mt-1">{data.candidate.tagline}</p>
                 )}
               </div>
             </div>
@@ -235,16 +235,16 @@ export default function DecisionPackPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b">
-                  <th className="text-left py-2 pr-4 font-medium text-gray-600">Skill</th>
-                  <th className="text-left py-2 pr-4 font-medium text-gray-600">Industry Terms</th>
-                  <th className="text-left py-2 pr-4 font-medium text-gray-600">Evidence</th>
-                  <th className="text-left py-2 font-medium text-gray-600">Level</th>
+                  <th className="text-left py-2 pr-4 font-medium text-muted-foreground">Skill</th>
+                  <th className="text-left py-2 pr-4 font-medium text-muted-foreground">Industry Terms</th>
+                  <th className="text-left py-2 pr-4 font-medium text-muted-foreground">Evidence</th>
+                  <th className="text-left py-2 font-medium text-muted-foreground">Level</th>
                 </tr>
               </thead>
               <tbody>
                 {data.skills.slice(0, 15).map((skill, i) => (
-                  <tr key={i} className="border-b border-gray-100">
-                    <td className="py-2 pr-4 font-medium text-gray-900">{skill.name}</td>
+                  <tr key={i} className="border-b border-border">
+                    <td className="py-2 pr-4 font-medium text-foreground">{skill.name}</td>
                     <td className="py-2 pr-4">
                       <div className="flex flex-wrap gap-1">
                         {skill.industryTerms.slice(0, 3).map((t) => (
@@ -252,7 +252,7 @@ export default function DecisionPackPage() {
                         ))}
                       </div>
                     </td>
-                    <td className="py-2 pr-4 text-gray-600">
+                    <td className="py-2 pr-4 text-muted-foreground">
                       {skill.evidenceSources.slice(0, 2).join(', ')}
                     </td>
                     <td className="py-2">
@@ -315,13 +315,13 @@ export default function DecisionPackPage() {
                 <div key={i} className="border rounded-lg p-3">
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="font-medium text-gray-900">{e.professorName}</p>
-                      <p className="text-xs text-gray-500">for: {e.projectTitle}</p>
+                      <p className="font-medium text-foreground">{e.professorName}</p>
+                      <p className="text-xs text-muted-foreground">for: {e.projectTitle}</p>
                     </div>
                     {e.rating && <Badge>{e.rating}/5</Badge>}
                   </div>
                   {e.endorsementText && (
-                    <p className="text-sm text-gray-700 mt-1">{e.endorsementText}</p>
+                    <p className="text-sm text-foreground/80 mt-1">{e.endorsementText}</p>
                   )}
                 </div>
               ))}
@@ -343,18 +343,18 @@ export default function DecisionPackPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-2 pr-4 font-medium text-gray-600">Project</th>
-                    <th className="text-left py-2 pr-4 font-medium text-gray-600">Original</th>
-                    <th className="text-left py-2 pr-4 font-medium text-gray-600">Normalized</th>
-                    <th className="text-left py-2 pr-4 font-medium text-gray-600">IT</th>
-                    <th className="text-left py-2 pr-4 font-medium text-gray-600">DE</th>
-                    <th className="text-left py-2 font-medium text-gray-600">UK</th>
+                    <th className="text-left py-2 pr-4 font-medium text-muted-foreground">Project</th>
+                    <th className="text-left py-2 pr-4 font-medium text-muted-foreground">Original</th>
+                    <th className="text-left py-2 pr-4 font-medium text-muted-foreground">Normalized</th>
+                    <th className="text-left py-2 pr-4 font-medium text-muted-foreground">IT</th>
+                    <th className="text-left py-2 pr-4 font-medium text-muted-foreground">DE</th>
+                    <th className="text-left py-2 font-medium text-muted-foreground">UK</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.grades.map((g, i) => (
-                    <tr key={i} className="border-b border-gray-100">
-                      <td className="py-2 pr-4 font-medium text-gray-900">{g.projectTitle}</td>
+                    <tr key={i} className="border-b border-border">
+                      <td className="py-2 pr-4 font-medium text-foreground">{g.projectTitle}</td>
                       <td className="py-2 pr-4">{g.originalGrade} ({g.country})</td>
                       <td className="py-2 pr-4 font-semibold">
                         {g.normalizedGrade !== null ? `${g.normalizedGrade}/100` : '-'}
@@ -381,7 +381,7 @@ export default function DecisionPackPage() {
             <div key={p.id} className="border rounded-lg p-4">
               <div className="flex items-start justify-between mb-2">
                 <div>
-                  <h3 className="font-medium text-gray-900">{p.title}</h3>
+                  <h3 className="font-medium text-foreground">{p.title}</h3>
                   <div className="flex gap-2 mt-1">
                     <Badge variant="outline" className="text-xs">
                       {p.discipline.replace(/_/g, ' ')}
@@ -396,7 +396,7 @@ export default function DecisionPackPage() {
                 </div>
                 <div className="text-right text-sm">
                   {p.innovationScore !== null && (
-                    <div className="text-gray-600">
+                    <div className="text-muted-foreground">
                       Innovation: <span className="font-semibold">{p.innovationScore}</span>
                     </div>
                   )}
@@ -432,7 +432,7 @@ export default function DecisionPackPage() {
                   }`}
                 />
                 <div className="flex-1">
-                  <p className="text-sm text-gray-700">{f.description}</p>
+                  <p className="text-sm text-foreground/80">{f.description}</p>
                 </div>
                 <span className={`text-sm font-medium ${
                   f.impact > 0 ? 'text-primary' : 'text-red-500'

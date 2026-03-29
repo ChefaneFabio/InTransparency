@@ -144,7 +144,7 @@ export default function InstitutionDashboard() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold">{institutionName}</h1>
-          <p className="text-gray-600">{t('subtitle')}</p>
+          <p className="text-muted-foreground">{t('subtitle')}</p>
         </div>
         {isFree && (
           <Button onClick={() => router.push('/pricing')} className="gap-2">
@@ -189,7 +189,7 @@ export default function InstitutionDashboard() {
                 <Users className="h-8 w-8 text-primary" />
                 <div>
                   <div className="text-2xl font-bold">{stats?.totalStudents ?? 0}</div>
-                  <div className="text-sm text-gray-600">{t('totalStudents')}</div>
+                  <div className="text-sm text-muted-foreground">{t('totalStudents')}</div>
                 </div>
               </div>
             </Card>
@@ -199,7 +199,7 @@ export default function InstitutionDashboard() {
                 <CheckCircle className="h-8 w-8 text-primary" />
                 <div>
                   <div className="text-2xl font-bold">{stats?.verifiedStudents ?? 0}</div>
-                  <div className="text-sm text-gray-600">{t('verifiedStudents')}</div>
+                  <div className="text-sm text-muted-foreground">{t('verifiedStudents')}</div>
                 </div>
               </div>
             </Card>
@@ -209,7 +209,7 @@ export default function InstitutionDashboard() {
                 <GraduationCap className="h-8 w-8 text-primary" />
                 <div>
                   <div className="text-2xl font-bold">{stats?.activeProfiles ?? 0}</div>
-                  <div className="text-sm text-gray-600">{t('activeProfiles')}</div>
+                  <div className="text-sm text-muted-foreground">{t('activeProfiles')}</div>
                 </div>
               </div>
             </Card>
@@ -219,7 +219,7 @@ export default function InstitutionDashboard() {
                 <Eye className="h-8 w-8 text-orange-600" />
                 <div>
                   <div className="text-2xl font-bold">{stats?.recruiterViews ?? 0}</div>
-                  <div className="text-sm text-gray-600">{t('recruiterViews')}</div>
+                  <div className="text-sm text-muted-foreground">{t('recruiterViews')}</div>
                 </div>
               </div>
             </Card>
@@ -247,12 +247,12 @@ export default function InstitutionDashboard() {
                 ))}
               </div>
             ) : recentStudents.length === 0 ? (
-              <p className="text-gray-500 text-sm py-4">No students found yet. Students will appear here once they register and associate with your institution.</p>
+              <p className="text-muted-foreground text-sm py-4">No students found yet. Students will appear here once they register and associate with your institution.</p>
             ) : (
               <div className="space-y-3">
                 {recentStudents.map((student) => (
-                  <div key={student.id} className="flex items-center gap-4 p-4 border rounded-lg hover:bg-gray-50">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-gray-700 font-bold text-sm flex items-center justify-center">
+                  <div key={student.id} className="flex items-center gap-4 p-4 border rounded-lg hover:bg-muted/50">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-foreground/80 font-bold text-sm flex items-center justify-center">
                       {student.initials}
                     </div>
                     <div className="flex-1">
@@ -262,7 +262,7 @@ export default function InstitutionDashboard() {
                           <CheckCircle className="inline-block h-3.5 w-3.5 text-primary ml-1" />
                         )}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-muted-foreground">
                         {student.course} {student.year ? `· ${student.year}` : ''} · {student.projects} project{student.projects !== 1 ? 's' : ''}
                       </p>
                     </div>
@@ -288,15 +288,15 @@ export default function InstitutionDashboard() {
                 ))}
               </div>
             ) : topRecruiters.length === 0 ? (
-              <p className="text-gray-500 text-sm py-4">No recruiter activity yet. Recruiters viewing your students will appear here.</p>
+              <p className="text-muted-foreground text-sm py-4">No recruiter activity yet. Recruiters viewing your students will appear here.</p>
             ) : (
               <div className="space-y-3">
                 {topRecruiters.map((recruiter, i) => (
                   <div key={i} className="flex items-center gap-4 p-4 border rounded-lg">
-                    <Briefcase className="h-5 w-5 text-gray-400 flex-shrink-0" />
+                    <Briefcase className="h-5 w-5 text-muted-foreground/60 flex-shrink-0" />
                     <div className="flex-1">
                       <h3 className="font-medium">{recruiter.name}</h3>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         {recruiter.views} views · {recruiter.contacts} contacts
                       </p>
                     </div>
@@ -314,10 +314,10 @@ export default function InstitutionDashboard() {
                   <Code className="h-6 w-6" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
                     Drive 40% More Student Sign-ups with Embeddable Widget
                   </h3>
-                  <p className="text-sm text-gray-700 mb-4">
+                  <p className="text-sm text-foreground/80 mb-4">
                     Add the InTransparency widget to your career portal showing live matches like
                     &quot;3 students matched to BMW today&quot;. &euro;500/year vs. &euro;2,500+ for competitors.
                   </p>
@@ -344,15 +344,15 @@ export default function InstitutionDashboard() {
               </div>
 
               <div className="space-y-4">
-                <div className="p-4 bg-gray-50 rounded-lg">
+                <div className="p-4 bg-muted/50 rounded-lg">
                   <h3 className="font-medium mb-2">Widget Status</h3>
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                      <span className="text-gray-600">Active:</span>
+                      <span className="text-muted-foreground">Active:</span>
                       <span className="ml-2 font-medium text-primary">Live</span>
                     </div>
                     <div>
-                      <span className="text-gray-600">Students:</span>
+                      <span className="text-muted-foreground">Students:</span>
                       <span className="ml-2 font-medium">{stats?.totalStudents ?? 0}</span>
                     </div>
                   </div>
@@ -386,20 +386,20 @@ export default function InstitutionDashboard() {
                 <>
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-primary" />
-                    <span className="text-gray-600">Unlimited students</span>
+                    <span className="text-muted-foreground">Unlimited students</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-primary" />
-                    <span className="text-gray-600">Basic analytics</span>
+                    <span className="text-muted-foreground">Basic analytics</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-primary" />
-                    <span className="text-gray-600">Company connections</span>
+                    <span className="text-muted-foreground">Company connections</span>
                   </div>
 
                   <div className="pt-4 border-t">
-                    <p className="text-xs text-gray-600 mb-3">Upgrade for:</p>
-                    <ul className="space-y-2 text-xs text-gray-700">
+                    <p className="text-xs text-muted-foreground mb-3">Upgrade for:</p>
+                    <ul className="space-y-2 text-xs text-foreground/80">
                       <li>Embeddable widget (+40% signups)</li>
                       <li>Custom placement reports</li>
                       <li>Branded integration</li>
@@ -414,15 +414,15 @@ export default function InstitutionDashboard() {
                 <>
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-primary" />
-                    <span className="text-gray-600">Embeddable widget</span>
+                    <span className="text-muted-foreground">Embeddable widget</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-primary" />
-                    <span className="text-gray-600">Custom branding</span>
+                    <span className="text-muted-foreground">Custom branding</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Star className="h-4 w-4 text-primary" />
-                    <span className="text-gray-600">Placement reports</span>
+                    <span className="text-muted-foreground">Placement reports</span>
                   </div>
                 </>
               )}
@@ -431,8 +431,8 @@ export default function InstitutionDashboard() {
 
           {/* Pricing Info */}
           <Card className="p-6 bg-primary/5 border-primary/20">
-            <h3 className="font-semibold text-gray-900 mb-2">Your Plan</h3>
-            <div className="space-y-2 text-sm text-gray-700">
+            <h3 className="font-semibold text-foreground mb-2">Your Plan</h3>
+            <div className="space-y-2 text-sm text-foreground/80">
               <div className="flex justify-between">
                 <span>Platform Access:</span>
                 <span className="font-medium text-primary">FREE</span>
@@ -449,7 +449,7 @@ export default function InstitutionDashboard() {
                 <span>Optional Widget:</span>
                 <span className="font-medium">&euro;500</span>
               </div>
-              <p className="text-xs text-gray-600 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 All core features included at no cost
               </p>
             </div>
@@ -457,8 +457,8 @@ export default function InstitutionDashboard() {
 
           {/* Referral Program */}
           <Card className="p-6 bg-primary/5 border-primary/20">
-            <h3 className="font-semibold text-gray-900 mb-2">Institutional Referrals</h3>
-            <p className="text-sm text-gray-700 mb-4">
+            <h3 className="font-semibold text-foreground mb-2">Institutional Referrals</h3>
+            <p className="text-sm text-foreground/80 mb-4">
               Refer other universities and earn &euro;250 per signup to ITS network!
             </p>
             <Button
@@ -473,7 +473,7 @@ export default function InstitutionDashboard() {
           {/* Support */}
           <Card className="p-6">
             <h3 className="font-semibold mb-2">Need Help?</h3>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-muted-foreground mb-4">
               Contact our institutional support team
             </p>
             <Button variant="outline" className="w-full">

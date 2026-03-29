@@ -297,8 +297,8 @@ export default function AISearchPage() {
               <Sparkles className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-              <p className="text-gray-600">{t('subtitle')}</p>
+              <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+              <p className="text-muted-foreground">{t('subtitle')}</p>
             </div>
           </div>
         </div>
@@ -330,7 +330,7 @@ export default function AISearchPage() {
                             ? 'bg-primary text-white'
                             : message.error
                             ? 'bg-red-50 text-red-800 border border-red-200'
-                            : 'bg-gray-100 text-gray-900'
+                            : 'bg-muted text-foreground'
                         }`}>
                           <p className="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</p>
                         </div>
@@ -343,7 +343,7 @@ export default function AISearchPage() {
                                 key={candidate.id}
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-lg transition-shadow"
+                                className="bg-white border border-border rounded-xl p-4 hover:shadow-lg transition-shadow"
                               >
                                 <div className="flex items-start justify-between mb-3">
                                   <div className="flex items-center gap-3">
@@ -351,8 +351,8 @@ export default function AISearchPage() {
                                       {candidate.initials}
                                     </div>
                                     <div>
-                                      <h3 className="font-semibold text-gray-900">{candidate.name}</h3>
-                                      <p className="text-sm text-gray-600">{candidate.university || 'University N/A'}</p>
+                                      <h3 className="font-semibold text-foreground">{candidate.name}</h3>
+                                      <p className="text-sm text-muted-foreground">{candidate.university || 'University N/A'}</p>
                                     </div>
                                   </div>
                                   <Badge className="bg-primary/10 text-green-800 border-primary/20">
@@ -362,22 +362,22 @@ export default function AISearchPage() {
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-2 text-sm mb-3">
-                                  <div className="flex items-center text-gray-600">
+                                  <div className="flex items-center text-muted-foreground">
                                     <GraduationCap className="h-4 w-4 mr-2" />
                                     {candidate.degree || 'Degree N/A'}
                                   </div>
                                   {candidate.gpa !== null && (
-                                    <div className="flex items-center text-gray-600">
+                                    <div className="flex items-center text-muted-foreground">
                                       <Award className="h-4 w-4 mr-2" />
                                       GPA: {candidate.gpa}
                                     </div>
                                   )}
-                                  <div className="flex items-center text-gray-600">
+                                  <div className="flex items-center text-muted-foreground">
                                     <Calendar className="h-4 w-4 mr-2" />
                                     Class of {candidate.graduationYear || 'N/A'}
                                   </div>
                                   {candidate.tagline && (
-                                    <div className="flex items-center text-gray-600">
+                                    <div className="flex items-center text-muted-foreground">
                                       <MapPin className="h-4 w-4 mr-2" />
                                       {candidate.tagline}
                                     </div>
@@ -386,7 +386,7 @@ export default function AISearchPage() {
 
                                 {candidate.topProjects.length > 0 && (
                                   <div className="mb-3">
-                                    <p className="text-xs text-gray-500 mb-2">Top Projects:</p>
+                                    <p className="text-xs text-muted-foreground mb-2">Top Projects:</p>
                                     <div className="flex flex-wrap gap-1">
                                       {candidate.topProjects.slice(0, 3).map((project) => (
                                         <Badge key={project.id} variant="secondary" className="text-xs">
@@ -407,13 +407,13 @@ export default function AISearchPage() {
                           </div>
                         )}
 
-                        <span className="text-xs text-gray-500 mt-1">
+                        <span className="text-xs text-muted-foreground mt-1">
                           {message.timestamp.toLocaleTimeString()}
                         </span>
                       </div>
 
                       {message.role === 'user' && (
-                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-muted-foreground flex items-center justify-center">
                           <User className="h-5 w-5 text-white" />
                         </div>
                       )}
@@ -426,11 +426,11 @@ export default function AISearchPage() {
                     <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                       <Bot className="h-5 w-5 text-white" />
                     </div>
-                    <div className="bg-gray-100 rounded-2xl px-4 py-3">
+                    <div className="bg-muted rounded-2xl px-4 py-3">
                       <div className="flex gap-1">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                        <div className="w-2 h-2 bg-muted rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
                       </div>
                     </div>
                   </div>
@@ -440,7 +440,7 @@ export default function AISearchPage() {
               </CardContent>
 
               {/* Input */}
-              <div className="border-t border-gray-200 p-4">
+              <div className="border-t border-border p-4">
                 <div className="flex gap-2">
                   <Input
                     value={input}
@@ -477,7 +477,7 @@ export default function AISearchPage() {
                   <button
                     key={index}
                     onClick={() => handleExampleClick(example)}
-                    className="w-full text-left p-3 rounded-lg bg-gray-50 hover:bg-primary/5 hover:border-primary/20 border border-gray-200 transition-colors text-sm"
+                    className="w-full text-left p-3 rounded-lg bg-muted/50 hover:bg-primary/5 hover:border-primary/20 border border-border transition-colors text-sm"
                   >
                     {example}
                   </button>
@@ -497,29 +497,29 @@ export default function AISearchPage() {
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-gray-900">{t('benefitNaturalLanguage')}</p>
-                    <p className="text-gray-600">{t('benefitNaturalLanguageDesc')}</p>
+                    <p className="font-semibold text-foreground">{t('benefitNaturalLanguage')}</p>
+                    <p className="text-muted-foreground">{t('benefitNaturalLanguageDesc')}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-gray-900">{t('benefitRealDatabase')}</p>
-                    <p className="text-gray-600">{t('benefitRealDatabaseDesc')}</p>
+                    <p className="font-semibold text-foreground">{t('benefitRealDatabase')}</p>
+                    <p className="text-muted-foreground">{t('benefitRealDatabaseDesc')}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-gray-900">{t('benefitInstantResults')}</p>
-                    <p className="text-gray-600">{t('benefitInstantResultsDesc')}</p>
+                    <p className="font-semibold text-foreground">{t('benefitInstantResults')}</p>
+                    <p className="text-muted-foreground">{t('benefitInstantResultsDesc')}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-gray-900">{t('benefitRefineEasily')}</p>
-                    <p className="text-gray-600">{t('benefitRefineEasilyDesc')}</p>
+                    <p className="font-semibold text-foreground">{t('benefitRefineEasily')}</p>
+                    <p className="text-muted-foreground">{t('benefitRefineEasilyDesc')}</p>
                   </div>
                 </div>
               </CardContent>

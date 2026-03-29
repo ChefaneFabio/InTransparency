@@ -50,9 +50,9 @@ export default function SkillsDemandPage() {
   if (!data) {
     return (
       <div className="max-w-5xl mx-auto text-center py-20">
-        <Briefcase className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-        <h2 className="text-xl font-semibold text-gray-900 mb-2">No demand data available</h2>
-        <p className="text-gray-600">Skills demand will appear when companies post jobs on the platform.</p>
+        <Briefcase className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
+        <h2 className="text-xl font-semibold text-foreground mb-2">No demand data available</h2>
+        <p className="text-muted-foreground">Skills demand will appear when companies post jobs on the platform.</p>
       </div>
     )
   }
@@ -60,8 +60,8 @@ export default function SkillsDemandPage() {
   return (
     <div className="max-w-5xl mx-auto space-y-8 pb-12">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Skills Demand</h1>
-        <p className="text-gray-600">What companies are looking for right now — and how you compare.</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">Skills Demand</h1>
+        <p className="text-muted-foreground">What companies are looking for right now — and how you compare.</p>
       </div>
 
       {/* Market Match */}
@@ -74,21 +74,21 @@ export default function SkillsDemandPage() {
             }`}>
               {data.marketMatchPercent}%
             </div>
-            <div className="text-xs text-gray-600">Market Match</div>
+            <div className="text-xs text-muted-foreground">Market Match</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-4 pb-4 text-center">
             <Zap className="h-6 w-6 mx-auto mb-1 text-primary" />
             <div className="text-3xl font-bold text-primary">{data.mySkillCount}</div>
-            <div className="text-xs text-gray-600">Your Skills</div>
+            <div className="text-xs text-muted-foreground">Your Skills</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-4 pb-4 text-center">
             <Briefcase className="h-6 w-6 mx-auto mb-1 text-primary" />
             <div className="text-3xl font-bold text-primary">{data.totalJobs}</div>
-            <div className="text-xs text-gray-600">Active Jobs Analyzed</div>
+            <div className="text-xs text-muted-foreground">Active Jobs Analyzed</div>
           </CardContent>
         </Card>
       </div>
@@ -108,16 +108,16 @@ export default function SkillsDemandPage() {
               {data.gaps.map((gap) => (
                 <div key={gap.skill} className="p-4 bg-amber-50 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-medium text-gray-900 capitalize">{gap.skill}</span>
+                    <span className="font-medium text-foreground capitalize">{gap.skill}</span>
                     <Badge variant="outline" className="text-xs border-amber-300 text-amber-700">
                       {gap.demandCount} jobs
                     </Badge>
                   </div>
-                  <div className="text-xs text-gray-600">
+                  <div className="text-xs text-muted-foreground">
                     Required in {gap.requiredIn} jobs, preferred in {gap.preferredIn}
                   </div>
                   {gap.exampleJobs.length > 0 && (
-                    <div className="mt-2 text-xs text-gray-500">
+                    <div className="mt-2 text-xs text-muted-foreground">
                       e.g. {gap.exampleJobs[0]}
                     </div>
                   )}
@@ -142,7 +142,7 @@ export default function SkillsDemandPage() {
             <div className="space-y-2">
               {data.strengths.map((s) => (
                 <div key={s.skill} className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
-                  <span className="text-sm font-medium text-gray-900 capitalize">{s.skill}</span>
+                  <span className="text-sm font-medium text-foreground capitalize">{s.skill}</span>
                   <span className="text-xs text-green-700">{s.demandCount} jobs want this</span>
                 </div>
               ))}
@@ -166,11 +166,11 @@ export default function SkillsDemandPage() {
                   {s.iHaveIt ? (
                     <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0" />
                   ) : (
-                    <div className="h-4 w-4 rounded-full border border-gray-300 flex-shrink-0" />
+                    <div className="h-4 w-4 rounded-full border border-border flex-shrink-0" />
                   )}
                   <span className="text-sm w-32 flex-shrink-0 capitalize">{s.skill}</span>
                   <Progress value={(s.total / maxDemand) * 100} className="flex-1 h-2" />
-                  <span className="text-xs text-gray-500 w-16 text-right">{s.total} jobs</span>
+                  <span className="text-xs text-muted-foreground w-16 text-right">{s.total} jobs</span>
                 </div>
               )
             })}

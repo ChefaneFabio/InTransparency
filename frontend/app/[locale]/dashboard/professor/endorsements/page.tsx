@@ -27,7 +27,7 @@ const statusColors: Record<string, string> = {
   PENDING: 'text-amber-600 border-amber-200 bg-amber-50',
   VERIFIED: 'text-primary border-primary/20 bg-primary/5',
   DECLINED: 'text-red-600 border-red-200 bg-red-50',
-  EXPIRED: 'text-gray-500 border-gray-200 bg-gray-50',
+  EXPIRED: 'text-muted-foreground border-border bg-muted/50',
 }
 
 export default function ProfessorEndorsementsPage() {
@@ -78,12 +78,12 @@ export default function ProfessorEndorsementsPage() {
     <div className="container max-w-6xl py-8 space-y-6">
       <div>
         <h1 className="text-3xl font-bold">{t('endorsements.title')}</h1>
-        <p className="text-gray-600 mt-1">{t('endorsements.subtitle')}</p>
+        <p className="text-muted-foreground mt-1">{t('endorsements.subtitle')}</p>
       </div>
 
       {/* Filters */}
       <div className="flex gap-2">
-        <Filter className="h-5 w-5 text-gray-400 mt-1" />
+        <Filter className="h-5 w-5 text-muted-foreground/60 mt-1" />
         {filters.map((f) => (
           <Button
             key={f}
@@ -100,8 +100,8 @@ export default function ProfessorEndorsementsPage() {
       {endorsements.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <Award className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-500">{t('endorsements.empty')}</p>
+            <Award className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
+            <p className="text-muted-foreground">{t('endorsements.empty')}</p>
           </CardContent>
         </Card>
       ) : (
@@ -111,17 +111,17 @@ export default function ProfessorEndorsementsPage() {
               <CardContent className="p-4">
                 <div className="flex items-start justify-between">
                   <div className="space-y-1">
-                    <p className="font-medium text-gray-900">{e.studentName}</p>
-                    <p className="text-sm text-gray-700">{e.projectTitle}</p>
+                    <p className="font-medium text-foreground">{e.studentName}</p>
+                    <p className="text-sm text-foreground/80">{e.projectTitle}</p>
                     {e.courseName && (
-                      <p className="text-xs text-gray-500">{e.courseName}</p>
+                      <p className="text-xs text-muted-foreground">{e.courseName}</p>
                     )}
                     {e.endorsementText && (
-                      <p className="text-sm text-gray-600 mt-2 italic line-clamp-2">
+                      <p className="text-sm text-muted-foreground mt-2 italic line-clamp-2">
                         &ldquo;{e.endorsementText}&rdquo;
                       </p>
                     )}
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-muted-foreground/60">
                       {new Date(e.createdAt).toLocaleDateString('en-GB', {
                         day: 'numeric', month: 'short', year: 'numeric',
                       })}

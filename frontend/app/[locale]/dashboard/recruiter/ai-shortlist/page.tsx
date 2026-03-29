@@ -203,7 +203,7 @@ export default function AiShortlistPage() {
   const getScoreColor = (score: number) => {
     if (score >= 70) return 'text-green-600 bg-green-50 border-green-200'
     if (score >= 40) return 'text-amber-600 bg-amber-50 border-amber-200'
-    return 'text-gray-600 bg-gray-50 border-gray-200'
+    return 'text-muted-foreground bg-muted/50 border-border'
   }
 
   return (
@@ -216,8 +216,8 @@ export default function AiShortlistPage() {
               <Sparkles className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-              <p className="text-gray-600">{t('subtitle')}</p>
+              <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+              <p className="text-muted-foreground">{t('subtitle')}</p>
             </div>
           </div>
         </div>
@@ -236,7 +236,7 @@ export default function AiShortlistPage() {
               <CardContent className="space-y-4">
                 {/* Title */}
                 <div>
-                  <label className="text-sm font-medium text-gray-700 mb-1 block">
+                  <label className="text-sm font-medium text-foreground/80 mb-1 block">
                     {t('form.roleTitle')}
                   </label>
                   <Input
@@ -248,7 +248,7 @@ export default function AiShortlistPage() {
 
                 {/* Description */}
                 <div>
-                  <label className="text-sm font-medium text-gray-700 mb-1 block">
+                  <label className="text-sm font-medium text-foreground/80 mb-1 block">
                     {t('form.description')}
                   </label>
                   <textarea
@@ -261,7 +261,7 @@ export default function AiShortlistPage() {
 
                 {/* Skills */}
                 <div>
-                  <label className="text-sm font-medium text-gray-700 mb-1 block">
+                  <label className="text-sm font-medium text-foreground/80 mb-1 block">
                     {t('form.skills')}
                   </label>
                   <Input
@@ -294,7 +294,7 @@ export default function AiShortlistPage() {
                 {/* Location & Min Grade */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-gray-700 mb-1 block">
+                    <label className="text-sm font-medium text-foreground/80 mb-1 block">
                       {t('form.location')}
                     </label>
                     <Input
@@ -304,7 +304,7 @@ export default function AiShortlistPage() {
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-700 mb-1 block">
+                    <label className="text-sm font-medium text-foreground/80 mb-1 block">
                       {t('form.minGrade')}
                     </label>
                     <Input
@@ -412,11 +412,11 @@ export default function AiShortlistPage() {
                 <CardContent>
                   {candidates.length === 0 ? (
                     <div className="text-center py-12">
-                      <Search className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                      <p className="text-lg font-medium text-gray-600">
+                      <Search className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
+                      <p className="text-lg font-medium text-muted-foreground">
                         {t('results.noResults')}
                       </p>
-                      <p className="text-sm text-gray-400 mt-1">
+                      <p className="text-sm text-muted-foreground/60 mt-1">
                         {t('results.noResultsDescription')}
                       </p>
                     </div>
@@ -429,7 +429,7 @@ export default function AiShortlistPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.05 }}
-                            className="border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow"
+                            className="border border-border rounded-xl p-5 hover:shadow-md transition-shadow"
                           >
                             <div className="flex items-start justify-between mb-3">
                               <div className="flex items-center gap-3">
@@ -438,11 +438,11 @@ export default function AiShortlistPage() {
                                   {candidate.lastName?.charAt(0) || ''}
                                 </div>
                                 <div>
-                                  <h3 className="font-semibold text-gray-900">
+                                  <h3 className="font-semibold text-foreground">
                                     {candidate.firstName} {candidate.lastName}
                                   </h3>
                                   {candidate.university && (
-                                    <p className="text-sm text-gray-600 flex items-center gap-1">
+                                    <p className="text-sm text-muted-foreground flex items-center gap-1">
                                       <GraduationCap className="h-3.5 w-3.5" />
                                       {candidate.university}
                                       {candidate.degree &&
@@ -461,7 +461,7 @@ export default function AiShortlistPage() {
                             </div>
 
                             {/* Details row */}
-                            <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-3">
+                            <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground mb-3">
                               {candidate.graduationYear && (
                                 <span className="flex items-center gap-1">
                                   <Clock className="h-3.5 w-3.5" />
@@ -499,7 +499,7 @@ export default function AiShortlistPage() {
                               {candidate.matchReasons.map((reason) => (
                                 <span
                                   key={reason}
-                                  className="text-xs text-gray-500 flex items-center gap-1"
+                                  className="text-xs text-muted-foreground flex items-center gap-1"
                                 >
                                   <Star className="h-3 w-3 text-amber-400" />
                                   {getReasonLabel(reason)}
@@ -561,11 +561,11 @@ export default function AiShortlistPage() {
                   </div>
                 ) : shortlists.length === 0 ? (
                   <div className="text-center py-8">
-                    <Sparkles className="h-10 w-10 text-gray-300 mx-auto mb-3" />
-                    <p className="text-sm font-medium text-gray-600">
+                    <Sparkles className="h-10 w-10 text-muted-foreground/40 mx-auto mb-3" />
+                    <p className="text-sm font-medium text-muted-foreground">
                       {t('history.empty')}
                     </p>
-                    <p className="text-xs text-gray-400 mt-1">
+                    <p className="text-xs text-muted-foreground/60 mt-1">
                       {t('history.emptyDescription')}
                     </p>
                   </div>
@@ -574,7 +574,7 @@ export default function AiShortlistPage() {
                     {shortlists.map((shortlist) => (
                       <div
                         key={shortlist.id}
-                        className="border border-gray-200 rounded-lg overflow-hidden"
+                        className="border border-border rounded-lg overflow-hidden"
                       >
                         <button
                           onClick={() =>
@@ -584,14 +584,14 @@ export default function AiShortlistPage() {
                                 : shortlist.id
                             )
                           }
-                          className="w-full text-left p-3 hover:bg-gray-50 transition-colors"
+                          className="w-full text-left p-3 hover:bg-muted/50 transition-colors"
                         >
                           <div className="flex items-center justify-between">
                             <div className="flex-1 min-w-0">
-                              <p className="font-medium text-sm text-gray-900 truncate">
+                              <p className="font-medium text-sm text-foreground truncate">
                                 {shortlist.title}
                               </p>
-                              <p className="text-xs text-gray-500 mt-0.5">
+                              <p className="text-xs text-muted-foreground mt-0.5">
                                 {new Date(
                                   shortlist.createdAt
                                 ).toLocaleDateString()}
@@ -600,15 +600,15 @@ export default function AiShortlistPage() {
                               </p>
                             </div>
                             {expandedHistory === shortlist.id ? (
-                              <ChevronUp className="h-4 w-4 text-gray-400" />
+                              <ChevronUp className="h-4 w-4 text-muted-foreground/60" />
                             ) : (
-                              <ChevronDown className="h-4 w-4 text-gray-400" />
+                              <ChevronDown className="h-4 w-4 text-muted-foreground/60" />
                             )}
                           </div>
                         </button>
 
                         {expandedHistory === shortlist.id && (
-                          <div className="px-3 pb-3 border-t border-gray-100">
+                          <div className="px-3 pb-3 border-t border-border">
                             <div className="flex flex-wrap gap-1 mt-2 mb-2">
                               {(shortlist.skills as string[]).map((skill) => (
                                 <Badge

@@ -32,7 +32,7 @@ interface TalentAnalyticsData {
 
 function LoadingSkeleton() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+    <div className="min-h-screen space-y-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <Skeleton className="h-8 w-56 mb-2" />
@@ -152,7 +152,7 @@ export default function TalentDiscoveryPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
+      <div className="min-h-screen space-y-6 flex items-center justify-center">
         <Card className="max-w-md w-full">
           <CardContent className="pt-6 text-center">
             <p className="text-red-600 font-medium mb-2">{t('errorLoading')}</p>
@@ -177,12 +177,12 @@ export default function TalentDiscoveryPage() {
   )
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 space-y-6">
+    <div className="min-h-screen space-y-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
-          <p className="text-gray-600 mt-2">
+          <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+          <p className="text-muted-foreground mt-2">
             {t('subtitle')}
           </p>
         </div>
@@ -198,9 +198,9 @@ export default function TalentDiscoveryPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">{t('totalTalentPool')}</p>
-                <p className="text-2xl font-bold text-gray-900">{talentPool.toLocaleString()}</p>
-                <p className="text-xs text-gray-600">{t('publicStudentProfiles')}</p>
+                <p className="text-sm text-muted-foreground">{t('totalTalentPool')}</p>
+                <p className="text-2xl font-bold text-foreground">{talentPool.toLocaleString()}</p>
+                <p className="text-xs text-muted-foreground">{t('publicStudentProfiles')}</p>
               </div>
               <Users className="h-8 w-8 text-primary" />
             </div>
@@ -211,9 +211,9 @@ export default function TalentDiscoveryPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">{t('universities')}</p>
-                <p className="text-2xl font-bold text-gray-900">{universityDistribution.length}</p>
-                <p className="text-xs text-gray-600">{t('withRegisteredStudents')}</p>
+                <p className="text-sm text-muted-foreground">{t('universities')}</p>
+                <p className="text-2xl font-bold text-foreground">{universityDistribution.length}</p>
+                <p className="text-xs text-muted-foreground">{t('withRegisteredStudents')}</p>
               </div>
               <GraduationCap className="h-8 w-8 text-primary" />
             </div>
@@ -224,9 +224,9 @@ export default function TalentDiscoveryPage() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">{t('skillsTracked')}</p>
-                <p className="text-2xl font-bold text-gray-900">{skillsFrequency.length}</p>
-                <p className="text-xs text-gray-600">{t('uniqueSkillsInProjects')}</p>
+                <p className="text-sm text-muted-foreground">{t('skillsTracked')}</p>
+                <p className="text-2xl font-bold text-foreground">{skillsFrequency.length}</p>
+                <p className="text-xs text-muted-foreground">{t('uniqueSkillsInProjects')}</p>
               </div>
               <Zap className="h-8 w-8 text-orange-500" />
             </div>
@@ -248,7 +248,7 @@ export default function TalentDiscoveryPage() {
             <CardContent>
               <div className="space-y-3">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <input
                     type="text"
                     placeholder={t('searchUniversities')}
@@ -262,19 +262,19 @@ export default function TalentDiscoveryPage() {
                   {filteredUniversities.map((uni, index) => (
                     <div
                       key={uni.university}
-                      className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                      className="flex items-center justify-between p-3 bg-muted/50 rounded-lg hover:bg-muted transition-colors"
                     >
                       <div>
                         <div className="flex items-center space-x-2">
-                          <h4 className="font-semibold text-gray-900 text-sm">{uni.university}</h4>
+                          <h4 className="font-semibold text-foreground text-sm">{uni.university}</h4>
                           <Badge variant="outline" className="text-xs">#{index + 1}</Badge>
                         </div>
-                        <p className="text-sm text-gray-600">{uni.count} students</p>
+                        <p className="text-sm text-muted-foreground">{uni.count} students</p>
                       </div>
                     </div>
                   ))}
                   {filteredUniversities.length === 0 && (
-                    <p className="text-sm text-gray-500 text-center py-4">
+                    <p className="text-sm text-muted-foreground text-center py-4">
                       {searchQuery ? `No universities matching "${searchQuery}"` : 'No university data'}
                     </p>
                   )}
@@ -342,7 +342,7 @@ export default function TalentDiscoveryPage() {
                   </BarChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="flex items-center justify-center h-[350px] text-gray-500">
+                <div className="flex items-center justify-center h-[350px] text-muted-foreground">
                   {t('noUniversityData')}
                 </div>
               )}
@@ -369,7 +369,7 @@ export default function TalentDiscoveryPage() {
                   </BarChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="flex items-center justify-center h-[300px] text-gray-500">
+                <div className="flex items-center justify-center h-[300px] text-muted-foreground">
                   {t('noSkillsData')}
                 </div>
               )}
@@ -393,10 +393,10 @@ export default function TalentDiscoveryPage() {
                 {filteredCandidates.length > 0 ? (
                   <div className="space-y-3">
                     {filteredCandidates.map((c) => (
-                      <div key={c.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                      <div key={c.id} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg hover:bg-muted transition-colors">
                         <div>
-                          <h4 className="font-medium text-gray-900">{c.firstName} {c.lastName}</h4>
-                          <p className="text-sm text-gray-600">{c.university} {c.degree ? `· ${c.degree}` : ''}</p>
+                          <h4 className="font-medium text-foreground">{c.firstName} {c.lastName}</h4>
+                          <p className="text-sm text-muted-foreground">{c.university} {c.degree ? `· ${c.degree}` : ''}</p>
                           <div className="flex flex-wrap gap-1 mt-1">
                             {(c.topSkills || []).slice(0, 4).map((s: string) => (
                               <Badge key={s} variant="outline" className="text-xs">{s}</Badge>
@@ -413,9 +413,9 @@ export default function TalentDiscoveryPage() {
                     ))}
                   </div>
                 ) : searching ? (
-                  <div className="text-center py-8 text-gray-500">{t('searching')}</div>
+                  <div className="text-center py-8 text-muted-foreground">{t('searching')}</div>
                 ) : (
-                  <div className="text-center py-8 text-gray-500">
+                  <div className="text-center py-8 text-muted-foreground">
                     {t('noCandidatesMatch')}
                   </div>
                 )}
@@ -437,15 +437,15 @@ export default function TalentDiscoveryPage() {
                   {disciplineDistribution.map((disc) => (
                     <div
                       key={disc.discipline}
-                      className="text-center p-4 bg-gray-50 rounded-lg"
+                      className="text-center p-4 bg-muted/50 rounded-lg"
                     >
-                      <p className="text-2xl font-bold text-gray-900">{disc.count}</p>
-                      <p className="text-sm text-gray-600">{disc.discipline}</p>
+                      <p className="text-2xl font-bold text-foreground">{disc.count}</p>
+                      <p className="text-sm text-muted-foreground">{disc.discipline}</p>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-8 text-gray-500">
+                <div className="text-center py-8 text-muted-foreground">
                   {t('noDisciplineData')}
                 </div>
               )}

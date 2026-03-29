@@ -219,7 +219,7 @@ export default function JobApplicationPage() {
   }
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
+    <div className="p-8 bg-muted/50 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-6">
@@ -239,7 +239,7 @@ export default function JobApplicationPage() {
                 <Building2 className="h-8 w-8 text-primary" />
                 <div>
                   <h1 className="text-3xl font-bold">{job.title}</h1>
-                  <p className="text-gray-600">{job.company} • {job.location}</p>
+                  <p className="text-muted-foreground">{job.company} • {job.location}</p>
                 </div>
               </div>
             </div>
@@ -248,10 +248,10 @@ export default function JobApplicationPage() {
             <div className="text-right">
               <div className="flex items-center gap-2 mb-2">
                 <div className="text-3xl font-bold text-primary">{completionPercentage}%</div>
-                <div className="text-sm text-gray-600">Complete</div>
+                <div className="text-sm text-muted-foreground">Complete</div>
               </div>
               {lastSaved && (
-                <div className="flex items-center gap-1 text-xs text-gray-500">
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <Clock className="h-3 w-3" />
                   Saved {lastSaved.toLocaleTimeString()}
                 </div>
@@ -262,7 +262,7 @@ export default function JobApplicationPage() {
 
         {/* Progress Bar */}
         <div className="mb-6">
-          <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div className="h-2 bg-muted rounded-full overflow-hidden">
             <div
               className="h-full bg-primary transition-all duration-500"
               style={{ width: `${completionPercentage}%` }}
@@ -278,7 +278,7 @@ export default function JobApplicationPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Select Relevant Projects</CardTitle>
-                <p className="text-sm text-gray-600">Choose projects that demonstrate required skills</p>
+                <p className="text-sm text-muted-foreground">Choose projects that demonstrate required skills</p>
               </CardHeader>
               <CardContent className="space-y-3">
                 {studentProfile.projects.map(project => (
@@ -288,13 +288,13 @@ export default function JobApplicationPage() {
                     className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
                       formData.selectedProjects.includes(project.id)
                         ? 'border-primary bg-primary/5'
-                        : 'border-gray-200 hover:border-primary/50'
+                        : 'border-border hover:border-primary/50'
                     }`}
                   >
                     <div className="flex items-start justify-between">
                       <div>
                         <h4 className="font-semibold mb-1">{project.title}</h4>
-                        <p className="text-sm text-gray-600 mb-2">{project.description}</p>
+                        <p className="text-sm text-muted-foreground mb-2">{project.description}</p>
                         <div className="flex flex-wrap gap-1">
                           {project.skills.map(skill => (
                             <Badge key={skill} variant="secondary" className="text-xs">
@@ -316,7 +316,7 @@ export default function JobApplicationPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Highlight Your Skills</CardTitle>
-                <p className="text-sm text-gray-600">Select at least 3 relevant skills (recommended: 5-7)</p>
+                <p className="text-sm text-muted-foreground">Select at least 3 relevant skills (recommended: 5-7)</p>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
@@ -327,7 +327,7 @@ export default function JobApplicationPage() {
                       className={`cursor-pointer transition-all ${
                         formData.selectedSkills.includes(skill)
                           ? 'bg-primary text-white'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          : 'bg-muted text-foreground/80 hover:bg-muted'
                       }`}
                     >
                       {skill}
@@ -344,7 +344,7 @@ export default function JobApplicationPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Why This Role?</CardTitle>
-                <p className="text-sm text-gray-600">Explain your interest (100-300 words)</p>
+                <p className="text-sm text-muted-foreground">Explain your interest (100-300 words)</p>
               </CardHeader>
               <CardContent>
                 <textarea
@@ -353,7 +353,7 @@ export default function JobApplicationPage() {
                   placeholder="Example: I'm excited about this role because..."
                   className="w-full h-32 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   {formData.whyThisRole.length} / 300 characters
                 </p>
               </CardContent>
@@ -362,8 +362,8 @@ export default function JobApplicationPage() {
             {/* Cover Letter (Optional) */}
             <Card>
               <CardHeader>
-                <CardTitle>Cover Letter <span className="text-gray-400 text-sm font-normal">(Optional)</span></CardTitle>
-                <p className="text-sm text-gray-600">Personalized message to the hiring team</p>
+                <CardTitle>Cover Letter <span className="text-muted-foreground/60 text-sm font-normal">(Optional)</span></CardTitle>
+                <p className="text-sm text-muted-foreground">Personalized message to the hiring team</p>
               </CardHeader>
               <CardContent>
                 <textarea
@@ -372,7 +372,7 @@ export default function JobApplicationPage() {
                   placeholder="Dear Hiring Team,..."
                   className="w-full h-40 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   {formData.coverLetter.length} characters
                 </p>
               </CardContent>
@@ -382,7 +382,7 @@ export default function JobApplicationPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Availability</CardTitle>
-                <p className="text-sm text-gray-600">When can you start?</p>
+                <p className="text-sm text-muted-foreground">When can you start?</p>
               </CardHeader>
               <CardContent>
                 <select

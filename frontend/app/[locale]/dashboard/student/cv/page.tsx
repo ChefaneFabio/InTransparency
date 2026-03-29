@@ -157,7 +157,7 @@ export default function CvPage() {
                 className={`p-4 rounded-lg border-2 text-center transition-colors ${
                   style === 'classic'
                     ? 'border-primary bg-primary/5'
-                    : 'border-gray-200 hover:border-gray-300'
+                    : 'border-border hover:border-border'
                 }`}
               >
                 <div className="font-medium">{t('style.classic')}</div>
@@ -168,7 +168,7 @@ export default function CvPage() {
                 className={`p-4 rounded-lg border-2 text-center transition-colors ${
                   style === 'modern'
                     ? 'border-primary bg-primary/5'
-                    : 'border-gray-200 hover:border-gray-300'
+                    : 'border-border hover:border-border'
                 }`}
               >
                 <div className="font-medium">{t('style.modern')}</div>

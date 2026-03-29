@@ -139,10 +139,10 @@ export default function CoursesPage() {
   if (loading && courses.length === 0) {
     return (
       <div className="space-y-8 animate-pulse">
-        <div className="h-8 bg-gray-200 rounded w-1/3" />
+        <div className="h-8 bg-muted rounded w-1/3" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="h-48 bg-gray-200 rounded" />
+            <div key={i} className="h-48 bg-muted rounded" />
           ))}
         </div>
       </div>
@@ -154,8 +154,8 @@ export default function CoursesPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">My Courses</h1>
-          <p className="text-gray-600 mt-1">
+          <h1 className="text-3xl font-bold text-foreground">My Courses</h1>
+          <p className="text-muted-foreground mt-1">
             Track your academic progress and sync with university records
           </p>
         </div>
@@ -189,11 +189,11 @@ export default function CoursesPage() {
                   <University className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">
+                  <h3 className="font-semibold text-foreground">
                     {(session.user as any).university || 'University not set'}
                   </h3>
                   <div className="flex items-center space-x-2 mt-1">
-                    <span className="text-sm text-gray-600">{courses.length} courses tracked</span>
+                    <span className="text-sm text-muted-foreground">{courses.length} courses tracked</span>
                   </div>
                 </div>
               </div>
@@ -202,7 +202,7 @@ export default function CoursesPage() {
               <div className="mt-4">
                 <div className="flex items-center space-x-2 mb-2">
                   <RefreshCw className="h-4 w-4 animate-spin text-primary" />
-                  <span className="text-sm text-gray-600">Syncing with university database...</span>
+                  <span className="text-sm text-muted-foreground">Syncing with university database...</span>
                 </div>
                 <Progress value={75} className="h-2" />
               </div>
@@ -231,8 +231,8 @@ export default function CoursesPage() {
             <div className="flex items-center">
               <BookOpen className="h-8 w-8 text-primary" />
               <div className="ml-4">
-                <div className="text-2xl font-bold text-gray-900">{courses.length}</div>
-                <div className="text-sm text-gray-600">Total Courses</div>
+                <div className="text-2xl font-bold text-foreground">{courses.length}</div>
+                <div className="text-sm text-muted-foreground">Total Courses</div>
               </div>
             </div>
           </CardContent>
@@ -243,8 +243,8 @@ export default function CoursesPage() {
             <div className="flex items-center">
               <Calendar className="h-8 w-8 text-orange-600" />
               <div className="ml-4">
-                <div className="text-2xl font-bold text-gray-900">{totalCredits}</div>
-                <div className="text-sm text-gray-600">Total Credits</div>
+                <div className="text-2xl font-bold text-foreground">{totalCredits}</div>
+                <div className="text-sm text-muted-foreground">Total Credits</div>
               </div>
             </div>
           </CardContent>
@@ -255,10 +255,10 @@ export default function CoursesPage() {
             <div className="flex items-center">
               <GraduationCap className="h-8 w-8 text-primary" />
               <div className="ml-4">
-                <div className="text-2xl font-bold text-gray-900">
+                <div className="text-2xl font-bold text-foreground">
                   {courses.filter(c => c.projectCount && c.projectCount > 0).length}
                 </div>
-                <div className="text-sm text-gray-600">With Projects</div>
+                <div className="text-sm text-muted-foreground">With Projects</div>
               </div>
             </div>
           </CardContent>
@@ -377,9 +377,9 @@ export default function CoursesPage() {
       {courses.length === 0 ? (
         <Card>
           <CardContent className="p-12 text-center">
-            <BookOpen className="h-16 w-16 mx-auto text-gray-600 mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No courses yet</h3>
-            <p className="text-gray-600 mb-6">
+            <BookOpen className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
+            <h3 className="text-lg font-medium text-foreground mb-2">No courses yet</h3>
+            <p className="text-muted-foreground mb-6">
               Start by adding your courses manually or syncing with your university.
             </p>
             <Button onClick={() => setShowAddForm(true)}>
@@ -413,30 +413,30 @@ export default function CoursesPage() {
               <CardContent>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Semester:</span>
+                    <span className="text-muted-foreground">Semester:</span>
                     <span>{course.semester} {course.academicYear}</span>
                   </div>
                   {course.credits !== null && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Credits:</span>
+                      <span className="text-muted-foreground">Credits:</span>
                       <span>{course.credits}{course.ectsCredits ? ` (${course.ectsCredits} ECTS)` : ''}</span>
                     </div>
                   )}
                   {course.professorName && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Professor:</span>
+                      <span className="text-muted-foreground">Professor:</span>
                       <span>{course.professorName}</span>
                     </div>
                   )}
                   {course.department && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Department:</span>
+                      <span className="text-muted-foreground">Department:</span>
                       <span>{course.department}</span>
                     </div>
                   )}
                   {course.projectCount !== undefined && course.projectCount > 0 && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Projects:</span>
+                      <span className="text-muted-foreground">Projects:</span>
                       <Badge variant="secondary" className="text-xs">{course.projectCount}</Badge>
                     </div>
                   )}

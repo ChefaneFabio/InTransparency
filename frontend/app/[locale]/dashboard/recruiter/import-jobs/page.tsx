@@ -63,8 +63,8 @@ export default function ImportJobsPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-8 pb-12">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('title')}</h1>
-        <p className="text-gray-600">
+        <h1 className="text-3xl font-bold text-foreground mb-2">{t('title')}</h1>
+        <p className="text-muted-foreground">
           {t('description')}
         </p>
       </div>
@@ -81,7 +81,7 @@ export default function ImportJobsPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{t('careerPageUrl')}</label>
+            <label className="block text-sm font-medium text-foreground/80 mb-1">{t('careerPageUrl')}</label>
             <Input
               placeholder="https://company.com/careers or /lavora-con-noi"
               value={url}
@@ -89,7 +89,7 @@ export default function ImportJobsPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{t('companyNameLabel')}</label>
+            <label className="block text-sm font-medium text-foreground/80 mb-1">{t('companyNameLabel')}</label>
             <Input
               placeholder="e.g. Satispay"
               value={companyName}
@@ -119,13 +119,13 @@ export default function ImportJobsPage() {
             <CardContent>
               <div className="space-y-3">
                 {result.jobs.map((job) => (
-                  <div key={job.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div key={job.id} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
                     <div>
                       <div className="flex items-center gap-2">
                         <Briefcase className="h-4 w-4 text-primary" />
-                        <span className="font-medium text-gray-900">{job.title}</span>
+                        <span className="font-medium text-foreground">{job.title}</span>
                       </div>
-                      <div className="flex items-center gap-3 mt-1 text-sm text-gray-600">
+                      <div className="flex items-center gap-3 mt-1 text-sm text-muted-foreground">
                         {job.location && (
                           <span className="flex items-center gap-1">
                             <MapPin className="h-3 w-3" /> {job.location}

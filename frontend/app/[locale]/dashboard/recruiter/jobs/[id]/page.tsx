@@ -190,10 +190,10 @@ export default function JobDetailPage() {
     return (
       <div className="max-w-4xl mx-auto text-center py-12">
         <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">
+        <h1 className="text-2xl font-bold text-foreground mb-4">
           {error || t('notFound')}
         </h1>
-        <p className="text-gray-600 mb-6">{t('notFoundDescription')}</p>
+        <p className="text-muted-foreground mb-6">{t('notFoundDescription')}</p>
         <Button asChild>
           <Link href="/dashboard/recruiter/jobs">
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -221,8 +221,8 @@ export default function JobDetailPage() {
             </Link>
           </Button>
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900">{job.title}</h1>
-            <div className="flex items-center gap-3 text-sm text-gray-600 mt-1">
+            <h1 className="text-2xl font-semibold text-foreground">{job.title}</h1>
+            <div className="flex items-center gap-3 text-sm text-muted-foreground mt-1">
               {job.location && (
                 <span className="flex items-center gap-1">
                   <MapPin className="h-3.5 w-3.5" />
@@ -268,7 +268,7 @@ export default function JobDetailPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{appCount}</p>
-                <p className="text-sm text-gray-600">{t('applications')}</p>
+                <p className="text-sm text-muted-foreground">{t('applications')}</p>
               </div>
               <Users className="h-8 w-8 text-primary" />
             </div>
@@ -279,7 +279,7 @@ export default function JobDetailPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{job.views}</p>
-                <p className="text-sm text-gray-600">{t('views')}</p>
+                <p className="text-sm text-muted-foreground">{t('views')}</p>
               </div>
               <Eye className="h-8 w-8 text-primary" />
             </div>
@@ -290,7 +290,7 @@ export default function JobDetailPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{conversionRate}%</p>
-                <p className="text-sm text-gray-600">{t('conversion')}</p>
+                <p className="text-sm text-muted-foreground">{t('conversion')}</p>
               </div>
               <div className="h-8 w-8 flex items-center justify-center text-primary font-bold text-lg">%</div>
             </div>
@@ -306,12 +306,12 @@ export default function JobDetailPage() {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-sm text-gray-500">{t('jobType')}</p>
+              <p className="text-sm text-muted-foreground">{t('jobType')}</p>
               <p className="font-medium">{formatJobType(job.jobType)}</p>
             </div>
             {salaryDisplay && (
               <div>
-                <p className="text-sm text-gray-500">{t('salaryRange')}</p>
+                <p className="text-sm text-muted-foreground">{t('salaryRange')}</p>
                 <p className="font-medium">{salaryDisplay}</p>
               </div>
             )}
@@ -319,28 +319,28 @@ export default function JobDetailPage() {
 
           {job.description && (
             <div>
-              <p className="text-sm text-gray-500 mb-2">{t('description')}</p>
-              <p className="text-gray-700 whitespace-pre-wrap">{job.description}</p>
+              <p className="text-sm text-muted-foreground mb-2">{t('description')}</p>
+              <p className="text-foreground/80 whitespace-pre-wrap">{job.description}</p>
             </div>
           )}
 
           {job.requirements && (
             <div>
-              <p className="text-sm text-gray-500 mb-2">{t('requirements')}</p>
-              <p className="text-gray-700 whitespace-pre-wrap">{job.requirements}</p>
+              <p className="text-sm text-muted-foreground mb-2">{t('requirements')}</p>
+              <p className="text-foreground/80 whitespace-pre-wrap">{job.requirements}</p>
             </div>
           )}
 
           {job.responsibilities && (
             <div>
-              <p className="text-sm text-gray-500 mb-2">{t('responsibilities')}</p>
-              <p className="text-gray-700 whitespace-pre-wrap">{job.responsibilities}</p>
+              <p className="text-sm text-muted-foreground mb-2">{t('responsibilities')}</p>
+              <p className="text-foreground/80 whitespace-pre-wrap">{job.responsibilities}</p>
             </div>
           )}
 
           {job.requiredSkills && job.requiredSkills.length > 0 && (
             <div>
-              <p className="text-sm text-gray-500 mb-2">{t('requiredSkills')}</p>
+              <p className="text-sm text-muted-foreground mb-2">{t('requiredSkills')}</p>
               <div className="flex flex-wrap gap-2">
                 {job.requiredSkills.map((skill) => (
                   <Badge key={skill} variant="secondary">{skill}</Badge>
@@ -351,7 +351,7 @@ export default function JobDetailPage() {
 
           {job.preferredSkills && job.preferredSkills.length > 0 && (
             <div>
-              <p className="text-sm text-gray-500 mb-2">{t('preferredSkills')}</p>
+              <p className="text-sm text-muted-foreground mb-2">{t('preferredSkills')}</p>
               <div className="flex flex-wrap gap-2">
                 {job.preferredSkills.map((skill) => (
                   <Badge key={skill} variant="outline">{skill}</Badge>
@@ -374,14 +374,14 @@ export default function JobDetailPage() {
               {job.applications.map((app) => (
                 <div key={app.id} className="flex items-center justify-between p-3 border rounded-lg">
                   <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center text-sm font-medium">
+                    <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center text-sm font-medium">
                       {(app.applicant.firstName?.[0] || '') + (app.applicant.lastName?.[0] || '')}
                     </div>
                     <div>
                       <p className="font-medium text-sm">
                         {app.applicant.firstName} {app.applicant.lastName}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-muted-foreground">
                         {t('applied')} {new Date(app.createdAt).toLocaleDateString()}
                       </p>
                     </div>

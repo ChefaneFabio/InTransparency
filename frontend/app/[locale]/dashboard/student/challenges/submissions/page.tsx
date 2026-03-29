@@ -133,7 +133,7 @@ export default function StudentSubmissionsPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary mb-4" />
-          <p className="text-gray-500">Loading submissions...</p>
+          <p className="text-muted-foreground">Loading submissions...</p>
         </div>
       </div>
     )
@@ -150,8 +150,8 @@ export default function StudentSubmissionsPage() {
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">My Submissions</h1>
-          <p className="text-gray-600 mt-1">
+          <h1 className="text-2xl font-semibold text-foreground">My Submissions</h1>
+          <p className="text-muted-foreground mt-1">
             Track your challenge applications and work
           </p>
         </div>
@@ -164,7 +164,7 @@ export default function StudentSubmissionsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.total}</p>
-                <p className="text-sm text-gray-600">Total</p>
+                <p className="text-sm text-muted-foreground">Total</p>
               </div>
               <Trophy className="h-8 w-8 text-primary" />
             </div>
@@ -175,7 +175,7 @@ export default function StudentSubmissionsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.active}</p>
-                <p className="text-sm text-gray-600">Active</p>
+                <p className="text-sm text-muted-foreground">Active</p>
               </div>
               <Clock className="h-8 w-8 text-primary" />
             </div>
@@ -186,7 +186,7 @@ export default function StudentSubmissionsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.approved}</p>
-                <p className="text-sm text-gray-600">Approved</p>
+                <p className="text-sm text-muted-foreground">Approved</p>
               </div>
               <CheckCircle className="h-8 w-8 text-primary" />
             </div>
@@ -197,7 +197,7 @@ export default function StudentSubmissionsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.converted}</p>
-                <p className="text-sm text-gray-600">In Portfolio</p>
+                <p className="text-sm text-muted-foreground">In Portfolio</p>
               </div>
               <FileText className="h-8 w-8 text-primary" />
             </div>
@@ -287,9 +287,9 @@ export default function StudentSubmissionsPage() {
         <Card>
           <CardContent className="py-12">
             <div className="text-center">
-              <Trophy className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-              <h3 className="font-medium text-gray-900 mb-2">No submissions yet</h3>
-              <p className="text-gray-600 mb-4">
+              <Trophy className="h-12 w-12 mx-auto text-muted-foreground/40 mb-4" />
+              <h3 className="font-medium text-foreground mb-2">No submissions yet</h3>
+              <p className="text-muted-foreground mb-4">
                 Apply to challenges to start working on real-world projects
               </p>
               <Button asChild>
@@ -307,7 +307,7 @@ export default function StudentSubmissionsPage() {
 
 function EmptyState({ message }: { message: string }) {
   return (
-    <div className="text-center py-8 text-gray-500">
+    <div className="text-center py-8 text-muted-foreground">
       {message}
     </div>
   )

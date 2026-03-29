@@ -47,7 +47,7 @@ const statusColors: Record<string, string> = {
   ACTIVE: 'bg-primary/10 text-primary',
   COMPLETED: 'bg-primary/10 text-primary',
   DECLINED: 'bg-red-100 text-red-700',
-  CANCELLED: 'bg-gray-100 text-gray-600',
+  CANCELLED: 'bg-muted text-muted-foreground',
 }
 
 export default function MentoringPage() {
@@ -119,7 +119,7 @@ export default function MentoringPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <Users className="h-10 w-10 mx-auto text-primary/30 animate-pulse mb-4" />
-          <p className="text-gray-500">Loading mentoring...</p>
+          <p className="text-muted-foreground">Loading mentoring...</p>
         </div>
       </div>
     )
@@ -138,8 +138,8 @@ export default function MentoringPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Mentoring</h1>
-        <p className="text-gray-600 mt-1">
+        <h1 className="text-2xl font-bold text-foreground">Mentoring</h1>
+        <p className="text-muted-foreground mt-1">
           Connect with senior students and alumni at your institution
         </p>
       </div>
@@ -151,7 +151,7 @@ export default function MentoringPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{activeMentorships.length}</p>
-                <p className="text-sm text-gray-600">Active mentorships</p>
+                <p className="text-sm text-muted-foreground">Active mentorships</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <Users className="h-5 w-5 text-primary" />
@@ -164,7 +164,7 @@ export default function MentoringPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{pendingMentorships.length}</p>
-                <p className="text-sm text-gray-600">Pending requests</p>
+                <p className="text-sm text-muted-foreground">Pending requests</p>
               </div>
               <div className="p-2 bg-yellow-100 rounded-lg">
                 <Clock className="h-5 w-5 text-primary" />
@@ -177,7 +177,7 @@ export default function MentoringPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{filteredMentors.length}</p>
-                <p className="text-sm text-gray-600">Available mentors</p>
+                <p className="text-sm text-muted-foreground">Available mentors</p>
               </div>
               <div className="p-2 bg-primary/10 rounded-lg">
                 <UserPlus className="h-5 w-5 text-primary" />
@@ -207,7 +207,7 @@ export default function MentoringPage() {
                 </Avatar>
                 <div className="flex-1">
                   <p className="font-medium">{m.partner.firstName} {m.partner.lastName}</p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     {m.role === 'mentor' ? 'Wants you as mentor' : 'Request sent'}
                     {m.message && ` — "${m.message}"`}
                   </p>
@@ -250,7 +250,7 @@ export default function MentoringPage() {
           </CardHeader>
           <CardContent className="space-y-3">
             {activeMentorships.map((m) => (
-              <div key={m.id} className="flex items-center gap-4 p-4 rounded-lg border hover:bg-gray-50 transition-colors">
+              <div key={m.id} className="flex items-center gap-4 p-4 rounded-lg border hover:bg-muted/50 transition-colors">
                 <Avatar className="h-10 w-10">
                   <AvatarImage src={m.partner.photo || undefined} />
                   <AvatarFallback className="bg-primary text-white text-sm">
@@ -264,7 +264,7 @@ export default function MentoringPage() {
                       {m.role === 'mentor' ? 'You mentor' : 'Your mentor'}
                     </Badge>
                   </div>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-muted-foreground">
                     {m.partner.degree} · {m.partner.university}
                   </p>
                   {m.topics.length > 0 && (
@@ -309,7 +309,7 @@ export default function MentoringPage() {
           {filteredMentors.length > 0 ? (
             <div className="space-y-3">
               {filteredMentors.map((mentor) => (
-                <div key={mentor.id} className="flex items-center gap-4 p-4 rounded-lg border hover:bg-gray-50 transition-colors">
+                <div key={mentor.id} className="flex items-center gap-4 p-4 rounded-lg border hover:bg-muted/50 transition-colors">
                   <Avatar className="h-10 w-10">
                     <AvatarImage src={mentor.photo || undefined} />
                     <AvatarFallback className="bg-primary text-white text-sm">
@@ -318,14 +318,14 @@ export default function MentoringPage() {
                   </Avatar>
                   <div className="flex-1">
                     <p className="font-medium">{mentor.firstName} {mentor.lastName}</p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-muted-foreground">
                       {mentor.degree}
                       {mentor.graduationYear && ` · Class of ${mentor.graduationYear}`}
                     </p>
                     {mentor._count.mentorshipsAsMentor > 0 && (
                       <div className="flex items-center gap-1 mt-0.5">
                         <Star className="h-3 w-3 text-primary" />
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-muted-foreground">
                           {mentor._count.mentorshipsAsMentor} mentee{mentor._count.mentorshipsAsMentor !== 1 ? 's' : ''}
                         </span>
                       </div>
@@ -371,9 +371,9 @@ export default function MentoringPage() {
             </div>
           ) : (
             <div className="text-center py-8">
-              <Users className="h-12 w-12 mx-auto text-gray-300 mb-3" />
-              <p className="text-gray-600">No mentors available at your institution yet.</p>
-              <p className="text-sm text-gray-500 mt-1">Check back later as more senior students join.</p>
+              <Users className="h-12 w-12 mx-auto text-muted-foreground/40 mb-3" />
+              <p className="text-muted-foreground">No mentors available at your institution yet.</p>
+              <p className="text-sm text-muted-foreground mt-1">Check back later as more senior students join.</p>
             </div>
           )}
         </CardContent>
@@ -383,20 +383,20 @@ export default function MentoringPage() {
       {pastMentorships.length > 0 && (
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg text-gray-500">Past Mentorships</CardTitle>
+            <CardTitle className="text-lg text-muted-foreground">Past Mentorships</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
             {pastMentorships.map((m) => (
               <div key={m.id} className="flex items-center gap-4 p-3 rounded-lg opacity-60">
                 <Avatar className="h-8 w-8">
-                  <AvatarFallback className="bg-gray-200 text-gray-500 text-xs">
+                  <AvatarFallback className="bg-muted text-muted-foreground text-xs">
                     {getInitials(m.partner)}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{m.partner.firstName} {m.partner.lastName}</p>
                 </div>
-                <Badge className={statusColors[m.status] || 'bg-gray-100 text-gray-600'}>
+                <Badge className={statusColors[m.status] || 'bg-muted text-muted-foreground'}>
                   {m.status.toLowerCase()}
                 </Badge>
               </div>

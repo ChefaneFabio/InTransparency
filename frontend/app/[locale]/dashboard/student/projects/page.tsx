@@ -188,8 +188,8 @@ export default function ProjectsPage() {
       <div className="min-h-screen bg-background space-y-8">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Projects</h1>
-            <p className="text-gray-700">Manage and showcase your work</p>
+            <h1 className="text-3xl font-bold text-foreground">Projects</h1>
+            <p className="text-foreground/80">Manage and showcase your work</p>
           </div>
           <Button disabled>
             <Plus className="mr-2 h-4 w-4" />
@@ -201,9 +201,9 @@ export default function ProjectsPage() {
           {[...Array(6)].map((_: any, i: number) => (
             <Card key={i} className="animate-pulse">
               <CardContent className="p-6">
-                <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
-                <div className="h-3 bg-gray-200 rounded w-full mb-2"></div>
-                <div className="h-3 bg-gray-200 rounded w-2/3"></div>
+                <div className="h-4 bg-muted rounded w-3/4 mb-4"></div>
+                <div className="h-3 bg-muted rounded w-full mb-2"></div>
+                <div className="h-3 bg-muted rounded w-2/3"></div>
               </CardContent>
             </Card>
           ))}
@@ -217,8 +217,8 @@ export default function ProjectsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Your Projects</h1>
-          <p className="text-gray-700 mt-1">
+          <h1 className="text-3xl font-bold text-foreground">Your Projects</h1>
+          <p className="text-foreground/80 mt-1">
             Manage and showcase your academic and personal projects
           </p>
         </div>
@@ -235,8 +235,8 @@ export default function ProjectsPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-gray-900">{projects.length}</div>
-              <div className="ml-2 text-sm text-gray-700 font-medium">Total Projects</div>
+              <div className="text-2xl font-bold text-foreground">{projects.length}</div>
+              <div className="ml-2 text-sm text-foreground/80 font-medium">Total Projects</div>
             </div>
           </CardContent>
         </Card>
@@ -246,7 +246,7 @@ export default function ProjectsPage() {
               <div className="text-2xl font-bold text-primary">
                 {projects.filter(p => p.status === 'analyzed').length}
               </div>
-              <div className="ml-2 text-sm text-gray-700 font-medium">Analyzed</div>
+              <div className="ml-2 text-sm text-foreground/80 font-medium">Analyzed</div>
             </div>
           </CardContent>
         </Card>
@@ -256,7 +256,7 @@ export default function ProjectsPage() {
               <div className="text-2xl font-bold text-primary">
                 {projects.length > 0 ? Math.round(projects.reduce((acc, p) => acc + (p.innovationScore || 0), 0) / projects.length) : 0}
               </div>
-              <div className="ml-2 text-sm text-gray-700 font-medium">Avg Score</div>
+              <div className="ml-2 text-sm text-foreground/80 font-medium">Avg Score</div>
             </div>
           </CardContent>
         </Card>
@@ -266,7 +266,7 @@ export default function ProjectsPage() {
               <div className="text-2xl font-bold text-primary">
                 {projects.reduce((acc, p) => acc + (p.stats?.views || 0), 0)}
               </div>
-              <div className="ml-2 text-sm text-gray-700 font-medium">Total Views</div>
+              <div className="ml-2 text-sm text-foreground/80 font-medium">Total Views</div>
             </div>
           </CardContent>
         </Card>
@@ -279,7 +279,7 @@ export default function ProjectsPage() {
             {/* Search */}
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
                   placeholder="Search projects..."
                   value={searchQuery}
@@ -372,13 +372,13 @@ export default function ProjectsPage() {
           <CardContent className="p-12 text-center">
             {projects.length === 0 ? (
               <div>
-                <div className="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                  <Plus className="h-8 w-8 text-gray-600" />
+                <div className="w-16 h-16 mx-auto bg-muted rounded-full flex items-center justify-center mb-4">
+                  <Plus className="h-8 w-8 text-muted-foreground" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-foreground mb-2">
                   No projects yet
                 </h3>
-                <p className="text-gray-700 mb-6">
+                <p className="text-foreground/80 mb-6">
                   Start showcasing your work by uploading your first project.
                 </p>
                 <Button asChild>
@@ -390,13 +390,13 @@ export default function ProjectsPage() {
               </div>
             ) : (
               <div>
-                <div className="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                  <Search className="h-8 w-8 text-gray-600" />
+                <div className="w-16 h-16 mx-auto bg-muted rounded-full flex items-center justify-center mb-4">
+                  <Search className="h-8 w-8 text-muted-foreground" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-foreground mb-2">
                   No projects found
                 </h3>
-                <p className="text-gray-700 mb-6">
+                <p className="text-foreground/80 mb-6">
                   Try adjusting your search or filter criteria.
                 </p>
                 <Button 
@@ -438,7 +438,7 @@ export default function ProjectsPage() {
                             <Rocket className="h-6 w-6" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h3 className="text-lg font-semibold text-gray-900 truncate">
+                            <h3 className="text-lg font-semibold text-foreground truncate">
                               <Link 
                                 href={`/dashboard/student/projects/${project.id}`}
                                 className="hover:text-primary transition-colors"
@@ -446,7 +446,7 @@ export default function ProjectsPage() {
                                 {project.title}
                               </Link>
                             </h3>
-                            <p className="text-gray-700 mt-1 line-clamp-2">
+                            <p className="text-foreground/80 mt-1 line-clamp-2">
                               {project.description}
                             </p>
                             
@@ -469,7 +469,7 @@ export default function ProjectsPage() {
                               )}
                             </div>
 
-                            <div className="flex items-center space-x-4 mt-3 text-sm text-gray-800 font-medium">
+                            <div className="flex items-center space-x-4 mt-3 text-sm text-foreground font-medium">
                               <span className="flex items-center">
                                 <Eye className="h-4 w-4 mr-1" />
                                 {project.stats?.views || 0}
@@ -492,7 +492,7 @@ export default function ProjectsPage() {
                           <div className="text-lg font-semibold text-primary">
                             {project.innovationScore}/100
                           </div>
-                          <div className="text-xs text-gray-800 font-medium">Innovation</div>
+                          <div className="text-xs text-foreground font-medium">Innovation</div>
                         </div>
                         <ProjectActions project={project} />
                       </div>

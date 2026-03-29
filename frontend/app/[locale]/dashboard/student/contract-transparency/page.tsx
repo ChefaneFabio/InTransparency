@@ -213,8 +213,8 @@ export default function ContractTransparencyPage() {
     <div className="max-w-5xl mx-auto space-y-8 pb-12">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('title')}</h1>
-        <p className="text-gray-600">{t('subtitle')}</p>
+        <h1 className="text-3xl font-bold text-foreground mb-2">{t('title')}</h1>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
       <Tabs defaultValue="checker" className="space-y-8">
@@ -250,11 +250,11 @@ export default function ContractTransparencyPage() {
             <CardContent className="space-y-6">
               {/* Contract Type */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">{t('checker.contractType')} *</label>
+                <label className="block text-sm font-medium text-foreground/80 mb-2">{t('checker.contractType')} *</label>
                 <select
                   value={contractType}
                   onChange={(e) => { setContractType(e.target.value); setResult(null) }}
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="">{t('checker.selectType')}</option>
                   {CONTRACT_TYPES.map(ct => (
@@ -267,11 +267,11 @@ export default function ContractTransparencyPage() {
               {contractType && !isFreelanceType && !isInternship && (
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('checker.ccnl')}</label>
+                    <label className="block text-sm font-medium text-foreground/80 mb-2">{t('checker.ccnl')}</label>
                     <select
                       value={ccnl}
                       onChange={(e) => setCcnl(e.target.value)}
-                      className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full rounded-md border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                       <option value="">{t('checker.selectCcnl')}</option>
                       {CCNL_OPTIONS.map(c => (
@@ -280,7 +280,7 @@ export default function ContractTransparencyPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('checker.livello')}</label>
+                    <label className="block text-sm font-medium text-foreground/80 mb-2">{t('checker.livello')}</label>
                     <Input
                       placeholder={t('checker.livelloPlaceholder')}
                       value={livello}
@@ -294,7 +294,7 @@ export default function ContractTransparencyPage() {
               <div className="grid grid-cols-2 gap-4">
                 {!isInternship && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('checker.ral')}</label>
+                    <label className="block text-sm font-medium text-foreground/80 mb-2">{t('checker.ral')}</label>
                     <Input
                       type="number"
                       placeholder="e.g. 24000"
@@ -304,7 +304,7 @@ export default function ContractTransparencyPage() {
                   </div>
                 )}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('checker.monthlyNet')}</label>
+                  <label className="block text-sm font-medium text-foreground/80 mb-2">{t('checker.monthlyNet')}</label>
                   <Input
                     type="number"
                     placeholder="e.g. 1400"
@@ -317,7 +317,7 @@ export default function ContractTransparencyPage() {
               {/* Hours & Duration */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('checker.hours')}</label>
+                  <label className="block text-sm font-medium text-foreground/80 mb-2">{t('checker.hours')}</label>
                   <Input
                     type="number"
                     placeholder="e.g. 40"
@@ -326,7 +326,7 @@ export default function ContractTransparencyPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('checker.duration')}</label>
+                  <label className="block text-sm font-medium text-foreground/80 mb-2">{t('checker.duration')}</label>
                   <Input
                     type="number"
                     placeholder="e.g. 12"
@@ -347,12 +347,12 @@ export default function ContractTransparencyPage() {
                     { label: t('checker.exclusivity'), state: hasExclusivity, setter: setHasExclusivity },
                   ].map((q) => (
                     <div key={q.label} className="flex items-center justify-between">
-                      <span className="text-sm text-gray-700">{q.label}</span>
+                      <span className="text-sm text-foreground/80">{q.label}</span>
                       <div className="flex gap-2">
                         <button
                           onClick={() => q.setter(true)}
                           className={`px-3 py-1 rounded text-xs font-medium transition-colors ${
-                            q.state === true ? 'bg-amber-600 text-white' : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'
+                            q.state === true ? 'bg-amber-600 text-white' : 'bg-white border border-border text-muted-foreground hover:bg-muted/50'
                           }`}
                         >
                           {t('checker.yes')}
@@ -360,7 +360,7 @@ export default function ContractTransparencyPage() {
                         <button
                           onClick={() => q.setter(false)}
                           className={`px-3 py-1 rounded text-xs font-medium transition-colors ${
-                            q.state === false ? 'bg-gray-600 text-white' : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'
+                            q.state === false ? 'bg-muted-foreground text-white' : 'bg-white border border-border text-muted-foreground hover:bg-muted/50'
                           }`}
                         >
                           {t('checker.no')}
@@ -411,7 +411,7 @@ export default function ContractTransparencyPage() {
                       )}
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900">
+                      <h3 className="text-lg font-bold text-foreground">
                         {result.contractType.nameIT}
                         <Badge className="ml-3" variant={
                           result.assessment.overallRisk === 'high' ? 'destructive' :
@@ -421,7 +421,7 @@ export default function ContractTransparencyPage() {
                           {t(`risk.${result.assessment.overallRisk}`)}
                         </Badge>
                       </h3>
-                      <p className="text-gray-700 mt-1">{result.assessment.overallMessage}</p>
+                      <p className="text-foreground/80 mt-1">{result.assessment.overallMessage}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -452,12 +452,12 @@ export default function ContractTransparencyPage() {
                           ) : (
                             <AlertTriangle className="h-5 w-5 text-amber-600" />
                           )}
-                          <span className="font-semibold text-gray-900">{flag.message}</span>
+                          <span className="font-semibold text-foreground">{flag.message}</span>
                           <Badge variant={flag.severity === 'critical' ? 'destructive' : 'outline'} className="text-xs">
                             {flag.severity === 'critical' ? t('severity.critical') : t('severity.warning')}
                           </Badge>
                         </div>
-                        <p className="text-sm text-gray-700 ml-7">{flag.detail}</p>
+                        <p className="text-sm text-foreground/80 ml-7">{flag.detail}</p>
                       </div>
                     ))}
                   </CardContent>
@@ -476,7 +476,7 @@ export default function ContractTransparencyPage() {
                       result.payFairness.status === 'below_minimum' ? 'bg-red-50 border border-red-200' :
                       'bg-amber-50 border border-amber-200'
                     }`}>
-                      <p className="text-sm text-gray-700">{result.payFairness.detail}</p>
+                      <p className="text-sm text-foreground/80">{result.payFairness.detail}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -497,15 +497,15 @@ export default function ContractTransparencyPage() {
                       const meta = RIGHTS_LABELS[key]
                       if (!meta) return null
                       return (
-                        <div key={key} className={`flex items-start gap-3 p-3 rounded-lg ${hasRight ? 'bg-green-50' : 'bg-gray-50'}`}>
+                        <div key={key} className={`flex items-start gap-3 p-3 rounded-lg ${hasRight ? 'bg-green-50' : 'bg-muted/50'}`}>
                           {hasRight ? (
                             <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
                           ) : (
-                            <XCircle className="h-5 w-5 text-gray-400 flex-shrink-0 mt-0.5" />
+                            <XCircle className="h-5 w-5 text-muted-foreground/60 flex-shrink-0 mt-0.5" />
                           )}
                           <div>
-                            <div className="font-medium text-sm text-gray-900">{meta.label}</div>
-                            <div className="text-xs text-gray-600">{meta.description}</div>
+                            <div className="font-medium text-sm text-foreground">{meta.label}</div>
+                            <div className="text-xs text-muted-foreground">{meta.description}</div>
                           </div>
                         </div>
                       )
@@ -526,7 +526,7 @@ export default function ContractTransparencyPage() {
                   <CardContent>
                     <ul className="space-y-3">
                       {result.tips.map((tip, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                        <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
                           <ArrowRight className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
                           {tip}
                         </li>
@@ -551,7 +551,7 @@ export default function ContractTransparencyPage() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">{t('salary.inputLabel')}</label>
+                <label className="block text-sm font-medium text-foreground/80 mb-2">{t('salary.inputLabel')}</label>
                 <div className="flex gap-3">
                   <Input
                     type="number"
@@ -572,13 +572,13 @@ export default function ContractTransparencyPage() {
 
               {/* Quick presets */}
               <div>
-                <p className="text-sm text-gray-500 mb-2">{t('salary.quickPresets')}</p>
+                <p className="text-sm text-muted-foreground mb-2">{t('salary.quickPresets')}</p>
                 <div className="flex flex-wrap gap-2">
                   {[18000, 22000, 25000, 28000, 32000, 40000].map((val) => (
                     <button
                       key={val}
                       onClick={() => { setSalaryRal(String(val)); calculateNetSalary(val) }}
-                      className="px-3 py-1.5 rounded-full border border-gray-300 text-sm hover:bg-primary/10 hover:border-primary transition-colors"
+                      className="px-3 py-1.5 rounded-full border border-border text-sm hover:bg-primary/10 hover:border-primary transition-colors"
                     >
                       €{val.toLocaleString()}
                     </button>
@@ -590,35 +590,35 @@ export default function ContractTransparencyPage() {
                 <div className="space-y-6 pt-4 border-t">
                   {/* Net result highlight */}
                   <div className="bg-primary/5 border-2 border-primary/20 rounded-xl p-6 text-center">
-                    <p className="text-sm text-gray-600 mb-1">{t('salary.yourNetMonthly')}</p>
+                    <p className="text-sm text-muted-foreground mb-1">{t('salary.yourNetMonthly')}</p>
                     <div className="text-4xl font-bold text-primary">
                       €{salaryResult.netMonthly.toLocaleString()}
                     </div>
-                    <p className="text-sm text-gray-500 mt-1">
+                    <p className="text-sm text-muted-foreground mt-1">
                       {t('salary.netAnnual')}: €{salaryResult.netAnnual.toLocaleString()}
                     </p>
                   </div>
 
                   {/* Breakdown */}
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">{t('salary.breakdown')}</h4>
+                    <h4 className="font-semibold text-foreground mb-3">{t('salary.breakdown')}</h4>
                     <div className="space-y-2">
                       {[
-                        { label: t('salary.grossAnnual'), value: Number(salaryRal), color: 'text-gray-900' },
+                        { label: t('salary.grossAnnual'), value: Number(salaryRal), color: 'text-foreground' },
                         { label: t('salary.inps'), value: -salaryResult.inps, color: 'text-red-600' },
                         { label: t('salary.irpef'), value: -salaryResult.irpef, color: 'text-red-600' },
                         { label: t('salary.regional'), value: -salaryResult.regional, color: 'text-red-600' },
                         { label: t('salary.municipal'), value: -salaryResult.municipal, color: 'text-red-600' },
                       ].map((row) => (
-                        <div key={row.label} className="flex justify-between items-center py-2 px-3 rounded bg-gray-50">
-                          <span className="text-sm text-gray-700">{row.label}</span>
+                        <div key={row.label} className="flex justify-between items-center py-2 px-3 rounded bg-muted/50">
+                          <span className="text-sm text-foreground/80">{row.label}</span>
                           <span className={`text-sm font-medium ${row.color}`}>
                             {row.value > 0 ? '' : '−'} €{Math.abs(row.value).toLocaleString()}
                           </span>
                         </div>
                       ))}
                       <div className="flex justify-between items-center py-2 px-3 rounded bg-primary/10 border border-primary/20">
-                        <span className="text-sm font-semibold text-gray-900">{t('salary.netResult')}</span>
+                        <span className="text-sm font-semibold text-foreground">{t('salary.netResult')}</span>
                         <span className="text-sm font-bold text-primary">€{salaryResult.netAnnual.toLocaleString()}</span>
                       </div>
                     </div>
@@ -638,8 +638,8 @@ export default function ContractTransparencyPage() {
                   </div>
 
                   {/* Gross monthly info */}
-                  <div className="text-sm text-gray-600 flex items-start gap-2">
-                    <Info className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5" />
+                  <div className="text-sm text-muted-foreground flex items-start gap-2">
+                    <Info className="h-4 w-4 text-muted-foreground/60 flex-shrink-0 mt-0.5" />
                     <span>{t('salary.thirteenthNote')}</span>
                   </div>
                 </div>
@@ -651,8 +651,8 @@ export default function ContractTransparencyPage() {
         {/* ─── CONTRACT GUIDE ─── */}
         <TabsContent value="guide" className="space-y-6">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">{t('guide.title')}</h2>
-            <p className="text-gray-600">{t('guide.subtitle')}</p>
+            <h2 className="text-2xl font-bold text-foreground mb-2">{t('guide.title')}</h2>
+            <p className="text-muted-foreground">{t('guide.subtitle')}</p>
           </div>
 
           {CONTRACT_TYPES.map((ct) => {
@@ -666,16 +666,16 @@ export default function ContractTransparencyPage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-700 mb-3">{t(`guide.types.${key}.description`)}</p>
+                  <p className="text-sm text-foreground/80 mb-3">{t(`guide.types.${key}.description`)}</p>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
                     {[
                       { label: t('guide.labels.protection'), value: t(`guide.types.${key}.protection`) },
                       { label: t('guide.labels.typicalDuration'), value: t(`guide.types.${key}.duration`) },
                       { label: t('guide.labels.bestFor'), value: t(`guide.types.${key}.bestFor`) },
                     ].map((item) => (
-                      <div key={item.label} className="bg-gray-50 rounded p-2">
-                        <div className="text-gray-500 mb-0.5">{item.label}</div>
-                        <div className="font-medium text-gray-900">{item.value}</div>
+                      <div key={item.label} className="bg-muted/50 rounded p-2">
+                        <div className="text-muted-foreground mb-0.5">{item.label}</div>
+                        <div className="font-medium text-foreground">{item.value}</div>
                       </div>
                     ))}
                   </div>
@@ -688,8 +688,8 @@ export default function ContractTransparencyPage() {
         {/* ─── RED FLAGS ─── */}
         <TabsContent value="redflags" className="space-y-6">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">{t('redFlags.title')}</h2>
-            <p className="text-gray-600">{t('redFlags.subtitle')}</p>
+            <h2 className="text-2xl font-bold text-foreground mb-2">{t('redFlags.title')}</h2>
+            <p className="text-muted-foreground">{t('redFlags.subtitle')}</p>
           </div>
 
           {[0, 1, 2, 3, 4, 5, 6].map((i) => (
@@ -701,7 +701,7 @@ export default function ContractTransparencyPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-700 mb-3">{t(`redFlags.items.${i}.description`)}</p>
+                <p className="text-sm text-foreground/80 mb-3">{t(`redFlags.items.${i}.description`)}</p>
                 <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-1">
                     <Info className="h-4 w-4 text-green-600" />

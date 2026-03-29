@@ -76,14 +76,14 @@ export default function ProfessorStudentsPage() {
     <div className="container max-w-6xl py-8 space-y-6">
       <div>
         <h1 className="text-3xl font-bold">{t('students.title')}</h1>
-        <p className="text-gray-600 mt-1">{t('students.subtitle')}</p>
+        <p className="text-muted-foreground mt-1">{t('students.subtitle')}</p>
       </div>
 
       {students.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <Users className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-500">{t('students.empty')}</p>
+            <Users className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
+            <p className="text-muted-foreground">{t('students.empty')}</p>
           </CardContent>
         </Card>
       ) : (
@@ -96,16 +96,16 @@ export default function ProfessorStudentsPage() {
                     <GraduationCap className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">{student.studentName}</p>
+                    <p className="font-medium text-foreground">{student.studentName}</p>
                     {student.university && (
-                      <p className="text-sm text-gray-500">{student.university}</p>
+                      <p className="text-sm text-muted-foreground">{student.university}</p>
                     )}
                   </div>
                 </div>
                 <div className="space-y-2">
                   {student.projects.map((p, i) => (
                     <div key={i} className="flex items-center justify-between text-sm">
-                      <span className="text-gray-700 truncate mr-2">{p.title}</span>
+                      <span className="text-foreground/80 truncate mr-2">{p.title}</span>
                       <div className="flex items-center gap-2 flex-shrink-0">
                         {p.rating && (
                           <div className="flex items-center gap-0.5">
@@ -117,7 +117,7 @@ export default function ProfessorStudentsPage() {
                           variant="outline"
                           className={`text-xs ${
                             p.status === 'VERIFIED' ? 'text-primary' :
-                            p.status === 'PENDING' ? 'text-amber-600' : 'text-gray-500'
+                            p.status === 'PENDING' ? 'text-amber-600' : 'text-muted-foreground'
                           }`}
                         >
                           {p.status}

@@ -229,7 +229,7 @@ export default function CertificationsPage() {
         {/* Progress header */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-muted-foreground">
               Question {currentIndex + 1} of {questions.length}
             </span>
             <span className="text-sm font-medium">{progress}%</span>
@@ -241,10 +241,10 @@ export default function CertificationsPage() {
         {q && (
           <Card className="mb-6">
             <CardContent className="p-6">
-              <p className="text-sm text-gray-400 mb-2 uppercase tracking-wide">
+              <p className="text-sm text-muted-foreground/60 mb-2 uppercase tracking-wide">
                 {q.dimension}
               </p>
-              <p className="text-lg font-medium text-gray-900 mb-6">
+              <p className="text-lg font-medium text-foreground mb-6">
                 {q.questionText}
               </p>
 
@@ -263,14 +263,14 @@ export default function CertificationsPage() {
                     className={`w-full flex items-center gap-3 p-3 rounded-lg border text-left transition-colors ${
                       answers[q.id] === option.value
                         ? 'border-primary bg-primary/5 text-primary'
-                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                        : 'border-border hover:border-border hover:bg-muted/50'
                     }`}
                   >
                     <div
                       className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
                         answers[q.id] === option.value
                           ? 'border-primary bg-primary'
-                          : 'border-gray-300'
+                          : 'border-border'
                       }`}
                     >
                       {answers[q.id] === option.value && (
@@ -337,7 +337,7 @@ export default function CertificationsPage() {
                   ? 'bg-primary'
                   : answers[q.id] !== undefined
                     ? 'bg-primary'
-                    : 'bg-gray-200'
+                    : 'bg-muted'
               }`}
               title={`Question ${i + 1}`}
             />
@@ -357,8 +357,8 @@ export default function CertificationsPage() {
         <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
           <CheckCircle2 className="h-8 w-8 text-primary" />
         </div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Assessment Complete!</h2>
-        <p className="text-gray-600 mb-6">
+        <h2 className="text-2xl font-bold text-foreground mb-2">Assessment Complete!</h2>
+        <p className="text-muted-foreground mb-6">
           Your responses have been analyzed. View your results below.
         </p>
         <Button
@@ -387,8 +387,8 @@ export default function CertificationsPage() {
     <div className="max-w-5xl mx-auto pb-8">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-xl font-semibold text-gray-900">Psychometric Certifications</h1>
-          <p className="text-sm text-gray-500 mt-1">
+          <h1 className="text-xl font-semibold text-foreground">Psychometric Certifications</h1>
+          <p className="text-sm text-muted-foreground mt-1">
             Take assessments to certify your soft skills and behavioral profile
           </p>
         </div>
@@ -465,10 +465,10 @@ export default function CertificationsPage() {
                 ].map((dim) => (
                   <div key={dim.label}>
                     <div className="flex justify-between text-xs mb-1">
-                      <span className="text-gray-600">{dim.label}</span>
+                      <span className="text-muted-foreground">{dim.label}</span>
                       <span className="font-medium">{dim.value}%</span>
                     </div>
-                    <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                    <div className="h-2 bg-muted rounded-full overflow-hidden">
                       <div className={`h-full ${dim.color} rounded-full`} style={{ width: `${dim.value}%` }} />
                     </div>
                   </div>
@@ -500,7 +500,7 @@ export default function CertificationsPage() {
                     ).map((s: string, i: number) => (
                       <div key={i} className="flex items-center gap-2 text-sm">
                         <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
-                        <span className="text-gray-700">{s}</span>
+                        <span className="text-foreground/80">{s}</span>
                       </div>
                     ))}
                   </div>
@@ -512,7 +512,7 @@ export default function CertificationsPage() {
       )}
 
       {/* Available Assessments */}
-      <h2 className="font-medium text-gray-900 mb-3">
+      <h2 className="font-medium text-foreground mb-3">
         {completedAssessments.length > 0 ? 'Take Another Assessment' : 'Available Assessments'}
       </h2>
       <div className="grid md:grid-cols-2 gap-4 mb-8">
@@ -534,7 +534,7 @@ export default function CertificationsPage() {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-medium text-gray-900">{at.label}</h3>
+                      <h3 className="font-medium text-foreground">{at.label}</h3>
                       {existing && (
                         <Badge className="bg-primary/10 text-green-700 text-xs">Completed</Badge>
                       )}
@@ -542,9 +542,9 @@ export default function CertificationsPage() {
                         <Badge className="bg-amber-100 text-amber-700 text-xs">In Progress</Badge>
                       )}
                     </div>
-                    <p className="text-sm text-gray-500 mb-3">{at.description}</p>
+                    <p className="text-sm text-muted-foreground mb-3">{at.description}</p>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-400">
+                      <span className="text-xs text-muted-foreground/60">
                         {at.questions} questions · ~{at.time}
                       </span>
                       <Button
@@ -581,7 +581,7 @@ export default function CertificationsPage() {
       {/* Past assessments list */}
       {assessments.length > 0 && (
         <>
-          <h2 className="font-medium text-gray-900 mb-3">Assessment History</h2>
+          <h2 className="font-medium text-foreground mb-3">Assessment History</h2>
           <div className="space-y-2">
             {assessments.map((a) => {
               const config = ASSESSMENT_TYPES.find((t) => t.type === a.assessmentType)
@@ -590,14 +590,14 @@ export default function CertificationsPage() {
                   key={a.id}
                   className="flex items-center gap-3 p-3 bg-white border rounded-lg"
                 >
-                  <div className={`w-8 h-8 rounded bg-gray-100 flex items-center justify-center`}>
-                    {config ? <config.icon className="h-4 w-4 text-gray-500" /> : <BarChart3 className="h-4 w-4 text-gray-500" />}
+                  <div className={`w-8 h-8 rounded bg-muted flex items-center justify-center`}>
+                    {config ? <config.icon className="h-4 w-4 text-muted-foreground" /> : <BarChart3 className="h-4 w-4 text-muted-foreground" />}
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-foreground">
                       {config?.label || a.assessmentType}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-muted-foreground">
                       {new Date(a.timeStarted).toLocaleDateString()}
                     </p>
                   </div>

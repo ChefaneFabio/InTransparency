@@ -256,8 +256,8 @@ export default function ProjectVerificationDetailPage() {
               </div>
             )}
             <div>
-              <h1 className="text-2xl font-semibold text-gray-900">{project.title}</h1>
-              <p className="text-gray-600 mt-1">
+              <h1 className="text-2xl font-semibold text-foreground">{project.title}</h1>
+              <p className="text-muted-foreground mt-1">
                 {project.discipline?.replace(/_/g, ' ')}
                 {project.projectType && ` - ${project.projectType}`}
               </p>
@@ -277,14 +277,14 @@ export default function ProjectVerificationDetailPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="text-sm font-medium text-gray-500 mb-1">Description</h4>
-                <p className="text-gray-700 whitespace-pre-wrap">{project.description}</p>
+                <h4 className="text-sm font-medium text-muted-foreground mb-1">Description</h4>
+                <p className="text-foreground/80 whitespace-pre-wrap">{project.description}</p>
               </div>
 
               {project.outcome && (
                 <div>
-                  <h4 className="text-sm font-medium text-gray-500 mb-1">Outcome</h4>
-                  <p className="text-gray-700">{project.outcome}</p>
+                  <h4 className="text-sm font-medium text-muted-foreground mb-1">Outcome</h4>
+                  <p className="text-foreground/80">{project.outcome}</p>
                 </div>
               )}
 
@@ -324,19 +324,19 @@ export default function ProjectVerificationDetailPage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t">
                 {project.duration && (
                   <div className="flex items-center gap-2 text-sm">
-                    <Calendar className="h-4 w-4 text-gray-400" />
+                    <Calendar className="h-4 w-4 text-muted-foreground/60" />
                     <span>{project.duration}</span>
                   </div>
                 )}
                 {project.teamSize && (
                   <div className="flex items-center gap-2 text-sm">
-                    <Users className="h-4 w-4 text-gray-400" />
+                    <Users className="h-4 w-4 text-muted-foreground/60" />
                     <span>{project.teamSize} {project.teamSize === 1 ? 'person' : 'people'}</span>
                   </div>
                 )}
                 {project.role && (
                   <div className="flex items-center gap-2 text-sm">
-                    <Star className="h-4 w-4 text-gray-400" />
+                    <Star className="h-4 w-4 text-muted-foreground/60" />
                     <span>{project.role}</span>
                   </div>
                 )}
@@ -356,8 +356,8 @@ export default function ProjectVerificationDetailPage() {
               <div className="grid grid-cols-2 gap-4">
                 {(project.courseName || course?.courseName) && (
                   <div>
-                    <h4 className="text-sm font-medium text-gray-500">Course</h4>
-                    <p className="text-gray-900">
+                    <h4 className="text-sm font-medium text-muted-foreground">Course</h4>
+                    <p className="text-foreground">
                       {project.courseCode || course?.courseCode}
                       {' - '}
                       {project.courseName || course?.courseName}
@@ -366,20 +366,20 @@ export default function ProjectVerificationDetailPage() {
                 )}
                 {(project.semester || course?.semester) && (
                   <div>
-                    <h4 className="text-sm font-medium text-gray-500">Semester</h4>
-                    <p className="text-gray-900">{project.semester || course?.semester}</p>
+                    <h4 className="text-sm font-medium text-muted-foreground">Semester</h4>
+                    <p className="text-foreground">{project.semester || course?.semester}</p>
                   </div>
                 )}
                 {(project.professor || course?.professorName) && (
                   <div>
-                    <h4 className="text-sm font-medium text-gray-500">Professor</h4>
-                    <p className="text-gray-900">{project.professor || course?.professorName}</p>
+                    <h4 className="text-sm font-medium text-muted-foreground">Professor</h4>
+                    <p className="text-foreground">{project.professor || course?.professorName}</p>
                   </div>
                 )}
                 {project.grade && (
                   <div>
-                    <h4 className="text-sm font-medium text-gray-500">Grade</h4>
-                    <p className="text-gray-900 font-semibold">{project.grade}</p>
+                    <h4 className="text-sm font-medium text-muted-foreground">Grade</h4>
+                    <p className="text-foreground font-semibold">{project.grade}</p>
                   </div>
                 )}
               </div>
@@ -400,8 +400,8 @@ export default function ProjectVerificationDetailPage() {
                   <div key={endorsement.id} className="p-4 bg-primary/5 rounded-lg">
                     <div className="flex items-start justify-between">
                       <div>
-                        <p className="font-medium text-gray-900">{endorsement.professorName}</p>
-                        <p className="text-sm text-gray-600">
+                        <p className="font-medium text-foreground">{endorsement.professorName}</p>
+                        <p className="text-sm text-muted-foreground">
                           {endorsement.professorTitle && `${endorsement.professorTitle}, `}
                           {endorsement.department && `${endorsement.department}, `}
                           {endorsement.university}
@@ -413,7 +413,7 @@ export default function ProjectVerificationDetailPage() {
                       </Badge>
                     </div>
                     {endorsement.endorsementText && (
-                      <p className="text-gray-700 mt-3 italic">
+                      <p className="text-foreground/80 mt-3 italic">
                         "{endorsement.endorsementText}"
                       </p>
                     )}
@@ -446,16 +446,16 @@ export default function ProjectVerificationDetailPage() {
                       href={file.fileUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-3 rounded-lg border hover:bg-gray-50 transition-colors"
+                      className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors"
                     >
-                      <FileText className="h-5 w-5 text-gray-400" />
+                      <FileText className="h-5 w-5 text-muted-foreground/60" />
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900">{file.fileName}</p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-sm font-medium text-foreground">{file.fileName}</p>
+                        <p className="text-xs text-muted-foreground">
                           {(file.fileSize / 1024).toFixed(1)} KB
                         </p>
                       </div>
-                      <ExternalLink className="h-4 w-4 text-gray-400" />
+                      <ExternalLink className="h-4 w-4 text-muted-foreground/60" />
                     </a>
                   ))}
                 </div>
@@ -480,27 +480,27 @@ export default function ProjectVerificationDetailPage() {
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="font-medium text-gray-900">{student.name}</p>
-                  <p className="text-sm text-gray-600">{student.email}</p>
+                  <p className="font-medium text-foreground">{student.name}</p>
+                  <p className="text-sm text-muted-foreground">{student.email}</p>
                 </div>
               </div>
               <div className="space-y-2 text-sm">
                 {student.degree && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Degree</span>
-                    <span className="text-gray-900">{student.degree}</span>
+                    <span className="text-muted-foreground">Degree</span>
+                    <span className="text-foreground">{student.degree}</span>
                   </div>
                 )}
                 {student.graduationYear && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Graduation</span>
-                    <span className="text-gray-900">{student.graduationYear}</span>
+                    <span className="text-muted-foreground">Graduation</span>
+                    <span className="text-foreground">{student.graduationYear}</span>
                   </div>
                 )}
                 {student.gpa && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">GPA</span>
-                    <span className="text-gray-900">{student.gpa}</span>
+                    <span className="text-muted-foreground">GPA</span>
+                    <span className="text-foreground">{student.gpa}</span>
                   </div>
                 )}
               </div>
@@ -567,8 +567,8 @@ export default function ProjectVerificationDetailPage() {
               {isVerified && project.verifiedAt && (
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Verified on</span>
-                    <span className="text-gray-900">
+                    <span className="text-muted-foreground">Verified on</span>
+                    <span className="text-foreground">
                       {new Date(project.verifiedAt).toLocaleDateString()}
                     </span>
                   </div>
@@ -577,8 +577,8 @@ export default function ProjectVerificationDetailPage() {
 
               {project.verificationMessage && (
                 <div className="pt-4 border-t">
-                  <p className="text-sm font-medium text-gray-500 mb-1">Message</p>
-                  <p className="text-sm text-gray-700">{project.verificationMessage}</p>
+                  <p className="text-sm font-medium text-muted-foreground mb-1">Message</p>
+                  <p className="text-sm text-foreground/80">{project.verificationMessage}</p>
                 </div>
               )}
             </CardContent>
@@ -595,10 +595,10 @@ export default function ProjectVerificationDetailPage() {
                   {project.complexityScore && (
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-gray-600">Complexity</span>
+                        <span className="text-muted-foreground">Complexity</span>
                         <span className="font-medium">{project.complexityScore}/100</span>
                       </div>
-                      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="h-2 bg-muted rounded-full overflow-hidden">
                         <div
                           className="h-full bg-primary rounded-full"
                           style={{ width: `${project.complexityScore}%` }}
@@ -609,10 +609,10 @@ export default function ProjectVerificationDetailPage() {
                   {project.innovationScore && (
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-gray-600">Innovation</span>
+                        <span className="text-muted-foreground">Innovation</span>
                         <span className="font-medium">{project.innovationScore}/100</span>
                       </div>
-                      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="h-2 bg-muted rounded-full overflow-hidden">
                         <div
                           className="h-full bg-primary/50 rounded-full"
                           style={{ width: `${project.innovationScore}%` }}
@@ -623,10 +623,10 @@ export default function ProjectVerificationDetailPage() {
                   {project.marketRelevance && (
                     <div>
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-gray-600">Market Relevance</span>
+                        <span className="text-muted-foreground">Market Relevance</span>
                         <span className="font-medium">{project.marketRelevance}/100</span>
                       </div>
-                      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="h-2 bg-muted rounded-full overflow-hidden">
                         <div
                           className="h-full bg-primary/50 rounded-full"
                           style={{ width: `${project.marketRelevance}%` }}

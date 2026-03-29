@@ -42,7 +42,7 @@ export default function SkillPathPage() {
   if (error === 'unauthorized') {
     return (
       <div className="max-w-5xl mx-auto py-8 text-center">
-        <p className="text-gray-500">{t('unauthorized')}</p>
+        <p className="text-muted-foreground">{t('unauthorized')}</p>
       </div>
     )
   }
@@ -63,12 +63,12 @@ export default function SkillPathPage() {
   if (!data?.data || (data as any).isEmpty) {
     return (
       <div className="max-w-5xl mx-auto py-8">
-        <h1 className="text-xl font-semibold text-gray-900 mb-6">{t('title')}</h1>
+        <h1 className="text-xl font-semibold text-foreground mb-6">{t('title')}</h1>
         <Card>
           <CardContent className="py-12 text-center">
-            <FolderOpen className="h-12 w-12 mx-auto text-gray-300 mb-4" />
-            <h3 className="font-medium text-gray-900 mb-2">{t('emptyState.title')}</h3>
-            <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
+            <FolderOpen className="h-12 w-12 mx-auto text-muted-foreground/40 mb-4" />
+            <h3 className="font-medium text-foreground mb-2">{t('emptyState.title')}</h3>
+            <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto">
               {t('emptyState.description')}
             </p>
             <Button asChild>
@@ -94,9 +94,9 @@ export default function SkillPathPage() {
         <div className="flex items-start gap-4">
           <HireabilityGauge score={skillData.hireabilityScore} size={140} />
           <div className="pt-2">
-            <h1 className="text-xl font-semibold text-gray-900">{t('title')}</h1>
-            <p className="text-sm text-gray-500 mt-1">{t('subtitle')}</p>
-            <div className="flex items-center gap-2 mt-2 text-xs text-gray-400">
+            <h1 className="text-xl font-semibold text-foreground">{t('title')}</h1>
+            <p className="text-sm text-muted-foreground mt-1">{t('subtitle')}</p>
+            <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground/60">
               <Clock className="h-3 w-3" />
               {t('lastUpdated', { date: new Date(skillData.generatedAt).toLocaleDateString() })}
             </div>
@@ -124,8 +124,8 @@ export default function SkillPathPage() {
           <div className="flex items-center gap-3">
             <Sparkles className="h-5 w-5 text-primary" />
             <div>
-              <p className="text-sm font-medium text-gray-900">{t('premiumUpsell.title')}</p>
-              <p className="text-xs text-gray-600">{t('premiumUpsell.description')}</p>
+              <p className="text-sm font-medium text-foreground">{t('premiumUpsell.title')}</p>
+              <p className="text-xs text-muted-foreground">{t('premiumUpsell.description')}</p>
             </div>
           </div>
           <Button size="sm" asChild>
@@ -212,7 +212,7 @@ export default function SkillPathPage() {
                       </div>
                       <div className="flex items-center gap-2">
                         <Progress value={gap.currentLevel} className="h-1.5 flex-1" />
-                        <span className="text-xs text-gray-500">{gap.currentLevel}%</span>
+                        <span className="text-xs text-muted-foreground">{gap.currentLevel}%</span>
                       </div>
                     </div>
                   </div>
@@ -263,7 +263,7 @@ export default function SkillPathPage() {
                   <Progress value={skillData.careerPaths[0].matchScore} className="h-2 mb-3" />
                   {skillData.careerPaths[0].missingSkills.length > 0 && (
                     <div>
-                      <p className="text-xs text-gray-500 mb-1">{t('overview.skillsToLearn')}</p>
+                      <p className="text-xs text-muted-foreground mb-1">{t('overview.skillsToLearn')}</p>
                       <div className="flex flex-wrap gap-1">
                         {skillData.careerPaths[0].missingSkills.map((s) => (
                           <Badge key={s} variant="outline" className="text-xs">{s}</Badge>
@@ -297,10 +297,10 @@ export default function SkillPathPage() {
 
             {/* Skill Gaps */}
             <div>
-              <h3 className="font-medium text-gray-900 mb-3">{t('skills.gapsTitle')}</h3>
+              <h3 className="font-medium text-foreground mb-3">{t('skills.gapsTitle')}</h3>
               {isLimited && skillData.skillGaps.length >= tierLimits.maxGaps && (
-                <div className="mb-3 p-3 bg-gray-50 border rounded-lg flex items-center justify-between">
-                  <span className="text-sm text-gray-600">
+                <div className="mb-3 p-3 bg-muted/50 border rounded-lg flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">
                     <Lock className="h-3.5 w-3.5 inline mr-1" />
                     {t('skills.limitedGaps', { shown: tierLimits.maxGaps, total: (data as any).totalGaps || 0 })}
                   </span>
@@ -327,7 +327,7 @@ export default function SkillPathPage() {
                     <div key={skill.name} className="flex items-center gap-3">
                       <span className="text-sm font-medium w-32 truncate">{skill.name}</span>
                       <Progress value={skill.level} className="h-1.5 flex-1" />
-                      <span className="text-xs text-gray-500 w-8 text-right">{skill.level}%</span>
+                      <span className="text-xs text-muted-foreground w-8 text-right">{skill.level}%</span>
                       <Badge variant="secondary" className="text-xs">
                         {skill.projectCount} {skill.projectCount === 1 ? 'project' : 'projects'}
                       </Badge>
@@ -344,9 +344,9 @@ export default function SkillPathPage() {
           {!tierLimits.hasRoadmap ? (
             <Card>
               <CardContent className="py-12 text-center">
-                <Lock className="h-8 w-8 mx-auto text-gray-300 mb-3" />
-                <h3 className="font-medium text-gray-900 mb-2">{t('roadmap.lockedTitle')}</h3>
-                <p className="text-sm text-gray-500 mb-4 max-w-md mx-auto">
+                <Lock className="h-8 w-8 mx-auto text-muted-foreground/40 mb-3" />
+                <h3 className="font-medium text-foreground mb-2">{t('roadmap.lockedTitle')}</h3>
+                <p className="text-sm text-muted-foreground mb-4 max-w-md mx-auto">
                   {t('roadmap.lockedDescription')}
                 </p>
                 <Button asChild>
@@ -374,7 +374,7 @@ export default function SkillPathPage() {
         <TabsContent value="projects">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="font-medium text-gray-900">{t('projects.title')}</h3>
+              <h3 className="font-medium text-foreground">{t('projects.title')}</h3>
               {isLimited && (
                 <Badge variant="outline" className="text-xs">
                   {t('projects.showingLimited', {
@@ -392,8 +392,8 @@ export default function SkillPathPage() {
             </div>
 
             {isLimited && skillData.projectIdeas.length < ((data as any).totalProjectIdeas || 0) && (
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600 mb-2">
+              <div className="text-center p-4 bg-muted/50 rounded-lg">
+                <p className="text-sm text-muted-foreground mb-2">
                   {t('projects.moreAvailable', { count: ((data as any).totalProjectIdeas || 0) - skillData.projectIdeas.length })}
                 </p>
                 <Button size="sm" variant="outline" asChild>
@@ -408,7 +408,7 @@ export default function SkillPathPage() {
         <TabsContent value="careers">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="font-medium text-gray-900">{t('careers.title')}</h3>
+              <h3 className="font-medium text-foreground">{t('careers.title')}</h3>
               {isLimited && (
                 <Badge variant="outline" className="text-xs">
                   {t('careers.showingLimited', {
@@ -422,8 +422,8 @@ export default function SkillPathPage() {
             <CareerPathComparison paths={skillData.careerPaths} />
 
             {isLimited && skillData.careerPaths.length < ((data as any).totalCareerPaths || 0) && (
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600 mb-2">
+              <div className="text-center p-4 bg-muted/50 rounded-lg">
+                <p className="text-sm text-muted-foreground mb-2">
                   {t('careers.moreAvailable', { count: ((data as any).totalCareerPaths || 0) - skillData.careerPaths.length })}
                 </p>
                 <Button size="sm" variant="outline" asChild>

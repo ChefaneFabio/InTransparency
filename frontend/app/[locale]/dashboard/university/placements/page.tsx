@@ -160,8 +160,8 @@ export default function UniversityPlacementsPage() {
         <div className="flex items-center gap-3">
           <BarChart3 className="h-7 w-7 text-primary" />
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
-            <p className="text-sm text-gray-600">{t('subtitle')}</p>
+            <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
+            <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
           </div>
         </div>
         <Button variant="outline" size="sm">
@@ -181,7 +181,7 @@ export default function UniversityPlacementsPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold">{stat.value}</p>
-                  <p className="text-xs text-gray-500">{stat.label}</p>
+                  <p className="text-xs text-muted-foreground">{stat.label}</p>
                 </div>
               </div>
             </CardContent>
@@ -195,7 +195,7 @@ export default function UniversityPlacementsPage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">{t('trendChart.title')}</CardTitle>
-            <p className="text-sm text-gray-500">{t('trendChart.subtitle')}</p>
+            <p className="text-sm text-muted-foreground">{t('trendChart.subtitle')}</p>
           </CardHeader>
           <CardContent>
             {monthlyTrend.length > 0 ? (
@@ -225,7 +225,7 @@ export default function UniversityPlacementsPage() {
                 </LineChart>
               </ResponsiveContainer>
             ) : (
-              <div className="h-[280px] flex items-center justify-center text-gray-400">
+              <div className="h-[280px] flex items-center justify-center text-muted-foreground/60">
                 {t('noData')}
               </div>
             )}
@@ -236,7 +236,7 @@ export default function UniversityPlacementsPage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">{t('topCompanies.title')}</CardTitle>
-            <p className="text-sm text-gray-500">{t('topCompanies.subtitle')}</p>
+            <p className="text-sm text-muted-foreground">{t('topCompanies.subtitle')}</p>
           </CardHeader>
           <CardContent>
             {topCompanies.length > 0 ? (
@@ -255,9 +255,9 @@ export default function UniversityPlacementsPage() {
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <div className="h-[280px] flex items-center justify-center text-gray-400">
+              <div className="h-[280px] flex items-center justify-center text-muted-foreground/60">
                 <div className="text-center">
-                  <Building2 className="h-10 w-10 mx-auto mb-2 text-gray-300" />
+                  <Building2 className="h-10 w-10 mx-auto mb-2 text-muted-foreground/40" />
                   <p>{t('noData')}</p>
                 </div>
               </div>
@@ -278,35 +278,35 @@ export default function UniversityPlacementsPage() {
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <table className="w-full">
-                  <thead className="bg-gray-50 border-b">
+                  <thead className="bg-muted/50 border-b">
                     <tr>
-                      <th className="text-left p-4 font-medium text-gray-600">{t('table.student')}</th>
-                      <th className="text-left p-4 font-medium text-gray-600">{t('table.company')}</th>
-                      <th className="text-left p-4 font-medium text-gray-600">{t('table.jobTitle')}</th>
-                      <th className="text-left p-4 font-medium text-gray-600">{t('table.startDate')}</th>
-                      <th className="text-left p-4 font-medium text-gray-600">{t('table.confirmedDate')}</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">{t('table.student')}</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">{t('table.company')}</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">{t('table.jobTitle')}</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">{t('table.startDate')}</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">{t('table.confirmedDate')}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y">
                     {recentPlacements.length > 0 ? (
                       recentPlacements.map((p) => (
-                        <tr key={p.id} className="hover:bg-gray-50">
+                        <tr key={p.id} className="hover:bg-muted/50">
                           <td className="p-4">
                             <div>
-                              <p className="font-medium text-gray-900">{p.studentName}</p>
+                              <p className="font-medium text-foreground">{p.studentName}</p>
                               {p.department && (
-                                <p className="text-sm text-gray-500">{p.department}</p>
+                                <p className="text-sm text-muted-foreground">{p.department}</p>
                               )}
                             </div>
                           </td>
                           <td className="p-4">
                             <div className="flex items-center gap-2">
-                              <Building2 className="h-4 w-4 text-gray-400" />
+                              <Building2 className="h-4 w-4 text-muted-foreground/60" />
                               <span className="font-medium">{p.company}</span>
                             </div>
                           </td>
-                          <td className="p-4 text-gray-900">{p.jobTitle || '-'}</td>
-                          <td className="p-4 text-gray-600">
+                          <td className="p-4 text-foreground">{p.jobTitle || '-'}</td>
+                          <td className="p-4 text-muted-foreground">
                             {p.startDate
                               ? new Date(p.startDate).toLocaleDateString('en-GB', {
                                   day: 'numeric',
@@ -334,8 +334,8 @@ export default function UniversityPlacementsPage() {
                     ) : (
                       <tr>
                         <td colSpan={5} className="p-12 text-center">
-                          <Briefcase className="h-10 w-10 text-gray-300 mx-auto mb-3" />
-                          <p className="text-gray-500">{t('noRecentPlacements')}</p>
+                          <Briefcase className="h-10 w-10 text-muted-foreground/40 mx-auto mb-3" />
+                          <p className="text-muted-foreground">{t('noRecentPlacements')}</p>
                         </td>
                       </tr>
                     )}
@@ -351,32 +351,32 @@ export default function UniversityPlacementsPage() {
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <table className="w-full">
-                  <thead className="bg-gray-50 border-b">
+                  <thead className="bg-muted/50 border-b">
                     <tr>
-                      <th className="text-left p-4 font-medium text-gray-600">{t('deptTable.department')}</th>
-                      <th className="text-left p-4 font-medium text-gray-600">{t('deptTable.contacted')}</th>
-                      <th className="text-left p-4 font-medium text-gray-600">{t('deptTable.hired')}</th>
-                      <th className="text-left p-4 font-medium text-gray-600">{t('deptTable.placementRate')}</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">{t('deptTable.department')}</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">{t('deptTable.contacted')}</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">{t('deptTable.hired')}</th>
+                      <th className="text-left p-4 font-medium text-muted-foreground">{t('deptTable.placementRate')}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y">
                     {departmentBreakdown.length > 0 ? (
                       departmentBreakdown.map((dept) => (
-                        <tr key={dept.department} className="hover:bg-gray-50">
-                          <td className="p-4 font-medium text-gray-900">{dept.department}</td>
-                          <td className="p-4 text-gray-600">{dept.contacted}</td>
+                        <tr key={dept.department} className="hover:bg-muted/50">
+                          <td className="p-4 font-medium text-foreground">{dept.department}</td>
+                          <td className="p-4 text-muted-foreground">{dept.contacted}</td>
                           <td className="p-4">
                             <span className="font-semibold text-emerald-600">{dept.hired}</span>
                           </td>
                           <td className="p-4">
                             <div className="flex items-center gap-2">
-                              <div className="w-24 h-2 bg-gray-100 rounded-full overflow-hidden">
+                              <div className="w-24 h-2 bg-muted rounded-full overflow-hidden">
                                 <div
                                   className="h-full bg-emerald-500 rounded-full"
                                   style={{ width: `${Math.min(dept.rate, 100)}%` }}
                                 />
                               </div>
-                              <span className="text-sm font-medium text-gray-700">{dept.rate}%</span>
+                              <span className="text-sm font-medium text-foreground/80">{dept.rate}%</span>
                             </div>
                           </td>
                         </tr>
@@ -384,8 +384,8 @@ export default function UniversityPlacementsPage() {
                     ) : (
                       <tr>
                         <td colSpan={4} className="p-12 text-center">
-                          <Users className="h-10 w-10 text-gray-300 mx-auto mb-3" />
-                          <p className="text-gray-500">{t('noDepartmentData')}</p>
+                          <Users className="h-10 w-10 text-muted-foreground/40 mx-auto mb-3" />
+                          <p className="text-muted-foreground">{t('noDepartmentData')}</p>
                         </td>
                       </tr>
                     )}
