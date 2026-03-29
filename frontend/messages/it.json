@@ -917,7 +917,9 @@
       "howItWorks": "Come Funziona",
       "faq": "FAQ",
       "blog": "Blog",
-      "contact": "Contatti"
+      "contact": "Contatti",
+      "vsLinkedIn": "vs LinkedIn",
+      "vsAlmaLaurea": "vs AlmaLaurea"
     },
     "companyLinks": {
       "about": "Chi Siamo",
@@ -9237,6 +9239,268 @@
       "title": "Accesso Programmatico",
       "description": "Devi integrare con i tuoi sistemi esistenti? Usa la nostra API per la sincronizzazione automatica dei dati.",
       "button": "Vedi Documentazione API"
+    }
+  },
+  "compare": {
+    "hero": {
+      "title": "Come si confronta InTransparency",
+      "subtitle": "Scopri come i portfolio accademici verificati si confrontano con gli strumenti di assunzione tradizionali."
+    },
+    "cards": {
+      "linkedin": {
+        "title": "InTransparency vs LinkedIn",
+        "description": "LinkedIn si basa su competenze auto-dichiarate. InTransparency verifica ogni competenza attraverso i dati universitari e il lavoro su progetti.",
+        "button": "Vedi il confronto"
+      },
+      "almalaurea": {
+        "title": "InTransparency vs AlmaLaurea",
+        "description": "AlmaLaurea raccoglie dati una volta all'anno tramite sondaggi. InTransparency traccia i risultati in tempo reale e collega studenti e aziende direttamente.",
+        "button": "Vedi il confronto"
+      },
+      "cv": {
+        "title": "InTransparency vs CV Tradizionali",
+        "description": "I CV sono statici, non verificati e soggetti a bias. InTransparency sostituisce gli elenchi puntati con portfolio di progetti verificati.",
+        "button": "Vedi il confronto"
+      }
+    }
+  },
+  "compareLinkedIn": {
+    "hero": {
+      "title": "InTransparency vs LinkedIn",
+      "subtitle": "LinkedIn è costruito per professionisti esperti. Per assumere neolaureati, servono prove accademiche verificate, non endorsement auto-dichiarati."
+    },
+    "table": {
+      "title": "Confronto Funzionalità",
+      "themLabel": "LinkedIn",
+      "usLabel": "InTransparency",
+      "rows": {
+        "0": {
+          "feature": "Verifica competenze",
+          "them": "Auto-dichiarate",
+          "us": "Verificate dall'università"
+        },
+        "1": {
+          "feature": "Prova progetti",
+          "them": "Nessun portfolio progetti",
+          "us": "Progetti verificati"
+        },
+        "2": {
+          "feature": "Visibilità voti",
+          "them": "Nessun dato accademico",
+          "us": "Voti EU normalizzati"
+        },
+        "3": {
+          "feature": "Per assunzioni junior",
+          "them": "Ottimizzato per profili senior",
+          "us": "Costruito per neolaureati"
+        },
+        "4": {
+          "feature": "Costo recruiter",
+          "them": "€8.000+/anno per Recruiter",
+          "us": "Ricerca gratuita, paga per contatto"
+        },
+        "5": {
+          "feature": "AI matching",
+          "them": "Matching per parole chiave",
+          "us": "Matching semantico competenze + progetti"
+        }
+      }
+    },
+    "differentiators": {
+      "title": "Perché InTransparency Vince per le Assunzioni Junior",
+      "cards": {
+        "0": {
+          "title": "Verificato, non auto-dichiarato",
+          "description": "Ogni competenza supportata da un progetto universitario. Non endorsement da sconosciuti."
+        },
+        "1": {
+          "title": "Costruito per assunzioni junior",
+          "description": "LinkedIn funziona per profili senior con esperienza. Per i neolaureati, servono prove concrete dei progetti."
+        },
+        "2": {
+          "title": "Normalizzazione voti europea",
+          "description": "Un 28/30 italiano = 1.7 tedesco = 15/20 francese. LinkedIn non sa tradurre questo."
+        }
+      }
+    },
+    "cta": {
+      "title": "Inizia a cercare talenti verificati",
+      "subtitle": "Trova neolaureati con competenze dimostrate, non solo profili curati.",
+      "button": "Inizia gratis"
+    }
+  },
+  "compareAlmaLaurea": {
+    "hero": {
+      "title": "InTransparency vs AlmaLaurea",
+      "subtitle": "AlmaLaurea racconta il passato. InTransparency collega studenti e aziende in tempo reale."
+    },
+    "table": {
+      "title": "Confronto Funzionalità",
+      "themLabel": "AlmaLaurea",
+      "usLabel": "InTransparency",
+      "rows": {
+        "0": {
+          "feature": "Aggiornamento dati",
+          "them": "Sondaggi annuali, mesi di ritardo",
+          "us": "Tracciamento in tempo reale"
+        },
+        "1": {
+          "feature": "Tasso di risposta",
+          "them": "15-20% risposte al sondaggio",
+          "us": "100% degli studenti registrati"
+        },
+        "2": {
+          "feature": "Accesso aziende",
+          "them": "Nessun accesso diretto recruiter",
+          "us": "Le aziende cercano e contattano direttamente"
+        },
+        "3": {
+          "feature": "Visibilità progetti",
+          "them": "Nessun portfolio progetti",
+          "us": "Progetti verificati visibili"
+        },
+        "4": {
+          "feature": "Internazionale",
+          "them": "Solo Italia",
+          "us": "Normalizzazione voti EU"
+        },
+        "5": {
+          "feature": "Costo per università",
+          "them": "€2.500+/anno",
+          "us": "Piattaforma base gratuita"
+        }
+      }
+    },
+    "differentiators": {
+      "title": "Perché le Università Scelgono InTransparency",
+      "cards": {
+        "0": {
+          "title": "Tempo reale, non annuale",
+          "description": "Monitora i placement quando avvengono, non 12 mesi dopo."
+        },
+        "1": {
+          "title": "Le aziende trovano i tuoi studenti",
+          "description": "AlmaLaurea riporta statistiche. InTransparency collega studenti e aziende direttamente."
+        },
+        "2": {
+          "title": "Gratuito per le università",
+          "description": "Piattaforma base senza costi. Risparmia €2.500/anno rispetto ad AlmaLaurea."
+        }
+      }
+    },
+    "cta": {
+      "title": "Prenota una demo per la tua università",
+      "subtitle": "Scopri come InTransparency può sostituire i report basati su sondaggi obsoleti.",
+      "button": "Prenota una demo"
+    }
+  },
+  "compareCV": {
+    "hero": {
+      "title": "InTransparency vs CV Tradizionali",
+      "subtitle": "I CV permettono a chiunque di dichiarare qualsiasi cosa. InTransparency mostra lavoro verificato, non elenchi auto-descritti."
+    },
+    "table": {
+      "title": "Confronto Funzionalità",
+      "themLabel": "CV Tradizionale",
+      "usLabel": "InTransparency",
+      "rows": {
+        "0": {
+          "feature": "Verifica",
+          "them": "Chiunque può dichiarare qualsiasi cosa",
+          "us": "Progetti verificati dall'università"
+        },
+        "1": {
+          "feature": "Prova del lavoro",
+          "them": "Elenchi puntati che descrivono attività",
+          "us": "Codice, documenti e risultati reali"
+        },
+        "2": {
+          "feature": "Bias",
+          "them": "Bias su foto, età, nome",
+          "us": "Scoperta basata sulle competenze"
+        },
+        "3": {
+          "feature": "Aggiornamento",
+          "them": "PDF statico, spesso obsoleto",
+          "us": "Portfolio dinamico, sempre aggiornato"
+        },
+        "4": {
+          "feature": "Soft skills",
+          "them": "Tratti caratteriali auto-descritti",
+          "us": "Valutazioni psicometriche validate"
+        },
+        "5": {
+          "feature": "Scoperta",
+          "them": "Lo studente deve candidarsi",
+          "us": "Le aziende scoprono i talenti proattivamente"
+        }
+      }
+    },
+    "differentiators": {
+      "title": "Perché i Portfolio Verificati Battono i CV",
+      "cards": {
+        "0": {
+          "title": "Mostra, non raccontare",
+          "description": "Un progetto verificato vale più di una pagina di elenchi puntati."
+        },
+        "1": {
+          "title": "Prima le competenze, non il CV",
+          "description": "Le aziende cercano per competenze, progetti e voti. Non per chi ha il PDF meglio formattato."
+        },
+        "2": {
+          "title": "Fatti scoprire",
+          "description": "Smetti di inviare 100 candidature. Costruisci il tuo portfolio una volta, fatti trovare dalle aziende giuste."
+        }
+      }
+    },
+    "cta": {
+      "title": "Costruisci il tuo portfolio verificato",
+      "subtitle": "Sostituisci il tuo CV con una vetrina dinamica e verificata del tuo percorso accademico.",
+      "button": "Crea il tuo portfolio"
+    }
+  },
+  "newProject": {
+    "title": "Nuovo Progetto",
+    "subtitle": "Descrivi il tuo progetto — l'AI si occupa del resto.",
+    "back": "Indietro",
+    "backToEdit": "Modifica",
+    "error": "Errore nella creazione del progetto. Riprova.",
+    "steps": {
+      "describe": "Descrivi",
+      "review": "Conferma"
+    },
+    "input": {
+      "title": "Racconta il tuo progetto",
+      "description": "Scrivi titolo e descrizione. L'AI analizzerà automaticamente competenze, strumenti e categoria.",
+      "projectTitle": "Titolo",
+      "titlePlaceholder": "es. App per la gestione del magazzino",
+      "projectDescription": "Descrizione",
+      "descriptionPlaceholder": "Cosa hai costruito? Qual era il problema? Come l'hai risolto? Quali tecnologie hai usato?",
+      "descriptionHint": "Più dettagli scrivi, migliore sarà l'analisi AI.",
+      "githubUrl": "Link GitHub o repository (opzionale)",
+      "analyzing": "Analisi in corso...",
+      "analyzeButton": "Analizza e Continua"
+    },
+    "review": {
+      "aiDetected": "Rilevato dall'AI",
+      "skills": "Competenze",
+      "skillsHint": "Suggerite dall'AI. Aggiungi o rimuovi come vuoi.",
+      "addSkill": "Aggiungi competenza...",
+      "tools": "Strumenti",
+      "toolsHint": "Suggeriti dall'AI. Aggiungi o rimuovi come vuoi.",
+      "addTool": "Aggiungi strumento...",
+      "image": "Immagine (opzionale)",
+      "uploadImage": "Clicca per caricare un'immagine",
+      "uploading": "Caricamento...",
+      "academic": "Contesto Accademico (opzionale)",
+      "academicHint": "Collega a un corso per la verifica universitaria.",
+      "courseName": "Corso",
+      "courseNamePlaceholder": "es. Machine Learning",
+      "grade": "Voto",
+      "professor": "Professore",
+      "professorPlaceholder": "es. Prof. Rossi",
+      "creating": "Creazione in corso...",
+      "createButton": "Crea Progetto"
     }
   }
 }

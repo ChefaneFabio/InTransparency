@@ -69,6 +69,8 @@ export function Footer() {
       { name: tFooter('resourceLinks.faq'), href: '/faq' },
       { name: tFooter('resourceLinks.blog'), href: '/blog' },
       { name: tFooter('resourceLinks.contact'), href: '/contact' },
+      { name: tFooter('resourceLinks.vsLinkedIn'), href: '/compare/linkedin' },
+      { name: tFooter('resourceLinks.vsAlmaLaurea'), href: '/compare/almalaurea' },
     ],
     company: [
       { name: tFooter('companyLinks.about'), href: '/about' },

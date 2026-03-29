@@ -917,7 +917,9 @@
       "howItWorks": "How It Works",
       "faq": "FAQ",
       "blog": "Blog",
-      "contact": "Contact"
+      "contact": "Contact",
+      "vsLinkedIn": "vs LinkedIn",
+      "vsAlmaLaurea": "vs AlmaLaurea"
     },
     "companyLinks": {
       "about": "About",
@@ -9210,6 +9212,268 @@
       "title": "Programmatic Access",
       "description": "Need to integrate with your existing systems? Use our API for automated data sync.",
       "button": "View API Docs"
+    }
+  },
+  "compare": {
+    "hero": {
+      "title": "How InTransparency Compares",
+      "subtitle": "See how verified academic portfolios stack up against traditional hiring tools."
+    },
+    "cards": {
+      "linkedin": {
+        "title": "InTransparency vs LinkedIn",
+        "description": "LinkedIn relies on self-reported skills. InTransparency verifies every claim through university records and project work.",
+        "button": "See the comparison"
+      },
+      "almalaurea": {
+        "title": "InTransparency vs AlmaLaurea",
+        "description": "AlmaLaurea surveys graduates once a year. InTransparency tracks outcomes in real time and connects students to employers directly.",
+        "button": "See the comparison"
+      },
+      "cv": {
+        "title": "InTransparency vs Traditional CVs",
+        "description": "CVs are static, unverified, and biased. InTransparency replaces bullet points with verified project portfolios.",
+        "button": "See the comparison"
+      }
+    }
+  },
+  "compareLinkedIn": {
+    "hero": {
+      "title": "InTransparency vs LinkedIn",
+      "subtitle": "LinkedIn is built for experienced professionals. For graduate hiring, you need verified academic proof, not self-reported endorsements."
+    },
+    "table": {
+      "title": "Feature Comparison",
+      "themLabel": "LinkedIn",
+      "usLabel": "InTransparency",
+      "rows": {
+        "0": {
+          "feature": "Skills verification",
+          "them": "Self-reported",
+          "us": "University-verified"
+        },
+        "1": {
+          "feature": "Project proof",
+          "them": "No project portfolios",
+          "us": "Verified project work"
+        },
+        "2": {
+          "feature": "Grade visibility",
+          "them": "No academic data",
+          "us": "Normalized EU grades"
+        },
+        "3": {
+          "feature": "For junior hiring",
+          "them": "Optimized for experienced hires",
+          "us": "Built for graduates"
+        },
+        "4": {
+          "feature": "Recruiter cost",
+          "them": "€8,000+/year for Recruiter",
+          "us": "Free to browse, pay per contact"
+        },
+        "5": {
+          "feature": "AI matching",
+          "them": "Keyword matching",
+          "us": "Semantic skill + project matching"
+        }
+      }
+    },
+    "differentiators": {
+      "title": "Why InTransparency Wins for Graduate Hiring",
+      "cards": {
+        "0": {
+          "title": "Verified, not self-reported",
+          "description": "Every skill backed by a university project. Not endorsements from strangers."
+        },
+        "1": {
+          "title": "Built for junior hiring",
+          "description": "LinkedIn works for senior hires with track records. For graduates, you need project proof."
+        },
+        "2": {
+          "title": "European grade normalization",
+          "description": "A 28/30 Italian grade = 1.7 German = 15/20 French. LinkedIn can't translate this."
+        }
+      }
+    },
+    "cta": {
+      "title": "Start searching verified talent",
+      "subtitle": "Find graduates with proven skills, not just polished profiles.",
+      "button": "Get started free"
+    }
+  },
+  "compareAlmaLaurea": {
+    "hero": {
+      "title": "InTransparency vs AlmaLaurea",
+      "subtitle": "AlmaLaurea reports on the past. InTransparency connects students to employers in real time."
+    },
+    "table": {
+      "title": "Feature Comparison",
+      "themLabel": "AlmaLaurea",
+      "usLabel": "InTransparency",
+      "rows": {
+        "0": {
+          "feature": "Data freshness",
+          "them": "Annual surveys, months delayed",
+          "us": "Real-time tracking"
+        },
+        "1": {
+          "feature": "Response rate",
+          "them": "15-20% survey response",
+          "us": "100% of registered students"
+        },
+        "2": {
+          "feature": "Company access",
+          "them": "No direct recruiter access",
+          "us": "Companies search and contact directly"
+        },
+        "3": {
+          "feature": "Project visibility",
+          "them": "No project portfolios",
+          "us": "Verified project work visible"
+        },
+        "4": {
+          "feature": "Cross-border",
+          "them": "Italy only",
+          "us": "EU-wide grade normalization"
+        },
+        "5": {
+          "feature": "Cost for universities",
+          "them": "€2,500+/year",
+          "us": "Free core platform"
+        }
+      }
+    },
+    "differentiators": {
+      "title": "Why Universities Choose InTransparency",
+      "cards": {
+        "0": {
+          "title": "Real-time, not annual",
+          "description": "Track placements as they happen, not 12 months later."
+        },
+        "1": {
+          "title": "Companies find your students",
+          "description": "AlmaLaurea reports stats. InTransparency connects students to employers directly."
+        },
+        "2": {
+          "title": "Free for universities",
+          "description": "Core platform at no cost. Save €2,500/year vs AlmaLaurea."
+        }
+      }
+    },
+    "cta": {
+      "title": "Schedule a demo for your university",
+      "subtitle": "See how InTransparency can replace outdated survey-based reporting.",
+      "button": "Book a demo"
+    }
+  },
+  "compareCV": {
+    "hero": {
+      "title": "InTransparency vs Traditional CVs",
+      "subtitle": "CVs let anyone claim anything. InTransparency shows verified work, not self-described bullet points."
+    },
+    "table": {
+      "title": "Feature Comparison",
+      "themLabel": "Traditional CV",
+      "usLabel": "InTransparency",
+      "rows": {
+        "0": {
+          "feature": "Verification",
+          "them": "Anyone can claim anything",
+          "us": "University-verified projects"
+        },
+        "1": {
+          "feature": "Proof of work",
+          "them": "Bullet points describing tasks",
+          "us": "Actual project code, docs, outcomes"
+        },
+        "2": {
+          "feature": "Bias",
+          "them": "Photo, age, name bias",
+          "us": "Skills-first discovery"
+        },
+        "3": {
+          "feature": "Freshness",
+          "them": "Static PDF, often outdated",
+          "us": "Living portfolio, always current"
+        },
+        "4": {
+          "feature": "Soft skills",
+          "them": "Self-described personality traits",
+          "us": "Validated psychometric assessments"
+        },
+        "5": {
+          "feature": "Discovery",
+          "them": "Student must apply",
+          "us": "Companies discover talent proactively"
+        }
+      }
+    },
+    "differentiators": {
+      "title": "Why Verified Portfolios Beat CVs",
+      "cards": {
+        "0": {
+          "title": "Show, don't tell",
+          "description": "A verified project is worth more than a page of bullet points."
+        },
+        "1": {
+          "title": "Skills-first, not CV-first",
+          "description": "Companies search by skills, projects, and grades. Not by who has the best-formatted PDF."
+        },
+        "2": {
+          "title": "Get discovered",
+          "description": "Stop sending 100 applications. Build your portfolio once, get found by the right companies."
+        }
+      }
+    },
+    "cta": {
+      "title": "Build your verified portfolio",
+      "subtitle": "Replace your CV with a living, verified showcase of your academic work.",
+      "button": "Create your portfolio"
+    }
+  },
+  "newProject": {
+    "title": "New Project",
+    "subtitle": "Describe your project — AI handles the rest.",
+    "back": "Back",
+    "backToEdit": "Edit",
+    "error": "Failed to create project. Please try again.",
+    "steps": {
+      "describe": "Describe",
+      "review": "Review"
+    },
+    "input": {
+      "title": "Tell us about your project",
+      "description": "Write the title and description. AI will automatically detect skills, tools, and category.",
+      "projectTitle": "Title",
+      "titlePlaceholder": "e.g. Warehouse Management App",
+      "projectDescription": "Description",
+      "descriptionPlaceholder": "What did you build? What was the problem? How did you solve it? What technologies did you use?",
+      "descriptionHint": "The more details you write, the better the AI analysis.",
+      "githubUrl": "GitHub or repository link (optional)",
+      "analyzing": "Analyzing...",
+      "analyzeButton": "Analyze & Continue"
+    },
+    "review": {
+      "aiDetected": "AI Detected",
+      "skills": "Skills",
+      "skillsHint": "Suggested by AI. Add or remove as needed.",
+      "addSkill": "Add skill...",
+      "tools": "Tools",
+      "toolsHint": "Suggested by AI. Add or remove as needed.",
+      "addTool": "Add tool...",
+      "image": "Image (optional)",
+      "uploadImage": "Click to upload an image",
+      "uploading": "Uploading...",
+      "academic": "Academic Context (optional)",
+      "academicHint": "Link to a course for university verification.",
+      "courseName": "Course",
+      "courseNamePlaceholder": "e.g. Machine Learning",
+      "grade": "Grade",
+      "professor": "Professor",
+      "professorPlaceholder": "e.g. Prof. Smith",
+      "creating": "Creating...",
+      "createButton": "Create Project"
     }
   }
 }
