@@ -9534,6 +9534,16 @@
         "HYBRID": "Ibrido",
         "ON_SITE": "In sede"
       }
+    },
+    "chat": {
+      "welcome": "Descrivi il ruolo che stai cercando. Puoi incollare un annuncio esistente o semplicemente descriverlo.",
+      "placeholder": "es. Junior React developer, Milano, stage 6 mesi...",
+      "send": "Invia",
+      "analyzing": "Analisi...",
+      "result": "Ecco cosa ho estratto:",
+      "followUp": "Modifica quello che vuoi, poi pubblica quando sei pronto.",
+      "post": "Pubblica",
+      "posting": "Pubblicazione..."
     }
   },
   "candidateSummary": {
@@ -9708,5 +9718,53 @@
         "large": "20+ assunzioni/anno"
       }
     }
+  },
+  "studentImport": {
+    "title": "Aggiungi Studenti",
+    "subtitle": "Invita studenti a unirsi alla tua istituzione sulla piattaforma.",
+    "welcome": "Come vuoi aggiungere studenti?",
+    "options": {
+      "paste": "Incolla email",
+      "csv": "Carica CSV",
+      "single": "Aggiungi uno studente"
+    },
+    "paste": {
+      "label": "Incolla email studenti (una per riga)",
+      "placeholder": "mario.rossi@studenti.unibg.it\nlaura.bianchi@studenti.unibg.it",
+      "count": "{count} email trovate",
+      "send": "Invia Inviti",
+      "sending": "Invio..."
+    },
+    "csv": {
+      "upload": "Scegli file CSV",
+      "preview": "Anteprima: {count} studenti trovati",
+      "import": "Importa {count} Studenti",
+      "importing": "Importazione..."
+    },
+    "single": {
+      "email": "Email Studente",
+      "firstName": "Nome (opzionale)",
+      "lastName": "Cognome (opzionale)",
+      "degree": "Corso (opzionale)",
+      "send": "Invia Invito"
+    },
+    "back": "Indietro",
+    "success": "Studenti invitati con successo!",
+    "note": "Gli studenti riceveranno un'email per completare il profilo."
+  },
+  "addStudent": {
+    "title": "Invita uno Studente",
+    "subtitle": "Invia un invito. Lo studente completa il proprio profilo.",
+    "email": "Email Studente",
+    "emailPlaceholder": "mario.rossi@studenti.unibg.it",
+    "firstName": "Nome (opzionale)",
+    "lastName": "Cognome (opzionale)",
+    "degree": "Corso di Laurea (opzionale)",
+    "degreePlaceholder": "es. Informatica",
+    "send": "Invia Invito",
+    "sending": "Invio...",
+    "note": "Lo studente riceverà un invito via email per unirsi alla tua istituzione e completare il profilo.",
+    "success": "Invito inviato!",
+    "back": "Indietro"
   }
 }

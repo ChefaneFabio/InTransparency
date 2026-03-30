@@ -9507,6 +9507,16 @@
         "HYBRID": "Hybrid",
         "ON_SITE": "On-site"
       }
+    },
+    "chat": {
+      "welcome": "Describe the role you're hiring for. You can paste an existing job description or just tell me about it.",
+      "placeholder": "e.g. Junior React developer, Milan, 6-month internship...",
+      "send": "Send",
+      "analyzing": "Analyzing...",
+      "result": "Here's what I extracted:",
+      "followUp": "Edit anything above, then post when ready.",
+      "post": "Post Job",
+      "posting": "Posting..."
     }
   },
   "candidateSummary": {
@@ -9681,5 +9691,53 @@
         "large": "20+ hires/year"
       }
     }
+  },
+  "studentImport": {
+    "title": "Add Students",
+    "subtitle": "Invite students to join your institution on the platform.",
+    "welcome": "How would you like to add students?",
+    "options": {
+      "paste": "Paste emails",
+      "csv": "Upload CSV",
+      "single": "Add one student"
+    },
+    "paste": {
+      "label": "Paste student emails (one per line)",
+      "placeholder": "mario.rossi@studenti.unibg.it\nlaura.bianchi@studenti.unibg.it",
+      "count": "{count} emails found",
+      "send": "Send Invitations",
+      "sending": "Sending..."
+    },
+    "csv": {
+      "upload": "Choose CSV file",
+      "preview": "Preview: {count} students found",
+      "import": "Import {count} Students",
+      "importing": "Importing..."
+    },
+    "single": {
+      "email": "Student Email",
+      "firstName": "First Name (optional)",
+      "lastName": "Last Name (optional)",
+      "degree": "Degree (optional)",
+      "send": "Send Invitation"
+    },
+    "back": "Back",
+    "success": "Students invited successfully!",
+    "note": "Students will receive an email to complete their profile."
+  },
+  "addStudent": {
+    "title": "Invite a Student",
+    "subtitle": "Send an invitation. The student completes their own profile.",
+    "email": "Student Email",
+    "emailPlaceholder": "mario.rossi@studenti.unibg.it",
+    "firstName": "First Name (optional)",
+    "lastName": "Last Name (optional)",
+    "degree": "Degree (optional)",
+    "degreePlaceholder": "e.g. Computer Science",
+    "send": "Send Invitation",
+    "sending": "Sending...",
+    "note": "The student will receive an email invitation to join your institution and complete their profile.",
+    "success": "Invitation sent!",
+    "back": "Back"
   }
 }

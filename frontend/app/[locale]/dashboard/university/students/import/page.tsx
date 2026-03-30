@@ -1,286 +1,236 @@
 'use client'
 
 import { useState } from 'react'
-import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import { Loader2 } from 'lucide-react'
 import { Link } from '@/navigation'
-import { ArrowLeft, Upload, FileText, CheckCircle, AlertCircle, Download, Loader2, XCircle } from 'lucide-react'
 
-interface ImportError {
-  row: number
-  email?: string
-  errors: string[]
+type Mode = null | 'paste' | 'csv' | 'single'
+
+interface CsvRow {
+  email: string
+  first_name: string
+  last_name: string
 }
 
-interface ImportResult {
-  success: number
-  failed: number
-  skipped: number
-  total: number
-  errors: ImportError[]
-  message: string
+const parseCsv = (text: string): CsvRow[] => {
+  const lines = text.split(/\r?\n/).filter(l => l.trim())
+  if (lines.length < 2) return []
+  const headers = lines[0].split(',').map(h => h.trim().toLowerCase())
+  const ei = headers.indexOf('email')
+  if (ei === -1) return []
+  const fi = headers.indexOf('first_name')
+  const li = headers.indexOf('last_name')
+  const rows: CsvRow[] = []
+  for (let i = 1; i < lines.length; i++) {
+    const cols = lines[i].split(',').map(c => c.trim())
+    if (cols[ei]) rows.push({ email: cols[ei], first_name: fi !== -1 ? cols[fi] || '' : '', last_name: li !== -1 ? cols[li] || '' : '' })
+  }
+  return rows
 }
 
 export default function ImportStudentsPage() {
-  const { data: session } = useSession()
-  const t = useTranslations('universityDashboard.import')
-  const [file, setFile] = useState<File | null>(null)
-  const [importing, setImporting] = useState(false)
-  const [result, setResult] = useState<ImportResult | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+  const t = useTranslations('studentImport')
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0]
-    if (selectedFile) {
-      if (selectedFile.type === 'text/csv' || selectedFile.name.endsWith('.csv')) {
-        setFile(selectedFile)
-        setResult(null)
-        setError(null)
-      } else {
-        setError(t('selectCsvError'))
-      }
+  const [mode, setMode] = useState<Mode>(null)
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState('')
+  const [error, setError] = useState('')
+
+  // Paste mode
+  const [emailText, setEmailText] = useState('')
+  const emails = emailText.split(/[\n,;]+/).map(e => e.trim()).filter(e => e.includes('@'))
+
+  // CSV mode
+  const [csvFile, setCsvFile] = useState<File | null>(null)
+  const [csvRows, setCsvRows] = useState<CsvRow[]>([])
+
+  // Single mode
+  const [singleEmail, setSingleEmail] = useState('')
+  const [singleFirst, setSingleFirst] = useState('')
+  const [singleLast, setSingleLast] = useState('')
+  const [singleDegree, setSingleDegree] = useState('')
+
+  const handleCsvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setCsvFile(file)
+    const reader = new FileReader()
+    reader.onload = (ev) => {
+      const text = ev.target?.result
+      if (typeof text === 'string') setCsvRows(parseCsv(text))
     }
+    reader.readAsText(file)
   }
 
-  const handleImport = async () => {
-    if (!file) return
+  const handlePasteSubmit = async () => {
+    if (emails.length === 0) return
+    setLoading(true)
+    setError('')
+    try {
+      const csvContent = 'email,first_name,last_name\n' + emails.map(e => `${e},,`).join('\n')
+      const blob = new Blob([csvContent], { type: 'text/csv' })
+      const formData = new FormData()
+      formData.append('file', blob, 'emails.csv')
+      const res = await fetch('/api/dashboard/university/students/import', { method: 'POST', body: formData })
+      if (!res.ok) throw new Error()
+      setSuccess(t('success'))
+      setTimeout(() => router.push('/dashboard/university/students'), 1500)
+    } catch { setError('Import failed') } finally { setLoading(false) }
+  }
 
-    setImporting(true)
-    setError(null)
-
+  const handleCsvSubmit = async () => {
+    if (!csvFile) return
+    setLoading(true)
+    setError('')
     try {
       const formData = new FormData()
-      formData.append('file', file)
-
-      const response = await fetch('/api/dashboard/university/students/import', {
-        method: 'POST',
-        body: formData,
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Import failed')
-      }
-
-      setResult(data)
-    } catch (err: any) {
-      setError(err.message || t('importFailed'))
-    } finally {
-      setImporting(false)
-    }
+      formData.append('file', csvFile)
+      const res = await fetch('/api/dashboard/university/students/import', { method: 'POST', body: formData })
+      if (!res.ok) throw new Error()
+      setSuccess(t('success'))
+      setTimeout(() => router.push('/dashboard/university/students'), 1500)
+    } catch { setError('Import failed') } finally { setLoading(false) }
   }
 
-  const downloadTemplate = () => {
-    const csvContent = "email,first_name,last_name,course,year\nstudent@university.edu,Mario,Rossi,Computer Science,3\nstudent2@university.edu,Laura,Bianchi,Business Administration,2\n"
-    const blob = new Blob([csvContent], { type: 'text/csv' })
-    const url = window.URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'students_template.csv'
-    a.click()
-    window.URL.revokeObjectURL(url)
+  const handleSingleSubmit = async () => {
+    if (!singleEmail.includes('@')) return
+    setLoading(true)
+    setError('')
+    try {
+      const res = await fetch('/api/dashboard/university/students/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: singleEmail, firstName: singleFirst, lastName: singleLast, degree: singleDegree }),
+      })
+      if (!res.ok) throw new Error()
+      setSuccess(t('success'))
+      setTimeout(() => router.push('/dashboard/university/students'), 1500)
+    } catch { setError('Failed to add student') } finally { setLoading(false) }
+  }
+
+  if (success) {
+    return (
+      <div className="max-w-xl mx-auto py-12 text-center space-y-3">
+        <p className="text-lg font-medium text-primary">{success}</p>
+        <p className="text-sm text-muted-foreground">{t('note')}</p>
+      </div>
+    )
   }
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6 pb-12">
-      {/* Header */}
-      <div className="flex items-center gap-4 pt-2">
-        <Button variant="ghost" size="sm" asChild>
-          <Link href="/dashboard/university/students">
-            <ArrowLeft className="h-4 w-4 mr-1" />
-            {t('back')}
-          </Link>
-        </Button>
-        <div>
-          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
-          <p className="text-muted-foreground">{t('subtitle')}</p>
+    <div className="max-w-xl mx-auto space-y-4 py-6">
+      <div>
+        <h1 className="text-2xl font-bold">{t('title')}</h1>
+        <p className="text-muted-foreground text-sm">{t('subtitle')}</p>
+      </div>
+
+      {/* System welcome bubble */}
+      <div className="flex justify-start">
+        <div className="bg-muted rounded-2xl px-4 py-2.5 text-sm max-w-[85%]">{t('welcome')}</div>
+      </div>
+
+      {error && <p className="text-sm text-destructive">{error}</p>}
+
+      {/* Mode selection */}
+      {!mode && (
+        <div className="flex flex-wrap gap-2">
+          <Button variant="outline" onClick={() => setMode('paste')}>{t('options.paste')}</Button>
+          <Button variant="outline" onClick={() => setMode('csv')}>{t('options.csv')}</Button>
+          <Button variant="outline" onClick={() => setMode('single')}>{t('options.single')}</Button>
         </div>
-      </div>
+      )}
 
-      {/* Instructions */}
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('csvFormat')}</CardTitle>
-          <CardDescription>
-            {t('csvFormatDescription')}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="bg-muted/50 rounded-lg p-4 font-mono text-sm mb-4 overflow-x-auto">
-            <p className="text-muted-foreground mb-2"># {t('requiredColumns')}:</p>
-            <p>email, first_name, last_name</p>
-            <p className="text-muted-foreground mt-2 mb-2"># {t('optionalColumns')}:</p>
-            <p>course, year</p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <Button variant="outline" size="sm" onClick={downloadTemplate}>
-              <Download className="h-4 w-4 mr-2" />
-              {t('downloadTemplate')}
-            </Button>
-          </div>
-          <p className="text-xs text-muted-foreground mt-3">
-            {t('fileLimits')}
-          </p>
-        </CardContent>
-      </Card>
-
-      {/* Upload Area */}
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('uploadFile')}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div
-            className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-              file ? 'border-green-300 bg-primary/5' : 'border-border hover:border-blue-400'
-            }`}
-          >
-            {file ? (
-              <div className="space-y-2">
-                <FileText className="h-12 w-12 mx-auto text-primary" />
-                <p className="font-medium text-foreground">{file.name}</p>
-                <p className="text-sm text-muted-foreground">
-                  {(file.size / 1024).toFixed(1)} KB
-                </p>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => {
-                    setFile(null)
-                    setResult(null)
-                    setError(null)
-                  }}
-                >
-                  {t('remove')}
-                </Button>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                <Upload className="h-12 w-12 mx-auto text-muted-foreground/60" />
-                <p className="text-muted-foreground">
-                  {t('dragAndDrop')}
-                </p>
-                <Button variant="outline" asChild>
-                  <label className="cursor-pointer">
-                    <input
-                      type="file"
-                      accept=".csv,text/csv"
-                      onChange={handleFileChange}
-                      className="hidden"
-                    />
-                    {t('chooseFile')}
-                  </label>
-                </Button>
-              </div>
+      {/* Paste emails */}
+      {mode === 'paste' && (
+        <Card>
+          <CardContent className="space-y-3 pt-5">
+            <Label>{t('paste.label')}</Label>
+            <Textarea value={emailText} onChange={e => setEmailText(e.target.value)} placeholder={t('paste.placeholder')} rows={6} />
+            {emails.length > 0 && (
+              <p className="text-sm text-muted-foreground">{t('paste.count', { count: emails.length })}</p>
             )}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Error Message */}
-      {error && (
-        <Card className="border-red-200 bg-red-50">
-          <CardContent className="pt-6">
-            <div className="flex items-start gap-4">
-              <XCircle className="h-6 w-6 text-red-500 flex-shrink-0" />
-              <div>
-                <p className="font-medium text-red-800">{t('importFailed')}</p>
-                <p className="text-sm text-red-600 mt-1">{error}</p>
-              </div>
+            <div className="flex gap-2">
+              <Button variant="ghost" size="sm" onClick={() => setMode(null)}>{t('back')}</Button>
+              <Button onClick={handlePasteSubmit} disabled={emails.length === 0 || loading} className="flex-1">
+                {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />{t('paste.sending')}</> : t('paste.send')}
+              </Button>
             </div>
           </CardContent>
         </Card>
       )}
 
-      {/* Result */}
-      {result && (
-        <Card className={`${
-          result.failed > 0 ? 'border-amber-200' : 'border-primary/20'
-        }`}>
-          <CardContent className="pt-6">
-            <div className="flex items-start gap-4">
-              {result.failed > 0 ? (
-                <AlertCircle className="h-6 w-6 text-amber-500 flex-shrink-0" />
-              ) : (
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0" />
-              )}
-              <div className="flex-1">
-                <p className="font-medium text-foreground">{t('importComplete')}</p>
-                <p className="text-sm text-muted-foreground mt-1">{result.message}</p>
-
-                {/* Stats */}
-                <div className="flex flex-wrap gap-4 mt-4 text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-primary/50" />
-                    <span>{result.success} {t('imported')}</span>
-                  </div>
-                  {result.skipped > 0 && (
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                      <span>{result.skipped} {t('skipped')}</span>
-                    </div>
-                  )}
-                  {result.failed > 0 && (
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-red-500" />
-                      <span>{result.failed} {t('failed')}</span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Error Details */}
-                {result.errors.length > 0 && (
-                  <div className="mt-4">
-                    <p className="text-sm font-medium text-foreground/80 mb-2">
-                      {t('errorDetails')}:
-                    </p>
-                    <div className="bg-muted/50 rounded-lg p-3 max-h-48 overflow-y-auto">
-                      {result.errors.map((err, idx) => (
-                        <div key={idx} className="text-xs text-muted-foreground mb-2 last:mb-0">
-                          <span className="font-medium">{t('row')} {err.row}</span>
-                          {err.email && <span className="text-muted-foreground/60"> ({err.email})</span>}
-                          <span>: {err.errors.join(', ')}</span>
-                        </div>
+      {/* CSV upload */}
+      {mode === 'csv' && (
+        <Card>
+          <CardContent className="space-y-3 pt-5">
+            <Label>{t('csv.upload')}</Label>
+            <Input type="file" accept=".csv" onChange={handleCsvChange} />
+            {csvRows.length > 0 && (
+              <>
+                <p className="text-sm text-muted-foreground">{t('csv.preview', { count: csvRows.length })}</p>
+                <div className="border rounded text-xs">
+                  <table className="w-full">
+                    <thead className="bg-muted/50">
+                      <tr><th className="p-2 text-left">Email</th><th className="p-2 text-left">Name</th></tr>
+                    </thead>
+                    <tbody>
+                      {csvRows.slice(0, 3).map((r, i) => (
+                        <tr key={i} className="border-t"><td className="p-2">{r.email}</td><td className="p-2">{r.first_name} {r.last_name}</td></tr>
                       ))}
-                      {result.errors.length >= 50 && (
-                        <p className="text-xs text-muted-foreground/60 italic mt-2">
-                          {t('showingFirst50')}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            )}
+            <div className="flex gap-2">
+              <Button variant="ghost" size="sm" onClick={() => setMode(null)}>{t('back')}</Button>
+              <Button onClick={handleCsvSubmit} disabled={csvRows.length === 0 || loading} className="flex-1">
+                {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />{t('csv.importing')}</> : t('csv.import', { count: csvRows.length })}
+              </Button>
             </div>
           </CardContent>
         </Card>
       )}
 
-      {/* Import Button */}
-      <div className="flex justify-end gap-3">
-        <Button variant="outline" asChild>
-          <Link href="/dashboard/university/students">{t('cancel')}</Link>
-        </Button>
-        <Button
-          onClick={handleImport}
-          disabled={!file || importing}
-        >
-          {importing ? (
-            <>
-              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-              {t('importing')}
-            </>
-          ) : (
-            <>
-              <Upload className="h-4 w-4 mr-2" />
-              {t('title')}
-            </>
-          )}
-        </Button>
-      </div>
+      {/* Single student */}
+      {mode === 'single' && (
+        <Card>
+          <CardContent className="space-y-3 pt-5">
+            <div>
+              <Label>{t('single.email')}</Label>
+              <Input type="email" value={singleEmail} onChange={e => setSingleEmail(e.target.value)} placeholder="mario.rossi@studenti.unibg.it" className="mt-1" />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label>{t('single.firstName')}</Label>
+                <Input value={singleFirst} onChange={e => setSingleFirst(e.target.value)} className="mt-1" />
+              </div>
+              <div>
+                <Label>{t('single.lastName')}</Label>
+                <Input value={singleLast} onChange={e => setSingleLast(e.target.value)} className="mt-1" />
+              </div>
+            </div>
+            <div>
+              <Label>{t('single.degree')}</Label>
+              <Input value={singleDegree} onChange={e => setSingleDegree(e.target.value)} className="mt-1" />
+            </div>
+            <div className="flex gap-2">
+              <Button variant="ghost" size="sm" onClick={() => setMode(null)}>{t('back')}</Button>
+              <Button onClick={handleSingleSubmit} disabled={!singleEmail.includes('@') || loading} className="flex-1">
+                {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />{t('paste.sending')}</> : t('single.send')}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   )
 }
