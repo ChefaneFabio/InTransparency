@@ -17,33 +17,37 @@ export async function GET(
     // Verify user exists
     const user = await prisma.user.findUnique({ where: { id: userId }, select: { id: true } })
     if (!user) {
-      return NextResponse.json(null, { status: 204 })
+      return new NextResponse(null, { status: 204 })
     }
 
-    // Check cache
+    // Check cache — wrapped in try/catch in case table doesn't exist yet
     const now = new Date()
-    const cached = await prisma.portfolioScore.findFirst({
-      where: {
-        userId,
-        expiresAt: { gt: now },
-      },
-      orderBy: { generatedAt: 'desc' },
-    })
-
-    if (cached) {
-      return NextResponse.json({
-        score: cached.score,
-        badgeLevel: cached.badgeLevel,
-        verificationScore: cached.verificationScore,
-        endorsementScore: cached.endorsementScore,
-        completenessScore: cached.completenessScore,
-        aiAnalysisScore: cached.aiAnalysisScore,
-        activityScore: cached.activityScore,
-        predictionScore: cached.predictionScore,
-        weights: cached.weights,
-        cached: true,
-        generatedAt: cached.generatedAt,
+    try {
+      const cached = await prisma.portfolioScore.findFirst({
+        where: {
+          userId,
+          expiresAt: { gt: now },
+        },
+        orderBy: { generatedAt: 'desc' },
       })
+
+      if (cached) {
+        return NextResponse.json({
+          score: cached.score,
+          badgeLevel: cached.badgeLevel,
+          verificationScore: cached.verificationScore,
+          endorsementScore: cached.endorsementScore,
+          completenessScore: cached.completenessScore,
+          aiAnalysisScore: cached.aiAnalysisScore,
+          activityScore: cached.activityScore,
+          predictionScore: cached.predictionScore,
+          weights: cached.weights,
+          cached: true,
+          generatedAt: cached.generatedAt,
+        })
+      }
+    } catch {
+      // Cache table may not exist — continue to compute fresh
     }
 
     // Compute fresh — if user has no data, return empty score silently
@@ -55,7 +59,7 @@ export async function GET(
       return new NextResponse(null, { status: 204 })
     }
 
-    // Store in cache (24h TTL)
+    // Store in cache (24h TTL) — fail silently if table doesn't exist
     const expiresAt = new Date(now.getTime() + 24 * 60 * 60 * 1000)
     try {
       await prisma.portfolioScore.create({

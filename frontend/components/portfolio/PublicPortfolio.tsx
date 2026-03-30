@@ -71,7 +71,7 @@ export function PublicPortfolio({ user }: PublicPortfolioProps) {
           {/* CTA for Recruiters */}
           <div className="flex items-center justify-center gap-3">
             <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
-              <Link href="/auth/register?role=company">
+              <Link href="/auth/register/recruiter">
                 Contact {user.firstName}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -268,7 +268,7 @@ export function PublicPortfolio({ user }: PublicPortfolioProps) {
             Join {user.firstName} with an institution-verified portfolio on InTransparency
           </p>
           <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-gray-100" asChild>
-            <Link href="/auth/register?role=student">
+            <Link href="/auth/register/student">
               Create Free Portfolio
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>

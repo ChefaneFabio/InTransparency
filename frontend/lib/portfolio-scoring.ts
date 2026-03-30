@@ -130,14 +130,19 @@ export async function computePortfolioScore(userId: string): Promise<PortfolioSc
   const activityScore = Math.max(0, Math.round(100 - (daysSinceUpdate / 3.65)))
 
   // 6. Prediction Score (0-100): from PlacementPrediction
-  const prediction = await prisma.placementPrediction.findFirst({
-    where: { studentId: userId },
-    orderBy: { generatedAt: 'desc' },
-    select: { probability: true },
-  })
-  const predictionScore = prediction
-    ? Math.round(prediction.probability * 100)
-    : 30 // Default baseline
+  let predictionScore = 30 // Default baseline
+  try {
+    const prediction = await prisma.placementPrediction.findFirst({
+      where: { studentId: userId },
+      orderBy: { generatedAt: 'desc' },
+      select: { probability: true },
+    })
+    if (prediction) {
+      predictionScore = Math.round(prediction.probability * 100)
+    }
+  } catch {
+    // Table may not exist yet
+  }
 
   // Weighted total
   const score = Math.round(

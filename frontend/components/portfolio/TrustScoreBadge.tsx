@@ -47,7 +47,7 @@ export default function TrustScoreBadge({ userId, compact = false }: Props) {
     const fetchScore = async () => {
       try {
         const res = await fetch(`/api/portfolio-score/${userId}`)
-        if (res.ok) {
+        if (res.ok && res.status !== 204) {
           setData(await res.json())
         }
       } catch {
