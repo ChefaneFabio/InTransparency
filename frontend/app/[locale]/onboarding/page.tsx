@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from '@/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -56,10 +56,67 @@ const steps = {
   UNIVERSITY: ['Profilo Base', 'Istituzione', 'Dettagli', 'Completa']
 }
 
-const skillOptions = [
-  'JavaScript', 'TypeScript', 'Python', 'Java', 'C++', 'React', 'Node.js',
-  'SQL', 'Machine Learning', 'Data Science', 'AWS', 'Docker', 'Git',
-  'Agile', 'Project Management', 'Communication', 'Leadership'
+const skillGroups: { name: string; icon: string; skills: string[] }[] = [
+  {
+    name: 'Informatica & Sviluppo',
+    icon: '💻',
+    skills: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C++', 'React', 'Node.js', 'SQL', 'Git', 'Docker', 'AWS', 'Mobile Development']
+  },
+  {
+    name: 'Data Science & AI',
+    icon: '🤖',
+    skills: ['Machine Learning', 'Deep Learning', 'Data Analysis', 'Data Visualization', 'NLP', 'Computer Vision', 'Statistics', 'R', 'TensorFlow', 'Power BI']
+  },
+  {
+    name: 'Design & Creatività',
+    icon: '🎨',
+    skills: ['UI/UX Design', 'Graphic Design', 'Figma', 'Adobe Suite', 'Branding', 'Motion Graphics', 'Photography', '3D Modeling', 'Video Editing']
+  },
+  {
+    name: 'Business & Management',
+    icon: '📊',
+    skills: ['Project Management', 'Business Strategy', 'Agile/Scrum', 'Business Plan', 'Lean Management', 'Supply Chain', 'Operations', 'Consulting']
+  },
+  {
+    name: 'Marketing & Comunicazione',
+    icon: '📣',
+    skills: ['Digital Marketing', 'SEO/SEM', 'Content Marketing', 'Social Media', 'Copywriting', 'Public Relations', 'Brand Strategy', 'Email Marketing', 'Analytics']
+  },
+  {
+    name: 'Finanza & Economia',
+    icon: '💰',
+    skills: ['Financial Analysis', 'Accounting', 'Corporate Finance', 'Financial Modeling', 'Risk Management', 'Auditing', 'Taxation', 'Budgeting', 'ESG']
+  },
+  {
+    name: 'Ingegneria & Scienze',
+    icon: '⚙️',
+    skills: ['CAD/CAM', 'MATLAB', 'Mechanical Design', 'Electronics', 'Biomedical', 'Environmental Engineering', 'Materials Science', 'Lab Research', 'Quality Control']
+  },
+  {
+    name: 'Giurisprudenza & Scienze Politiche',
+    icon: '⚖️',
+    skills: ['Diritto Civile', 'Diritto Commerciale', 'GDPR/Privacy', 'Contrattualistica', 'Compliance', 'Public Policy', 'International Relations', 'EU Law']
+  },
+  {
+    name: 'Scienze Umane & Sociali',
+    icon: '📚',
+    skills: ['Psicologia', 'Sociologia', 'Pedagogia', 'Antropologia', 'Filosofia', 'Ricerca Qualitativa', 'Ricerca Quantitativa', 'Mediazione Culturale']
+  },
+  {
+    name: 'Lingue & Traduzione',
+    icon: '🌍',
+    skills: ['Inglese', 'Francese', 'Tedesco', 'Spagnolo', 'Cinese', 'Traduzione', 'Interpretariato', 'Linguistica', 'TESOL']
+  },
+  {
+    name: 'Sanità & Scienze della Vita',
+    icon: '🏥',
+    skills: ['Biologia', 'Chimica', 'Farmacologia', 'Biotecnologie', 'Nutrizione', 'Anatomia', 'Clinical Research', 'Bioinformatics']
+  },
+  {
+    name: 'Soft Skills & Trasversali',
+    icon: '🤝',
+    skills: ['Leadership', 'Teamwork', 'Communication', 'Problem Solving', 'Critical Thinking', 'Time Management', 'Public Speaking', 'Negotiation', 'Creativity']
+  },
 ]
 
 export default function OnboardingPage() {
@@ -84,6 +141,8 @@ export default function OnboardingPage() {
     region: ''
   })
 
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [photoUploading, setPhotoUploading] = useState(false)
   const userRole = (session?.user?.role as UserRole) || 'STUDENT'
   const currentSteps = steps[userRole]
   const progress = ((currentStep + 1) / currentSteps.length) * 100
@@ -126,11 +185,13 @@ export default function OnboardingPage() {
           firstName: data.firstName,
           lastName: data.lastName,
           bio: data.bio,
+          photo: data.photo || undefined,
           university: data.university,
           degree: data.degree,
           graduationYear: data.graduationYear,
           company: data.company,
-          jobTitle: data.jobTitle
+          jobTitle: data.jobTitle,
+          skills: data.skills.length > 0 ? data.skills : undefined
         })
       })
 
@@ -142,6 +203,32 @@ export default function OnboardingPage() {
       console.error('Failed to save profile:', error)
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    setPhotoUploading(true)
+    try {
+      const formData = new FormData()
+      formData.append('image', file)
+      formData.append('folder', 'profiles')
+
+      const res = await fetch('/api/upload/image', {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (res.ok) {
+        const result = await res.json()
+        setData(prev => ({ ...prev, photo: result.url }))
+      }
+    } catch (error) {
+      console.error('Photo upload failed:', error)
+    } finally {
+      setPhotoUploading(false)
     }
   }
 
@@ -216,9 +303,30 @@ export default function OnboardingPage() {
                       <User className="h-12 w-12 text-gray-400" />
                     )}
                   </div>
-                  <Button variant="outline" size="sm">
-                    <Upload className="h-4 w-4 mr-2" />
-                    Carica Foto
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp"
+                    className="hidden"
+                    onChange={handlePhotoUpload}
+                  />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={photoUploading}
+                  >
+                    {photoUploading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Caricamento...
+                      </>
+                    ) : (
+                      <>
+                        <Upload className="h-4 w-4 mr-2" />
+                        Carica Foto
+                      </>
+                    )}
                   </Button>
                 </div>
 
@@ -392,24 +500,44 @@ export default function OnboardingPage() {
                 <div className="text-center mb-6">
                   <Briefcase className="h-12 w-12 text-primary mx-auto mb-2" />
                   <h2 className="text-xl font-semibold">Le tue Competenze</h2>
-                  <p className="text-gray-600 text-sm">Seleziona le competenze che possiedi</p>
+                  <p className="text-gray-600 text-sm">Seleziona le competenze che possiedi tra le diverse aree</p>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
-                  {skillOptions.map(skill => (
-                    <Badge
-                      key={skill}
-                      variant={data.skills.includes(skill) ? 'default' : 'outline'}
-                      className="cursor-pointer py-2 px-3"
-                      onClick={() => toggleSkill(skill)}
-                    >
-                      {data.skills.includes(skill) && <Check className="h-3 w-3 mr-1" />}
-                      {skill}
-                    </Badge>
-                  ))}
+                <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+                  {skillGroups.map((group) => {
+                    const selectedInGroup = group.skills.filter(s => data.skills.includes(s)).length
+                    return (
+                      <div key={group.name} className="border rounded-lg p-4">
+                        <div className="flex items-center justify-between mb-3">
+                          <h3 className="font-medium text-sm flex items-center gap-2">
+                            <span>{group.icon}</span>
+                            {group.name}
+                          </h3>
+                          {selectedInGroup > 0 && (
+                            <Badge variant="secondary" className="text-xs">
+                              {selectedInGroup}
+                            </Badge>
+                          )}
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {group.skills.map(skill => (
+                            <Badge
+                              key={skill}
+                              variant={data.skills.includes(skill) ? 'default' : 'outline'}
+                              className="cursor-pointer py-1 px-2.5 text-xs"
+                              onClick={() => toggleSkill(skill)}
+                            >
+                              {data.skills.includes(skill) && <Check className="h-3 w-3 mr-1" />}
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
 
-                <p className="text-sm text-gray-500 text-center">
+                <p className="text-sm text-gray-500 text-center font-medium">
                   {data.skills.length} competenze selezionate
                 </p>
               </div>

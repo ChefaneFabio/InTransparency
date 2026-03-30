@@ -13,7 +13,7 @@ export async function PATCH(request: NextRequest) {
     const userId = session.user.id
 
     const body = await request.json()
-    const { profilePublic, portfolioUrl } = body
+    const { profilePublic, portfolioUrl, firstName, lastName, bio, photo, university, degree, graduationYear, company, jobTitle, skills } = body
 
     // Gate portfolioUrl behind STUDENT_PREMIUM
     if (portfolioUrl !== undefined && portfolioUrl !== null && portfolioUrl !== '') {
@@ -30,14 +30,20 @@ export async function PATCH(request: NextRequest) {
       }
     }
 
-    // Build update data
+    // Build update data — only set fields that were provided
     const updateData: any = {}
-    if (profilePublic !== undefined) {
-      updateData.profilePublic = profilePublic
-    }
-    if (portfolioUrl !== undefined) {
-      updateData.portfolioUrl = portfolioUrl || null
-    }
+    if (profilePublic !== undefined) updateData.profilePublic = profilePublic
+    if (portfolioUrl !== undefined) updateData.portfolioUrl = portfolioUrl || null
+    if (firstName !== undefined) updateData.firstName = firstName
+    if (lastName !== undefined) updateData.lastName = lastName
+    if (bio !== undefined) updateData.bio = bio
+    if (photo !== undefined) updateData.photo = photo
+    if (university !== undefined) updateData.university = university
+    if (degree !== undefined) updateData.degree = degree
+    if (graduationYear !== undefined) updateData.graduationYear = graduationYear
+    if (company !== undefined) updateData.company = company
+    if (jobTitle !== undefined) updateData.jobTitle = jobTitle
+    if (skills !== undefined) updateData.skills = skills
 
     // Update user profile
     const updatedUser = await prisma.user.update({
