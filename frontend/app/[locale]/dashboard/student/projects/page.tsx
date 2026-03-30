@@ -49,9 +49,10 @@ export default function ProjectsPage() {
   }, [projects, searchQuery, categoryFilter, statusFilter, sortBy, sortOrder])
 
   const fetchProjects = async () => {
+    if (!session?.user?.id) return
     try {
       setLoading(true)
-      const response = await fetch('/api/projects')
+      const response = await fetch(`/api/projects?userId=${session.user.id}`)
       const data = await response.json()
       setProjects(data.projects || [])
     } catch (error) {
