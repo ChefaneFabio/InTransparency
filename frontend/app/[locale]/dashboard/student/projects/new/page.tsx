@@ -1,20 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { Loader2, ArrowLeft, Plus, X } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { Loader2, Plus, X } from 'lucide-react'
 import { Link } from '@/navigation'
 
-type Step = 'input' | 'review'
-
-interface AISuggestions {
+interface ProjectData {
   discipline: string
   projectType: string
   skills: string[]
@@ -22,80 +19,42 @@ interface AISuggestions {
   competencies: string[]
 }
 
+interface Message {
+  role: 'system' | 'user'
+  content: string
+  data?: ProjectData
+}
+
 export default function NewProjectPage() {
   const t = useTranslations('newProject')
   const router = useRouter()
 
-  // Step 1: Minimal input
-  const [step, setStep] = useState<Step>('input')
+  const [messages, setMessages] = useState<Message[]>([
+    { role: 'system', content: t('chat.welcome') },
+  ])
+  const [input, setInput] = useState('')
+  const [analyzing, setAnalyzing] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+
+  // Extracted project data (editable)
+  const [projectData, setProjectData] = useState<ProjectData | null>(null)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [githubUrl, setGithubUrl] = useState('')
-
-  // Step 2: AI suggestions + optional overrides
-  const [suggestions, setSuggestions] = useState<AISuggestions | null>(null)
   const [skills, setSkills] = useState<string[]>([])
   const [tools, setTools] = useState<string[]>([])
   const [newSkill, setNewSkill] = useState('')
   const [newTool, setNewTool] = useState('')
 
-  // Optional academic context
-  const [courseName, setCourseName] = useState('')
-  const [grade, setGrade] = useState('')
-  const [professor, setProfessor] = useState('')
-
-  // Media
+  // Image upload
   const [imageUrl, setImageUrl] = useState('')
   const [uploadingImage, setUploadingImage] = useState(false)
 
-  // State
-  const [analyzing, setAnalyzing] = useState(false)
-  const [submitting, setSubmitting] = useState(false)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  // Step 1 → Step 2: AI analyzes the description
-  const handleAnalyze = async () => {
-    if (!title.trim() || !description.trim()) return
-    setAnalyzing(true)
-
-    try {
-      const res = await fetch('/api/ai/analyze-project', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, description, githubUrl }),
-      })
-
-      if (res.ok) {
-        const data = await res.json()
-        setSuggestions(data)
-        setSkills(data.skills || [])
-        setTools(data.tools || [])
-      } else {
-        // Fallback: no AI, manual entry
-        setSuggestions({
-          discipline: 'TECHNOLOGY',
-          projectType: 'Project',
-          skills: [],
-          tools: [],
-          competencies: [],
-        })
-        setSkills([])
-        setTools([])
-      }
-      setStep('review')
-    } catch {
-      // Fallback
-      setSuggestions({
-        discipline: 'TECHNOLOGY',
-        projectType: 'Project',
-        skills: [],
-        tools: [],
-        competencies: [],
-      })
-      setStep('review')
-    } finally {
-      setAnalyzing(false)
-    }
-  }
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages, analyzing])
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -118,37 +77,60 @@ export default function NewProjectPage() {
     }
   }
 
-  const handleSubmit = async () => {
-    setSubmitting(true)
-    try {
-      const res = await fetch('/api/projects', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          title,
-          description,
-          discipline: suggestions?.discipline || 'TECHNOLOGY',
-          projectType: suggestions?.projectType || 'Project',
-          skills,
-          tools,
-          competencies: suggestions?.competencies || [],
-          githubUrl: githubUrl || undefined,
-          imageUrl: imageUrl || undefined,
-          courseName: courseName || undefined,
-          grade: grade || undefined,
-          professor: professor || undefined,
-          isPublic: true,
-          featured: false,
-        }),
-      })
+  const handleSend = async () => {
+    const text = input.trim()
+    if (!text || analyzing) return
 
-      if (!res.ok) throw new Error('Failed')
-      router.push('/dashboard/student/projects')
-      router.refresh()
-    } catch {
-      alert(t('error'))
-    } finally {
-      setSubmitting(false)
+    const userMessage: Message = { role: 'user', content: text }
+    setMessages((prev) => [...prev, userMessage])
+    setInput('')
+
+    // If no analysis yet, this is the first message — analyze it
+    if (!projectData) {
+      setAnalyzing(true)
+      setTitle(text.split(/[.\n]/)[0].slice(0, 100))
+      setDescription(text)
+
+      try {
+        const res = await fetch('/api/ai/analyze-project', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title: text.split(/[.\n]/)[0].slice(0, 100), description: text }),
+        })
+
+        const data: ProjectData = res.ok
+          ? await res.json()
+          : { discipline: 'TECHNOLOGY', projectType: 'Project', skills: [], tools: [], competencies: [] }
+
+        setProjectData(data)
+        setSkills(data.skills || [])
+        setTools(data.tools || [])
+
+        setMessages((prev) => [
+          ...prev,
+          { role: 'system', content: t('chat.result'), data },
+          { role: 'system', content: t('chat.followUp') },
+        ])
+      } catch {
+        const fallback: ProjectData = { discipline: 'TECHNOLOGY', projectType: 'Project', skills: [], tools: [], competencies: [] }
+        setProjectData(fallback)
+        setSkills([])
+        setTools([])
+        setMessages((prev) => [
+          ...prev,
+          { role: 'system', content: t('chat.result'), data: fallback },
+          { role: 'system', content: t('chat.followUp') },
+        ])
+      } finally {
+        setAnalyzing(false)
+      }
+    } else {
+      // Follow-up message — append to description
+      setDescription((prev) => prev + '\n' + text)
+      setMessages((prev) => [
+        ...prev,
+        { role: 'system', content: t('chat.followUp') },
+      ])
     }
   }
 
@@ -163,242 +145,196 @@ export default function NewProjectPage() {
     setter(list.filter((_, i) => i !== index))
   }
 
+  const handleCreate = async () => {
+    setSubmitting(true)
+    try {
+      const res = await fetch('/api/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title,
+          description,
+          discipline: projectData?.discipline || 'TECHNOLOGY',
+          projectType: projectData?.projectType || 'Project',
+          skills,
+          tools,
+          competencies: projectData?.competencies || [],
+          imageUrl: imageUrl || undefined,
+          isPublic: true,
+          featured: false,
+        }),
+      })
+      if (!res.ok) throw new Error('Failed')
+      router.push('/dashboard/student/projects')
+      router.refresh()
+    } catch {
+      alert(t('error'))
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      handleSend()
+    }
+  }
+
   return (
-    <div className="max-w-3xl mx-auto pb-12">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-8">
-        <Button variant="ghost" size="sm" onClick={() => step === 'review' ? setStep('input') : router.back()}>
-          <ArrowLeft className="h-4 w-4 mr-1" />
-          {step === 'review' ? t('backToEdit') : t('back')}
-        </Button>
-      </div>
+    <div className="max-w-2xl mx-auto pb-12 flex flex-col min-h-[80vh]">
+      {/* Messages */}
+      <div className="flex-1 space-y-4 py-6">
+        {messages.map((msg, i) => (
+          <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+            <div
+              className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm ${
+                msg.role === 'user'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted text-foreground'
+              }`}
+            >
+              <p className="whitespace-pre-wrap">{msg.content}</p>
 
-      <h1 className="text-2xl font-bold mb-1">{t('title')}</h1>
-      <p className="text-muted-foreground mb-8">{t('subtitle')}</p>
+              {/* Structured data card */}
+              {msg.data && (
+                <Card className="mt-3 border-border/50">
+                  <CardContent className="p-4 space-y-4">
+                    <div className="flex gap-2">
+                      <Badge variant="secondary">{msg.data.discipline}</Badge>
+                      <Badge variant="outline">{msg.data.projectType}</Badge>
+                    </div>
 
-      {/* Step indicator */}
-      <div className="flex items-center gap-4 mb-8">
-        <div className={`flex items-center gap-2 text-sm font-medium ${step === 'input' ? 'text-primary' : 'text-muted-foreground'}`}>
-          <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs ${step === 'input' ? 'bg-primary text-white' : 'bg-muted'}`}>1</span>
-          {t('steps.describe')}
-        </div>
-        <div className="h-px flex-1 bg-border" />
-        <div className={`flex items-center gap-2 text-sm font-medium ${step === 'review' ? 'text-primary' : 'text-muted-foreground'}`}>
-          <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs ${step === 'review' ? 'bg-primary text-white' : 'bg-muted'}`}>2</span>
-          {t('steps.review')}
-        </div>
-      </div>
+                    {/* Skills */}
+                    <div>
+                      <p className="text-xs font-medium text-muted-foreground mb-2">{t('review.skills')}</p>
+                      <div className="flex flex-wrap gap-1.5 mb-2">
+                        {skills.map((s, si) => (
+                          <Badge key={s} variant="secondary" className="gap-1">
+                            {s}
+                            <button onClick={() => removeItem(si, skills, setSkills)} className="ml-1 hover:text-destructive">
+                              <X className="h-3 w-3" />
+                            </button>
+                          </Badge>
+                        ))}
+                      </div>
+                      <div className="flex gap-1.5">
+                        <Input
+                          value={newSkill}
+                          onChange={(e) => setNewSkill(e.target.value)}
+                          onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addItem(newSkill, skills, setSkills, setNewSkill))}
+                          placeholder={t('review.addSkill')}
+                          className="h-8 text-xs flex-1"
+                        />
+                        <Button variant="outline" size="sm" className="h-8 w-8 p-0" onClick={() => addItem(newSkill, skills, setSkills, setNewSkill)}>
+                          <Plus className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    </div>
 
-      {/* ── STEP 1: Describe ── */}
-      {step === 'input' && (
-        <div className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">{t('input.title')}</CardTitle>
-              <p className="text-sm text-muted-foreground">{t('input.description')}</p>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <Label htmlFor="title">{t('input.projectTitle')}</Label>
-                <Input
-                  id="title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder={t('input.titlePlaceholder')}
-                  className="mt-1"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="description">{t('input.projectDescription')}</Label>
-                <Textarea
-                  id="description"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  placeholder={t('input.descriptionPlaceholder')}
-                  rows={5}
-                  className="mt-1"
-                />
-                <p className="text-xs text-muted-foreground mt-1">{t('input.descriptionHint')}</p>
-              </div>
-
-              <div>
-                <Label htmlFor="github">{t('input.githubUrl')}</Label>
-                <Input
-                  id="github"
-                  value={githubUrl}
-                  onChange={(e) => setGithubUrl(e.target.value)}
-                  placeholder="https://github.com/you/project"
-                  className="mt-1"
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Button
-            onClick={handleAnalyze}
-            disabled={!title.trim() || !description.trim() || analyzing}
-            className="w-full"
-            size="lg"
-          >
-            {analyzing ? (
-              <>
-                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                {t('input.analyzing')}
-              </>
-            ) : (
-              t('input.analyzeButton')
-            )}
-          </Button>
-        </div>
-      )}
-
-      {/* ── STEP 2: Review AI Suggestions ── */}
-      {step === 'review' && suggestions && (
-        <div className="space-y-6">
-          {/* AI-detected category */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">{t('review.aiDetected')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex gap-2">
-                <Badge variant="secondary">{suggestions.discipline}</Badge>
-                <Badge variant="outline">{suggestions.projectType}</Badge>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Skills — AI suggested, editable */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">{t('review.skills')}</CardTitle>
-              <p className="text-sm text-muted-foreground">{t('review.skillsHint')}</p>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-wrap gap-2 mb-3">
-                {skills.map((skill, i) => (
-                  <Badge key={skill} variant="secondary" className="gap-1">
-                    {skill}
-                    <button onClick={() => removeItem(i, skills, setSkills)} className="ml-1 hover:text-red-500">
-                      <X className="h-3 w-3" />
-                    </button>
-                  </Badge>
-                ))}
-              </div>
-              <div className="flex gap-2">
-                <Input
-                  value={newSkill}
-                  onChange={(e) => setNewSkill(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addItem(newSkill, skills, setSkills, setNewSkill))}
-                  placeholder={t('review.addSkill')}
-                  className="flex-1"
-                />
-                <Button variant="outline" size="sm" onClick={() => addItem(newSkill, skills, setSkills, setNewSkill)}>
-                  <Plus className="h-4 w-4" />
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Tools — AI suggested, editable */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">{t('review.tools')}</CardTitle>
-              <p className="text-sm text-muted-foreground">{t('review.toolsHint')}</p>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-wrap gap-2 mb-3">
-                {tools.map((tool, i) => (
-                  <Badge key={tool} variant="secondary" className="gap-1">
-                    {tool}
-                    <button onClick={() => removeItem(i, tools, setTools)} className="ml-1 hover:text-red-500">
-                      <X className="h-3 w-3" />
-                    </button>
-                  </Badge>
-                ))}
-              </div>
-              <div className="flex gap-2">
-                <Input
-                  value={newTool}
-                  onChange={(e) => setNewTool(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addItem(newTool, tools, setTools, setNewTool))}
-                  placeholder={t('review.addTool')}
-                  className="flex-1"
-                />
-                <Button variant="outline" size="sm" onClick={() => addItem(newTool, tools, setTools, setNewTool)}>
-                  <Plus className="h-4 w-4" />
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Image — optional */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">{t('review.image')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {imageUrl ? (
-                <div className="relative">
-                  <img src={imageUrl} alt="" className="rounded-lg max-h-48 object-cover w-full" />
-                  <Button variant="ghost" size="sm" className="absolute top-2 right-2" onClick={() => setImageUrl('')}>
-                    <X className="h-4 w-4" />
-                  </Button>
-                </div>
-              ) : (
-                <label className="flex items-center justify-center border-2 border-dashed rounded-lg p-8 cursor-pointer hover:border-primary/50 transition-colors">
-                  <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
-                  <span className="text-sm text-muted-foreground">
-                    {uploadingImage ? t('review.uploading') : t('review.uploadImage')}
-                  </span>
-                </label>
+                    {/* Tools */}
+                    <div>
+                      <p className="text-xs font-medium text-muted-foreground mb-2">{t('review.tools')}</p>
+                      <div className="flex flex-wrap gap-1.5 mb-2">
+                        {tools.map((tool, ti) => (
+                          <Badge key={tool} variant="secondary" className="gap-1">
+                            {tool}
+                            <button onClick={() => removeItem(ti, tools, setTools)} className="ml-1 hover:text-destructive">
+                              <X className="h-3 w-3" />
+                            </button>
+                          </Badge>
+                        ))}
+                      </div>
+                      <div className="flex gap-1.5">
+                        <Input
+                          value={newTool}
+                          onChange={(e) => setNewTool(e.target.value)}
+                          onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addItem(newTool, tools, setTools, setNewTool))}
+                          placeholder={t('review.addTool')}
+                          className="h-8 text-xs flex-1"
+                        />
+                        <Button variant="outline" size="sm" className="h-8 w-8 p-0" onClick={() => addItem(newTool, tools, setTools, setNewTool)}>
+                          <Plus className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
+        ))}
 
-          {/* Academic context — optional, collapsed */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">{t('review.academic')}</CardTitle>
-              <p className="text-sm text-muted-foreground">{t('review.academicHint')}</p>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <Label>{t('review.courseName')}</Label>
-                  <Input value={courseName} onChange={(e) => setCourseName(e.target.value)} placeholder={t('review.courseNamePlaceholder')} className="mt-1" />
-                </div>
-                <div>
-                  <Label>{t('review.grade')}</Label>
-                  <Input value={grade} onChange={(e) => setGrade(e.target.value)} placeholder="28/30" className="mt-1" />
-                </div>
-              </div>
-              <div>
-                <Label>{t('review.professor')}</Label>
-                <Input value={professor} onChange={(e) => setProfessor(e.target.value)} placeholder={t('review.professorPlaceholder')} className="mt-1" />
-              </div>
-            </CardContent>
-          </Card>
+        {/* Typing indicator */}
+        {analyzing && (
+          <div className="flex justify-start">
+            <div className="bg-muted rounded-2xl px-4 py-3 text-sm text-muted-foreground flex items-center gap-2">
+              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              {t('chat.analyzing')}
+            </div>
+          </div>
+        )}
 
-          {/* Submit */}
-          <Button
-            onClick={handleSubmit}
-            disabled={submitting}
-            className="w-full"
-            size="lg"
-          >
+        <div ref={messagesEndRef} />
+      </div>
+
+      {/* Create project button — shown after analysis */}
+      {projectData && (
+        <div className="pb-4">
+          <Button onClick={handleCreate} disabled={submitting} className="w-full" size="lg">
             {submitting ? (
               <>
                 <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                 {t('review.creating')}
               </>
             ) : (
-              t('review.createButton')
+              t('chat.looksGood')
             )}
           </Button>
         </div>
       )}
+
+      {/* Input area */}
+      <div className="border-t border-border pt-4 space-y-3">
+        {/* Image preview */}
+        {imageUrl && (
+          <div className="relative inline-block">
+            <img src={imageUrl} alt="" className="h-16 w-16 object-cover rounded-lg" />
+            <button
+              onClick={() => setImageUrl('')}
+              className="absolute -top-1.5 -right-1.5 bg-destructive text-destructive-foreground rounded-full p-0.5"
+            >
+              <X className="h-3 w-3" />
+            </button>
+          </div>
+        )}
+
+        <div className="flex gap-2 items-end">
+          <div className="flex-1">
+            <Textarea
+              ref={textareaRef}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder={t('chat.placeholder')}
+              rows={2}
+              className="resize-none"
+              disabled={analyzing || submitting}
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label className="cursor-pointer">
+              <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
+              <Button variant="outline" size="sm" className="pointer-events-none h-8 text-xs" tabIndex={-1} asChild>
+                <span>{uploadingImage ? t('chat.uploading') : t('chat.attach')}</span>
+              </Button>
+            </label>
+            <Button onClick={handleSend} disabled={!input.trim() || analyzing} size="sm" className="h-8">
+              {t('chat.send')}
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

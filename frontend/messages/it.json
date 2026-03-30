@@ -5039,27 +5039,36 @@
   },
   "studentJobs": {
     "title": "Opportunità di Lavoro",
-    "subtitle": "Scopri e candidati per lavori che corrispondono alle tue competenze",
-    "search": "Cerca lavori per titolo, azienda o competenze...",
+    "subtitle": "Descrivi cosa cerchi, o sfoglia con i filtri.",
+    "searchPlaceholder": "es. Stage React developer a Milano, remoto OK...",
+    "search": "Cerca",
+    "searching": "Ricerca...",
     "filters": {
-      "jobType": "Tipo di Lavoro",
-      "workLocation": "Modalità di Lavoro",
-      "all": "Tutti"
+      "title": "Filtri",
+      "jobType": "Tipo",
+      "all": "Tutti",
+      "fullTime": "Tempo Pieno",
+      "partTime": "Part-time",
+      "internship": "Stage",
+      "contract": "Contratto",
+      "workMode": "Modalità",
+      "remote": "Remoto",
+      "hybrid": "Ibrido",
+      "onSite": "In Sede",
+      "location": "Città",
+      "clear": "Cancella"
     },
-    "sort": {
-      "recent": "Più Recenti",
-      "salary": "Stipendio Più Alto",
-      "company": "Azienda A-Z",
-      "applicants": "Più Candidati"
+    "match": "{score}% compatibilità",
+    "apply": "Candidati",
+    "results": "{count} opportunità trovate",
+    "profileMatch": {
+      "title": "Il Tuo Profilo",
+      "skills": "Le tue competenze:",
+      "updateProfile": "Aggiorna competenze"
     },
-    "applied": "Candidato",
-    "apply": "Candidati Ora",
-    "applying": "Candidatura in corso...",
-    "applicants": "candidati",
-    "noJobs": "Nessun lavoro trovato",
-    "noJobsDescription": "Prova a modificare la ricerca o i filtri per trovare più opportunità.",
-    "applySuccess": "Candidatura inviata con successo!",
-    "applyError": "Invio candidatura fallito. Riprova."
+    "empty": "Nessun lavoro corrisponde alla ricerca",
+    "emptyDesc": "Prova una descrizione diversa o modifica i filtri.",
+    "loading": "Cercando opportunità..."
   },
   "studentApplications": {
     "title": "Candidature",
@@ -5868,32 +5877,29 @@
     "upload": "Carica"
   },
   "studentCv": {
-    "title": "Il Mio CV",
-    "subtitle": "Generato automaticamente dal tuo profilo verificato e dai tuoi progetti",
+    "title": "Il Tuo CV",
+    "subtitle": "Generato automaticamente dal tuo portfolio. Sempre aggiornato.",
     "download": "Scarica PDF",
     "downloading": "Generazione...",
     "style": {
-      "label": "Stile CV",
+      "label": "Stile",
       "classic": "Classico",
-      "classicDesc": "Layout tradizionale e pulito",
-      "modern": "Moderno",
-      "modernDesc": "Design contemporaneo e audace"
+      "modern": "Moderno"
     },
     "preview": {
-      "title": "Cosa è incluso",
-      "included": "Incluso",
-      "profile": "Profilo e contatti",
-      "education": "Dettagli istruzione",
-      "skills": "Competenze dai tuoi progetti",
-      "projects": "Migliori progetti verificati",
-      "exchange": "Programma di scambio (se applicabile)",
-      "personality": "Personalità e competenze trasversali (se valutate)"
+      "contact": "Contatti",
+      "skills": "Competenze",
+      "projects": "Progetti",
+      "education": "Istruzione",
+      "personality": "Personalità"
     },
     "missing": {
-      "bio": "Aggiungi una bio per rendere il tuo CV più forte",
-      "projects": "Aggiungi almeno un progetto per generare il tuo CV"
+      "title": "Manca qualcosa?",
+      "bio": "Aggiungi una bio per presentarti",
+      "projects": "Aggiungi il tuo primo progetto",
+      "personality": "Fai il test di personalità"
     },
-    "footer": "Generato da InTransparency — dati verificati dall'istituzione"
+    "empty": "Completa il tuo profilo per generare il CV"
   },
   "personalityInsights": {
     "title": "Profilo Personalità",
@@ -9467,6 +9473,17 @@
       "professorPlaceholder": "es. Prof. Rossi",
       "creating": "Creazione in corso...",
       "createButton": "Crea Progetto"
+    },
+    "chat": {
+      "welcome": "Raccontami del tuo progetto. Descrivilo con parole tue, incolla un link GitHub o carica un'immagine.",
+      "placeholder": "Ho costruito un'app di gestione magazzino con React e Node.js...",
+      "send": "Invia",
+      "analyzing": "Analizzo il tuo progetto...",
+      "result": "Ecco cosa ho trovato:",
+      "followUp": "Qualcosa da aggiungere? Puoi anche collegarlo a un corso per la verifica universitaria.",
+      "looksGood": "Tutto ok — crea progetto",
+      "attach": "Allega immagine",
+      "uploading": "Caricamento..."
     }
   },
   "postJob": {
