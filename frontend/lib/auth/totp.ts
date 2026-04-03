@@ -22,7 +22,8 @@ export const verifyToken = async (token: string, secret: string): Promise<boolea
 /** Build an otpauth:// URI for QR codes */
 export const keyuri = (account: string, issuer: string, secret: string): string =>
   generateURI({
-    type: 'totp',
+    strategy: 'totp',
     label: `${issuer}:${account}`,
-    params: { secret, issuer },
+    issuer,
+    secret,
   })

@@ -70,8 +70,8 @@ export const authOptions: NextAuthOptions = {
           }
 
           // Verify TOTP code
-          const { authenticator } = await import('otplib')
-          const isValidTotp = authenticator.verify({ token: totpCode, secret: user.totpSecret })
+          const { verifyToken } = await import('@/lib/auth/totp')
+          const isValidTotp = await verifyToken(totpCode, user.totpSecret)
 
           if (!isValidTotp) {
             // Try backup codes

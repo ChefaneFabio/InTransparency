@@ -15,11 +15,13 @@ import { Loader2, ArrowLeft } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 interface ReportPreview {
-  title: string
-  graduates: number
-  placementRate: string
-  avgTime: string
-  topEmployers: number
+  title?: string
+  graduates?: number
+  placementRate?: string
+  avgTime?: string
+  topEmployers?: number
+  downloaded?: boolean
+  error?: string
 }
 
 export default function GenerateReportPage() {

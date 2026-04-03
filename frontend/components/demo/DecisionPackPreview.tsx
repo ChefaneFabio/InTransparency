@@ -7,10 +7,11 @@ import { CheckCircle, Shield, Star, TrendingUp } from 'lucide-react'
 import type { DecisionPackData } from '@/lib/decision-pack'
 
 interface DecisionPackPreviewProps {
-  data: DecisionPackData
+  data: DecisionPackData | null
 }
 
 export default function DecisionPackPreview({ data }: DecisionPackPreviewProps) {
+  if (!data) return null
   const { candidate, trustScore, skills, projects, prediction: placementPrediction } = data
 
   return (

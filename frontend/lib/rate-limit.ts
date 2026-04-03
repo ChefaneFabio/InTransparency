@@ -17,13 +17,13 @@ const startCleanup = () => {
   if (cleanupInterval) return
   cleanupInterval = setInterval(() => {
     const now = Date.now()
-    for (const [, store] of stores) {
-      for (const [key, entry] of store) {
+    Array.from(stores.values()).forEach((store) => {
+      Array.from(store.entries()).forEach(([key, entry]) => {
         if (now > entry.resetTime) {
           store.delete(key)
         }
-      }
-    }
+      })
+    })
   }, 5 * 60 * 1000)
 }
 
