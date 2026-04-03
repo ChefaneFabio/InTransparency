@@ -9,7 +9,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://vercel.live https://*.vercel.app https://vitals.vercel-insights.com https://maps.googleapis.com https://*.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://vitals.vercel-insights.com https://*.vercel.app https://api-intransparency.onrender.com https://maps.googleapis.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://vercel.live https://*.vercel.app https://vitals.vercel-insights.com https://maps.googleapis.com https://*.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://vitals.vercel-insights.com https://*.vercel.app https://maps.googleapis.com https://*.r2.dev; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
         },
         {
           "key": "X-Content-Type-Options",
@@ -22,26 +22,5 @@
       ]
     }
   ],
-  "rewrites": [
-    {
-      "source": "/api/projects/:path*",
-      "destination": "https://api-intransparency.onrender.com/api/projects/:path*"
-    },
-    {
-      "source": "/api/matches/:path*",
-      "destination": "https://api-intransparency.onrender.com/api/matches/:path*"
-    },
-    {
-      "source": "/api/analytics/:path*",
-      "destination": "https://api-intransparency.onrender.com/api/analytics/:path*"
-    },
-    {
-      "source": "/api/messages/:path*",
-      "destination": "https://api-intransparency.onrender.com/api/messages/:path*"
-    },
-    {
-      "source": "/api/referrals/:path*",
-      "destination": "https://api-intransparency.onrender.com/api/referrals/:path*"
-    }
-  ]
+  "rewrites": []
 }
