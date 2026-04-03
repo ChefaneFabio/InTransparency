@@ -4,7 +4,7 @@ import { Link } from '@/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Eye, Heart, Share, ExternalLink, Github, Calendar, TrendingUp } from 'lucide-react'
+import { ExternalLink, Github, Calendar, TrendingUp } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
 
 interface ProjectCardProps {
@@ -19,11 +19,6 @@ interface ProjectCardProps {
     images: string[]
     innovationScore: number
     complexityLevel: string
-    stats?: {
-      views: number
-      likes: number
-      shares: number
-    }
     createdAt: string
     updatedAt: string
   }
@@ -42,7 +37,6 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
     images = [],
     innovationScore = 0,
     complexityLevel = '',
-    stats = { views: 0, likes: 0, shares: 0 },
     createdAt,
     updatedAt
   } = project
@@ -80,14 +74,6 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
                 <p className="text-sm text-gray-600 mt-1 line-clamp-2">{description}</p>
                 <div className="flex items-center mt-2 space-x-4 text-sm text-gray-700">
                   <span className="flex items-center">
-                    <Eye className="h-4 w-4 mr-1" />
-                    {stats.views}
-                  </span>
-                  <span className="flex items-center">
-                    <Heart className="h-4 w-4 mr-1" />
-                    {stats.likes}
-                  </span>
-                  <span className="flex items-center">
                     <Calendar className="h-4 w-4 mr-1" />
                     {formatDistanceToNow(new Date(createdAt), { addSuffix: true })}
                   </span>
@@ -124,7 +110,7 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
               </div>
             </div>
           )}
-          
+
           {/* Innovation Score Badge */}
           <div className="absolute top-3 right-3">
             <Badge className="bg-white text-gray-900 shadow-sm">
@@ -132,7 +118,7 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
               {innovationScore}/100
             </Badge>
           </div>
-          
+
           {/* Quick Actions */}
           <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
             <div className="flex space-x-2">
@@ -187,35 +173,8 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
             )}
           </div>
 
-          {/* Stats and Actions */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4 text-sm text-gray-700">
-              <span className="flex items-center">
-                <Eye className="h-4 w-4 mr-1" />
-                {stats.views}
-              </span>
-              <span className="flex items-center">
-                <Heart className="h-4 w-4 mr-1" />
-                {stats.likes}
-              </span>
-              <span className="flex items-center">
-                <Share className="h-4 w-4 mr-1" />
-                {stats.shares}
-              </span>
-            </div>
-            
-            <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="sm">
-                <Heart className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="sm">
-                <Share className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-
           {/* Innovation Score Bar */}
-          <div className="mt-4">
+          <div>
             <div className="flex items-center justify-between text-sm mb-1">
               <span className="text-gray-600">Innovation Score</span>
               <span className={`font-medium ${getInnovationColor(innovationScore)}`}>

@@ -6,20 +6,15 @@ import { useSession } from 'next-auth/react'
 import { ProjectCard } from '@/components/dashboard/student/ProjectCard'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { 
-  Plus, 
-  Search, 
-  Filter, 
-  Grid3X3, 
-  List, 
-  SortAsc, 
-  Eye, 
-  Heart, 
-  Share,
+import {
+  Plus,
+  Search,
+  Grid3X3,
+  List,
+  SortAsc,
   MoreVertical,
   Trash2,
   Edit3,
@@ -266,9 +261,9 @@ export default function ProjectsPage() {
           <CardContent className="p-6">
             <div className="flex items-center">
               <div className="text-2xl font-bold text-primary">
-                {projects.reduce((acc, p) => acc + (p.stats?.views || 0), 0)}
+                {new Set(projects.flatMap(p => p.skills || p.technologies || [])).size}
               </div>
-              <div className="ml-2 text-sm text-foreground/80 font-medium">Total Views</div>
+              <div className="ml-2 text-sm text-foreground/80 font-medium">Skills</div>
             </div>
           </CardContent>
         </Card>
@@ -471,20 +466,6 @@ export default function ProjectsPage() {
                               )}
                             </div>
 
-                            <div className="flex items-center space-x-4 mt-3 text-sm text-foreground font-medium">
-                              <span className="flex items-center">
-                                <Eye className="h-4 w-4 mr-1" />
-                                {project.stats?.views || 0}
-                              </span>
-                              <span className="flex items-center">
-                                <Heart className="h-4 w-4 mr-1" />
-                                {project.stats?.likes || 0}
-                              </span>
-                              <span className="flex items-center">
-                                <Share className="h-4 w-4 mr-1" />
-                                {project.stats?.shares || 0}
-                              </span>
-                            </div>
                           </div>
                         </div>
                       </div>
