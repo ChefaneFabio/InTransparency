@@ -11,11 +11,7 @@ import {
   VALIDATION_PRESETS,
   type FileValidationOptions,
 } from './file-validation'
-import {
-  optimizeImage,
-  createImageVariants,
-  OPTIMIZATION_PRESETS,
-} from './file-optimization'
+const getOptimization = () => import('./file-optimization')
 
 export interface UploadOptions {
   optimize?: boolean
@@ -129,6 +125,7 @@ export async function uploadImage(
     }
 
     // 2. Optimize image
+    const { optimizeImage, createImageVariants, OPTIMIZATION_PRESETS } = await getOptimization()
     let finalBuffer = buffer
     if (options.optimize !== false) {
       const optimized = await optimizeImage(buffer, OPTIMIZATION_PRESETS.projectImage)

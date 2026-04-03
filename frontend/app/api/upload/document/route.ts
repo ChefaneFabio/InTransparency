@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
-import { uploadDocument } from '@/lib/storage'
+import { uploadDocument } from '@/lib/storage/upload-helpers'
 
 /**
  * Upload Document API
