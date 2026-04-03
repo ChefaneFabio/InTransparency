@@ -59,9 +59,9 @@ export async function uploadToR2(
 
     // Fallback to R2.dev subdomain (if configured)
     return `https://${R2_CONFIG.bucketName}.r2.dev/${key}`
-  } catch (error) {
-    console.error('R2 upload error:', error)
-    throw new Error('Failed to upload file to storage')
+  } catch (error: any) {
+    console.error('R2 upload error:', error?.message || error, 'Bucket:', R2_CONFIG.bucketName, 'Endpoint:', process.env.R2_ENDPOINT ? 'set' : 'missing', 'Key:', process.env.R2_ACCESS_KEY_ID ? 'set' : 'missing')
+    throw new Error(`Failed to upload file to storage: ${error?.message || 'unknown error'}`)
   }
 }
 
