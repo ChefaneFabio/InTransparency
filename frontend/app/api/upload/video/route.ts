@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
         folder,
         metadata: {
           userId: session.user.id,
-          originalName: file.name,
+          originalName: encodeURIComponent(file.name),
           duration: duration || '',
           uploadedAt: new Date().toISOString(),
         },
