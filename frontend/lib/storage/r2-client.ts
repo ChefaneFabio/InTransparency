@@ -4,33 +4,47 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 /**
  * Cloudflare R2 Storage Client
  *
+ * Lazy-initialized to ensure env vars are available at request time on Vercel.
  * Cloudflare R2 is S3-compatible, so we use the AWS SDK.
- * Benefits over S3:
- * - Zero egress fees (data transfer out is free)
- * - Lower storage costs
- * - Better performance globally via Cloudflare's network
  */
 
-// Initialize R2 client
-export const r2Client = new S3Client({
-  region: 'auto', // R2 uses 'auto' for region
-  endpoint: process.env.R2_ENDPOINT || `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-  credentials: {
-    accessKeyId: process.env.R2_ACCESS_KEY_ID || '',
-    secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || '',
-  },
+let _r2Client: S3Client | null = null
+
+function getR2Client(): S3Client {
+  if (!_r2Client) {
+    _r2Client = new S3Client({
+      region: 'auto',
+      endpoint: process.env.R2_ENDPOINT || `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+      forcePathStyle: true,
+      credentials: {
+        accessKeyId: process.env.R2_ACCESS_KEY_ID || '',
+        secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || '',
+      },
+    })
+  }
+  return _r2Client
+}
+
+function getR2Config() {
+  return {
+    bucketName: process.env.R2_BUCKET_NAME || 'intransparency',
+    publicUrl: process.env.R2_PUBLIC_URL || '',
+    maxFileSize: 100 * 1024 * 1024,
+    maxVideoSize: 500 * 1024 * 1024,
+    allowedImageTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif'],
+    allowedVideoTypes: ['video/mp4', 'video/webm', 'video/quicktime', 'video/x-msvideo'],
+    allowedDocumentTypes: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+  }
+}
+
+// Keep backward-compatible exports
+export const r2Client = new Proxy({} as S3Client, {
+  get(_target, prop) { return (getR2Client() as any)[prop] },
 })
 
-// Configuration
-export const R2_CONFIG = {
-  bucketName: process.env.R2_BUCKET_NAME || 'intransparency',
-  publicUrl: process.env.R2_PUBLIC_URL || '', // Custom domain URL
-  maxFileSize: 100 * 1024 * 1024, // 100MB default
-  maxVideoSize: 500 * 1024 * 1024, // 500MB for videos
-  allowedImageTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif'],
-  allowedVideoTypes: ['video/mp4', 'video/webm', 'video/quicktime', 'video/x-msvideo'],
-  allowedDocumentTypes: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
-}
+export const R2_CONFIG = new Proxy({} as ReturnType<typeof getR2Config>, {
+  get(_target, prop) { return (getR2Config() as any)[prop] },
+})
 
 /**
  * Upload a file to R2
@@ -41,69 +55,58 @@ export async function uploadToR2(
   contentType: string,
   metadata?: Record<string, string>
 ): Promise<string> {
-  try {
-    const command = new PutObjectCommand({
-      Bucket: R2_CONFIG.bucketName,
-      Key: key,
-      Body: file,
-      ContentType: contentType,
-      Metadata: metadata,
-    })
+  const client = getR2Client()
+  const config = getR2Config()
 
-    await r2Client.send(command)
+  const command = new PutObjectCommand({
+    Bucket: config.bucketName,
+    Key: key,
+    Body: file,
+    ContentType: contentType,
+    Metadata: metadata,
+  })
 
-    // Return public URL
-    if (R2_CONFIG.publicUrl) {
-      return `${R2_CONFIG.publicUrl}/${key}`
-    }
+  await client.send(command)
 
-    // Fallback to R2.dev subdomain (if configured)
-    return `https://${R2_CONFIG.bucketName}.r2.dev/${key}`
-  } catch (error: any) {
-    console.error('R2 upload error:', error?.message || error, 'Bucket:', R2_CONFIG.bucketName, 'Endpoint:', process.env.R2_ENDPOINT ? 'set' : 'missing', 'Key:', process.env.R2_ACCESS_KEY_ID ? 'set' : 'missing')
-    throw new Error(`Failed to upload file to storage: ${error?.message || 'unknown error'}`)
+  if (config.publicUrl) {
+    return `${config.publicUrl}/${key}`
   }
+  return `https://${config.bucketName}.r2.dev/${key}`
 }
 
 /**
  * Delete a file from R2
  */
 export async function deleteFromR2(key: string): Promise<void> {
-  try {
-    const command = new DeleteObjectCommand({
-      Bucket: R2_CONFIG.bucketName,
-      Key: key,
-    })
+  const client = getR2Client()
+  const config = getR2Config()
 
-    await r2Client.send(command)
-  } catch (error) {
-    console.error('R2 delete error:', error)
-    throw new Error('Failed to delete file from storage')
-  }
+  const command = new DeleteObjectCommand({
+    Bucket: config.bucketName,
+    Key: key,
+  })
+
+  await client.send(command)
 }
 
 /**
  * Generate a pre-signed URL for direct upload from client
- * This allows clients to upload directly to R2 without going through your server
  */
 export async function generatePresignedUploadUrl(
   key: string,
   contentType: string,
-  expiresIn: number = 3600 // 1 hour default
+  expiresIn: number = 3600
 ): Promise<string> {
-  try {
-    const command = new PutObjectCommand({
-      Bucket: R2_CONFIG.bucketName,
-      Key: key,
-      ContentType: contentType,
-    })
+  const client = getR2Client()
+  const config = getR2Config()
 
-    const url = await getSignedUrl(r2Client, command, { expiresIn })
-    return url
-  } catch (error) {
-    console.error('Pre-signed URL generation error:', error)
-    throw new Error('Failed to generate upload URL')
-  }
+  const command = new PutObjectCommand({
+    Bucket: config.bucketName,
+    Key: key,
+    ContentType: contentType,
+  })
+
+  return getSignedUrl(client, command, { expiresIn })
 }
 
 /**
@@ -111,20 +114,17 @@ export async function generatePresignedUploadUrl(
  */
 export async function generatePresignedDownloadUrl(
   key: string,
-  expiresIn: number = 3600 // 1 hour default
+  expiresIn: number = 3600
 ): Promise<string> {
-  try {
-    const command = new GetObjectCommand({
-      Bucket: R2_CONFIG.bucketName,
-      Key: key,
-    })
+  const client = getR2Client()
+  const config = getR2Config()
 
-    const url = await getSignedUrl(r2Client, command, { expiresIn })
-    return url
-  } catch (error) {
-    console.error('Pre-signed download URL error:', error)
-    throw new Error('Failed to generate download URL')
-  }
+  const command = new GetObjectCommand({
+    Bucket: config.bucketName,
+    Key: key,
+  })
+
+  return getSignedUrl(client, command, { expiresIn })
 }
 
 /**
@@ -132,14 +132,17 @@ export async function generatePresignedDownloadUrl(
  */
 export async function fileExistsInR2(key: string): Promise<boolean> {
   try {
+    const client = getR2Client()
+    const config = getR2Config()
+
     const command = new HeadObjectCommand({
-      Bucket: R2_CONFIG.bucketName,
+      Bucket: config.bucketName,
       Key: key,
     })
 
-    await r2Client.send(command)
+    await client.send(command)
     return true
-  } catch (error) {
+  } catch {
     return false
   }
 }
@@ -149,12 +152,15 @@ export async function fileExistsInR2(key: string): Promise<boolean> {
  */
 export async function getFileMetadata(key: string) {
   try {
+    const client = getR2Client()
+    const config = getR2Config()
+
     const command = new HeadObjectCommand({
-      Bucket: R2_CONFIG.bucketName,
+      Bucket: config.bucketName,
       Key: key,
     })
 
-    const response = await r2Client.send(command)
+    const response = await client.send(command)
     return {
       contentType: response.ContentType,
       contentLength: response.ContentLength,
