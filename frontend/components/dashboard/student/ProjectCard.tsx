@@ -35,20 +35,20 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
     id,
     title,
     description,
-    technologies,
+    technologies = [],
     category,
     repositoryUrl,
     liveUrl,
-    images,
-    innovationScore,
-    complexityLevel,
+    images = [],
+    innovationScore = 0,
+    complexityLevel = '',
     stats = { views: 0, likes: 0, shares: 0 },
     createdAt,
     updatedAt
   } = project
 
   const getComplexityColor = (level: string) => {
-    switch (level.toLowerCase()) {
+    switch ((level || '').toLowerCase()) {
       case 'beginner':
         return 'bg-primary/10 text-green-700 border-primary/20'
       case 'intermediate':

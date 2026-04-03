@@ -5891,13 +5891,19 @@
       "skills": "Competenze",
       "projects": "Progetti",
       "education": "Istruzione",
-      "personality": "Personalità"
+      "personality": "Personalità",
+      "languages": "Lingue",
+      "workExperience": "Esperienze Lavorative",
+      "certifications": "Certificazioni",
+      "careerPreferences": "Preferenze di Carriera"
     },
     "missing": {
       "title": "Manca qualcosa?",
       "bio": "Aggiungi una bio per presentarti",
       "projects": "Aggiungi il tuo primo progetto",
-      "personality": "Fai il test di personalità"
+      "personality": "Fai il test di personalità",
+      "languages": "Aggiungi le tue competenze linguistiche",
+      "certifications": "Aggiungi le tue certificazioni"
     },
     "empty": "Completa il tuo profilo per generare il CV"
   },
@@ -8076,6 +8082,7 @@
       "settings": "Impostazioni",
       "universityProfile": "Profilo universita",
       "signOut": "Esci",
+      "recentActivity": "Attività Recente",
       "activeRecruiters": "Recruiter attivi",
       "companiesViewingStudents": "Aziende che visualizzano i tuoi studenti",
       "contactsMade": "contatti effettuati",
@@ -9475,7 +9482,7 @@
       "createButton": "Crea Progetto"
     },
     "chat": {
-      "welcome": "Raccontami del tuo progetto. Descrivilo con parole tue, incolla un link GitHub o carica un'immagine.",
+      "welcome": "Raccontami del tuo progetto. Descrivilo con parole tue, incolla un link GitHub, oppure allega foto e file (tesi, relazioni, presentazioni).",
       "placeholder": "Ho costruito un'app di gestione magazzino con React e Node.js...",
       "send": "Invia",
       "analyzing": "Analizzo il tuo progetto...",
@@ -9483,6 +9490,8 @@
       "followUp": "Qualcosa da aggiungere? Puoi anche collegarlo a un corso per la verifica universitaria.",
       "looksGood": "Tutto ok — crea progetto",
       "attach": "Allega immagine",
+      "attachImage": "Allega foto",
+      "attachFile": "Allega file (PDF, tesi, relazione)",
       "uploading": "Caricamento..."
     }
   },
@@ -9649,7 +9658,6 @@
       "title": "Dettagli",
       "graduationYear": "Anno Laurea",
       "location": "Città",
-      "languages": "Lingue",
       "availability": "Disponibile per",
       "availabilityOptions": {
         "jobs": "Lavoro",
@@ -9657,6 +9665,107 @@
         "freelance": "Freelance",
         "notLooking": "Non cerco"
       }
+    },
+    "languages": {
+      "title": "Lingue",
+      "addLanguage": "Aggiungi Lingua",
+      "language": "Lingua",
+      "motherTongue": "Madrelingua",
+      "reading": "Lettura",
+      "writing": "Scrittura",
+      "listening": "Ascolto",
+      "speaking": "Parlato",
+      "interaction": "Interazione",
+      "remove": "Rimuovi",
+      "summary": "{count} lingue aggiunte",
+      "placeholder": "es. Inglese"
+    },
+    "thesis": {
+      "title": "Tesi",
+      "thesisTitle": "Titolo",
+      "thesisSubject": "Area Disciplinare",
+      "thesisSupervisor": "Relatore",
+      "thesisKeywords": "Parole Chiave",
+      "keywordsPlaceholder": "es. machine learning, NLP",
+      "summary": "Info tesi inserite"
+    },
+    "certifications": {
+      "title": "Certificazioni",
+      "addCertification": "Aggiungi Certificazione",
+      "name": "Nome Certificazione",
+      "issuer": "Ente Rilasciante",
+      "dateObtained": "Data Conseguimento",
+      "expiryDate": "Data Scadenza",
+      "credentialId": "ID Credenziale",
+      "credentialUrl": "URL Credenziale",
+      "remove": "Rimuovi",
+      "summary": "{count} certificazioni aggiunte"
+    },
+    "workExperience": {
+      "title": "Esperienze Lavorative",
+      "addExperience": "Aggiungi Esperienza",
+      "company": "Azienda",
+      "role": "Ruolo / Posizione",
+      "startDate": "Data Inizio",
+      "endDate": "Data Fine",
+      "description": "Descrizione",
+      "current": "Lavoro attualmente qui",
+      "contractType": "Tipo Contratto",
+      "companySector": "Settore Aziendale",
+      "businessArea": "Area Funzionale",
+      "remove": "Rimuovi",
+      "summary": "{count} esperienze aggiunte",
+      "contractTypes": {
+        "permanent": "Tempo Indeterminato",
+        "fixedTerm": "Tempo Determinato",
+        "internship": "Stage / Tirocinio",
+        "freelance": "Freelance / P.IVA",
+        "apprenticeship": "Apprendistato"
+      },
+      "sectors": {
+        "it": "IT e Tecnologia",
+        "retail": "Retail e GDO",
+        "logistics": "Logistica e Supply Chain",
+        "manufacturing": "Manifatturiero",
+        "finance": "Finanza e Banche",
+        "healthcare": "Sanità",
+        "education": "Istruzione e Ricerca",
+        "media": "Media e Editoria",
+        "consulting": "Consulenza",
+        "other": "Altro"
+      },
+      "areas": {
+        "commercial": "Commerciale e Vendite",
+        "operations": "Operations",
+        "customerService": "Customer Service",
+        "rd": "R&D / Progettazione",
+        "hr": "Risorse Umane",
+        "marketing": "Marketing e Comunicazione",
+        "management": "Direzione",
+        "logistics": "Logistica e Supply Chain",
+        "other": "Altro"
+      }
+    },
+    "careerPreferences": {
+      "title": "Preferenze di Carriera",
+      "desiredOccupation": "Occupazione Desiderata",
+      "desiredOccupationPlaceholder": "es. Linguista Computazionale",
+      "preferredSectors": "Settori Preferiti",
+      "preferredAreas": "Aree Professionali Preferite",
+      "preferredLocations": "Località Preferite",
+      "preferredLocationsPlaceholder": "es. Milano, Bergamo",
+      "willingToRelocate": "Disponibile al trasferimento",
+      "willingToRelocateAbroad": "Disponibile al trasferimento all'estero",
+      "willingToTravel": "Disponibile a viaggiare per lavoro",
+      "continuingStudies": "Intenzione di proseguire gli studi",
+      "continuingStudiesType": "Tipo di studi futuri",
+      "studyTypes": {
+        "master1": "Master Universitario I Livello",
+        "master2": "Master Universitario II Livello",
+        "phd": "Dottorato di Ricerca",
+        "specialization": "Specializzazione"
+      },
+      "summary": "Preferenze di carriera impostate"
     }
   },
   "advancedSearch": {
@@ -9766,5 +9875,66 @@
     "note": "Lo studente riceverà un invito via email per unirsi alla tua istituzione e completare il profilo.",
     "success": "Invito inviato!",
     "back": "Indietro"
+  },
+  "shared": {
+    "complete": "completato",
+    "verified": "Verificato",
+    "view": "Vedi",
+    "next": "Prossimo",
+    "noRecentActivity": "Nessuna attività recente",
+    "noActivityYet": "Nessuna attività",
+    "redirecting": "Reindirizzamento alla dashboard...",
+    "time": {
+      "justNow": "Adesso",
+      "minutesAgo": "{count} min fa",
+      "hoursAgo": "{count} ore fa",
+      "daysAgo": "{count}g fa",
+      "thisWeek": "Questa settimana",
+      "recent": "Recente",
+      "upcoming": "In programma",
+      "actionNeeded": "Azione richiesta",
+      "topMatch": "Miglior match",
+      "total": "Totale",
+      "active": "Attivo",
+      "last30Days": "ultimi 30 giorni"
+    },
+    "date": {
+      "today": "Oggi",
+      "yesterday": "Ieri"
+    },
+    "notifications": {
+      "title": "Notifiche",
+      "all": "Tutte",
+      "unread": "Non lette",
+      "markAllRead": "Segna tutte come lette",
+      "noUnread": "Nessuna notifica non letta",
+      "noNotifications": "Nessuna notifica"
+    },
+    "activity": {
+      "recruiterViewsThisWeek": "{count} visualizzazioni da recruiter questa settimana",
+      "unreadMessages": "{count} messaggi non letti",
+      "newJobMatches": "{count} nuove offerte compatibili",
+      "projectReceivedViews": "\"{title}\" ha ricevuto {count} visualizzazioni",
+      "newApplicationsThisWeek": "{count} nuove candidature questa settimana",
+      "interviewsScheduled": "{count} colloqui in programma",
+      "applicationsPendingReview": "{count} candidature da valutare",
+      "topCandidate": "{name} — {projects} progetti, {university}",
+      "recruiterProfileViews": "{count} visualizzazioni profilo da recruiter",
+      "studentsVerified": "{count} studenti verificati",
+      "activeStudentProfiles": "{count} profili studente attivi",
+      "recruiterActivity": "{name} — {contacts} contatti, {views} visualizzazioni"
+    },
+    "onboardingChecklist": {
+      "title": "Inizia",
+      "addName": "Aggiungi il tuo nome",
+      "writeBio": "Scrivi una bio",
+      "addUniversity": "Aggiungi i dettagli universitari",
+      "uploadProject": "Carica il tuo primo progetto",
+      "verifyEmail": "Verifica la tua email",
+      "connectUniversity": "Collega l'email universitaria",
+      "requestEndorsement": "Richiedi una referenza a un professore",
+      "allDone": "Tutto fatto!",
+      "nextStep": "Prossimo: {step}"
+    }
   }
 }

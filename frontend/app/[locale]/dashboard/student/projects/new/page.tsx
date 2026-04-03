@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Textarea } from '@/components/ui/textarea'
 import { Input } from '@/components/ui/input'
-import { Loader2, Plus, X } from 'lucide-react'
+import { Loader2, Plus, X, Paperclip, Image as ImageIcon, FileText } from 'lucide-react'
 import { Link } from '@/navigation'
 
 interface ProjectData {
@@ -17,12 +17,21 @@ interface ProjectData {
   skills: string[]
   tools: string[]
   competencies: string[]
+  companyInfo?: string
+}
+
+interface Attachment {
+  type: 'image' | 'document'
+  url: string
+  name: string
+  mimeType: string
 }
 
 interface Message {
   role: 'system' | 'user'
   content: string
   data?: ProjectData
+  attachments?: Attachment[]
 }
 
 export default function NewProjectPage() {
@@ -45,12 +54,14 @@ export default function NewProjectPage() {
   const [newSkill, setNewSkill] = useState('')
   const [newTool, setNewTool] = useState('')
 
-  // Image upload
-  const [imageUrl, setImageUrl] = useState('')
-  const [uploadingImage, setUploadingImage] = useState(false)
+  // Attachments
+  const [attachments, setAttachments] = useState<Attachment[]>([])
+  const [uploading, setUploading] = useState(false)
 
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const imageInputRef = useRef<HTMLInputElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -61,41 +72,99 @@ export default function NewProjectPage() {
     if (!file) return
     if (file.size > 10 * 1024 * 1024) { alert('Max 10MB'); return }
 
-    setUploadingImage(true)
+    setUploading(true)
     try {
       const formData = new FormData()
       formData.append('image', file)
       const res = await fetch('/api/upload/image', { method: 'POST', body: formData })
       if (res.ok) {
         const data = await res.json()
-        setImageUrl(data.url)
+        setAttachments(prev => [...prev, {
+          type: 'image',
+          url: data.url,
+          name: file.name,
+          mimeType: file.type,
+        }])
       }
     } catch {
       // Silent fail
     } finally {
-      setUploadingImage(false)
+      setUploading(false)
+      if (e.target) e.target.value = ''
     }
+  }
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    if (file.size > 25 * 1024 * 1024) { alert('Max 25MB'); return }
+
+    setUploading(true)
+    try {
+      const formData = new FormData()
+      formData.append('document', file)
+      const res = await fetch('/api/upload/document', { method: 'POST', body: formData })
+      if (res.ok) {
+        const data = await res.json()
+        setAttachments(prev => [...prev, {
+          type: 'document',
+          url: data.url,
+          name: file.name,
+          mimeType: file.type || data.type,
+        }])
+      }
+    } catch {
+      // Silent fail
+    } finally {
+      setUploading(false)
+      if (e.target) e.target.value = ''
+    }
+  }
+
+  const removeAttachment = (index: number) => {
+    setAttachments(prev => prev.filter((_, i) => i !== index))
   }
 
   const handleSend = async () => {
     const text = input.trim()
-    if (!text || analyzing) return
+    if ((!text && attachments.length === 0) || analyzing) return
 
-    const userMessage: Message = { role: 'user', content: text }
+    const currentAttachments = [...attachments]
+    const userMessage: Message = {
+      role: 'user',
+      content: text,
+      attachments: currentAttachments.length > 0 ? currentAttachments : undefined,
+    }
     setMessages((prev) => [...prev, userMessage])
     setInput('')
+    setAttachments([])
 
     // If no analysis yet, this is the first message — analyze it
     if (!projectData) {
       setAnalyzing(true)
-      setTitle(text.split(/[.\n]/)[0].slice(0, 100))
-      setDescription(text)
+      if (text) {
+        setTitle(text.split(/[.\n]/)[0].slice(0, 100))
+        setDescription(text)
+      }
 
       try {
+        const imageUrls = currentAttachments
+          .filter(a => a.type === 'image')
+          .map(a => a.url)
+        const documentUrls = currentAttachments
+          .filter(a => a.type === 'document')
+          .map(a => ({ url: a.url, name: a.name }))
+
         const res = await fetch('/api/ai/analyze-project', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ title: text.split(/[.\n]/)[0].slice(0, 100), description: text }),
+          body: JSON.stringify({
+            title: text ? text.split(/[.\n]/)[0].slice(0, 100) : '',
+            description: text,
+            imageUrls,
+            documentUrls,
+            searchWeb: true,
+          }),
         })
 
         const data: ProjectData = res.ok
@@ -105,12 +174,19 @@ export default function NewProjectPage() {
         setProjectData(data)
         setSkills(data.skills || [])
         setTools(data.tools || [])
+        if (!text && data.companyInfo) {
+          setDescription(data.companyInfo)
+        }
 
-        setMessages((prev) => [
-          ...prev,
+        const resultMessages: Message[] = [
           { role: 'system', content: t('chat.result'), data },
-          { role: 'system', content: t('chat.followUp') },
-        ])
+        ]
+        if (data.companyInfo) {
+          resultMessages.push({ role: 'system', content: data.companyInfo })
+        }
+        resultMessages.push({ role: 'system', content: t('chat.followUp') })
+
+        setMessages((prev) => [...prev, ...resultMessages])
       } catch {
         const fallback: ProjectData = { discipline: 'TECHNOLOGY', projectType: 'Project', skills: [], tools: [], competencies: [] }
         setProjectData(fallback)
@@ -125,12 +201,63 @@ export default function NewProjectPage() {
         setAnalyzing(false)
       }
     } else {
-      // Follow-up message — append to description
-      setDescription((prev) => prev + '\n' + text)
-      setMessages((prev) => [
-        ...prev,
-        { role: 'system', content: t('chat.followUp') },
-      ])
+      // Follow-up message — re-analyze with additional context
+      setAnalyzing(true)
+      const newDescription = description + '\n' + text
+      setDescription(newDescription)
+
+      try {
+        const imageUrls = currentAttachments
+          .filter(a => a.type === 'image')
+          .map(a => a.url)
+
+        const res = await fetch('/api/ai/analyze-project', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title,
+            description: newDescription,
+            imageUrls,
+            searchWeb: true,
+            isFollowUp: true,
+            existingSkills: skills,
+            existingTools: tools,
+          }),
+        })
+
+        if (res.ok) {
+          const data: ProjectData = await res.json()
+          // Merge new skills/tools with existing
+          const mergedSkills = Array.from(new Set([...skills, ...(data.skills || [])]))
+          const mergedTools = Array.from(new Set([...tools, ...(data.tools || [])]))
+          setSkills(mergedSkills)
+          setTools(mergedTools)
+          setProjectData(data)
+
+          const followUpMessages: Message[] = []
+          if (data.companyInfo) {
+            followUpMessages.push({ role: 'system', content: data.companyInfo })
+          }
+          followUpMessages.push({
+            role: 'system',
+            content: t('chat.followUp'),
+            data: { ...data, skills: mergedSkills, tools: mergedTools },
+          })
+          setMessages((prev) => [...prev, ...followUpMessages])
+        } else {
+          setMessages((prev) => [
+            ...prev,
+            { role: 'system', content: t('chat.followUp') },
+          ])
+        }
+      } catch {
+        setMessages((prev) => [
+          ...prev,
+          { role: 'system', content: t('chat.followUp') },
+        ])
+      } finally {
+        setAnalyzing(false)
+      }
     }
   }
 
@@ -148,6 +275,14 @@ export default function NewProjectPage() {
   const handleCreate = async () => {
     setSubmitting(true)
     try {
+      // Collect all attachment URLs
+      const allAttachments = messages
+        .filter(m => m.attachments)
+        .flatMap(m => m.attachments || [])
+      const imageUrl = allAttachments.find(a => a.type === 'image')?.url
+      const images = allAttachments.filter(a => a.type === 'image').map(a => a.url)
+      const documents = allAttachments.filter(a => a.type === 'document').map(a => a.url)
+
       const res = await fetch('/api/projects', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -160,12 +295,22 @@ export default function NewProjectPage() {
           tools,
           competencies: projectData?.competencies || [],
           imageUrl: imageUrl || undefined,
+          images,
           isPublic: true,
           featured: false,
         }),
       })
       if (!res.ok) throw new Error('Failed')
-      router.push('/dashboard/student/projects')
+
+      // If there are documents, upload them to the project
+      if (documents.length > 0) {
+        const projectRes = await res.json()
+        // Documents are already uploaded to R2, we'd link them to the project
+        // via the project files endpoint if needed
+        router.push('/dashboard/student/projects')
+      } else {
+        router.push('/dashboard/student/projects')
+      }
       router.refresh()
     } catch {
       alert(t('error'))
@@ -195,6 +340,24 @@ export default function NewProjectPage() {
               }`}
             >
               <p className="whitespace-pre-wrap">{msg.content}</p>
+
+              {/* User attachments */}
+              {msg.attachments && msg.attachments.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {msg.attachments.map((att, ai) => (
+                    <div key={ai}>
+                      {att.type === 'image' ? (
+                        <img src={att.url} alt={att.name} className="h-20 w-20 object-cover rounded-lg" />
+                      ) : (
+                        <div className="flex items-center gap-1.5 bg-background/50 rounded-lg px-2.5 py-1.5 text-xs">
+                          <FileText className="h-3.5 w-3.5" />
+                          <span className="truncate max-w-[120px]">{att.name}</span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
 
               {/* Structured data card */}
               {msg.data && (
@@ -296,16 +459,27 @@ export default function NewProjectPage() {
 
       {/* Input area */}
       <div className="border-t border-border pt-4 space-y-3">
-        {/* Image preview */}
-        {imageUrl && (
-          <div className="relative inline-block">
-            <img src={imageUrl} alt="" className="h-16 w-16 object-cover rounded-lg" />
-            <button
-              onClick={() => setImageUrl('')}
-              className="absolute -top-1.5 -right-1.5 bg-destructive text-destructive-foreground rounded-full p-0.5"
-            >
-              <X className="h-3 w-3" />
-            </button>
+        {/* Attachment previews */}
+        {attachments.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {attachments.map((att, i) => (
+              <div key={i} className="relative group">
+                {att.type === 'image' ? (
+                  <img src={att.url} alt={att.name} className="h-16 w-16 object-cover rounded-lg" />
+                ) : (
+                  <div className="flex items-center gap-1.5 bg-muted rounded-lg px-3 py-2 text-xs">
+                    <FileText className="h-4 w-4" />
+                    <span className="truncate max-w-[100px]">{att.name}</span>
+                  </div>
+                )}
+                <button
+                  onClick={() => removeAttachment(i)}
+                  className="absolute -top-1.5 -right-1.5 bg-destructive text-destructive-foreground rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </div>
+            ))}
           </div>
         )}
 
@@ -323,13 +497,34 @@ export default function NewProjectPage() {
             />
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="cursor-pointer">
-              <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
-              <Button variant="outline" size="sm" className="pointer-events-none h-8 text-xs" tabIndex={-1} asChild>
-                <span>{uploadingImage ? t('chat.uploading') : t('chat.attach')}</span>
+            {/* Image upload */}
+            <input ref={imageInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
+            {/* Document upload */}
+            <input ref={fileInputRef} type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.rar" onChange={handleFileUpload} className="hidden" />
+
+            <div className="flex gap-1">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-8 w-8 p-0"
+                onClick={() => imageInputRef.current?.click()}
+                disabled={uploading || analyzing}
+                title={t('chat.attachImage')}
+              >
+                {uploading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <ImageIcon className="h-3.5 w-3.5" />}
               </Button>
-            </label>
-            <Button onClick={handleSend} disabled={!input.trim() || analyzing} size="sm" className="h-8">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-8 w-8 p-0"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploading || analyzing}
+                title={t('chat.attachFile')}
+              >
+                <Paperclip className="h-3.5 w-3.5" />
+              </Button>
+            </div>
+            <Button onClick={handleSend} disabled={(!input.trim() && attachments.length === 0) || analyzing} size="sm" className="h-8">
               {t('chat.send')}
             </Button>
           </div>

@@ -5930,13 +5930,19 @@
       "skills": "Skills",
       "projects": "Projects",
       "education": "Education",
-      "personality": "Personality"
+      "personality": "Personality",
+      "languages": "Languages",
+      "workExperience": "Work Experience",
+      "certifications": "Certifications",
+      "careerPreferences": "Career Preferences"
     },
     "missing": {
       "title": "Missing something?",
       "bio": "Add a bio to introduce yourself",
       "projects": "Add your first project",
-      "personality": "Take personality assessment"
+      "personality": "Take personality assessment",
+      "languages": "Add your language skills",
+      "certifications": "Add your certifications"
     },
     "empty": "Complete your profile to generate your CV"
   },
@@ -8115,6 +8121,7 @@
       "settings": "Settings",
       "universityProfile": "University profile",
       "signOut": "Sign out",
+      "recentActivity": "Recent Activity",
       "activeRecruiters": "Active recruiters",
       "companiesViewingStudents": "Companies viewing your students",
       "contactsMade": "contacts made",
@@ -9448,7 +9455,7 @@
       "createButton": "Create Project"
     },
     "chat": {
-      "welcome": "Tell me about your project. Describe it in your own words, paste a GitHub link, or upload an image.",
+      "welcome": "Tell me about your project. Describe it in your own words, paste a GitHub link, or attach photos and files (thesis, reports, presentations).",
       "placeholder": "I built a warehouse management app using React and Node.js...",
       "send": "Send",
       "analyzing": "Analyzing your project...",
@@ -9456,6 +9463,8 @@
       "followUp": "Anything to add? You can also link this to a course for university verification.",
       "looksGood": "Looks good — create project",
       "attach": "Attach image",
+      "attachImage": "Attach photo",
+      "attachFile": "Attach file (PDF, thesis, report)",
       "uploading": "Uploading..."
     }
   },
@@ -9622,7 +9631,6 @@
       "title": "Details",
       "graduationYear": "Graduation Year",
       "location": "Location",
-      "languages": "Languages",
       "availability": "Available for",
       "availabilityOptions": {
         "jobs": "Jobs",
@@ -9630,6 +9638,107 @@
         "freelance": "Freelance",
         "notLooking": "Not looking"
       }
+    },
+    "languages": {
+      "title": "Languages",
+      "addLanguage": "Add Language",
+      "language": "Language",
+      "motherTongue": "Mother Tongue",
+      "reading": "Reading",
+      "writing": "Writing",
+      "listening": "Listening",
+      "speaking": "Speaking",
+      "interaction": "Interaction",
+      "remove": "Remove",
+      "summary": "{count} languages added",
+      "placeholder": "e.g. English"
+    },
+    "thesis": {
+      "title": "Thesis",
+      "thesisTitle": "Title",
+      "thesisSubject": "Subject Area",
+      "thesisSupervisor": "Supervisor",
+      "thesisKeywords": "Keywords",
+      "keywordsPlaceholder": "e.g. machine learning, NLP",
+      "summary": "Thesis info added"
+    },
+    "certifications": {
+      "title": "Certifications",
+      "addCertification": "Add Certification",
+      "name": "Certification Name",
+      "issuer": "Issuing Organization",
+      "dateObtained": "Date Obtained",
+      "expiryDate": "Expiry Date",
+      "credentialId": "Credential ID",
+      "credentialUrl": "Credential URL",
+      "remove": "Remove",
+      "summary": "{count} certifications added"
+    },
+    "workExperience": {
+      "title": "Work Experience",
+      "addExperience": "Add Experience",
+      "company": "Company",
+      "role": "Role / Position",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "description": "Description",
+      "current": "Currently working here",
+      "contractType": "Contract Type",
+      "companySector": "Company Sector",
+      "businessArea": "Business Area",
+      "remove": "Remove",
+      "summary": "{count} experiences added",
+      "contractTypes": {
+        "permanent": "Permanent",
+        "fixedTerm": "Fixed-term",
+        "internship": "Internship",
+        "freelance": "Freelance",
+        "apprenticeship": "Apprenticeship"
+      },
+      "sectors": {
+        "it": "IT & Technology",
+        "retail": "Retail & GDO",
+        "logistics": "Logistics & Supply Chain",
+        "manufacturing": "Manufacturing",
+        "finance": "Finance & Banking",
+        "healthcare": "Healthcare",
+        "education": "Education & Research",
+        "media": "Media & Publishing",
+        "consulting": "Consulting",
+        "other": "Other"
+      },
+      "areas": {
+        "commercial": "Commercial & Sales",
+        "operations": "Operations",
+        "customerService": "Customer Service",
+        "rd": "R&D / Engineering",
+        "hr": "Human Resources",
+        "marketing": "Marketing & Communication",
+        "management": "Management",
+        "logistics": "Logistics & Supply Chain",
+        "other": "Other"
+      }
+    },
+    "careerPreferences": {
+      "title": "Career Preferences",
+      "desiredOccupation": "Desired Occupation",
+      "desiredOccupationPlaceholder": "e.g. Computational Linguist",
+      "preferredSectors": "Preferred Sectors",
+      "preferredAreas": "Preferred Professional Areas",
+      "preferredLocations": "Preferred Locations",
+      "preferredLocationsPlaceholder": "e.g. Milano, Bergamo",
+      "willingToRelocate": "Willing to relocate",
+      "willingToRelocateAbroad": "Willing to relocate abroad",
+      "willingToTravel": "Willing to travel for work",
+      "continuingStudies": "Planning to continue studies",
+      "continuingStudiesType": "Type of further studies",
+      "studyTypes": {
+        "master1": "1st Level Master",
+        "master2": "2nd Level Master",
+        "phd": "PhD",
+        "specialization": "Specialization"
+      },
+      "summary": "Career preferences set"
     }
   },
   "advancedSearch": {
@@ -9739,5 +9848,66 @@
     "note": "The student will receive an email invitation to join your institution and complete their profile.",
     "success": "Invitation sent!",
     "back": "Back"
+  },
+  "shared": {
+    "complete": "complete",
+    "verified": "Verified",
+    "view": "View",
+    "next": "Next",
+    "noRecentActivity": "No recent activity",
+    "noActivityYet": "No activity yet",
+    "redirecting": "Redirecting to your dashboard...",
+    "time": {
+      "justNow": "Just now",
+      "minutesAgo": "{count}m ago",
+      "hoursAgo": "{count}h ago",
+      "daysAgo": "{count}d ago",
+      "thisWeek": "This week",
+      "recent": "Recent",
+      "upcoming": "Upcoming",
+      "actionNeeded": "Action needed",
+      "topMatch": "Top match",
+      "total": "Total",
+      "active": "Active",
+      "last30Days": "last 30 days"
+    },
+    "date": {
+      "today": "Today",
+      "yesterday": "Yesterday"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "all": "All",
+      "unread": "Unread",
+      "markAllRead": "Mark all read",
+      "noUnread": "No unread notifications",
+      "noNotifications": "No notifications yet"
+    },
+    "activity": {
+      "recruiterViewsThisWeek": "{count} recruiter views this week",
+      "unreadMessages": "{count} unread messages",
+      "newJobMatches": "{count} new job matches",
+      "projectReceivedViews": "\"{title}\" received {count} views",
+      "newApplicationsThisWeek": "{count} new applications this week",
+      "interviewsScheduled": "{count} interviews scheduled",
+      "applicationsPendingReview": "{count} applications pending review",
+      "topCandidate": "{name} — {projects} projects, {university}",
+      "recruiterProfileViews": "{count} recruiter profile views",
+      "studentsVerified": "{count} students verified",
+      "activeStudentProfiles": "{count} active student profiles",
+      "recruiterActivity": "{name} — {contacts} contacts, {views} views"
+    },
+    "onboardingChecklist": {
+      "title": "Get started",
+      "addName": "Add your name",
+      "writeBio": "Write a bio",
+      "addUniversity": "Add university details",
+      "uploadProject": "Upload your first project",
+      "verifyEmail": "Verify your email",
+      "connectUniversity": "Connect university email",
+      "requestEndorsement": "Request a professor endorsement",
+      "allDone": "All done!",
+      "nextStep": "Next: {step}"
+    }
   }
 }

@@ -131,7 +131,7 @@ export default function EndorsementRequestForm({
                 {statusIcon(e.status)}
                 <span className="flex-1 truncate">{e.professorName}</span>
                 <Badge variant="outline" className="text-xs">
-                  {e.status.toLowerCase()}
+                  {(e.status || '').toLowerCase()}
                 </Badge>
               </div>
             ))}

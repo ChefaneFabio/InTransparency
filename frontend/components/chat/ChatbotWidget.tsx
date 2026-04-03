@@ -226,7 +226,7 @@ export function ChatbotWidget({
     // Handle suggested action clicks
     // This could navigate to different pages or trigger specific actions
     console.log('Action clicked:', action)
-    setInput(`I want to ${action.label.toLowerCase()}`)
+    setInput(`I want to ${(action.label || '').toLowerCase()}`)
   }
 
   const handleToggle = () => {
