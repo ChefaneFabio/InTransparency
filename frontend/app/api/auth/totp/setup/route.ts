@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
-import { authenticator } from 'otplib'
+import { generateSecret, keyuri } from '@/lib/auth/totp'
 import QRCode from 'qrcode'
 import { authLimiter, getClientIp } from '@/lib/rate-limit'
 
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Generate secret
-    const secret = authenticator.generateSecret()
+    const secret = generateSecret()
 
     // Store secret (not yet enabled — user must verify first)
     await prisma.user.update({
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     })
 
     // Generate QR code
-    const otpauth = authenticator.keyuri(user.email, 'InTransparency', secret)
+    const otpauth = keyuri(user.email, 'InTransparency', secret)
     const qrCodeDataUrl = await QRCode.toDataURL(otpauth)
 
     return NextResponse.json({

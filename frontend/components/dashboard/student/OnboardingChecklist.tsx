@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from '@/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -20,6 +20,7 @@ import {
   Sparkles,
   X,
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface ChecklistItem {
   id: string
@@ -59,12 +60,13 @@ export default function OnboardingChecklist({
 }: OnboardingChecklistProps) {
   const [expanded, setExpanded] = useState(true)
   const [dismissed, setDismissed] = useState(false)
+  const t = useTranslations('studentDashboard.onboarding')
 
   const items: ChecklistItem[] = [
     {
       id: 'name',
-      label: 'Add your name',
-      description: 'First and last name so recruiters know who you are',
+      label: t('items.name'),
+      description: t('items.nameDesc'),
       href: '/dashboard/student/profile/edit',
       completed: !!(profile?.firstName && profile?.lastName),
       icon: <User className="h-4 w-4" />,
@@ -72,8 +74,8 @@ export default function OnboardingChecklist({
     },
     {
       id: 'bio',
-      label: 'Write a bio',
-      description: 'A short paragraph about your background and interests',
+      label: t('items.bio'),
+      description: t('items.bioDesc'),
       href: '/dashboard/student/profile/edit',
       completed: !!(profile?.bio && profile.bio.length > 10),
       icon: <FileText className="h-4 w-4" />,
@@ -81,8 +83,8 @@ export default function OnboardingChecklist({
     },
     {
       id: 'university',
-      label: 'Add university details',
-      description: 'University, degree, and graduation year',
+      label: t('items.university'),
+      description: t('items.universityDesc'),
       href: '/dashboard/student/profile/edit',
       completed: !!(profile?.university && profile?.degree),
       icon: <GraduationCap className="h-4 w-4" />,
@@ -90,8 +92,8 @@ export default function OnboardingChecklist({
     },
     {
       id: 'project',
-      label: 'Upload your first project',
-      description: 'Showcase your work — this is what recruiters look at most',
+      label: t('items.project'),
+      description: t('items.projectDesc'),
       href: '/dashboard/student/projects/new',
       completed: projectCount > 0,
       icon: <FolderPlus className="h-4 w-4" />,
@@ -99,8 +101,8 @@ export default function OnboardingChecklist({
     },
     {
       id: 'verify-email',
-      label: 'Verify your email',
-      description: 'Confirms your account and enables notifications',
+      label: t('items.verifyEmail'),
+      description: t('items.verifyEmailDesc'),
       href: '/dashboard/student/profile/edit#email',
       completed: !!profile?.emailVerified,
       icon: <Mail className="h-4 w-4" />,
@@ -108,8 +110,8 @@ export default function OnboardingChecklist({
     },
     {
       id: 'verify-uni',
-      label: 'Connect university email',
-      description: 'Gets you the verified badge that recruiters trust',
+      label: t('items.verifyUni'),
+      description: t('items.verifyUniDesc'),
       href: '/dashboard/student/profile/edit#university',
       completed: universityVerified,
       icon: <Award className="h-4 w-4" />,
@@ -117,8 +119,8 @@ export default function OnboardingChecklist({
     },
     {
       id: 'endorsement',
-      label: 'Request a professor endorsement',
-      description: 'The highest-trust signal on the platform',
+      label: t('items.endorsement'),
+      description: t('items.endorsementDesc'),
       href: '/dashboard/student/projects',
       completed: endorsementCount > 0,
       icon: <Sparkles className="h-4 w-4" />,
@@ -143,7 +145,7 @@ export default function OnboardingChecklist({
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <CardTitle className="text-base">Get started</CardTitle>
+            <CardTitle className="text-base">{t('title')}</CardTitle>
             <Badge variant="secondary" className="text-xs">
               {completedCount}/{totalCount}
             </Badge>
@@ -174,7 +176,9 @@ export default function OnboardingChecklist({
         </div>
         <Progress value={percentage} className="h-2 mt-2" />
         <p className="text-xs text-gray-500 mt-1">
-          {percentage}% complete — {allDone ? 'All done!' : `Next: ${nextItem?.label}`}
+          {allDone
+            ? t('allDone', { percentage })
+            : t('percentComplete', { percentage, next: nextItem?.label || '' })}
         </p>
       </CardHeader>
 
@@ -205,7 +209,7 @@ export default function OnboardingChecklist({
                   )}
                 </div>
                 {item.id === nextItem?.id && !item.completed && (
-                  <Badge className="text-xs bg-primary flex-shrink-0">Next</Badge>
+                  <Badge className="text-xs bg-primary flex-shrink-0">{t('next')}</Badge>
                 )}
               </Link>
             ))}

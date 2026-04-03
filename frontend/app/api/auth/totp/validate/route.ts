@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
-import { authenticator } from 'otplib'
+import { verifyToken } from '@/lib/auth/totp'
 import { authLimiter, getClientIp } from '@/lib/rate-limit'
 
 /**
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Try TOTP code first
-    const isValidTotp = authenticator.verify({ token: code, secret: user.totpSecret })
+    const isValidTotp = await verifyToken(code, user.totpSecret)
     if (isValidTotp) {
       return NextResponse.json({ success: true })
     }

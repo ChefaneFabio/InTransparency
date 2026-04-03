@@ -21,6 +21,7 @@ import {
   Trophy,
   Lock,
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface Achievement {
   id: string
@@ -62,17 +63,11 @@ const categoryColors: Record<string, string> = {
   career: 'bg-primary/10 text-primary',
 }
 
-const categoryLabels: Record<string, string> = {
-  profile: 'Profile',
-  projects: 'Projects',
-  engagement: 'Engagement',
-  career: 'Career',
-}
-
 export function AchievementsPanel() {
   const [achievements, setAchievements] = useState<Achievement[]>([])
   const [summary, setSummary] = useState<AchievementsSummary | null>(null)
   const [loading, setLoading] = useState(true)
+  const t = useTranslations('studentDashboard.achievements')
 
   useEffect(() => {
     const fetchAchievements = async () => {
@@ -111,15 +106,15 @@ export function AchievementsPanel() {
           <div>
             <CardTitle className="flex items-center gap-2">
               <Trophy className="h-5 w-5 text-primary" />
-              Achievements
+              {t('title')}
             </CardTitle>
             <CardDescription>
-              {summary.totalUnlocked} of {summary.totalAchievements} unlocked
+              {t('unlocked', { unlocked: summary.totalUnlocked, total: summary.totalAchievements })}
             </CardDescription>
           </div>
           <div className="text-right">
             <div className="text-2xl font-bold text-primary">{summary.overallProgress}%</div>
-            <div className="text-xs text-muted-foreground">complete</div>
+            <div className="text-xs text-muted-foreground">{t('complete')}</div>
           </div>
         </div>
         <Progress value={summary.overallProgress} className="h-2 mt-2" />
@@ -154,7 +149,7 @@ export function AchievementsPanel() {
                   <div className="flex items-center gap-2 mb-0.5">
                     <span className="font-medium text-sm truncate">{achievement.title}</span>
                     <Badge className={`${categoryColors[achievement.category]} text-[10px] px-1.5 py-0`}>
-                      {categoryLabels[achievement.category]}
+                      {t(`categories.${achievement.category}`)}
                     </Badge>
                   </div>
                   <p className="text-xs text-muted-foreground">{achievement.description}</p>

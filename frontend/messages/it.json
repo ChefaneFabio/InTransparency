@@ -4916,6 +4916,7 @@
   "studentDashboard": {
     "loading": "Caricamento...",
     "greeting": "Ciao {name}",
+    "subtitle": "Ecco cosa succede con il tuo portfolio",
     "editProfile": "Modifica Profilo",
     "newProject": "Nuovo Progetto",
     "viewAll": "Vedi tutti",
@@ -4954,6 +4955,39 @@
       "label": "Università",
       "notVerified": "Non verificata",
       "connect": "Collega email universitaria"
+    },
+    "onboarding": {
+      "title": "Inizia qui",
+      "percentComplete": "{percentage}% completato — Prossimo: {next}",
+      "allDone": "{percentage}% completato — Tutto fatto!",
+      "next": "Prossimo",
+      "items": {
+        "name": "Aggiungi il tuo nome",
+        "nameDesc": "Nome e cognome così i recruiter sanno chi sei",
+        "bio": "Scrivi una bio",
+        "bioDesc": "Un breve paragrafo sul tuo background e interessi",
+        "university": "Aggiungi dettagli università",
+        "universityDesc": "Università, corso di laurea e anno di laurea",
+        "project": "Carica il tuo primo progetto",
+        "projectDesc": "Mostra il tuo lavoro — è quello che i recruiter guardano di più",
+        "verifyEmail": "Verifica la tua email",
+        "verifyEmailDesc": "Conferma il tuo account e abilita le notifiche",
+        "verifyUni": "Collega email universitaria",
+        "verifyUniDesc": "Ottieni il badge verificato di cui i recruiter si fidano",
+        "endorsement": "Richiedi una referenza del professore",
+        "endorsementDesc": "Il segnale di fiducia più alto sulla piattaforma"
+      }
+    },
+    "achievements": {
+      "title": "Traguardi",
+      "unlocked": "{unlocked} di {total} sbloccati",
+      "complete": "completato",
+      "categories": {
+        "profile": "Profilo",
+        "projects": "Progetti",
+        "engagement": "Coinvolgimento",
+        "career": "Carriera"
+      }
     }
   },
   "studentAnalytics": {

@@ -4943,6 +4943,7 @@
   "studentDashboard": {
     "loading": "Loading...",
     "greeting": "Hey {name}",
+    "subtitle": "Here's what's happening with your portfolio",
     "editProfile": "Edit Profile",
     "newProject": "New Project",
     "viewAll": "View all",
@@ -4981,6 +4982,39 @@
       "label": "University",
       "notVerified": "Not verified",
       "connect": "Connect university email"
+    },
+    "onboarding": {
+      "title": "Get started",
+      "percentComplete": "{percentage}% complete — Next: {next}",
+      "allDone": "{percentage}% complete — All done!",
+      "next": "Next",
+      "items": {
+        "name": "Add your name",
+        "nameDesc": "First and last name so recruiters know who you are",
+        "bio": "Write a bio",
+        "bioDesc": "A short paragraph about your background and interests",
+        "university": "Add university details",
+        "universityDesc": "University, degree, and graduation year",
+        "project": "Upload your first project",
+        "projectDesc": "Showcase your work — this is what recruiters look at most",
+        "verifyEmail": "Verify your email",
+        "verifyEmailDesc": "Confirms your account and enables notifications",
+        "verifyUni": "Connect university email",
+        "verifyUniDesc": "Gets you the verified badge that recruiters trust",
+        "endorsement": "Request a professor endorsement",
+        "endorsementDesc": "The highest-trust signal on the platform"
+      }
+    },
+    "achievements": {
+      "title": "Achievements",
+      "unlocked": "{unlocked} of {total} unlocked",
+      "complete": "complete",
+      "categories": {
+        "profile": "Profile",
+        "projects": "Projects",
+        "engagement": "Engagement",
+        "career": "Career"
+      }
     }
   },
   "studentAnalytics": {

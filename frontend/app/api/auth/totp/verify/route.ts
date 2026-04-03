@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
-import { authenticator } from 'otplib'
+import { verifyToken } from '@/lib/auth/totp'
 import bcrypt from 'bcryptjs'
 import crypto from 'crypto'
 import { authLimiter, getClientIp } from '@/lib/rate-limit'
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Verify the code against the stored secret
-    const isValid = authenticator.verify({ token: code, secret: user.totpSecret })
+    const isValid = await verifyToken(code, user.totpSecret)
     if (!isValid) {
       return NextResponse.json({ error: 'Invalid code. Please try again.' }, { status: 400 })
     }
