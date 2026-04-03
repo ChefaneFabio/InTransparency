@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button'
 import { useTranslations } from 'next-intl'
 import { useSegment } from '@/lib/segment-context'
 import { motion } from 'framer-motion'
-import { MobileAppMockup } from '@/components/mockups/MobileAppMockup'
 
 const segmentToKey = {
   students: 'students',
@@ -21,46 +20,39 @@ export function CTA() {
   const translationKey = segmentToKey[segment]
 
   return (
-    <section className="py-12 sm:py-16 bg-foreground text-background">
-      <div className="container max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left: text + CTA */}
-          <div className="text-center lg:text-left">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">
-              {t('title')}{' '}
-              <span className="text-primary">{t('titleHighlight')}</span>
-            </h2>
-            <p className="mt-5 text-lg text-background/70 max-w-lg">
-              {t('subtitle')}
+    <section className="py-20 sm:py-28 bg-foreground text-background">
+      <div className="container max-w-3xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+            {t('title')}
+            <br />
+            <span className="text-primary italic">{t('titleHighlight')}</span>
+          </h2>
+
+          <p className="mt-6 text-lg sm:text-xl text-background/70 max-w-xl mx-auto">
+            {t('subtitle')}
+          </p>
+
+          <div className="mt-10">
+            <p className="text-sm font-medium text-background/50 mb-3">
+              {t(`segments.${translationKey}.title`)}
             </p>
-
-            <div className="mt-10">
-              <h3 className="text-base font-semibold mb-2">
-                {t(`segments.${translationKey}.title`)}
-              </h3>
-              <p className="text-sm text-background/60 mb-5">
-                {t(`segments.${translationKey}.description`)}
-              </p>
-              <Button asChild size="lg" variant="secondary" className="bg-background text-foreground hover:bg-background/90">
-                <Link href={segment === 'institutions' ? '/contact' : '/auth/register'}>
-                  {t(`segments.${translationKey}.cta`)}
-                  <ArrowRight className="ml-1.5 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
+            <p className="text-base text-background/60 mb-8 max-w-md mx-auto">
+              {t(`segments.${translationKey}.description`)}
+            </p>
+            <Button asChild size="lg" variant="secondary" className="bg-background text-foreground hover:bg-background/90 text-base px-8 py-6">
+              <Link href={segment === 'institutions' ? '/contact' : '/auth/register'}>
+                {t(`segments.${translationKey}.cta`)}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
           </div>
-
-          {/* Right: mobile mockup */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex justify-center"
-          >
-            <MobileAppMockup />
-          </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
