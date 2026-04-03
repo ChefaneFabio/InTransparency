@@ -1,31 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
+import { createRateLimit, getClientIp } from '@/lib/rate-limit'
 
 const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000'
 const AI_SERVICE_API_KEY = process.env.AI_SERVICE_API_KEY || ''
 
-// --- Rate limiting (in-memory, per-IP) ---
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
-
-function getClientIp(request: NextRequest): string {
-  const forwarded = request.headers.get('x-forwarded-for')
-  const realIp = request.headers.get('x-real-ip')
-  return forwarded?.split(',')[0] ?? realIp ?? 'unknown'
-}
+// Rate limiting: 20 queries per hour for unauthenticated, with cleanup
+const publicSearchLimiter = createRateLimit('public-ai-search', 20, 60 * 60 * 1000)
 
 function isRateLimited(ip: string): boolean {
-  const now = Date.now()
-  const limit = 30 // 30 queries per hour for demo
-  const windowMs = 60 * 60 * 1000
-
-  const record = rateLimitMap.get(ip)
-  if (!record || record.resetTime < now) {
-    rateLimitMap.set(ip, { count: 1, resetTime: now + windowMs })
-    return false
-  }
-  if (record.count >= limit) return true
-  record.count++
-  return false
+  return !publicSearchLimiter.check(ip).success
 }
 
 // --- AI service call ---

@@ -58,16 +58,13 @@ export async function GET(
       }
     })
 
-    if (!project) {
-      return NextResponse.json({ error: 'Project not found' }, { status: 404 })
-    }
-
     // Use session for ownership check
     const session = await getServerSession(authOptions)
     const requestingUserId = (session?.user as any)?.id
 
-    if (!project.isPublic && project.userId !== requestingUserId) {
-      return NextResponse.json({ error: 'Access denied' }, { status: 403 })
+    // Return consistent 404 for both not-found and access-denied (prevents enumeration)
+    if (!project || (!project.isPublic && project.userId !== requestingUserId)) {
+      return NextResponse.json({ error: 'Project not found' }, { status: 404 })
     }
 
     // Increment view count

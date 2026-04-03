@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth/config'
 import { anthropic, AI_MODEL } from '@/lib/openai-shared'
+import { aiLimiter, getClientIp } from '@/lib/rate-limit'
 
 const FALLBACK: ProjectResult = {
   discipline: 'TECHNOLOGY',
@@ -85,6 +88,19 @@ const searchWeb = async (query: string): Promise<string> => {
  */
 export async function POST(request: NextRequest) {
   try {
+    // Require authentication
+    const session = await getServerSession(authOptions)
+    if (!session?.user) {
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 })
+    }
+
+    // Rate limiting
+    const ip = getClientIp(request)
+    const { success } = aiLimiter.check(ip)
+    if (!success) {
+      return NextResponse.json({ error: 'Too many requests. Please wait.' }, { status: 429 })
+    }
+
     const body = await request.json()
     const {
       title,

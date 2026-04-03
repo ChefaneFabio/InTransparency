@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
+import { authLimiter, getClientIp } from '@/lib/rate-limit'
 
 /**
  * POST /api/auth/change-password
@@ -11,6 +12,16 @@ import bcrypt from 'bcryptjs'
  */
 export async function POST(req: NextRequest) {
   try {
+    // Rate limiting — 5 attempts per 15 minutes
+    const ip = getClientIp(req)
+    const { success } = authLimiter.check(`pw:${ip}`)
+    if (!success) {
+      return NextResponse.json(
+        { error: 'Too many attempts. Please try again later.' },
+        { status: 429 }
+      )
+    }
+
     const session = await getServerSession(authOptions)
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

@@ -91,10 +91,12 @@ export async function middleware(request: NextRequest) {
   }
 
   // Security headers for all requests
-  response.headers.set('X-Frame-Options', 'SAMEORIGIN')
+  response.headers.set('X-Frame-Options', 'DENY')
   response.headers.set('X-Content-Type-Options', 'nosniff')
   response.headers.set('X-XSS-Protection', '1; mode=block')
-  response.headers.set('Referrer-Policy', 'origin-when-cross-origin')
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(self)')
+  response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
 
   // Handle CSP for different environments
   const isDev = process.env.NODE_ENV === 'development'
@@ -104,7 +106,7 @@ export async function middleware(request: NextRequest) {
     // Production CSP - includes Google Maps support
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://vercel.live https://*.vercel.app https://vitals.vercel-insights.com https://maps.googleapis.com https://*.gstatic.com",
+      "script-src 'self' 'unsafe-inline' https://vercel.live https://*.vercel.app https://vitals.vercel-insights.com https://maps.googleapis.com https://*.gstatic.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
       "img-src 'self' data: blob: https: https://*.vercel.app https://maps.googleapis.com https://*.gstatic.com https://*.r2.cloudflarestorage.com",

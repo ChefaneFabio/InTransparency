@@ -54,34 +54,34 @@ export async function GET(req: NextRequest) {
       })
       const studentsContactedCount = contactedStudents.length
 
-      // Confirmed hired from HiringConfirmation
-      const hiringConfirmations = await prisma.hiringConfirmation.findMany({
+      // Confirmed placements
+      const confirmedPlacements = await prisma.placement.findMany({
         where: {
           studentId: { in: studentIds },
-          status: 'CONFIRMED_HIRED',
+          status: 'CONFIRMED',
         },
         select: {
           studentId: true,
           companyName: true,
           jobTitle: true,
           startDate: true,
-          contactDate: true,
-          respondedAt: true,
+          createdAt: true,
+          updatedAt: true,
           student: { select: { firstName: true, lastName: true, degree: true } },
         },
       })
-      const confirmedHiredCount = hiringConfirmations.length
+      const confirmedHiredCount = confirmedPlacements.length
       const placementRate = studentsContactedCount > 0
         ? Math.round((confirmedHiredCount / studentsContactedCount) * 100)
         : 0
 
-      // Average time to hire (contactDate -> startDate)
+      // Average time to hire (createdAt -> startDate as proxy)
       const hireDurations: number[] = []
-      for (let i = 0; i < hiringConfirmations.length; i++) {
-        const hc = hiringConfirmations[i]
-        if (hc.startDate && hc.contactDate) {
+      for (let i = 0; i < confirmedPlacements.length; i++) {
+        const p = confirmedPlacements[i]
+        if (p.startDate && p.createdAt) {
           const days = Math.round(
-            (hc.startDate.getTime() - hc.contactDate.getTime()) / (1000 * 60 * 60 * 24)
+            (p.startDate.getTime() - p.createdAt.getTime()) / (1000 * 60 * 60 * 24)
           )
           if (days > 0) hireDurations.push(days)
         }
@@ -90,10 +90,10 @@ export async function GET(req: NextRequest) {
         ? Math.round(hireDurations.reduce((a, b) => a + b, 0) / hireDurations.length)
         : 0
 
-      // Top hiring companies from HiringConfirmation
+      // Top hiring companies from confirmed placements
       const companyMap = new Map<string, number>()
-      for (let i = 0; i < hiringConfirmations.length; i++) {
-        const company = hiringConfirmations[i].companyName
+      for (let i = 0; i < confirmedPlacements.length; i++) {
+        const company = confirmedPlacements[i].companyName
         companyMap.set(company, (companyMap.get(company) || 0) + 1)
       }
       const topCompanies = Array.from(companyMap.entries())
@@ -113,13 +113,13 @@ export async function GET(req: NextRequest) {
         select: { firstContactAt: true },
       })
 
-      const allHires = await prisma.hiringConfirmation.findMany({
+      const allHires = await prisma.placement.findMany({
         where: {
           studentId: { in: studentIds },
-          status: 'CONFIRMED_HIRED',
-          contactDate: { gte: twelveMonthsAgo },
+          status: 'CONFIRMED',
+          startDate: { gte: twelveMonthsAgo },
         },
-        select: { contactDate: true, respondedAt: true },
+        select: { startDate: true, updatedAt: true },
       })
 
       const monthlyTrend: Array<{ month: string; contacts: number; hires: number }> = []
@@ -136,7 +136,7 @@ export async function GET(req: NextRequest) {
 
         let hires = 0
         for (let h = 0; h < allHires.length; h++) {
-          const d = allHires[h].respondedAt || allHires[h].contactDate
+          const d = allHires[h].updatedAt || allHires[h].startDate
           if (d >= monthDate && d <= monthEnd) hires++
         }
 
@@ -161,8 +161,8 @@ export async function GET(req: NextRequest) {
       }
 
       const hiredSet = new Set<string>()
-      for (let i = 0; i < hiringConfirmations.length; i++) {
-        hiredSet.add(hiringConfirmations[i].studentId)
+      for (let i = 0; i < confirmedPlacements.length; i++) {
+        hiredSet.add(confirmedPlacements[i].studentId)
       }
 
       const contactedArr = Array.from(contactedSet)
@@ -193,13 +193,13 @@ export async function GET(req: NextRequest) {
         .sort((a, b) => b.hired - a.hired)
         .slice(0, 8)
 
-      // Recent placements (from HiringConfirmation CONFIRMED_HIRED, most recent)
-      const recentHires = await prisma.hiringConfirmation.findMany({
+      // Recent confirmed placements
+      const recentHires = await prisma.placement.findMany({
         where: {
           studentId: { in: studentIds },
-          status: 'CONFIRMED_HIRED',
+          status: 'CONFIRMED',
         },
-        orderBy: { respondedAt: 'desc' },
+        orderBy: { updatedAt: 'desc' },
         take: 10,
         select: {
           id: true,
@@ -207,7 +207,7 @@ export async function GET(req: NextRequest) {
           companyName: true,
           jobTitle: true,
           startDate: true,
-          respondedAt: true,
+          updatedAt: true,
           student: { select: { firstName: true, lastName: true, degree: true } },
         },
       })
@@ -219,7 +219,7 @@ export async function GET(req: NextRequest) {
         company: h.companyName,
         jobTitle: h.jobTitle || '',
         startDate: h.startDate?.toISOString() || null,
-        confirmedDate: h.respondedAt?.toISOString() || null,
+        confirmedDate: h.updatedAt?.toISOString() || null,
       }))
 
       return NextResponse.json({
@@ -289,7 +289,7 @@ export async function GET(req: NextRequest) {
     }))
 
     // Stats
-    const allPlacements = await prisma.placement.findMany({ where: { universityName } })
+    const allPlacements = await prisma.placement.findMany({ where: { universityName }, take: 5000 })
     const confirmed = allPlacements.filter(p => p.status === 'CONFIRMED')
     const pending = allPlacements.filter(p => p.status === 'PENDING')
     const fullTimeSalaries = confirmed

@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
 import Anthropic from '@anthropic-ai/sdk'
 import type { MessageParam } from '@anthropic-ai/sdk/resources/messages'
+import { chatLimiter, getClientIp } from '@/lib/rate-limit'
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY || '',
@@ -64,6 +65,16 @@ Guidelines:
 - Answer in the same language the user writes in (Italian or English)`,
 }
 
+// Map database roles to chat roles
+const roleMapping: Record<string, string> = {
+  STUDENT: 'student',
+  RECRUITER: 'recruiter',
+  UNIVERSITY: 'institution',
+  TECHPARK: 'institution',
+  PROFESSOR: 'institution',
+  ADMIN: 'student', // default
+}
+
 export async function POST(request: NextRequest) {
   try {
     if (!process.env.ANTHROPIC_API_KEY) {
@@ -73,9 +84,26 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Rate limiting
+    const ip = getClientIp(request)
+    const { success } = chatLimiter.check(ip)
+    if (!success) {
+      return NextResponse.json(
+        { error: 'Too many messages. Please wait a moment.' },
+        { status: 429 }
+      )
+    }
+
     const session = await getServerSession(authOptions)
+    if (!session?.user) {
+      return NextResponse.json(
+        { error: 'Authentication required' },
+        { status: 401 }
+      )
+    }
+
     const body = await request.json()
-    const { session_id, message, user_role, stream: useStream = false } = body
+    const { session_id, message, stream: useStream = false } = body
 
     if (!session_id || !message) {
       return NextResponse.json(
@@ -84,8 +112,18 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const role = user_role || session?.user?.role?.toLowerCase() || 'student'
-    const systemPrompt = systemPrompts[role] || systemPrompts.student
+    // Validate message length to prevent abuse
+    if (typeof message !== 'string' || message.length > 5000) {
+      return NextResponse.json(
+        { error: 'Message too long (max 5000 characters)' },
+        { status: 400 }
+      )
+    }
+
+    // Derive role from session only — never trust client input
+    const dbRole = (session.user as any)?.role || 'STUDENT'
+    const chatRole = roleMapping[dbRole] || 'student'
+    const systemPrompt = systemPrompts[chatRole] || systemPrompts.student
 
     // Get or create conversation history
     if (!sessions.has(session_id)) {
@@ -188,6 +226,11 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  const session = await getServerSession(authOptions)
+  if (!session?.user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
   const { searchParams } = new URL(request.url)
   const sessionId = searchParams.get('session_id')
 

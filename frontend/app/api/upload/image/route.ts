@@ -31,7 +31,9 @@ export async function POST(req: NextRequest) {
     const file = formData.get('image') as File | null
     const createVariants = formData.get('createVariants') === 'true'
     const optimize = formData.get('optimize') !== 'false' // Default true
-    const folder = (formData.get('folder') as string) || 'images'
+    const requestedFolder = (formData.get('folder') as string) || 'images'
+    const allowedFolders = ['images', 'projects', 'profiles', 'avatars']
+    const folder = allowedFolders.includes(requestedFolder) ? requestedFolder : 'images'
 
     if (!file) {
       return NextResponse.json(
