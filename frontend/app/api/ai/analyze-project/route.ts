@@ -114,8 +114,8 @@ export async function POST(request: NextRequest) {
       existingTools = [],
     } = body
 
-    if (!title && !description && imageUrls.length === 0) {
-      return NextResponse.json({ error: 'Title, description, or image required' }, { status: 400 })
+    if (!title && !description && imageUrls.length === 0 && documentUrls.length === 0) {
+      return NextResponse.json({ error: 'Title, description, image, or document required' }, { status: 400 })
     }
 
     if (!anthropic) {

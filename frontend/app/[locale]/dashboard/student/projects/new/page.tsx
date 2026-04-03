@@ -145,6 +145,11 @@ export default function NewProjectPage() {
       if (text) {
         setTitle(text.split(/[.\n]/)[0].slice(0, 100))
         setDescription(text)
+      } else if (currentAttachments.length > 0) {
+        // Use first attachment name as title if no text provided
+        const fileName = currentAttachments[0].name.replace(/\.[^.]+$/, '')
+        setTitle(fileName)
+        setDescription(fileName)
       }
 
       try {
