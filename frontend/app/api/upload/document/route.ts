@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
 
     // 2. Parse form data
     const formData = await req.formData()
-    const file = formData.get('document') as File | null
+    const file = (formData.get('document') || formData.get('file')) as File | null
     const requestedFolder = (formData.get('folder') as string) || 'documents'
     const allowedFolders = ['documents', 'projects', 'theses', 'reports']
     const folder = allowedFolders.includes(requestedFolder) ? requestedFolder : 'documents'
