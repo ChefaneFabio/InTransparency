@@ -18,6 +18,7 @@ import {
   MoreVertical,
   Trash2,
   Edit3,
+  Eye,
   ExternalLink,
   Rocket
 } from 'lucide-react'
