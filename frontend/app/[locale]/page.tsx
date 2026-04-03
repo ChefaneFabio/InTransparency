@@ -1,7 +1,6 @@
 import { StructuredData } from '@/components/seo/StructuredData'
 import { Hero } from '@/components/sections/Hero'
 import { HowItWorks } from '@/components/sections/HowItWorks'
-import { PlatformPreview } from '@/components/mockups/PlatformPreview'
 import { ComparisonTable } from '@/components/sections/ComparisonTable'
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection'
 import { CTA } from '@/components/sections/CTA'
@@ -18,7 +17,6 @@ export default function Home() {
       <Header />
       <main id="main-content">
         <Hero />
-        <PlatformPreview />
         <HowItWorks />
         <ComparisonTable />
         <TestimonialsSection />

@@ -71,43 +71,51 @@ export function FileUpload({
 
   const uploadFile = async (fileObj: UploadFile, index: number) => {
     try {
-      setUploadFiles(prev => prev.map((f, i) => 
-        i === index ? { ...f, status: 'uploading' } : f
+      setUploadFiles(prev => prev.map((f, i) =>
+        i === index ? { ...f, status: 'uploading', progress: 10 } : f
       ))
 
-      // Simulate upload progress
       const formData = new FormData()
       formData.append('file', fileObj.file)
+      formData.append('folder', 'projects')
 
-      // Mock upload with progress
-      for (let progress = 0; progress <= 100; progress += 10) {
-        await new Promise(resolve => setTimeout(resolve, 100))
-        setUploadFiles(prev => prev.map((f, i) => 
-          i === index ? { ...f, progress } : f
-        ))
-      }
+      // Determine upload endpoint based on file type
+      const isImage = fileObj.file.type.startsWith('image/')
+      const isVideo = fileObj.file.type.startsWith('video/')
+      const endpoint = isImage ? '/api/upload/image' : isVideo ? '/api/upload/video' : '/api/upload/document'
+      const fieldName = isImage ? 'image' : isVideo ? 'video' : 'file'
 
-      // Simulate successful upload
-      const mockUrl = URL.createObjectURL(fileObj.file)
-      
-      setUploadFiles(prev => prev.map((f, i) => 
-        i === index ? { 
-          ...f, 
-          status: 'completed', 
-          url: mockUrl,
-          progress: 100 
-        } : f
+      // Re-create FormData with correct field name
+      const uploadData = new FormData()
+      uploadData.append(fieldName, fileObj.file)
+      uploadData.append('folder', 'projects')
+
+      setUploadFiles(prev => prev.map((f, i) =>
+        i === index ? { ...f, progress: 40 } : f
       ))
 
-      const newUrls = [...uploadedUrls, mockUrl]
+      const res = await fetch(endpoint, { method: 'POST', body: uploadData })
+
+      if (!res.ok) {
+        throw new Error('Upload failed')
+      }
+
+      const data = await res.json()
+      const fileUrl = data.url || data.fileUrl
+
+      setUploadFiles(prev => prev.map((f, i) =>
+        i === index ? { ...f, status: 'completed', url: fileUrl, progress: 100 } : f
+      ))
+
+      const newUrls = [...uploadedUrls, fileUrl]
       setUploadedUrls(newUrls)
       onUpload(newUrls)
 
     } catch (error) {
-      setUploadFiles(prev => prev.map((f, i) => 
-        i === index ? { 
-          ...f, 
-          status: 'error', 
+      setUploadFiles(prev => prev.map((f, i) =>
+        i === index ? {
+          ...f,
+          status: 'error',
           error: 'Upload failed. Please try again.'
         } : f
       ))

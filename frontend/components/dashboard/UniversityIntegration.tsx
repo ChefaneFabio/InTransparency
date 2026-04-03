@@ -85,14 +85,6 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
 
   useEffect(() => {
     loadUniversityConnection()
-    loadSyncActivities()
-
-    // Set up real-time sync simulation
-    const interval = setInterval(() => {
-      simulateRealTimeSync()
-    }, 30000) // Check every 30 seconds
-
-    return () => clearInterval(interval)
   }, [session])
 
   const loadUniversityConnection = async () => {
@@ -132,8 +124,10 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
             verificationLevel: data.connection.verificationStatus || 'pending'
           }
           setConnection(connectionData)
+          deriveActivitiesFromConnection(data.connection)
         } else {
           setConnection(null)
+          setActivities([])
         }
       }
     } catch (error) {
@@ -144,60 +138,40 @@ export function UniversityIntegration({ userId }: UniversityIntegrationProps) {
     }
   }
 
-  const loadSyncActivities = () => {
-    const mockActivities: SyncActivity[] = [
-      {
-        id: '1',
-        timestamp: new Date(Date.now() - 2 * 60 * 1000).toISOString(),
-        type: 'grade_change',
-        description: 'Grade updated for Machine Learning course',
-        status: 'success',
-        details: 'Grade changed from 29 to 30L - imported from university portal'
-      },
-      {
-        id: '2',
-        timestamp: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
-        type: 'new_course',
-        description: 'New course enrollment detected',
-        status: 'success',
-        details: 'Advanced Data Structures (CS401) - Spring 2024 semester'
-      },
-      {
-        id: '3',
-        timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
-        type: 'project_upload',
-        description: 'Project submission synced',
-        status: 'success',
-        details: 'Final project for Web Development course uploaded to university portal'
-      },
-      {
-        id: '4',
-        timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
+  // Derive sync activities from connection data (no mock data)
+  const deriveActivitiesFromConnection = (conn: any) => {
+    const items: SyncActivity[] = []
+    if (conn?.lastSync) {
+      items.push({
+        id: 'last-sync',
+        timestamp: conn.lastSync,
         type: 'transcript_update',
-        description: 'Official transcript updated',
+        description: 'Last sync completed',
         status: 'success',
-        details: 'Semester GPA: 28.5/30 - Official transcript downloaded from registrar'
-      }
-    ]
-
-    setActivities(mockActivities)
-  }
-
-  const simulateRealTimeSync = () => {
-    // Simulate random sync activity
-    if (Math.random() > 0.7) { // 30% chance of new activity
-      const newActivity: SyncActivity = {
-        id: Date.now().toString(),
-        timestamp: new Date().toISOString(),
-        type: ['grade_change', 'new_course', 'project_upload'][Math.floor(Math.random() * 3)] as any,
-        description: 'Real-time sync detected changes',
-        status: Math.random() > 0.1 ? 'success' : 'failed', // 90% success rate
-        details: 'Automatically synced from university database'
-      }
-
-      setActivities(prev => [newActivity, ...prev.slice(0, 9)]) // Keep last 10 activities
-      setLastSyncTime(new Date())
+        details: `Synced ${conn.coursesCount || 0} courses, ${conn.gradesCount || 0} grades, ${conn.projectsCount || 0} projects`,
+      })
     }
+    if (conn?.verifiedAt) {
+      items.push({
+        id: 'verified',
+        timestamp: conn.verifiedAt,
+        type: 'new_course',
+        description: 'University connection verified',
+        status: 'success',
+        details: `Connected to ${conn.universityName}`,
+      })
+    }
+    if (conn?.connectedAt) {
+      items.push({
+        id: 'connected',
+        timestamp: conn.connectedAt,
+        type: 'transcript_update',
+        description: 'University connection established',
+        status: 'success',
+        details: `Institutional email: ${conn.institutionalEmail}`,
+      })
+    }
+    setActivities(items)
   }
 
   const manualSync = async () => {

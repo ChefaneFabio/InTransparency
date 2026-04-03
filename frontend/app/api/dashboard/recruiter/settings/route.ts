@@ -41,6 +41,7 @@ export async function GET(req: NextRequest) {
           companyDescription: '',
           companyLogo: '',
           seekingType: 'BOTH',
+          hiringVolume: '',
           notifyNewApplications: true,
           notifyMessages: true,
           notifySearchAlerts: true,
@@ -58,6 +59,7 @@ export async function GET(req: NextRequest) {
         companyDescription: settings.companyDescription || '',
         companyLogo: settings.companyLogo || '',
         seekingType: settings.seekingType || 'BOTH',
+        hiringVolume: settings.companySize || '',
         notifyNewApplications: settings.notifyNewApplications,
         notifyMessages: settings.notifyMessages,
         notifySearchAlerts: settings.notifySearchAlerts,
@@ -101,13 +103,14 @@ export async function PUT(req: NextRequest) {
       notifyNewApplications,
       notifyMessages,
       notifySearchAlerts,
+      hiringVolume, // frontend alias for companySize
     } = body
 
     const data: Record<string, any> = {
       companyName: companyName ?? undefined,
       companyWebsite: companyWebsite ?? undefined,
       companyIndustry: companyIndustry ?? undefined,
-      companySize: companySize ?? undefined,
+      companySize: companySize ?? hiringVolume ?? undefined,
       companyLocation: companyLocation ?? undefined,
       companyDescription: companyDescription ?? undefined,
       companyLogo: companyLogo ?? undefined,
@@ -138,6 +141,7 @@ export async function PUT(req: NextRequest) {
         companyDescription: settings.companyDescription || '',
         companyLogo: settings.companyLogo || '',
         seekingType: settings.seekingType || 'BOTH',
+        hiringVolume: settings.companySize || '',
         notifyNewApplications: settings.notifyNewApplications,
         notifyMessages: settings.notifyMessages,
         notifySearchAlerts: settings.notifySearchAlerts,

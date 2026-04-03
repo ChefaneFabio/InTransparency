@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
       prisma.techParkSettings.findUnique({ where: { userId } }),
       prisma.user.count({ where: { role: 'STUDENT', profilePublic: true } }),
       prisma.contactUsage.count({ where: { createdAt: { gte: thirtyDaysAgo } } }),
-      prisma.hiringConfirmation.count({ where: { confirmedHired: true } }),
+      prisma.placement.count({ where: { status: 'CONFIRMED' } }),
     ])
 
     return NextResponse.json({

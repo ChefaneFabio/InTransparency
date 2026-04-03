@@ -280,7 +280,7 @@ export default function HiringOutcomesPage() {
 
                   {/* Outcome details */}
                   {contact.outcome && contact.outcomeNote && (
-                    <p className="text-xs text-muted-foreground mt-2 ml-13 pl-13">
+                    <p className="text-xs text-muted-foreground mt-2 ml-12 pl-3">
                       {contact.outcomeNote}
                     </p>
                   )}

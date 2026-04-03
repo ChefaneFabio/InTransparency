@@ -3,58 +3,47 @@
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { Progress } from '@/components/ui/progress'
 import { Link } from '@/navigation'
 import { Skeleton } from '@/components/ui/skeleton'
 import {
-  Users,
-  Plus,
-  ChevronRight,
-  Upload,
-  TrendingUp,
+  Users, Plus, ChevronRight, Upload, TrendingUp, LogOut,
+  GraduationCap, Eye, Shield, BarChart3, BookOpen, UserPlus,
+  Building2, RefreshCw, Settings, Award,
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import { useLocale, useTranslations } from 'next-intl'
 import PlacementProbabilityBadge from '@/components/predictions/PlacementProbabilityBadge'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { DonutChart } from '@/components/dashboard/shared/DonutChart'
+// MiniChart available for future use with real trend data
+import { ActivityFeed } from '@/components/dashboard/shared/ActivityFeed'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
+import { StatCard } from '@/components/dashboard/shared/StatCard'
+import { AnimatedCounter } from '@/components/ui/animated-counter'
+import { StaggerContainer, StaggerItem, AnimatedCard } from '@/components/ui/animated-card'
 
 interface UniversityStats {
-  totalStudents: number
-  verifiedStudents: number
-  activeProfiles: number
-  recruiterViews: number
+  totalStudents: number; verifiedStudents: number; activeProfiles: number; recruiterViews: number
 }
 
 interface Student {
-  id: string
-  name: string
-  initials: string
-  course: string
-  year: string
-  projects: number
-  verified: boolean
-  photo: string | null
+  id: string; name: string; initials: string; course: string
+  year: string; projects: number; verified: boolean; photo: string | null
 }
 
-interface Recruiter {
-  name: string
-  views: number
-  contacts: number
-}
+interface Recruiter { name: string; views: number; contacts: number }
 
 export default function UniversityDashboard() {
   const { data: session } = useSession()
   const locale = useLocale()
   const t = useTranslations('universityDashboard.main')
+  const ts = useTranslations('shared')
   const user = session?.user
   const [loading, setLoading] = useState(true)
   const [stats, setStats] = useState<UniversityStats>({
-    totalStudents: 0,
-    verifiedStudents: 0,
-    activeProfiles: 0,
-    recruiterViews: 0
+    totalStudents: 0, verifiedStudents: 0, activeProfiles: 0, recruiterViews: 0,
   })
   const [recentStudents, setRecentStudents] = useState<Student[]>([])
   const [topRecruiters, setTopRecruiters] = useState<Recruiter[]>([])
@@ -75,448 +64,276 @@ export default function UniversityDashboard() {
         setLoading(false)
       }
     }
-
-    if (user) {
-      fetchDashboardData()
-    } else {
-      setLoading(false)
-    }
+    if (user) fetchDashboardData()
+    else setLoading(false)
   }, [user])
 
   if (loading) {
     return (
-      <div className="max-w-6xl mx-auto space-y-8 pb-12">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
-          <div>
-            <Skeleton className="h-8 w-48 mb-2" />
-            <Skeleton className="h-5 w-64" />
-          </div>
-          <div className="flex gap-3">
-            <Skeleton className="h-10 w-32" />
-            <Skeleton className="h-10 w-28" />
-          </div>
-        </div>
+      <div className="max-w-6xl mx-auto space-y-6 pb-12 px-4">
+        <Skeleton className="h-40 w-full rounded-2xl" />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[1,2,3,4].map(i => (
-            <Card key={i}>
-              <CardContent className="pt-6">
-                <Skeleton className="h-8 w-16 mb-2" />
-                <Skeleton className="h-4 w-28" />
-              </CardContent>
-            </Card>
-          ))}
+          {Array.from({ length: 4 }, (_, i) => <Skeleton key={i} className="h-24 rounded-2xl" />)}
         </div>
-        <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-6">
-            <Card>
-              <CardHeader className="pb-4">
-                <Skeleton className="h-6 w-40 mb-1" />
-                <Skeleton className="h-4 w-48" />
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {[1,2,3,4].map(i => <Skeleton key={i} className="h-16 w-full rounded-lg" />)}
-              </CardContent>
-            </Card>
-          </div>
-          <div className="space-y-6">
-            <Card>
-              <CardHeader className="pb-3">
-                <Skeleton className="h-6 w-32" />
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {[1,2,3,4].map(i => <Skeleton key={i} className="h-14 w-full rounded-lg" />)}
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="pb-3">
-                <Skeleton className="h-6 w-36" />
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {[1,2].map(i => <Skeleton key={i} className="h-10 w-full" />)}
-              </CardContent>
-            </Card>
-          </div>
+        <div className="grid lg:grid-cols-12 gap-4">
+          <Skeleton className="lg:col-span-8 h-64 rounded-2xl" />
+          <Skeleton className="lg:col-span-4 h-64 rounded-2xl" />
         </div>
       </div>
     )
   }
 
-  const verificationPercentage = stats.totalStudents > 0
-    ? Math.round((stats.verifiedStudents / stats.totalStudents) * 100)
-    : 0
+  const verificationPct = stats.totalStudents > 0
+    ? Math.round((stats.verifiedStudents / stats.totalStudents) * 100) : 0
+
+  const activityItems = [
+    ...(stats.recruiterViews > 0 ? [{ id: 'rv', type: 'view' as const, text: ts('activity.recruiterProfileViews', { count: stats.recruiterViews }), time: ts('time.last30Days') }] : []),
+    ...(stats.verifiedStudents > 0 ? [{ id: 'vs', type: 'verification' as const, text: ts('activity.studentsVerified', { count: stats.verifiedStudents }), time: ts('time.total') }] : []),
+    ...(stats.activeProfiles > 0 ? [{ id: 'ap', type: 'application' as const, text: ts('activity.activeStudentProfiles', { count: stats.activeProfiles }), time: ts('time.active') }] : []),
+    ...topRecruiters.slice(0, 3).map((r, i) => ({
+      id: `r${i}`, type: 'contact' as const, text: ts('activity.recruiterActivity', { name: r.name, contacts: r.contacts, views: r.views }), time: ts('time.active'),
+    })),
+  ]
+
+  const isNewInstitution = stats.totalStudents < 10
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8 pb-12">
-      {/* Welcome Banner - Show when few students */}
-      {stats.totalStudents < 10 && (
-        <div className="bg-primary rounded-2xl p-6 text-white">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
-              <h2 className="text-xl font-bold mb-1">
-                {t('welcomeTitle')}
-              </h2>
-              <p className="text-white/80">
-                {t('welcomeSubtitle')}
-              </p>
-            </div>
-            <Button className="bg-white text-primary hover:bg-white/90 shrink-0" asChild>
-              <Link href="/dashboard/university/students/import">
-                <Upload className="h-4 w-4 mr-2" />
-                {t('importStudents')}
-              </Link>
-            </Button>
-          </div>
-        </div>
-      )}
-
-      {/* Success Metrics Banner - Show when there's activity */}
-      {stats.recruiterViews > 0 && (
-        <div className="bg-primary/5 border border-primary/20 rounded-xl p-4">
-          <div className="flex items-center gap-3">
-            <div>
-              <p className="font-medium text-foreground">
-                {t('companiesViewed', { count: stats.recruiterViews })}
-              </p>
-              <p className="text-sm text-foreground/80">
-                {t('completeProfilesTip')}
-              </p>
+    <div className="max-w-6xl mx-auto space-y-5 pb-12 px-4">
+      {/* Hero */}
+      <MetricHero gradient={isNewInstitution ? 'dark' : 'green'}>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="flex-1">
+            {isNewInstitution ? (
+              <>
+                <h1 className="text-2xl md:text-3xl font-bold text-white">{t('welcomeTitle')}</h1>
+                <p className="text-white/70 mt-1 mb-4">{t('welcomeSubtitle')}</p>
+              </>
+            ) : (
+              <>
+                <h1 className="text-2xl md:text-3xl font-bold text-foreground">{t('title')}</h1>
+                <p className="text-sm text-muted-foreground mt-1 mb-4">{t('subtitle')}</p>
+              </>
+            )}
+            <div className="flex gap-3">
+              <Button className={isNewInstitution ? 'bg-white text-slate-900 hover:bg-white/90 shadow-lg' : 'shadow-md'} asChild>
+                <Link href="/dashboard/university/students/import">
+                  <Upload className="h-4 w-4 mr-2" /> {t('importStudents')}
+                </Link>
+              </Button>
+              <Button variant="outline" className={isNewInstitution ? 'border-white/30 text-white hover:bg-white/10' : 'bg-white/60 backdrop-blur-sm'} asChild>
+                <Link href="/dashboard/university/students/add">
+                  <Plus className="h-4 w-4 mr-2" /> {t('addStudents')}
+                </Link>
+              </Button>
             </div>
           </div>
+          {/* Verification Donut */}
+          <div className="flex-shrink-0">
+            <DonutChart
+              value={verificationPct}
+              size={130}
+              strokeWidth={12}
+              color={isNewInstitution ? '#34d399' : '#16a34a'}
+              trackColor={isNewInstitution ? 'rgba(255,255,255,0.2)' : 'hsl(var(--muted))'}
+              sublabel={t('verified')}
+            />
+          </div>
         </div>
+      </MetricHero>
+
+      {/* Activity Banner */}
+      {stats.recruiterViews > 0 && !isNewInstitution && (
+        <GlassCard delay={0.1} gradient="green" hover={false}>
+          <div className="p-4 flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-green-100 text-green-600"><Eye className="h-4 w-4" /></div>
+            <div>
+              <p className="font-medium text-foreground text-sm">{t('companiesViewed', { count: stats.recruiterViews })}</p>
+              <p className="text-xs text-muted-foreground">{t('completeProfilesTip')}</p>
+            </div>
+          </div>
+        </GlassCard>
       )}
 
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
-        <div>
-          <h1 className="text-2xl font-semibold text-foreground">
-            {t('title')}
-          </h1>
-          <p className="text-muted-foreground mt-1">
-            {t('subtitle')}
-          </p>
-        </div>
-        <div className="flex gap-3">
-          <Button asChild>
-            <Link href="/dashboard/university/students/add">
-              <Plus className="h-4 w-4 mr-2" />
-              {t('addStudents')}
-            </Link>
-          </Button>
-          <Button variant="outline" asChild>
-            <Link href="/dashboard/university/students">
-              <Users className="h-4 w-4 mr-2" />
-              {t('viewAll')}
-            </Link>
-          </Button>
-        </div>
-      </div>
+      {/* Stat Cards */}
+      <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StaggerItem><StatCard label={t('totalStudents')} value={stats.totalStudents} icon={<GraduationCap className="h-5 w-5" />} variant="blue" /></StaggerItem>
+        <StaggerItem><StatCard label={t('verified')} value={stats.verifiedStudents} icon={<Shield className="h-5 w-5" />} variant="green" /></StaggerItem>
+        <StaggerItem><StatCard label={t('activeProfiles')} value={stats.activeProfiles} icon={<Users className="h-5 w-5" />} variant="purple" /></StaggerItem>
+        <StaggerItem><StatCard label={t('recruiterViews')} value={stats.recruiterViews} icon={<Eye className="h-5 w-5" />} variant="amber" /></StaggerItem>
+      </StaggerContainer>
 
-      {/* Quick Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="hover:shadow-md transition-shadow">
-          <CardContent className="pt-6">
-            <p className="text-2xl font-bold">{stats.totalStudents}</p>
-            <p className="text-sm text-muted-foreground">{t('totalStudents')}</p>
-          </CardContent>
-        </Card>
-
-        <Card className="hover:shadow-md transition-shadow">
-          <CardContent className="pt-6">
-            <p className="text-2xl font-bold">{stats.verifiedStudents}</p>
-            <p className="text-sm text-muted-foreground">{t('verified')}</p>
-          </CardContent>
-        </Card>
-
-        <Card className="hover:shadow-md transition-shadow">
-          <CardContent className="pt-6">
-            <p className="text-2xl font-bold">{stats.activeProfiles}</p>
-            <p className="text-sm text-muted-foreground">{t('activeProfiles')}</p>
-          </CardContent>
-        </Card>
-
-        <Card className="hover:shadow-md transition-shadow">
-          <CardContent className="pt-6">
-            <p className="text-2xl font-bold">{stats.recruiterViews}</p>
-            <p className="text-sm text-muted-foreground">{t('recruiterViews')}</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid lg:grid-cols-3 gap-8">
-        {/* Main Column */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* Recent Students */}
-          <Card>
-            <CardHeader className="pb-4">
+      {/* Bento Grid */}
+      <div className="grid lg:grid-cols-12 gap-4">
+        {/* Left (8 cols) */}
+        <div className="lg:col-span-8 space-y-4">
+          {/* Recruiter Views Trend */}
+          <GlassCard delay={0.2} gradient="blue">
+            <div className="p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-lg">{t('recentStudents')}</CardTitle>
-                  <CardDescription>
-                    {t('studentsEnrolled')}
-                  </CardDescription>
-                </div>
-                <Button size="sm" variant="outline" asChild>
-                  <Link href="/dashboard/university/students">
-                    {t('viewAll')}
-                  </Link>
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {recentStudents.length > 0 ? (
-                recentStudents.map((student) => (
-                  <div
-                    key={student.id}
-                    className="flex items-center gap-4 p-4 rounded-lg border hover:bg-muted/50 transition-colors"
-                  >
-                    <Avatar className="h-10 w-10">
-                      <AvatarFallback className="bg-primary text-white text-sm">
-                        {student.initials}
-                      </AvatarFallback>
-                    </Avatar>
-
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <p className="font-medium text-foreground">{student.name}</p>
-                        {student.verified && (
-                          <Badge variant="secondary" className="text-xs bg-primary/10 text-primary">
-                            {t('verified')}
-                          </Badge>
-                        )}
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        {student.course} · {student.year}
-                      </p>
-                    </div>
-
-                    <div className="text-right">
-                      <p className="text-sm font-medium">{student.projects} {t('projects')}</p>
-                    </div>
-
-                    <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
+                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{t('recruiterViews')}</p>
+                  <div className="flex items-baseline gap-2 mt-1">
+                    <AnimatedCounter value={stats.recruiterViews} className="text-2xl font-bold text-foreground" />
+                    <span className="text-xs text-muted-foreground">last 30 days</span>
                   </div>
-                ))
+                </div>
+                <div className="text-right">
+                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{t('activeProfiles')}</p>
+                  <AnimatedCounter value={stats.activeProfiles} className="text-2xl font-bold text-foreground" />
+                </div>
+              </div>
+            </div>
+          </GlassCard>
+
+          {/* Recent Students */}
+          <GlassCard delay={0.3} hover={false}>
+            <div className="p-5">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="font-semibold text-foreground">{t('recentStudents')}</h2>
+                <Link href="/dashboard/university/students" className="text-xs text-primary hover:underline font-medium">{t('viewAll')} →</Link>
+              </div>
+              {recentStudents.length > 0 ? (
+                <div className="space-y-2">
+                  {recentStudents.map((student) => (
+                    <div key={student.id} className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40 hover:shadow-md hover:border-primary/20 transition-all group">
+                      <Avatar className="h-10 w-10 ring-2 ring-primary/10">
+                        <AvatarFallback className="bg-gradient-to-br from-primary to-primary/70 text-white text-sm font-semibold">{student.initials}</AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">{student.name}</p>
+                          {student.verified && <Badge className="text-[10px] bg-green-100 text-green-700 border-0 h-4 px-1.5"><Shield className="h-2.5 w-2.5 mr-0.5" />{t('verified')}</Badge>}
+                        </div>
+                        <p className="text-[11px] text-muted-foreground">{student.course} · {student.year}</p>
+                      </div>
+                      <Badge variant="secondary" className="text-xs rounded-full">{student.projects} {t('projects')}</Badge>
+                    </div>
+                  ))}
+                </div>
               ) : (
-                <div className="text-center py-8">
-                  <Users className="h-12 w-12 mx-auto text-muted-foreground/40 mb-3" />
+                <div className="text-center py-10">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                    <Users className="h-7 w-7 text-primary/60" />
+                  </div>
                   <h3 className="font-medium text-foreground mb-1">{t('noStudentsYet')}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {t('importOrAdd')}
-                  </p>
-                  <Button asChild>
-                    <Link href="/dashboard/university/students/add">
-                      <Plus className="h-4 w-4 mr-2" />
-                      {t('addStudents')}
-                    </Link>
-                  </Button>
+                  <p className="text-sm text-muted-foreground mb-4">{t('importOrAdd')}</p>
+                  <Button asChild><Link href="/dashboard/university/students/add"><Plus className="h-4 w-4 mr-2" />{t('addStudents')}</Link></Button>
                 </div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
 
-          {/* Top Placement Candidates */}
+          {/* Placement Candidates */}
           {recentStudents.length > 0 && (
-            <Card>
-              <CardHeader className="pb-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle className="text-lg flex items-center gap-2">
-                      <TrendingUp className="h-5 w-5 text-primary" />
-                      {t('topPlacementCandidates')}
-                    </CardTitle>
-                    <CardDescription>
-                      {t('topPlacementDescription')}
-                    </CardDescription>
-                  </div>
+            <GlassCard delay={0.4} hover={false}>
+              <div className="p-5">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="p-1.5 rounded-lg bg-green-100"><TrendingUp className="h-4 w-4 text-green-600" /></div>
+                  <h2 className="font-semibold text-foreground">{t('topPlacementCandidates')}</h2>
                 </div>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {recentStudents.slice(0, 5).map((student) => (
-                  <div
-                    key={`prediction-${student.id}`}
-                    className="flex items-center gap-4 p-3 rounded-lg border hover:bg-muted/50 transition-colors"
-                  >
-                    <Avatar className="h-8 w-8">
-                      <AvatarFallback className="bg-primary text-white text-xs">
-                        {student.initials}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-foreground truncate">{student.name}</p>
+                <div className="space-y-2">
+                  {recentStudents.slice(0, 5).map((student) => (
+                    <div key={`pred-${student.id}`} className="flex items-center gap-3 p-2.5 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40 hover:shadow-sm transition-all">
+                      <Avatar className="h-8 w-8">
+                        <AvatarFallback className="bg-gradient-to-br from-primary to-primary/70 text-white text-xs font-semibold">{student.initials}</AvatarFallback>
+                      </Avatar>
+                      <p className="text-sm font-medium text-foreground flex-1 truncate">{student.name}</p>
+                      <PlacementProbabilityBadge studentId={student.id} compact />
                     </div>
-                    <PlacementProbabilityBadge studentId={student.id} compact />
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
+                  ))}
+                </div>
+              </div>
+            </GlassCard>
+          )}
+
+          {/* Top Recruiters Bar Chart */}
+          {topRecruiters.length > 0 && (
+            <GlassCard delay={0.5} gradient="purple">
+              <div className="p-5">
+                <h3 className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-3">{t('activeRecruiters')}</h3>
+                <div className="space-y-2.5">
+                  {topRecruiters.map((r, i) => {
+                    const maxViews = Math.max(1, ...topRecruiters.map(x => x.views))
+                    const pct = Math.round((r.views / maxViews) * 100)
+                    return (
+                      <div key={i} className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-slate-100 to-slate-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Building2 className="h-3.5 w-3.5 text-slate-500" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between mb-1">
+                            <p className="text-xs font-medium text-foreground truncate">{r.name}</p>
+                            <span className="text-xs text-muted-foreground">{r.views} views · {r.contacts} contacts</span>
+                          </div>
+                          <div className="h-1.5 bg-muted/50 rounded-full overflow-hidden">
+                            <div className="h-full bg-gradient-to-r from-purple-500 to-purple-400 rounded-full transition-all duration-1000" style={{ width: `${pct}%` }} />
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            </GlassCard>
           )}
 
           {/* Bulk Import */}
-          <Card className="border-dashed">
-            <CardContent className="py-8">
-              <div className="text-center">
-                <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Upload className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="font-medium text-foreground mb-1">
-                  {t('importBulk')}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4 max-w-sm mx-auto">
-                  {t('importBulkDescription')}
-                </p>
-                <Button variant="outline" asChild>
-                  <Link href="/dashboard/university/students/import">
-                    {t('importCsv')}
-                  </Link>
-                </Button>
+          <GlassCard delay={0.5} hover={false}>
+            <div className="p-6 text-center">
+              <div className="mx-auto w-14 h-14 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl flex items-center justify-center mb-3">
+                <Upload className="h-6 w-6 text-primary" />
               </div>
-            </CardContent>
-          </Card>
+              <h3 className="font-semibold text-foreground mb-1">{t('importBulk')}</h3>
+              <p className="text-xs text-muted-foreground mb-3 max-w-sm mx-auto">{t('importBulkDescription')}</p>
+              <Button variant="outline" size="sm" asChild>
+                <Link href="/dashboard/university/students/import">{t('importCsv')}</Link>
+              </Button>
+            </div>
+          </GlassCard>
         </div>
 
-        {/* Sidebar */}
-        <div className="space-y-6">
+        {/* Right sidebar (4 cols) */}
+        <div className="lg:col-span-4 space-y-4">
+          {/* Activity Feed */}
+          <GlassCard delay={0.3}>
+            <div className="p-4">
+              <ActivityFeed items={activityItems} title={t('recentActivity') || 'Recent Activity'} maxHeight={300} />
+            </div>
+          </GlassCard>
+
           {/* Quick Actions */}
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg">{t('quickActions')}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <Link
-                href="/dashboard/university/students/add"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
-              >
-                <div className="flex-1">
-                  <p className="text-sm font-medium">{t('addStudents')}</p>
-                  <p className="text-xs text-muted-foreground">{t('inviteNewStudents')}</p>
-                </div>
-                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
-              </Link>
-
-              <Link
-                href="/dashboard/university/analytics"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
-              >
-                <div className="flex-1">
-                  <p className="text-sm font-medium">{t('analytics')}</p>
-                  <p className="text-xs text-muted-foreground">{t('viewPlacementStats')}</p>
-                </div>
-                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
-              </Link>
-
-              <Link
-                href="/dashboard/university/recruiters"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
-              >
-                <div className="flex-1">
-                  <p className="text-sm font-medium">{t('recruiters')}</p>
-                  <p className="text-xs text-muted-foreground">{t('companiesRecruiting')}</p>
-                </div>
-                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
-              </Link>
-
-              <Link
-                href="/dashboard/university/courses"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
-              >
-                <div className="flex-1">
-                  <p className="text-sm font-medium">{t('courses')}</p>
-                  <p className="text-xs text-muted-foreground">{t('manageCourseCatalog')}</p>
-                </div>
-                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
-              </Link>
-
-              <Link
-                href="/dashboard/university/alumni"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
-              >
-                <div className="flex-1">
-                  <p className="text-sm font-medium">{t('alumni')}</p>
-                  <p className="text-xs text-muted-foreground">{t('trackPostGraduation')}</p>
-                </div>
-                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
-              </Link>
-
-              <Link
-                href="/dashboard/university/sync"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
-              >
-                <div className="flex-1">
-                  <p className="text-sm font-medium">{t('dataSync')}</p>
-                  <p className="text-xs text-muted-foreground">{t('syncUniversitySystems')}</p>
-                </div>
-                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
-              </Link>
-
-              <Link
-                href="/dashboard/university/settings"
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
-              >
-                <div className="flex-1">
-                  <p className="text-sm font-medium">{t('settings')}</p>
-                  <p className="text-xs text-muted-foreground">{t('universityProfile')}</p>
-                </div>
-                <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
-              </Link>
-
-              <div className="border-t my-1" />
+          <GlassCard delay={0.4}>
+            <div className="p-3">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide px-2 mb-2">{t('quickActions')}</p>
+              {[
+                { href: '/dashboard/university/students/add' as const, icon: UserPlus, label: t('addStudents') },
+                { href: '/dashboard/university/analytics' as const, icon: BarChart3, label: t('analytics') },
+                { href: '/dashboard/university/recruiters' as const, icon: Building2, label: t('recruiters') },
+                { href: '/dashboard/university/courses' as const, icon: BookOpen, label: t('courses') },
+                { href: '/dashboard/university/alumni' as const, icon: Award, label: t('alumni') },
+                { href: '/dashboard/university/sync' as const, icon: RefreshCw, label: t('dataSync') },
+                { href: '/dashboard/university/settings' as const, icon: Settings, label: t('settings') },
+              ].map((item) => (
+                <Link key={item.href} href={item.href}
+                  className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-primary/5 transition-colors group">
+                  <div className="p-2 rounded-lg bg-muted/80 group-hover:bg-primary/10 transition-colors">
+                    <item.icon className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                  </div>
+                  <span className="text-sm font-medium group-hover:text-primary transition-colors">{item.label}</span>
+                  <ChevronRight className="h-4 w-4 text-muted-foreground/30 ml-auto group-hover:text-primary transition-colors" />
+                </Link>
+              ))}
+              <div className="border-t mx-2 my-2" />
               <button
                 onClick={() => signOut({ callbackUrl: `/${locale}` })}
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-red-50 transition-colors w-full text-left"
-              >
-                <p className="text-sm font-medium text-red-600">{t('signOut')}</p>
-              </button>
-            </CardContent>
-          </Card>
-
-          {/* Top Recruiters */}
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg">{t('activeRecruiters')}</CardTitle>
-              <CardDescription>
-                {t('companiesViewingStudents')}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {topRecruiters.length > 0 ? (
-                topRecruiters.map((recruiter, index) => (
-                  <div key={index} className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-foreground">{recruiter.name}</p>
-                      <p className="text-xs text-muted-foreground">{recruiter.contacts} {t('contactsMade')}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm font-medium">{recruiter.views}</p>
-                      <p className="text-xs text-muted-foreground">{t('views')}</p>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="text-sm text-muted-foreground text-center py-4">
-                  {t('noRecruiterActivity')}
-                </p>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* Verification Progress */}
-          <Card className="bg-gradient-to-br from-slate-50 to-slate-100 border-slate-200">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg">{t('verificationProgress')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">{t('studentsVerified')}</span>
-                  <span className="font-medium">{stats.verifiedStudents}/{stats.totalStudents}</span>
+                className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-red-50 transition-colors w-full text-left group">
+                <div className="p-2 rounded-lg bg-muted/80 group-hover:bg-red-100 transition-colors">
+                  <LogOut className="h-4 w-4 text-muted-foreground group-hover:text-red-500 transition-colors" />
                 </div>
-                <Progress value={verificationPercentage} className="h-2" />
-                <p className="text-xs text-muted-foreground">
-                  {t('verificationPercent', { percentage: verificationPercentage })}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+                <span className="text-sm font-medium text-muted-foreground group-hover:text-red-600 transition-colors">{t('signOut')}</span>
+              </button>
+            </div>
+          </GlassCard>
         </div>
       </div>
     </div>

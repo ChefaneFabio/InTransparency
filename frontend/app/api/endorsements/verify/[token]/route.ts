@@ -168,6 +168,18 @@ export async function POST(
       }
     })
 
+    // Auto-verify the project now that a professor has endorsed it
+    await prisma.project.update({
+      where: { id: endorsement.projectId },
+      data: {
+        verificationStatus: 'VERIFIED',
+        universityVerified: true,
+        verifiedAt: new Date(),
+      },
+    }).catch((err: unknown) => {
+      console.error('Auto-verification of project failed:', err)
+    })
+
     // Track analytics
     await prisma.analytics.create({
       data: {

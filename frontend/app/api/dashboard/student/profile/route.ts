@@ -61,6 +61,24 @@ export async function GET(req: NextRequest) {
           blockedCompanies: true,
           availableFor: true,
           createdAt: true,
+          // Thesis
+          thesisTitle: true,
+          thesisSubject: true,
+          thesisSupervisor: true,
+          thesisKeywords: true,
+          // Career Preferences
+          desiredOccupation: true,
+          preferredSectors: true,
+          preferredAreas: true,
+          preferredLocations: true,
+          willingToRelocate: true,
+          willingToRelocateAbroad: true,
+          willingToTravel: true,
+          continuingStudies: true,
+          continuingStudiesType: true,
+          // Relations
+          languageProficiencies: { orderBy: { createdAt: 'asc' as const } },
+          certifications: { orderBy: { createdAt: 'desc' as const } },
         },
       }),
       prisma.project.findMany({
@@ -152,6 +170,8 @@ export async function GET(req: NextRequest) {
       { field: 'graduationYear', label: 'Graduation year', filled: !!user.graduationYear },
       { field: 'gpa', label: 'GPA', filled: !!user.gpa },
       { field: 'projects', label: 'At least one project', filled: projects.length > 0 },
+      { field: 'languages', label: 'Languages', filled: ((user as any).languageProficiencies?.length ?? 0) > 0 },
+      { field: 'thesis', label: 'Thesis title', filled: !!(user as any).thesisTitle },
     ]
 
     const filledCount = completionItems.filter((item) => item.filled).length
@@ -215,6 +235,14 @@ export async function PATCH(req: NextRequest) {
       showLastActive, anonymousBrowsing, allowMessagesFrom, indexInSearchEngines, showProjects, blockedCompanies,
       emailNotifications, messageNotifications, jobAlertNotifications, mentorshipNotifications, marketingEmails,
       availableFor, workExperience,
+      // Thesis
+      thesisTitle, thesisSubject, thesisSupervisor, thesisKeywords,
+      // Career Preferences
+      desiredOccupation, preferredSectors, preferredAreas, preferredLocations,
+      willingToRelocate, willingToRelocateAbroad, willingToTravel,
+      continuingStudies, continuingStudiesType,
+      // Relations (handled separately)
+      languageProficiencies, certifications,
     } = body
 
     // Gate portfolioUrl behind STUDENT_PREMIUM
@@ -269,6 +297,62 @@ export async function PATCH(req: NextRequest) {
     if (marketingEmails !== undefined) updateData.marketingEmails = marketingEmails
     if (availableFor !== undefined && ['HIRING', 'PROJECTS', 'BOTH', 'NONE'].includes(availableFor)) updateData.availableFor = availableFor
     if (workExperience !== undefined) updateData.workExperience = workExperience
+    // Thesis
+    if (thesisTitle !== undefined) updateData.thesisTitle = thesisTitle || null
+    if (thesisSubject !== undefined) updateData.thesisSubject = thesisSubject || null
+    if (thesisSupervisor !== undefined) updateData.thesisSupervisor = thesisSupervisor || null
+    if (thesisKeywords !== undefined) updateData.thesisKeywords = thesisKeywords
+    // Career Preferences
+    if (desiredOccupation !== undefined) updateData.desiredOccupation = desiredOccupation || null
+    if (preferredSectors !== undefined) updateData.preferredSectors = preferredSectors
+    if (preferredAreas !== undefined) updateData.preferredAreas = preferredAreas
+    if (preferredLocations !== undefined) updateData.preferredLocations = preferredLocations
+    if (willingToRelocate !== undefined) updateData.willingToRelocate = willingToRelocate
+    if (willingToRelocateAbroad !== undefined) updateData.willingToRelocateAbroad = willingToRelocateAbroad
+    if (willingToTravel !== undefined) updateData.willingToTravel = willingToTravel
+    if (continuingStudies !== undefined) updateData.continuingStudies = continuingStudies
+    if (continuingStudiesType !== undefined) updateData.continuingStudiesType = continuingStudiesType || null
+
+    // Handle language proficiencies (delete-recreate in transaction)
+    if (languageProficiencies !== undefined) {
+      await prisma.$transaction([
+        prisma.languageProficiency.deleteMany({ where: { userId } }),
+        ...(Array.isArray(languageProficiencies) && languageProficiencies.length > 0
+          ? [prisma.languageProficiency.createMany({
+              data: languageProficiencies.map((lp: any) => ({
+                userId,
+                language: lp.language,
+                motherTongue: lp.motherTongue || false,
+                reading: lp.reading || null,
+                writing: lp.writing || null,
+                listening: lp.listening || null,
+                speaking: lp.speaking || null,
+                interaction: lp.interaction || null,
+              })),
+            })]
+          : []),
+      ])
+    }
+
+    // Handle certifications (delete-recreate in transaction)
+    if (certifications !== undefined) {
+      await prisma.$transaction([
+        prisma.certification.deleteMany({ where: { userId } }),
+        ...(Array.isArray(certifications) && certifications.length > 0
+          ? [prisma.certification.createMany({
+              data: certifications.map((c: any) => ({
+                userId,
+                name: c.name,
+                issuer: c.issuer,
+                dateObtained: c.dateObtained ? new Date(c.dateObtained) : null,
+                expiryDate: c.expiryDate ? new Date(c.expiryDate) : null,
+                credentialId: c.credentialId || null,
+                credentialUrl: c.credentialUrl || null,
+              })),
+            })]
+          : []),
+      ])
+    }
 
     const updatedUser = await prisma.user.update({
       where: { id: userId },
@@ -305,6 +389,21 @@ export async function PATCH(req: NextRequest) {
         showProjects: true,
         blockedCompanies: true,
         availableFor: true,
+        thesisTitle: true,
+        thesisSubject: true,
+        thesisSupervisor: true,
+        thesisKeywords: true,
+        desiredOccupation: true,
+        preferredSectors: true,
+        preferredAreas: true,
+        preferredLocations: true,
+        willingToRelocate: true,
+        willingToRelocateAbroad: true,
+        willingToTravel: true,
+        continuingStudies: true,
+        continuingStudiesType: true,
+        languageProficiencies: { orderBy: { createdAt: 'asc' as const } },
+        certifications: { orderBy: { createdAt: 'desc' as const } },
       },
     })
 

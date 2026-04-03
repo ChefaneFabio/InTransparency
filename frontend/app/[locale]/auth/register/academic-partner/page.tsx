@@ -50,11 +50,11 @@ export default function UniversityRegisterPage() {
       })
 
       if (signInResult?.error) {
-        setShowConfetti(true)
+        // Registration succeeded but auto-login failed — redirect to login
         router.push('/auth/login?registered=true')
       } else {
         setShowConfetti(true)
-        router.push('/dashboard/university')
+        router.push('/onboarding')
         router.refresh()
       }
     } catch (err: any) {

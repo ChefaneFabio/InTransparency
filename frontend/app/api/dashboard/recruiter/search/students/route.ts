@@ -60,21 +60,23 @@ export async function GET(req: NextRequest) {
 
     // University filter — also match exchange students at this university
     if (university) {
-      where.OR = [
-        ...(where.OR || []),
-        { university: { contains: university, mode: 'insensitive' } },
+      const uniConditions = [
+        { university: { contains: university, mode: 'insensitive' as const } },
         {
           exchangeEnrollments: {
             some: {
               status: 'ACTIVE',
               OR: [
-                { homeUniversityName: { contains: university, mode: 'insensitive' } },
-                { hostUniversityName: { contains: university, mode: 'insensitive' } },
+                { homeUniversityName: { contains: university, mode: 'insensitive' as const } },
+                { hostUniversityName: { contains: university, mode: 'insensitive' as const } },
               ],
             },
           },
         },
       ]
+      // Use AND to not overwrite text search OR
+      if (!where.AND) where.AND = []
+      where.AND.push({ OR: uniConditions })
     }
 
     // Major / degree filter (contains match)
@@ -87,12 +89,15 @@ export async function GET(req: NextRequest) {
       where.graduationYear = graduationYear
     }
 
-    // Location filter - search across university field as proxy for location
+    // Location filter - search across location field and university as fallback
     if (location) {
-      // Location can be in the university field or the bio
-      if (!where.OR) {
-        where.university = { contains: location, mode: 'insensitive' }
-      }
+      // Use AND to combine with existing OR conditions
+      const locationConditions = [
+        { location: { contains: location, mode: 'insensitive' as const } },
+        { university: { contains: location, mode: 'insensitive' as const } },
+      ]
+      if (!where.AND) where.AND = []
+      where.AND.push({ OR: locationConditions })
     }
 
     // Skills filter: find students who have projects with matching skills/technologies
@@ -248,6 +253,7 @@ export async function GET(req: NextRequest) {
         topProjects: s.projects.map((p: any) => ({
           id: p.id,
           title: p.title,
+          skills: p.skills,
           technologies: p.technologies,
           innovationScore: p.innovationScore,
         })),

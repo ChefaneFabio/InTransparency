@@ -177,27 +177,62 @@ export default function OnboardingPage() {
   const handleComplete = async () => {
     setIsLoading(true)
     try {
-      // Save profile data
+      // Save profile data — only send role-relevant fields
+      const profilePayload: Record<string, any> = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        bio: data.bio,
+        photo: data.photo || undefined,
+      }
+      if (userRole === 'STUDENT') {
+        profilePayload.university = data.university
+        profilePayload.degree = data.degree
+        profilePayload.graduationYear = data.graduationYear
+        if (data.skills.length > 0) profilePayload.skills = data.skills
+      } else if (userRole === 'RECRUITER') {
+        profilePayload.company = data.company
+        profilePayload.jobTitle = data.jobTitle
+      } else if (userRole === 'UNIVERSITY') {
+        // Store institution name in company field (used as university identifier)
+        profilePayload.company = data.institutionName
+      }
+
       const response = await fetch('/api/user/profile', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          firstName: data.firstName,
-          lastName: data.lastName,
-          bio: data.bio,
-          photo: data.photo || undefined,
-          university: data.university,
-          degree: data.degree,
-          graduationYear: data.graduationYear,
-          company: data.company,
-          jobTitle: data.jobTitle,
-          skills: data.skills.length > 0 ? data.skills : undefined
-        })
+        body: JSON.stringify(profilePayload)
       })
 
+      // Sync settings so role-specific settings pages pick up onboarding data
+      if (response.ok && userRole === 'RECRUITER' && data.company) {
+        await fetch('/api/dashboard/recruiter/settings', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            companyName: data.company,
+            companySize: data.companySize || '',
+          })
+        }).catch(() => {})
+      }
+      if (response.ok && userRole === 'UNIVERSITY' && data.institutionName) {
+        await fetch('/api/dashboard/university/settings', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: data.institutionName,
+            region: data.region || '',
+          })
+        }).catch(() => {})
+      }
+
       if (response.ok) {
-        // Redirect to student dashboard after onboarding
-        router.push('/dashboard/student')
+        // Redirect to role-specific dashboard after onboarding
+        const dashboardRoutes: Record<string, string> = {
+          STUDENT: '/dashboard/student',
+          RECRUITER: '/dashboard/recruiter',
+          UNIVERSITY: '/dashboard/university',
+        }
+        router.push(dashboardRoutes[userRole] || '/dashboard/student')
       }
     } catch (error) {
       console.error('Failed to save profile:', error)
@@ -610,7 +645,14 @@ export default function OnboardingPage() {
         <div className="text-center mt-4">
           <Button
             variant="ghost"
-            onClick={() => router.push('/dashboard/student')}
+            onClick={() => {
+              const dashboardRoutes: Record<string, string> = {
+                STUDENT: '/dashboard/student',
+                RECRUITER: '/dashboard/recruiter',
+                UNIVERSITY: '/dashboard/university',
+              }
+              router.push(dashboardRoutes[userRole] || '/dashboard/student')
+            }}
             className="text-gray-500"
           >
             Salta per ora

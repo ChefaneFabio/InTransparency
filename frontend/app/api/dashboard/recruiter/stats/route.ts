@@ -238,6 +238,17 @@ export async function GET(req: NextRequest) {
       posted: formatTimeAgo(job.createdAt)
     }))
 
+    // Transform contactStats into the contactUsage shape the dashboard expects
+    let contactUsage: { used: number; limit: number; remaining: number }
+    if (contactStats.unlimited) {
+      contactUsage = { used: contactStats.totalContacted, limit: -1, remaining: -1 }
+    } else if (contactStats.model === 'pay_per_contact') {
+      const credits = contactStats.credits || 0
+      contactUsage = { used: contactStats.totalContacted, limit: credits + contactStats.totalContacted, remaining: credits }
+    } else {
+      contactUsage = { used: 0, limit: 0, remaining: 0 }
+    }
+
     return NextResponse.json({
       stats: {
         activeJobs,
@@ -246,7 +257,7 @@ export async function GET(req: NextRequest) {
         pendingReview,
         shortlisted,
         interviewsScheduled,
-        contactStats,
+        contactUsage,
       },
       recentApplications: formattedApplications,
       topCandidates: formattedCandidates,

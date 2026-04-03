@@ -41,27 +41,29 @@ export default function GenerateReportPage() {
         body: JSON.stringify({ reportType, period, format }),
       })
       if (res.ok) {
-        const data = await res.json()
-        setPreview(data)
+        const contentType = res.headers.get('content-type') || ''
+        if (contentType.includes('text/csv')) {
+          // CSV download
+          const blob = await res.blob()
+          const url = URL.createObjectURL(blob)
+          const a = document.createElement('a')
+          a.href = url
+          a.download = `report-${reportType}-${period}.csv`
+          document.body.appendChild(a)
+          a.click()
+          document.body.removeChild(a)
+          URL.revokeObjectURL(url)
+          setPreview({ downloaded: true })
+        } else {
+          const data = await res.json()
+          setPreview(data.report || data)
+        }
       } else {
-        setPreview({
-          title: reportType === 'annual' ? t('types.annual') :
-                 reportType === 'department' ? t('types.department') :
-                 reportType === 'employer' ? t('types.employer') : t('types.contracts'),
-          graduates: 847,
-          placementRate: '78%',
-          avgTime: '3.2 months',
-          topEmployers: 42,
-        })
+        const errData = await res.json().catch(() => ({}))
+        setPreview({ error: errData.error || 'No data available for this period' })
       }
     } catch {
-      setPreview({
-        title: t('types.annual'),
-        graduates: 847,
-        placementRate: '78%',
-        avgTime: '3.2 months',
-        topEmployers: 42,
-      })
+      setPreview({ error: 'Failed to generate report. Please try again.' })
     } finally {
       setGenerating(false)
     }

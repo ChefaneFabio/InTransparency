@@ -103,78 +103,21 @@ export default function AISearchPage() {
     scrollToBottom()
   }, [messages])
 
-  const parseQuery = (query: string): SearchCriteria => {
-    // Simple AI-like parsing (in production, this would use real NLP/LLM)
-    const criteria: SearchCriteria = {}
-    const lowerQuery = query.toLowerCase()
-
-    // Skills detection
-    const skills = ['python', 'javascript', 'react', 'machine learning', 'ml', 'tensorflow', 'data science', 'java', 'aws', 'node.js', 'full-stack', 'frontend', 'backend', 'docker', 'kubernetes', 'analytics', 'marketing', 'strategy']
-    criteria.skills = skills.filter(skill => lowerQuery.includes(skill))
-
-    // Soft skills detection
-    const softSkillsMap = ['leadership', 'communication', 'teamwork', 'collaboration', 'problem-solving', 'analytical', 'innovation', 'adaptability', 'creativity']
-    criteria.softSkills = softSkillsMap.filter(skill => lowerQuery.includes(skill))
-
-    // Field of Study detection
-    const fields = ['engineering', 'computer science', 'data science', 'business', 'economics', 'mathematics', 'physics', 'design', 'law', 'medicine']
-    criteria.fieldOfStudy = fields.filter(field => lowerQuery.includes(field))
-
-    // Universities - Italian universities
-    if (lowerQuery.includes('politecnico') || lowerQuery.includes('polimi')) {
-      criteria.universities = ['Politecnico di Milano', 'Politecnico di Torino']
+  const parseQuery = async (query: string): Promise<SearchCriteria> => {
+    try {
+      const res = await fetch('/api/dashboard/recruiter/ai-parse-search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query }),
+      })
+      if (res.ok) {
+        const data = await res.json()
+        return data.criteria || { search: query }
+      }
+    } catch (err) {
+      console.error('AI parsing failed, using text search:', err)
     }
-    if (lowerQuery.includes('bologna')) criteria.universities = ['Universita di Bologna']
-    if (lowerQuery.includes('sapienza') || lowerQuery.includes('roma')) criteria.universities = ['Sapienza Universita di Roma']
-    if (lowerQuery.includes('top universit') || lowerQuery.includes('best universit')) {
-      criteria.universities = ['Politecnico di Milano', 'Universita di Bologna', 'Sapienza Universita di Roma']
-    }
-
-    // Location - Italian cities
-    if (lowerQuery.includes('milan') || lowerQuery.includes('milano')) criteria.location = 'Milan'
-    if (lowerQuery.includes('rome') || lowerQuery.includes('roma')) criteria.location = 'Rome'
-    if (lowerQuery.includes('bologna')) criteria.location = 'Bologna'
-    if (lowerQuery.includes('turin') || lowerQuery.includes('torino')) criteria.location = 'Turin'
-    if (lowerQuery.includes('florence') || lowerQuery.includes('firenze')) criteria.location = 'Florence'
-    if (lowerQuery.includes('remote')) criteria.location = 'Remote'
-
-    // Languages detection
-    const languagesList = ['italian', 'italiano', 'english', 'inglese', 'spanish', 'spagnolo', 'french', 'francese', 'german', 'tedesco', 'chinese', 'cinese']
-    criteria.languages = languagesList.filter(lang => lowerQuery.includes(lang))
-    if (lowerQuery.includes('bilingual')) criteria.languages = ['Italian', 'English']
-    if (lowerQuery.includes('multilingual') || lowerQuery.match(/\d+\+?\s*language/)) {
-      criteria.languages = ['Italian', 'English', 'Spanish']
-    }
-
-    // Availability detection
-    if (lowerQuery.includes('immediately') || lowerQuery.includes('asap')) criteria.availability = 'Available immediately'
-    if (lowerQuery.includes('available now')) criteria.availability = 'Available'
-    if (lowerQuery.includes('open to offers')) criteria.availability = 'Open to offers'
-
-    // Verification level
-    if (lowerQuery.includes('100%') || lowerQuery.includes('fully verified')) criteria.verificationLevel = '100'
-    if (lowerQuery.includes('verified') || lowerQuery.includes('90%')) criteria.verificationLevel = '90+'
-
-    // GPA
-    const gpaMatch = lowerQuery.match(/(\d+\.\d+)\+?\s*gpa/)
-    if (gpaMatch) criteria.gpaMin = parseFloat(gpaMatch[1])
-
-    // Graduation year
-    if (lowerQuery.includes('recent grad') || lowerQuery.includes('new grad')) {
-      criteria.graduationYear = '2024'
-    }
-    if (lowerQuery.match(/202[4-7]/)) {
-      criteria.graduationYear = lowerQuery.match(/202[4-7]/)?.[0]
-    }
-
-    // Experience level
-    if (lowerQuery.includes('junior') || lowerQuery.includes('entry')) criteria.experienceLevel = 'entry'
-    if (lowerQuery.includes('senior')) criteria.experienceLevel = 'senior'
-
-    // Build general search term from the query for broader matching
-    criteria.search = query.slice(0, 100)
-
-    return criteria
+    return { search: query }
   }
 
   const searchAPI = async (criteria: SearchCriteria): Promise<APIStudent[]> => {
@@ -222,7 +165,7 @@ export default function AISearchPage() {
     setIsTyping(true)
 
     try {
-      const criteria = parseQuery(input)
+      const criteria = await parseQuery(input)
       const matchedCandidates = await searchAPI(criteria)
 
       let responseContent = ''

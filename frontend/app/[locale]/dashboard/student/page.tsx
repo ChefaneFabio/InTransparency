@@ -3,20 +3,24 @@
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Progress } from '@/components/ui/progress'
 import {
-  Plus,
-  ExternalLink,
-  ChevronRight,
-  Sparkles,
-  LogOut,
+  Plus, ExternalLink, ChevronRight, LogOut,
+  Eye, Mail, Briefcase, FolderOpen, BarChart3, Route, MessageSquare, Send,
+  Shield, MapPin,
 } from 'lucide-react'
 import { Skeleton } from '@/components/ui/skeleton'
 import OnboardingChecklist from '@/components/dashboard/student/OnboardingChecklist'
 import { AchievementsPanel } from '@/components/dashboard/student/AchievementsPanel'
 import { HiringConfirmationBanner } from '@/components/dashboard/student/HiringConfirmationBanner'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { DonutChart } from '@/components/dashboard/shared/DonutChart'
+// MiniChart available for future use with real trend data
+import { ActivityFeed } from '@/components/dashboard/shared/ActivityFeed'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
+import { StatCard } from '@/components/dashboard/shared/StatCard'
+import { AnimatedCounter } from '@/components/ui/animated-counter'
+import { StaggerContainer, StaggerItem, AnimatedCard } from '@/components/ui/animated-card'
 import { signOut } from 'next-auth/react'
 import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
@@ -43,14 +47,11 @@ export default function StudentDashboard() {
   const { data: session } = useSession()
   const locale = useLocale()
   const t = useTranslations('studentDashboard')
+  const ts = useTranslations('shared')
   const user = session?.user
   const [projects, setProjects] = useState<any[]>([])
   const [stats, setStats] = useState<DashboardStats>({
-    projectCount: 0,
-    profileViews: 0,
-    unreadMessages: 0,
-    jobMatches: 0,
-    profileCompletion: 0
+    projectCount: 0, profileViews: 0, unreadMessages: 0, jobMatches: 0, profileCompletion: 0,
   })
   const [recentJobs, setRecentJobs] = useState<JobOpportunity[]>([])
   const [onboarding, setOnboarding] = useState<any>(null)
@@ -61,16 +62,14 @@ export default function StudentDashboard() {
       try {
         const [statsResponse, projectsResponse] = await Promise.all([
           fetch('/api/dashboard/student/stats'),
-          user?.id ? fetch(`/api/projects?userId=${user.id}`) : Promise.resolve(null)
+          user?.id ? fetch(`/api/projects?userId=${user.id}`) : Promise.resolve(null),
         ])
-
         if (statsResponse.ok) {
           const statsData = await statsResponse.json()
           setStats(statsData.stats)
           setRecentJobs(statsData.recentJobs || [])
           if (statsData.onboarding) setOnboarding(statsData.onboarding)
         }
-
         if (projectsResponse && projectsResponse.ok) {
           const projectsData = await projectsResponse.json()
           setProjects(projectsData.projects || [])
@@ -81,68 +80,71 @@ export default function StudentDashboard() {
         setLoading(false)
       }
     }
-
-    if (user) {
-      fetchDashboardData()
-    } else {
-      setLoading(false)
-    }
+    if (user) fetchDashboardData()
+    else setLoading(false)
   }, [user])
 
   if (loading) {
     return (
-      <div className="max-w-5xl mx-auto pb-8 space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <div>
-            <Skeleton className="h-7 w-48 mb-2" />
-            <Skeleton className="h-4 w-64" />
-          </div>
-          <div className="flex gap-2">
-            <Skeleton className="h-9 w-24" />
-            <Skeleton className="h-9 w-28" />
-          </div>
+      <div className="max-w-6xl mx-auto pb-8 space-y-6 px-4">
+        <Skeleton className="h-40 w-full rounded-2xl" />
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {Array.from({ length: 3 }, (_, i) => <Skeleton key={i} className="h-24 rounded-2xl" />)}
         </div>
-        <div className="grid lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 space-y-3">
-            {[1,2,3,4].map(i => <Skeleton key={i} className="h-16 w-full rounded-lg" />)}
-          </div>
-          <div className="lg:col-span-1 space-y-4">
-            <Skeleton className="h-40 w-full rounded-lg" />
-            <Skeleton className="h-32 w-full rounded-lg" />
-          </div>
+        <div className="grid lg:grid-cols-12 gap-4">
+          <Skeleton className="lg:col-span-8 h-48 rounded-2xl" />
+          <Skeleton className="lg:col-span-4 h-48 rounded-2xl" />
         </div>
       </div>
     )
   }
 
+  const projectViews = projects.reduce((sum, p) => sum + (p.views || 0), 0)
+
+  const activityItems = [
+    ...(stats.profileViews > 0 ? [{ id: 'v1', type: 'view' as const, text: ts('activity.recruiterViewsThisWeek', { count: stats.profileViews }), time: ts('time.thisWeek') }] : []),
+    ...(stats.unreadMessages > 0 ? [{ id: 'm1', type: 'message' as const, text: ts('activity.unreadMessages', { count: stats.unreadMessages }), time: ts('time.recent') }] : []),
+    ...(stats.jobMatches > 0 ? [{ id: 'j1', type: 'job' as const, text: ts('activity.newJobMatches', { count: stats.jobMatches }), time: ts('time.thisWeek') }] : []),
+    ...projects.slice(0, 3).map((p, i) => ({
+      id: `p${i}`, type: 'application' as const, text: ts('activity.projectReceivedViews', { title: p.title, count: p.views || 0 }), time: ts('time.recent'),
+    })),
+  ]
+
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6 pb-8">
-      {/* Header with stats inline */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
-        <div>
-          <h1 className="text-xl font-semibold text-foreground">
-            {t('greeting', { name: user?.firstName || '' })}
-          </h1>
-          <div className="flex items-center gap-4 mt-1 text-sm text-muted-foreground">
-            <span>{stats.profileViews} {t('stats.views')}</span>
-            <span>{stats.unreadMessages} {t('stats.messages')}</span>
-            <span>{stats.jobMatches} {t('stats.matches')}</span>
+    <div className="max-w-6xl mx-auto px-4 py-6 pb-8 space-y-5">
+      {/* Hero Section */}
+      <MetricHero gradient="primary">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="flex-1">
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground">
+              {t('greeting', { name: user?.firstName || '' })}
+            </h1>
+            <p className="text-sm text-muted-foreground mt-1 mb-4">{t('subtitle')}</p>
+            <div className="flex gap-2">
+              <Button size="sm" className="shadow-md" asChild>
+                <Link href="/dashboard/student/projects/new">
+                  <Plus className="h-4 w-4 mr-1" />
+                  {t('newProject')}
+                </Link>
+              </Button>
+              <Button size="sm" variant="outline" className="bg-white/60 backdrop-blur-sm" asChild>
+                <Link href="/dashboard/student/profile/edit">{t('editProfile')}</Link>
+              </Button>
+            </div>
+          </div>
+          {/* Donut: Profile Completion */}
+          <div className="flex-shrink-0">
+            <DonutChart
+              value={stats.profileCompletion}
+              size={130}
+              strokeWidth={12}
+              sublabel={ts('complete')}
+            />
           </div>
         </div>
-        <div className="flex gap-2">
-          <Button size="sm" variant="outline" asChild>
-            <Link href="/dashboard/student/profile/edit">{t('editProfile')}</Link>
-          </Button>
-          <Button size="sm" asChild>
-            <Link href="/dashboard/student/projects/new">
-              <Plus className="h-4 w-4 mr-1" />
-              {t('newProject')}
-            </Link>
-          </Button>
-        </div>
-      </div>
+      </MetricHero>
 
-      {/* Onboarding checklist — replaces old plain completion bar */}
+      {/* Onboarding + Hiring */}
       {onboarding && (
         <OnboardingChecklist
           profile={onboarding.profile}
@@ -151,196 +153,196 @@ export default function StudentDashboard() {
           universityVerified={onboarding.universityVerified}
         />
       )}
-
-      {/* Hiring confirmation — asks students if they got hired after company contact */}
       <HiringConfirmationBanner />
 
-      <div className="grid lg:grid-cols-3 gap-6">
-        {/* Projects + Jobs - main column */}
-        <div className="lg:col-span-2">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="font-medium text-foreground">{t('sections.projects')}</h2>
-            <Link href="/dashboard/student/projects" className="text-sm text-primary hover:underline">
-              {t('viewAll')}
-            </Link>
-          </div>
+      {/* Stat Cards Row */}
+      <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <StaggerItem>
+          <StatCard label={t('stats.views')} value={stats.profileViews} icon={<Eye className="h-5 w-5" />} variant="blue" />
+        </StaggerItem>
+        <StaggerItem>
+          <StatCard label={t('stats.messages')} value={stats.unreadMessages} icon={<Mail className="h-5 w-5" />} variant="rose" />
+        </StaggerItem>
+        <StaggerItem>
+          <StatCard label={t('stats.matches')} value={stats.jobMatches} icon={<Briefcase className="h-5 w-5" />} variant="green" />
+        </StaggerItem>
+      </StaggerContainer>
 
-          {projects.length > 0 ? (
-            <div className="space-y-2">
-              {projects.slice(0, 4).map((project: any) => (
-                <Link
-                  key={project.id}
-                  href={`/dashboard/student/projects/${project.id}`}
-                  className="flex items-center gap-3 p-3 bg-white border rounded-lg hover:border-border transition-colors"
-                >
-                  <div className="w-10 h-10 bg-primary/10 rounded flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary font-bold text-sm">{(project.title || 'P')[0].toUpperCase()}</span>
+      {/* Bento Grid: Main Content */}
+      <div className="grid lg:grid-cols-12 gap-4">
+        {/* Left: Area Chart + Projects + Jobs (8 cols) */}
+        <div className="lg:col-span-8 space-y-4">
+          {/* Mini Area Chart Card */}
+          <GlassCard delay={0.2} gradient="blue">
+            <div className="p-5">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{t('activity.profileViews')}</p>
+                  <div className="flex items-baseline gap-2 mt-1">
+                    <AnimatedCounter value={stats.profileViews} className="text-2xl font-bold text-foreground" />
+                    <span className="text-xs text-muted-foreground">{t('sections.thisWeek')}</span>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-medium text-foreground text-sm truncate">
-                      {project.title || t('untitled')}
-                    </p>
-                    <p className="text-xs text-muted-foreground truncate">
-                      {project.description || t('noDescription')}
-                    </p>
-                  </div>
-                  <span className="text-xs text-muted-foreground/60">
-                    {project.views || 0} views
-                  </span>
-                </Link>
-              ))}
+                </div>
+                <div className="text-right">
+                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{t('activity.projectViews')}</p>
+                  <AnimatedCounter value={projectViews} className="text-2xl font-bold text-foreground" />
+                </div>
+              </div>
             </div>
-          ) : (
-            <div className="border-2 border-dashed rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg mx-auto mb-2 flex items-center justify-center text-primary font-bold">+</div>
-              <p className="text-sm text-muted-foreground mb-3">{t('empty.noProjects')}</p>
-              <Button size="sm" asChild>
-                <Link href="/dashboard/student/projects/new">
-                  <Plus className="h-4 w-4 mr-1" />
-                  {t('empty.addFirst')}
-                </Link>
-              </Button>
-            </div>
-          )}
+          </GlassCard>
 
-          {/* Jobs section below projects */}
-          <div className="mt-6">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="font-medium text-foreground">{t('sections.jobMatches')}</h2>
-              <Link href="/dashboard/student/jobs" className="text-sm text-primary hover:underline">
-                {t('browseJobs')}
-              </Link>
-            </div>
-
-            {recentJobs.length > 0 ? (
-              <div className="space-y-2">
-                {recentJobs.slice(0, 3).map((job) => (
-                  <div
-                    key={job.id}
-                    className="p-3 bg-white border rounded-lg hover:border-border transition-colors cursor-pointer"
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <p className="font-medium text-sm text-foreground">{job.title}</p>
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground mt-0.5">
-                          <span>{job.company}</span>
-                          <span>·</span>
-                          <span>{job.location}</span>
+          {/* Projects */}
+          <GlassCard delay={0.3} hover={false}>
+            <div className="p-5">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="font-semibold text-foreground">{t('sections.projects')}</h2>
+                <Link href="/dashboard/student/projects" className="text-xs text-primary hover:underline font-medium">
+                  {t('viewAll')} →
+                </Link>
+              </div>
+              {projects.length > 0 ? (
+                <div className="grid gap-3">
+                  {projects.slice(0, 4).map((project: any) => (
+                    <Link
+                      key={project.id}
+                      href={`/dashboard/student/projects/${project.id}`}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40 hover:shadow-md hover:border-primary/20 transition-all group"
+                    >
+                      <div className="w-12 h-12 bg-gradient-to-br from-primary/30 to-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <span className="text-primary font-bold">{(project.title || 'P')[0].toUpperCase()}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-sm text-foreground truncate group-hover:text-primary transition-colors">{project.title || t('untitled')}</p>
+                        <div className="flex items-center gap-2 mt-0.5">
+                          {project.verificationStatus === 'VERIFIED' && (
+                            <Badge className="text-[10px] bg-green-100 text-green-700 border-0 h-4 px-1.5">
+                              <Shield className="h-2.5 w-2.5 mr-0.5" />{ts('verified')}
+                            </Badge>
+                          )}
+                          <span className="text-[11px] text-muted-foreground truncate">{project.description || t('noDescription')}</span>
                         </div>
                       </div>
-                      <Badge variant="secondary" className="text-xs flex-shrink-0">
-                        {job.type}
-                      </Badge>
-                    </div>
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground/60">
+                        <Eye className="h-3 w-3" /> {project.views || 0}
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-10">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                    <Plus className="h-7 w-7 text-primary/60" />
                   </div>
-                ))}
+                  <p className="text-sm text-muted-foreground mb-3">{t('empty.noProjects')}</p>
+                  <Button size="sm" asChild>
+                    <Link href="/dashboard/student/projects/new">
+                      <Plus className="h-4 w-4 mr-1" /> {t('empty.addFirst')}
+                    </Link>
+                  </Button>
+                </div>
+              )}
+            </div>
+          </GlassCard>
+
+          {/* Jobs */}
+          <GlassCard delay={0.4} hover={false}>
+            <div className="p-5">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="font-semibold text-foreground">{t('sections.jobMatches')}</h2>
+                <Link href="/dashboard/student/jobs" className="text-xs text-primary hover:underline font-medium">
+                  {t('browseJobs')} →
+                </Link>
               </div>
-            ) : (
-              <div className="border rounded-lg p-4 text-center text-sm text-muted-foreground">
-                {t('empty.noMatches')}
-              </div>
-            )}
-          </div>
+              {recentJobs.length > 0 ? (
+                <div className="space-y-2">
+                  {recentJobs.slice(0, 3).map((job) => (
+                    <div key={job.id} className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40 hover:shadow-md hover:border-primary/20 transition-all">
+                      <div className="w-10 h-10 bg-gradient-to-br from-slate-200 to-slate-100 dark:from-slate-700 dark:to-slate-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Building2Icon className="h-4 w-4 text-slate-500" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-sm text-foreground">{job.title}</p>
+                        <div className="flex items-center gap-2 text-[11px] text-muted-foreground mt-0.5">
+                          <span>{job.company}</span>
+                          {job.location && <><span className="text-muted-foreground/30">·</span><span className="flex items-center gap-0.5"><MapPin className="h-2.5 w-2.5" />{job.location}</span></>}
+                        </div>
+                      </div>
+                      <Badge variant="secondary" className="text-[10px] rounded-full">{job.type}</Badge>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8 text-sm text-muted-foreground">{t('empty.noMatches')}</div>
+              )}
+            </div>
+          </GlassCard>
         </div>
 
-        {/* Sidebar - compact */}
-        <div className="lg:col-span-1 space-y-4">
-          {/* Quick links */}
-          <Card>
-            <CardContent className="p-3">
-              <div className="space-y-1">
-                <Link
-                  href="/dashboard/student/messages"
-                  className="flex items-center justify-between p-2 rounded hover:bg-muted/50 transition-colors"
-                >
-                  <span className="text-sm">{t('links.messages')}</span>
-                  {stats.unreadMessages > 0 && (
-                    <Badge variant="destructive" className="text-xs h-5 px-1.5">
-                      {stats.unreadMessages}
-                    </Badge>
-                  )}
-                </Link>
-                <Link
-                  href="/dashboard/student/applications"
-                  className="flex items-center justify-between p-2 rounded hover:bg-muted/50 transition-colors"
-                >
-                  <span className="text-sm">{t('links.applications')}</span>
-                  <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
-                </Link>
-                <Link
-                  href="/dashboard/student/analytics"
-                  className="flex items-center justify-between p-2 rounded hover:bg-muted/50 transition-colors"
-                >
-                  <span className="text-sm">{t('links.analytics')}</span>
-                  <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
-                </Link>
-                <Link
-                  href="/dashboard/student/skill-path"
-                  className="flex items-center justify-between p-2 rounded hover:bg-muted/50 transition-colors"
-                >
-                  <span className="text-sm flex items-center gap-1.5">
-                    
-                    {t('links.skillPath')}
-                  </span>
-                  <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
-                </Link>
-                <Link
-                  href={`/students/${(user as any)?.username || user?.id}/public`}
-                  className="flex items-center justify-between p-2 rounded hover:bg-muted/50 transition-colors"
-                >
-                  <span className="text-sm">{t('links.publicProfile')}</span>
-                  <ExternalLink className="h-4 w-4 text-muted-foreground/60" />
-                </Link>
-                <div className="border-t my-1" />
+        {/* Right Sidebar (4 cols) */}
+        <div className="lg:col-span-4 space-y-4">
+          {/* Activity Feed */}
+          <GlassCard delay={0.3}>
+            <div className="p-4">
+              <ActivityFeed
+                items={activityItems}
+                title={t('sections.thisWeek')}
+                emptyText={ts('noActivityYet')}
+                maxHeight={260}
+              />
+            </div>
+          </GlassCard>
+
+          {/* Quick Actions Grid */}
+          <GlassCard delay={0.4}>
+            <div className="p-3">
+              <div className="grid grid-cols-3 gap-1">
+                {[
+                  { href: '/dashboard/student/messages' as const, icon: MessageSquare, label: t('links.messages'), badge: stats.unreadMessages },
+                  { href: '/dashboard/student/applications' as const, icon: Send, label: t('links.applications') },
+                  { href: '/dashboard/student/analytics' as const, icon: BarChart3, label: t('links.analytics') },
+                  { href: '/dashboard/student/skill-path' as const, icon: Route, label: t('links.skillPath') },
+                  { href: '/dashboard/student/cv' as const, icon: FolderOpen, label: 'CV' },
+                  { href: `/students/${(user as any)?.username || user?.id}/public` as any, icon: ExternalLink, label: t('links.publicProfile') },
+                ].map((item) => (
+                  <Link key={item.href} href={item.href}
+                    className="relative flex flex-col items-center gap-1 p-2.5 rounded-xl hover:bg-primary/5 transition-colors text-center group">
+                    <div className="p-2 rounded-lg bg-muted/80 group-hover:bg-primary/10 transition-colors">
+                      <item.icon className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                    </div>
+                    <span className="text-[10px] text-muted-foreground group-hover:text-foreground transition-colors leading-tight">{item.label}</span>
+                    {item.badge ? (
+                      <Badge variant="destructive" className="absolute -top-0.5 -right-0.5 text-[9px] h-4 px-1 min-w-4">{item.badge}</Badge>
+                    ) : null}
+                  </Link>
+                ))}
+              </div>
+              <div className="border-t mt-2 pt-2">
                 <button
                   onClick={() => signOut({ callbackUrl: `/${locale}` })}
-                  className="flex items-center justify-between p-2 rounded hover:bg-red-50 transition-colors w-full text-left"
+                  className="flex items-center justify-center gap-1.5 w-full p-2 rounded-xl hover:bg-red-50 transition-colors group"
                 >
-                  <span className="text-sm text-red-600">{t('links.signOut')}</span>
-                  <LogOut className="h-4 w-4 text-red-400" />
+                  <LogOut className="h-3.5 w-3.5 text-muted-foreground group-hover:text-red-500 transition-colors" />
+                  <span className="text-xs text-muted-foreground group-hover:text-red-600 transition-colors">{t('links.signOut')}</span>
                 </button>
               </div>
-            </CardContent>
-          </Card>
-
-          {/* Activity */}
-          <Card>
-            <CardHeader className="p-3 pb-2">
-              <CardTitle className="text-sm font-medium">{t('sections.thisWeek')}</CardTitle>
-            </CardHeader>
-            <CardContent className="p-3 pt-0">
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">{t('activity.profileViews')}</span>
-                  <span className="font-medium">{stats.profileViews}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">{t('activity.projectViews')}</span>
-                  <span className="font-medium">{projects.reduce((sum, p) => sum + (p.views || 0), 0)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">{t('activity.jobMatches')}</span>
-                  <span className="font-medium">{stats.jobMatches}</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
 
           {/* Achievements */}
-          <AchievementsPanel />
-
-          {/* University status - minimal */}
-          <div className="p-3 bg-muted/50 rounded-lg border text-sm">
-            <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">{t('university.label')}</span>
-              <Badge variant="outline" className="text-xs">{t('university.notVerified')}</Badge>
-            </div>
-            <Link href="/dashboard/student/profile/edit#university" className="text-xs text-primary hover:underline mt-1 inline-block">
-              {t('university.connect')}
-            </Link>
-          </div>
+          <AnimatedCard delay={0.5} hover={false}>
+            <AchievementsPanel />
+          </AnimatedCard>
         </div>
       </div>
     </div>
+  )
+}
+
+// Inline building icon to avoid adding to imports (Briefcase already used for jobs)
+function Building2Icon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>
+    </svg>
   )
 }

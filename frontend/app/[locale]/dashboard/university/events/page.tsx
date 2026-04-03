@@ -113,8 +113,9 @@ export default function EventsPage() {
         setMaxAttendees('')
         await fetchEvents()
       }
-    } catch {
-      // ignore
+    } catch (err) {
+      console.error('Failed to create event:', err)
+      alert('Failed to create event. Please try again.')
     } finally {
       setCreating(false)
     }

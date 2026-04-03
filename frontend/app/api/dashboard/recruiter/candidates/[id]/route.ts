@@ -81,6 +81,14 @@ export async function GET(
       )
     }
 
+    // Respect profile privacy — only allow viewing public profiles
+    if (!candidate.profilePublic) {
+      return NextResponse.json(
+        { error: 'This profile is private' },
+        { status: 403 }
+      )
+    }
+
     // Record profile view (fire and forget - don't block response)
     prisma.profileView
       .create({

@@ -112,7 +112,7 @@ export default function RecruiterJobs() {
 
   const filteredJobs = jobs.filter(job => {
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesStatus = statusFilter === 'all' || job.status.toLowerCase() === statusFilter
+    const matchesStatus = statusFilter === 'all' || job.status.toUpperCase() === statusFilter.toUpperCase()
     const matchesType = typeFilter === 'all' || job.jobType === typeFilter
     return matchesSearch && matchesStatus && matchesType
   })
@@ -137,7 +137,7 @@ export default function RecruiterJobs() {
 
   if (loading) {
     return (
-      <div className="min-h-screen space-y-6 space-y-6">
+      <div className="min-h-screen space-y-6">
         <div className="flex items-center justify-between">
           <div>
             <Skeleton className="h-8 w-48" />
@@ -195,7 +195,7 @@ export default function RecruiterJobs() {
   }
 
   return (
-    <div className="min-h-screen space-y-6 space-y-6">
+    <div className="min-h-screen space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>

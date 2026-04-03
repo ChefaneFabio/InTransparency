@@ -99,26 +99,21 @@ export async function POST(request: NextRequest) {
     })
 
     // Send verification email
+    let emailSent = false
     try {
       await sendVerificationEmail(institutionalEmail, verificationToken, universityName)
+      emailSent = true
     } catch (emailError) {
       console.error('Failed to send verification email:', emailError)
-      // Auto-verify as fallback when SMTP is not configured
-      connection = await prisma.universityConnection.update({
-        where: { id: connection.id },
-        data: {
-          verificationStatus: 'VERIFIED',
-          verifiedAt: new Date()
-        }
-      })
+      // Do NOT auto-verify — keep PENDING and inform user to retry
     }
 
     return NextResponse.json({
       success: true,
       connection,
-      message: connection.verificationStatus === 'VERIFIED'
-        ? 'University connected successfully'
-        : 'Verification email sent. Please check your institutional email.'
+      message: emailSent
+        ? 'Verification email sent. Please check your institutional email.'
+        : 'Could not send verification email. Please try again later or contact support.',
     })
   } catch (error) {
     console.error('Error connecting university:', error)

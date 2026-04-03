@@ -39,6 +39,30 @@ interface WorkExperienceEntry {
   endDate: string
   description: string
   current: boolean
+  contractType?: string | null
+  companySector?: string | null
+  businessArea?: string | null
+}
+
+interface LanguageProfEntry {
+  id: string
+  language: string
+  motherTongue: boolean
+  reading: string | null
+  writing: string | null
+  listening: string | null
+  speaking: string | null
+  interaction: string | null
+}
+
+interface CertificationEntry {
+  id: string
+  name: string
+  issuer: string
+  dateObtained: string | null
+  expiryDate: string | null
+  credentialId: string | null
+  credentialUrl: string | null
 }
 
 interface ProfileData {
@@ -65,6 +89,22 @@ interface ProfileData {
     interests: string[]
     availableFor: string
     workExperience: WorkExperienceEntry[] | null
+    // New fields
+    thesisTitle: string | null
+    thesisSubject: string | null
+    thesisSupervisor: string | null
+    thesisKeywords: string[]
+    desiredOccupation: string | null
+    preferredSectors: string[]
+    preferredAreas: string[]
+    preferredLocations: string[]
+    willingToRelocate: boolean
+    willingToRelocateAbroad: boolean
+    willingToTravel: boolean
+    continuingStudies: boolean
+    continuingStudiesType: string | null
+    languageProficiencies: LanguageProfEntry[]
+    certifications: CertificationEntry[]
   }
   skills: Array<{ name: string; level: number; projectCount: number }>
   stats: {
@@ -479,6 +519,102 @@ export default function ProfilePage() {
                 </CardContent>
               </Card>
 
+              {/* Thesis */}
+              {user.thesisTitle && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center">
+                      <FileText className="mr-2 h-5 w-5" />
+                      Thesis
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    <h3 className="font-semibold text-foreground">{user.thesisTitle}</h3>
+                    {user.thesisSubject && <p className="text-sm text-muted-foreground">Subject: {user.thesisSubject}</p>}
+                    {user.thesisSupervisor && <p className="text-sm text-muted-foreground">Supervisor: {user.thesisSupervisor}</p>}
+                    {user.thesisKeywords && user.thesisKeywords.length > 0 && (
+                      <div className="flex flex-wrap gap-1 pt-1">
+                        {user.thesisKeywords.map((kw: string) => (
+                          <Badge key={kw} variant="secondary" className="text-xs">{kw}</Badge>
+                        ))}
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Languages */}
+              {user.languageProficiencies && user.languageProficiencies.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Languages</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="border-b">
+                            <th className="text-left py-2 font-medium">Language</th>
+                            <th className="text-center py-2 font-medium">Reading</th>
+                            <th className="text-center py-2 font-medium">Writing</th>
+                            <th className="text-center py-2 font-medium">Listening</th>
+                            <th className="text-center py-2 font-medium">Speaking</th>
+                            <th className="text-center py-2 font-medium">Interaction</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {user.languageProficiencies.map((lp: LanguageProfEntry) => (
+                            <tr key={lp.id} className="border-b last:border-0">
+                              <td className="py-2 font-medium">{lp.language}</td>
+                              {lp.motherTongue ? (
+                                <td colSpan={5} className="py-2 text-center text-muted-foreground italic">Mother Tongue</td>
+                              ) : (
+                                <>
+                                  <td className="py-2 text-center"><Badge variant="outline" className="text-xs">{lp.reading || '—'}</Badge></td>
+                                  <td className="py-2 text-center"><Badge variant="outline" className="text-xs">{lp.writing || '—'}</Badge></td>
+                                  <td className="py-2 text-center"><Badge variant="outline" className="text-xs">{lp.listening || '—'}</Badge></td>
+                                  <td className="py-2 text-center"><Badge variant="outline" className="text-xs">{lp.speaking || '—'}</Badge></td>
+                                  <td className="py-2 text-center"><Badge variant="outline" className="text-xs">{lp.interaction || '—'}</Badge></td>
+                                </>
+                              )}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Certifications */}
+              {user.certifications && user.certifications.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Certifications</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {user.certifications.map((cert: CertificationEntry) => (
+                        <div key={cert.id} className="flex items-start justify-between border-b last:border-0 pb-3 last:pb-0">
+                          <div>
+                            <h4 className="font-semibold text-foreground">{cert.name}</h4>
+                            <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+                            {cert.credentialUrl && (
+                              <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer"
+                                className="text-xs text-primary hover:underline">View credential</a>
+                            )}
+                          </div>
+                          <div className="text-right text-xs text-muted-foreground">
+                            {cert.dateObtained && <p>Obtained: {new Date(cert.dateObtained).toLocaleDateString()}</p>}
+                            {cert.expiryDate && <p>Expires: {new Date(cert.expiryDate).toLocaleDateString()}</p>}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
               {/* Interests */}
               {user.interests && user.interests.length > 0 && (
                 <Card>
@@ -517,11 +653,64 @@ export default function ProfilePage() {
                             <Calendar className="h-3.5 w-3.5" />
                             {exp.startDate} - {exp.current ? 'Present' : exp.endDate}
                           </p>
+                          {(exp.contractType || exp.companySector || exp.businessArea) && (
+                            <div className="flex flex-wrap gap-1 mt-1">
+                              {exp.contractType && <Badge variant="outline" className="text-xs">{exp.contractType}</Badge>}
+                              {exp.companySector && <Badge variant="outline" className="text-xs">{exp.companySector}</Badge>}
+                              {exp.businessArea && <Badge variant="outline" className="text-xs">{exp.businessArea}</Badge>}
+                            </div>
+                          )}
                           {exp.description && (
                             <p className="text-foreground/80 text-sm mt-2 leading-relaxed">{exp.description}</p>
                           )}
                         </div>
                       ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Career Preferences */}
+              {(user.desiredOccupation || user.preferredSectors?.length > 0 || user.preferredLocations?.length > 0) && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center">
+                      <Share2 className="mr-2 h-5 w-5" />
+                      Career Preferences
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3 text-sm">
+                    {user.desiredOccupation && (
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Desired Occupation</span>
+                        <span className="font-medium">{user.desiredOccupation}</span>
+                      </div>
+                    )}
+                    {user.preferredSectors && user.preferredSectors.length > 0 && (
+                      <div className="flex justify-between items-start">
+                        <span className="text-muted-foreground">Sectors</span>
+                        <div className="flex flex-wrap gap-1 justify-end max-w-[60%]">
+                          {user.preferredSectors.map((s: string) => (
+                            <Badge key={s} variant="secondary" className="text-xs">{s}</Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {user.preferredLocations && user.preferredLocations.length > 0 && (
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Preferred Locations</span>
+                        <span className="font-medium">{user.preferredLocations.join(', ')}</span>
+                      </div>
+                    )}
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {user.willingToRelocate && <Badge variant="outline" className="text-xs">Willing to relocate</Badge>}
+                      {user.willingToRelocateAbroad && <Badge variant="outline" className="text-xs">Including abroad</Badge>}
+                      {user.willingToTravel && <Badge variant="outline" className="text-xs">Available for travel</Badge>}
+                      {user.continuingStudies && (
+                        <Badge variant="outline" className="text-xs">
+                          Continuing studies{user.continuingStudiesType ? `: ${user.continuingStudiesType}` : ''}
+                        </Badge>
+                      )}
                     </div>
                   </CardContent>
                 </Card>

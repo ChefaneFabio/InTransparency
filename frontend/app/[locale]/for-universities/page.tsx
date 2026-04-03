@@ -16,7 +16,6 @@ import { StickyCTA } from '@/components/engagement/StickyCTA'
 import GradeNormalizerDemo from '@/components/demo/GradeNormalizerDemo'
 import DecisionPackPreview from '@/components/demo/DecisionPackPreview'
 import AnalyticsPreview from '@/components/demo/AnalyticsPreview'
-import { sampleDecisionPack } from '@/lib/sample-decision-pack'
 
 const COUNTRY_TABS = [
   {
@@ -241,7 +240,7 @@ export default function ForUniversitiesPage() {
                 <p className="text-sm text-gray-600">{t('demos.decisionPack.description')}</p>
               </div>
               <div className="max-w-2xl">
-                <DecisionPackPreview data={sampleDecisionPack} />
+                <DecisionPackPreview data={null} />
               </div>
             </motion.div>
 

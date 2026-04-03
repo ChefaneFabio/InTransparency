@@ -36,21 +36,58 @@ export default function SchedulingPage() {
   }, [])
 
   useEffect(() => {
-    const fetchInterviews = async () => {
+    const fetchScheduling = async () => {
       try {
         const res = await fetch('/api/dashboard/recruiter/scheduling')
         if (res.ok) {
           const data = await res.json()
           setInterviews(data.interviews || [])
+          // Load saved availability slots
+          if (data.availability) {
+            const slots: Record<string, boolean> = {}
+            const days = Object.keys(data.availability)
+            for (let d = 0; d < days.length; d++) {
+              const day = days[d]
+              const times = Object.keys(data.availability[day])
+              for (let t = 0; t < times.length; t++) {
+                if (data.availability[day][times[t]]) {
+                  slots[`${day}-${times[t]}`] = true
+                }
+              }
+            }
+            setAvailability(slots)
+          }
         }
-      } catch {
-        // API doesn't exist yet — gracefully handle
+      } catch (err) {
+        console.error('Failed to load scheduling:', err)
       } finally {
         setLoading(false)
       }
     }
-    fetchInterviews()
+    fetchScheduling()
   }, [])
+
+  // Auto-save availability when it changes
+  const saveAvailability = useCallback(async () => {
+    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'] as const
+    const slots = ['morning', 'afternoon', 'evening'] as const
+    const grid: Record<string, Record<string, boolean>> = {}
+    for (let d = 0; d < days.length; d++) {
+      grid[days[d]] = {}
+      for (let s = 0; s < slots.length; s++) {
+        grid[days[d]][slots[s]] = !!availability[`${days[d]}-${slots[s]}`]
+      }
+    }
+    await fetch('/api/dashboard/recruiter/scheduling', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ availability: grid }),
+    }).catch(() => {})
+  }, [availability])
+
+  useEffect(() => {
+    if (!loading) saveAvailability()
+  }, [availability, loading, saveAvailability])
 
   if (loading) {
     return (

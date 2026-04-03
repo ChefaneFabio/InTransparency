@@ -55,12 +55,25 @@ export default function OutreachPage() {
   const handleSave = async () => {
     if (!sequenceName.trim()) return
     setSaving(true)
-    // Simulate save — backend doesn't exist yet
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setSaving(false)
-    setSequenceName('')
-    setSteps([{ id: 1, type: 'intro', delayDays: 0 }])
-    setNextId(2)
+    try {
+      const res = await fetch('/api/dashboard/recruiter/outreach', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: sequenceName,
+          steps: steps.map(s => ({ type: s.type, subject: '', body: '', delayDays: s.delayDays })),
+        }),
+      })
+      if (res.ok) {
+        setSequenceName('')
+        setSteps([{ id: 1, type: 'intro', delayDays: 0 }])
+        setNextId(2)
+      }
+    } catch (err) {
+      console.error('Failed to save outreach template:', err)
+    } finally {
+      setSaving(false)
+    }
   }
 
   return (

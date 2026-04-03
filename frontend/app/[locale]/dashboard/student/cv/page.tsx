@@ -24,6 +24,12 @@ interface ProfileData {
     linkedinUrl: string | null
     githubUrl: string | null
     portfolioUrl: string | null
+    thesisTitle: string | null
+    languageProficiencies: Array<{ language: string; motherTongue: boolean; reading: string | null; writing: string | null; listening: string | null; speaking: string | null; interaction: string | null }>
+    certifications: Array<{ name: string; issuer: string }>
+    workExperience: Array<{ company: string; role: string }> | null
+    desiredOccupation: string | null
+    preferredSectors: string[]
   }
   skills: Array<{ name: string; level: number; projectCount: number }>
   projects: Array<{ id: string; title: string; skills: string[] }>
@@ -215,6 +221,65 @@ export default function CvPage() {
               <p className="text-sm text-muted-foreground">
                 {[u.degree, u.graduationYear].filter(Boolean).join(' — ')}
               </p>
+            </div>
+          )}
+
+          {/* Languages */}
+          {u.languageProficiencies && u.languageProficiencies.length > 0 && (
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-2">Languages</h3>
+              <div className="flex flex-wrap gap-2">
+                {u.languageProficiencies.map((lp) => (
+                  <Badge key={lp.language} variant="secondary">
+                    {lp.language}{lp.motherTongue ? ' (Mother Tongue)' : ''}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Work Experience */}
+          {u.workExperience && u.workExperience.length > 0 && (
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-2">Work Experience</h3>
+              <ul className="space-y-1">
+                {u.workExperience.map((we, i) => (
+                  <li key={i} className="text-sm">
+                    <span className="font-medium">{we.role}</span>
+                    <span className="text-muted-foreground"> — {we.company}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Certifications */}
+          {u.certifications && u.certifications.length > 0 && (
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-2">Certifications</h3>
+              <ul className="space-y-1">
+                {u.certifications.map((c, i) => (
+                  <li key={i} className="text-sm">
+                    <span className="font-medium">{c.name}</span>
+                    <span className="text-muted-foreground"> — {c.issuer}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Career Preferences */}
+          {(u.desiredOccupation || (u.preferredSectors && u.preferredSectors.length > 0)) && (
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-2">Career Preferences</h3>
+              {u.desiredOccupation && <p className="text-sm font-medium">{u.desiredOccupation}</p>}
+              {u.preferredSectors && u.preferredSectors.length > 0 && (
+                <div className="flex flex-wrap gap-1 mt-1">
+                  {u.preferredSectors.map((s) => (
+                    <Badge key={s} variant="outline" className="text-xs">{s}</Badge>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 

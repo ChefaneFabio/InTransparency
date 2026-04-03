@@ -34,39 +34,49 @@ export default function FeaturedPortfoliosPage() {
   const [filter, setFilter] = useState<'all' | 'top-verified' | 'recent'>('all')
 
   useEffect(() => {
-    // TODO: Replace with actual API call
-    // For now, using mock data
-    const mockStudents: FeaturedStudent[] = [
-      {
-        id: '1',
-        username: 'john-doe',
-        firstName: 'John',
-        lastName: 'Doe',
-        university: 'Politecnico di Milano',
-        degree: 'Computer Science',
-        graduationYear: 2024,
-        projectsCount: 12,
-        verificationScore: 100,
-        skillsCount: 15,
-        bio: 'Full-stack developer passionate about AI and web technologies'
-      },
-      {
-        id: '2',
-        username: 'maria-rossi',
-        firstName: 'Maria',
-        lastName: 'Rossi',
-        university: 'Università di Bologna',
-        degree: 'Data Science',
-        graduationYear: 2024,
-        projectsCount: 8,
-        verificationScore: 95,
-        skillsCount: 12,
-        bio: 'Data scientist specializing in machine learning and analytics'
+    const fetchFeatured = async () => {
+      setLoading(true)
+      try {
+        // Fetch real students with public profiles and high project counts
+        const res = await fetch('/api/projects?isPublic=true&limit=20')
+        if (res.ok) {
+          const data = await res.json()
+          // Group by user and derive featured students
+          const usersMap = new Map<string, FeaturedStudent>()
+          for (let i = 0; i < (data.projects || []).length; i++) {
+            const p = data.projects[i]
+            if (p.user && !usersMap.has(p.user.id)) {
+              usersMap.set(p.user.id, {
+                id: p.user.id,
+                username: p.user.username || p.user.id,
+                firstName: p.user.firstName || '',
+                lastName: p.user.lastName || '',
+                university: p.user.university || '',
+                degree: p.user.degree || '',
+                graduationYear: p.user.graduationYear ? parseInt(p.user.graduationYear) : 0,
+                projectsCount: 1,
+                verificationScore: p.verificationStatus === 'VERIFIED' ? 100 : 0,
+                skillsCount: (p.skills || []).length + (p.technologies || []).length,
+                bio: p.user.bio || '',
+              })
+            } else if (p.user && usersMap.has(p.user.id)) {
+              const existing = usersMap.get(p.user.id)!
+              existing.projectsCount += 1
+              existing.skillsCount = Math.max(existing.skillsCount, (p.skills || []).length + (p.technologies || []).length)
+            }
+          }
+          const featured = Array.from(usersMap.values())
+            .filter(s => s.projectsCount >= 1)
+            .sort((a, b) => b.projectsCount - a.projectsCount)
+          setStudents(featured)
+        }
+      } catch (err) {
+        console.error('Failed to fetch featured students:', err)
+      } finally {
+        setLoading(false)
       }
-    ]
-
-    setStudents(mockStudents)
-    setLoading(false)
+    }
+    fetchFeatured()
   }, [filter])
 
   return (

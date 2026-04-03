@@ -2,18 +2,22 @@
 
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { VerificationFlowMockup } from '@/components/mockups/VerificationFlowMockup'
-import { AIMatchingMockup } from '@/components/mockups/AIMatchingMockup'
-import { AnalyticsMockup } from '@/components/mockups/AnalyticsMockup'
+import { Shield, Zap, BarChart3 } from 'lucide-react'
 
 export function TestimonialsSection() {
   const t = useTranslations('home.valueProposition')
 
+  const sectionIcons = [
+    <div key="v" className="w-full aspect-square max-w-sm mx-auto bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl flex items-center justify-center"><Shield className="h-20 w-20 text-primary/40" /></div>,
+    <div key="a" className="w-full aspect-square max-w-sm mx-auto bg-gradient-to-br from-purple-500/10 to-purple-500/5 rounded-2xl flex items-center justify-center"><Zap className="h-20 w-20 text-purple-400/40" /></div>,
+    <div key="b" className="w-full aspect-square max-w-sm mx-auto bg-gradient-to-br from-green-500/10 to-green-500/5 rounded-2xl flex items-center justify-center"><BarChart3 className="h-20 w-20 text-green-400/40" /></div>,
+  ]
+
   const sections = [
-    { mockup: <VerificationFlowMockup />, reverse: false },
-    { mockup: <AIMatchingMockup />, reverse: true },
-    { mockup: <AnalyticsMockup />, reverse: false },
-  ] as const
+    { mockup: sectionIcons[0], reverse: false },
+    { mockup: sectionIcons[1], reverse: true },
+    { mockup: sectionIcons[2], reverse: false },
+  ]
 
   const cardKeys = ['students', 'universities', 'companies'] as const
 

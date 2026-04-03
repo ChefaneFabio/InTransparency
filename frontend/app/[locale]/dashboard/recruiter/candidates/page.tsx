@@ -95,46 +95,31 @@ export default function CandidatesPage() {
   const fetchCandidates = async () => {
     try {
       setLoading(true)
-      // Fetch students with public profiles and projects
-      const response = await fetch('/api/projects?isPublic=true&limit=50')
+      const response = await fetch('/api/dashboard/recruiter/search/students?limit=100')
       if (response.ok) {
         const data = await response.json()
-        // Transform projects data to candidates (group by user)
-        const usersMap = new Map<string, Candidate>()
-
-        for (const project of data.projects || []) {
-          if (project.user) {
-            const userId = project.user.id
-            if (!usersMap.has(userId)) {
-              usersMap.set(userId, {
-                id: userId,
-                firstName: project.user.firstName || '',
-                lastName: project.user.lastName || '',
-                username: project.user.username || null,
-                email: '',
-                university: project.user.university || 'University not specified',
-                degree: '',
-                graduationYear: '',
-                photo: project.user.photo,
-                bio: null,
-                availableFor: project.user.availableFor || 'BOTH',
-                projects: [],
-                _count: { projects: 0 }
-              })
-            }
-            const user = usersMap.get(userId)!
-            user.projects.push({
-              id: project.id,
-              title: project.title,
-              discipline: project.discipline,
-              innovationScore: project.innovationScore,
-              universityVerified: project.universityVerified || false
-            })
-            user._count.projects = user.projects.length
-          }
-        }
-
-        setCandidates(Array.from(usersMap.values()))
+        const students = data.students || []
+        setCandidates(students.map((s: any) => ({
+          id: s.id,
+          firstName: s.firstName || '',
+          lastName: s.lastName || '',
+          username: s.username || null,
+          email: s.email || '',
+          university: s.university || 'University not specified',
+          degree: s.degree || '',
+          graduationYear: s.graduationYear || '',
+          photo: s.photo || null,
+          bio: s.bio || null,
+          availableFor: s.availableFor || 'BOTH',
+          projects: (s.projects || []).map((p: any) => ({
+            id: p.id,
+            title: p.title,
+            discipline: p.discipline || 'OTHER',
+            innovationScore: p.innovationScore || null,
+            universityVerified: p.verificationStatus === 'VERIFIED',
+          })),
+          _count: { projects: s.projectCount ?? s._count?.projects ?? 0 },
+        })))
       }
     } catch (error) {
       console.error('Failed to fetch candidates:', error)

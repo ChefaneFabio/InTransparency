@@ -60,6 +60,49 @@ export interface CvCompetency {
   topStrengths: string[]
 }
 
+export interface CvLanguage {
+  language: string
+  motherTongue: boolean
+  reading: string | null
+  writing: string | null
+  listening: string | null
+  speaking: string | null
+  interaction: string | null
+}
+
+export interface CvCertification {
+  name: string
+  issuer: string
+  dateObtained: string | null
+  expiryDate: string | null
+  credentialId: string | null
+  credentialUrl: string | null
+}
+
+export interface CvCareerPreferences {
+  desiredOccupation: string | null
+  preferredSectors: string[]
+  preferredAreas: string[]
+  preferredLocations: string[]
+  willingToRelocate: boolean
+  willingToRelocateAbroad: boolean
+  willingToTravel: boolean
+  continuingStudies: boolean
+  continuingStudiesType: string | null
+}
+
+export interface CvWorkExperience {
+  company: string
+  role: string
+  startDate: string
+  endDate: string
+  description: string
+  current: boolean
+  contractType?: string | null
+  companySector?: string | null
+  businessArea?: string | null
+}
+
 export interface CvData {
   firstName: string | null
   lastName: string | null
@@ -81,6 +124,14 @@ export interface CvData {
   bigFive: CvBigFive | null
   disc: CvDISC | null
   competency: CvCompetency | null
+  languages: CvLanguage[]
+  certifications: CvCertification[]
+  workExperience: CvWorkExperience[]
+  thesisTitle: string | null
+  thesisSubject: string | null
+  thesisSupervisor: string | null
+  thesisKeywords: string[]
+  careerPreferences: CvCareerPreferences | null
 }
 
 export type CvStyle = 'classic' | 'modern'
@@ -353,6 +404,100 @@ const createStyles = (style: CvStyle) => {
       fontSize: 8,
       color: c.accent,
     },
+    // Language Table
+    langTableRow: {
+      flexDirection: 'row' as any,
+      borderBottomWidth: 0.5,
+      borderBottomColor: '#e5e7eb',
+      paddingVertical: 2,
+    },
+    langTableHeader: {
+      flexDirection: 'row' as any,
+      borderBottomWidth: 1,
+      borderBottomColor: c.sectionBorder,
+      paddingBottom: 3,
+      marginBottom: 2,
+    },
+    langTableCell: {
+      fontSize: 8,
+      width: '14%',
+      textAlign: 'center' as any,
+    },
+    langTableLang: {
+      fontSize: 9,
+      fontFamily: 'Helvetica-Bold',
+      width: '16%',
+    },
+    // Work Experience
+    workCard: {
+      borderWidth: 1,
+      borderColor: '#e5e7eb',
+      borderRadius: style === 'modern' ? 4 : 0,
+      padding: 8,
+      marginBottom: 6,
+      backgroundColor: style === 'modern' ? c.lightBg : 'white',
+    },
+    workHeader: {
+      flexDirection: 'row' as any,
+      justifyContent: 'space-between' as any,
+      marginBottom: 2,
+    },
+    workRole: {
+      fontSize: 11,
+      fontFamily: 'Helvetica-Bold',
+    },
+    workDates: {
+      fontSize: 9,
+      color: c.muted,
+    },
+    workCompany: {
+      fontSize: 10,
+      color: c.muted,
+      marginBottom: 2,
+    },
+    workMeta: {
+      flexDirection: 'row' as any,
+      gap: 4,
+      marginBottom: 3,
+    },
+    workDesc: {
+      fontSize: 9,
+      color: c.text,
+      lineHeight: 1.4,
+    },
+    // Certifications
+    certRow: {
+      flexDirection: 'row' as any,
+      justifyContent: 'space-between' as any,
+      marginBottom: 4,
+    },
+    certName: {
+      fontSize: 10,
+      fontFamily: 'Helvetica-Bold',
+    },
+    certIssuer: {
+      fontSize: 9,
+      color: c.muted,
+    },
+    certDate: {
+      fontSize: 8,
+      color: c.muted,
+    },
+    // Career Preferences
+    careerRow: {
+      flexDirection: 'row' as any,
+      marginBottom: 3,
+    },
+    careerLabel: {
+      fontSize: 9,
+      fontFamily: 'Helvetica-Bold',
+      width: 120,
+    },
+    careerValue: {
+      fontSize: 9,
+      color: c.text,
+      flex: 1,
+    },
     // Footer
     footer: {
       position: 'absolute',
@@ -418,6 +563,25 @@ export function CvDocument({ data, style = 'classic' }: { data: CvData; style?: 
         data.gpaPublic && data.gpa
           ? React.createElement(Text, { style: s.eduDetail }, `GPA: ${data.gpa}`)
           : null,
+        // Thesis details under education
+        ...(data.thesisTitle ? [
+          React.createElement(View, { key: 'thesis', style: { marginTop: 4 } },
+            React.createElement(Text, { style: { fontSize: 9, fontFamily: 'Helvetica-Bold' } }, `Thesis: ${data.thesisTitle}`),
+            data.thesisSubject
+              ? React.createElement(Text, { style: s.eduDetail }, `Subject: ${data.thesisSubject}`)
+              : null,
+            data.thesisSupervisor
+              ? React.createElement(Text, { style: s.eduDetail }, `Supervisor: ${data.thesisSupervisor}`)
+              : null,
+            data.thesisKeywords.length > 0
+              ? React.createElement(View, { style: { ...s.techRow, marginTop: 2 } },
+                ...data.thesisKeywords.map((kw, i) =>
+                  React.createElement(Text, { key: `kw-${i}`, style: s.techTag }, kw)
+                ),
+              )
+              : null,
+          ),
+        ] : []),
       ),
 
       // ── Exchange ──
@@ -428,6 +592,84 @@ export function CvDocument({ data, style = 'classic' }: { data: CvData; style?: 
             React.createElement(Text, { style: s.exchangeRow },
               React.createElement(Text, { style: s.exchangeLabel }, `${ex.programType}: `),
               `${ex.homeUniversityName} (${ex.homeCountry}) → ${ex.hostUniversityName} (${ex.hostCountry})`
+            ),
+          )
+        ),
+      ] : []),
+
+      // ── Languages (Europass CEFR) ──
+      ...(data.languages.length > 0 ? [
+        React.createElement(Text, { key: 'lang-title', style: s.sectionTitle }, 'Languages'),
+        // Table header
+        React.createElement(View, { key: 'lang-hdr', style: s.langTableHeader },
+          React.createElement(Text, { style: s.langTableLang }, 'Language'),
+          React.createElement(Text, { style: s.langTableCell }, 'Reading'),
+          React.createElement(Text, { style: s.langTableCell }, 'Writing'),
+          React.createElement(Text, { style: s.langTableCell }, 'Listening'),
+          React.createElement(Text, { style: s.langTableCell }, 'Speaking'),
+          React.createElement(Text, { style: s.langTableCell }, 'Interaction'),
+        ),
+        ...data.languages.map((lang, i) =>
+          React.createElement(View, { key: `lang-${i}`, style: s.langTableRow },
+            React.createElement(Text, { style: s.langTableLang }, lang.language),
+            ...(lang.motherTongue
+              ? [React.createElement(Text, { key: `mt-${i}`, style: { fontSize: 8, color: '#6b7280', width: '70%', textAlign: 'center' as any } }, 'Mother Tongue')]
+              : [
+                React.createElement(Text, { key: `r-${i}`, style: s.langTableCell }, lang.reading || '—'),
+                React.createElement(Text, { key: `w-${i}`, style: s.langTableCell }, lang.writing || '—'),
+                React.createElement(Text, { key: `l-${i}`, style: s.langTableCell }, lang.listening || '—'),
+                React.createElement(Text, { key: `s-${i}`, style: s.langTableCell }, lang.speaking || '—'),
+                React.createElement(Text, { key: `in-${i}`, style: s.langTableCell }, lang.interaction || '—'),
+              ]
+            ),
+          )
+        ),
+      ] : []),
+
+      // ── Work Experience ──
+      ...(data.workExperience.length > 0 ? [
+        React.createElement(Text, { key: 'we-title', style: s.sectionTitle }, 'Work Experience'),
+        ...data.workExperience.map((we, i) =>
+          React.createElement(View, { key: `we-${i}`, style: s.workCard, wrap: false },
+            React.createElement(View, { style: s.workHeader },
+              React.createElement(Text, { style: s.workRole }, we.role),
+              React.createElement(Text, { style: s.workDates },
+                `${we.startDate || ''}${we.current ? ' — Present' : we.endDate ? ` — ${we.endDate}` : ''}`
+              ),
+            ),
+            React.createElement(Text, { style: s.workCompany }, we.company),
+            (we.contractType || we.companySector || we.businessArea) ?
+              React.createElement(View, { style: s.workMeta },
+                ...[
+                  we.contractType ? React.createElement(Text, { key: `ct-${i}`, style: s.techTag }, we.contractType) : null,
+                  we.companySector ? React.createElement(Text, { key: `cs-${i}`, style: s.techTag }, we.companySector) : null,
+                  we.businessArea ? React.createElement(Text, { key: `ba-${i}`, style: s.techTag }, we.businessArea) : null,
+                ].filter(Boolean),
+              ) : null,
+            we.description
+              ? React.createElement(Text, { style: s.workDesc },
+                we.description.length > 300 ? we.description.slice(0, 300) + '...' : we.description)
+              : null,
+          )
+        ),
+      ] : []),
+
+      // ── Certifications ──
+      ...(data.certifications.length > 0 ? [
+        React.createElement(Text, { key: 'cert-title', style: s.sectionTitle }, 'Certifications'),
+        ...data.certifications.map((cert, i) =>
+          React.createElement(View, { key: `cert-${i}`, style: s.certRow, wrap: false },
+            React.createElement(View, null,
+              React.createElement(Text, { style: s.certName }, cert.name),
+              React.createElement(Text, { style: s.certIssuer }, cert.issuer),
+            ),
+            React.createElement(View, { style: { alignItems: 'flex-end' as any } },
+              cert.dateObtained
+                ? React.createElement(Text, { style: s.certDate }, `Obtained: ${cert.dateObtained}`)
+                : null,
+              cert.expiryDate
+                ? React.createElement(Text, { style: s.certDate }, `Expires: ${cert.expiryDate}`)
+                : null,
             ),
           )
         ),
@@ -572,6 +814,51 @@ export function CvDocument({ data, style = 'classic' }: { data: CvData; style?: 
               ),
             ),
           )
+        ),
+      ] : []),
+
+      // ── Career Preferences ──
+      ...(data.careerPreferences ? [
+        React.createElement(Text, { key: 'cp-title', style: s.sectionTitle }, 'Career Preferences'),
+        React.createElement(View, { key: 'cp-body' },
+          ...[
+            data.careerPreferences.desiredOccupation
+              ? React.createElement(View, { key: 'cp-occ', style: s.careerRow },
+                React.createElement(Text, { style: s.careerLabel }, 'Desired Occupation'),
+                React.createElement(Text, { style: s.careerValue }, data.careerPreferences.desiredOccupation),
+              ) : null,
+            data.careerPreferences.preferredSectors.length > 0
+              ? React.createElement(View, { key: 'cp-sec', style: s.careerRow },
+                React.createElement(Text, { style: s.careerLabel }, 'Preferred Sectors'),
+                React.createElement(Text, { style: s.careerValue }, data.careerPreferences.preferredSectors.join(', ')),
+              ) : null,
+            data.careerPreferences.preferredAreas.length > 0
+              ? React.createElement(View, { key: 'cp-area', style: s.careerRow },
+                React.createElement(Text, { style: s.careerLabel }, 'Professional Areas'),
+                React.createElement(Text, { style: s.careerValue }, data.careerPreferences.preferredAreas.join(', ')),
+              ) : null,
+            data.careerPreferences.preferredLocations.length > 0
+              ? React.createElement(View, { key: 'cp-loc', style: s.careerRow },
+                React.createElement(Text, { style: s.careerLabel }, 'Preferred Locations'),
+                React.createElement(Text, { style: s.careerValue }, data.careerPreferences.preferredLocations.join(', ')),
+              ) : null,
+            React.createElement(View, { key: 'cp-mob', style: s.careerRow },
+              React.createElement(Text, { style: s.careerLabel }, 'Mobility'),
+              React.createElement(Text, { style: s.careerValue },
+                [
+                  data.careerPreferences.willingToRelocate ? 'Willing to relocate' : null,
+                  data.careerPreferences.willingToRelocateAbroad ? 'Including abroad' : null,
+                  data.careerPreferences.willingToTravel ? 'Available for travel' : null,
+                ].filter(Boolean).join(' · ') || 'Not specified'
+              ),
+            ),
+            data.careerPreferences.continuingStudies
+              ? React.createElement(View, { key: 'cp-study', style: s.careerRow },
+                React.createElement(Text, { style: s.careerLabel }, 'Continuing Studies'),
+                React.createElement(Text, { style: s.careerValue },
+                  data.careerPreferences.continuingStudiesType || 'Yes'),
+              ) : null,
+          ].filter(Boolean),
         ),
       ] : []),
 
