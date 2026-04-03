@@ -92,7 +92,8 @@ export async function GET(request: NextRequest) {
         university: true,
         degree: true,
         graduationYear: true,
-        profilePublic: true
+        profilePublic: true,
+        totpEnabled: true
       }
     })
 

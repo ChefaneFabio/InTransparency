@@ -394,6 +394,9 @@ export default function StudentSettingsPage() {
         </CardContent>
       </Card>
 
+      {/* MFA / Two-Factor Authentication */}
+      <MfaSection />
+
       {/* Danger Zone */}
       <Card className="border-red-200">
         <CardHeader>
@@ -431,5 +434,203 @@ export default function StudentSettingsPage() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+function MfaSection() {
+  const t = useTranslations('studentSettings')
+  const { toast } = useToast()
+
+  const [mfaEnabled, setMfaEnabled] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [setupStep, setSetupStep] = useState<'idle' | 'qr' | 'verify' | 'backup'>('idle')
+  const [qrCode, setQrCode] = useState('')
+  const [secret, setSecret] = useState('')
+  const [verifyCode, setVerifyCode] = useState('')
+  const [backupCodes, setBackupCodes] = useState<string[]>([])
+  const [disablePassword, setDisablePassword] = useState('')
+  const [processing, setProcessing] = useState(false)
+
+  useEffect(() => {
+    const checkMfa = async () => {
+      try {
+        const res = await fetch('/api/user/profile')
+        if (res.ok) {
+          const data = await res.json()
+          setMfaEnabled(data?.totpEnabled || false)
+        }
+      } catch {
+        // ignore
+      } finally {
+        setLoading(false)
+      }
+    }
+    checkMfa()
+  }, [])
+
+  const handleSetup = async () => {
+    setProcessing(true)
+    try {
+      const res = await fetch('/api/auth/totp/setup', { method: 'POST' })
+      const data = await res.json()
+      if (res.ok) {
+        setQrCode(data.qrCode)
+        setSecret(data.secret)
+        setSetupStep('qr')
+      } else {
+        toast({ title: t('error'), description: data.error, variant: 'destructive' })
+      }
+    } catch {
+      toast({ title: t('error'), description: 'Failed to start MFA setup', variant: 'destructive' })
+    } finally {
+      setProcessing(false)
+    }
+  }
+
+  const handleVerify = async () => {
+    setProcessing(true)
+    try {
+      const res = await fetch('/api/auth/totp/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: verifyCode }),
+      })
+      const data = await res.json()
+      if (res.ok) {
+        setBackupCodes(data.backupCodes)
+        setMfaEnabled(true)
+        setSetupStep('backup')
+        toast({ title: t('mfa.enabled') })
+      } else {
+        toast({ title: t('error'), description: data.error, variant: 'destructive' })
+      }
+    } catch {
+      toast({ title: t('error'), description: 'Verification failed', variant: 'destructive' })
+    } finally {
+      setProcessing(false)
+    }
+  }
+
+  const handleDisable = async () => {
+    setProcessing(true)
+    try {
+      const res = await fetch('/api/auth/totp/disable', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: disablePassword }),
+      })
+      const data = await res.json()
+      if (res.ok) {
+        setMfaEnabled(false)
+        setDisablePassword('')
+        setSetupStep('idle')
+        toast({ title: t('mfa.disabled') })
+      } else {
+        toast({ title: t('error'), description: data.error, variant: 'destructive' })
+      }
+    } catch {
+      toast({ title: t('error'), description: 'Failed to disable MFA', variant: 'destructive' })
+    } finally {
+      setProcessing(false)
+    }
+  }
+
+  if (loading) return null
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Shield className="h-5 w-5" />
+          {t('mfa.title')}
+        </CardTitle>
+        <CardDescription>{t('mfa.description')}</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {/* Status */}
+        <div className="flex items-center justify-between p-3 rounded-lg bg-muted">
+          <div>
+            <p className="text-sm font-medium">{t('mfa.status')}</p>
+            <p className="text-xs text-muted-foreground">
+              {mfaEnabled ? t('mfa.statusEnabled') : t('mfa.statusDisabled')}
+            </p>
+          </div>
+          <div className={`px-2 py-1 rounded text-xs font-medium ${mfaEnabled ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
+            {mfaEnabled ? t('mfa.on') : t('mfa.off')}
+          </div>
+        </div>
+
+        {/* Setup flow */}
+        {!mfaEnabled && setupStep === 'idle' && (
+          <Button onClick={handleSetup} disabled={processing}>
+            <Lock className="h-4 w-4 mr-2" />
+            {t('mfa.enable')}
+          </Button>
+        )}
+
+        {setupStep === 'qr' && (
+          <div className="space-y-4">
+            <p className="text-sm">{t('mfa.scanQr')}</p>
+            <div className="flex justify-center">
+              {qrCode && <img src={qrCode} alt="QR Code" className="w-48 h-48" />}
+            </div>
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground mb-1">{t('mfa.manualEntry')}</p>
+              <code className="text-xs bg-muted px-2 py-1 rounded select-all">{secret}</code>
+            </div>
+            <div className="space-y-2">
+              <Label>{t('mfa.enterCode')}</Label>
+              <Input
+                value={verifyCode}
+                onChange={(e) => setVerifyCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                placeholder="000000"
+                className="text-center text-lg tracking-widest"
+                inputMode="numeric"
+              />
+            </div>
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={() => setSetupStep('idle')}>{t('mfa.cancel')}</Button>
+              <Button onClick={handleVerify} disabled={processing || verifyCode.length < 6}>{t('mfa.verify')}</Button>
+            </div>
+          </div>
+        )}
+
+        {setupStep === 'backup' && (
+          <div className="space-y-4">
+            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <p className="text-sm font-medium text-yellow-800 mb-2">{t('mfa.backupTitle')}</p>
+              <p className="text-xs text-yellow-700 mb-3">{t('mfa.backupWarning')}</p>
+              <div className="grid grid-cols-2 gap-1">
+                {backupCodes.map((code, i) => (
+                  <code key={i} className="text-xs bg-white px-2 py-1 rounded border text-center font-mono">
+                    {code}
+                  </code>
+                ))}
+              </div>
+            </div>
+            <Button onClick={() => setSetupStep('idle')}>{t('mfa.done')}</Button>
+          </div>
+        )}
+
+        {/* Disable MFA */}
+        {mfaEnabled && setupStep === 'idle' && (
+          <div className="space-y-3 pt-2">
+            <Separator />
+            <div className="space-y-2">
+              <Label>{t('mfa.disableLabel')}</Label>
+              <Input
+                type="password"
+                value={disablePassword}
+                onChange={(e) => setDisablePassword(e.target.value)}
+                placeholder={t('mfa.passwordPlaceholder')}
+              />
+            </div>
+            <Button variant="outline" onClick={handleDisable} disabled={processing || !disablePassword}>
+              {t('mfa.disable')}
+            </Button>
+          </div>
+        )}
+      </CardContent>
+    </Card>
   )
 }

@@ -34,16 +34,17 @@ export const authOptions: NextAuthOptions = {
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
+        totpCode: { label: "MFA Code", type: "text" }
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Email and password required")
         }
 
-        // Find user by email
+        // Find user by email (case-insensitive)
         const user = await prisma.user.findUnique({
-          where: { email: credentials.email }
+          where: { email: credentials.email.toLowerCase() }
         })
 
         if (!user || !user.passwordHash) {
@@ -58,6 +59,41 @@ export const authOptions: NextAuthOptions = {
 
         if (!isValid) {
           throw new Error("Invalid credentials")
+        }
+
+        // Check if MFA is enabled
+        if (user.totpEnabled && user.totpSecret) {
+          const totpCode = credentials.totpCode
+          if (!totpCode) {
+            // No code provided — signal to frontend to show MFA input
+            throw new Error(`MFA_REQUIRED:${user.id}`)
+          }
+
+          // Verify TOTP code
+          const { authenticator } = await import('otplib')
+          const isValidTotp = authenticator.verify({ token: totpCode, secret: user.totpSecret })
+
+          if (!isValidTotp) {
+            // Try backup codes
+            const bcryptModule = await import('bcryptjs')
+            let backupValid = false
+            for (let i = 0; i < (user.backupCodes || []).length; i++) {
+              const isMatch = await bcryptModule.default.compare(totpCode, user.backupCodes[i])
+              if (isMatch) {
+                const updatedCodes = [...user.backupCodes]
+                updatedCodes.splice(i, 1)
+                await prisma.user.update({
+                  where: { id: user.id },
+                  data: { backupCodes: updatedCodes },
+                })
+                backupValid = true
+                break
+              }
+            }
+            if (!backupValid) {
+              throw new Error("Invalid MFA code")
+            }
+          }
         }
 
         // Update last login

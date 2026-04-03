@@ -203,7 +203,24 @@ model User {
   githubUrl      String?
   skills         String[]  @default([])
   interests      String[]  @default([])
-  workExperience Json?     // Array of { company, role, startDate, endDate, description, current }
+  workExperience Json?     // Array of { company, role, startDate, endDate, description, current, contractType?, companySector?, businessArea? }
+
+  // Thesis
+  thesisTitle      String?
+  thesisSubject    String?
+  thesisSupervisor String?
+  thesisKeywords   String[] @default([])
+
+  // Career Preferences
+  desiredOccupation       String?
+  preferredSectors        String[] @default([])
+  preferredAreas          String[] @default([])
+  preferredLocations      String[] @default([])
+  willingToRelocate       Boolean  @default(false)
+  willingToRelocateAbroad Boolean  @default(false)
+  willingToTravel         Boolean  @default(false)
+  continuingStudies       Boolean  @default(false)
+  continuingStudiesType   String?
 
   // Company Info (for recruiters)
   company  String?
@@ -250,6 +267,12 @@ model User {
 
   // Dual-Mode: Available for hiring, projects, or both
   availableFor         AvailableFor @default(BOTH)
+
+  // MFA / TOTP (optional)
+  totpEnabled    Boolean   @default(false)
+  totpSecret     String?   // Encrypted base32 secret
+  backupCodes    String[]  @default([]) // Hashed backup codes
+  totpVerifiedAt DateTime? // When TOTP setup was confirmed
 
   // Timestamps
   createdAt   DateTime  @default(now())
@@ -310,6 +333,19 @@ model User {
   // Exchange / Erasmus
   exchangeEnrollments  ExchangeEnrollment[]
 
+  // Language Proficiencies & Certifications
+  languageProficiencies LanguageProficiency[]
+  certifications        Certification[]
+
+  // Organization membership (company teams, techpark subdivisions)
+  organizationId       String?
+  organization         Organization?        @relation("OrgMembers", fields: [organizationId], references: [id])
+  orgRole              OrgRole              @default(MEMBER)
+  ownedOrganizations   Organization[]       @relation("OrgOwner")
+
+  // Outreach Templates (recruiter)
+  outreachTemplates    OutreachTemplate[]
+
   // Hiring Confirmations
   hiringConfirmationsAsStudent   HiringConfirmation[] @relation("StudentHiringConfirmations")
   hiringConfirmationsAsRecruiter HiringConfirmation[] @relation("RecruiterHiringConfirmations")
@@ -319,6 +355,84 @@ model User {
   @@index([referralCode])
   @@index([subscriptionTier])
   @@index([role])
+}
+
+// Organization — shared by companies (recruiter teams) and tech parks (with subdivisions)
+model Organization {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  type        OrgType  @default(COMPANY)
+  logo        String?
+  website     String?
+  industry    String?
+  description String?  @db.Text
+  city        String?
+  region      String?
+  country     String   @default("IT")
+  size        String?  // "1-10", "11-50", "51-200", "201-500", "500+"
+
+  // TechPark-specific
+  parentId    String?            // For subdivisions (child orgs under a tech park)
+  parent      Organization?      @relation("OrgSubdivisions", fields: [parentId], references: [id])
+  subdivisions Organization[]    @relation("OrgSubdivisions")
+
+  // Members
+  ownerId     String
+  owner       User               @relation("OrgOwner", fields: [ownerId], references: [id])
+  members     User[]             @relation("OrgMembers")
+
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  @@index([ownerId])
+  @@index([type])
+  @@index([parentId])
+}
+
+enum OrgType {
+  COMPANY     // Direct employer
+  AGENCY      // Staffing/HR agency
+  TECHPARK    // Technology park / innovation hub
+  SUBDIVISION // Child unit of a tech park
+}
+
+// Structured CEFR language proficiency (Europass-style)
+model LanguageProficiency {
+  id          String     @id @default(cuid())
+  userId      String
+  language    String
+  motherTongue Boolean   @default(false)
+  reading     CEFRLevel?
+  writing     CEFRLevel?
+  listening   CEFRLevel?
+  speaking    CEFRLevel?
+  interaction CEFRLevel?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, language])
+  @@index([userId])
+}
+
+// Professional certifications and credentials
+model Certification {
+  id            String    @id @default(cuid())
+  userId        String
+  name          String
+  issuer        String
+  dateObtained  DateTime?
+  expiryDate    DateTime?
+  credentialId  String?
+  credentialUrl String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 // University Connection Model (for students connecting with their institution)
@@ -406,6 +520,22 @@ enum AvailableFor {
   PROJECTS
   BOTH
   NONE
+}
+
+enum OrgRole {
+  OWNER       // Full admin — can delete org, manage billing
+  ADMIN       // Manage members, settings, all features
+  MANAGER     // Post jobs, contact candidates, view analytics
+  MEMBER      // View-only access, basic features
+}
+
+enum CEFRLevel {
+  A1
+  A2
+  B1
+  B2
+  C1
+  C2
 }
 
 enum SeekingType {
@@ -1997,8 +2127,25 @@ model RecruiterSettings {
   notifyMessages        Boolean @default(true)
   notifySearchAlerts    Boolean @default(true)
 
+  // Scheduling
+  availabilitySlots Json? // Weekly grid: {monday: {morning: bool, afternoon: bool, evening: bool}, ...}
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+// Outreach Templates (recruiter email sequences)
+model OutreachTemplate {
+  id          String   @id @default(cuid())
+  recruiterId String
+  name        String
+  steps       Json     // Array of {type: 'intro'|'followUp'|'final', subject: string, body: string, delayDays: number}
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  recruiter User @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
+
+  @@index([recruiterId])
 }
 
 // Tech Park Settings (B2B partner profile)

@@ -60,6 +60,9 @@ export default function LoginPage() {
   const [errors, setErrors] = useState<any>({})
   const [isLoading, setIsLoading] = useState(false)
   const [loginError, setLoginError] = useState('')
+  const [mfaRequired, setMfaRequired] = useState(false)
+  const [mfaUserId, setMfaUserId] = useState('')
+  const [totpCode, setTotpCode] = useState('')
 
   const config = segmentConfig[segment]
   const SegmentIcon = config.icon
@@ -97,7 +100,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!validateForm()) return
+    if (!mfaRequired && !validateForm()) return
 
     setIsLoading(true)
     setLoginError('')
@@ -106,13 +109,24 @@ export default function LoginPage() {
       const result = await signIn('credentials', {
         email: formData.email,
         password: formData.password,
+        totpCode: mfaRequired ? totpCode : undefined,
         redirect: false,
       })
 
       if (result?.error) {
-        setLoginError(result.error === 'CredentialsSignin'
-          ? t('login.invalidCredentials')
-          : result.error)
+        // Check if MFA is required
+        if (result.error.includes('MFA_REQUIRED:')) {
+          const userId = result.error.split('MFA_REQUIRED:')[1]
+          setMfaUserId(userId)
+          setMfaRequired(true)
+          setTotpCode('')
+        } else if (result.error === 'CredentialsSignin') {
+          setLoginError(mfaRequired
+            ? t('login.invalidMfaCode')
+            : t('login.invalidCredentials'))
+        } else {
+          setLoginError(result.error)
+        }
       } else if (result?.ok) {
         router.push('/dashboard')
         router.refresh()
@@ -325,16 +339,40 @@ export default function LoginPage() {
                   )}
                 </div>
 
+                {/* MFA Code Input */}
+                {mfaRequired && (
+                  <div className="space-y-2">
+                    <Label htmlFor="totpCode">{t('login.mfaCode')}</Label>
+                    <Input
+                      id="totpCode"
+                      type="text"
+                      inputMode="numeric"
+                      autoComplete="one-time-code"
+                      placeholder={t('login.mfaPlaceholder')}
+                      value={totpCode}
+                      onChange={(e) => setTotpCode(e.target.value.replace(/\D/g, '').slice(0, 8))}
+                      className="text-center text-lg tracking-widest"
+                      autoFocus
+                    />
+                    <p className="text-xs text-muted-foreground">{t('login.mfaHint')}</p>
+                  </div>
+                )}
+
                 {/* Submit Button */}
                 <Button
                   type="submit"
                   className="w-full"
-                  disabled={isLoading}
+                  disabled={isLoading || (mfaRequired && !totpCode)}
                 >
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       {t('login.submittingButton')}
+                    </>
+                  ) : mfaRequired ? (
+                    <>
+                      {t('login.verifyMfa')}
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </>
                   ) : (
                     <>
