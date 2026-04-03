@@ -67,11 +67,12 @@ export default function ProjectsPage() {
 
     // Search filter
     if (searchQuery) {
+      const q = searchQuery.toLowerCase()
       filtered = filtered.filter((project: any) =>
-        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.technologies.some((tech: any) => 
-          tech.toLowerCase().includes(searchQuery.toLowerCase())
+        (project.title || '').toLowerCase().includes(q) ||
+        (project.description || '').toLowerCase().includes(q) ||
+        (project.technologies || []).some((tech: any) =>
+          (tech || '').toLowerCase().includes(q)
         )
       )
     }
@@ -92,8 +93,8 @@ export default function ProjectsPage() {
 
       switch (sortBy) {
         case 'title':
-          aVal = a.title.toLowerCase()
-          bVal = b.title.toLowerCase()
+          aVal = (a.title || '').toLowerCase()
+          bVal = (b.title || '').toLowerCase()
           break
         case 'innovation_score':
           aVal = a.innovationScore || 0
