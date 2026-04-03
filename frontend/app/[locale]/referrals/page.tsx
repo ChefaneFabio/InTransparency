@@ -207,7 +207,8 @@ export default function ReferralsPage() {
               {t('hero.badge')}
             </Badge>
             <h1 className="text-5xl font-bold mb-6">
-              {t('hero.title')}{' '}
+              {t('hero.title')}
+              <br />
               <span className="text-primary">
                 {t('hero.titleHighlight')}
               </span>

@@ -31,7 +31,8 @@ export function HowItWorks() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-foreground sm:text-5xl">
-            {t('title')}{' '}
+            {t('title')}
+            <br />
             <span className="text-primary font-display italic">{t('titleHighlight')}</span>
           </h2>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto">

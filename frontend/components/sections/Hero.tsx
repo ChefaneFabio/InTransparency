@@ -53,8 +53,9 @@ export function Hero() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
             >
-              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl leading-[1.1]">
-                {t(`segments.${activeSegment}.headline1`)}{' '}
+              <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-7xl leading-[1.1]">
+                {t(`segments.${activeSegment}.headline1`)}
+                <br />
                 <span className="text-primary font-display italic">{t(`segments.${activeSegment}.headline2`)}</span>
               </h1>
 

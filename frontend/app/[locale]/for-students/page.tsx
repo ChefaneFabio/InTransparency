@@ -66,7 +66,8 @@ export default function ForStudentsPage() {
               custom={1}
               className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl"
             >
-              {t('hero.title')}{' '}
+              {t('hero.title')}
+              <br />
               <span className="text-blue-200">
                 <TypewriterText text={t('hero.titleHighlight')} speed={60} delay={800} />
               </span>

@@ -63,7 +63,8 @@ export default function ForCompaniesPage() {
                 custom={1}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
               >
-                {t('hero.title')}{' '}
+                {t('hero.title')}
+                <br />
                 <TypewriterText text={t('hero.titleHighlight')} speed={60} delay={800} />
               </motion.h1>
               <motion.p variants={fadeUp} custom={2} className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">

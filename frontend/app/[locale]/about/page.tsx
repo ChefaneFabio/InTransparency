@@ -96,7 +96,8 @@ export default function AboutPage() {
                 {t('whyDifferent.badge')}
               </div>
               <h2 className="text-4xl font-bold text-foreground mb-4">
-                {t('whyDifferent.title')}{' '}
+                {t('whyDifferent.title')}
+                <br />
                 <span className="text-primary font-display italic">
                   {t('whyDifferent.titleHighlight')}
                 </span>
