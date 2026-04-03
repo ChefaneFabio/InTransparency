@@ -5,7 +5,7 @@
  * Reduces bandwidth and storage costs while maintaining quality.
  */
 
-import sharp from 'sharp'
+const getSharp = async () => (await import('sharp')).default
 
 /**
  * Image optimization options
@@ -36,7 +36,8 @@ export async function optimizeImage(
       stripMetadata = true,
     } = options
 
-    let pipeline = sharp(buffer)
+    const sharpModule = await getSharp()
+    let pipeline = sharpModule(buffer)
 
     // Strip metadata (EXIF, etc.) for privacy and smaller file size
     if (stripMetadata) {
@@ -89,7 +90,7 @@ export async function optimizeImage(
     }
 
     // Get final dimensions
-    const finalMetadata = await sharp(outputBuffer).metadata()
+    const finalMetadata = await sharpModule(outputBuffer).metadata()
 
     return {
       buffer: outputBuffer,
@@ -113,7 +114,8 @@ export async function createThumbnail(
   height: number = 300
 ): Promise<Buffer> {
   try {
-    return await sharp(buffer)
+    const sharpModule = await getSharp()
+    return await sharpModule(buffer)
       .resize(width, height, {
         fit: 'cover',
         position: 'center',
