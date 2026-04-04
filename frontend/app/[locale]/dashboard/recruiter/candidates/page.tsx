@@ -261,7 +261,7 @@ export default function CandidatesPage() {
             </Button>
           )}
           <Button variant="outline" asChild>
-            <Link href="/dashboard/recruiter/post-job">
+            <Link href="/dashboard/recruiter/jobs/new">
               <Plus className="h-4 w-4 mr-2" />
               {t('postJob')}
             </Link>

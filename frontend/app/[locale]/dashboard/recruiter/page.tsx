@@ -133,7 +133,7 @@ export default function RecruiterDashboard() {
                 </Link>
               </Button>
               <Button variant="outline" className="bg-white/60 backdrop-blur-sm" asChild>
-                <Link href="/dashboard/recruiter/post-job">
+                <Link href="/dashboard/recruiter/jobs/new">
                   <Plus className="h-4 w-4 mr-2" /> {t('postJob')}
                 </Link>
               </Button>
@@ -372,7 +372,7 @@ export default function RecruiterDashboard() {
                   <h3 className="font-medium text-foreground mb-1">{t('jobPostings.empty')}</h3>
                   <p className="text-sm text-muted-foreground mb-4">{t('jobPostings.emptyDescription')}</p>
                   <Button asChild>
-                    <Link href="/dashboard/recruiter/post-job"><Plus className="h-4 w-4 mr-2" />{t('jobPostings.postJob')}</Link>
+                    <Link href="/dashboard/recruiter/jobs/new"><Plus className="h-4 w-4 mr-2" />{t('jobPostings.postJob')}</Link>
                   </Button>
                 </div>
               )}
@@ -395,7 +395,7 @@ export default function RecruiterDashboard() {
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide px-2 mb-2">{t('quickActions.title')}</p>
               {[
                 { href: '/dashboard/recruiter/candidates' as const, icon: Search, label: t('quickActions.searchCandidates') },
-                { href: '/dashboard/recruiter/post-job' as const, icon: Plus, label: t('quickActions.postJob') },
+                { href: '/dashboard/recruiter/jobs/new' as const, icon: Plus, label: t('quickActions.postJob') },
                 { href: '/dashboard/recruiter/messages' as const, icon: MessageSquare, label: t('quickActions.messages') },
                 { href: '/dashboard/recruiter/settings' as const, icon: Settings, label: t('quickActions.companySettings') },
               ].map((item) => (

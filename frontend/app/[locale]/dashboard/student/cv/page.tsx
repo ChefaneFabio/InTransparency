@@ -126,9 +126,9 @@ export default function CvPage() {
     : []
 
   const missing: Array<{ key: string; href: string }> = []
-  if (!hasBio) missing.push({ key: 'bio', href: '/dashboard/student/profile/edit' })
+  if (!hasBio) missing.push({ key: 'bio', href: '/dashboard/student/profile' })
   if (!hasProjects) missing.push({ key: 'projects', href: '/dashboard/student/projects/new' })
-  if (!hasPersonality) missing.push({ key: 'personality', href: '/dashboard/student/personality' })
+  if (!hasPersonality) missing.push({ key: 'personality', href: '/dashboard/student/analytics' })
 
   return (
     <div className="max-w-3xl mx-auto space-y-8">

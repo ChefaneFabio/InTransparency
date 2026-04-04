@@ -115,7 +115,7 @@ export default function RecruiterChallengesPage() {
           </p>
         </div>
         <Button asChild>
-          <Link href="/dashboard/recruiter/challenges/create">
+          <Link href="/dashboard/recruiter/challenges">
             <Plus className="h-4 w-4 mr-2" />
             {t('createChallenge')}
           </Link>

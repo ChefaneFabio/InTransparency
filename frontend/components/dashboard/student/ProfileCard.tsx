@@ -120,7 +120,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
           </div>
 
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/dashboard/student/profile/edit">
+            <Link href="/dashboard/student/profile">
               <Edit3 className="h-4 w-4" />
             </Link>
           </Button>
@@ -182,7 +182,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-700">Top Skills</span>
               <Button variant="ghost" size="sm" asChild>
-                <Link href="/dashboard/student/profile/edit">
+                <Link href="/dashboard/student/profile">
                   <Edit3 className="h-3 w-3" />
                 </Link>
               </Button>
@@ -236,7 +236,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
             </Link>
           </Button>
           <Button variant="ghost" className="w-full" asChild>
-            <Link href="/dashboard/student/profile/edit">
+            <Link href="/dashboard/student/profile">
               <Edit3 className="mr-2 h-4 w-4" />
               Edit Profile
             </Link>

@@ -145,7 +145,7 @@ export default function StudentDashboard() {
                 </Link>
               </Button>
               <Button size="sm" variant="outline" className="bg-white/60 backdrop-blur-sm" asChild>
-                <Link href="/dashboard/student/profile/edit">{t('editProfile')}</Link>
+                <Link href="/dashboard/student/profile">{t('editProfile')}</Link>
               </Button>
             </div>
           </div>

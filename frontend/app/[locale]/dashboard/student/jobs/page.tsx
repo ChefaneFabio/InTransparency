@@ -221,7 +221,7 @@ export default function StudentJobsPage() {
                   {profileSkills.slice(0, 5).map(s => <Badge key={s} variant="secondary" className="text-xs">{s}</Badge>)}
                 </div>
                 <Button variant="outline" size="sm" asChild className="w-full">
-                  <Link href="/dashboard/student/profile/edit">{t('profileMatch.updateProfile')}</Link>
+                  <Link href="/dashboard/student/profile">{t('profileMatch.updateProfile')}</Link>
                 </Button>
               </CardContent>
             </Card>
