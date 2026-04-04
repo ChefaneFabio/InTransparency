@@ -1,142 +1,47 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
-import { uploadVideo } from '@/lib/storage'
-import { deleteFromR2 } from '@/lib/storage/r2-client'
+import { proxyUpload } from '@/lib/backend-proxy'
 
 export const maxDuration = 60
 export const dynamic = 'force-dynamic'
 
 /**
- * Upload Video API
- *
- * Accepts video uploads with validation.
- * Uploads to Cloudflare R2 storage.
- * Requires authentication.
- *
- * POST /api/upload/video
+ * POST /api/upload/video — proxy to Render backend
  */
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    // 1. Check authentication
     const session = await getServerSession(authOptions)
-    if (!session || !session.user) {
-      return NextResponse.json(
-        { error: 'Unauthorized - Please sign in' },
-        { status: 401 }
-      )
+    if (!session?.user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // 2. Parse form data
-    const formData = await request.formData()
-    const file = formData.get('video') as File | null
-    const duration = formData.get('duration') as string | null
-    const folder = (formData.get('folder') as string) || 'videos'
+    const formData = await req.formData()
 
-    if (!file) {
-      return NextResponse.json(
-        { error: 'No video file provided' },
-        { status: 400 }
-      )
-    }
-
-    // 3. Convert file to buffer
-    const bytes = await file.arrayBuffer()
-    const buffer = Buffer.from(bytes)
-
-    // 4. Upload video with validation
-    const result = await uploadVideo(
-      buffer,
-      file.name,
-      file.type,
-      {
-        folder,
-        metadata: {
-          userId: session.user.id,
-          originalName: encodeURIComponent(file.name),
-          duration: duration || '',
-          uploadedAt: new Date().toISOString(),
-        },
-      }
+    const response = await proxyUpload(
+      formData,
+      '/api/upload/video',
+      session.user.id,
+      session.user.role
     )
 
-    // 5. Return result
-    if (!result.success) {
-      return NextResponse.json(
-        { error: result.error },
-        { status: 400 }
-      )
-    }
-
-    return NextResponse.json({
-      success: true,
-      url: result.url,
-      key: result.key,
-      filename: result.key.split('/').pop(),
-      size: result.size,
-      type: result.type,
-      duration: duration ? parseInt(duration) : null,
-    })
+    const data = await response.json()
+    return NextResponse.json(data, { status: response.status })
   } catch (error: any) {
-    console.error('Error uploading video:', error)
+    console.error('Video upload proxy error:', error?.message)
     return NextResponse.json(
-      { error: error.message || 'Failed to upload video' },
+      { error: 'Failed to upload video' },
       { status: 500 }
     )
   }
 }
 
 /**
- * Delete Video from R2
- *
- * DELETE /api/upload/video?key=videos/filename.mp4
+ * GET /api/upload/video — upload limits info
  */
-export async function DELETE(request: NextRequest) {
-  try {
-    // 1. Check authentication
-    const session = await getServerSession(authOptions)
-    if (!session || !session.user) {
-      return NextResponse.json(
-        { error: 'Unauthorized - Please sign in' },
-        { status: 401 }
-      )
-    }
-
-    // 2. Get file key from query params
-    const { searchParams } = new URL(request.url)
-    const key = searchParams.get('key')
-
-    if (!key) {
-      return NextResponse.json(
-        { error: 'No file key provided' },
-        { status: 400 }
-      )
-    }
-
-    // 3. Delete from R2
-    await deleteFromR2(key)
-
-    return NextResponse.json({ success: true })
-  } catch (error: any) {
-    console.error('Error deleting video:', error)
-    return NextResponse.json(
-      { error: error.message || 'Failed to delete video' },
-      { status: 500 }
-    )
-  }
-}
-
-/**
- * Get upload limits
- */
-export async function GET(req: NextRequest) {
+export async function GET() {
   return NextResponse.json({
-    maxFileSize: 500 * 1024 * 1024, // 500MB
-    allowedTypes: [
-      'video/mp4',
-      'video/webm',
-      'video/quicktime',
-      'video/x-msvideo',
-    ],
+    maxFileSize: 500 * 1024 * 1024,
+    allowedTypes: ['video/mp4', 'video/webm', 'video/quicktime'],
   })
 }

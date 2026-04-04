@@ -45,7 +45,7 @@ class EnvironmentConfig {
     // Set CORS origin based on environment
     if (!process.env.CORS_ORIGIN) {
       if (process.env.NODE_ENV === 'production') {
-        process.env.CORS_ORIGIN = process.env.FRONTEND_URL || 'https://intransparency.onrender.com'
+        process.env.CORS_ORIGIN = process.env.FRONTEND_URL || 'https://in-transparency.vercel.app,https://www.in-transparency.com'
       } else {
         process.env.CORS_ORIGIN = 'http://localhost:3000,http://localhost:3001'
       }

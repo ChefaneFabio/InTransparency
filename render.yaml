@@ -27,17 +27,23 @@ services:
           name: intransparency-redis
           property: connectionString
       - key: FRONTEND_URL
-        value: https://intransparency.vercel.app
+        value: https://in-transparency.vercel.app
+      - key: CORS_ORIGIN
+        value: https://in-transparency.vercel.app,https://www.in-transparency.com
       - key: AI_SERVICE_URL
         value: https://intransparency-ai.onrender.com
-      - key: AWS_ACCESS_KEY_ID
+      - key: BACKEND_SERVICE_KEY
         sync: false
-      - key: AWS_SECRET_ACCESS_KEY
+      - key: R2_ENDPOINT
         sync: false
-      - key: AWS_S3_BUCKET_NAME
-        value: intransparency-files
-      - key: AWS_REGION
-        value: us-east-1
+      - key: R2_ACCESS_KEY_ID
+        sync: false
+      - key: R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: R2_BUCKET_NAME
+        value: intransparency
+      - key: R2_PUBLIC_URL
+        sync: false
       - key: SMTP_HOST
         sync: false
       - key: SMTP_USER

@@ -16,8 +16,10 @@ const usersRoutes = require('./routes/users')
 const analyticsRoutes = require('./routes/analytics')
 const dataSeedingRoutes = require('./routes/data-seeding')
 const { authenticate } = require('./middleware/auth')
+const { serviceAuth } = require('./middleware/serviceAuth')
 const { preventSQLInjection, rateLimit } = require('./middleware/validation')
 const { createSecurityStack } = require('./middleware/security')
+const uploadRoutes = require('./routes/upload')
 
 const app = express()
 const PORT = config.getConfig().port
@@ -46,7 +48,7 @@ const corsOptions = {
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-User-Id', 'X-User-Role'],
   maxAge: 86400 // Cache preflight requests for 24 hours
 }
 
@@ -109,6 +111,9 @@ if (config.isDevelopment()) {
     })
   })
 }
+
+// Upload routes (service-to-service auth, before JWT middleware)
+app.use('/api/upload', serviceAuth, uploadRoutes)
 
 // Mount authentication routes (public)
 app.use('/api/auth', authRoutes)

@@ -1,96 +1,54 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
-import { uploadDocument } from '@/lib/storage/upload-helpers'
+import { proxyUpload } from '@/lib/backend-proxy'
 
-export const maxDuration = 30 // seconds
+export const maxDuration = 30
 export const dynamic = 'force-dynamic'
 
 /**
- * Upload Document API
- *
- * Accepts document uploads (PDF, Word, Excel, etc.).
- * Uploads to Cloudflare R2 storage with validation.
- * Requires authentication.
- *
- * POST /api/upload/document
+ * POST /api/upload/document — proxy to Render backend
  */
 export async function POST(req: NextRequest) {
   try {
-    // 1. Check authentication
     const session = await getServerSession(authOptions)
-    if (!session || !session.user) {
-      return NextResponse.json(
-        { error: 'Unauthorized - Please sign in' },
-        { status: 401 }
-      )
+    if (!session?.user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // 2. Parse form data
     const formData = await req.formData()
-    const file = (formData.get('document') || formData.get('file')) as File | null
-    const requestedFolder = (formData.get('folder') as string) || 'documents'
-    const allowedFolders = ['documents', 'projects', 'theses', 'reports']
-    const folder = allowedFolders.includes(requestedFolder) ? requestedFolder : 'documents'
-    const projectId = formData.get('projectId') as string | null
 
-    if (!file) {
-      return NextResponse.json(
-        { error: 'No document file provided' },
-        { status: 400 }
-      )
+    // Normalize field name: frontend may send 'file' instead of 'document'
+    const file = formData.get('file') as File | null
+    if (file && !formData.get('document')) {
+      formData.set('document', file)
+      formData.delete('file')
     }
 
-    // 3. Convert file to buffer
-    const bytes = await file.arrayBuffer()
-    const buffer = Buffer.from(bytes)
-
-    // 4. Upload document with validation
-    const result = await uploadDocument(
-      buffer,
-      file.name,
-      file.type,
-      {
-        folder,
-        metadata: {
-          userId: session.user.id,
-          originalName: encodeURIComponent(file.name),
-          projectId: projectId || '',
-          uploadedAt: new Date().toISOString(),
-        },
-      }
+    const response = await proxyUpload(
+      formData,
+      '/api/upload/document',
+      session.user.id,
+      session.user.role
     )
 
-    // 5. Return result
-    if (!result.success) {
-      return NextResponse.json(
-        { error: result.error },
-        { status: 400 }
-      )
-    }
-
-    return NextResponse.json({
-      success: true,
-      url: result.url,
-      key: result.key,
-      size: result.size,
-      type: result.type,
-    })
+    const data = await response.json()
+    return NextResponse.json(data, { status: response.status })
   } catch (error: any) {
-    console.error('Document upload API error:', error)
+    console.error('Document upload proxy error:', error?.message)
     return NextResponse.json(
-      { error: error.message || 'Failed to upload document' },
+      { error: 'Failed to upload document' },
       { status: 500 }
     )
   }
 }
 
 /**
- * Get upload size limits
+ * GET /api/upload/document — upload limits info
  */
-export async function GET(req: NextRequest) {
+export async function GET() {
   return NextResponse.json({
-    maxFileSize: 25 * 1024 * 1024, // 25MB
+    maxFileSize: 25 * 1024 * 1024,
     allowedTypes: [
       'application/pdf',
       'application/msword',
