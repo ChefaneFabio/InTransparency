@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { onHiringConfirmed } from '@/lib/cross-segment-connections'
 
 /**
  * GET /api/hiring-confirmation
@@ -117,6 +118,14 @@ export async function PATCH(req: NextRequest) {
           hiringPosition: jobTitle || null,
         },
       })
+
+      // Cross-segment: notify university, update placement pipeline
+      onHiringConfirmed(
+        session.user.id,
+        confirmation.contactUsage?.recruiterId || '',
+        jobTitle || 'Not specified',
+        confirmation.companyName
+      ).catch(err => console.error('Hiring notification failed:', err))
     }
 
     return NextResponse.json({ confirmation: updated })

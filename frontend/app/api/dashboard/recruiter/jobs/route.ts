@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { onJobPosted } from '@/lib/cross-segment-connections'
 
 /**
  * GET /api/dashboard/recruiter/jobs
@@ -109,5 +110,71 @@ export async function GET(req: NextRequest) {
       { error: 'Failed to fetch jobs' },
       { status: 500 }
     )
+  }
+}
+
+/**
+ * POST /api/dashboard/recruiter/jobs
+ * Create a new job posting. Notifies matching students.
+ */
+export async function POST(req: NextRequest) {
+  try {
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+    if (session.user.role !== 'RECRUITER' && session.user.role !== 'ADMIN') {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+
+    const body = await req.json()
+
+    if (!body.title || !body.description) {
+      return NextResponse.json({ error: 'Title and description required' }, { status: 400 })
+    }
+
+    const slug = body.slug || body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 60) + '-' + Date.now().toString(36)
+
+    const job = await prisma.job.create({
+      data: {
+        recruiterId: session.user.id,
+        title: body.title,
+        description: body.description,
+        responsibilities: body.responsibilities || null,
+        requirements: body.requirements || null,
+        niceToHave: body.niceToHave || null,
+        companyName: body.companyName || session.user.company || 'Company',
+        companyIndustry: body.companyIndustry || null,
+        jobType: body.jobType || 'FULL_TIME',
+        workLocation: body.workLocation || 'HYBRID',
+        location: body.location || null,
+        remoteOk: body.remoteOk || false,
+        salaryMin: body.salaryMin ? parseInt(body.salaryMin) : null,
+        salaryMax: body.salaryMax ? parseInt(body.salaryMax) : null,
+        salaryPeriod: body.salaryPeriod || 'yearly',
+        showSalary: !!(body.salaryMin || body.salaryMax),
+        requiredSkills: body.requiredSkills || [],
+        preferredSkills: body.preferredSkills || [],
+        education: body.education || null,
+        experience: body.experience || null,
+        languages: body.languages || [],
+        slug,
+        status: body.status || 'DRAFT',
+        isPublic: body.isPublic || false,
+        internalApply: body.internalApply !== false,
+        applicationUrl: body.applicationUrl || null,
+        postedAt: body.status === 'ACTIVE' ? new Date() : null,
+      },
+    })
+
+    // Cross-segment: notify matching students if job is active
+    if (job.status === 'ACTIVE') {
+      onJobPosted(job.id).catch(err => console.error('Job notification failed:', err))
+    }
+
+    return NextResponse.json({ success: true, job }, { status: 201 })
+  } catch (error) {
+    console.error('Error creating job:', error)
+    return NextResponse.json({ error: 'Failed to create job' }, { status: 500 })
   }
 }

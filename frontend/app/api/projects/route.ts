@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { runAIAnalysis, buildProjectData } from '@/lib/run-ai-analysis'
 import { normalizeGrade } from '@/lib/grades/ects-normalization'
+import { onProjectCreated } from '@/lib/cross-segment-connections'
 
 // POST /api/projects - Create a new project
 export async function POST(request: NextRequest) {
@@ -132,6 +133,10 @@ export async function POST(request: NextRequest) {
     // Trigger AI analysis asynchronously (non-blocking)
     runAIAnalysis(project.id, buildProjectData(project))
       .catch(err => console.error('AI analysis failed:', err))
+
+    // Cross-segment: notify matching recruiters (non-blocking)
+    onProjectCreated(project.id, userId)
+      .catch(err => console.error('Cross-segment notification failed:', err))
 
     // Invalidate skill path cache so recommendations update with new project
     await prisma.skillPathRecommendation.deleteMany({
