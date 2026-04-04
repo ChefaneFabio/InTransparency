@@ -112,6 +112,16 @@ if (config.isDevelopment()) {
   })
 }
 
+// Upload health check (public, no auth)
+app.get('/api/upload/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    service: 'upload',
+    r2Configured: !!(process.env.R2_ENDPOINT && process.env.R2_ACCESS_KEY_ID),
+    serviceKeyConfigured: !!process.env.BACKEND_SERVICE_KEY,
+  })
+})
+
 // Upload routes (service-to-service auth, before JWT middleware)
 app.use('/api/upload', serviceAuth, uploadRoutes)
 
@@ -167,10 +177,8 @@ app.get('*', (req, res) => {
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  // Log errors in development only
-  if (config.isDevelopment()) {
-    console.error('Error:', err.stack)
-  }
+  // Always log errors for debugging
+  console.error('Error:', err.message, req.method, req.path)
 
   // Don't leak error details in production
   const message = config.isProduction()
