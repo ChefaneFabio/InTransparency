@@ -56,16 +56,28 @@ export default function RecruiterDashboard() {
   })
   const [topCandidates, setTopCandidates] = useState<Candidate[]>([])
   const [myJobs, setMyJobs] = useState<JobPosting[]>([])
+  const [talentRecs, setTalentRecs] = useState<Array<{
+    studentId: string; firstName: string | null; lastName: string | null
+    university: string | null; photo: string | null; matchScore: number
+    matchedSkills: string[]; projectCount: number; verified: boolean
+  }>>([])
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await fetch('/api/dashboard/recruiter/stats')
-        if (response.ok) {
-          const data = await response.json()
+        const [statsRes, recsRes] = await Promise.all([
+          fetch('/api/dashboard/recruiter/stats'),
+          fetch('/api/dashboard/recruiter/recommendations?limit=5'),
+        ])
+        if (statsRes.ok) {
+          const data = await statsRes.json()
           setStats(data.stats)
           setTopCandidates(data.topCandidates || [])
           setMyJobs(data.myJobs || [])
+        }
+        if (recsRes.ok) {
+          const recsData = await recsRes.json()
+          setTalentRecs(recsData.recommendations || [])
         }
       } catch (error) {
         console.error('Failed to fetch dashboard data:', error)
@@ -258,6 +270,53 @@ export default function RecruiterDashboard() {
               )}
             </div>
           </GlassCard>
+
+          {/* AI Talent Recommendations */}
+          {talentRecs.length > 0 && (
+            <GlassCard delay={0.35} hover={false}>
+              <div className="p-5">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h2 className="font-semibold text-foreground flex items-center gap-2">
+                      <Zap className="h-4 w-4 text-primary" />
+                      AI Recommendations
+                    </h2>
+                    <p className="text-xs text-muted-foreground">Candidates matching your open roles</p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  {talentRecs.map((rec) => (
+                    <div key={rec.studentId} className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40 hover:shadow-md hover:border-primary/20 transition-all">
+                      <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-xs font-bold text-primary">{rec.matchScore}%</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="font-medium text-sm text-foreground">{rec.firstName} {rec.lastName}</p>
+                          {rec.verified && <Badge className="text-[9px] bg-green-100 text-green-700 border-0 h-4 px-1">verified</Badge>}
+                        </div>
+                        <div className="flex items-center gap-2 text-[11px] text-muted-foreground mt-0.5">
+                          {rec.university && <span>{rec.university}</span>}
+                          <span className="text-muted-foreground/30">·</span>
+                          <span>{rec.projectCount} projects</span>
+                        </div>
+                        {rec.matchedSkills.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mt-1">
+                            {rec.matchedSkills.slice(0, 4).map(s => (
+                              <span key={s} className="text-[9px] bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 px-1.5 py-0.5 rounded-full">{s}</span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      <Button size="sm" className="h-8 text-xs" asChild>
+                        <Link href={`/students/${rec.studentId}/public`}>{ts('view')}</Link>
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </GlassCard>
+          )}
 
           {/* Active Jobs */}
           <GlassCard delay={0.4} hover={false}>

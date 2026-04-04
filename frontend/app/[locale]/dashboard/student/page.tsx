@@ -43,6 +43,17 @@ interface JobOpportunity {
   match: string
 }
 
+interface JobRecommendation {
+  jobId: string
+  title: string
+  companyName: string
+  location: string | null
+  jobType: string
+  matchScore: number
+  matchedSkills: string[]
+  missingSkills: string[]
+}
+
 export default function StudentDashboard() {
   const { data: session } = useSession()
   const locale = useLocale()
@@ -54,15 +65,17 @@ export default function StudentDashboard() {
     projectCount: 0, profileViews: 0, unreadMessages: 0, jobMatches: 0, profileCompletion: 0,
   })
   const [recentJobs, setRecentJobs] = useState<JobOpportunity[]>([])
+  const [jobRecs, setJobRecs] = useState<JobRecommendation[]>([])
   const [onboarding, setOnboarding] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const [statsResponse, projectsResponse] = await Promise.all([
+        const [statsResponse, projectsResponse, recsResponse] = await Promise.all([
           fetch('/api/dashboard/student/stats'),
           user?.id ? fetch(`/api/projects?userId=${user.id}`) : Promise.resolve(null),
+          fetch('/api/dashboard/student/recommendations?limit=5'),
         ])
         if (statsResponse.ok) {
           const statsData = await statsResponse.json()
@@ -73,6 +86,10 @@ export default function StudentDashboard() {
         if (projectsResponse && projectsResponse.ok) {
           const projectsData = await projectsResponse.json()
           setProjects(projectsData.projects || [])
+        }
+        if (recsResponse && recsResponse.ok) {
+          const recsData = await recsResponse.json()
+          setJobRecs(recsData.recommendations || [])
         }
       } catch (error) {
         console.error('Failed to fetch dashboard data:', error)
@@ -244,7 +261,7 @@ export default function StudentDashboard() {
             </div>
           </GlassCard>
 
-          {/* Jobs */}
+          {/* AI Job Recommendations */}
           <GlassCard delay={0.4} hover={false}>
             <div className="p-5">
               <div className="flex items-center justify-between mb-4">
@@ -253,7 +270,35 @@ export default function StudentDashboard() {
                   {t('browseJobs')} →
                 </Link>
               </div>
-              {recentJobs.length > 0 ? (
+              {jobRecs.length > 0 ? (
+                <div className="space-y-2">
+                  {jobRecs.slice(0, 5).map((rec) => (
+                    <div key={rec.jobId} className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40 hover:shadow-md hover:border-primary/20 transition-all">
+                      <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-xs font-bold text-primary">{rec.matchScore}%</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-sm text-foreground">{rec.title}</p>
+                        <div className="flex items-center gap-2 text-[11px] text-muted-foreground mt-0.5">
+                          <span>{rec.companyName}</span>
+                          {rec.location && <><span className="text-muted-foreground/30">·</span><span className="flex items-center gap-0.5"><MapPin className="h-2.5 w-2.5" />{rec.location}</span></>}
+                        </div>
+                        {rec.matchedSkills.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mt-1">
+                            {rec.matchedSkills.slice(0, 3).map(s => (
+                              <span key={s} className="text-[9px] bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 px-1.5 py-0.5 rounded-full">{s}</span>
+                            ))}
+                            {rec.missingSkills.length > 0 && (
+                              <span className="text-[9px] bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 px-1.5 py-0.5 rounded-full">+{rec.missingSkills.length} to learn</span>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                      <Badge variant="secondary" className="text-[10px] rounded-full">{rec.jobType.replace('_', ' ')}</Badge>
+                    </div>
+                  ))}
+                </div>
+              ) : recentJobs.length > 0 ? (
                 <div className="space-y-2">
                   {recentJobs.slice(0, 3).map((job) => (
                     <div key={job.id} className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40 hover:shadow-md hover:border-primary/20 transition-all">
