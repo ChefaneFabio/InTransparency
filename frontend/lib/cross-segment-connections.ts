@@ -157,12 +157,13 @@ export async function onHiringConfirmed(studentId: string, recruiterId: string, 
     await prisma.placement.create({
       data: {
         studentId,
+        universityName: student.university || 'Unknown',
         companyName,
         jobTitle,
         jobType: 'FULL_TIME',
         status: 'CONFIRMED',
         startDate: new Date(),
-        source: 'PLATFORM',
+        source: 'platform',
       },
     }).catch(() => {}) // Don't fail if duplicate
 
