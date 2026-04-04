@@ -9548,13 +9548,30 @@
       "placeholder": "Ho costruito un'app di gestione magazzino con React e Node.js...",
       "send": "Invia",
       "analyzing": "Analizzo il tuo progetto...",
-      "result": "Ecco cosa ho trovato:",
-      "followUp": "Qualcosa da aggiungere? Puoi anche collegarlo a un corso per la verifica universitaria.",
-      "looksGood": "Tutto ok — crea progetto",
-      "attach": "Allega immagine",
+      "followUp": "Raccontami di più del tuo progetto.",
+      "error": "Qualcosa è andato storto. Riprova a inviare il messaggio.",
+      "incompleteProfile": "Aggiungi almeno un titolo e una descrizione prima di creare.",
+      "looksGood": "Crea progetto",
       "attachImage": "Allega foto",
-      "attachFile": "Allega file (PDF, tesi, relazione)",
-      "uploading": "Caricamento..."
+      "attachFile": "Allega file (PDF, tesi, relazione)"
+    },
+    "profile": {
+      "title": "Profilo Progetto",
+      "completeness": "Completezza",
+      "projectTitle": "Titolo",
+      "skills": "Competenze",
+      "addSkill": "Aggiungi competenza...",
+      "tools": "Strumenti",
+      "addTool": "Aggiungi strumento...",
+      "role": "Ruolo",
+      "duration": "Durata",
+      "teamSize": "Dimensione team",
+      "courseName": "Corso",
+      "grade": "Voto",
+      "professor": "Professore",
+      "outcome": "Risultato",
+      "client": "Cliente/Organizzazione",
+      "liveUrl": "URL Live"
     }
   },
   "postJob": {

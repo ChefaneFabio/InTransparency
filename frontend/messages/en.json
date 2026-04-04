@@ -9521,13 +9521,30 @@
       "placeholder": "I built a warehouse management app using React and Node.js...",
       "send": "Send",
       "analyzing": "Analyzing your project...",
-      "result": "Here's what I found:",
-      "followUp": "Anything to add? You can also link this to a course for university verification.",
-      "looksGood": "Looks good — create project",
-      "attach": "Attach image",
+      "followUp": "Tell me more about your project.",
+      "error": "Something went wrong. Try sending your message again.",
+      "incompleteProfile": "Please add at least a title and description before creating.",
+      "looksGood": "Create project",
       "attachImage": "Attach photo",
-      "attachFile": "Attach file (PDF, thesis, report)",
-      "uploading": "Uploading..."
+      "attachFile": "Attach file (PDF, thesis, report)"
+    },
+    "profile": {
+      "title": "Project Profile",
+      "completeness": "Completeness",
+      "projectTitle": "Title",
+      "skills": "Skills",
+      "addSkill": "Add skill...",
+      "tools": "Tools",
+      "addTool": "Add tool...",
+      "role": "Role",
+      "duration": "Duration",
+      "teamSize": "Team size",
+      "courseName": "Course",
+      "grade": "Grade",
+      "professor": "Professor",
+      "outcome": "Outcome",
+      "client": "Client/Organization",
+      "liveUrl": "Live URL"
     }
   },
   "postJob": {

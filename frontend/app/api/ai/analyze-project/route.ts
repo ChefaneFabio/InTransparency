@@ -4,97 +4,17 @@ import { authOptions } from '@/lib/auth/config'
 import { anthropic, AI_MODEL } from '@/lib/openai-shared'
 import { aiLimiter, getClientIp } from '@/lib/rate-limit'
 
-const FALLBACK: ProjectResult = {
-  discipline: 'TECHNOLOGY',
-  projectType: 'Project',
-  skills: [],
-  tools: [],
-  competencies: [],
-}
-
-interface ProjectResult {
-  discipline: string
-  projectType: string
-  skills: string[]
-  tools: string[]
-  competencies: string[]
-  companyInfo?: string
-}
-
-/**
- * Extract company/organization names from text for web search
- */
-const extractSearchTerms = (text: string): string[] => {
-  const terms: string[] = []
-
-  // Match capitalized words that look like company/org names (2+ consecutive capitalized words or single known patterns)
-  const companyPattern = /(?:per|for|at|with|presso|da|di)\s+([A-Z][a-zA-Zàèéìòù]+(?:\s+[A-Z][a-zA-Zàèéìòù]+)*)/g
-  let match
-  while ((match = companyPattern.exec(text)) !== null) {
-    if (match[1] && match[1].length > 2) {
-      terms.push(match[1])
-    }
-  }
-
-  // Also match standalone capitalized words that aren't common words
-  const commonWords = new Set(['Il', 'La', 'Lo', 'Le', 'Un', 'Una', 'The', 'This', 'That', 'With', 'From', 'Into', 'My', 'Our', 'Per', 'Con', 'Nel', 'Del', 'Che', 'Non', 'Sono', 'Come', 'Anche', 'Progetto', 'Project', 'App', 'Web', 'Sistema', 'System'])
-  const standalonePattern = /\b([A-Z][a-zA-Zàèéìòù]{2,}(?:\s+[A-Z][a-zA-Zàèéìòù]+)*)\b/g
-  while ((match = standalonePattern.exec(text)) !== null) {
-    const word = match[1]
-    if (word && !commonWords.has(word) && !terms.includes(word)) {
-      // Only add if it looks like a proper noun (not a sentence start after period)
-      const charBefore = text[match.index - 2]
-      if (charBefore && charBefore !== '.') {
-        terms.push(word)
-      }
-    }
-  }
-
-  return Array.from(new Set(terms)).slice(0, 3) // Max 3 search terms
-}
-
-/**
- * Simple web search using a search API
- */
-const searchWeb = async (query: string): Promise<string> => {
-  try {
-    // Use a simple fetch to get search results
-    const searchUrl = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&no_html=1&skip_disambig=1`
-    const res = await fetch(searchUrl, { signal: AbortSignal.timeout(5000) })
-    if (!res.ok) return ''
-
-    const data = await res.json()
-    const results: string[] = []
-
-    if (data.Abstract) {
-      results.push(data.Abstract)
-    }
-    if (data.RelatedTopics) {
-      const topics = Array.isArray(data.RelatedTopics) ? data.RelatedTopics : []
-      for (const topic of topics.slice(0, 3)) {
-        if (topic.Text) results.push(topic.Text)
-      }
-    }
-
-    return results.join('\n').slice(0, 1000)
-  } catch {
-    return ''
-  }
-}
-
 /**
  * POST /api/ai/analyze-project
- * Analyzes a project description (with optional images and web search) and returns structured data.
+ * Conversational project intake — accepts message history, returns AI reply + extracted data.
  */
 export async function POST(request: NextRequest) {
   try {
-    // Require authentication
     const session = await getServerSession(authOptions)
     if (!session?.user) {
       return NextResponse.json({ error: 'Authentication required' }, { status: 401 })
     }
 
-    // Rate limiting
     const ip = getClientIp(request)
     const { success } = aiLimiter.check(ip)
     if (!success) {
@@ -103,136 +23,157 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json()
     const {
-      title,
-      description,
-      githubUrl,
+      messages = [],
+      currentProjectData = {},
       imageUrls = [],
       documentUrls = [],
-      searchWeb: shouldSearch = false,
-      isFollowUp = false,
-      existingSkills = [],
-      existingTools = [],
+      locale = 'en',
     } = body
 
-    if (!title && !description && imageUrls.length === 0 && documentUrls.length === 0) {
-      return NextResponse.json({ error: 'Title, description, image, or document required' }, { status: 400 })
+    if (messages.length === 0) {
+      return NextResponse.json({ error: 'Messages required' }, { status: 400 })
     }
 
-    if (!anthropic) {
-      return NextResponse.json(FALLBACK)
-    }
+    // Build the system prompt
+    const lang = locale === 'it' ? 'Italian' : 'English'
+    const systemPrompt = `You are a friendly project intake assistant for InTransparency, a platform where students showcase their academic and personal projects to recruiters.
 
-    // Web search for company/organization context
-    let webContext = ''
-    if (shouldSearch && description) {
-      const searchTerms = extractSearchTerms(description)
-      if (searchTerms.length > 0) {
-        const searchResults = await Promise.all(
-          searchTerms.map(term => searchWeb(`${term} company azienda`))
-        )
-        const validResults = searchResults.filter(r => r.length > 0)
-        if (validResults.length > 0) {
-          webContext = `\n\nWeb research about mentioned organizations:\n${validResults.join('\n---\n')}`
+Your job: have a natural conversation with the student to build a complete project profile. Extract information from what they share, then ask follow-up questions about what's missing.
+
+RULES:
+- Respond in ${lang} (or match the student's language if they switch)
+- Be warm and encouraging — students are sharing their work
+- Ask 1-3 follow-up questions at a time, grouped by topic
+- Don't ask about fields that are irrelevant (e.g., don't ask for GitHub URL on a nursing project)
+- If the student uploaded documents/images, acknowledge them
+- Extract information progressively — don't wait for everything before showing results
+
+COLLECTABLE FIELDS:
+- title: A clear, concise project title
+- description: What the project is about (2-4 sentences)
+- discipline: One of TECHNOLOGY, BUSINESS, DESIGN, HEALTHCARE, ENGINEERING, SOCIAL_SCIENCES, LAW, SCIENCES, ARTS, EDUCATION, TRADES, ARCHITECTURE, MEDIA, WRITING, OTHER
+- projectType: e.g. "Web Application", "Research Paper", "Thesis", "Business Plan", "Prototype", "Clinical Study", "Design Portfolio"
+- skills: Array of 3-8 specific skills demonstrated
+- tools: Array of 2-6 tools/technologies used
+- competencies: Array of 2-4 broader competencies (e.g. "Problem Solving", "Teamwork")
+- role: Student's role (e.g. "Lead Developer", "Researcher", "Team Lead", "Solo project")
+- teamSize: Number of people involved (1 for solo)
+- duration: How long the project took (e.g. "3 months", "1 semester")
+- courseName: Name of the course if academic
+- grade: Grade received (if any)
+- professor: Professor's name (if academic)
+- outcome: What was the result/impact (e.g. "Published paper", "Deployed to 500 users", "Grade: 30/30")
+- client: Company/organization if done for someone
+- githubUrl: Repository URL (if applicable)
+- liveUrl: Live demo URL (if applicable)
+
+CURRENT PROJECT DATA (already collected):
+${JSON.stringify(currentProjectData, null, 2)}
+
+CONVERSATION FLOW:
+1. After the first message: Extract what you can (title, description, discipline, skills, tools). Ask about role/team and duration.
+2. After learning context: Ask about academic details (course, grade, professor) if relevant.
+3. After that: Ask about outcome/results and any links to share.
+4. When profile feels complete: Summarize what you've captured and say it's ready to create.
+
+RESPONSE FORMAT:
+Always end your response with a JSON block in these exact tags:
+<project_data>
+{
+  "title": "...",
+  "description": "...",
+  "discipline": "...",
+  ...only include fields you're confident about...
+}
+</project_data>
+<completeness>NUMBER</completeness>
+
+The completeness number (0-100) estimates how complete the profile is. Minimum to create: title + description + discipline + skills (around 40%). Full profile with academic context, outcome, and links: 100%.
+
+Your conversational text goes BEFORE the tags. Never put the JSON inside your conversational text.`
+
+    // Build Claude messages
+    const claudeMessages: Array<{ role: 'user' | 'assistant'; content: any }> = []
+
+    for (const msg of messages) {
+      if (msg.role === 'user') {
+        const content: any[] = []
+
+        // Add images if this is the first user message with images
+        if (msg === messages[0] && imageUrls.length > 0) {
+          for (const url of imageUrls.slice(0, 4)) {
+            try {
+              const imgRes = await fetch(url, { signal: AbortSignal.timeout(10000) })
+              if (imgRes.ok) {
+                const buffer = await imgRes.arrayBuffer()
+                const base64 = Buffer.from(buffer).toString('base64')
+                const contentType = imgRes.headers.get('content-type') || 'image/jpeg'
+                content.push({
+                  type: 'image',
+                  source: { type: 'base64', media_type: contentType, data: base64 },
+                })
+              }
+            } catch { /* skip */ }
+          }
         }
+
+        // Add document names as context
+        if (msg === messages[0] && documentUrls.length > 0) {
+          const docNames = documentUrls.map((d: any) => d.name || d).join(', ')
+          content.push({ type: 'text', text: `[Student attached documents: ${docNames}]\n\n${msg.content}` })
+        } else {
+          content.push({ type: 'text', text: msg.content })
+        }
+
+        claudeMessages.push({ role: 'user', content })
+      } else if (msg.role === 'assistant') {
+        claudeMessages.push({ role: 'assistant', content: msg.content })
       }
     }
-
-    // Build message content with text and optional images
-    const content: Array<any> = []
-
-    // Add images for vision analysis
-    for (const url of imageUrls.slice(0, 4)) {
-      try {
-        // Fetch image and convert to base64 for Claude vision
-        const imgRes = await fetch(url, { signal: AbortSignal.timeout(10000) })
-        if (imgRes.ok) {
-          const buffer = await imgRes.arrayBuffer()
-          const base64 = Buffer.from(buffer).toString('base64')
-          const contentType = imgRes.headers.get('content-type') || 'image/jpeg'
-          const mediaType = contentType as 'image/jpeg' | 'image/png' | 'image/gif' | 'image/webp'
-
-          content.push({
-            type: 'image',
-            source: {
-              type: 'base64',
-              media_type: mediaType,
-              data: base64,
-            },
-          })
-        }
-      } catch {
-        // Skip failed image fetches
-      }
-    }
-
-    // Build the analysis prompt
-    const hasImages = content.length > 0
-    const hasDocuments = documentUrls.length > 0
-
-    let prompt: string
-    if (isFollowUp) {
-      prompt = `The student has added more information to their project. Analyze the FULL updated description and return improved structured data.
-
-Title: ${title || 'Untitled'}
-Full Description: ${description || '(described via images)'}
-${githubUrl ? `GitHub: ${githubUrl}` : ''}
-${hasDocuments ? `Attached documents: ${documentUrls.map((d: { name: string }) => d.name).join(', ')}` : ''}
-${hasImages ? '\nThe student also attached images of their project. Describe what you see and extract relevant information.' : ''}
-${webContext}
-
-Previously extracted skills: ${existingSkills.join(', ') || 'none'}
-Previously extracted tools: ${existingTools.join(', ') || 'none'}
-
-Return a JSON object with:
-- discipline: one of TECHNOLOGY, BUSINESS, DESIGN, HEALTHCARE, ENGINEERING, SOCIAL_SCIENCES, LAW, SCIENCES, ARTS, EDUCATION, TRADES, ARCHITECTURE, MEDIA, WRITING, OTHER
-- projectType: a short label like "Web Application", "Research Paper", "Business Plan", "Prototype", "Hardware Project", "Thesis", etc.
-- skills: array of 3-8 relevant skills (INCLUDE previously extracted ones if still relevant, ADD new ones from the additional context)
-- tools: array of 2-6 tools used (INCLUDE previously extracted ones if still relevant, ADD new ones)
-- competencies: array of 2-4 broader competencies (e.g. "Problem Solving", "Teamwork", "Critical Thinking")
-${webContext ? '- companyInfo: a brief 1-2 sentence description of the company/organization mentioned, based on web research (in the same language the student used)' : ''}
-
-Return ONLY valid JSON, no markdown.`
-    } else {
-      prompt = `Analyze this student project and extract structured data.
-
-Title: ${title || 'Untitled'}
-Description: ${description || '(described via images)'}
-${githubUrl ? `GitHub: ${githubUrl}` : ''}
-${hasDocuments ? `Attached documents: ${documentUrls.map((d: { name: string }) => d.name).join(', ')} — these are project deliverables like thesis papers, reports, or presentations.` : ''}
-${hasImages ? '\nThe student attached images of their project. Analyze them carefully — they might show hardware prototypes, UI designs, architectural diagrams, lab work, or physical outputs. Describe what you see and extract relevant skills and tools from the visual evidence.' : ''}
-${webContext}
-
-Return a JSON object with:
-- discipline: one of TECHNOLOGY, BUSINESS, DESIGN, HEALTHCARE, ENGINEERING, SOCIAL_SCIENCES, LAW, SCIENCES, ARTS, EDUCATION, TRADES, ARCHITECTURE, MEDIA, WRITING, OTHER
-- projectType: a short label like "Web Application", "Research Paper", "Business Plan", "Prototype", "Hardware Project", "Thesis", etc.
-- skills: array of 3-8 relevant skills (e.g. "Python", "Data Analysis", "Project Management", "Carpentry", "Structural Design")
-- tools: array of 2-6 tools used (e.g. "React", "Figma", "MATLAB", "Excel", "AutoCAD", "Arduino")
-- competencies: array of 2-4 broader competencies (e.g. "Problem Solving", "Teamwork", "Critical Thinking")
-${webContext ? '- companyInfo: a brief 1-2 sentence summary of the company/organization mentioned, based on web research (in the same language the student wrote in)' : ''}
-
-Return ONLY valid JSON, no markdown.`
-    }
-
-    content.push({ type: 'text', text: prompt })
 
     const response = await anthropic.messages.create({
       model: AI_MODEL,
-      max_tokens: 800,
-      messages: [{ role: 'user', content }],
+      max_tokens: 1200,
+      system: systemPrompt,
+      messages: claudeMessages,
     })
 
-    const text = response.content[0].type === 'text' ? response.content[0].text : ''
+    const rawText = response.content[0].type === 'text' ? response.content[0].text : ''
 
-    try {
-      // Try to parse JSON, handling potential markdown wrappers
-      const jsonStr = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim()
-      const parsed = JSON.parse(jsonStr)
-      return NextResponse.json(parsed)
-    } catch {
-      return NextResponse.json(FALLBACK)
+    // Parse the response: extract conversational text, project data, and completeness
+    let message = rawText
+    let projectData: Record<string, any> = {}
+    let completeness = 0
+
+    // Extract project data JSON
+    const dataMatch = rawText.match(/<project_data>\s*([\s\S]*?)\s*<\/project_data>/)
+    if (dataMatch) {
+      try {
+        projectData = JSON.parse(dataMatch[1])
+      } catch { /* keep empty */ }
+      message = rawText.slice(0, rawText.indexOf('<project_data>')).trim()
     }
+
+    // Extract completeness
+    const completenessMatch = rawText.match(/<completeness>\s*(\d+)\s*<\/completeness>/)
+    if (completenessMatch) {
+      completeness = parseInt(completenessMatch[1])
+      // Remove completeness tag from message if still present
+      message = message.replace(/<completeness>\s*\d+\s*<\/completeness>/, '').trim()
+    }
+
+    return NextResponse.json({
+      message,
+      projectData,
+      completeness,
+    })
   } catch (error) {
     console.error('Analyze project error:', error)
-    return NextResponse.json(FALLBACK)
+    return NextResponse.json({
+      message: '',
+      projectData: {},
+      completeness: 0,
+      error: 'AI analysis failed',
+    }, { status: 500 })
   }
 }
