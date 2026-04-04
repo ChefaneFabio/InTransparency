@@ -4,6 +4,9 @@ import { authOptions } from '@/lib/auth/config'
 import { uploadVideo } from '@/lib/storage'
 import { deleteFromR2 } from '@/lib/storage/r2-client'
 
+export const maxDuration = 60
+export const dynamic = 'force-dynamic'
+
 /**
  * Upload Video API
  *

@@ -3,6 +3,9 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import { uploadDocument } from '@/lib/storage/upload-helpers'
 
+export const maxDuration = 30 // seconds
+export const dynamic = 'force-dynamic'
+
 /**
  * Upload Document API
  *

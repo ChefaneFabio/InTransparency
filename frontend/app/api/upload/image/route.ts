@@ -3,6 +3,9 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import { uploadImage } from '@/lib/storage'
 
+export const maxDuration = 30
+export const dynamic = 'force-dynamic'
+
 /**
  * Upload Image API
  *
