@@ -9597,15 +9597,36 @@
       }
     },
     "chat": {
-      "welcome": "Describe the role you're hiring for. You can paste an existing job description or just tell me about it.",
-      "placeholder": "e.g. Junior React developer, Milan, 6-month internship...",
+      "welcome": "Describe the role you're hiring for. Paste a job description, or just tell me about it in your own words.",
+      "placeholder": "We're looking for a junior React developer in Milan, 6-month internship...",
       "send": "Send",
-      "analyzing": "Analyzing...",
-      "result": "Here's what I extracted:",
-      "followUp": "Edit anything above, then post when ready.",
-      "post": "Post Job",
-      "posting": "Posting..."
-    }
+      "analyzing": "Analyzing your job posting...",
+      "followUp": "Tell me more about this role.",
+      "error": "Something went wrong. Try again.",
+      "incompleteProfile": "Please add at least a title, description, and job type.",
+      "looksGood": "Post job",
+      "creating": "Publishing..."
+    },
+    "profile": {
+      "title": "Job Posting",
+      "completeness": "Completeness",
+      "jobTitle": "Title",
+      "requiredSkills": "Required skills",
+      "preferredSkills": "Preferred skills",
+      "education": "Education",
+      "experience": "Experience",
+      "languages": "Languages",
+      "location": "Location",
+      "jobType": "Job type",
+      "workLocation": "Work mode",
+      "salaryMin": "Salary min",
+      "salaryMax": "Salary max",
+      "salaryPeriod": "Period",
+      "companyName": "Company",
+      "companyIndustry": "Industry",
+      "expiresAt": "Deadline"
+    },
+    "error": "Failed to post. Please try again."
   },
   "candidateSummary": {
     "title": "Quick Summary"
@@ -9927,6 +9948,64 @@
     "note": "The student will receive an email invitation to join your institution and complete their profile.",
     "success": "Invitation sent!",
     "back": "Back"
+  },
+  "universitySetup": {
+    "chat": {
+      "welcome": "Welcome! Tell me about your institution — name, location, and what programs you offer. I'll help set up your profile.",
+      "placeholder": "e.g. We are Politecnico di Milano, a leading technical university...",
+      "analyzing": "Setting up your profile...",
+      "followUp": "Tell me more about your institution.",
+      "error": "Something went wrong. Try again.",
+      "incompleteProfile": "Please add at least an institution name and city.",
+      "looksGood": "Save profile",
+      "creating": "Saving..."
+    },
+    "profile": {
+      "title": "Institution Profile",
+      "completeness": "Completeness",
+      "name": "Name",
+      "shortName": "Short name",
+      "city": "City",
+      "region": "Region",
+      "country": "Country",
+      "website": "Website",
+      "email": "Email",
+      "phone": "Phone",
+      "programs": "Programs",
+      "focusAreas": "Focus areas",
+      "studentCount": "Students",
+      "partnershipGoals": "Goals"
+    },
+    "error": "Failed to save. Please try again."
+  },
+  "techParkSetup": {
+    "chat": {
+      "welcome": "Welcome! Tell me about your tech park or innovation hub — name, location, and focus areas. I'll help set up your profile.",
+      "placeholder": "e.g. We are Polo Tecnologico di Navacchio, focused on ICT and biotech startups...",
+      "analyzing": "Setting up your profile...",
+      "followUp": "Tell me more about your tech park.",
+      "error": "Something went wrong. Try again.",
+      "incompleteProfile": "Please add at least a park name and city.",
+      "looksGood": "Save profile",
+      "creating": "Saving..."
+    },
+    "profile": {
+      "title": "Tech Park Profile",
+      "completeness": "Completeness",
+      "parkName": "Park name",
+      "parkType": "Type",
+      "city": "City",
+      "region": "Region",
+      "country": "Country",
+      "website": "Website",
+      "email": "Email",
+      "phone": "Phone",
+      "focusAreas": "Focus areas",
+      "memberCompanyCount": "Member companies",
+      "foundedYear": "Founded",
+      "subdivisions": "Subdivisions"
+    },
+    "error": "Failed to save. Please try again."
   },
   "shared": {
     "complete": "complete",

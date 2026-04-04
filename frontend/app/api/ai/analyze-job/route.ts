@@ -1,66 +1,77 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { anthropic, AI_MODEL } from '@/lib/openai-shared'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth/config'
+import { buildSystemPrompt, runConversationTurn } from '@/lib/ai-conversation'
+import { aiLimiter, getClientIp } from '@/lib/rate-limit'
 
-const FALLBACK = {
-  title: '',
-  description: '',
-  location: '',
-  jobType: 'FULL_TIME',
-  workLocation: 'ON_SITE',
-  skills: [],
-  salaryMin: null,
-  salaryMax: null,
-}
+const JOB_FIELDS = [
+  { name: 'title', description: 'Job title (e.g. "Frontend Developer", "Marketing Intern")', required: true },
+  { name: 'description', description: 'Full job description (2-5 sentences)', required: true },
+  { name: 'responsibilities', description: 'Key responsibilities (bullet points)' },
+  { name: 'requirements', description: 'Required qualifications and experience' },
+  { name: 'niceToHave', description: 'Nice-to-have qualifications' },
+  { name: 'jobType', description: 'One of: FULL_TIME, PART_TIME, INTERNSHIP, CONTRACT, FREELANCE', required: true },
+  { name: 'workLocation', description: 'One of: ONSITE, REMOTE, HYBRID', required: true },
+  { name: 'location', description: 'City, Country (e.g. "Milano, Italy")' },
+  { name: 'remoteOk', description: 'Whether remote work is allowed (true/false)' },
+  { name: 'salaryMin', description: 'Minimum salary (number, in EUR)' },
+  { name: 'salaryMax', description: 'Maximum salary (number, in EUR)' },
+  { name: 'salaryPeriod', description: '"yearly", "monthly", or "hourly"' },
+  { name: 'requiredSkills', description: 'Array of required skills (3-8)' },
+  { name: 'preferredSkills', description: 'Array of preferred/nice-to-have skills' },
+  { name: 'education', description: 'Required education level (e.g. "Bachelor\'s", "Master\'s")' },
+  { name: 'experience', description: 'Required experience (e.g. "0-1 years", "3-5 years")' },
+  { name: 'languages', description: 'Required languages (e.g. ["Italian", "English"])' },
+  { name: 'companyName', description: 'Company name' },
+  { name: 'companyIndustry', description: 'Industry sector' },
+  { name: 'applicationUrl', description: 'External application URL (if not using platform)' },
+  { name: 'expiresAt', description: 'Application deadline' },
+]
 
-/**
- * POST /api/ai/analyze-job
- * Analyzes a job description and returns structured fields.
- */
+const CONVERSATION_GUIDE = `
+1. After the first message: Extract job title, description, type, location, and required skills. Ask about compensation and work arrangement.
+2. After learning basics: Ask about requirements (education, experience, languages) and nice-to-haves.
+3. Then: Ask about application process (deadline, external URL, custom questions).
+4. When complete: Summarize the job posting and confirm it's ready to publish.
+
+Be smart: if the recruiter pastes a full job description, extract everything at once and just confirm.`
+
 export async function POST(request: NextRequest) {
   try {
-    const { description, url } = await request.json()
-
-    if (!description) {
-      return NextResponse.json({ error: 'Description required' }, { status: 400 })
+    const session = await getServerSession(authOptions)
+    if (!session?.user) {
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 })
     }
 
-    if (!anthropic) {
-      return NextResponse.json({ ...FALLBACK, description })
+    const ip = getClientIp(request)
+    const { success } = aiLimiter.check(ip)
+    if (!success) {
+      return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
     }
 
-    const prompt = `Analyze this job posting and extract structured data.
+    const { messages = [], currentData = {}, locale = 'en' } = await request.json()
+    if (messages.length === 0) {
+      return NextResponse.json({ error: 'Messages required' }, { status: 400 })
+    }
 
-Description: ${description}
-${url ? `URL: ${url}` : ''}
-
-Return a JSON object with:
-- title: the job title (e.g. "Junior React Developer")
-- description: a clean, concise version of the job description (2-4 sentences)
-- location: city or region (e.g. "Milan, Italy")
-- jobType: one of FULL_TIME, PART_TIME, CONTRACT, INTERNSHIP, TEMPORARY, FREELANCE
-- workLocation: one of REMOTE, HYBRID, ON_SITE
-- skills: array of 3-8 relevant technical skills or tools
-- salaryMin: number or null (annual in EUR, or monthly if clearly stated)
-- salaryMax: number or null
-
-Return ONLY valid JSON, no markdown.`
-
-    const response = await anthropic.messages.create({
-      model: AI_MODEL,
-      max_tokens: 500,
-      messages: [{ role: 'user', content: prompt }],
+    const systemPrompt = buildSystemPrompt({
+      role: 'job posting assistant',
+      description: 'Help recruiters create compelling job postings. Extract structured data from their description and ask smart follow-up questions to build a complete listing that attracts the right candidates.',
+      fields: JOB_FIELDS,
+      currentData,
+      locale,
+      conversationGuide: CONVERSATION_GUIDE,
     })
 
-    const text = response.content[0].type === 'text' ? response.content[0].text : ''
+    const result = await runConversationTurn(systemPrompt, messages)
 
-    try {
-      const parsed = JSON.parse(text)
-      return NextResponse.json(parsed)
-    } catch {
-      return NextResponse.json({ ...FALLBACK, description })
-    }
+    return NextResponse.json({
+      message: result.message,
+      jobData: result.data,
+      completeness: result.completeness,
+    })
   } catch (error) {
     console.error('Analyze job error:', error)
-    return NextResponse.json(FALLBACK)
+    return NextResponse.json({ message: '', jobData: {}, completeness: 0 }, { status: 500 })
   }
 }

@@ -9624,14 +9624,36 @@
       }
     },
     "chat": {
-      "welcome": "Descrivi il ruolo che stai cercando. Puoi incollare un annuncio esistente o semplicemente descriverlo.",
-      "placeholder": "es. Junior React developer, Milano, stage 6 mesi...",
+      "welcome": "Descrivi il ruolo che stai cercando. Puoi incollare un annuncio esistente o raccontarlo con parole tue.",
+      "placeholder": "Cerchiamo un junior React developer a Milano, stage 6 mesi...",
       "send": "Invia",
-      "analyzing": "Analisi...",
-      "result": "Ecco cosa ho estratto:",
-      "followUp": "Modifica quello che vuoi, poi pubblica quando sei pronto.",
-      "post": "Pubblica",
-      "posting": "Pubblicazione..."
+      "analyzing": "Analizzo l'annuncio...",
+      "followUp": "Raccontami di più su questa posizione.",
+      "error": "Qualcosa è andato storto. Riprova.",
+      "incompleteProfile": "Aggiungi almeno titolo, descrizione e tipo di contratto.",
+      "looksGood": "Pubblica posizione",
+      "creating": "Pubblicazione..."
+    },
+    "profile": {
+      "title": "Annuncio di Lavoro",
+      "completeness": "Completezza",
+      "jobTitle": "Titolo",
+      "requiredSkills": "Competenze richieste",
+      "preferredSkills": "Competenze preferite",
+      "education": "Titolo di studio",
+      "experience": "Esperienza",
+      "languages": "Lingue",
+      "location": "Sede",
+      "jobType": "Tipo contratto",
+      "workLocation": "Modalità",
+      "salaryMin": "RAL min",
+      "salaryMax": "RAL max",
+      "salaryPeriod": "Periodo",
+      "companyName": "Azienda",
+      "companyIndustry": "Settore",
+      "expiresAt": "Scadenza"
+    },
+    "error": "Pubblicazione fallita. Riprova."
     }
   },
   "candidateSummary": {
@@ -9954,6 +9976,64 @@
     "note": "Lo studente riceverà un invito via email per unirsi alla tua istituzione e completare il profilo.",
     "success": "Invito inviato!",
     "back": "Indietro"
+  },
+  "universitySetup": {
+    "chat": {
+      "welcome": "Benvenuto! Raccontami del tuo istituto — nome, sede e programmi offerti. Ti aiuterò a configurare il profilo.",
+      "placeholder": "es. Siamo il Politecnico di Milano, una delle principali università tecniche...",
+      "analyzing": "Configuro il profilo...",
+      "followUp": "Raccontami di più del tuo istituto.",
+      "error": "Qualcosa è andato storto. Riprova.",
+      "incompleteProfile": "Aggiungi almeno il nome dell'istituto e la città.",
+      "looksGood": "Salva profilo",
+      "creating": "Salvataggio..."
+    },
+    "profile": {
+      "title": "Profilo Istituto",
+      "completeness": "Completezza",
+      "name": "Nome",
+      "shortName": "Sigla",
+      "city": "Città",
+      "region": "Regione",
+      "country": "Paese",
+      "website": "Sito web",
+      "email": "Email",
+      "phone": "Telefono",
+      "programs": "Programmi",
+      "focusAreas": "Aree di specializzazione",
+      "studentCount": "Studenti",
+      "partnershipGoals": "Obiettivi"
+    },
+    "error": "Salvataggio fallito. Riprova."
+  },
+  "techParkSetup": {
+    "chat": {
+      "welcome": "Benvenuto! Raccontami del tuo polo tecnologico — nome, sede e aree di innovazione. Ti aiuterò a configurare il profilo.",
+      "placeholder": "es. Siamo il Polo Tecnologico di Navacchio, focalizzato su ICT e startup biotech...",
+      "analyzing": "Configuro il profilo...",
+      "followUp": "Raccontami di più del tuo polo tecnologico.",
+      "error": "Qualcosa è andato storto. Riprova.",
+      "incompleteProfile": "Aggiungi almeno il nome del polo e la città.",
+      "looksGood": "Salva profilo",
+      "creating": "Salvataggio..."
+    },
+    "profile": {
+      "title": "Profilo Polo Tecnologico",
+      "completeness": "Completezza",
+      "parkName": "Nome polo",
+      "parkType": "Tipo",
+      "city": "Città",
+      "region": "Regione",
+      "country": "Paese",
+      "website": "Sito web",
+      "email": "Email",
+      "phone": "Telefono",
+      "focusAreas": "Aree di innovazione",
+      "memberCompanyCount": "Aziende membri",
+      "foundedYear": "Anno fondazione",
+      "subdivisions": "Divisioni"
+    },
+    "error": "Salvataggio fallito. Riprova."
   },
   "shared": {
     "complete": "completato",
