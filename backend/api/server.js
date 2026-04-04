@@ -27,8 +27,8 @@ const PORT = config.getConfig().port
 // Configure CORS with dynamic origin validation
 const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or Postman)
-    if (!origin && config.isDevelopment()) {
+    // Allow requests with no origin (server-to-server, mobile apps, Postman)
+    if (!origin) {
       return callback(null, true)
     }
 
