@@ -5165,71 +5165,73 @@
   },
   "studentProfile": {
     "title": "Il Mio Profilo",
-    "subtitle": "Gestisci il tuo profilo professionale e le impostazioni",
-    "edit": "Modifica Profilo",
-    "save": "Salva Modifiche",
+    "edit": "Modifica",
+    "save": "Salva",
     "saving": "Salvataggio...",
-    "cancel": "Annulla",
+    "saveFailed": "Salvataggio fallito. Riprova.",
+    "cvFailed": "Generazione CV fallita.",
+    "errorTitle": "Impossibile caricare il profilo",
+    "notFound": "Profilo non trovato",
+    "tryAgain": "Riprova",
+    "present": "Presente",
+    "project": "progetto",
+    "projects": "progetti",
+    "addProject": "Aggiungi progetto",
+    "completion": "Completamento profilo",
+    "available": "Disponibile",
+    "openToOffers": "Aperto a proposte",
+    "notLooking": "Non in cerca",
+    "projectsOnly": "Solo progetti",
+    "motherTongue": "Madrelingua",
+    "skillsDescription": "Le competenze vengono rilevate automaticamente dai tuoi progetti",
     "tabs": {
       "overview": "Panoramica",
       "skills": "Competenze",
-      "projects": "Progetti",
-      "experience": "Esperienza"
-    },
-    "fields": {
-      "bio": "Biografia",
-      "tagline": "Slogan",
-      "portfolioUrl": "URL Portfolio",
-      "university": "Universita",
-      "degree": "Laurea",
-      "graduationYear": "Anno di Laurea",
-      "gpa": "Media Voti",
-      "location": "Posizione",
-      "interests": "Interessi",
-      "availability": "Disponibilita"
-    },
-    "availability": {
-      "available": "Disponibile",
-      "openToOffers": "Aperto a proposte",
-      "notLooking": "Non in cerca",
-      "projectsOnly": "Solo progetti"
-    },
-    "experience": {
-      "title": "Esperienza Lavorativa",
-      "description": "Aggiungi stage, lavori part-time o altre esperienze lavorative",
-      "addExperience": "Aggiungi Esperienza",
-      "company": "Azienda",
-      "role": "Ruolo / Titolo",
-      "startDate": "Data Inizio",
-      "endDate": "Data Fine",
-      "currentlyWorking": "Lavoro attualmente qui",
-      "descriptionLabel": "Descrizione",
-      "present": "Presente"
-    },
-    "privacy": {
-      "title": "Impostazioni Privacy",
-      "profilePublic": "Profilo Pubblico",
-      "showLocation": "Mostra Posizione",
-      "showEmail": "Mostra Email",
-      "showPhone": "Mostra Telefono",
-      "gpaPublic": "Mostra Media Voti"
-    },
-    "completion": {
-      "title": "Completamento Profilo",
-      "complete": "Completo"
+      "projects": "Progetti"
     },
     "stats": {
-      "profileViews": "Visualizzazioni Profilo",
-      "recruiterViews": "Visualizzazioni Recruiter",
+      "views": "Visite (30g)",
+      "recruiterViews": "Visite recruiter",
+      "projects": "Progetti",
       "applications": "Candidature"
     },
-    "generateCV": "Genera CV",
-    "premiumFeature": "Funzionalità Premium",
-    "premiumPortfolio": "Passa a Premium per aggiungere un URL portfolio.",
-    "noSkills": "Nessuna competenza ancora. Aggiungi progetti per costruire il tuo profilo competenze.",
-    "noProjects": "Nessun progetto ancora. Aggiungi il tuo primo progetto per mostrare il tuo lavoro.",
-    "saveSuccess": "Profilo aggiornato con successo!",
-    "saveError": "Aggiornamento profilo fallito. Riprova."
+    "sections": {
+      "education": "Formazione",
+      "thesis": "Tesi",
+      "experience": "Esperienza",
+      "languages": "Lingue",
+      "certifications": "Certificazioni",
+      "interests": "Interessi",
+      "careerPrefs": "Preferenze di carriera",
+      "skills": "Competenze"
+    },
+    "fields": {
+      "tagline": "Slogan",
+      "bio": "Biografia",
+      "portfolio": "URL Portfolio",
+      "supervisor": "Relatore",
+      "desiredRole": "Ruolo desiderato"
+    },
+    "placeholders": {
+      "tagline": "Una breve descrizione di te",
+      "bio": "Racconta ai recruiter di te..."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "publicProfile": "Profilo pubblico",
+      "showEmail": "Mostra email",
+      "showGpa": "Mostra media voti"
+    },
+    "badges": {
+      "relocate": "Disponibile a trasferirsi",
+      "abroad": "Anche all'estero",
+      "travel": "Disponibile a viaggiare"
+    },
+    "empty": {
+      "bio": "Nessuna bio ancora. Clicca Modifica per aggiungerne una.",
+      "skills": "Carica progetti per avere le competenze rilevate automaticamente.",
+      "projects": "Nessun progetto ancora. Aggiungi il primo per costruire il tuo portfolio."
+    }
   },
   "studentActivity": {
     "title": "Feed Attività",

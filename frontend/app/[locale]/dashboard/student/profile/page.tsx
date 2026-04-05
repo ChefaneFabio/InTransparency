@@ -13,129 +13,67 @@ import { Progress } from '@/components/ui/progress'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Switch } from '@/components/ui/switch'
 import {
-  Mail,
-  School,
-  Save,
-  Edit3,
-  Camera,
-  Github,
-  Globe,
-  Eye,
-  FileText,
-  Sparkles,
-  AlertCircle,
-  Users,
-  Briefcase,
-  Share2,
-  MapPin,
-  Calendar,
+  Mail, School, Save, Edit3, Camera, Github, Globe, Eye, FileText,
+  AlertCircle, Users, Briefcase, MapPin, Calendar, Shield, X, Check,
+  Download, Share2, ExternalLink,
 } from 'lucide-react'
-import { LinkedInShareButton } from '@/components/linkedin/LinkedInShareButton'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/navigation'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { DonutChart } from '@/components/dashboard/shared/DonutChart'
+import { StatCard } from '@/components/dashboard/shared/StatCard'
+import { StaggerContainer, StaggerItem } from '@/components/ui/animated-card'
 
 interface WorkExperienceEntry {
-  company: string
-  role: string
-  startDate: string
-  endDate: string
-  description: string
-  current: boolean
-  contractType?: string | null
-  companySector?: string | null
-  businessArea?: string | null
+  company: string; role: string; startDate: string; endDate: string
+  description: string; current: boolean; contractType?: string | null
+  companySector?: string | null; businessArea?: string | null
 }
-
 interface LanguageProfEntry {
-  id: string
-  language: string
-  motherTongue: boolean
-  reading: string | null
-  writing: string | null
-  listening: string | null
-  speaking: string | null
-  interaction: string | null
+  id: string; language: string; motherTongue: boolean
+  reading: string | null; writing: string | null; listening: string | null
+  speaking: string | null; interaction: string | null
 }
-
 interface CertificationEntry {
-  id: string
-  name: string
-  issuer: string
-  dateObtained: string | null
-  expiryDate: string | null
-  credentialId: string | null
-  credentialUrl: string | null
+  id: string; name: string; issuer: string
+  dateObtained: string | null; expiryDate: string | null
+  credentialId: string | null; credentialUrl: string | null
 }
-
 interface ProfileData {
   user: {
-    id: string
-    firstName: string | null
-    lastName: string | null
-    email: string
-    photo: string | null
-    bio: string | null
-    tagline: string | null
-    university: string | null
-    degree: string | null
-    graduationYear: string | null
-    gpa: string | null
-    gpaPublic: boolean
-    profilePublic: boolean
-    portfolioUrl: string | null
-    subscriptionTier: string
-    showLocation: boolean
-    showEmail: boolean
-    showPhone: boolean
-    location: string | null
-    interests: string[]
-    availableFor: string
+    id: string; firstName: string | null; lastName: string | null; email: string
+    photo: string | null; bio: string | null; tagline: string | null
+    university: string | null; degree: string | null; graduationYear: string | null
+    gpa: string | null; gpaPublic: boolean; profilePublic: boolean
+    portfolioUrl: string | null; subscriptionTier: string
+    showLocation: boolean; showEmail: boolean; showPhone: boolean
+    location: string | null; interests: string[]; availableFor: string
     workExperience: WorkExperienceEntry[] | null
-    // New fields
-    thesisTitle: string | null
-    thesisSubject: string | null
-    thesisSupervisor: string | null
-    thesisKeywords: string[]
-    desiredOccupation: string | null
-    preferredSectors: string[]
-    preferredAreas: string[]
-    preferredLocations: string[]
-    willingToRelocate: boolean
-    willingToRelocateAbroad: boolean
-    willingToTravel: boolean
-    continuingStudies: boolean
-    continuingStudiesType: string | null
-    languageProficiencies: LanguageProfEntry[]
-    certifications: CertificationEntry[]
+    thesisTitle: string | null; thesisSubject: string | null
+    thesisSupervisor: string | null; thesisKeywords: string[]
+    desiredOccupation: string | null; preferredSectors: string[]
+    preferredAreas: string[]; preferredLocations: string[]
+    willingToRelocate: boolean; willingToRelocateAbroad: boolean
+    willingToTravel: boolean; continuingStudies: boolean; continuingStudiesType: string | null
+    languageProficiencies: LanguageProfEntry[]; certifications: CertificationEntry[]
   }
   skills: Array<{ name: string; level: number; projectCount: number }>
-  stats: {
-    profileViews: number
-    recruiterViews: number
-    totalApplications: number
-    totalProjects: number
-  }
+  stats: { profileViews: number; recruiterViews: number; totalApplications: number; totalProjects: number }
   profileCompletion: number
   completionItems: Array<{ field: string; label: string; filled: boolean }>
-  projects: Array<{
-    id: string
-    title: string
-    skills: string[]
-    technologies: string[]
-    views: number
-    recruiterViews: number
-    githubUrl: string | null
-  }>
+  projects: Array<{ id: string; title: string; skills: string[]; technologies: string[]; views: number; recruiterViews: number; githubUrl: string | null }>
   githubUrl: string | null
 }
 
 export default function ProfilePage() {
+  const t = useTranslations('studentProfile')
+  const ts = useTranslations('shared')
   const [profile, setProfile] = useState<ProfileData | null>(null)
   const [editing, setEditing] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
-  const [generatingCV, setGeneratingCV] = useState(false)
 
-  // Editable fields
   const [editBio, setEditBio] = useState('')
   const [editTagline, setEditTagline] = useState('')
   const [editPortfolioUrl, setEditPortfolioUrl] = useState('')
@@ -147,10 +85,7 @@ export default function ProfilePage() {
     setLoading(true)
     setError(null)
     fetch('/api/dashboard/student/profile')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to load profile')
-        return res.json()
-      })
+      .then(res => { if (!res.ok) throw new Error('Failed'); return res.json() })
       .then((data: ProfileData) => {
         setProfile(data)
         setEditBio(data.user.bio || '')
@@ -161,15 +96,10 @@ export default function ProfilePage() {
         setEditGpaPublic(data.user.gpaPublic)
         setLoading(false)
       })
-      .catch(err => {
-        setError(err.message)
-        setLoading(false)
-      })
+      .catch(err => { setError(err.message); setLoading(false) })
   }, [])
 
-  useEffect(() => {
-    fetchProfile()
-  }, [fetchProfile])
+  useEffect(() => { fetchProfile() }, [fetchProfile])
 
   const saveProfile = async () => {
     setSaving(true)
@@ -178,654 +108,360 @@ export default function ProfilePage() {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          bio: editBio,
-          tagline: editTagline,
-          portfolioUrl: editPortfolioUrl,
-          profilePublic: editProfilePublic,
-          showEmail: editShowEmail,
-          gpaPublic: editGpaPublic,
+          bio: editBio, tagline: editTagline, portfolioUrl: editPortfolioUrl,
+          profilePublic: editProfilePublic, showEmail: editShowEmail, gpaPublic: editGpaPublic,
         }),
       })
-
-      if (!res.ok) {
-        const data = await res.json()
-        alert(data.error || 'Failed to save profile')
-        return
-      }
-
+      if (!res.ok) { const d = await res.json(); alert(d.error || t('saveFailed')); return }
       setEditing(false)
       fetchProfile()
-    } catch {
-      alert('Failed to save profile. Please try again.')
-    } finally {
-      setSaving(false)
-    }
+    } catch { alert(t('saveFailed')) } finally { setSaving(false) }
   }
 
-  const generateCV = async () => {
-    if (!profile) return
-    setGeneratingCV(true)
+  const downloadCV = async () => {
     try {
-      const cvData = {
-        personal: {
-          name: `${profile.user.firstName || ''} ${profile.user.lastName || ''}`.trim(),
-          email: profile.user.email,
-          university: profile.user.university,
-          degree: profile.user.degree,
-          graduationYear: profile.user.graduationYear,
-          gpa: profile.user.gpa,
-          portfolio: profile.user.portfolioUrl,
-          github: profile.githubUrl,
-        },
-        bio: profile.user.bio,
-        skills: profile.skills,
-        projects: profile.projects.map(p => ({
-          title: p.title,
-          skills: p.skills,
-          technologies: p.technologies,
-          githubUrl: p.githubUrl,
-        })),
-        stats: profile.stats,
-      }
-
-      const blob = new Blob([JSON.stringify(cvData, null, 2)], { type: 'application/json' })
+      const res = await fetch('/api/dashboard/student/cv')
+      if (!res.ok) throw new Error()
+      const blob = await res.blob()
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = `CV_${profile.user.firstName || 'student'}_${profile.user.lastName || ''}.json`
+      a.download = `CV_${profile?.user.firstName || 'student'}_${profile?.user.lastName || ''}.pdf`
       a.click()
       URL.revokeObjectURL(url)
-    } catch {
-      alert('Failed to generate CV.')
-    } finally {
-      setGeneratingCV(false)
-    }
+    } catch { alert(t('cvFailed')) }
   }
 
   if (loading) {
     return (
-      <div className="max-w-6xl mx-auto space-y-8">
-        <Skeleton className="h-32 w-full rounded-lg" />
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-6">
-            <Skeleton className="h-48 w-full rounded-lg" />
-            <Skeleton className="h-64 w-full rounded-lg" />
-          </div>
-          <div className="space-y-6">
-            <Skeleton className="h-48 w-full rounded-lg" />
-            <Skeleton className="h-32 w-full rounded-lg" />
-          </div>
+      <div className="max-w-6xl mx-auto px-4 space-y-6">
+        <Skeleton className="h-48 w-full rounded-2xl" />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {Array.from({ length: 4 }, (_, i) => <Skeleton key={i} className="h-24 rounded-2xl" />)}
         </div>
+        <Skeleton className="h-96 w-full rounded-2xl" />
       </div>
     )
   }
 
   if (error || !profile) {
     return (
-      <div className="max-w-6xl mx-auto">
-        <Card>
-          <CardContent className="p-12 text-center">
-            <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-            <h2 className="text-xl font-bold mb-2">Unable to Load Profile</h2>
-            <p className="text-muted-foreground mb-4">{error || 'Profile not found'}</p>
-            <Button onClick={fetchProfile}>Try Again</Button>
-          </CardContent>
-        </Card>
+      <div className="max-w-6xl mx-auto px-4">
+        <Card><CardContent className="p-12 text-center">
+          <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
+          <h2 className="text-xl font-bold mb-2">{t('errorTitle')}</h2>
+          <p className="text-muted-foreground mb-4">{error || t('notFound')}</p>
+          <Button onClick={fetchProfile}>{t('tryAgain')}</Button>
+        </CardContent></Card>
       </div>
     )
   }
 
   const { user, skills, stats, profileCompletion, completionItems, projects, githubUrl } = profile
 
-  return (
-    <div className="max-w-6xl mx-auto space-y-8">
-      {/* Header */}
-      <div className="relative">
-        <div className="h-32 bg-primary rounded-lg relative">
-          <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg"></div>
-        </div>
+  const availabilityConfig: Record<string, { label: string; className: string }> = {
+    BOTH: { label: t('available'), className: 'bg-green-100 text-green-800 border-green-200' },
+    HIRING: { label: t('openToOffers'), className: 'bg-blue-100 text-blue-800 border-blue-200' },
+    PROJECTS: { label: t('projectsOnly'), className: 'bg-purple-100 text-purple-800 border-purple-200' },
+    NONE: { label: t('notLooking'), className: 'bg-muted text-muted-foreground border-border' },
+  }
 
-        <div className="relative px-6 pb-6">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end space-y-4 sm:space-y-0 sm:space-x-6 -mt-16">
-            <div className="relative">
-              <Avatar className="w-32 h-32 border-4 border-white shadow-lg">
-                <AvatarImage src={user.photo || ''} />
-                <AvatarFallback className="text-2xl">
-                  {(user.firstName || '?')[0]}{(user.lastName || '?')[0]}
-                </AvatarFallback>
-              </Avatar>
-              <Button
-                size="sm"
-                variant="outline"
-                className="absolute bottom-0 right-0 rounded-full w-10 h-10 p-0 bg-card"
-              >
-                <Camera className="h-4 w-4" />
-              </Button>
+  return (
+    <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
+      {/* Hero Header */}
+      <GlassCard delay={0} gradient="primary">
+        <div className="p-6">
+          <div className="flex flex-col md:flex-row gap-6">
+            {/* Avatar + basic info */}
+            <div className="flex items-start gap-5">
+              <div className="relative">
+                <Avatar className="w-24 h-24 ring-4 ring-white/50 shadow-lg">
+                  <AvatarImage src={user.photo || ''} />
+                  <AvatarFallback className="text-2xl bg-primary text-primary-foreground">
+                    {(user.firstName || '?')[0]}{(user.lastName || '?')[0]}
+                  </AvatarFallback>
+                </Avatar>
+              </div>
+              <div className="flex-1">
+                <h1 className="text-2xl font-bold">{user.firstName} {user.lastName}</h1>
+                {user.tagline && <p className="text-muted-foreground text-sm mt-0.5">{user.tagline}</p>}
+                {user.degree && user.university && (
+                  <p className="text-sm text-muted-foreground mt-1 flex items-center gap-1">
+                    <School className="h-3.5 w-3.5" /> {user.degree} — {user.university}
+                  </p>
+                )}
+                <div className="flex items-center gap-2 mt-2 flex-wrap">
+                  {user.location && (
+                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                      <MapPin className="h-3 w-3" /> {user.location}
+                    </span>
+                  )}
+                  {user.graduationYear && (
+                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                      <Calendar className="h-3 w-3" /> {user.graduationYear}
+                    </span>
+                  )}
+                  {availabilityConfig[user.availableFor] && (
+                    <Badge variant="outline" className={`text-[10px] ${availabilityConfig[user.availableFor].className}`}>
+                      {availabilityConfig[user.availableFor].label}
+                    </Badge>
+                  )}
+                </div>
+              </div>
             </div>
 
-            <div className="flex-1 pt-16 sm:pt-0">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <h1 className="text-3xl font-bold text-foreground">
-                    {user.firstName || ''} {user.lastName || ''}
-                  </h1>
-                  {user.tagline && <p className="text-muted-foreground italic">{user.tagline}</p>}
-                  {user.degree && user.university && (
-                    <p className="text-muted-foreground">{user.degree} - {user.university}</p>
-                  )}
-                  {user.graduationYear && <p className="text-foreground/80 text-sm">Class of {user.graduationYear}</p>}
-                  <div className="flex items-center gap-2 mt-1 flex-wrap">
-                    {user.location && (
-                      <span className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <MapPin className="h-3.5 w-3.5" />
-                        {user.location}
-                      </span>
-                    )}
-                    {user.availableFor && (() => {
-                      const availabilityConfig: Record<string, { label: string; className: string }> = {
-                        BOTH: { label: 'Available', className: 'bg-green-100 text-green-800 border-green-200' },
-                        HIRING: { label: 'Open to offers', className: 'bg-blue-100 text-blue-800 border-blue-200' },
-                        NONE: { label: 'Not looking', className: 'bg-muted text-muted-foreground border-border' },
-                        PROJECTS: { label: 'Projects only', className: 'bg-purple-100 text-purple-800 border-purple-200' },
-                      }
-                      const config = availabilityConfig[user.availableFor]
-                      if (!config) return null
-                      return (
-                        <Badge variant="outline" className={config.className}>
-                          {config.label}
-                        </Badge>
-                      )
-                    })()}
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-2 mt-4 sm:mt-0">
-                  <Button
-                    variant={editing ? "default" : "outline"}
-                    onClick={() => editing ? saveProfile() : setEditing(true)}
-                    disabled={saving}
-                  >
-                    {saving ? (
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    ) : editing ? (
-                      <Save className="mr-2 h-4 w-4" />
-                    ) : (
-                      <Edit3 className="mr-2 h-4 w-4" />
-                    )}
-                    {editing ? (saving ? 'Saving...' : 'Save Changes') : 'Edit Profile'}
-                  </Button>
-
-                  {editing && (
-                    <Button variant="outline" onClick={() => setEditing(false)}>
-                      Cancel
-                    </Button>
-                  )}
-
-                  <LinkedInShareButton
-                    url={'https://intransparency.eu/explore'}
-                    variant="outline"
-                    size="default"
-                  />
-
-                  <Button
-                    variant="outline"
-                    onClick={generateCV}
-                    disabled={generatingCV}
-                  >
-                    {generatingCV ? (
-                      <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-foreground mr-2"></div>
-                        Generating...
-                      </>
-                    ) : (
-                      <>
-                        <Sparkles className="mr-2 h-4 w-4" />
-                        Generate CV
-                      </>
-                    )}
-                  </Button>
-                </div>
+            {/* Actions + completion */}
+            <div className="flex flex-col items-end gap-3 md:ml-auto">
+              <DonutChart value={profileCompletion} size={80} strokeWidth={8} sublabel={ts('complete')} />
+              <div className="flex gap-2">
+                <Button size="sm" variant={editing ? 'default' : 'outline'} onClick={() => editing ? saveProfile() : setEditing(true)} disabled={saving}>
+                  {editing ? <><Save className="h-3.5 w-3.5 mr-1" />{saving ? t('saving') : t('save')}</> : <><Edit3 className="h-3.5 w-3.5 mr-1" />{t('edit')}</>}
+                </Button>
+                {editing && <Button size="sm" variant="ghost" onClick={() => setEditing(false)}><X className="h-3.5 w-3.5" /></Button>}
+                <Button size="sm" variant="outline" onClick={downloadCV}><Download className="h-3.5 w-3.5 mr-1" />CV</Button>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </GlassCard>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left Column */}
-        <div className="lg:col-span-2 space-y-8">
-          <Tabs defaultValue="overview" className="space-y-6">
+      {/* Stats Row */}
+      <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StaggerItem><StatCard label={t('stats.views')} value={stats.profileViews} icon={<Eye className="h-5 w-5" />} variant="blue" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.recruiterViews')} value={stats.recruiterViews} icon={<Users className="h-5 w-5" />} variant="purple" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.projects')} value={stats.totalProjects} icon={<Briefcase className="h-5 w-5" />} variant="green" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.applications')} value={stats.totalApplications} icon={<Mail className="h-5 w-5" />} variant="rose" /></StaggerItem>
+      </StaggerContainer>
+
+      {/* Main Content */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 space-y-6">
+          <Tabs defaultValue="overview">
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="skills">Skills</TabsTrigger>
-              <TabsTrigger value="projects">Projects</TabsTrigger>
+              <TabsTrigger value="overview">{t('tabs.overview')}</TabsTrigger>
+              <TabsTrigger value="skills">{t('tabs.skills')}</TabsTrigger>
+              <TabsTrigger value="projects">{t('tabs.projects')}</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="overview" className="space-y-6">
-              {/* Basic Information */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Basic Information</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {editing ? (
-                    <>
-                      <div>
-                        <Label htmlFor="tagline">Tagline</Label>
-                        <Input
-                          id="tagline"
-                          value={editTagline}
-                          onChange={(e) => setEditTagline(e.target.value)}
-                          placeholder="A short description of yourself"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="bio">Bio</Label>
-                        <Textarea
-                          id="bio"
-                          rows={4}
-                          value={editBio}
-                          onChange={(e) => setEditBio(e.target.value)}
-                          placeholder="Tell recruiters about yourself..."
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="portfolio">Portfolio URL</Label>
-                        <Input
-                          id="portfolio"
-                          value={editPortfolioUrl}
-                          onChange={(e) => setEditPortfolioUrl(e.target.value)}
-                          placeholder="https://yourportfolio.com"
-                        />
-                        {user.subscriptionTier !== 'STUDENT_PREMIUM' && (
-                          <p className="text-xs text-amber-600 mt-1">Premium feature - upgrade to set a custom URL</p>
+            {/* Overview Tab */}
+            <TabsContent value="overview" className="space-y-4 mt-4">
+              {/* Edit mode */}
+              {editing ? (
+                <Card>
+                  <CardContent className="p-5 space-y-4">
+                    <div><Label>{t('fields.tagline')}</Label><Input value={editTagline} onChange={e => setEditTagline(e.target.value)} placeholder={t('placeholders.tagline')} /></div>
+                    <div><Label>{t('fields.bio')}</Label><Textarea rows={4} value={editBio} onChange={e => setEditBio(e.target.value)} placeholder={t('placeholders.bio')} /></div>
+                    <div><Label>{t('fields.portfolio')}</Label><Input value={editPortfolioUrl} onChange={e => setEditPortfolioUrl(e.target.value)} placeholder="https://..." /></div>
+                    <div className="space-y-3 border-t pt-4">
+                      <h4 className="text-sm font-medium">{t('privacy.title')}</h4>
+                      <div className="flex items-center justify-between"><Label>{t('privacy.publicProfile')}</Label><Switch checked={editProfilePublic} onCheckedChange={setEditProfilePublic} /></div>
+                      <div className="flex items-center justify-between"><Label>{t('privacy.showEmail')}</Label><Switch checked={editShowEmail} onCheckedChange={setEditShowEmail} /></div>
+                      <div className="flex items-center justify-between"><Label>{t('privacy.showGpa')}</Label><Switch checked={editGpaPublic} onCheckedChange={setEditGpaPublic} /></div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ) : (
+                <>
+                  {/* Bio */}
+                  <Card>
+                    <CardContent className="p-5">
+                      {user.bio ? (
+                        <p className="text-sm leading-relaxed text-foreground/80">{user.bio}</p>
+                      ) : (
+                        <p className="text-sm text-muted-foreground italic">{t('empty.bio')}</p>
+                      )}
+                    </CardContent>
+                  </Card>
+
+                  {/* Education */}
+                  {(user.university || user.degree) && (
+                    <Card>
+                      <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><School className="h-4 w-4" />{t('sections.education')}</CardTitle></CardHeader>
+                      <CardContent className="pt-0">
+                        {user.degree && <p className="font-medium text-sm">{user.degree}</p>}
+                        {user.university && <p className="text-sm text-muted-foreground">{user.university}</p>}
+                        <div className="flex gap-3 text-xs text-muted-foreground mt-1">
+                          {user.graduationYear && <span>{user.graduationYear}</span>}
+                          {user.gpa && user.gpaPublic && <span>GPA: {user.gpa}</span>}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Thesis */}
+                  {user.thesisTitle && (
+                    <Card>
+                      <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><FileText className="h-4 w-4" />{t('sections.thesis')}</CardTitle></CardHeader>
+                      <CardContent className="pt-0 space-y-1">
+                        <p className="font-medium text-sm">{user.thesisTitle}</p>
+                        {user.thesisSubject && <p className="text-xs text-muted-foreground">{user.thesisSubject}</p>}
+                        {user.thesisSupervisor && <p className="text-xs text-muted-foreground">{t('fields.supervisor')}: {user.thesisSupervisor}</p>}
+                        {user.thesisKeywords.length > 0 && (
+                          <div className="flex flex-wrap gap-1 pt-1">{user.thesisKeywords.map(kw => <Badge key={kw} variant="secondary" className="text-[10px]">{kw}</Badge>)}</div>
                         )}
-                      </div>
-                      <div className="space-y-3 border-t pt-4">
-                        <h4 className="text-sm font-medium">Privacy Settings</h4>
-                        <div className="flex items-center justify-between">
-                          <Label htmlFor="profilePublic">Public Profile</Label>
-                          <Switch
-                            id="profilePublic"
-                            checked={editProfilePublic}
-                            onCheckedChange={setEditProfilePublic}
-                          />
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <Label htmlFor="showEmail">Show Email</Label>
-                          <Switch
-                            id="showEmail"
-                            checked={editShowEmail}
-                            onCheckedChange={setEditShowEmail}
-                          />
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <Label htmlFor="gpaPublic">Show GPA</Label>
-                          <Switch
-                            id="gpaPublic"
-                            checked={editGpaPublic}
-                            onCheckedChange={setEditGpaPublic}
-                          />
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="space-y-3">
-                        <div className="flex items-center space-x-3">
-                          <Mail className="h-4 w-4 text-muted-foreground" />
-                          <span>{user.email}</span>
-                        </div>
-                      </div>
-
-                      {user.bio && (
-                        <div className="pt-4 border-t">
-                          <h4 className="font-medium text-foreground mb-2">About</h4>
-                          <p className="text-foreground/80 leading-relaxed">{user.bio}</p>
-                        </div>
-                      )}
-
-                      {!user.bio && (
-                        <div className="pt-4 border-t text-muted-foreground italic text-sm">
-                          No bio yet. Click &quot;Edit Profile&quot; to add one.
-                        </div>
-                      )}
-                    </>
+                      </CardContent>
+                    </Card>
                   )}
-                </CardContent>
-              </Card>
 
-              {/* Education */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <School className="mr-2 h-5 w-5" />
-                    Education
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {user.university || user.degree ? (
-                    <div className="space-y-2">
-                      {user.degree && <h3 className="font-semibold text-foreground">{user.degree}</h3>}
-                      {user.university && <p className="text-muted-foreground">{user.university}</p>}
-                      <div className="flex items-center space-x-4 text-sm text-foreground/80">
-                        {user.graduationYear && <span>Class of {user.graduationYear}</span>}
-                        {user.gpa && user.gpaPublic && <span>GPA: {user.gpa}</span>}
-                      </div>
-                    </div>
-                  ) : (
-                    <p className="text-muted-foreground italic text-sm">No education info added yet.</p>
-                  )}
-                </CardContent>
-              </Card>
-
-              {/* Thesis */}
-              {user.thesisTitle && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center">
-                      <FileText className="mr-2 h-5 w-5" />
-                      Thesis
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-2">
-                    <h3 className="font-semibold text-foreground">{user.thesisTitle}</h3>
-                    {user.thesisSubject && <p className="text-sm text-muted-foreground">Subject: {user.thesisSubject}</p>}
-                    {user.thesisSupervisor && <p className="text-sm text-muted-foreground">Supervisor: {user.thesisSupervisor}</p>}
-                    {user.thesisKeywords && user.thesisKeywords.length > 0 && (
-                      <div className="flex flex-wrap gap-1 pt-1">
-                        {user.thesisKeywords.map((kw: string) => (
-                          <Badge key={kw} variant="secondary" className="text-xs">{kw}</Badge>
-                        ))}
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              )}
-
-              {/* Languages */}
-              {user.languageProficiencies && user.languageProficiencies.length > 0 && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Languages</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="overflow-x-auto">
-                      <table className="w-full text-sm">
-                        <thead>
-                          <tr className="border-b">
-                            <th className="text-left py-2 font-medium">Language</th>
-                            <th className="text-center py-2 font-medium">Reading</th>
-                            <th className="text-center py-2 font-medium">Writing</th>
-                            <th className="text-center py-2 font-medium">Listening</th>
-                            <th className="text-center py-2 font-medium">Speaking</th>
-                            <th className="text-center py-2 font-medium">Interaction</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {user.languageProficiencies.map((lp: LanguageProfEntry) => (
-                            <tr key={lp.id} className="border-b last:border-0">
-                              <td className="py-2 font-medium">{lp.language}</td>
-                              {lp.motherTongue ? (
-                                <td colSpan={5} className="py-2 text-center text-muted-foreground italic">Mother Tongue</td>
-                              ) : (
-                                <>
-                                  <td className="py-2 text-center"><Badge variant="outline" className="text-xs">{lp.reading || '—'}</Badge></td>
-                                  <td className="py-2 text-center"><Badge variant="outline" className="text-xs">{lp.writing || '—'}</Badge></td>
-                                  <td className="py-2 text-center"><Badge variant="outline" className="text-xs">{lp.listening || '—'}</Badge></td>
-                                  <td className="py-2 text-center"><Badge variant="outline" className="text-xs">{lp.speaking || '—'}</Badge></td>
-                                  <td className="py-2 text-center"><Badge variant="outline" className="text-xs">{lp.interaction || '—'}</Badge></td>
-                                </>
-                              )}
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
-
-              {/* Certifications */}
-              {user.certifications && user.certifications.length > 0 && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Certifications</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      {user.certifications.map((cert: CertificationEntry) => (
-                        <div key={cert.id} className="flex items-start justify-between border-b last:border-0 pb-3 last:pb-0">
-                          <div>
-                            <h4 className="font-semibold text-foreground">{cert.name}</h4>
-                            <p className="text-sm text-muted-foreground">{cert.issuer}</p>
-                            {cert.credentialUrl && (
-                              <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer"
-                                className="text-xs text-primary hover:underline">View credential</a>
-                            )}
-                          </div>
-                          <div className="text-right text-xs text-muted-foreground">
-                            {cert.dateObtained && <p>Obtained: {new Date(cert.dateObtained).toLocaleDateString()}</p>}
-                            {cert.expiryDate && <p>Expires: {new Date(cert.expiryDate).toLocaleDateString()}</p>}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
-
-              {/* Interests */}
-              {user.interests && user.interests.length > 0 && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Interests</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {user.interests.map((interest: string) => (
-                        <Badge key={interest} variant="outline" className="text-sm">
-                          {interest}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
-
-              {/* Work Experience */}
-              {user.workExperience && user.workExperience.length > 0 && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center">
-                      <Briefcase className="mr-2 h-5 w-5" />
-                      Experience
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-6">
-                      {user.workExperience.map((exp: WorkExperienceEntry, index: number) => (
-                        <div key={index} className="relative pl-6 border-l-2 border-muted pb-4 last:pb-0">
-                          <div className="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-primary border-2 border-background" />
-                          <h4 className="font-semibold text-foreground">{exp.role}</h4>
-                          <p className="text-muted-foreground">{exp.company}</p>
-                          <p className="text-sm text-foreground/70 flex items-center gap-1 mt-1">
-                            <Calendar className="h-3.5 w-3.5" />
-                            {exp.startDate} - {exp.current ? 'Present' : exp.endDate}
-                          </p>
-                          {(exp.contractType || exp.companySector || exp.businessArea) && (
-                            <div className="flex flex-wrap gap-1 mt-1">
-                              {exp.contractType && <Badge variant="outline" className="text-xs">{exp.contractType}</Badge>}
-                              {exp.companySector && <Badge variant="outline" className="text-xs">{exp.companySector}</Badge>}
-                              {exp.businessArea && <Badge variant="outline" className="text-xs">{exp.businessArea}</Badge>}
+                  {/* Work Experience */}
+                  {user.workExperience && user.workExperience.length > 0 && (
+                    <Card>
+                      <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><Briefcase className="h-4 w-4" />{t('sections.experience')}</CardTitle></CardHeader>
+                      <CardContent className="pt-0">
+                        <div className="space-y-4">
+                          {user.workExperience.map((exp, i) => (
+                            <div key={i} className="relative pl-5 border-l-2 border-muted pb-3 last:pb-0">
+                              <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-primary" />
+                              <p className="font-medium text-sm">{exp.role}</p>
+                              <p className="text-xs text-muted-foreground">{exp.company}</p>
+                              <p className="text-xs text-muted-foreground/70 mt-0.5">{exp.startDate} — {exp.current ? t('present') : exp.endDate}</p>
+                              {exp.description && <p className="text-xs text-foreground/70 mt-1">{exp.description}</p>}
                             </div>
-                          )}
-                          {exp.description && (
-                            <p className="text-foreground/80 text-sm mt-2 leading-relaxed">{exp.description}</p>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
-
-              {/* Career Preferences */}
-              {(user.desiredOccupation || user.preferredSectors?.length > 0 || user.preferredLocations?.length > 0) && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center">
-                      <Share2 className="mr-2 h-5 w-5" />
-                      Career Preferences
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3 text-sm">
-                    {user.desiredOccupation && (
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Desired Occupation</span>
-                        <span className="font-medium">{user.desiredOccupation}</span>
-                      </div>
-                    )}
-                    {user.preferredSectors && user.preferredSectors.length > 0 && (
-                      <div className="flex justify-between items-start">
-                        <span className="text-muted-foreground">Sectors</span>
-                        <div className="flex flex-wrap gap-1 justify-end max-w-[60%]">
-                          {user.preferredSectors.map((s: string) => (
-                            <Badge key={s} variant="secondary" className="text-xs">{s}</Badge>
                           ))}
                         </div>
-                      </div>
-                    )}
-                    {user.preferredLocations && user.preferredLocations.length > 0 && (
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Preferred Locations</span>
-                        <span className="font-medium">{user.preferredLocations.join(', ')}</span>
-                      </div>
-                    )}
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {user.willingToRelocate && <Badge variant="outline" className="text-xs">Willing to relocate</Badge>}
-                      {user.willingToRelocateAbroad && <Badge variant="outline" className="text-xs">Including abroad</Badge>}
-                      {user.willingToTravel && <Badge variant="outline" className="text-xs">Available for travel</Badge>}
-                      {user.continuingStudies && (
-                        <Badge variant="outline" className="text-xs">
-                          Continuing studies{user.continuingStudiesType ? `: ${user.continuingStudiesType}` : ''}
-                        </Badge>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
+                      </CardContent>
+                    </Card>
+                  )}
 
-              {/* Links */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Links</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-3">
-                    {githubUrl && (
-                      <Button variant="outline" size="sm" asChild>
-                        <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-                          <Github className="mr-2 h-4 w-4" />
-                          GitHub
-                        </a>
-                      </Button>
-                    )}
-                    {user.portfolioUrl && (
-                      <Button variant="outline" size="sm" asChild>
-                        <a href={user.portfolioUrl} target="_blank" rel="noopener noreferrer">
-                          <Globe className="mr-2 h-4 w-4" />
-                          Portfolio
-                        </a>
-                      </Button>
-                    )}
-                    {!githubUrl && !user.portfolioUrl && (
-                      <p className="text-muted-foreground italic text-sm">No links yet. Add projects with GitHub URLs to show them here.</p>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+                  {/* Languages */}
+                  {user.languageProficiencies.length > 0 && (
+                    <Card>
+                      <CardHeader className="pb-2"><CardTitle className="text-sm">{t('sections.languages')}</CardTitle></CardHeader>
+                      <CardContent className="pt-0">
+                        <div className="space-y-2">
+                          {user.languageProficiencies.map(lp => (
+                            <div key={lp.id} className="flex items-center justify-between text-sm">
+                              <span className="font-medium">{lp.language}</span>
+                              {lp.motherTongue ? (
+                                <Badge variant="outline" className="text-[10px]">{t('motherTongue')}</Badge>
+                              ) : (
+                                <div className="flex gap-1">
+                                  {[lp.reading, lp.writing, lp.speaking].filter(Boolean).map((level, i) => (
+                                    <Badge key={i} variant="secondary" className="text-[10px]">{level}</Badge>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Certifications */}
+                  {user.certifications.length > 0 && (
+                    <Card>
+                      <CardHeader className="pb-2"><CardTitle className="text-sm">{t('sections.certifications')}</CardTitle></CardHeader>
+                      <CardContent className="pt-0">
+                        <div className="space-y-3">
+                          {user.certifications.map(cert => (
+                            <div key={cert.id} className="flex items-start justify-between">
+                              <div>
+                                <p className="font-medium text-sm">{cert.name}</p>
+                                <p className="text-xs text-muted-foreground">{cert.issuer}</p>
+                              </div>
+                              {cert.credentialUrl && (
+                                <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline flex items-center gap-1">
+                                  <ExternalLink className="h-3 w-3" />{ts('view')}
+                                </a>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Career Preferences */}
+                  {(user.desiredOccupation || user.preferredSectors.length > 0) && (
+                    <Card>
+                      <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><Share2 className="h-4 w-4" />{t('sections.careerPrefs')}</CardTitle></CardHeader>
+                      <CardContent className="pt-0 space-y-2 text-sm">
+                        {user.desiredOccupation && <div className="flex justify-between"><span className="text-muted-foreground">{t('fields.desiredRole')}</span><span className="font-medium">{user.desiredOccupation}</span></div>}
+                        {user.preferredSectors.length > 0 && (
+                          <div className="flex flex-wrap gap-1">{user.preferredSectors.map(s => <Badge key={s} variant="secondary" className="text-[10px]">{s}</Badge>)}</div>
+                        )}
+                        <div className="flex flex-wrap gap-1.5 pt-1">
+                          {user.willingToRelocate && <Badge variant="outline" className="text-[10px]">{t('badges.relocate')}</Badge>}
+                          {user.willingToRelocateAbroad && <Badge variant="outline" className="text-[10px]">{t('badges.abroad')}</Badge>}
+                          {user.willingToTravel && <Badge variant="outline" className="text-[10px]">{t('badges.travel')}</Badge>}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Links */}
+                  {(githubUrl || user.portfolioUrl) && (
+                    <Card>
+                      <CardContent className="p-4 flex flex-wrap gap-2">
+                        {githubUrl && <Button variant="outline" size="sm" asChild><a href={githubUrl} target="_blank" rel="noopener noreferrer"><Github className="h-3.5 w-3.5 mr-1.5" />GitHub</a></Button>}
+                        {user.portfolioUrl && <Button variant="outline" size="sm" asChild><a href={user.portfolioUrl} target="_blank" rel="noopener noreferrer"><Globe className="h-3.5 w-3.5 mr-1.5" />Portfolio</a></Button>}
+                      </CardContent>
+                    </Card>
+                  )}
+                </>
+              )}
             </TabsContent>
 
-            <TabsContent value="skills" className="space-y-6">
+            {/* Skills Tab */}
+            <TabsContent value="skills" className="mt-4">
               <Card>
                 <CardHeader>
-                  <CardTitle>Skills (derived from projects)</CardTitle>
-                  <CardDescription>
-                    Skills are automatically detected from your uploaded projects
-                  </CardDescription>
+                  <CardTitle className="text-sm">{t('sections.skills')}</CardTitle>
+                  <CardDescription className="text-xs">{t('skillsDescription')}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   {skills.length > 0 ? (
-                    <div className="space-y-4">
-                      {skills.map((skill) => (
+                    <div className="space-y-3">
+                      {skills.map(skill => (
                         <div key={skill.name}>
-                          <div className="flex justify-between items-center mb-2">
-                            <span className="font-medium text-foreground">{skill.name}</span>
-                            <span className="text-sm text-foreground/80">
-                              {skill.level}% ({skill.projectCount} {skill.projectCount === 1 ? 'project' : 'projects'})
-                            </span>
+                          <div className="flex justify-between items-center mb-1">
+                            <span className="text-sm font-medium">{skill.name}</span>
+                            <span className="text-xs text-muted-foreground">{skill.level}% · {skill.projectCount} {skill.projectCount === 1 ? t('project') : t('projects')}</span>
                           </div>
-                          <Progress value={skill.level} className="h-2" />
+                          <Progress value={skill.level} className="h-1.5" />
                         </div>
                       ))}
                     </div>
                   ) : (
                     <div className="text-center py-8">
-                      <Briefcase className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium text-foreground mb-2">No skills detected</h3>
-                      <p className="text-muted-foreground">Upload projects to have your skills automatically analyzed.</p>
+                      <Briefcase className="h-10 w-10 text-muted-foreground/40 mx-auto mb-3" />
+                      <p className="text-sm text-muted-foreground">{t('empty.skills')}</p>
                     </div>
                   )}
                 </CardContent>
               </Card>
             </TabsContent>
 
-            <TabsContent value="projects" className="space-y-6">
-              {projects.length > 0 ? (
-                projects.map((project) => (
-                  <Card key={project.id}>
-                    <CardHeader>
+            {/* Projects Tab */}
+            <TabsContent value="projects" className="space-y-3 mt-4">
+              {projects.length > 0 ? projects.map(project => (
+                <Link key={project.id} href={`/dashboard/student/projects/${project.id}`}>
+                  <Card className="hover:shadow-md hover:border-primary/20 transition-all cursor-pointer">
+                    <CardContent className="p-4">
                       <div className="flex items-start justify-between">
-                        <CardTitle className="text-lg">{project.title}</CardTitle>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <Eye className="h-4 w-4" />
-                          {project.views} views
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-sm">{project.title}</h3>
+                          <div className="flex flex-wrap gap-1 mt-1.5">
+                            {project.skills.concat(project.technologies).slice(0, 6).map(s => (
+                              <Badge key={s} variant="secondary" className="text-[10px]">{s}</Badge>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        {project.skills.concat(project.technologies).slice(0, 8).map((s) => (
-                          <Badge key={s} variant="secondary" className="text-xs">{s}</Badge>
-                        ))}
-                      </div>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <Users className="h-3 w-3" />
-                          {project.recruiterViews} recruiter views
-                        </span>
-                        {project.githubUrl && (
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-primary hover:underline"
-                          >
-                            <Github className="h-3 w-3" />
-                            Source
-                          </a>
-                        )}
+                        <div className="flex items-center gap-3 text-xs text-muted-foreground ml-3">
+                          <span className="flex items-center gap-1"><Eye className="h-3 w-3" />{project.views}</span>
+                          <span className="flex items-center gap-1"><Users className="h-3 w-3" />{project.recruiterViews}</span>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
-                ))
-              ) : (
+                </Link>
+              )) : (
                 <Card>
-                  <CardContent className="p-12 text-center">
-                    <Briefcase className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-foreground mb-2">No projects yet</h3>
-                    <p className="text-muted-foreground">Upload your first project to build your portfolio.</p>
+                  <CardContent className="p-8 text-center">
+                    <Briefcase className="h-10 w-10 text-muted-foreground/40 mx-auto mb-3" />
+                    <p className="text-sm text-muted-foreground mb-3">{t('empty.projects')}</p>
+                    <Button size="sm" asChild><Link href="/dashboard/student/projects/new">{t('addProject')}</Link></Button>
                   </CardContent>
                 </Card>
               )}
@@ -833,81 +469,39 @@ export default function ProfilePage() {
           </Tabs>
         </div>
 
-        {/* Right Column - Sidebar */}
-        <div className="space-y-6">
-          {/* Profile Stats */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Profile Statistics</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">Profile Views (30d)</span>
-                <span className="font-semibold">{stats.profileViews}</span>
+        {/* Sidebar */}
+        <div className="space-y-4">
+          {/* Completion checklist */}
+          <GlassCard delay={0.2}>
+            <div className="p-4">
+              <h3 className="font-semibold text-sm mb-3">{t('completion')}</h3>
+              <Progress value={profileCompletion} className="h-2 mb-3" />
+              <div className="space-y-1.5">
+                {completionItems.map(item => (
+                  <div key={item.field} className="flex items-center gap-2 text-xs">
+                    {item.filled ? (
+                      <Check className="h-3 w-3 text-green-500" />
+                    ) : (
+                      <div className="h-3 w-3 rounded-full border border-muted-foreground/30" />
+                    )}
+                    <span className={item.filled ? 'text-muted-foreground' : 'text-foreground'}>{item.label}</span>
+                  </div>
+                ))}
               </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">Recruiter Views (30d)</span>
-                <span className="font-semibold">{stats.recruiterViews}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">Total Projects</span>
-                <span className="font-semibold">{stats.totalProjects}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">Total Applications</span>
-                <span className="font-semibold">{stats.totalApplications}</span>
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
 
-          {/* Profile Completion */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Profile Completion</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center text-sm">
-                  <span>Completeness</span>
-                  <span>{profileCompletion}%</span>
-                </div>
-                <Progress value={profileCompletion} className="h-2" />
-
-                <div className="space-y-2 text-sm mt-4">
-                  {completionItems.map((item) => (
-                    <div key={item.field} className="flex items-center space-x-2">
-                      <div className={`w-2 h-2 rounded-full ${item.filled ? 'bg-primary' : 'bg-muted-foreground/60'}`}></div>
-                      <span className={item.filled ? 'text-muted-foreground' : 'text-muted-foreground/60'}>
-                        {item.label}
-                      </span>
-                    </div>
-                  ))}
+          {/* Interests */}
+          {user.interests.length > 0 && (
+            <GlassCard delay={0.3}>
+              <div className="p-4">
+                <h3 className="font-semibold text-sm mb-2">{t('sections.interests')}</h3>
+                <div className="flex flex-wrap gap-1.5">
+                  {user.interests.map(i => <Badge key={i} variant="outline" className="text-[10px]">{i}</Badge>)}
                 </div>
               </div>
-            </CardContent>
-          </Card>
-
-          {/* Quick Actions */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <Button variant="outline" className="w-full justify-start">
-                <Eye className="mr-2 h-4 w-4" />
-                Preview Public Profile
-              </Button>
-              <Button
-                variant="outline"
-                className="w-full justify-start"
-                onClick={generateCV}
-                disabled={generatingCV}
-              >
-                <FileText className="mr-2 h-4 w-4" />
-                {generatingCV ? 'Generating CV...' : 'Generate Academic CV'}
-              </Button>
-            </CardContent>
-          </Card>
+            </GlassCard>
+          )}
         </div>
       </div>
     </div>

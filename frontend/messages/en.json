@@ -5192,71 +5192,73 @@
   },
   "studentProfile": {
     "title": "My Profile",
-    "subtitle": "Manage your professional profile and settings",
-    "edit": "Edit Profile",
-    "save": "Save Changes",
+    "edit": "Edit",
+    "save": "Save",
     "saving": "Saving...",
-    "cancel": "Cancel",
+    "saveFailed": "Failed to save. Please try again.",
+    "cvFailed": "Failed to generate CV.",
+    "errorTitle": "Unable to load profile",
+    "notFound": "Profile not found",
+    "tryAgain": "Try again",
+    "present": "Present",
+    "project": "project",
+    "projects": "projects",
+    "addProject": "Add project",
+    "completion": "Profile completion",
+    "available": "Available",
+    "openToOffers": "Open to offers",
+    "notLooking": "Not looking",
+    "projectsOnly": "Projects only",
+    "motherTongue": "Mother tongue",
+    "skillsDescription": "Skills are automatically detected from your projects",
     "tabs": {
       "overview": "Overview",
       "skills": "Skills",
-      "projects": "Projects",
-      "experience": "Experience"
-    },
-    "fields": {
-      "bio": "Bio",
-      "tagline": "Tagline",
-      "portfolioUrl": "Portfolio URL",
-      "university": "University",
-      "degree": "Degree",
-      "graduationYear": "Graduation Year",
-      "gpa": "GPA",
-      "location": "Location",
-      "interests": "Interests",
-      "availability": "Availability"
-    },
-    "availability": {
-      "available": "Available",
-      "openToOffers": "Open to offers",
-      "notLooking": "Not looking",
-      "projectsOnly": "Projects only"
-    },
-    "experience": {
-      "title": "Work Experience",
-      "description": "Add internships, part-time jobs, or other work experience",
-      "addExperience": "Add Experience",
-      "company": "Company",
-      "role": "Role / Title",
-      "startDate": "Start Date",
-      "endDate": "End Date",
-      "currentlyWorking": "I currently work here",
-      "descriptionLabel": "Description",
-      "present": "Present"
-    },
-    "privacy": {
-      "title": "Privacy Settings",
-      "profilePublic": "Public Profile",
-      "showLocation": "Show Location",
-      "showEmail": "Show Email",
-      "showPhone": "Show Phone",
-      "gpaPublic": "Show GPA"
-    },
-    "completion": {
-      "title": "Profile Completion",
-      "complete": "Complete"
+      "projects": "Projects"
     },
     "stats": {
-      "profileViews": "Profile Views",
-      "recruiterViews": "Recruiter Views",
+      "views": "Views (30d)",
+      "recruiterViews": "Recruiter views",
+      "projects": "Projects",
       "applications": "Applications"
     },
-    "generateCV": "Generate CV",
-    "premiumFeature": "Premium Feature",
-    "premiumPortfolio": "Upgrade to Premium to add a portfolio URL.",
-    "noSkills": "No skills yet. Add projects to build your skills profile.",
-    "noProjects": "No projects yet. Add your first project to showcase your work.",
-    "saveSuccess": "Profile updated successfully!",
-    "saveError": "Failed to update profile. Please try again."
+    "sections": {
+      "education": "Education",
+      "thesis": "Thesis",
+      "experience": "Experience",
+      "languages": "Languages",
+      "certifications": "Certifications",
+      "interests": "Interests",
+      "careerPrefs": "Career preferences",
+      "skills": "Skills"
+    },
+    "fields": {
+      "tagline": "Tagline",
+      "bio": "Bio",
+      "portfolio": "Portfolio URL",
+      "supervisor": "Supervisor",
+      "desiredRole": "Desired role"
+    },
+    "placeholders": {
+      "tagline": "A short description of yourself",
+      "bio": "Tell recruiters about yourself..."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "publicProfile": "Public profile",
+      "showEmail": "Show email",
+      "showGpa": "Show GPA"
+    },
+    "badges": {
+      "relocate": "Willing to relocate",
+      "abroad": "Including abroad",
+      "travel": "Available for travel"
+    },
+    "empty": {
+      "bio": "No bio yet. Click Edit to add one.",
+      "skills": "Upload projects to have skills automatically detected.",
+      "projects": "No projects yet. Add your first to build your portfolio."
+    }
   },
   "studentActivity": {
     "title": "Activity Feed",
