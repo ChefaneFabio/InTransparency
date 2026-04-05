@@ -3,43 +3,30 @@
 import { useEffect, useState } from 'react'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Skeleton } from '@/components/ui/skeleton'
 import { ChallengeCard } from '@/components/challenges/ChallengeCard'
-import { Search, Loader2, Trophy, FileText, CheckCircle } from 'lucide-react'
+import { Search, Trophy, FileText, CheckCircle, Filter } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
+import { StatCard } from '@/components/dashboard/shared/StatCard'
+import { StaggerContainer, StaggerItem } from '@/components/ui/animated-card'
 
 interface Challenge {
-  id: string
-  title: string
-  description: string
-  companyName: string
-  companyLogo?: string
-  companyIndustry?: string
-  discipline: string
-  challengeType: string
-  requiredSkills: string[]
-  teamSizeMin: number
-  teamSizeMax: number
-  estimatedDuration?: string
-  applicationDeadline?: string
-  mentorshipOffered: boolean
-  compensation?: string
-  status: string
-  slug: string
-  maxSubmissions: number
-  hasApplied?: boolean
-  mySubmission?: {
-    id: string
-    status: string
-  } | null
-  spotsRemaining?: number
-  _count?: {
-    submissions: number
-  }
+  id: string; title: string; description: string; companyName: string
+  companyLogo?: string; companyIndustry?: string; discipline: string
+  challengeType: string; requiredSkills: string[]; teamSizeMin: number; teamSizeMax: number
+  estimatedDuration?: string; applicationDeadline?: string; mentorshipOffered: boolean
+  compensation?: string; status: string; slug: string; maxSubmissions: number
+  hasApplied?: boolean; mySubmission?: { id: string; status: string } | null
+  spotsRemaining?: number; _count?: { submissions: number }
 }
 
 export default function StudentChallengesPage() {
+  const t = useTranslations('studentChallenges')
   const [challenges, setChallenges] = useState<Challenge[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
@@ -47,196 +34,107 @@ export default function StudentChallengesPage() {
   const [typeFilter, setTypeFilter] = useState('all')
 
   useEffect(() => {
-    const fetchChallenges = async () => {
-      try {
-        const response = await fetch('/api/student/challenges')
-        if (response.ok) {
-          const data = await response.json()
-          setChallenges(data.challenges)
-        }
-      } catch (error) {
-        console.error('Failed to fetch challenges:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchChallenges()
+    fetch('/api/student/challenges')
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(data => setChallenges(data.challenges || []))
+      .catch(() => {})
+      .finally(() => setLoading(false))
   }, [])
 
-  const filteredChallenges = challenges.filter(challenge => {
-    const matchesSearch = challenge.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         challenge.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         challenge.description.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesDiscipline = disciplineFilter === 'all' || challenge.discipline === disciplineFilter
-    const matchesType = typeFilter === 'all' || challenge.challengeType === typeFilter
-
+  const filtered = challenges.filter(c => {
+    const matchesSearch = !searchTerm || c.title.toLowerCase().includes(searchTerm.toLowerCase()) || c.companyName.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesDiscipline = disciplineFilter === 'all' || c.discipline === disciplineFilter
+    const matchesType = typeFilter === 'all' || c.challengeType === typeFilter
     return matchesSearch && matchesDiscipline && matchesType
   })
 
-  const appliedChallenges = challenges.filter(c => c.hasApplied)
-  const availableChallenges = filteredChallenges.filter(c => !c.hasApplied)
+  const applied = challenges.filter(c => c.hasApplied)
+  const completed = applied.filter(c => c.mySubmission?.status === 'APPROVED').length
+  const available = filtered.filter(c => !c.hasApplied)
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary mb-4" />
-          <p className="text-muted-foreground">Loading challenges...</p>
-        </div>
+      <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
+        <Skeleton className="h-32 rounded-2xl" />
+        <div className="grid grid-cols-3 gap-4">{Array.from({ length: 3 }, (_, i) => <Skeleton key={i} className="h-24 rounded-2xl" />)}</div>
+        <Skeleton className="h-64 rounded-2xl" />
       </div>
     )
   }
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6 pb-12">
-      {/* Header */}
-      <div className="flex items-center justify-between pt-2">
-        <div>
-          <h1 className="text-2xl font-semibold text-foreground">Company Challenges</h1>
-          <p className="text-muted-foreground mt-1">
-            Work on real-world projects from leading companies
-          </p>
-        </div>
-        <Button variant="outline" asChild>
-          <Link href="/dashboard/student/challenges/submissions">
-            <FileText className="h-4 w-4 mr-2" />
-            My Submissions
-          </Link>
-        </Button>
-      </div>
+    <div className="max-w-6xl mx-auto px-4 py-6 space-y-5">
+      <MetricHero gradient="primary">
+        <h1 className="text-2xl font-bold">{t('title')}</h1>
+        <p className="text-sm text-muted-foreground mt-1">{t('subtitle')}</p>
+      </MetricHero>
 
-      {/* Stats */}
-      <div className="grid grid-cols-3 gap-4">
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-2xl font-bold">{challenges.length}</p>
-                <p className="text-sm text-muted-foreground">Available</p>
-              </div>
-              <Trophy className="h-8 w-8 text-primary" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-2xl font-bold">{appliedChallenges.length}</p>
-                <p className="text-sm text-muted-foreground">Applied</p>
-              </div>
-              <FileText className="h-8 w-8 text-primary" />
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-2xl font-bold">
-                  {appliedChallenges.filter(c => c.mySubmission?.status === 'APPROVED').length}
-                </p>
-                <p className="text-sm text-muted-foreground">Completed</p>
-              </div>
-              <CheckCircle className="h-8 w-8 text-primary" />
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      <StaggerContainer className="grid grid-cols-3 gap-4">
+        <StaggerItem><StatCard label={t('stats.available')} value={challenges.length} icon={<Trophy className="h-5 w-5" />} variant="blue" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.applied')} value={applied.length} icon={<FileText className="h-5 w-5" />} variant="amber" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.completed')} value={completed} icon={<CheckCircle className="h-5 w-5" />} variant="green" /></StaggerItem>
+      </StaggerContainer>
 
       {/* Filters */}
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex flex-col sm:flex-row gap-4">
+      <GlassCard delay={0.1}>
+        <div className="p-4">
+          <div className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground/60" />
-              <Input
-                placeholder="Search challenges..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9"
-              />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
+              <Input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder={t('searchPlaceholder')} className="pl-9" />
             </div>
             <Select value={disciplineFilter} onValueChange={setDisciplineFilter}>
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Discipline" />
-              </SelectTrigger>
+              <SelectTrigger className="w-full sm:w-[160px]"><SelectValue placeholder={t('filters.discipline')} /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Disciplines</SelectItem>
+                <SelectItem value="all">{t('filters.all')}</SelectItem>
                 <SelectItem value="TECHNOLOGY">Technology</SelectItem>
                 <SelectItem value="BUSINESS">Business</SelectItem>
                 <SelectItem value="ENGINEERING">Engineering</SelectItem>
                 <SelectItem value="DESIGN">Design</SelectItem>
-                <SelectItem value="HEALTHCARE">Healthcare</SelectItem>
-                <SelectItem value="SCIENCE">Science</SelectItem>
               </SelectContent>
             </Select>
             <Select value={typeFilter} onValueChange={setTypeFilter}>
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Type" />
-              </SelectTrigger>
+              <SelectTrigger className="w-full sm:w-[160px]"><SelectValue placeholder={t('filters.type')} /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Types</SelectItem>
+                <SelectItem value="all">{t('filters.all')}</SelectItem>
                 <SelectItem value="CAPSTONE">Capstone</SelectItem>
-                <SelectItem value="INTERNSHIP">Internship</SelectItem>
-                <SelectItem value="COURSE_PROJECT">Course Project</SelectItem>
-                <SelectItem value="THESIS">Thesis</SelectItem>
+                <SelectItem value="INTERNSHIP">{t('filters.internship')}</SelectItem>
                 <SelectItem value="HACKATHON">Hackathon</SelectItem>
-                <SelectItem value="RESEARCH">Research</SelectItem>
+                <SelectItem value="THESIS">{t('filters.thesis')}</SelectItem>
+                <SelectItem value="RESEARCH">{t('filters.research')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </GlassCard>
 
       {/* My Applications */}
-      {appliedChallenges.length > 0 && (
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold">My Applications</h2>
-          {appliedChallenges.map((challenge) => (
-            <ChallengeCard
-              key={challenge.id}
-              challenge={challenge}
-              variant="student"
-            />
-          ))}
+      {applied.length > 0 && (
+        <div className="space-y-3">
+          <h2 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">{t('myApplications')}</h2>
+          {applied.map(c => <ChallengeCard key={c.id} challenge={c} variant="student" />)}
         </div>
       )}
 
-      {/* Available Challenges */}
-      <div className="space-y-4">
-        <h2 className="text-lg font-semibold">
-          {appliedChallenges.length > 0 ? 'More Challenges' : 'Available Challenges'}
+      {/* Available */}
+      <div className="space-y-3">
+        <h2 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">
+          {applied.length > 0 ? t('moreChallenges') : t('availableChallenges')}
         </h2>
-        {availableChallenges.length > 0 ? (
-          <div className="space-y-4">
-            {availableChallenges.map((challenge) => (
-              <ChallengeCard
-                key={challenge.id}
-                challenge={challenge}
-                variant="student"
-              />
-            ))}
-          </div>
+        {available.length > 0 ? (
+          available.map(c => <ChallengeCard key={c.id} challenge={c} variant="student" />)
         ) : (
-          <Card>
-            <CardContent className="py-12">
-              <div className="text-center">
-                <Trophy className="h-12 w-12 mx-auto text-muted-foreground/40 mb-4" />
-                <h3 className="font-medium text-foreground mb-2">
-                  {searchTerm || disciplineFilter !== 'all' || typeFilter !== 'all'
-                    ? 'No challenges match your filters'
-                    : 'No challenges available'}
-                </h3>
-                <p className="text-muted-foreground">
-                  {searchTerm || disciplineFilter !== 'all' || typeFilter !== 'all'
-                    ? 'Try adjusting your filters'
-                    : 'Check back later for new opportunities'}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          <GlassCard delay={0.2}>
+            <div className="p-10 text-center">
+              <Trophy className="h-10 w-10 text-muted-foreground/30 mx-auto mb-3" />
+              <p className="text-sm font-medium">
+                {searchTerm || disciplineFilter !== 'all' || typeFilter !== 'all' ? t('empty.filtered') : t('empty.none')}
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                {searchTerm || disciplineFilter !== 'all' || typeFilter !== 'all' ? t('empty.adjustFilters') : t('empty.checkBack')}
+              </p>
+            </div>
+          </GlassCard>
         )}
       </div>
     </div>

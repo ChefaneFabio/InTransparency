@@ -5166,6 +5166,17 @@
     "interviewOn": "Interview on",
     "empty": "No applications in this category"
   },
+  "studentChallenges": {
+    "title": "Company Challenges",
+    "subtitle": "Real-world projects from leading companies",
+    "searchPlaceholder": "Search challenges...",
+    "stats": { "available": "Available", "applied": "Applied", "completed": "Completed" },
+    "filters": { "all": "All", "discipline": "Discipline", "type": "Type", "internship": "Internship", "thesis": "Thesis", "research": "Research" },
+    "myApplications": "My applications",
+    "moreChallenges": "More challenges",
+    "availableChallenges": "Available challenges",
+    "empty": { "filtered": "No challenges match your filters", "adjustFilters": "Try adjusting your search", "none": "No challenges available yet", "checkBack": "Check back later for new opportunities" }
+  },
   "studentMessages": {
     "title": "Messages",
     "subtitle": "Your conversations with recruiters and employers",

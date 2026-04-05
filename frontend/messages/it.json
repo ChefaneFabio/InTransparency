@@ -5139,6 +5139,17 @@
     "interviewOn": "Colloquio il",
     "empty": "Nessuna candidatura in questa categoria"
   },
+  "studentChallenges": {
+    "title": "Challenge Aziendali",
+    "subtitle": "Progetti reali da aziende leader",
+    "searchPlaceholder": "Cerca challenge...",
+    "stats": { "available": "Disponibili", "applied": "Candidature", "completed": "Completate" },
+    "filters": { "all": "Tutte", "discipline": "Disciplina", "type": "Tipo", "internship": "Stage", "thesis": "Tesi", "research": "Ricerca" },
+    "myApplications": "Le mie candidature",
+    "moreChallenges": "Altre challenge",
+    "availableChallenges": "Challenge disponibili",
+    "empty": { "filtered": "Nessuna challenge corrisponde ai filtri", "adjustFilters": "Prova a modificare la ricerca", "none": "Nessuna challenge disponibile", "checkBack": "Torna a controllare per nuove opportunità" }
+  },
   "studentMessages": {
     "title": "Messaggi",
     "subtitle": "Le tue conversazioni con recruiter e datori di lavoro",
