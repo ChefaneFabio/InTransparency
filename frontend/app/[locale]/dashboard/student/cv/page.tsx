@@ -7,67 +7,44 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Loader2 } from 'lucide-react'
-
-type CvStyle = 'classic' | 'modern'
+import { Progress } from '@/components/ui/progress'
+import {
+  Download, Loader2, Mail, Globe, Github, Linkedin, MapPin, Calendar,
+  GraduationCap, Briefcase, FileText, Languages, Award, Target, AlertCircle, CheckCircle,
+} from 'lucide-react'
 
 interface ProfileData {
   user: {
-    firstName: string | null
-    lastName: string | null
-    email: string | null
-    bio: string | null
-    tagline: string | null
-    university: string | null
-    degree: string | null
-    graduationYear: number | null
-    linkedinUrl: string | null
-    githubUrl: string | null
-    portfolioUrl: string | null
-    thesisTitle: string | null
+    firstName: string | null; lastName: string | null; email: string | null
+    bio: string | null; tagline: string | null; university: string | null
+    degree: string | null; graduationYear: number | null; gpa: string | null; gpaPublic: boolean
+    location: string | null; linkedinUrl: string | null; githubUrl: string | null; portfolioUrl: string | null
+    thesisTitle: string | null; thesisSubject: string | null; thesisSupervisor: string | null
     languageProficiencies: Array<{ language: string; motherTongue: boolean; reading: string | null; writing: string | null; listening: string | null; speaking: string | null; interaction: string | null }>
-    certifications: Array<{ name: string; issuer: string }>
-    workExperience: Array<{ company: string; role: string }> | null
-    desiredOccupation: string | null
-    preferredSectors: string[]
+    certifications: Array<{ name: string; issuer: string; dateObtained: string | null }>
+    workExperience: Array<{ company: string; role: string; startDate: string; endDate: string; current: boolean; description: string; contractType?: string | null }> | null
+    desiredOccupation: string | null; preferredSectors: string[]
+    willingToRelocate: boolean; willingToRelocateAbroad: boolean
   }
   skills: Array<{ name: string; level: number; projectCount: number }>
-  projects: Array<{ id: string; title: string; skills: string[] }>
+  projects: Array<{ id: string; title: string; skills: string[]; description?: string }>
   profileCompletion: number
   githubUrl: string | null
 }
 
-interface PersonalityData {
-  bigFive: { openness: number; conscientiousness: number; extraversion: number; agreeableness: number; neuroticism: number } | null
-}
-
-const TRAIT_KEYS = ['openness', 'conscientiousness', 'extraversion', 'agreeableness', 'neuroticism'] as const
-
 export default function CvPage() {
   const t = useTranslations('studentCv')
   const [profile, setProfile] = useState<ProfileData | null>(null)
-  const [personality, setPersonality] = useState<PersonalityData | null>(null)
   const [loading, setLoading] = useState(true)
   const [downloading, setDownloading] = useState(false)
-  const [style, setStyle] = useState<CvStyle>('classic')
 
   useEffect(() => {
     const load = async () => {
       try {
-        const [profileRes, personalityRes] = await Promise.all([
-          fetch('/api/dashboard/student/profile'),
-          fetch('/api/dashboard/student/personality'),
-        ])
-        if (profileRes.ok) setProfile(await profileRes.json())
-        if (personalityRes.ok) {
-          const data = await personalityRes.json()
-          setPersonality(data)
-        }
-      } catch (err) {
-        console.error('Failed to load data:', err)
-      } finally {
-        setLoading(false)
-      }
+        const res = await fetch('/api/dashboard/student/profile')
+        if (res.ok) setProfile(await res.json())
+      } catch (err) { console.error('Failed to load:', err) }
+      finally { setLoading(false) }
     }
     load()
   }, [])
@@ -75,38 +52,35 @@ export default function CvPage() {
   const handleDownload = useCallback(async () => {
     setDownloading(true)
     try {
-      const res = await fetch(`/api/dashboard/student/cv?style=${style}`)
-      if (!res.ok) throw new Error('Download failed')
+      const res = await fetch('/api/dashboard/student/cv')
+      if (!res.ok) throw new Error()
       const blob = await res.blob()
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
       const name = [profile?.user.firstName, profile?.user.lastName].filter(Boolean).join('-') || 'student'
-      a.download = `cv-${name.toLowerCase()}.pdf`
+      a.download = `CV-${name}.pdf`
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
       URL.revokeObjectURL(url)
-    } catch (err) {
-      console.error('Download error:', err)
-    } finally {
-      setDownloading(false)
-    }
-  }, [style, profile])
+    } catch { alert(t('downloadFailed')) }
+    finally { setDownloading(false) }
+  }, [profile, t])
 
   if (loading) {
     return (
-      <div className="max-w-3xl mx-auto space-y-6">
-        <Skeleton className="h-8 w-48" />
-        <Skeleton className="h-4 w-72" />
-        <Skeleton className="h-[600px] w-full" />
+      <div className="max-w-4xl mx-auto px-4 space-y-6">
+        <Skeleton className="h-10 w-64" />
+        <Skeleton className="h-[700px] w-full rounded-xl" />
       </div>
     )
   }
 
   if (!profile) {
     return (
-      <div className="max-w-3xl mx-auto text-center py-16">
+      <div className="max-w-4xl mx-auto px-4 text-center py-16">
+        <AlertCircle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
         <p className="text-muted-foreground">{t('empty')}</p>
       </div>
     )
@@ -114,206 +88,284 @@ export default function CvPage() {
 
   const u = profile.user
   const fullName = [u.firstName, u.lastName].filter(Boolean).join(' ')
+  const hasLanguages = u.languageProficiencies && u.languageProficiencies.length > 0
+  const hasExperience = u.workExperience && u.workExperience.length > 0
+  const hasCerts = u.certifications && u.certifications.length > 0
   const hasProjects = profile.projects.length > 0
-  const hasBio = !!u.bio
-  const hasPersonality = !!personality?.bigFive
+  const hasSkills = profile.skills.length > 0
 
-  const topTraits = hasPersonality
-    ? TRAIT_KEYS
-        .map((k) => ({ key: k, score: personality!.bigFive![k] }))
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 3)
-    : []
-
-  const missing: Array<{ key: string; href: string }> = []
-  if (!hasBio) missing.push({ key: 'bio', href: '/dashboard/student/profile' })
-  if (!hasProjects) missing.push({ key: 'projects', href: '/dashboard/student/projects/new' })
-  if (!hasPersonality) missing.push({ key: 'personality', href: '/dashboard/student/analytics' })
+  // Completeness check
+  const sections = [
+    { key: 'bio', filled: !!u.bio, label: t('sections.aboutYou') },
+    { key: 'education', filled: !!(u.university && u.degree), label: t('sections.education') },
+    { key: 'skills', filled: hasSkills, label: t('sections.skills') },
+    { key: 'projects', filled: hasProjects, label: t('sections.projects') },
+    { key: 'languages', filled: hasLanguages, label: t('sections.languages') },
+    { key: 'experience', filled: hasExperience, label: t('sections.experience') },
+  ]
+  const filledCount = sections.filter(s => s.filled).length
+  const cvStrength = Math.round((filledCount / sections.length) * 100)
 
   return (
-    <div className="max-w-3xl mx-auto space-y-8">
-      {/* Top section */}
-      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+    <div className="max-w-4xl mx-auto px-4 space-y-6">
+      {/* Top bar */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold">{t('title')}</h1>
-          <p className="text-muted-foreground mt-1">{t('subtitle')}</p>
+          <p className="text-muted-foreground text-sm mt-1">{t('subtitle')}</p>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="flex rounded-md border border-border overflow-hidden text-sm">
-            <button
-              onClick={() => setStyle('classic')}
-              className={`px-3 py-1.5 transition-colors ${style === 'classic' ? 'bg-primary text-primary-foreground' : 'bg-background text-muted-foreground hover:bg-muted'}`}
-            >
-              {t('style.classic')}
-            </button>
-            <button
-              onClick={() => setStyle('modern')}
-              className={`px-3 py-1.5 transition-colors ${style === 'modern' ? 'bg-primary text-primary-foreground' : 'bg-background text-muted-foreground hover:bg-muted'}`}
-            >
-              {t('style.modern')}
-            </button>
-          </div>
-          <Button onClick={handleDownload} disabled={downloading}>
-            {downloading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-            {downloading ? t('downloading') : t('download')}
-          </Button>
-        </div>
+        <Button onClick={handleDownload} disabled={downloading} size="lg">
+          {downloading ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Download className="h-4 w-4 mr-2" />}
+          {downloading ? t('downloading') : t('download')}
+        </Button>
       </div>
 
-      {/* Live CV preview */}
-      <Card className="shadow-lg">
-        <CardContent className="p-8 space-y-6">
-          {/* Header */}
-          <div className="border-b border-border pb-4">
-            <h2 className="text-xl font-bold">{fullName || 'Your Name'}</h2>
-            {u.tagline && <p className="text-muted-foreground mt-1">{u.tagline}</p>}
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground mt-2">
-              {u.university && <span>{u.university}</span>}
-              {u.degree && <span>{u.degree}</span>}
-            </div>
+      {/* CV Strength indicator */}
+      <Card>
+        <CardContent className="p-4">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-medium">{t('strength')}</span>
+            <span className="text-sm text-muted-foreground">{cvStrength}%</span>
           </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-2">{t('preview.contact')}</h3>
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
-              {u.email && <span>{u.email}</span>}
-              {u.linkedinUrl && <a href={u.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">LinkedIn</a>}
-              {(u.githubUrl || profile.githubUrl) && <a href={u.githubUrl || profile.githubUrl || ''} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">GitHub</a>}
-              {u.portfolioUrl && <a href={u.portfolioUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Portfolio</a>}
-            </div>
+          <Progress value={cvStrength} className="h-2 mb-3" />
+          <div className="flex flex-wrap gap-2">
+            {sections.map(s => (
+              <div key={s.key} className="flex items-center gap-1 text-xs">
+                {s.filled ? <CheckCircle className="h-3 w-3 text-green-500" /> : <div className="h-3 w-3 rounded-full border border-muted-foreground/30" />}
+                <span className={s.filled ? 'text-muted-foreground' : 'text-foreground'}>{s.label}</span>
+              </div>
+            ))}
           </div>
-
-          {/* Skills */}
-          {profile.skills.length > 0 && (
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-2">{t('preview.skills')}</h3>
-              <div className="flex flex-wrap gap-2">
-                {profile.skills.map((s) => (
-                  <Badge key={s.name} variant="secondary">{s.name}</Badge>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Projects */}
-          {hasProjects && (
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-2">{t('preview.projects')}</h3>
-              <ul className="space-y-2">
-                {profile.projects.map((p) => (
-                  <li key={p.id}>
-                    <span className="font-medium">{p.title}</span>
-                    {p.skills.length > 0 && (
-                      <span className="text-sm text-muted-foreground ml-2">{p.skills.join(', ')}</span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Education */}
-          {(u.university || u.degree) && (
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-2">{t('preview.education')}</h3>
-              <p className="font-medium">{u.university}</p>
-              <p className="text-sm text-muted-foreground">
-                {[u.degree, u.graduationYear].filter(Boolean).join(' — ')}
-              </p>
-            </div>
-          )}
-
-          {/* Languages */}
-          {u.languageProficiencies && u.languageProficiencies.length > 0 && (
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-2">Languages</h3>
-              <div className="flex flex-wrap gap-2">
-                {u.languageProficiencies.map((lp) => (
-                  <Badge key={lp.language} variant="secondary">
-                    {lp.language}{lp.motherTongue ? ' (Mother Tongue)' : ''}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Work Experience */}
-          {u.workExperience && u.workExperience.length > 0 && (
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-2">Work Experience</h3>
-              <ul className="space-y-1">
-                {u.workExperience.map((we, i) => (
-                  <li key={i} className="text-sm">
-                    <span className="font-medium">{we.role}</span>
-                    <span className="text-muted-foreground"> — {we.company}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Certifications */}
-          {u.certifications && u.certifications.length > 0 && (
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-2">Certifications</h3>
-              <ul className="space-y-1">
-                {u.certifications.map((c, i) => (
-                  <li key={i} className="text-sm">
-                    <span className="font-medium">{c.name}</span>
-                    <span className="text-muted-foreground"> — {c.issuer}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Career Preferences */}
-          {(u.desiredOccupation || (u.preferredSectors && u.preferredSectors.length > 0)) && (
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-2">Career Preferences</h3>
-              {u.desiredOccupation && <p className="text-sm font-medium">{u.desiredOccupation}</p>}
-              {u.preferredSectors && u.preferredSectors.length > 0 && (
-                <div className="flex flex-wrap gap-1 mt-1">
-                  {u.preferredSectors.map((s) => (
-                    <Badge key={s} variant="outline" className="text-xs">{s}</Badge>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Personality */}
-          {hasPersonality && topTraits.length > 0 && (
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-2">{t('preview.personality')}</h3>
-              <div className="flex flex-wrap gap-2">
-                {topTraits.map((trait) => (
-                  <Badge key={trait.key} variant="outline" className="capitalize">{trait.key}</Badge>
-                ))}
-              </div>
-            </div>
-          )}
         </CardContent>
       </Card>
 
-      {/* Missing data nudges */}
-      {missing.length > 0 && (
-        <Card>
-          <CardContent className="p-6">
-            <h3 className="font-semibold mb-3">{t('missing.title')}</h3>
-            <ul className="space-y-2">
-              {missing.map((m) => (
-                <li key={m.key}>
-                  <Link href={m.href as any} className="text-sm text-primary hover:underline">
-                    {t(`missing.${m.key}`)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      )}
+      {/* CV Document Preview */}
+      <Card className="shadow-xl border-2">
+        <CardContent className="p-0">
+          {/* Document-style CV */}
+          <div className="bg-white dark:bg-slate-950 rounded-lg overflow-hidden">
+            {/* Header band */}
+            <div className="bg-primary/5 border-b px-8 py-6">
+              <h2 className="text-2xl font-bold text-foreground">{fullName || t('yourName')}</h2>
+              {u.tagline && <p className="text-muted-foreground mt-1">{u.tagline}</p>}
+
+              {/* Contact row */}
+              <div className="flex flex-wrap gap-x-5 gap-y-1.5 mt-3 text-sm text-muted-foreground">
+                {u.email && <span className="flex items-center gap-1.5"><Mail className="h-3.5 w-3.5" />{u.email}</span>}
+                {u.location && <span className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" />{u.location}</span>}
+                {u.linkedinUrl && <a href={u.linkedinUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-primary hover:underline"><Linkedin className="h-3.5 w-3.5" />LinkedIn</a>}
+                {(u.githubUrl || profile.githubUrl) && <a href={u.githubUrl || profile.githubUrl || ''} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-primary hover:underline"><Github className="h-3.5 w-3.5" />GitHub</a>}
+                {u.portfolioUrl && <a href={u.portfolioUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-primary hover:underline"><Globe className="h-3.5 w-3.5" />Portfolio</a>}
+              </div>
+
+              {/* Mobility badges */}
+              {(u.willingToRelocate || u.willingToRelocateAbroad) && (
+                <div className="flex gap-2 mt-2">
+                  {u.willingToRelocate && <Badge variant="outline" className="text-[10px]">{t('badges.relocate')}</Badge>}
+                  {u.willingToRelocateAbroad && <Badge variant="outline" className="text-[10px] border-primary/30 text-primary">{t('badges.abroad')}</Badge>}
+                </div>
+              )}
+            </div>
+
+            <div className="px-8 py-6 space-y-6">
+              {/* About */}
+              {u.bio && (
+                <CvSection icon={<FileText className="h-4 w-4" />} title={t('sections.aboutYou')}>
+                  <p className="text-sm leading-relaxed text-foreground/80">{u.bio}</p>
+                </CvSection>
+              )}
+
+              {/* Education */}
+              {(u.university || u.degree) && (
+                <CvSection icon={<GraduationCap className="h-4 w-4" />} title={t('sections.education')}>
+                  <div>
+                    <p className="font-medium text-sm">{u.degree}</p>
+                    <p className="text-sm text-muted-foreground">{u.university}</p>
+                    <div className="flex gap-3 text-xs text-muted-foreground mt-0.5">
+                      {u.graduationYear && <span>{u.graduationYear}</span>}
+                      {u.gpa && u.gpaPublic && <span>GPA: {u.gpa}</span>}
+                    </div>
+                  </div>
+                  {u.thesisTitle && (
+                    <div className="mt-3 pl-3 border-l-2 border-primary/20">
+                      <p className="text-xs font-medium text-muted-foreground">{t('thesis')}</p>
+                      <p className="text-sm font-medium">{u.thesisTitle}</p>
+                      {u.thesisSupervisor && <p className="text-xs text-muted-foreground">{t('supervisor')}: {u.thesisSupervisor}</p>}
+                    </div>
+                  )}
+                </CvSection>
+              )}
+
+              {/* Work Experience */}
+              {hasExperience && (
+                <CvSection icon={<Briefcase className="h-4 w-4" />} title={t('sections.experience')}>
+                  <div className="space-y-4">
+                    {u.workExperience!.map((exp, i) => (
+                      <div key={i}>
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <p className="font-medium text-sm">{exp.role}</p>
+                            <p className="text-sm text-muted-foreground">{exp.company}</p>
+                          </div>
+                          <span className="text-xs text-muted-foreground whitespace-nowrap ml-4">
+                            {exp.startDate} — {exp.current ? t('present') : exp.endDate}
+                          </span>
+                        </div>
+                        {exp.contractType && <Badge variant="outline" className="text-[10px] mt-1">{exp.contractType}</Badge>}
+                        {exp.description && <p className="text-xs text-foreground/70 mt-1.5 leading-relaxed">{exp.description}</p>}
+                      </div>
+                    ))}
+                  </div>
+                </CvSection>
+              )}
+
+              {/* Skills */}
+              {hasSkills && (
+                <CvSection icon={<Target className="h-4 w-4" />} title={t('sections.skills')}>
+                  <div className="grid grid-cols-2 gap-2">
+                    {profile.skills.slice(0, 12).map(skill => (
+                      <div key={skill.name} className="flex items-center gap-2">
+                        <div className="flex-1">
+                          <div className="flex justify-between text-xs mb-0.5">
+                            <span className="font-medium">{skill.name}</span>
+                            <span className="text-muted-foreground">{skill.projectCount}p</span>
+                          </div>
+                          <Progress value={skill.level} className="h-1" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CvSection>
+              )}
+
+              {/* Projects */}
+              {hasProjects && (
+                <CvSection icon={<FileText className="h-4 w-4" />} title={t('sections.projects')}>
+                  <div className="space-y-3">
+                    {profile.projects.slice(0, 5).map(project => (
+                      <div key={project.id}>
+                        <p className="font-medium text-sm">{project.title}</p>
+                        {project.skills.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mt-1">
+                            {project.skills.slice(0, 6).map(s => (
+                              <Badge key={s} variant="secondary" className="text-[10px]">{s}</Badge>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </CvSection>
+              )}
+
+              {/* Languages — Europass CEFR style */}
+              {hasLanguages && (
+                <CvSection icon={<Languages className="h-4 w-4" />} title={t('sections.languages')}>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-xs">
+                      <thead>
+                        <tr className="border-b text-muted-foreground">
+                          <th className="text-left py-1.5 font-medium">{t('lang.language')}</th>
+                          <th className="text-center py-1.5 font-medium">{t('lang.reading')}</th>
+                          <th className="text-center py-1.5 font-medium">{t('lang.writing')}</th>
+                          <th className="text-center py-1.5 font-medium">{t('lang.listening')}</th>
+                          <th className="text-center py-1.5 font-medium">{t('lang.speaking')}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {u.languageProficiencies.map(lp => (
+                          <tr key={lp.language} className="border-b last:border-0">
+                            <td className="py-1.5 font-medium">{lp.language}</td>
+                            {lp.motherTongue ? (
+                              <td colSpan={4} className="py-1.5 text-center text-muted-foreground italic">{t('lang.motherTongue')}</td>
+                            ) : (
+                              <>
+                                <td className="py-1.5 text-center"><CefrBadge level={lp.reading} /></td>
+                                <td className="py-1.5 text-center"><CefrBadge level={lp.writing} /></td>
+                                <td className="py-1.5 text-center"><CefrBadge level={lp.listening} /></td>
+                                <td className="py-1.5 text-center"><CefrBadge level={lp.speaking} /></td>
+                              </>
+                            )}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </CvSection>
+              )}
+
+              {/* Certifications */}
+              {hasCerts && (
+                <CvSection icon={<Award className="h-4 w-4" />} title={t('sections.certifications')}>
+                  <div className="space-y-2">
+                    {u.certifications.map((cert, i) => (
+                      <div key={i} className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm font-medium">{cert.name}</p>
+                          <p className="text-xs text-muted-foreground">{cert.issuer}</p>
+                        </div>
+                        {cert.dateObtained && (
+                          <span className="text-xs text-muted-foreground">{new Date(cert.dateObtained).getFullYear()}</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </CvSection>
+              )}
+
+              {/* Career Preferences */}
+              {(u.desiredOccupation || u.preferredSectors.length > 0) && (
+                <CvSection icon={<Target className="h-4 w-4" />} title={t('sections.career')}>
+                  {u.desiredOccupation && <p className="text-sm font-medium">{u.desiredOccupation}</p>}
+                  {u.preferredSectors.length > 0 && (
+                    <div className="flex flex-wrap gap-1 mt-1">
+                      {u.preferredSectors.map(s => <Badge key={s} variant="outline" className="text-[10px]">{s}</Badge>)}
+                    </div>
+                  )}
+                </CvSection>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="px-8 py-3 bg-muted/30 border-t text-center">
+              <p className="text-[10px] text-muted-foreground">
+                {t('footer', { platform: 'InTransparency' })}
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
+  )
+}
+
+/** CV Section with icon + title + content */
+function CvSection({ icon, title, children }: { icon: React.ReactNode; title: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <div className="flex items-center gap-2 mb-2 pb-1 border-b">
+        <span className="text-primary">{icon}</span>
+        <h3 className="text-sm font-semibold uppercase tracking-wide text-foreground">{title}</h3>
+      </div>
+      {children}
+    </div>
+  )
+}
+
+/** CEFR level badge with color coding */
+function CefrBadge({ level }: { level: string | null }) {
+  if (!level) return <span className="text-muted-foreground">—</span>
+  const colors: Record<string, string> = {
+    A1: 'bg-red-100 text-red-700',
+    A2: 'bg-orange-100 text-orange-700',
+    B1: 'bg-yellow-100 text-yellow-700',
+    B2: 'bg-green-100 text-green-700',
+    C1: 'bg-blue-100 text-blue-700',
+    C2: 'bg-purple-100 text-purple-700',
+  }
+  return (
+    <span className={`inline-block px-1.5 py-0.5 rounded text-[10px] font-medium ${colors[level] || 'bg-muted text-muted-foreground'}`}>
+      {level}
+    </span>
   )
 }

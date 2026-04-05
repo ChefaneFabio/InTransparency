@@ -5981,33 +5981,38 @@
   },
   "studentCv": {
     "title": "Your CV",
-    "subtitle": "Auto-generated from your portfolio. Always up to date.",
+    "subtitle": "Auto-generated from your portfolio. Always up to date. Designed for international recruiters.",
     "download": "Download PDF",
     "downloading": "Generating...",
-    "style": {
-      "label": "Style",
-      "classic": "Classic",
-      "modern": "Modern"
-    },
-    "preview": {
-      "contact": "Contact",
+    "downloadFailed": "Download failed. Please try again.",
+    "strength": "CV Strength",
+    "yourName": "Your Name",
+    "present": "Present",
+    "thesis": "Thesis",
+    "supervisor": "Supervisor",
+    "sections": {
+      "aboutYou": "About",
+      "education": "Education",
+      "experience": "Work Experience",
       "skills": "Skills",
       "projects": "Projects",
-      "education": "Education",
-      "personality": "Personality",
       "languages": "Languages",
-      "workExperience": "Work Experience",
       "certifications": "Certifications",
-      "careerPreferences": "Career Preferences"
+      "career": "Career Preferences"
     },
-    "missing": {
-      "title": "Missing something?",
-      "bio": "Add a bio to introduce yourself",
-      "projects": "Add your first project",
-      "personality": "Take personality assessment",
-      "languages": "Add your language skills",
-      "certifications": "Add your certifications"
+    "lang": {
+      "language": "Language",
+      "reading": "Reading",
+      "writing": "Writing",
+      "listening": "Listening",
+      "speaking": "Speaking",
+      "motherTongue": "Mother Tongue"
     },
+    "badges": {
+      "relocate": "Willing to relocate",
+      "abroad": "Available internationally"
+    },
+    "footer": "Generated from verified portfolio on {platform}",
     "empty": "Complete your profile to generate your CV"
   },
   "personalityInsights": {

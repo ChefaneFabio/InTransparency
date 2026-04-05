@@ -5942,33 +5942,38 @@
   },
   "studentCv": {
     "title": "Il Tuo CV",
-    "subtitle": "Generato automaticamente dal tuo portfolio. Sempre aggiornato.",
+    "subtitle": "Generato automaticamente dal tuo portfolio. Sempre aggiornato. Progettato per recruiter internazionali.",
     "download": "Scarica PDF",
     "downloading": "Generazione...",
-    "style": {
-      "label": "Stile",
-      "classic": "Classico",
-      "modern": "Moderno"
-    },
-    "preview": {
-      "contact": "Contatti",
+    "downloadFailed": "Download fallito. Riprova.",
+    "strength": "Forza del CV",
+    "yourName": "Il Tuo Nome",
+    "present": "Presente",
+    "thesis": "Tesi",
+    "supervisor": "Relatore",
+    "sections": {
+      "aboutYou": "Chi sono",
+      "education": "Formazione",
+      "experience": "Esperienze Lavorative",
       "skills": "Competenze",
       "projects": "Progetti",
-      "education": "Istruzione",
-      "personality": "Personalità",
       "languages": "Lingue",
-      "workExperience": "Esperienze Lavorative",
       "certifications": "Certificazioni",
-      "careerPreferences": "Preferenze di Carriera"
+      "career": "Preferenze di Carriera"
     },
-    "missing": {
-      "title": "Manca qualcosa?",
-      "bio": "Aggiungi una bio per presentarti",
-      "projects": "Aggiungi il tuo primo progetto",
-      "personality": "Fai il test di personalità",
-      "languages": "Aggiungi le tue competenze linguistiche",
-      "certifications": "Aggiungi le tue certificazioni"
+    "lang": {
+      "language": "Lingua",
+      "reading": "Lettura",
+      "writing": "Scrittura",
+      "listening": "Ascolto",
+      "speaking": "Parlato",
+      "motherTongue": "Madrelingua"
     },
+    "badges": {
+      "relocate": "Disponibile a trasferirsi",
+      "abroad": "Disponibile all'estero"
+    },
+    "footer": "Generato dal portfolio verificato su {platform}",
     "empty": "Completa il tuo profilo per generare il CV"
   },
   "personalityInsights": {
