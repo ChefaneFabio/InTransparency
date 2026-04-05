@@ -10,8 +10,16 @@ import { Textarea } from '@/components/ui/textarea'
 import { Input } from '@/components/ui/input'
 import { Progress } from '@/components/ui/progress'
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import {
   Loader2, Plus, X, Paperclip, Image as ImageIcon, FileText,
-  Send, ChevronDown, ChevronUp, Pencil, Check,
+  Send, ChevronDown, ChevronUp, Pencil, Check, AlertTriangle,
 } from 'lucide-react'
 
 interface ProjectProfile {
@@ -73,6 +81,9 @@ export default function NewProjectPage() {
   const [profileExpanded, setProfileExpanded] = useState(true)
   const [editingField, setEditingField] = useState<string | null>(null)
   const [editValue, setEditValue] = useState('')
+  const [showMissingDialog, setShowMissingDialog] = useState(false)
+  const [missingFields, setMissingFields] = useState<string[]>([])
+
 
   // Attachments
   const [attachments, setAttachments] = useState<Attachment[]>([])
@@ -204,11 +215,35 @@ export default function NewProjectPage() {
     }
   }
 
-  const handleCreate = async () => {
+  const getMissingFields = (): string[] => {
+    const missing: string[] = []
+    if (!profile.title) missing.push(tp('projectTitle'))
+    if (!profile.description) missing.push(tp('description') || 'Description')
+    if (!profile.discipline) missing.push('Discipline')
+    if (!profile.skills || profile.skills.length === 0) missing.push(tp('skills'))
+    if (!profile.role) missing.push(tp('role'))
+    if (!profile.duration) missing.push(tp('duration'))
+    if (!profile.outcome) missing.push(tp('outcome'))
+    if (!profile.courseName && !profile.client) missing.push(tp('courseName') + ' / ' + tp('client'))
+    return missing
+  }
+
+  const handleCreateClick = () => {
     if (!profile.title || !profile.description || !profile.discipline) {
       alert(t('chat.incompleteProfile'))
       return
     }
+    const missing = getMissingFields()
+    if (missing.length > 0) {
+      setMissingFields(missing)
+      setShowMissingDialog(true)
+    } else {
+      submitProject()
+    }
+  }
+
+  const submitProject = async () => {
+    setShowMissingDialog(false)
     setSubmitting(true)
     try {
       const res = await fetch('/api/projects', {
@@ -327,7 +362,7 @@ export default function NewProjectPage() {
           {hasProfile && (
             <div className="pb-3">
               <Button
-                onClick={handleCreate}
+                onClick={handleCreateClick}
                 disabled={submitting || !profile.title || !profile.discipline}
                 className="w-full"
                 size="lg"
@@ -340,6 +375,35 @@ export default function NewProjectPage() {
               </Button>
             </div>
           )}
+
+          {/* Missing fields dialog */}
+          <Dialog open={showMissingDialog} onOpenChange={setShowMissingDialog}>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <AlertTriangle className="h-5 w-5 text-amber-500" />
+                  {t('missing.title')}
+                </DialogTitle>
+                <DialogDescription>{t('missing.description')}</DialogDescription>
+              </DialogHeader>
+              <div className="space-y-2 py-2">
+                {missingFields.map((field) => (
+                  <div key={field} className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                    {field}
+                  </div>
+                ))}
+              </div>
+              <DialogFooter className="flex gap-2 sm:gap-0">
+                <Button variant="outline" onClick={() => setShowMissingDialog(false)}>
+                  {t('missing.goBack')}
+                </Button>
+                <Button onClick={submitProject}>
+                  {t('missing.createAnyway')}
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
 
           {/* Input area */}
           <div className="border-t border-border pt-4 space-y-3">

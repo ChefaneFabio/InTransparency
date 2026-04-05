@@ -9544,7 +9544,14 @@
       "professor": "Professor",
       "outcome": "Outcome",
       "client": "Client/Organization",
-      "liveUrl": "Live URL"
+      "liveUrl": "Live URL",
+      "description": "Description"
+    },
+    "missing": {
+      "title": "Some information is missing",
+      "description": "Your project would be stronger with these details. Recruiters are more likely to notice complete profiles.",
+      "goBack": "Add more info",
+      "createAnyway": "Create anyway"
     }
   },
   "postJob": {

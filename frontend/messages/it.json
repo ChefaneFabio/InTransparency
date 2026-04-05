@@ -9571,7 +9571,14 @@
       "professor": "Professore",
       "outcome": "Risultato",
       "client": "Cliente/Organizzazione",
-      "liveUrl": "URL Live"
+      "liveUrl": "URL Live",
+      "description": "Descrizione"
+    },
+    "missing": {
+      "title": "Mancano alcune informazioni",
+      "description": "Il tuo progetto sarebbe più forte con questi dettagli. I recruiter notano di più i profili completi.",
+      "goBack": "Aggiungi info",
+      "createAnyway": "Crea comunque"
     }
   },
   "postJob": {
