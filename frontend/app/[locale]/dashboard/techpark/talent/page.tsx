@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ArrowLeft, Users, GraduationCap, Search, Star } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 
 interface Student {
   id: string

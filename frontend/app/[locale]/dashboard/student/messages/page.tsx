@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useEffect, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -21,6 +22,7 @@ import {
   RefreshCw,
   AlertCircle
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 interface Conversation {

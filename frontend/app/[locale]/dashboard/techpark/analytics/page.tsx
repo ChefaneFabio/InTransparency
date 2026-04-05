@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ArrowLeft, TrendingUp, Users, Building2, Target, BarChart3 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 
 interface AnalyticsData {
   totalPlacements: number

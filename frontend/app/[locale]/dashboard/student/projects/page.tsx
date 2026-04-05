@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { Link } from '@/navigation'
 import { useSession } from 'next-auth/react'
@@ -22,6 +23,7 @@ import {
   ExternalLink,
   Rocket
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
 export default function ProjectsPage() {

@@ -18,6 +18,7 @@ import {
   CheckCircle,
   XCircle,
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { useTranslations } from 'next-intl'
 
 interface EventData {

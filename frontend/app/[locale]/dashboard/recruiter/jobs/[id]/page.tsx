@@ -9,6 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Link, useRouter } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import { ArrowLeft, MapPin, Clock, Users, Eye, Edit, Trash2, AlertCircle } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 
 interface Application {
   id: string

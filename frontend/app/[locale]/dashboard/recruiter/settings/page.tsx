@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import { Loader2 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { AccountDangerZone } from '@/components/dashboard/shared/AccountDangerZone'
 
 interface Settings {

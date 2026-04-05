@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Link } from '@/navigation'
@@ -41,6 +42,7 @@ import {
   FileText,
   Plus,
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */

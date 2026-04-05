@@ -21,6 +21,7 @@ import {
   ArrowRight,
   Clock,
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { Link } from '@/navigation'
 import { useSkillPath } from '@/lib/use-skill-path'
 import { HireabilityGauge } from '@/components/dashboard/student/HireabilityGauge'

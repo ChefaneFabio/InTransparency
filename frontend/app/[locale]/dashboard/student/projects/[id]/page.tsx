@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Link } from '@/navigation'
@@ -31,6 +32,7 @@ import {
   Lock,
   Heart
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import BadgeExportPanel from '@/components/badges/BadgeExportPanel'
 import EndorsementRequestForm from '@/components/dashboard/student/EndorsementRequestForm'

@@ -20,6 +20,7 @@ import {
   User,
   Zap,
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import {
   RadarChart,
   PolarGrid,

@@ -29,6 +29,7 @@ import {
   ArrowLeft,
   Download
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { exportCandidatesToCsv } from '@/lib/export-csv'
 import { useTranslations } from 'next-intl'

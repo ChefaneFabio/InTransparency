@@ -23,6 +23,7 @@ import {
   EyeOff,
   Briefcase,
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 
 interface SettingsData {
   email: string

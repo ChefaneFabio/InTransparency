@@ -23,6 +23,7 @@ import {
   Palette,
   ImageIcon
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { AccountDangerZone } from '@/components/dashboard/shared/AccountDangerZone'
 
 interface TechParkSettings {

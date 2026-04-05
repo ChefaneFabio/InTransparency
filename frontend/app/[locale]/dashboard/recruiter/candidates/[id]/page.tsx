@@ -21,6 +21,7 @@ import {
   Send,
   AlertCircle
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { Textarea } from '@/components/ui/textarea'
 import { Input } from '@/components/ui/input'
 import { Link } from '@/navigation'

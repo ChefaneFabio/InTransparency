@@ -17,6 +17,7 @@ import {
   ChevronRight,
   LogOut
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { signOut } from 'next-auth/react'
 import { useLocale } from 'next-intl'
 

@@ -17,6 +17,7 @@ import {
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Link } from '@/navigation'
 import { Search, Plus, Loader2 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 
 const STAGES = ['discovered', 'contacted', 'interviewing', 'offered', 'hired'] as const
 type Stage = (typeof STAGES)[number]

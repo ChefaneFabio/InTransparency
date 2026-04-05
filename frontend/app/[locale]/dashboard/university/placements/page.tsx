@@ -18,6 +18,7 @@ import {
   Briefcase,
   BarChart3,
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import {
   LineChart,
   Line,

@@ -12,6 +12,7 @@ import {
   Download, Loader2, Mail, Globe, Github, Linkedin, MapPin, Calendar,
   GraduationCap, Briefcase, FileText, Languages, Award, Target, AlertCircle, CheckCircle,
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 
 interface ProfileData {
   user: {

@@ -28,6 +28,7 @@ import {
   RefreshCw,
   AlertCircle
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 
 interface Conversation {
   threadId: string

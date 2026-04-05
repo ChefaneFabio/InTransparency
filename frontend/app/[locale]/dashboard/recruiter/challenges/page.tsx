@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ChallengeCard } from '@/components/challenges/ChallengeCard'
 import { Plus, Search, Loader2, Trophy, FileText, GraduationCap } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 
 interface Challenge {

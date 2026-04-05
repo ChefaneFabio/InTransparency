@@ -13,6 +13,7 @@ import {
   Loader2,
   Plus,
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { Button } from '@/components/ui/button'
 
 interface DecisionPackSummary {

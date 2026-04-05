@@ -21,6 +21,7 @@ import {
   Trophy,
   Users
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 
 interface Challenge {
   id: string

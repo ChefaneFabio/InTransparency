@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -7,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ApplicationAssistant } from '@/components/chat/ApplicationAssistant'
 import { Building2, Save, Send, ArrowLeft, CheckCircle, Clock } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 
 export default function JobApplicationPage() {
   const params = useParams()

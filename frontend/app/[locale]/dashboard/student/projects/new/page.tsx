@@ -21,6 +21,7 @@ import {
   Loader2, Plus, X, Paperclip, Image as ImageIcon, FileText,
   Send, ChevronDown, ChevronUp, Pencil, Check, AlertTriangle,
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 
 interface ProjectProfile {
   title?: string

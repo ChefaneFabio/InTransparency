@@ -12,6 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Link } from '@/navigation'
 import { Search, Download, UserPlus, GraduationCap, CheckCircle, Globe, TrendingUp, Database } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 
 interface Student {
   id: string

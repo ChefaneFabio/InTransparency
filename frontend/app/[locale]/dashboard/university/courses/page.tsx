@@ -25,6 +25,7 @@ import {
   Hash,
   Layers,
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { useTranslations } from 'next-intl'
 
 interface Course {

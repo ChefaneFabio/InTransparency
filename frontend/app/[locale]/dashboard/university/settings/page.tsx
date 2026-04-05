@@ -29,6 +29,7 @@ import {
   Lock,
   Loader2
 } from 'lucide-react'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { useTranslations } from 'next-intl'
 import { AccountDangerZone } from '@/components/dashboard/shared/AccountDangerZone'
 
