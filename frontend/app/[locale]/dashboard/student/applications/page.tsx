@@ -1,353 +1,163 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Search, Calendar, Building, MapPin, Clock, ExternalLink, AlertCircle, FileText, Briefcase } from 'lucide-react'
+import { Search, Calendar, MapPin, Clock, Building2, AlertCircle, Briefcase, CheckCircle, XCircle, ArrowRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { Link } from '@/navigation'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
+import { StatCard } from '@/components/dashboard/shared/StatCard'
+import { StaggerContainer, StaggerItem } from '@/components/ui/animated-card'
 
 interface ApplicationData {
-  id: string
-  status: string
-  createdAt: string
-  updatedAt: string
-  interviewDate: string | null
-  interviewType: string | null
-  interviewNotes: string | null
-  offerDetails: any | null
-  coverLetter: string | null
-  job: {
-    id: string
-    title: string
-    companyName: string
-    companyLogo: string | null
-    jobType: string
-    workLocation: string
-    location: string | null
-  }
-}
-
-const STATUS_CONFIG: Record<string, { label: string; color: string }> = {
-  PENDING: { label: 'Applied', color: 'bg-muted-foreground' },
-  REVIEWING: { label: 'Under Review', color: 'bg-yellow-500' },
-  SHORTLISTED: { label: 'Shortlisted', color: 'bg-primary/50' },
-  INTERVIEW: { label: 'Interview', color: 'bg-primary/50' },
-  OFFER: { label: 'Offer Received', color: 'bg-primary/50' },
-  ACCEPTED: { label: 'Accepted', color: 'bg-green-700' },
-  REJECTED: { label: 'Not Selected', color: 'bg-red-500' },
-  WITHDRAWN: { label: 'Withdrawn', color: 'bg-muted' },
-}
-
-const JOB_TYPE_LABELS: Record<string, string> = {
-  FULL_TIME: 'Full-time',
-  PART_TIME: 'Part-time',
-  CONTRACT: 'Contract',
-  INTERNSHIP: 'Internship',
-  TEMPORARY: 'Temporary',
-  FREELANCE: 'Freelance',
+  id: string; status: string; createdAt: string; updatedAt: string
+  interviewDate: string | null; interviewType: string | null; interviewNotes: string | null
+  offerDetails: any | null; coverLetter: string | null
+  job: { id: string; title: string; companyName: string; companyLogo: string | null; jobType: string; workLocation: string; location: string | null }
 }
 
 export default function StudentApplications() {
+  const t = useTranslations('studentApplications')
   const [applications, setApplications] = useState<ApplicationData[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
 
-  const fetchApplications = useCallback(() => {
-    setLoading(true)
-    setError(null)
+  useEffect(() => {
     fetch('/api/applications')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to load applications')
-        return res.json()
-      })
-      .then(data => {
-        setApplications(data.applications || [])
-        setLoading(false)
-      })
-      .catch(err => {
-        setError(err.message)
-        setLoading(false)
-      })
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(data => setApplications(data.applications || []))
+      .catch(() => {})
+      .finally(() => setLoading(false))
   }, [])
 
-  useEffect(() => {
-    fetchApplications()
-  }, [fetchApplications])
-
-  const filteredApplications = applications.filter(app => {
+  const filtered = applications.filter(app => {
     if (!searchTerm) return true
-    const query = searchTerm.toLowerCase()
-    return (
-      app.job.title.toLowerCase().includes(query) ||
-      app.job.companyName.toLowerCase().includes(query)
-    )
+    const q = searchTerm.toLowerCase()
+    return app.job.title.toLowerCase().includes(q) || app.job.companyName.toLowerCase().includes(q)
   })
 
-  const interviewApps = filteredApplications.filter(app => app.status === 'INTERVIEW')
-  const offerApps = filteredApplications.filter(app => app.status === 'OFFER' || app.status === 'ACCEPTED')
+  const active = filtered.filter(a => !['REJECTED', 'WITHDRAWN', 'ACCEPTED'].includes(a.status))
+  const interviews = filtered.filter(a => a.status === 'INTERVIEW')
+  const offers = filtered.filter(a => a.status === 'OFFER' || a.status === 'ACCEPTED')
+  const archived = filtered.filter(a => ['REJECTED', 'WITHDRAWN'].includes(a.status))
 
-  const formatDate = (dateStr: string) => new Date(dateStr).toLocaleDateString()
-
-  const getStatusBadge = (status: string) => {
-    const config = STATUS_CONFIG[status] || { label: status, color: 'bg-muted-foreground' }
-    return <Badge className={`${config.color} text-white`}>{config.label}</Badge>
+  const statusConfig: Record<string, { label: string; variant: 'default' | 'secondary' | 'destructive' | 'outline' }> = {
+    PENDING: { label: t('status.applied'), variant: 'secondary' },
+    REVIEWING: { label: t('status.reviewing'), variant: 'outline' },
+    SHORTLISTED: { label: t('status.shortlisted'), variant: 'default' },
+    INTERVIEW: { label: t('status.interview'), variant: 'default' },
+    OFFER: { label: t('status.offer'), variant: 'default' },
+    ACCEPTED: { label: t('status.accepted'), variant: 'default' },
+    REJECTED: { label: t('status.rejected'), variant: 'destructive' },
+    WITHDRAWN: { label: t('status.withdrawn'), variant: 'secondary' },
   }
 
   if (loading) {
     return (
-      <div className="min-h-screen space-y-6 space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Applications</h1>
-          <p className="text-muted-foreground">Track your job applications and interview schedule</p>
+      <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
+        <Skeleton className="h-32 rounded-2xl" />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {Array.from({ length: 4 }, (_, i) => <Skeleton key={i} className="h-24 rounded-2xl" />)}
         </div>
-        <div className="space-y-4">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <Card key={i}>
-              <CardContent className="p-6">
-                <div className="space-y-3">
-                  <Skeleton className="h-5 w-2/3" />
-                  <Skeleton className="h-4 w-1/3" />
-                  <Skeleton className="h-4 w-full" />
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen space-y-6 space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Applications</h1>
-        </div>
-        <Card>
-          <CardContent className="p-12 text-center">
-            <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-            <p className="text-red-600 mb-4">{error}</p>
-            <Button onClick={fetchApplications}>Try Again</Button>
-          </CardContent>
-        </Card>
+        <Skeleton className="h-64 rounded-2xl" />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen space-y-6 space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Applications</h1>
-        <p className="text-muted-foreground">
-          Track your job applications and interview schedule
-        </p>
+    <div className="max-w-6xl mx-auto px-4 py-6 space-y-5">
+      {/* Header */}
+      <MetricHero gradient="primary">
+        <h1 className="text-2xl font-bold">{t('title')}</h1>
+        <p className="text-sm text-muted-foreground mt-1">{t('subtitle')}</p>
+      </MetricHero>
+
+      {/* Stats */}
+      <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StaggerItem><StatCard label={t('stats.total')} value={applications.length} icon={<Briefcase className="h-5 w-5" />} variant="blue" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.active')} value={active.length} icon={<Clock className="h-5 w-5" />} variant="amber" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.interviews')} value={interviews.length} icon={<Calendar className="h-5 w-5" />} variant="purple" /></StaggerItem>
+        <StaggerItem><StatCard label={t('stats.offers')} value={offers.length} icon={<CheckCircle className="h-5 w-5" />} variant="green" /></StaggerItem>
+      </StaggerContainer>
+
+      {/* Search */}
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder={t('searchPlaceholder')}
+          className="pl-10"
+        />
       </div>
 
-      <Tabs defaultValue="applications" className="space-y-6">
+      {/* Tabs */}
+      <Tabs defaultValue="all">
         <TabsList>
-          <TabsTrigger value="applications">
-            All Applications ({filteredApplications.length})
-          </TabsTrigger>
-          <TabsTrigger value="interviews">
-            Interviews ({interviewApps.length})
-          </TabsTrigger>
-          <TabsTrigger value="offers">
-            Offers ({offerApps.length})
-          </TabsTrigger>
+          <TabsTrigger value="all">{t('tabs.all')} ({filtered.length})</TabsTrigger>
+          <TabsTrigger value="active">{t('tabs.active')} ({active.length})</TabsTrigger>
+          {interviews.length > 0 && <TabsTrigger value="interviews">{t('tabs.interviews')} ({interviews.length})</TabsTrigger>}
+          {offers.length > 0 && <TabsTrigger value="offers">{t('tabs.offers')} ({offers.length})</TabsTrigger>}
+          {archived.length > 0 && <TabsTrigger value="archived">{t('tabs.archived')} ({archived.length})</TabsTrigger>}
         </TabsList>
 
-        {/* Search */}
-        <Card>
-          <CardContent className="pt-6">
-            <div className="relative">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search applications..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9"
-              />
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* All Applications */}
-        <TabsContent value="applications" className="space-y-4">
-          {filteredApplications.length === 0 ? (
-            <Card>
-              <CardContent className="p-12 text-center">
-                <FileText className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-foreground mb-2">No applications yet</h3>
-                <p className="text-muted-foreground">Start applying to jobs to track your applications here.</p>
-              </CardContent>
-            </Card>
-          ) : (
-            filteredApplications.map(app => (
-              <Card key={app.id} className="hover:shadow-md transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-1">
-                      <CardTitle className="text-xl">{app.job.title}</CardTitle>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Building className="h-4 w-4" />
-                          {app.job.companyName}
+        {(['all', 'active', 'interviews', 'offers', 'archived'] as const).map(tab => {
+          const list = tab === 'all' ? filtered : tab === 'active' ? active : tab === 'interviews' ? interviews : tab === 'offers' ? offers : archived
+          return (
+            <TabsContent key={tab} value={tab} className="mt-4 space-y-2">
+              {list.length === 0 ? (
+                <GlassCard delay={0.1}>
+                  <div className="p-10 text-center">
+                    <Briefcase className="h-10 w-10 text-muted-foreground/30 mx-auto mb-3" />
+                    <p className="text-sm text-muted-foreground">{t('empty')}</p>
+                  </div>
+                </GlassCard>
+              ) : list.map((app) => {
+                const config = statusConfig[app.status] || { label: app.status, variant: 'secondary' as const }
+                return (
+                  <Card key={app.id} className="hover:shadow-md hover:border-primary/20 transition-all">
+                    <CardContent className="p-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex items-start gap-3 flex-1 min-w-0">
+                          <div className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Building2 className="h-4 w-4 text-muted-foreground" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-semibold text-sm">{app.job.title}</h3>
+                            <div className="flex items-center gap-2 text-xs text-muted-foreground mt-0.5">
+                              <span>{app.job.companyName}</span>
+                              {app.job.location && <><span className="text-muted-foreground/30">·</span><span className="flex items-center gap-0.5"><MapPin className="h-3 w-3" />{app.job.location}</span></>}
+                            </div>
+                            <div className="flex items-center gap-2 mt-2">
+                              <Badge variant={config.variant} className="text-[10px]">{config.label}</Badge>
+                              <span className="text-[10px] text-muted-foreground">{new Date(app.createdAt).toLocaleDateString()}</span>
+                            </div>
+                            {app.interviewDate && (
+                              <div className="flex items-center gap-1.5 mt-1.5 text-xs text-primary">
+                                <Calendar className="h-3 w-3" />
+                                {t('interviewOn')} {new Date(app.interviewDate).toLocaleDateString()}
+                                {app.interviewType && <span className="text-muted-foreground">({app.interviewType})</span>}
+                              </div>
+                            )}
+                          </div>
                         </div>
-                        {app.job.location && (
-                          <div className="flex items-center gap-1">
-                            <MapPin className="h-4 w-4" />
-                            {app.job.location}
-                          </div>
-                        )}
-                        <div className="flex items-center gap-1">
-                          <Briefcase className="h-4 w-4" />
-                          {JOB_TYPE_LABELS[app.job.jobType] || app.job.jobType}
-                        </div>
+                        <Button size="sm" variant="ghost" asChild>
+                          <Link href={`/dashboard/student/apply/${app.job.id}`}><ArrowRight className="h-3.5 w-3.5" /></Link>
+                        </Button>
                       </div>
-                    </div>
-                    <div className="text-right space-y-2">
-                      {getStatusBadge(app.status)}
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
-                      Applied on {formatDate(app.createdAt)}
-                    </div>
-                    <Button variant="outline" size="sm">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      View Job
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))
-          )}
-        </TabsContent>
-
-        {/* Interviews */}
-        <TabsContent value="interviews" className="space-y-4">
-          {interviewApps.length === 0 ? (
-            <Card>
-              <CardContent className="p-12 text-center">
-                <Calendar className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-foreground mb-2">No interviews scheduled</h3>
-                <p className="text-muted-foreground">Interview invitations will appear here.</p>
-              </CardContent>
-            </Card>
-          ) : (
-            interviewApps.map(app => (
-              <Card key={app.id}>
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-1">
-                      <CardTitle className="text-xl">{app.job.title}</CardTitle>
-                      <CardDescription>{app.job.companyName}</CardDescription>
-                    </div>
-                    <Badge>Interview</Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    {app.interviewDate && (
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4 text-muted-foreground" />
-                        <span>{new Date(app.interviewDate).toLocaleString()}</span>
-                      </div>
-                    )}
-                    {app.interviewType && (
-                      <div className="flex items-center gap-2">
-                        <Badge variant="outline">{app.interviewType}</Badge>
-                      </div>
-                    )}
-                    {app.job.location && (
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-muted-foreground" />
-                        <span>{app.job.location}</span>
-                      </div>
-                    )}
-                  </div>
-                  {app.interviewNotes && (
-                    <div className="border-t pt-4 mt-4">
-                      <p className="text-sm text-muted-foreground mb-1">Notes</p>
-                      <p className="text-sm">{app.interviewNotes}</p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))
-          )}
-        </TabsContent>
-
-        {/* Offers */}
-        <TabsContent value="offers" className="space-y-4">
-          {offerApps.length === 0 ? (
-            <Card>
-              <CardContent className="p-12 text-center">
-                <Briefcase className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-foreground mb-2">No offers yet</h3>
-                <p className="text-muted-foreground">Job offers will appear here when received.</p>
-              </CardContent>
-            </Card>
-          ) : (
-            offerApps.map(app => {
-              const offer = app.offerDetails as Record<string, any> | null
-              return (
-                <Card key={app.id}>
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <CardTitle>{app.job.title}</CardTitle>
-                        <CardDescription>{app.job.companyName}</CardDescription>
-                      </div>
-                      {getStatusBadge(app.status)}
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    {offer && (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        {offer.salary && (
-                          <div>
-                            <p className="text-sm text-muted-foreground">Salary</p>
-                            <p className="text-xl font-bold text-primary">{offer.salary}</p>
-                          </div>
-                        )}
-                        {offer.startDate && (
-                          <div>
-                            <p className="text-sm text-muted-foreground">Start Date</p>
-                            <p className="font-medium">{offer.startDate}</p>
-                          </div>
-                        )}
-                        {offer.benefits && (
-                          <div className="md:col-span-2">
-                            <p className="text-sm text-muted-foreground mb-1">Benefits</p>
-                            <p className="text-sm">{typeof offer.benefits === 'string' ? offer.benefits : JSON.stringify(offer.benefits)}</p>
-                          </div>
-                        )}
-                        {offer.deadline && (
-                          <div>
-                            <p className="text-sm text-muted-foreground">Response Deadline</p>
-                            <p className="font-medium">{offer.deadline}</p>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Clock className="h-4 w-4" />
-                      Last updated {formatDate(app.updatedAt)}
-                    </div>
-                  </CardContent>
-                </Card>
-              )
-            })
-          )}
-        </TabsContent>
+                    </CardContent>
+                  </Card>
+                )
+              })}
+            </TabsContent>
+          )
+        })}
       </Tabs>
     </div>
   )

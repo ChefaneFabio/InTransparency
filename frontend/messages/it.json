@@ -5112,40 +5112,32 @@
   "studentApplications": {
     "title": "Candidature",
     "subtitle": "Monitora le tue candidature e il calendario dei colloqui",
-    "search": "Cerca candidature...",
+    "searchPlaceholder": "Cerca per azienda o ruolo...",
     "tabs": {
-      "all": "Tutte le Candidature",
+      "all": "Tutte",
+      "active": "Attive",
+      "interviews": "Colloqui",
+      "offers": "Offerte",
+      "archived": "Archiviate"
+    },
+    "stats": {
+      "total": "Totali",
+      "active": "Attive",
       "interviews": "Colloqui",
       "offers": "Offerte"
     },
     "status": {
-      "PENDING": "Inviata",
-      "REVIEWING": "In Revisione",
-      "SHORTLISTED": "Selezionato",
-      "INTERVIEW": "Colloquio",
-      "OFFER": "Offerta Ricevuta",
-      "ACCEPTED": "Accettata",
-      "REJECTED": "Non Selezionato",
-      "WITHDRAWN": "Ritirata"
+      "applied": "Inviata",
+      "reviewing": "In revisione",
+      "shortlisted": "Selezionato",
+      "interview": "Colloquio",
+      "offer": "Offerta",
+      "accepted": "Accettata",
+      "rejected": "Non selezionato",
+      "withdrawn": "Ritirata"
     },
-    "appliedOn": "Candidato il",
-    "viewJob": "Vedi Lavoro",
-    "viewApplication": "Vedi Candidatura",
-    "interview": "Colloquio",
-    "notes": "Note",
-    "salary": "Stipendio",
-    "startDate": "Data di Inizio",
-    "benefits": "Benefit",
-    "responseDeadline": "Scadenza Risposta",
-    "lastUpdated": "Ultimo aggiornamento",
-    "empty": {
-      "noApplications": "Nessuna candidatura ancora",
-      "noApplicationsDesc": "Inizia a candidarti per monitorare le tue candidature qui.",
-      "noInterviews": "Nessun colloquio programmato",
-      "noInterviewsDesc": "Gli inviti ai colloqui appariranno qui.",
-      "noOffers": "Nessuna offerta ancora",
-      "noOffersDesc": "Le offerte di lavoro appariranno qui quando ricevute."
-    }
+    "interviewOn": "Colloquio il",
+    "empty": "Nessuna candidatura in questa categoria"
   },
   "studentMessages": {
     "title": "Messaggi",

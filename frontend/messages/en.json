@@ -5139,40 +5139,32 @@
   "studentApplications": {
     "title": "Applications",
     "subtitle": "Track your job applications and interview schedule",
-    "search": "Search applications...",
+    "searchPlaceholder": "Search by company or role...",
     "tabs": {
-      "all": "All Applications",
+      "all": "All",
+      "active": "Active",
+      "interviews": "Interviews",
+      "offers": "Offers",
+      "archived": "Archived"
+    },
+    "stats": {
+      "total": "Total",
+      "active": "Active",
       "interviews": "Interviews",
       "offers": "Offers"
     },
     "status": {
-      "PENDING": "Applied",
-      "REVIEWING": "Under Review",
-      "SHORTLISTED": "Shortlisted",
-      "INTERVIEW": "Interview",
-      "OFFER": "Offer Received",
-      "ACCEPTED": "Accepted",
-      "REJECTED": "Not Selected",
-      "WITHDRAWN": "Withdrawn"
+      "applied": "Applied",
+      "reviewing": "Under Review",
+      "shortlisted": "Shortlisted",
+      "interview": "Interview",
+      "offer": "Offer",
+      "accepted": "Accepted",
+      "rejected": "Not Selected",
+      "withdrawn": "Withdrawn"
     },
-    "appliedOn": "Applied on",
-    "viewJob": "View Job",
-    "viewApplication": "View Application",
-    "interview": "Interview",
-    "notes": "Notes",
-    "salary": "Salary",
-    "startDate": "Start Date",
-    "benefits": "Benefits",
-    "responseDeadline": "Response Deadline",
-    "lastUpdated": "Last updated",
-    "empty": {
-      "noApplications": "No applications yet",
-      "noApplicationsDesc": "Start applying to jobs to track your applications here.",
-      "noInterviews": "No interviews scheduled",
-      "noInterviewsDesc": "Interview invitations will appear here.",
-      "noOffers": "No offers yet",
-      "noOffersDesc": "Job offers will appear here when received."
-    }
+    "interviewOn": "Interview on",
+    "empty": "No applications in this category"
   },
   "studentMessages": {
     "title": "Messages",
