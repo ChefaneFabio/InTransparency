@@ -3,6 +3,8 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 
+export const maxDuration = 15
+
 /**
  * GET /api/dashboard/student/profile
  * Returns comprehensive student profile data
