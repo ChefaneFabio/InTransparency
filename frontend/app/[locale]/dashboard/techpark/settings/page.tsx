@@ -23,6 +23,7 @@ import {
   Palette,
   ImageIcon
 } from 'lucide-react'
+import { AccountDangerZone } from '@/components/dashboard/shared/AccountDangerZone'
 
 interface TechParkSettings {
   parkName: string
@@ -722,6 +723,8 @@ export default function TechParkSettingsPage() {
           {saving ? t('settings.saving') : t('settings.saveChanges')}
         </Button>
       </div>
+
+      <AccountDangerZone />
     </div>
   )
 }

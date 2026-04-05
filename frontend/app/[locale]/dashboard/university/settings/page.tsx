@@ -30,6 +30,7 @@ import {
   Loader2
 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { AccountDangerZone } from '@/components/dashboard/shared/AccountDangerZone'
 
 interface UniversitySettingsData {
   name: string
@@ -473,6 +474,8 @@ export default function UniversitySettingsPage() {
             </Card>
           </TabsContent>
         </Tabs>
+
+        <AccountDangerZone />
       </div>
     </div>
   )

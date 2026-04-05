@@ -10014,6 +10014,18 @@
     },
     "error": "Failed to save. Please try again."
   },
+  "accountDangerZone": {
+    "title": "Danger Zone",
+    "description": "Permanently delete your account and all associated data. This action cannot be undone.",
+    "deleteAccount": "Delete account",
+    "confirmTitle": "Delete your account?",
+    "confirmDescription": "This will permanently delete your account, projects, applications, messages, and all associated data. This action cannot be undone.",
+    "confirmInstruction": "Type DELETE to confirm:",
+    "cancel": "Cancel",
+    "confirmDelete": "Delete permanently",
+    "deleting": "Deleting...",
+    "deleteFailed": "Failed to delete account. Please try again."
+  },
   "shared": {
     "complete": "complete",
     "verified": "Verified",

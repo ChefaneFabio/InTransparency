@@ -10041,6 +10041,18 @@
     },
     "error": "Salvataggio fallito. Riprova."
   },
+  "accountDangerZone": {
+    "title": "Zona pericolosa",
+    "description": "Elimina permanentemente il tuo account e tutti i dati associati. Questa azione non può essere annullata.",
+    "deleteAccount": "Elimina account",
+    "confirmTitle": "Eliminare il tuo account?",
+    "confirmDescription": "Questo eliminerà permanentemente il tuo account, progetti, candidature, messaggi e tutti i dati associati. Questa azione non può essere annullata.",
+    "confirmInstruction": "Scrivi DELETE per confermare:",
+    "cancel": "Annulla",
+    "confirmDelete": "Elimina definitivamente",
+    "deleting": "Eliminazione...",
+    "deleteFailed": "Eliminazione dell'account fallita. Riprova."
+  },
   "shared": {
     "complete": "completato",
     "verified": "Verificato",

@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import { Loader2 } from 'lucide-react'
+import { AccountDangerZone } from '@/components/dashboard/shared/AccountDangerZone'
 
 interface Settings {
   companyName: string; companyWebsite: string; companyIndustry: string
@@ -150,6 +151,8 @@ export default function RecruiterSettingsPage() {
           {saving ? t('saving') : saveState === 'saved' ? t('saved') : t('save')}
         </Button>
       </div>
+
+      <AccountDangerZone />
     </div>
   )
 }
