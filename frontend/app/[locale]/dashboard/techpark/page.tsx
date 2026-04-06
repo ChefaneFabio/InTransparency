@@ -18,6 +18,7 @@ import {
   LogOut
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { signOut } from 'next-auth/react'
 import { useLocale } from 'next-intl'
 
@@ -120,41 +121,43 @@ export default function TechParkDashboard() {
   return (
     <div className="max-w-6xl mx-auto space-y-8 pb-12">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
-        <div className="flex items-center gap-4">
-          {branding.logo && (
-            <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary/20 flex-shrink-0">
-              <img
-                src={branding.logo}
-                alt={branding.parkName || 'Tech Park'}
-                className="w-full h-full object-cover"
-              />
+      <MetricHero gradient="primary">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex items-center gap-4">
+            {branding.logo && (
+              <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary/20 flex-shrink-0">
+                <img
+                  src={branding.logo}
+                  alt={branding.parkName || 'Tech Park'}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            <div>
+              <h1 className="text-2xl font-semibold text-foreground">
+                {t('welcomeBack')}{user?.firstName ? `, ${user.firstName}` : ''}
+              </h1>
+              <p className="text-muted-foreground mt-1">
+                {t('dashboardSubtitle')}
+              </p>
             </div>
-          )}
-          <div>
-            <h1 className="text-2xl font-semibold text-foreground">
-              {t('welcomeBack')}{user?.firstName ? `, ${user.firstName}` : ''}
-            </h1>
-            <p className="text-muted-foreground mt-1">
-              {t('dashboardSubtitle')}
-            </p>
+          </div>
+          <div className="flex gap-3">
+            <Button asChild>
+              <Link href="/dashboard/techpark/talent">
+                <Eye className="h-4 w-4 mr-2" />
+                {t('viewTalent')}
+              </Link>
+            </Button>
+            <Button variant="outline" asChild>
+              <Link href="/dashboard/techpark/companies">
+                <Building2 className="h-4 w-4 mr-2" />
+                {t('manageCompanies')}
+              </Link>
+            </Button>
           </div>
         </div>
-        <div className="flex gap-3">
-          <Button asChild>
-            <Link href="/dashboard/techpark/talent">
-              <Eye className="h-4 w-4 mr-2" />
-              {t('viewTalent')}
-            </Link>
-          </Button>
-          <Button variant="outline" asChild>
-            <Link href="/dashboard/techpark/companies">
-              <Building2 className="h-4 w-4 mr-2" />
-              {t('manageCompanies')}
-            </Link>
-          </Button>
-        </div>
-      </div>
+      </MetricHero>
 
       {/* Quick Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

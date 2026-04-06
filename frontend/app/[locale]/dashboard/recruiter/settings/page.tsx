@@ -12,6 +12,7 @@ import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import { Loader2 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { AccountDangerZone } from '@/components/dashboard/shared/AccountDangerZone'
 
 interface Settings {
@@ -83,14 +84,14 @@ export default function RecruiterSettingsPage() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-6 pb-12">
-      <div>
+      <MetricHero gradient="primary">
         <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
         <p className="text-muted-foreground">{t('subtitle')}</p>
-      </div>
+      </MetricHero>
 
-      <Card>
-        <CardHeader><CardTitle>{t('company.title')}</CardTitle></CardHeader>
-        <CardContent className="space-y-4">
+      <GlassCard hover={false}>
+        <div className="p-5 space-y-4">
+          <h3 className="text-lg font-semibold">{t('company.title')}</h3>
           <div className="space-y-1">
             <Label>{t('company.name')}</Label>
             <Input value={settings.companyName} onChange={e => u('companyName', e.target.value)} />
@@ -108,18 +109,18 @@ export default function RecruiterSettingsPage() {
               </SelectContent>
             </Select>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </GlassCard>
 
-      <Card>
-        <CardHeader className="cursor-pointer" onClick={() => setShowPrefs(!showPrefs)}>
-          <CardTitle className="flex items-center justify-between">
+      <GlassCard hover={false}>
+        <div className="p-5 cursor-pointer" onClick={() => setShowPrefs(!showPrefs)}>
+          <h3 className="text-lg font-semibold flex items-center justify-between">
             {t('preferences.title')}
             <span className="text-sm font-normal text-primary">{showPrefs ? '-' : '+'}</span>
-          </CardTitle>
-        </CardHeader>
+          </h3>
+        </div>
         {showPrefs && (
-          <CardContent className="space-y-5">
+          <div className="px-5 pb-5 space-y-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium">{t('preferences.notifications')}</p>
@@ -142,9 +143,9 @@ export default function RecruiterSettingsPage() {
                 </SelectContent>
               </Select>
             </div>
-          </CardContent>
+          </div>
         )}
-      </Card>
+      </GlassCard>
 
       <div className="flex justify-end">
         <Button onClick={handleSave} disabled={saving}>

@@ -29,6 +29,7 @@ import {
   AlertCircle
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface Conversation {
   threadId: string
@@ -198,28 +199,30 @@ export default function RecruiterMessagesPage() {
     <div className="min-h-screen space-y-6">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
-            <p className="text-muted-foreground">{t('subtitle')}</p>
+        <MetricHero gradient="primary" className="mb-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+              <p className="text-muted-foreground">{t('subtitle')}</p>
+            </div>
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={fetchConversations}>
+                <RefreshCw className="h-4 w-4 mr-2" />
+                {t('refresh')}
+              </Button>
+              <Button>
+                <MessageSquare className="h-4 w-4 mr-2" />
+                {t('newMessage')}
+              </Button>
+            </div>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={fetchConversations}>
-              <RefreshCw className="h-4 w-4 mr-2" />
-              {t('refresh')}
-            </Button>
-            <Button>
-              <MessageSquare className="h-4 w-4 mr-2" />
-              {t('newMessage')}
-            </Button>
-          </div>
-        </div>
+        </MetricHero>
 
         <div className="grid grid-cols-12 gap-6">
           {/* Sidebar */}
           <div className="col-span-3">
-            <Card>
-              <CardContent className="p-4">
+            <GlassCard hover={false}>
+              <div className="p-4">
                 <Tabs value={activeTab} onValueChange={setActiveTab}>
                   <TabsList className="w-full grid grid-cols-3">
                     <TabsTrigger value="inbox" className="relative">
@@ -321,15 +324,15 @@ export default function RecruiterMessagesPage() {
                     })
                   )}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           </div>
 
           {/* Message Content */}
           <div className="col-span-9">
             {selectedConversation ? (
-              <Card className="h-full">
-                <CardHeader className="border-b">
+              <GlassCard hover={false} className="h-full">
+                <div className="p-5 border-b">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
                       {(() => {
@@ -364,8 +367,8 @@ export default function RecruiterMessagesPage() {
                       </Button>
                     </div>
                   </div>
-                </CardHeader>
-                <CardContent className="p-6">
+                </div>
+                <div className="p-6">
                   <div className="mb-4">
                     <h3 className="text-lg font-semibold">{selectedConversation.subject}</h3>
                   </div>
@@ -453,12 +456,14 @@ export default function RecruiterMessagesPage() {
                       </Button>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </GlassCard>
             ) : (
-              <Card className="h-full flex items-center justify-center">
-                <EmptyState icon={MessageSquare} title={t('selectMessage')} description={t('selectMessageDesc')} />
-              </Card>
+              <GlassCard hover={false} className="h-full flex items-center justify-center">
+                <div className="p-5">
+                  <EmptyState icon={MessageSquare} title={t('selectMessage')} description={t('selectMessageDesc')} />
+                </div>
+              </GlassCard>
             )}
           </div>
         </div>

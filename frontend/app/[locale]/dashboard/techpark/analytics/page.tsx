@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Skeleton } from '@/components/ui/skeleton'
 import { ArrowLeft, TrendingUp, Users, Building2, Target, BarChart3 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface AnalyticsData {
   totalPlacements: number
@@ -65,17 +66,19 @@ export default function TechParkAnalyticsPage() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
-      <div className="flex items-center gap-4 pt-2">
-        <Button variant="ghost" size="sm" asChild>
-          <Link href="/dashboard/techpark">
-            <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
-          </Link>
-        </Button>
-        <div>
-          <h1 className="text-2xl font-semibold">{t('analytics.title')}</h1>
-          <p className="text-sm text-muted-foreground">{t('analytics.subtitle')}</p>
+      <MetricHero gradient="primary">
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/dashboard/techpark">
+              <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
+            </Link>
+          </Button>
+          <div>
+            <h1 className="text-2xl font-semibold">{t('analytics.title')}</h1>
+            <p className="text-sm text-muted-foreground">{t('analytics.subtitle')}</p>
+          </div>
         </div>
-      </div>
+      </MetricHero>
 
       {loading || !data ? (
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -86,39 +89,37 @@ export default function TechParkAnalyticsPage() {
       ) : (
         <>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Card><CardContent className="pt-6">
+            <GlassCard delay={0.1}><div className="p-5">
               <div className="flex items-center justify-between">
                 <div><p className="text-2xl font-bold">{data.totalPlacements}</p><p className="text-sm text-muted-foreground">{t('analytics.totalPlacements')}</p></div>
                 <div className="p-2 bg-primary/10 rounded-lg"><Target className="h-5 w-5 text-primary" /></div>
               </div>
-            </CardContent></Card>
-            <Card><CardContent className="pt-6">
+            </div></GlassCard>
+            <GlassCard delay={0.15}><div className="p-5">
               <div className="flex items-center justify-between">
                 <div><p className="text-2xl font-bold">{data.activeCompanies}</p><p className="text-sm text-muted-foreground">{t('analytics.activeCompanies')}</p></div>
                 <div className="p-2 bg-primary/10 rounded-lg"><Building2 className="h-5 w-5 text-primary" /></div>
               </div>
-            </CardContent></Card>
-            <Card><CardContent className="pt-6">
+            </div></GlassCard>
+            <GlassCard delay={0.2}><div className="p-5">
               <div className="flex items-center justify-between">
                 <div><p className="text-2xl font-bold">{data.totalCandidates}</p><p className="text-sm text-muted-foreground">{t('analytics.candidates')}</p></div>
                 <div className="p-2 bg-primary/10 rounded-lg"><Users className="h-5 w-5 text-primary" /></div>
               </div>
-            </CardContent></Card>
-            <Card><CardContent className="pt-6">
+            </div></GlassCard>
+            <GlassCard delay={0.25}><div className="p-5">
               <div className="flex items-center justify-between">
                 <div><p className="text-2xl font-bold">{data.avgTimeToHire}d</p><p className="text-sm text-muted-foreground">{t('analytics.avgTimeToHire')}</p></div>
                 <div className="p-2 bg-primary/10 rounded-lg"><TrendingUp className="h-5 w-5 text-primary" /></div>
               </div>
-            </CardContent></Card>
+            </div></GlassCard>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2"><BarChart3 className="h-5 w-5" /> {t('analytics.monthlyPlacements')}</CardTitle>
-                <CardDescription>{t('analytics.last6Months')}</CardDescription>
-              </CardHeader>
-              <CardContent>
+            <GlassCard delay={0.2}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold flex items-center gap-2 mb-1"><BarChart3 className="h-5 w-5" /> {t('analytics.monthlyPlacements')}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{t('analytics.last6Months')}</p>
                 <div className="space-y-3">
                   {data.monthlyPlacements.map(m => (
                     <div key={m.month} className="flex items-center gap-3">
@@ -134,15 +135,13 @@ export default function TechParkAnalyticsPage() {
                     </div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2"><Building2 className="h-5 w-5" /> {t('analytics.topIndustries')}</CardTitle>
-                <CardDescription>{t('analytics.byPlacements')}</CardDescription>
-              </CardHeader>
-              <CardContent>
+            <GlassCard delay={0.25}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold flex items-center gap-2 mb-1"><Building2 className="h-5 w-5" /> {t('analytics.topIndustries')}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{t('analytics.byPlacements')}</p>
                 <div className="space-y-3">
                   {data.topIndustries.map(ind => (
                     <div key={ind.industry} className="flex items-center gap-3">
@@ -158,8 +157,8 @@ export default function TechParkAnalyticsPage() {
                     </div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           </div>
         </>
       )}

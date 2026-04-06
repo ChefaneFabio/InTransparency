@@ -14,6 +14,7 @@ import {
   Plus,
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { Button } from '@/components/ui/button'
 
 interface DecisionPackSummary {
@@ -64,24 +65,26 @@ export default function DecisionPackListPage() {
 
   return (
     <div className="max-w-4xl mx-auto pb-8">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-xl font-semibold text-foreground">{t('title')}</h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            {t('subtitle')}
-          </p>
+      <MetricHero gradient="primary" className="mb-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-xl font-semibold text-foreground">{t('title')}</h1>
+            <p className="text-sm text-muted-foreground mt-1">
+              {t('subtitle')}
+            </p>
+          </div>
+          <Button variant="outline" size="sm" asChild>
+            <Link href="/dashboard/recruiter/candidates">
+              <Plus className="h-4 w-4 mr-1" />
+              {t('newPack')}
+            </Link>
+          </Button>
         </div>
-        <Button variant="outline" size="sm" asChild>
-          <Link href="/dashboard/recruiter/candidates">
-            <Plus className="h-4 w-4 mr-1" />
-            {t('newPack')}
-          </Link>
-        </Button>
-      </div>
+      </MetricHero>
 
       {packs.length === 0 ? (
-        <Card>
-          <CardContent className="p-12 text-center">
+        <GlassCard hover={false}>
+          <div className="p-12 text-center">
             <FileText className="h-10 w-10 mx-auto text-muted-foreground/40 mb-3" />
             <p className="font-medium text-foreground/80">{t('emptyTitle')}</p>
             <p className="text-sm text-muted-foreground mt-1">
@@ -92,8 +95,8 @@ export default function DecisionPackListPage() {
                 {t('browseCandidates')}
               </Link>
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       ) : (
         <div className="space-y-2">
           {packs.map((pack) => {

@@ -30,6 +30,7 @@ import {
   Download
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { exportCandidatesToCsv } from '@/lib/export-csv'
 import { useTranslations } from 'next-intl'
@@ -241,39 +242,41 @@ export default function CandidatesPage() {
   return (
     <div className="space-y-6 pb-12">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/dashboard/recruiter">
-              <ArrowLeft className="h-4 w-4 mr-1" />
-              {t('back')}
-            </Link>
-          </Button>
-          <div>
-            <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
-            <p className="text-muted-foreground">{t('subtitle')}</p>
+      <MetricHero gradient="primary">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/dashboard/recruiter">
+                <ArrowLeft className="h-4 w-4 mr-1" />
+                {t('back')}
+              </Link>
+            </Button>
+            <div>
+              <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+              <p className="text-muted-foreground">{t('subtitle')}</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            {filteredCandidates.length > 0 && (
+              <Button variant="outline" onClick={handleExportCsv}>
+                <Download className="h-4 w-4 mr-2" />
+                {t('exportCsv')}
+              </Button>
+            )}
+            <Button variant="outline" asChild>
+              <Link href="/dashboard/recruiter/jobs/new">
+                <Plus className="h-4 w-4 mr-2" />
+                {t('postJob')}
+              </Link>
+            </Button>
           </div>
         </div>
-        <div className="flex gap-3">
-          {filteredCandidates.length > 0 && (
-            <Button variant="outline" onClick={handleExportCsv}>
-              <Download className="h-4 w-4 mr-2" />
-              {t('exportCsv')}
-            </Button>
-          )}
-          <Button variant="outline" asChild>
-            <Link href="/dashboard/recruiter/jobs/new">
-              <Plus className="h-4 w-4 mr-2" />
-              {t('postJob')}
-            </Link>
-          </Button>
-        </div>
-      </div>
+      </MetricHero>
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card>
-          <CardContent className="p-4">
+        <GlassCard gradient="primary" hover={false}>
+          <div className="p-4">
             <div className="flex items-center gap-2">
               <Users className="h-5 w-5 text-primary" />
               <div>
@@ -281,10 +284,10 @@ export default function CandidatesPage() {
                 <p className="text-xs text-muted-foreground">{t('stats.candidates')}</p>
               </div>
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
+          </div>
+        </GlassCard>
+        <GlassCard gradient="blue" hover={false}>
+          <div className="p-4">
             <div className="flex items-center gap-2">
               <Code className="h-5 w-5 text-primary" />
               <div>
@@ -294,10 +297,10 @@ export default function CandidatesPage() {
                 <p className="text-xs text-muted-foreground">{t('stats.projects')}</p>
               </div>
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
+          </div>
+        </GlassCard>
+        <GlassCard gradient="green" hover={false}>
+          <div className="p-4">
             <div className="flex items-center gap-2">
               <CheckCircle className="h-5 w-5 text-primary" />
               <div>
@@ -307,10 +310,10 @@ export default function CandidatesPage() {
                 <p className="text-xs text-muted-foreground">{t('stats.verified')}</p>
               </div>
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
+          </div>
+        </GlassCard>
+        <GlassCard gradient="amber" hover={false}>
+          <div className="p-4">
             <div className="flex items-center gap-2">
               <Bookmark className="h-5 w-5 text-primary" />
               <div>
@@ -318,13 +321,13 @@ export default function CandidatesPage() {
                 <p className="text-xs text-muted-foreground">{t('stats.saved')}</p>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
 
       {/* Search and Filters */}
-      <Card>
-        <CardContent className="p-4">
+      <GlassCard hover={false}>
+        <div className="p-4">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground/60 h-4 w-4" />
@@ -398,13 +401,13 @@ export default function CandidatesPage() {
               </Button>
             )}
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </GlassCard>
 
       {/* Results */}
       {filteredCandidates.length === 0 ? (
-        <Card>
-          <CardContent>
+        <GlassCard hover={false}>
+          <div className="p-5">
             <EmptyState
               icon={Users}
               title={t('empty.title')}
@@ -415,8 +418,8 @@ export default function CandidatesPage() {
                 variant: 'outline',
               }}
             />
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       ) : viewMode === 'grid' ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCandidates.map((candidate) => (

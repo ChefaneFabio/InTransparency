@@ -19,6 +19,7 @@ import {
   BarChart3,
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import {
   LineChart,
   Line,
@@ -157,25 +158,27 @@ export default function UniversityPlacementsPage() {
   return (
     <div className="container max-w-7xl mx-auto px-4 py-8 space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <BarChart3 className="h-7 w-7 text-primary" />
-          <div>
-            <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
-            <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
+      <MetricHero gradient="primary">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <BarChart3 className="h-7 w-7 text-primary" />
+            <div>
+              <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
+              <p className="text-sm text-muted-foreground">{t('subtitle')}</p>
+            </div>
           </div>
+          <Button variant="outline" size="sm">
+            <Download className="h-4 w-4 mr-2" />
+            {t('exportReport')}
+          </Button>
         </div>
-        <Button variant="outline" size="sm">
-          <Download className="h-4 w-4 mr-2" />
-          {t('exportReport')}
-        </Button>
-      </div>
+      </MetricHero>
 
       {/* Stats Row */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-        {statCards.map((stat) => (
-          <Card key={stat.label}>
-            <CardContent className="pt-6">
+        {statCards.map((stat, idx) => (
+          <GlassCard key={stat.label} delay={0.1 + idx * 0.05}>
+            <div className="p-5">
               <div className="flex items-center gap-3">
                 <div className={`p-2 rounded-lg ${stat.bg}`}>
                   <stat.icon className={`h-5 w-5 ${stat.color}`} />
@@ -185,20 +188,18 @@ export default function UniversityPlacementsPage() {
                   <p className="text-xs text-muted-foreground">{stat.label}</p>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         ))}
       </div>
 
       {/* Charts Row */}
       <div className="grid lg:grid-cols-2 gap-6">
         {/* Monthly Trend Chart */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">{t('trendChart.title')}</CardTitle>
-            <p className="text-sm text-muted-foreground">{t('trendChart.subtitle')}</p>
-          </CardHeader>
-          <CardContent>
+        <GlassCard delay={0.2}>
+          <div className="p-5">
+            <h3 className="text-lg font-semibold mb-1">{t('trendChart.title')}</h3>
+            <p className="text-sm text-muted-foreground mb-4">{t('trendChart.subtitle')}</p>
             {monthlyTrend.length > 0 ? (
               <ResponsiveContainer width="100%" height={280}>
                 <LineChart data={monthlyTrend}>
@@ -230,16 +231,14 @@ export default function UniversityPlacementsPage() {
                 {t('noData')}
               </div>
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
 
         {/* Top Hiring Companies */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">{t('topCompanies.title')}</CardTitle>
-            <p className="text-sm text-muted-foreground">{t('topCompanies.subtitle')}</p>
-          </CardHeader>
-          <CardContent>
+        <GlassCard delay={0.25}>
+          <div className="p-5">
+            <h3 className="text-lg font-semibold mb-1">{t('topCompanies.title')}</h3>
+            <p className="text-sm text-muted-foreground mb-4">{t('topCompanies.subtitle')}</p>
             {topCompanies.length > 0 ? (
               <ResponsiveContainer width="100%" height={280}>
                 <BarChart data={topCompanies} layout="vertical" margin={{ left: 20 }}>
@@ -263,8 +262,8 @@ export default function UniversityPlacementsPage() {
                 </div>
               </div>
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
 
       {/* Department Breakdown + Recent Placements */}
@@ -275,8 +274,8 @@ export default function UniversityPlacementsPage() {
         </TabsList>
 
         <TabsContent value="recent">
-          <Card>
-            <CardContent className="p-0">
+          <GlassCard delay={0.1}>
+            <div className="p-0">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-muted/50 border-b">
@@ -343,13 +342,13 @@ export default function UniversityPlacementsPage() {
                   </tbody>
                 </table>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         </TabsContent>
 
         <TabsContent value="departments">
-          <Card>
-            <CardContent className="p-0">
+          <GlassCard delay={0.1}>
+            <div className="p-0">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-muted/50 border-b">
@@ -393,8 +392,8 @@ export default function UniversityPlacementsPage() {
                   </tbody>
                 </table>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         </TabsContent>
       </Tabs>
     </div>

@@ -23,6 +23,7 @@ import {
   Eye
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { useTranslations } from 'next-intl'
 
 interface Student {
@@ -159,17 +160,17 @@ export default function UniversityProjectsPage() {
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
       {/* Header */}
-      <div className="pt-2">
+      <MetricHero gradient="primary">
         <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
         <p className="text-muted-foreground mt-1">
           {t('subtitle')}
         </p>
-      </div>
+      </MetricHero>
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-        <Card>
-          <CardContent className="pt-6">
+        <GlassCard delay={0.1}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.total}</p>
@@ -177,10 +178,10 @@ export default function UniversityProjectsPage() {
               </div>
               <FolderOpen className="h-8 w-8 text-primary" />
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard delay={0.15}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.pending}</p>
@@ -188,10 +189,10 @@ export default function UniversityProjectsPage() {
               </div>
               <Clock className="h-8 w-8 text-primary" />
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard delay={0.2}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.verified}</p>
@@ -199,10 +200,10 @@ export default function UniversityProjectsPage() {
               </div>
               <CheckCircle className="h-8 w-8 text-primary" />
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard delay={0.25}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.rejected}</p>
@@ -210,10 +211,10 @@ export default function UniversityProjectsPage() {
               </div>
               <XCircle className="h-8 w-8 text-red-500" />
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard delay={0.3}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.needsInfo}</p>
@@ -221,13 +222,13 @@ export default function UniversityProjectsPage() {
               </div>
               <AlertCircle className="h-8 w-8 text-orange-500" />
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
 
       {/* Tabs and Filters */}
-      <Card>
-        <CardContent className="pt-6">
+      <GlassCard delay={0.15}>
+        <div className="p-5">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-4">
               <TabsList>
@@ -278,8 +279,8 @@ export default function UniversityProjectsPage() {
               <ProjectsList projects={filteredProjects} getStatusBadge={getStatusBadge} />
             </TabsContent>
           </Tabs>
-        </CardContent>
-      </Card>
+        </div>
+      </GlassCard>
     </div>
   )
 }

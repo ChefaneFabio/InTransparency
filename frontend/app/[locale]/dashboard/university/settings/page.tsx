@@ -30,6 +30,7 @@ import {
   Loader2
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { useTranslations } from 'next-intl'
 import { AccountDangerZone } from '@/components/dashboard/shared/AccountDangerZone'
 
@@ -199,19 +200,21 @@ export default function UniversitySettingsPage() {
   return (
     <div className="min-h-screen space-y-6 py-8">
       <div className="container max-w-4xl mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
-            <p className="text-muted-foreground">{t('subtitle')}</p>
+        <MetricHero gradient="primary">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+              <p className="text-muted-foreground">{t('subtitle')}</p>
+            </div>
+            <Button onClick={handleSave} disabled={isSaving}>
+              {isSaving ? (
+                <><Loader2 className="h-4 w-4 mr-2 animate-spin" />{t('saving')}</>
+              ) : (
+                <><Save className="h-4 w-4 mr-2" />{t('save')}</>
+              )}
+            </Button>
           </div>
-          <Button onClick={handleSave} disabled={isSaving}>
-            {isSaving ? (
-              <><Loader2 className="h-4 w-4 mr-2 animate-spin" />{t('saving')}</>
-            ) : (
-              <><Save className="h-4 w-4 mr-2" />{t('save')}</>
-            )}
-          </Button>
-        </div>
+        </MetricHero>
 
         {saveSuccess && (
           <Alert className="mb-6 bg-primary/5 border-primary/20">
@@ -249,12 +252,11 @@ export default function UniversitySettingsPage() {
           </TabsList>
 
           <TabsContent value="profile">
-            <Card>
-              <CardHeader>
-                <CardTitle>Informazioni Istituzione</CardTitle>
-                <CardDescription>Gestisci le informazioni pubbliche della tua istituzione</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
+            <GlassCard delay={0.1}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold">Informazioni Istituzione</h3>
+                <p className="text-sm text-muted-foreground mb-4">Gestisci le informazioni pubbliche della tua istituzione</p>
+                <div className="space-y-6">
                 <div className="flex items-center gap-6">
                   <div className="w-24 h-24 bg-muted rounded-lg flex items-center justify-center border-2 border-dashed border-border">
                     {settings.logo ? (
@@ -320,21 +322,21 @@ export default function UniversitySettingsPage() {
                     </div>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="address">Indirizzo</Label>
-                  <Input id="address" value={settings.address} onChange={(e) => updateSetting('address', e.target.value)} />
+                  <div className="space-y-2">
+                    <Label htmlFor="address">Indirizzo</Label>
+                    <Input id="address" value={settings.address} onChange={(e) => updateSetting('address', e.target.value)} />
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           </TabsContent>
 
           <TabsContent value="notifications">
-            <Card>
-              <CardHeader>
-                <CardTitle>Preferenze Notifiche</CardTitle>
-                <CardDescription>Scegli quali notifiche ricevere via email</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
+            <GlassCard delay={0.1}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold">Preferenze Notifiche</h3>
+                <p className="text-sm text-muted-foreground mb-4">Scegli quali notifiche ricevere via email</p>
+                <div className="space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <Label className="font-medium">Nuovo Studente Iscritto</Label>
@@ -361,19 +363,19 @@ export default function UniversitySettingsPage() {
                     <Label className="font-medium">Nuovo Placement</Label>
                     <p className="text-sm text-muted-foreground">Notifica quando uno studente trova lavoro</p>
                   </div>
-                  <Switch checked={settings.notifyPlacements} onCheckedChange={(checked) => setSettings({ ...settings, notifyPlacements: checked })} />
+                    <Switch checked={settings.notifyPlacements} onCheckedChange={(checked) => setSettings({ ...settings, notifyPlacements: checked })} />
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           </TabsContent>
 
           <TabsContent value="privacy">
-            <Card>
-              <CardHeader>
-                <CardTitle>Impostazioni Privacy</CardTitle>
-                <CardDescription>Controlla quali dati sono visibili pubblicamente</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
+            <GlassCard delay={0.1}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold">Impostazioni Privacy</h3>
+                <p className="text-sm text-muted-foreground mb-4">Controlla quali dati sono visibili pubblicamente</p>
+                <div className="space-y-6">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Eye className="h-5 w-5 text-muted-foreground" />
@@ -412,19 +414,19 @@ export default function UniversitySettingsPage() {
                       <p className="text-sm text-muted-foreground">Richiedi verifica email istituzionale per gli studenti</p>
                     </div>
                   </div>
-                  <Switch checked={settings.requireEmailVerification} onCheckedChange={(checked) => setSettings({ ...settings, requireEmailVerification: checked })} />
+                    <Switch checked={settings.requireEmailVerification} onCheckedChange={(checked) => setSettings({ ...settings, requireEmailVerification: checked })} />
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           </TabsContent>
 
           <TabsContent value="branding">
-            <Card>
-              <CardHeader>
-                <CardTitle>Personalizzazione</CardTitle>
-                <CardDescription>Personalizza l'aspetto della tua pagina istituzionale</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
+            <GlassCard delay={0.1}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold">Personalizzazione</h3>
+                <p className="text-sm text-muted-foreground mb-4">Personalizza l'aspetto della tua pagina istituzionale</p>
+                <div className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="primaryColor">Colore Primario</Label>
@@ -469,10 +471,11 @@ export default function UniversitySettingsPage() {
                     <Button size="sm" style={{ backgroundColor: settings.accentColor }} className="text-white">
                       Scopri di più
                     </Button>
+                    </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           </TabsContent>
         </Tabs>
 

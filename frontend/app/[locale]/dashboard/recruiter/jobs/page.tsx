@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { Search, Plus, MoreVertical, Users, Eye, Calendar, DollarSign, MapPin, AlertCircle, Briefcase } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { Link } from '@/navigation'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 import { useTranslations } from 'next-intl'
@@ -197,74 +198,68 @@ export default function RecruiterJobs() {
 
   return (
     <div className="min-h-screen space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
-          <p className="text-muted-foreground">
-            {t('subtitle')}
-          </p>
+      <MetricHero gradient="primary">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+            <p className="text-muted-foreground">
+              {t('subtitle')}
+            </p>
+          </div>
+          <Button asChild>
+            <Link href="/dashboard/recruiter/jobs/new">
+              <Plus className="h-4 w-4 mr-2" />
+              {t('postNewJob')}
+            </Link>
+          </Button>
         </div>
-        <Button asChild>
-          <Link href="/dashboard/recruiter/jobs/new">
-            <Plus className="h-4 w-4 mr-2" />
-            {t('postNewJob')}
-          </Link>
-        </Button>
-      </div>
+      </MetricHero>
 
       {/* Stats Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{t('stats.activeJobs')}</CardTitle>
-          </CardHeader>
-          <CardContent>
+        <GlassCard gradient="primary" hover={false}>
+          <div className="p-5">
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t('stats.activeJobs')}</p>
             <div className="text-2xl font-bold">{activeCount}</div>
             <p className="text-xs text-muted-foreground">
               {t('stats.totalListings', { count: jobs.length })}
             </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{t('stats.totalApplications')}</CardTitle>
-          </CardHeader>
-          <CardContent>
+          </div>
+        </GlassCard>
+        <GlassCard gradient="blue" hover={false}>
+          <div className="p-5">
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t('stats.totalApplications')}</p>
             <div className="text-2xl font-bold">{totalApplications}</div>
             <p className="text-xs text-muted-foreground">
               {t('stats.acrossAllJobs')}
             </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{t('stats.totalViews')}</CardTitle>
-          </CardHeader>
-          <CardContent>
+          </div>
+        </GlassCard>
+        <GlassCard gradient="green" hover={false}>
+          <div className="p-5">
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t('stats.totalViews')}</p>
             <div className="text-2xl font-bold">{totalViews}</div>
             <p className="text-xs text-muted-foreground">
               {t('stats.acrossAllJobs')}
             </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{t('stats.avgApplications')}</CardTitle>
-          </CardHeader>
-          <CardContent>
+          </div>
+        </GlassCard>
+        <GlassCard gradient="amber" hover={false}>
+          <div className="p-5">
+            <p className="text-sm font-medium text-muted-foreground mb-1">{t('stats.avgApplications')}</p>
             <div className="text-2xl font-bold">
               {jobs.length > 0 ? Math.round(totalApplications / jobs.length) : 0}
             </div>
             <p className="text-xs text-muted-foreground">
               {t('stats.perJobPosting')}
             </p>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
 
       {/* Filters */}
-      <Card>
-        <CardContent className="pt-6">
+      <GlassCard hover={false}>
+        <div className="p-5">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
@@ -301,13 +296,13 @@ export default function RecruiterJobs() {
               </SelectContent>
             </Select>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </GlassCard>
 
       {/* Jobs List */}
       {filteredJobs.length === 0 ? (
-        <Card>
-          <CardContent>
+        <GlassCard hover={false}>
+          <div className="p-5">
             <EmptyState
               icon={Briefcase}
               title={t('empty.title')}
@@ -317,8 +312,8 @@ export default function RecruiterJobs() {
                 href: '/dashboard/recruiter/jobs/new',
               }}
             />
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       ) : (
         <div className="grid gap-6">
           {filteredJobs.map((job) => (

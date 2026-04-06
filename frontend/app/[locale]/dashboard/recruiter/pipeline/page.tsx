@@ -18,6 +18,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Link } from '@/navigation'
 import { Search, Plus, Loader2 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 const STAGES = ['discovered', 'contacted', 'interviewing', 'offered', 'hired'] as const
 type Stage = (typeof STAGES)[number]
@@ -177,14 +178,14 @@ export default function RecruiterPipelinePage() {
           <h1 className="text-2xl font-bold">{t('title')}</h1>
           <p className="text-muted-foreground">{t('subtitle')}</p>
         </div>
-        <Card>
-          <CardContent className="py-12 text-center">
+        <GlassCard hover={false}>
+          <div className="py-12 text-center">
             <p className="text-destructive font-medium">{t('error')}</p>
             <Button variant="outline" className="mt-4" onClick={fetchCandidates}>
               {t('loading')}
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
     )
   }
@@ -196,8 +197,8 @@ export default function RecruiterPipelinePage() {
           <h1 className="text-2xl font-bold">{t('title')}</h1>
           <p className="text-muted-foreground">{t('subtitle')}</p>
         </div>
-        <Card>
-          <CardContent className="py-12 text-center">
+        <GlassCard hover={false}>
+          <div className="py-12 text-center px-5">
             <p className="text-lg font-medium mb-2">{t('emptyPipeline')}</p>
             <p className="text-muted-foreground mb-6">{t('emptyPipelineDesc')}</p>
             <Link href="/dashboard/recruiter/candidates">
@@ -206,37 +207,39 @@ export default function RecruiterPipelinePage() {
                 {t('startSearching')}
               </Button>
             </Link>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
     )
   }
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold">{t('title')}</h1>
-          <p className="text-muted-foreground">{t('subtitle')}</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              className="pl-9 w-64"
-            />
+      <MetricHero gradient="primary">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-bold">{t('title')}</h1>
+            <p className="text-muted-foreground">{t('subtitle')}</p>
           </div>
-          <Link href="/dashboard/recruiter/candidates">
-            <Button variant="outline" size="sm">
-              <Plus className="mr-1.5 h-4 w-4" />
-              {t('startSearching')}
-            </Button>
-          </Link>
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                className="pl-9 w-64"
+              />
+            </div>
+            <Link href="/dashboard/recruiter/candidates">
+              <Button variant="outline" size="sm">
+                <Plus className="mr-1.5 h-4 w-4" />
+                {t('startSearching')}
+              </Button>
+            </Link>
+          </div>
         </div>
-      </div>
+      </MetricHero>
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {STAGES.map(stage => {

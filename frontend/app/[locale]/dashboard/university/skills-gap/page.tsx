@@ -14,6 +14,7 @@ import {
   Briefcase,
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { useTranslations } from 'next-intl'
 
 interface SkillGapItem {
@@ -90,17 +91,17 @@ export default function SkillsGapPage() {
 
   return (
     <div className="space-y-6">
-      <div>
+      <MetricHero gradient="primary">
         <h1 className="text-2xl font-bold text-foreground">{t('title')}</h1>
         <p className="text-muted-foreground mt-1">
           {t('subtitle')}
         </p>
-      </div>
+      </MetricHero>
 
       {/* Summary Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card>
-          <CardContent className="pt-6">
+        <GlassCard delay={0.1}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{data.studentCount}</p>
@@ -108,10 +109,10 @@ export default function SkillsGapPage() {
               </div>
               <Users className="h-5 w-5 text-primary" />
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard delay={0.15}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{data.jobCount}</p>
@@ -119,10 +120,10 @@ export default function SkillsGapPage() {
               </div>
               <Briefcase className="h-5 w-5 text-primary" />
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard delay={0.2}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold text-red-600">{data.gaps.length}</p>
@@ -130,10 +131,10 @@ export default function SkillsGapPage() {
               </div>
               <TrendingDown className="h-5 w-5 text-red-500" />
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard delay={0.25}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold text-primary">{data.strengths.length}</p>
@@ -141,22 +142,20 @@ export default function SkillsGapPage() {
               </div>
               <TrendingUp className="h-5 w-5 text-primary" />
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
 
       {/* Skills Gap Heatmap */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      <GlassCard delay={0.15}>
+        <div className="p-5">
+          <h3 className="text-lg font-semibold flex items-center gap-2 mb-1">
             <AlertTriangle className="h-5 w-5 text-red-500" />
             {t('gapsTitle')}
-          </CardTitle>
-          <CardDescription>
+          </h3>
+          <p className="text-sm text-muted-foreground mb-4">
             {t('gapsDescription')}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+          </p>
           {data.gaps.length > 0 ? (
             <div className="space-y-3">
               {data.gaps.map((gap) => (
@@ -213,21 +212,19 @@ export default function SkillsGapPage() {
               <p>{t('noGaps')}</p>
             </div>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </GlassCard>
 
       {/* Strengths */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      <GlassCard delay={0.2}>
+        <div className="p-5">
+          <h3 className="text-lg font-semibold flex items-center gap-2 mb-1">
             <CheckCircle className="h-5 w-5 text-primary" />
             {t('strengthsTitle')}
-          </CardTitle>
-          <CardDescription>
+          </h3>
+          <p className="text-sm text-muted-foreground mb-4">
             {t('strengthsDescription')}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+          </p>
           {data.strengths.length > 0 ? (
             <div className="flex flex-wrap gap-2">
               {data.strengths.map((s) => (
@@ -247,8 +244,8 @@ export default function SkillsGapPage() {
               {t('noStrengths')}
             </p>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </GlassCard>
 
       {/* Generated timestamp */}
       <p className="text-xs text-muted-foreground/60 text-right">

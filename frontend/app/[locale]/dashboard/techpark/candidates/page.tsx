@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ArrowLeft, Search, Filter, MapPin, GraduationCap, Users } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface Candidate {
   id: string
@@ -66,17 +67,19 @@ export default function TechParkCandidatesPage() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
-      <div className="flex items-center gap-4 pt-2">
-        <Button variant="ghost" size="sm" asChild>
-          <Link href="/dashboard/techpark">
-            <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
-          </Link>
-        </Button>
-        <div>
-          <h1 className="text-2xl font-semibold">{t('candidates.title')}</h1>
-          <p className="text-sm text-muted-foreground">{t('candidates.subtitle')}</p>
+      <MetricHero gradient="primary">
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/dashboard/techpark">
+              <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
+            </Link>
+          </Button>
+          <div>
+            <h1 className="text-2xl font-semibold">{t('candidates.title')}</h1>
+            <p className="text-sm text-muted-foreground">{t('candidates.subtitle')}</p>
+          </div>
         </div>
-      </div>
+      </MetricHero>
 
       <div className="flex gap-3 items-center">
         <div className="relative flex-1 max-w-sm">

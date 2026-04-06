@@ -26,6 +26,7 @@ import {
   Layers,
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { useTranslations } from 'next-intl'
 
 interface Course {
@@ -109,23 +110,25 @@ export default function UniversityCoursesPage() {
     <div className="min-h-screen space-y-6 py-8">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
-            <p className="text-muted-foreground">{t('subtitle')}</p>
+        <MetricHero gradient="primary">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 className="text-3xl font-bold text-foreground">{t('title')}</h1>
+              <p className="text-muted-foreground">{t('subtitle')}</p>
+            </div>
+            <Link href="/dashboard/university/courses/new">
+              <Button className="gap-2">
+                <Plus className="h-4 w-4" />
+                {t('addCourse')}
+              </Button>
+            </Link>
           </div>
-          <Link href="/dashboard/university/courses/new">
-            <Button className="gap-2">
-              <Plus className="h-4 w-4" />
-              {t('addCourse')}
-            </Button>
-          </Link>
-        </div>
+        </MetricHero>
 
         {/* Stats Overview */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <Card>
-            <CardContent className="p-4">
+          <GlassCard delay={0.1}>
+            <div className="p-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                   <BookOpen className="h-5 w-5 text-primary" />
@@ -144,10 +147,10 @@ export default function UniversityCoursesPage() {
                   )}
                 </div>
               </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
+            </div>
+          </GlassCard>
+          <GlassCard delay={0.15}>
+            <div className="p-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                   <CheckCircle className="h-5 w-5 text-primary" />
@@ -166,10 +169,10 @@ export default function UniversityCoursesPage() {
                   )}
                 </div>
               </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
+            </div>
+          </GlassCard>
+          <GlassCard delay={0.2}>
+            <div className="p-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                   <Hash className="h-5 w-5 text-primary" />
@@ -188,10 +191,10 @@ export default function UniversityCoursesPage() {
                   )}
                 </div>
               </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
+            </div>
+          </GlassCard>
+          <GlassCard delay={0.25}>
+            <div className="p-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
                   <Layers className="h-5 w-5 text-orange-600" />
@@ -210,8 +213,8 @@ export default function UniversityCoursesPage() {
                   )}
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         </div>
 
         {/* Filters */}
@@ -279,21 +282,23 @@ export default function UniversityCoursesPage() {
             ))}
           </div>
         ) : courses.length === 0 ? (
-          <Card className="p-12 text-center">
-            <BookOpen className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-foreground mb-2">
-              {t('noCourseFound')}
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              {t('tryClearFilters')}
-            </p>
-            <Link href="/dashboard/university/courses/new">
-              <Button variant="outline" className="gap-2">
-                <Plus className="h-4 w-4" />
-                {t('addFirstCourse')}
-              </Button>
-            </Link>
-          </Card>
+          <GlassCard delay={0.1}>
+            <div className="p-12 text-center">
+              <BookOpen className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                {t('noCourseFound')}
+              </h3>
+              <p className="text-muted-foreground mb-6">
+                {t('tryClearFilters')}
+              </p>
+              <Link href="/dashboard/university/courses/new">
+                <Button variant="outline" className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  {t('addFirstCourse')}
+                </Button>
+              </Link>
+            </div>
+          </GlassCard>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {courses.map((course) => (

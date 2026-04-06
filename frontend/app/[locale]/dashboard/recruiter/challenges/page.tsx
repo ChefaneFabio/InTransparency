@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ChallengeCard } from '@/components/challenges/ChallengeCard'
 import { Plus, Search, Loader2, Trophy, FileText, GraduationCap } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { EmptyState } from '@/components/dashboard/shared/EmptyState'
 
 interface Challenge {
@@ -108,25 +108,27 @@ export default function RecruiterChallengesPage() {
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
       {/* Header */}
-      <div className="flex items-center justify-between pt-2">
-        <div>
-          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
-          <p className="text-muted-foreground mt-1">
-            {t('subtitle')}
-          </p>
+      <MetricHero gradient="primary">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+            <p className="text-muted-foreground mt-1">
+              {t('subtitle')}
+            </p>
+          </div>
+          <Button asChild>
+            <Link href="/dashboard/recruiter/challenges">
+              <Plus className="h-4 w-4 mr-2" />
+              {t('createChallenge')}
+            </Link>
+          </Button>
         </div>
-        <Button asChild>
-          <Link href="/dashboard/recruiter/challenges">
-            <Plus className="h-4 w-4 mr-2" />
-            {t('createChallenge')}
-          </Link>
-        </Button>
-      </div>
+      </MetricHero>
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card>
-          <CardContent className="pt-6">
+        <GlassCard gradient="primary" hover={false}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.total}</p>
@@ -134,10 +136,10 @@ export default function RecruiterChallengesPage() {
               </div>
               <Trophy className="h-8 w-8 text-primary" />
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard gradient="green" hover={false}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.active}</p>
@@ -147,10 +149,10 @@ export default function RecruiterChallengesPage() {
                 <div className="h-3 w-3 rounded-full bg-primary/50" />
               </div>
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard gradient="blue" hover={false}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.totalSubmissions}</p>
@@ -158,10 +160,10 @@ export default function RecruiterChallengesPage() {
               </div>
               <FileText className="h-5 w-5" />
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard gradient="purple" hover={false}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.totalApprovals}</p>
@@ -169,13 +171,13 @@ export default function RecruiterChallengesPage() {
               </div>
               <GraduationCap className="h-5 w-5" />
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
 
       {/* Filters */}
-      <Card>
-        <CardContent className="pt-6">
+      <GlassCard hover={false}>
+        <div className="p-5">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground/60" />
@@ -202,8 +204,8 @@ export default function RecruiterChallengesPage() {
               </SelectContent>
             </Select>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </GlassCard>
 
       {/* Challenges List */}
       {filteredChallenges.length > 0 ? (
@@ -217,8 +219,8 @@ export default function RecruiterChallengesPage() {
           ))}
         </div>
       ) : (
-        <Card>
-          <CardContent>
+        <GlassCard hover={false}>
+          <div className="p-5">
             <EmptyState
               icon={Trophy}
               title={t('emptyTitle')}
@@ -228,8 +230,8 @@ export default function RecruiterChallengesPage() {
                 href: '/dashboard/recruiter/challenges/new',
               }}
             />
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       )}
     </div>
   )

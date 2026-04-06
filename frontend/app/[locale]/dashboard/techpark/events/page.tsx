@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ArrowLeft, Calendar, MapPin, Users, Clock, Plus } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface ParkEvent {
   id: string
@@ -96,22 +97,24 @@ export default function TechParkEventsPage() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
-      <div className="flex items-center justify-between pt-2">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/dashboard/techpark">
-              <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
-            </Link>
-          </Button>
-          <div>
-            <h1 className="text-2xl font-semibold">{t('events.title')}</h1>
-            <p className="text-sm text-muted-foreground">{t('events.subtitle')}</p>
+      <MetricHero gradient="primary">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/dashboard/techpark">
+                <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
+              </Link>
+            </Button>
+            <div>
+              <h1 className="text-2xl font-semibold">{t('events.title')}</h1>
+              <p className="text-sm text-muted-foreground">{t('events.subtitle')}</p>
+            </div>
           </div>
+          <Button size="sm">
+            <Plus className="h-4 w-4 mr-1" /> {t('events.newEvent')}
+          </Button>
         </div>
-        <Button size="sm">
-          <Plus className="h-4 w-4 mr-1" /> {t('events.newEvent')}
-        </Button>
-      </div>
+      </MetricHero>
 
       <div className="relative max-w-sm">
         <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />

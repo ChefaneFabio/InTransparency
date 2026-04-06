@@ -13,6 +13,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Link } from '@/navigation'
 import { Search, Download, UserPlus, GraduationCap, CheckCircle, Globe, TrendingUp, Database } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface Student {
   id: string
@@ -189,24 +190,26 @@ export default function UniversityStudents() {
 
   return (
     <div className="min-h-screen space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
-          <p className="text-muted-foreground">{t('subtitle')}</p>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="outline">
-            <Download className="h-4 w-4 mr-2" />
-            {t('exportData')}
-          </Button>
-          <Link href="./students/add">
-            <Button>
-              <UserPlus className="h-4 w-4 mr-2" />
-              {t('addStudent')}
+      <MetricHero gradient="primary">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+            <p className="text-muted-foreground">{t('subtitle')}</p>
+          </div>
+          <div className="flex gap-2">
+            <Button variant="outline">
+              <Download className="h-4 w-4 mr-2" />
+              {t('exportData')}
             </Button>
-          </Link>
+            <Link href="./students/add">
+              <Button>
+                <UserPlus className="h-4 w-4 mr-2" />
+                {t('addStudent')}
+              </Button>
+            </Link>
+          </div>
         </div>
-      </div>
+      </MetricHero>
 
       <Tabs defaultValue="overview" className="space-y-6">
         <TabsList>
@@ -220,12 +223,12 @@ export default function UniversityStudents() {
         {/* ─── Overview ─── */}
         <TabsContent value="overview" className="space-y-6">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">{t('stats.totalStudents')}</CardTitle>
-                <GraduationCap className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
+            <GlassCard delay={0.1}>
+              <div className="p-5">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium">{t('stats.totalStudents')}</span>
+                  <GraduationCap className="h-4 w-4 text-muted-foreground" />
+                </div>
                 {loading ? (
                   <>
                     <Skeleton className="h-8 w-16 mb-1" />
@@ -237,14 +240,14 @@ export default function UniversityStudents() {
                     <p className="text-xs text-muted-foreground">{t('stats.enrolledIn')}</p>
                   </>
                 )}
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">{t('stats.verifiedStudents')}</CardTitle>
-                <CheckCircle className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
+              </div>
+            </GlassCard>
+            <GlassCard delay={0.15}>
+              <div className="p-5">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium">{t('stats.verifiedStudents')}</span>
+                  <CheckCircle className="h-4 w-4 text-muted-foreground" />
+                </div>
                 {loading ? (
                   <>
                     <Skeleton className="h-8 w-16 mb-1" />
@@ -261,14 +264,14 @@ export default function UniversityStudents() {
                     </p>
                   </>
                 )}
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">{t('stats.activeProfiles')}</CardTitle>
-                <Globe className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
+              </div>
+            </GlassCard>
+            <GlassCard delay={0.2}>
+              <div className="p-5">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium">{t('stats.activeProfiles')}</span>
+                  <Globe className="h-4 w-4 text-muted-foreground" />
+                </div>
                 {loading ? (
                   <>
                     <Skeleton className="h-8 w-16 mb-1" />
@@ -285,17 +288,15 @@ export default function UniversityStudents() {
                     </p>
                   </>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>{t('topStudents.title')}</CardTitle>
-                <CardDescription>{t('topStudents.description')}</CardDescription>
-              </CardHeader>
-              <CardContent>
+            <GlassCard delay={0.15}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold">{t('topStudents.title')}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{t('topStudents.description')}</p>
                 {loading ? (
                   <div className="space-y-4">
                     {[1, 2, 3, 4, 5].map((i) => (
@@ -339,15 +340,13 @@ export default function UniversityStudents() {
                     )}
                   </div>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>{t('recentActivity.title')}</CardTitle>
-                <CardDescription>{t('recentActivity.description')}</CardDescription>
-              </CardHeader>
-              <CardContent>
+            <GlassCard delay={0.2}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold">{t('recentActivity.title')}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{t('recentActivity.description')}</p>
                 {loading ? (
                   <div className="space-y-4">
                     {[1, 2, 3, 4, 5].map((i) => (
@@ -387,15 +386,15 @@ export default function UniversityStudents() {
                     )}
                   </div>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           </div>
         </TabsContent>
 
         {/* ─── Students ─── */}
         <TabsContent value="students" className="space-y-6">
-          <Card>
-            <CardContent className="pt-6">
+          <GlassCard delay={0.1}>
+            <div className="p-5">
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
@@ -440,8 +439,8 @@ export default function UniversityStudents() {
                   </SelectContent>
                 </Select>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
 
           {error && (
             <Card>

@@ -19,6 +19,7 @@ import {
   XCircle,
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { useTranslations } from 'next-intl'
 
 interface EventData {
@@ -142,26 +143,27 @@ export default function EventsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">Career Events</h1>
-          <p className="text-muted-foreground mt-1">
-            Organize career days, workshops, and networking events
-          </p>
+      <MetricHero gradient="primary">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-foreground">Career Events</h1>
+            <p className="text-muted-foreground mt-1">
+              Organize career days, workshops, and networking events
+            </p>
+          </div>
+          <Button onClick={() => setShowCreate(!showCreate)}>
+            <Plus className="mr-2 h-4 w-4" />
+            New Event
+          </Button>
         </div>
-        <Button onClick={() => setShowCreate(!showCreate)}>
-          <Plus className="mr-2 h-4 w-4" />
-          New Event
-        </Button>
-      </div>
+      </MetricHero>
 
       {/* Create Event Form */}
       {showCreate && (
-        <Card className="border-primary/20">
-          <CardHeader>
-            <CardTitle className="text-lg">Create New Event</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
+        <GlassCard delay={0.1}>
+          <div className="p-5">
+            <h3 className="text-lg font-semibold mb-4">Create New Event</h3>
+            <div className="space-y-4">
             <div>
               <label className="text-sm font-medium text-foreground/80 mb-1 block">Event Title *</label>
               <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Spring Career Day 2026" />
@@ -210,14 +212,15 @@ export default function EventsPage() {
                 <Input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="e.g. Aula Magna, Building A" />
               </div>
             )}
-            <div className="flex gap-2 justify-end">
-              <Button variant="outline" onClick={() => setShowCreate(false)}>Cancel</Button>
-              <Button onClick={handleCreate} disabled={creating || !title || !startDate || !endDate}>
-                {creating ? 'Creating...' : 'Create Event'}
-              </Button>
+              <div className="flex gap-2 justify-end">
+                <Button variant="outline" onClick={() => setShowCreate(false)}>Cancel</Button>
+                <Button onClick={handleCreate} disabled={creating || !title || !startDate || !endDate}>
+                  {creating ? 'Creating...' : 'Create Event'}
+                </Button>
+              </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       )}
 
       {/* Upcoming Events */}
@@ -289,13 +292,13 @@ export default function EventsPage() {
             })}
           </div>
         ) : (
-          <Card className="border-dashed">
-            <CardContent className="py-8 text-center">
+          <GlassCard delay={0.1}>
+            <div className="py-8 text-center">
               <Calendar className="h-10 w-10 mx-auto text-muted-foreground/40 mb-3" />
               <p className="text-muted-foreground">No upcoming events.</p>
               <p className="text-sm text-muted-foreground">Create your first career event to get started.</p>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         )}
       </div>
 
