@@ -283,7 +283,8 @@
       "Bash(rm -rf \"app/[locale]/dashboard/student/projects/[id]/edit\")",
       "Bash(rm -rf \"app/[locale]/dashboard/recruiter/outreach\")",
       "Bash(rm -rf \"app/[locale]/dashboard/recruiter/scheduling\")",
-      "WebFetch(domain:dokimazo.io)"
+      "WebFetch(domain:dokimazo.io)",
+      "WebFetch(domain:www.careerservice.polimi.it)"
     ],
     "defaultMode": "acceptEdits"
   }
