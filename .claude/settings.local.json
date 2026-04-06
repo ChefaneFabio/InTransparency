@@ -284,7 +284,12 @@
       "Bash(rm -rf \"app/[locale]/dashboard/recruiter/outreach\")",
       "Bash(rm -rf \"app/[locale]/dashboard/recruiter/scheduling\")",
       "WebFetch(domain:dokimazo.io)",
-      "WebFetch(domain:www.careerservice.polimi.it)"
+      "WebFetch(domain:www.careerservice.polimi.it)",
+      "Bash(rm -rf \"app/[locale]/company-profile\")",
+      "Bash(rm -rf \"app/[locale]/company\")",
+      "Bash(rm -rf \"app/[locale]/university\")",
+      "Bash(rm -rf \"app/[locale]/compare/linkedin\")",
+      "Bash(rm -rf \"app/[locale]/compare/almalaurea\")"
     ],
     "defaultMode": "acceptEdits"
   }
