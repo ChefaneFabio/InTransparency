@@ -1136,11 +1136,35 @@
   "contact": {
     "hero": {
       "title": "Contact & Support",
-      "subtitle": "Have questions about InTransparency? Need technical support? We're here to help you transform your academic journey into career success."
+      "subtitle": "Have questions about InTransparency? We're here to help."
+    },
+    "segments": {
+      "student": "I'm a Student",
+      "company": "I'm a Company",
+      "university": "I'm an Institution",
+      "general": "General Inquiry"
+    },
+    "segmentMessage": {
+      "student": {
+        "title": "Need help with your profile, projects, or job search?",
+        "subtitle": "Our team supports you personally — from building your portfolio to preparing for interviews."
+      },
+      "company": {
+        "title": "Looking for verified talent across all disciplines?",
+        "subtitle": "Book a demo to see how InTransparency gives you access to institution-verified candidates."
+      },
+      "university": {
+        "title": "Interested in becoming an academic partner?",
+        "subtitle": "Join for free. Get real-time placement data, student analytics, and recruiter connections — replacing manual reports with live insights."
+      },
+      "general": {
+        "title": "We'd love to hear from you",
+        "subtitle": "Questions, feedback, partnership ideas — we respond within 24 hours."
+      }
     },
     "section": {
       "title": "Let's Start a Conversation",
-      "subtitle": "Whether you're a student, recruiter, or institution, we're excited to hear from you and help you succeed."
+      "subtitle": "Whether you're a student, recruiter, or institution, we're excited to hear from you."
     },
     "methods": {
       "email": {

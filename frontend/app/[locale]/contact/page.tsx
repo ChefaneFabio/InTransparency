@@ -1,6 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/button'
@@ -9,20 +11,49 @@ import { Badge } from '@/components/ui/badge'
 import {
   Send,
   CheckCircle,
+  GraduationCap,
+  Building2,
+  School,
+  Users,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { IMAGES } from '@/lib/images'
 import { useTranslations } from 'next-intl'
 
+type Segment = 'student' | 'company' | 'university' | 'general'
+
 export default function ContactPage() {
   const t = useTranslations('contact')
+  const searchParams = useSearchParams()
+  const { data: session } = useSession()
+
+  // Detect segment from URL params or session
+  const subjectParam = searchParams.get('subject') || ''
+  const roleFromSession = (session?.user as any)?.role || ''
+
+  const detectSegment = (): Segment => {
+    if (subjectParam.includes('university') || subjectParam.includes('pilot') || subjectParam.includes('institution')) return 'university'
+    if (subjectParam.includes('company') || subjectParam.includes('recruiter') || subjectParam.includes('hiring')) return 'company'
+    if (subjectParam.includes('student')) return 'student'
+    if (roleFromSession === 'RECRUITER') return 'company'
+    if (roleFromSession === 'UNIVERSITY' || roleFromSession === 'TECHPARK') return 'university'
+    if (roleFromSession === 'STUDENT') return 'student'
+    return 'general'
+  }
+
+  const [segment, setSegment] = useState<Segment>('general')
+
+  useEffect(() => {
+    setSegment(detectSegment())
+  }, [subjectParam, roleFromSession])
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
     role: '',
-    subject: '',
+    subject: subjectParam,
     message: '',
     priority: 'medium'
   })
@@ -87,6 +118,41 @@ export default function ContactPage() {
             >
               {t('hero.subtitle')}
             </motion.p>
+          </div>
+        </section>
+
+        {/* Segment Selector */}
+        <section className="py-6 border-b">
+          <div className="container max-w-6xl mx-auto px-4">
+            <div className="flex flex-wrap justify-center gap-3">
+              {([
+                { key: 'student' as Segment, icon: Users, label: t('segments.student') },
+                { key: 'company' as Segment, icon: Building2, label: t('segments.company') },
+                { key: 'university' as Segment, icon: School, label: t('segments.university') },
+                { key: 'general' as Segment, icon: Send, label: t('segments.general') },
+              ]).map(({ key, icon: Icon, label }) => (
+                <button
+                  key={key}
+                  onClick={() => setSegment(key)}
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
+                    segment === key
+                      ? 'bg-primary text-primary-foreground shadow-md'
+                      : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Segment-specific message */}
+        <section className="py-6">
+          <div className="container max-w-6xl mx-auto px-4 text-center">
+            <p className="text-lg text-foreground font-medium">{t(`segmentMessage.${segment}.title`)}</p>
+            <p className="text-sm text-muted-foreground mt-1">{t(`segmentMessage.${segment}.subtitle`)}</p>
           </div>
         </section>
 
