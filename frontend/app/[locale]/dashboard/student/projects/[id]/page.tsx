@@ -210,86 +210,88 @@ export default function ProjectDetailPage() {
       </div>
 
       {/* Project Header */}
-      <div className="space-y-4">
-        <div>
-          <div className="flex items-center space-x-3 mb-2">
-            <h1 className="text-3xl font-bold text-foreground">{project.title}</h1>
-            <Badge variant={project.isPublic ? 'default' : 'secondary'}>
-              {project.isPublic ? (
-                <><Globe className="mr-1 h-3 w-3" /> Public</>
-              ) : (
-                <><Lock className="mr-1 h-3 w-3" /> Private</>
-              )}
-            </Badge>
-          </div>
+      <MetricHero gradient="primary">
+        <div className="space-y-4">
+          <div>
+            <div className="flex items-center space-x-3 mb-2">
+              <h1 className="text-2xl font-bold">{project.title}</h1>
+              <Badge variant={project.isPublic ? 'default' : 'secondary'}>
+                {project.isPublic ? (
+                  <><Globe className="mr-1 h-3 w-3" /> Public</>
+                ) : (
+                  <><Lock className="mr-1 h-3 w-3" /> Private</>
+                )}
+              </Badge>
+            </div>
 
-          {(project.discipline || project.projectType) && (
-            <div className="flex items-center gap-2 mb-3">
-              {project.discipline && (
-                <Badge variant="outline">{project.discipline.replace(/_/g, ' ')}</Badge>
-              )}
-              {project.projectType && (
-                <Badge variant="outline">{project.projectType}</Badge>
+            {(project.discipline || project.projectType) && (
+              <div className="flex items-center gap-2 mb-3">
+                {project.discipline && (
+                  <Badge variant="outline">{project.discipline.replace(/_/g, ' ')}</Badge>
+                )}
+                {project.projectType && (
+                  <Badge variant="outline">{project.projectType}</Badge>
+                )}
+              </div>
+            )}
+
+            <p className="text-sm text-muted-foreground mb-4">
+              {project.description}
+            </p>
+
+            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+              <span className="flex items-center">
+                <Calendar className="h-4 w-4 mr-1" />
+                Created {new Date(project.createdAt).toLocaleDateString()}
+              </span>
+              <span className="flex items-center">
+                <Clock className="h-4 w-4 mr-1" />
+                Updated {new Date(project.updatedAt).toLocaleDateString()}
+              </span>
+              {project.teamSize && (
+                <span className="flex items-center">
+                  <Users className="h-4 w-4 mr-1" />
+                  {project.teamSize} team member{project.teamSize > 1 ? 's' : ''}
+                </span>
               )}
             </div>
-          )}
-
-          <p className="text-lg text-muted-foreground mb-4">
-            {project.description}
-          </p>
-
-          <div className="flex flex-wrap gap-4 text-sm text-foreground/80">
-            <span className="flex items-center">
-              <Calendar className="h-4 w-4 mr-1" />
-              Created {new Date(project.createdAt).toLocaleDateString()}
-            </span>
-            <span className="flex items-center">
-              <Clock className="h-4 w-4 mr-1" />
-              Updated {new Date(project.updatedAt).toLocaleDateString()}
-            </span>
-            {project.teamSize && (
-              <span className="flex items-center">
-                <Users className="h-4 w-4 mr-1" />
-                {project.teamSize} team member{project.teamSize > 1 ? 's' : ''}
-              </span>
-            )}
           </div>
         </div>
+      </MetricHero>
 
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Card>
-            <CardContent className="p-4 text-center">
+          <GlassCard hover={false}>
+            <div className="p-4 text-center">
               <div className="text-2xl font-bold text-primary">{project.views || 0}</div>
               <div className="text-xs text-foreground/80">Views</div>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
           {project.innovationScore != null && (
-            <Card>
-              <CardContent className="p-4 text-center">
+            <GlassCard hover={false}>
+              <div className="p-4 text-center">
                 <div className="text-2xl font-bold text-primary">{project.innovationScore}</div>
                 <div className="text-xs text-foreground/80">Innovation</div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           )}
           {project.complexityScore != null && (
-            <Card>
-              <CardContent className="p-4 text-center">
+            <GlassCard hover={false}>
+              <div className="p-4 text-center">
                 <div className="text-2xl font-bold text-primary">{project.complexityScore}</div>
                 <div className="text-xs text-foreground/80">Complexity</div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           )}
           {project.marketRelevance != null && (
-            <Card>
-              <CardContent className="p-4 text-center">
+            <GlassCard hover={false}>
+              <div className="p-4 text-center">
                 <div className="text-2xl font-bold text-primary">{project.marketRelevance}</div>
                 <div className="text-xs text-foreground/80">Market Relevance</div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           )}
         </div>
-      </div>
 
       {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -305,11 +307,9 @@ export default function ProjectDetailPage() {
             <TabsContent value="overview" className="space-y-6">
               {/* Project Images */}
               {project.images && project.images.length > 0 && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Project Screenshots</CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                <GlassCard hover={false}>
+                  <div className="p-5">
+                    <h3 className="text-sm font-medium mb-3">Project Screenshots</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {project.images.map((image: string, index: number) => (
                         <div key={index} className="aspect-video bg-muted rounded-lg overflow-hidden">
@@ -321,17 +321,15 @@ export default function ProjectDetailPage() {
                         </div>
                       ))}
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </GlassCard>
               )}
 
               {/* Technologies / Skills / Tools */}
               {allTechnologies.length > 0 && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Technologies & Skills</CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                <GlassCard hover={false}>
+                  <div className="p-5">
+                    <h3 className="text-sm font-medium mb-3">Technologies & Skills</h3>
                     <div className="space-y-3">
                       {project.technologies && project.technologies.length > 0 && (
                         <div>
@@ -364,17 +362,15 @@ export default function ProjectDetailPage() {
                         </div>
                       )}
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </GlassCard>
               )}
 
               {/* Project Context */}
               {(project.duration || project.role || project.client || project.outcome) && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Project Context</CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                <GlassCard hover={false}>
+                  <div className="p-5">
+                    <h3 className="text-sm font-medium mb-3">Project Context</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {project.duration && (
                         <div>
@@ -401,20 +397,19 @@ export default function ProjectDetailPage() {
                         </div>
                       )}
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </GlassCard>
               )}
 
               {/* Endorsements */}
               {project.endorsements && project.endorsements.length > 0 && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center">
+                <GlassCard hover={false}>
+                  <div className="p-5">
+                    <h3 className="text-sm font-medium flex items-center mb-3">
                       <Award className="mr-2 h-5 w-5 text-primary" />
                       Verified Endorsements
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
+                    </h3>
+                    <div className="space-y-4">
                     {project.endorsements.map((e: any) => (
                       <div key={e.id} className="border rounded-lg p-4">
                         <div className="flex items-start justify-between mb-2">
@@ -443,89 +438,86 @@ export default function ProjectDetailPage() {
                         )}
                       </div>
                     ))}
-                  </CardContent>
-                </Card>
+                    </div>
+                  </div>
+                </GlassCard>
               )}
             </TabsContent>
 
             <TabsContent value="analysis" className="space-y-6">
               {!project.aiAnalyzed ? (
-                <Card>
-                  <CardContent className="p-8 text-center text-muted-foreground">
+                <GlassCard hover={false}>
+                  <div className="p-8 text-center text-muted-foreground">
                     <Brain className="h-12 w-12 mx-auto mb-4 text-muted-foreground/40" />
                     <p className="text-lg font-medium mb-2">No AI Analysis Yet</p>
                     <p className="text-sm">AI analysis will be generated after project submission.</p>
-                  </CardContent>
-                </Card>
+                  </div>
+                </GlassCard>
               ) : (
                 <>
                   {/* Scores */}
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
+                  <GlassCard hover={false}>
+                    <div className="p-5">
+                      <h3 className="text-sm font-medium flex items-center mb-3">
                         <Zap className="mr-2 h-5 w-5 text-primary" />
                         AI Scores
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      {project.innovationScore != null && (
-                        <div>
-                          <div className="flex justify-between text-sm mb-1">
-                            <span className="text-muted-foreground">Innovation</span>
-                            <span className="font-semibold">{project.innovationScore}/100</span>
+                      </h3>
+                      <div className="space-y-4">
+                        {project.innovationScore != null && (
+                          <div>
+                            <div className="flex justify-between text-sm mb-1">
+                              <span className="text-muted-foreground">Innovation</span>
+                              <span className="font-semibold">{project.innovationScore}/100</span>
+                            </div>
+                            <Progress value={project.innovationScore} className="h-2" />
                           </div>
-                          <Progress value={project.innovationScore} className="h-2" />
-                        </div>
-                      )}
-                      {project.complexityScore != null && (
-                        <div>
-                          <div className="flex justify-between text-sm mb-1">
-                            <span className="text-muted-foreground">Complexity</span>
-                            <span className="font-semibold">{project.complexityScore}/100</span>
+                        )}
+                        {project.complexityScore != null && (
+                          <div>
+                            <div className="flex justify-between text-sm mb-1">
+                              <span className="text-muted-foreground">Complexity</span>
+                              <span className="font-semibold">{project.complexityScore}/100</span>
+                            </div>
+                            <Progress value={project.complexityScore} className="h-2" />
                           </div>
-                          <Progress value={project.complexityScore} className="h-2" />
-                        </div>
-                      )}
-                      {project.marketRelevance != null && (
-                        <div>
-                          <div className="flex justify-between text-sm mb-1">
-                            <span className="text-muted-foreground">Market Relevance</span>
-                            <span className="font-semibold">{project.marketRelevance}/100</span>
+                        )}
+                        {project.marketRelevance != null && (
+                          <div>
+                            <div className="flex justify-between text-sm mb-1">
+                              <span className="text-muted-foreground">Market Relevance</span>
+                              <span className="font-semibold">{project.marketRelevance}/100</span>
+                            </div>
+                            <Progress value={project.marketRelevance} className="h-2" />
                           </div>
-                          <Progress value={project.marketRelevance} className="h-2" />
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
+                        )}
+                      </div>
+                    </div>
+                  </GlassCard>
 
                   {/* AI Insights from JSON */}
                   {aiInsights && (
                     <>
                       {/* Summary */}
                       {aiInsights.summary && (
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="flex items-center">
+                        <GlassCard hover={false}>
+                          <div className="p-5">
+                            <h3 className="text-sm font-medium flex items-center mb-3">
                               <Brain className="mr-2 h-5 w-5 text-primary" />
                               AI Summary
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent>
+                            </h3>
                             <p className="text-foreground/80">{aiInsights.summary}</p>
-                          </CardContent>
-                        </Card>
+                          </div>
+                        </GlassCard>
                       )}
 
-                      {/* Strengths (was keyInsights — fixed mismatch) */}
+                      {/* Strengths (was keyInsights -- fixed mismatch) */}
                       {aiInsights.strengths && aiInsights.strengths.length > 0 && (
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="flex items-center">
+                        <GlassCard hover={false}>
+                          <div className="p-5">
+                            <h3 className="text-sm font-medium flex items-center mb-3">
                               <Award className="mr-2 h-5 w-5 text-primary" />
                               Key Strengths
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent>
+                            </h3>
                             <ul className="space-y-2">
                               {aiInsights.strengths.map((item: string, i: number) => (
                                 <li key={i} className="flex items-start space-x-2">
@@ -534,19 +526,17 @@ export default function ProjectDetailPage() {
                                 </li>
                               ))}
                             </ul>
-                          </CardContent>
-                        </Card>
+                          </div>
+                        </GlassCard>
                       )}
 
                       {aiInsights.improvements && aiInsights.improvements.length > 0 && (
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="flex items-center">
+                        <GlassCard hover={false}>
+                          <div className="p-5">
+                            <h3 className="text-sm font-medium flex items-center mb-3">
                               <TrendingUp className="mr-2 h-5 w-5 text-primary" />
                               Improvement Suggestions
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent>
+                            </h3>
                             <ul className="space-y-2">
                               {aiInsights.improvements.map((item: string, i: number) => (
                                 <li key={i} className="flex items-start space-x-2">
@@ -555,20 +545,19 @@ export default function ProjectDetailPage() {
                                 </li>
                               ))}
                             </ul>
-                          </CardContent>
-                        </Card>
+                          </div>
+                        </GlassCard>
                       )}
 
                       {/* Detected Competencies with scores (fixed from skillsIdentified) */}
                       {aiInsights.detectedCompetencies && aiInsights.detectedCompetencies.length > 0 && (
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="flex items-center">
+                        <GlassCard hover={false}>
+                          <div className="p-5">
+                            <h3 className="text-sm font-medium flex items-center mb-3">
                               <Target className="mr-2 h-5 w-5 text-primary" />
                               Detected Competencies
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-4">
+                            </h3>
+                            <div className="space-y-4">
                             {aiInsights.detectedCompetencies.map((comp: any, i: number) => {
                               const isRated = typeof comp === 'object' && comp.name
                               const name = isRated ? comp.name : comp
@@ -591,20 +580,20 @@ export default function ProjectDetailPage() {
                                 </div>
                               )
                             })}
-                          </CardContent>
-                        </Card>
+                            </div>
+                          </div>
+                        </GlassCard>
                       )}
 
                       {/* Soft Skills */}
                       {aiInsights.softSkills && aiInsights.softSkills.length > 0 && (
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="flex items-center">
+                        <GlassCard hover={false}>
+                          <div className="p-5">
+                            <h3 className="text-sm font-medium flex items-center mb-3">
                               <Heart className="mr-2 h-5 w-5 text-pink-500" />
                               Soft Skills
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-4">
+                            </h3>
+                            <div className="space-y-4">
                             {aiInsights.softSkills.map((skill: any, i: number) => (
                               <div key={i}>
                                 <div className="flex justify-between text-sm mb-1">
@@ -621,20 +610,19 @@ export default function ProjectDetailPage() {
                                 )}
                               </div>
                             ))}
-                          </CardContent>
-                        </Card>
+                            </div>
+                          </div>
+                        </GlassCard>
                       )}
 
                       {/* Recommendations */}
                       {aiInsights.recommendations && aiInsights.recommendations.length > 0 && (
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="flex items-center">
+                        <GlassCard hover={false}>
+                          <div className="p-5">
+                            <h3 className="text-sm font-medium flex items-center mb-3">
                               <Target className="mr-2 h-5 w-5 text-primary" />
                               Recommendations
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent>
+                            </h3>
                             <ul className="space-y-2">
                               {aiInsights.recommendations.map((rec: string, i: number) => (
                                 <li key={i} className="flex items-start space-x-2">
@@ -643,8 +631,8 @@ export default function ProjectDetailPage() {
                                 </li>
                               ))}
                             </ul>
-                          </CardContent>
-                        </Card>
+                          </div>
+                        </GlassCard>
                       )}
                     </>
                   )}
@@ -654,14 +642,12 @@ export default function ProjectDetailPage() {
 
             <TabsContent value="academic" className="space-y-6">
               {(project.courseName || project.professor || project.grade || project.semester) ? (
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center">
+                <GlassCard hover={false}>
+                  <div className="p-5">
+                    <h3 className="text-sm font-medium flex items-center mb-3">
                       <BookOpen className="mr-2 h-5 w-5 text-primary" />
                       Academic Context
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                    </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {project.courseName && (
                         <div>
@@ -705,32 +691,30 @@ export default function ProjectDetailPage() {
                         <span className="text-sm font-medium">University Verified</span>
                       </div>
                     )}
-                  </CardContent>
-                </Card>
+                  </div>
+                </GlassCard>
               ) : (
-                <Card>
-                  <CardContent className="p-8 text-center text-muted-foreground">
+                <GlassCard hover={false}>
+                  <div className="p-8 text-center text-muted-foreground">
                     <BookOpen className="h-12 w-12 mx-auto mb-4 text-muted-foreground/40" />
                     <p className="text-lg font-medium mb-2">No Academic Info</p>
                     <p className="text-sm">Add course details by editing this project.</p>
-                  </CardContent>
-                </Card>
+                  </div>
+                </GlassCard>
               )}
 
               {/* Certifications */}
               {project.certifications && project.certifications.length > 0 && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Certifications</CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                <GlassCard hover={false}>
+                  <div className="p-5">
+                    <h3 className="text-sm font-medium mb-3">Certifications</h3>
                     <div className="flex flex-wrap gap-2">
                       {project.certifications.map((cert: string) => (
                         <Badge key={cert} variant="secondary">{cert}</Badge>
                       ))}
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </GlassCard>
               )}
             </TabsContent>
           </Tabs>
@@ -739,11 +723,10 @@ export default function ProjectDetailPage() {
         {/* Right Column - Sidebar */}
         <div className="space-y-6">
           {/* Quick Actions */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-sm font-medium mb-3">Quick Actions</h3>
+              <div className="space-y-3">
               {project.githubUrl && (
                 <Button variant="outline" className="w-full justify-start" asChild>
                   <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
@@ -768,8 +751,9 @@ export default function ProjectDetailPage() {
                   </Link>
                 </Button>
               )}
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </GlassCard>
 
           {/* Professor Endorsement - request or view status */}
           {isOwner && (
@@ -793,11 +777,9 @@ export default function ProjectDetailPage() {
 
           {/* Project Owner */}
           {project.user && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Project Owner</CardTitle>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-sm font-medium mb-3">Project Owner</h3>
                 <div className="flex items-center space-x-3">
                   {project.user.photo ? (
                     <img src={project.user.photo} alt="" className="w-10 h-10 rounded-full object-cover" />
@@ -815,16 +797,15 @@ export default function ProjectDetailPage() {
                     )}
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           )}
 
           {/* Project Stats Summary */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Details</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-sm font-medium mb-3">Details</h3>
+              <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <span className="text-sm text-muted-foreground">Views</span>
                 <span className="font-medium flex items-center">
@@ -856,8 +837,9 @@ export default function ProjectDetailPage() {
                   <span className="font-semibold">{project.marketRelevance}/100</span>
                 </div>
               )}
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </GlassCard>
 
           {/* Files */}
           {project.files && project.files.length > 0 && (

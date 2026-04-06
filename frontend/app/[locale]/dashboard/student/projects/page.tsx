@@ -216,66 +216,68 @@ export default function ProjectsPage() {
   return (
     <div className="min-h-screen bg-background space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Your Projects</h1>
-          <p className="text-foreground/80 mt-1">
-            Manage and showcase your academic and personal projects
-          </p>
+      <MetricHero gradient="primary">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-bold">Your Projects</h1>
+            <p className="text-sm text-muted-foreground mt-1">
+              Manage and showcase your academic and personal projects
+            </p>
+          </div>
+          <Button asChild>
+            <Link href="/dashboard/student/projects/new">
+              <Plus className="mr-2 h-4 w-4" />
+              New Project
+            </Link>
+          </Button>
         </div>
-        <Button asChild>
-          <Link href="/dashboard/student/projects/new">
-            <Plus className="mr-2 h-4 w-4" />
-            New Project
-          </Link>
-        </Button>
-      </div>
+      </MetricHero>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card>
-          <CardContent className="p-6">
+        <GlassCard hover={false}>
+          <div className="p-5">
             <div className="flex items-center">
               <div className="text-2xl font-bold text-foreground">{projects.length}</div>
               <div className="ml-2 text-sm text-foreground/80 font-medium">Total Projects</div>
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-6">
+          </div>
+        </GlassCard>
+        <GlassCard hover={false}>
+          <div className="p-5">
             <div className="flex items-center">
               <div className="text-2xl font-bold text-primary">
                 {projects.filter(p => p.status === 'analyzed').length}
               </div>
               <div className="ml-2 text-sm text-foreground/80 font-medium">Analyzed</div>
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-6">
+          </div>
+        </GlassCard>
+        <GlassCard hover={false}>
+          <div className="p-5">
             <div className="flex items-center">
               <div className="text-2xl font-bold text-primary">
                 {projects.length > 0 ? Math.round(projects.reduce((acc, p) => acc + (p.innovationScore || 0), 0) / projects.length) : 0}
               </div>
               <div className="ml-2 text-sm text-foreground/80 font-medium">Avg Score</div>
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-6">
+          </div>
+        </GlassCard>
+        <GlassCard hover={false}>
+          <div className="p-5">
             <div className="flex items-center">
               <div className="text-2xl font-bold text-primary">
                 {new Set(projects.flatMap(p => p.skills || p.technologies || [])).size}
               </div>
               <div className="ml-2 text-sm text-foreground/80 font-medium">Skills</div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
 
       {/* Filters and Controls */}
-      <Card>
-        <CardContent className="p-6">
+      <GlassCard hover={false}>
+        <div className="p-5">
           <div className="flex flex-col lg:flex-row gap-4">
             {/* Search */}
             <div className="flex-1">
@@ -364,13 +366,13 @@ export default function ProjectsPage() {
               </Button>
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </GlassCard>
 
       {/* Projects Content */}
       {filteredProjects.length === 0 ? (
-        <Card>
-          <CardContent className="p-12 text-center">
+        <GlassCard hover={false}>
+          <div className="p-12 text-center">
             {projects.length === 0 ? (
               <div>
                 <div className="w-16 h-16 mx-auto bg-muted rounded-full flex items-center justify-center mb-4">
@@ -412,8 +414,8 @@ export default function ProjectsPage() {
                 </Button>
               </div>
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       ) : (
         <div>
           {viewMode === 'grid' ? (

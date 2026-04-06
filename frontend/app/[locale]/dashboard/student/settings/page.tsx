@@ -201,21 +201,20 @@ export default function StudentSettingsPage() {
 
   return (
     <div className="max-w-3xl mx-auto py-8 px-4 space-y-6">
-      <div>
+      <MetricHero gradient="primary">
         <h1 className="text-2xl font-bold">{t('title')}</h1>
-        <p className="text-muted-foreground">{t('subtitle')}</p>
-      </div>
+        <p className="text-sm text-muted-foreground mt-1">{t('subtitle')}</p>
+      </MetricHero>
 
       {/* Account Info */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      <GlassCard hover={false}>
+        <div className="p-5">
+          <h3 className="text-sm font-medium flex items-center gap-2">
             <User className="h-5 w-5" />
             {t('account.title')}
-          </CardTitle>
-          <CardDescription>{t('account.description')}</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+          </h3>
+          <p className="text-xs text-muted-foreground mb-4">{t('account.description')}</p>
+          <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label htmlFor="firstName">{t('account.firstName')}</Label>
@@ -261,19 +260,19 @@ export default function StudentSettingsPage() {
             <Save className="h-4 w-4 mr-2" />
             {saving ? t('saving') : t('saveChanges')}
           </Button>
-        </CardContent>
-      </Card>
+          </div>
+        </div>
+      </GlassCard>
 
       {/* Availability Mode */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      <GlassCard hover={false}>
+        <div className="p-5">
+          <h3 className="text-sm font-medium flex items-center gap-2">
             <Briefcase className="h-5 w-5" />
             {t('availability.title')}
-          </CardTitle>
-          <CardDescription>{t('availability.description')}</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+          </h3>
+          <p className="text-xs text-muted-foreground mb-4">{t('availability.description')}</p>
+          <div className="space-y-4">
           <div>
             <Label>{t('availability.label')}</Label>
             <p className="text-xs text-muted-foreground mb-2">{t('availability.hint')}</p>
@@ -298,19 +297,19 @@ export default function StudentSettingsPage() {
             <Save className="h-4 w-4 mr-2" />
             {saving ? t('saving') : t('saveChanges')}
           </Button>
-        </CardContent>
-      </Card>
+          </div>
+        </div>
+      </GlassCard>
 
       {/* Notifications */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      <GlassCard hover={false}>
+        <div className="p-5">
+          <h3 className="text-sm font-medium flex items-center gap-2">
             <Bell className="h-5 w-5" />
             {t('notifications.title')}
-          </CardTitle>
-          <CardDescription>{t('notifications.description')}</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+          </h3>
+          <p className="text-xs text-muted-foreground mb-4">{t('notifications.description')}</p>
+          <div className="space-y-4">
           {[
             { key: 'emailNotifications', label: t('notifications.email'), hint: t('notifications.emailHint') },
             { key: 'messageNotifications', label: t('notifications.messages'), hint: t('notifications.messagesHint') },
@@ -336,19 +335,19 @@ export default function StudentSettingsPage() {
             <Save className="h-4 w-4 mr-2" />
             {saving ? t('saving') : t('saveChanges')}
           </Button>
-        </CardContent>
-      </Card>
+          </div>
+        </div>
+      </GlassCard>
 
       {/* Change Password */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      <GlassCard hover={false}>
+        <div className="p-5">
+          <h3 className="text-sm font-medium flex items-center gap-2">
             <Lock className="h-5 w-5" />
             {t('password.title')}
-          </CardTitle>
-          <CardDescription>{t('password.description')}</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+          </h3>
+          <p className="text-xs text-muted-foreground mb-4">{t('password.description')}</p>
+          <div className="space-y-4">
           <div>
             <Label htmlFor="currentPassword">{t('password.current')}</Label>
             <div className="relative mt-1">
@@ -393,22 +392,22 @@ export default function StudentSettingsPage() {
           >
             {changingPassword ? t('password.changing') : t('password.change')}
           </Button>
-        </CardContent>
-      </Card>
+          </div>
+        </div>
+      </GlassCard>
 
       {/* MFA / Two-Factor Authentication */}
       <MfaSection />
 
       {/* Danger Zone */}
-      <Card className="border-red-200">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-red-600">
+      <GlassCard hover={false}>
+        <div className="p-5 border border-red-200 rounded-xl">
+          <h3 className="text-sm font-medium flex items-center gap-2 text-red-600">
             <Shield className="h-5 w-5" />
             {t('danger.title')}
-          </CardTitle>
-          <CardDescription>{t('danger.description')}</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+          </h3>
+          <p className="text-xs text-muted-foreground mb-4">{t('danger.description')}</p>
+          <div className="space-y-4">
           <div className="p-4 bg-red-50 rounded-lg border border-red-200">
             <p className="text-sm text-red-800 mb-3">{t('danger.warning')}</p>
             <div>
@@ -433,8 +432,9 @@ export default function StudentSettingsPage() {
               {deleting ? t('danger.deleting') : t('danger.deleteAccount')}
             </Button>
           </div>
-        </CardContent>
-      </Card>
+          </div>
+        </div>
+      </GlassCard>
     </div>
   )
 }
@@ -540,15 +540,14 @@ function MfaSection() {
   if (loading) return null
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+    <GlassCard hover={false}>
+      <div className="p-5">
+        <h3 className="text-sm font-medium flex items-center gap-2">
           <Shield className="h-5 w-5" />
           {t('mfa.title')}
-        </CardTitle>
-        <CardDescription>{t('mfa.description')}</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
+        </h3>
+        <p className="text-xs text-muted-foreground mb-4">{t('mfa.description')}</p>
+        <div className="space-y-4">
         {/* Status */}
         <div className="flex items-center justify-between p-3 rounded-lg bg-muted">
           <div>
@@ -632,7 +631,8 @@ function MfaSection() {
             </Button>
           </div>
         )}
-      </CardContent>
-    </Card>
+        </div>
+      </div>
+    </GlassCard>
   )
 }

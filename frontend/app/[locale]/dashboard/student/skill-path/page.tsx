@@ -66,8 +66,8 @@ export default function SkillPathPage() {
     return (
       <div className="max-w-5xl mx-auto py-8">
         <h1 className="text-xl font-semibold text-foreground mb-6">{t('title')}</h1>
-        <Card>
-          <CardContent className="py-12 text-center">
+        <GlassCard hover={false}>
+          <div className="py-12 text-center">
             <FolderOpen className="h-12 w-12 mx-auto text-muted-foreground/40 mb-4" />
             <h3 className="font-medium text-foreground mb-2">{t('emptyState.title')}</h3>
             <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto">
@@ -79,8 +79,8 @@ export default function SkillPathPage() {
                 {t('emptyState.cta')}
               </Link>
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
     )
   }
@@ -90,35 +90,32 @@ export default function SkillPathPage() {
   const isLimited = data.isLimited
 
   return (
-    <div className="max-w-5xl mx-auto pb-8">
+    <div className="max-w-5xl mx-auto px-4 py-6 pb-8 space-y-5">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
-        <div className="flex items-start gap-4">
-          <HireabilityGauge score={skillData.hireabilityScore} size={140} />
-          <div className="pt-2">
-            <h1 className="text-xl font-semibold text-foreground">{t('title')}</h1>
-            <p className="text-sm text-muted-foreground mt-1">{t('subtitle')}</p>
-            <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground/60">
-              <Clock className="h-3 w-3" />
-              {t('lastUpdated', { date: new Date(skillData.generatedAt).toLocaleDateString() })}
+      <MetricHero gradient="primary">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+          <div className="flex items-start gap-4">
+            <HireabilityGauge score={skillData.hireabilityScore} size={140} />
+            <div className="pt-2">
+              <h1 className="text-xl font-semibold text-foreground">{t('title')}</h1>
+              <p className="text-sm text-muted-foreground mt-1">{t('subtitle')}</p>
+              <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground/60">
+                <Clock className="h-3 w-3" />
+                {t('lastUpdated', { date: new Date(skillData.generatedAt).toLocaleDateString() })}
+              </div>
             </div>
           </div>
+          <div className="flex items-center gap-2">
+            <Badge variant="outline" className="text-xs">
+              {tierLimits.tier.replace('_', ' ')}
+            </Badge>
+            <Button onClick={refresh} disabled={refreshing} size="sm" variant="outline">
+              <RefreshCw className={`h-4 w-4 mr-1 ${refreshing ? 'animate-spin' : ''}`} />
+              {refreshing ? t('refreshing') : t('refresh')}
+            </Button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <Badge variant="outline" className="text-xs">
-            {tierLimits.tier.replace('_', ' ')}
-          </Badge>
-          <Button
-            onClick={refresh}
-            disabled={refreshing}
-            size="sm"
-            variant="outline"
-          >
-            <RefreshCw className={`h-4 w-4 mr-1 ${refreshing ? 'animate-spin' : ''}`} />
-            {refreshing ? t('refreshing') : t('refresh')}
-          </Button>
-        </div>
-      </div>
+      </MetricHero>
 
       {/* Premium upsell for FREE tier */}
       {isLimited && (
@@ -169,33 +166,30 @@ export default function SkillPathPage() {
         <TabsContent value="overview">
           <div className="grid lg:grid-cols-2 gap-4">
             {/* Radar Chart */}
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">{t('overview.radarTitle')}</CardTitle>
-                <CardDescription className="text-xs">{t('overview.radarDescription')}</CardDescription>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-sm font-medium mb-1">{t('overview.radarTitle')}</h3>
+                <p className="text-xs text-muted-foreground mb-3">{t('overview.radarDescription')}</p>
                 <SkillRadarChart
                   currentSkills={skillData.currentSkills}
                   skillGaps={skillData.skillGaps}
                 />
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
 
             {/* Top Gaps Summary */}
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">{t('overview.topGapsTitle')}</CardTitle>
-                <CardDescription className="text-xs">
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-sm font-medium">{t('overview.topGapsTitle')}</h3>
+                <p className="text-xs text-muted-foreground mb-3">
                   {t('overview.topGapsDescription')}
                   {isLimited && (
                     <span className="text-primary ml-1">
                       ({t('overview.showingLimited', { count: tierLimits.maxGaps, total: (data as any).totalGaps || 0 })})
                     </span>
                   )}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
+                </p>
+                <div className="space-y-3">
                 {skillData.skillGaps.slice(0, 3).map((gap) => (
                   <div key={gap.skill} className="flex items-center justify-between">
                     <div className="flex-1">
@@ -219,15 +213,14 @@ export default function SkillPathPage() {
                     </div>
                   </div>
                 ))}
-              </CardContent>
-            </Card>
+                </div>
+              </div>
+            </GlassCard>
 
             {/* Quick Stats */}
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">{t('overview.quickStatsTitle')}</CardTitle>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-sm font-medium mb-3">{t('overview.quickStatsTitle')}</h3>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="p-3 bg-primary/5 rounded-lg text-center">
                     <p className="text-2xl font-bold text-primary">{skillData.currentSkills.length}</p>
@@ -246,16 +239,14 @@ export default function SkillPathPage() {
                     <p className="text-xs text-primary">{t('overview.projectIdeas')}</p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
 
             {/* Top Career Match */}
             {skillData.careerPaths.length > 0 && (
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium">{t('overview.topCareerTitle')}</CardTitle>
-                </CardHeader>
-                <CardContent>
+              <GlassCard hover={false}>
+                <div className="p-5">
+                <h3 className="text-sm font-medium mb-3">{t('overview.topCareerTitle')}</h3>
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="font-medium">{skillData.careerPaths[0].title}</h4>
                     <span className="text-xl font-bold text-primary">
@@ -273,8 +264,8 @@ export default function SkillPathPage() {
                       </div>
                     </div>
                   )}
-                </CardContent>
-              </Card>
+                </div>
+              </GlassCard>
             )}
           </div>
         </TabsContent>
@@ -283,19 +274,17 @@ export default function SkillPathPage() {
         <TabsContent value="skills">
           <div className="space-y-4">
             {/* Full Radar */}
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">{t('skills.radarTitle')}</CardTitle>
-                <CardDescription className="text-xs">{t('skills.radarDescription')}</CardDescription>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-sm font-medium">{t('skills.radarTitle')}</h3>
+                <p className="text-xs text-muted-foreground mb-3">{t('skills.radarDescription')}</p>
                 <SkillRadarChart
                   currentSkills={skillData.currentSkills}
                   skillGaps={skillData.skillGaps}
                   maxItems={12}
                 />
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
 
             {/* Skill Gaps */}
             <div>
@@ -319,11 +308,9 @@ export default function SkillPathPage() {
             </div>
 
             {/* Current Skills List */}
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">{t('skills.currentTitle')}</CardTitle>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-sm font-medium mb-3">{t('skills.currentTitle')}</h3>
                 <div className="space-y-2">
                   {skillData.currentSkills.slice(0, 15).map((skill) => (
                     <div key={skill.name} className="flex items-center gap-3">
@@ -336,16 +323,16 @@ export default function SkillPathPage() {
                     </div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           </div>
         </TabsContent>
 
         {/* Roadmap Tab */}
         <TabsContent value="roadmap">
           {!tierLimits.hasRoadmap ? (
-            <Card>
-              <CardContent className="py-12 text-center">
+            <GlassCard hover={false}>
+              <div className="py-12 text-center">
                 <Lock className="h-8 w-8 mx-auto text-muted-foreground/40 mb-3" />
                 <h3 className="font-medium text-foreground mb-2">{t('roadmap.lockedTitle')}</h3>
                 <p className="text-sm text-muted-foreground mb-4 max-w-md mx-auto">
@@ -357,18 +344,16 @@ export default function SkillPathPage() {
                     <ArrowRight className="h-3 w-3 ml-1" />
                   </Link>
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           ) : (
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sm font-medium">{t('roadmap.title')}</CardTitle>
-                <CardDescription className="text-xs">{t('roadmap.description')}</CardDescription>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-sm font-medium">{t('roadmap.title')}</h3>
+                <p className="text-xs text-muted-foreground mb-3">{t('roadmap.description')}</p>
                 <SkillRoadmap milestones={skillData.roadmap} />
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           )}
         </TabsContent>
 

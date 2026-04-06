@@ -468,8 +468,8 @@ export default function NewProjectPage() {
         {/* Project Profile Panel */}
         {hasProfile && (
           <div className="lg:w-[45%] lg:sticky lg:top-4 lg:self-start">
-            <Card>
-              <CardContent className="p-4 space-y-4">
+            <GlassCard hover={false}>
+              <div className="p-4 space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="font-semibold text-sm">{tp('title')}</h3>
                   <button onClick={() => setProfileExpanded(!profileExpanded)}>
@@ -573,8 +573,8 @@ export default function NewProjectPage() {
                     <ProfileField label={tp('liveUrl')} value={profile.liveUrl} field="liveUrl" editing={editingField} editValue={editValue} onStartEdit={startEdit} onSaveEdit={saveEdit} onEditChange={setEditValue} />
                   </div>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           </div>
         )}
       </div>
