@@ -24,6 +24,7 @@ import {
   ImageIcon
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { AccountDangerZone } from '@/components/dashboard/shared/AccountDangerZone'
 
 interface TechParkSettings {
@@ -266,18 +267,20 @@ export default function TechParkSettingsPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-6 pb-12">
       {/* Header */}
-      <div className="flex items-center gap-4 pt-2">
-        <Button variant="ghost" size="sm" asChild>
-          <Link href="/dashboard/techpark">
-            <ArrowLeft className="h-4 w-4 mr-1" />
-            {t('back')}
-          </Link>
-        </Button>
-        <div>
-          <h1 className="text-2xl font-semibold text-foreground">{t('settings.title')}</h1>
-          <p className="text-muted-foreground">{t('settings.subtitle')}</p>
+      <MetricHero gradient="primary">
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/dashboard/techpark">
+              <ArrowLeft className="h-4 w-4 mr-1" />
+              {t('back')}
+            </Link>
+          </Button>
+          <div>
+            <h1 className="text-2xl font-semibold text-foreground">{t('settings.title')}</h1>
+            <p className="text-muted-foreground">{t('settings.subtitle')}</p>
+          </div>
         </div>
-      </div>
+      </MetricHero>
 
       {/* Save Message Toast */}
       {saveMessage && (
@@ -296,17 +299,16 @@ export default function TechParkSettingsPage() {
       )}
 
       {/* Park Profile */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      <GlassCard delay={0.1}>
+        <div className="p-5">
+          <h3 className="text-lg font-semibold flex items-center gap-2 mb-1">
             <Building2 className="h-5 w-5" />
             {t('settings.parkProfile')}
-          </CardTitle>
-          <CardDescription>
+          </h3>
+          <p className="text-sm text-muted-foreground mb-4">
             {t('settings.parkProfileDescription')}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+          </p>
+          <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="parkName">{t('settings.parkName')}</Label>
@@ -460,21 +462,21 @@ export default function TechParkSettingsPage() {
             />
             {fieldErrors.memberCompanyCount && <p className="text-sm text-red-500 mt-1">{fieldErrors.memberCompanyCount}</p>}
           </div>
-        </CardContent>
-      </Card>
+          </div>
+        </div>
+      </GlassCard>
 
       {/* Logo & Branding */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      <GlassCard delay={0.15}>
+        <div className="p-5">
+          <h3 className="text-lg font-semibold flex items-center gap-2 mb-1">
             <Palette className="h-5 w-5" />
             {t('settings.branding')}
-          </CardTitle>
-          <CardDescription>
+          </h3>
+          <p className="text-sm text-muted-foreground mb-4">
             {t('settings.brandingDescription')}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+          </p>
+          <div className="space-y-4">
           {/* Logo URL */}
           <div className="space-y-2">
             <Label htmlFor="logo">{t('settings.logoUrl')}</Label>
@@ -576,21 +578,21 @@ export default function TechParkSettingsPage() {
               </Button>
             </div>
           </div>
-        </CardContent>
-      </Card>
+          </div>
+        </div>
+      </GlassCard>
 
       {/* Notification Preferences */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      <GlassCard delay={0.2}>
+        <div className="p-5">
+          <h3 className="text-lg font-semibold flex items-center gap-2 mb-1">
             <Bell className="h-5 w-5" />
             {t('settings.notifications')}
-          </CardTitle>
-          <CardDescription>
+          </h3>
+          <p className="text-sm text-muted-foreground mb-4">
             {t('settings.notificationsDescription')}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+          </p>
+          <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-foreground">{t('settings.newStudents')}</p>
@@ -656,21 +658,21 @@ export default function TechParkSettingsPage() {
               />
             </button>
           </div>
-        </CardContent>
-      </Card>
+          </div>
+        </div>
+      </GlassCard>
 
       {/* Visibility */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      <GlassCard delay={0.25}>
+        <div className="p-5">
+          <h3 className="text-lg font-semibold flex items-center gap-2 mb-1">
             <Eye className="h-5 w-5" />
             {t('settings.visibility')}
-          </CardTitle>
-          <CardDescription>
+          </h3>
+          <p className="text-sm text-muted-foreground mb-4">
             {t('settings.visibilityDescription')}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+          </p>
+          <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-foreground">{t('settings.showInDirectory')}</p>
@@ -714,8 +716,9 @@ export default function TechParkSettingsPage() {
               />
             </button>
           </div>
-        </CardContent>
-      </Card>
+          </div>
+        </div>
+      </GlassCard>
 
       {/* Save Button */}
       <div className="flex justify-end">

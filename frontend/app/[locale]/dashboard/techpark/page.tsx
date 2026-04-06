@@ -161,8 +161,8 @@ export default function TechParkDashboard() {
 
       {/* Quick Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="hover:shadow-md transition-shadow">
-          <CardContent className="pt-6">
+        <GlassCard delay={0.1}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.memberCompanies}</p>
@@ -172,11 +172,11 @@ export default function TechParkDashboard() {
                 <Building2 className="h-5 w-5 text-primary" />
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
 
-        <Card className="hover:shadow-md transition-shadow">
-          <CardContent className="pt-6">
+        <GlassCard delay={0.15}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.talentPipeline}</p>
@@ -186,11 +186,11 @@ export default function TechParkDashboard() {
                 <Users className="h-5 w-5 text-primary" />
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
 
-        <Card className="hover:shadow-md transition-shadow">
-          <CardContent className="pt-6">
+        <GlassCard delay={0.2}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.recruiterActivity}</p>
@@ -200,11 +200,11 @@ export default function TechParkDashboard() {
                 <TrendingUp className="h-5 w-5 text-primary" />
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
 
-        <Card className="hover:shadow-md transition-shadow">
-          <CardContent className="pt-6">
+        <GlassCard delay={0.25}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{stats.placements}</p>
@@ -214,26 +214,20 @@ export default function TechParkDashboard() {
                 <Target className="h-5 w-5 text-orange-600" />
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Main Column */}
         <div className="lg:col-span-2 space-y-6">
           {/* Ecosystem Overview */}
-          <Card>
-            <CardHeader className="pb-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="text-lg">{t('ecosystemOverview')}</CardTitle>
-                  <CardDescription>
-                    {t('ecosystemOverviewDescription')}
-                  </CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
+          <GlassCard delay={0.15}>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-1">{t('ecosystemOverview')}</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                {t('ecosystemOverviewDescription')}
+              </p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-4 rounded-lg border">
                   <div className="flex items-center gap-2 mb-2">
@@ -268,18 +262,17 @@ export default function TechParkDashboard() {
                   <p className="text-xs text-muted-foreground mt-1">{t('successfulMatches')}</p>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         </div>
 
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Quick Actions */}
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg">{t('quickActions')}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
+          <GlassCard delay={0.2}>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-3">{t('quickActions')}</h3>
+              <div className="space-y-2">
               <Link
                 href="/dashboard/techpark/talent"
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
@@ -321,20 +314,19 @@ export default function TechParkDashboard() {
                 </div>
                 <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
               </Link>
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </GlassCard>
 
           {/* Tips */}
-          <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/10">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg">{t('parkTip')}</CardTitle>
-            </CardHeader>
-            <CardContent>
+          <GlassCard delay={0.25}>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-3">{t('parkTip')}</h3>
               <p className="text-sm text-foreground/80 leading-relaxed">
                 {t('parkTipText')}
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
 
           {/* Sign out */}
           <button

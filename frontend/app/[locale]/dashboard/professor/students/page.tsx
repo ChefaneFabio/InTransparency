@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Users, Loader2, Star, GraduationCap } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface EndorsedStudent {
   studentName: string
@@ -75,18 +76,18 @@ export default function ProfessorStudentsPage() {
 
   return (
     <div className="container max-w-6xl py-8 space-y-6">
-      <div>
+      <MetricHero gradient="primary">
         <h1 className="text-3xl font-bold">{t('students.title')}</h1>
         <p className="text-muted-foreground mt-1">{t('students.subtitle')}</p>
-      </div>
+      </MetricHero>
 
       {students.length === 0 ? (
-        <Card>
-          <CardContent className="py-12 text-center">
+        <GlassCard delay={0.1}>
+          <div className="py-12 text-center">
             <Users className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
             <p className="text-muted-foreground">{t('students.empty')}</p>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {students.map((student) => (

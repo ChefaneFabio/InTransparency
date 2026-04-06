@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ArrowLeft, Search, CheckCircle, Clock, Target } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface Placement {
   id: string
@@ -72,31 +73,33 @@ export default function TechParkPlacementsPage() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
-      <div className="flex items-center gap-4 pt-2">
-        <Button variant="ghost" size="sm" asChild>
-          <Link href="/dashboard/techpark">
-            <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
-          </Link>
-        </Button>
-        <div>
-          <h1 className="text-2xl font-semibold">{t('placements.title')}</h1>
-          <p className="text-sm text-muted-foreground">{t('placements.subtitle')}</p>
+      <MetricHero gradient="primary">
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/dashboard/techpark">
+              <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
+            </Link>
+          </Button>
+          <div>
+            <h1 className="text-2xl font-semibold">{t('placements.title')}</h1>
+            <p className="text-sm text-muted-foreground">{t('placements.subtitle')}</p>
+          </div>
         </div>
-      </div>
+      </MetricHero>
 
       <div className="grid grid-cols-3 gap-4">
-        <Card><CardContent className="pt-6 text-center">
+        <GlassCard delay={0.1}><div className="p-5 text-center">
           <p className="text-2xl font-bold text-green-600">{confirmed}</p>
           <p className="text-sm text-muted-foreground">{t('placements.confirmed')}</p>
-        </CardContent></Card>
-        <Card><CardContent className="pt-6 text-center">
+        </div></GlassCard>
+        <GlassCard delay={0.15}><div className="p-5 text-center">
           <p className="text-2xl font-bold text-blue-600">{inProgress}</p>
           <p className="text-sm text-muted-foreground">{t('placements.inProgress')}</p>
-        </CardContent></Card>
-        <Card><CardContent className="pt-6 text-center">
+        </div></GlassCard>
+        <GlassCard delay={0.2}><div className="p-5 text-center">
           <p className="text-2xl font-bold text-yellow-600">{pending}</p>
           <p className="text-sm text-muted-foreground">{t('placements.pending')}</p>
-        </CardContent></Card>
+        </div></GlassCard>
       </div>
 
       <div className="relative max-w-sm">

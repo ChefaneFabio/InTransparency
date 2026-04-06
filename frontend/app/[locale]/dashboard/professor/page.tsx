@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Link } from '@/navigation'
 import { Award, Clock, CheckCircle, XCircle, Users, Star, Loader2, ExternalLink } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface ProfessorStats {
   totalEndorsements: number
@@ -77,52 +78,50 @@ export default function ProfessorDashboardPage() {
 
   return (
     <div className="container max-w-6xl py-8 space-y-8">
-      <div>
+      <MetricHero gradient="primary">
         <h1 className="text-3xl font-bold">{t('title')}</h1>
         <p className="text-muted-foreground mt-1">{t('subtitle')}</p>
-      </div>
+      </MetricHero>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card>
-          <CardContent className="p-4 text-center">
+        <GlassCard delay={0.1}>
+          <div className="p-4 text-center">
             <Award className="h-8 w-8 text-primary mx-auto mb-2" />
             <p className="text-2xl font-bold">{stats?.totalEndorsements || 0}</p>
             <p className="text-sm text-muted-foreground">{t('stats.total')}</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4 text-center">
+          </div>
+        </GlassCard>
+        <GlassCard delay={0.15}>
+          <div className="p-4 text-center">
             <Clock className="h-8 w-8 text-amber-600 mx-auto mb-2" />
             <p className="text-2xl font-bold">{stats?.pendingRequests || 0}</p>
             <p className="text-sm text-muted-foreground">{t('stats.pending')}</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4 text-center">
+          </div>
+        </GlassCard>
+        <GlassCard delay={0.2}>
+          <div className="p-4 text-center">
             <Star className="h-8 w-8 text-primary mx-auto mb-2" />
             <p className="text-2xl font-bold">{stats?.averageRating ? stats.averageRating.toFixed(1) : '—'}</p>
             <p className="text-sm text-muted-foreground">{t('stats.avgRating')}</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4 text-center">
+          </div>
+        </GlassCard>
+        <GlassCard delay={0.25}>
+          <div className="p-4 text-center">
             <Users className="h-8 w-8 text-primary mx-auto mb-2" />
             <p className="text-2xl font-bold">{stats?.studentsEndorsed || 0}</p>
             <p className="text-sm text-muted-foreground">{t('stats.students')}</p>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
 
       {/* Pending Requests */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      <GlassCard delay={0.15}>
+        <div className="p-5">
+          <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
             <Clock className="h-5 w-5 text-amber-600" />
             {t('pendingRequests')}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
+          </h3>
           {pending.length === 0 ? (
             <p className="text-muted-foreground text-center py-8">{t('noPending')}</p>
           ) : (
@@ -149,8 +148,8 @@ export default function ProfessorDashboardPage() {
               ))}
             </div>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </GlassCard>
 
       {/* Quick Links */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

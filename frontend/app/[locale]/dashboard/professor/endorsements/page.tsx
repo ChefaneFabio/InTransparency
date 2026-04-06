@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Link } from '@/navigation'
 import { Award, Loader2, ExternalLink, Star, Filter } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface Endorsement {
   id: string
@@ -77,10 +78,10 @@ export default function ProfessorEndorsementsPage() {
 
   return (
     <div className="container max-w-6xl py-8 space-y-6">
-      <div>
+      <MetricHero gradient="primary">
         <h1 className="text-3xl font-bold">{t('endorsements.title')}</h1>
         <p className="text-muted-foreground mt-1">{t('endorsements.subtitle')}</p>
-      </div>
+      </MetricHero>
 
       {/* Filters */}
       <div className="flex gap-2">
@@ -99,12 +100,12 @@ export default function ProfessorEndorsementsPage() {
 
       {/* Endorsements List */}
       {endorsements.length === 0 ? (
-        <Card>
-          <CardContent className="py-12 text-center">
+        <GlassCard delay={0.1}>
+          <div className="py-12 text-center">
             <Award className="h-12 w-12 text-muted-foreground/40 mx-auto mb-4" />
             <p className="text-muted-foreground">{t('endorsements.empty')}</p>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       ) : (
         <div className="space-y-3">
           {endorsements.map((e) => (

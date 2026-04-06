@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ArrowLeft, Users, GraduationCap, Search, Star } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface Student {
   id: string
@@ -62,31 +63,33 @@ export default function TechParkTalentPage() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
-      <div className="flex items-center gap-4 pt-2">
-        <Button variant="ghost" size="sm" asChild>
-          <Link href="/dashboard/techpark">
-            <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
-          </Link>
-        </Button>
-        <div>
-          <h1 className="text-2xl font-semibold">{t('talent.title')}</h1>
-          <p className="text-sm text-muted-foreground">{t('talent.subtitle')}</p>
+      <MetricHero gradient="primary">
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/dashboard/techpark">
+              <ArrowLeft className="h-4 w-4 mr-1" /> {t('back')}
+            </Link>
+          </Button>
+          <div>
+            <h1 className="text-2xl font-semibold">{t('talent.title')}</h1>
+            <p className="text-sm text-muted-foreground">{t('talent.subtitle')}</p>
+          </div>
         </div>
-      </div>
+      </MetricHero>
 
       <div className="grid grid-cols-3 gap-4">
-        <Card><CardContent className="pt-6 text-center">
+        <GlassCard delay={0.1}><div className="p-5 text-center">
           <p className="text-2xl font-bold">{students.length}</p>
           <p className="text-sm text-muted-foreground">{t('talent.totalStudents')}</p>
-        </CardContent></Card>
-        <Card><CardContent className="pt-6 text-center">
+        </div></GlassCard>
+        <GlassCard delay={0.15}><div className="p-5 text-center">
           <p className="text-2xl font-bold">{students.filter(s => s.matchScore >= 80).length}</p>
           <p className="text-sm text-muted-foreground">{t('talent.highMatch')}</p>
-        </CardContent></Card>
-        <Card><CardContent className="pt-6 text-center">
+        </div></GlassCard>
+        <GlassCard delay={0.2}><div className="p-5 text-center">
           <p className="text-2xl font-bold">{new Set(students.map(s => s.university)).size}</p>
           <p className="text-sm text-muted-foreground">{t('talent.universities')}</p>
-        </CardContent></Card>
+        </div></GlassCard>
       </div>
 
       <div className="relative max-w-sm">
