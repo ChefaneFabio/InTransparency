@@ -24,6 +24,7 @@ import {
   Briefcase,
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface SettingsData {
   email: string

@@ -22,6 +22,7 @@ import {
   Send, ChevronDown, ChevronUp, Pencil, Check, AlertTriangle,
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface ProjectProfile {
   title?: string

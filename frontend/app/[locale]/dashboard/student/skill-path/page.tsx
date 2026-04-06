@@ -22,6 +22,7 @@ import {
   Clock,
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { Link } from '@/navigation'
 import { useSkillPath } from '@/lib/use-skill-path'
 import { HireabilityGauge } from '@/components/dashboard/student/HireabilityGauge'
