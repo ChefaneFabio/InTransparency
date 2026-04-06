@@ -218,16 +218,16 @@
         ],
         "features": [
           {
-            "title": "Video Portfolio",
-            "description": "2-min project videos that show your skills in action"
+            "title": "Verified Portfolio",
+            "description": "Projects verified by your institution — from theses to internship reports"
           },
           {
-            "title": "Verified Grades",
-            "description": "Institution-stamped grades that speak for themselves"
+            "title": "AI-Powered Profile",
+            "description": "Describe your work, AI extracts skills and matches you to opportunities"
           },
           {
             "title": "Get Discovered",
-            "description": "Companies reach out to you directly"
+            "description": "Companies across all industries reach out to you directly"
           }
         ],
         "statsLabel": "Institution-verified portfolios —",
@@ -284,7 +284,7 @@
           },
           {
             "title": "Real Projects",
-            "description": "See actual work — theses, internships, code"
+            "description": "See actual work — theses, research, business plans, designs, clinical reports"
           },
           {
             "title": "Full Access",
@@ -349,7 +349,7 @@
     "problem": {
       "badge": "Why This Matters",
       "title": "The Old Way of Hiring Is Failing Everyone",
-      "subtitle": "Students can't prove their skills. Companies can't trust resumes. Universities can't track outcomes. The result: a generation of talent going unseen, and companies making expensive mistakes.",
+      "subtitle": "32,000 internships per year at a single university — tracked with spreadsheets. Students can't prove their skills. Companies can't trust resumes. Universities can't measure outcomes. The result: talent goes unseen, and companies make expensive mistakes.",
       "resumeProblem": "The Resume Problem",
       "resumePoints": {
         "unverified": "Unverified skills (anyone can lie)",
@@ -418,7 +418,7 @@
           },
           {
             "title": "AI Analysis & Scoring",
-            "description": "Our advanced AI analyzes code quality, innovation level, complexity, and extracts relevant skills",
+            "description": "Our AI analyzes project quality, innovation level, complexity, and extracts relevant skills across all disciplines",
             "details": [
               "Code quality assessment using industry standards",
               "Automatic skill extraction and categorization"
@@ -715,7 +715,7 @@
         },
         {
           "title": "AI Analysis & Scoring",
-          "description": "Our advanced AI analyzes code quality, innovation level, complexity, and extracts relevant skills",
+          "description": "Our AI analyzes project quality, innovation level, complexity, and extracts relevant skills across all disciplines",
           "details": [
             "Code quality assessment using industry standards",
             "Innovation scoring based on uniqueness and creativity",

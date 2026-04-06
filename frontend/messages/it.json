@@ -349,7 +349,7 @@
     "problem": {
       "badge": "Perché Esistiamo",
       "title": "Il vecchio modo di assumere non funziona più",
-      "subtitle": "Gli studenti non riescono a dimostrare le loro competenze. Le aziende non si fidano dei CV. Le università non possono tracciare i risultati. Noi cambiamo tutto questo con la trasparenza.",
+      "subtitle": "32.000 tirocini all'anno in una singola università — tracciati con fogli Excel. Gli studenti non riescono a dimostrare le loro competenze. Le aziende non si fidano dei CV. Le università non possono misurare i risultati. Il risultato: talento invisibile e assunzioni sbagliate.",
       "resumeProblem": "Il Problema dei CV",
       "resumePoints": {
         "unverified": "Competenze non verificate (chiunque può mentire)",
@@ -418,9 +418,9 @@
           },
           {
             "title": "Analisi e Punteggio AI",
-            "description": "La nostra AI avanzata analizza qualità del codice, livello di innovazione, complessità ed estrae competenze rilevanti",
+            "description": "La nostra AI avanzata analizza qualità del lavoro, livello di innovazione, complessità ed estrae competenze rilevanti",
             "details": [
-              "Valutazione qualità codice usando standard industriali",
+              "Valutazione qualità del progetto usando standard professionali",
               "Estrazione automatica e categorizzazione competenze"
             ],
             "stats": {
@@ -715,9 +715,9 @@
         },
         {
           "title": "Analisi e Punteggio AI",
-          "description": "La nostra AI avanzata analizza qualità del codice, livello di innovazione, complessità ed estrae competenze rilevanti",
+          "description": "La nostra AI avanzata analizza qualità del lavoro, livello di innovazione, complessità ed estrae competenze rilevanti",
           "details": [
-            "Valutazione qualità codice usando standard industriali",
+            "Valutazione qualità del progetto usando standard professionali",
             "Punteggio innovazione basato su unicità e creatività",
             "Estrazione automatica e categorizzazione competenze",
             "Analisi stack tecnologico e raccomandazioni"
