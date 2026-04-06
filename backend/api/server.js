@@ -15,6 +15,7 @@ const matchingRoutes = require('./routes/matching')
 const usersRoutes = require('./routes/users')
 const analyticsRoutes = require('./routes/analytics')
 const dataSeedingRoutes = require('./routes/data-seeding')
+const aiRoutes = require('./routes/ai')
 const { authenticate } = require('./middleware/auth')
 const { serviceAuth } = require('./middleware/serviceAuth')
 const { preventSQLInjection, rateLimit } = require('./middleware/validation')
@@ -124,6 +125,9 @@ app.get('/api/upload/health', (req, res) => {
 
 // Upload routes (service-to-service auth, before JWT middleware)
 app.use('/api/upload', serviceAuth, uploadRoutes)
+
+// AI routes (service-to-service auth)
+app.use('/api/ai', serviceAuth, aiRoutes)
 
 // Mount authentication routes (public)
 app.use('/api/auth', authRoutes)

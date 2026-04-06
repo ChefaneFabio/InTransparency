@@ -3,11 +3,11 @@
  * Falls back to null if backend is unreachable.
  */
 
-function getBackendUrl() {
+export function getBackendUrl() {
   return process.env.BACKEND_API_URL || 'https://intransparency.onrender.com'
 }
 
-function getServiceKey() {
+export function getServiceKey() {
   return process.env.BACKEND_SERVICE_KEY || ''
 }
 
@@ -47,6 +47,40 @@ export async function proxyUpload(
     return response
   } catch (error: any) {
     console.error(`Backend proxy failed: ${error?.message || error}`)
+    return null
+  }
+}
+
+/**
+ * Forward a JSON request to the backend. Returns null if unreachable.
+ */
+export async function proxyJSON(
+  path: string,
+  body: any,
+  userId: string,
+  userRole?: string | null,
+  timeoutMs: number = 55000
+): Promise<Response | null> {
+  const backendUrl = getBackendUrl()
+  const serviceKey = getServiceKey()
+
+  if (!serviceKey) return null
+
+  try {
+    const response = await fetch(`${backendUrl}${path}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${serviceKey}`,
+        'X-User-Id': userId,
+        'X-User-Role': userRole || 'STUDENT',
+      },
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(timeoutMs),
+    })
+    return response
+  } catch (error: any) {
+    console.error(`Backend JSON proxy failed (${path}): ${error?.message}`)
     return null
   }
 }
