@@ -4938,6 +4938,34 @@
       "title": "Career Path Analysis",
       "showingLimited": "Showing {shown} of {total}",
       "moreAvailable": "{count} more career paths available with Premium"
+    },
+    "hireability": {
+      "title": "Hireability Score",
+      "excellent": "Excellent",
+      "good": "Good",
+      "developing": "Developing",
+      "gettingStarted": "Getting Started"
+    },
+    "careerPaths": {
+      "empty": "No career paths to compare yet. Add more projects and skills.",
+      "match": "match",
+      "skillsYouHave": "Skills you have",
+      "skillsToLearn": "Skills to learn",
+      "risingDemand": "Rising demand",
+      "stableDemand": "Stable demand",
+      "decliningDemand": "Declining demand"
+    },
+    "roadmap": {
+      "title": "Learning Roadmap",
+      "description": "Personalized timeline of skills to learn and projects to build",
+      "lockedTitle": "Learning Roadmap (Premium Feature)",
+      "lockedDescription": "Upgrade to Premium to get a personalized learning roadmap.",
+      "empty": "No roadmap milestones yet",
+      "learn": "Learn",
+      "build": "Build",
+      "certify": "Certify",
+      "apply": "Apply",
+      "week": "Week"
     }
   },
   "studentDashboard": {

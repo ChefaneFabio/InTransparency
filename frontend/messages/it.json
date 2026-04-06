@@ -4911,6 +4911,34 @@
       "title": "Analisi Percorsi di Carriera",
       "showingLimited": "Mostrati {shown} di {total}",
       "moreAvailable": "{count} altri percorsi di carriera disponibili con Premium"
+    },
+    "hireability": {
+      "title": "Punteggio Occupabilità",
+      "excellent": "Eccellente",
+      "good": "Buono",
+      "developing": "In sviluppo",
+      "gettingStarted": "Inizio"
+    },
+    "careerPaths": {
+      "empty": "Nessun percorso di carriera da confrontare. Aggiungi più progetti e competenze.",
+      "match": "compatibilità",
+      "skillsYouHave": "Competenze acquisite",
+      "skillsToLearn": "Competenze da sviluppare",
+      "risingDemand": "Domanda crescente",
+      "stableDemand": "Domanda stabile",
+      "decliningDemand": "Domanda in calo"
+    },
+    "roadmap": {
+      "title": "Percorso Formativo",
+      "description": "Timeline personalizzata di competenze da apprendere e progetti da realizzare",
+      "lockedTitle": "Percorso Formativo (Funzione Premium)",
+      "lockedDescription": "Passa a Premium per un percorso formativo personalizzato.",
+      "empty": "Nessun obiettivo formativo ancora",
+      "learn": "Studia",
+      "build": "Realizza",
+      "certify": "Certifica",
+      "apply": "Applica",
+      "week": "Settimana"
     }
   },
   "studentDashboard": {
