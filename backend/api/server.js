@@ -16,6 +16,7 @@ const usersRoutes = require('./routes/users')
 const analyticsRoutes = require('./routes/analytics')
 const dataSeedingRoutes = require('./routes/data-seeding')
 const aiRoutes = require('./routes/ai')
+const emailRoutes = require('./routes/email')
 const { authenticate } = require('./middleware/auth')
 const { serviceAuth } = require('./middleware/serviceAuth')
 const { preventSQLInjection, rateLimit } = require('./middleware/validation')
@@ -128,6 +129,16 @@ app.use('/api/upload', serviceAuth, uploadRoutes)
 
 // AI routes (service-to-service auth)
 app.use('/api/ai', serviceAuth, aiRoutes)
+
+// Email routes (service-to-service auth + public health check)
+app.get('/api/email/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    service: 'email',
+    smtpConfigured: !!(process.env.SMTP_HOST && process.env.SMTP_USER),
+  })
+})
+app.use('/api/email', serviceAuth, emailRoutes)
 
 // Mount authentication routes (public)
 app.use('/api/auth', authRoutes)
