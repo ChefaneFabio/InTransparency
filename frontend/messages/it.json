@@ -4975,7 +4975,10 @@
     "sections": {
       "projects": "Progetti",
       "jobMatches": "Opportunità",
-      "thisWeek": "Questa settimana"
+      "thisWeek": "Questa settimana",
+      "salaryAbroad": "Le tue competenze all'estero",
+      "year": "anno",
+      "salaryNote": "Stime basate sulle tue competenze e dati del mercato del lavoro"
     },
     "links": {
       "messages": "Messaggi",

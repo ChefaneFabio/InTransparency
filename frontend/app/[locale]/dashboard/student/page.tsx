@@ -66,16 +66,18 @@ export default function StudentDashboard() {
   })
   const [recentJobs, setRecentJobs] = useState<JobOpportunity[]>([])
   const [jobRecs, setJobRecs] = useState<JobRecommendation[]>([])
+  const [salaryBenchmarks, setSalaryBenchmarks] = useState<any[]>([])
   const [onboarding, setOnboarding] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const [statsResponse, projectsResponse, recsResponse] = await Promise.all([
+        const [statsResponse, projectsResponse, recsResponse, salaryRes] = await Promise.all([
           fetch('/api/dashboard/student/stats'),
           user?.id ? fetch(`/api/projects?userId=${user.id}`) : Promise.resolve(null),
           fetch('/api/dashboard/student/recommendations?limit=5'),
+          fetch('/api/dashboard/student/salary-benchmarks'),
         ])
         if (statsResponse.ok) {
           const statsData = await statsResponse.json()
@@ -90,6 +92,10 @@ export default function StudentDashboard() {
         if (recsResponse && recsResponse.ok) {
           const recsData = await recsResponse.json()
           setJobRecs(recsData.recommendations || [])
+        }
+        if (salaryRes && salaryRes.ok) {
+          const salaryData = await salaryRes.json()
+          setSalaryBenchmarks((salaryData.benchmarks || []).slice(0, 4))
         }
       } catch (error) {
         console.error('Failed to fetch dashboard data:', error)
@@ -336,6 +342,29 @@ export default function StudentDashboard() {
               />
             </div>
           </GlassCard>
+
+          {/* International Salary Benchmarks */}
+          {salaryBenchmarks.length > 0 && (
+            <GlassCard delay={0.35} gradient="blue">
+              <div className="p-4">
+                <h3 className="text-sm font-semibold mb-3">{t('sections.salaryAbroad')}</h3>
+                <div className="space-y-2">
+                  {salaryBenchmarks.map((b: any) => (
+                    <div key={b.country} className="flex items-center justify-between text-xs">
+                      <span className="text-foreground">{b.country}</span>
+                      <div className="text-right">
+                        <span className="font-semibold text-foreground">
+                          {b.currency === 'GBP' ? '£' : b.currency === 'CHF' ? 'CHF ' : '€'}{(b.estimatedSalary / 1000).toFixed(0)}K
+                        </span>
+                        <span className="text-muted-foreground ml-1">/{t('sections.year')}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-[10px] text-muted-foreground mt-2">{t('sections.salaryNote')}</p>
+              </div>
+            </GlassCard>
+          )}
 
           {/* Quick Actions Grid */}
           <GlassCard delay={0.4}>

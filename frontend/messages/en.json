@@ -5002,7 +5002,10 @@
     "sections": {
       "projects": "Projects",
       "jobMatches": "Job matches",
-      "thisWeek": "This week"
+      "thisWeek": "This week",
+      "salaryAbroad": "Your skills abroad",
+      "year": "year",
+      "salaryNote": "Estimates based on your skills and current job market data"
     },
     "links": {
       "messages": "Messages",
