@@ -12,6 +12,8 @@ import {
   ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell,
 } from 'recharts'
 import { useTranslations } from 'next-intl'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 const FUNNEL_COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d', '#f44336']
 
@@ -125,25 +127,27 @@ export default function RecruiterAnalytics() {
 
   return (
     <div className="min-h-screen space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
-          <p className="text-muted-foreground">
-            {t('subtitle')}
-          </p>
+      <MetricHero gradient="primary">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+            <p className="text-muted-foreground">
+              {t('subtitle')}
+            </p>
+          </div>
+          <Select value={timeRange} onValueChange={setTimeRange}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder={t('selectTimeRange')} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="1month">{t('timeRange.lastMonth')}</SelectItem>
+              <SelectItem value="3months">{t('timeRange.last3Months')}</SelectItem>
+              <SelectItem value="6months">{t('timeRange.last6Months')}</SelectItem>
+              <SelectItem value="1year">{t('timeRange.lastYear')}</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
-        <Select value={timeRange} onValueChange={setTimeRange}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder={t('selectTimeRange')} />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="1month">{t('timeRange.lastMonth')}</SelectItem>
-            <SelectItem value="3months">{t('timeRange.last3Months')}</SelectItem>
-            <SelectItem value="6months">{t('timeRange.last6Months')}</SelectItem>
-            <SelectItem value="1year">{t('timeRange.lastYear')}</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+      </MetricHero>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-3">
@@ -154,69 +158,59 @@ export default function RecruiterAnalytics() {
 
         <TabsContent value="overview" className="space-y-6">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">{t('stats.totalApplications')}</CardTitle>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <p className="text-sm font-medium mb-2">{t('stats.totalApplications')}</p>
                 <div className="text-2xl font-bold">
                   {overviewStats.totalApplications.toLocaleString()}
                 </div>
                 <p className="text-xs text-muted-foreground">
                   {t('stats.inSelectedRange')}
                 </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">{t('stats.interviewsScheduled')}</CardTitle>
-              </CardHeader>
-              <CardContent>
+              </div>
+            </GlassCard>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <p className="text-sm font-medium mb-2">{t('stats.interviewsScheduled')}</p>
                 <div className="text-2xl font-bold">
                   {overviewStats.interviewsScheduled}
                 </div>
                 <p className="text-xs text-muted-foreground">
                   {t('stats.currentlyInterviewing')}
                 </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">{t('stats.offersExtended')}</CardTitle>
-              </CardHeader>
-              <CardContent>
+              </div>
+            </GlassCard>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <p className="text-sm font-medium mb-2">{t('stats.offersExtended')}</p>
                 <div className="text-2xl font-bold">
                   {overviewStats.offersExtended}
                 </div>
                 <p className="text-xs text-muted-foreground">
                   {t('stats.offersAccepted')}
                 </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">{t('stats.avgTimeToHire')}</CardTitle>
-              </CardHeader>
-              <CardContent>
+              </div>
+            </GlassCard>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <p className="text-sm font-medium mb-2">{t('stats.avgTimeToHire')}</p>
                 <div className="text-2xl font-bold">
                   {overviewStats.avgTimeToHire > 0 ? t('stats.days', { count: overviewStats.avgTimeToHire }) : 'N/A'}
                 </div>
                 <p className="text-xs text-muted-foreground">
                   {t('stats.fromApplicationToAcceptance')}
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>{t('charts.applicationTrends')}</CardTitle>
-                <CardDescription>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold mb-1">{t('charts.applicationTrends')}</h3>
+                <p className="text-sm text-muted-foreground mb-4">
                   {t('charts.applicationTrendsDesc')}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
+                </p>
                 {applicationTrends.length > 0 ? (
                   <ResponsiveContainer width="100%" height={300}>
                     <LineChart data={applicationTrends}>
@@ -232,17 +226,15 @@ export default function RecruiterAnalytics() {
                     {t('charts.noApplicationData')}
                   </div>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>{t('charts.conversionRates')}</CardTitle>
-                <CardDescription>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold mb-1">{t('charts.conversionRates')}</h3>
+                <p className="text-sm text-muted-foreground mb-4">
                   {t('charts.conversionRatesDesc')}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
+                </p>
                 <div className="space-y-4">
                   {conversionRates.length > 0 ? (
                     conversionRates.map((step) => (
@@ -260,20 +252,18 @@ export default function RecruiterAnalytics() {
                     </div>
                   )}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           </div>
         </TabsContent>
 
         <TabsContent value="funnel" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('charts.hiringFunnel')}</CardTitle>
-              <CardDescription>
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-1">{t('charts.hiringFunnel')}</h3>
+              <p className="text-sm text-muted-foreground mb-4">
                 {t('charts.hiringFunnelDesc')}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
+              </p>
               {hiringFunnel.length > 0 && hiringFunnel[0].value > 0 ? (
                 <div className="grid gap-6 md:grid-cols-2">
                   <div className="space-y-4">
@@ -318,19 +308,17 @@ export default function RecruiterAnalytics() {
                   {t('charts.noApplicationData')}
                 </div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         </TabsContent>
 
         <TabsContent value="skills" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('charts.skillsGapAnalysis')}</CardTitle>
-              <CardDescription>
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-1">{t('charts.skillsGapAnalysis')}</h3>
+              <p className="text-sm text-muted-foreground mb-4">
                 {t('charts.skillsGapDesc')}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
+              </p>
               {skillsGap.length > 0 ? (
                 <div className="space-y-6">
                   {skillsGap.map((skill) => (
@@ -379,8 +367,8 @@ export default function RecruiterAnalytics() {
                   {t('charts.noSkillsGapData')}
                 </div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         </TabsContent>
       </Tabs>
     </div>

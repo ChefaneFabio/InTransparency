@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { ApplicationAssistant } from '@/components/chat/ApplicationAssistant'
 import { Building2, Save, Send, ArrowLeft, CheckCircle, Clock } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 export default function JobApplicationPage() {
   const params = useParams()
@@ -235,31 +236,33 @@ export default function JobApplicationPage() {
             Back to Jobs
           </Button>
 
-          <div className="flex items-start justify-between">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <Building2 className="h-8 w-8 text-primary" />
-                <div>
-                  <h1 className="text-3xl font-bold">{job.title}</h1>
-                  <p className="text-muted-foreground">{job.company} • {job.location}</p>
+          <MetricHero gradient="primary">
+            <div className="flex items-start justify-between">
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <Building2 className="h-8 w-8 text-primary" />
+                  <div>
+                    <h1 className="text-3xl font-bold">{job.title}</h1>
+                    <p className="text-muted-foreground">{job.company} • {job.location}</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Progress */}
-            <div className="text-right">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="text-3xl font-bold text-primary">{completionPercentage}%</div>
-                <div className="text-sm text-muted-foreground">Complete</div>
-              </div>
-              {lastSaved && (
-                <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                  <Clock className="h-3 w-3" />
-                  Saved {lastSaved.toLocaleTimeString()}
+              {/* Progress */}
+              <div className="text-right">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="text-3xl font-bold text-primary">{completionPercentage}%</div>
+                  <div className="text-sm text-muted-foreground">Complete</div>
                 </div>
-              )}
+                {lastSaved && (
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                    <Clock className="h-3 w-3" />
+                    Saved {lastSaved.toLocaleTimeString()}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          </MetricHero>
         </div>
 
         {/* Progress Bar */}
@@ -277,12 +280,11 @@ export default function JobApplicationPage() {
           {/* Application Form */}
           <div className="lg:col-span-2 space-y-6">
             {/* Projects Selection */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Select Relevant Projects</CardTitle>
-                <p className="text-sm text-muted-foreground">Choose projects that demonstrate required skills</p>
-              </CardHeader>
-              <CardContent className="space-y-3">
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold mb-1">Select Relevant Projects</h3>
+                <p className="text-sm text-muted-foreground mb-4">Choose projects that demonstrate required skills</p>
+                <div className="space-y-3">
                 {studentProfile.projects.map(project => (
                   <div
                     key={project.id}
@@ -311,16 +313,15 @@ export default function JobApplicationPage() {
                     </div>
                   </div>
                 ))}
-              </CardContent>
-            </Card>
+                </div>
+              </div>
+            </GlassCard>
 
             {/* Skills Selection */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Highlight Your Skills</CardTitle>
-                <p className="text-sm text-muted-foreground">Select at least 3 relevant skills (recommended: 5-7)</p>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold mb-1">Highlight Your Skills</h3>
+                <p className="text-sm text-muted-foreground mb-4">Select at least 3 relevant skills (recommended: 5-7)</p>
                 <div className="flex flex-wrap gap-2">
                   {studentProfile.skills.map(skill => (
                     <Badge
@@ -339,16 +340,14 @@ export default function JobApplicationPage() {
                     </Badge>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
 
             {/* Why This Role */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Why This Role?</CardTitle>
-                <p className="text-sm text-muted-foreground">Explain your interest (100-300 words)</p>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold mb-1">Why This Role?</h3>
+                <p className="text-sm text-muted-foreground mb-4">Explain your interest (100-300 words)</p>
                 <textarea
                   value={formData.whyThisRole}
                   onChange={(e) => setFormData({ ...formData, whyThisRole: e.target.value })}
@@ -358,16 +357,14 @@ export default function JobApplicationPage() {
                 <p className="text-xs text-muted-foreground mt-1">
                   {formData.whyThisRole.length} / 300 characters
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
 
             {/* Cover Letter (Optional) */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Cover Letter <span className="text-muted-foreground/60 text-sm font-normal">(Optional)</span></CardTitle>
-                <p className="text-sm text-muted-foreground">Personalized message to the hiring team</p>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold mb-1">Cover Letter <span className="text-muted-foreground/60 text-sm font-normal">(Optional)</span></h3>
+                <p className="text-sm text-muted-foreground mb-4">Personalized message to the hiring team</p>
                 <textarea
                   value={formData.coverLetter}
                   onChange={(e) => setFormData({ ...formData, coverLetter: e.target.value })}
@@ -377,16 +374,14 @@ export default function JobApplicationPage() {
                 <p className="text-xs text-muted-foreground mt-1">
                   {formData.coverLetter.length} characters
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
 
             {/* Availability */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Availability</CardTitle>
-                <p className="text-sm text-muted-foreground">When can you start?</p>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold mb-1">Availability</h3>
+                <p className="text-sm text-muted-foreground mb-4">When can you start?</p>
                 <select
                   value={formData.availability}
                   onChange={(e) => setFormData({ ...formData, availability: e.target.value })}
@@ -398,8 +393,8 @@ export default function JobApplicationPage() {
                   <option value="1-month">1 month</option>
                   <option value="after-graduation">After graduation</option>
                 </select>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
 
             {/* Actions */}
             <div className="flex gap-3">

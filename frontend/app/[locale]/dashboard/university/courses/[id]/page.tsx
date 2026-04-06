@@ -43,6 +43,7 @@ import {
   Plus,
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -697,7 +698,7 @@ export default function UniversityCourseDetailPage() {
         )}
 
         {/* Title area */}
-        <div className="mb-8">
+        <MetricHero gradient="primary" className="mb-8">
           <div className="flex items-center flex-wrap gap-3 mb-2">
             <h1 className="text-2xl md:text-3xl font-bold text-foreground">
               {course.courseName}
@@ -715,11 +716,11 @@ export default function UniversityCourseDetailPage() {
           {course.department && (
             <p className="text-muted-foreground">{course.department}</p>
           )}
-        </div>
+        </MetricHero>
 
         {/* Info grid card */}
-        <Card className="mb-6">
-          <CardContent className="p-6">
+        <GlassCard hover={false} className="mb-6">
+          <div className="p-6">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-y-5 gap-x-6">
               {/* Semester */}
               <div>
@@ -784,30 +785,26 @@ export default function UniversityCourseDetailPage() {
                 <p className="font-medium text-foreground">{course._count.projects}</p>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
 
         {/* Description */}
         {course.description && (
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle className="text-lg">Descrizione</CardTitle>
-            </CardHeader>
-            <CardContent>
+          <GlassCard hover={false} className="mb-6">
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-3">Descrizione</h3>
               <p className="text-foreground/80 leading-relaxed whitespace-pre-wrap">
                 {course.description}
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         )}
 
         {/* Competencies */}
         {course.competencies.length > 0 && (
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle className="text-lg">Competenze</CardTitle>
-            </CardHeader>
-            <CardContent>
+          <GlassCard hover={false} className="mb-6">
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-3">Competenze</h3>
               <div className="flex flex-wrap gap-2">
                 {course.competencies.map((comp, i) => (
                   <Badge key={i} variant="secondary" className="bg-primary/5 text-primary">
@@ -815,17 +812,15 @@ export default function UniversityCourseDetailPage() {
                   </Badge>
                 ))}
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         )}
 
         {/* Learning Outcomes */}
         {course.learningOutcomes.length > 0 && (
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle className="text-lg">Risultati di Apprendimento</CardTitle>
-            </CardHeader>
-            <CardContent>
+          <GlassCard hover={false} className="mb-6">
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-3">Risultati di Apprendimento</h3>
               <ol className="list-decimal list-inside space-y-2">
                 {course.learningOutcomes.map((outcome, i) => (
                   <li key={i} className="text-foreground/80 leading-relaxed">
@@ -833,22 +828,20 @@ export default function UniversityCourseDetailPage() {
                   </li>
                 ))}
               </ol>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         )}
 
         {/* Projects section */}
-        <Card className="mb-6">
-          <CardHeader>
-            <CardTitle className="text-lg flex items-center gap-2">
+        <GlassCard hover={false} className="mb-6">
+          <div className="p-5">
+            <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
               <FileText className="h-5 w-5 text-muted-foreground" />
               Progetti collegati
               <Badge variant="outline" className="ml-1 text-xs font-normal">
                 {course._count.projects}
               </Badge>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
+            </h3>
             {course.projects.length === 0 ? (
               <div className="text-center py-8">
                 <FileText className="h-10 w-10 text-muted-foreground/40 mx-auto mb-3" />
@@ -923,12 +916,12 @@ export default function UniversityCourseDetailPage() {
                 })}
               </div>
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
 
         {/* Danger zone */}
-        <Card className="border-red-200">
-          <CardContent className="p-6">
+        <GlassCard hover={false} className="border-red-200">
+          <div className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-semibold text-foreground">Elimina Corso</h3>
@@ -945,8 +938,8 @@ export default function UniversityCourseDetailPage() {
                 Elimina
               </Button>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
 
         {/* Delete confirmation dialog */}
         <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>

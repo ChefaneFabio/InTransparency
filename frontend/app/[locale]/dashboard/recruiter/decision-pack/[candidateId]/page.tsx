@@ -21,6 +21,7 @@ import {
   Zap,
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import {
   RadarChart,
   PolarGrid,
@@ -155,83 +156,79 @@ export default function DecisionPackPage() {
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <Button variant="ghost" size="sm" asChild>
-          <Link href="/dashboard/recruiter/candidates">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            {t('back')}
-          </Link>
-        </Button>
-        <Button variant="outline" size="sm" asChild>
-          <a href={`/api/decision-pack/${candidateId}/pdf`} target="_blank" rel="noopener noreferrer">
-            <Download className="mr-2 h-4 w-4" />
-            {t('downloadPdf')}
-          </a>
-        </Button>
-      </div>
+      <MetricHero gradient="primary">
+        <div className="flex items-center justify-between mb-6">
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/dashboard/recruiter/candidates">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              {t('back')}
+            </Link>
+          </Button>
+          <Button variant="outline" size="sm" asChild>
+            <a href={`/api/decision-pack/${candidateId}/pdf`} target="_blank" rel="noopener noreferrer">
+              <Download className="mr-2 h-4 w-4" />
+              {t('downloadPdf')}
+            </a>
+          </Button>
+        </div>
 
-      {/* Candidate Header */}
-      <Card>
-        <CardContent className="p-6">
-          <div className="flex items-start justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                <User className="h-8 w-8 text-primary" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-foreground">{fullName}</h1>
-                {data.candidate.university && (
-                  <p className="text-muted-foreground">{data.candidate.university}</p>
-                )}
-                {data.candidate.degree && (
-                  <p className="text-muted-foreground text-sm">{data.candidate.degree}</p>
-                )}
-                {data.candidate.tagline && (
-                  <p className="text-foreground/80 mt-1">{data.candidate.tagline}</p>
-                )}
-              </div>
+        {/* Candidate Header */}
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+              <User className="h-8 w-8 text-primary" />
             </div>
-            <div className="flex flex-col items-end gap-2">
-              {data.prediction && (
-                <Badge
-                  className={`text-lg px-3 py-1 ${
-                    data.prediction.probability >= 0.75
-                      ? 'bg-primary/10 text-green-700'
-                      : data.prediction.probability >= 0.5
-                      ? 'bg-primary/10 text-blue-700'
-                      : 'bg-yellow-100 text-yellow-700'
-                  }`}
-                >
-                  <TrendingUp className="mr-1 h-4 w-4" />
-                  {Math.round(data.prediction.probability * 100)}% placement
-                </Badge>
+            <div>
+              <h1 className="text-2xl font-bold text-foreground">{fullName}</h1>
+              {data.candidate.university && (
+                <p className="text-muted-foreground">{data.candidate.university}</p>
               )}
-              {data.matchScore !== null && (
-                <Badge variant="outline">
-                  <Target className="mr-1 h-3 w-3" />
-                  {data.matchScore}% job match
-                </Badge>
+              {data.candidate.degree && (
+                <p className="text-muted-foreground text-sm">{data.candidate.degree}</p>
               )}
-              {data.trustScore.universityVerified && (
-                <Badge className="bg-primary/10 text-green-700">
-                  <Shield className="mr-1 h-3 w-3" />
-                  {t('universityVerified')}
-                </Badge>
+              {data.candidate.tagline && (
+                <p className="text-foreground/80 mt-1">{data.candidate.tagline}</p>
               )}
             </div>
           </div>
-        </CardContent>
-      </Card>
+          <div className="flex flex-col items-end gap-2">
+            {data.prediction && (
+              <Badge
+                className={`text-lg px-3 py-1 ${
+                  data.prediction.probability >= 0.75
+                    ? 'bg-primary/10 text-green-700'
+                    : data.prediction.probability >= 0.5
+                    ? 'bg-primary/10 text-blue-700'
+                    : 'bg-yellow-100 text-yellow-700'
+                }`}
+              >
+                <TrendingUp className="mr-1 h-4 w-4" />
+                {Math.round(data.prediction.probability * 100)}% placement
+              </Badge>
+            )}
+            {data.matchScore !== null && (
+              <Badge variant="outline">
+                <Target className="mr-1 h-3 w-3" />
+                {data.matchScore}% job match
+              </Badge>
+            )}
+            {data.trustScore.universityVerified && (
+              <Badge className="bg-primary/10 text-green-700">
+                <Shield className="mr-1 h-3 w-3" />
+                {t('universityVerified')}
+              </Badge>
+            )}
+          </div>
+        </div>
+      </MetricHero>
 
       {/* Skills Evidence Map */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      <GlassCard hover={false}>
+        <div className="p-5">
+          <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
             <Zap className="h-5 w-5 text-primary" />
             {t('skillsEvidenceMap')}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
+          </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -269,19 +266,17 @@ export default function DecisionPackPage() {
               </tbody>
             </table>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </GlassCard>
 
       {/* AI Analysis Radar Chart */}
       {radarData.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+        <GlassCard hover={false}>
+          <div className="p-5">
+            <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
               <Brain className="h-5 w-5 text-primary" />
               {t('aiAnalysisOverview')}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
+            </h3>
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <RadarChart data={radarData}>
@@ -294,20 +289,19 @@ export default function DecisionPackPage() {
                 </RadarChart>
               </ResponsiveContainer>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       )}
 
       {/* Professor Endorsements */}
       {data.projects.some((p) => p.endorsements.length > 0) && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+        <GlassCard hover={false}>
+          <div className="p-5">
+            <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
               <Award className="h-5 w-5 text-primary" />
               {t('professorEndorsements')}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
+            </h3>
+            <div className="space-y-3">
             {data.projects
               .flatMap((p) =>
                 p.endorsements.map((e) => ({ ...e, projectTitle: p.title }))
@@ -326,20 +320,19 @@ export default function DecisionPackPage() {
                   )}
                 </div>
               ))}
-          </CardContent>
-        </Card>
+            </div>
+          </div>
+        </GlassCard>
       )}
 
       {/* Grade Provenance */}
       {data.grades.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+        <GlassCard hover={false}>
+          <div className="p-5">
+            <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
               <BookOpen className="h-5 w-5 text-primary" />
               {t('gradeProvenance')}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
+            </h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
@@ -368,16 +361,15 @@ export default function DecisionPackPage() {
                 </tbody>
               </table>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       )}
 
       {/* Project Walkthroughs */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Project Portfolio ({data.projects.length})</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
+      <GlassCard hover={false}>
+        <div className="p-5">
+          <h3 className="text-lg font-semibold mb-4">Project Portfolio ({data.projects.length})</h3>
+          <div className="space-y-3">
           {data.projects.map((p) => (
             <div key={p.id} className="border rounded-lg p-4">
               <div className="flex items-start justify-between mb-2">
@@ -412,19 +404,19 @@ export default function DecisionPackPage() {
               )}
             </div>
           ))}
-        </CardContent>
-      </Card>
+          </div>
+        </div>
+      </GlassCard>
 
       {/* Prediction Factors */}
       {data.prediction && data.prediction.topFactors.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+        <GlassCard hover={false}>
+          <div className="p-5">
+            <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
               <TrendingUp className="h-5 w-5 text-primary" />
               {t('placementProbabilityFactors')}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
+            </h3>
+            <div className="space-y-3">
             {data.prediction.topFactors.map((f, i) => (
               <div key={i} className="flex items-center gap-3">
                 <div
@@ -442,8 +434,9 @@ export default function DecisionPackPage() {
                 </span>
               </div>
             ))}
-          </CardContent>
-        </Card>
+            </div>
+          </div>
+        </GlassCard>
       )}
     </div>
   )

@@ -28,6 +28,7 @@ import {
   Star
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface Student {
   id: string
@@ -237,47 +238,48 @@ export default function ProjectVerificationDetailPage() {
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
       {/* Header */}
-      <div className="flex items-start justify-between pt-2">
-        <div className="flex items-start gap-4">
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/dashboard/university/projects">
-              <ArrowLeft className="h-4 w-4 mr-1" />
-              Back
-            </Link>
-          </Button>
+      <MetricHero gradient="primary">
+        <div className="flex items-start justify-between">
           <div className="flex items-start gap-4">
-            {project.imageUrl ? (
-              <img
-                src={project.imageUrl}
-                alt={project.title}
-                className="w-16 h-16 rounded-lg object-cover"
-              />
-            ) : (
-              <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center">
-                <FolderOpen className="h-8 w-8 text-blue-400" />
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/dashboard/university/projects">
+                <ArrowLeft className="h-4 w-4 mr-1" />
+                Back
+              </Link>
+            </Button>
+            <div className="flex items-start gap-4">
+              {project.imageUrl ? (
+                <img
+                  src={project.imageUrl}
+                  alt={project.title}
+                  className="w-16 h-16 rounded-lg object-cover"
+                />
+              ) : (
+                <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <FolderOpen className="h-8 w-8 text-blue-400" />
+                </div>
+              )}
+              <div>
+                <h1 className="text-2xl font-semibold text-foreground">{project.title}</h1>
+                <p className="text-muted-foreground mt-1">
+                  {project.discipline?.replace(/_/g, ' ')}
+                  {project.projectType && ` - ${project.projectType}`}
+                </p>
               </div>
-            )}
-            <div>
-              <h1 className="text-2xl font-semibold text-foreground">{project.title}</h1>
-              <p className="text-muted-foreground mt-1">
-                {project.discipline?.replace(/_/g, ' ')}
-                {project.projectType && ` - ${project.projectType}`}
-              </p>
             </div>
           </div>
+          {getStatusBadge(project.verificationStatus)}
         </div>
-        {getStatusBadge(project.verificationStatus)}
-      </div>
+      </MetricHero>
 
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Project Details */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Project Details</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-4">Project Details</h3>
+              <div className="space-y-4">
               <div>
                 <h4 className="text-sm font-medium text-muted-foreground mb-1">Description</h4>
                 <p className="text-foreground/80 whitespace-pre-wrap">{project.description}</p>
@@ -343,18 +345,18 @@ export default function ProjectVerificationDetailPage() {
                   </div>
                 )}
               </div>
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </GlassCard>
 
           {/* Academic Context */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Academic Context</CardTitle>
-              <CardDescription>
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold">Academic Context</h3>
+              <p className="text-sm text-muted-foreground mb-4">
                 Course and academic information for verification
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
+              </p>
+              <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 {(project.courseName || course?.courseName) && (
                   <div>
@@ -385,19 +387,19 @@ export default function ProjectVerificationDetailPage() {
                   </div>
                 )}
               </div>
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </GlassCard>
 
           {/* Professor Endorsements */}
           {verifiedEndorsements.length > 0 && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
                   <Award className="h-5 w-5 text-primary" />
                   Professor Endorsements
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
+                </h3>
+                <div className="space-y-4">
                 {verifiedEndorsements.map((endorsement) => (
                   <div key={endorsement.id} className="p-4 bg-primary/5 rounded-lg">
                     <div className="flex items-start justify-between">
@@ -430,17 +432,16 @@ export default function ProjectVerificationDetailPage() {
                     )}
                   </div>
                 ))}
-              </CardContent>
-            </Card>
+                </div>
+              </div>
+            </GlassCard>
           )}
 
           {/* Files */}
           {files.length > 0 && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Attached Files</CardTitle>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold mb-4">Attached Files</h3>
                 <div className="space-y-2">
                   {files.map((file) => (
                     <a
@@ -461,19 +462,17 @@ export default function ProjectVerificationDetailPage() {
                     </a>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           )}
         </div>
 
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Student Info */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Student</CardTitle>
-            </CardHeader>
-            <CardContent>
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-base font-semibold mb-3">Student</h3>
               <div className="flex items-center gap-3 mb-4">
                 <Avatar className="h-12 w-12">
                   <AvatarImage src={student.photo || undefined} />
@@ -506,23 +505,22 @@ export default function ProjectVerificationDetailPage() {
                   </div>
                 )}
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
 
           {/* Verification Form */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-base font-semibold">
                 {isVerified ? 'Verification Status' : 'Verify Project'}
-              </CardTitle>
-              <CardDescription>
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">
                 {isVerified
                   ? 'This project has been verified'
                   : 'Review and verify this project for the student\'s portfolio'
                 }
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
+              </p>
+              <div className="space-y-4">
               {!isVerified && (
                 <>
                   <div className="space-y-2">
@@ -583,16 +581,15 @@ export default function ProjectVerificationDetailPage() {
                   <p className="text-sm text-foreground/80">{project.verificationMessage}</p>
                 </div>
               )}
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </GlassCard>
 
           {/* AI Scores */}
           {(project.complexityScore || project.innovationScore || project.marketRelevance) && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">AI Analysis</CardTitle>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-base font-semibold mb-3">AI Analysis</h3>
                 <div className="space-y-3">
                   {project.complexityScore && (
                     <div>
@@ -637,8 +634,8 @@ export default function ProjectVerificationDetailPage() {
                     </div>
                   )}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           )}
         </div>
       </div>

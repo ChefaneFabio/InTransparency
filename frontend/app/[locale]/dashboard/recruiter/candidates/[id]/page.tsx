@@ -22,6 +22,7 @@ import {
   AlertCircle
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { Textarea } from '@/components/ui/textarea'
 import { Input } from '@/components/ui/input'
 import { Link } from '@/navigation'
@@ -264,34 +265,36 @@ export default function CandidateProfilePage() {
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <Button variant="ghost" size="sm" asChild>
-          <Link href="/dashboard/recruiter/candidates">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            {t('backToCandidates')}
-          </Link>
-        </Button>
+      <MetricHero gradient="primary">
+        <div className="flex items-center justify-between">
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/dashboard/recruiter/candidates">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              {t('backToCandidates')}
+            </Link>
+          </Button>
 
-        <div className="flex items-center space-x-2">
-          {messageSent && (
-            <span className="text-sm text-primary font-medium">{t('messageSent')}</span>
-          )}
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={toggleBookmark}
-            disabled={bookmarkLoading}
-            className={isBookmarked ? 'text-primary border-yellow-600' : ''}
-          >
-            <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current' : ''}`} />
-            {isBookmarked ? t('saved') : t('save')}
-          </Button>
-          <Button size="sm" onClick={openContactForm}>
-            <MessageSquare className="mr-2 h-4 w-4" />
-            {t('contact')}
-          </Button>
+          <div className="flex items-center space-x-2">
+            {messageSent && (
+              <span className="text-sm text-primary font-medium">{t('messageSent')}</span>
+            )}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={toggleBookmark}
+              disabled={bookmarkLoading}
+              className={isBookmarked ? 'text-primary border-yellow-600' : ''}
+            >
+              <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current' : ''}`} />
+              {isBookmarked ? t('saved') : t('save')}
+            </Button>
+            <Button size="sm" onClick={openContactForm}>
+              <MessageSquare className="mr-2 h-4 w-4" />
+              {t('contact')}
+            </Button>
+          </div>
         </div>
-      </div>
+      </MetricHero>
 
       {/* Profile Header */}
       <div className="relative">
@@ -362,49 +365,45 @@ export default function CandidateProfilePage() {
             <TabsContent value="overview" className="space-y-6">
               {/* About */}
               {candidate.bio && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>{t('about')}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                <GlassCard hover={false}>
+                  <div className="p-5">
+                    <h3 className="text-lg font-semibold mb-3">{t('about')}</h3>
                     <p className="text-foreground/80 leading-relaxed">{candidate.bio}</p>
-                  </CardContent>
-                </Card>
+                  </div>
+                </GlassCard>
               )}
 
               {/* Contact Information */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>{t('contactInfo')}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {candidate.email ? (
-                    <div className="flex items-center space-x-3">
-                      <Mail className="h-4 w-4 text-muted-foreground" />
-                      <span>{candidate.email}</span>
-                      <Button size="sm" variant="outline" onClick={openContactForm}>
-                        <Mail className="h-4 w-4 mr-1" />
-                        {t('email')}
-                      </Button>
-                    </div>
-                  ) : (
-                    <p className="text-sm text-muted-foreground">
-                      {t('emailPrivate')}
-                    </p>
-                  )}
-                </CardContent>
-              </Card>
+              <GlassCard hover={false}>
+                <div className="p-5">
+                  <h3 className="text-lg font-semibold mb-3">{t('contactInfo')}</h3>
+                  <div className="space-y-3">
+                    {candidate.email ? (
+                      <div className="flex items-center space-x-3">
+                        <Mail className="h-4 w-4 text-muted-foreground" />
+                        <span>{candidate.email}</span>
+                        <Button size="sm" variant="outline" onClick={openContactForm}>
+                          <Mail className="h-4 w-4 mr-1" />
+                          {t('email')}
+                        </Button>
+                      </div>
+                    ) : (
+                      <p className="text-sm text-muted-foreground">
+                        {t('emailPrivate')}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </GlassCard>
 
               {/* Education */}
               {(candidate.university || candidate.degree) && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center">
+                <GlassCard hover={false}>
+                  <div className="p-5">
+                    <h3 className="text-lg font-semibold flex items-center mb-3">
                       <School className="mr-2 h-5 w-5" />
                       {t('education')}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                    </h3>
                     <div className="space-y-2">
                       {candidate.degree && (
                         <h3 className="font-semibold text-foreground">{candidate.degree}</h3>
@@ -421,8 +420,8 @@ export default function CandidateProfilePage() {
                         )}
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </GlassCard>
               )}
             </TabsContent>
 
@@ -432,11 +431,11 @@ export default function CandidateProfilePage() {
 
             <TabsContent value="projects" className="space-y-6">
               {candidate.projects.length === 0 ? (
-                <Card>
-                  <CardContent className="pt-6 text-center py-12">
+                <GlassCard hover={false}>
+                  <div className="p-5 text-center py-12">
                     <p className="text-muted-foreground">{t('noProjects')}</p>
-                  </CardContent>
-                </Card>
+                  </div>
+                </GlassCard>
               ) : (
                 candidate.projects.map((project) => (
                   <Card key={project.id}>
@@ -530,20 +529,18 @@ export default function CandidateProfilePage() {
 
             <TabsContent value="skills" className="space-y-6">
               {allSkills.length === 0 ? (
-                <Card>
-                  <CardContent className="pt-6 text-center py-12">
+                <GlassCard hover={false}>
+                  <div className="p-5 text-center py-12">
                     <p className="text-muted-foreground">{t('noSkills')}</p>
-                  </CardContent>
-                </Card>
+                  </div>
+                </GlassCard>
               ) : (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>{t('skillsFromProjects')}</CardTitle>
-                    <CardDescription>
+                <GlassCard hover={false}>
+                  <div className="p-5">
+                    <h3 className="text-lg font-semibold">{t('skillsFromProjects')}</h3>
+                    <p className="text-sm text-muted-foreground mb-4">
                       {t('skillsDescription', { count: candidate.projectCount })}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
+                    </p>
                     <div className="flex flex-wrap gap-2">
                       {allSkills.map((skill) => (
                         <Badge key={skill} variant="secondary">
@@ -551,8 +548,8 @@ export default function CandidateProfilePage() {
                         </Badge>
                       ))}
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </GlassCard>
               )}
             </TabsContent>
           </Tabs>
@@ -561,26 +558,26 @@ export default function CandidateProfilePage() {
         {/* Right Column - Sidebar */}
         <div className="space-y-6">
           {/* Quick Actions */}
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('quickActions')}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <Button className="w-full justify-start" onClick={openContactForm}>
-                <MessageSquare className="mr-2 h-4 w-4" />
-                {t('sendMessage')}
-              </Button>
-              <Button
-                variant="outline"
-                className="w-full justify-start"
-                onClick={toggleBookmark}
-                disabled={bookmarkLoading}
-              >
-                <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current text-primary' : ''}`} />
-                {isBookmarked ? t('saved') : t('saveCandidate')}
-              </Button>
-            </CardContent>
-          </Card>
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-3">{t('quickActions')}</h3>
+              <div className="space-y-3">
+                <Button className="w-full justify-start" onClick={openContactForm}>
+                  <MessageSquare className="mr-2 h-4 w-4" />
+                  {t('sendMessage')}
+                </Button>
+                <Button
+                  variant="outline"
+                  className="w-full justify-start"
+                  onClick={toggleBookmark}
+                  disabled={bookmarkLoading}
+                >
+                  <Star className={`mr-2 h-4 w-4 ${isBookmarked ? 'fill-current text-primary' : ''}`} />
+                  {isBookmarked ? t('saved') : t('saveCandidate')}
+                </Button>
+              </div>
+            </div>
+          </GlassCard>
 
           {/* Trust Score */}
           <TrustScoreBadge userId={candidate.id} />
@@ -597,41 +594,41 @@ export default function CandidateProfilePage() {
           />
 
           {/* Profile Summary */}
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('profileSummary')}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {candidate.university && (
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-3">{t('profileSummary')}</h3>
+              <div className="space-y-3">
+                {candidate.university && (
+                  <div>
+                    <p className="text-sm text-muted-foreground">{t('summaryUniversity')}</p>
+                    <p className="font-medium">{candidate.university}</p>
+                  </div>
+                )}
+                {candidate.degree && (
+                  <div>
+                    <p className="text-sm text-muted-foreground">{t('summaryDegree')}</p>
+                    <p className="font-medium">{candidate.degree}</p>
+                  </div>
+                )}
+                {candidate.graduationYear && (
+                  <div>
+                    <p className="text-sm text-muted-foreground">{t('summaryGraduationYear')}</p>
+                    <p className="font-medium">{candidate.graduationYear}</p>
+                  </div>
+                )}
+                {candidate.gpa !== null && (
+                  <div>
+                    <p className="text-sm text-muted-foreground">{t('summaryGpa')}</p>
+                    <p className="font-medium">{candidate.gpa}</p>
+                  </div>
+                )}
                 <div>
-                  <p className="text-sm text-muted-foreground">{t('summaryUniversity')}</p>
-                  <p className="font-medium">{candidate.university}</p>
+                  <p className="text-sm text-muted-foreground">{t('summaryPublicProjects')}</p>
+                  <p className="font-medium">{candidate.projectCount}</p>
                 </div>
-              )}
-              {candidate.degree && (
-                <div>
-                  <p className="text-sm text-muted-foreground">{t('summaryDegree')}</p>
-                  <p className="font-medium">{candidate.degree}</p>
-                </div>
-              )}
-              {candidate.graduationYear && (
-                <div>
-                  <p className="text-sm text-muted-foreground">{t('summaryGraduationYear')}</p>
-                  <p className="font-medium">{candidate.graduationYear}</p>
-                </div>
-              )}
-              {candidate.gpa !== null && (
-                <div>
-                  <p className="text-sm text-muted-foreground">{t('summaryGpa')}</p>
-                  <p className="font-medium">{candidate.gpa}</p>
-                </div>
-              )}
-              <div>
-                <p className="text-sm text-muted-foreground">{t('summaryPublicProjects')}</p>
-                <p className="font-medium">{candidate.projectCount}</p>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         </div>
       </div>
 

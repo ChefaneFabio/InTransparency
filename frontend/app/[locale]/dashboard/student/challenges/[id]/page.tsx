@@ -26,6 +26,7 @@ import {
   XCircle
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface Challenge {
   id: string
@@ -258,54 +259,55 @@ export default function StudentChallengeDetailPage() {
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
       {/* Header */}
-      <div className="flex items-start gap-4 pt-2">
-        <Button variant="ghost" size="sm" asChild>
+      <div className="pt-2">
+        <Button variant="ghost" size="sm" asChild className="mb-4">
           <Link href="/dashboard/student/challenges">
             <ArrowLeft className="h-4 w-4 mr-1" />
             Back
           </Link>
         </Button>
-        <div className="flex items-start gap-4 flex-1">
-          {challenge.companyLogo ? (
-            <img
-              src={challenge.companyLogo}
-              alt={challenge.companyName}
-              className="w-16 h-16 rounded-lg object-cover"
-            />
-          ) : (
-            <div className="w-16 h-16 rounded-lg bg-primary flex items-center justify-center">
-              <Building2 className="h-8 w-8 text-white" />
+        <MetricHero gradient="primary">
+          <div className="flex items-start gap-4">
+            {challenge.companyLogo ? (
+              <img
+                src={challenge.companyLogo}
+                alt={challenge.companyName}
+                className="w-16 h-16 rounded-lg object-cover"
+              />
+            ) : (
+              <div className="w-16 h-16 rounded-lg bg-primary flex items-center justify-center">
+                <Building2 className="h-8 w-8 text-white" />
+              </div>
+            )}
+            <div className="flex-1">
+              <h1 className="text-2xl font-semibold text-foreground">{challenge.title}</h1>
+              <p className="text-muted-foreground mt-1">{challenge.companyName}</p>
+              <div className="flex items-center gap-3 mt-2">
+                <Badge variant="outline">{challenge.challengeType.replace(/_/g, ' ')}</Badge>
+                {challenge.mentorshipOffered && (
+                  <Badge className="bg-primary/5 text-primary">
+                    <GraduationCap className="h-3 w-3 mr-1" />
+                    Mentorship
+                  </Badge>
+                )}
+                {challenge.compensation && (
+                  <Badge className="bg-yellow-50 text-yellow-700">{challenge.compensation}</Badge>
+                )}
+              </div>
             </div>
-          )}
-          <div className="flex-1">
-            <h1 className="text-2xl font-semibold text-foreground">{challenge.title}</h1>
-            <p className="text-muted-foreground mt-1">{challenge.companyName}</p>
-            <div className="flex items-center gap-3 mt-2">
-              <Badge variant="outline">{challenge.challengeType.replace(/_/g, ' ')}</Badge>
-              {challenge.mentorshipOffered && (
-                <Badge className="bg-primary/5 text-primary">
-                  <GraduationCap className="h-3 w-3 mr-1" />
-                  Mentorship
-                </Badge>
-              )}
-              {challenge.compensation && (
-                <Badge className="bg-yellow-50 text-yellow-700">{challenge.compensation}</Badge>
-              )}
-            </div>
+            {mySubmission && getSubmissionStatusBadge(mySubmission.status)}
           </div>
-          {mySubmission && getSubmissionStatusBadge(mySubmission.status)}
-        </div>
+        </MetricHero>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Challenge Details */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Challenge Overview</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-4">Challenge Overview</h3>
+              <div className="space-y-4">
               <p className="text-foreground/80">{challenge.description}</p>
 
               {challenge.problemStatement && (
@@ -321,15 +323,15 @@ export default function StudentChallengeDetailPage() {
                   <p className="text-foreground/80">{challenge.expectedOutcome}</p>
                 </div>
               )}
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </GlassCard>
 
           {/* Skills & Tools */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Required Skills & Tools</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-4">Required Skills & Tools</h3>
+              <div className="space-y-4">
               {challenge.requiredSkills.length > 0 && (
                 <div>
                   <h4 className="text-sm font-medium text-muted-foreground mb-2">Skills</h4>
@@ -350,19 +352,19 @@ export default function StudentChallengeDetailPage() {
                   </div>
                 </div>
               )}
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </GlassCard>
 
           {/* My Submission Status */}
           {mySubmission && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Your Submission</CardTitle>
-                <CardDescription>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold mb-1">Your Submission</h3>
+                <p className="text-sm text-muted-foreground mb-4">
                   Applied on {new Date(mySubmission.createdAt).toLocaleDateString()}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
+                </p>
+                <div className="space-y-4">
                 {/* Show submission form for IN_PROGRESS or REVISION_REQUESTED */}
                 {['IN_PROGRESS', 'REVISION_REQUESTED', 'SELECTED'].includes(mySubmission.status) && (
                   <div className="space-y-4">
@@ -451,17 +453,17 @@ export default function StudentChallengeDetailPage() {
                     )}
                   </div>
                 )}
-              </CardContent>
-            </Card>
+                </div>
+              </div>
+            </GlassCard>
           )}
 
           {/* Apply Form */}
           {showApplyForm && !mySubmission && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Apply to Challenge</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold mb-4">Apply to Challenge</h3>
+                <div className="space-y-4">
                 <div className="space-y-2">
                   <Label>Why do you want to work on this challenge? *</Label>
                   <Textarea
@@ -521,8 +523,9 @@ export default function StudentChallengeDetailPage() {
                     Submit Application
                   </Button>
                 </div>
-              </CardContent>
-            </Card>
+                </div>
+              </div>
+            </GlassCard>
           )}
         </div>
 
@@ -530,8 +533,8 @@ export default function StudentChallengeDetailPage() {
         <div className="space-y-6">
           {/* Apply CTA */}
           {!mySubmission && !showApplyForm && (
-            <Card className="bg-gradient-to-br from-primary/5 to-primary/5 border-primary/20">
-              <CardContent className="pt-6 text-center">
+            <GlassCard hover={false} gradient="primary">
+              <div className="p-5 pt-6 text-center">
                 <Trophy className="h-12 w-12 mx-auto text-primary mb-4" />
                 <h3 className="font-semibold text-lg mb-2">Interested?</h3>
                 {canApply ? (
@@ -550,16 +553,15 @@ export default function StudentChallengeDetailPage() {
                       : 'Applications are closed'}
                   </p>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           )}
 
           {/* Challenge Info */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Challenge Details</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3 text-sm">
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-base font-semibold mb-4">Challenge Details</h3>
+              <div className="space-y-3 text-sm">
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-muted-foreground/60" />
                 <span className="text-muted-foreground">Team:</span>
@@ -586,16 +588,15 @@ export default function StudentChallengeDetailPage() {
                   <span>{new Date(challenge.startDate).toLocaleDateString()}</span>
                 </div>
               )}
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </GlassCard>
 
           {/* University Approval */}
           {challenge.universityApprovals && challenge.universityApprovals.length > 0 && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">Course Credit</CardTitle>
-              </CardHeader>
-              <CardContent>
+            <GlassCard hover={false}>
+              <div className="p-5">
+                <h3 className="text-base font-semibold mb-4">Course Credit</h3>
                 {challenge.universityApprovals.map((approval, i) => (
                   <div key={i} className="text-sm">
                     {approval.courseCode && <p className="font-medium">{approval.courseCode}</p>}
@@ -604,8 +605,8 @@ export default function StudentChallengeDetailPage() {
                     {approval.professorName && <p className="text-muted-foreground">Prof. {approval.professorName}</p>}
                   </div>
                 ))}
-              </CardContent>
-            </Card>
+              </div>
+            </GlassCard>
           )}
         </div>
       </div>

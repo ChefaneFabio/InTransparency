@@ -13,6 +13,7 @@ import {
   GraduationCap, Briefcase, FileText, Languages, Award, Target, AlertCircle, CheckCircle,
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface ProfileData {
   user: {
@@ -110,20 +111,22 @@ export default function CvPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 space-y-6">
       {/* Top bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold">{t('title')}</h1>
-          <p className="text-muted-foreground text-sm mt-1">{t('subtitle')}</p>
+      <MetricHero gradient="primary">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-bold">{t('title')}</h1>
+            <p className="text-muted-foreground text-sm mt-1">{t('subtitle')}</p>
+          </div>
+          <Button onClick={handleDownload} disabled={downloading} size="lg">
+            {downloading ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Download className="h-4 w-4 mr-2" />}
+            {downloading ? t('downloading') : t('download')}
+          </Button>
         </div>
-        <Button onClick={handleDownload} disabled={downloading} size="lg">
-          {downloading ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Download className="h-4 w-4 mr-2" />}
-          {downloading ? t('downloading') : t('download')}
-        </Button>
-      </div>
+      </MetricHero>
 
       {/* CV Strength indicator */}
-      <Card>
-        <CardContent className="p-4">
+      <GlassCard hover={false}>
+        <div className="p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium">{t('strength')}</span>
             <span className="text-sm text-muted-foreground">{cvStrength}%</span>
@@ -137,8 +140,8 @@ export default function CvPage() {
               </div>
             ))}
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </GlassCard>
 
       {/* CV Document Preview */}
       <Card className="shadow-xl border-2">

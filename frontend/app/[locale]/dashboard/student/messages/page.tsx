@@ -23,6 +23,7 @@ import {
   AlertCircle
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 interface Conversation {
@@ -187,18 +188,20 @@ export default function StudentMessages() {
     <div className="min-h-screen space-y-6">
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">Messages</h1>
-            <p className="text-muted-foreground">
-              Communicate with recruiters and potential employers
-            </p>
+        <MetricHero gradient="primary">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight">Messages</h1>
+              <p className="text-muted-foreground">
+                Communicate with recruiters and potential employers
+              </p>
+            </div>
+            <Button variant="outline" onClick={fetchConversations}>
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Refresh
+            </Button>
           </div>
-          <Button variant="outline" onClick={fetchConversations}>
-            <RefreshCw className="h-4 w-4 mr-2" />
-            Refresh
-          </Button>
-        </div>
+        </MetricHero>
 
         <div className="grid grid-cols-12 gap-6" style={{ minHeight: '600px' }}>
           {/* Sidebar - Conversations */}

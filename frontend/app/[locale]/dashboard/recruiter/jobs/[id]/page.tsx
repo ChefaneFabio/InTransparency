@@ -10,6 +10,7 @@ import { Link, useRouter } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import { ArrowLeft, MapPin, Clock, Users, Eye, Edit, Trash2, AlertCircle } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface Application {
   id: string
@@ -213,59 +214,61 @@ export default function JobDetailPage() {
   return (
     <div className="max-w-4xl mx-auto space-y-6 pb-12">
       {/* Header */}
-      <div className="flex items-center justify-between pt-2">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/dashboard/recruiter/jobs">
-              <ArrowLeft className="h-4 w-4 mr-1" />
-              {t('back')}
-            </Link>
-          </Button>
-          <div>
-            <h1 className="text-2xl font-semibold text-foreground">{job.title}</h1>
-            <div className="flex items-center gap-3 text-sm text-muted-foreground mt-1">
-              {job.location && (
+      <MetricHero gradient="primary">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/dashboard/recruiter/jobs">
+                <ArrowLeft className="h-4 w-4 mr-1" />
+                {t('back')}
+              </Link>
+            </Button>
+            <div>
+              <h1 className="text-2xl font-semibold text-foreground">{job.title}</h1>
+              <div className="flex items-center gap-3 text-sm text-muted-foreground mt-1">
+                {job.location && (
+                  <span className="flex items-center gap-1">
+                    <MapPin className="h-3.5 w-3.5" />
+                    {job.location}
+                  </span>
+                )}
                 <span className="flex items-center gap-1">
-                  <MapPin className="h-3.5 w-3.5" />
-                  {job.location}
+                  <Clock className="h-3.5 w-3.5" />
+                  {t('posted')} {new Date(postedDate).toLocaleDateString()}
                 </span>
-              )}
-              <span className="flex items-center gap-1">
-                <Clock className="h-3.5 w-3.5" />
-                {t('posted')} {new Date(postedDate).toLocaleDateString()}
-              </span>
-              <Badge variant="secondary">
-                {job.status.charAt(0) + job.status.slice(1).toLowerCase()}
-              </Badge>
+                <Badge variant="secondary">
+                  {job.status.charAt(0) + job.status.slice(1).toLowerCase()}
+                </Badge>
+              </div>
             </div>
           </div>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleToggleStatus}
+              disabled={actionLoading}
+            >
+              {job.status === 'ACTIVE' ? t('closeJob') : t('activateJob')}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-red-600 hover:text-red-700"
+              onClick={handleDelete}
+              disabled={actionLoading}
+            >
+              <Trash2 className="h-4 w-4 mr-1" />
+              {t('delete')}
+            </Button>
+          </div>
         </div>
-        <div className="flex gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleToggleStatus}
-            disabled={actionLoading}
-          >
-            {job.status === 'ACTIVE' ? t('closeJob') : t('activateJob')}
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-red-600 hover:text-red-700"
-            onClick={handleDelete}
-            disabled={actionLoading}
-          >
-            <Trash2 className="h-4 w-4 mr-1" />
-            {t('delete')}
-          </Button>
-        </div>
-      </div>
+      </MetricHero>
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4">
-        <Card>
-          <CardContent className="pt-6">
+        <GlassCard hover={false}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{appCount}</p>
@@ -273,10 +276,10 @@ export default function JobDetailPage() {
               </div>
               <Users className="h-8 w-8 text-primary" />
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard hover={false}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{job.views}</p>
@@ -284,10 +287,10 @@ export default function JobDetailPage() {
               </div>
               <Eye className="h-8 w-8 text-primary" />
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard hover={false}>
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-2xl font-bold">{conversionRate}%</p>
@@ -295,16 +298,15 @@ export default function JobDetailPage() {
               </div>
               <div className="h-8 w-8 flex items-center justify-center text-primary font-bold text-lg">%</div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
 
       {/* Job Details */}
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('jobDetails')}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
+      <GlassCard hover={false}>
+        <div className="p-5">
+          <h3 className="text-lg font-semibold mb-4">{t('jobDetails')}</h3>
+          <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-muted-foreground">{t('jobType')}</p>
@@ -360,16 +362,15 @@ export default function JobDetailPage() {
               </div>
             </div>
           )}
-        </CardContent>
-      </Card>
+          </div>
+        </div>
+      </GlassCard>
 
       {/* Applications */}
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('applicationsTitle')}</CardTitle>
-          <CardDescription>{t('applicationsDescription')}</CardDescription>
-        </CardHeader>
-        <CardContent>
+      <GlassCard hover={false}>
+        <div className="p-5">
+          <h3 className="text-lg font-semibold">{t('applicationsTitle')}</h3>
+          <p className="text-sm text-muted-foreground mb-4">{t('applicationsDescription')}</p>
           {job.applications && job.applications.length > 0 ? (
             <div className="space-y-3">
               {job.applications.map((app) => (
@@ -405,8 +406,8 @@ export default function JobDetailPage() {
               <p className="text-muted-foreground">{t('noApplications')}</p>
             </div>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </GlassCard>
     </div>
   )
 }

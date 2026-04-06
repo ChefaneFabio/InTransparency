@@ -22,6 +22,7 @@ import {
   Users
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
+import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 
 interface Challenge {
   id: string
@@ -205,49 +206,51 @@ export default function ChallengeDetailPage() {
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
       {/* Header */}
-      <div className="flex items-start justify-between pt-2">
-        <div className="flex items-start gap-4">
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/dashboard/recruiter/challenges">
-              <ArrowLeft className="h-4 w-4 mr-1" />
-              {t('back')}
-            </Link>
-          </Button>
+      <MetricHero gradient="primary">
+        <div className="flex items-start justify-between">
           <div className="flex items-start gap-4">
-            {challenge.companyLogo ? (
-              <img
-                src={challenge.companyLogo}
-                alt={challenge.companyName}
-                className="w-16 h-16 rounded-lg object-cover"
-              />
-            ) : (
-              <div className="w-16 h-16 rounded-lg bg-primary flex items-center justify-center">
-                <Building2 className="h-8 w-8 text-white" />
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/dashboard/recruiter/challenges">
+                <ArrowLeft className="h-4 w-4 mr-1" />
+                {t('back')}
+              </Link>
+            </Button>
+            <div className="flex items-start gap-4">
+              {challenge.companyLogo ? (
+                <img
+                  src={challenge.companyLogo}
+                  alt={challenge.companyName}
+                  className="w-16 h-16 rounded-lg object-cover"
+                />
+              ) : (
+                <div className="w-16 h-16 rounded-lg bg-primary flex items-center justify-center">
+                  <Building2 className="h-8 w-8 text-white" />
+                </div>
+              )}
+              <div>
+                <div className="flex items-center gap-3">
+                  <h1 className="text-2xl font-semibold text-foreground">{challenge.title}</h1>
+                  {getStatusBadge(challenge.status)}
+                </div>
+                <p className="text-muted-foreground mt-1">{challenge.companyName}</p>
               </div>
-            )}
-            <div>
-              <div className="flex items-center gap-3">
-                <h1 className="text-2xl font-semibold text-foreground">{challenge.title}</h1>
-                {getStatusBadge(challenge.status)}
-              </div>
-              <p className="text-muted-foreground mt-1">{challenge.companyName}</p>
             </div>
           </div>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" asChild>
+              <Link href={`/dashboard/recruiter/challenges/${challenge.id}/edit`}>
+                <Edit className="h-4 w-4 mr-1" />
+                {t('edit')}
+              </Link>
+            </Button>
+          </div>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" asChild>
-            <Link href={`/dashboard/recruiter/challenges/${challenge.id}/edit`}>
-              <Edit className="h-4 w-4 mr-1" />
-              {t('edit')}
-            </Link>
-          </Button>
-        </div>
-      </div>
+      </MetricHero>
 
       {/* Stats Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card>
-          <CardContent className="pt-6">
+        <GlassCard hover={false}>
+          <div className="p-5">
             <div className="flex items-center gap-3">
               <Users className="h-5 w-5 text-primary" />
               <div>
@@ -255,10 +258,10 @@ export default function ChallengeDetailPage() {
                 <p className="text-xs text-muted-foreground">{t('submissions')}</p>
               </div>
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard hover={false}>
+          <div className="p-5">
             <div className="flex items-center gap-3">
               <GraduationCap className="h-5 w-5 text-primary" />
               <div>
@@ -266,10 +269,10 @@ export default function ChallengeDetailPage() {
                 <p className="text-xs text-muted-foreground">{t('universities')}</p>
               </div>
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard hover={false}>
+          <div className="p-5">
             <div className="flex items-center gap-3">
               <Eye className="h-5 w-5 text-primary" />
               <div>
@@ -277,10 +280,10 @@ export default function ChallengeDetailPage() {
                 <p className="text-xs text-muted-foreground">{t('views')}</p>
               </div>
             </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="pt-6">
+          </div>
+        </GlassCard>
+        <GlassCard hover={false}>
+          <div className="p-5">
             <div className="flex items-center gap-3">
               <Trophy className="h-5 w-5 text-primary" />
               <div>
@@ -288,19 +291,18 @@ export default function ChallengeDetailPage() {
                 <p className="text-xs text-muted-foreground">{t('approved')}</p>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </GlassCard>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Challenge Details */}
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('challengeDetails')}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-4">{t('challengeDetails')}</h3>
+              <div className="space-y-4">
               <div>
                 <h4 className="text-sm font-medium text-muted-foreground mb-1">{t('description')}</h4>
                 <p className="text-foreground/80">{challenge.description}</p>
@@ -325,18 +327,17 @@ export default function ChallengeDetailPage() {
                   <Badge key={skill} variant="secondary">{skill}</Badge>
                 ))}
               </div>
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </GlassCard>
 
           {/* Submissions */}
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('submissionsTitle')}</CardTitle>
-              <CardDescription>
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-lg font-semibold">{t('submissionsTitle')}</h3>
+              <p className="text-sm text-muted-foreground mb-4">
                 {t('submissionsCount', { count: submissions.length, max: challenge.maxSubmissions })}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
+              </p>
               <Tabs defaultValue="applied">
                 <TabsList className="mb-4">
                   <TabsTrigger value="applied">
@@ -413,18 +414,17 @@ export default function ChallengeDetailPage() {
                   )}
                 </TabsContent>
               </Tabs>
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         </div>
 
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Quick Info */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">{t('challengeInfo')}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3 text-sm">
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-base font-semibold mb-3">{t('challengeInfo')}</h3>
+              <div className="space-y-3 text-sm">
               <div className="flex items-center gap-2">
                 <Trophy className="h-4 w-4 text-muted-foreground/60" />
                 <span className="text-muted-foreground">{t('type')}:</span>
@@ -459,15 +459,14 @@ export default function ChallengeDetailPage() {
                   {challenge.compensation}
                 </Badge>
               )}
-            </CardContent>
-          </Card>
+              </div>
+            </div>
+          </GlassCard>
 
           {/* University Approvals */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">{t('universityApprovals')}</CardTitle>
-            </CardHeader>
-            <CardContent>
+          <GlassCard hover={false}>
+            <div className="p-5">
+              <h3 className="text-base font-semibold mb-3">{t('universityApprovals')}</h3>
               {challenge.universityApprovals.length > 0 ? (
                 <div className="space-y-3">
                   {challenge.universityApprovals.map((approval) => (
@@ -502,8 +501,8 @@ export default function ChallengeDetailPage() {
                   {t('noApprovals')}
                 </p>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </GlassCard>
         </div>
       </div>
     </div>

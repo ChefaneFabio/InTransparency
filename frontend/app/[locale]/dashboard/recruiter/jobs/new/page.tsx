@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslations, useLocale } from 'next-intl'
 import { ConversationChat, type ChatMessage, type ProfileField } from '@/components/dashboard/shared/ConversationChat'
+import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 
 const JOB_PROFILE_FIELDS: ProfileField[] = [
   { key: 'title', label: 'Title', type: 'text' },
