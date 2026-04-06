@@ -5213,6 +5213,34 @@
     "interviewOn": "Interview on",
     "empty": "No applications in this category"
   },
+  "apply": {
+    "jobNotFound": "Job not found",
+    "backToJobs": "Back to jobs",
+    "yourMatch": "Your match",
+    "matchedSkills": "Skills you have",
+    "missingSkills": "Skills to develop",
+    "yourProjects": "Your relevant projects",
+    "projectsAutoSelected": "These projects from your portfolio match this role's requirements.",
+    "verified": "Verified",
+    "whyThisRole": "Why this role?",
+    "whyThisRoleHint": "Optional — tell the company why you're interested.",
+    "whyThisRolePlaceholder": "I'm interested in this role because...",
+    "coverLetter": "Additional notes",
+    "coverLetterHint": "Optional — anything else you'd like to share.",
+    "coverLetterPlaceholder": "Any additional context, availability, or questions...",
+    "cancel": "Cancel",
+    "submit": "Send application",
+    "submitting": "Sending...",
+    "submitFailed": "Failed to submit. Please try again.",
+    "submitted": "Application sent",
+    "submittedDesc": "The company will review your verified profile and projects. You'll be notified of any updates.",
+    "viewApplications": "View my applications",
+    "browseMore": "Browse more jobs",
+    "trust": {
+      "verified": "Profile verified by your institution",
+      "institutional": "Backed by academic credentials"
+    }
+  },
   "studentChallenges": {
     "title": "Company Challenges",
     "subtitle": "Real-world projects from leading companies",

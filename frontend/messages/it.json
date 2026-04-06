@@ -5186,6 +5186,34 @@
     "interviewOn": "Colloquio il",
     "empty": "Nessuna candidatura in questa categoria"
   },
+  "apply": {
+    "jobNotFound": "Posizione non trovata",
+    "backToJobs": "Torna alle offerte",
+    "yourMatch": "La tua compatibilita",
+    "matchedSkills": "Competenze che hai",
+    "missingSkills": "Competenze da sviluppare",
+    "yourProjects": "I tuoi progetti rilevanti",
+    "projectsAutoSelected": "Questi progetti dal tuo portfolio corrispondono ai requisiti del ruolo.",
+    "verified": "Verificato",
+    "whyThisRole": "Perche questo ruolo?",
+    "whyThisRoleHint": "Opzionale — racconta all'azienda perche sei interessato.",
+    "whyThisRolePlaceholder": "Sono interessato a questo ruolo perche...",
+    "coverLetter": "Note aggiuntive",
+    "coverLetterHint": "Opzionale — qualsiasi altra informazione da condividere.",
+    "coverLetterPlaceholder": "Contesto aggiuntivo, disponibilita o domande...",
+    "cancel": "Annulla",
+    "submit": "Invia candidatura",
+    "submitting": "Invio...",
+    "submitFailed": "Invio fallito. Riprova.",
+    "submitted": "Candidatura inviata",
+    "submittedDesc": "L'azienda valutera il tuo profilo verificato e i tuoi progetti. Sarai aggiornato su eventuali sviluppi.",
+    "viewApplications": "Le mie candidature",
+    "browseMore": "Cerca altre offerte",
+    "trust": {
+      "verified": "Profilo verificato dalla tua istituzione",
+      "institutional": "Supportato da credenziali accademiche"
+    }
+  },
   "studentChallenges": {
     "title": "Challenge Aziendali",
     "subtitle": "Progetti reali da aziende leader",
