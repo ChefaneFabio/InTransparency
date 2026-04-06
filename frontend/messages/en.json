@@ -4939,6 +4939,22 @@
       "showingLimited": "Showing {shown} of {total}",
       "moreAvailable": "{count} more career paths available with Premium"
     },
+    "gaps": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low",
+      "yourLevel": "Your Level",
+      "targetLevel": "Target Level",
+      "demand": "demand",
+      "toLearn": "to learn",
+      "impact": "impact"
+    },
+    "radar": {
+      "yourLevel": "Your Level",
+      "idealCandidate": "Ideal Candidate",
+      "empty": "Add more projects to see your skill radar"
+    },
     "hireability": {
       "title": "Hireability Score",
       "excellent": "Excellent",

@@ -4912,6 +4912,22 @@
       "showingLimited": "Mostrati {shown} di {total}",
       "moreAvailable": "{count} altri percorsi di carriera disponibili con Premium"
     },
+    "gaps": {
+      "critical": "Critico",
+      "high": "Alto",
+      "medium": "Medio",
+      "low": "Basso",
+      "yourLevel": "Il tuo livello",
+      "targetLevel": "Livello target",
+      "demand": "domanda",
+      "toLearn": "per imparare",
+      "impact": "impatto"
+    },
+    "radar": {
+      "yourLevel": "Il tuo livello",
+      "idealCandidate": "Candidato ideale",
+      "empty": "Aggiungi più progetti per vedere il radar delle competenze"
+    },
     "hireability": {
       "title": "Punteggio Occupabilità",
       "excellent": "Eccellente",
