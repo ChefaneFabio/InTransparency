@@ -14,7 +14,7 @@ const registerSchema = z.object({
 })
 
 // Roles that anyone can self-assign at registration
-const SELF_ASSIGNABLE_ROLES = ["STUDENT", "RECRUITER"] as const
+const SELF_ASSIGNABLE_ROLES = ["STUDENT", "RECRUITER", "UNIVERSITY", "TECHPARK", "PROFESSOR"] as const
 
 export async function POST(req: NextRequest) {
   try {
