@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { useSegment } from '@/lib/segment-context'
 import { BRAND_IMAGES } from '@/lib/brand-images'
+import { AppPreview } from '@/components/sections/AppPreview'
 
 const segmentIcons = {
   students: GraduationCap,
@@ -100,32 +101,23 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Hero image — changes per segment */}
+        {/* App preview — changes per segment */}
         <motion.div
-          className="mt-16 mx-auto max-w-5xl rounded-2xl overflow-hidden shadow-xl border border-border"
+          className="mt-16 mx-auto max-w-3xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <AnimatePresence mode="wait">
-            <motion.img
+            <motion.div
               key={activeSegment}
-              src={
-                activeSegment === 'students' ? BRAND_IMAGES.hero.students :
-                activeSegment === 'companies' ? BRAND_IMAGES.hero.companies :
-                BRAND_IMAGES.hero.universities
-              }
-              alt={
-                activeSegment === 'students' ? 'Students collaborating on campus' :
-                activeSegment === 'companies' ? 'Professional team working together' :
-                'University campus and academic environment'
-              }
-              className="w-full h-[300px] sm:h-[400px] object-cover"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.3 }}
-            />
+            >
+              <AppPreview segment={activeSegment} />
+            </motion.div>
           </AnimatePresence>
         </motion.div>
 
