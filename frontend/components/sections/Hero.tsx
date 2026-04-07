@@ -169,20 +169,28 @@ export function Hero() {
                 {segment === 'companies' && ` ${t(`${segment}.headlinePart3`)}`}
               </h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                {[0, 1, 2].map((index) => (
-                  <div
-                    key={`${activeSegment}-${index}`}
-                    className="bg-card rounded-xl border border-border p-7"
-                  >
-                    <h3 className="text-base font-semibold text-foreground mb-3">
-                      {t(`${segment}.features.${index}.title`)}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {t(`${segment}.features.${index}.description`)}
-                    </p>
-                  </div>
-                ))}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                {/* Feature cards */}
+                <div className="space-y-4">
+                  {[0, 1, 2].map((index) => (
+                    <div
+                      key={`${activeSegment}-${index}`}
+                      className="bg-card rounded-xl border border-border p-5"
+                    >
+                      <h3 className="text-base font-semibold text-foreground mb-2">
+                        {t(`${segment}.features.${index}.title`)}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {t(`${segment}.features.${index}.description`)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Mini app preview */}
+                <div className="hidden lg:block">
+                  <AppPreview segment={activeSegment} />
+                </div>
               </div>
 
               <p className="mt-8 text-sm text-muted-foreground text-center">
