@@ -39,11 +39,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    if (user.subscriptionTier !== 'INSTITUTION_ENTERPRISE' && user.role !== 'ADMIN') {
-      return NextResponse.json({
-        error: 'Multi-campus support requires an Enterprise subscription',
-      }, { status: 403 })
-    }
+    // Phase 1: Multi-campus unlocked for all pilot universities
 
     const { id } = await params
     const body = await req.json()

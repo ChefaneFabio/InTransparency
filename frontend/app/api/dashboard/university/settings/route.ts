@@ -50,15 +50,7 @@ export async function PUT(req: NextRequest) {
 
     const body = await req.json()
 
-    // Gate white-label fields behind INSTITUTION_ENTERPRISE
-    if (body.primaryColor || body.accentColor || body.customDomain) {
-      if (user.subscriptionTier !== 'INSTITUTION_ENTERPRISE') {
-        return NextResponse.json({
-          error: 'White-label branding requires an Enterprise subscription',
-          upgradeUrl: '/pricing?for=institutes',
-        }, { status: 403 })
-      }
-    }
+    // Phase 1: White-label branding unlocked for all pilot universities
 
     const settings = await prisma.universitySettings.upsert({
       where: { userId: user.id },

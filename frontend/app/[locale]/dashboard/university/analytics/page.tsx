@@ -8,7 +8,6 @@ import { Progress } from '@/components/ui/progress'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell, AreaChart, Area } from 'recharts'
-import { Lock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useTranslations } from 'next-intl'
 
@@ -161,23 +160,6 @@ function EmptyState({ message }: { message: string }) {
   )
 }
 
-function LockedTabContent({ tabName }: { tabName: string }) {
-  return (
-    <div className="flex flex-col items-center justify-center py-20 text-center">
-      <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
-        <Lock className="h-8 w-8 text-muted-foreground" />
-      </div>
-      <h3 className="text-xl font-semibold mb-2">{tabName} Analytics</h3>
-      <p className="text-muted-foreground max-w-md mb-6">
-        This section is available with an Enterprise subscription. Upgrade to unlock full analytics including skills gap analysis, employer engagement, salary data, and benchmarking.
-      </p>
-      <Button>
-        Upgrade to Enterprise
-      </Button>
-    </div>
-  )
-}
-
 // ---------------------------------------------------------------------------
 // Main component
 // ---------------------------------------------------------------------------
@@ -220,8 +202,6 @@ export default function UniversityAnalytics() {
   const salary = data.salary || []
   const benchmark = data.benchmark || []
   const placementTrends = placement?.placementTrends || []
-  const isLimited = data.isLimited ?? false
-  const tierLimits = data.tierLimits
 
   return (
     <div className="min-h-screen space-y-6">
@@ -257,18 +237,10 @@ export default function UniversityAnalytics() {
         <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="placement">Placement</TabsTrigger>
-          <TabsTrigger value="skills" className="flex items-center gap-1">
-            Skills Gap {isLimited && <Lock className="h-3 w-3" />}
-          </TabsTrigger>
-          <TabsTrigger value="employers" className="flex items-center gap-1">
-            Employers {isLimited && <Lock className="h-3 w-3" />}
-          </TabsTrigger>
-          <TabsTrigger value="salary" className="flex items-center gap-1">
-            Salary {isLimited && <Lock className="h-3 w-3" />}
-          </TabsTrigger>
-          <TabsTrigger value="benchmark" className="flex items-center gap-1">
-            Benchmark {isLimited && <Lock className="h-3 w-3" />}
-          </TabsTrigger>
+          <TabsTrigger value="skills">Skills Gap</TabsTrigger>
+          <TabsTrigger value="employers">Employers</TabsTrigger>
+          <TabsTrigger value="salary">Salary</TabsTrigger>
+          <TabsTrigger value="benchmark">Benchmark</TabsTrigger>
         </TabsList>
 
         {/* ===================== OVERVIEW TAB ===================== */}
@@ -504,9 +476,6 @@ export default function UniversityAnalytics() {
 
         {/* ===================== SKILLS GAP TAB ===================== */}
         <TabsContent value="skills" className="space-y-6">
-          {isLimited && tierLimits && !tierLimits.hasSkillsGap ? (
-            <LockedTabContent tabName="Skills Gap" />
-          ) : (
           <>
           <Card>
             <CardHeader>
@@ -634,14 +603,10 @@ export default function UniversityAnalytics() {
             </Card>
           </div>
           </>
-          )}
         </TabsContent>
 
         {/* ===================== EMPLOYERS TAB ===================== */}
         <TabsContent value="employers" className="space-y-6">
-          {isLimited && tierLimits && !tierLimits.hasEmployers ? (
-            <LockedTabContent tabName="Employer Engagement" />
-          ) : (
           <>
           <div className="grid gap-4 md:grid-cols-3 mb-6">
             {loading ? (
@@ -789,14 +754,10 @@ export default function UniversityAnalytics() {
             </Card>
           </div>
           </>
-          )}
         </TabsContent>
 
         {/* ===================== SALARY TAB ===================== */}
         <TabsContent value="salary" className="space-y-6">
-          {isLimited && tierLimits && !tierLimits.hasSalary ? (
-            <LockedTabContent tabName="Salary" />
-          ) : (
           <>
           <Card>
             <CardHeader>
@@ -901,14 +862,10 @@ export default function UniversityAnalytics() {
             </Card>
           </div>
           </>
-          )}
         </TabsContent>
 
         {/* ===================== BENCHMARK TAB ===================== */}
         <TabsContent value="benchmark" className="space-y-6">
-          {isLimited && tierLimits && !tierLimits.hasBenchmark ? (
-            <LockedTabContent tabName="Benchmark" />
-          ) : (
           <>
           <Card>
             <CardHeader>
@@ -1059,7 +1016,6 @@ export default function UniversityAnalytics() {
             </Card>
           </div>
           </>
-          )}
         </TabsContent>
       </Tabs>
     </div>

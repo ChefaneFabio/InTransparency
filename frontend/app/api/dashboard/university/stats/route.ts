@@ -35,7 +35,10 @@ export async function GET(req: NextRequest) {
       studentsWithProjects,
       totalProfileViews,
       recentStudents,
-      topRecruiters
+      topRecruiters,
+      studentsWithMultipleProjects,
+      studentsWithBio,
+      studentsWithSkills,
     ] = await Promise.all([
       // Count students from this university
       prisma.user.count({
@@ -126,7 +129,45 @@ export async function GET(req: NextRequest) {
           }
         },
         take: 5
-      })
+      }),
+
+      // Students with 2+ projects (engaged students)
+      prisma.user.count({
+        where: {
+          role: 'STUDENT',
+          university: { contains: universityName, mode: 'insensitive' },
+          projects: { some: {} },
+        },
+      }).then(async (withProjects) => {
+        // Count those with multiple projects via raw aggregation
+        const multiProject = await prisma.user.findMany({
+          where: {
+            role: 'STUDENT',
+            university: { contains: universityName, mode: 'insensitive' },
+          },
+          select: { _count: { select: { projects: true } } },
+        })
+        return multiProject.filter(u => u._count.projects >= 2).length
+      }),
+
+      // Students with a bio/summary
+      prisma.user.count({
+        where: {
+          role: 'STUDENT',
+          university: { contains: universityName, mode: 'insensitive' },
+          bio: { not: null },
+          NOT: { bio: '' },
+        },
+      }),
+
+      // Students with skills listed
+      prisma.user.count({
+        where: {
+          role: 'STUDENT',
+          university: { contains: universityName, mode: 'insensitive' },
+          skills: { isEmpty: false },
+        },
+      }),
     ])
 
     // Format students
@@ -150,15 +191,31 @@ export async function GET(req: NextRequest) {
         contacts: Math.floor(recruiter._count * 0.25) // Estimate contacts as 25% of views
       }))
 
+    // Activation metrics
+    const activationRate = totalStudents > 0
+      ? Math.round((studentsWithProjects / totalStudents) * 100)
+      : 0
+    const profileCompletionRate = totalStudents > 0
+      ? Math.round(((studentsWithBio + studentsWithSkills + studentsWithProjects) / (totalStudents * 3)) * 100)
+      : 0
+
     return NextResponse.json({
       stats: {
         totalStudents,
         verifiedStudents,
         activeProfiles: studentsWithProjects,
-        recruiterViews: totalProfileViews
+        recruiterViews: totalProfileViews,
+      },
+      activation: {
+        activationRate,
+        profileCompletionRate,
+        withProjects: studentsWithProjects,
+        withMultipleProjects: studentsWithMultipleProjects,
+        withBio: studentsWithBio,
+        withSkills: studentsWithSkills,
       },
       recentStudents: formattedStudents,
-      topRecruiters: formattedRecruiters
+      topRecruiters: formattedRecruiters,
     })
 
   } catch (error) {

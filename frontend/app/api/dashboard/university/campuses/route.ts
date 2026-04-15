@@ -37,12 +37,7 @@ export async function GET() {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    if (user.subscriptionTier !== 'INSTITUTION_ENTERPRISE' && user.role !== 'ADMIN') {
-      return NextResponse.json({
-        error: 'Multi-campus support requires an Enterprise subscription',
-        upgradeUrl: '/pricing?for=institutes',
-      }, { status: 403 })
-    }
+    // Phase 1: Multi-campus unlocked for all pilot universities
 
     const campuses = await prisma.campus.findMany({
       where: { userId: session.user.id },
@@ -76,12 +71,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    if (user.subscriptionTier !== 'INSTITUTION_ENTERPRISE' && user.role !== 'ADMIN') {
-      return NextResponse.json({
-        error: 'Multi-campus support requires an Enterprise subscription',
-        upgradeUrl: '/pricing?for=institutes',
-      }, { status: 403 })
-    }
+    // Phase 1: Multi-campus unlocked for all pilot universities
 
     const body = await req.json()
     const data = campusSchema.parse(body)

@@ -23,14 +23,15 @@ const TIER_LIMITS: Record<string, Record<string, boolean>> = {
   },
 }
 
+// Phase 1: All features unlocked for pilot/co-creation universities
 const DEFAULT_LIMITS: Record<string, boolean> = {
   hasOverview: true,
   hasPlacement: true,
   hasIndustryDistribution: true,
-  hasSkillsGap: false,
-  hasEmployers: false,
-  hasSalary: false,
-  hasBenchmark: false,
+  hasSkillsGap: true,
+  hasEmployers: true,
+  hasSalary: true,
+  hasBenchmark: true,
 }
 
 // GET /api/dashboard/university/analytics
@@ -49,7 +50,8 @@ export async function GET(req: NextRequest) {
     const tab = searchParams.get('tab') || 'all'
 
     const tierLimits = TIER_LIMITS[user.subscriptionTier] || DEFAULT_LIMITS
-    const isLimited = user.subscriptionTier !== 'INSTITUTION_ENTERPRISE'
+    // Phase 1: All universities get full access during co-creation
+    const isLimited = false
 
     const result: any = { isLimited, tierLimits }
 

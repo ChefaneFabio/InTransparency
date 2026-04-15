@@ -10,7 +10,8 @@ import { Skeleton } from '@/components/ui/skeleton'
 import {
   Users, Plus, ChevronRight, Upload, TrendingUp, LogOut,
   GraduationCap, Eye, Shield, BarChart3, BookOpen, UserPlus,
-  Building2, RefreshCw, Settings, Award,
+  Building2, RefreshCw, Settings, Award, Zap, Bell,
+  FileText, Brain, FolderOpen,
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import { useLocale, useTranslations } from 'next-intl'
@@ -35,6 +36,30 @@ interface Student {
 
 interface Recruiter { name: string; views: number; contacts: number }
 
+interface Activation {
+  activationRate: number
+  profileCompletionRate: number
+  withProjects: number
+  withMultipleProjects: number
+  withBio: number
+  withSkills: number
+}
+
+interface EngagementAlert {
+  company: string
+  views: number
+  contacts: number
+  hires: number
+  uniqueStudents: number
+  degrees: string[]
+  engagement: number
+}
+
+interface EngagementData {
+  alerts: EngagementAlert[]
+  summary: { totalViews: number; totalContacts: number; activeCompanies: number }
+}
+
 export default function UniversityDashboard() {
   const { data: session } = useSession()
   const locale = useLocale()
@@ -47,16 +72,31 @@ export default function UniversityDashboard() {
   })
   const [recentStudents, setRecentStudents] = useState<Student[]>([])
   const [topRecruiters, setTopRecruiters] = useState<Recruiter[]>([])
+  const [activation, setActivation] = useState<Activation>({
+    activationRate: 0, profileCompletionRate: 0, withProjects: 0,
+    withMultipleProjects: 0, withBio: 0, withSkills: 0,
+  })
+  const [engagementData, setEngagementData] = useState<EngagementData>({
+    alerts: [], summary: { totalViews: 0, totalContacts: 0, activeCompanies: 0 },
+  })
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await fetch('/api/dashboard/university/stats')
-        if (response.ok) {
-          const data = await response.json()
+        const [statsRes, alertsRes] = await Promise.all([
+          fetch('/api/dashboard/university/stats'),
+          fetch('/api/dashboard/university/engagement-alerts'),
+        ])
+        if (statsRes.ok) {
+          const data = await statsRes.json()
           setStats(data.stats)
           setRecentStudents(data.recentStudents || [])
           setTopRecruiters(data.topRecruiters || [])
+          if (data.activation) setActivation(data.activation)
+        }
+        if (alertsRes.ok) {
+          const data = await alertsRes.json()
+          setEngagementData(data)
         }
       } catch (error) {
         console.error('Failed to fetch dashboard data:', error)
@@ -154,6 +194,50 @@ export default function UniversityDashboard() {
         </GlassCard>
       )}
 
+      {/* Engagement Alerts */}
+      {engagementData.alerts.length > 0 && !isNewInstitution && (
+        <GlassCard delay={0.12} gradient="amber" hover={false}>
+          <div className="p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-1.5 rounded-lg bg-amber-100 text-amber-600"><Bell className="h-4 w-4" /></div>
+              <div>
+                <p className="font-medium text-foreground text-sm">{t('engagementAlerts')}</p>
+                <p className="text-xs text-muted-foreground">{t('engagementAlertsDescription')}</p>
+              </div>
+              <div className="ml-auto flex gap-3 text-xs text-muted-foreground">
+                <span>{engagementData.summary.activeCompanies} {t('activeCompanies').toLowerCase()}</span>
+                <span>{engagementData.summary.totalViews} {t('weeklyViews').toLowerCase()}</span>
+              </div>
+            </div>
+            <div className="space-y-2">
+              {engagementData.alerts.slice(0, 4).map((alert) => (
+                <div key={alert.company} className="flex items-center gap-3 p-2.5 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40">
+                  <div className="w-8 h-8 bg-gradient-to-br from-amber-100 to-amber-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Building2 className="h-3.5 w-3.5 text-amber-600" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-foreground truncate">{alert.company}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {alert.views > 0 && <span>{alert.views} views</span>}
+                      {alert.contacts > 0 && <span> · {alert.contacts} contacts</span>}
+                      {alert.hires > 0 && <span> · {alert.hires} hires</span>}
+                      {' · '}{alert.uniqueStudents} students
+                    </p>
+                  </div>
+                  {alert.degrees.length > 0 && (
+                    <div className="flex gap-1">
+                      {alert.degrees.slice(0, 2).map((d) => (
+                        <Badge key={d} variant="outline" className="text-[10px] h-5">{d}</Badge>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </GlassCard>
+      )}
+
       {/* Stat Cards */}
       <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StaggerItem><StatCard label={t('totalStudents')} value={stats.totalStudents} icon={<GraduationCap className="h-5 w-5" />} variant="blue" /></StaggerItem>
@@ -181,6 +265,56 @@ export default function UniversityDashboard() {
                   <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{t('activeProfiles')}</p>
                   <AnimatedCounter value={stats.activeProfiles} className="text-2xl font-bold text-foreground" />
                 </div>
+              </div>
+            </div>
+          </GlassCard>
+
+          {/* Student Activation Metrics */}
+          <GlassCard delay={0.25} gradient="green">
+            <div className="p-5">
+              <div className="flex items-center gap-2 mb-4">
+                <Zap className="h-5 w-5 text-green-600" />
+                <div>
+                  <h3 className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{t('studentActivation')}</h3>
+                  <p className="text-[11px] text-muted-foreground">{t('activationDescription')}</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div>
+                  <p className="text-2xl font-bold text-foreground">{activation.activationRate}%</p>
+                  <p className="text-xs text-muted-foreground">{t('activationRate')}</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-foreground">{activation.profileCompletionRate}%</p>
+                  <p className="text-xs text-muted-foreground">{t('profileCompletion')}</p>
+                </div>
+              </div>
+              <div className="space-y-2.5">
+                {[
+                  { label: t('withProjects'), value: activation.withProjects, total: stats.totalStudents, icon: FolderOpen },
+                  { label: t('withMultipleProjects'), value: activation.withMultipleProjects, total: stats.totalStudents, icon: FolderOpen },
+                  { label: t('withBio'), value: activation.withBio, total: stats.totalStudents, icon: FileText },
+                  { label: t('withSkills'), value: activation.withSkills, total: stats.totalStudents, icon: Brain },
+                ].map((item) => {
+                  const pct = item.total > 0 ? Math.round((item.value / item.total) * 100) : 0
+                  return (
+                    <div key={item.label} className="flex items-center gap-3">
+                      <item.icon className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-0.5">
+                          <span className="text-xs font-medium">{item.label}</span>
+                          <span className="text-xs text-muted-foreground">{item.value}/{item.total} ({pct}%)</span>
+                        </div>
+                        <div className="h-1.5 bg-muted/50 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-gradient-to-r from-green-500 to-green-400 rounded-full transition-all duration-1000"
+                            style={{ width: `${pct}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </GlassCard>

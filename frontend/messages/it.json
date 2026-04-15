@@ -2252,6 +2252,28 @@
       "title": "Cosa Ottieni",
       "subtitle": "Strumenti per trovare, valutare e connetterti con talenti junior verificati."
     },
+    "diversity": {
+      "title": "Assumere Meglio Inizia da Assumere in Modo Più Equo",
+      "subtitle": "Il recruiting tradizionale premia CV curati e reti personali. L'assunzione basata sulle competenze livella il campo di gioco.",
+      "points": {
+        "0": {
+          "title": "Competenze, Non Pedigree",
+          "desc": "I candidati vengono valutati sul lavoro verificato — non su quale università hanno frequentato o chi conoscono. Le vere capacità emergono, indipendentemente dal background."
+        },
+        "1": {
+          "title": "Screening Resistente ai Bias",
+          "desc": "L'AI analizza i deliverable reali — codice, design, report, ricerche. Nessuno spazio per bias sul nome, sull'età o pattern inconsci basati sulla formattazione del CV."
+        },
+        "2": {
+          "title": "Talento Nascosto, Visibile",
+          "desc": "Studenti di atenei più piccoli, percorsi non tradizionali e gruppi sottorappresentati vengono scoperti alle stesse condizioni di tutti gli altri."
+        },
+        "3": {
+          "title": "Criteri Trasparenti",
+          "desc": "Ogni match è spiegabile. Vedi esattamente perché un candidato è stato proposto — nessun algoritmo black-box, nessun ranking opaco."
+        }
+      }
+    },
     "comparison": {
       "title": "Un Modo Migliore per Assumere Junior",
       "subtitle": "Il recruiting tradizionale non è stato pensato per l'entry-level. InTransparency sì.",
@@ -4015,6 +4037,28 @@
         "free": "Gratuito per i partner formativi",
         "gdpr": "Conforme al GDPR",
         "setup": "Setup in 5 minuti"
+      }
+    },
+    "coCreation": {
+      "title": "Costruiamo Con Voi, Non Per Voi",
+      "subtitle": "InTransparency non è un prodotto da installare. È una partnership da costruire insieme.",
+      "points": {
+        "0": {
+          "title": "Il Vostro Contributo Guida la Piattaforma",
+          "desc": "Ogni funzionalità nasce da feedback reali di servizi di carriera, docenti e amministratori. Le vostre esigenze guidano la roadmap."
+        },
+        "1": {
+          "title": "Integrazione Su Misura, Non Soluzione Unica",
+          "desc": "Connettete il vostro sistema informativo studenti, integrate widget nel portale carriere, o usate la nostra API per costruire i vostri strumenti. Ci adattiamo alla vostra infrastruttura."
+        },
+        "2": {
+          "title": "Partnership Continua, Non Contratto Fornitore",
+          "desc": "Sessioni di co-design regolari, revisioni condivise degli analytics e un canale diretto con il nostro team. Non siete clienti — siete collaboratori."
+        },
+        "3": {
+          "title": "Pilota, Itera, Scala",
+          "desc": "Partite con un dipartimento o una coorte. Vedete i risultati. Poi espandete ai vostri tempi. Nessun vincolo, nessuna pressione, nessun rischio."
+        }
       }
     },
     "faq": {
@@ -8261,7 +8305,24 @@
       "noRecruiterActivity": "Nessuna attivita recruiter ancora",
       "verificationProgress": "Progresso verifiche",
       "studentsVerified": "Studenti verificati",
-      "verificationPercent": "{percentage}% degli studenti ha profili verificati"
+      "verificationPercent": "{percentage}% degli studenti ha profili verificati",
+      "studentActivation": "Attivazione Studenti",
+      "activationRate": "Tasso di Attivazione",
+      "profileCompletion": "Completamento Profilo",
+      "withProjects": "Con Progetti",
+      "withMultipleProjects": "2+ Progetti",
+      "withBio": "Ha Bio",
+      "withSkills": "Ha Competenze",
+      "activationDescription": "Quanto attivamente i tuoi studenti usano la piattaforma",
+      "engagementAlerts": "Avvisi Engagement",
+      "engagementAlertsDescription": "Attivit\u00e0 delle aziende negli ultimi 7 giorni",
+      "companyViewedStudents": "{company} ha visto {count} studenti",
+      "companyContactedStudents": "{company} ha contattato {count} studenti",
+      "noEngagementAlerts": "Nessun engagement aziendale questa settimana",
+      "thisWeek": "questa settimana",
+      "activeCompanies": "Aziende Attive",
+      "weeklyViews": "Visite Settimanali",
+      "weeklyContacts": "Contatti Settimanali"
     },
     "import": {
       "title": "Importa Studenti",
