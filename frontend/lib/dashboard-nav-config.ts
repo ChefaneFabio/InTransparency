@@ -73,6 +73,13 @@ const recruiter: NavConfig = {
       ],
     },
     {
+      labelKey: 'hiring',
+      items: [
+        { labelKey: 'hiringAdvisor', href: '/dashboard/recruiter/hiring-advisor' },
+        { labelKey: 'interviewKit', href: '/dashboard/recruiter/interview-kit' },
+      ],
+    },
+    {
       labelKey: 'insights',
       items: [
         { labelKey: 'analytics', href: '/dashboard/recruiter/analytics' },

@@ -110,7 +110,9 @@
         "careerPage": "Pagina Carriere",
         "tags": "Tag",
         "export": "Esporta",
-        "documents": "Documenti"
+        "documents": "Documenti",
+        "hiringAdvisor": "Consulente Assunzioni",
+        "interviewKit": "Kit Colloquio"
       },
       "search": "Ricerca"
     },
@@ -10330,6 +10332,55 @@
       "allDone": "Tutto fatto!",
       "nextStep": "Prossimo: {step}"
     }
+  },
+  "hiringAdvisor": {
+    "title": "Consulente Assunzioni",
+    "subtitle": "Il tuo consulente AI per il recruiting \u2014 consigli esperti su assunzioni, colloqui, stipendi e strategia.",
+    "error": "Qualcosa \u00e8 andato storto. Riprova.",
+    "thinking": "Sto pensando...",
+    "placeholder": "Chiedi di job description, benchmark stipendiali, strategie di colloquio, diritto del lavoro italiano...",
+    "welcomeTitle": "Come posso aiutarti ad assumere meglio?",
+    "welcomeMessage": "Sono il tuo consulente AI per le assunzioni. Chiedimi qualsiasi cosa sul recruiting \u2014 dalla scrittura di JD al diritto del lavoro italiano.",
+    "prompts": {
+      "writeJd": "Aiutami a scrivere una job description per uno sviluppatore junior",
+      "salaryBenchmark": "Qual \u00e8 il range stipendiale per un marketing manager a Milano?",
+      "interviewQuestions": "Dammi domande di colloquio per un data analyst",
+      "contractTypes": "Spiega i tipi di contratto: stage, apprendistato, tempo determinato",
+      "employerBranding": "Come migliorare il nostro employer brand per attrarre talenti universitari?",
+      "reduceTimeToHire": "Come ridurre i tempi di assunzione?"
+    },
+    "topics": {
+      "title": "Posso aiutarti con",
+      "jobDescriptions": "Scrittura Job Description",
+      "salaryBenchmarks": "Benchmark Stipendiali",
+      "interviewStrategy": "Strategia Colloqui",
+      "candidateEval": "Valutazione Candidati",
+      "employerBranding": "Employer Branding",
+      "italianLaw": "Diritto del Lavoro Italiano"
+    },
+    "tips": {
+      "title": "Consigli",
+      "tip1": "Specifica il ruolo e la seniority per consigli pi\u00f9 mirati.",
+      "tip2": "Fai domande di approfondimento per esplorare ogni tema.",
+      "tip3": "Posso adattare i consigli al mercato italiano, europeo o globale."
+    }
+  },
+  "interviewKit": {
+    "title": "Generatore Kit Colloquio",
+    "subtitle": "Domande di colloquio, griglie di valutazione e guide allo screening generate dall'AI per i tuoi ruoli.",
+    "selectJob": "Seleziona un Annuncio",
+    "selectJobPlaceholder": "Scegli un annuncio per generare le domande...",
+    "customRole": "Descrivi un ruolo personalizzato",
+    "additionalContext": "Contesto Aggiuntivo (opzionale)",
+    "contextPlaceholder": "es. Cerchiamo qualcuno con esperienza in startup, ottime capacit\u00e0 comunicative...",
+    "generate": "Genera Kit Colloquio",
+    "generating": "Generazione...",
+    "generatingMessage": "Creazione del kit colloquio personalizzato con domande di screening, valutazioni tecniche e criteri di valutazione...",
+    "resultTitle": "Il Tuo Kit Colloquio",
+    "copy": "Copia Tutto",
+    "copied": "Copiato!",
+    "emptyTitle": "Genera il Tuo Primo Kit Colloquio",
+    "emptyDescription": "Seleziona un annuncio o descrivi un ruolo, e creeremo un kit colloquio completo con domande strutturate, criteri di valutazione e segnali d'allarme."
   },
   "companyDocuments": {
     "title": "Documenti Aziendali",

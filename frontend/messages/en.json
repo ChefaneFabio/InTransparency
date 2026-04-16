@@ -110,7 +110,9 @@
         "careerPage": "Career Page",
         "tags": "Tags",
         "export": "Export",
-        "documents": "Documents"
+        "documents": "Documents",
+        "hiringAdvisor": "Hiring Advisor",
+        "interviewKit": "Interview Kit"
       },
       "search": "Search"
     },
@@ -10303,6 +10305,55 @@
       "allDone": "All done!",
       "nextStep": "Next: {step}"
     }
+  },
+  "hiringAdvisor": {
+    "title": "Hiring Advisor",
+    "subtitle": "Your AI recruiting consultant — get expert advice on hiring, interviews, salaries, and strategy.",
+    "error": "Something went wrong. Please try again.",
+    "thinking": "Thinking...",
+    "placeholder": "Ask about job descriptions, salary benchmarks, interview strategy, Italian employment law...",
+    "welcomeTitle": "How can I help you hire better?",
+    "welcomeMessage": "I'm your AI hiring advisor. Ask me anything about recruiting — from writing job descriptions to Italian employment law.",
+    "prompts": {
+      "writeJd": "Help me write a job description for a junior developer",
+      "salaryBenchmark": "What's the salary range for a marketing manager in Milan?",
+      "interviewQuestions": "Give me interview questions for a data analyst role",
+      "contractTypes": "Explain Italian contract types: stage, apprendistato, tempo determinato",
+      "employerBranding": "How can I improve our employer brand to attract university talent?",
+      "reduceTimeToHire": "How can we reduce our time-to-hire?"
+    },
+    "topics": {
+      "title": "I can help with",
+      "jobDescriptions": "Job Description Writing",
+      "salaryBenchmarks": "Salary Benchmarking",
+      "interviewStrategy": "Interview Strategy",
+      "candidateEval": "Candidate Evaluation",
+      "employerBranding": "Employer Branding",
+      "italianLaw": "Italian Employment Law"
+    },
+    "tips": {
+      "title": "Tips",
+      "tip1": "Be specific about the role and seniority level for better advice.",
+      "tip2": "Ask follow-up questions to dive deeper into any topic.",
+      "tip3": "I can adapt advice to Italian, European, or global markets."
+    }
+  },
+  "interviewKit": {
+    "title": "Interview Kit Generator",
+    "subtitle": "AI-generated interview questions, evaluation rubrics, and screening guides tailored to your roles.",
+    "selectJob": "Select a Job Posting",
+    "selectJobPlaceholder": "Choose a job to generate questions for...",
+    "customRole": "Describe a custom role instead",
+    "additionalContext": "Additional Context (optional)",
+    "contextPlaceholder": "e.g. We're looking for someone with startup experience, strong communication skills...",
+    "generate": "Generate Interview Kit",
+    "generating": "Generating...",
+    "generatingMessage": "Creating your tailored interview kit with screening questions, technical assessments, and evaluation rubrics...",
+    "resultTitle": "Your Interview Kit",
+    "copy": "Copy All",
+    "copied": "Copied!",
+    "emptyTitle": "Generate Your First Interview Kit",
+    "emptyDescription": "Select a job posting or describe a role, and we'll create a complete interview kit with structured questions, evaluation criteria, and red flags to watch for."
   },
   "companyDocuments": {
     "title": "Company Documents",
