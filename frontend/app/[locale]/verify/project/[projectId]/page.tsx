@@ -65,7 +65,7 @@ export default async function VerifyProjectPage({ params }: Props) {
     }
   }
 
-  const verifyUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://intransparency.eu'}/verify/${projectId}`
+  const verifyUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://intransparency.eu'}/verify/project/${projectId}`
 
   return (
     <div className="space-y-6">

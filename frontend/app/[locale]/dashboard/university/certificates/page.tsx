@@ -98,7 +98,7 @@ export default function CertificatesPage() {
   }
 
   const copyVerifyUrl = (credentialId: string) => {
-    const url = `${window.location.origin}/verify/${credentialId}`
+    const url = `${window.location.origin}/verify/credential/${credentialId}`
     navigator.clipboard.writeText(url).catch(() => {})
     alert('Link di verifica copiato!')
   }
@@ -253,7 +253,7 @@ export default function CertificatesPage() {
                         <Copy className="h-4 w-4" />
                       </Button>
                       <Button variant="ghost" size="sm" asChild>
-                        <a href={`/verify/${cert.credentialId}`} target="_blank" rel="noopener noreferrer">
+                        <a href={`/verify/credential/${cert.credentialId}`} target="_blank" rel="noopener noreferrer">
                           <ExternalLink className="h-4 w-4" />
                         </a>
                       </Button>

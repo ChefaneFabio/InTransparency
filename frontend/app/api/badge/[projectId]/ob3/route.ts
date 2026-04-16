@@ -61,7 +61,7 @@ export async function GET(
         .filter(Boolean)
         .join(' '),
       achievement: {
-        id: `${APP_URL}/verify/${projectId}`,
+        id: `${APP_URL}/verify/project/${projectId}`,
         type: ['Achievement'],
         name: project.title,
         description: project.description.substring(0, 500),
@@ -74,7 +74,7 @@ export async function GET(
         ...(project.grade && {
           resultDescription: [
             {
-              id: `${APP_URL}/verify/${projectId}#grade`,
+              id: `${APP_URL}/verify/project/${projectId}#grade`,
               type: ['ResultDescription'],
               name: 'Grade',
               resultType: 'Result',
@@ -86,7 +86,7 @@ export async function GET(
         result: [
           {
             type: ['Result'],
-            resultDescription: `${APP_URL}/verify/${projectId}#grade`,
+            resultDescription: `${APP_URL}/verify/project/${projectId}#grade`,
             value: project.grade,
           },
         ],
@@ -97,7 +97,7 @@ export async function GET(
         type: 'ContentHashProof',
         created: badge.issuedAt.toISOString(),
         contentHash: badge.contentHash,
-        verificationMethod: `${APP_URL}/verify/${projectId}`,
+        verificationMethod: `${APP_URL}/verify/project/${projectId}`,
       },
     }),
   }

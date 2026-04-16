@@ -75,7 +75,7 @@ export async function GET(
       })
     : ''
 
-  const verifyUrl = `${APP_URL}/verify/${projectId}`
+  const verifyUrl = `${APP_URL}/verify/project/${projectId}`
   const qrPaths = await generateQRSvgPaths(verifyUrl)
 
   // Escape XML entities

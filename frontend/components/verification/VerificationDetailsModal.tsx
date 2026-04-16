@@ -139,7 +139,7 @@ export function VerificationDetailsModal({
 
   const viewPublicVerification = () => {
     // Open public verification page in new tab
-    window.open(`/verify/${details.verificationId}`, '_blank')
+    window.open(`/verify/credential/${details.verificationId}`, '_blank')
   }
 
   return (

@@ -45,7 +45,7 @@ export default function BadgeExportPanel({ projectId, projectTitle }: Props) {
     ? window.location.origin
     : 'https://intransparency.eu'
 
-  const verifyUrl = `${appUrl}/verify/${projectId}`
+  const verifyUrl = `${appUrl}/verify/project/${projectId}`
   const badgeUrl = `${appUrl}/api/badge/${projectId}`
   const embedCode = `<a href="${verifyUrl}" target="_blank"><img src="${badgeUrl}" alt="Verified: ${projectTitle}" width="400" height="120" /></a>`
   const linkedInUrl = `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${encodeURIComponent(projectTitle)}&organizationName=InTransparency&certUrl=${encodeURIComponent(verifyUrl)}`
