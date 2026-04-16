@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 
 // GET /api/verify/[credentialId] — public verification endpoint
-export async function GET(req: NextRequest, { params }: { params: { credentialId: string } }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ credentialId: string }> }) {
   try {
+    const { credentialId } = await params
     const certificate = await prisma.digitalCertificate.findUnique({
-      where: { credentialId: params.credentialId },
+      where: { credentialId },
     })
 
     if (!certificate) {

@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 
 // GET /api/consent/[token] — public, token-based
-export async function GET(req: NextRequest, { params }: { params: { token: string } }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ token: string }> }) {
   try {
+    const { token } = await params
     const consent = await prisma.parentalConsent.findUnique({
-      where: { token: params.token },
+      where: { token },
     })
 
     if (!consent) {
@@ -35,10 +36,11 @@ export async function GET(req: NextRequest, { params }: { params: { token: strin
 }
 
 // POST /api/consent/[token] — parent responds
-export async function POST(req: NextRequest, { params }: { params: { token: string } }) {
+export async function POST(req: NextRequest, { params }: { params: Promise<{ token: string }> }) {
   try {
+    const { token: consentToken } = await params
     const consent = await prisma.parentalConsent.findUnique({
-      where: { token: params.token },
+      where: { token: consentToken },
     })
 
     if (!consent) {
@@ -51,7 +53,7 @@ export async function POST(req: NextRequest, { params }: { params: { token: stri
 
     if (new Date() > consent.expiresAt) {
       await prisma.parentalConsent.update({
-        where: { token: params.token },
+        where: { token: consentToken },
         data: { status: 'EXPIRED' },
       })
       return NextResponse.json({ error: 'This consent request has expired' }, { status: 400 })
