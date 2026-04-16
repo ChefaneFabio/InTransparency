@@ -109,7 +109,8 @@
         "outreach": "Outreach",
         "careerPage": "Pagina Carriere",
         "tags": "Tag",
-        "export": "Esporta"
+        "export": "Esporta",
+        "documents": "Documenti"
       },
       "search": "Ricerca"
     },
@@ -10328,6 +10329,53 @@
       "requestEndorsement": "Richiedi una referenza a un professore",
       "allDone": "Tutto fatto!",
       "nextStep": "Prossimo: {step}"
+    }
+  },
+  "companyDocuments": {
+    "title": "Documenti Aziendali",
+    "subtitle": "Archivia in sicurezza job description, contratti, NDA e materiali aziendali.",
+    "error": "Impossibile caricare i documenti.",
+    "retry": "Riprova",
+    "upload": "Carica Documento",
+    "uploadTitle": "Carica Documento",
+    "uploadFailed": "Caricamento fallito. Riprova.",
+    "deleteConfirm": "Sei sicuro di voler eliminare questo documento? L'operazione non pu\u00f2 essere annullata.",
+    "confidential": "Riservato",
+    "noDocuments": "Nessun documento ancora",
+    "noDocumentsHint": "Carica job description, contratti, NDA e altri materiali per tenerli organizzati e accessibili al tuo team.",
+    "stats": {
+      "total": "Documenti Totali",
+      "totalSize": "Spazio Utilizzato",
+      "confidential": "Riservati",
+      "categories": "Categorie"
+    },
+    "filters": {
+      "searchPlaceholder": "Cerca per nome, descrizione o tag...",
+      "category": "Categoria",
+      "allCategories": "Tutte le Categorie"
+    },
+    "categories": {
+      "JOB_DESCRIPTION": "Job Description",
+      "CONTRACT": "Contratti e Offerte",
+      "NDA": "NDA",
+      "COMPANY_POLICY": "Policy Aziendali",
+      "BRANDING": "Branding e Media",
+      "HIRING_REPORT": "Report Assunzioni",
+      "PARTNERSHIP": "Partnership",
+      "OTHER": "Altro"
+    },
+    "uploadForm": {
+      "file": "File",
+      "dropzone": "Clicca o trascina un file qui (PDF, Word, Excel, immagini, max 25MB)",
+      "category": "Categoria",
+      "description": "Descrizione",
+      "descriptionPlaceholder": "Breve descrizione del documento...",
+      "tags": "Tag",
+      "tagsPlaceholder": "es. 2024, engineering, senior (separati da virgola)",
+      "confidential": "Segna come Riservato",
+      "confidentialHint": "I documenti riservati sono visibili solo agli amministratori del team.",
+      "submit": "Carica Documento",
+      "uploading": "Caricamento..."
     }
   },
   "universityDocuments": {

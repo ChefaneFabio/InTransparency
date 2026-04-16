@@ -246,8 +246,10 @@ export default function RecruiterDashboard() {
                         </div>
                       </div>
                       <div className="flex gap-1.5">
-                        <Button size="sm" variant="outline" className="h-8 w-8 p-0 bg-white/60">
-                          <MessageSquare className="h-3.5 w-3.5" />
+                        <Button size="sm" variant="outline" className="h-8 w-8 p-0 bg-white/60" asChild>
+                          <Link href="/dashboard/recruiter/messages">
+                            <MessageSquare className="h-3.5 w-3.5" />
+                          </Link>
                         </Button>
                         <Button size="sm" className="h-8 text-xs" asChild>
                           <Link href={`/students/${candidate.username || candidate.id}/public`}>{ts('view')}</Link>

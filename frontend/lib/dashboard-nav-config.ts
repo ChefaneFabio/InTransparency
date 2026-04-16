@@ -76,6 +76,7 @@ const recruiter: NavConfig = {
       labelKey: 'insights',
       items: [
         { labelKey: 'analytics', href: '/dashboard/recruiter/analytics' },
+        { labelKey: 'documents', href: '/dashboard/recruiter/documents' },
         { labelKey: 'settings', href: '/dashboard/recruiter/settings' },
       ],
     },

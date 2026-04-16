@@ -352,6 +352,8 @@ model User {
 
   // University Documents
   universityDocuments  UniversityDocument[] @relation("UniversityDocuments")
+  // Company Documents
+  companyDocuments     CompanyDocument[]    @relation("CompanyDocuments")
 
   @@index([email])
   @@index([username])
@@ -3190,6 +3192,48 @@ model UniversityDocument {
   @@index([universityName])
   @@index([category])
   @@index([uploadedBy])
+}
+
+// ─── Company Document Management ────────────────────────────────
+model CompanyDocument {
+  id          String   @id @default(cuid())
+  companyName String
+  uploadedBy  String
+  uploader    User     @relation("CompanyDocuments", fields: [uploadedBy], references: [id])
+
+  // File info
+  fileName    String
+  fileUrl     String
+  fileKey     String
+  fileSize    Int
+  mimeType    String
+
+  // Classification
+  category    CompanyDocCategory
+  description String?  @db.Text
+  tags        String[] @default([])
+
+  // Access control
+  confidential Boolean @default(false)
+
+  // Timestamps
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([companyName])
+  @@index([category])
+  @@index([uploadedBy])
+}
+
+enum CompanyDocCategory {
+  JOB_DESCRIPTION    // Job descriptions, role specs
+  CONTRACT           // Offer letters, employment contracts
+  NDA                // NDAs, confidentiality agreements
+  COMPANY_POLICY     // Employee handbooks, policies, benefits
+  BRANDING           // Logos, brand guidelines, pitch decks
+  HIRING_REPORT      // Hiring analytics, pipeline reports
+  PARTNERSHIP        // University partnerships, agency agreements
+  OTHER
 }
 
 enum DocumentCategory {
