@@ -10152,7 +10152,35 @@
     },
     "back": "Indietro",
     "success": "Studenti invitati con successo!",
-    "note": "Gli studenti riceveranno un'email per completare il profilo."
+    "note": "Gli studenti riceveranno un'email per completare il profilo.",
+    "importTitle": "Importa Studenti",
+    "importSubtitle": "Carica un file CSV per aggiungere pi\u00f9 studenti contemporaneamente.",
+    "formatTitle": "Formato CSV",
+    "formatDescription": "Il CSV deve includere: email, first_name, last_name. Opzionali: course, year.",
+    "formatNote": "Colonne obbligatorie: email, first_name, last_name. Opzionali: course, year.",
+    "dropzone": "Trascina il file CSV qui, o clicca per sfogliare",
+    "dropzoneHint": "Supporta file .csv fino a 5MB",
+    "rowsDetected": "{count} studenti rilevati",
+    "noRows": "Nessuna riga dati",
+    "moreRows": "...e altre {count} righe",
+    "importButton": "Importa {count} Studenti",
+    "uploading": "Importazione...",
+    "clearFile": "Cancella",
+    "resultTitle": "Importazione Completata",
+    "resultSuccess": "Creati",
+    "resultSkipped": "Saltati (duplicati)",
+    "resultFailed": "Falliti",
+    "errorDetails": "Dettagli Errori",
+    "errorRow": "Riga {row}",
+    "importAnother": "Importa un Altro File",
+    "templateTitle": "Scarica Template",
+    "templateDescription": "Ottieni un template CSV pre-formattato con le colonne richieste.",
+    "downloadTemplate": "Scarica Template CSV",
+    "errors": {
+      "invalidFormat": "Formato file non valido. Carica un file .csv.",
+      "fileTooLarge": "File troppo grande. Dimensione massima 5MB.",
+      "uploadFailed": "Caricamento fallito. Riprova."
+    }
   },
   "addStudent": {
     "title": "Invita uno Studente",
@@ -10298,6 +10326,158 @@
       "requestEndorsement": "Richiedi una referenza a un professore",
       "allDone": "Tutto fatto!",
       "nextStep": "Prossimo: {step}"
+    }
+  },
+  "universityAddStudent": {
+    "title": "Aggiungi Studente",
+    "subtitle": "Aggiungi un nuovo studente alla tua istituzione sulla piattaforma.",
+    "backToStudents": "Torna agli Studenti",
+    "successTitle": "Studente Aggiunto con Successo",
+    "successMessage": "{name} ({email}) \u00e8 stato aggiunto e ricever\u00e0 un'email di invito.",
+    "addAnother": "Aggiungi un Altro Studente",
+    "error": "Impossibile aggiungere lo studente. Riprova.",
+    "validation": {
+      "required": "Nome, cognome e email sono obbligatori."
+    },
+    "form": {
+      "firstName": "Nome",
+      "firstNamePlaceholder": "Mario",
+      "lastName": "Cognome",
+      "lastNamePlaceholder": "Rossi",
+      "email": "Indirizzo Email",
+      "emailPlaceholder": "mario.rossi@email.com",
+      "emailHint": "Lo studente ricever\u00e0 un invito a questo indirizzo.",
+      "department": "Dipartimento",
+      "departmentPlaceholder": "es. Informatica",
+      "degree": "Corso di Laurea",
+      "degreePlaceholder": "es. Laurea in Ingegneria",
+      "enrollmentYear": "Anno di Iscrizione",
+      "expectedGraduation": "Laurea Prevista",
+      "selectYear": "Seleziona anno",
+      "submit": "Aggiungi Studente",
+      "adding": "Aggiunta in corso...",
+      "cancel": "Annulla"
+    }
+  },
+  "universityRecruiters": {
+    "title": "Attivit\u00e0 Recruiter",
+    "subtitle": "Aziende che interagiscono con i tuoi studenti attraverso la piattaforma.",
+    "error": "Impossibile caricare i dati recruiter.",
+    "retry": "Riprova",
+    "never": "Mai",
+    "today": "Oggi",
+    "daysAgo": "{count}g fa",
+    "weeksAgo": "{count}s fa",
+    "partner": "Partner",
+    "active": "Attivo",
+    "inactive": "Inattivo",
+    "noRecruiters": "Nessuna attivit\u00e0 recruiter ancora",
+    "noRecruitersHint": "Quando i recruiter visualizzano e contattano i tuoi studenti, la loro attivit\u00e0 apparir\u00e0 qui.",
+    "stats": {
+      "totalCompanies": "Aziende Totali",
+      "partners": "Aziende Partner",
+      "totalHired": "Studenti Assunti",
+      "activeThisMonth": "Attivi Questo Mese"
+    },
+    "filters": {
+      "searchPlaceholder": "Cerca aziende o contatti...",
+      "status": "Stato",
+      "all": "Tutti",
+      "active": "Attivi",
+      "inactive": "Inattivi"
+    },
+    "metrics": {
+      "hired": "Studenti Assunti",
+      "contacted": "Studenti Contattati",
+      "avgSalary": "Stipendio Medio",
+      "lastActivity": "Ultima Attivit\u00e0"
+    }
+  },
+  "universityAlumni": {
+    "title": "Tracciamento Alumni",
+    "subtitle": "Monitora gli esiti di carriera dei tuoi laureati.",
+    "error": "Impossibile caricare i dati alumni.",
+    "retry": "Riprova",
+    "year": "anno",
+    "noAlumni": "Nessun record alumni ancora",
+    "noAlumniHint": "Aggiungi record alumni per monitorare gli esiti di carriera e i tassi di occupazione.",
+    "noData": "Nessun dato disponibile",
+    "statusEmployed": "Occupato",
+    "statusSeeking": "In Cerca",
+    "statusFurtherStudy": "Studi Avanzati",
+    "statusOther": "Altro",
+    "tabs": {
+      "list": "Lista Alumni",
+      "overview": "Panoramica"
+    },
+    "stats": {
+      "total": "Totale Alumni",
+      "employmentRate": "Tasso Occupazione",
+      "avgSalary": "Stipendio Medio",
+      "seeking": "In Cerca di Lavoro"
+    },
+    "filters": {
+      "searchPlaceholder": "Cerca per nome, azienda o ruolo...",
+      "year": "Anno di Laurea",
+      "allYears": "Tutti gli Anni",
+      "status": "Stato Occupazionale",
+      "allStatuses": "Tutti gli Stati"
+    },
+    "overview": {
+      "statusTitle": "Stato Occupazionale",
+      "statusDescription": "Distribuzione degli esiti occupazionali dei tuoi laureati.",
+      "industryTitle": "Distribuzione per Settore",
+      "industryDescription": "Dove lavorano i tuoi laureati occupati."
+    }
+  },
+  "universitySync": {
+    "title": "Sincronizzazione Dati",
+    "subtitle": "Gestisci le connessioni dati e la cronologia di sincronizzazione.",
+    "error": "Impossibile caricare i dati di sincronizzazione.",
+    "retry": "Riprova",
+    "syncFailed": "Sincronizzazione fallita. Riprova.",
+    "stats": {
+      "totalSyncs": "Sincronizzazioni Totali",
+      "successful": "Riuscite",
+      "failed": "Fallite",
+      "lastSync": "Ultima Sincronizzazione"
+    },
+    "types": {
+      "students": "Sincronizza Studenti",
+      "courses": "Sincronizza Corsi",
+      "projects": "Sincronizza Progetti"
+    },
+    "connections": {
+      "title": "Connessioni Dati",
+      "verified": "Verificata",
+      "pending": "In Attesa",
+      "enabled": "Sync Attiva",
+      "disabled": "Sync Disattiva",
+      "frequency": "Frequenza",
+      "lastSync": "Ultima Sync",
+      "courses": "Corsi",
+      "projects": "Progetti",
+      "certificates": "Certificati",
+      "empty": "Nessuna connessione dati configurata",
+      "emptyHint": "Le connessioni dati permettono la sincronizzazione automatica con i sistemi universitari."
+    },
+    "manualSync": {
+      "title": "Sincronizzazione Manuale",
+      "description": "Avvia una sincronizzazione manuale per tipi di dati specifici.",
+      "syncing": "Sincronizzazione..."
+    },
+    "history": {
+      "title": "Cronologia Sincronizzazioni",
+      "date": "Data",
+      "type": "Tipo",
+      "dataType": "Tipo Dati",
+      "status": "Stato",
+      "records": "Record",
+      "empty": "Nessuna cronologia di sincronizzazione"
+    },
+    "status": {
+      "success": "Riuscita",
+      "failed": "Fallita"
     }
   }
 }

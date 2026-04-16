@@ -10125,7 +10125,35 @@
     },
     "back": "Back",
     "success": "Students invited successfully!",
-    "note": "Students will receive an email to complete their profile."
+    "note": "Students will receive an email to complete their profile.",
+    "importTitle": "Import Students",
+    "importSubtitle": "Upload a CSV file to add multiple students at once.",
+    "formatTitle": "CSV Format",
+    "formatDescription": "Your CSV must include these columns: email, first_name, last_name. Optional: course, year.",
+    "formatNote": "Required columns: email, first_name, last_name. Optional: course, year.",
+    "dropzone": "Drop your CSV file here, or click to browse",
+    "dropzoneHint": "Supports .csv files up to 5MB",
+    "rowsDetected": "{count} students detected",
+    "noRows": "No data rows",
+    "moreRows": "...and {count} more rows",
+    "importButton": "Import {count} Students",
+    "uploading": "Importing...",
+    "clearFile": "Clear",
+    "resultTitle": "Import Complete",
+    "resultSuccess": "Created",
+    "resultSkipped": "Skipped (duplicates)",
+    "resultFailed": "Failed",
+    "errorDetails": "Error Details",
+    "errorRow": "Row {row}",
+    "importAnother": "Import Another File",
+    "templateTitle": "Download Template",
+    "templateDescription": "Get a pre-formatted CSV template with the required columns.",
+    "downloadTemplate": "Download CSV Template",
+    "errors": {
+      "invalidFormat": "Invalid file format. Please upload a .csv file.",
+      "fileTooLarge": "File too large. Maximum size is 5MB.",
+      "uploadFailed": "Upload failed. Please try again."
+    }
   },
   "addStudent": {
     "title": "Invite a Student",
@@ -10271,6 +10299,158 @@
       "requestEndorsement": "Request a professor endorsement",
       "allDone": "All done!",
       "nextStep": "Next: {step}"
+    }
+  },
+  "universityAddStudent": {
+    "title": "Add Student",
+    "subtitle": "Add a new student to your institution on the platform.",
+    "backToStudents": "Back to Students",
+    "successTitle": "Student Added Successfully",
+    "successMessage": "{name} ({email}) has been added and will receive an invitation email.",
+    "addAnother": "Add Another Student",
+    "error": "Failed to add student. Please try again.",
+    "validation": {
+      "required": "First name, last name, and email are required."
+    },
+    "form": {
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Mario",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Rossi",
+      "email": "Email Address",
+      "emailPlaceholder": "mario.rossi@email.com",
+      "emailHint": "The student will receive an invitation at this address.",
+      "department": "Department",
+      "departmentPlaceholder": "e.g. Computer Science",
+      "degree": "Degree Program",
+      "degreePlaceholder": "e.g. Bachelor in Engineering",
+      "enrollmentYear": "Enrollment Year",
+      "expectedGraduation": "Expected Graduation",
+      "selectYear": "Select year",
+      "submit": "Add Student",
+      "adding": "Adding...",
+      "cancel": "Cancel"
+    }
+  },
+  "universityRecruiters": {
+    "title": "Recruiter Activity",
+    "subtitle": "Companies engaging with your students through the platform.",
+    "error": "Failed to load recruiter data.",
+    "retry": "Retry",
+    "never": "Never",
+    "today": "Today",
+    "daysAgo": "{count}d ago",
+    "weeksAgo": "{count}w ago",
+    "partner": "Partner",
+    "active": "Active",
+    "inactive": "Inactive",
+    "noRecruiters": "No recruiter activity yet",
+    "noRecruitersHint": "When recruiters view and contact your students, their activity will appear here.",
+    "stats": {
+      "totalCompanies": "Total Companies",
+      "partners": "Partner Companies",
+      "totalHired": "Students Hired",
+      "activeThisMonth": "Active This Month"
+    },
+    "filters": {
+      "searchPlaceholder": "Search companies or contacts...",
+      "status": "Status",
+      "all": "All",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "metrics": {
+      "hired": "Students Hired",
+      "contacted": "Students Contacted",
+      "avgSalary": "Avg. Salary",
+      "lastActivity": "Last Activity"
+    }
+  },
+  "universityAlumni": {
+    "title": "Alumni Tracking",
+    "subtitle": "Track career outcomes of your graduates.",
+    "error": "Failed to load alumni data.",
+    "retry": "Retry",
+    "year": "yr",
+    "noAlumni": "No alumni records yet",
+    "noAlumniHint": "Add alumni records to track graduate career outcomes and employment rates.",
+    "noData": "No data available",
+    "statusEmployed": "Employed",
+    "statusSeeking": "Seeking",
+    "statusFurtherStudy": "Further Study",
+    "statusOther": "Other",
+    "tabs": {
+      "list": "Alumni List",
+      "overview": "Overview"
+    },
+    "stats": {
+      "total": "Total Alumni",
+      "employmentRate": "Employment Rate",
+      "avgSalary": "Avg. Salary",
+      "seeking": "Seeking Employment"
+    },
+    "filters": {
+      "searchPlaceholder": "Search by name, company, or role...",
+      "year": "Graduation Year",
+      "allYears": "All Years",
+      "status": "Employment Status",
+      "allStatuses": "All Statuses"
+    },
+    "overview": {
+      "statusTitle": "Employment Status",
+      "statusDescription": "Distribution of employment outcomes for your graduates.",
+      "industryTitle": "Industry Breakdown",
+      "industryDescription": "Where your employed graduates are working."
+    }
+  },
+  "universitySync": {
+    "title": "Data Synchronization",
+    "subtitle": "Manage data connections and sync history.",
+    "error": "Failed to load sync data.",
+    "retry": "Retry",
+    "syncFailed": "Sync failed. Please try again.",
+    "stats": {
+      "totalSyncs": "Total Syncs",
+      "successful": "Successful",
+      "failed": "Failed",
+      "lastSync": "Last Sync"
+    },
+    "types": {
+      "students": "Sync Students",
+      "courses": "Sync Courses",
+      "projects": "Sync Projects"
+    },
+    "connections": {
+      "title": "Data Connections",
+      "verified": "Verified",
+      "pending": "Pending",
+      "enabled": "Sync On",
+      "disabled": "Sync Off",
+      "frequency": "Frequency",
+      "lastSync": "Last Sync",
+      "courses": "Courses",
+      "projects": "Projects",
+      "certificates": "Certificates",
+      "empty": "No data connections configured",
+      "emptyHint": "Data connections allow automatic synchronization with your university systems."
+    },
+    "manualSync": {
+      "title": "Manual Sync",
+      "description": "Trigger a manual data synchronization for specific data types.",
+      "syncing": "Syncing..."
+    },
+    "history": {
+      "title": "Sync History",
+      "date": "Date",
+      "type": "Type",
+      "dataType": "Data Type",
+      "status": "Status",
+      "records": "Records",
+      "empty": "No sync history yet"
+    },
+    "status": {
+      "success": "Success",
+      "failed": "Failed"
     }
   }
 }
