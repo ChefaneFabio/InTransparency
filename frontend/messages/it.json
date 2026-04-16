@@ -158,7 +158,8 @@
         "certificates": "Certificati",
         "fastTrack": "Placement Rapido",
         "priorLearning": "Competenze Pregresse",
-        "documents": "Documenti"
+        "documents": "Documenti",
+        "scorecard": "Pagella"
       },
       "exchange": "Scambio",
       "internships": "Tirocini",
@@ -10428,6 +10429,63 @@
       "submit": "Carica Documento",
       "uploading": "Caricamento..."
     }
+  },
+  "universityScorecard": {
+    "title": "Pagella Istituzionale",
+    "subtitle": "Valutazione basata sui dati delle performance della tua istituzione, con benchmark di piattaforma e raccomandazioni prioritizzate.",
+    "error": "Impossibile caricare i dati della pagella.",
+    "retry": "Riprova",
+    "overallGrade": "Voto Complessivo",
+    "students": "studenti",
+    "companies": "aziende",
+    "placements": "placement",
+    "actions": "azioni",
+    "dimensions": {
+      "studentActivation": "Attivazione Studenti",
+      "employerVisibility": "Visibilit\u00e0 Aziende",
+      "placementPerformance": "Performance Placement",
+      "academicQuality": "Qualit\u00e0 Accademica",
+      "dataCompleteness": "Completezza Dati"
+    },
+    "metrics": {
+      "activationRate": "Tasso attivazione mensile",
+      "profileCompleteness": "Completezza profili",
+      "projectParticipation": "Studenti con progetti",
+      "viewsPerStudent": "Visualizzazioni per studente",
+      "companies": "Aziende raggiunte",
+      "contactRate": "Tasso contatto studenti",
+      "placementRate": "Tasso di placement",
+      "employmentRate": "Tasso occupazione alumni",
+      "totalPlacements": "Placement totali",
+      "verificationRate": "Tasso verifica progetti",
+      "totalCourses": "Corsi catalogati",
+      "projectDensity": "Progetti per studente",
+      "verifiedRate": "Studenti verificati",
+      "hasAlumni": "Dati alumni tracciati",
+      "hasCourses": "Catalogo corsi attivo"
+    },
+    "recommendationsTitle": "Azioni Raccomandate",
+    "recommendationsSubtitle": "Passi prioritizzati per migliorare le performance istituzionali, basati sui tuoi dati attuali.",
+    "rec": {
+      "lowActivation": "Aumenta l'attivazione degli studenti",
+      "lowActivationDesc": "Meno del 30% degli studenti ha effettuato l'accesso questo mese. Invia campagne email, organizza sessioni di onboarding o integra le attivit\u00e0 della piattaforma nei corsi.",
+      "incompleteProfiles": "Migliora la completezza dei profili",
+      "incompleteProfilesDesc": "La maggior parte degli studenti non ha bio o competenze. Gli studenti con profili completi ricevono 3 volte pi\u00f9 visualizzazioni. Organizza una settimana 'sprint profilo' con incentivi.",
+      "lowProjects": "Incentiva il caricamento dei progetti",
+      "lowProjectsDesc": "Pochi studenti hanno progetti. I progetti sono il fattore #1 valutato dai recruiter. Richiedi la consegna di progetti come parte delle valutazioni dei corsi.",
+      "lowVisibility": "Aumenta la visibilit\u00e0 presso le aziende",
+      "lowVisibilityDesc": "Meno di 5 aziende hanno visualizzato i tuoi studenti. Condividi la pagina pubblica della tua istituzione con partner industriali e fiere del lavoro.",
+      "noAlumni": "Inizia a tracciare gli esiti degli alumni",
+      "noAlumniDesc": "Nessun record alumni. I dati sull'occupazione degli alumni rafforzano la reputazione dell'istituzione e aiutano a valutare la qualit\u00e0 dei placement.",
+      "noCourses": "Aggiungi il catalogo corsi",
+      "noCoursesDesc": "Nessun corso registrato. I corsi aiutano i recruiter a trovare studenti con competenze specifiche e migliorano l'analisi di allineamento curriculare.",
+      "lowVerification": "Verifica pi\u00f9 progetti",
+      "lowVerificationDesc": "Meno della met\u00e0 dei progetti \u00e8 verificata. I progetti verificati portano credibilit\u00e0 istituzionale e si posizionano meglio nelle ricerche dei recruiter.",
+      "lowContacts": "Rafforza l'engagement dei recruiter",
+      "lowContactsDesc": "Pochi recruiter contattano i tuoi studenti. Considera l'organizzazione di eventi di carriera virtuali o il contatto con aziende nella rete alumni."
+    },
+    "allGood": "Ottime performance su tutte le dimensioni",
+    "allGoodDesc": "Nessun problema critico rilevato. Continua a monitorare la pagella per mantenere la posizione competitiva della tua istituzione."
   },
   "universityDocuments": {
     "title": "Archivio Documenti",

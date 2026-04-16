@@ -158,7 +158,8 @@
         "certificates": "Certificates",
         "fastTrack": "Fast Track",
         "priorLearning": "Prior Learning",
-        "documents": "Documents"
+        "documents": "Documents",
+        "scorecard": "Scorecard"
       },
       "exchange": "Exchange",
       "internships": "Internships",
@@ -10401,6 +10402,63 @@
       "submit": "Upload Document",
       "uploading": "Uploading..."
     }
+  },
+  "universityScorecard": {
+    "title": "Institutional Scorecard",
+    "subtitle": "A data-driven assessment of your institution's performance across key dimensions, with platform benchmarks and prioritized recommendations.",
+    "error": "Failed to load scorecard data.",
+    "retry": "Retry",
+    "overallGrade": "Overall Grade",
+    "students": "students",
+    "companies": "companies",
+    "placements": "placements",
+    "actions": "actions",
+    "dimensions": {
+      "studentActivation": "Student Activation",
+      "employerVisibility": "Employer Visibility",
+      "placementPerformance": "Placement Performance",
+      "academicQuality": "Academic Quality",
+      "dataCompleteness": "Data Completeness"
+    },
+    "metrics": {
+      "activationRate": "Monthly active rate",
+      "profileCompleteness": "Profile completeness",
+      "projectParticipation": "Students with projects",
+      "viewsPerStudent": "Views per student",
+      "companies": "Companies reached",
+      "contactRate": "Student contact rate",
+      "placementRate": "Placement rate",
+      "employmentRate": "Alumni employment rate",
+      "totalPlacements": "Total placements",
+      "verificationRate": "Project verification rate",
+      "totalCourses": "Courses catalogued",
+      "projectDensity": "Projects per student",
+      "verifiedRate": "Verified students",
+      "hasAlumni": "Alumni data tracked",
+      "hasCourses": "Course catalogue active"
+    },
+    "recommendationsTitle": "Recommended Actions",
+    "recommendationsSubtitle": "Prioritized steps to improve your institutional performance, based on your current data.",
+    "rec": {
+      "lowActivation": "Increase student activation",
+      "lowActivationDesc": "Less than 30% of your students logged in this month. Send email campaigns, host onboarding sessions, or integrate platform activities into coursework.",
+      "incompleteProfiles": "Improve profile completeness",
+      "incompleteProfilesDesc": "Most students lack bios or skills. Students with complete profiles get 3x more recruiter views. Run a 'profile sprint' week with incentives.",
+      "lowProjects": "Encourage project uploads",
+      "lowProjectsDesc": "Few students have projects. Projects are the #1 factor recruiters evaluate. Require project submissions as part of course assessments.",
+      "lowVisibility": "Boost employer visibility",
+      "lowVisibilityDesc": "Fewer than 5 companies have viewed your students. Share your institution's public page with industry partners and career fairs.",
+      "noAlumni": "Start tracking alumni outcomes",
+      "noAlumniDesc": "No alumni records yet. Alumni employment data strengthens your institution's reputation and helps benchmark placement quality.",
+      "noCourses": "Add your course catalogue",
+      "noCoursesDesc": "No courses registered. Courses help recruiters find students with specific competencies and improve curriculum alignment analysis.",
+      "lowVerification": "Verify more projects",
+      "lowVerificationDesc": "Less than half of projects are verified. Verified projects carry institutional credibility and rank higher in recruiter searches.",
+      "lowContacts": "Strengthen recruiter engagement",
+      "lowContactsDesc": "Few recruiters are contacting your students. Consider hosting virtual career events or reaching out to companies in your alumni network."
+    },
+    "allGood": "Excellent performance across all dimensions",
+    "allGoodDesc": "No critical issues detected. Continue monitoring your scorecard to maintain your institution's competitive position."
   },
   "universityDocuments": {
     "title": "Document Archive",
