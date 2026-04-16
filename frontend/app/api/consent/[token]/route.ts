@@ -67,7 +67,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ tok
     }
 
     const updated = await prisma.parentalConsent.update({
-      where: { token: params.token },
+      where: { token: consentToken },
       data: {
         status: response === 'grant' ? 'GRANTED' : 'DENIED',
         respondedAt: new Date(),
