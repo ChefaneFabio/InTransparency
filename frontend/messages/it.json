@@ -154,7 +154,8 @@
         "softSkills": "Competenze Trasversali",
         "certificates": "Certificati",
         "fastTrack": "Placement Rapido",
-        "priorLearning": "Competenze Pregresse"
+        "priorLearning": "Competenze Pregresse",
+        "documents": "Documenti"
       },
       "exchange": "Scambio",
       "internships": "Tirocini",
@@ -8308,6 +8309,7 @@
       "manageCourseCatalog": "Gestisci catalogo corsi",
       "alumni": "Alumni",
       "trackPostGraduation": "Monitora esiti post-laurea",
+      "documents": "Documenti",
       "dataSync": "Sincronizzazione Dati",
       "syncUniversitySystems": "Sincronizza sistemi universitari",
       "settings": "Impostazioni",
@@ -10326,6 +10328,53 @@
       "requestEndorsement": "Richiedi una referenza a un professore",
       "allDone": "Tutto fatto!",
       "nextStep": "Prossimo: {step}"
+    }
+  },
+  "universityDocuments": {
+    "title": "Archivio Documenti",
+    "subtitle": "Archivia e gestisci in sicurezza documenti istituzionali, report e registri di conformit\u00e0.",
+    "error": "Impossibile caricare i documenti.",
+    "retry": "Riprova",
+    "upload": "Carica Documento",
+    "uploadTitle": "Carica Documento",
+    "uploadFailed": "Caricamento fallito. Riprova.",
+    "deleteConfirm": "Sei sicuro di voler eliminare questo documento? L'operazione non pu\u00f2 essere annullata.",
+    "confidential": "Riservato",
+    "noDocuments": "Nessun documento ancora",
+    "noDocumentsHint": "Carica report di accreditamento, analisi studenti, accordi di partnership e altri documenti istituzionali per tenerli organizzati e al sicuro.",
+    "stats": {
+      "total": "Documenti Totali",
+      "totalSize": "Spazio Utilizzato",
+      "confidential": "Riservati",
+      "categories": "Categorie"
+    },
+    "filters": {
+      "searchPlaceholder": "Cerca per nome, descrizione o tag...",
+      "category": "Categoria",
+      "allCategories": "Tutte le Categorie"
+    },
+    "categories": {
+      "ACCREDITATION": "Accreditamento e Qualit\u00e0",
+      "STUDENT_REPORT": "Report Studenti",
+      "ACADEMIC": "Accademico e Curricula",
+      "PARTNERSHIP": "Partnership e Accordi",
+      "FINANCIAL": "Finanza e Finanziamenti",
+      "COMPLIANCE": "Conformit\u00e0 e Audit",
+      "INTERNAL": "Report Interni",
+      "OTHER": "Altro"
+    },
+    "uploadForm": {
+      "file": "File",
+      "dropzone": "Clicca o trascina un file qui (PDF, Word, Excel, max 25MB)",
+      "category": "Categoria",
+      "description": "Descrizione",
+      "descriptionPlaceholder": "Breve descrizione del documento...",
+      "tags": "Tag",
+      "tagsPlaceholder": "es. 2024, accreditamento, annuale (separati da virgola)",
+      "confidential": "Segna come Riservato",
+      "confidentialHint": "I documenti riservati sono visibili solo agli amministratori.",
+      "submit": "Carica Documento",
+      "uploading": "Caricamento..."
     }
   },
   "universityAddStudent": {

@@ -350,6 +350,9 @@ model User {
   hiringConfirmationsAsStudent   HiringConfirmation[] @relation("StudentHiringConfirmations")
   hiringConfirmationsAsRecruiter HiringConfirmation[] @relation("RecruiterHiringConfirmations")
 
+  // University Documents
+  universityDocuments  UniversityDocument[] @relation("UniversityDocuments")
+
   @@index([email])
   @@index([username])
   @@index([referralCode])
@@ -3156,4 +3159,46 @@ model PriorLearningAssessment {
   @@index([studentId])
   @@index([universityId])
   @@index([status])
+}
+
+// ─── University Document Management ─────────────────────────────
+model UniversityDocument {
+  id             String   @id @default(cuid())
+  universityName String
+  uploadedBy     String   // userId who uploaded
+  uploader       User     @relation("UniversityDocuments", fields: [uploadedBy], references: [id])
+
+  // File info
+  fileName       String
+  fileUrl        String
+  fileKey        String   // R2 storage key
+  fileSize       Int      // bytes
+  mimeType       String
+
+  // Classification
+  category       DocumentCategory
+  description    String?  @db.Text
+  tags           String[] @default([])
+
+  // Access control
+  confidential   Boolean  @default(false)
+
+  // Timestamps
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([universityName])
+  @@index([category])
+  @@index([uploadedBy])
+}
+
+enum DocumentCategory {
+  ACCREDITATION      // Accreditation certificates, quality reports
+  STUDENT_REPORT     // Placement reports, performance analytics, graduation stats
+  ACADEMIC           // Syllabi, curricula, program guides
+  PARTNERSHIP        // MoUs, internship agreements, company contracts
+  FINANCIAL          // Grant applications, budget reports, funding docs
+  COMPLIANCE         // GDPR, data protection, audit reports
+  INTERNAL           // Strategic plans, meeting minutes, annual reports
+  OTHER
 }

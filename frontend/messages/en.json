@@ -154,7 +154,8 @@
         "softSkills": "Soft Skills",
         "certificates": "Certificates",
         "fastTrack": "Fast Track",
-        "priorLearning": "Prior Learning"
+        "priorLearning": "Prior Learning",
+        "documents": "Documents"
       },
       "exchange": "Exchange",
       "internships": "Internships",
@@ -8347,6 +8348,7 @@
       "manageCourseCatalog": "Manage course catalog",
       "alumni": "Alumni",
       "trackPostGraduation": "Track post-graduation outcomes",
+      "documents": "Documents",
       "dataSync": "Data Sync",
       "syncUniversitySystems": "Sync university systems",
       "settings": "Settings",
@@ -10299,6 +10301,53 @@
       "requestEndorsement": "Request a professor endorsement",
       "allDone": "All done!",
       "nextStep": "Next: {step}"
+    }
+  },
+  "universityDocuments": {
+    "title": "Document Archive",
+    "subtitle": "Securely store and manage institutional documents, reports, and compliance records.",
+    "error": "Failed to load documents.",
+    "retry": "Retry",
+    "upload": "Upload Document",
+    "uploadTitle": "Upload Document",
+    "uploadFailed": "Upload failed. Please try again.",
+    "deleteConfirm": "Are you sure you want to delete this document? This cannot be undone.",
+    "confidential": "Confidential",
+    "noDocuments": "No documents yet",
+    "noDocumentsHint": "Upload accreditation reports, student analytics, partnership agreements, and other institutional documents to keep them organized and secure.",
+    "stats": {
+      "total": "Total Documents",
+      "totalSize": "Storage Used",
+      "confidential": "Confidential",
+      "categories": "Categories"
+    },
+    "filters": {
+      "searchPlaceholder": "Search by name, description, or tag...",
+      "category": "Category",
+      "allCategories": "All Categories"
+    },
+    "categories": {
+      "ACCREDITATION": "Accreditation & Quality",
+      "STUDENT_REPORT": "Student Reports",
+      "ACADEMIC": "Academic & Curricula",
+      "PARTNERSHIP": "Partnerships & Agreements",
+      "FINANCIAL": "Financial & Grants",
+      "COMPLIANCE": "Compliance & Audit",
+      "INTERNAL": "Internal Reports",
+      "OTHER": "Other"
+    },
+    "uploadForm": {
+      "file": "File",
+      "dropzone": "Click or drag a file here (PDF, Word, Excel, up to 25MB)",
+      "category": "Category",
+      "description": "Description",
+      "descriptionPlaceholder": "Brief description of this document...",
+      "tags": "Tags",
+      "tagsPlaceholder": "e.g. 2024, accreditation, annual (comma separated)",
+      "confidential": "Mark as Confidential",
+      "confidentialHint": "Confidential documents are visible only to university admins.",
+      "submit": "Upload Document",
+      "uploading": "Uploading..."
     }
   },
   "universityAddStudent": {

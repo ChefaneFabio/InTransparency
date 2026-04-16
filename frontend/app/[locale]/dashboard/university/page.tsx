@@ -445,6 +445,7 @@ export default function UniversityDashboard() {
                 { href: '/dashboard/university/recruiters' as const, icon: Building2, label: t('recruiters') },
                 { href: '/dashboard/university/courses' as const, icon: BookOpen, label: t('courses') },
                 { href: '/dashboard/university/alumni' as const, icon: Award, label: t('alumni') },
+                { href: '/dashboard/university/documents' as const, icon: FileText, label: t('documents') },
                 { href: '/dashboard/university/sync' as const, icon: RefreshCw, label: t('dataSync') },
                 { href: '/dashboard/university/settings' as const, icon: Settings, label: t('settings') },
               ].map((item) => (

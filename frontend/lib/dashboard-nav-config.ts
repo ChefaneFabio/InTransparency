@@ -108,6 +108,7 @@ const universityBase: NavConfig = {
       labelKey: 'insights',
       items: [
         { labelKey: 'analytics', href: '/dashboard/university/analytics' },
+        { labelKey: 'documents', href: '/dashboard/university/documents' },
         { labelKey: 'settings', href: '/dashboard/university/settings' },
       ],
     },
@@ -153,6 +154,7 @@ const schoolNav: NavConfig = {
       labelKey: 'insights',
       items: [
         { labelKey: 'analytics', href: '/dashboard/university/analytics' },
+        { labelKey: 'documents', href: '/dashboard/university/documents' },
         { labelKey: 'settings', href: '/dashboard/university/settings' },
       ],
     },
@@ -187,6 +189,7 @@ const otherNav: NavConfig = {
       labelKey: 'insights',
       items: [
         { labelKey: 'analytics', href: '/dashboard/university/analytics' },
+        { labelKey: 'documents', href: '/dashboard/university/documents' },
         { labelKey: 'settings', href: '/dashboard/university/settings' },
       ],
     },
