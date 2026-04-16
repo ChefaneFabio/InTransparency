@@ -46,15 +46,381 @@ interface OnboardingData {
 
   // University specific
   institutionName: string
+  institutionType: string
+  institutionLogo: string
+  contactName: string
+  contactRole: string
   department: string
   region: string
+  website: string
+  studentCount: string
+  focusAreas: string[]
+  painPoints: string[]
+  currentTools: string[]
+  partnershipGoals: string[]
+  topPriority: string
 }
 
 const steps = {
   STUDENT: ['Profilo Base', 'Istituzione', 'Competenze', 'Completa'],
   RECRUITER: ['Profilo Base', 'Azienda', 'Preferenze', 'Completa'],
-  UNIVERSITY: ['Profilo Base', 'Istituzione', 'Dettagli', 'Completa']
+  UNIVERSITY: ['Istituzione', 'Referente', 'Sfide Attuali', 'Obiettivi', 'Completa']
 }
+
+const institutionTypes = [
+  { value: 'university', label: 'Scuola di Alta Formazione' },
+  { value: 'its', label: 'ITS Academy' },
+  { value: 'school', label: 'Scuola Superiore' },
+  { value: 'other', label: 'Altro' },
+]
+
+const focusAreaOptions = [
+  'STEM', 'Economia & Business', 'Giurisprudenza', 'Scienze Umane',
+  'Design & Arti', 'Medicina & Sanità', 'Ingegneria', 'Lingue',
+  'Scienze Sociali', 'Comunicazione & Media', 'Agricoltura & Ambiente',
+]
+
+interface PainPoint {
+  value: string
+  label: string
+  context: string
+  solution: string
+  icon: string
+  types: string[] // which institution types this applies to
+}
+
+interface GoalOption {
+  value: string
+  label: string
+  description: string
+  types: string[] // which institution types this applies to
+}
+
+const allPainPoints: PainPoint[] = [
+  // === SHARED: University + ITS ===
+  {
+    value: 'no-skills-visibility',
+    label: 'Non abbiamo visibilità sulle competenze reali degli studenti',
+    context: "L'88% dei neolaureati non si sente preparato per il lavoro (LinkedIn, 2026)",
+    solution: 'Skills Gap Analysis — mappa in tempo reale le competenze dei vostri studenti vs la domanda di mercato',
+    icon: '🔍',
+    types: ['university', 'its'],
+  },
+  {
+    value: 'curriculum-gap',
+    label: 'I nostri programmi potrebbero non essere allineati a ciò che il mercato chiede',
+    context: 'Le assunzioni entry-level in Italia sono calate del 18,8% in un anno',
+    solution: 'Curriculum Alignment — punteggio di allineamento per ogni corso, con le competenze mancanti evidenziate',
+    icon: '📉',
+    types: ['university', 'its'],
+  },
+  {
+    value: 'placement-tracking',
+    label: 'Tracciare gli esiti occupazionali è difficile e manuale',
+    context: 'I survey di fine anno hanno tassi di risposta sotto il 15%',
+    solution: 'Placement Dashboard — funnel automatico dal primo contatto all\'assunzione, in tempo reale',
+    icon: '📊',
+    types: ['university', 'its'],
+  },
+  {
+    value: 'student-self-awareness',
+    label: 'Gli studenti faticano a capire e comunicare il proprio valore',
+    context: 'Il talento oggi è quanto velocemente riesci a evolvere, non solo cosa sai fare',
+    solution: 'Profili verificati con progetti, competenze e punteggio di employability — lo studente vede il proprio valore',
+    icon: '🪞',
+    types: ['university', 'its', 'school'],
+  },
+  {
+    value: 'employer-disconnect',
+    label: 'Le aziende non conoscono i nostri studenti e i nostri percorsi',
+    context: 'Milano e Roma concentrano le opportunità — il resto d\'Italia è invisibile ai recruiter',
+    solution: 'Company Leaderboard e Engagement Alerts — vedete quali aziende guardano i vostri studenti',
+    icon: '🔗',
+    types: ['university', 'its'],
+  },
+  {
+    value: 'manual-reporting',
+    label: 'Il reporting per accreditamento e qualità richiede troppo lavoro manuale',
+    context: 'Education è il settore con il calo di assunzioni più forte: -31,2%',
+    solution: 'Analytics Dashboard con 6 viste + export automatici per ANVUR, INDIRE e ministero',
+    icon: '📋',
+    types: ['university', 'its'],
+  },
+  {
+    value: 'engagement',
+    label: 'Gli studenti non partecipano ai servizi di orientamento e career service',
+    context: 'Il collegamento tra formazione e lavoro è la sfida chiave per la Gen Z',
+    solution: 'Eventi, attivazione studenti e feed di attività — tutto in un unico punto',
+    icon: '😴',
+    types: ['university', 'its', 'school'],
+  },
+  {
+    value: 'skills-translation',
+    label: 'I voti non bastano: le aziende non capiscono cosa sanno fare i nostri studenti',
+    context: 'Le competenze vanno "spacchettate" in skill concrete e spendibili (LinkedIn, 2026)',
+    solution: 'Normalizzazione voti EU + Decision Pack — i recruiter vedono competenze, non solo medie',
+    icon: '🔄',
+    types: ['university', 'its'],
+  },
+  // === ITS-SPECIFIC ===
+  {
+    value: 'internship-matching',
+    label: 'Abbinare studenti a tirocini obbligatori è un processo lungo e manuale',
+    context: 'Gli ITS richiedono 800+ ore di stage — il matching è il cuore del percorso',
+    solution: 'Internship Pipeline — matching automatico studente-azienda basato su competenze, con tracking ore e valutazioni',
+    icon: '🏭',
+    types: ['its'],
+  },
+  {
+    value: 'internship-hours',
+    label: 'Non abbiamo un sistema per tracciare ore di stage e valutazioni aziendali',
+    context: 'Il 30% del curriculum ITS è in azienda — serve visibilità in tempo reale',
+    solution: 'Internship Tracker — ore, presenze, valutazioni del tutor aziendale e feedback dello studente in un unico cruscotto',
+    icon: '⏱️',
+    types: ['its'],
+  },
+  {
+    value: 'board-visibility',
+    label: 'Le aziende nel CTS non hanno visibilità sui risultati dell\'ITS',
+    context: 'Il Comitato Tecnico Scientifico guida la didattica ma spesso decide al buio',
+    solution: 'Board Dashboard — vista dedicata per le aziende del CTS con outcome, skill gap e suggerimenti curricolari',
+    icon: '👔',
+    types: ['its'],
+  },
+  {
+    value: 'indire-reporting',
+    label: 'Preparare i dati per la valutazione INDIRE è un incubo',
+    context: 'INDIRE valuta placement rate, soddisfazione studenti e coerenza percorso-lavoro',
+    solution: 'Report INDIRE — template precompilati con placement rate, coerenza titolo-occupazione e feedback automatici',
+    icon: '📑',
+    types: ['its'],
+  },
+  // === SCUOLA SUPERIORE ===
+  {
+    value: 'pcto-tracking',
+    label: 'Gestire i PCTO è caotico: ore, convenzioni, attestati sono sparsi ovunque',
+    context: 'I PCTO sono obbligatori (90-210 ore) ma spesso gestiti con fogli Excel e email',
+    solution: 'PCTO Manager — tracciamento ore, convenzioni digitali, attestati automatici e report per il ministero',
+    icon: '📒',
+    types: ['school'],
+  },
+  {
+    value: 'pcto-matching',
+    label: 'Trovare aziende disponibili per i PCTO è difficile, soprattutto fuori dalle grandi città',
+    context: 'Il 25% dei giovani cita la mancanza di opportunità locali come problema principale',
+    solution: 'PCTO Marketplace — le aziende pubblicano opportunità, voi abbinate gli studenti per interesse e disponibilità',
+    icon: '🤝',
+    types: ['school'],
+  },
+  {
+    value: 'orientation',
+    label: 'Gli studenti arrivano alla scelta post-diploma senza consapevolezza delle proprie attitudini',
+    context: 'Il 48% dei giovani considererebbe l\'estero per mancanza di opportunità — molti non sanno cosa cercare',
+    solution: 'Orientamento Attitudinale — test di interessi, mappatura soft skill e suggerimenti personalizzati su università, ITS o lavoro',
+    icon: '🧭',
+    types: ['school'],
+  },
+  {
+    value: 'parental-consent',
+    label: 'I nostri studenti sono minorenni: ogni dato condiviso richiede il consenso dei genitori',
+    context: 'GDPR richiede consenso esplicito dei genitori per dati di minori sotto i 16 anni',
+    solution: 'Consenso Genitoriale — flusso digitale di autorizzazione, visibilità controllata e privacy by design per i minori',
+    icon: '🔒',
+    types: ['school'],
+  },
+  {
+    value: 'soft-skills',
+    label: 'I nostri studenti non hanno ancora competenze tecniche: servono soft skill e competenze trasversali',
+    context: 'Le competenze trasversali sono le più cercate per i ruoli entry-level (LinkedIn, 2026)',
+    solution: 'Soft Skills Assessment — mappatura di teamwork, problem solving, comunicazione e pensiero critico con badge verificabili',
+    icon: '💡',
+    types: ['school'],
+  },
+  // === OTHER / FORMAZIONE PROFESSIONALE ===
+  {
+    value: 'short-courses',
+    label: 'I nostri percorsi sono brevi (settimane/mesi), non lauree pluriennali',
+    context: 'Il reskilling è la nuova normalità — il 37% dei giovani lamenta stipendi insufficienti',
+    solution: 'Percorsi Brevi — modello flessibile per corsi da 1 settimana a 12 mesi, con certificati di completamento e skill tracking',
+    icon: '⚡',
+    types: ['other'],
+  },
+  {
+    value: 'certification',
+    label: 'Servono certificati verificabili, non solo voti',
+    context: 'Le certificazioni di settore valgono più di una laurea per molti ruoli tecnici',
+    solution: 'Certificati Digitali — emissione, verifica e condivisione di certificati con QR code e validazione blockchain-ready',
+    icon: '🏅',
+    types: ['other'],
+  },
+  {
+    value: 'fast-placement',
+    label: 'I nostri cicli formativi sono brevi: il placement deve essere rapido',
+    context: 'Chi esce da un corso di 3-6 mesi non può aspettare mesi per trovare lavoro',
+    solution: 'Fast Track Placement — matching immediato con aziende che cercano le competenze appena certificate',
+    icon: '🚀',
+    types: ['other'],
+  },
+  {
+    value: 'fse-reporting',
+    label: 'Dobbiamo rendicontare alla Regione e ai fondi FSE con dati precisi',
+    context: 'I fondi europei FSE richiedono tracciamento puntuale di iscrizioni, completamenti e esiti occupazionali',
+    solution: 'Report FSE/Regione — template conformi con dati automatici su iscrizioni, drop-out, completamenti e placement',
+    icon: '🇪🇺',
+    types: ['other'],
+  },
+  {
+    value: 'prior-learning',
+    label: 'I nostri allievi hanno già esperienza lavorativa: serve mappare le competenze esistenti',
+    context: 'Il reskilling riguarda adulti con skill pregresse — non partono da zero',
+    solution: 'Recognition of Prior Learning — assessment iniziale delle competenze esistenti per personalizzare il percorso formativo',
+    icon: '🗂️',
+    types: ['other'],
+  },
+]
+
+const getPainPointsForType = (type: string): PainPoint[] =>
+  allPainPoints.filter(p => p.types.includes(type || 'university'))
+
+const currentToolsByType: Record<string, Array<{ value: string; label: string }>> = {
+  university: [
+    { value: 'excel', label: 'Excel / Fogli di calcolo' },
+    { value: 'crm-custom', label: 'CRM interno / gestionale' },
+    { value: 'almalaurea', label: 'AlmaLaurea' },
+    { value: 'jobteaser', label: 'JobTeaser' },
+    { value: 'linkedin', label: 'LinkedIn' },
+    { value: 'paper', label: 'Processi manuali / cartacei' },
+    { value: 'none', label: 'Nessuno strumento dedicato' },
+  ],
+  its: [
+    { value: 'excel', label: 'Excel / Fogli di calcolo' },
+    { value: 'crm-custom', label: 'Gestionale interno' },
+    { value: 'sidi', label: 'SIDI / Portale INDIRE' },
+    { value: 'linkedin', label: 'LinkedIn' },
+    { value: 'paper', label: 'Processi manuali / cartacei' },
+    { value: 'none', label: 'Nessuno strumento dedicato' },
+  ],
+  school: [
+    { value: 'excel', label: 'Excel / Fogli di calcolo' },
+    { value: 'registro', label: 'Registro elettronico' },
+    { value: 'sidi', label: 'SIDI / Piattaforma PCTO' },
+    { value: 'paper', label: 'Processi manuali / cartacei' },
+    { value: 'none', label: 'Nessuno strumento dedicato' },
+  ],
+  other: [
+    { value: 'excel', label: 'Excel / Fogli di calcolo' },
+    { value: 'crm-custom', label: 'Gestionale interno' },
+    { value: 'regione', label: 'Portale Regione / SIUF' },
+    { value: 'paper', label: 'Processi manuali / cartacei' },
+    { value: 'none', label: 'Nessuno strumento dedicato' },
+  ],
+}
+
+const allGoalOptions: GoalOption[] = [
+  // Shared
+  {
+    value: 'placement',
+    label: 'Migliorare i tassi di placement',
+    description: 'Funnel completo dal contatto all\'assunzione — saprete esattamente dove si blocca il processo',
+    types: ['university', 'its'],
+  },
+  {
+    value: 'skills-tracking',
+    label: 'Rendere visibili le competenze degli studenti',
+    description: 'Mappatura automatica delle skill reali, non solo dei voti — con confronto vs domanda di mercato',
+    types: ['university', 'its'],
+  },
+  {
+    value: 'curriculum-alignment',
+    label: 'Allineare i programmi formativi al mercato',
+    description: 'Punteggio di allineamento per ogni corso con suggerimenti su competenze da integrare',
+    types: ['university', 'its'],
+  },
+  {
+    value: 'employer-network',
+    label: 'Aumentare la visibilità verso le aziende',
+    description: 'I recruiter trovano i vostri studenti per competenze, non per nome dell\'ateneo',
+    types: ['university', 'its'],
+  },
+  {
+    value: 'student-activation',
+    label: 'Attivare gli studenti prima della laurea',
+    description: 'Profili, progetti e skill verificate — lo studente costruisce il proprio valore durante il percorso',
+    types: ['university', 'its'],
+  },
+  {
+    value: 'analytics',
+    label: 'Avere dati per decidere e rendicontare',
+    description: 'Dashboard con placement, skill gap, benchmark e report esportabili per accreditamento',
+    types: ['university', 'its'],
+  },
+  // ITS-specific
+  {
+    value: 'internship-management',
+    label: 'Gestire tirocini obbligatori end-to-end',
+    description: 'Matching, ore, valutazioni e feedback — dall\'abbinamento alla chiusura dello stage',
+    types: ['its'],
+  },
+  {
+    value: 'cts-engagement',
+    label: 'Dare visibilità al Comitato Tecnico Scientifico',
+    description: 'Dashboard dedicata per le aziende del CTS con dati su outcome e allineamento curricolare',
+    types: ['its'],
+  },
+  // School-specific
+  {
+    value: 'pcto-management',
+    label: 'Gestire i PCTO in modo digitale e centralizzato',
+    description: 'Ore, convenzioni, attestati e report ministeriali — tutto automatizzato',
+    types: ['school'],
+  },
+  {
+    value: 'orientation',
+    label: 'Orientare gli studenti verso il percorso giusto',
+    description: 'Test attitudinali, mappatura interessi e suggerimenti personalizzati per la scelta post-diploma',
+    types: ['school'],
+  },
+  {
+    value: 'soft-skills-dev',
+    label: 'Sviluppare e certificare le competenze trasversali',
+    description: 'Assessment di teamwork, problem solving e comunicazione con badge condivisibili',
+    types: ['school'],
+  },
+  {
+    value: 'safe-platform',
+    label: 'Una piattaforma sicura per studenti minorenni',
+    description: 'Consenso genitoriale, privacy by design e visibilità controllata dei dati',
+    types: ['school'],
+  },
+  // Other / Formazione professionale
+  {
+    value: 'fast-reskilling',
+    label: 'Accelerare il reskilling e il placement',
+    description: 'Percorsi brevi con certificati digitali e matching immediato con aziende',
+    types: ['other'],
+  },
+  {
+    value: 'certification-system',
+    label: 'Emettere certificati verificabili',
+    description: 'Certificati digitali con QR code e validazione per ogni percorso completato',
+    types: ['other'],
+  },
+  {
+    value: 'fund-reporting',
+    label: 'Rendicontare a Regione e fondi FSE',
+    description: 'Report automatici conformi ai requisiti di finanziamento europeo e regionale',
+    types: ['other'],
+  },
+  {
+    value: 'prior-learning-recognition',
+    label: 'Riconoscere le competenze pregresse',
+    description: 'Assessment iniziale per mappare cosa gli allievi sanno già e personalizzare il percorso',
+    types: ['other'],
+  },
+]
+
+const getGoalsForType = (type: string): GoalOption[] =>
+  allGoalOptions.filter(g => g.types.includes(type || 'university'))
 
 const skillGroups: { name: string; icon: string; skills: string[] }[] = [
   {
@@ -137,12 +503,25 @@ export default function OnboardingPage() {
     jobTitle: '',
     companySize: '',
     institutionName: '',
+    institutionType: '',
+    institutionLogo: '',
+    contactName: '',
+    contactRole: '',
     department: '',
-    region: ''
+    region: '',
+    website: '',
+    studentCount: '',
+    focusAreas: [],
+    painPoints: [],
+    currentTools: [],
+    partnershipGoals: [],
+    topPriority: '',
   })
 
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const logoInputRef = useRef<HTMLInputElement>(null)
   const [photoUploading, setPhotoUploading] = useState(false)
+  const [logoUploading, setLogoUploading] = useState(false)
   const userRole = (session?.user?.role as UserRole) || 'STUDENT'
   const currentSteps = steps[userRole]
   const progress = ((currentStep + 1) / currentSteps.length) * 100
@@ -195,6 +574,10 @@ export default function OnboardingPage() {
       } else if (userRole === 'UNIVERSITY') {
         // Store institution name in company field (used as university identifier)
         profilePayload.company = data.institutionName
+        profilePayload.firstName = data.contactName
+        profilePayload.lastName = ''
+        profilePayload.bio = data.contactRole
+        profilePayload.photo = data.institutionLogo || undefined
       }
 
       const response = await fetch('/api/user/profile', {
@@ -220,7 +603,17 @@ export default function OnboardingPage() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             name: data.institutionName,
+            institutionType: data.institutionType || '',
             region: data.region || '',
+            website: data.website || '',
+            studentCount: data.studentCount || '',
+            focusAreas: data.focusAreas,
+            painPoints: data.painPoints,
+            currentTools: data.currentTools,
+            partnershipGoals: data.partnershipGoals,
+            topPriority: data.topPriority || '',
+            contactName: data.contactName || '',
+            contactRole: data.contactRole || '',
           })
         }).catch(() => {})
       }
@@ -267,6 +660,68 @@ export default function OnboardingPage() {
     }
   }
 
+  const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    setLogoUploading(true)
+    try {
+      const formData = new FormData()
+      formData.append('image', file)
+      formData.append('folder', 'institutions')
+
+      const res = await fetch('/api/upload/image', {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (res.ok) {
+        const result = await res.json()
+        setData(prev => ({ ...prev, institutionLogo: result.url }))
+      }
+    } catch (error) {
+      console.error('Logo upload failed:', error)
+    } finally {
+      setLogoUploading(false)
+    }
+  }
+
+  const toggleFocusArea = (area: string) => {
+    setData(prev => ({
+      ...prev,
+      focusAreas: prev.focusAreas.includes(area)
+        ? prev.focusAreas.filter(a => a !== area)
+        : [...prev.focusAreas, area]
+    }))
+  }
+
+  const togglePainPoint = (point: string) => {
+    setData(prev => ({
+      ...prev,
+      painPoints: prev.painPoints.includes(point)
+        ? prev.painPoints.filter(p => p !== point)
+        : [...prev.painPoints, point]
+    }))
+  }
+
+  const toggleCurrentTool = (tool: string) => {
+    setData(prev => ({
+      ...prev,
+      currentTools: prev.currentTools.includes(tool)
+        ? prev.currentTools.filter(t => t !== tool)
+        : [...prev.currentTools, tool]
+    }))
+  }
+
+  const togglePartnershipGoal = (goal: string) => {
+    setData(prev => ({
+      ...prev,
+      partnershipGoals: prev.partnershipGoals.includes(goal)
+        ? prev.partnershipGoals.filter(g => g !== goal)
+        : [...prev.partnershipGoals, goal]
+    }))
+  }
+
   const toggleSkill = (skill: string) => {
     setData(prev => ({
       ...prev,
@@ -290,10 +745,12 @@ export default function OnboardingPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Benvenuto su InTransparency!
+            {userRole === 'UNIVERSITY' ? 'Benvenuta su InTransparency!' : 'Benvenuto su InTransparency!'}
           </h1>
           <p className="text-gray-600">
-            Completa il tuo profilo per iniziare
+            {userRole === 'UNIVERSITY'
+              ? 'Configura il profilo della tua istituzione per iniziare'
+              : 'Completa il tuo profilo per iniziare'}
           </p>
         </div>
 
@@ -327,8 +784,8 @@ export default function OnboardingPage() {
         {/* Step Content */}
         <Card>
           <CardContent className="p-8">
-            {/* Step 0: Basic Profile */}
-            {currentStep === 0 && (
+            {/* Step 0: Basic Profile (Student/Recruiter) */}
+            {currentStep === 0 && userRole !== 'UNIVERSITY' && (
               <div className="space-y-6">
                 <div className="text-center mb-6">
                   <div className="w-24 h-24 bg-gray-100 rounded-full mx-auto mb-4 flex items-center justify-center">
@@ -394,6 +851,90 @@ export default function OnboardingPage() {
                     onChange={(e) => setData(prev => ({ ...prev, bio: e.target.value }))}
                     placeholder="Raccontaci qualcosa di te..."
                     rows={4}
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Step 0: Institution Profile (University) */}
+            {currentStep === 0 && userRole === 'UNIVERSITY' && (
+              <div className="space-y-6">
+                <div className="text-center mb-6">
+                  <div className="w-24 h-24 bg-gray-100 rounded-lg mx-auto mb-4 flex items-center justify-center border-2 border-dashed border-gray-300">
+                    {data.institutionLogo ? (
+                      <img src={data.institutionLogo} alt="Logo" className="w-full h-full rounded-lg object-contain p-2" />
+                    ) : (
+                      <Building2 className="h-12 w-12 text-gray-400" />
+                    )}
+                  </div>
+                  <input
+                    ref={logoInputRef}
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,image/svg+xml"
+                    className="hidden"
+                    onChange={handleLogoUpload}
+                  />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => logoInputRef.current?.click()}
+                    disabled={logoUploading}
+                  >
+                    {logoUploading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Caricamento...
+                      </>
+                    ) : (
+                      <>
+                        <Upload className="h-4 w-4 mr-2" />
+                        Carica Logo
+                      </>
+                    )}
+                  </Button>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="institutionName">Nome Istituzione</Label>
+                  <Input
+                    id="institutionName"
+                    value={data.institutionName}
+                    onChange={(e) => setData(prev => ({ ...prev, institutionName: e.target.value }))}
+                    placeholder="es. Politecnico di Milano"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label>Tipo di Istituzione</Label>
+                  <div className="grid grid-cols-2 gap-2">
+                    {institutionTypes.map(type => (
+                      <Button
+                        key={type.value}
+                        variant={data.institutionType === type.value ? 'default' : 'outline'}
+                        onClick={() => setData(prev => ({
+                          ...prev,
+                          institutionType: type.value,
+                          // Reset type-specific selections when changing institution type
+                          painPoints: [],
+                          currentTools: [],
+                          partnershipGoals: [],
+                          topPriority: '',
+                        }))}
+                        className="w-full"
+                      >
+                        {type.label}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="website">Sito Web</Label>
+                  <Input
+                    id="website"
+                    value={data.website}
+                    onChange={(e) => setData(prev => ({ ...prev, website: e.target.value }))}
+                    placeholder="es. www.polimi.it"
                   />
                 </div>
               </div>
@@ -491,23 +1032,35 @@ export default function OnboardingPage() {
             {currentStep === 1 && userRole === 'UNIVERSITY' && (
               <div className="space-y-6">
                 <div className="text-center mb-6">
-                  <Building2 className="h-12 w-12 text-primary mx-auto mb-2" />
-                  <h2 className="text-xl font-semibold">Informazioni Istituzione</h2>
+                  <User className="h-12 w-12 text-primary mx-auto mb-2" />
+                  <h2 className="text-xl font-semibold">Referente & Sede</h2>
+                  <p className="text-gray-600 text-sm">Chi gestirà la piattaforma per la vostra istituzione?</p>
                 </div>
 
                 <div className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="institutionName">Nome Istituzione</Label>
-                    <Input
-                      id="institutionName"
-                      value={data.institutionName}
-                      onChange={(e) => setData(prev => ({ ...prev, institutionName: e.target.value }))}
-                      placeholder="es. Politecnico di Milano"
-                    />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="contactName">Nome Referente</Label>
+                      <Input
+                        id="contactName"
+                        value={data.contactName}
+                        onChange={(e) => setData(prev => ({ ...prev, contactName: e.target.value }))}
+                        placeholder="es. Mario Rossi"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="contactRole">Ruolo</Label>
+                      <Input
+                        id="contactRole"
+                        value={data.contactRole}
+                        onChange={(e) => setData(prev => ({ ...prev, contactRole: e.target.value }))}
+                        placeholder="es. Responsabile Career Services"
+                      />
+                    </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="department">Dipartimento</Label>
+                    <Label htmlFor="department">Dipartimento / Ufficio</Label>
                     <Input
                       id="department"
                       value={data.department}
@@ -578,7 +1131,7 @@ export default function OnboardingPage() {
               </div>
             )}
 
-            {currentStep === 2 && userRole !== 'STUDENT' && (
+            {currentStep === 2 && userRole === 'RECRUITER' && (
               <div className="space-y-6">
                 <div className="text-center mb-6">
                   <Briefcase className="h-12 w-12 text-primary mx-auto mb-2" />
@@ -591,8 +1144,173 @@ export default function OnboardingPage() {
               </div>
             )}
 
-            {/* Step 3: Complete */}
-            {currentStep === 3 && (
+            {/* University Step 2: Sfide Attuali (type-specific) */}
+            {currentStep === 2 && userRole === 'UNIVERSITY' && (() => {
+              const typePainPoints = getPainPointsForType(data.institutionType)
+              const typeTools = currentToolsByType[data.institutionType] || currentToolsByType.university
+              return (
+              <div className="space-y-6">
+                <div className="text-center mb-6">
+                  <MapPin className="h-12 w-12 text-primary mx-auto mb-2" />
+                  <h2 className="text-xl font-semibold">Dove vi trovate oggi</h2>
+                  <p className="text-gray-600 text-sm">Selezionate le sfide che riconoscete — vi mostriamo come le risolviamo</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="studentCount">
+                      {data.institutionType === 'school' ? 'Numero Studenti' :
+                       data.institutionType === 'other' ? 'Numero Allievi / Anno' :
+                       'Numero Studenti'}
+                    </Label>
+                    <Input
+                      id="studentCount"
+                      value={data.studentCount}
+                      onChange={(e) => setData(prev => ({ ...prev, studentCount: e.target.value }))}
+                      placeholder={data.institutionType === 'school' ? 'es. 800' :
+                                   data.institutionType === 'other' ? 'es. 200' : 'es. 5000'}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>
+                      {data.institutionType === 'school' ? 'Indirizzi' :
+                       data.institutionType === 'other' ? 'Settori Formativi' :
+                       'Aree Disciplinari'}
+                    </Label>
+                    <div className="flex flex-wrap gap-1.5">
+                      {focusAreaOptions.map(area => (
+                        <Badge
+                          key={area}
+                          variant={data.focusAreas.includes(area) ? 'default' : 'outline'}
+                          className="cursor-pointer py-1 px-2.5 text-xs"
+                          onClick={() => toggleFocusArea(area)}
+                        >
+                          {data.focusAreas.includes(area) && <Check className="h-3 w-3 mr-1" />}
+                          {area}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <Label>Quali sfide affrontate oggi?</Label>
+                  <div className="grid grid-cols-1 gap-2 max-h-[420px] overflow-y-auto pr-1">
+                    {typePainPoints.map(point => {
+                      const isSelected = data.painPoints.includes(point.value)
+                      return (
+                        <button
+                          key={point.value}
+                          type="button"
+                          onClick={() => togglePainPoint(point.value)}
+                          className={`w-full text-left rounded-lg border p-3 transition-all ${
+                            isSelected
+                              ? 'border-primary bg-primary/5 ring-1 ring-primary'
+                              : 'border-gray-200 hover:border-gray-300'
+                          }`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <span className="text-lg flex-shrink-0 mt-0.5">{point.icon}</span>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-medium">{point.label}</p>
+                              <p className="text-xs text-gray-400 mt-0.5 italic">{point.context}</p>
+                              {isSelected && (
+                                <div className="mt-2 bg-emerald-50 border border-emerald-200 rounded-md p-2">
+                                  <p className="text-xs text-emerald-700 font-medium">
+                                    Come lo risolviamo: <span className="font-normal">{point.solution}</span>
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                            {isSelected && (
+                              <Check className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                            )}
+                          </div>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <Label>Strumenti che usate attualmente</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {typeTools.map(tool => (
+                      <Badge
+                        key={tool.value}
+                        variant={data.currentTools.includes(tool.value) ? 'default' : 'outline'}
+                        className="cursor-pointer py-1.5 px-3 text-sm"
+                        onClick={() => toggleCurrentTool(tool.value)}
+                      >
+                        {data.currentTools.includes(tool.value) && <Check className="h-3 w-3 mr-1" />}
+                        {tool.label}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              )
+            })()}
+
+            {/* University Step 3: Obiettivi (type-specific) */}
+            {currentStep === 3 && userRole === 'UNIVERSITY' && (() => {
+              const typeGoals = getGoalsForType(data.institutionType)
+              return (
+              <div className="space-y-6">
+                <div className="text-center mb-6">
+                  <GraduationCap className="h-12 w-12 text-primary mx-auto mb-2" />
+                  <h2 className="text-xl font-semibold">Cosa volete ottenere</h2>
+                  <p className="text-gray-600 text-sm">Su cosa volete concentrarvi con InTransparency?</p>
+                </div>
+
+                <div className="grid grid-cols-1 gap-3">
+                  {typeGoals.map(goal => (
+                    <button
+                      key={goal.value}
+                      type="button"
+                      onClick={() => togglePartnershipGoal(goal.value)}
+                      className={`w-full text-left rounded-lg border p-4 transition-colors ${
+                        data.partnershipGoals.includes(goal.value)
+                          ? 'border-primary bg-primary/5 ring-1 ring-primary'
+                          : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="flex-1">
+                          <p className="font-medium text-sm">{goal.label}</p>
+                          <p className="text-xs text-gray-500 mt-0.5">{goal.description}</p>
+                        </div>
+                        {data.partnershipGoals.includes(goal.value) && (
+                          <Check className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                        )}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+
+                <div className="space-y-2 pt-2 border-t">
+                  <Label>Se doveste scegliere una sola priorità?</Label>
+                  <div className="grid grid-cols-1 gap-2">
+                    {typeGoals.map(goal => (
+                      <Button
+                        key={goal.value}
+                        variant={data.topPriority === goal.value ? 'default' : 'ghost'}
+                        onClick={() => setData(prev => ({ ...prev, topPriority: goal.value }))}
+                        className="w-full justify-start text-left h-auto py-2 text-sm"
+                        size="sm"
+                      >
+                        {data.topPriority === goal.value && <Check className="h-3 w-3 mr-2 flex-shrink-0" />}
+                        {goal.label}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              )
+            })()}
+
+            {/* Final Step: Complete (step 3 for student/recruiter, step 4 for university) */}
+            {currentStep === currentSteps.length - 1 && !(currentStep === 3 && userRole === 'UNIVERSITY') && (
               <div className="text-center space-y-6">
                 <div className="w-20 h-20 bg-primary/10 rounded-full mx-auto flex items-center justify-center">
                   <Check className="h-10 w-10 text-primary" />
@@ -601,8 +1319,51 @@ export default function OnboardingPage() {
                   Profilo Quasi Pronto!
                 </h2>
                 <p className="text-gray-600">
-                  Clicca "Completa" per accedere alla tua dashboard e iniziare a usare InTransparency.
+                  Clicca &ldquo;Completa&rdquo; per accedere alla tua dashboard e iniziare a usare InTransparency.
                 </p>
+              </div>
+            )}
+
+            {currentStep === 4 && userRole === 'UNIVERSITY' && (
+              <div className="space-y-6">
+                <div className="text-center space-y-3">
+                  <div className="w-20 h-20 bg-primary/10 rounded-full mx-auto flex items-center justify-center">
+                    <Check className="h-10 w-10 text-primary" />
+                  </div>
+                  <h2 className="text-2xl font-semibold text-gray-900">
+                    Tutto pronto, {data.institutionName || 'Partner'}!
+                  </h2>
+                  <p className="text-gray-600">
+                    Ecco cosa attiveremo per voi nella dashboard:
+                  </p>
+                </div>
+
+                <div className="space-y-2">
+                  {data.painPoints.length > 0 && data.painPoints.map(pointValue => {
+                    const point = allPainPoints.find(p => p.value === pointValue)
+                    if (!point) return null
+                    return (
+                      <div key={pointValue} className="flex items-start gap-3 bg-emerald-50 border border-emerald-200 rounded-lg p-3">
+                        <Check className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <p className="text-sm text-emerald-800">{point.solution}</p>
+                      </div>
+                    )
+                  })}
+                  {data.painPoints.length === 0 && (
+                    <p className="text-sm text-gray-500 text-center">
+                      Avrete accesso a tutti gli strumenti: analytics, skills gap, placement tracking e molto altro.
+                    </p>
+                  )}
+                </div>
+
+                {data.topPriority && (
+                  <div className="text-center pt-2">
+                    <p className="text-xs text-gray-400">La vostra priorità principale:</p>
+                    <p className="text-sm font-semibold text-primary">
+                      {allGoalOptions.find(g => g.value === data.topPriority)?.label}
+                    </p>
+                  </div>
+                )}
               </div>
             )}
 

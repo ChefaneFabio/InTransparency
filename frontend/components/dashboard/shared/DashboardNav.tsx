@@ -12,19 +12,22 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu'
 import { Menu, X, ChevronDown, ChevronRight, Home, LogOut } from 'lucide-react'
-import { dashboardNavConfig, type DashboardRole, type NavGroup } from '@/lib/dashboard-nav-config'
+import { dashboardNavConfig, getUniversityNavForType, type DashboardRole, type NavGroup } from '@/lib/dashboard-nav-config'
 import NotificationBell from '@/components/notifications/NotificationBell'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 
 interface DashboardNavProps {
   role: DashboardRole
+  institutionType?: string
 }
 
-export function DashboardNav({ role }: DashboardNavProps) {
+export function DashboardNav({ role, institutionType }: DashboardNavProps) {
   const pathname = usePathname()
   const t = useTranslations('dashboardNav')
   const tNav = useTranslations('nav')
-  const config = dashboardNavConfig[role]
+  const config = (role === 'university' || role === 'institution') && institutionType
+    ? getUniversityNavForType(institutionType)
+    : dashboardNavConfig[role]
   const [mobileOpen, setMobileOpen] = useState(false)
   const [expandedGroup, setExpandedGroup] = useState<string | null>(null)
 

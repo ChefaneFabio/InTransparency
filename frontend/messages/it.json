@@ -143,9 +143,25 @@
         "events": "Eventi Carriera",
         "exchangeStudents": "Studenti in Scambio",
         "contractAnalytics": "Analytics Contratti",
-        "generateReport": "Genera Report"
+        "generateReport": "Genera Report",
+        "internshipPipeline": "Pipeline Tirocini",
+        "internshipTracker": "Tracker Ore",
+        "board": "Dashboard CTS",
+        "pctoManager": "Gestione PCTO",
+        "pctoMarketplace": "Opportunità PCTO",
+        "parentalConsent": "Consenso Genitori",
+        "orientation": "Orientamento",
+        "softSkills": "Competenze Trasversali",
+        "certificates": "Certificati",
+        "fastTrack": "Placement Rapido",
+        "priorLearning": "Competenze Pregresse"
       },
-      "exchange": "Scambio"
+      "exchange": "Scambio",
+      "internships": "Tirocini",
+      "pcto": "PCTO",
+      "development": "Sviluppo",
+      "learners": "Allievi",
+      "credentials": "Credenziali"
     },
     "institution": {
       "features": "Funzionalità",

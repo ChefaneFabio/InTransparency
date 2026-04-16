@@ -56,6 +56,7 @@ export async function PUT(req: NextRequest) {
       where: { userId: user.id },
       create: {
         userId: user.id,
+        institutionType: body.institutionType || 'university',
         name: body.name,
         shortName: body.shortName,
         description: body.description,
@@ -79,6 +80,7 @@ export async function PUT(req: NextRequest) {
         requireEmailVerification: body.requireEmailVerification ?? false,
       },
       update: {
+        ...(body.institutionType ? { institutionType: body.institutionType } : {}),
         name: body.name,
         shortName: body.shortName,
         description: body.description,

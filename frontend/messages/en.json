@@ -143,9 +143,25 @@
         "events": "Career Events",
         "exchangeStudents": "Exchange Students",
         "contractAnalytics": "Contract Analytics",
-        "generateReport": "Generate Report"
+        "generateReport": "Generate Report",
+        "internshipPipeline": "Internship Pipeline",
+        "internshipTracker": "Hours Tracker",
+        "board": "Board Dashboard",
+        "pctoManager": "PCTO Manager",
+        "pctoMarketplace": "PCTO Opportunities",
+        "parentalConsent": "Parental Consent",
+        "orientation": "Orientation",
+        "softSkills": "Soft Skills",
+        "certificates": "Certificates",
+        "fastTrack": "Fast Track",
+        "priorLearning": "Prior Learning"
       },
-      "exchange": "Exchange"
+      "exchange": "Exchange",
+      "internships": "Internships",
+      "pcto": "PCTO",
+      "development": "Development",
+      "learners": "Learners",
+      "credentials": "Credentials"
     },
     "institution": {
       "features": "Features",

@@ -82,7 +82,10 @@ const recruiter: NavConfig = {
   ],
 }
 
-const university: NavConfig = {
+// Institution type determines which nav items are visible
+export type InstitutionType = 'university' | 'its' | 'school' | 'other'
+
+const universityBase: NavConfig = {
   groups: [
     {
       labelKey: 'students',
@@ -110,6 +113,107 @@ const university: NavConfig = {
     },
   ],
 }
+
+const itsExtras: NavGroup[] = [
+  {
+    labelKey: 'internships',
+    items: [
+      { labelKey: 'internshipPipeline', href: '/dashboard/university/internship-pipeline' },
+      { labelKey: 'internshipTracker', href: '/dashboard/university/internship-tracker' },
+      { labelKey: 'board', href: '/dashboard/university/board' },
+    ],
+  },
+]
+
+const schoolNav: NavConfig = {
+  groups: [
+    {
+      labelKey: 'students',
+      items: [
+        { labelKey: 'list', href: '/dashboard/university/students' },
+        { labelKey: 'projects', href: '/dashboard/university/projects' },
+      ],
+    },
+    {
+      labelKey: 'pcto',
+      items: [
+        { labelKey: 'pctoManager', href: '/dashboard/university/pcto' },
+        { labelKey: 'pctoMarketplace', href: '/dashboard/university/pcto/marketplace' },
+        { labelKey: 'parentalConsent', href: '/dashboard/university/parental-consent' },
+      ],
+    },
+    {
+      labelKey: 'development',
+      items: [
+        { labelKey: 'orientation', href: '/dashboard/university/orientation' },
+        { labelKey: 'softSkills', href: '/dashboard/university/soft-skills' },
+      ],
+    },
+    {
+      labelKey: 'insights',
+      items: [
+        { labelKey: 'analytics', href: '/dashboard/university/analytics' },
+        { labelKey: 'settings', href: '/dashboard/university/settings' },
+      ],
+    },
+  ],
+}
+
+const otherNav: NavConfig = {
+  groups: [
+    {
+      labelKey: 'learners',
+      items: [
+        { labelKey: 'list', href: '/dashboard/university/students' },
+        { labelKey: 'courses', href: '/dashboard/university/courses' },
+        { labelKey: 'priorLearning', href: '/dashboard/university/prior-learning' },
+      ],
+    },
+    {
+      labelKey: 'credentials',
+      items: [
+        { labelKey: 'certificates', href: '/dashboard/university/certificates' },
+        { labelKey: 'fastTrack', href: '/dashboard/university/fast-track' },
+      ],
+    },
+    {
+      labelKey: 'career',
+      items: [
+        { labelKey: 'placements', href: '/dashboard/university/placements' },
+        { labelKey: 'events', href: '/dashboard/university/events' },
+      ],
+    },
+    {
+      labelKey: 'insights',
+      items: [
+        { labelKey: 'analytics', href: '/dashboard/university/analytics' },
+        { labelKey: 'settings', href: '/dashboard/university/settings' },
+      ],
+    },
+  ],
+}
+
+export const getUniversityNavForType = (institutionType?: string): NavConfig => {
+  switch (institutionType) {
+    case 'its':
+      return {
+        groups: [
+          ...universityBase.groups.slice(0, 2), // students + career
+          ...itsExtras,
+          ...universityBase.groups.slice(2),     // insights
+        ],
+      }
+    case 'school':
+      return schoolNav
+    case 'other':
+      return otherNav
+    default:
+      return universityBase
+  }
+}
+
+// Default university nav (used when institutionType is unknown)
+const university = universityBase
 
 const professor: NavConfig = {
   groups: [

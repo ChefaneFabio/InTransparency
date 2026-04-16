@@ -1916,6 +1916,9 @@ model UniversitySettings {
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  // Institution Type: "university", "its", "school", "other"
+  institutionType String @default("university")
+
   // Profile
   name        String?
   shortName   String?
@@ -2893,4 +2896,264 @@ model AiShortlist {
 
   @@index([recruiterId])
   @@index([createdAt])
+}
+
+// ========================================
+// ITS Academy: Internship Hours Tracking
+// ========================================
+
+model InternshipLog {
+  id           String   @id @default(cuid())
+  studentId    String
+  universityId String   // admin user ID of the ITS/university
+
+  // Company context
+  companyName  String
+  supervisorName  String?
+  supervisorEmail String?
+
+  // Hours tracking
+  date         DateTime
+  hoursWorked  Float
+  activity     String?  @db.Text
+  location     String?  // "on-site", "remote", "mixed"
+
+  // Evaluation
+  supervisorRating  Int?     // 1-5
+  supervisorNotes   String?  @db.Text
+  studentNotes      String?  @db.Text
+
+  // Attendance
+  status       String   @default("PRESENT") // PRESENT, ABSENT, EXCUSED, LATE
+
+  // Verification
+  verified     Boolean  @default(false)
+  verifiedBy   String?
+  verifiedAt   DateTime?
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([studentId])
+  @@index([universityId])
+  @@index([date])
+}
+
+// ITS: Board Share Link (CTS read-only access)
+model BoardShareLink {
+  id              String   @id @default(cuid())
+  universityId    String
+  token           String   @unique @default(cuid())
+  label           String?
+  expiresAt       DateTime
+  accessCount     Int      @default(0)
+  lastAccessedAt  DateTime?
+  createdAt       DateTime @default(now())
+
+  @@index([token])
+  @@index([universityId])
+}
+
+// ========================================
+// Scuola Superiore: PCTO Management
+// ========================================
+
+model PCTOConvention {
+  id              String   @id @default(cuid())
+  universityId    String   // school admin user ID
+  companyName     String
+  companyContact  String?
+  companyEmail    String?
+  companyAddress  String?
+  signedDate      DateTime?
+  expiryDate      DateTime?
+  status          String   @default("DRAFT") // DRAFT, ACTIVE, EXPIRED, REVOKED
+  documentUrl     String?
+
+  activities      PCTOActivity[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([universityId])
+  @@index([status])
+}
+
+model PCTOActivity {
+  id              String   @id @default(cuid())
+  universityId    String
+  title           String
+  description     String?  @db.Text
+  activityType    String   // "stage", "project", "workshop", "simulation", "visit"
+  companyName     String?
+  location        String?
+  startDate       DateTime
+  endDate         DateTime?
+  totalHours      Int
+  maxStudents     Int?
+  status          String   @default("PLANNED") // PLANNED, ACTIVE, COMPLETED, CANCELLED
+
+  conventionId    String?
+  convention      PCTOConvention? @relation(fields: [conventionId], references: [id])
+
+  hours           PCTOHours[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([universityId])
+  @@index([status])
+}
+
+model PCTOHours {
+  id              String   @id @default(cuid())
+  studentId       String
+  activityId      String
+  activity        PCTOActivity @relation(fields: [activityId], references: [id], onDelete: Cascade)
+
+  date            DateTime
+  hours           Float
+  notes           String?
+  status          String   @default("LOGGED") // LOGGED, VERIFIED, REJECTED
+  verifiedBy      String?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([studentId])
+  @@index([activityId])
+}
+
+// PCTO Marketplace: Opportunities from companies
+model PCTOOpportunity {
+  id              String   @id @default(cuid())
+  companyUserId   String
+  companyName     String
+  title           String
+  description     String   @db.Text
+  activityType    String   // "stage", "project", "workshop"
+  location        String?
+  isRemote        Boolean  @default(false)
+  hoursOffered    Int
+  maxStudents     Int      @default(5)
+  requiredSkills  String[] @default([])
+  startDate       DateTime?
+  endDate         DateTime?
+  applicationDeadline DateTime?
+  status          String   @default("OPEN") // OPEN, CLOSED, FILLED
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([status])
+  @@index([activityType])
+}
+
+// Scuola Superiore: Parental Consent for minors
+model ParentalConsent {
+  id              String   @id @default(cuid())
+  studentId       String
+  parentEmail     String
+  parentName      String?
+  consentType     String   // "data_sharing", "pcto_participation", "platform_usage"
+  status          String   @default("PENDING") // PENDING, GRANTED, DENIED, EXPIRED
+  token           String   @unique @default(cuid())
+  requestedAt     DateTime @default(now())
+  respondedAt     DateTime?
+  expiresAt       DateTime
+  ipAddress       String?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([studentId])
+  @@index([token])
+  @@index([status])
+}
+
+// Scuola Superiore: Orientation Assessment
+model OrientationAssessment {
+  id              String   @id @default(cuid())
+  studentId       String
+  universityId    String
+  assessmentType  String   // "interest", "aptitude", "combined"
+  status          String   @default("IN_PROGRESS") // IN_PROGRESS, COMPLETED
+  responses       Json
+  completedAt     DateTime?
+
+  result          OrientationResult?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([studentId])
+  @@index([universityId])
+}
+
+model OrientationResult {
+  id              String   @id @default(cuid())
+  assessmentId    String   @unique
+  assessment      OrientationAssessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+
+  suggestedPaths  Json     // [{type, name, matchScore, reasons}]
+  interestProfile Json     // {area: score}
+  aptitudeProfile Json?
+
+  createdAt       DateTime @default(now())
+}
+
+// ========================================
+// Formazione Professionale: Certificates & Prior Learning
+// ========================================
+
+model DigitalCertificate {
+  id              String   @id @default(cuid())
+  studentId       String
+  universityId    String
+  courseId         String?
+
+  title           String
+  description     String?
+  issueDate       DateTime @default(now())
+  expiryDate      DateTime?
+  credentialId    String   @unique @default(cuid())
+
+  badgeMetadata   Json?
+
+  status          String   @default("ISSUED") // ISSUED, REVOKED, EXPIRED
+  revokedAt       DateTime?
+  revokedReason   String?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([studentId])
+  @@index([universityId])
+  @@index([credentialId])
+}
+
+model PriorLearningAssessment {
+  id              String   @id @default(cuid())
+  studentId       String
+  universityId    String
+
+  experienceType  String   // "work", "self_taught", "informal", "non_formal"
+  description     String   @db.Text
+  yearsExperience Int?
+  evidenceUrls    String[] @default([])
+
+  recognizedSkills Json?   // [{skill, level, evidence}]
+  creditEquivalent Int?
+
+  status          String   @default("SUBMITTED") // SUBMITTED, UNDER_REVIEW, APPROVED, REJECTED
+  reviewerNotes   String?  @db.Text
+  reviewedBy      String?
+  reviewedAt      DateTime?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([studentId])
+  @@index([universityId])
+  @@index([status])
 }
