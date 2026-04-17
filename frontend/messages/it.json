@@ -160,7 +160,8 @@
         "priorLearning": "Competenze Pregresse",
         "documents": "Documenti",
         "scorecard": "Pagella",
-        "employerCRM": "CRM Aziende"
+        "employerCRM": "CRM Aziende",
+        "stages": "Stage e Tirocini"
       },
       "exchange": "Scambio",
       "internships": "Tirocini",
@@ -10524,6 +10525,55 @@
       "confidentialHint": "I documenti riservati sono visibili solo agli amministratori del team.",
       "submit": "Carica Documento",
       "uploading": "Caricamento..."
+    }
+  },
+  "universityStages": {
+    "title": "Stage e Tirocini",
+    "subtitle": "Monitora le esperienze di tirocinio, le valutazioni dei tutor aziendali e le competenze verificate.",
+    "addStage": "Registra Stage",
+    "searchPlaceholder": "Cerca per studente, azienda o ruolo...",
+    "filterStatus": "Stato",
+    "filterType": "Tipo",
+    "all": "Tutti",
+    "supervisor": "Tutor",
+    "verified": "Verificato",
+    "wouldHire": "Assumerebbe",
+    "noStages": "Nessuna esperienza di stage registrata",
+    "noStagesHint": "Registra le esperienze di tirocinio dei tuoi studenti. Monitora le ore, raccogli le valutazioni dei tutor e verifica le competenze sviluppate.",
+    "stats": {
+      "active": "Stage Attivi",
+      "completed": "Completati",
+      "avgRating": "Valutazione Media Tutor",
+      "wouldHire": "Tasso Assunzione",
+      "totalHours": "Ore totali registrate",
+      "hostCompanies": "Aziende ospitanti",
+      "totalStages": "Esperienze totali"
+    },
+    "status": {
+      "PENDING": "In attesa",
+      "ACTIVE": "Attivo",
+      "COMPLETED": "Completato",
+      "EVALUATED": "Valutato",
+      "VERIFIED": "Verificato",
+      "CANCELLED": "Annullato"
+    },
+    "form": {
+      "title": "Registra Nuovo Stage",
+      "studentId": "ID Studente",
+      "studentIdPlaceholder": "ID utente dello studente",
+      "company": "Azienda",
+      "role": "Ruolo",
+      "rolePlaceholder": "es. Junior Developer",
+      "type": "Tipo Stage",
+      "startDate": "Data Inizio",
+      "targetHours": "Ore Obiettivo",
+      "supervisor": "Nome Tutor",
+      "supervisorPlaceholder": "Nome tutor aziendale",
+      "supervisorEmail": "Email Tutor",
+      "submit": "Registra Stage",
+      "adding": "Registrazione...",
+      "required": "Studente, azienda, ruolo e data inizio sono obbligatori.",
+      "error": "Registrazione fallita."
     }
   },
   "employerCRM": {

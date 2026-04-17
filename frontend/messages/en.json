@@ -160,7 +160,8 @@
         "priorLearning": "Prior Learning",
         "documents": "Documents",
         "scorecard": "Scorecard",
-        "employerCRM": "Employer CRM"
+        "employerCRM": "Employer CRM",
+        "stages": "Stage & Tirocini"
       },
       "exchange": "Exchange",
       "internships": "Internships",
@@ -10497,6 +10498,55 @@
       "confidentialHint": "Confidential documents are visible only to team admins.",
       "submit": "Upload Document",
       "uploading": "Uploading..."
+    }
+  },
+  "universityStages": {
+    "title": "Stage & Tirocini",
+    "subtitle": "Track internship experiences, supervisor evaluations, and verified competencies.",
+    "addStage": "Register Stage",
+    "searchPlaceholder": "Search by student, company, or role...",
+    "filterStatus": "Status",
+    "filterType": "Type",
+    "all": "All",
+    "supervisor": "Supervisor",
+    "verified": "Verified",
+    "wouldHire": "Would hire",
+    "noStages": "No stage experiences registered",
+    "noStagesHint": "Register internship experiences for your students. Track hours, collect supervisor evaluations, and verify competencies developed.",
+    "stats": {
+      "active": "Active Stages",
+      "completed": "Completed",
+      "avgRating": "Avg. Supervisor Rating",
+      "wouldHire": "Would Hire Rate",
+      "totalHours": "Total hours logged",
+      "hostCompanies": "Host companies",
+      "totalStages": "Total experiences"
+    },
+    "status": {
+      "PENDING": "Pending",
+      "ACTIVE": "Active",
+      "COMPLETED": "Completed",
+      "EVALUATED": "Evaluated",
+      "VERIFIED": "Verified",
+      "CANCELLED": "Cancelled"
+    },
+    "form": {
+      "title": "Register New Stage",
+      "studentId": "Student ID",
+      "studentIdPlaceholder": "Student user ID",
+      "company": "Company",
+      "role": "Role",
+      "rolePlaceholder": "e.g. Junior Developer",
+      "type": "Stage Type",
+      "startDate": "Start Date",
+      "targetHours": "Target Hours",
+      "supervisor": "Supervisor Name",
+      "supervisorPlaceholder": "Company tutor name",
+      "supervisorEmail": "Supervisor Email",
+      "submit": "Register Stage",
+      "adding": "Registering...",
+      "required": "Student, company, role, and start date are required.",
+      "error": "Failed to register stage."
     }
   },
   "employerCRM": {

@@ -354,6 +354,8 @@ model User {
   universityDocuments  UniversityDocument[] @relation("UniversityDocuments")
   // Company Documents
   companyDocuments     CompanyDocument[]    @relation("CompanyDocuments")
+  // Stage & Tirocini
+  stageExperiences     StageExperience[]   @relation("StudentStages")
 
   @@index([email])
   @@index([username])
@@ -2942,6 +2944,78 @@ model InternshipLog {
   @@index([studentId])
   @@index([universityId])
   @@index([date])
+}
+
+// ─── Stage & Tirocini (Internship Experiences) ──────────────────
+model StageExperience {
+  id             String   @id @default(cuid())
+  studentId      String
+  student        User     @relation("StudentStages", fields: [studentId], references: [id], onDelete: Cascade)
+  universityName String
+
+  // Company & Role
+  companyName      String
+  companyIndustry  String?
+  role             String          // "Frontend Developer Intern", "Marketing Analyst"
+  department       String?
+  supervisorName   String?
+  supervisorEmail  String?
+
+  // Duration
+  startDate        DateTime
+  endDate          DateTime?
+  targetHours      Int?           // e.g. 200, 400, 500
+  completedHours   Int            @default(0)
+  stageType        StageType      @default(CURRICULARE)
+
+  // Status
+  status           StageStatus    @default(ACTIVE)
+
+  // Student self-assessment
+  studentDescription  String?     @db.Text  // What they did
+  studentSkills       String[]    @default([]) // Skills they say they developed
+  studentRating       Int?        // 1-5 self rating
+  studentHighlight    String?     @db.Text  // Key achievement
+
+  // Supervisor evaluation
+  supervisorCompleted   Boolean   @default(false)
+  supervisorRating      Int?      // 1-5 overall
+  supervisorCompetencies Json?    // [{skill, rating, notes}]
+  supervisorStrengths   String?   @db.Text
+  supervisorImprovements String?  @db.Text
+  supervisorWouldHire   Boolean?  // "Would you hire this student?"
+  supervisorEvalDate    DateTime?
+
+  // University verification
+  verified           Boolean   @default(false)
+  verifiedBy         String?
+  verifiedAt         DateTime?
+  verifiedSkills     String[]  @default([]) // Skills confirmed by university
+
+  // Timestamps
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@index([studentId])
+  @@index([universityName])
+  @@index([companyName])
+  @@index([status])
+}
+
+enum StageType {
+  CURRICULARE       // Part of degree program (CFU credits)
+  EXTRACURRICULARE  // Voluntary, no credits
+  APPRENDISTATO     // Apprenticeship contract
+  TIROCINIO_POST    // Post-graduation internship
+}
+
+enum StageStatus {
+  PENDING     // Waiting to start
+  ACTIVE      // Currently ongoing
+  COMPLETED   // Finished, awaiting evaluation
+  EVALUATED   // Supervisor evaluation received
+  VERIFIED    // University verified
+  CANCELLED
 }
 
 // ITS: Board Share Link (CTS read-only access)
