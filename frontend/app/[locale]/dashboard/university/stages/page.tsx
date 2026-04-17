@@ -305,7 +305,8 @@ export default function StagesPage() {
 
             return (
               <motion.div key={stage.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.03 }}>
-                <Card className="hover:shadow-md transition-shadow">
+                <Link href={`/dashboard/university/stages/${stage.id}`}>
+                <Card className="hover:shadow-md transition-shadow cursor-pointer">
                   <CardContent className="pt-5 pb-5">
                     <div className="flex items-start gap-4">
                       <Avatar className="h-12 w-12">
@@ -373,6 +374,7 @@ export default function StagesPage() {
                     </div>
                   </CardContent>
                 </Card>
+                </Link>
               </motion.div>
             )
           })}

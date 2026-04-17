@@ -10527,6 +10527,61 @@
       "uploading": "Caricamento..."
     }
   },
+  "stageDetail": {
+    "notFound": "Stage non trovato",
+    "back": "Torna agli Stage",
+    "addCheckIn": "Registra Check-in",
+    "weeklyChart": "Ore Settimanali",
+    "timeline": "Timeline Attivit\u00e0",
+    "noCheckIns": "Nessun check-in registrato. Inizia a monitorare questo tirocinio.",
+    "supervisorNote": "Tutor",
+    "supervisorEval": "Valutazione Tutor Aziendale",
+    "overallRating": "Valutazione complessiva",
+    "strengths": "Punti di forza",
+    "improvements": "Aree di miglioramento",
+    "wouldHireYes": "Assumerebbe questo studente",
+    "wouldHireNo": "Non assumerebbe al momento",
+    "evalPending": "Valutazione del tutor non ancora ricevuta.",
+    "studentAssessment": "Autovalutazione Studente",
+    "selfRating": "Autovalutazione",
+    "verifiedSkills": "Competenze Verificate",
+    "progress": {
+      "hours": "Progresso Ore",
+      "complete": "completato",
+      "attendance": "Tasso Presenza",
+      "present": "presenze",
+      "total": "check-in",
+      "checkIns": "Check-in Registrati",
+      "logged": "registrazioni totali",
+      "supervisorRating": "Valutazione Tutor",
+      "pending": "Non ancora valutato"
+    },
+    "alerts": {
+      "behindOnHours": "In ritardo sulle ore: {completed}h completate vs {expected}h previste a questo punto.",
+      "noRecentCheckIn": "Nessun check-in negli ultimi {days} giorni. Contattare lo studente.",
+      "nearCompletion": "Quasi completato: {percent}% delle ore obiettivo raggiunte.",
+      "midtermEvalDue": "Superata la met\u00e0 del percorso. Considerare di richiedere una valutazione intermedia al tutor."
+    },
+    "checkInForm": {
+      "title": "Registra Check-in",
+      "date": "Data",
+      "hours": "Ore Lavorate",
+      "activity": "Descrizione Attivit\u00e0",
+      "activityPlaceholder": "Cosa \u00e8 stato fatto durante questa sessione...",
+      "location": "Sede",
+      "onSite": "In sede",
+      "remote": "Da remoto",
+      "mixed": "Misto",
+      "attendance": "Presenza",
+      "present": "Presente",
+      "late": "In ritardo",
+      "absent": "Assente",
+      "excused": "Giustificato",
+      "notes": "Note Studente",
+      "notesPlaceholder": "Riflessioni o osservazioni opzionali...",
+      "submit": "Registra Check-in"
+    }
+  },
   "universityStages": {
     "title": "Stage e Tirocini",
     "subtitle": "Monitora le esperienze di tirocinio, le valutazioni dei tutor aziendali e le competenze verificate.",

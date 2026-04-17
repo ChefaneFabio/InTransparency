@@ -2913,6 +2913,7 @@ model InternshipLog {
   id           String   @id @default(cuid())
   studentId    String
   universityId String   // admin user ID of the ITS/university
+  stageId      String?  // Link to StageExperience (optional for backward compat)
 
   // Company context
   companyName  String
@@ -2933,6 +2934,9 @@ model InternshipLog {
   // Attendance
   status       String   @default("PRESENT") // PRESENT, ABSENT, EXCUSED, LATE
 
+  // Check-in type
+  checkInType  String   @default("DAILY") // DAILY, WEEKLY, MIDTERM, FINAL
+
   // Verification
   verified     Boolean  @default(false)
   verifiedBy   String?
@@ -2943,6 +2947,7 @@ model InternshipLog {
 
   @@index([studentId])
   @@index([universityId])
+  @@index([stageId])
   @@index([date])
 }
 

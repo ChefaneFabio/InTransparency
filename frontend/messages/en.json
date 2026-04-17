@@ -10500,6 +10500,61 @@
       "uploading": "Uploading..."
     }
   },
+  "stageDetail": {
+    "notFound": "Stage not found",
+    "back": "Back to Stages",
+    "addCheckIn": "Log Check-in",
+    "weeklyChart": "Weekly Hours",
+    "timeline": "Activity Timeline",
+    "noCheckIns": "No check-ins logged yet. Start tracking this internship.",
+    "supervisorNote": "Supervisor",
+    "supervisorEval": "Supervisor Evaluation",
+    "overallRating": "Overall rating",
+    "strengths": "Strengths",
+    "improvements": "Areas for improvement",
+    "wouldHireYes": "Would hire this student",
+    "wouldHireNo": "Would not hire at this time",
+    "evalPending": "Supervisor evaluation not yet submitted.",
+    "studentAssessment": "Student Self-Assessment",
+    "selfRating": "Self rating",
+    "verifiedSkills": "Verified Competencies",
+    "progress": {
+      "hours": "Hours Progress",
+      "complete": "complete",
+      "attendance": "Attendance Rate",
+      "present": "present",
+      "total": "check-ins",
+      "checkIns": "Check-ins Logged",
+      "logged": "total entries",
+      "supervisorRating": "Supervisor Rating",
+      "pending": "Not yet evaluated"
+    },
+    "alerts": {
+      "behindOnHours": "Behind on hours: {completed}h completed vs {expected}h expected at this point.",
+      "noRecentCheckIn": "No check-in logged in the last {days} days. Follow up with student.",
+      "nearCompletion": "Almost done: {percent}% of target hours completed.",
+      "midtermEvalDue": "Past the halfway point. Consider requesting a midterm supervisor evaluation."
+    },
+    "checkInForm": {
+      "title": "Log Check-in",
+      "date": "Date",
+      "hours": "Hours Worked",
+      "activity": "Activity Description",
+      "activityPlaceholder": "What was done during this session...",
+      "location": "Location",
+      "onSite": "On-site",
+      "remote": "Remote",
+      "mixed": "Mixed",
+      "attendance": "Attendance",
+      "present": "Present",
+      "late": "Late",
+      "absent": "Absent",
+      "excused": "Excused",
+      "notes": "Student Notes",
+      "notesPlaceholder": "Optional reflections or observations...",
+      "submit": "Log Check-in"
+    }
+  },
   "universityStages": {
     "title": "Stage & Tirocini",
     "subtitle": "Track internship experiences, supervisor evaluations, and verified competencies.",
