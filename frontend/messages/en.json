@@ -8094,7 +8094,15 @@
         "openToHiring": "Open to Hiring",
         "openToProjects": "Open to Projects",
         "clear": "Clear",
-        "clearFilters": "Clear Filters"
+        "clearFilters": "Clear Filters",
+        "skills": "Skills",
+        "skillsPlaceholder": "Python, React, SQL...",
+        "location": "Location",
+        "locationPlaceholder": "Milano, Bergamo...",
+        "gradYear": "Graduation Year",
+        "anyYear": "Any Year",
+        "verified": "Verification",
+        "verifiedOnly": "Verified only"
       },
       "disciplines": {
         "allDisciplines": "All Disciplines",

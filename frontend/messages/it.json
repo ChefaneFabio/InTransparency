@@ -8055,7 +8055,15 @@
         "openToHiring": "Disponibile per assunzione",
         "openToProjects": "Disponibile per progetti",
         "clear": "Cancella",
-        "clearFilters": "Cancella Filtri"
+        "clearFilters": "Cancella Filtri",
+        "skills": "Competenze",
+        "skillsPlaceholder": "Python, React, SQL...",
+        "location": "Sede",
+        "locationPlaceholder": "Milano, Bergamo...",
+        "gradYear": "Anno di Laurea",
+        "anyYear": "Tutti gli Anni",
+        "verified": "Verifica",
+        "verifiedOnly": "Solo verificati"
       },
       "disciplines": {
         "allDisciplines": "Tutte le Discipline",

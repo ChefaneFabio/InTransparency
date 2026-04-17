@@ -88,16 +88,27 @@ export default function CandidatesPage() {
   const [universityFilter, setUniversityFilter] = useState('all')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [engagementFilter, setEngagementFilter] = useState('all')
+  const [skillsFilter, setSkillsFilter] = useState('')
+  const [locationFilter, setLocationFilter] = useState('')
+  const [gradYearFilter, setGradYearFilter] = useState('all')
+  const [verifiedOnly, setVerifiedOnly] = useState(false)
+  const [showAdvanced, setShowAdvanced] = useState(false)
   const [bookmarked, setBookmarked] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     fetchCandidates()
-  }, [])
+  }, [searchQuery, skillsFilter, locationFilter, gradYearFilter, universityFilter])
 
   const fetchCandidates = async () => {
     try {
       setLoading(true)
-      const response = await fetch('/api/dashboard/recruiter/search/students?limit=100')
+      const params = new URLSearchParams({ limit: '100' })
+      if (searchQuery) params.set('search', searchQuery)
+      if (skillsFilter) params.set('skills', skillsFilter)
+      if (locationFilter) params.set('location', locationFilter)
+      if (gradYearFilter !== 'all') params.set('graduationYear', gradYearFilter)
+      if (universityFilter !== 'all') params.set('university', universityFilter)
+      const response = await fetch(`/api/dashboard/recruiter/search/students?${params}`)
       if (response.ok) {
         const data = await response.json()
         const students = data.students || []
@@ -158,6 +169,9 @@ export default function CandidatesPage() {
       if (engagementFilter === 'PROJECTS' && avail !== 'PROJECTS' && avail !== 'BOTH') return false
     }
 
+    // Verified only
+    if (verifiedOnly && !candidate.projects.some(p => p.universityVerified)) return false
+
     return true
   })
 
@@ -189,7 +203,21 @@ export default function CandidatesPage() {
     setDisciplineFilter('all')
     setUniversityFilter('all')
     setEngagementFilter('all')
+    setSkillsFilter('')
+    setLocationFilter('')
+    setGradYearFilter('all')
+    setVerifiedOnly(false)
   }
+
+  const activeFilterCount = [
+    disciplineFilter !== 'all',
+    universityFilter !== 'all',
+    engagementFilter !== 'all',
+    skillsFilter !== '',
+    locationFilter !== '',
+    gradYearFilter !== 'all',
+    verifiedOnly,
+  ].filter(Boolean).length
 
   const handleExportCsv = () => {
     const dataToExport = filteredCandidates.map((c) => ({
@@ -377,6 +405,16 @@ export default function CandidatesPage() {
               </SelectContent>
             </Select>
 
+            <Button
+              variant={showAdvanced ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setShowAdvanced(!showAdvanced)}
+              className="gap-1"
+            >
+              <Filter className="h-4 w-4" />
+              {activeFilterCount > 0 && <Badge variant="secondary" className="h-5 w-5 p-0 flex items-center justify-center text-[10px]">{activeFilterCount}</Badge>}
+            </Button>
+
             <div className="flex items-center gap-2">
               <Button
                 variant={viewMode === 'grid' ? 'default' : 'outline'}
@@ -394,13 +432,59 @@ export default function CandidatesPage() {
               </Button>
             </div>
 
-            {(searchQuery || disciplineFilter !== 'all' || universityFilter !== 'all') && (
+            {activeFilterCount > 0 && (
               <Button variant="outline" onClick={clearFilters}>
                 <Filter className="h-4 w-4 mr-2" />
                 {t('filters.clear')}
               </Button>
             )}
           </div>
+
+          {/* Advanced filters */}
+          {showAdvanced && (
+            <div className="border-t pt-4 mt-4 grid gap-4 grid-cols-2 md:grid-cols-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-medium text-muted-foreground">{t('filters.skills')}</label>
+                <Input
+                  placeholder={t('filters.skillsPlaceholder')}
+                  value={skillsFilter}
+                  onChange={(e) => setSkillsFilter(e.target.value)}
+                  className="h-9 text-sm"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-xs font-medium text-muted-foreground">{t('filters.location')}</label>
+                <Input
+                  placeholder={t('filters.locationPlaceholder')}
+                  value={locationFilter}
+                  onChange={(e) => setLocationFilter(e.target.value)}
+                  className="h-9 text-sm"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-xs font-medium text-muted-foreground">{t('filters.gradYear')}</label>
+                <Select value={gradYearFilter} onValueChange={setGradYearFilter}>
+                  <SelectTrigger className="h-9 text-sm"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">{t('filters.anyYear')}</SelectItem>
+                    {['2024', '2025', '2026', '2027', '2028'].map(y => <SelectItem key={y} value={y}>{y}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-xs font-medium text-muted-foreground">{t('filters.verified')}</label>
+                <Button
+                  variant={verifiedOnly ? 'default' : 'outline'}
+                  size="sm"
+                  className="w-full h-9 text-sm"
+                  onClick={() => setVerifiedOnly(!verifiedOnly)}
+                >
+                  <CheckCircle className="h-3.5 w-3.5 mr-1.5" />
+                  {t('filters.verifiedOnly')}
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       </GlassCard>
 
