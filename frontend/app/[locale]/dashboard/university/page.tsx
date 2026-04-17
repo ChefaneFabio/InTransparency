@@ -16,6 +16,7 @@ import {
 import { signOut } from 'next-auth/react'
 import { useLocale, useTranslations } from 'next-intl'
 import PlacementProbabilityBadge from '@/components/predictions/PlacementProbabilityBadge'
+import { useInstitution } from '@/lib/institution-context'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { DonutChart } from '@/components/dashboard/shared/DonutChart'
 // MiniChart available for future use with real trend data
@@ -65,6 +66,7 @@ export default function UniversityDashboard() {
   const locale = useLocale()
   const t = useTranslations('universityDashboard.main')
   const ts = useTranslations('shared')
+  const inst = useInstitution()
   const user = session?.user
   const [loading, setLoading] = useState(true)
   const [stats, setStats] = useState<UniversityStats>({
@@ -150,8 +152,8 @@ export default function UniversityDashboard() {
               </>
             ) : (
               <>
-                <h1 className="text-2xl md:text-3xl font-bold text-foreground">{t('title')}</h1>
-                <p className="text-sm text-muted-foreground mt-1 mb-4">{t('subtitle')}</p>
+                <h1 className="text-2xl md:text-3xl font-bold text-foreground">{inst.heroTitle}</h1>
+                <p className="text-sm text-muted-foreground mt-1 mb-4">{inst.heroSubtitle}</p>
               </>
             )}
             <div className="flex gap-3">

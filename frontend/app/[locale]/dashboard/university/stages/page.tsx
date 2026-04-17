@@ -21,6 +21,7 @@ import {
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { StatCard } from '@/components/dashboard/shared/StatCard'
+import { useInstitution } from '@/lib/institution-context'
 
 interface Stage {
   id: string
@@ -80,6 +81,7 @@ const typeLabels: Record<string, string> = {
 
 export default function StagesPage() {
   const t = useTranslations('universityStages')
+  const inst = useInstitution()
   const [stages, setStages] = useState<Stage[]>([])
   const [stats, setStats] = useState<Stats | null>(null)
   const [loading, setLoading] = useState(true)
@@ -149,8 +151,8 @@ export default function StagesPage() {
       <MetricHero gradient="dark">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight text-white">{t('title')}</h1>
-            <p className="text-white/60 mt-1">{t('subtitle')}</p>
+            <h1 className="text-3xl font-bold tracking-tight text-white">{inst.stageLabel}</h1>
+            <p className="text-white/60 mt-1">{inst.type === 'school' ? 'Gestisci i PCTO dei tuoi studenti, monitora le ore e raccogli le valutazioni.' : inst.type === 'its' ? 'Traccia gli stage obbligatori, le ore in azienda e le valutazioni dei tutor.' : t('subtitle')}</p>
           </div>
           <Dialog open={addOpen} onOpenChange={setAddOpen}>
             <DialogTrigger asChild>

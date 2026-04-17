@@ -15,6 +15,7 @@ import {
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { StatCard } from '@/components/dashboard/shared/StatCard'
+import { useInstitution } from '@/lib/institution-context'
 
 interface Company {
   name: string
@@ -47,6 +48,7 @@ const stageConfig: Record<string, { label: string; color: string; bg: string; ic
 
 export default function EmployerCRMPage() {
   const t = useTranslations('employerCRM')
+  const inst = useInstitution()
   const [companies, setCompanies] = useState<Company[]>([])
   const [pipeline, setPipeline] = useState<Pipeline>({ prospect: 0, engaged: 0, partner: 0, inactive: 0 })
   const [total, setTotal] = useState(0)
@@ -93,8 +95,8 @@ export default function EmployerCRMPage() {
     <div className="min-h-screen space-y-6">
       <MetricHero gradient="dark">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-white">{t('title')}</h1>
-          <p className="text-white/60 mt-1">{t('subtitle')}</p>
+          <h1 className="text-3xl font-bold tracking-tight text-white">{inst.crmTitle}</h1>
+          <p className="text-white/60 mt-1">{inst.crmSubtitle}</p>
         </div>
       </MetricHero>
 

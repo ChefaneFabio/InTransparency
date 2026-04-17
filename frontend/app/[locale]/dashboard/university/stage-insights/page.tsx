@@ -13,6 +13,7 @@ import {
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { StatCard } from '@/components/dashboard/shared/StatCard'
+import { useInstitution } from '@/lib/institution-context'
 
 interface Insights {
   totalEntries: number
@@ -34,6 +35,7 @@ const BAR_COLORS = ['bg-primary', 'bg-primary/80', 'bg-primary/60', 'bg-primary/
 
 export default function StageInsightsPage() {
   const t = useTranslations('stageInsights')
+  const inst = useInstitution()
   const [insights, setInsights] = useState<Insights | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -62,7 +64,7 @@ export default function StageInsightsPage() {
   if (!insights) return (
     <div className="min-h-screen space-y-6">
       <MetricHero gradient="dark">
-        <div><h1 className="text-3xl font-bold tracking-tight text-white">{t('title')}</h1><p className="text-white/60 mt-1">{t('subtitle')}</p></div>
+        <div><h1 className="text-3xl font-bold tracking-tight text-white">{inst.insightsTitle}</h1><p className="text-white/60 mt-1">{inst.insightsSubtitle}</p></div>
       </MetricHero>
       <GlassCard delay={0.1}>
         <div className="p-12 text-center">
@@ -82,8 +84,8 @@ export default function StageInsightsPage() {
     <div className="min-h-screen space-y-6">
       <MetricHero gradient="dark">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-white">{t('title')}</h1>
-          <p className="text-white/60 mt-1">{t('subtitle')}</p>
+          <h1 className="text-3xl font-bold tracking-tight text-white">{inst.insightsTitle}</h1>
+          <p className="text-white/60 mt-1">{inst.insightsSubtitle}</p>
         </div>
       </MetricHero>
 

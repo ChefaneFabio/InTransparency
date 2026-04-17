@@ -2,6 +2,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { DashboardNav } from '@/components/dashboard/shared/DashboardNav'
+import { InstitutionProvider } from '@/lib/institution-context'
 
 export default async function UniversityDashboardLayout({
   children,
@@ -28,7 +29,9 @@ export default async function UniversityDashboardLayout({
   return (
     <div className="segment-university">
       <DashboardNav role="university" institutionType={institutionType} />
-      {children}
+      <InstitutionProvider type={institutionType}>
+        {children}
+      </InstitutionProvider>
     </div>
   )
 }

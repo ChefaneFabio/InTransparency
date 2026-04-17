@@ -16,6 +16,7 @@ import {
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
 import { DonutChart } from '@/components/dashboard/shared/DonutChart'
+import { useInstitution } from '@/lib/institution-context'
 
 interface Dimension {
   key: string
@@ -85,6 +86,7 @@ export default function ScorecardPage() {
   const [data, setData] = useState<ScorecardData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const inst = useInstitution()
 
   const fetchScorecard = useCallback(async () => {
     setLoading(true)
@@ -154,7 +156,7 @@ export default function ScorecardPage() {
               transition={{ delay: 0.3 }}
               className="text-3xl font-bold tracking-tight text-white"
             >
-              {t('title')}
+              {inst.scoreLabel}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0 }}
@@ -162,7 +164,7 @@ export default function ScorecardPage() {
               transition={{ delay: 0.4 }}
               className="text-white/60 mt-1 max-w-lg"
             >
-              {t('subtitle')}
+              {inst.type === 'its' ? `Valutazione delle performance per il monitoraggio ${inst.complianceBody}.` : inst.type === 'school' ? `Stato di salute della scuola per il reporting ${inst.complianceBody}.` : t('subtitle')}
             </motion.p>
             <motion.div
               initial={{ opacity: 0 }}
