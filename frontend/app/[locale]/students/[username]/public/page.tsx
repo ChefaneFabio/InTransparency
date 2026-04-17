@@ -11,8 +11,9 @@ interface PageProps {
 
 async function getPublicPortfolio(username: string) {
   try {
-    const user = await prisma.user.findUnique({
-      where: { username },
+    // Try username first, then fall back to ID
+    const user = await prisma.user.findFirst({
+      where: { OR: [{ username }, { id: username }] },
       select: {
         id: true,
         username: true,
