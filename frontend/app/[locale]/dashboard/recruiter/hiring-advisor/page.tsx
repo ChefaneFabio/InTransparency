@@ -13,7 +13,7 @@ import {
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
-import ReactMarkdown from 'react-markdown'
+import { SimpleMarkdown } from '@/components/ui/simple-markdown'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -174,7 +174,7 @@ export default function HiringAdvisorPage() {
                     }`}>
                       {msg.role === 'assistant' ? (
                         <div className="prose prose-sm dark:prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_h2]:text-base [&_h2]:font-bold [&_h2]:mt-4 [&_h2]:mb-2 [&_h3]:text-sm [&_h3]:font-semibold [&_ul]:my-2 [&_li]:my-0.5">
-                          <ReactMarkdown>{msg.content}</ReactMarkdown>
+                          <SimpleMarkdown content={msg.content} />
                         </div>
                       ) : (
                         <p className="text-sm whitespace-pre-wrap leading-relaxed">{msg.content}</p>

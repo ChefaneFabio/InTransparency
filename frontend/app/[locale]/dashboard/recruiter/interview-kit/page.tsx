@@ -16,7 +16,7 @@ import {
 } from 'lucide-react'
 import { GlassCard } from '@/components/dashboard/shared/GlassCard'
 import { MetricHero } from '@/components/dashboard/shared/MetricHero'
-import ReactMarkdown from 'react-markdown'
+import { SimpleMarkdown } from '@/components/ui/simple-markdown'
 
 interface Job {
   id: string
@@ -258,7 +258,7 @@ export default function InterviewKitPage() {
                   </Button>
                 </div>
                 <div className="prose prose-sm dark:prose-invert max-w-none bg-white/60 dark:bg-slate-800/60 rounded-2xl p-6 border [&_h2]:text-lg [&_h2]:font-bold [&_h2]:border-b [&_h2]:pb-2 [&_h2]:mt-8 [&_h2]:mb-4 [&_h2:first-child]:mt-0 [&_h3]:text-base [&_h3]:font-semibold [&_ol]:my-3 [&_ul]:my-3 [&_li]:my-1 [&_strong]:text-foreground">
-                  <ReactMarkdown>{kit}</ReactMarkdown>
+                  <SimpleMarkdown content={kit} />
                 </div>
               </div>
             </GlassCard>
