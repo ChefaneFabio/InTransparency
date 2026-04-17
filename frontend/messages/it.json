@@ -163,7 +163,8 @@
         "scorecard": "Pagella",
         "employerCRM": "CRM Aziende",
         "stages": "Stage e Tirocini",
-        "stageInsights": "Insight Tirocini"
+        "stageInsights": "Insight Tirocini",
+        "communications": "Comunicazioni"
       },
       "exchange": "Scambio",
       "internships": "Tirocini",
@@ -10559,6 +10560,40 @@
       "confidentialHint": "I documenti riservati sono visibili solo agli amministratori del team.",
       "submit": "Carica Documento",
       "uploading": "Caricamento..."
+    }
+  },
+  "universityCommunications": {
+    "title": "Centro Comunicazioni",
+    "subtitle": "Invia messaggi mirati ai tuoi studenti e alle aziende partner.",
+    "verifiedStudents": "Studenti Verificati",
+    "tabs": { "compose": "Componi", "history": "Messaggi Inviati" },
+    "sendTo": "Invia a",
+    "filterDegree": "Filtra per corso",
+    "filterYear": "Filtra per anno di laurea",
+    "allDegrees": "Tutti i corsi",
+    "allYears": "Tutti gli anni",
+    "subject": "Oggetto",
+    "subjectPlaceholder": "es. Career Day Primavera 2026 \u2014 Iscrizioni Aperte",
+    "message": "Messaggio",
+    "messagePlaceholder": "Scrivi il tuo messaggio qui...",
+    "send": "Invia a {count} destinatari",
+    "sending": "Invio in corso...",
+    "sendError": "Invio fallito. Riprova.",
+    "sendSuccess": "Inviato a {sent} di {total} destinatari.",
+    "audiencePreview": "Anteprima Destinatari",
+    "recipients": "destinatari riceveranno questo messaggio",
+    "byDegree": "Per corso",
+    "companiesReached": "Aziende raggiunte",
+    "more": "altre",
+    "historyTitle": "Cronologia Messaggi",
+    "noHistory": "Nessun messaggio inviato.",
+    "read": "Letto",
+    "unread": "Non letto",
+    "tips": {
+      "title": "Suggerimenti",
+      "tip1": "Filtra per corso e anno per raggiungere coorti specifiche.",
+      "tip2": "I messaggi alle aziende raggiungono i recruiter che hanno visualizzato i tuoi studenti.",
+      "tip3": "I messaggi vengono consegnati come notifiche nella piattaforma."
     }
   },
   "stageInsights": {

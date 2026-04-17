@@ -163,7 +163,8 @@
         "scorecard": "Scorecard",
         "employerCRM": "Employer CRM",
         "stages": "Stage & Tirocini",
-        "stageInsights": "Internship Insights"
+        "stageInsights": "Internship Insights",
+        "communications": "Communications"
       },
       "exchange": "Exchange",
       "internships": "Internships",
@@ -10532,6 +10533,40 @@
       "confidentialHint": "Confidential documents are visible only to team admins.",
       "submit": "Upload Document",
       "uploading": "Uploading..."
+    }
+  },
+  "universityCommunications": {
+    "title": "Communications Hub",
+    "subtitle": "Send targeted messages to your students and employer partners.",
+    "verifiedStudents": "Verified Students",
+    "tabs": { "compose": "Compose", "history": "Sent Messages" },
+    "sendTo": "Send to",
+    "filterDegree": "Filter by degree",
+    "filterYear": "Filter by graduation year",
+    "allDegrees": "All degrees",
+    "allYears": "All years",
+    "subject": "Subject",
+    "subjectPlaceholder": "e.g. Career Day Spring 2026 — Registration Open",
+    "message": "Message",
+    "messagePlaceholder": "Write your message here...",
+    "send": "Send to {count} recipients",
+    "sending": "Sending...",
+    "sendError": "Failed to send messages. Try again.",
+    "sendSuccess": "Sent to {sent} of {total} recipients.",
+    "audiencePreview": "Audience Preview",
+    "recipients": "recipients will receive this message",
+    "byDegree": "By degree",
+    "companiesReached": "Companies reached",
+    "more": "more",
+    "historyTitle": "Message History",
+    "noHistory": "No messages sent yet.",
+    "read": "Read",
+    "unread": "Unread",
+    "tips": {
+      "title": "Tips",
+      "tip1": "Filter by degree and year to target specific cohorts.",
+      "tip2": "Company messages reach recruiters who have viewed your students.",
+      "tip3": "Messages are delivered as in-platform notifications."
     }
   },
   "stageInsights": {

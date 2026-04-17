@@ -114,6 +114,7 @@ const universityBase: NavConfig = {
         { labelKey: 'stages', href: '/dashboard/university/stages' },
         { labelKey: 'stageInsights', href: '/dashboard/university/stage-insights' },
         { labelKey: 'employerCRM', href: '/dashboard/university/employer-crm' },
+        { labelKey: 'communications', href: '/dashboard/university/communications' },
       ],
     },
     {
