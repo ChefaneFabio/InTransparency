@@ -178,38 +178,69 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Universities — Free forever */}
-      <section className="py-12 bg-muted/30">
+      {/* Universities — 2 tiers */}
+      <section className="py-16 bg-muted/30">
         <div className="container max-w-5xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-col md:flex-row items-center gap-8 p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border"
-          >
-            <div className="p-4 rounded-2xl bg-blue-100 dark:bg-blue-900/40">
-              <Building2 className="h-10 w-10 text-blue-600" />
-            </div>
-            <div className="flex-1 text-center md:text-left">
-              <h2 className="text-2xl font-bold">{t('universities.title')}</h2>
-              <p className="text-muted-foreground mt-1">{t('universities.subtitle')}</p>
-              <div className="flex flex-wrap gap-3 mt-3 justify-center md:justify-start">
-                {[0, 1, 2, 3, 4].map(i => (
-                  <span key={i} className="flex items-center gap-1.5 text-sm">
-                    <Check className="h-4 w-4 text-blue-600" />
-                    {t(`universities.features.${i}`)}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="text-center">
-              <p className="text-4xl font-bold text-blue-600">{t('universities.price')}</p>
-              <p className="text-sm text-muted-foreground">{t('universities.period')}</p>
-              <Button className="mt-3" variant="outline" asChild>
-                <Link href="/auth/register/academic-partner">{t('universities.cta')}<ArrowRight className="h-4 w-4 ml-2" /></Link>
-              </Button>
-            </div>
-          </motion.div>
+          <div className="text-center mb-10">
+            <Badge variant="outline" className="mb-4"><Building2 className="h-3 w-3 mr-1" />{t('universities.title')}</Badge>
+            <h2 className="text-3xl font-bold">{t('universities.title')}</h2>
+            <p className="text-muted-foreground mt-2 max-w-xl mx-auto">{t('universities.subtitle')}</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Base Platform — Free */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+              <Card className="h-full flex flex-col border-2 border-blue-200 dark:border-blue-800 bg-gradient-to-br from-blue-50/50 to-transparent dark:from-blue-950/20">
+                <CardHeader className="text-center pb-2">
+                  <CardTitle className="text-lg">{t('universities.tiers.core.name')}</CardTitle>
+                  <div className="mt-4">
+                    <span className="text-4xl font-bold text-blue-600">{t('universities.tiers.core.price')}</span>
+                    <span className="text-sm text-muted-foreground ml-1">{t('universities.tiers.core.period')}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">{t('universities.tiers.core.description')}</p>
+                </CardHeader>
+                <CardContent className="pt-4 flex-1 flex flex-col">
+                  <ul className="space-y-2.5 mb-6 flex-1">
+                    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
+                      <li key={i} className="flex items-start text-sm">
+                        <Check className="h-4 w-4 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                        <span>{t(`universities.tiers.core.features.${i}`)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button variant="outline" className="w-full" asChild>
+                    <Link href="/auth/register/academic-partner">{t('universities.tiers.core.cta')}<ArrowRight className="h-4 w-4 ml-2" /></Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Premium — On request */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+              <Card className="h-full flex flex-col border-2">
+                <CardHeader className="text-center pb-2">
+                  <CardTitle className="text-lg">{t('universities.tiers.premium.name')}</CardTitle>
+                  <div className="mt-4">
+                    <span className="text-4xl font-bold">{t('universities.tiers.premium.price')}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">{t('universities.tiers.premium.description')}</p>
+                </CardHeader>
+                <CardContent className="pt-4 flex-1 flex flex-col">
+                  <ul className="space-y-2.5 mb-6 flex-1">
+                    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
+                      <li key={i} className="flex items-start text-sm">
+                        <Check className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                        <span>{t(`universities.tiers.premium.features.${i}`)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button className="w-full" asChild>
+                    <Link href="/contact?subject=university-premium">{t('universities.tiers.premium.cta')}<ArrowRight className="h-4 w-4 ml-2" /></Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
         </div>
       </section>
 

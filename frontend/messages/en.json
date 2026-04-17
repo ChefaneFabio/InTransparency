@@ -235,7 +235,7 @@
         "benefits": [
           "Companies find you for what you can actually do",
           "Your university verifies your work",
-          "Always free for you"
+          "Free for students"
         ],
         "features": [
           {
@@ -629,7 +629,7 @@
       "segments": {
         "students": {
           "title": "For Students",
-          "description": "Build your verified portfolio and get discovered by companies — always free.",
+          "description": "Build your verified portfolio and get discovered by companies — free with no hidden costs.",
           "cta": "Get Started Free"
         },
         "universities": {
@@ -801,7 +801,7 @@
           {
             "feature": "Cost",
             "traditional": "Paid job boards",
-            "ours": "Free forever"
+            "ours": "Free, no credit card"
           },
           {
             "feature": "Matching",
@@ -1035,12 +1035,12 @@
     "students": {
       "badge": "For Students - All Disciplines",
       "title": "Free Core Platform + Optional Premium Features",
-      "subtitle": "Core marketplace FREE FOREVER: Upload projects → Institution verifies → Companies discover YOU. Optional €9 premium services: Priority search placement, advanced analytics, or one-time portfolio optimization. EU/Italian: 30/30 grading, stage curriculare, tirocini support.",
+      "subtitle": "Core marketplace FREE: Upload projects → Institution verifies → Companies discover YOU. Optional €9 premium services: Priority search placement, advanced analytics, or one-time portfolio optimization. EU/Italian: 30/30 grading, stage curriculare, tirocini support.",
       "free": {
-        "name": "Free Forever",
+        "name": "Free Plan",
         "price": "€0",
-        "period": "forever",
-        "description": "All core features - always free",
+        "period": "",
+        "description": "All core features - free with no hidden costs",
         "badge": "100% Free",
         "features": {
           "uploads": "Unlimited verified project uploads",
@@ -1059,7 +1059,7 @@
         "description": "Stand out and get discovered faster",
         "badge": "Most Popular",
         "features": {
-          "everything": "Everything in Free Forever",
+          "everything": "Everything in Free Plan",
           "priority": "Priority in recruiter search results",
           "advancedAnalytics": "Advanced analytics & insights",
           "customUrl": "Custom portfolio URL",
@@ -1139,9 +1139,9 @@
       "free": {
         "name": "Free Marketplace Access",
         "price": "Free",
-        "period": "forever - no subscriptions",
+        "period": "no subscriptions required",
         "description": "Get your students hired through verified marketplace. FREE verification, discovery, matching, and analytics.",
-        "badge": "100% Free Forever",
+        "badge": "100% Free Plan",
         "cta": "Join Free Marketplace"
       },
       "enterprise": {
@@ -1607,7 +1607,7 @@
     },
     "student": {
       "title": "Student Registration",
-      "subtitle": "Join InTransparency - Free Forever",
+      "subtitle": "Join InTransparency - Free Plan",
       "cardTitle": "Create Your Student Account",
       "cardDescription": "Launch your career with verified credentials",
       "submitButton": "Create Free Student Account",
@@ -2305,7 +2305,7 @@
         },
         "1": {
           "question": "What does it cost?",
-          "answer": "The Starter plan is free forever — unlimited search, 3 talent unlocks at signup, and 1 job post. Need more? Upgrade to Growth (€149/month for 50 unlocks) or buy individual talent unlocks at €10 each. See our pricing page for details."
+          "answer": "The Starter plan is free with no credit card required — unlimited search, 3 talent unlocks at signup, and 1 job post. Need more? Upgrade to Growth (€149/month for 50 unlocks) or buy individual talent unlocks at €10 each. See our pricing page for details."
         },
         "2": {
           "question": "What types of candidates are available?",
@@ -3412,7 +3412,7 @@
         "studentsBold": "Students create the value.",
         "studentsText": "Traditional platforms charge students for premium features just to be visible. We believe that's backwards. The people who create value should have full access to the tools that showcase it.",
         "universitiesBold": "Universities and schools drive verification.",
-        "universitiesText": "Academic partners want to support their students' career success. Our core platform is always free — not \"year 1 free.\" Save 40+ hours/month on manual matching. Pay only for optional enterprise customizations (API, white-label, custom features).",
+        "universitiesText": "Academic partners want to support their students' career success. Our core platform is free with no hidden costs — not \"year 1 free.\" Save 40+ hours/month on manual matching. Pay only for optional enterprise customizations (API, white-label, custom features).",
         "companiesBold": "Companies pay only for results.",
         "companiesText": "No more large annual subscriptions before finding anyone. Browse our entire verified talent database at no cost. Pay only when you find someone worth contacting. Fair, transparent, performance-based."
       }
@@ -3469,7 +3469,7 @@
       "title": "Students",
       "subtitle": "Build your verified portfolio, get discovered by companies, and land your first role. Always free.",
       "price": "Free",
-      "period": "forever",
+      "period": "",
       "cta": "Get Started",
       "features": {
         "0": "Unlimited projects",
@@ -3551,16 +3551,46 @@
     },
     "universities": {
       "title": "Universities, Schools & Training Centers",
-      "subtitle": "The full platform is free for all educational institutions. No limits on students, features, or data. We grow when your students succeed.",
-      "price": "Free",
-      "period": "everything included",
-      "cta": "Get Started",
-      "features": {
-        "0": "Unlimited students",
-        "1": "Project verification",
-        "2": "Placement analytics",
-        "3": "Institutional scorecard",
-        "4": "Document archive"
+      "subtitle": "Free platform for all educational institutions. Advanced features available on request.",
+      "tiers": {
+        "core": {
+          "name": "Base Platform",
+          "price": "Free",
+          "period": "full platform included",
+          "description": "Everything you need to verify your students and connect them with companies. No limits on students or features.",
+          "cta": "Get Started",
+          "features": {
+            "0": "Unlimited students",
+            "1": "AI project verification (theses, GitHub, portfolios)",
+            "2": "Professor endorsements",
+            "3": "AlmaLaurea sync",
+            "4": "Aggregated placement dashboard",
+            "5": "Top 20 hiring companies",
+            "6": "Analytics per program (last 12 months)",
+            "7": "Career center widget (base)",
+            "8": "Data export (12 months)",
+            "9": "2 career days per year"
+          }
+        },
+        "premium": {
+          "name": "Premium",
+          "price": "On request",
+          "period": "",
+          "description": "For institutions requiring integrations, ministry reporting, multi-campus support, and advanced features.",
+          "cta": "Contact us for a quote",
+          "features": {
+            "0": "Everything in Base Platform, plus:",
+            "1": "Esse3 integration",
+            "2": "Automated ANVUR/MUR reports",
+            "3": "Multi-year and per-campus analytics",
+            "4": "White-label and custom domain",
+            "5": "Single Sign-On (SAML/Shibboleth)",
+            "6": "API access and webhooks",
+            "7": "AI Act compliance pack",
+            "8": "Unlimited events with analytics",
+            "9": "Dedicated Customer Success Manager"
+          }
+        }
       }
     },
     "faq": {
@@ -3568,7 +3598,7 @@
       "questions": {
         "0": {
           "q": "Is it really free for students?",
-          "a": "Yes, forever. Portfolio, assessments, job search, contract check — everything is included. Students never pay."
+          "a": "Yes. Portfolio, assessments, job search, contract check — everything is included. No credit card, no hidden costs. Students never pay."
         },
         "1": {
           "q": "What do companies get for free?",
@@ -4532,7 +4562,7 @@
           "noSubscription": "No subscriptions, credits never expire"
         }
       },
-      "summary": "For students: 100% free forever. For universities: Core platform free. For companies: Pay only for results."
+      "summary": "For students: 100% free, no credit card required. For universities: Core platform free. For companies: Pay only for results."
     },
     "uniqueFeatures": {
       "title": "5 Features LinkedIn Doesn't Have",
@@ -4911,11 +4941,11 @@
       "accessFullResults": "Access full search results",
       "saveSearches": "Save searches and favorites",
       "studentFeature": "Apply to jobs and get discovered",
-      "companyFeature": "Unlimited talent connections",
+      "companyFeature": "Unlimited talent unlocks",
       "universityFeature": "Track placements in real-time"
     },
     "pricing": {
-      "studentTagline": "Free forever • No credit card required",
+      "studentTagline": "Free, no credit card • No credit card required",
       "companyTagline": "No subscriptions • Pay only for results",
       "universityTagline": "Always free • Pay only for customizations"
     },
@@ -6967,7 +6997,7 @@
     "technicalInstitutes": "Technical Institutes",
     "licei": "Licei",
     "verified": "Verified",
-    "freeForever": "Free Forever",
+    "freeForever": "Free Plan",
     "ctaTitle": "Ready to Start?",
     "ctaDescription": "Create your free profile and start building your professional portfolio. Companies are looking for you."
   },
@@ -7004,7 +7034,7 @@
     "employmentRate": "Employment Rate",
     "companyInternship": "Company Internship",
     "verified": "Verified",
-    "freeForever": "Free Forever",
+    "freeForever": "Free Plan",
     "ctaTitle": "Ready to Start?",
     "ctaDescription": "Create your free profile and showcase your technical skills to companies. Your professional future starts here."
   },
@@ -7043,7 +7073,7 @@
     "global": "Global",
     "globalSub": "Visibility",
     "certified": "Certified",
-    "freeForever": "Free Forever",
+    "freeForever": "Free Plan",
     "ctaTitle": "Ready to Start?",
     "ctaDescription": "Create your verified academic portfolio and get discovered by companies. Your career starts before graduation."
   },
@@ -7280,7 +7310,7 @@
     "faq3Q": "How does verification work?",
     "faq3A": "Students manually upload projects and you verify them through our simple dashboard. For larger institutions, we can set up API integration (contact us for details). Zero IT work for you after setup.",
     "faq4Q": "Can we add Career Day tools?",
-    "faq4A": "Yes! Optional Premium Embed add-on (€500/year) includes Career Day platform with QR codes, interview booking, and branded widgets. But core marketplace is always free. See pricing page for details.",
+    "faq4A": "Yes! Optional Premium Embed add-on (€500/year) includes Career Day platform with QR codes, interview booking, and branded widgets. But core marketplace is free with no hidden costs. See pricing page for details.",
     "faq5Q": "How do we track placement for MIUR reporting?",
     "faq5A": "Analytics dashboard tracks time-to-hire, students contacted, and placement outcomes. Export reports for MIUR with verifiable data.",
     "faq6Q": "What if students don't get discovered?",
@@ -7345,12 +7375,12 @@
     "gs3Title": "Monitor Hiring",
     "gs3Desc": "Companies discover students → Analytics: \"23 students contacted\" → Track success",
     "registerFree": "Register Your Institution Free",
-    "setupNote": "Setup 5 min • Free forever • Companies hiring • ANVUR reports",
+    "setupNote": "Setup 5 min • Free, no credit card • Companies hiring • ANVUR reports",
     "finalCtaTitle": "Ready to Get Your Graduates Hired?",
     "finalCtaDescription": "Join the free marketplace connecting verified graduates to companies. Setup in 5 minutes. Zero costs. Track placement.",
     "registerInstitutionFree": "Register Institution Free",
     "talkToUs": "Talk to Us",
-    "finalNote": "Free forever • Direct contact • ANVUR reports"
+    "finalNote": "Free, no credit card • Direct contact • ANVUR reports"
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -9006,7 +9036,7 @@
     },
     "cta": {
       "title": "Show what you can do",
-      "subtitle": "Free forever. Your ITS already has the tools to verify your projects.",
+      "subtitle": "Free, no credit card. Your ITS already has the tools to verify your projects.",
       "button": "Get Started Free"
     }
   },
@@ -9033,7 +9063,7 @@
         "description": "When you enroll in university, your verified portfolio comes with you. You don't start from scratch."
       },
       "3": {
-        "title": "Free forever",
+        "title": "Free, no credit card",
         "description": "No cost, no subscription. Build your profile at your own pace."
       }
     },

@@ -629,7 +629,7 @@
       "segments": {
         "students": {
           "title": "Per gli Studenti",
-          "description": "Crea il tuo portfolio verificato e fatti scoprire dalle aziende — sempre gratis.",
+          "description": "Crea il tuo portfolio verificato e fatti scoprire dalle aziende — gratuito, senza costi nascosti.",
           "cta": "Inizia Gratis"
         },
         "universities": {
@@ -801,7 +801,7 @@
           {
             "feature": "Costo",
             "traditional": "Job board a pagamento",
-            "ours": "Gratis per sempre"
+            "ours": "Gratuito, senza carta di credito"
           },
           {
             "feature": "Matching",
@@ -1035,12 +1035,12 @@
     "students": {
       "badge": "Per Studenti - Tutte le Discipline",
       "title": "Piattaforma Core Gratuita + Funzionalità Premium Opzionali",
-      "subtitle": "Marketplace core GRATIS PER SEMPRE: Carica progetti → L'istituzione verifica → Le aziende ti scoprono. Servizi premium opzionali €9: Posizionamento prioritario, analytics avanzati, o ottimizzazione portfolio. EU/Italiano: voti 30/30, stage curriculare, tirocini.",
+      "subtitle": "Marketplace core GRATUITO: Carica progetti → L'istituzione verifica → Le aziende ti scoprono. Servizi premium opzionali €9: Posizionamento prioritario, analytics avanzati, o ottimizzazione portfolio. EU/Italiano: voti 30/30, stage curriculare, tirocini.",
       "free": {
-        "name": "Gratis Per Sempre",
+        "name": "Piano Gratuito",
         "price": "€0",
-        "period": "per sempre",
-        "description": "Tutte le funzionalità core - sempre gratis",
+        "period": "senza limiti",
+        "description": "Tutte le funzionalità core - gratuito, senza costi nascosti",
         "badge": "100% Gratis",
         "features": {
           "uploads": "Caricamenti progetti verificati illimitati",
@@ -1059,7 +1059,7 @@
         "description": "Distinguiti e vieni scoperto più velocemente",
         "badge": "Più Popolare",
         "features": {
-          "everything": "Tutto in Gratis Per Sempre",
+          "everything": "Tutto in Piano Gratuito",
           "priority": "Priorità nei risultati recruiter",
           "advancedAnalytics": "Analytics e insights avanzati",
           "customUrl": "URL portfolio personalizzato",
@@ -1101,7 +1101,7 @@
         "price": "€0",
         "period": "nessun abbonamento",
         "description": "Sfogliamento illimitato - accesso illimitato durante il lancio",
-        "badge": "Sempre Gratis",
+        "badge": "Gratuito",
         "features": {
           "registration": "Registrazione gratuita (nessuna carta)",
           "unlimited": "Esplorazione database illimitata",
@@ -1139,9 +1139,9 @@
       "free": {
         "name": "Accesso Marketplace Gratuito",
         "price": "Gratis",
-        "period": "per sempre - niente abbonamenti",
+        "period": "senza limiti - niente abbonamenti",
         "description": "Fai assumere i tuoi studenti tramite marketplace verificato. Verifica, scoperta, matching e analytics GRATUITI.",
-        "badge": "100% Gratis Per Sempre",
+        "badge": "100% Piano Gratuito",
         "cta": "Unisciti a Marketplace Gratuito"
       },
       "enterprise": {
@@ -1535,7 +1535,7 @@
     "iAm": "Sono un/una",
     "student": {
       "title": "Registrazione Studente",
-      "subtitle": "Unisciti a InTransparency - Gratis Per Sempre",
+      "subtitle": "Unisciti a InTransparency - Piano Gratuito",
       "cardTitle": "Crea il Tuo Account Studente",
       "cardDescription": "Lancia la tua carriera con credenziali verificate",
       "submitButton": "Crea Account Studente Gratuito",
@@ -2345,7 +2345,7 @@
         },
         "1": {
           "question": "Quanto costa?",
-          "answer": "Il piano Starter \u00e8 gratuito per sempre \u2014 ricerca illimitata, 3 sblocchi talento al signup e 1 annuncio. Vuoi di pi\u00f9? Passa a Growth (\u20ac149/mese per 50 sblocchi) oppure acquista sblocchi singoli a \u20ac10 l'uno. Vedi la pagina prezzi per i dettagli."
+          "answer": "Il piano Starter \u00e8 gratuito, senza costi nascosti \u2014 ricerca illimitata, 3 sblocchi talento al signup e 1 annuncio. Vuoi di pi\u00f9? Passa a Growth (\u20ac149/mese per 50 sblocchi) oppure acquista sblocchi singoli a \u20ac10 l'uno. Vedi la pagina prezzi per i dettagli."
         },
         "2": {
           "question": "Che tipo di candidati sono disponibili?",
@@ -3443,7 +3443,7 @@
       "title": "Studenti",
       "subtitle": "Costruisci il tuo portfolio verificato, fatti scoprire dalle aziende e trova il tuo primo lavoro. Sempre gratis.",
       "price": "Gratis",
-      "period": "per sempre",
+      "period": "senza limiti",
       "cta": "Inizia Ora",
       "features": {
         "0": "Progetti illimitati",
@@ -3525,16 +3525,46 @@
     },
     "universities": {
       "title": "Universit\u00e0, Scuole e Centri di Formazione",
-      "subtitle": "La piattaforma completa \u00e8 gratuita per tutte le istituzioni educative. Nessun limite su studenti, funzionalit\u00e0 o dati. Cresciamo quando i tuoi studenti hanno successo.",
-      "price": "Gratis",
-      "period": "tutto incluso",
-      "cta": "Inizia Ora",
-      "features": {
-        "0": "Studenti illimitati",
-        "1": "Verifica progetti",
-        "2": "Analytics placement",
-        "3": "Pagella istituzionale",
-        "4": "Archivio documenti"
+      "subtitle": "Piattaforma gratuita per tutte le istituzioni educative. Funzionalit\u00e0 avanzate disponibili su richiesta.",
+      "tiers": {
+        "core": {
+          "name": "Piattaforma Base",
+          "price": "Gratis",
+          "period": "piano completo incluso",
+          "description": "Tutto ci\u00f2 che serve per verificare i vostri studenti e connetterli con le aziende. Nessun limite su studenti o funzionalit\u00e0.",
+          "cta": "Inizia Ora",
+          "features": {
+            "0": "Studenti illimitati",
+            "1": "Verifica AI progetti (tesi, GitHub, portfolio)",
+            "2": "Endorsement professori",
+            "3": "Sync AlmaLaurea",
+            "4": "Dashboard placement aggregata",
+            "5": "Top 20 aziende che assumono",
+            "6": "Analytics per corso (ultimi 12 mesi)",
+            "7": "Widget career center base",
+            "8": "Export dati (12 mesi)",
+            "9": "2 career day all\u2019anno"
+          }
+        },
+        "premium": {
+          "name": "Premium",
+          "price": "Su richiesta",
+          "period": "",
+          "description": "Per atenei che necessitano integrazioni, reporting ministero, multi-campus e funzionalit\u00e0 avanzate.",
+          "cta": "Contattaci per un preventivo",
+          "features": {
+            "0": "Tutto in Piattaforma Base, pi\u00f9:",
+            "1": "Integrazione Esse3",
+            "2": "Report ANVUR/MUR automatizzati",
+            "3": "Analytics pluriennale e per campus",
+            "4": "White-label e dominio custom",
+            "5": "Single Sign-On (SAML/Shibboleth)",
+            "6": "API access e webhooks",
+            "7": "AI Act compliance pack",
+            "8": "Eventi illimitati con analytics",
+            "9": "Customer Success Manager dedicato"
+          }
+        }
       }
     },
     "faq": {
@@ -3542,7 +3572,7 @@
       "questions": {
         "0": {
           "q": "\u00c8 davvero gratis per gli studenti?",
-          "a": "S\u00ec, per sempre. Portfolio, assessment, ricerca lavoro, check contratto \u2014 tutto incluso. Gli studenti non pagano mai."
+          "a": "S\u00ec, senza limiti. Portfolio, assessment, ricerca lavoro, check contratto \u2014 tutto incluso. Gli studenti non pagano mai."
         },
         "1": {
           "q": "Cosa ottengono le aziende gratis?",
@@ -4505,7 +4535,7 @@
           "noSubscription": "Nessun abbonamento, crediti mai scadono"
         }
       },
-      "summary": "Per studenti: 100% gratuito per sempre. Per università: Piattaforma core gratuita. Per aziende: Paghi solo per risultati."
+      "summary": "Per studenti: 100% gratuito, senza costi nascosti. Per università: Piattaforma core gratuita. Per aziende: Paghi solo per risultati."
     },
     "uniqueFeatures": {
       "title": "5 Funzionalità che LinkedIn Non Ha",
@@ -4888,7 +4918,7 @@
       "universityFeature": "Traccia i placement in tempo reale"
     },
     "pricing": {
-      "studentTagline": "Gratis per sempre • Nessuna carta di credito richiesta",
+      "studentTagline": "Gratuito, senza carta di credito • Nessuna carta di credito richiesta",
       "companyTagline": "Nessun abbonamento • Paghi solo per i risultati",
       "universityTagline": "Sempre gratis • Paghi solo per personalizzazioni"
     },
@@ -6928,7 +6958,7 @@
     "technicalInstitutes": "Istituti Tecnici",
     "licei": "Licei",
     "verified": "Verificato",
-    "freeForever": "Per Sempre",
+    "freeForever": "Senza Limiti",
     "ctaTitle": "Pronto a Iniziare?",
     "ctaDescription": "Crea il tuo profilo gratuito e inizia a costruire il tuo portfolio professionale. Le aziende ti stanno cercando."
   },
@@ -6965,7 +6995,7 @@
     "employmentRate": "Tasso Occupazione",
     "companyInternship": "Stage in Azienda",
     "verified": "Verificato",
-    "freeForever": "Per Sempre",
+    "freeForever": "Senza Limiti",
     "ctaTitle": "Pronto a Iniziare?",
     "ctaDescription": "Crea il tuo profilo gratuito e mostra le tue competenze tecniche alle aziende. Il tuo futuro professionale inizia qui."
   },
@@ -7004,7 +7034,7 @@
     "global": "Global",
     "globalSub": "Visibilità",
     "certified": "Certificato",
-    "freeForever": "Per Sempre",
+    "freeForever": "Senza Limiti",
     "ctaTitle": "Pronto a Iniziare?",
     "ctaDescription": "Crea il tuo portfolio accademico verificato e fatti scoprire dalle aziende. La tua carriera inizia prima della laurea."
   },
@@ -7241,7 +7271,7 @@
     "faq3Q": "Come funziona la verifica?",
     "faq3A": "Gli studenti caricano manualmente i progetti e tu li verifichi tramite la nostra dashboard semplice. Per istituzioni più grandi, possiamo configurare l'integrazione API (contattaci per dettagli). Zero lavoro IT per te dopo il setup.",
     "faq4Q": "Possiamo aggiungere strumenti per il Career Day?",
-    "faq4A": "Sì! L'add-on Premium Embed opzionale (€500/anno) include piattaforma Career Day con codici QR, prenotazione colloqui e widget personalizzati. Ma il marketplace core è sempre gratuito. Vedi la pagina prezzi per dettagli.",
+    "faq4A": "Sì! L'add-on Premium Embed opzionale (€500/anno) include piattaforma Career Day con codici QR, prenotazione colloqui e widget personalizzati. Il marketplace core resta gratuito, senza costi nascosti. Vedi la pagina prezzi per dettagli.",
     "faq5Q": "Come tracciamo il placement per il reporting MIUR?",
     "faq5A": "La dashboard analytics traccia tempo di assunzione, studenti contattati e risultati di placement. Esporta report per il MIUR con dati verificabili.",
     "faq6Q": "E se gli studenti non vengono scoperti?",
@@ -7306,12 +7336,12 @@
     "gs3Title": "Monitora le Assunzioni",
     "gs3Desc": "Le aziende scoprono studenti → Analytics: \"23 studenti contattati\" → Traccia il successo",
     "registerFree": "Registra la Tua Istituzione Gratis",
-    "setupNote": "Setup 5 min • €0 per sempre • Aziende che assumono • Report ANVUR",
+    "setupNote": "Setup 5 min • €0 senza limiti • Aziende che assumono • Report ANVUR",
     "finalCtaTitle": "Pronto a Far Assumere i Tuoi Laureati?",
     "finalCtaDescription": "Unisciti al marketplace gratuito che connette laureati verificati alle aziende. Setup in 5 minuti. Zero costi. Traccia il placement.",
     "registerInstitutionFree": "Registra Istituzione Gratis",
     "talkToUs": "Parla con Noi",
-    "finalNote": "€0 per sempre • Contatto diretto • Report ANVUR"
+    "finalNote": "€0 senza limiti • Contatto diretto • Report ANVUR"
   },
   "faq": {
     "title": "Domande Frequenti",
@@ -9033,7 +9063,7 @@
     },
     "cta": {
       "title": "Mostra cosa sai fare",
-      "subtitle": "Gratis per sempre. Il tuo ITS ha già gli strumenti per verificare i tuoi progetti.",
+      "subtitle": "Gratuito, senza carta di credito. Il tuo ITS ha già gli strumenti per verificare i tuoi progetti.",
       "button": "Inizia Gratis"
     }
   },
@@ -9060,7 +9090,7 @@
         "description": "Quando ti iscrivi all'università, il tuo portfolio verificato ti accompagna. Non parti da zero."
       },
       "3": {
-        "title": "Gratuito per sempre",
+        "title": "Gratuito senza limiti",
         "description": "Nessun costo, nessun abbonamento. Costruisci il tuo profilo al tuo ritmo."
       }
     },
