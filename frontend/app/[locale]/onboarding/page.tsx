@@ -21,8 +21,59 @@ import {
   User,
   MapPin,
   Calendar,
-  Loader2
+  Loader2,
+  Search,
+  TrendingDown,
+  BarChart3,
+  Eye,
+  Link2,
+  ClipboardList,
+  Moon,
+  RefreshCw,
+  Factory,
+  Clock,
+  UserCheck,
+  FileText,
+  BookOpen,
+  Handshake,
+  Compass,
+  Lock,
+  Lightbulb,
+  Zap,
+  Award,
+  Rocket,
+  Globe,
+  FolderOpen,
+  Code,
+  Brain,
+  Palette,
+  Megaphone,
+  DollarSign,
+  Cog,
+  Scale,
+  BookMarked,
+  Languages,
+  Heart,
+  Users,
+  type LucideIcon,
 } from 'lucide-react'
+
+const iconMap: Record<string, LucideIcon> = {
+  search: Search, trendingDown: TrendingDown, barChart: BarChart3, eye: Eye,
+  link: Link2, clipboard: ClipboardList, moon: Moon, refresh: RefreshCw,
+  factory: Factory, clock: Clock, userCheck: UserCheck, fileText: FileText,
+  bookOpen: BookOpen, handshake: Handshake, compass: Compass, lock: Lock,
+  lightbulb: Lightbulb, zap: Zap, award: Award, rocket: Rocket,
+  globe: Globe, folder: FolderOpen, code: Code, brain: Brain,
+  palette: Palette, megaphone: Megaphone, dollar: DollarSign, cog: Cog,
+  scale: Scale, bookMarked: BookMarked, languages: Languages, heart: Heart,
+  users: Users,
+}
+
+const OnboardingIcon = ({ name, className }: { name: string; className?: string }) => {
+  const Icon = iconMap[name]
+  return Icon ? <Icon className={className || 'h-5 w-5'} /> : null
+}
 
 type UserRole = 'STUDENT' | 'RECRUITER' | 'UNIVERSITY'
 
@@ -103,7 +154,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Non abbiamo visibilità sulle competenze reali degli studenti',
     context: "L'88% dei neolaureati non si sente preparato per il lavoro (LinkedIn, 2026)",
     solution: 'Skills Gap Analysis — mappa in tempo reale le competenze dei vostri studenti vs la domanda di mercato',
-    icon: '🔍',
+    icon: 'search',
     types: ['university', 'its'],
   },
   {
@@ -111,7 +162,7 @@ const allPainPoints: PainPoint[] = [
     label: 'I nostri programmi potrebbero non essere allineati a ciò che il mercato chiede',
     context: 'Le assunzioni entry-level in Italia sono calate del 18,8% in un anno',
     solution: 'Curriculum Alignment — punteggio di allineamento per ogni corso, con le competenze mancanti evidenziate',
-    icon: '📉',
+    icon: 'trendingDown',
     types: ['university', 'its'],
   },
   {
@@ -119,7 +170,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Tracciare gli esiti occupazionali è difficile e manuale',
     context: 'I survey di fine anno hanno tassi di risposta sotto il 15%',
     solution: 'Placement Dashboard — funnel automatico dal primo contatto all\'assunzione, in tempo reale',
-    icon: '📊',
+    icon: 'barChart',
     types: ['university', 'its'],
   },
   {
@@ -127,7 +178,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Gli studenti faticano a capire e comunicare il proprio valore',
     context: 'Il talento oggi è quanto velocemente riesci a evolvere, non solo cosa sai fare',
     solution: 'Profili verificati con progetti, competenze e punteggio di employability — lo studente vede il proprio valore',
-    icon: '🪞',
+    icon: 'eye',
     types: ['university', 'its', 'school'],
   },
   {
@@ -135,7 +186,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Le aziende non conoscono i nostri studenti e i nostri percorsi',
     context: 'Milano e Roma concentrano le opportunità — il resto d\'Italia è invisibile ai recruiter',
     solution: 'Company Leaderboard e Engagement Alerts — vedete quali aziende guardano i vostri studenti',
-    icon: '🔗',
+    icon: 'link',
     types: ['university', 'its'],
   },
   {
@@ -143,7 +194,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Il reporting per accreditamento e qualità richiede troppo lavoro manuale',
     context: 'Education è il settore con il calo di assunzioni più forte: -31,2%',
     solution: 'Analytics Dashboard con 6 viste + export automatici per ANVUR, INDIRE e ministero',
-    icon: '📋',
+    icon: 'clipboard',
     types: ['university', 'its'],
   },
   {
@@ -151,7 +202,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Gli studenti non partecipano ai servizi di orientamento e career service',
     context: 'Il collegamento tra formazione e lavoro è la sfida chiave per la Gen Z',
     solution: 'Eventi, attivazione studenti e feed di attività — tutto in un unico punto',
-    icon: '😴',
+    icon: 'moon',
     types: ['university', 'its', 'school'],
   },
   {
@@ -159,7 +210,7 @@ const allPainPoints: PainPoint[] = [
     label: 'I voti non bastano: le aziende non capiscono cosa sanno fare i nostri studenti',
     context: 'Le competenze vanno "spacchettate" in skill concrete e spendibili (LinkedIn, 2026)',
     solution: 'Normalizzazione voti EU + Decision Pack — i recruiter vedono competenze, non solo medie',
-    icon: '🔄',
+    icon: 'refresh',
     types: ['university', 'its'],
   },
   // === ITS-SPECIFIC ===
@@ -168,7 +219,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Abbinare studenti a tirocini obbligatori è un processo lungo e manuale',
     context: 'Gli ITS richiedono 800+ ore di stage — il matching è il cuore del percorso',
     solution: 'Internship Pipeline — matching automatico studente-azienda basato su competenze, con tracking ore e valutazioni',
-    icon: '🏭',
+    icon: 'factory',
     types: ['its'],
   },
   {
@@ -176,7 +227,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Non abbiamo un sistema per tracciare ore di stage e valutazioni aziendali',
     context: 'Il 30% del curriculum ITS è in azienda — serve visibilità in tempo reale',
     solution: 'Internship Tracker — ore, presenze, valutazioni del tutor aziendale e feedback dello studente in un unico cruscotto',
-    icon: '⏱️',
+    icon: 'clock',
     types: ['its'],
   },
   {
@@ -184,7 +235,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Le aziende nel CTS non hanno visibilità sui risultati dell\'ITS',
     context: 'Il Comitato Tecnico Scientifico guida la didattica ma spesso decide al buio',
     solution: 'Board Dashboard — vista dedicata per le aziende del CTS con outcome, skill gap e suggerimenti curricolari',
-    icon: '👔',
+    icon: 'userCheck',
     types: ['its'],
   },
   {
@@ -192,7 +243,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Preparare i dati per la valutazione INDIRE è un incubo',
     context: 'INDIRE valuta placement rate, soddisfazione studenti e coerenza percorso-lavoro',
     solution: 'Report INDIRE — template precompilati con placement rate, coerenza titolo-occupazione e feedback automatici',
-    icon: '📑',
+    icon: 'fileText',
     types: ['its'],
   },
   // === SCUOLA SUPERIORE ===
@@ -201,7 +252,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Gestire i PCTO è caotico: ore, convenzioni, attestati sono sparsi ovunque',
     context: 'I PCTO sono obbligatori (90-210 ore) ma spesso gestiti con fogli Excel e email',
     solution: 'PCTO Manager — tracciamento ore, convenzioni digitali, attestati automatici e report per il ministero',
-    icon: '📒',
+    icon: 'bookOpen',
     types: ['school'],
   },
   {
@@ -209,7 +260,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Trovare aziende disponibili per i PCTO è difficile, soprattutto fuori dalle grandi città',
     context: 'Il 25% dei giovani cita la mancanza di opportunità locali come problema principale',
     solution: 'PCTO Marketplace — le aziende pubblicano opportunità, voi abbinate gli studenti per interesse e disponibilità',
-    icon: '🤝',
+    icon: 'handshake',
     types: ['school'],
   },
   {
@@ -217,7 +268,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Gli studenti arrivano alla scelta post-diploma senza consapevolezza delle proprie attitudini',
     context: 'Il 48% dei giovani considererebbe l\'estero per mancanza di opportunità — molti non sanno cosa cercare',
     solution: 'Orientamento Attitudinale — test di interessi, mappatura soft skill e suggerimenti personalizzati su università, ITS o lavoro',
-    icon: '🧭',
+    icon: 'compass',
     types: ['school'],
   },
   {
@@ -225,7 +276,7 @@ const allPainPoints: PainPoint[] = [
     label: 'I nostri studenti sono minorenni: ogni dato condiviso richiede il consenso dei genitori',
     context: 'GDPR richiede consenso esplicito dei genitori per dati di minori sotto i 16 anni',
     solution: 'Consenso Genitoriale — flusso digitale di autorizzazione, visibilità controllata e privacy by design per i minori',
-    icon: '🔒',
+    icon: 'lock',
     types: ['school'],
   },
   {
@@ -233,7 +284,7 @@ const allPainPoints: PainPoint[] = [
     label: 'I nostri studenti non hanno ancora competenze tecniche: servono soft skill e competenze trasversali',
     context: 'Le competenze trasversali sono le più cercate per i ruoli entry-level (LinkedIn, 2026)',
     solution: 'Soft Skills Assessment — mappatura di teamwork, problem solving, comunicazione e pensiero critico con badge verificabili',
-    icon: '💡',
+    icon: 'lightbulb',
     types: ['school'],
   },
   // === OTHER / FORMAZIONE PROFESSIONALE ===
@@ -242,7 +293,7 @@ const allPainPoints: PainPoint[] = [
     label: 'I nostri percorsi sono brevi (settimane/mesi), non lauree pluriennali',
     context: 'Il reskilling è la nuova normalità — il 37% dei giovani lamenta stipendi insufficienti',
     solution: 'Percorsi Brevi — modello flessibile per corsi da 1 settimana a 12 mesi, con certificati di completamento e skill tracking',
-    icon: '⚡',
+    icon: 'zap',
     types: ['other'],
   },
   {
@@ -250,7 +301,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Servono certificati verificabili, non solo voti',
     context: 'Le certificazioni di settore valgono più di una laurea per molti ruoli tecnici',
     solution: 'Certificati Digitali — emissione, verifica e condivisione di certificati con QR code e validazione blockchain-ready',
-    icon: '🏅',
+    icon: 'award',
     types: ['other'],
   },
   {
@@ -258,7 +309,7 @@ const allPainPoints: PainPoint[] = [
     label: 'I nostri cicli formativi sono brevi: il placement deve essere rapido',
     context: 'Chi esce da un corso di 3-6 mesi non può aspettare mesi per trovare lavoro',
     solution: 'Fast Track Placement — matching immediato con aziende che cercano le competenze appena certificate',
-    icon: '🚀',
+    icon: 'rocket',
     types: ['other'],
   },
   {
@@ -266,7 +317,7 @@ const allPainPoints: PainPoint[] = [
     label: 'Dobbiamo rendicontare alla Regione e ai fondi FSE con dati precisi',
     context: 'I fondi europei FSE richiedono tracciamento puntuale di iscrizioni, completamenti e esiti occupazionali',
     solution: 'Report FSE/Regione — template conformi con dati automatici su iscrizioni, drop-out, completamenti e placement',
-    icon: '🇪🇺',
+    icon: 'globe',
     types: ['other'],
   },
   {
@@ -274,7 +325,7 @@ const allPainPoints: PainPoint[] = [
     label: 'I nostri allievi hanno già esperienza lavorativa: serve mappare le competenze esistenti',
     context: 'Il reskilling riguarda adulti con skill pregresse — non partono da zero',
     solution: 'Recognition of Prior Learning — assessment iniziale delle competenze esistenti per personalizzare il percorso formativo',
-    icon: '🗂️',
+    icon: 'folder',
     types: ['other'],
   },
 ]
@@ -425,62 +476,62 @@ const getGoalsForType = (type: string): GoalOption[] =>
 const skillGroups: { name: string; icon: string; skills: string[] }[] = [
   {
     name: 'Informatica & Sviluppo',
-    icon: '💻',
+    icon: 'code',
     skills: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C++', 'React', 'Node.js', 'SQL', 'Git', 'Docker', 'AWS', 'Mobile Development']
   },
   {
     name: 'Data Science & AI',
-    icon: '🤖',
+    icon: 'brain',
     skills: ['Machine Learning', 'Deep Learning', 'Data Analysis', 'Data Visualization', 'NLP', 'Computer Vision', 'Statistics', 'R', 'TensorFlow', 'Power BI']
   },
   {
     name: 'Design & Creatività',
-    icon: '🎨',
+    icon: 'palette',
     skills: ['UI/UX Design', 'Graphic Design', 'Figma', 'Adobe Suite', 'Branding', 'Motion Graphics', 'Photography', '3D Modeling', 'Video Editing']
   },
   {
     name: 'Business & Management',
-    icon: '📊',
+    icon: 'barChart',
     skills: ['Project Management', 'Business Strategy', 'Agile/Scrum', 'Business Plan', 'Lean Management', 'Supply Chain', 'Operations', 'Consulting']
   },
   {
     name: 'Marketing & Comunicazione',
-    icon: '📣',
+    icon: 'megaphone',
     skills: ['Digital Marketing', 'SEO/SEM', 'Content Marketing', 'Social Media', 'Copywriting', 'Public Relations', 'Brand Strategy', 'Email Marketing', 'Analytics']
   },
   {
     name: 'Finanza & Economia',
-    icon: '💰',
+    icon: 'dollar',
     skills: ['Financial Analysis', 'Accounting', 'Corporate Finance', 'Financial Modeling', 'Risk Management', 'Auditing', 'Taxation', 'Budgeting', 'ESG']
   },
   {
     name: 'Ingegneria & Scienze',
-    icon: '⚙️',
+    icon: 'cog',
     skills: ['CAD/CAM', 'MATLAB', 'Mechanical Design', 'Electronics', 'Biomedical', 'Environmental Engineering', 'Materials Science', 'Lab Research', 'Quality Control']
   },
   {
     name: 'Giurisprudenza & Scienze Politiche',
-    icon: '⚖️',
+    icon: 'scale',
     skills: ['Diritto Civile', 'Diritto Commerciale', 'GDPR/Privacy', 'Contrattualistica', 'Compliance', 'Public Policy', 'International Relations', 'EU Law']
   },
   {
     name: 'Scienze Umane & Sociali',
-    icon: '📚',
+    icon: 'bookMarked',
     skills: ['Psicologia', 'Sociologia', 'Pedagogia', 'Antropologia', 'Filosofia', 'Ricerca Qualitativa', 'Ricerca Quantitativa', 'Mediazione Culturale']
   },
   {
     name: 'Lingue & Traduzione',
-    icon: '🌍',
+    icon: 'languages',
     skills: ['Inglese', 'Francese', 'Tedesco', 'Spagnolo', 'Cinese', 'Traduzione', 'Interpretariato', 'Linguistica', 'TESOL']
   },
   {
     name: 'Sanità & Scienze della Vita',
-    icon: '🏥',
+    icon: 'heart',
     skills: ['Biologia', 'Chimica', 'Farmacologia', 'Biotecnologie', 'Nutrizione', 'Anatomia', 'Clinical Research', 'Bioinformatics']
   },
   {
     name: 'Soft Skills & Trasversali',
-    icon: '🤝',
+    icon: 'users',
     skills: ['Leadership', 'Teamwork', 'Communication', 'Problem Solving', 'Critical Thinking', 'Time Management', 'Public Speaking', 'Negotiation', 'Creativity']
   },
 ]
@@ -1098,7 +1149,7 @@ export default function OnboardingPage() {
                       <div key={group.name} className="border rounded-lg p-4">
                         <div className="flex items-center justify-between mb-3">
                           <h3 className="font-medium text-sm flex items-center gap-2">
-                            <span>{group.icon}</span>
+                            <OnboardingIcon name={group.icon} className="h-5 w-5 text-primary" />
                             {group.name}
                           </h3>
                           {selectedInGroup > 0 && (
@@ -1210,7 +1261,7 @@ export default function OnboardingPage() {
                           }`}
                         >
                           <div className="flex items-start gap-3">
-                            <span className="text-lg flex-shrink-0 mt-0.5">{point.icon}</span>
+                            <OnboardingIcon name={point.icon} className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-medium">{point.label}</p>
                               <p className="text-xs text-gray-400 mt-0.5 italic">{point.context}</p>
