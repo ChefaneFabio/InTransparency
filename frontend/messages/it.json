@@ -159,7 +159,8 @@
         "fastTrack": "Placement Rapido",
         "priorLearning": "Competenze Pregresse",
         "documents": "Documenti",
-        "scorecard": "Pagella"
+        "scorecard": "Pagella",
+        "employerCRM": "CRM Aziende"
       },
       "exchange": "Scambio",
       "internships": "Tirocini",
@@ -10523,6 +10524,31 @@
       "confidentialHint": "I documenti riservati sono visibili solo agli amministratori del team.",
       "submit": "Carica Documento",
       "uploading": "Caricamento..."
+    }
+  },
+  "employerCRM": {
+    "title": "CRM Aziende",
+    "subtitle": "Monitora le relazioni con le aziende, l'engagement e i risultati di assunzione in un unico posto.",
+    "searchPlaceholder": "Cerca aziende...",
+    "companiesTotal": "aziende",
+    "today": "Oggi",
+    "daysAgo": "{count}g fa",
+    "weeksAgo": "{count}s fa",
+    "highEngagement": "Alto engagement",
+    "views": "visualizzazioni",
+    "thisMonth": "questo mese",
+    "contacts": "contatti",
+    "hires": "assunzioni",
+    "avgSalary": "Stipendio medio",
+    "lastActivity": "Ultima attivit\u00e0",
+    "firstSeen": "Prima volta",
+    "noCompanies": "Nessuna attivit\u00e0 aziendale",
+    "noCompaniesHint": "Quando le aziende visualizzano e contattano i tuoi studenti, appariranno qui automaticamente con metriche di engagement e fase del pipeline.",
+    "pipeline": {
+      "prospect": "Prospect",
+      "engaged": "Coinvolte",
+      "partner": "Partner",
+      "inactive": "Inattive"
     }
   },
   "universityScorecard": {

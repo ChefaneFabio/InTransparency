@@ -159,7 +159,8 @@
         "fastTrack": "Fast Track",
         "priorLearning": "Prior Learning",
         "documents": "Documents",
-        "scorecard": "Scorecard"
+        "scorecard": "Scorecard",
+        "employerCRM": "Employer CRM"
       },
       "exchange": "Exchange",
       "internships": "Internships",
@@ -10496,6 +10497,31 @@
       "confidentialHint": "Confidential documents are visible only to team admins.",
       "submit": "Upload Document",
       "uploading": "Uploading..."
+    }
+  },
+  "employerCRM": {
+    "title": "Employer CRM",
+    "subtitle": "Track company relationships, engagement, and hiring outcomes in one place.",
+    "searchPlaceholder": "Search companies...",
+    "companiesTotal": "companies",
+    "today": "Today",
+    "daysAgo": "{count}d ago",
+    "weeksAgo": "{count}w ago",
+    "highEngagement": "High engagement",
+    "views": "views",
+    "thisMonth": "this month",
+    "contacts": "contacts",
+    "hires": "hires",
+    "avgSalary": "Avg salary",
+    "lastActivity": "Last activity",
+    "firstSeen": "First seen",
+    "noCompanies": "No employer activity yet",
+    "noCompaniesHint": "When companies view and contact your students, they will appear here automatically with engagement metrics and pipeline stage.",
+    "pipeline": {
+      "prospect": "Prospects",
+      "engaged": "Engaged",
+      "partner": "Partners",
+      "inactive": "Inactive"
     }
   },
   "universityScorecard": {
