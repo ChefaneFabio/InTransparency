@@ -131,7 +131,7 @@ async function main() {
       region: 'Lombardia',
       country: 'IT',
       website: 'https://www.unibg.it',
-      email: 'career@unibg.it',
+      email: 'info@in-transparency.com',
       phone: '+39 035 2052111',
       description: 'Università pubblica fondata nel 1968. 7 dipartimenti, 24.000 studenti, forte legame con il tessuto industriale bergamasco.',
       institutionType: 'university',

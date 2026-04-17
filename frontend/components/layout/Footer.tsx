@@ -207,11 +207,8 @@ export function Footer() {
         <div className="border-t border-white/10 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-white/40">
           <span>{tFooter('copyright')}</span>
           <div className="flex items-center gap-4">
-            <a href="mailto:students@intransparency.it" className="hover:text-white transition-colors">
-              students@intransparency.it
-            </a>
-            <a href="mailto:info@intransparency.it" className="hover:text-white transition-colors">
-              info@intransparency.it
+            <a href="mailto:info@in-transparency.com" className="hover:text-white transition-colors">
+              info@in-transparency.com
             </a>
           </div>
         </div>

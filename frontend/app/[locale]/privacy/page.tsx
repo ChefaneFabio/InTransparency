@@ -439,8 +439,8 @@ export default function PrivacyPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button className="bg-primary hover:bg-primary/90" asChild>
-                    <Link href="mailto:institutions@intransparency.it">
-                      institutions@intransparency.it
+                    <Link href="mailto:info@in-transparency.com">
+                      info@in-transparency.com
                     </Link>
                   </Button>
                   <Button variant="outline" asChild>

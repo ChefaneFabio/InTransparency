@@ -11,7 +11,7 @@ export function StructuredData() {
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      email: 'students@intransparency.it',
+      email: 'info@in-transparency.com',
       telephone: '+39-344-494-2399',
       contactType: 'customer support',
       availableLanguage: ['English', 'Italian'],

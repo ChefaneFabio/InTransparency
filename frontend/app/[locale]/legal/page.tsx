@@ -131,8 +131,8 @@ export default function LegalPage() {
                       <h3 className="text-xl font-semibold text-foreground mb-3">{t('privacy.sections.contact.title')}</h3>
                       <p className="text-foreground/80">
                         {t('privacy.sections.contact.intro')}{' '}
-                        <a href="mailto:institutions@intransparency.it" className="text-primary hover:underline">
-                          institutions@intransparency.it
+                        <a href="mailto:info@in-transparency.com" className="text-primary hover:underline">
+                          info@in-transparency.com
                         </a>
                       </p>
                     </section>
@@ -205,8 +205,8 @@ export default function LegalPage() {
                       <h3 className="text-xl font-semibold text-foreground mb-3">{t('terms.sections.contact.title')}</h3>
                       <p className="text-foreground/80">
                         {t('terms.sections.contact.intro')}{' '}
-                        <a href="mailto:institutions@intransparency.it" className="text-primary hover:underline">
-                          institutions@intransparency.it
+                        <a href="mailto:info@in-transparency.com" className="text-primary hover:underline">
+                          info@in-transparency.com
                         </a>
                       </p>
                     </section>

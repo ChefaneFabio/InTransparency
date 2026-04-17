@@ -179,7 +179,7 @@ export default function ContactPage() {
                       <div className="flex items-center space-x-4">
                         <div>
                           <h3 className="font-semibold text-foreground">{t('methods.email.title')}</h3>
-                          <p className="text-muted-foreground">students@intransparency.it</p>
+                          <p className="text-muted-foreground">info@in-transparency.com</p>
                           <p className="text-sm text-foreground/80">{t('methods.email.subtitle')}</p>
                         </div>
                       </div>

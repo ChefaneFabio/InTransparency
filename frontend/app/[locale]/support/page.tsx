@@ -257,7 +257,7 @@ export default function SupportPage() {
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild>
-                  <a href="mailto:students@intransparency.it">
+                  <a href="mailto:info@in-transparency.com">
                     Email Us
                     <Mail className="ml-2 h-5 w-5" />
                   </a>

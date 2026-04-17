@@ -180,8 +180,8 @@ export default function FAQPage() {
                 </Link>
               </Button>
               <Button variant="outline" asChild>
-                <a href="mailto:students@intransparency.it">
-                  students@intransparency.it
+                <a href="mailto:info@in-transparency.com">
+                  info@in-transparency.com
                 </a>
               </Button>
             </div>

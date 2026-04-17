@@ -45,12 +45,12 @@ export async function GET() {
         email: {
           available: true,
           address: isDedicatedSupport
-            ? 'institutions@intransparency.it'
+            ? 'info@in-transparency.com'
             : user.role === 'RECRUITER'
-              ? 'companies@intransparency.it'
+              ? 'info@in-transparency.com'
               : (user.role as string) === 'UNIVERSITY' || (user.role as string) === 'INSTITUTION'
-                ? 'institutions@intransparency.it'
-                : 'students@intransparency.it',
+                ? 'info@in-transparency.com'
+                : 'info@in-transparency.com',
           responseTime: isDedicatedSupport ? '4 hours' : isPrioritySupport ? '24 hours' : '48 hours',
           label: isDedicatedSupport ? 'Priority Email Support' : 'Email Support',
         },
