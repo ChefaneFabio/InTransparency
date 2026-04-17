@@ -76,6 +76,7 @@
     "recruiter": {
       "talent": "Talent",
       "jobs": "Jobs",
+      "communicate": "Communicate",
       "messages": "Messages",
       "insights": "Insights",
       "hiring": "Hiring Tools",
@@ -112,6 +113,8 @@
         "export": "Export",
         "documents": "Documents",
         "talentMatch": "Talent Match",
+        "compare": "Compare",
+        "universityInsights": "University Insights",
         "hiringAdvisor": "Hiring Advisor",
         "interviewKit": "Interview Kit"
       },
@@ -10415,6 +10418,45 @@
       "allDone": "All done!",
       "nextStep": "Next: {step}"
     }
+  },
+  "compareCandidate": {
+    "title": "Compare Candidates",
+    "subtitle": "Put up to 4 candidates side by side. See skills overlap, project quality, internship record, and your own notes in one view.",
+    "searchPlaceholder": "Search by name to add a candidate...",
+    "selected": "selected",
+    "loading": "Loading candidate data...",
+    "addMore": "Add at least one more candidate to compare",
+    "addMoreHint": "Search above to find a second candidate.",
+    "emptyTitle": "Compare candidates side by side",
+    "emptyDesc": "Search for 2-4 candidates to compare skills, projects, internship experience, and pipeline notes in a structured view.",
+    "commonSkills": "{count} skills in common",
+    "rows": {
+      "graduation": "Graduation",
+      "gpa": "GPA",
+      "location": "Location",
+      "projects": "Projects",
+      "internships": "Internships",
+      "supervisorRating": "Supervisor rating",
+      "rating": "Your rating",
+      "skills": "Skills",
+      "topProjects": "Top projects",
+      "notes": "Your notes"
+    }
+  },
+  "universityInsightsPage": {
+    "title": "University Insights",
+    "subtitle": "Which universities produce the best candidates for your open roles? Ranked by skill match, verification rate, and talent pool depth.",
+    "match": "match",
+    "highVerification": "High verification",
+    "students": "students",
+    "matchYourRoles": "match your roles",
+    "verifiedProjects": "verified projects",
+    "verificationRate": "verified",
+    "talentPool": "Talent pool size",
+    "topSkills": "Top skills",
+    "topDisciplines": "Top disciplines",
+    "noData": "No university data yet",
+    "noDataHint": "Insights appear when students from different institutions register on the platform."
   },
   "talentMatch": {
     "title": "Talent Match",

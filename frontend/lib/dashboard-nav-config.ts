@@ -76,6 +76,8 @@ const recruiter: NavConfig = {
       labelKey: 'hiring',
       items: [
         { labelKey: 'talentMatch', href: '/dashboard/recruiter/talent-match' },
+        { labelKey: 'compare', href: '/dashboard/recruiter/compare' },
+        { labelKey: 'universityInsights', href: '/dashboard/recruiter/university-insights' },
         { labelKey: 'hiringAdvisor', href: '/dashboard/recruiter/hiring-advisor' },
         { labelKey: 'interviewKit', href: '/dashboard/recruiter/interview-kit' },
       ],

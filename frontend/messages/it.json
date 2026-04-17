@@ -76,6 +76,7 @@
     "recruiter": {
       "talent": "Talenti",
       "jobs": "Lavori",
+      "communicate": "Comunicazione",
       "messages": "Messaggi",
       "insights": "Statistiche",
       "hiring": "Strumenti Assunzione",
@@ -112,6 +113,8 @@
         "export": "Esporta",
         "documents": "Documenti",
         "talentMatch": "Talent Match",
+        "compare": "Confronta",
+        "universityInsights": "Insight Universit\u00e0",
         "hiringAdvisor": "Consulente Assunzioni",
         "interviewKit": "Kit Colloquio"
       },
@@ -10442,6 +10445,45 @@
       "allDone": "Tutto fatto!",
       "nextStep": "Prossimo: {step}"
     }
+  },
+  "compareCandidate": {
+    "title": "Confronta Candidati",
+    "subtitle": "Metti fino a 4 candidati fianco a fianco. Vedi competenze in comune, qualit\u00e0 progetti, esperienza stage e le tue note.",
+    "searchPlaceholder": "Cerca per nome per aggiungere un candidato...",
+    "selected": "selezionati",
+    "loading": "Caricamento dati candidato...",
+    "addMore": "Aggiungi almeno un altro candidato per confrontare",
+    "addMoreHint": "Cerca sopra per trovare un secondo candidato.",
+    "emptyTitle": "Confronta candidati fianco a fianco",
+    "emptyDesc": "Cerca 2-4 candidati per confrontare competenze, progetti, esperienza stage e note della pipeline in una vista strutturata.",
+    "commonSkills": "{count} competenze in comune",
+    "rows": {
+      "graduation": "Laurea",
+      "gpa": "Media",
+      "location": "Sede",
+      "projects": "Progetti",
+      "internships": "Stage",
+      "supervisorRating": "Valutazione tutor",
+      "rating": "La tua valutazione",
+      "skills": "Competenze",
+      "topProjects": "Progetti principali",
+      "notes": "Le tue note"
+    }
+  },
+  "universityInsightsPage": {
+    "title": "Insight Universit\u00e0",
+    "subtitle": "Quali universit\u00e0 producono i migliori candidati per i tuoi ruoli? Classificate per corrispondenza competenze, tasso verifica e dimensione talent pool.",
+    "match": "match",
+    "highVerification": "Alta verifica",
+    "students": "studenti",
+    "matchYourRoles": "corrispondono ai tuoi ruoli",
+    "verifiedProjects": "progetti verificati",
+    "verificationRate": "verificati",
+    "talentPool": "Dimensione talent pool",
+    "topSkills": "Competenze principali",
+    "topDisciplines": "Discipline principali",
+    "noData": "Nessun dato universitario",
+    "noDataHint": "Gli insight appariranno quando studenti di diverse istituzioni si registreranno sulla piattaforma."
   },
   "talentMatch": {
     "title": "Talent Match",
