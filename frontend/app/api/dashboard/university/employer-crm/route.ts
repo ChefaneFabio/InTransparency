@@ -52,9 +52,12 @@ export async function GET(req: NextRequest) {
         where: { universityName, status: 'CONFIRMED' },
         select: { companyName: true, salaryAmount: true, startDate: true, jobTitle: true },
       }),
-      prisma.careerEventRsvp.findMany({
-        where: { event: { organizerId: session.user.id }, companyName: { not: null } },
-        select: { companyName: true, createdAt: true, status: true, event: { select: { title: true, startDate: true } } },
+      prisma.universitySettings.findUnique({ where: { userId: session.user.id }, select: { id: true } }).then(async (settings) => {
+        if (!settings) return []
+        return prisma.eventRSVP.findMany({
+          where: { event: { organizerId: settings.id }, companyName: { not: null } },
+          select: { companyName: true, createdAt: true, status: true, event: { select: { title: true, startDate: true } } },
+        })
       }),
     ])
 
