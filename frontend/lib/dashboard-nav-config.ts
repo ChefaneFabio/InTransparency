@@ -109,6 +109,7 @@ const universityBase: NavConfig = {
       items: [
         { labelKey: 'placements', href: '/dashboard/university/placements' },
         { labelKey: 'skillsGap', href: '/dashboard/university/skills-gap' },
+        { labelKey: 'careerPaths', href: '/dashboard/university/career-paths' },
         { labelKey: 'curriculumAlignment', href: '/dashboard/university/curriculum-alignment' },
         { labelKey: 'events', href: '/dashboard/university/events' },
         { labelKey: 'stages', href: '/dashboard/university/stages' },

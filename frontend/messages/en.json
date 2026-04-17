@@ -164,7 +164,8 @@
         "employerCRM": "Employer CRM",
         "stages": "Stage & Tirocini",
         "stageInsights": "Internship Insights",
-        "communications": "Communications"
+        "communications": "Communications",
+        "careerPaths": "Career Paths"
       },
       "exchange": "Exchange",
       "internships": "Internships",
@@ -10534,6 +10535,38 @@
       "submit": "Upload Document",
       "uploading": "Uploading..."
     }
+  },
+  "careerPaths": {
+    "title": "Career Path Mapping",
+    "subtitle": "For each degree program, see which career paths are realistic, which skills transfer across industries, and which companies are hiring. Not placement rates — opportunities.",
+    "searchPlaceholder": "Search by degree program...",
+    "demand": {
+      "label": "demand",
+      "high": "High demand",
+      "good": "Good demand",
+      "moderate": "Growing demand",
+      "emerging": "Emerging"
+    },
+    "openRoles": "open roles",
+    "industries": "industries",
+    "verifiedProjects": "verified projects",
+    "industriesShort": "industries",
+    "roles": "roles",
+    "transferableSkills": "Transferable Skills",
+    "transferableSkillsDesc": "Skills from this program and how many industries value them.",
+    "matchingIndustries": "Matching Industries",
+    "matchingIndustriesDesc": "Industries with open roles matching this program's skills.",
+    "companiesHiring": "Companies hiring these skills",
+    "careerPathsTitle": "Career Paths",
+    "careerPathsDesc": "Realistic career destinations based on placements, alumni outcomes, and current job market.",
+    "evidence": "Evidence base",
+    "placements": "Confirmed placements",
+    "alumniTracked": "Alumni tracked",
+    "verifiedProjectsLabel": "Verified projects",
+    "noIndustries": "No matching industries found yet.",
+    "noPaths": "Career paths will appear as placement data grows.",
+    "noPrograms": "No degree programs found",
+    "noProgramsHint": "Career paths populate as students register and list their degree programs."
   },
   "universityCommunications": {
     "title": "Communications Hub",

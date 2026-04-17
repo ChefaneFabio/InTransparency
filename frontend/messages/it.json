@@ -164,7 +164,8 @@
         "employerCRM": "CRM Aziende",
         "stages": "Stage e Tirocini",
         "stageInsights": "Insight Tirocini",
-        "communications": "Comunicazioni"
+        "communications": "Comunicazioni",
+        "careerPaths": "Percorsi di Carriera"
       },
       "exchange": "Scambio",
       "internships": "Tirocini",
@@ -10561,6 +10562,38 @@
       "submit": "Carica Documento",
       "uploading": "Caricamento..."
     }
+  },
+  "careerPaths": {
+    "title": "Mappa Percorsi di Carriera",
+    "subtitle": "Per ogni corso di laurea, scopri quali percorsi professionali sono realistici, quali competenze sono trasferibili tra settori, e quali aziende assumono. Non tassi di placement \u2014 opportunit\u00e0.",
+    "searchPlaceholder": "Cerca per corso di laurea...",
+    "demand": {
+      "label": "domanda",
+      "high": "Alta domanda",
+      "good": "Buona domanda",
+      "moderate": "Domanda in crescita",
+      "emerging": "Emergente"
+    },
+    "openRoles": "ruoli aperti",
+    "industries": "settori",
+    "verifiedProjects": "progetti verificati",
+    "industriesShort": "settori",
+    "roles": "ruoli",
+    "transferableSkills": "Competenze Trasferibili",
+    "transferableSkillsDesc": "Competenze di questo corso e quanti settori le richiedono.",
+    "matchingIndustries": "Settori Compatibili",
+    "matchingIndustriesDesc": "Settori con posizioni aperte che corrispondono alle competenze dei vostri studenti.",
+    "companiesHiring": "Aziende che cercano queste competenze",
+    "careerPathsTitle": "Percorsi di Carriera",
+    "careerPathsDesc": "Destinazioni professionali realistiche basate su placement, esiti alumni e mercato del lavoro attuale.",
+    "evidence": "Base di evidenza",
+    "placements": "Placement confermati",
+    "alumniTracked": "Alumni tracciati",
+    "verifiedProjectsLabel": "Progetti verificati",
+    "noIndustries": "Nessun settore compatibile trovato ancora.",
+    "noPaths": "I percorsi appariranno con l\u2019accumularsi dei dati di placement.",
+    "noPrograms": "Nessun corso di laurea trovato",
+    "noProgramsHint": "I percorsi si popoleranno quando gli studenti si registrano e indicano il loro corso."
   },
   "universityCommunications": {
     "title": "Centro Comunicazioni",
