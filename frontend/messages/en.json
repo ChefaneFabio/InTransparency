@@ -296,7 +296,7 @@
         "benefits": [
           "Skills verified by the student's university",
           "Real projects, real grades — not resume claims",
-          "Full access, free during launch"
+          "Full access, free to start"
         ],
         "features": [
           {
@@ -309,7 +309,7 @@
           },
           {
             "title": "Full Access",
-            "description": "Unlimited contacts, free during launch — no barriers"
+            "description": "Unlimited contacts, free to start — no barriers"
           }
         ],
         "statsLabel": "Verified talent from",
@@ -413,7 +413,7 @@
       },
       "companyStep3": {
         "title": "Connect Directly",
-        "description": "Reach candidates with no barriers — free during launch"
+        "description": "Reach candidates with no barriers — free to start"
       },
       "students": {
         "title": "How",
@@ -696,7 +696,7 @@
           "benefits": {
             "0": "Search verified talent by real skills",
             "1": "See actual projects, not resume claims",
-            "2": "Unlimited access — free during launch candidates",
+            "2": "Unlimited access — free to start candidates",
             "3": "No subscriptions, no commitments"
           }
         }
@@ -764,7 +764,7 @@
             "Real-time opportunity notifications"
           ],
           "stats": {
-            "cost": "free during launch",
+            "cost": "free to start",
             "model": "Pay per use"
           },
           "visual": {
@@ -865,7 +865,7 @@
           {
             "feature": "Cost",
             "traditional": "Agency fees or subscriptions",
-            "ours": "free during launch, no commitments"
+            "ours": "free to start, no commitments"
           },
           {
             "feature": "Candidate pool",
@@ -1268,13 +1268,13 @@
       "recruiters": {
         "title": "For Recruiters: AI Candidate Search",
         "description": "Find verified candidates with natural language. Zero screening CVs:",
-        "result": "Result: See 5-10 verified matches with actual projects + AI-analyzed soft skills → contact directly — free during launch",
+        "result": "Result: See 5-10 verified matches with actual projects + AI-analyzed soft skills → contact directly — free to start",
         "howToAccess": "How to Access:",
         "steps": {
           "0": "Register free (no credit card)",
           "1": "Go to your Dashboard",
           "2": "Click \"AI Candidate Search\" in Quick Actions",
-          "3": "Type natural search, see verified matches, contact directly — free during launch"
+          "3": "Type natural search, see verified matches, contact directly — free to start"
         },
         "button": "Try AI Candidate Search →"
       },
@@ -2291,7 +2291,7 @@
     },
     "cta": {
       "title": "Find Talent You Can Trust",
-      "subtitle": "Browse verified student portfolios. See real projects, real grades, real skills. Connect directly — free during launch.",
+      "subtitle": "Browse verified student portfolios. See real projects, real grades, real skills. Start searching for free.",
       "primaryButton": "Start Finding Talent",
       "secondaryButton": "Try the Smart Search"
     },
@@ -2305,7 +2305,7 @@
         },
         "1": {
           "question": "What does it cost?",
-          "answer": "Browsing and searching is free. You only pay when you want to contact a candidate directly."
+          "answer": "The Starter plan is free forever — unlimited search, 5 talent connections per month, and 1 job post. The Growth plan at €149/month adds 50 talent connections, 10 job posts, and full access to AI hiring tools. See our pricing page for details."
         },
         "2": {
           "question": "What types of candidates are available?",
@@ -3036,7 +3036,7 @@
           "1": "Explainable matches with reasoning",
           "2": "See actual project work before contacting",
           "3": "Verified match quality saves time",
-          "4": "free during launch vs €8K/year subscriptions"
+          "4": "free to start vs €8K/year subscriptions"
         }
       },
       "institutions": {
@@ -3462,74 +3462,121 @@
   },
   "pricingPage": {
     "hero": {
-      "title": "Simple pricing, real value",
-      "subtitle": "Free for students and universities. Companies pay only when they find the right candidate."
+      "title": "Clear pricing. No surprises.",
+      "subtitle": "Students and universities use everything for free. Companies search free, and pay only when they're ready to hire."
     },
-    "tiers": {
-      "students": {
-        "name": "Students",
-        "price": "Free",
-        "period": "forever",
-        "description": "Build your verified portfolio and get discovered by companies.",
-        "cta": "Get Started Free",
-        "features": {
-          "0": "Unlimited project portfolio",
-          "1": "Institutional verification",
-          "2": "Personality and soft skills assessments",
-          "3": "AI-powered job search",
-          "4": "Contract check and offer comparison"
-        }
-      },
-      "companies": {
-        "name": "Companies",
-        "badge": "Most Popular",
-        "price": "Free",
-        "period": "to start",
-        "description": "Search verified talent with no limits. Contact candidates when you are ready.",
-        "cta": "Start Searching",
-        "features": {
-          "0": "Unlimited candidate search",
-          "1": "University-verified profiles",
-          "2": "Conversational AI search",
-          "3": "Decision Pack per candidate",
-          "4": "Pipeline and candidate management",
-          "5": "European grade normalization"
-        }
-      },
-      "universities": {
-        "name": "Universities & Schools",
-        "price": "Free",
-        "period": "core platform",
-        "description": "Verify students, track placements, prove impact.",
-        "cta": "Schedule a Demo",
-        "features": {
-          "0": "One-click project verification",
-          "1": "Real-time placement analytics",
-          "2": "Exportable reports for ministry",
-          "3": "Cross-border grade normalization",
-          "4": "Contract analytics and alerts"
+    "students": {
+      "title": "Students",
+      "subtitle": "Build your verified portfolio, get discovered by companies, and land your first role. Always free.",
+      "price": "Free",
+      "period": "forever",
+      "cta": "Get Started",
+      "features": {
+        "0": "Unlimited projects",
+        "1": "University verification",
+        "2": "AI job search",
+        "3": "Skill assessments",
+        "4": "Contract check"
+      }
+    },
+    "companies": {
+      "badge": "For Companies",
+      "title": "Plans for Companies",
+      "subtitle": "Search the entire verified talent pool for free. Upgrade when you need more contacts, job posts, and hiring tools.",
+      "popular": "Most Popular",
+      "tiers": {
+        "starter": {
+          "name": "Starter",
+          "price": "€0",
+          "period": "/month",
+          "description": "Start searching verified talent today. No credit card required.",
+          "cta": "Get Started Free",
+          "features": {
+            "0": "Unlimited candidate search",
+            "1": "University-verified profiles",
+            "2": "5 talent connections per month",
+            "3": "1 active job posting",
+            "4": "Basic pipeline (3 stages)",
+            "5": "100 MB document storage"
+          }
+        },
+        "growth": {
+          "name": "Growth",
+          "price": "€149",
+          "period": "/month",
+          "description": "For teams actively hiring. Full access to all recruiting tools.",
+          "cta": "Start Growth Plan",
+          "features": {
+            "0": "Everything in Starter, plus:",
+            "1": "50 talent connections per month",
+            "2": "10 active job postings",
+            "3": "Full pipeline with all stages",
+            "4": "AI Hiring Advisor (unlimited)",
+            "5": "Interview Kit Generator (unlimited)",
+            "6": "Decision Packs",
+            "7": "5 GB document storage"
+          }
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "price": "Custom",
+          "period": "",
+          "description": "For large teams and agencies. Unlimited everything with dedicated support.",
+          "cta": "Talk to Sales",
+          "features": {
+            "0": "Everything in Growth, plus:",
+            "1": "Unlimited talent connections",
+            "2": "Unlimited job postings",
+            "3": "API access",
+            "4": "University talent insights",
+            "5": "Dedicated customer success manager",
+            "6": "Custom integrations",
+            "7": "Unlimited storage",
+            "8": "Priority support & SLA"
+          }
         }
       }
     },
-    "note": "We're currently piloting with Università di Bergamo. Company pricing will be introduced gradually — early adopters keep launch terms.",
+    "universities": {
+      "title": "Universities, Schools & Training Centers",
+      "subtitle": "The full platform is free for all educational institutions. No limits on students, features, or data. We grow when your students succeed.",
+      "price": "Free",
+      "period": "everything included",
+      "cta": "Get Started",
+      "features": {
+        "0": "Unlimited students",
+        "1": "Project verification",
+        "2": "Placement analytics",
+        "3": "Institutional scorecard",
+        "4": "Document archive"
+      }
+    },
     "faq": {
-      "title": "Frequently asked questions",
+      "title": "Frequently Asked Questions",
       "questions": {
         "0": {
           "q": "Is it really free for students?",
-          "a": "Yes, forever. Portfolio, assessments, job search — all included. Companies pay, not students."
+          "a": "Yes, forever. Portfolio, assessments, job search, contract check — everything is included. Students never pay."
         },
         "1": {
-          "q": "How much will it cost for companies after launch?",
-          "a": "We're finalizing the pricing model. The planned model is: browse free, pay to contact. Early registrants keep favorable terms."
+          "q": "What do companies get for free?",
+          "a": "Unlimited search across all verified profiles, 5 talent connections per month, 1 job posting, and basic pipeline management. No credit card, no trial period."
         },
         "2": {
-          "q": "Do universities pay anything?",
-          "a": "The core platform is free for all educational institutions. Advanced features (embedded widgets, custom analytics) will be available as premium add-ons."
+          "q": "Why is the Growth plan worth it?",
+          "a": "At €149/month, you get 50 talent connections, 10 job posts, and full access to AI hiring tools — including the Hiring Advisor and Interview Kit Generator. That's less than LinkedIn Recruiter Lite, with university-verified data."
         },
         "3": {
+          "q": "Do universities pay anything?",
+          "a": "No. The entire platform is free for all educational institutions — universities, schools, ITS, training centers. No student limits, no feature limits, no hidden costs."
+        },
+        "4": {
           "q": "Is there a contract or lock-in?",
-          "a": "No. No annual contract, no lock-in. You can cancel anytime. Your data is always exportable."
+          "a": "No. Monthly billing, cancel anytime. No annual contracts unless you choose one (annual plans save 2 months). Your data is always exportable."
+        },
+        "5": {
+          "q": "How is this different from LinkedIn or Handshake?",
+          "a": "Every profile is backed by university-verified projects and grades — not self-reported claims. You see actual work before you contact anyone. And universities get the platform free, while Handshake charges $1,000–$20,000/year."
         }
       }
     }
@@ -4852,7 +4899,7 @@
       "accessFullResults": "Access full search results",
       "saveSearches": "Save searches and favorites",
       "studentFeature": "Apply to jobs and get discovered",
-      "companyFeature": "Unlimited candidate contacts",
+      "companyFeature": "Unlimited talent connections",
       "universityFeature": "Track placements in real-time"
     },
     "pricing": {
