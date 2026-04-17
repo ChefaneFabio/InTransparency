@@ -3007,6 +3007,47 @@ model StageExperience {
   @@index([status])
 }
 
+// ─── Stage Journal (Weekly Reflections) ─────────────────────────
+model StageJournal {
+  id        String   @id @default(cuid())
+  stageId   String
+  studentId String
+  weekNumber Int     // 1, 2, 3...
+
+  // What happened
+  activitiesSummary  String  @db.Text // "What did you work on this week?"
+  biggestChallenge   String? @db.Text // "What was your biggest challenge?"
+  biggestWin         String? @db.Text // "What are you most proud of?"
+
+  // Skills & preparation
+  skillPracticed      String?  // Primary skill used this week
+  newSkillLearned     String?  // Something new
+  courseConnection     String?  // "Which university course was most relevant?"
+  preparednessRating  Int?     // 1-5: "How prepared did you feel?"
+  independenceRating  Int?     // 1-5: 1=need constant guidance, 5=fully autonomous
+
+  // Wellbeing & adaptation
+  confidenceLevel     Int?     // 1-5
+  teamIntegration     Int?     // 1-5: "How integrated do you feel in the team?"
+  workLifeBalance     Int?     // 1-5
+  overallSatisfaction Int?     // 1-5
+
+  // Open reflection
+  whatWouldChange   String? @db.Text // "If you could change one thing..."
+  adviceForNextIntern String? @db.Text // "What would you tell the next intern?"
+
+  // Supervisor quick feedback (optional)
+  supervisorComment String? @db.Text
+  supervisorRating  Int?    // 1-5 for this week
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([stageId, weekNumber])
+  @@index([stageId])
+  @@index([studentId])
+}
+
 enum StageType {
   CURRICULARE       // Part of degree program (CFU credits)
   EXTRACURRICULARE  // Voluntary, no credits

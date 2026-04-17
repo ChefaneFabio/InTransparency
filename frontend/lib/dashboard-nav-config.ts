@@ -111,6 +111,7 @@ const universityBase: NavConfig = {
         { labelKey: 'curriculumAlignment', href: '/dashboard/university/curriculum-alignment' },
         { labelKey: 'events', href: '/dashboard/university/events' },
         { labelKey: 'stages', href: '/dashboard/university/stages' },
+        { labelKey: 'stageInsights', href: '/dashboard/university/stage-insights' },
         { labelKey: 'employerCRM', href: '/dashboard/university/employer-crm' },
       ],
     },

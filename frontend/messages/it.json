@@ -161,7 +161,8 @@
         "documents": "Documenti",
         "scorecard": "Pagella",
         "employerCRM": "CRM Aziende",
-        "stages": "Stage e Tirocini"
+        "stages": "Stage e Tirocini",
+        "stageInsights": "Insight Tirocini"
       },
       "exchange": "Scambio",
       "internships": "Tirocini",
@@ -10525,6 +10526,49 @@
       "confidentialHint": "I documenti riservati sono visibili solo agli amministratori del team.",
       "submit": "Carica Documento",
       "uploading": "Caricamento..."
+    }
+  },
+  "stageInsights": {
+    "title": "Insight Esperienza Tirocini",
+    "subtitle": "Comprendi come i tuoi studenti si adattano al mondo del lavoro. Pattern dalle riflessioni settimanali di tutti i tirocini attivi e completati.",
+    "noData": "Nessun dato disponibile",
+    "noDataHint": "Quando gli studenti iniziano a registrare le riflessioni settimanali durante i tirocini, gli insight aggregati appariranno qui mostrando pattern di crescita, sviluppo competenze e gap di preparazione.",
+    "metrics": {
+      "preparedness": "Preparazione Media",
+      "satisfaction": "Soddisfazione Media",
+      "journalEntries": "Voci Diario",
+      "stagesTracked": "Stage Monitorati"
+    },
+    "growth": {
+      "title": "Crescita Studenti nel Tempo",
+      "description": "Livelli medi di fiducia e autonomia attraverso tutti i tirocini, settimana per settimana. Mostra come gli studenti passano da principianti supervisionati a contributori autonomi.",
+      "confidence": "Fiducia",
+      "independence": "Autonomia"
+    },
+    "courses": {
+      "title": "Corsi Pi\u00f9 Citati",
+      "description": "Quali corsi universitari gli studenti considerano pi\u00f9 rilevanti per il loro lavoro in stage. Segnale di allineamento curriculum-lavoro."
+    },
+    "skills": {
+      "title": "Competenze Pi\u00f9 Praticate",
+      "description": "Le competenze che gli studenti usano pi\u00f9 frequentemente sul lavoro. Confronta con il tuo curriculum per identificare i punti di forza."
+    },
+    "newSkills": {
+      "title": "Competenze Apprese sul Lavoro",
+      "description": "Competenze sviluppate durante il tirocinio che non facevano parte del percorso di studi. Gap che il tuo curriculum potrebbe colmare."
+    },
+    "satisfaction": {
+      "title": "Soddisfazione Complessiva",
+      "description": "Quanto gli studenti sono soddisfatti della loro esperienza di tirocinio.",
+      "scale": "1 = Molto insoddisfatto, 5 = Molto soddisfatto"
+    },
+    "challenges": {
+      "title": "Sfide Comuni",
+      "description": "Cosa gli studenti hanno trovato pi\u00f9 difficile nella loro prima esperienza lavorativa. Cerca pattern che il career service potrebbe affrontare con workshop o preparazione."
+    },
+    "advice": {
+      "title": "Consigli da Stagista a Stagista",
+      "description": "Cosa gli stagisti attuali direbbero alla prossima coorte. Guida autentica tra pari da condividere con gli studenti in arrivo."
     }
   },
   "stageDetail": {

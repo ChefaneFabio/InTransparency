@@ -161,7 +161,8 @@
         "documents": "Documents",
         "scorecard": "Scorecard",
         "employerCRM": "Employer CRM",
-        "stages": "Stage & Tirocini"
+        "stages": "Stage & Tirocini",
+        "stageInsights": "Internship Insights"
       },
       "exchange": "Exchange",
       "internships": "Internships",
@@ -10498,6 +10499,49 @@
       "confidentialHint": "Confidential documents are visible only to team admins.",
       "submit": "Upload Document",
       "uploading": "Uploading..."
+    }
+  },
+  "stageInsights": {
+    "title": "Internship Experience Insights",
+    "subtitle": "Understand how your students adapt to the workplace. Patterns from weekly reflections across all active and completed internships.",
+    "noData": "No journal data yet",
+    "noDataHint": "When students start logging weekly reflections during their internships, aggregate insights will appear here showing growth patterns, skill development, and preparation gaps.",
+    "metrics": {
+      "preparedness": "Avg. Preparedness",
+      "satisfaction": "Avg. Satisfaction",
+      "journalEntries": "Journal Entries",
+      "stagesTracked": "Stages Tracked"
+    },
+    "growth": {
+      "title": "Student Growth Over Time",
+      "description": "Average confidence and independence levels across all internships, week by week. Shows how students adapt from supervised beginners to autonomous contributors.",
+      "confidence": "Confidence",
+      "independence": "Independence"
+    },
+    "courses": {
+      "title": "Most Referenced Courses",
+      "description": "Which university courses students say were most relevant to their internship work. Signals curriculum-to-workplace alignment."
+    },
+    "skills": {
+      "title": "Most Practiced Skills",
+      "description": "Skills students use most frequently in the workplace. Compare with your curriculum to identify strengths."
+    },
+    "newSkills": {
+      "title": "Skills Learned on the Job",
+      "description": "Competencies students developed during internships that were not part of their coursework. Gaps your curriculum could address."
+    },
+    "satisfaction": {
+      "title": "Overall Satisfaction",
+      "description": "How satisfied students are with their internship experience.",
+      "scale": "1 = Very dissatisfied, 5 = Very satisfied"
+    },
+    "challenges": {
+      "title": "Common Challenges",
+      "description": "What students found hardest during their first work experience. Look for patterns that your career service could address with workshops or preparation."
+    },
+    "advice": {
+      "title": "Advice from Interns to Interns",
+      "description": "What current interns would tell the next cohort. Authentic peer guidance you can share with incoming students."
     }
   },
   "stageDetail": {
