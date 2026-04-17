@@ -3465,9 +3465,14 @@
       "title": "Clear pricing. No surprises.",
       "subtitle": "Students and universities use everything for free. Companies search free, and pay only when they're ready to hire."
     },
+    "segments": {
+      "companies": "Companies",
+      "students": "Students",
+      "institutions": "Institutions"
+    },
     "students": {
       "title": "Students",
-      "subtitle": "Build your verified portfolio, get discovered by companies, and land your first role. Always free.",
+      "subtitle": "Build your verified portfolio, get discovered by companies, and land your first role.",
       "price": "Free",
       "period": "",
       "cta": "Get Started",
@@ -3477,7 +3482,8 @@
         "2": "AI job search",
         "3": "Skill assessments",
         "4": "Contract check"
-      }
+      },
+      "whyFree": "Students never pay because companies are the ones hiring. Your portfolio, your skills, your data — you're in control. No credit card, no trial, no catch."
     },
     "companies": {
       "badge": "For Companies",

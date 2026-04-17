@@ -3439,11 +3439,16 @@
       "title": "Prezzi chiari. Nessuna sorpresa.",
       "subtitle": "Studenti e universit\u00e0 usano tutto gratis. Le aziende cercano gratis e pagano solo quando sono pronte ad assumere."
     },
+    "segments": {
+      "companies": "Aziende",
+      "students": "Studenti",
+      "institutions": "Istituzioni"
+    },
     "students": {
       "title": "Studenti",
-      "subtitle": "Costruisci il tuo portfolio verificato, fatti scoprire dalle aziende e trova il tuo primo lavoro. Sempre gratis.",
+      "subtitle": "Costruisci il tuo portfolio verificato, fatti scoprire dalle aziende e trova il tuo primo lavoro.",
       "price": "Gratis",
-      "period": "senza limiti",
+      "period": "",
       "cta": "Inizia Ora",
       "features": {
         "0": "Progetti illimitati",
@@ -3451,7 +3456,8 @@
         "2": "Ricerca lavoro AI",
         "3": "Assessment competenze",
         "4": "Check contratto"
-      }
+      },
+      "whyFree": "Gli studenti non pagano mai perch\u00e9 sono le aziende ad assumere. Il tuo portfolio, le tue competenze, i tuoi dati \u2014 sei tu a controllare. Nessuna carta di credito, nessun trial, nessun trucco."
     },
     "companies": {
       "badge": "Per le Aziende",
