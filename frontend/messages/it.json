@@ -111,6 +111,7 @@
         "tags": "Tag",
         "export": "Esporta",
         "documents": "Documenti",
+        "talentMatch": "Talent Match",
         "hiringAdvisor": "Consulente Assunzioni",
         "interviewKit": "Kit Colloquio"
       },
@@ -10431,6 +10432,30 @@
       "allDone": "Tutto fatto!",
       "nextStep": "Prossimo: {step}"
     }
+  },
+  "talentMatch": {
+    "title": "Talent Match",
+    "subtitle": "Dicci cosa cerchi. Ti mostriamo chi corrisponde e perch\u00e9 \u2014 classificati per evidenze verificate, non parole chiave.",
+    "selectRole": "Abbina da un annuncio",
+    "selectRolePlaceholder": "Seleziona un ruolo da abbinare...",
+    "customCriteria": "Inserisci competenze manualmente",
+    "addSkills": "Oppure aggiungi competenze specifiche",
+    "skillPlaceholder": "es. Python, React, SQL...",
+    "findTalent": "Trova Talenti Corrispondenti",
+    "matching": "Analisi profili verificati...",
+    "scanning": "Analisi in corso...",
+    "scanningDesc": "Valutazione candidati rispetto ai tuoi criteri utilizzando progetti verificati, valutazioni stage e dati accademici.",
+    "results": "{count} corrispondenze trovate",
+    "rankedBy": "Classificati per punteggio evidenze",
+    "whyThisStudent": "Perch\u00e9 questo studente?",
+    "hideDetails": "Nascondi dettagli",
+    "relevantProjects": "Progetti verificati rilevanti",
+    "internshipRecord": "Esperienza stage",
+    "viewProfile": "Vedi",
+    "noMatches": "Nessuna corrispondenza trovata",
+    "noMatchesHint": "Prova ad ampliare i criteri di competenza o a rimuovere i filtri di localit\u00e0.",
+    "emptyTitle": "Trova il talento giusto per il tuo ruolo",
+    "emptyDesc": "Seleziona uno dei tuoi annunci o inserisci le competenze che cerchi. Classifichiamo ogni studente verificato in base alla corrispondenza \u2014 con punteggio trasparente basato su progetti, stage, voti e valutazioni dei tutor."
   },
   "hiringAdvisor": {
     "title": "Consulente Assunzioni",

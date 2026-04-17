@@ -111,6 +111,7 @@
         "tags": "Tags",
         "export": "Export",
         "documents": "Documents",
+        "talentMatch": "Talent Match",
         "hiringAdvisor": "Hiring Advisor",
         "interviewKit": "Interview Kit"
       },
@@ -10404,6 +10405,30 @@
       "allDone": "All done!",
       "nextStep": "Next: {step}"
     }
+  },
+  "talentMatch": {
+    "title": "Talent Match",
+    "subtitle": "Tell us what you need. We will show you who fits and why — ranked by verified evidence, not keywords.",
+    "selectRole": "Match from a job posting",
+    "selectRolePlaceholder": "Select a role to match against...",
+    "customCriteria": "Enter skills manually",
+    "addSkills": "Or add specific skills",
+    "skillPlaceholder": "e.g. Python, React, SQL...",
+    "findTalent": "Find Matching Talent",
+    "matching": "Scanning verified profiles...",
+    "scanning": "Analyzing profiles...",
+    "scanningDesc": "Scoring candidates against your criteria using verified projects, internship evaluations, and academic data.",
+    "results": "{count} matches found",
+    "rankedBy": "Ranked by evidence score",
+    "whyThisStudent": "Why this student?",
+    "hideDetails": "Hide details",
+    "relevantProjects": "Relevant verified projects",
+    "internshipRecord": "Internship record",
+    "viewProfile": "View",
+    "noMatches": "No matches found",
+    "noMatchesHint": "Try broadening your skills criteria or removing location filters.",
+    "emptyTitle": "Find the right talent for your role",
+    "emptyDesc": "Select one of your job postings or enter the skills you need. We will rank every verified student by how well they match — with transparent scoring based on projects, internships, grades, and supervisor evaluations."
   },
   "hiringAdvisor": {
     "title": "Hiring Advisor",
