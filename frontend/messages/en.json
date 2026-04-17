@@ -8560,7 +8560,7 @@
       "searchPlaceholder": "Search projects...",
       "discipline": "Discipline",
       "noProjectsFound": "No projects found",
-      "noProjectsDescription": "Projects with course links from your students will appear here",
+      "noProjectsDescription": "Projects from your students will appear here once they start uploading",
       "endorsed": "Endorsed"
     },
     "analytics": {

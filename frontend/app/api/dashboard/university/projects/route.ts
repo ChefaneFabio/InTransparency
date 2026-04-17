@@ -48,12 +48,6 @@ export async function GET(req: NextRequest) {
         university: universityName,
         role: 'STUDENT',
       },
-      // Only show projects with course context (eligible for verification)
-      OR: [
-        { courseName: { not: null } },
-        { courseCode: { not: null } },
-        { courseId: { not: null } },
-      ]
     }
 
     // Filter by verification status

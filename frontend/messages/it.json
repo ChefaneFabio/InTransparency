@@ -8521,7 +8521,7 @@
       "searchPlaceholder": "Cerca progetti...",
       "discipline": "Disciplina",
       "noProjectsFound": "Nessun progetto trovato",
-      "noProjectsDescription": "I progetti collegati ai corsi dei tuoi studenti appariranno qui",
+      "noProjectsDescription": "I progetti dei tuoi studenti appariranno qui quando inizieranno a caricarli",
       "endorsed": "Approvato"
     },
     "analytics": {
