@@ -93,15 +93,15 @@ export function CourseFilters({ filters, onChange, onApply, resultCount }: Cours
                 onClick={() => updateFilter({ institutionType: type })}
                 className="text-xs"
               >
-                {type === 'its' && '🔧 ITS'}
-                {type === 'university' && '🎓 University'}
-                {type === 'both' && '🌐 Both'}
+                {type === 'its' && 'ITS'}
+                {type === 'university' && 'University'}
+                {type === 'both' && 'Both'}
               </Button>
             ))}
           </div>
           {localFilters.institutionType === 'its' && (
             <p className="text-xs text-muted-foreground">
-              ✨ ITS graduates have 87% placement rate and strong hands-on skills
+              ITS graduates have 87% placement rate and strong hands-on skills
             </p>
           )}
         </div>
@@ -119,17 +119,17 @@ export function CourseFilters({ filters, onChange, onApply, resultCount }: Cours
             <SelectContent>
               <SelectItem value="none">Any course</SelectItem>
               <SelectItem value="divider" disabled>─── Tech/IT ───</SelectItem>
-              <SelectItem value={COURSE_CATEGORIES.PROGRAMMING}>💻 Programming</SelectItem>
-              <SelectItem value={COURSE_CATEGORIES.WEB_DEV}>🌐 Web Development</SelectItem>
-              <SelectItem value={COURSE_CATEGORIES.AI_ML}>🤖 AI & Machine Learning</SelectItem>
-              <SelectItem value={COURSE_CATEGORIES.CYBERSECURITY}>🔒 Cybersecurity</SelectItem>
-              <SelectItem value={COURSE_CATEGORIES.DATABASES}>🗄️ Databases</SelectItem>
+              <SelectItem value={COURSE_CATEGORIES.PROGRAMMING}>Programming</SelectItem>
+              <SelectItem value={COURSE_CATEGORIES.WEB_DEV}>Web Development</SelectItem>
+              <SelectItem value={COURSE_CATEGORIES.AI_ML}>AI & Machine Learning</SelectItem>
+              <SelectItem value={COURSE_CATEGORIES.CYBERSECURITY}>Cybersecurity</SelectItem>
+              <SelectItem value={COURSE_CATEGORIES.DATABASES}>Databases</SelectItem>
               <SelectItem value="divider2" disabled>─── Engineering ───</SelectItem>
-              <SelectItem value={COURSE_CATEGORIES.AUTOMATION}>⚙️ Automation & Control</SelectItem>
-              <SelectItem value={COURSE_CATEGORIES.PLC}>🔌 PLC Programming</SelectItem>
-              <SelectItem value={COURSE_CATEGORIES.CAD}>📐 CAD/CAM Design</SelectItem>
-              <SelectItem value={COURSE_CATEGORIES.ROBOTICS}>🤖 Robotics</SelectItem>
-              <SelectItem value={COURSE_CATEGORIES.ELECTRONICS}>🔋 Electronics</SelectItem>
+              <SelectItem value={COURSE_CATEGORIES.AUTOMATION}>Automation & Control</SelectItem>
+              <SelectItem value={COURSE_CATEGORIES.PLC}>PLC Programming</SelectItem>
+              <SelectItem value={COURSE_CATEGORIES.CAD}>CAD/CAM Design</SelectItem>
+              <SelectItem value={COURSE_CATEGORIES.ROBOTICS}>Robotics</SelectItem>
+              <SelectItem value={COURSE_CATEGORIES.ELECTRONICS}>Electronics</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -159,13 +159,13 @@ export function CourseFilters({ filters, onChange, onApply, resultCount }: Cours
           </div>
           <p className="text-xs text-muted-foreground">
             {localFilters.minGrade && localFilters.minGrade >= 80 && (
-              '🌟 High grade = top 20-30% performers'
+              'High grade = top 20-30% performers'
             )}
             {localFilters.minGrade && localFilters.minGrade >= 60 && localFilters.minGrade < 80 && (
-              '👍 Good grade = solid performers'
+              'Good grade = solid performers'
             )}
             {(!localFilters.minGrade || localFilters.minGrade < 60) && (
-              '📊 All grades included'
+              'All grades included'
             )}
           </p>
         </div>
@@ -184,7 +184,7 @@ export function CourseFilters({ filters, onChange, onApply, resultCount }: Cours
         {/* Info banner */}
         <div className="bg-primary/5 border border-primary/20 rounded-lg p-3">
           <p className="text-xs text-blue-800">
-            <strong>💡 Demo Mode:</strong> Using mock data. When ITS partnerships are active,
+            <strong>Demo Mode:</strong> Using mock data. When ITS partnerships are active,
             you'll see real course grades verified by institutions.
           </p>
         </div>

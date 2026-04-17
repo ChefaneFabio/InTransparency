@@ -91,10 +91,10 @@ const showcaseItems: ShowcaseItem[] = [
     animation: {
       type: 'slideshow',
       data: [
-        { company: 'TechCorp', role: 'ML Engineer', match: 94, logo: '🚀' },
-        { company: 'DataFlow', role: 'Full Stack Developer', match: 89, logo: '💻' },
-        { company: 'AI Innovations', role: 'Data Scientist', match: 92, logo: '🔬' },
-        { company: 'WebTech', role: 'Frontend Developer', match: 87, logo: '🎨' }
+        { company: 'TechCorp', role: 'ML Engineer', match: 94, logo: 'TC' },
+        { company: 'DataFlow', role: 'Full Stack Developer', match: 89, logo: 'DF' },
+        { company: 'AI Innovations', role: 'Data Scientist', match: 92, logo: 'AI' },
+        { company: 'WebTech', role: 'Frontend Developer', match: 87, logo: 'WT' }
       ]
     }
   },

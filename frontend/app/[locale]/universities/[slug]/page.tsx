@@ -399,7 +399,7 @@ export default function UniversityPage({ params }: UniversityPageProps) {
                     {t('socialMedia.linkedin')}
                   </a>
                   <a href={`https://facebook.com/${university.socialMedia.facebook}`} className="flex items-center text-primary hover:text-blue-800" target="_blank" rel="noopener noreferrer">
-                    <span className="mr-2">👥</span>
+                    <span className="mr-2">FB</span>
                     {t('socialMedia.facebook')}
                   </a>
                 </div>

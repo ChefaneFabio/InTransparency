@@ -135,7 +135,7 @@ export function CandidateVideoSection({
 
             <div className="mt-4 bg-primary/5 border border-primary/20 rounded-lg p-4">
               <p className="text-sm text-blue-900">
-                <strong>💡 Watch this video to:</strong>
+                <strong>Watch this video to:</strong>
               </p>
               <ul className="mt-2 space-y-1 text-sm text-blue-800">
                 <li>• Hear {candidateName.split(' ')[0]} explain their technical approach</li>

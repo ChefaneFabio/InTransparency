@@ -392,7 +392,7 @@ export default function LinkedInBridge({ userType, userId, onSyncComplete }: Lin
             {/* Sync Recommendations */}
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
               <h4 className="font-semibold text-blue-800 mb-3">
-                {userType === 'student' ? '🎓 Student' : userType === 'recruiter' ? '💼 Recruiter' : '🏫 University'} Sync Tips
+                {userType === 'student' ? 'Student' : userType === 'recruiter' ? 'Recruiter' : 'University'} Sync Tips
               </h4>
               <ul className="space-y-2">
                 {(getSyncRecommendations() || []).map((tip, index) => (

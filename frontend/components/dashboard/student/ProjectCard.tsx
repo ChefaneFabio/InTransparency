@@ -4,7 +4,7 @@ import { Link } from '@/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ExternalLink, Github, Calendar, TrendingUp } from 'lucide-react'
+import { ExternalLink, Github, Calendar, TrendingUp, FolderOpen } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
 
 interface ProjectCardProps {
@@ -105,7 +105,7 @@ export function ProjectCard({ project, variant = 'default' }: ProjectCardProps) 
           ) : (
             <div className="w-full h-full flex items-center justify-center">
               <div className="text-center">
-                <div className="text-4xl mb-2">🚀</div>
+                <FolderOpen className="h-10 w-10 text-primary/60 mb-2" />
                 <div className="text-sm text-gray-600 font-medium">{category}</div>
               </div>
             </div>

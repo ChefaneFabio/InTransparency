@@ -1,6 +1,6 @@
 'use client'
 
-import { CheckCircle, XCircle } from 'lucide-react'
+import { CheckCircle, XCircle, Users, Monitor, GraduationCap, Brain, Target, Trophy, Briefcase, Palette, FileText, BarChart3 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 export function CompetitiveAdvantage() {
@@ -27,7 +27,7 @@ export function CompetitiveAdvantage() {
               <div className="flex items-center gap-3">
                 <h3 className="text-xl font-bold text-foreground">{t('linkedin.title')}</h3>
               </div>
-              <div className="text-4xl">🤝</div>
+              <Users className="h-8 w-8 text-primary" />
             </div>
 
             <div className="space-y-4">
@@ -77,7 +77,7 @@ export function CompetitiveAdvantage() {
               <div className="flex items-center gap-3">
                 <h3 className="text-xl font-bold text-foreground">{t('github.title')}</h3>
               </div>
-              <div className="text-4xl">💻</div>
+              <Monitor className="h-8 w-8 text-primary" />
             </div>
 
             <div className="space-y-4">
@@ -321,10 +321,10 @@ export function CompetitiveAdvantage() {
           </h3>
           <div className="grid md:grid-cols-5 gap-6 max-w-6xl mx-auto">
             {[
-              { key: 'universityVerified', icon: '🎓' },
-              { key: 'aiAnalysis', icon: '🤖' },
+              { key: 'universityVerified', icon: '' },
+              { key: 'aiAnalysis', icon: '' },
               { key: 'conversationalAI', icon: '💬' },
-              { key: 'academicFilters', icon: '🎯' },
+              { key: 'academicFilters', icon: '' },
               { key: 'portfolioCoverage', icon: '📁' }
             ].map((feature) => (
               <div key={feature.key} className="bg-card rounded-xl p-6 shadow-md border-2 border-primary/20 text-center">
@@ -369,7 +369,7 @@ export function CompetitiveAdvantage() {
           <div className="mt-8 text-center">
             <div className="inline-block bg-primary/10 border-2 border-primary/30 rounded-xl p-6">
               <p className="text-lg font-semibold text-primary">
-                🏆 {t('useCases.conclusion')}
+                {t('useCases.conclusion')}
               </p>
             </div>
           </div>
@@ -386,11 +386,11 @@ export function CompetitiveAdvantage() {
               <div key={category} className="bg-primary/5 rounded-lg p-6">
                 <h4 className="font-bold mb-3">
                   {category === 'stem' && '🔬 '}
-                  {category === 'business' && '💼 '}
-                  {category === 'creative' && '🎨 '}
+                  {category === 'business' && ''}
+                  {category === 'creative' && ''}
                   {category === 'legal' && '⚖️ '}
-                  {category === 'humanities' && '📝 '}
-                  {category === 'other' && '📊 '}
+                  {category === 'humanities' && ''}
+                  {category === 'other' && ''}
                   {t(`disciplines.categories.${category}.title`)}
                 </h4>
                 <ul className="space-y-1 text-sm text-foreground/80">
@@ -402,7 +402,7 @@ export function CompetitiveAdvantage() {
             ))}
           </div>
           <p className="mt-6 text-lg font-semibold text-foreground">
-            🎯 {t('disciplines.conclusion')}
+            {t('disciplines.conclusion')}
           </p>
         </div>
       </div>

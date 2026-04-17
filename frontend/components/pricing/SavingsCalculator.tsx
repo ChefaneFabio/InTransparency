@@ -229,7 +229,7 @@ export function SavingsCalculator({
         {calculations.contactsNeeded > hiresPerYear && (
           <div className="bg-primary/5 border border-primary/20 rounded-lg p-3 text-center">
             <p className="text-xs text-blue-800">
-              💡 <strong>Pro tip:</strong> You'd need to contact{' '}
+              <strong>Pro tip:</strong> You'd need to contact{' '}
               <strong>{calculations.contactsNeeded} candidates</strong> before InTransparency
               becomes more expensive than {competitorData.name}. Most recruiters contact fewer than 50 per year!
             </p>

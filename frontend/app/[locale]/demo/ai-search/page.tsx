@@ -52,7 +52,7 @@ export default function AISearchDemoPage() {
       title: t('demoConfigs.student.title'),
       subtitle: t('demoConfigs.student.subtitle'),
       color: 'bg-primary',
-      label: '🎓',
+      label: 'S',
       placeholder: t('demoConfigs.student.placeholder'),
       initialMessage: t('demoConfigs.student.initialMessage'),
       registrationLink: '/auth/register/student'
@@ -61,7 +61,7 @@ export default function AISearchDemoPage() {
       title: t('demoConfigs.company.title'),
       subtitle: t('demoConfigs.company.subtitle'),
       color: 'bg-primary',
-      label: '🏢',
+      label: 'C',
       placeholder: t('demoConfigs.company.placeholder'),
       initialMessage: t('demoConfigs.company.initialMessage'),
       registrationLink: '/auth/register/recruiter'

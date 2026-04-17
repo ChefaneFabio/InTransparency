@@ -111,12 +111,12 @@ export default function NotificationBell() {
     switch (type) {
       case 'VERIFICATION_UPDATE': return '✓'
       case 'MESSAGE_RECEIVED': return '✉'
-      case 'BADGE_ISSUED': return '🛡'
-      case 'MENTORSHIP_REQUEST': return '👥'
-      case 'EVENT_RSVP': return '📅'
-      case 'REVIEW_POSTED': return '⭐'
-      case 'SCORE_UPDATE': return '📊'
-      default: return '🔔'
+      case 'BADGE_ISSUED': return '◆'
+      case 'MENTORSHIP_REQUEST': return '⊕'
+      case 'EVENT_RSVP': return '▸'
+      case 'REVIEW_POSTED': return '★'
+      case 'SCORE_UPDATE': return '◉'
+      default: return '●'
     }
   }
 
