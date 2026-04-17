@@ -180,7 +180,7 @@ async function main() {
   console.log(`${jobIds.length} job postings`)
 
   // ── Applications spread across months and statuses ──
-  const appStatuses: Array<'PENDING' | 'REVIEWED' | 'SHORTLISTED' | 'INTERVIEW' | 'OFFER' | 'ACCEPTED' | 'REJECTED'> = ['PENDING', 'PENDING', 'REVIEWED', 'REVIEWED', 'SHORTLISTED', 'INTERVIEW', 'INTERVIEW', 'OFFER', 'ACCEPTED', 'REJECTED', 'REJECTED']
+  const appStatuses: Array<'PENDING' | 'REVIEWING' | 'SHORTLISTED' | 'INTERVIEW' | 'OFFER' | 'ACCEPTED' | 'REJECTED'> = ['PENDING', 'PENDING', 'REVIEWING', 'REVIEWING', 'SHORTLISTED', 'INTERVIEW', 'INTERVIEW', 'OFFER', 'ACCEPTED', 'REJECTED', 'REJECTED']
   let appCount = 0
   for (const jobId of jobIds) {
     const applicants = pickN(students, ri(8, 18))
