@@ -12,7 +12,7 @@ export function StructuredData() {
     contactPoint: {
       '@type': 'ContactPoint',
       email: 'students@intransparency.it',
-      telephone: '+39-348-170-1615',
+      telephone: '+39-344-494-2399',
       contactType: 'customer support',
       availableLanguage: ['English', 'Italian'],
     },

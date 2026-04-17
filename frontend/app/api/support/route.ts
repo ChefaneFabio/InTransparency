@@ -76,7 +76,7 @@ export async function GET() {
     if (isDedicatedSupport) {
       support.channels.phone = {
         available: true,
-        number: '+39 02 1234 5678',
+        number: '+39 344 4942399',
         hours: 'Business hours (9-18 CET)',
         label: 'Phone Support',
       }

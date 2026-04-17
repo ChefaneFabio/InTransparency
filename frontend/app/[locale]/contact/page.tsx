@@ -191,7 +191,7 @@ export default function ContactPage() {
                       <div className="flex items-center space-x-4">
                         <div>
                           <h3 className="font-semibold text-foreground">{t('methods.phone.title')}</h3>
-                          <p className="text-muted-foreground">+39 348 170 1615</p>
+                          <p className="text-muted-foreground">+39 344 4942399</p>
                           <p className="text-sm text-foreground/80">{t('methods.phone.subtitle')}</p>
                         </div>
                       </div>
