@@ -6,7 +6,7 @@
  */
 
 import { SubscriptionTier } from '@prisma/client'
-import { getPricingTier, hasFeature } from '@/lib/config/pricing'
+import { getCompanyTier, hasFeature } from '@/lib/config/pricing'
 
 export interface FeatureGateResult {
   allowed: boolean
@@ -41,15 +41,15 @@ export function canContact(
 /**
  * Check if user has priority support
  */
-export function hasPrioritySupport(userTier: SubscriptionTier): boolean {
-  return hasFeature(userTier, 'prioritySupport')
+export function hasDedicatedSupport(userTier: SubscriptionTier): boolean {
+  return hasFeature(userTier, 'dedicatedSupport')
 }
 
 /**
- * Check if user can use custom branding
+ * Check if user has API access
  */
-export function canUseCustomBranding(userTier: SubscriptionTier): boolean {
-  return hasFeature(userTier, 'customBranding')
+export function hasApiAccess(userTier: SubscriptionTier): boolean {
+  return hasFeature(userTier, 'apiAccess')
 }
 
 /**
@@ -78,5 +78,5 @@ export function isSubscriptionActive(
  * Phase 1: Everyone has full access.
  */
 export function getUpgradeMessage(userTier: SubscriptionTier): string {
-  return 'You have full access to all features — free during launch.'
+  return 'You have full access to all features.'
 }
