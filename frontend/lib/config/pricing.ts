@@ -7,8 +7,8 @@
  * - Companies: Freemium. Free to search, paid to contact at scale.
  *
  * Company tiers:
- *   Starter (free): 5 contacts/mo, 1 job post, basic pipeline
- *   Growth (€149/mo): 50 contacts/mo, 10 job posts, full tools
+ *   Starter (free): 3 talent unlocks at signup (one-time), 1 job post, basic pipeline
+ *   Growth (€149/mo): 50 talent unlocks/mo, 10 job posts, full tools
  *   Enterprise (custom): unlimited everything, API, dedicated CSM
  */
 
@@ -59,7 +59,7 @@ export const COMPANY_TIERS = {
     pricingModel: 'free' as const,
     price: { monthly: 0, annual: 0 },
     limits: {
-      talentConnections: 5,
+      talentConnections: 3, // one-time at signup, not recurring
       jobPosts: 1,
       documents: 100,        // 100 MB
       hiringAdvisor: 3,

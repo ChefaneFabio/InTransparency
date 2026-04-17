@@ -2305,7 +2305,7 @@
         },
         "1": {
           "question": "What does it cost?",
-          "answer": "The Starter plan is free forever — unlimited search, 5 talent connections per month, and 1 job post. The Growth plan at €149/month adds 50 talent connections, 10 job posts, and full access to AI hiring tools. See our pricing page for details."
+          "answer": "The Starter plan is free forever — unlimited search, 3 talent unlocks at signup, and 1 job post. Need more? Upgrade to Growth (€149/month for 50 unlocks) or buy individual talent unlocks at €10 each. See our pricing page for details."
         },
         "2": {
           "question": "What types of candidates are available?",
@@ -3492,9 +3492,9 @@
           "description": "Start searching verified talent today. No credit card required.",
           "cta": "Get Started Free",
           "features": {
-            "0": "Unlimited candidate search",
+            "0": "Unlimited talent search",
             "1": "University-verified profiles",
-            "2": "5 talent connections per month",
+            "2": "3 talent unlocks at signup",
             "3": "1 active job posting",
             "4": "Basic pipeline (3 stages)",
             "5": "100 MB document storage"
@@ -3508,7 +3508,7 @@
           "cta": "Start Growth Plan",
           "features": {
             "0": "Everything in Starter, plus:",
-            "1": "50 talent connections per month",
+            "1": "50 talent unlocks per month",
             "2": "10 active job postings",
             "3": "Full pipeline with all stages",
             "4": "AI Hiring Advisor (unlimited)",
@@ -3525,16 +3525,28 @@
           "cta": "Talk to Sales",
           "features": {
             "0": "Everything in Growth, plus:",
-            "1": "Unlimited talent connections",
+            "1": "Unlimited talent unlocks",
             "2": "Unlimited job postings",
             "3": "API access",
             "4": "University talent insights",
             "5": "Dedicated customer success manager",
             "6": "Custom integrations",
             "7": "Unlimited storage",
-            "8": "Priority support & SLA"
+            "8": "Priority support and SLA"
           }
         }
+      }
+    },
+    "payPerTalent": {
+      "badge": "Flexible Alternative",
+      "title": "Prefer to pay only when you reach out?",
+      "subtitle": "Buy individual talent unlocks. €10 per talent, no subscription, no monthly commitment. Perfect for occasional hiring.",
+      "cta": "View credit packages",
+      "packages": {
+        "0": "50 credits — €50 (€10/talent)",
+        "1": "200 credits — €180 (€9/talent, 10% off)",
+        "2": "500 credits — €400 (€8/talent, 20% off)",
+        "3": "1,000+ credits — Custom (up to 40% off)"
       }
     },
     "universities": {
@@ -3560,11 +3572,11 @@
         },
         "1": {
           "q": "What do companies get for free?",
-          "a": "Unlimited search across all verified profiles, 5 talent connections per month, 1 job posting, and basic pipeline management. No credit card, no trial period."
+          "a": "Unlimited search across all verified profiles, 3 talent unlocks at signup, 1 job posting, and basic pipeline management. No credit card, no trial expiration."
         },
         "2": {
           "q": "Why is the Growth plan worth it?",
-          "a": "At €149/month, you get 50 talent connections, 10 job posts, and full access to AI hiring tools — including the Hiring Advisor and Interview Kit Generator. That's less than LinkedIn Recruiter Lite, with university-verified data."
+          "a": "At €149/month, you get 50 talent unlocks, 10 job posts, and full access to AI hiring tools — including the Hiring Advisor and Interview Kit Generator. That's less than LinkedIn Recruiter Lite, with university-verified data."
         },
         "3": {
           "q": "Do universities pay anything?",

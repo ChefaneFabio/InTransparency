@@ -2345,7 +2345,7 @@
         },
         "1": {
           "question": "Quanto costa?",
-          "answer": "Il piano Starter \u00e8 gratuito per sempre \u2014 ricerca illimitata, 5 connessioni con talenti al mese e 1 annuncio. Il piano Growth a \u20ac149/mese aggiunge 50 connessioni, 10 annunci e accesso completo agli strumenti AI. Vedi la pagina prezzi per i dettagli."
+          "answer": "Il piano Starter \u00e8 gratuito per sempre \u2014 ricerca illimitata, 3 sblocchi talento al signup e 1 annuncio. Vuoi di pi\u00f9? Passa a Growth (\u20ac149/mese per 50 sblocchi) oppure acquista sblocchi singoli a \u20ac10 l'uno. Vedi la pagina prezzi per i dettagli."
         },
         "2": {
           "question": "Che tipo di candidati sono disponibili?",
@@ -3456,7 +3456,7 @@
     "companies": {
       "badge": "Per le Aziende",
       "title": "Piani per le Aziende",
-      "subtitle": "Cerca nell'intero pool di talenti verificati gratuitamente. Passa al piano superiore quando hai bisogno di pi\u00f9 contatti, annunci e strumenti.",
+      "subtitle": "Cerca nell'intero pool di talenti verificati gratuitamente. Passa al piano superiore quando hai bisogno di pi\u00f9 sblocchi, annunci e strumenti.",
       "popular": "Pi\u00f9 Popolare",
       "tiers": {
         "starter": {
@@ -3466,9 +3466,9 @@
           "description": "Inizia a cercare talento verificato oggi. Nessuna carta di credito richiesta.",
           "cta": "Inizia Gratis",
           "features": {
-            "0": "Ricerca candidati illimitata",
+            "0": "Ricerca talenti illimitata",
             "1": "Profili verificati dalle universit\u00e0",
-            "2": "5 connessioni con talenti al mese",
+            "2": "3 sblocchi talento al signup",
             "3": "1 annuncio di lavoro attivo",
             "4": "Pipeline base (3 fasi)",
             "5": "100 MB archivio documenti"
@@ -3482,7 +3482,7 @@
           "cta": "Attiva Piano Growth",
           "features": {
             "0": "Tutto in Starter, pi\u00f9:",
-            "1": "50 connessioni con talenti al mese",
+            "1": "50 sblocchi talento al mese",
             "2": "10 annunci di lavoro attivi",
             "3": "Pipeline completa con tutte le fasi",
             "4": "Consulente Assunzioni AI (illimitato)",
@@ -3499,7 +3499,7 @@
           "cta": "Contatta il Team Vendite",
           "features": {
             "0": "Tutto in Growth, pi\u00f9:",
-            "1": "Connessioni con talenti illimitate",
+            "1": "Sblocchi talento illimitati",
             "2": "Annunci di lavoro illimitati",
             "3": "Accesso API",
             "4": "Insights talenti universitari",
@@ -3509,6 +3509,18 @@
             "8": "Supporto prioritario e SLA"
           }
         }
+      }
+    },
+    "payPerTalent": {
+      "badge": "Alternativa Flessibile",
+      "title": "Preferisci pagare solo quando contatti?",
+      "subtitle": "Acquista sblocchi talento singoli. \u20ac10 a talento, nessun abbonamento, nessun impegno mensile. Perfetto per chi assume sporadicamente.",
+      "cta": "Vedi pacchetti crediti",
+      "packages": {
+        "0": "50 crediti \u2014 \u20ac50 (\u20ac10/talento)",
+        "1": "200 crediti \u2014 \u20ac180 (\u20ac9/talento, sconto 10%)",
+        "2": "500 crediti \u2014 \u20ac400 (\u20ac8/talento, sconto 20%)",
+        "3": "1.000+ crediti \u2014 Custom (fino a sconto 40%)"
       }
     },
     "universities": {
@@ -3534,11 +3546,11 @@
         },
         "1": {
           "q": "Cosa ottengono le aziende gratis?",
-          "a": "Ricerca illimitata in tutti i profili verificati, 5 connessioni con talenti al mese, 1 annuncio di lavoro e gestione pipeline base. Nessuna carta di credito, nessun periodo di prova."
+          "a": "Ricerca illimitata in tutti i profili verificati, 3 sblocchi talento al signup, 1 annuncio di lavoro e gestione pipeline base. Nessuna carta di credito, nessuna scadenza trial."
         },
         "2": {
           "q": "Perch\u00e9 il piano Growth vale la pena?",
-          "a": "A \u20ac149/mese, ottieni 50 connessioni con talenti, 10 annunci e accesso completo agli strumenti AI \u2014 inclusi il Consulente Assunzioni e il Generatore Kit Colloquio. Costa meno di LinkedIn Recruiter Lite, con dati verificati dalle universit\u00e0."
+          "a": "A \u20ac149/mese, ottieni 50 sblocchi talento, 10 annunci e accesso completo agli strumenti AI \u2014 inclusi il Consulente Assunzioni e il Generatore Kit Colloquio. Costa meno di LinkedIn Recruiter Lite, con dati verificati dalle universit\u00e0."
         },
         "3": {
           "q": "Le universit\u00e0 pagano qualcosa?",

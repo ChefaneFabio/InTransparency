@@ -153,6 +153,28 @@ export default function PricingPage() {
               </motion.div>
             ))}
           </div>
+
+          {/* Pay-per-talent alternative */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-10 p-6 rounded-2xl border-2 border-dashed border-muted-foreground/20 bg-muted/30 text-center"
+          >
+            <Badge variant="outline" className="mb-3">{t('payPerTalent.badge')}</Badge>
+            <h3 className="text-xl font-bold">{t('payPerTalent.title')}</h3>
+            <p className="text-sm text-muted-foreground mt-1 max-w-lg mx-auto">{t('payPerTalent.subtitle')}</p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-5 max-w-3xl mx-auto">
+              {[0, 1, 2, 3].map(i => (
+                <div key={i} className="p-3 rounded-xl bg-white dark:bg-slate-800 border text-sm font-medium">
+                  {t(`payPerTalent.packages.${i}`)}
+                </div>
+              ))}
+            </div>
+            <Button variant="outline" className="mt-5" asChild>
+              <Link href="/contact?subject=credits">{t('payPerTalent.cta')}<ArrowRight className="h-4 w-4 ml-2" /></Link>
+            </Button>
+          </motion.div>
         </div>
       </section>
 
