@@ -357,6 +357,13 @@ model User {
   // Stage & Tirocini
   stageExperiences     StageExperience[]   @relation("StudentStages")
 
+  // Skill graph — P1
+  skillDeltas          SkillDelta[]        @relation("StudentSkillDeltas")
+
+  // Match explainability — P2
+  matchExplanationsAsSubject    MatchExplanation[] @relation("MatchExplanationSubject")
+  matchExplanationsAsCounterparty MatchExplanation[] @relation("MatchExplanationCounterparty")
+
   @@index([email])
   @@index([username])
   @@index([referralCode])
@@ -2309,6 +2316,12 @@ model SkillMapping {
   parent   SkillMapping? @relation("SkillHierarchy", fields: [parentId], references: [id])
   children SkillMapping[] @relation("SkillHierarchy")
 
+  // External standard mappings — EU interop layer (P1/P4)
+  escoUri        String? // ESCO skill URI (e.g. http://data.europa.eu/esco/skill/...)
+  escoConceptUri String? // ESCO broader concept (knowledge/skill/competence/attitude)
+  escoPreferred  String? // ESCO preferred label (en)
+  escoVersion    String? // ESCO dataset version (e.g. "1.2.0")
+
   // Metadata
   locale      String  @default("en") // ISO 639-1
   demandScore Int     @default(0)    // 0-100, computed from Job frequency
@@ -2323,6 +2336,58 @@ model SkillMapping {
   @@index([locale])
   @@index([demandScore])
   @@index([parentId])
+  @@index([escoUri])
+}
+
+// SkillDelta — verified proficiency changes over time (P1)
+// Written by stage evaluations, project completions, course outcomes
+// Source of truth for "skill gained/grown" across the student's journey
+model SkillDelta {
+  id        String @id @default(cuid())
+  studentId String
+  student   User   @relation("StudentSkillDeltas", fields: [studentId], references: [id], onDelete: Cascade)
+
+  // The skill (normalized via SkillMapping when possible)
+  skillTerm  String  // Human-readable term
+  skillMappingId String? // FK to SkillMapping if mapped
+  escoUri    String? // ESCO URI if mapped (denormalized for fast queries)
+
+  // Source evidence
+  source     SkillDeltaSource // STAGE, PROJECT, COURSE, THESIS, ENDORSEMENT, SELF_ASSESSMENT
+  sourceId   String           // Polymorphic ID to source record (stageId, projectId, etc.)
+  sourceName String?          // Human-readable source ("Stage at Brembo", "Thesis: ...")
+
+  // Proficiency change — 0=none, 1=Beginner, 2=Intermediate, 3=Advanced, 4=Expert
+  beforeLevel Int?  // Null if first time observed
+  afterLevel  Int   // Required, 1-4
+  confidence  Float @default(1.0) // 0.0-1.0, how confident we are in this delta
+
+  // Evaluator
+  evaluatorType  String? // "SUPERVISOR", "PROFESSOR", "AI", "SELF", "PEER"
+  evaluatorId    String? // User ID of evaluator if applicable
+  evaluatorName  String? // Denormalized for display
+
+  // Evidence detail (open for source-specific payloads)
+  evidence Json? // { hoursObserved, rubric, supervisorComment, ... }
+
+  occurredAt DateTime @default(now()) // When the learning happened
+  createdAt  DateTime @default(now())
+
+  @@index([studentId])
+  @@index([skillTerm])
+  @@index([escoUri])
+  @@index([source, sourceId])
+  @@index([occurredAt])
+}
+
+enum SkillDeltaSource {
+  STAGE
+  PROJECT
+  COURSE
+  THESIS
+  ENDORSEMENT
+  SELF_ASSESSMENT
+  EXCHANGE // Cross-border experience
 }
 
 // PlacementPrediction — per-student placement probability cache
@@ -3436,4 +3501,278 @@ enum DocumentCategory {
   COMPLIANCE         // GDPR, data protection, audit reports
   INTERNAL           // Strategic plans, meeting minutes, annual reports
   OTHER
+}
+
+// ============================================
+// P2 — AI Matching Explainability (AI Act native)
+// ============================================
+
+// MatchExplanation — persisted audit trail of why a match was computed
+// Same record serves three audiences: student (why matched), university (fairness audit),
+// recruiter (evidence-backed rationale). Immutable after write.
+model MatchExplanation {
+  id String @id @default(cuid())
+
+  // Match subject and counterparty
+  subjectId   String
+  subject     User   @relation("MatchExplanationSubject", fields: [subjectId], references: [id], onDelete: Cascade)
+  subjectType String // "STUDENT" | "CANDIDATE"
+
+  counterpartyId   String
+  counterparty     User   @relation("MatchExplanationCounterparty", fields: [counterpartyId], references: [id], onDelete: Cascade)
+  counterpartyType String // "RECRUITER" | "JOB"
+
+  // Context (optional — e.g. a specific job posting)
+  contextType String? // "JOB" | "STAGE" | "GENERIC"
+  contextId   String?
+
+  // The explanation
+  matchScore   Float  // 0-100 final score
+  decisionLabel String? // "STRONG_MATCH", "MATCH", "WEAK_MATCH", "NO_MATCH"
+
+  // Structured factors — every factor contributing to the score
+  factors Json // [{ name, category, weight, value, evidence[], contribution }]
+
+  // Model metadata for auditability
+  modelVersion  String   // e.g. "talent-match-v1.2.0"
+  modelType     String   // e.g. "rule-based" | "hybrid" | "llm-assisted"
+  inputSnapshot Json?    // Sanitized inputs used (skills, filters, etc.)
+
+  // Human-oversight / override
+  reviewed       Boolean   @default(false)
+  reviewedBy     String?
+  reviewedAt     DateTime?
+  reviewOutcome  String?   // "CONFIRMED" | "OVERRIDDEN" | "FLAGGED"
+  reviewNotes    String?   @db.Text
+
+  // Right to explanation — has the subject seen it?
+  subjectViewed   Boolean   @default(false)
+  subjectViewedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([subjectId])
+  @@index([counterpartyId])
+  @@index([contextType, contextId])
+  @@index([createdAt])
+}
+
+// ============================================
+// P3 — Skills Gap v2 (program-level, temporal)
+// ============================================
+
+// SkillGapTrend — monthly snapshots per university × program
+// Enables heatmap visualizations and trend lines
+model SkillGapTrend {
+  id             String   @id @default(cuid())
+  universityName String
+  programName    String?  // Null = university-wide; otherwise "Computer Science BSc", etc.
+  programLevel   String?  // "BACHELOR" | "MASTER" | "PHD"
+
+  // Snapshot window
+  snapshotMonth DateTime // First day of month this covers
+
+  // Skill distribution
+  topSkills      Json // [{ skill, studentCount, proficiencyAvg, demandScore, escoUri }]
+  gaps           Json // [{ skill, demandScore, studentCount, severity, escoUri }]
+  strengths      Json // Skills where students exceed market demand
+
+  // Aggregate metrics
+  studentCount   Int
+  jobCount       Int
+  gapIndex       Float // 0-100 overall gap severity
+  alignmentIndex Float // 0-100 how well program aligns with market
+
+  // Curriculum recommendations (AI-generated)
+  recommendations Json? // [{ type, skill, suggestion, confidence, rationale }]
+
+  createdAt DateTime @default(now())
+
+  @@unique([universityName, programName, snapshotMonth])
+  @@index([universityName, snapshotMonth])
+  @@index([programName])
+}
+
+// ============================================
+// P4 — Verified Credentials (EDC / Europass bridge)
+// ============================================
+
+// VerifiableCredential — issued credentials signed by the institution
+// Covers: professor endorsements, stage completions, thesis verifications, skill attestations
+model VerifiableCredential {
+  id String @id @default(cuid())
+
+  // Subject (student who holds the credential)
+  subjectId String
+  subjectName String // Denormalized
+
+  // Issuer (institution)
+  issuerType String // "UNIVERSITY" | "PROFESSOR" | "COMPANY"
+  issuerId   String
+  issuerName String // Denormalized
+
+  // Credential content
+  credentialType String // "SKILL_ENDORSEMENT" | "STAGE_COMPLETION" | "THESIS_VERIFICATION" | "PROJECT_VERIFICATION" | "DEGREE"
+  schema         String @default("https://www.w3.org/2018/credentials/v1") // VC schema
+  payload        Json   // The actual claim (skill, grade, hours, competencies, etc.)
+
+  // Source — what platform record backed this credential
+  sourceType String // "ProfessorEndorsement" | "StageExperience" | "Project"
+  sourceId   String
+
+  // Cryptographic proof (W3C VC spec compatible)
+  proofType      String? // e.g. "Ed25519Signature2020"
+  proofCreated   DateTime?
+  proofValue     String?  @db.Text // The signature
+  verificationMethod String? // DID or key reference
+
+  // Status
+  status     VCStatus @default(ISSUED)
+  revokedAt  DateTime?
+  revokedReason String?
+
+  // Shareability
+  shareToken String? @unique // Opaque token for public verification link
+  viewCount  Int     @default(0)
+
+  issuedAt  DateTime @default(now())
+  expiresAt DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([subjectId])
+  @@index([issuerId])
+  @@index([sourceType, sourceId])
+  @@index([shareToken])
+}
+
+enum VCStatus {
+  ISSUED
+  REVOKED
+  EXPIRED
+  SUPERSEDED
+}
+
+// ============================================
+// P6 — Company Profile (Discovery Hub)
+// ============================================
+
+// CompanyProfile — branded public profile for companies
+// Parity with JobTeaser "Discover Companies" + our evidence overlay
+model CompanyProfile {
+  id          String @id @default(cuid())
+  companyName String @unique
+  slug        String @unique
+
+  // Basic branding
+  logoUrl      String?
+  coverUrl     String?
+  tagline      String?
+  description  String? @db.Text
+
+  // Identity
+  foundedYear     Int?
+  headquarters    String?
+  industries      String[] @default([])
+  sizeCategory    String? // "1-10", "11-50", "51-200", "201-1000", "1000+"
+  websiteUrl      String?
+  linkedinUrl     String?
+
+  // Culture & values
+  mission      String? @db.Text
+  vision       String? @db.Text
+  values       Json?   // [{ title, description, icon? }]
+  cultureTags  String[] @default([])
+
+  // International presence
+  countries       String[] @default([]) // ISO 3166-1 alpha-2
+  officeLocations Json?    // [{ city, country, headcount? }]
+
+  // Rich media
+  heroVideoUrl String?
+  gallery      Json? // [{ url, caption, type: "image"|"video" }]
+
+  // FAQ
+  faqs Json? // [{ question, answer }]
+
+  // Ownership / claim
+  claimedBy   String? // User ID of company admin who manages this
+  claimedAt   DateTime?
+  verified    Boolean @default(false) // Platform-verified (email domain, etc.)
+
+  // Follow metrics
+  followerCount Int @default(0)
+
+  // Visibility
+  published Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  follows CompanyFollow[]
+
+  @@index([slug])
+  @@index([verified])
+  @@index([published])
+}
+
+model CompanyFollow {
+  id               String @id @default(cuid())
+  companyProfileId String
+  companyProfile   CompanyProfile @relation(fields: [companyProfileId], references: [id], onDelete: Cascade)
+  userId           String
+  followedAt       DateTime @default(now())
+
+  @@unique([companyProfileId, userId])
+  @@index([userId])
+}
+
+// ============================================
+// P7 — Self-Discovery Onboarding
+// ============================================
+
+// SelfDiscoveryProfile — populated through guided onboarding before showcasing
+// Addresses HR feedback: "capire chi sei" before "mostrarti al mondo"
+model SelfDiscoveryProfile {
+  id        String @id @default(cuid())
+  studentId String @unique
+
+  // Step 1: Values inventory
+  coreValues      String[] @default([]) // Selected from ~30 value cards
+  valueRankings   Json?    // [{ value, rank, reason? }]
+
+  // Step 2: Strengths reflection
+  strengths           String[] @default([])
+  strengthStories     Json?    // [{ strength, story }] short narratives
+  energizingActivities String[] @default([])
+  drainingActivities   String[] @default([])
+
+  // Step 3: Past project tagging (augments existing projects)
+  projectTags Json? // { projectId: { roles: [], skills: [], pride: 1-5, learnings: [] } }
+
+  // Step 4: Career interests
+  motivations         String[] @default([]) // "Impact", "Learning", "Autonomy", "Stability", "Income", ...
+  dealbreakers        String[] @default([])
+  idealDayNarrative   String?  @db.Text
+  fiveYearNarrative   String?  @db.Text
+
+  // Step 5: Skill self-seed (feeds skill graph)
+  selfAssessedSkills  Json? // [{ skill, level 1-4, evidence? }]
+
+  // Step 6: Self-vs-graph reconciliation
+  discoveryInsights   Json? // AI-generated: gaps between self-perception and verified graph
+  insightsAcknowledged Boolean @default(false)
+
+  // Completion
+  stepsCompleted     Int      @default(0) // 0-6
+  completedAt        DateTime?
+
+  // Regeneration — students can re-do this periodically
+  lastRegeneratedAt  DateTime?
+  regenerationCount  Int      @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([studentId])
 }

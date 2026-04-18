@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { persistMatchExplanation, legacyReasonsToFactors, MATCH_MODEL_VERSION } from '@/lib/match-explanation'
 
 /**
  * POST /api/dashboard/recruiter/talent-match
@@ -205,10 +206,52 @@ export async function POST(req: NextRequest) {
     scored.sort((a, b) => b.matchScore - a.matchScore)
     const results = scored.slice(0, 20)
 
+    // Persist explanations for the top results (async, don't block response)
+    // AI Act Art. 86 — right to explanation for high-impact decisions
+    const explanationInputs = {
+      requiredSkills: skills,
+      preferredSkills: preferred,
+      minGpa: minGpa ?? null,
+      maxGradYear: maxGradYear ?? null,
+      locations: locations ?? [],
+      disciplines: disciplines ?? [],
+    }
+    const explanationWrites = await Promise.all(
+      results.map(async r => {
+        const factors = legacyReasonsToFactors(r.reasons, {
+          matchedSkills: r.matchedSkills,
+          topProjects: r.topProjects,
+          internships: r.internships.map(i => ({ company: i.company, role: i.role })),
+        })
+        try {
+          const expl = await persistMatchExplanation({
+            subjectId: r.id,
+            subjectType: 'STUDENT',
+            counterpartyId: session.user.id,
+            counterpartyType: 'RECRUITER',
+            contextType: jobId ? 'JOB' : 'GENERIC',
+            contextId: jobId ?? null,
+            matchScore: r.matchScore,
+            factors,
+            inputSnapshot: explanationInputs,
+          })
+          return { candidateId: r.id, explanationId: expl.id }
+        } catch (e) {
+          console.error('Persist explanation failed for', r.id, e)
+          return { candidateId: r.id, explanationId: null }
+        }
+      })
+    )
+
+    const explanationByCandidate = new Map(
+      explanationWrites.map(w => [w.candidateId, w.explanationId])
+    )
+
     return NextResponse.json({
-      matches: results,
+      matches: results.map(r => ({ ...r, explanationId: explanationByCandidate.get(r.id) ?? null })),
       totalCandidates: students.length,
       criteria: { requiredSkills: skills, preferredSkills: preferred },
+      modelVersion: MATCH_MODEL_VERSION,
     })
   } catch (error) {
     console.error('Talent match error:', error)
