@@ -5,8 +5,16 @@
  * exported to the EU Digital Wallet, shared via public URL with a share token,
  * or revoked centrally.
  *
- * V1 uses a simple HMAC-SHA256 proof keyed on VC_SIGNING_SECRET. V2 will
- * upgrade to Ed25519 DID-based signing (EU EDC spec compliant).
+ * Signing: Ed25519 (Ed25519Signature2020), matching W3C VC and EU EDC specs.
+ *
+ * Key management:
+ *   VC_SIGNING_PRIVATE_KEY — PKCS#8 PEM (starts with "-----BEGIN PRIVATE KEY-----")
+ *   VC_SIGNING_PUBLIC_KEY  — SPKI PEM, published so verifiers can cryptographically
+ *                            check credentials without contacting our service.
+ *   VC_SIGNING_KEY_ID      — short identifier included in proof metadata (e.g. "2026-04-key-1").
+ *
+ * Generate a new keypair with:
+ *   node scripts/generate-vc-keypair.js
  */
 
 import prisma from './prisma'
@@ -15,30 +23,95 @@ import type { Prisma } from '@prisma/client'
 
 const VC_CONTEXT = 'https://www.w3.org/2018/credentials/v1'
 
-function getSigningSecret(): string {
-  const secret = process.env.VC_SIGNING_SECRET
-  if (!secret) {
-    // Fallback for dev — warn but don't crash
-    console.warn('VC_SIGNING_SECRET not set; using deterministic dev key (do not use in production)')
-    return 'dev-vc-signing-secret-do-not-use-in-production'
+// Memoized key objects — parsing PEMs repeatedly is expensive
+let cachedPrivateKey: crypto.KeyObject | null = null
+let cachedPublicKey: crypto.KeyObject | null = null
+let devKeyPair: { privateKey: crypto.KeyObject; publicKey: crypto.KeyObject } | null = null
+
+function getDevKeyPair() {
+  if (!devKeyPair) {
+    console.warn(
+      '[VC] VC_SIGNING_PRIVATE_KEY not set — using ephemeral in-process dev key. ' +
+      'Credentials issued now will NOT verify after a server restart. Set the env var for production.'
+    )
+    devKeyPair = crypto.generateKeyPairSync('ed25519')
   }
-  return secret
+  return devKeyPair
+}
+
+function getPrivateKey(): crypto.KeyObject {
+  if (cachedPrivateKey) return cachedPrivateKey
+  const pem = process.env.VC_SIGNING_PRIVATE_KEY
+  if (!pem) {
+    return getDevKeyPair().privateKey
+  }
+  cachedPrivateKey = crypto.createPrivateKey({ key: pem, format: 'pem' })
+  return cachedPrivateKey
+}
+
+function getPublicKey(): crypto.KeyObject {
+  if (cachedPublicKey) return cachedPublicKey
+  const pem = process.env.VC_SIGNING_PUBLIC_KEY
+  if (!pem) {
+    return getDevKeyPair().publicKey
+  }
+  cachedPublicKey = crypto.createPublicKey({ key: pem, format: 'pem' })
+  return cachedPublicKey
+}
+
+function getKeyId(): string {
+  return process.env.VC_SIGNING_KEY_ID ?? 'intransparency:signing-key:dev'
 }
 
 /**
- * Compute HMAC proof over a canonical string representation of the credential.
+ * Canonicalize payload for signing. Uses JCS-style sorted-key JSON so that
+ * signature verification is deterministic regardless of key ordering.
+ */
+function canonicalize(payload: object, created: Date): Buffer {
+  const sortedKeys = (obj: any): any => {
+    if (Array.isArray(obj)) return obj.map(sortedKeys)
+    if (obj && typeof obj === 'object') {
+      return Object.keys(obj)
+        .sort()
+        .reduce((acc: any, key) => {
+          acc[key] = sortedKeys(obj[key])
+          return acc
+        }, {})
+    }
+    return obj
+  }
+  const canonical = JSON.stringify(sortedKeys(payload)) + '|' + created.toISOString()
+  return Buffer.from(canonical, 'utf8')
+}
+
+/**
+ * Sign the payload with Ed25519. Returns a base64 signature.
  */
 function computeProof(payload: object, created: Date): string {
-  const canonical = JSON.stringify(payload) + '|' + created.toISOString()
-  return crypto.createHmac('sha256', getSigningSecret()).update(canonical).digest('hex')
+  const data = canonicalize(payload, created)
+  const signature = crypto.sign(null, data, getPrivateKey())
+  return signature.toString('base64')
 }
 
 /**
- * Verify a credential's HMAC proof. Returns true if the proof matches.
+ * Verify a credential's Ed25519 signature. Returns true if the signature is valid.
  */
 export function verifyProof(payload: object, created: Date, proofValue: string): boolean {
-  const expected = computeProof(payload, created)
-  return crypto.timingSafeEqual(Buffer.from(expected, 'hex'), Buffer.from(proofValue, 'hex'))
+  try {
+    const data = canonicalize(payload, created)
+    const signature = Buffer.from(proofValue, 'base64')
+    return crypto.verify(null, data, getPublicKey(), signature)
+  } catch {
+    return false
+  }
+}
+
+/**
+ * Public key export — served at /api/credentials/public-key so external verifiers
+ * can validate credentials without trusting our service.
+ */
+export function exportPublicKeyPem(): string {
+  return getPublicKey().export({ type: 'spki', format: 'pem' }).toString()
 }
 
 function generateShareToken(): string {
@@ -100,10 +173,10 @@ export async function issueEndorsementCredential(endorsementId: string) {
       payload: payload as unknown as Prisma.InputJsonValue,
       sourceType: 'ProfessorEndorsement',
       sourceId: endorsementId,
-      proofType: 'HmacSha256-2025', // interim; will upgrade to Ed25519Signature2020
+      proofType: 'Ed25519Signature2020',
       proofCreated: created,
       proofValue,
-      verificationMethod: `intransparency:signing-key:v1`,
+      verificationMethod: getKeyId(),
       shareToken,
       status: 'ISSUED',
     },
@@ -161,10 +234,10 @@ export async function issueStageCompletionCredential(stageId: string) {
       payload: payload as unknown as Prisma.InputJsonValue,
       sourceType: 'StageExperience',
       sourceId: stageId,
-      proofType: 'HmacSha256-2025',
+      proofType: 'Ed25519Signature2020',
       proofCreated: created,
       proofValue: computeProof(payload, created),
-      verificationMethod: `intransparency:signing-key:v1`,
+      verificationMethod: getKeyId(),
       shareToken: generateShareToken(),
       status: 'ISSUED',
     },

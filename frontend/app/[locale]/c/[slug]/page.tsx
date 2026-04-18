@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, use } from 'react'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -42,6 +43,7 @@ export default function CompanyDiscoveryPage({
   params: Promise<{ slug: string; locale: string }>
 }) {
   const { slug } = use(params)
+  const t = useTranslations('companyDiscovery')
   const [profile, setProfile] = useState<CompanyProfile | null>(null)
   const [loading, setLoading] = useState(true)
   const [following, setFollowing] = useState(false)
@@ -89,10 +91,8 @@ export default function CompanyDiscoveryPage({
         <main className="container max-w-3xl mx-auto px-4 pt-32 pb-16">
           <Card>
             <CardContent className="pt-6 text-center">
-              <h1 className="text-2xl font-bold mb-2">Company not found</h1>
-              <p className="text-muted-foreground">
-                This profile is either unpublished or doesn&apos;t exist.
-              </p>
+              <h1 className="text-2xl font-bold mb-2">{t('notFound.title')}</h1>
+              <p className="text-muted-foreground">{t('notFound.body')}</p>
             </CardContent>
           </Card>
         </main>
@@ -137,13 +137,13 @@ export default function CompanyDiscoveryPage({
                     {profile.sizeCategory && (
                       <div className="flex items-center gap-1">
                         <Users className="h-4 w-4" />
-                        {profile.sizeCategory} employees
+                        {t('employeesCount', { range: profile.sizeCategory })}
                       </div>
                     )}
                     {profile.foundedYear && (
                       <div className="flex items-center gap-1">
                         <Calendar className="h-4 w-4" />
-                        Founded {profile.foundedYear}
+                        {t('founded', { year: profile.foundedYear })}
                       </div>
                     )}
                     {profile.websiteUrl && (
@@ -162,10 +162,12 @@ export default function CompanyDiscoveryPage({
                 <div className="text-right">
                   <Button onClick={toggleFollow} variant={following ? 'outline' : 'default'}>
                     <Heart className={`h-4 w-4 mr-2 ${following ? 'fill-current' : ''}`} />
-                    {following ? 'Following' : 'Follow'}
+                    {following ? t('following') : t('follow')}
                   </Button>
                   <p className="text-xs text-muted-foreground mt-2">
-                    {followerCount} follower{followerCount !== 1 ? 's' : ''}
+                    {followerCount === 1
+                      ? t('followerSingular', { count: followerCount })
+                      : t('followers', { count: followerCount })}
                   </p>
                 </div>
               </div>
@@ -185,7 +187,7 @@ export default function CompanyDiscoveryPage({
           {profile.description && (
             <Card className="mb-6">
               <CardHeader>
-                <CardTitle>About</CardTitle>
+                <CardTitle>{t('sections.about')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="whitespace-pre-line text-muted-foreground">{profile.description}</p>
@@ -198,7 +200,7 @@ export default function CompanyDiscoveryPage({
               {profile.mission && (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-lg">Mission</CardTitle>
+                    <CardTitle className="text-lg">{t('sections.mission')}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground whitespace-pre-line">{profile.mission}</p>
@@ -208,7 +210,7 @@ export default function CompanyDiscoveryPage({
               {profile.vision && (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-lg">Vision</CardTitle>
+                    <CardTitle className="text-lg">{t('sections.vision')}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground whitespace-pre-line">{profile.vision}</p>
@@ -221,7 +223,7 @@ export default function CompanyDiscoveryPage({
           {profile.values && profile.values.length > 0 && (
             <Card className="mb-6">
               <CardHeader>
-                <CardTitle>Values</CardTitle>
+                <CardTitle>{t('sections.values')}</CardTitle>
               </CardHeader>
               <CardContent className="grid md:grid-cols-2 gap-4">
                 {profile.values.map((v, idx) => (
@@ -239,7 +241,7 @@ export default function CompanyDiscoveryPage({
           {profile.officeLocations && profile.officeLocations.length > 0 && (
             <Card className="mb-6">
               <CardHeader>
-                <CardTitle>Offices</CardTitle>
+                <CardTitle>{t('sections.offices')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 {profile.officeLocations.map((o, idx) => (
@@ -249,7 +251,7 @@ export default function CompanyDiscoveryPage({
                       {o.city}, {o.country}
                     </div>
                     {o.headcount && (
-                      <span className="text-muted-foreground">{o.headcount} people</span>
+                      <span className="text-muted-foreground">{t('officePeople', { count: o.headcount })}</span>
                     )}
                   </div>
                 ))}
@@ -260,7 +262,7 @@ export default function CompanyDiscoveryPage({
           {profile.faqs && profile.faqs.length > 0 && (
             <Card className="mb-6">
               <CardHeader>
-                <CardTitle>Frequently asked</CardTitle>
+                <CardTitle>{t('sections.faqs')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {profile.faqs.map((f, idx) => (
@@ -276,7 +278,7 @@ export default function CompanyDiscoveryPage({
           {profile.heroVideoUrl && (
             <Card className="mb-6">
               <CardHeader>
-                <CardTitle>See the company</CardTitle>
+                <CardTitle>{t('sections.video')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="aspect-video">

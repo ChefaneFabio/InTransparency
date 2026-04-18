@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -34,6 +35,7 @@ interface DiscoveryProfile {
 }
 
 export default function SelfDiscoveryPage() {
+  const t = useTranslations('selfDiscovery')
   const [profile, setProfile] = useState<DiscoveryProfile | null>(null)
   const [loading, setLoading] = useState(true)
   const [currentStep, setCurrentStep] = useState(1)
@@ -130,29 +132,24 @@ export default function SelfDiscoveryPage() {
         <div className="mb-6">
           <Badge variant="outline" className="mb-3 bg-primary/10 border-primary/30">
             <Sparkles className="h-3 w-3 mr-1" />
-            Self-Discovery
+            {t('badge')}
           </Badge>
-          <h1 className="text-3xl font-bold mb-2">Capire chi sei, prima di mostrarti</h1>
-          <p className="text-muted-foreground">
-            Six steps to understand yourself before companies see your profile. There are no wrong
-            answers. Everything here is yours — you choose what to share.
-          </p>
+          <h1 className="text-3xl font-bold mb-2">{t('title')}</h1>
+          <p className="text-muted-foreground">{t('intro')}</p>
         </div>
 
         <div className="mb-6">
           <div className="flex items-center justify-between mb-2 text-sm text-muted-foreground">
-            <span>Progress</span>
-            <span>
-              Step {currentStep} of 6 — {progress}%
-            </span>
+            <span>{t('progress')}</span>
+            <span>{t('progressCount', { current: currentStep, total: 6, percent: progress })}</span>
           </div>
           <Progress value={progress} className="h-2" />
         </div>
 
         <Card className="mb-4">
           <CardHeader>
-            <CardTitle>{STEPS[currentStep - 1].title}</CardTitle>
-            <p className="text-sm text-muted-foreground">{STEPS[currentStep - 1].description}</p>
+            <CardTitle>{t(`steps.${STEPS[currentStep - 1].key}.title` as any)}</CardTitle>
+            <p className="text-sm text-muted-foreground">{t(`steps.${STEPS[currentStep - 1].key}.description` as any)}</p>
           </CardHeader>
           <CardContent>
             {currentStep === 1 && (
@@ -168,7 +165,7 @@ export default function SelfDiscoveryPage() {
                   </Badge>
                 ))}
                 <p className="w-full text-xs text-muted-foreground mt-2">
-                  {values.length} selected (aim for 5-7)
+                  {t('steps.values.countSelected', { count: values.length })}
                 </p>
               </div>
             )}
@@ -176,19 +173,17 @@ export default function SelfDiscoveryPage() {
             {currentStep === 2 && (
               <div className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium">
-                    One sentence each — moments where you were in flow
-                  </label>
+                  <label className="text-sm font-medium">{t('steps.strengths.flowLabel')}</label>
                   <Textarea
                     value={strengths}
                     onChange={e => setStrengths(e.target.value)}
-                    placeholder={'E.g., "I was debugging for 3 hours and loved every minute"\n"I explained a concept and saw the class understand"'}
+                    placeholder={t('steps.strengths.flowPlaceholder')}
                     rows={5}
                     className="mt-2"
                   />
                 </div>
                 <div>
-                  <p className="text-sm font-medium mb-2">Activities that energize you</p>
+                  <p className="text-sm font-medium mb-2">{t('steps.strengths.energizing')}</p>
                   <div className="flex flex-wrap gap-2">
                     {ENERGIZING_ACTIVITIES.map(a => (
                       <Badge
@@ -203,7 +198,7 @@ export default function SelfDiscoveryPage() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-sm font-medium mb-2">Activities that drain you</p>
+                  <p className="text-sm font-medium mb-2">{t('steps.strengths.draining')}</p>
                   <div className="flex flex-wrap gap-2">
                     {ENERGIZING_ACTIVITIES.map(a => (
                       <Badge
@@ -222,12 +217,9 @@ export default function SelfDiscoveryPage() {
 
             {currentStep === 3 && (
               <div className="text-center py-8">
-                <p className="text-muted-foreground">
-                  This step is completed directly on your project pages. Head to your projects and
-                  tag roles, skills, and pride ratings on each one, then return here.
-                </p>
+                <p className="text-muted-foreground">{t('steps.projects.note')}</p>
                 <Button variant="outline" className="mt-4" asChild>
-                  <a href="/dashboard/student/projects">Go to my projects</a>
+                  <a href="/dashboard/student/projects">{t('steps.projects.goToProjects')}</a>
                 </Button>
               </div>
             )}
@@ -235,7 +227,7 @@ export default function SelfDiscoveryPage() {
             {currentStep === 4 && (
               <div className="space-y-4">
                 <div>
-                  <p className="text-sm font-medium mb-2">What motivates you</p>
+                  <p className="text-sm font-medium mb-2">{t('steps.interests.motivations')}</p>
                   <div className="flex flex-wrap gap-2">
                     {MOTIVATIONS.map(m => (
                       <Badge
@@ -250,7 +242,7 @@ export default function SelfDiscoveryPage() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-sm font-medium mb-2">Dealbreakers</p>
+                  <p className="text-sm font-medium mb-2">{t('steps.interests.dealbreakers')}</p>
                   <div className="flex flex-wrap gap-2">
                     {DEALBREAKERS.map(d => (
                       <Badge
@@ -265,7 +257,7 @@ export default function SelfDiscoveryPage() {
                   </div>
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Describe an ideal workday</label>
+                  <label className="text-sm font-medium">{t('steps.interests.idealDayLabel')}</label>
                   <Textarea
                     value={idealDay}
                     onChange={e => setIdealDay(e.target.value)}
@@ -274,7 +266,7 @@ export default function SelfDiscoveryPage() {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Where you see yourself in 5 years</label>
+                  <label className="text-sm font-medium">{t('steps.interests.fiveYearLabel')}</label>
                   <Textarea
                     value={fiveYear}
                     onChange={e => setFiveYear(e.target.value)}
@@ -292,10 +284,10 @@ export default function SelfDiscoveryPage() {
                     value={newSkill}
                     onChange={e => setNewSkill(e.target.value)}
                     onKeyDown={e => e.key === 'Enter' && addSkill()}
-                    placeholder="Add a skill"
+                    placeholder={t('steps.skills.addPlaceholder')}
                     className="flex-1 px-3 py-2 border rounded"
                   />
-                  <Button onClick={addSkill}>Add</Button>
+                  <Button onClick={addSkill}>{t('steps.skills.addButton')}</Button>
                 </div>
                 <div className="space-y-2">
                   {selfSkills.map((s, idx) => (
@@ -310,10 +302,10 @@ export default function SelfDiscoveryPage() {
                         }}
                         className="px-3 py-1 border rounded text-sm"
                       >
-                        <option value={1}>Beginner</option>
-                        <option value={2}>Intermediate</option>
-                        <option value={3}>Advanced</option>
-                        <option value={4}>Expert</option>
+                        <option value={1}>{t('steps.skills.levels.beginner')}</option>
+                        <option value={2}>{t('steps.skills.levels.intermediate')}</option>
+                        <option value={3}>{t('steps.skills.levels.advanced')}</option>
+                        <option value={4}>{t('steps.skills.levels.expert')}</option>
                       </select>
                       <Button
                         variant="ghost"
@@ -334,7 +326,7 @@ export default function SelfDiscoveryPage() {
                   <CardContent className="pt-6">
                     <h3 className="font-semibold mb-2 flex items-center gap-2">
                       <CheckCircle className="h-5 w-5 text-green-600" />
-                      Well-aligned
+                      {t('steps.reconcile.aligned')}
                     </h3>
                     {profile.discoveryInsights.aligned?.length > 0 ? (
                       <div className="flex flex-wrap gap-2">
@@ -345,9 +337,7 @@ export default function SelfDiscoveryPage() {
                         ))}
                       </div>
                     ) : (
-                      <p className="text-sm text-muted-foreground">
-                        Not enough verified data yet — complete a stage or verified project.
-                      </p>
+                      <p className="text-sm text-muted-foreground">{t('steps.reconcile.alignedEmpty')}</p>
                     )}
                   </CardContent>
                 </Card>
@@ -357,13 +347,12 @@ export default function SelfDiscoveryPage() {
                     <CardContent className="pt-6">
                       <h3 className="font-semibold mb-2 flex items-center gap-2">
                         <TrendingUp className="h-5 w-5 text-blue-600" />
-                        You&apos;re better than you think
+                        {t('steps.reconcile.underrated')}
                       </h3>
                       <ul className="text-sm space-y-1">
                         {profile.discoveryInsights.underestimates.map((u: any, idx: number) => (
                           <li key={idx}>
-                            <strong>{u.skill}:</strong> you rated yourself {u.selfLevel}/4 but
-                            your record shows {u.verifiedLevel}/4.
+                            {t('steps.reconcile.underratedLine', { skill: u.skill, self: u.selfLevel, verified: u.verifiedLevel })}
                           </li>
                         ))}
                       </ul>
@@ -376,15 +365,13 @@ export default function SelfDiscoveryPage() {
                     <CardContent className="pt-6">
                       <h3 className="font-semibold mb-2 flex items-center gap-2">
                         <AlertCircle className="h-5 w-5 text-amber-600" />
-                        Skills you didn&apos;t claim
+                        {t('steps.reconcile.unclaimed')}
                       </h3>
-                      <p className="text-sm text-muted-foreground mb-2">
-                        Your verified record shows these — consider adding them to your profile.
-                      </p>
+                      <p className="text-sm text-muted-foreground mb-2">{t('steps.reconcile.unclaimedIntro')}</p>
                       <div className="flex flex-wrap gap-2">
                         {profile.discoveryInsights.unclaimed.map((u: any, idx: number) => (
                           <Badge key={idx} variant="secondary">
-                            {u.skill} ({u.sources} sources)
+                            {t('steps.reconcile.unclaimedBadge', { skill: u.skill, sources: u.sources })}
                           </Badge>
                         ))}
                       </div>
@@ -395,15 +382,12 @@ export default function SelfDiscoveryPage() {
                 {profile.discoveryInsights.overestimates?.length > 0 && (
                   <Card className="bg-muted">
                     <CardContent className="pt-6">
-                      <h3 className="font-semibold mb-2">Areas to deepen</h3>
-                      <p className="text-sm text-muted-foreground mb-2">
-                        Not a problem — just a sign of where to get more verified practice.
-                      </p>
+                      <h3 className="font-semibold mb-2">{t('steps.reconcile.overrated')}</h3>
+                      <p className="text-sm text-muted-foreground mb-2">{t('steps.reconcile.overratedIntro')}</p>
                       <ul className="text-sm space-y-1">
                         {profile.discoveryInsights.overestimates.map((o: any, idx: number) => (
                           <li key={idx}>
-                            <strong>{o.skill}:</strong> self-rated {o.selfLevel}/4, verified{' '}
-                            {o.verifiedLevel}/4 — take a stage or verified project to close the gap.
+                            {t('steps.reconcile.overratedLine', { skill: o.skill, self: o.selfLevel, verified: o.verifiedLevel })}
                           </li>
                         ))}
                       </ul>
@@ -422,7 +406,7 @@ export default function SelfDiscoveryPage() {
             disabled={currentStep === 1}
           >
             <ChevronLeft className="h-4 w-4 mr-1" />
-            Back
+            {t('nav.back')}
           </Button>
           <Button
             onClick={async () => {
@@ -431,7 +415,7 @@ export default function SelfDiscoveryPage() {
             }}
             disabled={saving}
           >
-            {saving ? 'Saving…' : currentStep === 6 ? 'Done' : 'Save and continue'}
+            {saving ? t('nav.saving') : currentStep === 6 ? t('nav.done') : t('nav.continue')}
             {currentStep < 6 && <ChevronRight className="h-4 w-4 ml-1" />}
           </Button>
         </div>

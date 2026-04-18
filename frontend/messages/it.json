@@ -114,7 +114,7 @@
         "documents": "Documenti",
         "talentMatch": "Talent Match",
         "compare": "Confronta",
-        "universityInsights": "Insight Universit\u00e0",
+        "universityInsights": "Insight Università",
         "hiringAdvisor": "Consulente Assunzioni",
         "interviewKit": "Kit Colloquio"
       },
@@ -2355,7 +2355,7 @@
         },
         "1": {
           "question": "Quanto costa?",
-          "answer": "Il piano Starter \u00e8 gratuito, senza costi nascosti \u2014 ricerca illimitata, 3 sblocchi talento al signup e 1 annuncio. Vuoi di pi\u00f9? Passa a Growth (\u20ac149/mese per 50 sblocchi) oppure acquista sblocchi singoli a \u20ac10 l'uno. Vedi la pagina prezzi per i dettagli."
+          "answer": "Il piano Starter è gratuito, senza costi nascosti — ricerca illimitata, 3 sblocchi talento al signup e 1 annuncio. Vuoi di più? Passa a Growth (€149/mese per 50 sblocchi) oppure acquista sblocchi singoli a €10 l'uno. Vedi la pagina prezzi per i dettagli."
         },
         "2": {
           "question": "Che tipo di candidati sono disponibili?",
@@ -2806,7 +2806,6 @@
       "secondaryCta": "Funzionalità Università"
     },
     "benefits": {
-      "title": "Cosa fa InTransparency per gli ITS",
       "0": {
         "title": "Portfolio progetti verificati",
         "description": "Gli studenti caricano i progetti ITS con il badge di verifica istituzionale. Le aziende vedono prove concrete, non solo dichiarazioni."
@@ -2822,7 +2821,8 @@
       "3": {
         "title": "Normalizzazione voti transfrontaliera",
         "description": "I voti ITS italiani tradotti automaticamente per datori di lavoro tedeschi, francesi, olandesi e spagnoli."
-      }
+      },
+      "title": "Cosa fa InTransparency per gli ITS"
     },
     "cta": {
       "title": "Vuoi avviare un pilota con il tuo ITS?",
@@ -3447,7 +3447,7 @@
   "pricingPage": {
     "hero": {
       "title": "Prezzi chiari. Nessuna sorpresa.",
-      "subtitle": "Studenti e universit\u00e0 usano tutto gratis. Le aziende cercano gratis e pagano solo quando sono pronte ad assumere."
+      "subtitle": "Studenti e università usano tutto gratis. Le aziende cercano gratis e pagano solo quando sono pronte ad assumere."
     },
     "segments": {
       "companies": "Aziende",
@@ -3467,23 +3467,23 @@
         "3": "Assessment competenze",
         "4": "Check contratto"
       },
-      "whyFree": "Gli studenti non pagano mai perch\u00e9 sono le aziende ad assumere. Il tuo portfolio, le tue competenze, i tuoi dati \u2014 sei tu a controllare. Nessuna carta di credito, nessun trial, nessun trucco."
+      "whyFree": "Gli studenti non pagano mai perché sono le aziende ad assumere. Il tuo portfolio, le tue competenze, i tuoi dati — sei tu a controllare. Nessuna carta di credito, nessun trial, nessun trucco."
     },
     "companies": {
       "badge": "Per le Aziende",
       "title": "Piani per le Aziende",
-      "subtitle": "Cerca nell'intero pool di talenti verificati gratuitamente. Passa al piano superiore quando hai bisogno di pi\u00f9 sblocchi, annunci e strumenti.",
-      "popular": "Pi\u00f9 Popolare",
+      "subtitle": "Cerca nell'intero pool di talenti verificati gratuitamente. Passa al piano superiore quando hai bisogno di più sblocchi, annunci e strumenti.",
+      "popular": "Più Popolare",
       "tiers": {
         "starter": {
           "name": "Starter",
-          "price": "\u20ac0",
+          "price": "€0",
           "period": "/mese",
           "description": "Inizia a cercare talento verificato oggi. Nessuna carta di credito richiesta.",
           "cta": "Inizia Gratis",
           "features": {
             "0": "Ricerca talenti illimitata",
-            "1": "Profili verificati dalle universit\u00e0",
+            "1": "Profili verificati dalle università",
             "2": "3 sblocchi talento al signup",
             "3": "1 annuncio di lavoro attivo",
             "4": "Pipeline base (3 fasi)",
@@ -3492,12 +3492,12 @@
         },
         "growth": {
           "name": "Growth",
-          "price": "\u20ac149",
+          "price": "€149",
           "period": "/mese",
           "description": "Per team che assumono attivamente. Accesso completo a tutti gli strumenti di recruiting.",
           "cta": "Attiva Piano Growth",
           "features": {
-            "0": "Tutto in Starter, pi\u00f9:",
+            "0": "Tutto in Starter, più:",
             "1": "50 sblocchi talento al mese",
             "2": "10 annunci di lavoro attivi",
             "3": "Pipeline completa con tutte le fasi",
@@ -3514,7 +3514,7 @@
           "description": "Per grandi team e agenzie. Tutto illimitato con supporto dedicato.",
           "cta": "Contatta il Team Vendite",
           "features": {
-            "0": "Tutto in Growth, pi\u00f9:",
+            "0": "Tutto in Growth, più:",
             "1": "Sblocchi talento illimitati",
             "2": "Annunci di lavoro illimitati",
             "3": "Accesso API",
@@ -3530,24 +3530,24 @@
     "payPerTalent": {
       "badge": "Alternativa Flessibile",
       "title": "Preferisci pagare solo quando contatti?",
-      "subtitle": "Acquista sblocchi talento singoli. \u20ac10 a talento, nessun abbonamento, nessun impegno mensile. Perfetto per chi assume sporadicamente.",
+      "subtitle": "Acquista sblocchi talento singoli. €10 a talento, nessun abbonamento, nessun impegno mensile. Perfetto per chi assume sporadicamente.",
       "cta": "Vedi pacchetti crediti",
       "packages": {
-        "0": "50 crediti \u2014 \u20ac50 (\u20ac10/talento)",
-        "1": "200 crediti \u2014 \u20ac180 (\u20ac9/talento, sconto 10%)",
-        "2": "500 crediti \u2014 \u20ac400 (\u20ac8/talento, sconto 20%)",
-        "3": "1.000+ crediti \u2014 Custom (fino a sconto 40%)"
+        "0": "50 crediti — €50 (€10/talento)",
+        "1": "200 crediti — €180 (€9/talento, sconto 10%)",
+        "2": "500 crediti — €400 (€8/talento, sconto 20%)",
+        "3": "1.000+ crediti — Custom (fino a sconto 40%)"
       }
     },
     "universities": {
-      "title": "Universit\u00e0, Scuole e Centri di Formazione",
-      "subtitle": "Piattaforma gratuita per tutte le istituzioni educative. Funzionalit\u00e0 avanzate disponibili su richiesta.",
+      "title": "Università, Scuole e Centri di Formazione",
+      "subtitle": "Piattaforma gratuita per tutte le istituzioni educative. Funzionalità avanzate disponibili su richiesta.",
       "tiers": {
         "core": {
           "name": "Piattaforma Base",
           "price": "Gratis",
           "period": "piano completo incluso",
-          "description": "Tutto ci\u00f2 che serve per verificare i vostri studenti e connetterli con le aziende. Nessun limite su studenti o funzionalit\u00e0.",
+          "description": "Tutto ciò che serve per verificare i vostri studenti e connetterli con le aziende. Nessun limite su studenti o funzionalità.",
           "cta": "Inizia Ora",
           "features": {
             "0": "Studenti illimitati",
@@ -3559,17 +3559,17 @@
             "6": "Analytics per corso (ultimi 12 mesi)",
             "7": "Widget career center base",
             "8": "Export dati (12 mesi)",
-            "9": "2 career day all\u2019anno"
+            "9": "2 career day all’anno"
           }
         },
         "premium": {
           "name": "Premium",
           "price": "Su richiesta",
           "period": "",
-          "description": "Per atenei che necessitano integrazioni, reporting ministero, multi-campus e funzionalit\u00e0 avanzate.",
+          "description": "Per atenei che necessitano integrazioni, reporting ministero, multi-campus e funzionalità avanzate.",
           "cta": "Contattaci per un preventivo",
           "features": {
-            "0": "Tutto in Piattaforma Base, pi\u00f9:",
+            "0": "Tutto in Piattaforma Base, più:",
             "1": "Integrazione Esse3",
             "2": "Report ANVUR/MUR automatizzati",
             "3": "Analytics pluriennale e per campus",
@@ -3587,28 +3587,28 @@
       "title": "Domande Frequenti",
       "questions": {
         "0": {
-          "q": "\u00c8 davvero gratis per gli studenti?",
-          "a": "S\u00ec, senza limiti. Portfolio, assessment, ricerca lavoro, check contratto \u2014 tutto incluso. Gli studenti non pagano mai."
+          "q": "È davvero gratis per gli studenti?",
+          "a": "Sì, senza limiti. Portfolio, assessment, ricerca lavoro, check contratto — tutto incluso. Gli studenti non pagano mai."
         },
         "1": {
           "q": "Cosa ottengono le aziende gratis?",
           "a": "Ricerca illimitata in tutti i profili verificati, 3 sblocchi talento al signup, 1 annuncio di lavoro e gestione pipeline base. Nessuna carta di credito, nessuna scadenza trial."
         },
         "2": {
-          "q": "Perch\u00e9 il piano Growth vale la pena?",
-          "a": "A \u20ac149/mese, ottieni 50 sblocchi talento, 10 annunci e accesso completo agli strumenti AI \u2014 inclusi il Consulente Assunzioni e il Generatore Kit Colloquio. Costa meno di LinkedIn Recruiter Lite, con dati verificati dalle universit\u00e0."
+          "q": "Perché il piano Growth vale la pena?",
+          "a": "A €149/mese, ottieni 50 sblocchi talento, 10 annunci e accesso completo agli strumenti AI — inclusi il Consulente Assunzioni e il Generatore Kit Colloquio. Costa meno di LinkedIn Recruiter Lite, con dati verificati dalle università."
         },
         "3": {
-          "q": "Le universit\u00e0 pagano qualcosa?",
-          "a": "No. L'intera piattaforma \u00e8 gratuita per tutte le istituzioni educative \u2014 universit\u00e0, scuole, ITS, centri di formazione. Nessun limite su studenti, funzionalit\u00e0 o costi nascosti."
+          "q": "Le università pagano qualcosa?",
+          "a": "No. L'intera piattaforma è gratuita per tutte le istituzioni educative — università, scuole, ITS, centri di formazione. Nessun limite su studenti, funzionalità o costi nascosti."
         },
         "4": {
-          "q": "C'\u00e8 un contratto o vincolo?",
+          "q": "C'è un contratto o vincolo?",
           "a": "No. Fatturazione mensile, cancella quando vuoi. Nessun contratto annuale a meno che tu non lo scelga (i piani annuali risparmiano 2 mesi). I tuoi dati sono sempre esportabili."
         },
         "5": {
           "q": "Come si differenzia da LinkedIn o Handshake?",
-          "a": "Ogni profilo \u00e8 supportato da progetti e voti verificati dalle universit\u00e0 \u2014 non dichiarazioni auto-riportate. Vedi il lavoro reale prima di contattare chiunque. E le universit\u00e0 usano la piattaforma gratis, mentre Handshake costa $1.000\u2013$20.000/anno."
+          "a": "Ogni profilo è supportato da progetti e voti verificati dalle università — non dichiarazioni auto-riportate. Vedi il lavoro reale prima di contattare chiunque. E le università usano la piattaforma gratis, mentre Handshake costa $1.000–$20.000/anno."
         }
       }
     }
@@ -5091,10 +5091,16 @@
       "currentTitle": "Le Tue Competenze Attuali"
     },
     "roadmap": {
-      "title": "Roadmap di Apprendimento",
+      "title": "Percorso Formativo",
       "description": "Timeline personalizzata di competenze da apprendere e progetti da realizzare",
-      "lockedTitle": "Roadmap di Apprendimento (Funzione Premium)",
-      "lockedDescription": "Passa a Premium per ottenere una roadmap di apprendimento personalizzata con tappe settimanali su misura per i tuoi gap di competenze."
+      "lockedTitle": "Percorso Formativo (Funzione Premium)",
+      "lockedDescription": "Passa a Premium per un percorso formativo personalizzato.",
+      "empty": "Nessun obiettivo formativo ancora",
+      "learn": "Studia",
+      "build": "Realizza",
+      "certify": "Certifica",
+      "apply": "Applica",
+      "week": "Settimana"
     },
     "projects": {
       "title": "Progetti Consigliati",
@@ -5137,18 +5143,6 @@
       "risingDemand": "Domanda crescente",
       "stableDemand": "Domanda stabile",
       "decliningDemand": "Domanda in calo"
-    },
-    "roadmap": {
-      "title": "Percorso Formativo",
-      "description": "Timeline personalizzata di competenze da apprendere e progetti da realizzare",
-      "lockedTitle": "Percorso Formativo (Funzione Premium)",
-      "lockedDescription": "Passa a Premium per un percorso formativo personalizzato.",
-      "empty": "Nessun obiettivo formativo ancora",
-      "learn": "Studia",
-      "build": "Realizza",
-      "certify": "Certifica",
-      "apply": "Applica",
-      "week": "Settimana"
     }
   },
   "studentDashboard": {
@@ -5412,12 +5406,28 @@
     "title": "Challenge Aziendali",
     "subtitle": "Progetti reali da aziende leader",
     "searchPlaceholder": "Cerca challenge...",
-    "stats": { "available": "Disponibili", "applied": "Candidature", "completed": "Completate" },
-    "filters": { "all": "Tutte", "discipline": "Disciplina", "type": "Tipo", "internship": "Stage", "thesis": "Tesi", "research": "Ricerca" },
+    "stats": {
+      "available": "Disponibili",
+      "applied": "Candidature",
+      "completed": "Completate"
+    },
+    "filters": {
+      "all": "Tutte",
+      "discipline": "Disciplina",
+      "type": "Tipo",
+      "internship": "Stage",
+      "thesis": "Tesi",
+      "research": "Ricerca"
+    },
     "myApplications": "Le mie candidature",
     "moreChallenges": "Altre challenge",
     "availableChallenges": "Challenge disponibili",
-    "empty": { "filtered": "Nessuna challenge corrisponde ai filtri", "adjustFilters": "Prova a modificare la ricerca", "none": "Nessuna challenge disponibile", "checkBack": "Torna a controllare per nuove opportunità" }
+    "empty": {
+      "filtered": "Nessuna challenge corrisponde ai filtri",
+      "adjustFilters": "Prova a modificare la ricerca",
+      "none": "Nessuna challenge disponibile",
+      "checkBack": "Torna a controllare per nuove opportunità"
+    }
   },
   "studentMessages": {
     "title": "Messaggi",
@@ -8450,7 +8460,7 @@
       "withSkills": "Ha Competenze",
       "activationDescription": "Quanto attivamente i tuoi studenti usano la piattaforma",
       "engagementAlerts": "Avvisi Engagement",
-      "engagementAlertsDescription": "Attivit\u00e0 delle aziende negli ultimi 7 giorni",
+      "engagementAlertsDescription": "Attività delle aziende negli ultimi 7 giorni",
       "companyViewedStudents": "{company} ha visto {count} studenti",
       "companyContactedStudents": "{company} ha contattato {count} studenti",
       "noEngagementAlerts": "Nessun engagement aziendale questa settimana",
@@ -8968,7 +8978,6 @@
       "secondaryCta": "Funzionalità Università"
     },
     "benefits": {
-      "title": "Cosa fa InTransparency per le scuole superiori",
       "0": {
         "title": "Portfolio progetti studenti",
         "description": "Gli studenti documentano esperienze PCTO, progetti scolastici e attività extracurriculari in un portfolio digitale verificato."
@@ -8984,7 +8993,8 @@
       "3": {
         "title": "Profili pronti per l'università",
         "description": "Quando i tuoi studenti passano all'università, il loro portfolio verificato li segue — dandogli un vantaggio."
-      }
+      },
+      "title": "Cosa fa InTransparency per le scuole superiori"
     },
     "cta": {
       "title": "Interessati a un pilota?",
@@ -9001,7 +9011,6 @@
       "secondaryCta": "Funzionalità Aziende"
     },
     "benefits": {
-      "title": "Cosa fa InTransparency per i tech park",
       "0": {
         "title": "Pipeline di talenti per le aziende residenti",
         "description": "Le tue startup e scale-up accedono a laureati verificati dalle università partner — pre-selezionati con dati di progetti reali."
@@ -9017,7 +9026,8 @@
       "3": {
         "title": "Strumenti per eventi e career day",
         "description": "Organizza eventi di talent matching con profili verificati. Le aziende incontrano candidati pre-qualificati, non partecipanti casuali."
-      }
+      },
+      "title": "Cosa fa InTransparency per i tech park"
     },
     "cta": {
       "title": "Esploriamo una partnership",
@@ -9034,7 +9044,6 @@
       "secondaryCta": "Prova la Demo AI"
     },
     "benefits": {
-      "title": "Cosa ottieni",
       "0": {
         "title": "Portfolio progetti verificato",
         "description": "Carica i tuoi progetti universitari con verifica istituzionale. Le aziende vedono cosa hai costruito, non cosa dichiari."
@@ -9050,7 +9059,8 @@
       "3": {
         "title": "Insight sulla personalità e le competenze",
         "description": "Scopri i tuoi punti di forza con assessment validati. Capire chi sei prima di presentarti alle aziende."
-      }
+      },
+      "title": "Cosa ottieni"
     },
     "cta": {
       "title": "Pronto a farti notare?",
@@ -9067,7 +9077,6 @@
       "secondaryCta": "Prova la Demo AI"
     },
     "benefits": {
-      "title": "Cosa ottieni",
       "0": {
         "title": "I progetti ITS, verificati",
         "description": "Carica i progetti pratici con il badge di verifica del tuo ITS. Le aziende vedono competenze reali, non solo un diploma."
@@ -9083,7 +9092,8 @@
       "3": {
         "title": "Dal progetto all'assunzione",
         "description": "Le aziende vedono il tuo lavoro, ti contattano, ti assumono. Traccia tutto in un unico posto."
-      }
+      },
+      "title": "Cosa ottieni"
     },
     "cta": {
       "title": "Mostra cosa sai fare",
@@ -9100,7 +9110,6 @@
       "secondaryCta": "Scopri di Più"
     },
     "benefits": {
-      "title": "Perché iniziare ora",
       "0": {
         "title": "Documenta le esperienze PCTO",
         "description": "Alternanza scuola-lavoro, stage, progetti scolastici — tutto in un portfolio digitale che la tua scuola può verificare."
@@ -9116,7 +9125,8 @@
       "3": {
         "title": "Gratuito senza limiti",
         "description": "Nessun costo, nessun abbonamento. Costruisci il tuo profilo al tuo ritmo."
-      }
+      },
+      "title": "Perché iniziare ora"
     },
     "cta": {
       "title": "Non è mai troppo presto",
@@ -9133,7 +9143,6 @@
       "secondaryCta": "Prova la Ricerca AI"
     },
     "benefits": {
-      "title": "Perché le PMI scelgono InTransparency",
       "0": {
         "title": "Competenze verificate, non parole",
         "description": "Ogni progetto è verificato dall'università. Vedi voti reali, codice reale, risultati reali — prima ancora di parlare con il candidato."
@@ -9149,7 +9158,8 @@
       "3": {
         "title": "Decision Pack per ogni candidato",
         "description": "Un dossier completo: portfolio, voti, personalità, competenze verificate. Tutto ciò che serve per decidere, in un documento."
-      }
+      },
+      "title": "Perché le PMI scelgono InTransparency"
     },
     "cta": {
       "title": "Smetti di pagare per candidati non qualificati",
@@ -9166,7 +9176,6 @@
       "secondaryCta": "Funzionalità Aziende"
     },
     "benefits": {
-      "title": "Perché le agenzie usano InTransparency",
       "0": {
         "title": "Screening già fatto",
         "description": "Progetti verificati dall'università, voti normalizzati, assessment di personalità. Presenti ai clienti candidati con dati, non solo CV."
@@ -9182,7 +9191,8 @@
       "3": {
         "title": "Talento transfrontaliero",
         "description": "Cerca talento in tutta Europa con voti automaticamente normalizzati tra sistemi. Un pool, tutti i paesi."
-      }
+      },
+      "title": "Perché le agenzie usano InTransparency"
     },
     "cta": {
       "title": "Dai ai tuoi clienti candidati migliori",
@@ -9199,7 +9209,6 @@
       "secondaryCta": "Prova la Ricerca AI"
     },
     "benefits": {
-      "title": "Perché le startup scelgono InTransparency",
       "0": {
         "title": "Vedi il lavoro, non il CV",
         "description": "Progetti reali con codice, risultati e verifica universitaria. Sai cosa sa fare un candidato prima del primo colloquio."
@@ -9215,7 +9224,8 @@
       "3": {
         "title": "Cultural fit con dati",
         "description": "Assessment di personalità e soft skills validati scientificamente. Assumi per fit culturale con prove, non intuizioni."
-      }
+      },
+      "title": "Perché le startup scelgono InTransparency"
     },
     "cta": {
       "title": "Il tuo prossimo assunto è qui",
@@ -10273,7 +10283,7 @@
     "success": "Studenti invitati con successo!",
     "note": "Gli studenti riceveranno un'email per completare il profilo.",
     "importTitle": "Importa Studenti",
-    "importSubtitle": "Carica un file CSV per aggiungere pi\u00f9 studenti contemporaneamente.",
+    "importSubtitle": "Carica un file CSV per aggiungere più studenti contemporaneamente.",
     "formatTitle": "Formato CSV",
     "formatDescription": "Il CSV deve includere: email, first_name, last_name. Opzionali: course, year.",
     "formatNote": "Colonne obbligatorie: email, first_name, last_name. Opzionali: course, year.",
@@ -10449,7 +10459,7 @@
   },
   "compareCandidate": {
     "title": "Confronta Candidati",
-    "subtitle": "Metti fino a 4 candidati fianco a fianco. Vedi competenze in comune, qualit\u00e0 progetti, esperienza stage e le tue note.",
+    "subtitle": "Metti fino a 4 candidati fianco a fianco. Vedi competenze in comune, qualità progetti, esperienza stage e le tue note.",
     "searchPlaceholder": "Cerca per nome per aggiungere un candidato...",
     "selected": "selezionati",
     "loading": "Caricamento dati candidato...",
@@ -10472,8 +10482,8 @@
     }
   },
   "universityInsightsPage": {
-    "title": "Insight Universit\u00e0",
-    "subtitle": "Quali universit\u00e0 producono i migliori candidati per i tuoi ruoli? Classificate per corrispondenza competenze, tasso verifica e dimensione talent pool.",
+    "title": "Insight Università",
+    "subtitle": "Quali università producono i migliori candidati per i tuoi ruoli? Classificate per corrispondenza competenze, tasso verifica e dimensione talent pool.",
     "match": "match",
     "highVerification": "Alta verifica",
     "students": "studenti",
@@ -10488,7 +10498,7 @@
   },
   "talentMatch": {
     "title": "Talent Match",
-    "subtitle": "Dicci cosa cerchi. Ti mostriamo chi corrisponde e perch\u00e9 \u2014 classificati per evidenze verificate, non parole chiave.",
+    "subtitle": "Dicci cosa cerchi. Ti mostriamo chi corrisponde e perché — classificati per evidenze verificate, non parole chiave.",
     "selectRole": "Abbina da un annuncio",
     "selectRolePlaceholder": "Seleziona un ruolo da abbinare...",
     "customCriteria": "Inserisci competenze manualmente",
@@ -10500,27 +10510,27 @@
     "scanningDesc": "Valutazione candidati rispetto ai tuoi criteri utilizzando progetti verificati, valutazioni stage e dati accademici.",
     "results": "{count} corrispondenze trovate",
     "rankedBy": "Classificati per punteggio evidenze",
-    "whyThisStudent": "Perch\u00e9 questo studente?",
+    "whyThisStudent": "Perché questo studente?",
     "hideDetails": "Nascondi dettagli",
     "relevantProjects": "Progetti verificati rilevanti",
     "internshipRecord": "Esperienza stage",
     "viewProfile": "Vedi",
     "noMatches": "Nessuna corrispondenza trovata",
-    "noMatchesHint": "Prova ad ampliare i criteri di competenza o a rimuovere i filtri di localit\u00e0.",
+    "noMatchesHint": "Prova ad ampliare i criteri di competenza o a rimuovere i filtri di località.",
     "emptyTitle": "Trova il talento giusto per il tuo ruolo",
-    "emptyDesc": "Seleziona uno dei tuoi annunci o inserisci le competenze che cerchi. Classifichiamo ogni studente verificato in base alla corrispondenza \u2014 con punteggio trasparente basato su progetti, stage, voti e valutazioni dei tutor."
+    "emptyDesc": "Seleziona uno dei tuoi annunci o inserisci le competenze che cerchi. Classifichiamo ogni studente verificato in base alla corrispondenza — con punteggio trasparente basato su progetti, stage, voti e valutazioni dei tutor."
   },
   "hiringAdvisor": {
     "title": "Consulente Assunzioni",
-    "subtitle": "Il tuo consulente AI per il recruiting \u2014 consigli esperti su assunzioni, colloqui, stipendi e strategia.",
-    "error": "Qualcosa \u00e8 andato storto. Riprova.",
+    "subtitle": "Il tuo consulente AI per il recruiting — consigli esperti su assunzioni, colloqui, stipendi e strategia.",
+    "error": "Qualcosa è andato storto. Riprova.",
     "thinking": "Sto pensando...",
     "placeholder": "Chiedi di job description, benchmark stipendiali, strategie di colloquio, diritto del lavoro italiano...",
     "welcomeTitle": "Come posso aiutarti ad assumere meglio?",
-    "welcomeMessage": "Sono il tuo consulente AI per le assunzioni. Chiedimi qualsiasi cosa sul recruiting \u2014 dalla scrittura di JD al diritto del lavoro italiano.",
+    "welcomeMessage": "Sono il tuo consulente AI per le assunzioni. Chiedimi qualsiasi cosa sul recruiting — dalla scrittura di JD al diritto del lavoro italiano.",
     "prompts": {
       "writeJd": "Aiutami a scrivere una job description per uno sviluppatore junior",
-      "salaryBenchmark": "Qual \u00e8 il range stipendiale per un marketing manager a Milano?",
+      "salaryBenchmark": "Qual è il range stipendiale per un marketing manager a Milano?",
       "interviewQuestions": "Dammi domande di colloquio per un data analyst",
       "contractTypes": "Spiega i tipi di contratto: stage, apprendistato, tempo determinato",
       "employerBranding": "Come migliorare il nostro employer brand per attrarre talenti universitari?",
@@ -10537,7 +10547,7 @@
     },
     "tips": {
       "title": "Consigli",
-      "tip1": "Specifica il ruolo e la seniority per consigli pi\u00f9 mirati.",
+      "tip1": "Specifica il ruolo e la seniority per consigli più mirati.",
       "tip2": "Fai domande di approfondimento per esplorare ogni tema.",
       "tip3": "Posso adattare i consigli al mercato italiano, europeo o globale."
     }
@@ -10549,7 +10559,7 @@
     "selectJobPlaceholder": "Scegli un annuncio per generare le domande...",
     "customRole": "Descrivi un ruolo personalizzato",
     "additionalContext": "Contesto Aggiuntivo (opzionale)",
-    "contextPlaceholder": "es. Cerchiamo qualcuno con esperienza in startup, ottime capacit\u00e0 comunicative...",
+    "contextPlaceholder": "es. Cerchiamo qualcuno con esperienza in startup, ottime capacità comunicative...",
     "generate": "Genera Kit Colloquio",
     "generating": "Generazione...",
     "generatingMessage": "Creazione del kit colloquio personalizzato con domande di screening, valutazioni tecniche e criteri di valutazione...",
@@ -10567,7 +10577,7 @@
     "upload": "Carica Documento",
     "uploadTitle": "Carica Documento",
     "uploadFailed": "Caricamento fallito. Riprova.",
-    "deleteConfirm": "Sei sicuro di voler eliminare questo documento? L'operazione non pu\u00f2 essere annullata.",
+    "deleteConfirm": "Sei sicuro di voler eliminare questo documento? L'operazione non può essere annullata.",
     "confidential": "Riservato",
     "noDocuments": "Nessun documento ancora",
     "noDocumentsHint": "Carica job description, contratti, NDA e altri materiali per tenerli organizzati e accessibili al tuo team.",
@@ -10608,16 +10618,33 @@
   },
   "conventions": {
     "title": "Convenzioni Stage",
-    "subtitle": "Gestisci gli accordi formali tra la tua istituzione, le aziende e gli studenti. Monitora firme, conformit\u00e0 e stato.",
+    "subtitle": "Gestisci gli accordi formali tra la tua istituzione, le aziende e gli studenti. Monitora firme, conformità e stato.",
     "create": "Nuova Convenzione",
     "searchPlaceholder": "Cerca per azienda o studente...",
     "allStatuses": "Tutti gli stati",
     "created": "Creata",
     "empty": "Nessuna convenzione",
     "emptyHint": "Crea la tua prima convenzione per formalizzare un accordo di stage tra la tua istituzione, un'azienda e uno studente.",
-    "stats": { "total": "Convenzioni Totali", "active": "Attive", "pending": "In Attesa", "completed": "Completate" },
-    "status": { "draft": "Bozza", "pending": "In Attesa Firme", "active": "Attiva", "completed": "Completata", "expired": "Scaduta", "revoked": "Revocata", "pending_signatures": "In Attesa Firme" },
-    "signatures": { "university": "Ateneo", "company": "Azienda", "student": "Studente" },
+    "stats": {
+      "total": "Convenzioni Totali",
+      "active": "Attive",
+      "pending": "In Attesa",
+      "completed": "Completate"
+    },
+    "status": {
+      "draft": "Bozza",
+      "pending": "In Attesa Firme",
+      "active": "Attiva",
+      "completed": "Completata",
+      "expired": "Scaduta",
+      "revoked": "Revocata",
+      "pending_signatures": "In Attesa Firme"
+    },
+    "signatures": {
+      "university": "Ateneo",
+      "company": "Azienda",
+      "student": "Studente"
+    },
     "form": {
       "title": "Nuova Convenzione Stage",
       "company": "Dati Azienda",
@@ -10634,21 +10661,21 @@
       "startDate": "Data Inizio",
       "endDate": "Data Fine",
       "objectives": "Obiettivi Formativi",
-      "objectivesPlaceholder": "Descrivi gli obiettivi di apprendimento e le attivit\u00e0 previste per questo tirocinio...",
-      "compliance": "Assicurazione e Conformit\u00e0",
+      "objectivesPlaceholder": "Descrivi gli obiettivi di apprendimento e le attività previste per questo tirocinio...",
+      "compliance": "Assicurazione e Conformità",
       "inail": "Posizione INAIL",
       "inailPlaceholder": "Numero posizione assicurativa INAIL",
       "ccnl": "CCNL di Riferimento",
       "ccnlPlaceholder": "Contratto collettivo nazionale applicabile",
       "submit": "Crea Convenzione",
       "creating": "Creazione...",
-      "companyRequired": "La ragione sociale \u00e8 obbligatoria.",
+      "companyRequired": "La ragione sociale è obbligatoria.",
       "error": "Creazione fallita."
     }
   },
   "careerPaths": {
     "title": "Mappa Percorsi di Carriera",
-    "subtitle": "Per ogni corso di laurea, scopri quali percorsi professionali sono realistici, quali competenze sono trasferibili tra settori, e quali aziende assumono. Non tassi di placement \u2014 opportunit\u00e0.",
+    "subtitle": "Per ogni corso di laurea, scopri quali percorsi professionali sono realistici, quali competenze sono trasferibili tra settori, e quali aziende assumono. Non tassi di placement — opportunità.",
     "searchPlaceholder": "Cerca per corso di laurea...",
     "demand": {
       "label": "domanda",
@@ -10674,7 +10701,7 @@
     "alumniTracked": "Alumni tracciati",
     "verifiedProjectsLabel": "Progetti verificati",
     "noIndustries": "Nessun settore compatibile trovato ancora.",
-    "noPaths": "I percorsi appariranno con l\u2019accumularsi dei dati di placement.",
+    "noPaths": "I percorsi appariranno con l’accumularsi dei dati di placement.",
     "noPrograms": "Nessun corso di laurea trovato",
     "noProgramsHint": "I percorsi si popoleranno quando gli studenti si registrano e indicano il loro corso."
   },
@@ -10682,14 +10709,17 @@
     "title": "Centro Comunicazioni",
     "subtitle": "Invia messaggi mirati ai tuoi studenti e alle aziende partner.",
     "verifiedStudents": "Studenti Verificati",
-    "tabs": { "compose": "Componi", "history": "Messaggi Inviati" },
+    "tabs": {
+      "compose": "Componi",
+      "history": "Messaggi Inviati"
+    },
     "sendTo": "Invia a",
     "filterDegree": "Filtra per corso",
     "filterYear": "Filtra per anno di laurea",
     "allDegrees": "Tutti i corsi",
     "allYears": "Tutti gli anni",
     "subject": "Oggetto",
-    "subjectPlaceholder": "es. Career Day Primavera 2026 \u2014 Iscrizioni Aperte",
+    "subjectPlaceholder": "es. Career Day Primavera 2026 — Iscrizioni Aperte",
     "message": "Messaggio",
     "messagePlaceholder": "Scrivi il tuo messaggio qui...",
     "send": "Invia a {count} destinatari",
@@ -10730,12 +10760,12 @@
       "independence": "Autonomia"
     },
     "courses": {
-      "title": "Corsi Pi\u00f9 Citati",
-      "description": "Quali corsi universitari gli studenti considerano pi\u00f9 rilevanti per il loro lavoro in stage. Segnale di allineamento curriculum-lavoro."
+      "title": "Corsi Più Citati",
+      "description": "Quali corsi universitari gli studenti considerano più rilevanti per il loro lavoro in stage. Segnale di allineamento curriculum-lavoro."
     },
     "skills": {
-      "title": "Competenze Pi\u00f9 Praticate",
-      "description": "Le competenze che gli studenti usano pi\u00f9 frequentemente sul lavoro. Confronta con il tuo curriculum per identificare i punti di forza."
+      "title": "Competenze Più Praticate",
+      "description": "Le competenze che gli studenti usano più frequentemente sul lavoro. Confronta con il tuo curriculum per identificare i punti di forza."
     },
     "newSkills": {
       "title": "Competenze Apprese sul Lavoro",
@@ -10748,7 +10778,7 @@
     },
     "challenges": {
       "title": "Sfide Comuni",
-      "description": "Cosa gli studenti hanno trovato pi\u00f9 difficile nella loro prima esperienza lavorativa. Cerca pattern che il career service potrebbe affrontare con workshop o preparazione."
+      "description": "Cosa gli studenti hanno trovato più difficile nella loro prima esperienza lavorativa. Cerca pattern che il career service potrebbe affrontare con workshop o preparazione."
     },
     "advice": {
       "title": "Consigli da Stagista a Stagista",
@@ -10760,7 +10790,7 @@
     "back": "Torna agli Stage",
     "addCheckIn": "Registra Check-in",
     "weeklyChart": "Ore Settimanali",
-    "timeline": "Timeline Attivit\u00e0",
+    "timeline": "Timeline Attività",
     "noCheckIns": "Nessun check-in registrato. Inizia a monitorare questo tirocinio.",
     "supervisorNote": "Tutor",
     "supervisorEval": "Valutazione Tutor Aziendale",
@@ -10788,14 +10818,14 @@
       "behindOnHours": "In ritardo sulle ore: {completed}h completate vs {expected}h previste a questo punto.",
       "noRecentCheckIn": "Nessun check-in negli ultimi {days} giorni. Contattare lo studente.",
       "nearCompletion": "Quasi completato: {percent}% delle ore obiettivo raggiunte.",
-      "midtermEvalDue": "Superata la met\u00e0 del percorso. Considerare di richiedere una valutazione intermedia al tutor."
+      "midtermEvalDue": "Superata la metà del percorso. Considerare di richiedere una valutazione intermedia al tutor."
     },
     "checkInForm": {
       "title": "Registra Check-in",
       "date": "Data",
       "hours": "Ore Lavorate",
-      "activity": "Descrizione Attivit\u00e0",
-      "activityPlaceholder": "Cosa \u00e8 stato fatto durante questa sessione...",
+      "activity": "Descrizione Attività",
+      "activityPlaceholder": "Cosa è stato fatto durante questa sessione...",
       "location": "Sede",
       "onSite": "In sede",
       "remote": "Da remoto",
@@ -10873,9 +10903,9 @@
     "contacts": "contatti",
     "hires": "assunzioni",
     "avgSalary": "Stipendio medio",
-    "lastActivity": "Ultima attivit\u00e0",
+    "lastActivity": "Ultima attività",
     "firstSeen": "Prima volta",
-    "noCompanies": "Nessuna attivit\u00e0 aziendale",
+    "noCompanies": "Nessuna attività aziendale",
     "noCompaniesHint": "Quando le aziende visualizzano e contattano i tuoi studenti, appariranno qui automaticamente con metriche di engagement e fase del pipeline.",
     "pipeline": {
       "prospect": "Prospect",
@@ -10896,9 +10926,9 @@
     "actions": "azioni",
     "dimensions": {
       "studentActivation": "Attivazione Studenti",
-      "employerVisibility": "Visibilit\u00e0 Aziende",
+      "employerVisibility": "Visibilità Aziende",
       "placementPerformance": "Performance Placement",
-      "academicQuality": "Qualit\u00e0 Accademica",
+      "academicQuality": "Qualità Accademica",
       "dataCompleteness": "Completezza Dati"
     },
     "metrics": {
@@ -10922,19 +10952,19 @@
     "recommendationsSubtitle": "Passi prioritizzati per migliorare le performance istituzionali, basati sui tuoi dati attuali.",
     "rec": {
       "lowActivation": "Aumenta l'attivazione degli studenti",
-      "lowActivationDesc": "Meno del 30% degli studenti ha effettuato l'accesso questo mese. Invia campagne email, organizza sessioni di onboarding o integra le attivit\u00e0 della piattaforma nei corsi.",
+      "lowActivationDesc": "Meno del 30% degli studenti ha effettuato l'accesso questo mese. Invia campagne email, organizza sessioni di onboarding o integra le attività della piattaforma nei corsi.",
       "incompleteProfiles": "Migliora la completezza dei profili",
-      "incompleteProfilesDesc": "La maggior parte degli studenti non ha bio o competenze. Gli studenti con profili completi ricevono 3 volte pi\u00f9 visualizzazioni. Organizza una settimana 'sprint profilo' con incentivi.",
+      "incompleteProfilesDesc": "La maggior parte degli studenti non ha bio o competenze. Gli studenti con profili completi ricevono 3 volte più visualizzazioni. Organizza una settimana 'sprint profilo' con incentivi.",
       "lowProjects": "Incentiva il caricamento dei progetti",
       "lowProjectsDesc": "Pochi studenti hanno progetti. I progetti sono il fattore #1 valutato dai recruiter. Richiedi la consegna di progetti come parte delle valutazioni dei corsi.",
-      "lowVisibility": "Aumenta la visibilit\u00e0 presso le aziende",
+      "lowVisibility": "Aumenta la visibilità presso le aziende",
       "lowVisibilityDesc": "Meno di 5 aziende hanno visualizzato i tuoi studenti. Condividi la pagina pubblica della tua istituzione con partner industriali e fiere del lavoro.",
       "noAlumni": "Inizia a tracciare gli esiti degli alumni",
-      "noAlumniDesc": "Nessun record alumni. I dati sull'occupazione degli alumni rafforzano la reputazione dell'istituzione e aiutano a valutare la qualit\u00e0 dei placement.",
+      "noAlumniDesc": "Nessun record alumni. I dati sull'occupazione degli alumni rafforzano la reputazione dell'istituzione e aiutano a valutare la qualità dei placement.",
       "noCourses": "Aggiungi il catalogo corsi",
       "noCoursesDesc": "Nessun corso registrato. I corsi aiutano i recruiter a trovare studenti con competenze specifiche e migliorano l'analisi di allineamento curriculare.",
-      "lowVerification": "Verifica pi\u00f9 progetti",
-      "lowVerificationDesc": "Meno della met\u00e0 dei progetti \u00e8 verificata. I progetti verificati portano credibilit\u00e0 istituzionale e si posizionano meglio nelle ricerche dei recruiter.",
+      "lowVerification": "Verifica più progetti",
+      "lowVerificationDesc": "Meno della metà dei progetti è verificata. I progetti verificati portano credibilità istituzionale e si posizionano meglio nelle ricerche dei recruiter.",
       "lowContacts": "Rafforza l'engagement dei recruiter",
       "lowContactsDesc": "Pochi recruiter contattano i tuoi studenti. Considera l'organizzazione di eventi di carriera virtuali o il contatto con aziende nella rete alumni."
     },
@@ -10943,13 +10973,13 @@
   },
   "universityDocuments": {
     "title": "Archivio Documenti",
-    "subtitle": "Archivia e gestisci in sicurezza documenti istituzionali, report e registri di conformit\u00e0.",
+    "subtitle": "Archivia e gestisci in sicurezza documenti istituzionali, report e registri di conformità.",
     "error": "Impossibile caricare i documenti.",
     "retry": "Riprova",
     "upload": "Carica Documento",
     "uploadTitle": "Carica Documento",
     "uploadFailed": "Caricamento fallito. Riprova.",
-    "deleteConfirm": "Sei sicuro di voler eliminare questo documento? L'operazione non pu\u00f2 essere annullata.",
+    "deleteConfirm": "Sei sicuro di voler eliminare questo documento? L'operazione non può essere annullata.",
     "confidential": "Riservato",
     "noDocuments": "Nessun documento ancora",
     "noDocumentsHint": "Carica report di accreditamento, analisi studenti, accordi di partnership e altri documenti istituzionali per tenerli organizzati e al sicuro.",
@@ -10965,12 +10995,12 @@
       "allCategories": "Tutte le Categorie"
     },
     "categories": {
-      "ACCREDITATION": "Accreditamento e Qualit\u00e0",
+      "ACCREDITATION": "Accreditamento e Qualità",
       "STUDENT_REPORT": "Report Studenti",
       "ACADEMIC": "Accademico e Curricula",
       "PARTNERSHIP": "Partnership e Accordi",
       "FINANCIAL": "Finanza e Finanziamenti",
-      "COMPLIANCE": "Conformit\u00e0 e Audit",
+      "COMPLIANCE": "Conformità e Audit",
       "INTERNAL": "Report Interni",
       "OTHER": "Altro"
     },
@@ -10993,7 +11023,7 @@
     "subtitle": "Aggiungi un nuovo studente alla tua istituzione sulla piattaforma.",
     "backToStudents": "Torna agli Studenti",
     "successTitle": "Studente Aggiunto con Successo",
-    "successMessage": "{name} ({email}) \u00e8 stato aggiunto e ricever\u00e0 un'email di invito.",
+    "successMessage": "{name} ({email}) è stato aggiunto e riceverà un'email di invito.",
     "addAnother": "Aggiungi un Altro Studente",
     "error": "Impossibile aggiungere lo studente. Riprova.",
     "validation": {
@@ -11006,7 +11036,7 @@
       "lastNamePlaceholder": "Rossi",
       "email": "Indirizzo Email",
       "emailPlaceholder": "mario.rossi@email.com",
-      "emailHint": "Lo studente ricever\u00e0 un invito a questo indirizzo.",
+      "emailHint": "Lo studente riceverà un invito a questo indirizzo.",
       "department": "Dipartimento",
       "departmentPlaceholder": "es. Informatica",
       "degree": "Corso di Laurea",
@@ -11020,7 +11050,7 @@
     }
   },
   "universityRecruiters": {
-    "title": "Attivit\u00e0 Recruiter",
+    "title": "Attività Recruiter",
     "subtitle": "Aziende che interagiscono con i tuoi studenti attraverso la piattaforma.",
     "error": "Impossibile caricare i dati recruiter.",
     "retry": "Riprova",
@@ -11031,8 +11061,8 @@
     "partner": "Partner",
     "active": "Attivo",
     "inactive": "Inattivo",
-    "noRecruiters": "Nessuna attivit\u00e0 recruiter ancora",
-    "noRecruitersHint": "Quando i recruiter visualizzano e contattano i tuoi studenti, la loro attivit\u00e0 apparir\u00e0 qui.",
+    "noRecruiters": "Nessuna attività recruiter ancora",
+    "noRecruitersHint": "Quando i recruiter visualizzano e contattano i tuoi studenti, la loro attività apparirà qui.",
     "stats": {
       "totalCompanies": "Aziende Totali",
       "partners": "Aziende Partner",
@@ -11050,7 +11080,7 @@
       "hired": "Studenti Assunti",
       "contacted": "Studenti Contattati",
       "avgSalary": "Stipendio Medio",
-      "lastActivity": "Ultima Attivit\u00e0"
+      "lastActivity": "Ultima Attività"
     }
   },
   "universityAlumni": {
@@ -11138,6 +11168,179 @@
     "status": {
       "success": "Riuscita",
       "failed": "Fallita"
+    }
+  },
+  "algorithmRegistry": {
+    "badge": "AI Act — Registro Pubblico",
+    "title": "Registro degli Algoritmi",
+    "intro": "Ogni sistema decisionale automatizzato utilizzato su InTransparency è documentato qui. Gli studenti hanno diritto a capire come è stato prodotto qualsiasi match o previsione che li riguardi, a richiedere revisione umana, e a contestare l'esito.",
+    "linkPrivacy": "Privacy →",
+    "linkConsent": "Preferenze di consenso →",
+    "linkHumanReview": "Richiedi revisione umana →",
+    "classificationNote": "Ai sensi del Regolamento UE AI Act 2024/1689, Allegato III §4, i sistemi che valutano candidati per l'occupazione sono classificati ad alto rischio. I sistemi di matching di InTransparency implementano tutte le salvaguardie richieste: trasparenza, supervisione umana, tracciabilità, governance dei dati e diritto alla spiegazione.",
+    "classificationLabel": "Classificazione:",
+    "lastAudit": "Ultimo audit: {date}",
+    "sections": {
+      "purpose": "Scopo",
+      "audience": "Destinatari:",
+      "inputs": "Input utilizzati",
+      "excluded": "Mai utilizzati",
+      "weights": "Pesi di scoring",
+      "weightsMax": "max {points} pt",
+      "oversight": "Supervisione umana",
+      "rights": "I tuoi diritti",
+      "biasTests": "Test di bias",
+      "complianceRefs": "Riferimenti normativi",
+      "optInOnly": "Solo opt-in"
+    },
+    "contact": {
+      "title": "Domande o dubbi?",
+      "body": "Scrivi a {email}. Rispondiamo entro 14 giorni a qualsiasi richiesta di spiegazione, revisione umana o esercizio dei tuoi diritti.",
+      "footnote": "Contatto del Data Protection Officer disponibile su richiesta. Documentazione DPIA condivisa con le autorità su richiesta."
+    }
+  },
+  "matchWhy": {
+    "badge": "AI Act — Diritto alla Spiegazione",
+    "title": "Perché sei stato selezionato?",
+    "intro": "Un recruiter ha visto il tuo profilo come match per un ruolo. Ecco esattamente cosa ha contribuito a quella decisione — niente di nascosto, niente di proprietario.",
+    "notFound": "Questa spiegazione non è stata trovata, o non ne sei il soggetto. Solo lo studente interessato dal match può vederla.",
+    "overallScore": "Punteggio di match complessivo",
+    "computedOn": "Calcolato il {date} dal modello {version}",
+    "contributingFactors": "Cosa ha contribuito al punteggio",
+    "pointsContribution": "+{points} pt",
+    "rights": {
+      "title": "I tuoi diritti",
+      "humanReview": "Revisione umana: se non sei d'accordo, un umano della tua istituzione può riesaminare e annullare il match.",
+      "object": "Opposizione: puoi rimuoverti dai futuri match di questo recruiter.",
+      "exportRight": "Esportazione: puoi esportare ogni spiegazione che ti riguarda.",
+      "requestReviewButton": "Richiedi revisione umana",
+      "readModelCardButton": "Leggi la scheda del modello"
+    },
+    "factorLabels": {
+      "requiredSkills": "Competenze che corrispondevano a ciò che cercavano",
+      "preferredSkills": "Competenze preferite bonus",
+      "verifiedProjects": "I tuoi progetti verificati",
+      "internshipExperience": "Il tuo percorso di tirocinio / stage",
+      "academicPerformance": "Il tuo rendimento accademico"
+    },
+    "decisionLabels": {
+      "STRONG_MATCH": "Match forte",
+      "MATCH": "Match",
+      "WEAK_MATCH": "Match debole",
+      "NO_MATCH": "Nessun match"
+    }
+  },
+  "credentialVerify": {
+    "badge": "Credenziale Verificabile",
+    "title": "Verifica Credenziale",
+    "subtitle": "Verificata crittograficamente da InTransparency.",
+    "notFound": {
+      "title": "Credenziale non trovata",
+      "body": "Il link di condivisione non è valido o la credenziale è stata rimossa."
+    },
+    "valid": "Credenziale valida",
+    "revoked": "Credenziale revocata",
+    "failed": "Verifica fallita",
+    "fields": {
+      "type": "Tipo",
+      "status": "Stato",
+      "subject": "Soggetto",
+      "issuer": "Emittente",
+      "issued": "Emessa",
+      "expires": "Scade",
+      "never": "Mai"
+    },
+    "claimDetails": "Dettagli della dichiarazione"
+  },
+  "companyDiscovery": {
+    "loading": "Caricamento profilo...",
+    "notFound": {
+      "title": "Azienda non trovata",
+      "body": "Questo profilo non è pubblicato o non esiste."
+    },
+    "follow": "Segui",
+    "following": "Seguendo",
+    "followers": "{count} follower",
+    "followerSingular": "{count} follower",
+    "employeesCount": "{range} dipendenti",
+    "founded": "Fondata nel {year}",
+    "sections": {
+      "about": "Chi siamo",
+      "mission": "Missione",
+      "vision": "Visione",
+      "values": "Valori",
+      "offices": "Sedi",
+      "faqs": "Domande frequenti",
+      "video": "Scopri l'azienda"
+    },
+    "officePeople": "{count} persone"
+  },
+  "selfDiscovery": {
+    "badge": "Auto-Esplorazione",
+    "title": "Capire chi sei, prima di mostrarti",
+    "intro": "Sei passi per capire te stesso prima che le aziende vedano il tuo profilo. Non ci sono risposte sbagliate. Tutto qui è tuo — scegli tu cosa condividere.",
+    "progress": "Progresso",
+    "progressCount": "Passo {current} di {total} — {percent}%",
+    "nav": {
+      "back": "Indietro",
+      "continue": "Salva e continua",
+      "done": "Fatto",
+      "saving": "Salvataggio…"
+    },
+    "steps": {
+      "values": {
+        "title": "Cosa conta per te",
+        "description": "Scegli 5-7 valori che descrivono cosa vuoi dal lavoro e dalla vita.",
+        "countSelected": "{count} selezionati (mirare a 5-7)"
+      },
+      "strengths": {
+        "title": "In cosa sei bravo",
+        "description": "Rifletti sui momenti in cui eri nel flusso. Cosa stavi facendo?",
+        "flowLabel": "Una frase per ciascuno — momenti in cui eri nel flusso",
+        "flowPlaceholder": "Es., \"Ho debuggato per 3 ore e ne ho goduto ogni minuto\"\n\"Ho spiegato un concetto e ho visto la classe capirlo\"",
+        "energizing": "Attività che ti energizzano",
+        "draining": "Attività che ti svuotano"
+      },
+      "projects": {
+        "title": "Cosa hai già fatto",
+        "description": "Taggа i tuoi progetti passati — ruoli svolti, competenze usate, orgoglio provato.",
+        "note": "Questo passo si completa direttamente sulle pagine dei progetti. Vai ai tuoi progetti, tagga ruoli, competenze e valutazioni di orgoglio, poi torna qui.",
+        "goToProjects": "Vai ai miei progetti"
+      },
+      "interests": {
+        "title": "Dove vuoi andare",
+        "description": "Motivazioni e dealbreaker. Nessuna risposta sbagliata.",
+        "motivations": "Cosa ti motiva",
+        "dealbreakers": "Dealbreaker",
+        "idealDayLabel": "Descrivi una giornata lavorativa ideale",
+        "fiveYearLabel": "Dove ti vedi fra 5 anni"
+      },
+      "skills": {
+        "title": "Auto-valuta le tue competenze",
+        "description": "Valutati con onestà — confronteremo con quanto risulta dal tuo record.",
+        "addPlaceholder": "Aggiungi una competenza",
+        "addButton": "Aggiungi",
+        "levels": {
+          "beginner": "Principiante",
+          "intermediate": "Intermedio",
+          "advanced": "Avanzato",
+          "expert": "Esperto"
+        }
+      },
+      "reconcile": {
+        "title": "Il tuo report di scoperta",
+        "description": "Dove la tua auto-percezione corrisponde al record verificato — e dove no.",
+        "aligned": "Ben allineato",
+        "alignedEmpty": "Dati verificati insufficienti — completa uno stage o un progetto verificato.",
+        "underrated": "Sei migliore di quanto pensi",
+        "underratedLine": "{skill}: ti sei valutato {self}/4 ma il tuo record mostra {verified}/4.",
+        "unclaimed": "Competenze che non hai dichiarato",
+        "unclaimedIntro": "Il tuo record verificato le mostra — valuta di aggiungerle al profilo.",
+        "unclaimedBadge": "{skill} ({sources} fonti)",
+        "overrated": "Aree da approfondire",
+        "overratedIntro": "Non è un problema — è solo un segno di dove fare più pratica verificata.",
+        "overratedLine": "{skill}: auto-valutato {self}/4, verificato {verified}/4 — fai uno stage o progetto verificato per colmare il gap."
+      }
     }
   }
 }

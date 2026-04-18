@@ -2766,7 +2766,6 @@
       "secondaryCta": "See University Features"
     },
     "benefits": {
-      "title": "What InTransparency does for ITS Academies",
       "0": {
         "title": "Verified project portfolios",
         "description": "Students upload ITS projects with your institutional verification badge. Companies see proof, not just claims."
@@ -2782,7 +2781,8 @@
       "3": {
         "title": "Cross-border grade normalization",
         "description": "Italian ITS grades translated automatically for German, French, Dutch, and Spanish employers."
-      }
+      },
+      "title": "What InTransparency does for ITS Academies"
     },
     "cta": {
       "title": "Want to pilot with your ITS?",
@@ -2799,7 +2799,6 @@
       "secondaryCta": "See University Features"
     },
     "benefits": {
-      "title": "What InTransparency does for high schools",
       "0": {
         "title": "Student project portfolios",
         "description": "Students document PCTO experiences, school projects, and extracurriculars in a verified digital portfolio."
@@ -2815,7 +2814,8 @@
       "3": {
         "title": "University-ready profiles",
         "description": "When your students move to university, their verified portfolio transfers with them — giving them a head start."
-      }
+      },
+      "title": "What InTransparency does for high schools"
     },
     "cta": {
       "title": "Interested in a pilot?",
@@ -2832,7 +2832,6 @@
       "secondaryCta": "See Company Features"
     },
     "benefits": {
-      "title": "What InTransparency does for tech parks",
       "0": {
         "title": "Talent pipeline for resident companies",
         "description": "Your startups and scale-ups get access to verified graduates from partner universities — pre-screened with real project data."
@@ -2848,7 +2847,8 @@
       "3": {
         "title": "Event and career day tools",
         "description": "Run talent matching events with verified profiles. Companies meet pre-qualified candidates, not random attendees."
-      }
+      },
+      "title": "What InTransparency does for tech parks"
     },
     "cta": {
       "title": "Let's explore a partnership",
@@ -5121,7 +5121,13 @@
       "title": "Learning Roadmap",
       "description": "Personalized timeline of skills to learn and projects to build",
       "lockedTitle": "Learning Roadmap (Premium Feature)",
-      "lockedDescription": "Upgrade to Premium to get a personalized learning roadmap with week-by-week milestones tailored to your skill gaps."
+      "lockedDescription": "Upgrade to Premium to get a personalized learning roadmap.",
+      "empty": "No roadmap milestones yet",
+      "learn": "Learn",
+      "build": "Build",
+      "certify": "Certify",
+      "apply": "Apply",
+      "week": "Week"
     },
     "projects": {
       "title": "Recommended Projects",
@@ -5164,18 +5170,6 @@
       "risingDemand": "Rising demand",
       "stableDemand": "Stable demand",
       "decliningDemand": "Declining demand"
-    },
-    "roadmap": {
-      "title": "Learning Roadmap",
-      "description": "Personalized timeline of skills to learn and projects to build",
-      "lockedTitle": "Learning Roadmap (Premium Feature)",
-      "lockedDescription": "Upgrade to Premium to get a personalized learning roadmap.",
-      "empty": "No roadmap milestones yet",
-      "learn": "Learn",
-      "build": "Build",
-      "certify": "Certify",
-      "apply": "Apply",
-      "week": "Week"
     }
   },
   "studentDashboard": {
@@ -5439,12 +5433,28 @@
     "title": "Company Challenges",
     "subtitle": "Real-world projects from leading companies",
     "searchPlaceholder": "Search challenges...",
-    "stats": { "available": "Available", "applied": "Applied", "completed": "Completed" },
-    "filters": { "all": "All", "discipline": "Discipline", "type": "Type", "internship": "Internship", "thesis": "Thesis", "research": "Research" },
+    "stats": {
+      "available": "Available",
+      "applied": "Applied",
+      "completed": "Completed"
+    },
+    "filters": {
+      "all": "All",
+      "discipline": "Discipline",
+      "type": "Type",
+      "internship": "Internship",
+      "thesis": "Thesis",
+      "research": "Research"
+    },
     "myApplications": "My applications",
     "moreChallenges": "More challenges",
     "availableChallenges": "Available challenges",
-    "empty": { "filtered": "No challenges match your filters", "adjustFilters": "Try adjusting your search", "none": "No challenges available yet", "checkBack": "Check back later for new opportunities" }
+    "empty": {
+      "filtered": "No challenges match your filters",
+      "adjustFilters": "Try adjusting your search",
+      "none": "No challenges available yet",
+      "checkBack": "Check back later for new opportunities"
+    }
   },
   "studentMessages": {
     "title": "Messages",
@@ -9007,7 +9017,6 @@
       "secondaryCta": "Try the AI Demo"
     },
     "benefits": {
-      "title": "What you get",
       "0": {
         "title": "Verified project portfolio",
         "description": "Upload your university projects with institutional verification. Companies see what you built, not what you claim."
@@ -9023,7 +9032,8 @@
       "3": {
         "title": "Personality and skills insights",
         "description": "Discover your strengths with validated assessments. Understand who you are before presenting yourself to companies."
-      }
+      },
+      "title": "What you get"
     },
     "cta": {
       "title": "Ready to stand out?",
@@ -9040,7 +9050,6 @@
       "secondaryCta": "Try the AI Demo"
     },
     "benefits": {
-      "title": "What you get",
       "0": {
         "title": "Your ITS projects, verified",
         "description": "Upload your hands-on projects with your ITS verification badge. Companies see real skills, not just a diploma."
@@ -9056,7 +9065,8 @@
       "3": {
         "title": "From project to placement",
         "description": "Companies see your work, contact you, hire you. Track everything in one place."
-      }
+      },
+      "title": "What you get"
     },
     "cta": {
       "title": "Show what you can do",
@@ -9073,7 +9083,6 @@
       "secondaryCta": "Learn More"
     },
     "benefits": {
-      "title": "Why start now",
       "0": {
         "title": "Document your PCTO experiences",
         "description": "Work-study programs, internships, school projects — all in a digital portfolio your school can verify."
@@ -9089,7 +9098,8 @@
       "3": {
         "title": "Free, no credit card",
         "description": "No cost, no subscription. Build your profile at your own pace."
-      }
+      },
+      "title": "Why start now"
     },
     "cta": {
       "title": "It's never too early",
@@ -9106,7 +9116,6 @@
       "secondaryCta": "Try AI Search"
     },
     "benefits": {
-      "title": "Why SMEs choose InTransparency",
       "0": {
         "title": "Verified skills, not buzzwords",
         "description": "Every project is university-verified. See real grades, real code, real outcomes — before you even talk to the candidate."
@@ -9122,7 +9131,8 @@
       "3": {
         "title": "Decision Pack for every candidate",
         "description": "A complete dossier: portfolio, grades, personality, verified skills. Everything you need to decide, in one document."
-      }
+      },
+      "title": "Why SMEs choose InTransparency"
     },
     "cta": {
       "title": "Stop paying for unqualified candidates",
@@ -9139,7 +9149,6 @@
       "secondaryCta": "Company Features"
     },
     "benefits": {
-      "title": "Why agencies use InTransparency",
       "0": {
         "title": "Screening already done",
         "description": "University-verified projects, normalized grades, personality assessments. Present clients with data, not just CVs."
@@ -9155,7 +9164,8 @@
       "3": {
         "title": "Cross-border talent",
         "description": "Search talent across Europe with grades automatically normalized between systems. One pool, all countries."
-      }
+      },
+      "title": "Why agencies use InTransparency"
     },
     "cta": {
       "title": "Give your clients better candidates",
@@ -9172,7 +9182,6 @@
       "secondaryCta": "Try AI Search"
     },
     "benefits": {
-      "title": "Why startups choose InTransparency",
       "0": {
         "title": "See the work, not the CV",
         "description": "Real projects with code, outcomes, and university verification. You know what a candidate can do before the first interview."
@@ -9188,7 +9197,8 @@
       "3": {
         "title": "Cultural fit with data",
         "description": "Scientifically validated personality and soft skills assessments. Hire for cultural fit with evidence, not gut feelings."
-      }
+      },
+      "title": "Why startups choose InTransparency"
     },
     "cta": {
       "title": "Your next hire is here",
@@ -10588,9 +10598,26 @@
     "created": "Created",
     "empty": "No conventions yet",
     "emptyHint": "Create your first convention to formalize a stage agreement between your institution, a company, and a student.",
-    "stats": { "total": "Total Conventions", "active": "Active", "pending": "Pending", "completed": "Completed" },
-    "status": { "draft": "Draft", "pending": "Pending Signatures", "active": "Active", "completed": "Completed", "expired": "Expired", "revoked": "Revoked", "pending_signatures": "Pending Signatures" },
-    "signatures": { "university": "University", "company": "Company", "student": "Student" },
+    "stats": {
+      "total": "Total Conventions",
+      "active": "Active",
+      "pending": "Pending",
+      "completed": "Completed"
+    },
+    "status": {
+      "draft": "Draft",
+      "pending": "Pending Signatures",
+      "active": "Active",
+      "completed": "Completed",
+      "expired": "Expired",
+      "revoked": "Revoked",
+      "pending_signatures": "Pending Signatures"
+    },
+    "signatures": {
+      "university": "University",
+      "company": "Company",
+      "student": "Student"
+    },
     "form": {
       "title": "New Stage Convention",
       "company": "Company Information",
@@ -10655,7 +10682,10 @@
     "title": "Communications Hub",
     "subtitle": "Send targeted messages to your students and employer partners.",
     "verifiedStudents": "Verified Students",
-    "tabs": { "compose": "Compose", "history": "Sent Messages" },
+    "tabs": {
+      "compose": "Compose",
+      "history": "Sent Messages"
+    },
     "sendTo": "Send to",
     "filterDegree": "Filter by degree",
     "filterYear": "Filter by graduation year",
@@ -11111,6 +11141,179 @@
     "status": {
       "success": "Success",
       "failed": "Failed"
+    }
+  },
+  "algorithmRegistry": {
+    "badge": "AI Act — Public Registry",
+    "title": "Algorithm Registry",
+    "intro": "Every automated decision system used on InTransparency is documented here. Students have the right to understand how any match or prediction about them was produced, to request human review, and to contest the outcome.",
+    "linkPrivacy": "Privacy policy →",
+    "linkConsent": "Consent preferences →",
+    "linkHumanReview": "Request human review →",
+    "classificationNote": "Under EU AI Act Regulation 2024/1689, Annex III §4, systems that evaluate candidates for employment are classified as high-risk. InTransparency's matching systems implement every required safeguard: transparency, human oversight, traceability, data governance, and the right to explanation.",
+    "classificationLabel": "Classification:",
+    "lastAudit": "Last audit: {date}",
+    "sections": {
+      "purpose": "Purpose",
+      "audience": "Audience:",
+      "inputs": "Inputs used",
+      "excluded": "Never used",
+      "weights": "Scoring weights",
+      "weightsMax": "max {points} pts",
+      "oversight": "Human oversight",
+      "rights": "Your rights as a subject",
+      "biasTests": "Bias testing",
+      "complianceRefs": "Compliance references",
+      "optInOnly": "Opt-in only"
+    },
+    "contact": {
+      "title": "Questions or concerns?",
+      "body": "Write to {email}. We respond within 14 days to any explanation request, human-review request, or rights exercise.",
+      "footnote": "Data Protection Officer contact available on request. DPIA documentation shared with regulators on request."
+    }
+  },
+  "matchWhy": {
+    "badge": "AI Act — Right to Explanation",
+    "title": "Why were you matched?",
+    "intro": "A recruiter saw your profile as a match for a role. Here is exactly what contributed to that decision — nothing hidden, nothing proprietary.",
+    "notFound": "This explanation was not found, or you are not the subject. Only the student the match concerns can view the full explanation.",
+    "overallScore": "Overall match score",
+    "computedOn": "Computed on {date} by model {version}",
+    "contributingFactors": "What contributed to the score",
+    "pointsContribution": "+{points} pts",
+    "rights": {
+      "title": "Your rights",
+      "humanReview": "Human review: if you disagree with this match, a human at your institution can review and override it.",
+      "object": "Object: you can remove yourself from future matching by this recruiter.",
+      "exportRight": "Export: you can export every explanation involving you.",
+      "requestReviewButton": "Request human review",
+      "readModelCardButton": "Read the model card"
+    },
+    "factorLabels": {
+      "requiredSkills": "Skills that matched what they were looking for",
+      "preferredSkills": "Bonus skills they wanted",
+      "verifiedProjects": "Your verified projects",
+      "internshipExperience": "Your stage / internship record",
+      "academicPerformance": "Your academic performance"
+    },
+    "decisionLabels": {
+      "STRONG_MATCH": "Strong match",
+      "MATCH": "Match",
+      "WEAK_MATCH": "Weak match",
+      "NO_MATCH": "No match"
+    }
+  },
+  "credentialVerify": {
+    "badge": "Verifiable Credential",
+    "title": "Credential Verification",
+    "subtitle": "Cryptographically verified by InTransparency.",
+    "notFound": {
+      "title": "Credential not found",
+      "body": "The share link is invalid or the credential has been removed."
+    },
+    "valid": "Valid credential",
+    "revoked": "Revoked credential",
+    "failed": "Verification failed",
+    "fields": {
+      "type": "Type",
+      "status": "Status",
+      "subject": "Subject",
+      "issuer": "Issuer",
+      "issued": "Issued",
+      "expires": "Expires",
+      "never": "Never"
+    },
+    "claimDetails": "Claim details"
+  },
+  "companyDiscovery": {
+    "loading": "Loading profile...",
+    "notFound": {
+      "title": "Company not found",
+      "body": "This profile is either unpublished or doesn't exist."
+    },
+    "follow": "Follow",
+    "following": "Following",
+    "followers": "{count} followers",
+    "followerSingular": "{count} follower",
+    "employeesCount": "{range} employees",
+    "founded": "Founded {year}",
+    "sections": {
+      "about": "About",
+      "mission": "Mission",
+      "vision": "Vision",
+      "values": "Values",
+      "offices": "Offices",
+      "faqs": "Frequently asked",
+      "video": "See the company"
+    },
+    "officePeople": "{count} people"
+  },
+  "selfDiscovery": {
+    "badge": "Self-Discovery",
+    "title": "Capire chi sei, prima di mostrarti",
+    "intro": "Six steps to understand yourself before companies see your profile. There are no wrong answers. Everything here is yours — you choose what to share.",
+    "progress": "Progress",
+    "progressCount": "Step {current} of {total} — {percent}%",
+    "nav": {
+      "back": "Back",
+      "continue": "Save and continue",
+      "done": "Done",
+      "saving": "Saving…"
+    },
+    "steps": {
+      "values": {
+        "title": "What matters to you",
+        "description": "Pick 5-7 values that describe what you want from work and life.",
+        "countSelected": "{count} selected (aim for 5-7)"
+      },
+      "strengths": {
+        "title": "What you're good at",
+        "description": "Reflect on moments where you were in flow. What were you doing?",
+        "flowLabel": "One sentence each — moments where you were in flow",
+        "flowPlaceholder": "E.g., \"I was debugging for 3 hours and loved every minute\"\n\"I explained a concept and saw the class understand\"",
+        "energizing": "Activities that energize you",
+        "draining": "Activities that drain you"
+      },
+      "projects": {
+        "title": "What you've already done",
+        "description": "Tag your past projects — roles played, skills used, pride felt.",
+        "note": "This step is completed directly on your project pages. Head to your projects and tag roles, skills, and pride ratings on each one, then return here.",
+        "goToProjects": "Go to my projects"
+      },
+      "interests": {
+        "title": "Where you want to go",
+        "description": "Motivations and dealbreakers. No wrong answers.",
+        "motivations": "What motivates you",
+        "dealbreakers": "Dealbreakers",
+        "idealDayLabel": "Describe an ideal workday",
+        "fiveYearLabel": "Where you see yourself in 5 years"
+      },
+      "skills": {
+        "title": "Self-assess your skills",
+        "description": "Rate yourself honestly — we'll compare to what your record shows.",
+        "addPlaceholder": "Add a skill",
+        "addButton": "Add",
+        "levels": {
+          "beginner": "Beginner",
+          "intermediate": "Intermediate",
+          "advanced": "Advanced",
+          "expert": "Expert"
+        }
+      },
+      "reconcile": {
+        "title": "Your discovery report",
+        "description": "Where your self-perception matches your verified record — and where it doesn't.",
+        "aligned": "Well-aligned",
+        "alignedEmpty": "Not enough verified data yet — complete a stage or verified project.",
+        "underrated": "You're better than you think",
+        "underratedLine": "{skill}: you rated yourself {self}/4 but your record shows {verified}/4.",
+        "unclaimed": "Skills you didn't claim",
+        "unclaimedIntro": "Your verified record shows these — consider adding them to your profile.",
+        "unclaimedBadge": "{skill} ({sources} sources)",
+        "overrated": "Areas to deepen",
+        "overratedIntro": "Not a problem — just a sign of where to get more verified practice.",
+        "overratedLine": "{skill}: self-rated {self}/4, verified {verified}/4 — take a stage or verified project to close the gap."
+      }
     }
   }
 }

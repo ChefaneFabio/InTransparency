@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, use } from 'react'
+import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -30,20 +31,13 @@ interface Explanation {
   createdAt: string
 }
 
-const FACTOR_LABELS: Record<string, string> = {
-  requiredSkills: 'Skills that matched what they were looking for',
-  preferredSkills: 'Bonus skills they wanted',
-  verifiedProjects: 'Your verified projects',
-  internshipExperience: 'Your stage / internship record',
-  academicPerformance: 'Your academic performance',
-}
-
 export default function WhyThisMatchPage({
   params,
 }: {
   params: Promise<{ id: string; locale: string }>
 }) {
   const { id } = use(params)
+  const t = useTranslations('matchWhy')
   const [explanation, setExplanation] = useState<Explanation | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -66,13 +60,10 @@ export default function WhyThisMatchPage({
         <div className="mb-8">
           <Badge variant="outline" className="mb-3 bg-green-50 border-green-300 text-green-700">
             <ShieldCheck className="h-3 w-3 mr-1" />
-            AI Act — Right to Explanation
+            {t('badge')}
           </Badge>
-          <h1 className="text-3xl font-bold mb-2">Why were you matched?</h1>
-          <p className="text-muted-foreground">
-            A recruiter saw your profile as a match for a role. Here is exactly what contributed to
-            that decision — nothing hidden, nothing proprietary.
-          </p>
+          <h1 className="text-3xl font-bold mb-2">{t('title')}</h1>
+          <p className="text-muted-foreground">{t('intro')}</p>
         </div>
 
         {loading && (
@@ -86,10 +77,7 @@ export default function WhyThisMatchPage({
           <Card className="border-amber-200 bg-amber-50">
             <CardContent className="pt-6 flex gap-3">
               <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0" />
-              <p className="text-sm">
-                This explanation was not found, or you are not the subject. Only the student the
-                match concerns can view the full explanation.
-              </p>
+              <p className="text-sm">{t('notFound')}</p>
             </CardContent>
           </Card>
         )}
@@ -99,9 +87,11 @@ export default function WhyThisMatchPage({
             <Card className="mb-6">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
-                  <span>Overall match score</span>
+                  <span>{t('overallScore')}</span>
                   <Badge variant={explanation.matchScore >= 70 ? 'default' : 'secondary'}>
-                    {explanation.decisionLabel?.replace('_', ' ')}
+                    {explanation.decisionLabel
+                      ? t(`decisionLabels.${explanation.decisionLabel}` as any)
+                      : ''}
                   </Badge>
                 </CardTitle>
               </CardHeader>
@@ -114,25 +104,33 @@ export default function WhyThisMatchPage({
                 </div>
                 <Progress value={explanation.matchScore} className="h-3" />
                 <p className="text-xs text-muted-foreground mt-3">
-                  Computed on {new Date(explanation.createdAt).toLocaleDateString()} by{' '}
+                  {t.rich('computedOn', {
+                    date: new Date(explanation.createdAt).toLocaleDateString(),
+                    version: explanation.modelVersion,
+                  })}
+                </p>
+                <p className="text-xs text-muted-foreground">
                   <Link href="/algorithm-registry" className="underline text-primary">
-                    model {explanation.modelVersion}
+                    {t('rights.readModelCardButton')}
                   </Link>
                 </p>
               </CardContent>
             </Card>
 
-            <h2 className="text-xl font-semibold mb-4">What contributed to the score</h2>
+            <h2 className="text-xl font-semibold mb-4">{t('contributingFactors')}</h2>
             <div className="space-y-4 mb-8">
-              {explanation.factors.map((f, idx) => (
+              {explanation.factors.map((f, idx) => {
+                const known = ['requiredSkills', 'preferredSkills', 'verifiedProjects', 'internshipExperience', 'academicPerformance']
+                const label = known.includes(f.name) ? t(`factorLabels.${f.name}` as any) : f.name
+                return (
                 <Card key={idx}>
                   <CardContent className="pt-6">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
-                        <h3 className="font-semibold">{FACTOR_LABELS[f.name] ?? f.name}</h3>
+                        <h3 className="font-semibold">{label}</h3>
                       </div>
-                      <Badge variant="outline">+{Math.round(f.contribution)} pts</Badge>
+                      <Badge variant="outline">{t('pointsContribution', { points: Math.round(f.contribution) })}</Badge>
                     </div>
                     {f.humanReason && (
                       <p className="text-sm text-muted-foreground ml-7 mb-3">{f.humanReason}</p>
@@ -148,37 +146,30 @@ export default function WhyThisMatchPage({
                     )}
                   </CardContent>
                 </Card>
-              ))}
+                )
+              })}
             </div>
 
             <Card className="bg-primary/5 border-primary/20 mb-6">
               <CardContent className="pt-6">
                 <h3 className="font-semibold mb-2 flex items-center gap-2">
                   <Info className="h-4 w-4" />
-                  Your rights
+                  {t('rights.title')}
                 </h3>
                 <ul className="text-sm space-y-2 text-muted-foreground">
-                  <li>
-                    → <strong>Human review:</strong> if you disagree with this match, a human at
-                    your institution can review and override it.
-                  </li>
-                  <li>
-                    → <strong>Object:</strong> you can remove yourself from future matching by this
-                    recruiter.
-                  </li>
-                  <li>
-                    → <strong>Export:</strong> you can export every explanation involving you.
-                  </li>
+                  <li>→ {t('rights.humanReview')}</li>
+                  <li>→ {t('rights.object')}</li>
+                  <li>→ {t('rights.exportRight')}</li>
                 </ul>
                 <div className="flex gap-3 mt-4">
                   <Button variant="outline" asChild>
                     <a href="mailto:info@in-transparency.com?subject=Human%20review%20request">
-                      Request human review
+                      {t('rights.requestReviewButton')}
                     </a>
                   </Button>
                   <Button variant="outline" asChild>
                     <Link href="/algorithm-registry">
-                      Read the model card
+                      {t('rights.readModelCardButton')}
                       <ExternalLink className="h-3 w-3 ml-1" />
                     </Link>
                   </Button>

@@ -2,6 +2,9 @@
 
 import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
+// Note: the MODEL_CARDS data below is kept in English — the references
+// (EU AI Act articles, ESCO URIs) are canonical in English. Only the page
+// chrome (title, section headers, contact) is localized.
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -102,6 +105,7 @@ const MODEL_CARDS = [
 ]
 
 export default function AlgorithmRegistryPage() {
+  const t = useTranslations('algorithmRegistry')
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -109,18 +113,14 @@ export default function AlgorithmRegistryPage() {
         <div className="mb-10">
           <Badge variant="outline" className="mb-3 bg-green-50 border-green-300 text-green-700">
             <ShieldCheck className="h-3 w-3 mr-1" />
-            AI Act — Public Registry
+            {t('badge')}
           </Badge>
-          <h1 className="text-4xl font-bold mb-4">Algorithm Registry</h1>
-          <p className="text-lg text-muted-foreground max-w-3xl">
-            Every automated decision system used on InTransparency is documented here. Students
-            have the right to understand how any match or prediction about them was produced, to
-            request human review, and to contest the outcome.
-          </p>
+          <h1 className="text-4xl font-bold mb-4">{t('title')}</h1>
+          <p className="text-lg text-muted-foreground max-w-3xl">{t('intro')}</p>
           <div className="mt-4 flex flex-wrap gap-3 text-sm">
-            <Link href="/privacy" className="text-primary hover:underline">Privacy policy →</Link>
-            <Link href="/consent" className="text-primary hover:underline">Consent preferences →</Link>
-            <a href="mailto:info@in-transparency.com" className="text-primary hover:underline">Request human review →</a>
+            <Link href="/privacy" className="text-primary hover:underline">{t('linkPrivacy')}</Link>
+            <Link href="/consent" className="text-primary hover:underline">{t('linkConsent')}</Link>
+            <a href="mailto:info@in-transparency.com" className="text-primary hover:underline">{t('linkHumanReview')}</a>
           </div>
         </div>
 
@@ -128,10 +128,7 @@ export default function AlgorithmRegistryPage() {
           <CardContent className="pt-6 flex gap-3">
             <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <p className="text-sm text-amber-900">
-              <strong>Classification:</strong> Under EU AI Act Regulation 2024/1689, Annex III §4,
-              systems that evaluate candidates for employment are classified as <em>high-risk</em>.
-              InTransparency&apos;s matching systems implement every required safeguard: transparency,
-              human oversight, traceability, data governance, and the right to explanation.
+              <strong>{t('classificationLabel')}</strong> {t('classificationNote')}
             </p>
           </CardContent>
         </Card>
@@ -150,7 +147,7 @@ export default function AlgorithmRegistryPage() {
                       <Badge variant="secondary">v{card.version}</Badge>
                       <Badge variant="outline">{card.type}</Badge>
                       <Badge variant="outline" className="text-muted-foreground">
-                        Last audit: {card.lastAudit}
+                        {t('lastAudit', { date: card.lastAudit })}
                       </Badge>
                     </div>
                   </div>
@@ -158,20 +155,20 @@ export default function AlgorithmRegistryPage() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <section>
-                  <h3 className="font-semibold mb-1 flex items-center gap-2"><FileText className="h-4 w-4" />Purpose</h3>
+                  <h3 className="font-semibold mb-1 flex items-center gap-2"><FileText className="h-4 w-4" />{t('sections.purpose')}</h3>
                   <p className="text-sm text-muted-foreground">{card.purpose}</p>
-                  <p className="text-sm text-muted-foreground mt-1"><strong>Audience:</strong> {card.audience}</p>
+                  <p className="text-sm text-muted-foreground mt-1"><strong>{t('sections.audience')}</strong> {card.audience}</p>
                 </section>
 
                 <section>
-                  <h3 className="font-semibold mb-2">Inputs used</h3>
+                  <h3 className="font-semibold mb-2">{t('sections.inputs')}</h3>
                   <ul className="text-sm space-y-1">
                     {card.inputs.map((i, idx) => (
                       <li key={idx} className="flex items-baseline gap-2">
                         <span className="text-green-600">•</span>
                         <span>
                           <strong>{i.name}</strong> — from {i.source}
-                          {i.sensitive && <Badge variant="outline" className="ml-2 text-xs">Opt-in only</Badge>}
+                          {i.sensitive && <Badge variant="outline" className="ml-2 text-xs">{t('sections.optInOnly')}</Badge>}
                         </span>
                       </li>
                     ))}
@@ -179,7 +176,7 @@ export default function AlgorithmRegistryPage() {
                 </section>
 
                 <section>
-                  <h3 className="font-semibold mb-2">Never used</h3>
+                  <h3 className="font-semibold mb-2">{t('sections.excluded')}</h3>
                   <ul className="text-sm space-y-1 text-muted-foreground">
                     {card.excluded.map((e, idx) => (
                       <li key={idx} className="flex items-baseline gap-2"><span className="text-red-500">✗</span>{e}</li>
@@ -188,7 +185,7 @@ export default function AlgorithmRegistryPage() {
                 </section>
 
                 <section>
-                  <h3 className="font-semibold mb-2 flex items-center gap-2"><Scale className="h-4 w-4" />Scoring weights</h3>
+                  <h3 className="font-semibold mb-2 flex items-center gap-2"><Scale className="h-4 w-4" />{t('sections.weights')}</h3>
                   <div className="space-y-2">
                     {card.weights.map((w, idx) => (
                       <div key={idx} className="flex items-center gap-3 text-sm">
@@ -196,19 +193,19 @@ export default function AlgorithmRegistryPage() {
                         <div className="flex-1 bg-muted rounded-full h-2 overflow-hidden">
                           <div className="bg-primary h-full" style={{ width: `${w.maxPoints}%` }} />
                         </div>
-                        <div className="w-20 text-right text-muted-foreground">max {w.maxPoints} pts</div>
+                        <div className="w-20 text-right text-muted-foreground">{t('sections.weightsMax', { points: w.maxPoints })}</div>
                       </div>
                     ))}
                   </div>
                 </section>
 
                 <section>
-                  <h3 className="font-semibold mb-1 flex items-center gap-2"><Eye className="h-4 w-4" />Human oversight</h3>
+                  <h3 className="font-semibold mb-1 flex items-center gap-2"><Eye className="h-4 w-4" />{t('sections.oversight')}</h3>
                   <p className="text-sm text-muted-foreground">{card.humanOversight}</p>
                 </section>
 
                 <section>
-                  <h3 className="font-semibold mb-2">Your rights as a subject</h3>
+                  <h3 className="font-semibold mb-2">{t('sections.rights')}</h3>
                   <ul className="text-sm space-y-1">
                     {card.subjectRights.map((r, idx) => (
                       <li key={idx} className="flex items-baseline gap-2"><span className="text-primary">→</span>{r}</li>
@@ -217,12 +214,12 @@ export default function AlgorithmRegistryPage() {
                 </section>
 
                 <section>
-                  <h3 className="font-semibold mb-1">Bias testing</h3>
+                  <h3 className="font-semibold mb-1">{t('sections.biasTests')}</h3>
                   <p className="text-sm text-muted-foreground">{card.biasTests}</p>
                 </section>
 
                 <section className="border-t pt-4">
-                  <h3 className="font-semibold mb-2 text-xs uppercase tracking-wide text-muted-foreground">Compliance references</h3>
+                  <h3 className="font-semibold mb-2 text-xs uppercase tracking-wide text-muted-foreground">{t('sections.complianceRefs')}</h3>
                   <div className="flex flex-wrap gap-2">
                     {card.complianceRefs.map((ref, idx) => (
                       <Badge key={idx} variant="outline" className="text-xs">{ref}</Badge>
@@ -236,14 +233,17 @@ export default function AlgorithmRegistryPage() {
 
         <Card className="mt-10 bg-primary/5 border-primary/20">
           <CardContent className="pt-6">
-            <h3 className="font-semibold mb-2">Questions or concerns?</h3>
+            <h3 className="font-semibold mb-2">{t('contact.title')}</h3>
             <p className="text-sm text-muted-foreground mb-3">
-              Write to <a href="mailto:info@in-transparency.com" className="text-primary underline">info@in-transparency.com</a>.
-              We respond within 14 days to any explanation request, human-review request, or rights exercise.
+              {t.rich('contact.body', {
+                email: () => (
+                  <a href="mailto:info@in-transparency.com" className="text-primary underline">
+                    info@in-transparency.com
+                  </a>
+                ),
+              })}
             </p>
-            <p className="text-xs text-muted-foreground">
-              Data Protection Officer contact available on request. DPIA documentation shared with regulators on request.
-            </p>
+            <p className="text-xs text-muted-foreground">{t('contact.footnote')}</p>
           </CardContent>
         </Card>
       </main>

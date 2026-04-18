@@ -69,13 +69,13 @@ export const STEPS = [
   {
     id: 2,
     key: 'strengths',
-    title: 'What you&apos;re good at',
+    title: "What you're good at",
     description: 'Reflect on moments where you were in flow. What were you doing?',
   },
   {
     id: 3,
     key: 'projects',
-    title: 'What you&apos;ve already done',
+    title: "What you've already done",
     description: 'Tag your past projects — roles played, skills used, pride felt.',
   },
   {
@@ -88,13 +88,13 @@ export const STEPS = [
     id: 5,
     key: 'skills',
     title: 'Self-assess your skills',
-    description: 'Rate yourself honestly — we&apos;ll compare to what your record shows.',
+    description: "Rate yourself honestly — we'll compare to what your record shows.",
   },
   {
     id: 6,
     key: 'reconcile',
     title: 'Your discovery report',
-    description: 'Where your self-perception matches your verified record — and where it doesn&apos;t.',
+    description: "Where your self-perception matches your verified record — and where it doesn't.",
   },
 ] as const
 

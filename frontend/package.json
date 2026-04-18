@@ -14,7 +14,8 @@
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "seed:esco": "tsx scripts/seed-esco.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
