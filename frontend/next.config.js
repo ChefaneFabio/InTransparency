@@ -154,25 +154,24 @@ const nextConfig = {
   },
   
   async rewrites() {
-    // Note: NextAuth routes (/api/auth/*) are handled by Next.js API routes
-    // and should NOT be proxied to the backend
-    if (process.env.NODE_ENV === 'development') {
-      return [
-        {
-          // Exclude auth routes from proxy - handled by NextAuth in Next.js
-          source: '/api/:path((?!auth).*)',
-          destination: 'http://localhost:3001/api/:path*',
-        },
-      ]
+    // NextAuth routes (/api/auth/*) are handled locally by Next.js.
+    // Using `fallback` (see below) so Next.js API routes — including dynamic
+    // ones like /api/match/[id]/* — take precedence over the proxy. Unknown
+    // paths still fall through to the Express backend.
+    const devRule = {
+      source: '/api/:path((?!auth).*)',
+      destination: 'http://localhost:3001/api/:path*',
     }
-
-    return [
-      {
-        // Exclude auth routes from proxy - handled by NextAuth in Next.js
-        source: '/api/:path((?!auth).*)',
-        destination: 'https://api-intransparency.onrender.com/api/:path*',
-      },
-    ]
+    const prodRule = {
+      source: '/api/:path((?!auth).*)',
+      destination: 'https://api-intransparency.onrender.com/api/:path*',
+    }
+    // `fallback` runs AFTER both filesystem and dynamic routes, so
+    // Next.js-owned routes (e.g. /api/match/[id]/why) always resolve locally;
+    // only truly unknown paths fall through to the Express backend.
+    return {
+      fallback: [process.env.NODE_ENV === 'development' ? devRule : prodRule],
+    }
   },
 }
 
