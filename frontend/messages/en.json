@@ -168,7 +168,8 @@
         "stages": "Stage & Tirocini",
         "stageInsights": "Internship Insights",
         "communications": "Communications",
-        "careerPaths": "Career Paths"
+        "careerPaths": "Career Paths",
+        "conventions": "Conventions"
       },
       "exchange": "Exchange",
       "internships": "Internships",
@@ -10576,6 +10577,46 @@
       "confidentialHint": "Confidential documents are visible only to team admins.",
       "submit": "Upload Document",
       "uploading": "Uploading..."
+    }
+  },
+  "conventions": {
+    "title": "Stage Conventions",
+    "subtitle": "Manage formal agreements between your institution, companies, and students. Track signatures, compliance, and status.",
+    "create": "New Convention",
+    "searchPlaceholder": "Search by company or student...",
+    "allStatuses": "All statuses",
+    "created": "Created",
+    "empty": "No conventions yet",
+    "emptyHint": "Create your first convention to formalize a stage agreement between your institution, a company, and a student.",
+    "stats": { "total": "Total Conventions", "active": "Active", "pending": "Pending", "completed": "Completed" },
+    "status": { "draft": "Draft", "pending": "Pending Signatures", "active": "Active", "completed": "Completed", "expired": "Expired", "revoked": "Revoked", "pending_signatures": "Pending Signatures" },
+    "signatures": { "university": "University", "company": "Company", "student": "Student" },
+    "form": {
+      "title": "New Stage Convention",
+      "company": "Company Information",
+      "companyName": "Company Name",
+      "companyVAT": "VAT Number (P. IVA)",
+      "companyContact": "Legal Representative",
+      "companyEmail": "Company Email",
+      "legalRep": "Legal representative name",
+      "details": "Convention Details",
+      "student": "Student Name",
+      "type": "Convention Type",
+      "department": "Department",
+      "totalHours": "Total Hours",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "objectives": "Training Objectives",
+      "objectivesPlaceholder": "Describe the learning objectives and activities planned for this internship...",
+      "compliance": "Insurance & Compliance",
+      "inail": "INAIL Position",
+      "inailPlaceholder": "INAIL insurance position number",
+      "ccnl": "CCNL Reference",
+      "ccnlPlaceholder": "Applicable national collective agreement",
+      "submit": "Create Convention",
+      "creating": "Creating...",
+      "companyRequired": "Company name is required.",
+      "error": "Failed to create convention."
     }
   },
   "careerPaths": {

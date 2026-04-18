@@ -3048,6 +3048,77 @@ model StageJournal {
   @@index([studentId])
 }
 
+// ─── Stage Convention (formal agreement university-company-student) ──
+model StageConvention {
+  id               String   @id @default(cuid())
+  universityName   String
+  createdBy        String   // university admin user ID
+
+  // Company
+  companyName      String
+  companyAddress   String?
+  companyVAT       String?  // Partita IVA
+  companyContact   String?  // Legal representative name
+  companyEmail     String?
+  companyPhone     String?
+
+  // University
+  universityContact String? // Tutor accademico
+  universityEmail   String?
+
+  // Student (optional — convention can cover multiple students)
+  studentId         String?
+  studentName       String?
+
+  // Convention details
+  conventionType    String  @default("TIROCINIO_CURRICULARE") // TIROCINIO_CURRICULARE, TIROCINIO_EXTRACURRICULARE, APPRENDISTATO, STAGE_ESTIVO
+  objectives        String? @db.Text  // Training objectives / Obiettivi formativi
+  activities        String? @db.Text  // Planned activities
+  department        String?           // Company department
+  hoursPerWeek      Int?
+  totalHours        Int?
+  startDate         DateTime?
+  endDate           DateTime?
+
+  // Insurance & compliance
+  insuranceINAIL    String?  // INAIL position number
+  insuranceRCT      String?  // RC terzi policy
+  ccnlReference     String?  // Applicable CCNL
+
+  // Signatures & status
+  status            ConventionStatus @default(DRAFT)
+  signedByUniversity  Boolean @default(false)
+  signedByCompany     Boolean @default(false)
+  signedByStudent     Boolean @default(false)
+  universitySignDate  DateTime?
+  companySignDate     DateTime?
+  studentSignDate     DateTime?
+
+  // Document
+  documentUrl       String?  // Generated PDF URL
+  notes             String?  @db.Text
+
+  // Link to stage experience
+  stageExperienceId String?  @unique
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([universityName])
+  @@index([companyName])
+  @@index([status])
+  @@index([createdBy])
+}
+
+enum ConventionStatus {
+  DRAFT
+  PENDING_SIGNATURES
+  ACTIVE
+  COMPLETED
+  EXPIRED
+  REVOKED
+}
+
 enum StageType {
   CURRICULARE       // Part of degree program (CFU credits)
   EXTRACURRICULARE  // Voluntary, no credits

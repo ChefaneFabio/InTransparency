@@ -168,7 +168,8 @@
         "stages": "Stage e Tirocini",
         "stageInsights": "Insight Tirocini",
         "communications": "Comunicazioni",
-        "careerPaths": "Percorsi di Carriera"
+        "careerPaths": "Percorsi di Carriera",
+        "conventions": "Convenzioni"
       },
       "exchange": "Scambio",
       "internships": "Tirocini",
@@ -10603,6 +10604,46 @@
       "confidentialHint": "I documenti riservati sono visibili solo agli amministratori del team.",
       "submit": "Carica Documento",
       "uploading": "Caricamento..."
+    }
+  },
+  "conventions": {
+    "title": "Convenzioni Stage",
+    "subtitle": "Gestisci gli accordi formali tra la tua istituzione, le aziende e gli studenti. Monitora firme, conformit\u00e0 e stato.",
+    "create": "Nuova Convenzione",
+    "searchPlaceholder": "Cerca per azienda o studente...",
+    "allStatuses": "Tutti gli stati",
+    "created": "Creata",
+    "empty": "Nessuna convenzione",
+    "emptyHint": "Crea la tua prima convenzione per formalizzare un accordo di stage tra la tua istituzione, un'azienda e uno studente.",
+    "stats": { "total": "Convenzioni Totali", "active": "Attive", "pending": "In Attesa", "completed": "Completate" },
+    "status": { "draft": "Bozza", "pending": "In Attesa Firme", "active": "Attiva", "completed": "Completata", "expired": "Scaduta", "revoked": "Revocata", "pending_signatures": "In Attesa Firme" },
+    "signatures": { "university": "Ateneo", "company": "Azienda", "student": "Studente" },
+    "form": {
+      "title": "Nuova Convenzione Stage",
+      "company": "Dati Azienda",
+      "companyName": "Ragione Sociale",
+      "companyVAT": "Partita IVA",
+      "companyContact": "Rappresentante Legale",
+      "companyEmail": "Email Azienda",
+      "legalRep": "Nome rappresentante legale",
+      "details": "Dettagli Convenzione",
+      "student": "Nome Studente",
+      "type": "Tipo Convenzione",
+      "department": "Reparto",
+      "totalHours": "Ore Totali",
+      "startDate": "Data Inizio",
+      "endDate": "Data Fine",
+      "objectives": "Obiettivi Formativi",
+      "objectivesPlaceholder": "Descrivi gli obiettivi di apprendimento e le attivit\u00e0 previste per questo tirocinio...",
+      "compliance": "Assicurazione e Conformit\u00e0",
+      "inail": "Posizione INAIL",
+      "inailPlaceholder": "Numero posizione assicurativa INAIL",
+      "ccnl": "CCNL di Riferimento",
+      "ccnlPlaceholder": "Contratto collettivo nazionale applicabile",
+      "submit": "Crea Convenzione",
+      "creating": "Creazione...",
+      "companyRequired": "La ragione sociale \u00e8 obbligatoria.",
+      "error": "Creazione fallita."
     }
   },
   "careerPaths": {
