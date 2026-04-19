@@ -16,6 +16,9 @@ import { StickyCTA } from '@/components/engagement/StickyCTA'
 import GradeNormalizerDemo from '@/components/demo/GradeNormalizerDemo'
 import DecisionPackPreview from '@/components/demo/DecisionPackPreview'
 import AnalyticsPreview from '@/components/demo/AnalyticsPreview'
+import { UniversityUrgency } from '@/components/sections/universities/UniversityUrgency'
+import { SavingsCalculator } from '@/components/sections/universities/SavingsCalculator'
+import { UniversityPrestige } from '@/components/sections/universities/UniversityPrestige'
 
 const COUNTRY_TABS = [
   {
@@ -143,6 +146,19 @@ export default function ForUniversitiesPage() {
         </div>
       </section>
 
+      {/* Urgency — why this decision can't wait */}
+      <UniversityUrgency />
+
+      {/* Savings calculator — hard-money value prop */}
+      <section className="py-20">
+        <div className="container max-w-6xl mx-auto px-4">
+          <SavingsCalculator />
+        </div>
+      </section>
+
+      {/* Prestige — rector-level framing */}
+      <UniversityPrestige />
+
       {/* Grade Normalizer Demo — most tangible value prop, show it early */}
       <section className="py-16 bg-gray-50">
         <div className="container max-w-6xl mx-auto px-4">
@@ -258,6 +274,48 @@ export default function ForUniversitiesPage() {
                 <AnalyticsPreview />
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Co-Creation */}
+      <section className="py-16 bg-amber-50/50">
+        <div className="container max-w-6xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-14"
+          >
+            <Badge className="mb-4 bg-amber-100 text-amber-800 border-amber-200">
+              Co-Creation
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              {t('coCreation.title')}
+            </h2>
+            <p className="text-gray-600 max-w-xl mx-auto text-lg">
+              {t('coCreation.subtitle')}
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {[0, 1, 2, 3].map((i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <Card className="h-full border-amber-100">
+                  <CardContent className="pt-6">
+                    <h3 className="text-base font-bold mb-2">{t(`coCreation.points.${i}.title`)}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{t(`coCreation.points.${i}.desc`)}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

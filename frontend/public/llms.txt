@@ -33,12 +33,14 @@
 ## Public resources
 
 - [Homepage](https://www.in-transparency.com)
+- [For universities — urgency + savings + prestige](https://www.in-transparency.com/en/for-universities)
+- [Why now — 2026 inflection brief for academic leaders](https://www.in-transparency.com/en/why-now)
 - [Algorithm Registry](https://www.in-transparency.com/en/algorithm-registry): model cards, inputs, weights, excluded inputs per model
 - [Discover companies](https://www.in-transparency.com/en/discover): public company profiles
 - [Self-discovery](https://www.in-transparency.com/en/self-discovery): pre-showcase onboarding
 - [Credential verification](https://www.in-transparency.com/api/credentials/public-key): public key for third-party verification
 - [FAQ](https://www.in-transparency.com/en/faq)
-- [Comparison vs competitors](https://www.in-transparency.com/en/compare)
+- [Comparison vs competitors](https://www.in-transparency.com/en/compare/platforms)
 
 ## Contact
 
