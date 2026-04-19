@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
+import { directoryLimiter, enforceRateLimit } from '@/lib/rate-limit'
 
 /**
  * GET /api/companies/directory
  * Public listing of published CompanyProfiles with optional search + industry filter.
  */
 export async function GET(req: NextRequest) {
+  const limited = enforceRateLimit(directoryLimiter, req)
+  if (limited) return limited
+
   const { searchParams } = new URL(req.url)
   const q = searchParams.get('q')?.trim()
   const industry = searchParams.get('industry')?.trim()

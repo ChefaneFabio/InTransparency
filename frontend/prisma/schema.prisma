@@ -357,6 +357,11 @@ model User {
   // Stage & Tirocini
   stageExperiences     StageExperience[]   @relation("StudentStages")
 
+  // 2FA (TOTP) — schema extensions added April 2026 (totpSecret/totpEnabled
+  // already exist above; these complete the backup-code + enrollment audit)
+  totpEnrolledAt       DateTime?
+  totpBackupCodes      String[] @default([])
+
   // Skill graph — P1
   skillDeltas          SkillDelta[]        @relation("StudentSkillDeltas")
 
@@ -3501,6 +3506,32 @@ enum DocumentCategory {
   COMPLIANCE         // GDPR, data protection, audit reports
   INTERNAL           // Strategic plans, meeting minutes, annual reports
   OTHER
+}
+
+// ============================================
+// AuditLog — for GDPR Art. 5(2) accountability + AI Act Art. 12 traceability.
+// Records sensitive reads and any admin / moderation action.
+// ============================================
+model AuditLog {
+  id String @id @default(cuid())
+
+  actorId    String?
+  actorEmail String?
+  actorRole  String? // Snapshotted at time of action
+
+  action     String // "READ_USER_DATA", "DELETE_USER", "OVERRIDE_MATCH", "REVOKE_CREDENTIAL", etc.
+  targetType String? // "User", "MatchExplanation", "VerifiableCredential", ...
+  targetId   String?
+
+  // Structured context — IP, user-agent, request path, reason
+  context    Json?
+
+  createdAt  DateTime @default(now())
+
+  @@index([actorId, createdAt])
+  @@index([action, createdAt])
+  @@index([targetType, targetId])
+  @@index([createdAt])
 }
 
 // ============================================

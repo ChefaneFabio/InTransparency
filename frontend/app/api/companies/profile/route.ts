@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
+import { publicReadLimiter, enforceRateLimit } from '@/lib/rate-limit'
 
 function slugify(s: string): string {
   return s
@@ -17,6 +18,9 @@ function slugify(s: string): string {
  * Public read of a company profile (only if published).
  */
 export async function GET(req: NextRequest) {
+  const limited = enforceRateLimit(publicReadLimiter, req)
+  if (limited) return limited
+
   const { searchParams } = new URL(req.url)
   const slug = searchParams.get('slug')
   if (!slug) return NextResponse.json({ error: 'slug required' }, { status: 400 })

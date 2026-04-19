@@ -81,3 +81,33 @@ export const authLimiter = createRateLimit('auth', 10, 15 * 60 * 1000) // 10 per
 export const chatLimiter = createRateLimit('chat', 30, 60 * 1000) // 30 per min
 export const aiLimiter = createRateLimit('ai', 20, 60 * 1000) // 20 per min
 export const uploadLimiter = createRateLimit('upload', 10, 60 * 1000) // 10 per min
+
+// Public-endpoint limiters — protect unauthenticated surfaces
+export const publicReadLimiter = createRateLimit('publicRead', 60, 60 * 1000) // 60 per min
+export const credentialVerifyLimiter = createRateLimit('credVerify', 30, 60 * 1000) // 30 per min
+export const directoryLimiter = createRateLimit('directory', 30, 60 * 1000) // 30 per min
+
+/**
+ * Helper: wrap a route and reject with 429 if over limit.
+ */
+export function enforceRateLimit(
+  limiter: ReturnType<typeof createRateLimit>,
+  request: Request
+): Response | null {
+  const ip = getClientIp(request)
+  const { success, remaining, resetIn } = limiter.check(ip)
+  if (!success) {
+    return new Response(
+      JSON.stringify({ error: 'Too many requests', retryAfterSec: Math.ceil(resetIn / 1000) }),
+      {
+        status: 429,
+        headers: {
+          'Content-Type': 'application/json',
+          'Retry-After': String(Math.ceil(resetIn / 1000)),
+          'X-RateLimit-Remaining': '0',
+        },
+      }
+    )
+  }
+  return null
+}

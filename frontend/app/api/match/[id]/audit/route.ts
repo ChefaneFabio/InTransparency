@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { getExplanationForAudit } from '@/lib/match-explanation'
+import { auditFromRequest } from '@/lib/audit'
 
 interface RouteContext {
   params: Promise<{ id: string }>
@@ -61,6 +62,17 @@ export async function PATCH(req: NextRequest, ctx: RouteContext) {
       reviewOutcome,
       reviewNotes: reviewNotes ?? null,
     },
+  })
+
+  // Human-oversight action — AI Act Art. 14 requires traceability
+  auditFromRequest(req, {
+    actorId: session.user.id,
+    actorEmail: session.user.email ?? null,
+    actorRole: user.role,
+    action: reviewOutcome === 'OVERRIDDEN' ? 'OVERRIDE_MATCH' : 'REVIEW_MATCH',
+    targetType: 'MatchExplanation',
+    targetId: id,
+    context: { reviewOutcome, reviewNotes: reviewNotes ?? null },
   })
 
   return NextResponse.json({ success: true })
