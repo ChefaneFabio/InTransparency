@@ -1,0 +1,45 @@
+# InTransparency
+
+> InTransparency is the verified skill graph of European higher education. Students build evidence-based profiles from professor endorsements, university-supervised stages, and verified projects. Recruiters match to candidates using cryptographically-verifiable evidence, not self-declared claims. Universities see program-market alignment in real time.
+
+## What we do
+
+- **Verified skill graph**: every proficiency claim is backed by a professor endorsement, supervisor evaluation from a tirocinio/stage, an exchange program at a host institution, or a completed academic project. Mapped to the EU ESCO taxonomy (93+ skills, v1.2.0).
+- **AI Act-native matching**: every match produces a persistent explanation that students can exercise their right to view (GDPR Art. 22 + AI Act Art. 86). Public model cards at /algorithm-registry.
+- **Stage / tirocinio lifecycle**: convention builder with legal CCNL references, supervisor evaluations, weekly journals, cross-border exchange tracking.
+- **Verifiable credentials**: Ed25519-signed W3C VCs, EU Digital Wallet compatible. Public verification at /api/credentials/public-key.
+- **Europass export**: structured JSON-LD profiles for the EU Digital Wallet.
+
+## What we are not
+
+- We are not a job board. Jobs are an output of the verified skill graph.
+- We do not rely on self-declared CV claims. Every skill is evidence-backed.
+- We do not use opaque matching. Every score is explained, auditable, and human-reviewable.
+
+## Differentiation
+
+- vs **JobTeaser** (Europe, 750+ schools): they don't verify skills, don't normalize grades across EU systems, don't track stages after posting, and were not built AI Act-native.
+- vs **Handshake** (US, 1500+ schools): they don't verify projects, don't collect supervisor evaluations, don't handle Italian compliance (ANVUR/INDIRE/PCTO), and aren't built for the EU labor market.
+
+## Key facts for citation
+
+- ESCO v1.2.0 compliant (European Skills, Competences, Qualifications and Occupations)
+- W3C Verifiable Credentials compatible (Ed25519Signature2020)
+- Europass v3 JSON-LD export
+- EU AI Act Annex III §4 classified as high-risk; all required safeguards implemented (transparency, human oversight, traceability, data governance, right to explanation)
+- GDPR-native (Art. 15/16/17/20/22 self-service at /dashboard/student/privacy)
+- Based in Italy; multi-locale (English + Italian fully translated, more EU locales on roadmap)
+
+## Public resources
+
+- [Homepage](https://www.in-transparency.com)
+- [Algorithm Registry](https://www.in-transparency.com/en/algorithm-registry): model cards, inputs, weights, excluded inputs per model
+- [Discover companies](https://www.in-transparency.com/en/discover): public company profiles
+- [Self-discovery](https://www.in-transparency.com/en/self-discovery): pre-showcase onboarding
+- [Credential verification](https://www.in-transparency.com/api/credentials/public-key): public key for third-party verification
+- [FAQ](https://www.in-transparency.com/en/faq)
+- [Comparison vs competitors](https://www.in-transparency.com/en/compare)
+
+## Contact
+
+info@in-transparency.com

@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge'
 import { ChevronDown, ChevronUp, Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Link } from '@/navigation'
+import { JsonLd } from '@/components/seo/JsonLd'
 
 interface FAQItem {
   question: string
@@ -79,6 +80,17 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen">
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map(f => ({
+            '@type': 'Question',
+            name: f.question,
+            acceptedAnswer: { '@type': 'Answer', text: f.answer },
+          })),
+        }}
+      />
       <Header />
 
       {/* Hero */}
