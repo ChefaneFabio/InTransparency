@@ -120,7 +120,7 @@ export default function WhyThisMatchPage({
             <h2 className="text-xl font-semibold mb-4">{t('contributingFactors')}</h2>
             <div className="space-y-4 mb-8">
               {explanation.factors.map((f, idx) => {
-                const known = ['requiredSkills', 'preferredSkills', 'verifiedProjects', 'internshipExperience', 'academicPerformance']
+                const known = ['requiredSkills', 'preferredSkills', 'verifiedProjects', 'verifiedDepth', 'internshipExperience', 'academicPerformance']
                 const label = known.includes(f.name) ? t(`factorLabels.${f.name}` as any) : f.name
                 return (
                 <Card key={idx}>

@@ -11221,7 +11221,8 @@
       "preferredSkills": "Competenze preferite bonus",
       "verifiedProjects": "I tuoi progetti verificati",
       "internshipExperience": "Il tuo percorso di tirocinio / stage",
-      "academicPerformance": "Il tuo rendimento accademico"
+      "academicPerformance": "Il tuo rendimento accademico",
+      "verifiedDepth": "Profondità verificata sulle competenze chiave"
     },
     "decisionLabels": {
       "STRONG_MATCH": "Match forte",

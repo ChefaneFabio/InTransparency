@@ -10,6 +10,7 @@ type NotificationType =
   | 'SCORE_UPDATE'
   | 'ENDORSEMENT_RESPONSE'
   | 'ENDORSEMENT_EXPIRING'
+  | 'MATCH_CREATED'
   | 'GENERAL'
 
 interface CreateNotificationParams {

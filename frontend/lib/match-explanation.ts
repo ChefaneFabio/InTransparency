@@ -96,7 +96,7 @@ export function legacyReasonsToFactors(
     const category: MatchFactorCategory =
       r.factor === 'requiredSkills' || r.factor === 'preferredSkills'
         ? 'skills'
-        : r.factor === 'verifiedProjects'
+        : r.factor === 'verifiedProjects' || r.factor === 'verifiedDepth'
         ? 'verified_evidence'
         : r.factor === 'internshipExperience'
         ? 'experience'

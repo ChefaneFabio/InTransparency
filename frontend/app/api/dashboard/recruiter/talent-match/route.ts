@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { persistMatchExplanation, legacyReasonsToFactors, MATCH_MODEL_VERSION } from '@/lib/match-explanation'
+import { createNotification } from '@/lib/notifications'
 
 /**
  * POST /api/dashboard/recruiter/talent-match
@@ -103,26 +104,96 @@ export async function POST(req: NextRequest) {
       take: 100,
     })
 
+    // Pull verified skill graph from SkillDelta for all candidates in one query
+    // Use the most recent delta per (studentId, skillTerm) as the current level
+    const studentIds = students.map(s => s.id)
+    const allDeltas = studentIds.length > 0
+      ? await prisma.skillDelta.findMany({
+          where: { studentId: { in: studentIds } },
+          orderBy: { occurredAt: 'desc' },
+          select: {
+            studentId: true,
+            skillTerm: true,
+            afterLevel: true,
+            source: true,
+            confidence: true,
+          },
+        })
+      : []
+
+    // Build a map: studentId → Map<skillTermLower, { level, sources[] }>
+    const verifiedByStudent = new Map<string, Map<string, { level: number; sources: Set<string> }>>()
+    for (const d of allDeltas) {
+      const sid = d.studentId
+      const key = d.skillTerm.toLowerCase()
+      if (!verifiedByStudent.has(sid)) verifiedByStudent.set(sid, new Map())
+      const studentMap = verifiedByStudent.get(sid)!
+      const existing = studentMap.get(key)
+      if (!existing) {
+        studentMap.set(key, { level: d.afterLevel, sources: new Set([d.source]) })
+      } else {
+        existing.sources.add(d.source)
+        // Keep highest observed level (deltas are desc by time — first hit is newest)
+      }
+    }
+
     // Score each student
     const scored = students.map(student => {
       const reasons: Array<{ factor: string; score: number; detail: string }> = []
       let totalScore = 0
 
+      // Verified skill graph for this student (from SkillDelta)
+      const verifiedMap = verifiedByStudent.get(student.id) ?? new Map<string, { level: number; sources: Set<string> }>()
+      const verifiedLower = new Set(Array.from(verifiedMap.keys()))
+
       // 1. Required skills match (0-40 points)
+      // Verified matches count 1.0; self-declared-only matches count 0.6 — evidence-weighted.
       const studentSkillsLower = student.skills.map(s => s.toLowerCase())
       const matchedRequired = skills.filter(s => studentSkillsLower.includes(s.toLowerCase()))
-      const requiredScore = skills.length > 0 ? Math.round((matchedRequired.length / skills.length) * 40) : 20
+      const matchedRequiredVerified = matchedRequired.filter(s => verifiedLower.has(s.toLowerCase()))
+      const matchedRequiredSelf = matchedRequired.filter(s => !verifiedLower.has(s.toLowerCase()))
+      const requiredWeight = matchedRequiredVerified.length * 1.0 + matchedRequiredSelf.length * 0.6
+      const requiredScore = skills.length > 0 ? Math.round((requiredWeight / skills.length) * 40) : 20
       totalScore += requiredScore
       if (matchedRequired.length > 0) {
-        reasons.push({ factor: 'requiredSkills', score: requiredScore, detail: matchedRequired.join(', ') })
+        const detail = matchedRequiredVerified.length > 0
+          ? `${matchedRequiredVerified.length} verified · ${matchedRequiredSelf.length} self-declared: ${matchedRequired.join(', ')}`
+          : matchedRequired.join(', ')
+        reasons.push({ factor: 'requiredSkills', score: requiredScore, detail })
       }
 
-      // 2. Preferred skills match (0-15 points)
+      // 2. Preferred skills match (0-15 points) — same evidence-weighted treatment
       const matchedPreferred = preferred.filter(s => studentSkillsLower.includes(s.toLowerCase()))
-      const preferredScore = preferred.length > 0 ? Math.round((matchedPreferred.length / preferred.length) * 15) : 0
+      const matchedPreferredVerified = matchedPreferred.filter(s => verifiedLower.has(s.toLowerCase()))
+      const matchedPreferredSelf = matchedPreferred.filter(s => !verifiedLower.has(s.toLowerCase()))
+      const preferredWeight = matchedPreferredVerified.length * 1.0 + matchedPreferredSelf.length * 0.6
+      const preferredScore = preferred.length > 0 ? Math.round((preferredWeight / preferred.length) * 15) : 0
       totalScore += preferredScore
       if (matchedPreferred.length > 0) {
         reasons.push({ factor: 'preferredSkills', score: preferredScore, detail: matchedPreferred.join(', ') })
+      }
+
+      // 2.5. Verified skill depth bonus (0-10 points)
+      // Rewards candidates whose verified graph shows Advanced/Expert in the target skills
+      const targetLower = allTargetSkills.map(s => s.toLowerCase())
+      let depthBonus = 0
+      const depthDetails: string[] = []
+      for (const target of targetLower) {
+        const entry = verifiedMap.get(target)
+        if (entry && entry.level >= 3) {
+          depthBonus += entry.level === 4 ? 3 : 2 // Expert=3pts, Advanced=2pts
+          const levelLabel = entry.level === 4 ? 'Expert' : 'Advanced'
+          depthDetails.push(`${target} (${levelLabel}, ${entry.sources.size} source${entry.sources.size !== 1 ? 's' : ''})`)
+        }
+      }
+      depthBonus = Math.min(10, depthBonus)
+      if (depthBonus > 0) {
+        totalScore += depthBonus
+        reasons.push({
+          factor: 'verifiedDepth',
+          score: depthBonus,
+          detail: depthDetails.slice(0, 3).join('; '),
+        })
       }
 
       // 3. Verified projects with matching skills (0-20 points)
@@ -235,6 +306,18 @@ export async function POST(req: NextRequest) {
             factors,
             inputSnapshot: explanationInputs,
           })
+          // Notify the student — only for STRONG_MATCH to avoid notification spam
+          // (score ≥ 80). Student can always check /dashboard/student/matches for the full list.
+          if (r.matchScore >= 80) {
+            createNotification({
+              userId: r.id,
+              type: 'MATCH_CREATED',
+              title: 'You matched a role',
+              body: `A recruiter\'s search matched your profile (${Math.round(r.matchScore)}/100).`,
+              link: `/matches/${expl.id}/why`,
+              groupKey: `match:${expl.id}`,
+            }).catch(err => console.error('Match notification failed:', err))
+          }
           return { candidateId: r.id, explanationId: expl.id }
         } catch (e) {
           console.error('Persist explanation failed for', r.id, e)

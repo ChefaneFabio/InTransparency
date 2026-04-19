@@ -11194,7 +11194,8 @@
       "preferredSkills": "Bonus skills they wanted",
       "verifiedProjects": "Your verified projects",
       "internshipExperience": "Your stage / internship record",
-      "academicPerformance": "Your academic performance"
+      "academicPerformance": "Your academic performance",
+      "verifiedDepth": "Verified depth on key skills"
     },
     "decisionLabels": {
       "STRONG_MATCH": "Strong match",

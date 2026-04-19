@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 import { sendEndorsementResponseEmail } from '@/lib/email'
 import { createNotification } from '@/lib/notifications'
+import { writeProjectDeltas } from '@/lib/skill-delta'
 
 // GET /api/endorsements/verify/[token] - Get endorsement request details
 export async function GET(
@@ -194,6 +195,47 @@ export async function POST(
         }
       }
     })
+
+    // Writeback to skill graph — closes the loop so verified endorsements
+    // actually update the student's verified proficiency graph. (P1)
+    const ratingToLevel = (r: number): string => {
+      if (r <= 2) return 'Beginner'
+      if (r === 3) return 'Intermediate'
+      if (r === 4) return 'Advanced'
+      return 'Expert'
+    }
+    const competencies: Array<{ skill: string; proficiencyLevel: string; evidence?: string }> = []
+    // Rated competencies → direct mapping
+    if (competencyRatings && typeof competencyRatings === 'object') {
+      for (const [skill, ratingVal] of Object.entries(competencyRatings as Record<string, number>)) {
+        if (typeof ratingVal === 'number' && skill) {
+          competencies.push({ skill, proficiencyLevel: ratingToLevel(ratingVal) })
+        }
+      }
+    }
+    // Endorsed skills without per-skill rating → use overall rating as proxy
+    const ratedSkillsLower = new Set(competencies.map(c => c.skill.toLowerCase()))
+    for (const s of (skills || []) as string[]) {
+      if (s && !ratedSkillsLower.has(s.toLowerCase())) {
+        competencies.push({
+          skill: s,
+          proficiencyLevel: rating ? ratingToLevel(rating) : 'Intermediate',
+        })
+      }
+    }
+    if (competencies.length > 0) {
+      try {
+        await writeProjectDeltas({
+          projectId: endorsement.projectId,
+          studentId: endorsement.studentId,
+          projectTitle: endorsement.project.title,
+          competencies,
+          endorserName: endorsement.professorName,
+        })
+      } catch (e) {
+        console.error('Project skill-delta writeback failed:', e)
+      }
+    }
 
     // Notify student
     if (student?.email) {
