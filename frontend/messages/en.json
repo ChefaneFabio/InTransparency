@@ -224,7 +224,18 @@
         "events": "Events",
         "settings": "Settings"
       }
-    }
+    },
+    "skillGraph": "Skill Graph",
+    "credentials": "Credentials",
+    "rolesForYou": "Roles for you",
+    "matches": "Matches about you",
+    "selfDiscovery": "Self-discovery",
+    "discoverCompanies": "Discover companies",
+    "skillsIntelligence": "Skills Intelligence",
+    "exchanges": "Exchanges",
+    "companyProfile": "Company profile",
+    "followers": "Followers",
+    "brand": "Brand"
   },
   "home": {
     "hero": {

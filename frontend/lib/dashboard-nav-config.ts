@@ -22,14 +22,20 @@ const student: NavConfig = {
         { labelKey: 'projects', href: '/dashboard/student/projects' },
         { labelKey: 'profile', href: '/dashboard/student/profile' },
         { labelKey: 'cv', href: '/dashboard/student/cv' },
+        { labelKey: 'skillGraph', href: '/dashboard/student/skill-graph' },
+        { labelKey: 'credentials', href: '/dashboard/student/credentials' },
       ],
     },
     {
       labelKey: 'career',
       items: [
         { labelKey: 'jobs', href: '/dashboard/student/jobs' },
+        { labelKey: 'rolesForYou', href: '/dashboard/student/roles' },
+        { labelKey: 'matches', href: '/dashboard/student/matches' },
         { labelKey: 'applications', href: '/dashboard/student/applications' },
         { labelKey: 'skillPath', href: '/dashboard/student/skill-path' },
+        { labelKey: 'selfDiscovery', href: '/self-discovery' },
+        { labelKey: 'discoverCompanies', href: '/discover' },
       ],
     },
     {
@@ -83,6 +89,13 @@ const recruiter: NavConfig = {
       ],
     },
     {
+      labelKey: 'brand',
+      items: [
+        { labelKey: 'companyProfile', href: '/dashboard/recruiter/company-profile' },
+        { labelKey: 'followers', href: '/dashboard/recruiter/followers' },
+      ],
+    },
+    {
       labelKey: 'insights',
       items: [
         { labelKey: 'analytics', href: '/dashboard/recruiter/analytics' },
@@ -111,12 +124,14 @@ const universityBase: NavConfig = {
       items: [
         { labelKey: 'placements', href: '/dashboard/university/placements' },
         { labelKey: 'skillsGap', href: '/dashboard/university/skills-gap' },
+        { labelKey: 'skillsIntelligence', href: '/dashboard/university/skills-intelligence' },
         { labelKey: 'careerPaths', href: '/dashboard/university/career-paths' },
         { labelKey: 'curriculumAlignment', href: '/dashboard/university/curriculum-alignment' },
         { labelKey: 'events', href: '/dashboard/university/events' },
         { labelKey: 'conventions', href: '/dashboard/university/conventions' },
         { labelKey: 'stages', href: '/dashboard/university/stages' },
         { labelKey: 'stageInsights', href: '/dashboard/university/stage-insights' },
+        { labelKey: 'exchanges', href: '/dashboard/university/exchanges' },
         { labelKey: 'employerCRM', href: '/dashboard/university/employer-crm' },
         { labelKey: 'communications', href: '/dashboard/university/communications' },
       ],

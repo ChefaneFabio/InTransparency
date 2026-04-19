@@ -306,13 +306,18 @@ export async function POST(req: NextRequest) {
             factors,
             inputSnapshot: explanationInputs,
           })
-          // Notify the student — only for STRONG_MATCH to avoid notification spam
-          // (score ≥ 80). Student can always check /dashboard/student/matches for the full list.
-          if (r.matchScore >= 80) {
+          // Notification policy:
+          //  - Always notify for first 3 matches a student ever receives (onboarding moment)
+          //  - Otherwise only for STRONG_MATCH (score ≥ 80) to avoid spam
+          const priorMatchCount = await prisma.matchExplanation.count({
+            where: { subjectId: r.id },
+          }).catch(() => 999)
+          const shouldNotify = priorMatchCount <= 3 || r.matchScore >= 80
+          if (shouldNotify) {
             createNotification({
               userId: r.id,
               type: 'MATCH_CREATED',
-              title: 'You matched a role',
+              title: priorMatchCount <= 3 ? 'Your first matches are in' : 'You matched a role',
               body: `A recruiter\'s search matched your profile (${Math.round(r.matchScore)}/100).`,
               link: `/matches/${expl.id}/why`,
               groupKey: `match:${expl.id}`,

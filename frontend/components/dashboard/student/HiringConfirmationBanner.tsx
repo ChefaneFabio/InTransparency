@@ -33,6 +33,8 @@ export function HiringConfirmationBanner() {
   const [startDate, setStartDate] = useState('')
   const [feedback, setFeedback] = useState('')
   const [completed, setCompleted] = useState<Set<string>>(new Set())
+  // Track hires just-confirmed (this session) to show the celebration + follow-up nudges
+  const [justHired, setJustHired] = useState<Array<{ id: string; companyName: string; jobTitle: string | null }>>([])
 
   useEffect(() => {
     const fetchConfirmations = async () => {
@@ -70,6 +72,15 @@ export function HiringConfirmationBanner() {
         const newCompleted = new Set(completed)
         newCompleted.add(confirmationId)
         setCompleted(newCompleted)
+        if (confirmedHired) {
+          const conf = confirmations.find(c => c.id === confirmationId)
+          if (conf) {
+            setJustHired(prev => [
+              ...prev,
+              { id: confirmationId, companyName: conf.companyName, jobTitle: jobTitle || null },
+            ])
+          }
+        }
         setExpandedId(null)
         setJobTitle('')
         setStartDate('')
@@ -88,12 +99,48 @@ export function HiringConfirmationBanner() {
 
   const pending = confirmations.filter((c) => !completed.has(c.id))
 
-  if (pending.length === 0) {
+  if (pending.length === 0 && justHired.length === 0) {
     return null
   }
 
   return (
     <div className="space-y-3">
+      {justHired.map(h => (
+        <Card key={h.id} className="border-emerald-300 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950/20">
+          <CardContent className="p-4">
+            <div className="flex items-start gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/40">
+                <PartyPopper className="h-5 w-5 text-emerald-600" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-sm mb-1">
+                  Congratulations on the hire{h.jobTitle ? ` — ${h.jobTitle}` : ''} at {h.companyName}!
+                </h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  A few quick steps to make this placement count fully:
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <Button size="sm" variant="outline" asChild>
+                    <a href="/dashboard/student/credentials">
+                      <CheckCircle2 className="h-3 w-3 mr-1" />
+                      Issue stage-completion credential
+                    </a>
+                  </Button>
+                  <Button size="sm" variant="outline" asChild>
+                    <a href="/dashboard/student/projects">
+                      <Briefcase className="h-3 w-3 mr-1" />
+                      Thank your professor
+                    </a>
+                  </Button>
+                  <Button size="sm" variant="ghost" onClick={() => setJustHired(prev => prev.filter(x => x.id !== h.id))}>
+                    Dismiss
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
       {pending.map((confirmation) => {
         const isExpanded = expandedId === confirmation.id
         const isSubmitting = submitting === confirmation.id

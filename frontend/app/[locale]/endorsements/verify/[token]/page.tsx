@@ -194,9 +194,15 @@ export default function EndorsementVerifyPage() {
               </>
             )}
             <div className="mt-6 p-4 bg-primary/5 rounded-lg">
-              <p className="text-sm text-blue-800">
+              <p className="text-sm text-blue-800 mb-3">
                 <strong>InTransparency</strong> is a verified talent marketplace connecting students with recruiters through transparent, verified credentials.
               </p>
+              <Button variant="outline" size="sm" asChild className="w-full">
+                <a href={`/professor/dashboard?token=${token}`}>
+                  Open professor portal (see all your endorsements)
+                  <ExternalLink className="h-3 w-3 ml-1" />
+                </a>
+              </Button>
             </div>
           </CardContent>
         </Card>
