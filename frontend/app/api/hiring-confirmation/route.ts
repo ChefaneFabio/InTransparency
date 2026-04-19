@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth/config'
 import prisma from '@/lib/prisma'
 import { onHiringConfirmed } from '@/lib/cross-segment-connections'
+import { persistMonthlySnapshot } from '@/lib/skills-gap-v2'
 
 /**
  * GET /api/hiring-confirmation
@@ -126,6 +127,26 @@ export async function PATCH(req: NextRequest) {
         jobTitle || 'Not specified',
         confirmation.companyName
       ).catch(err => console.error('Hiring notification failed:', err))
+
+      // Feed the outcome back into the university's Skills Gap trend.
+      // A fresh snapshot captures the new placement signal — the program
+      // gap index shifts as outcomes accumulate. Non-blocking.
+      if (student?.university) {
+        const studentRecord = await prisma.user.findUnique({
+          where: { id: session.user.id },
+          select: { degree: true },
+        })
+        // Refresh the university-wide snapshot
+        persistMonthlySnapshot(student.university, null).catch(err =>
+          console.error('Skills gap snapshot (university-wide) failed:', err)
+        )
+        // And the program-specific snapshot if we know the student's program
+        if (studentRecord?.degree) {
+          persistMonthlySnapshot(student.university, studentRecord.degree).catch(err =>
+            console.error('Skills gap snapshot (program) failed:', err)
+          )
+        }
+      }
     }
 
     return NextResponse.json({ confirmation: updated })
