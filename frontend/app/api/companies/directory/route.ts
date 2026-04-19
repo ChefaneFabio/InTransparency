@@ -48,24 +48,38 @@ export async function GET(req: NextRequest) {
     },
   })
 
-  // Pull distinct industry/country values for the filter sidebar
-  const all = await prisma.companyProfile.findMany({
-    where: { published: true },
-    select: { industries: true, countries: true },
-  })
-  const industrySet = new Set<string>()
-  const countrySet = new Set<string>()
-  for (const p of all) {
-    for (const i of p.industries) industrySet.add(i)
-    for (const c of p.countries) countrySet.add(c)
-  }
+  // Pull distinct industry/country values for the filter sidebar via
+  // UNNEST + DISTINCT — scales with distinct values, not row count.
+  const [industryRows, countryRows] = await Promise.all([
+    prisma.$queryRaw<Array<{ value: string }>>`
+      SELECT DISTINCT UNNEST(industries) AS value
+      FROM "CompanyProfile"
+      WHERE published = true
+      ORDER BY value
+    `,
+    prisma.$queryRaw<Array<{ value: string }>>`
+      SELECT DISTINCT UNNEST(countries) AS value
+      FROM "CompanyProfile"
+      WHERE published = true
+      ORDER BY value
+    `,
+  ])
 
-  return NextResponse.json({
-    profiles,
-    filters: {
-      industries: Array.from(industrySet).sort(),
-      countries: Array.from(countrySet).sort(),
+  return NextResponse.json(
+    {
+      profiles,
+      filters: {
+        industries: industryRows.map(r => r.value),
+        countries: countryRows.map(r => r.value),
+      },
+      total: profiles.length,
     },
-    total: profiles.length,
-  })
+    {
+      headers: {
+        // 60s fresh, stale-while-revalidate for 5 min — directory doesn't need
+        // real-time freshness, and this dramatically lowers Neon load.
+        'Cache-Control': 's-maxage=60, stale-while-revalidate=300',
+      },
+    }
+  )
 }

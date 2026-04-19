@@ -3,6 +3,7 @@
 import { useEffect, useState, use } from 'react'
 import { useTranslations } from 'next-intl'
 import { Header } from '@/components/layout/Header'
+import { JsonLd } from '@/components/seo/JsonLd'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -103,6 +104,27 @@ export default function CompanyDiscoveryPage({
 
   return (
     <div className="min-h-screen bg-background">
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: profile.companyName,
+          description: profile.description ?? profile.tagline ?? undefined,
+          url: profile.websiteUrl ?? `https://www.in-transparency.com/en/c/${profile.slug}`,
+          logo: profile.logoUrl ?? undefined,
+          foundingDate: profile.foundedYear ? `${profile.foundedYear}-01-01` : undefined,
+          sameAs: [profile.linkedinUrl].filter(Boolean),
+          address: profile.headquarters
+            ? { '@type': 'PostalAddress', addressLocality: profile.headquarters }
+            : undefined,
+          knowsAbout: profile.industries,
+          aggregateRating: profile.followerCount > 0 ? {
+            '@type': 'InteractionCounter',
+            interactionType: { '@type': 'FollowAction' },
+            userInteractionCount: profile.followerCount,
+          } : undefined,
+        }}
+      />
       <Header />
       <main>
         {profile.coverUrl && (

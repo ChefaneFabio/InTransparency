@@ -33,7 +33,14 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 })
   }
 
-  return NextResponse.json({ profile: { ...profile, followerCount: profile._count.follows } })
+  return NextResponse.json(
+    { profile: { ...profile, followerCount: profile._count.follows } },
+    {
+      headers: {
+        'Cache-Control': 's-maxage=120, stale-while-revalidate=600',
+      },
+    }
+  )
 }
 
 /**
