@@ -401,6 +401,11 @@ model Organization {
   owner       User               @relation("OrgOwner", fields: [ownerId], references: [id])
   members     User[]             @relation("OrgMembers")
 
+  // Seat-based billing (optional — null = unlimited / grandfathered plan)
+  seatLimit   Int?               // Max paid seats. Null = unmetered / trial.
+  billingPlan String?            // "STARTER", "GROWTH", "ENTERPRISE", etc. Free-form for now.
+  trialEndsAt DateTime?          // If in trial
+
   createdAt   DateTime           @default(now())
   updatedAt   DateTime           @updatedAt
 
