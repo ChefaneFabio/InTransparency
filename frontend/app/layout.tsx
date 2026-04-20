@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Fraunces, DM_Sans } from 'next/font/google'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import Script from 'next/script'
 import './globals.css'
 import { Providers } from './providers'
 import { Toaster } from '@/components/ui/toaster'
@@ -111,6 +112,12 @@ export default function RootLayout({
       {process.env.NEXT_PUBLIC_GA_ID && (
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       )}
+      {/* HubSpot tracking — portal 147782942 (EU region) */}
+      <Script
+        id="hs-script-loader"
+        src="//js-eu1.hs-scripts.com/147782942.js"
+        strategy="afterInteractive"
+      />
     </html>
   )
 }
