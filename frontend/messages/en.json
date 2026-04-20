@@ -69,7 +69,13 @@
         "skillsTimeline": "Skills Timeline",
         "skillsDemand": "Skills Demand",
         "settings": "Settings",
-        "offerComparison": "Compare Offers"
+        "offerComparison": "Compare Offers",
+        "skillGraph": "Skill Graph",
+        "credentials": "Credentials",
+        "matches": "Matches",
+        "rolesForYou": "Roles For You",
+        "selfDiscovery": "Self-Discovery",
+        "discoverCompanies": "Discover Companies"
       },
       "messages": "Messages"
     },
@@ -116,9 +122,12 @@
         "compare": "Compare",
         "universityInsights": "University Insights",
         "hiringAdvisor": "Hiring Advisor",
-        "interviewKit": "Interview Kit"
+        "interviewKit": "Interview Kit",
+        "companyProfile": "Company Profile",
+        "followers": "Followers"
       },
-      "search": "Search"
+      "search": "Search",
+      "brand": "Brand"
     },
     "university": {
       "students": "Students",
@@ -169,7 +178,9 @@
         "stageInsights": "Internship Insights",
         "communications": "Communications",
         "careerPaths": "Career Paths",
-        "conventions": "Conventions"
+        "conventions": "Conventions",
+        "skillsIntelligence": "Skills Intelligence",
+        "exchanges": "Exchanges"
       },
       "exchange": "Exchange",
       "internships": "Internships",
@@ -224,18 +235,7 @@
         "events": "Events",
         "settings": "Settings"
       }
-    },
-    "skillGraph": "Skill Graph",
-    "credentials": "Credentials",
-    "rolesForYou": "Roles for you",
-    "matches": "Matches about you",
-    "selfDiscovery": "Self-discovery",
-    "discoverCompanies": "Discover companies",
-    "skillsIntelligence": "Skills Intelligence",
-    "exchanges": "Exchanges",
-    "companyProfile": "Company profile",
-    "followers": "Followers",
-    "brand": "Brand"
+    }
   },
   "home": {
     "hero": {

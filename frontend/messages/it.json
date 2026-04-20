@@ -69,7 +69,13 @@
         "skillsTimeline": "Timeline Competenze",
         "skillsDemand": "Domanda Competenze",
         "settings": "Impostazioni",
-        "offerComparison": "Confronta Offerte"
+        "offerComparison": "Confronta Offerte",
+        "skillGraph": "Grafo Competenze",
+        "credentials": "Credenziali",
+        "matches": "Match",
+        "rolesForYou": "Ruoli Per Te",
+        "selfDiscovery": "Auto-Esplorazione",
+        "discoverCompanies": "Scopri Aziende"
       },
       "messages": "Messaggi"
     },
@@ -116,9 +122,12 @@
         "compare": "Confronta",
         "universityInsights": "Insight Università",
         "hiringAdvisor": "Consulente Assunzioni",
-        "interviewKit": "Kit Colloquio"
+        "interviewKit": "Kit Colloquio",
+        "companyProfile": "Profilo Azienda",
+        "followers": "Follower"
       },
-      "search": "Ricerca"
+      "search": "Ricerca",
+      "brand": "Brand"
     },
     "university": {
       "students": "Studenti",
@@ -169,7 +178,9 @@
         "stageInsights": "Insight Tirocini",
         "communications": "Comunicazioni",
         "careerPaths": "Percorsi di Carriera",
-        "conventions": "Convenzioni"
+        "conventions": "Convenzioni",
+        "skillsIntelligence": "Skills Intelligence",
+        "exchanges": "Scambi"
       },
       "exchange": "Scambio",
       "internships": "Tirocini",
@@ -224,18 +235,7 @@
         "events": "Eventi",
         "settings": "Impostazioni"
       }
-    },
-    "skillGraph": "Grafo Competenze",
-    "credentials": "Credenziali",
-    "rolesForYou": "Ruoli per te",
-    "matches": "Match che ti riguardano",
-    "selfDiscovery": "Auto-esplorazione",
-    "discoverCompanies": "Scopri aziende",
-    "skillsIntelligence": "Skills Intelligence",
-    "exchanges": "Scambi",
-    "companyProfile": "Profilo azienda",
-    "followers": "Follower",
-    "brand": "Brand"
+    }
   },
   "home": {
     "hero": {

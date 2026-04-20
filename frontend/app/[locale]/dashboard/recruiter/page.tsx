@@ -11,7 +11,8 @@ import { Skeleton } from '@/components/ui/skeleton'
 import {
   Users, Search, MessageSquare, Plus, ChevronRight, Clock,
   GraduationCap, Star, Mail, TrendingUp, LogOut, Briefcase,
-  FileText, Settings, Eye, Zap,
+  FileText, Settings, Eye, ShieldCheck, Target, Sparkles,
+  Flame, BarChart3,
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import { useLocale, useTranslations } from 'next-intl'
@@ -107,12 +108,20 @@ export default function RecruiterDashboard() {
   const cu = stats.contactUsage
   const creditPct = cu && cu.limit > 0 && cu.limit !== -1 ? Math.round((cu.used / cu.limit) * 100) : 0
 
+  // Activity feed — rotate the per-candidate time labels so rows aren't
+  // all tagged "Miglior match" (which looked robotic in the UI).
+  const candidateTimeLabels = locale === 'it'
+    ? ['Nuovo', 'Ben allineato', 'Da valutare']
+    : ['Just matched', 'Strong fit', 'Worth a look']
   const activityItems = [
     ...(stats.newApplicationsThisWeek > 0 ? [{ id: 'a1', type: 'application' as const, text: ts('activity.newApplicationsThisWeek', { count: stats.newApplicationsThisWeek }), time: ts('time.thisWeek') }] : []),
     ...(stats.interviewsScheduled > 0 ? [{ id: 'i1', type: 'hire' as const, text: ts('activity.interviewsScheduled', { count: stats.interviewsScheduled }), time: ts('time.upcoming') }] : []),
     ...(stats.pendingReview > 0 ? [{ id: 'p1', type: 'view' as const, text: ts('activity.applicationsPendingReview', { count: stats.pendingReview }), time: ts('time.actionNeeded') }] : []),
     ...topCandidates.slice(0, 3).map((c, i) => ({
-      id: `c${i}`, type: 'contact' as const, text: ts('activity.topCandidate', { name: c.name, projects: c.projectCount, university: c.university }), time: ts('time.topMatch'),
+      id: `c${i}`,
+      type: 'contact' as const,
+      text: ts('activity.topCandidate', { name: c.name, projects: c.projectCount, university: c.university }),
+      time: candidateTimeLabels[i] ?? candidateTimeLabels[0],
     })),
   ]
 
@@ -273,48 +282,89 @@ export default function RecruiterDashboard() {
             </div>
           </GlassCard>
 
-          {/* AI Talent Recommendations */}
+          {/* Matches for open roles — evidence-weighted shortlist */}
           {talentRecs.length > 0 && (
             <GlassCard delay={0.35} hover={false}>
               <div className="p-5">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h2 className="font-semibold text-foreground flex items-center gap-2">
-                      <Zap className="h-4 w-4 text-primary" />
-                      AI Recommendations
-                    </h2>
-                    <p className="text-xs text-muted-foreground">Candidates matching your open roles</p>
-                  </div>
+                <div className="flex items-center justify-between mb-1">
+                  <h2 className="font-semibold text-foreground flex items-center gap-2">
+                    <Target className="h-4 w-4 text-primary" strokeWidth={2.25} />
+                    {locale === 'it' ? 'Match per i tuoi ruoli aperti' : 'Matches for your open roles'}
+                  </h2>
+                  <Button size="sm" variant="ghost" className="h-7 text-xs" asChild>
+                    <Link href="/dashboard/recruiter/talent-match">
+                      {locale === 'it' ? 'Rifinisci ricerca' : 'Refine search'}
+                      <ChevronRight className="h-3 w-3 ml-0.5" />
+                    </Link>
+                  </Button>
                 </div>
+                <p className="text-xs text-muted-foreground mb-4">
+                  {locale === 'it'
+                    ? 'Classifica basata su competenze verificate — non auto-dichiarazioni.'
+                    : 'Ranked by verified skills — not self-declared claims.'}
+                </p>
                 <div className="space-y-2">
-                  {talentRecs.map((rec) => (
-                    <div key={rec.studentId} className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40 hover:shadow-md hover:border-primary/20 transition-all">
-                      <div className="w-10 h-10 bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span className="text-xs font-bold text-primary">{rec.matchScore}%</span>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          <p className="font-medium text-sm text-foreground">{rec.firstName} {rec.lastName}</p>
-                          {rec.verified && <Badge className="text-[9px] bg-green-100 text-green-700 border-0 h-4 px-1">verified</Badge>}
+                  {talentRecs.map((rec, idx) => {
+                    const tier = rec.matchScore >= 80 ? 'strong' : rec.matchScore >= 60 ? 'match' : 'weak'
+                    return (
+                      <div
+                        key={rec.studentId}
+                        className="flex items-center gap-3 p-3 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-white/40 dark:border-slate-700/40 hover:shadow-md hover:border-primary/30 transition-all"
+                      >
+                        <div className="flex-shrink-0 w-12 flex flex-col items-center">
+                          <span className="text-base font-bold text-foreground tabular-nums leading-none">
+                            {rec.matchScore}
+                          </span>
+                          <span className="text-[9px] text-muted-foreground uppercase tracking-wider mt-0.5">
+                            /100
+                          </span>
                         </div>
-                        <div className="flex items-center gap-2 text-[11px] text-muted-foreground mt-0.5">
-                          {rec.university && <span>{rec.university}</span>}
-                          <span className="text-muted-foreground/30">·</span>
-                          <span>{rec.projectCount} projects</span>
-                        </div>
-                        {rec.matchedSkills.length > 0 && (
-                          <div className="flex flex-wrap gap-1 mt-1">
-                            {rec.matchedSkills.slice(0, 4).map(s => (
-                              <span key={s} className="text-[9px] bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 px-1.5 py-0.5 rounded-full">{s}</span>
-                            ))}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-1.5 mb-0.5">
+                            <p className="font-medium text-sm text-foreground truncate">
+                              {rec.firstName} {rec.lastName}
+                            </p>
+                            {rec.verified && (
+                              <ShieldCheck className="h-3.5 w-3.5 text-emerald-600 flex-shrink-0" strokeWidth={2.25} />
+                            )}
+                            {tier === 'strong' && idx === 0 && (
+                              <Flame className="h-3.5 w-3.5 text-amber-500 flex-shrink-0" strokeWidth={2.25} />
+                            )}
                           </div>
-                        )}
+                          <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
+                            {rec.university && <span className="truncate">{rec.university}</span>}
+                            <span className="text-muted-foreground/30">·</span>
+                            <span className="flex-shrink-0">
+                              {rec.projectCount}{' '}
+                              {locale === 'it' ? 'progetti verificati' : 'verified projects'}
+                            </span>
+                          </div>
+                          {rec.matchedSkills.length > 0 && (
+                            <div className="flex flex-wrap gap-1 mt-1.5">
+                              {rec.matchedSkills.slice(0, 4).map(s => (
+                                <span
+                                  key={s}
+                                  className="text-[10px] font-medium text-foreground/80 bg-muted border border-border/60 px-2 py-0.5 rounded-md"
+                                >
+                                  {s}
+                                </span>
+                              ))}
+                              {rec.matchedSkills.length > 4 && (
+                                <span className="text-[10px] text-muted-foreground px-1">
+                                  +{rec.matchedSkills.length - 4}
+                                </span>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                        <Button size="sm" variant="outline" className="h-8 text-xs" asChild>
+                          <Link href={`/students/${rec.studentId}/public`}>
+                            {locale === 'it' ? 'Apri' : 'Open'}
+                          </Link>
+                        </Button>
                       </div>
-                      <Button size="sm" className="h-8 text-xs" asChild>
-                        <Link href={`/students/${rec.studentId}/public`}>{ts('view')}</Link>
-                      </Button>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             </GlassCard>
@@ -413,13 +463,52 @@ export default function RecruiterDashboard() {
             </div>
           </GlassCard>
 
-          {/* Recruiting Tip */}
+          {/* This-week pipeline snapshot — replaces the generic "tip" card
+              with real signal from the recruiter's own numbers. */}
           <GlassCard delay={0.5} gradient="blue">
             <div className="p-4">
-              <p className="text-xs font-semibold text-foreground flex items-center gap-1.5 mb-2">
-                <Zap className="h-3.5 w-3.5 text-amber-500" /> {t('recruitingTip.title')}
+              <p className="text-xs font-semibold text-foreground flex items-center gap-1.5 mb-3">
+                <BarChart3 className="h-3.5 w-3.5 text-primary" strokeWidth={2.25} />
+                {locale === 'it' ? 'La tua settimana' : 'Your week'}
               </p>
-              <p className="text-xs text-foreground/80 leading-relaxed">{t('recruitingTip.text')}</p>
+              <div className="space-y-2.5 text-xs">
+                <div className="flex items-center justify-between">
+                  <span className="text-muted-foreground">
+                    {locale === 'it' ? 'Nuove candidature' : 'New applications'}
+                  </span>
+                  <span className="font-semibold text-foreground tabular-nums">
+                    {stats.newApplicationsThisWeek}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-muted-foreground">
+                    {locale === 'it' ? 'Colloqui programmati' : 'Interviews scheduled'}
+                  </span>
+                  <span className="font-semibold text-foreground tabular-nums">
+                    {stats.interviewsScheduled}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-muted-foreground">
+                    {locale === 'it' ? 'Da valutare' : 'Pending review'}
+                  </span>
+                  <span
+                    className={`font-semibold tabular-nums ${
+                      stats.pendingReview > 10 ? 'text-amber-600' : 'text-foreground'
+                    }`}
+                  >
+                    {stats.pendingReview}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between border-t pt-2.5 mt-2.5">
+                  <span className="text-muted-foreground">
+                    {locale === 'it' ? 'Shortlist' : 'Shortlisted'}
+                  </span>
+                  <span className="font-semibold text-foreground tabular-nums">
+                    {stats.shortlisted}
+                  </span>
+                </div>
+              </div>
             </div>
           </GlassCard>
 
