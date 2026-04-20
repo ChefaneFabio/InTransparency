@@ -1,0 +1,386 @@
+openapi: 3.1.0
+info:
+  title: InTransparency Agent API
+  description: |
+    Read-only, public, agent-friendly API for the InTransparency verified skill graph.
+
+    Every endpoint returns JSON shaped for direct ingestion by LLM-based agents.
+    No authentication required for these endpoints — they expose the same data
+    any web visitor can see, in a machine-consumable form.
+
+    All operations are idempotent and cacheable. Rate limits apply per IP.
+
+    Canonical reference: https://www.in-transparency.com/llms-full.txt
+  version: 1.0.0
+  contact:
+    name: InTransparency
+    email: info@in-transparency.com
+    url: https://www.in-transparency.com
+  license:
+    name: Content CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+
+servers:
+  - url: https://www.in-transparency.com
+    description: Production
+
+tags:
+  - name: Discovery
+    description: Root index and reference documents
+  - name: Companies
+    description: Public employer / company profiles
+  - name: Jobs
+    description: Active job listings
+  - name: Credentials
+    description: W3C Verifiable Credential verification
+  - name: Taxonomy
+    description: ESCO mappings and domain vocabulary
+  - name: Transparency
+    description: Algorithm registry and platform facts
+
+paths:
+  /api/agents/index:
+    get:
+      tags: [Discovery]
+      summary: Root discovery document
+      description: Returns the full map of agent-facing endpoints + pointers to human surfaces.
+      responses:
+        '200':
+          description: Agent index
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AgentIndex' }
+
+  /api/agents/companies:
+    get:
+      tags: [Companies]
+      summary: List published company profiles
+      parameters:
+        - name: q
+          in: query
+          description: Full-text search across name, tagline, description
+          schema: { type: string }
+        - name: industry
+          in: query
+          schema: { type: string }
+        - name: country
+          in: query
+          description: ISO 3166-1 alpha-2 country code
+          schema: { type: string }
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 100, default: 50 }
+      responses:
+        '200':
+          description: Company directory
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CompanyDirectory' }
+
+  /api/agents/companies/{slug}:
+    get:
+      tags: [Companies]
+      summary: Get a single company profile by slug
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Company profile
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CompanyProfile' }
+        '404':
+          description: Not found
+
+  /api/agents/jobs:
+    get:
+      tags: [Jobs]
+      summary: List active job postings
+      parameters:
+        - name: skill
+          in: query
+          description: Filter to jobs with this skill in requiredSkills
+          schema: { type: string }
+        - name: location
+          in: query
+          schema: { type: string }
+        - name: company
+          in: query
+          schema: { type: string }
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 100, default: 50 }
+      responses:
+        '200':
+          description: Job listing
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JobListing' }
+
+  /api/agents/jobs/{id}:
+    get:
+      tags: [Jobs]
+      summary: Get a single job posting by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Job posting
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JobPosting' }
+        '404':
+          description: Not found or inactive
+
+  /api/agents/verify-credential/{token}:
+    get:
+      tags: [Credentials]
+      summary: Verify a W3C Verifiable Credential by share token
+      description: |
+        Validates the Ed25519 signature of a credential shared via its public
+        token. Also returns the credential payload. For fully-offline
+        verification, fetch the public key from /api/credentials/public-key.
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Verification result
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CredentialVerification' }
+        '404':
+          description: Credential not found
+
+  /api/agents/esco/{term}:
+    get:
+      tags: [Taxonomy]
+      summary: Resolve a skill term to its ESCO URI
+      parameters:
+        - name: term
+          in: path
+          required: true
+          description: URL-encoded skill name (e.g. "python" or "machine%20learning")
+          schema: { type: string }
+      responses:
+        '200':
+          description: ESCO mapping
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EscoMapping' }
+        '404':
+          description: No mapping found
+
+  /api/agents/algorithms:
+    get:
+      tags: [Transparency]
+      summary: Algorithm registry (AI Act Annex III compliance)
+      description: |
+        Machine-readable form of the public algorithm registry. Lists every
+        automated decision system on the platform with inputs, weights,
+        excluded attributes, bias testing, and human-oversight paths.
+      responses:
+        '200':
+          description: Algorithm registry
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AlgorithmRegistry' }
+
+  /api/agents/glossary:
+    get:
+      tags: [Taxonomy]
+      summary: Defined-term glossary for the platform's domain
+      responses:
+        '200':
+          description: Glossary
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Glossary' }
+
+  /api/agents/changelog:
+    get:
+      tags: [Discovery]
+      summary: Product changelog (freshness feed)
+      responses:
+        '200':
+          description: Changelog
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Changelog' }
+
+  /api/agents/facts:
+    get:
+      tags: [Transparency]
+      summary: Dated, sourced quantitative facts about the platform
+      responses:
+        '200':
+          description: Facts dataset
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/FactsDataset' }
+
+components:
+  schemas:
+    BaseResponse:
+      type: object
+      properties:
+        '@context': { type: string, format: uri }
+        '@publisher': { type: string, example: InTransparency }
+        '@generatedAt': { type: string, format: date-time }
+
+    AgentIndex:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            '@type': { type: string, example: AgentIndex }
+            description: { type: string }
+            endpoints: { type: object, additionalProperties: { type: string } }
+            corePromise: { type: string }
+
+    CompanySummary:
+      type: object
+      properties:
+        name: { type: string }
+        slug: { type: string }
+        tagline: { type: string, nullable: true }
+        industries: { type: array, items: { type: string } }
+        headquarters: { type: string, nullable: true }
+        sizeCategory: { type: string, nullable: true }
+        platformVerified: { type: boolean }
+        followerCount: { type: integer }
+        url: { type: string, format: uri }
+        detailEndpoint: { type: string }
+
+    CompanyDirectory:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            count: { type: integer }
+            companies: { type: array, items: { $ref: '#/components/schemas/CompanySummary' } }
+
+    CompanyProfile:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            name: { type: string }
+            slug: { type: string }
+            description: { type: string, nullable: true }
+            mission: { type: string, nullable: true }
+            vision: { type: string, nullable: true }
+            values: { type: array, items: { type: object } }
+            cultureTags: { type: array, items: { type: string } }
+            offices: { type: array, items: { type: object } }
+            faqs: { type: array, items: { type: object } }
+            platformVerified: { type: boolean }
+            url: { type: string, format: uri }
+
+    JobSummary:
+      type: object
+      properties:
+        id: { type: string }
+        title: { type: string }
+        companyName: { type: string }
+        location: { type: string, nullable: true }
+        workLocation: { type: string, nullable: true }
+        jobType: { type: string, nullable: true }
+        requiredSkills: { type: array, items: { type: string } }
+        preferredSkills: { type: array, items: { type: string } }
+        postedAt: { type: string, format: date-time }
+        url: { type: string, format: uri }
+
+    JobListing:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            count: { type: integer }
+            jobs: { type: array, items: { $ref: '#/components/schemas/JobSummary' } }
+
+    JobPosting:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            id: { type: string }
+            title: { type: string }
+            description: { type: string }
+            hiringOrganization:
+              type: object
+              properties:
+                name: { type: string }
+                logo: { type: string, nullable: true }
+            location: { type: string, nullable: true }
+            requiredSkills: { type: array, items: { type: string } }
+            preferredSkills: { type: array, items: { type: string } }
+            url: { type: string, format: uri }
+
+    CredentialVerification:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            signatureValid: { type: boolean }
+            status: { type: string, enum: [ISSUED, REVOKED, EXPIRED, SUPERSEDED] }
+            credentialType: { type: string }
+            issuer: { type: object, properties: { name: { type: string } } }
+            subject: { type: object, properties: { name: { type: string } } }
+            issuedAt: { type: string, format: date-time }
+            expiresAt: { type: string, format: date-time, nullable: true }
+            payload: { type: object }
+
+    EscoMapping:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            query: { type: string }
+            escoUri: { type: string, format: uri }
+            preferredLabel: { type: string }
+            taxonomyVersion: { type: string }
+
+    AlgorithmRegistry:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            count: { type: integer }
+            algorithms: { type: array, items: { type: object } }
+
+    Glossary:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            count: { type: integer }
+            terms: { type: array, items: { type: object, properties: { term: { type: string }, category: { type: string }, definition: { type: string } } } }
+
+    Changelog:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            count: { type: integer }
+            entries: { type: array, items: { type: object } }
+            rssFeed: { type: string, format: uri }
+
+    FactsDataset:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            name: { type: string }
+            dateModified: { type: string, format: date }
+            license: { type: string, format: uri }
+            count: { type: integer }
+            facts: { type: array, items: { type: object } }

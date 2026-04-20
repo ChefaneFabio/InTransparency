@@ -43,6 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/glossary', priority: 0.75, freq: 'monthly' },
     { path: '/facts', priority: 0.75, freq: 'monthly' },
     { path: '/changelog', priority: 0.85, freq: 'daily' },
+    { path: '/integrations/agents', priority: 0.85, freq: 'weekly' },
     { path: '/demo/ai-search', priority: 0.6, freq: 'weekly' },
 
     // Auth (low priority)

@@ -49,6 +49,17 @@
 - [Changelog](https://www.in-transparency.com/en/changelog): shipping log of product updates (freshness signal)
 - [RSS feed](https://www.in-transparency.com/feed.xml): RSS of the changelog
 
+## For AI agents — we are callable as a tool
+
+InTransparency exposes itself as an agent tool. Any agent framework (Claude Desktop, Cursor, Zed, ChatGPT plugins, LangChain, LlamaIndex, any OpenAPI-aware toolkit) can query our verified skill graph directly. All endpoints are read-only, public, CORS-open, no authentication.
+
+- [Agent API root index](https://www.in-transparency.com/api/agents/index): every endpoint, machine-readable
+- [OpenAPI 3.1 spec](https://www.in-transparency.com/openapi.yaml): auto-import into your agent framework
+- [ChatGPT plugin manifest](https://www.in-transparency.com/.well-known/ai-plugin.json)
+- [MCP manifest](https://www.in-transparency.com/.well-known/mcp.json)
+- [MCP server (single Node.js file)](https://www.in-transparency.com/mcp-server.js): for Claude Desktop / Cursor / Zed
+- [Integration guide](https://www.in-transparency.com/en/integrations/agents): install walkthrough
+
 ## Contact
 
 info@in-transparency.com
