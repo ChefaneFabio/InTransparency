@@ -18,7 +18,7 @@
     "forInstitutions": "For Institutions",
     "forCompanies": "For Companies",
     "buildPortfolio": "Build Portfolio",
-    "aiJobSearch": "AI Search",
+    "aiJobSearch": "Smart Search",
     "verifyStudents": "Verify Students",
     "analytics": "Analytics",
     "forHighSchools": "For High Schools",
@@ -46,7 +46,7 @@
         "jobs": "Jobs",
         "applications": "Applications",
         "skillPath": "Skill Path",
-        "aiJobSearch": "AI Search",
+        "aiJobSearch": "Smart Search",
         "messages": "Messages",
         "mentoring": "Mentoring",
         "analytics": "Analytics",
@@ -91,8 +91,8 @@
         "candidates": "Candidates",
         "talentDiscovery": "Talent Discovery",
         "advancedSearch": "Advanced Search",
-        "aiSearch": "AI Search",
-        "aiShortlist": "AI Shortlist",
+        "aiSearch": "Smart Search",
+        "aiShortlist": "Shortlist",
         "geographicSearch": "Geographic Search",
         "courseSearch": "Course Search",
         "savedCandidates": "Saved Candidates",
@@ -147,7 +147,7 @@
         "alumni": "Alumni",
         "analytics": "Analytics",
         "challenges": "Challenges",
-        "aiSearch": "AI Search",
+        "aiSearch": "Smart Search",
         "sync": "Sync",
         "settings": "Settings",
         "partnerships": "Exchange Partnerships",
@@ -264,8 +264,8 @@
             "description": "Projects verified by your institution — from theses to internship reports"
           },
           {
-            "title": "AI-Powered Profile",
-            "description": "Describe your work, AI extracts skills and matches you to opportunities"
+            "title": "Verified Profile",
+            "description": "Describe your work, the platform extracts skills and matches you to opportunities"
           },
           {
             "title": "Get Discovered",
@@ -404,7 +404,7 @@
       "solutionPoints": {
         "verified": "Institution-verified projects (30/30 in ML thesis)",
         "realWork": "See real work, not claims",
-        "aiAnalysis": "AI analysis of complex projects",
+        "aiAnalysis": "automated analysis of complex projects",
         "noApplications": "Zero applications → Companies find you",
         "accuracy": "Verified skill matching (vs self-reported resumes)"
       }
@@ -426,7 +426,7 @@
       },
       "companyStep1": {
         "title": "Search FREE",
-        "description": "Full database, unlimited filters, AI search"
+        "description": "Full database, unlimited filters, smart search"
       },
       "companyStep2": {
         "title": "See Verified Projects",
@@ -459,8 +459,8 @@
             }
           },
           {
-            "title": "AI Analysis & Scoring",
-            "description": "Our AI analyzes project quality, innovation level, complexity, and extracts relevant skills across all disciplines",
+            "title": "Automated Analysis & Scoring",
+            "description": "Our our platform analyzes project quality, innovation level, complexity, and extracts relevant skills across all disciplines",
             "details": [
               "Code quality assessment using industry standards",
               "Automatic skill extraction and categorization"
@@ -470,7 +470,7 @@
               "verification": "Institution-backed"
             },
             "visual": {
-              "analysisTitle": "AI Analysis in Progress...",
+              "analysisTitle": "Analysis in Progress...",
               "innovationScore": "Innovation Score",
               "codeQuality": "Code Quality",
               "skillsDetected": "Skills Detected:"
@@ -503,15 +503,15 @@
         "steps": [
           {
             "title": "Search Verified Talent",
-            "description": "Search by skills, grades, projects. AI matches candidates to your requirements.",
+            "description": "Search by skills, grades, projects. automatically matches candidates to your requirements.",
             "details": [
               "Filter by verified skills, GPA, project type, and location",
-              "AI-powered matching ranks candidates by relevance to your role"
+              "evidence-based matching ranks candidates by relevance to your role"
             ],
             "stats": {
               "candidates": "10,000+",
               "filters": "20+ criteria",
-              "matching": "AI-powered"
+              "matching": "evidence-based"
             },
             "visual": {
               "uploadTitle": "Candidate Search",
@@ -523,7 +523,7 @@
             "description": "See verified grades, projects, personality assessments. Everything you need to decide, in one document.",
             "details": [
               "Verified academic transcripts and project portfolios in one view",
-              "AI-generated candidate summaries with skill-match breakdowns"
+              "auto-generated candidate summaries with skill-match breakdowns"
             ],
             "stats": {
               "time saved": "80%",
@@ -623,7 +623,7 @@
         "description": "Every skill traceable to institution"
       },
       "aiAnalysis": {
-        "title": "AI Analysis",
+        "title": "Automated Analysis",
         "description": "Extracts technical and soft skills from thesis and projects"
       },
       "reverseRecruiting": {
@@ -744,7 +744,7 @@
           "details": [
             "Institution Integrated: Profile created automatically from institution data",
             "Independent: Upload projects (code, docs, presentations) + select courses",
-            "AI identifies courses and creates complete profile",
+            "the platform identifies courses and creates complete profile",
             "Both paths: Full platform access in < 5 minutes"
           ],
           "stats": {
@@ -756,8 +756,8 @@
           }
         },
         {
-          "title": "AI Analysis & Scoring",
-          "description": "Our AI analyzes project quality, innovation level, complexity, and extracts relevant skills across all disciplines",
+          "title": "Automated Analysis & Scoring",
+          "description": "Our our platform analyzes project quality, innovation level, complexity, and extracts relevant skills across all disciplines",
           "details": [
             "Code quality assessment using industry standards",
             "Innovation scoring based on uniqueness and creativity",
@@ -769,7 +769,7 @@
             "verification": "Institution-backed"
           },
           "visual": {
-            "analysisTitle": "AI Analysis in Progress...",
+            "analysisTitle": "Analysis in Progress...",
             "innovationScore": "Innovation Score",
             "codeQuality": "Code Quality",
             "skillsDetected": "Skills Detected:"
@@ -827,7 +827,7 @@
           {
             "feature": "Matching",
             "traditional": "Manual keyword search",
-            "ours": "AI-powered matching"
+            "ours": "evidence-based matching"
           },
           {
             "feature": "Response rate",
@@ -953,7 +953,7 @@
       "forUniversities": "For Universities",
       "pricing": "Pricing",
       "explore": "Explore Talent",
-      "aiDemo": "AI Demo"
+      "aiDemo": "Demo"
     },
     "resources": "Resources",
     "resourceLinks": {
@@ -995,7 +995,7 @@
       },
       "search": {
         "title": "Search API",
-        "description": "Search candidates by skills, grades, location, and project type. AI-powered matching ranks results by relevance to your requirements."
+        "description": "Search candidates by skills, grades, location, and project type. evidence-based matching ranks results by relevance to your requirements."
       },
       "placements": {
         "title": "Placements API",
@@ -1128,8 +1128,8 @@
           "unlimited": "Unlimited database exploration",
           "profiles": "See all profiles (anonymized)",
           "filters": "Advanced filters by institution, courses, grades",
-          "aiSearch": "AI Candidate Search",
-          "verified": "AI-verified skills from all project types",
+          "aiSearch": "Candidate Search",
+          "verified": "verified skills from all project types",
           "location": "Location and availability filters",
           "saveSearches": "Save searches and candidates",
           "noFees": "No monthly fees ever"
@@ -1227,12 +1227,12 @@
       "commonQuestions": "Common Questions",
       "questions": {
         "0": "How do I upload my projects?",
-        "1": "How does AI analysis work?",
-        "2": "How to access AI conversational search?",
+        "1": "How does automated analysis work?",
+        "2": "How to access conversational search?",
         "3": "What formats are supported?"
       },
-      "students": "Students: Access AI Job Search from your dashboard",
-      "recruiters": "Recruiters: Access AI Candidate Search from your dashboard"
+      "students": "Students: Access Smart Job Search from your dashboard",
+      "recruiters": "Recruiters: Access Candidate Search from your dashboard"
     },
     "form": {
       "title": "Send us a Message",
@@ -1272,34 +1272,34 @@
       }
     },
     "aiSearch": {
-      "title": "AI Conversational Search",
+      "title": "Conversational Search",
       "subtitle": "Use natural language to find exactly what you need - jobs for students, candidates for recruiters",
       "students": {
-        "title": "For Students: AI Job Search",
+        "title": "For Students: Smart Job Search",
         "description": "Search for jobs using natural language. Companies find YOU for specific competencies:",
         "howToAccess": "How to Access:",
         "steps": {
           "0": "Log in to your student account",
           "1": "Go to your Dashboard",
-          "2": "Click \"AI Job Search\" in the Quick Actions menu",
-          "3": "Start chatting with our AI to find perfect job matches"
+          "2": "Click \"Smart Job Search\" in the Quick Actions menu",
+          "3": "Start chatting with our platform to find perfect job matches"
         },
-        "button": "Try AI Job Search →"
+        "button": "Try Smart Job Search →"
       },
       "recruiters": {
-        "title": "For Recruiters: AI Candidate Search",
+        "title": "For Recruiters: Candidate Search",
         "description": "Find verified candidates with natural language. Zero screening CVs:",
-        "result": "Result: See 5-10 verified matches with actual projects + AI-analyzed soft skills → contact directly — free to start",
+        "result": "Result: See 5-10 verified matches with actual projects + analyzed soft skills → contact directly — free to start",
         "howToAccess": "How to Access:",
         "steps": {
           "0": "Register free (no credit card)",
           "1": "Go to your Dashboard",
-          "2": "Click \"AI Candidate Search\" in Quick Actions",
+          "2": "Click \"Candidate Search\" in Quick Actions",
           "3": "Type natural search, see verified matches, contact directly — free to start"
         },
-        "button": "Try AI Candidate Search →"
+        "button": "Try Candidate Search →"
       },
-      "proTip": "Pro Tip: The AI understands natural language - just describe what you're looking for as if talking to a person!"
+      "proTip": "Pro Tip: The the platform understands natural language - just describe what you're looking for as if talking to a person!"
     },
     "officeHours": {
       "title": "Office Hours",
@@ -1358,7 +1358,7 @@
         "projectsCount": "15",
         "verificationScore": "100",
         "quote": "InTransparency completely changed my job search. Instead of sending hundreds of applications, recruiters found ME through my verified projects. I had 3 job offers within 2 weeks!",
-        "story": "Marco uploaded his institution-verified cloud computing projects to InTransparency. Within days, AWS recruiters discovered his portfolio through AI search and reached out directly. He accepted an offer without ever submitting a traditional application."
+        "story": "Marco uploaded his institution-verified cloud computing projects to InTransparency. Within days, AWS recruiters discovered his portfolio through smart search and reached out directly. He accepted an offer without ever submitting a traditional application."
       },
       "1": {
         "name": "Sofia Romano",
@@ -1410,7 +1410,7 @@
       },
       "1": {
         "title": "Passive Discovery",
-        "description": "Companies find YOU through AI search. No more sending hundreds of applications - let your work speak for itself."
+        "description": "Companies find YOU through smart search. No more sending hundreds of applications - let your work speak for itself."
       },
       "2": {
         "title": "Higher Quality Matches",
@@ -1493,8 +1493,8 @@
       "clearFilters": "Clear All Filters",
       "pilotTitle": "We're Onboarding Our First Institutions",
       "pilotDescription": "InTransparency is currently in pilot with Università di Bergamo. Verified student profiles are being added as institutions join the platform.",
-      "pilotCta": "Want to see what the platform can do? Try our AI-powered search demo.",
-      "tryDemo": "Try the AI Search Demo",
+      "pilotCta": "Want to see what the platform can do? Try our evidence-based search demo.",
+      "tryDemo": "Try the Smart Search Demo",
       "foundingPartner": "Become a Founding Partner"
     },
     "card": {
@@ -1583,7 +1583,7 @@
         },
         "techpark": {
           "name": "Tech Park",
-          "description": "Offer AI-verified talent as a service to your member companies",
+          "description": "Offer verified talent as a service to your member companies",
           "benefits": {
             "0": "Zero cost for the park",
             "1": "Talent pipeline for members",
@@ -1617,7 +1617,7 @@
           "subtitle": "Compliant"
         },
         "2": {
-          "title": "AI-Powered",
+          "title": "Evidence-Based",
           "subtitle": "Matching"
         },
         "3": {
@@ -1672,7 +1672,7 @@
       "title": "Company Registration",
       "subtitle": "Find verified talent - Browse Free, Full Access",
       "cardTitle": "Create Your Company Account",
-      "cardDescription": "Discover verified candidates with AI search",
+      "cardDescription": "Discover verified candidates with smart search",
       "submitButton": "Start Hiring - Free to Browse",
       "submittingButton": "Creating Account...",
       "heroTitle": "Hire Verified Talent, Not Resumes",
@@ -1684,7 +1684,7 @@
           "description": "Every skill backed by institutional projects"
         },
         "1": {
-          "title": "AI-Powered Matching",
+          "title": "Evidence-Based Matching",
           "description": "Match candidates based on verified skills"
         },
         "2": {
@@ -1770,12 +1770,12 @@
       "title": "Tech Park Registration",
       "subtitle": "Join InTransparency as a B2B partner",
       "heroTitle": "Give your member companies a recruiting advantage",
-      "heroSubtitle": "Offer AI-verified talent access as a service to your park's companies. Zero cost for the park, massive value for members.",
+      "heroSubtitle": "Offer verified talent access as a service to your park's companies. Zero cost for the park, massive value for members.",
       "freeBadge": "Free for Tech Parks",
       "benefits": {
         "0": {
           "title": "Talent Pipeline for Members",
-          "description": "Give your member companies access to AI-verified university talent at a fraction of traditional recruiting costs."
+          "description": "Give your member companies access to verified university talent at a fraction of traditional recruiting costs."
         },
         "1": {
           "title": "Placement Analytics",
@@ -1783,7 +1783,7 @@
         },
         "2": {
           "title": "Skill Matching",
-          "description": "Match student competencies with your member companies' needs. AI-powered, not CV-based."
+          "description": "Match student competencies with your member companies' needs. evidence-based, not CV-based."
         },
         "3": {
           "title": "Zero Cost for the Park",
@@ -1797,7 +1797,7 @@
       "mobileBenefitsTitle": "Why join InTransparency?",
       "mobileBenefits": {
         "0": "Talent pipeline for member companies",
-        "1": "AI-verified student profiles",
+        "1": "verified student profiles",
         "2": "Placement analytics",
         "3": "Zero cost for the park"
       },
@@ -1856,7 +1856,7 @@
     "hero": {
       "badge": "Complete Platform",
       "title": "Powerful Features for Everyone",
-      "subtitle": "From institution-verified skills to AI search, everything you need to connect students and companies."
+      "subtitle": "From institution-verified skills to smart search, everything you need to connect students and companies."
     },
     "filters": {
       "all": "All",
@@ -1954,7 +1954,7 @@
         "cards": {
           "0": {
             "title": "Smart Portfolio Builder",
-            "desc": "Upload any file type — our AI does the heavy lifting, extracting skills and scoring your work.",
+            "desc": "Upload any file type — our platform does the heavy lifting, extracting skills and scoring your work.",
             "features": {
               "0": "Code, PDFs, videos, presentations accepted",
               "1": "Extracts hard and soft skills automatically",
@@ -2264,7 +2264,7 @@
         },
         "1": {
           "title": "Bias-Resistant Screening",
-          "desc": "AI analyzes actual deliverables — code, designs, reports, research. No room for name bias, age bias, or unconscious pattern-matching on CV formatting."
+          "desc": "our platform analyzes actual deliverables — code, designs, reports, research. No room for name bias, age bias, or unconscious pattern-matching on CV formatting."
         },
         "2": {
           "title": "Hidden Talent, Visible",
@@ -2870,24 +2870,24 @@
   "demoAISearch": {
     "demoConfigs": {
       "student": {
-        "title": "AI Job Search Demo",
+        "title": "Smart Job Search Demo",
         "subtitle": "For Students",
         "placeholder": "Describe your ideal job...",
-        "initialMessage": "Hi! I'm Transparenty, your AI job search assistant. Tell me what kind of job you're looking for in plain English!\n\nTry: \"Find me frontend developer jobs in Milan at startups\" or \"Stage curriculare in data science\"",
+        "initialMessage": "Hi! I'm Transparenty, your smart job search assistant. Tell me what kind of job you're looking for in plain English!\n\nTry: \"Find me frontend developer jobs in Milan at startups\" or \"Stage curriculare in data science\"",
         "registrationLink": "/auth/register/student"
       },
       "company": {
-        "title": "AI Candidate Search Demo",
+        "title": "Candidate Search Demo",
         "subtitle": "For Companies",
         "placeholder": "Describe who you're looking for...",
-        "initialMessage": "Hi! I'm Transparenty, your AI recruiting assistant. Describe the candidate you need in plain English!\n\nTry: \"Cybersecurity students Roma Network Security 30/30\"",
+        "initialMessage": "Hi! I'm Transparenty, your evidence-based recruiting assistant. Describe the candidate you need in plain English!\n\nTry: \"Cybersecurity students Roma Network Security 30/30\"",
         "registrationLink": "/auth/register/recruiter"
       },
       "university": {
-        "title": "AI Search Hub Demo",
+        "title": "Smart Search Hub Demo",
         "subtitle": "For Institutes (Universities & ITS)",
         "placeholder": "Search students or jobs...",
-        "initialMessage": "Hi! I'm Transparenty, your institute AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Show me CS students with 3.8+ GPA\" or \"Find tech companies hiring\"",
+        "initialMessage": "Hi! I'm Transparenty, your institute assistant. I can search BOTH students and job opportunities!\n\nTry: \"Show me CS students with 3.8+ GPA\" or \"Find tech companies hiring\"",
         "registrationLink": "/auth/register/academic-partner"
       }
     },
@@ -2942,7 +2942,7 @@
       "badge": "Our Transparency Commitment",
       "title": "Verified Skills",
       "subtitle": "Clear Explanations",
-      "description": "Institution-verified hard and soft skills. Explainable AI matching. Direct company feedback. Complete transparency for students, companies, and institutions.",
+      "description": "Institution-verified hard and soft skills. Explainable evidence-based matching. Direct company feedback. Complete transparency for students, companies, and institutions.",
       "ctas": {
         "features": "See Our Features",
         "demo": "Try Live Demo"
@@ -2981,7 +2981,7 @@
           },
           "1": {
             "title": "70% want more clarity",
-            "subtitle": "from AI tools",
+            "subtitle": "automatically",
             "description": "Explainable matching builds trust"
           },
           "2": {
@@ -3007,13 +3007,13 @@
           }
         },
         "1": {
-          "title": "2. Explainable AI",
+          "title": "2. Explainable Matching",
           "description": "Every match shows exactly WHY. Companies can add notes with feedback.",
           "items": {
             "0": "Transparent match scoring (e.g., \"85% match\")",
             "1": "Clear explanations (\"Your Python project matches 3/4 requirements\")",
             "2": "Company notes: \"Add AWS experience and you're perfect\"",
-            "3": "85% higher trust in transparent AI (EU studies)"
+            "3": "85% higher trust in transparent matching (EU studies)"
           }
         },
         "2": {
@@ -3083,7 +3083,7 @@
         "1": {
           "value": "85%",
           "label": "Higher Trust",
-          "note": "(EU AI transparency studies)"
+          "note": "(EU algorithmic transparency studies)"
         },
         "2": {
           "value": "25%",
@@ -3099,7 +3099,7 @@
     },
     "cta": {
       "title": "Experience True Transparency",
-      "subtitle": "Join a platform where verified skills, explainable AI, and mutual visibility create better matches for everyone.",
+      "subtitle": "Join a platform where verified skills, explainable matching, and mutual visibility create better matches for everyone.",
       "buttons": {
         "getStarted": "Get Started Free",
         "demo": "Try Live Demo",
@@ -3109,7 +3109,7 @@
         "gdpr": "GDPR Compliant",
         "soc2": "SOC 2 Type II",
         "iso": "ISO 27001",
-        "explainableAI": "Explainable AI"
+        "explainableAI": "Explainable Matching"
       }
     }
   },
@@ -3300,7 +3300,7 @@
       "items": {
         "0": "Institution-verified projects (all formats)",
         "1": "Hard skills + soft skills analysis",
-        "2": "AI-powered complete profile building",
+        "2": "evidence-based complete profile building",
         "3": "Proof of work beats claims",
         "4": "Find hidden talent 2x faster"
       }
@@ -3319,7 +3319,7 @@
           },
           "1": {
             "title": "Limited Explanations:",
-            "description": "When matching isn't explained, students don't know what to improve. 70% of candidates want more transparency from AI hiring tools."
+            "description": "When matching isn't explained, students don't know what to improve. 70% of candidates want more transparency from evidence-based hiring tools."
           },
           "2": {
             "title": "Unclear Requirements:",
@@ -3339,8 +3339,8 @@
             "description": "Hard skills (Python, AutoCAD, Excel) and soft skills (teamwork, leadership, communication) verified through projects, courses, and institutional data."
           },
           "1": {
-            "title": "Explainable AI:",
-            "description": "Every match explains WHY (\"Your Python project matches 3/4 requirements\"). No black boxes. 85% higher trust in transparent AI per EU studies."
+            "title": "Explainable Matching:",
+            "description": "Every match explains WHY (\"Your Python project matches 3/4 requirements\"). No black boxes. 85% higher trust in transparent matching per EU studies."
           },
           "2": {
             "title": "Bidirectional Transparency:",
@@ -3464,7 +3464,7 @@
     },
     "killResume": {
       "title": "It's Time to Move Beyond the Resume",
-      "description": "Resumes were invented in 1482. Today we have AI, verified skill analysis, and academic verification. Why are we still relying on a 500-year-old format to hire for 21st-century roles?",
+      "description": "Resumes were invented in 1482. Today we have verified skill analysis, and academic verification. Why are we still relying on a 500-year-old format to hire for 21st-century roles?",
       "oldYear": "1482",
       "oldLabel": "Year resumes were invented",
       "newYear": "2025",
@@ -3500,7 +3500,7 @@
       "features": {
         "0": "Unlimited projects",
         "1": "University verification",
-        "2": "AI job search",
+        "2": "smart job search",
         "3": "Skill assessments",
         "4": "Contract check"
       },
@@ -3538,7 +3538,7 @@
             "1": "50 talent unlocks per month",
             "2": "10 active job postings",
             "3": "Full pipeline with all stages",
-            "4": "AI Hiring Advisor (unlimited)",
+            "4": "Evidence-Based Hiring Advisor (unlimited)",
             "5": "Interview Kit Generator (unlimited)",
             "6": "Decision Packs",
             "7": "5 GB document storage"
@@ -3588,7 +3588,7 @@
           "cta": "Get Started",
           "features": {
             "0": "Unlimited students",
-            "1": "AI project verification (theses, GitHub, portfolios)",
+            "1": "project verification (theses, GitHub, portfolios)",
             "2": "Professor endorsements",
             "3": "AlmaLaurea sync",
             "4": "Aggregated placement dashboard",
@@ -3633,7 +3633,7 @@
         },
         "2": {
           "q": "Why is the Growth plan worth it?",
-          "a": "At €149/month, you get 50 talent unlocks, 10 job posts, and full access to AI hiring tools — including the Hiring Advisor and Interview Kit Generator. That's less than LinkedIn Recruiter Lite, with university-verified data."
+          "a": "At €149/month, you get 50 talent unlocks, 10 job posts, and full access to evidence-based hiring tools — including the Hiring Advisor and Interview Kit Generator. That's less than LinkedIn Recruiter Lite, with university-verified data."
         },
         "3": {
           "q": "Do universities pay anything?",
@@ -4012,8 +4012,8 @@
   },
   "chat": {
     "hero": {
-      "title": "AI Assistant Hub",
-      "subtitle": "Get personalized help for your journey - 24/7 conversational AI that's transparent about data usage",
+      "title": "Assistant Hub",
+      "subtitle": "Get personalized help for your journey - 24/7 conversational matching that's transparent about data usage",
       "roles": {
         "student": "Student",
         "company": "Company",
@@ -4023,7 +4023,7 @@
     "chatbot": {
       "student": {
         "title": "Career Assistant",
-        "greeting": "Hi! I'm Transparenty, your AI career assistant. I'm here to help you build a stellar profile, discover perfect-fit jobs, and get personalized career advice - all while being transparent about how your data helps improve your experience.",
+        "greeting": "Hi! I'm Transparenty, your career assistant. I'm here to help you build a stellar profile, discover perfect-fit jobs, and get personalized career advice - all while being transparent about how your data helps improve your experience.",
         "examples": {
           "0": "Help me build my profile",
           "1": "Find jobs matching my skills in Milan",
@@ -4033,7 +4033,7 @@
       },
       "company": {
         "title": "Recruiting Assistant",
-        "greeting": "Hi! I'm Transparenty, your AI recruiting assistant. I help you find top talent, understand match scores, and craft compelling job descriptions. Every search is logged transparently to improve your experience.",
+        "greeting": "Hi! I'm Transparenty, your evidence-based recruiting assistant. I help you find top talent, understand match scores, and craft compelling job descriptions. Every search is logged transparently to improve your experience.",
         "examples": {
           "0": "Find cybersecurity students in Rome",
           "1": "Marketing intern with creative portfolio",
@@ -4051,10 +4051,10 @@
           "3": "European job opportunities for Economics students"
         }
       },
-      "powered": "Powered by AI • GDPR Compliant",
+      "powered": "Evidence-based • GDPR Compliant",
       "inputPlaceholder": "Type your message...",
       "tryAsking": "Try asking:",
-      "transparencyNotice": "<strong>Transparent AI:</strong> This conversation helps refine your experience. Data is GDPR-compliant and used to improve matches. You can opt out anytime in settings.",
+      "transparencyNotice": "<strong>Transparent Matching:</strong> This conversation helps refine your experience. Data is GDPR-compliant and used to improve matches. You can opt out anytime in settings.",
       "newConversation": "New conversation",
       "suggestedActions": "Suggested actions:",
       "quickActions": "Quick actions:",
@@ -4424,9 +4424,9 @@
     },
     "search": {
       "placeholder": "Try: \"Python developer with ML background and healthcare projects\"",
-      "aiButton": "AI Search",
+      "aiButton": "Smart Search",
       "filtersButton": "Filters",
-      "aiUnderstanding": "AI Understanding: Looking for",
+      "aiUnderstanding": "Understanding: Looking for",
       "withSkills": "graduates with",
       "andProjectExperience": "skills and",
       "projectExperience": "project experience"
@@ -4599,11 +4599,11 @@
           "description": "Institution-verified grades and courses"
         },
         "aiAnalysis": {
-          "title": "AI Project Analysis",
+          "title": "Project Analysis",
           "description": "GitHub/PDF/Behance/Portfolio multi-format analysis"
         },
         "conversationalAI": {
-          "title": "Conversational AI",
+          "title": "Conversational Search",
           "description": "\"Find Bocconi finance with M&A thesis\""
         },
         "academicFilters": {
@@ -4777,7 +4777,7 @@
   "advancedSearchDemo": {
     "heroBanner": "Advanced Search - Filter & Find Exactly What You Need",
     "verifiedResults": "Verified Results",
-    "subtitle": "Use filters to narrow down and find your perfect match. No AI needed - just traditional search.",
+    "subtitle": "Use filters to narrow down and find your perfect match. No chatbot needed - just traditional search.",
     "tabs": {
       "student": "Student Demo",
       "company": "Company Demo",
@@ -4896,10 +4896,10 @@
   },
   "aiSearchDemo": {
     "banner": {
-      "badge": "Try AI Conversational Search - No Login Required",
+      "badge": "Try Conversational Search - No Login Required",
       "title": "Experience",
-      "titleHighlight": "AI-Powered Search",
-      "description": "Ask in plain English what you need. Our AI understands and finds exactly what you're looking for.",
+      "titleHighlight": "Evidence-Based Search",
+      "description": "Ask in plain English what you need. Our the platform understands and finds exactly what you're looking for.",
       "alternativeTitle": "Prefer traditional filters?",
       "alternativeDescription": "Try our Advanced Search with manual filters",
       "alternativeButton": "Try Advanced Search"
@@ -4915,22 +4915,22 @@
     },
     "demoConfigs": {
       "student": {
-        "title": "AI Job Search Demo",
+        "title": "Smart Job Search Demo",
         "subtitle": "For Students",
         "placeholder": "Describe your ideal job...",
-        "initialMessage": "Hi! I'm Transparenty, your AI job search assistant. Tell me what you're looking for — any field, any location!\n\nTry: \"Graphic design internship in Milan\" or \"Marketing jobs in Rome\" or \"Stage curriculare in data science\""
+        "initialMessage": "Hi! I'm Transparenty, your smart job search assistant. Tell me what you're looking for — any field, any location!\n\nTry: \"Graphic design internship in Milan\" or \"Marketing jobs in Rome\" or \"Stage curriculare in data science\""
       },
       "company": {
-        "title": "AI Candidate Search Demo",
+        "title": "Candidate Search Demo",
         "subtitle": "For Companies",
         "placeholder": "Describe who you're looking for...",
-        "initialMessage": "Hi! I'm Transparenty, your AI recruiting assistant. Describe the candidate you need — skills, major, location!\n\nTry: \"Students with Figma and UI/UX skills\" or \"Marketing graduates with social media experience\""
+        "initialMessage": "Hi! I'm Transparenty, your evidence-based recruiting assistant. Describe the candidate you need — skills, major, location!\n\nTry: \"Students with Figma and UI/UX skills\" or \"Marketing graduates with social media experience\""
       },
       "university": {
-        "title": "AI Search Hub Demo",
+        "title": "Smart Search Hub Demo",
         "subtitle": "For Institutes (Universities & ITS)",
         "placeholder": "Search students or jobs...",
-        "initialMessage": "Hi! I'm Transparenty, your institute AI assistant. I can search BOTH students and job opportunities!\n\nTry: \"Design students\" or \"Marketing job opportunities\" or \"CS students with 3.8+ GPA\""
+        "initialMessage": "Hi! I'm Transparenty, your institute assistant. I can search BOTH students and job opportunities!\n\nTry: \"Design students\" or \"Marketing job opportunities\" or \"CS students with 3.8+ GPA\""
       }
     },
     "exampleQueries": {
@@ -5578,8 +5578,8 @@
     "noActivitiesFiltered": "Try adjusting your filter or check back later for new activity."
   },
   "studentAiJobSearch": {
-    "title": "AI Job Search",
-    "subtitle": "Describe your ideal job and let AI find matching opportunities",
+    "title": "Smart Job Search",
+    "subtitle": "Describe your ideal job and let the platform find matching opportunities",
     "chatPlaceholder": "e.g., I'm looking for a remote React developer internship...",
     "search": "Search",
     "searching": "Searching for matching jobs...",
@@ -5759,7 +5759,7 @@
         "retry": "Try again"
       },
       "aiShortlist": {
-        "title": "AI Shortlist",
+        "title": "Shortlist",
         "subtitle": "Post a role and get auto-matched verified candidates",
         "form": {
           "roleTitle": "Role Title",
@@ -5930,11 +5930,11 @@
         "contact": "Contact"
       },
       "aiSearch": {
-        "title": "AI Candidate Search",
+        "title": "Candidate Search",
         "subtitle": "Describe who you need in plain English",
         "placeholder": "Describe who you're looking for...",
         "tryExamples": "Try These Examples",
-        "whyUseAiSearch": "Why Use AI Search?",
+        "whyUseAiSearch": "Why Use Smart Search?",
         "benefitNaturalLanguage": "Natural Language",
         "benefitNaturalLanguageDesc": "Describe requirements like talking to a person",
         "benefitRealDatabase": "Real Database",
@@ -5947,7 +5947,7 @@
       },
       "advancedSearch": {
         "title": "Advanced Talent Search",
-        "subtitle": "Find the perfect candidates with precision filters and AI-powered matching",
+        "subtitle": "Find the perfect candidates with precision filters and evidence-based matching",
         "exportResults": "Export Results",
         "search": "Search",
         "searching": "Searching...",
@@ -6015,7 +6015,7 @@
         "backToCandidates": "Back to Candidates",
         "downloadPdf": "Download PDF",
         "skillsEvidenceMap": "Skills Evidence Map",
-        "aiAnalysisOverview": "AI Analysis Overview",
+        "aiAnalysisOverview": "Automated Analysis Overview",
         "professorEndorsements": "Professor Endorsements",
         "gradeProvenance": "Grade Provenance",
         "placementProbabilityFactors": "Placement Probability Factors",
@@ -6151,11 +6151,11 @@
       },
       "importJobs": {
         "title": "Import Jobs from Career Page",
-        "description": "Paste a company's careers page URL. Our AI extracts all job listings and imports them automatically.",
+        "description": "Paste a company's careers page URL. Our the platform extracts all job listings and imports them automatically.",
         "importFromUrl": "Import from URL",
         "worksWithAnyPage": "Works with any career page -- Satispay, Accenture, startups, SMEs.",
         "careerPageUrl": "Career Page URL *",
-        "companyNameLabel": "Company Name (optional -- AI detects it)",
+        "companyNameLabel": "Company Name (optional -- auto-detected)",
         "analyzing": "Analyzing career page...",
         "importJobs": "Import Jobs"
       }
@@ -6392,7 +6392,7 @@
       "title": "Jobs That Match Your Personality",
       "subtitle": "Your profile suggests you'd thrive in roles related to {careers}.",
       "browseJobs": "Browse Jobs",
-      "aiSearch": "AI Job Search"
+      "aiSearch": "Smart Job Search"
     },
     "famousPersonalities": {
       "title": "You Share Traits With",
@@ -6526,7 +6526,7 @@
       },
       "technicalPortfolios": {
         "title": "Technical Depth Analysis",
-        "desc": "AI analyses complexity, tools used, and innovation level of each engineering project."
+        "desc": "the platform analyses complexity, tools used, and innovation level of each engineering project."
       },
       "institutionBacked": {
         "title": "University-Verified Grades",
@@ -6643,8 +6643,8 @@
         "desc": "Competenze confermate dai professori, non auto-dichiarate. Vedi i progetti reali degli studenti."
       },
       "aiSearch": {
-        "title": "Ricerca AI Intelligente",
-        "desc": "Descrivi il candidato ideale in linguaggio naturale. L'AI trova i profili più compatibili."
+        "title": "Ricerca Intelligente Intelligente",
+        "desc": "Descrivi il candidato ideale in linguaggio naturale. Il sistema trova i profili più compatibili."
       },
       "payPerContact": {
         "title": "Contact Candidates — Free During Launch",
@@ -7161,8 +7161,8 @@
     "service1Item4": "Companies pay to contact, not the school",
     "service2Title": "Intelligent Matching",
     "service2Free": "Free for students",
-    "service2Subtitle": "Transparent AI for Matching",
-    "service2Item1": "AI matches skills to company requirements",
+    "service2Subtitle": "Transparent Matching for Matching",
+    "service2Item1": "automatically matches skills to company requirements",
     "service2Item2": "Verified skills improve visibility",
     "service2Item3": "Companies see school endorsement",
     "service2Item4": "Transparent matching explanations",
@@ -7254,10 +7254,10 @@
     "mp1Check2": "Students don't apply - companies reach out",
     "mp1Check3": "Your verification badge = trust signal",
     "mp1Check4": "Companies contact students directly",
-    "mp2Title": "AI-Powered Matching",
-    "mp2Check1": "AI matches skills to job requirements",
+    "mp2Title": "Evidence-Based Matching",
+    "mp2Check1": "automatically matches skills to job requirements",
     "mp2Check2": "Verified skills improve visibility",
-    "mp2Check3": "Transparent AI explanations",
+    "mp2Check3": "Transparent clear explanations",
     "mp2Check4": "Faster screening with verified data",
     "mp3Title": "Track Your Impact",
     "mp3Check1": "See which companies viewed your students",
@@ -7277,8 +7277,8 @@
     "discoveryNote": "University-verified credentials employers trust",
     "matchingTitle": "Matching Service",
     "matchingBadge": "FREE for Students",
-    "matchingSubtitle": "Transparent AI Matching",
-    "matchingItem1": "AI matches skills to job requirements",
+    "matchingSubtitle": "Transparent Matching",
+    "matchingItem1": "automatically matches skills to job requirements",
     "matchingItem2": "Verified skills improve visibility",
     "matchingItem3": "Companies see your institutional endorsement",
     "matchingItem4": "Transparent matching explanations",
@@ -7371,10 +7371,10 @@
     "mp1Check1": "Companies search for verified graduates",
     "mp1Check2": "Students don't apply - they get contacted",
     "mp1Check3": "Institutional verification = trust signal",
-    "mp2Title": "Transparent AI Matching",
+    "mp2Title": "Transparent Matching",
     "mp2Check1": "\"High compatibility: Python verified from thesis\"",
     "mp2Check2": "Verified skills = higher scores",
-    "mp2Check3": "Transparent AI explanations",
+    "mp2Check3": "Transparent clear explanations",
     "mp3Title": "Track Your Impact",
     "mp3Check1": "See which companies view your students",
     "mp3Check2": "Exportable reports for ANVUR",
@@ -7443,12 +7443,12 @@
     "sq4": "How does the referral program work?",
     "sa4": "Invite your friends using your referral link. For every 3 friends who register, you get 1 month of Premium for free. With 10 referrals you get 6 months, and with 50 referrals you get lifetime Premium!",
     "sq5": "How much does InTransparency cost for students?",
-    "sa5": "InTransparency is completely free for students! We also offer optional Premium plans with advanced features like in-depth AI analysis and greater visibility.",
+    "sa5": "InTransparency is completely free for students! We also offer optional Premium plans with advanced features like in-depth automated analysis and greater visibility.",
     "cq1": "How can I find candidates?",
-    "ca1": "You can use our advanced search to filter candidates by skills, university, graduation year, GPA, and more. Our AI matching system automatically suggests the most suitable candidates for your open positions.",
+    "ca1": "You can use our advanced search to filter candidates by skills, university, graduation year, GPA, and more. Our evidence-based matching automatically suggests the most suitable candidates for your open positions.",
     "cq2": "How much does it cost to contact a candidate?",
     "ca2": "With the Pay-per-Contact plan, each contact costs €5. If you contact more than 20 candidates per month, we recommend the Enterprise plan at €99/month which includes unlimited contacts, advanced filters, and API access.",
-    "cq3": "How does AI matching work?",
+    "cq3": "How does evidence-based matching work?",
     "ca3": "Our algorithm analyzes students' projects, verified skills, university grades, and preferences to calculate a compatibility score. The higher the score, the better the match with your needs.",
     "cq4": "Can I post job listings?",
     "ca4": "Yes! You can post job listings from your dashboard. Students can apply directly and you'll receive notifications for each new application.",
@@ -7682,8 +7682,8 @@
     }
   },
   "interviewPrep": {
-    "title": "AI Interview Prep",
-    "subtitle": "Practice with AI-generated questions based on your real skills and projects. Get instant feedback on your answers.",
+    "title": "Interview Prep",
+    "subtitle": "Practice with auto-generated questions based on your real skills and projects. Get instant feedback on your answers.",
     "error": "Something went wrong. Please try again.",
     "setup": {
       "title": "Set Up Your Practice Session",
@@ -7702,11 +7702,11 @@
     "practice": {
       "title": "Your Answer",
       "placeholder": "Type your answer here... Write it as if you were speaking in an actual interview.",
-      "evaluate": "Get AI Feedback",
+      "evaluate": "Get Feedback",
       "evaluating": "Evaluating..."
     },
     "feedback": {
-      "title": "AI Feedback",
+      "title": "Feedback",
       "strengths": "What was strong",
       "improvements": "How to improve",
       "modelAnswer": "Suggested approach"
@@ -7772,7 +7772,7 @@
     "skillsTaught": "Skills taught",
     "alignedSkills": "Aligned with market",
     "missingSkills": "Missing from curriculum",
-    "suggestions": "AI Suggestions",
+    "suggestions": "Suggestions",
     "noCourses": "No courses found",
     "noCoursesDescription": "Course data will appear once courses are added to the system.",
     "topDemandedSkills": "Top demanded skills",
@@ -7814,7 +7814,7 @@
     "totalStudents": "Total Students",
     "totalProjects": "Total Projects",
     "verified": "Verified",
-    "aiAnalyzed": "AI Analyzed",
+    "aiAnalyzed": "Analyzed",
     "engagementStats": "Engagement",
     "profileViews": "Profile Views",
     "uniqueRecruiters": "Unique Recruiters",
@@ -7868,9 +7868,9 @@
     "strengths": "Proven Strengths",
     "growthAreas": "Growth Areas",
     "growthAreasDescription": "Skills developing but not yet production-ready",
-    "aiProjectAnalysis": "AI Project Analysis",
-    "aiProjectAnalysisDescription": "What the AI found in their verified project work",
-    "recommendations": "AI Recommendations",
+    "aiProjectAnalysis": "Project Analysis",
+    "aiProjectAnalysisDescription": "What the matches found in their verified project work",
+    "recommendations": "Suggested matches",
     "recommendationsDescription": "Suggested next steps for this candidate's development",
     "project": "project",
     "projects": "projects",
@@ -8786,7 +8786,7 @@
       "noChallengesDescription": "Challenges from companies will appear here for your review"
     },
     "aiSearch": {
-      "title": "AI Search Hub",
+      "title": "Smart Search Hub",
       "subtitle": "Search students & job opportunities",
       "searchPlaceholder": "Search students or jobs...",
       "exampleQueries": "Example Queries",
@@ -9025,7 +9025,7 @@
       "title": "Your academic work, verified and visible to employers",
       "subtitle": "Build a portfolio of projects, grades, and skills that companies can actually verify. Not another CV — real proof of what you can do.",
       "cta": "Create Your Portfolio",
-      "secondaryCta": "Try the AI Demo"
+      "secondaryCta": "Try the Demo"
     },
     "benefits": {
       "0": {
@@ -9058,7 +9058,7 @@
       "title": "Your hands-on skills deserve to be seen",
       "subtitle": "You built real things during your ITS program. Show it to companies with a portfolio verified by your institute.",
       "cta": "Create Your Portfolio",
-      "secondaryCta": "Try the AI Demo"
+      "secondaryCta": "Try the Demo"
     },
     "benefits": {
       "0": {
@@ -9124,7 +9124,7 @@
       "title": "Pre-screened talent without agency fees",
       "subtitle": "Access graduates with verified projects and normalized grades. No middleman recruiter, no per-posting fees. You pay only when you find the right candidate.",
       "cta": "Create Your Account",
-      "secondaryCta": "Try AI Search"
+      "secondaryCta": "Try Smart Search"
     },
     "benefits": {
       "0": {
@@ -9165,8 +9165,8 @@
         "description": "University-verified projects, normalized grades, personality assessments. Present clients with data, not just CVs."
       },
       "1": {
-        "title": "Conversational AI search",
-        "description": "Describe the ideal profile in natural language. AI finds the best-matching candidates with transparent explanations."
+        "title": "Conversational smart search",
+        "description": "Describe the ideal profile in natural language. the platform finds the best-matching candidates with transparent explanations."
       },
       "2": {
         "title": "Candidate comparison",
@@ -9190,7 +9190,7 @@
       "title": "Hire fast with proof, not endless interviews",
       "subtitle": "See what candidates actually built — verified projects, real skills, assessed personality. Cut your hiring process from weeks to days.",
       "cta": "Create Your Account",
-      "secondaryCta": "Try AI Search"
+      "secondaryCta": "Try Smart Search"
     },
     "benefits": {
       "0": {
@@ -9199,7 +9199,7 @@
       },
       "1": {
         "title": "Hiring speed",
-        "description": "AI search, verified skills filters, candidate comparison. From need to offer in days, not months."
+        "description": "smart search, verified skills filters, candidate comparison. From need to offer in days, not months."
       },
       "2": {
         "title": "No upfront cost",
@@ -9220,7 +9220,7 @@
   "offerComparison": {
     "title": "Compare Offers",
     "subtitle": "Put your offers side by side to decide with clarity.",
-    "hint": "Enter details for each offer. Soon AI will automatically analyze which is most advantageous for you based on your profile, industry, and location.",
+    "hint": "Enter details for each offer. Soon the platform will automatically analyze which is most advantageous for you based on your profile, industry, and location.",
     "fields": {
       "company": "Company",
       "role": "Role",
@@ -9244,7 +9244,7 @@
     "remove": "Remove",
     "comingSoon": {
       "title": "Coming soon",
-      "aiAnalysis": "AI analysis: which offer is best for you based on your profile and career goals",
+      "aiAnalysis": "Analysis: which offer is best for you based on your profile and career goals",
       "ccnlCheck": "Automatic CCNL check: confirm the salary meets collective agreement minimums",
       "salaryPercentile": "Salary percentile: how each offer ranks against the market in your area and role"
     }
@@ -9419,7 +9419,7 @@
     "comingSoon": {
       "title": "Coming soon",
       "items": [
-        "AI-suggested optimal interview times based on candidate timezone",
+        "suggested optimal interview times based on candidate timezone",
         "Google Calendar and Outlook sync",
         "Automatic email reminders 24h before",
         "Candidate self-booking from your availability"
@@ -9640,7 +9640,7 @@
           "us": "Free to browse, pay per contact"
         },
         "5": {
-          "feature": "AI matching",
+          "feature": "evidence-based matching",
           "them": "Keyword matching",
           "us": "Semantic skill + project matching"
         }
@@ -9801,7 +9801,7 @@
   },
   "newProject": {
     "title": "New Project",
-    "subtitle": "Describe your project — AI handles the rest.",
+    "subtitle": "Describe your project — the platform handles the rest.",
     "back": "Back",
     "backToEdit": "Edit",
     "error": "Failed to create project. Please try again.",
@@ -9811,23 +9811,23 @@
     },
     "input": {
       "title": "Tell us about your project",
-      "description": "Write the title and description. AI will automatically detect skills, tools, and category.",
+      "description": "Write the title and description. the platform will automatically detect skills, tools, and category.",
       "projectTitle": "Title",
       "titlePlaceholder": "e.g. Warehouse Management App",
       "projectDescription": "Description",
       "descriptionPlaceholder": "What did you build? What was the problem? How did you solve it? What technologies did you use?",
-      "descriptionHint": "The more details you write, the better the AI analysis.",
+      "descriptionHint": "The more details you write, the better the automated analysis.",
       "githubUrl": "GitHub or repository link (optional)",
       "analyzing": "Analyzing...",
       "analyzeButton": "Analyze & Continue"
     },
     "review": {
-      "aiDetected": "AI Detected",
+      "aiDetected": "Auto-detected",
       "skills": "Skills",
-      "skillsHint": "Suggested by AI. Add or remove as needed.",
+      "skillsHint": "Suggested automatically. Add or remove as needed.",
       "addSkill": "Add skill...",
       "tools": "Tools",
-      "toolsHint": "Suggested by AI. Add or remove as needed.",
+      "toolsHint": "Suggested automatically. Add or remove as needed.",
       "addTool": "Add tool...",
       "image": "Image (optional)",
       "uploadImage": "Click to upload an image",
@@ -10506,12 +10506,12 @@
   },
   "hiringAdvisor": {
     "title": "Hiring Advisor",
-    "subtitle": "Your AI recruiting consultant — get expert advice on hiring, interviews, salaries, and strategy.",
+    "subtitle": "Your evidence-based recruiting consultant — get expert advice on hiring, interviews, salaries, and strategy.",
     "error": "Something went wrong. Please try again.",
     "thinking": "Thinking...",
     "placeholder": "Ask about job descriptions, salary benchmarks, interview strategy, Italian employment law...",
     "welcomeTitle": "How can I help you hire better?",
-    "welcomeMessage": "I'm your AI hiring advisor. Ask me anything about recruiting — from writing job descriptions to Italian employment law.",
+    "welcomeMessage": "I'm your evidence-based hiring advisor. Ask me anything about recruiting — from writing job descriptions to Italian employment law.",
     "prompts": {
       "writeJd": "Help me write a job description for a junior developer",
       "salaryBenchmark": "What's the salary range for a marketing manager in Milan?",
@@ -10538,7 +10538,7 @@
   },
   "interviewKit": {
     "title": "Interview Kit Generator",
-    "subtitle": "AI-generated interview questions, evaluation rubrics, and screening guides tailored to your roles.",
+    "subtitle": "auto-generated interview questions, evaluation rubrics, and screening guides tailored to your roles.",
     "selectJob": "Select a Job Posting",
     "selectJobPlaceholder": "Choose a job to generate questions for...",
     "customRole": "Describe a custom role instead",

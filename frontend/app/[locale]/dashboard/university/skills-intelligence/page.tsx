@@ -107,7 +107,7 @@ export default function SkillsIntelligencePage() {
             Skills Intelligence
           </h1>
           <p className="text-muted-foreground max-w-2xl">
-            Degree-program alignment with the labor market, monthly trends, and AI-assisted
+            Degree-program alignment with the labor market, monthly trends, and evidence-based
             curriculum recommendations. The measurement layer Cattolica asked for.
           </p>
         </div>

@@ -78,7 +78,7 @@ const COMPARISON: ComparisonRow[] = [
   { category: 'Recruiting', feature: 'Exportable hiring evidence packet', it: 'yes', jt: 'partial', hs: 'partial' },
 
   { category: 'Universities', feature: 'Program-level skills gap analytics', it: 'yes', jt: 'no', hs: 'partial' },
-  { category: 'Universities', feature: 'AI-assisted curriculum recommendations', it: 'yes', jt: 'no', hs: 'no' },
+  { category: 'Universities', feature: 'Data-driven curriculum recommendations', it: 'yes', jt: 'no', hs: 'no' },
   { category: 'Universities', feature: 'Professor portal (no account required)', it: 'yes', jt: 'no', hs: 'no' },
   { category: 'Universities', feature: 'Free for universities', it: 'yes', jt: 'yes', hs: 'no', detail: 'Handshake charges universities $1K–$20K/year.' },
 

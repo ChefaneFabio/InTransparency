@@ -18,7 +18,7 @@
     "forInstitutions": "Per Istituzioni",
     "forCompanies": "Per Aziende",
     "buildPortfolio": "Crea Portfolio",
-    "aiJobSearch": "Ricerca AI",
+    "aiJobSearch": "Ricerca Intelligente",
     "verifyStudents": "Verifica Studenti",
     "analytics": "Analytics",
     "forHighSchools": "Per Scuole Superiori",
@@ -46,7 +46,7 @@
         "jobs": "Lavori",
         "applications": "Candidature",
         "skillPath": "Percorso Competenze",
-        "aiJobSearch": "Ricerca AI",
+        "aiJobSearch": "Ricerca Intelligente",
         "messages": "Messaggi",
         "mentoring": "Mentoring",
         "analytics": "Analytics",
@@ -91,8 +91,8 @@
         "candidates": "Candidati",
         "talentDiscovery": "Scopri Talenti",
         "advancedSearch": "Ricerca Avanzata",
-        "aiSearch": "Ricerca AI",
-        "aiShortlist": "Shortlist AI",
+        "aiSearch": "Ricerca Intelligente",
+        "aiShortlist": "Shortlist",
         "geographicSearch": "Ricerca Geografica",
         "courseSearch": "Ricerca Corsi",
         "savedCandidates": "Candidati Salvati",
@@ -147,7 +147,7 @@
         "alumni": "Alumni",
         "analytics": "Analytics",
         "challenges": "Sfide",
-        "aiSearch": "Ricerca AI",
+        "aiSearch": "Ricerca Intelligente",
         "sync": "Sincronizzazione",
         "settings": "Impostazioni",
         "partnerships": "Partnership di Scambio",
@@ -264,7 +264,7 @@
             "description": "Carica i tuoi progetti, la tua università li certifica"
           },
           {
-            "title": "AI che Ti Capisce",
+            "title": "Comprensione Intelligente",
             "description": "Analizziamo le tue competenze — hard e soft — dai tuoi progetti reali"
           },
           {
@@ -404,7 +404,7 @@
       "solutionPoints": {
         "verified": "Progetti verificati dall'istituzione (30/30 in tesi ML)",
         "realWork": "Vedi il lavoro reale, non affermazioni",
-        "aiAnalysis": "Analisi AI di progetti complessi",
+        "aiAnalysis": "Analisi automatizzata di progetti complessi",
         "noApplications": "Zero candidature → Le aziende ti trovano",
         "accuracy": "Matching competenze verificate (vs CV auto-dichiarati)"
       }
@@ -426,7 +426,7 @@
       },
       "companyStep1": {
         "title": "Cerca GRATIS",
-        "description": "Database completo, filtri illimitati, ricerca AI"
+        "description": "Database completo, filtri illimitati, ricerca intelligente"
       },
       "companyStep2": {
         "title": "Vedi Progetti Verificati",
@@ -459,8 +459,8 @@
             }
           },
           {
-            "title": "Analisi e Punteggio AI",
-            "description": "La nostra AI avanzata analizza qualità del lavoro, livello di innovazione, complessità ed estrae competenze rilevanti",
+            "title": "Analisi e Punteggio Automatizzato",
+            "description": "La nostra analisi avanzata analizza qualità del lavoro, livello di innovazione, complessità ed estrae competenze rilevanti",
             "details": [
               "Valutazione qualità del progetto usando standard professionali",
               "Estrazione automatica e categorizzazione competenze"
@@ -470,7 +470,7 @@
               "verifica": "Certificata dall'istituzione"
             },
             "visual": {
-              "analysisTitle": "Analisi AI in Corso...",
+              "analysisTitle": "Analisi automatizzata in Corso...",
               "innovationScore": "Punteggio Innovazione",
               "codeQuality": "Qualità Codice",
               "skillsDetected": "Competenze Rilevate:"
@@ -503,15 +503,15 @@
         "steps": [
           {
             "title": "Cerca Talento Verificato",
-            "description": "Cerca per competenze, voti, progetti. L'AI abbina i candidati ai tuoi requisiti.",
+            "description": "Cerca per competenze, voti, progetti. L'il sistema abbina i candidati ai tuoi requisiti.",
             "details": [
               "Filtra per competenze verificate, media voti, tipo di progetto e località",
-              "Il matching AI classifica i candidati per rilevanza rispetto al tuo ruolo"
+              "Il matching basato su evidenze classifica i candidati per rilevanza rispetto al tuo ruolo"
             ],
             "stats": {
               "candidati": "10.000+",
               "filtri": "20+ criteri",
-              "matching": "Basato su AI"
+              "matching": "Basato su evidenze"
             },
             "visual": {
               "uploadTitle": "Ricerca Candidati",
@@ -523,7 +523,7 @@
             "description": "Vedi voti verificati, progetti, valutazioni della personalità. Tutto ciò che serve per decidere, in un documento.",
             "details": [
               "Trascrizioni accademiche e portfolio progetti verificati in un'unica vista",
-              "Riassunti candidato generati dall'AI con analisi di compatibilità"
+              "Riassunti candidato generati automaticamente con analisi di compatibilità"
             ],
             "stats": {
               "tempo risparmiato": "80%",
@@ -623,7 +623,7 @@
         "description": "Ogni competenza tracciabile all'istituzione"
       },
       "aiAnalysis": {
-        "title": "Analisi AI",
+        "title": "Analisi automatizzata",
         "description": "Estrae competenze tecniche e soft da tesi e progetti"
       },
       "reverseRecruiting": {
@@ -744,7 +744,7 @@
           "details": [
             "Integrazione Istituzionale: Profilo creato automaticamente dai dati istituzionali",
             "Indipendente: Carica progetti (codice, documenti, presentazioni) + seleziona corsi",
-            "L'AI identifica i corsi e crea un profilo completo",
+            "Il sistema identifica i corsi e crea un profilo completo",
             "Entrambi i percorsi: Accesso completo alla piattaforma in < 5 minuti"
           ],
           "stats": {
@@ -756,8 +756,8 @@
           }
         },
         {
-          "title": "Analisi e Punteggio AI",
-          "description": "La nostra AI avanzata analizza qualità del lavoro, livello di innovazione, complessità ed estrae competenze rilevanti",
+          "title": "Analisi e Punteggio Automatizzato",
+          "description": "La nostra analisi avanzata analizza qualità del lavoro, livello di innovazione, complessità ed estrae competenze rilevanti",
           "details": [
             "Valutazione qualità del progetto usando standard professionali",
             "Punteggio innovazione basato su unicità e creatività",
@@ -769,7 +769,7 @@
             "verifica": "Certificata dall'istituzione"
           },
           "visual": {
-            "analysisTitle": "Analisi AI in Corso...",
+            "analysisTitle": "Analisi automatizzata in Corso...",
             "innovationScore": "Punteggio Innovazione",
             "codeQuality": "Qualità Codice",
             "skillsDetected": "Competenze Rilevate:"
@@ -827,7 +827,7 @@
           {
             "feature": "Matching",
             "traditional": "Ricerca manuale",
-            "ours": "Matching AI"
+            "ours": "Matching basato su evidenze"
           },
           {
             "feature": "Tasso risposta",
@@ -953,7 +953,7 @@
       "forUniversities": "Per Università",
       "pricing": "Prezzi",
       "explore": "Esplora Talenti",
-      "aiDemo": "Demo AI"
+      "aiDemo": "Demo"
     },
     "resources": "Risorse",
     "resourceLinks": {
@@ -995,7 +995,7 @@
       },
       "search": {
         "title": "API Ricerca",
-        "description": "Cerca candidati per competenze, voti, località e tipo di progetto. Il matching basato su AI classifica i risultati per rilevanza rispetto ai tuoi requisiti."
+        "description": "Cerca candidati per competenze, voti, località e tipo di progetto. Il matching basato su evidenze classifica i risultati per rilevanza rispetto ai tuoi requisiti."
       },
       "placements": {
         "title": "API Placement",
@@ -1128,8 +1128,8 @@
           "unlimited": "Esplorazione database illimitata",
           "profiles": "Vedi tutti i profili (anonimizzati)",
           "filters": "Filtri avanzati per istituzione, corsi, voti",
-          "aiSearch": "Ricerca Candidati AI",
-          "verified": "Competenze verificate AI da tutti i tipi progetto",
+          "aiSearch": "Ricerca Candidati Intelligente",
+          "verified": "Competenze verificate automaticamente da tutti i tipi progetto",
           "location": "Filtri posizione e disponibilità",
           "saveSearches": "Salva ricerche e candidati",
           "noFees": "Nessun canone mensile mai"
@@ -1227,12 +1227,12 @@
       "commonQuestions": "Domande Comuni",
       "questions": {
         "0": "Come carico i miei progetti?",
-        "1": "Come funziona l'analisi AI?",
-        "2": "Come accedere alla ricerca conversazionale AI?",
+        "1": "Come funziona l'analisi automatizzata?",
+        "2": "Come accedere alla ricerca conversazionale?",
         "3": "Quali formati sono supportati?"
       },
-      "students": "Studenti: Accedi alla Ricerca Lavoro AI dalla tua dashboard",
-      "recruiters": "Recruiter: Accedi alla Ricerca Candidati AI dalla tua dashboard"
+      "students": "Studenti: Accedi alla Ricerca Lavoro dalla tua dashboard",
+      "recruiters": "Recruiter: Accedi alla Ricerca Candidati Intelligente dalla tua dashboard"
     },
     "form": {
       "title": "Inviaci un Messaggio",
@@ -1272,34 +1272,34 @@
       }
     },
     "aiSearch": {
-      "title": "Ricerca Conversazionale AI",
+      "title": "Ricerca Conversazionale",
       "subtitle": "Usa linguaggio naturale per trovare esattamente ciò di cui hai bisogno - lavori per studenti, candidati per recruiter",
       "students": {
-        "title": "Per Studenti: Ricerca Lavoro AI",
+        "title": "Per Studenti: Ricerca Lavoro",
         "description": "Cerca lavori usando linguaggio naturale. Le aziende ti trovano per competenze specifiche:",
         "howToAccess": "Come Accedere:",
         "steps": {
           "0": "Accedi al tuo account studente",
           "1": "Vai alla tua Dashboard",
-          "2": "Clicca \"Ricerca Lavoro AI\" nel menu Azioni Rapide",
-          "3": "Inizia a chattare con la nostra AI per trovare lavori perfetti"
+          "2": "Clicca \"Ricerca Lavoro\" nel menu Azioni Rapide",
+          "3": "Inizia a chattare con il nostro assistente per trovare lavori perfetti"
         },
-        "button": "Prova Ricerca Lavoro AI →"
+        "button": "Prova Ricerca Lavoro →"
       },
       "recruiters": {
-        "title": "Per Recruiter: Ricerca Candidati AI",
+        "title": "Per Recruiter: Ricerca Candidati Intelligente",
         "description": "Trova candidati verificati con linguaggio naturale. Zero screening CV:",
-        "result": "Risultato: Vedi 5-10 match verificati con progetti reali + soft skills analizzate AI → Contatti illimitati, gratis per iniziare",
+        "result": "Risultato: Vedi 5-10 match verificati con progetti reali + soft skills analizzate automaticamente → Contatti illimitati, gratis per iniziare",
         "howToAccess": "Come Accedere:",
         "steps": {
           "0": "Registrati gratis (nessuna carta)",
           "1": "Vai alla tua Dashboard",
-          "2": "Clicca \"Ricerca Candidati AI\" in Azioni Rapide",
+          "2": "Clicca \"Ricerca Candidati Intelligente\" in Azioni Rapide",
           "3": "Digita ricerca naturale, vedi match verificati, contatta direttamente — gratis per iniziare"
         },
-        "button": "Prova Ricerca Candidati AI →"
+        "button": "Prova Ricerca Candidati Intelligente →"
       },
-      "proTip": "Suggerimento: L'AI comprende linguaggio naturale - descrivi solo ciò che stai cercando come se parlassi con una persona!"
+      "proTip": "Suggerimento: Il sistema comprende linguaggio naturale - descrivi solo ciò che stai cercando come se parlassi con una persona!"
     },
     "officeHours": {
       "title": "Orari Ufficio",
@@ -1358,7 +1358,7 @@
         "projectsCount": "15",
         "verificationScore": "100",
         "quote": "InTransparency ha completamente cambiato la mia ricerca di lavoro. Invece di inviare centinaia di candidature, i recruiter mi hanno trovato LORO tramite i miei progetti verificati. Ho avuto 3 offerte di lavoro entro 2 settimane!",
-        "story": "Marco ha caricato i suoi progetti di cloud computing verificati dall'istituzione su InTransparency. In pochi giorni, i recruiter AWS hanno scoperto il suo portfolio tramite ricerca AI e lo hanno contattato direttamente. Ha accettato un'offerta senza mai inviare una candidatura tradizionale."
+        "story": "Marco ha caricato i suoi progetti di cloud computing verificati dall'istituzione su InTransparency. In pochi giorni, i recruiter AWS hanno scoperto il suo portfolio tramite ricerca intelligente e lo hanno contattato direttamente. Ha accettato un'offerta senza mai inviare una candidatura tradizionale."
       },
       "1": {
         "name": "Sofia Romano",
@@ -1410,7 +1410,7 @@
       },
       "1": {
         "title": "Scoperta Passiva",
-        "description": "Le aziende ti trovano LORO tramite ricerca AI. Niente più invio di centinaia di candidature - lascia che il tuo lavoro parli per te."
+        "description": "Le aziende ti trovano LORO tramite ricerca intelligente. Niente più invio di centinaia di candidature - lascia che il tuo lavoro parli per te."
       },
       "2": {
         "title": "Match di Qualità Superiore",
@@ -1493,8 +1493,8 @@
       "clearFilters": "Cancella Tutti i Filtri",
       "pilotTitle": "Stiamo Inserendo le Prime Istituzioni",
       "pilotDescription": "InTransparency è in fase pilota con l'Università di Bergamo. I profili studenti verificati vengono aggiunti man mano che le istituzioni aderiscono alla piattaforma.",
-      "pilotCta": "Vuoi vedere cosa può fare la piattaforma? Prova la nostra demo di ricerca AI.",
-      "tryDemo": "Prova la Demo AI Search",
+      "pilotCta": "Vuoi vedere cosa può fare la piattaforma? Prova la nostra demo di ricerca intelligente.",
+      "tryDemo": "Prova la Demo Smart Search",
       "foundingPartner": "Diventa Partner Fondatore"
     },
     "card": {
@@ -1600,7 +1600,7 @@
       "title": "Registrazione Azienda",
       "subtitle": "Trova talenti verificati - Sfoglia Gratis, Accesso Completo",
       "cardTitle": "Crea il Tuo Account Aziendale",
-      "cardDescription": "Scopri candidati verificati con ricerca AI",
+      "cardDescription": "Scopri candidati verificati con ricerca intelligente",
       "submitButton": "Inizia ad Assumere - Sfoglia Gratis",
       "submittingButton": "Creazione Account...",
       "heroTitle": "Assumi Talenti Verificati, Non CV",
@@ -1612,7 +1612,7 @@
           "description": "Ogni competenza supportata da progetti universitari"
         },
         "1": {
-          "title": "Matching AI",
+          "title": "Matching basato su evidenze",
           "description": "Abbina candidati in base a competenze verificate"
         },
         "2": {
@@ -1755,7 +1755,7 @@
           "benefits": {
             "0": "Pipeline di talenti per le aziende associate",
             "1": "Analytics sui placement",
-            "2": "Matching competenze AI-powered",
+            "2": "Matching competenze basato su evidenze",
             "3": "Gratuito per il parco tecnologico"
           }
         },
@@ -1785,7 +1785,7 @@
           "subtitle": "Conforme"
         },
         "2": {
-          "title": "AI-Powered",
+          "title": "Basato su Evidenze",
           "subtitle": "Matching"
         },
         "3": {
@@ -1798,12 +1798,12 @@
       "title": "Registrazione Tech Park",
       "subtitle": "Unisciti a InTransparency come partner B2B",
       "heroTitle": "Offri alle aziende del tuo parco un vantaggio nel recruiting",
-      "heroSubtitle": "Offri l'accesso a talenti verificati con AI come servizio alle aziende del tuo parco. Costo zero per il parco, valore enorme per i membri.",
+      "heroSubtitle": "Offri l'accesso a talenti verificati automaticamente come servizio alle aziende del tuo parco. Costo zero per il parco, valore enorme per i membri.",
       "freeBadge": "Gratuito per i Tech Park",
       "benefits": {
         "0": {
           "title": "Pipeline di Talenti per i Membri",
-          "description": "Offri alle aziende associate l'accesso a talenti universitari verificati con AI a una frazione dei costi di recruiting tradizionali."
+          "description": "Offri alle aziende associate l'accesso a talenti universitari verificati automaticamente a una frazione dei costi di recruiting tradizionali."
         },
         "1": {
           "title": "Analytics Placement",
@@ -1811,7 +1811,7 @@
         },
         "2": {
           "title": "Matching Competenze",
-          "description": "Abbina le competenze degli studenti con le esigenze delle aziende associate. AI-powered, non basato su CV."
+          "description": "Abbina le competenze degli studenti con le esigenze delle aziende associate. basato su evidenze, non basato su CV."
         },
         "3": {
           "title": "Costo Zero per il Parco",
@@ -1825,7 +1825,7 @@
       "mobileBenefitsTitle": "Perche unirsi a InTransparency?",
       "mobileBenefits": {
         "0": "Pipeline di talenti per le aziende associate",
-        "1": "Profili studenti verificati con AI",
+        "1": "Profili studenti verificati automaticamente",
         "2": "Analytics placement",
         "3": "Costo zero per il parco"
       },
@@ -1896,7 +1896,7 @@
     "hero": {
       "badge": "Piattaforma Completa",
       "title": "Funzionalità Potenti per Tutti",
-      "subtitle": "Dalle competenze verificate dall'istituzione alla ricerca AI, tutto ciò di cui hai bisogno per collegare studenti e aziende."
+      "subtitle": "Dalle competenze verificate dall'istituzione alla ricerca intelligente, tutto ciò di cui hai bisogno per collegare studenti e aziende."
     },
     "filters": {
       "all": "Tutte",
@@ -1994,7 +1994,7 @@
         "cards": {
           "0": {
             "title": "Portfolio Builder Intelligente",
-            "desc": "Carica qualsiasi tipo di file — la nostra AI fa il lavoro pesante, estraendo competenze e valutando il tuo lavoro.",
+            "desc": "Carica qualsiasi tipo di file — il nostro sistema fa il lavoro pesante, estraendo competenze e valutando il tuo lavoro.",
             "features": {
               "0": "Codice, PDF, video, presentazioni accettati",
               "1": "Estrae competenze hard e soft automaticamente",
@@ -2304,7 +2304,7 @@
         },
         "1": {
           "title": "Screening Resistente ai Bias",
-          "desc": "L'AI analizza i deliverable reali — codice, design, report, ricerche. Nessuno spazio per bias sul nome, sull'età o pattern inconsci basati sulla formattazione del CV."
+          "desc": "L'il sistema analizza i deliverable reali — codice, design, report, ricerche. Nessuno spazio per bias sul nome, sull'età o pattern inconsci basati sulla formattazione del CV."
         },
         "2": {
           "title": "Talento Nascosto, Visibile",
@@ -2844,24 +2844,24 @@
   "demoAISearch": {
     "demoConfigs": {
       "student": {
-        "title": "Demo Ricerca Lavoro AI",
+        "title": "Demo Ricerca Lavoro",
         "subtitle": "Per Studenti",
         "placeholder": "Descrivi il tuo lavoro ideale...",
-        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente AI per la ricerca lavoro. Dimmi che tipo di lavoro cerchi in italiano!\n\nProva: \"Trovami lavori frontend developer a Milano in startup\" o \"Stage curriculare in data science\"",
+        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente per la ricerca lavoro. Dimmi che tipo di lavoro cerchi in italiano!\n\nProva: \"Trovami lavori frontend developer a Milano in startup\" o \"Stage curriculare in data science\"",
         "registrationLink": "/auth/register/student"
       },
       "company": {
-        "title": "Demo Ricerca Candidati AI",
+        "title": "Demo Ricerca Candidati Intelligente",
         "subtitle": "Per Aziende",
         "placeholder": "Descrivi chi stai cercando...",
-        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente AI per il recruiting. Descrivi il candidato di cui hai bisogno in italiano!\n\nProva: \"Studenti Cybersecurity Roma Network Security 30/30\"",
+        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente per il recruiting. Descrivi il candidato di cui hai bisogno in italiano!\n\nProva: \"Studenti Cybersecurity Roma Network Security 30/30\"",
         "registrationLink": "/auth/register/recruiter"
       },
       "university": {
-        "title": "Demo Hub Ricerca AI",
+        "title": "Demo Hub Ricerca Intelligente",
         "subtitle": "Per Istituzioni (Scuole, Università Per Istituti (Università & ITS) ITS)",
         "placeholder": "Cerca studenti o lavori...",
-        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente AI istituzionale. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Mostrami studenti CS con GPA 3.8+\" o \"Trova aziende tech che assumono\"",
+        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente istituzionale. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Mostrami studenti CS con GPA 3.8+\" o \"Trova aziende tech che assumono\"",
         "registrationLink": "/auth/register/academic-partner"
       }
     },
@@ -2916,7 +2916,7 @@
       "badge": "Il Nostro Impegno alla Trasparenza",
       "title": "Competenze Verificate",
       "subtitle": "Spiegazioni Chiare",
-      "description": "Competenze hard e soft verificate dall'istituzione. Matching AI spiegabile. Feedback diretto dalle aziende. Completa trasparenza per studenti, aziende e istituzioni.",
+      "description": "Competenze hard e soft verificate dall'istituzione. Matching basato su evidenze spiegabile. Feedback diretto dalle aziende. Completa trasparenza per studenti, aziende e istituzioni.",
       "ctas": {
         "features": "Vedi le Nostre Funzionalità",
         "demo": "Prova la Demo Live"
@@ -2955,7 +2955,7 @@
           },
           "1": {
             "title": "70% vuole più chiarezza",
-            "subtitle": "dagli strumenti AI",
+            "subtitle": "dai nostri strumenti",
             "description": "Il matching spiegabile crea fiducia"
           },
           "2": {
@@ -2981,13 +2981,13 @@
           }
         },
         "1": {
-          "title": "2. AI Spiegabile",
+          "title": "2. Matching Spiegabile",
           "description": "Ogni match mostra esattamente il PERCHÉ. Le aziende possono aggiungere note con feedback.",
           "items": {
             "0": "Punteggio match trasparente (es. \"85% match\")",
             "1": "Spiegazioni chiare (\"Il tuo progetto Python corrisponde a 3/4 requisiti\")",
             "2": "Note aziende: \"Aggiungi esperienza AWS e sei perfetto\"",
-            "3": "85% maggiore fiducia nell'AI trasparente (studi UE)"
+            "3": "85% maggiore fiducia nell'matching trasparente (studi UE)"
           }
         },
         "2": {
@@ -3057,7 +3057,7 @@
         "1": {
           "value": "85%",
           "label": "Maggiore Fiducia",
-          "note": "(studi trasparenza AI UE)"
+          "note": "(studi di trasparenza algoritmica UE)"
         },
         "2": {
           "value": "25%",
@@ -3073,7 +3073,7 @@
     },
     "cta": {
       "title": "Sperimenta la Vera Trasparenza",
-      "subtitle": "Unisciti a una piattaforma dove competenze verificate, AI spiegabile e visibilità reciproca creano match migliori per tutti.",
+      "subtitle": "Unisciti a una piattaforma dove competenze verificate, matching spiegabile e visibilità reciproca creano match migliori per tutti.",
       "buttons": {
         "getStarted": "Inizia Gratis",
         "demo": "Prova la Demo Live",
@@ -3083,7 +3083,7 @@
         "gdpr": "Conforme GDPR",
         "soc2": "SOC 2 Type II",
         "iso": "ISO 27001",
-        "explainableAI": "AI Spiegabile"
+        "explainableAI": "Matching Spiegabile"
       }
     }
   },
@@ -3274,7 +3274,7 @@
       "items": {
         "0": "Progetti verificati dall'istituzione (tutti i formati)",
         "1": "Analisi competenze hard + soft",
-        "2": "Costruzione profilo completo potenziata da AI",
+        "2": "Costruzione profilo completo basata su evidenze",
         "3": "Prova di lavoro batte dichiarazioni",
         "4": "Trova talenti nascosti 2x più veloce"
       }
@@ -3293,7 +3293,7 @@
           },
           "1": {
             "title": "Spiegazioni Limitate:",
-            "description": "Quando il matching non è spiegato, gli studenti non sanno cosa migliorare. Il 70% dei candidati vuole più trasparenza dagli strumenti AI di assunzione."
+            "description": "Quando il matching non è spiegato, gli studenti non sanno cosa migliorare. Il 70% dei candidati vuole più trasparenza dai nostri strumenti di assunzione."
           },
           "2": {
             "title": "Requisiti Non Chiari:",
@@ -3313,8 +3313,8 @@
             "description": "Competenze hard (Python, AutoCAD, Excel) e soft (teamwork, leadership, comunicazione) verificate tramite progetti, corsi e dati istituzionali."
           },
           "1": {
-            "title": "AI Spiegabile:",
-            "description": "Ogni match spiega il PERCHÉ (\"Il tuo progetto Python corrisponde a 3/4 requisiti\"). Nessuna black box. 85% maggiore fiducia nell'AI trasparente per studi UE."
+            "title": "Matching Spiegabile:",
+            "description": "Ogni match spiega il PERCHÉ (\"Il tuo progetto Python corrisponde a 3/4 requisiti\"). Nessuna black box. 85% maggiore fiducia nell'matching trasparente per studi UE."
           },
           "2": {
             "title": "Trasparenza Bidirezionale:",
@@ -3438,7 +3438,7 @@
     },
     "killResume": {
       "title": "È Ora di Andare Oltre il CV",
-      "description": "Il curriculum è stato inventato nel 1482. Oggi abbiamo l'AI, l'analisi verificata delle competenze e la certificazione accademica. Perché ci affidiamo ancora a un formato vecchio di 500 anni per assumere per ruoli del XXI secolo?",
+      "description": "Il curriculum è stato inventato nel 1482. Oggi abbiamo l'analisi verificata delle competenze e la certificazione accademica. Perché ci affidiamo ancora a un formato vecchio di 500 anni per assumere per ruoli del XXI secolo?",
       "oldYear": "1482",
       "oldLabel": "Anno di invenzione del curriculum",
       "newYear": "2025",
@@ -3474,7 +3474,7 @@
       "features": {
         "0": "Progetti illimitati",
         "1": "Verifica universitaria",
-        "2": "Ricerca lavoro AI",
+        "2": "Ricerca lavoro",
         "3": "Assessment competenze",
         "4": "Check contratto"
       },
@@ -3512,7 +3512,7 @@
             "1": "50 sblocchi talento al mese",
             "2": "10 annunci di lavoro attivi",
             "3": "Pipeline completa con tutte le fasi",
-            "4": "Consulente Assunzioni AI (illimitato)",
+            "4": "Consulente Assunzioni (illimitato)",
             "5": "Generatore Kit Colloquio (illimitato)",
             "6": "Decision Pack",
             "7": "5 GB archivio documenti"
@@ -3562,7 +3562,7 @@
           "cta": "Inizia Ora",
           "features": {
             "0": "Studenti illimitati",
-            "1": "Verifica AI progetti (tesi, GitHub, portfolio)",
+            "1": "Verifica analisi progetti (tesi, GitHub, portfolio)",
             "2": "Endorsement professori",
             "3": "Sync AlmaLaurea",
             "4": "Dashboard placement aggregata",
@@ -3607,7 +3607,7 @@
         },
         "2": {
           "q": "Perché il piano Growth vale la pena?",
-          "a": "A €149/mese, ottieni 50 sblocchi talento, 10 annunci e accesso completo agli strumenti AI — inclusi il Consulente Assunzioni e il Generatore Kit Colloquio. Costa meno di LinkedIn Recruiter Lite, con dati verificati dalle università."
+          "a": "A €149/mese, ottieni 50 sblocchi talento, 10 annunci e accesso completo agli strumenti — inclusi il Consulente Assunzioni e il Generatore Kit Colloquio. Costa meno di LinkedIn Recruiter Lite, con dati verificati dalle università."
         },
         "3": {
           "q": "Le università pagano qualcosa?",
@@ -3986,7 +3986,7 @@
   },
   "chat": {
     "hero": {
-      "title": "Hub Assistente AI",
+      "title": "Hub Assistente",
       "subtitle": "Ricevi aiuto personalizzato per il tuo percorso - IA conversazionale 24/7 trasparente sull'uso dei dati",
       "roles": {
         "student": "Studente",
@@ -3997,7 +3997,7 @@
     "chatbot": {
       "student": {
         "title": "Assistente Carriera",
-        "greeting": "Ciao! Sono Transparenty, il tuo assistente AI per la carriera. Sono qui per aiutarti a costruire un profilo eccellente, scoprire lavori perfetti per te e ricevere consigli personalizzati sulla carriera - il tutto essendo trasparente su come i tuoi dati migliorano la tua esperienza.",
+        "greeting": "Ciao! Sono Transparenty, il tuo assistente per la carriera. Sono qui per aiutarti a costruire un profilo eccellente, scoprire lavori perfetti per te e ricevere consigli personalizzati sulla carriera - il tutto essendo trasparente su come i tuoi dati migliorano la tua esperienza.",
         "examples": {
           "0": "Aiutami a costruire il mio profilo",
           "1": "Trova lavori corrispondenti alle mie competenze a Milano",
@@ -4007,7 +4007,7 @@
       },
       "company": {
         "title": "Assistente Reclutamento",
-        "greeting": "Ciao! Sono Transparenty, il tuo assistente AI per il reclutamento. Ti aiuto a trovare i migliori talenti, comprendere i punteggi di corrispondenza e creare descrizioni di lavoro convincenti. Ogni ricerca è registrata in modo trasparente per migliorare la tua esperienza.",
+        "greeting": "Ciao! Sono Transparenty, il tuo assistente per il reclutamento. Ti aiuto a trovare i migliori talenti, comprendere i punteggi di corrispondenza e creare descrizioni di lavoro convincenti. Ogni ricerca è registrata in modo trasparente per migliorare la tua esperienza.",
         "examples": {
           "0": "Trova studenti di cybersecurity a Roma",
           "1": "Stagista marketing con portfolio creativo",
@@ -4025,10 +4025,10 @@
           "3": "Opportunità di lavoro europee per studenti di Economia"
         }
       },
-      "powered": "Alimentato da AI • Conforme GDPR",
+      "powered": "Basato su evidenze • Conforme GDPR",
       "inputPlaceholder": "Scrivi il tuo messaggio...",
       "tryAsking": "Prova a chiedere:",
-      "transparencyNotice": "<strong>AI Trasparente:</strong> Questa conversazione aiuta a perfezionare la tua esperienza. I dati sono conformi al GDPR e utilizzati per migliorare le corrispondenze. Puoi disattivare in qualsiasi momento nelle impostazioni.",
+      "transparencyNotice": "<strong>Matching Trasparente:</strong> Questa conversazione aiuta a perfezionare la tua esperienza. I dati sono conformi al GDPR e utilizzati per migliorare le corrispondenze. Puoi disattivare in qualsiasi momento nelle impostazioni.",
       "newConversation": "Nuova conversazione",
       "suggestedActions": "Azioni suggerite:",
       "quickActions": "Azioni rapide:",
@@ -4398,9 +4398,9 @@
     },
     "search": {
       "placeholder": "Prova: \"Sviluppatore Python con background ML e progetti healthcare\"",
-      "aiButton": "Ricerca AI",
+      "aiButton": "Ricerca Intelligente",
       "filtersButton": "Filtri",
-      "aiUnderstanding": "Comprensione AI: Cercando laureati in",
+      "aiUnderstanding": "Comprensione: Cercando laureati in",
       "withSkills": "con competenze",
       "andProjectExperience": "ed esperienza in progetti"
     },
@@ -4572,11 +4572,11 @@
           "description": "Voti e corsi verificati dall'istituzione"
         },
         "aiAnalysis": {
-          "title": "Analisi Progetti AI",
+          "title": "Analisi Progetti",
           "description": "Analisi multi-formato GitHub/PDF/Behance/Portfolio"
         },
         "conversationalAI": {
-          "title": "AI Conversazionale",
+          "title": "Ricerca Conversazionale",
           "description": "\"Trova finanza Bocconi con tesi M&A\""
         },
         "academicFilters": {
@@ -4750,7 +4750,7 @@
   "advancedSearchDemo": {
     "heroBanner": "Ricerca Avanzata - Filtra e Trova Esattamente Ciò che Ti Serve",
     "verifiedResults": "Risultati Verificati",
-    "subtitle": "Utilizza i filtri per restringere e trovare la corrispondenza perfetta. Non serve AI - solo ricerca tradizionale.",
+    "subtitle": "Utilizza i filtri per restringere e trovare la corrispondenza perfetta. Nessuna chatbot serve - solo ricerca tradizionale.",
     "tabs": {
       "student": "Demo Studente",
       "company": "Demo Azienda",
@@ -4869,10 +4869,10 @@
   },
   "aiSearchDemo": {
     "banner": {
-      "badge": "Prova la Ricerca Conversazionale AI - Nessun Login Richiesto",
+      "badge": "Prova la Ricerca Conversazionale - Nessun Login Richiesto",
       "title": "Vivi l'esperienza della",
-      "titleHighlight": "Ricerca Potenziata dall'AI",
-      "description": "Chiedi in italiano quello che ti serve. La nostra AI capisce e trova esattamente ciò che stai cercando.",
+      "titleHighlight": "Ricerca Intelligente",
+      "description": "Chiedi in italiano quello che ti serve. Il sistema capisce e trova esattamente ciò che stai cercando.",
       "alternativeTitle": "Preferisci i filtri tradizionali?",
       "alternativeDescription": "Prova la nostra Ricerca Avanzata con filtri manuali",
       "alternativeButton": "Prova Ricerca Avanzata"
@@ -4888,22 +4888,22 @@
     },
     "demoConfigs": {
       "student": {
-        "title": "Demo Ricerca Lavoro AI",
+        "title": "Demo Ricerca Lavoro",
         "subtitle": "Per Studenti",
         "placeholder": "Descrivi il tuo lavoro ideale...",
-        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente AI per la ricerca di lavoro. Dimmi cosa cerchi — qualsiasi campo, qualsiasi città!\n\nProva: \"Stage in graphic design a Milano\" o \"Lavori marketing a Roma\" o \"Tirocinio data science\""
+        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente per la ricerca di lavoro. Dimmi cosa cerchi — qualsiasi campo, qualsiasi città!\n\nProva: \"Stage in graphic design a Milano\" o \"Lavori marketing a Roma\" o \"Tirocinio data science\""
       },
       "company": {
-        "title": "Demo Ricerca Candidati AI",
+        "title": "Demo Ricerca Candidati Intelligente",
         "subtitle": "Per Aziende",
         "placeholder": "Descrivi chi stai cercando...",
-        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente AI per il recruiting. Descrivi il candidato che cerchi — competenze, corso di laurea, città!\n\nProva: \"Studenti con competenze Figma e UI/UX\" o \"Laureati marketing con esperienza social media\""
+        "initialMessage": "Ciao! Sono Transparenty, il tuo assistente per il recruiting. Descrivi il candidato che cerchi — competenze, corso di laurea, città!\n\nProva: \"Studenti con competenze Figma e UI/UX\" o \"Laureati marketing con esperienza social media\""
       },
       "university": {
-        "title": "Demo Hub Ricerca AI",
+        "title": "Demo Hub Ricerca Intelligente",
         "subtitle": "Per Istituzioni (Scuole, Università e ITS)",
         "placeholder": "Cerca studenti o lavori...",
-        "initialMessage": "Ciao! Sono Transparenty, l'assistente AI del tuo istituto. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Studenti design\" o \"Opportunità marketing per laureati\" o \"Studenti CS con media 3.8+\""
+        "initialMessage": "Ciao! Sono Transparenty, l'assistente del tuo istituto. Posso cercare SIA studenti CHE opportunità di lavoro!\n\nProva: \"Studenti design\" o \"Opportunità marketing per laureati\" o \"Studenti CS con media 3.8+\""
       }
     },
     "exampleQueries": {
@@ -5551,8 +5551,8 @@
     "noActivitiesFiltered": "Prova a modificare il filtro o torna più tardi per nuove attività."
   },
   "studentAiJobSearch": {
-    "title": "Ricerca Lavoro AI",
-    "subtitle": "Descrivi il tuo lavoro ideale e lascia che l'AI trovi le opportunità corrispondenti",
+    "title": "Ricerca Lavoro",
+    "subtitle": "Descrivi il tuo lavoro ideale e lascia che l'il sistema trovi le opportunità corrispondenti",
     "chatPlaceholder": "es. Cerco uno stage remoto come sviluppatore React...",
     "search": "Cerca",
     "searching": "Ricerca lavori corrispondenti in corso...",
@@ -5732,7 +5732,7 @@
         "retry": "Riprova"
       },
       "aiShortlist": {
-        "title": "Shortlist AI",
+        "title": "Shortlist",
         "subtitle": "Pubblica un ruolo e ottieni candidati verificati abbinati automaticamente",
         "form": {
           "roleTitle": "Titolo del Ruolo",
@@ -6353,7 +6353,7 @@
       "title": "Lavori che Corrispondono alla Tua Personalità",
       "subtitle": "Il tuo profilo suggerisce che potresti eccellere in ruoli legati a {careers}.",
       "browseJobs": "Cerca Lavori",
-      "aiSearch": "Ricerca AI"
+      "aiSearch": "Ricerca Intelligente"
     },
     "famousPersonalities": {
       "title": "Condividi Tratti Con",
@@ -6487,7 +6487,7 @@
       },
       "technicalPortfolios": {
         "title": "Analisi di Profondità Tecnica",
-        "desc": "L'AI analizza complessità, strumenti utilizzati e livello di innovazione di ogni progetto ingegneristico."
+        "desc": "L'il sistema analizza complessità, strumenti utilizzati e livello di innovazione di ogni progetto ingegneristico."
       },
       "institutionBacked": {
         "title": "Voti Verificati dall'Università",
@@ -6604,8 +6604,8 @@
         "desc": "Competenze confermate dai professori, non auto-dichiarate. Vedi i progetti reali degli studenti."
       },
       "aiSearch": {
-        "title": "Ricerca AI Intelligente",
-        "desc": "Descrivi il candidato ideale in linguaggio naturale. L'AI trova i profili più compatibili."
+        "title": "Ricerca Intelligente Intelligente",
+        "desc": "Descrivi il candidato ideale in linguaggio naturale. Il sistema trova i profili più compatibili."
       },
       "payPerContact": {
         "title": "Contatta Candidati — Gratis per Iniziare",
@@ -7122,8 +7122,8 @@
     "service1Item4": "Le aziende pagano per contattare, la scuola no",
     "service2Title": "Matching Intelligente",
     "service2Free": "Gratuito per gli studenti",
-    "service2Subtitle": "AI Trasparente per il Matching",
-    "service2Item1": "AI abbina competenze a requisiti aziendali",
+    "service2Subtitle": "Matching Trasparente per il Matching",
+    "service2Item1": "il sistema abbina competenze a requisiti aziendali",
     "service2Item2": "Competenze verificate migliorano la visibilità",
     "service2Item3": "Le aziende vedono l'endorsement della scuola",
     "service2Item4": "Spiegazioni trasparenti del matching",
@@ -7215,10 +7215,10 @@
     "mp1Check2": "Gli studenti non candidano - vengono contattati",
     "mp1Check3": "Il tuo badge di verifica = segnale di fiducia",
     "mp1Check4": "Le aziende contattano gli studenti direttamente",
-    "mp2Title": "Matching AI",
-    "mp2Check1": "L'AI abbina competenze a requisiti lavorativi",
+    "mp2Title": "Matching basato su evidenze",
+    "mp2Check1": "L'il sistema abbina competenze a requisiti lavorativi",
     "mp2Check2": "Le competenze verificate migliorano la visibilità",
-    "mp2Check3": "Spiegazioni AI trasparenti",
+    "mp2Check3": "Spiegazioni algoritmi trasparenti",
     "mp2Check4": "Screening più veloce con dati verificati",
     "mp3Title": "Traccia il Tuo Impatto",
     "mp3Check1": "Vedi quali aziende hanno visto i tuoi studenti",
@@ -7238,8 +7238,8 @@
     "discoveryNote": "Credenziali verificate dall'istituto di cui le aziende si fidano",
     "matchingTitle": "Servizio Matching",
     "matchingBadge": "GRATUITO per gli Studenti",
-    "matchingSubtitle": "Matching AI Trasparente",
-    "matchingItem1": "L'AI abbina competenze a requisiti lavorativi",
+    "matchingSubtitle": "Matching basato su evidenze Trasparente",
+    "matchingItem1": "L'il sistema abbina competenze a requisiti lavorativi",
     "matchingItem2": "Le competenze verificate migliorano la visibilità",
     "matchingItem3": "Le aziende vedono il tuo endorsement istituzionale",
     "matchingItem4": "Spiegazioni trasparenti del matching",
@@ -7332,10 +7332,10 @@
     "mp1Check1": "Le aziende cercano laureati verificati",
     "mp1Check2": "Gli studenti non candidano - vengono contattati",
     "mp1Check3": "La verifica istituzionale = segnale di fiducia",
-    "mp2Title": "Matching AI Trasparente",
+    "mp2Title": "Matching basato su evidenze Trasparente",
     "mp2Check1": "\"Alta compatibilità: Python verificato dalla tesi\"",
     "mp2Check2": "Competenze verificate = punteggi più alti",
-    "mp2Check3": "Spiegazioni AI trasparenti",
+    "mp2Check3": "Spiegazioni algoritmi trasparenti",
     "mp3Title": "Traccia il Tuo Impatto",
     "mp3Check1": "Vedi quali aziende visualizzano i tuoi studenti",
     "mp3Check2": "Report esportabili per ANVUR",
@@ -7404,12 +7404,12 @@
     "sq4": "Come funziona il programma referral?",
     "sa4": "Invita i tuoi amici usando il tuo link referral. Per ogni 3 amici che si registrano, ottieni 1 mese di Premium gratuito. Con 10 referral ottieni 6 mesi, e con 50 referral ottieni Premium a vita!",
     "sq5": "Quanto costa InTransparency per gli studenti?",
-    "sa5": "InTransparency è completamente gratuito per gli studenti! Offriamo anche piani Premium opzionali con funzionalità avanzate come analisi AI approfondite e maggiore visibilità.",
+    "sa5": "InTransparency è completamente gratuito per gli studenti! Offriamo anche piani Premium opzionali con funzionalità avanzate come analisi automatizzata approfondite e maggiore visibilità.",
     "cq1": "Come posso trovare candidati?",
-    "ca1": "Puoi utilizzare la nostra ricerca avanzata per filtrare candidati per competenze, università, anno di laurea, GPA e altro. Il nostro sistema di matching AI ti suggerisce automaticamente i candidati più adatti alle tue posizioni aperte.",
+    "ca1": "Puoi utilizzare la nostra ricerca avanzata per filtrare candidati per competenze, università, anno di laurea, GPA e altro. Il nostro sistema di matching basato su evidenze ti suggerisce automaticamente i candidati più adatti alle tue posizioni aperte.",
     "cq2": "Quanto costa contattare un candidato?",
     "ca2": "Con il piano Pay-per-Contact, ogni contatto costa €5. Se contatti più di 20 candidati al mese, ti consigliamo il piano Enterprise a €99/mese che include contatti illimitati, filtri avanzati e accesso API.",
-    "cq3": "Come funziona il matching AI?",
+    "cq3": "Come funziona il matching basato su evidenze?",
     "ca3": "Il nostro algoritmo analizza i progetti degli studenti, le competenze verificate, i voti universitari e le preferenze per calcolare un punteggio di compatibilità. Più alto è il punteggio, migliore è il match con le tue esigenze.",
     "cq4": "Posso pubblicare offerte di lavoro?",
     "ca4": "Sì! Puoi pubblicare offerte di lavoro dalla tua dashboard. Gli studenti potranno candidarsi direttamente e riceverai notifiche per ogni nuova candidatura.",
@@ -7643,8 +7643,8 @@
     }
   },
   "interviewPrep": {
-    "title": "Preparazione Colloquio AI",
-    "subtitle": "Esercitati con domande generate dall'AI basate sulle tue competenze e progetti reali. Ricevi feedback istantaneo sulle tue risposte.",
+    "title": "Preparazione Colloquio",
+    "subtitle": "Esercitati con domande generate automaticamente basate sulle tue competenze e progetti reali. Ricevi feedback istantaneo sulle tue risposte.",
     "error": "Qualcosa è andato storto. Riprova.",
     "setup": {
       "title": "Prepara la Tua Sessione di Pratica",
@@ -7663,11 +7663,11 @@
     "practice": {
       "title": "La Tua Risposta",
       "placeholder": "Scrivi la tua risposta qui... Scrivila come se stessi parlando in un vero colloquio.",
-      "evaluate": "Ottieni Feedback AI",
+      "evaluate": "Ottieni Feedback",
       "evaluating": "Valutazione..."
     },
     "feedback": {
-      "title": "Feedback AI",
+      "title": "Feedback",
       "strengths": "Punti di forza",
       "improvements": "Come migliorare",
       "modelAnswer": "Approccio suggerito"
@@ -7733,7 +7733,7 @@
     "skillsTaught": "Competenze insegnate",
     "alignedSkills": "Allineate al mercato",
     "missingSkills": "Mancanti nel curriculum",
-    "suggestions": "Suggerimenti AI",
+    "suggestions": "Suggerimenti",
     "noCourses": "Nessun corso trovato",
     "noCoursesDescription": "I dati dei corsi appariranno una volta aggiunti al sistema.",
     "topDemandedSkills": "Competenze più richieste",
@@ -7775,7 +7775,7 @@
     "totalStudents": "Studenti Totali",
     "totalProjects": "Progetti Totali",
     "verified": "Verificati",
-    "aiAnalyzed": "Analizzati con AI",
+    "aiAnalyzed": "Analizzati automaticamente",
     "engagementStats": "Coinvolgimento",
     "profileViews": "Visualizzazioni Profilo",
     "uniqueRecruiters": "Recruiter Unici",
@@ -8747,7 +8747,7 @@
       "noChallengesDescription": "Le challenge delle aziende appariranno qui per la tua revisione"
     },
     "aiSearch": {
-      "title": "Hub Ricerca AI",
+      "title": "Hub Ricerca Intelligente",
       "subtitle": "Cerca studenti e opportunita di lavoro",
       "searchPlaceholder": "Cerca studenti o lavori...",
       "exampleQueries": "Query di Esempio",
@@ -9052,7 +9052,7 @@
       "title": "Il tuo lavoro accademico, verificato e visibile ai datori di lavoro",
       "subtitle": "Costruisci un portfolio di progetti, voti e competenze che le aziende possono verificare. Non un altro CV — prove concrete di cosa sai fare.",
       "cta": "Crea il Tuo Portfolio",
-      "secondaryCta": "Prova la Demo AI"
+      "secondaryCta": "Prova la Demo"
     },
     "benefits": {
       "0": {
@@ -9085,7 +9085,7 @@
       "title": "Le tue competenze pratiche meritano di essere viste",
       "subtitle": "Hai costruito cose reali durante il tuo percorso ITS. Mostralo alle aziende con un portfolio verificato dal tuo istituto.",
       "cta": "Crea il Tuo Portfolio",
-      "secondaryCta": "Prova la Demo AI"
+      "secondaryCta": "Prova la Demo"
     },
     "benefits": {
       "0": {
@@ -9151,7 +9151,7 @@
       "title": "Talento pre-selezionato senza costi di agenzia",
       "subtitle": "Accedi a laureati con progetti verificati e voti normalizzati. Nessun recruiter intermedio, nessun costo per annuncio. Paghi solo quando trovi il candidato giusto.",
       "cta": "Crea il Tuo Account",
-      "secondaryCta": "Prova la Ricerca AI"
+      "secondaryCta": "Prova la Ricerca Intelligente"
     },
     "benefits": {
       "0": {
@@ -9192,8 +9192,8 @@
         "description": "Progetti verificati dall'università, voti normalizzati, assessment di personalità. Presenti ai clienti candidati con dati, non solo CV."
       },
       "1": {
-        "title": "Ricerca AI conversazionale",
-        "description": "Descrivi il profilo ideale in linguaggio naturale. L'AI trova i candidati più compatibili con spiegazioni trasparenti."
+        "title": "Ricerca Intelligente conversazionale",
+        "description": "Descrivi il profilo ideale in linguaggio naturale. Il sistema trova i candidati più compatibili con spiegazioni trasparenti."
       },
       "2": {
         "title": "Confronto candidati",
@@ -9217,7 +9217,7 @@
       "title": "Assumi velocemente con prove, non con colloqui infiniti",
       "subtitle": "Vedi cosa i candidati hanno effettivamente costruito — progetti verificati, competenze reali, personalità valutata. Riduci il tuo processo di assunzione da settimane a giorni.",
       "cta": "Crea il Tuo Account",
-      "secondaryCta": "Prova la Ricerca AI"
+      "secondaryCta": "Prova la Ricerca Intelligente"
     },
     "benefits": {
       "0": {
@@ -9226,7 +9226,7 @@
       },
       "1": {
         "title": "Velocità di assunzione",
-        "description": "Ricerca AI, filtri per competenze verificate, confronto candidati. Dal bisogno all'offerta in giorni, non mesi."
+        "description": "Ricerca Intelligente, filtri per competenze verificate, confronto candidati. Dal bisogno all'offerta in giorni, non mesi."
       },
       "2": {
         "title": "Nessun costo iniziale",
@@ -9247,7 +9247,7 @@
   "offerComparison": {
     "title": "Confronta Offerte",
     "subtitle": "Metti le tue offerte fianco a fianco per decidere con chiarezza.",
-    "hint": "Inserisci i dettagli di ogni offerta. Presto l'AI analizzerà automaticamente quale è più vantaggiosa per te in base al tuo profilo, settore e località.",
+    "hint": "Inserisci i dettagli di ogni offerta. Presto il sistema analizzerà automaticamente quale è più vantaggiosa per te in base al tuo profilo, settore e località.",
     "fields": {
       "company": "Azienda",
       "role": "Ruolo",
@@ -9271,7 +9271,7 @@
     "remove": "Rimuovi",
     "comingSoon": {
       "title": "In arrivo",
-      "aiAnalysis": "Analisi AI: quale offerta è migliore per te in base al tuo profilo e obiettivi di carriera",
+      "aiAnalysis": "Analisi automatizzata: quale offerta è migliore per te in base al tuo profilo e obiettivi di carriera",
       "ccnlCheck": "Verifica automatica CCNL: conferma che lo stipendio rispetti i minimi contrattuali",
       "salaryPercentile": "Percentile salariale: come si posiziona ogni offerta rispetto al mercato nella tua zona e ruolo"
     }
@@ -9446,7 +9446,7 @@
     "comingSoon": {
       "title": "In arrivo",
       "items": [
-        "Orari ottimali suggeriti dall'AI in base al fuso orario del candidato",
+        "Orari ottimali suggeriti dall'automazione in base al fuso orario del candidato",
         "Sincronizzazione Google Calendar e Outlook",
         "Promemoria email automatici 24h prima",
         "Auto-prenotazione candidati dalla tua disponibilità"
@@ -9667,7 +9667,7 @@
           "us": "Ricerca gratuita, paga per contatto"
         },
         "5": {
-          "feature": "AI matching",
+          "feature": "Matching evidenze",
           "them": "Matching per parole chiave",
           "us": "Matching semantico competenze + progetti"
         }
@@ -9828,7 +9828,7 @@
   },
   "newProject": {
     "title": "Nuovo Progetto",
-    "subtitle": "Descrivi il tuo progetto — l'AI si occupa del resto.",
+    "subtitle": "Descrivi il tuo progetto — l'il sistema si occupa del resto.",
     "back": "Indietro",
     "backToEdit": "Modifica",
     "error": "Errore nella creazione del progetto. Riprova.",
@@ -9838,23 +9838,23 @@
     },
     "input": {
       "title": "Racconta il tuo progetto",
-      "description": "Scrivi titolo e descrizione. L'AI analizzerà automaticamente competenze, strumenti e categoria.",
+      "description": "Scrivi titolo e descrizione. Il sistema analizzerà automaticamente competenze, strumenti e categoria.",
       "projectTitle": "Titolo",
       "titlePlaceholder": "es. App per la gestione del magazzino",
       "projectDescription": "Descrizione",
       "descriptionPlaceholder": "Cosa hai costruito? Qual era il problema? Come l'hai risolto? Quali tecnologie hai usato?",
-      "descriptionHint": "Più dettagli scrivi, migliore sarà l'analisi AI.",
+      "descriptionHint": "Più dettagli scrivi, migliore sarà l'analisi automatizzata.",
       "githubUrl": "Link GitHub o repository (opzionale)",
       "analyzing": "Analisi in corso...",
       "analyzeButton": "Analizza e Continua"
     },
     "review": {
-      "aiDetected": "Rilevato dall'AI",
+      "aiDetected": "Auto-rilevato",
       "skills": "Competenze",
-      "skillsHint": "Suggerite dall'AI. Aggiungi o rimuovi come vuoi.",
+      "skillsHint": "Suggerite automaticamente. Aggiungi o rimuovi come vuoi.",
       "addSkill": "Aggiungi competenza...",
       "tools": "Strumenti",
-      "toolsHint": "Suggeriti dall'AI. Aggiungi o rimuovi come vuoi.",
+      "toolsHint": "Suggeriti automaticamente. Aggiungi o rimuovi come vuoi.",
       "addTool": "Aggiungi strumento...",
       "image": "Immagine (opzionale)",
       "uploadImage": "Clicca per caricare un'immagine",
@@ -10533,12 +10533,12 @@
   },
   "hiringAdvisor": {
     "title": "Consulente Assunzioni",
-    "subtitle": "Il tuo consulente AI per il recruiting — consigli esperti su assunzioni, colloqui, stipendi e strategia.",
+    "subtitle": "Il tuo consulente esperto di recruiting — consigli esperti su assunzioni, colloqui, stipendi e strategia.",
     "error": "Qualcosa è andato storto. Riprova.",
     "thinking": "Sto pensando...",
     "placeholder": "Chiedi di job description, benchmark stipendiali, strategie di colloquio, diritto del lavoro italiano...",
     "welcomeTitle": "Come posso aiutarti ad assumere meglio?",
-    "welcomeMessage": "Sono il tuo consulente AI per le assunzioni. Chiedimi qualsiasi cosa sul recruiting — dalla scrittura di JD al diritto del lavoro italiano.",
+    "welcomeMessage": "Sono il tuo consulente per le assunzioni. Chiedimi qualsiasi cosa sul recruiting — dalla scrittura di JD al diritto del lavoro italiano.",
     "prompts": {
       "writeJd": "Aiutami a scrivere una job description per uno sviluppatore junior",
       "salaryBenchmark": "Qual è il range stipendiale per un marketing manager a Milano?",
@@ -10565,7 +10565,7 @@
   },
   "interviewKit": {
     "title": "Generatore Kit Colloquio",
-    "subtitle": "Domande di colloquio, griglie di valutazione e guide allo screening generate dall'AI per i tuoi ruoli.",
+    "subtitle": "Domande di colloquio, griglie di valutazione e guide allo screening generate automaticamente per i tuoi ruoli.",
     "selectJob": "Seleziona un Annuncio",
     "selectJobPlaceholder": "Scegli un annuncio per generare le domande...",
     "customRole": "Descrivi un ruolo personalizzato",

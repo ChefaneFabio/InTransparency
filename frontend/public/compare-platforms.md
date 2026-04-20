@@ -64,7 +64,7 @@ Choose InTransparency if you want skills you can trust and a recruiting flow tha
 | Feature | InTransparency | JobTeaser | Handshake |
 |---------|:-:|:-:|:-:|
 | Program-level skills gap analytics | ✅ | ❌ | ⚠️ |
-| AI-assisted curriculum recommendations | ✅ | ❌ | ❌ |
+| Data-driven curriculum recommendations | ✅ | ❌ | ❌ |
 | Professor portal (no account required) | ✅ | ❌ | ❌ |
 | Free for universities | ✅ | ✅ | ❌ ($1K–$20K/yr) |
 

@@ -111,7 +111,7 @@ function RecruiterPreview() {
 
         {/* Candidate cards */}
         <div className="space-y-2">
-          <div className="text-xs font-semibold text-muted-foreground">AI Recommendations</div>
+          <div className="text-xs font-semibold text-muted-foreground">Suggested matches</div>
           {[
             { name: 'Marco R.', uni: 'Politecnico di Milano', score: '94%', skills: ['Python', 'ML', 'SQL'], verified: true },
             { name: 'Sara L.', uni: 'Bocconi', score: '87%', skills: ['Finance', 'Excel', 'R'], verified: true },

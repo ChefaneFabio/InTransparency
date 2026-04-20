@@ -2,7 +2,7 @@
  * Skills Gap v2 — program-level drill-down + temporal trends
  *
  * Extends v1 (whole-university) to slice by degree program, write monthly
- * snapshots, and generate AI-assisted curriculum recommendations.
+ * snapshots, and generate Evidence-based curriculum recommendations.
  *
  * This is the "Cattolica-ready" product: answers "which skills gaps exist
  * per degree program, and what trend are they on?"
@@ -254,7 +254,7 @@ export async function getProgramTrend(
 }
 
 /**
- * Generate AI-assisted curriculum recommendations from a gap report.
+ * Generate Evidence-based curriculum recommendations from a gap report.
  * Returns actionable items for the university's curriculum committee.
  */
 export async function generateCurriculumRecommendations(

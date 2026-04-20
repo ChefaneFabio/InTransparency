@@ -1,6 +1,6 @@
 const features = [
   {
-    name: 'AI-Powered Analysis',
+    name: 'Evidence-Based Analysis',
     description: 'Advanced AI analyzes your projects to identify strengths, complexity levels, and improvement opportunities.',
     number: '01',
     benefits: ['Smart project scoring', 'Skill assessment', 'Innovation metrics']
@@ -46,7 +46,7 @@ export function Features() {
             Everything you need to showcase your work
           </h2>
           <p className="mt-4 text-xl text-muted-foreground max-w-3xl mx-auto">
-            InTransparency provides a comprehensive platform with AI-powered tools,
+            InTransparency provides a comprehensive platform with evidence-based tools,
             intelligent matching, and professional networking capabilities.
           </p>
         </div>
@@ -84,7 +84,7 @@ export function Features() {
         <div className="mt-16 text-center">
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-primary">AI-Powered</div>
+              <div className="text-2xl font-bold text-primary">Evidence-Based</div>
               <div className="text-sm text-muted-foreground">Project Analysis</div>
             </div>
             <div className="text-center">

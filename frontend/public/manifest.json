@@ -1,7 +1,7 @@
 {
   "name": "InTransparency - Talent Discovery Platform",
   "short_name": "InTransparency",
-  "description": "AI-powered platform connecting students with career opportunities through academic project analysis and intelligent matching.",
+  "description": "Verified skill graph for European higher education — evidence-based matching between students, universities, and employers.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
