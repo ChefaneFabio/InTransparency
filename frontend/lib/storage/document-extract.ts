@@ -566,7 +566,11 @@ async function extractRar(filename: string, buffer: Buffer): Promise<ExtractedBl
   try {
     // @ts-ignore — optional dep, types resolved after `npm install`
     const unrar = await import('node-unrar-js')
-    const extractor = await unrar.createExtractorFromData({ data: buffer })
+    // node-unrar-js wants ArrayBuffer, not Node's Buffer (which is Uint8Array-backed).
+    // Copy into a fresh ArrayBuffer to satisfy strict type + avoid sharing the pool.
+    const ab = new ArrayBuffer(buffer.byteLength)
+    new Uint8Array(ab).set(buffer)
+    const extractor = await unrar.createExtractorFromData({ data: ab })
     const list = extractor.getFileList()
     const fileHeaders = Array.from(list.fileHeaders || [])
     const names = fileHeaders.map((f: any) => f.name).sort()
