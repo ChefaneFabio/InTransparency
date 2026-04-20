@@ -38,10 +38,10 @@ export const metadata: Metadata = {
   themeColor: '#0891b2',
   icons: {
     icon: [
-      { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.png', type: 'image/png', sizes: '512x512' },
+      { url: '/logo.png', type: 'image/png', sizes: '400x400' },
+      { url: '/favicon.png', type: 'image/png', sizes: '400x400' },
     ],
-    apple: '/favicon.png',
+    apple: '/apple-icon.png',
   },
   appleWebApp: {
     capable: true,
